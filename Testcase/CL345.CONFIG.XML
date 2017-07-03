@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SignalpoolConfiguration xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/BT_CSB_Tools.Utils.Xml">
+  <Configurations>
+    <Configuration>
+      <ClientSettings xmlns:d4p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <ClientType>RTSIMClient</ClientType>
+      <ConfigFile>fl_config.xml</ConfigFile>
+      <ConfigVersion>name=Crossrail version=R6 Real CCUS crc=0xA7C0001F</ConfigVersion>
+      <ConsistType></ConsistType>
+      <IPAddress>10.0.0.46</IPAddress>
+      <IsEnabled>True</IsEnabled>
+      <Namespace>SITR</Namespace>
+      <Orientation></Orientation>
+      <Position>0</Position>
+      <SoftIPNetID></SoftIPNetID>
+    </Configuration>
+  </Configurations>
+  <HideConsole>false</HideConsole>
+  <RootNamespace>CL345</RootNamespace>
+</SignalpoolConfiguration>

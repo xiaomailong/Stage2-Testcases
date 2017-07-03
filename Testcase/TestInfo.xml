@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+ <TestInfoXml>
+	<Project>PROJECT</Project>
+	<Asv>ASV</Asv>
+	<Configuration>CONFIG</Configuration>
+	<Rack>RACK</Rack>
+	<Tester>TESTER</Tester>
+	<Logpath>C:\LOGGING</Logpath>
+	<Logwindow>True</Logwindow>
+	<LogWindowAutoClose>False</LogWindowAutoClose>
+	<LogSizeMaximum>200MB</LogSizeMaximum>
+	<LogEntriesMaximum>20000</LogEntriesMaximum>
+	<LogDirectlyToDisk>False</LogDirectlyToDisk>
+	<HideConsoleWindow>False</HideConsoleWindow>
+	<UCpath>c:\</UCpath>
+	<ManualTest>True</ManualTest>
+	<DefaultResult>Yes</DefaultResult>
+	<ValidationMode>False</ValidationMode>
+	<CustomProperties>
+<!-- <XSLFile>C:\FILE\TO\CUSTOM.xsl</XSLFile>
+	 <JenkinsUrl>http://localhost:8080/job/JUnit%20Test%20Job/ws/</JenkinsUrl>
+	 <JenkinsJobPath>C:\jenkins\ws\JUnit Test Job</JenkinsJobPath> -->
+	</CustomProperties> 
+</TestInfoXml>
