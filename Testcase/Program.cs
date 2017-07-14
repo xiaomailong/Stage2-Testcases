@@ -10,7 +10,7 @@ namespace Testcase
     {
         static void Main(string[] args)
         {
-            TestcaseRunner.AddTestcase(typeof(Testcase));
+            TestcaseRunner.AddTestcase(typeof(SoM_Level1));
             TestcaseRunner.RunTestcases(args);
         }
     }

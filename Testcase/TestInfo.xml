@@ -5,7 +5,7 @@
 	<Configuration>CONFIG</Configuration>
 	<Rack>RACK</Rack>
 	<Tester>TESTER</Tester>
-	<Logpath>C:\LOGGING</Logpath>
+	<Logpath>C:\01_Projects\05_RefDMI\02_testing\01_laboratory_testing\08_logs</Logpath>
 	<Logwindow>True</Logwindow>
 	<LogWindowAutoClose>False</LogWindowAutoClose>
 	<LogSizeMaximum>200MB</LogSizeMaximum>
