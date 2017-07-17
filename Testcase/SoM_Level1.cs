@@ -52,7 +52,7 @@ namespace Testcase
             SendEVC2_MMIStatus_Cab1Active(0xffffffff);
 
             // ETCS->DMI: EVC-14 MMI_CURRENT_DRIVER_ID
-            SendEVC14_MMICurrentDriverID("1234");
+            SendEVC14_MMICurrentDriverID("1234", true, true, false);
 
             // Receive EVC-104 MMI_NEW_DRIVER_DATA   
             // DMI input required
@@ -272,7 +272,7 @@ namespace Testcase
             //Receive packet EVC-107
 
             //Send EVC-30 MMI_REQUEST_ENABLE
-            SendEVC30_MMIRequestEnable(255, 0b00011101000000111111000000111110);
+            SendEVC30_MMIRequestEnable(255, 0b0001_1101_0000_0011_1111_0000_0011_1110);
 
             //Send EVC-16 MMI_CURRENT_TRAIN_NUMBER
             SendEVC16_CurrentTrainNumber(0xffffffff);
@@ -283,7 +283,7 @@ namespace Testcase
             SendEVC2_MMIStatus_Cab1Active(0xffffffff);
 
             //Send EVC-30 MMI_ENABLE_REQUEST
-            SendEVC30_MMIRequestEnable(255, 0b00011101000000111111000000111111);
+            SendEVC30_MMIRequestEnable(255, 0b0001_1101_0000_0011_1111_0000_0011_1111);
 
             //Receive packet EVC-101 MMI_DRIVER_REQUEST (Driver presses Start Button)
 
@@ -347,16 +347,39 @@ namespace Testcase
             SITR.SMDCtrl.ETCS1.Status.Value = 1;
         }
 
-        public void SendEVC14_MMICurrentDriverID(string strDriverID)
+        /// <summary>
+        /// Sends EVC-14 Current Driver ID telegram with enable/disable options for the TRN, Settings, and Close buttons.
+        /// </summary>
+        /// <param name="strDriverID">
+        /// Current Driver ID.</param>
+        /// <param name="blTRNButtonEnabled">
+        /// Enable/disable TRN button.</param>
+        /// <param name="blSettingsButtonEnabled">
+        /// Enable/disable settings button.</param>
+        /// <param name="blCloseButtonEnabled">
+        /// Enable/disable Close button.</param>
+        public void SendEVC14_MMICurrentDriverID(string strDriverID, bool blTRNButtonEnabled, bool blSettingsButtonEnabled, bool blCloseButtonEnabled)
         {
-            TraceInfo("ETCS->DMI: EVC-14 (MMI_CURRENT_DRIVER_ID)");
+            TraceInfo("ETCS->DMI: EVC-14 (MMI_CURRENT_DRIVER_ID), Driver ID = {0}, TRN button enabled: {1}, Settings button enabled: {2}, Close Enabled: {3}",
+                                                                    strDriverID, blTRNButtonEnabled, blSettingsButtonEnabled, blCloseButtonEnabled);
+
+            //convert boolean to uint for bit shifting
+            uint uintTRNButton = Convert.ToUInt32(blTRNButtonEnabled);
+            uintTRNButton = uintTRNButton << 7;
+
+            //convert boolean to uint for bit shifting
+            uint uintSettingsButton = Convert.ToUInt32(blSettingsButtonEnabled);
+            uintSettingsButton = uintSettingsButton << 6;
+
+            //combined "TRN" and "Settings" button bit-masks
+            byte MmiQAddEnable = Convert.ToByte(uintTRNButton | uintSettingsButton);
 
             SITR.ETCS1.CurrentDriverId.MmiMPacket.Value=14;
             SITR.ETCS1.CurrentDriverId.MmiLPacket.Value=172;
-            SITR.ETCS1.CurrentDriverId.MmiQCloseEnable.Value=0;
-            SITR.ETCS1.CurrentDriverId.MmiQAddEnable.Value=192;   // TRN and Settings button enabled
+            SITR.ETCS1.CurrentDriverId.MmiQCloseEnable.Value= Convert.ToByte(blCloseButtonEnabled);
+            SITR.ETCS1.CurrentDriverId.MmiQAddEnable.Value = MmiQAddEnable;
             SITR.ETCS1.CurrentDriverId.MmiXDriverId.Value=strDriverID;
-            SITR.SMDCtrl.ETCS1.CurrentDriverId.Value=0;
+            SITR.SMDCtrl.ETCS1.CurrentDriverId.Value=1;
         } 
 
         /// <summary>
@@ -630,7 +653,7 @@ namespace Testcase
         {
             uint Reversed_MMI_Q_Request_Enable = BitReverser32(MMI_Q_Request_Enable);
 
-            TraceInfo("ETCS -> DMI: EVC-30 (MMI_Request_Enable) MMI Window ID: {0}, MMI Q Request (bit 31 to 0): {1}", 
+            TraceInfo("ETCS->DMI: EVC-30 (MMI_Request_Enable) MMI Window ID: {0}, MMI Q Request (bit 31 to 0): {1}", 
                                                                             MMINidWindow, Reversed_MMI_Q_Request_Enable);
 
             SITR.ETCS1.EnableRequest.MmiMPacket.Value = 30;
@@ -650,6 +673,25 @@ namespace Testcase
             uint y = 0;
 
             for (int i=0; i<32; i++)
+            {
+                y <<= 1;
+                y |= (IntToBeReversed & 1);
+                IntToBeReversed >>= 1;
+            }
+
+            return y;
+        }
+
+        /// <summary>
+        /// Bit-reverses a 16-bit number
+        /// </summary>
+        /// <param name="IntToBeReversed"></param>
+        /// <returns>Reversed 16-bit uint</returns>
+        public uint BitReverser16(uint IntToBeReversed)
+        {
+            uint y = 0;
+
+            for (int i = 0; i < 16; i++)
             {
                 y <<= 1;
                 y |= (IntToBeReversed & 1);
