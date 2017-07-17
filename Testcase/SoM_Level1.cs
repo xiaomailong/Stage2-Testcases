@@ -49,7 +49,7 @@ namespace Testcase
             // Possibly send EVC-30 MMI_Enable_Request packet   (Wireshark log)
 
             //ETCS->DMI: EVC-2 MMI_STATUS
-            SendEVC2_MMIStatus_Cab1Active();
+            SendEVC2_MMIStatus_Cab1Active(0xffffffff);
 
             // ETCS->DMI: EVC-14 MMI_CURRENT_DRIVER_ID
             SendEVC14_MMICurrentDriverID("1234");
@@ -64,13 +64,9 @@ namespace Testcase
             //Send "NO" back to EVC (EVC-111 MMI_DRIVER_MESSAGE_ACK)
 
             //Send EVC-30 MMI_REQUEST_ENABLE
-            SITR.ETCS1.EnableRequest.MmiMPacket.Value = 30;
-            SITR.ETCS1.EnableRequest.MmiNidWindow.Value = 255;      //No specific DMI window
-            SITR.ETCS1.EnableRequest.MmiQRequestEnable.Value = new uint[2] { 0x7c07c0a8, 0x80000000 };
-            SITR.ETCS1.EnableRequest.MmiLPacket.Value = 128;
-            SITR.SMDCtrl.ETCS1.EnableRequest.Value = 1;
+            SendEVC30_MMIRequestEnable(255, 0b0001_1101_0000_0011_1110_0000_0011_1110);
 
-            //Send EVC-20 MMI_SELECT_LEVEL      ASK JOHAN!!!!!!!!
+            //Send EVC-20 MMI_SELECT_LEVEL
             SITR.ETCS1.SelectLevel.MmiMPacket.Value = 20;
             SITR.ETCS1.SelectLevel.MmiNLevels.Value = 0x7;
             SITR.ETCS1.SelectLevel.EVC20alias1.Value = 0xe8;
@@ -78,237 +74,221 @@ namespace Testcase
             SITR.ETCS1.SelectLevel.MmiQCloseEnable.Value = 168;
             SITR.ETCS1.SelectLevel.MmiLPacket.Value = 168;
             SITR.SMDCtrl.ETCS1.SelectLevel.Value = 1;
-            //SITR.SMDCtrl.ETCS1.SelectLevel.Value = 0;
 
-            //Receive EVC-101
+            ////Receive EVC-101
 
-            //Send EVC-6 MMI_CURRENT TRAIN_DATA
-            SITR.ETCS1.CurrentTrainData.MmiMPacket.Value = 6;
-            SITR.ETCS1.CurrentTrainData.MmiMDataEnable.Value = 0x7f00;      // 32512
-            SITR.ETCS1.CurrentTrainData.MmiLTrain.Value = 0x64;             // 100 metres
-            SITR.ETCS1.CurrentTrainData.MmiVMaxtrain.Value = 0xa0;          // 160
-            SITR.ETCS1.CurrentTrainData.MmiNidKeyTrainCat.Value = 0x3;      // 3
-            SITR.ETCS1.CurrentTrainData.MmiMBrakePerc.Value = 0x46;         // 70
-            SITR.ETCS1.CurrentTrainData.MmiNidKeyAxleLoad.Value = 0x15;     // 21
-            SITR.ETCS1.CurrentTrainData.MmiMAirtight.Value = 0x0;           // 0
-            SITR.ETCS1.CurrentTrainData.MmiNidKeyLoadGauge.Value = 0x26;    // 38
-            SITR.ETCS1.CurrentTrainData.MmiMButtons.Value = 0xff;           // 255
-            SITR.ETCS1.CurrentTrainData.EVC6alias1.Value = 0x0;             // 0
-            SITR.ETCS1.CurrentTrainData.MmiNTrainset.Value = 0x0;           // 0
-            SITR.ETCS1.CurrentTrainData.MmiNCaptionTrainset.Value = 0x0;    // 0
-            SITR.ETCS1.CurrentTrainData.MmiLPacket.Value = 176;
-            SITR.SMDCtrl.ETCS1.CurrentTrainData.Value = 1;
-            //SITR.SMDCtrl.ETCS1.CurrentTrainData.Value = 0;
+            ////Send EVC-6 MMI_CURRENT TRAIN_DATA
+            //SITR.ETCS1.CurrentTrainData.MmiMPacket.Value = 6;
+            //SITR.ETCS1.CurrentTrainData.MmiMDataEnable.Value = 0x7f00;      // 32512
+            //SITR.ETCS1.CurrentTrainData.MmiLTrain.Value = 0x64;             // 100 metres
+            //SITR.ETCS1.CurrentTrainData.MmiVMaxtrain.Value = 0xa0;          // 160
+            //SITR.ETCS1.CurrentTrainData.MmiNidKeyTrainCat.Value = 0x3;      // 3
+            //SITR.ETCS1.CurrentTrainData.MmiMBrakePerc.Value = 0x46;         // 70
+            //SITR.ETCS1.CurrentTrainData.MmiNidKeyAxleLoad.Value = 0x15;     // 21
+            //SITR.ETCS1.CurrentTrainData.MmiMAirtight.Value = 0x0;           // 0
+            //SITR.ETCS1.CurrentTrainData.MmiNidKeyLoadGauge.Value = 0x26;    // 38
+            //SITR.ETCS1.CurrentTrainData.MmiMButtons.Value = 0xff;           // 255
+            //SITR.ETCS1.CurrentTrainData.EVC6alias1.Value = 0x0;             // 0
+            //SITR.ETCS1.CurrentTrainData.MmiNTrainset.Value = 0x0;           // 0
+            //SITR.ETCS1.CurrentTrainData.MmiNCaptionTrainset.Value = 0x0;    // 0
+            //SITR.ETCS1.CurrentTrainData.MmiLPacket.Value = 176;
+            //SITR.SMDCtrl.ETCS1.CurrentTrainData.Value = 1;
+            ////SITR.SMDCtrl.ETCS1.CurrentTrainData.Value = 0;
 
-            // Receive telegram EVC-107
+            //// Receive telegram EVC-107
 
-            //Send EVC-6 MMI_CURRENT TRAIN_DATA
-            SITR.ETCS1.CurrentTrainData.MmiMPacket.Value = 6;
-            SITR.ETCS1.CurrentTrainData.MmiMDataEnable.Value = 0x7f00;          // 32512
-            SITR.ETCS1.CurrentTrainData.MmiLTrain.Value = 0x64;                 // 100 metres
-            SITR.ETCS1.CurrentTrainData.MmiVMaxtrain.Value = 0xa0;              // 160
-            SITR.ETCS1.CurrentTrainData.MmiNidKeyTrainCat.Value = 0x3;          // 3
-            SITR.ETCS1.CurrentTrainData.MmiMBrakePerc.Value = 0x46;             // 70
-            SITR.ETCS1.CurrentTrainData.MmiNidKeyAxleLoad.Value = 0x15;         // 21
-            SITR.ETCS1.CurrentTrainData.MmiMAirtight.Value = 0x0;               // 0
-            SITR.ETCS1.CurrentTrainData.MmiNidKeyLoadGauge.Value = 0x26;        // 38
-            SITR.ETCS1.CurrentTrainData.MmiMButtons.Value = 0xff;               // 255
-            SITR.ETCS1.CurrentTrainData.EVC6alias1.Value = 0x0;                 // 0
-            SITR.ETCS1.CurrentTrainData.MmiNTrainset.Value = 0x0;               // 0
-            SITR.ETCS1.CurrentTrainData.MmiNCaptionTrainset.Value = 0x1;        // 1
-            SITR.ETCS1.CurrentTrainData.MmiXCaptionTrainset.Value = (char)7;    // Bell
-            SITR.ETCS1.CurrentTrainData.MmiNDataElements.Value = 0x0;           // 0
-            SITR.ETCS1.CurrentTrainData.MmiNidData.Value = 0x6;                 // 6
-            SITR.ETCS1.CurrentTrainData.MmiQDataCheck.Value = 0x50;             // 80
-            SITR.ETCS1.CurrentTrainData.MmiNText.Value = 0x4153;                // 16723
-            SITR.ETCS1.CurrentTrainData.MmiXText.Value = (char)83;              // 'S'
-            SITR.ETCS1.CurrentTrainData.MmiLPacket.Value = 256;
-            SITR.SMDCtrl.ETCS1.CurrentTrainData.Value = 1;
-            //SITR.SMDCtrl.ETCS1.CurrentTrainData.Value = 0;
+            ////Send EVC-6 MMI_CURRENT TRAIN_DATA
+            //SITR.ETCS1.CurrentTrainData.MmiMPacket.Value = 6;
+            //SITR.ETCS1.CurrentTrainData.MmiMDataEnable.Value = 0x7f00;          // 32512
+            //SITR.ETCS1.CurrentTrainData.MmiLTrain.Value = 0x64;                 // 100 metres
+            //SITR.ETCS1.CurrentTrainData.MmiVMaxtrain.Value = 0xa0;              // 160
+            //SITR.ETCS1.CurrentTrainData.MmiNidKeyTrainCat.Value = 0x3;          // 3
+            //SITR.ETCS1.CurrentTrainData.MmiMBrakePerc.Value = 0x46;             // 70
+            //SITR.ETCS1.CurrentTrainData.MmiNidKeyAxleLoad.Value = 0x15;         // 21
+            //SITR.ETCS1.CurrentTrainData.MmiMAirtight.Value = 0x0;               // 0
+            //SITR.ETCS1.CurrentTrainData.MmiNidKeyLoadGauge.Value = 0x26;        // 38
+            //SITR.ETCS1.CurrentTrainData.MmiMButtons.Value = 0xff;               // 255
+            //SITR.ETCS1.CurrentTrainData.EVC6alias1.Value = 0x0;                 // 0
+            //SITR.ETCS1.CurrentTrainData.MmiNTrainset.Value = 0x0;               // 0
+            //SITR.ETCS1.CurrentTrainData.MmiNCaptionTrainset.Value = 0x1;        // 1
+            //SITR.ETCS1.CurrentTrainData.MmiXCaptionTrainset.Value = (char)7;    // Bell
+            //SITR.ETCS1.CurrentTrainData.MmiNDataElements.Value = 0x0;           // 0
+            //SITR.ETCS1.CurrentTrainData.MmiNidData.Value = 0x6;                 // 6
+            //SITR.ETCS1.CurrentTrainData.MmiQDataCheck.Value = 0x50;             // 80
+            //SITR.ETCS1.CurrentTrainData.MmiNText.Value = 0x4153;                // 16723
+            //SITR.ETCS1.CurrentTrainData.MmiXText.Value = (char)83;              // 'S'
+            //SITR.ETCS1.CurrentTrainData.MmiLPacket.Value = 256;
+            //SITR.SMDCtrl.ETCS1.CurrentTrainData.Value = 1;
+            ////SITR.SMDCtrl.ETCS1.CurrentTrainData.Value = 0;
 
-            // Receive telegram EVC-107
+            //// Receive telegram EVC-107
 
-            //Send EVC-6 MMI_CURRENT TRAIN_DATA
-            SITR.ETCS1.CurrentTrainData.MmiMPacket.Value = 6;
-            SITR.ETCS1.CurrentTrainData.MmiMDataEnable.Value = 0x7f00;          // 32512
-            SITR.ETCS1.CurrentTrainData.MmiLTrain.Value = 0x64;                 // 100 metres
-            SITR.ETCS1.CurrentTrainData.MmiVMaxtrain.Value = 0xa0;              // 160
-            SITR.ETCS1.CurrentTrainData.MmiNidKeyTrainCat.Value = 0x3;          // 3
-            SITR.ETCS1.CurrentTrainData.MmiMBrakePerc.Value = 0x46;             // 70
-            SITR.ETCS1.CurrentTrainData.MmiNidKeyAxleLoad.Value = 0x15;         // 21
-            SITR.ETCS1.CurrentTrainData.MmiMAirtight.Value = 0x0;               // 0
-            SITR.ETCS1.CurrentTrainData.MmiNidKeyLoadGauge.Value = 0x26;        // 38
-            SITR.ETCS1.CurrentTrainData.MmiMButtons.Value = 0xff;               // 255
-            SITR.ETCS1.CurrentTrainData.EVC6alias1.Value = 0x0;                 // 0
-            SITR.ETCS1.CurrentTrainData.MmiNTrainset.Value = 0x0;               // 0
-            SITR.ETCS1.CurrentTrainData.MmiNCaptionTrainset.Value = 0x1;        // 1
-            SITR.ETCS1.CurrentTrainData.MmiXCaptionTrainset.Value = (char)8;    // Bell
-            SITR.ETCS1.CurrentTrainData.MmiNDataElements.Value = 0x0;           // 0
-            SITR.ETCS1.CurrentTrainData.MmiNidData.Value = 0x3;                 // 3
-            SITR.ETCS1.CurrentTrainData.MmiQDataCheck.Value = 0x31;             // 49
-            SITR.ETCS1.CurrentTrainData.MmiNText.Value = 0x3030;                // 12336
-            SITR.ETCS1.CurrentTrainData.MmiLPacket.Value = 232;
-            SITR.SMDCtrl.ETCS1.CurrentTrainData.Value = 1;
-            //SITR.SMDCtrl.ETCS1.CurrentTrainData.Value = 0;
+            ////Send EVC-6 MMI_CURRENT TRAIN_DATA
+            //SITR.ETCS1.CurrentTrainData.MmiMPacket.Value = 6;
+            //SITR.ETCS1.CurrentTrainData.MmiMDataEnable.Value = 0x7f00;          // 32512
+            //SITR.ETCS1.CurrentTrainData.MmiLTrain.Value = 0x64;                 // 100 metres
+            //SITR.ETCS1.CurrentTrainData.MmiVMaxtrain.Value = 0xa0;              // 160
+            //SITR.ETCS1.CurrentTrainData.MmiNidKeyTrainCat.Value = 0x3;          // 3
+            //SITR.ETCS1.CurrentTrainData.MmiMBrakePerc.Value = 0x46;             // 70
+            //SITR.ETCS1.CurrentTrainData.MmiNidKeyAxleLoad.Value = 0x15;         // 21
+            //SITR.ETCS1.CurrentTrainData.MmiMAirtight.Value = 0x0;               // 0
+            //SITR.ETCS1.CurrentTrainData.MmiNidKeyLoadGauge.Value = 0x26;        // 38
+            //SITR.ETCS1.CurrentTrainData.MmiMButtons.Value = 0xff;               // 255
+            //SITR.ETCS1.CurrentTrainData.EVC6alias1.Value = 0x0;                 // 0
+            //SITR.ETCS1.CurrentTrainData.MmiNTrainset.Value = 0x0;               // 0
+            //SITR.ETCS1.CurrentTrainData.MmiNCaptionTrainset.Value = 0x1;        // 1
+            //SITR.ETCS1.CurrentTrainData.MmiXCaptionTrainset.Value = (char)8;    // Bell
+            //SITR.ETCS1.CurrentTrainData.MmiNDataElements.Value = 0x0;           // 0
+            //SITR.ETCS1.CurrentTrainData.MmiNidData.Value = 0x3;                 // 3
+            //SITR.ETCS1.CurrentTrainData.MmiQDataCheck.Value = 0x31;             // 49
+            //SITR.ETCS1.CurrentTrainData.MmiNText.Value = 0x3030;                // 12336
+            //SITR.ETCS1.CurrentTrainData.MmiLPacket.Value = 232;
+            //SITR.SMDCtrl.ETCS1.CurrentTrainData.Value = 1;
+            ////SITR.SMDCtrl.ETCS1.CurrentTrainData.Value = 0;
 
-            // Receive telegram EVC-107
+            //// Receive telegram EVC-107
 
-            //Send EVC-6 MMI_CURRENT TRAIN_DATA
-            SITR.ETCS1.CurrentTrainData.MmiMPacket.Value = 6;
-            SITR.ETCS1.CurrentTrainData.MmiMDataEnable.Value = 0x7f00;          // 32512
-            SITR.ETCS1.CurrentTrainData.MmiLTrain.Value = 0x64;                 // 100 metres
-            SITR.ETCS1.CurrentTrainData.MmiVMaxtrain.Value = 0xa0;              // 160
-            SITR.ETCS1.CurrentTrainData.MmiNidKeyTrainCat.Value = 0x3;          // 3
-            SITR.ETCS1.CurrentTrainData.MmiMBrakePerc.Value = 0x46;             // 70
-            SITR.ETCS1.CurrentTrainData.MmiNidKeyAxleLoad.Value = 0x15;         // 21
-            SITR.ETCS1.CurrentTrainData.MmiMAirtight.Value = 0x0;               // 0
-            SITR.ETCS1.CurrentTrainData.MmiNidKeyLoadGauge.Value = 0x26;        // 38
-            SITR.ETCS1.CurrentTrainData.MmiMButtons.Value = 0xff;               // 255
-            SITR.ETCS1.CurrentTrainData.EVC6alias1.Value = 0x0;                 // 0
-            SITR.ETCS1.CurrentTrainData.MmiNTrainset.Value = 0x0;               // 0
-            SITR.ETCS1.CurrentTrainData.MmiNCaptionTrainset.Value = 0x1;        // 1
-            SITR.ETCS1.CurrentTrainData.MmiXCaptionTrainset.Value = (char)9;    // Bell
-            SITR.ETCS1.CurrentTrainData.MmiNDataElements.Value = 0x0;           // 0
-            SITR.ETCS1.CurrentTrainData.MmiNidData.Value = 0x0;                 // 0
-            SITR.ETCS1.CurrentTrainData.MmiQDataCheck.Value = 0x37;             // 55
-            SITR.ETCS1.CurrentTrainData.MmiLPacket.Value = 224;
-            SITR.SMDCtrl.ETCS1.CurrentTrainData.Value = 1;
-            //SITR.SMDCtrl.ETCS1.CurrentTrainData.Value = 0;
+            ////Send EVC-6 MMI_CURRENT TRAIN_DATA
+            //SITR.ETCS1.CurrentTrainData.MmiMPacket.Value = 6;
+            //SITR.ETCS1.CurrentTrainData.MmiMDataEnable.Value = 0x7f00;          // 32512
+            //SITR.ETCS1.CurrentTrainData.MmiLTrain.Value = 0x64;                 // 100 metres
+            //SITR.ETCS1.CurrentTrainData.MmiVMaxtrain.Value = 0xa0;              // 160
+            //SITR.ETCS1.CurrentTrainData.MmiNidKeyTrainCat.Value = 0x3;          // 3
+            //SITR.ETCS1.CurrentTrainData.MmiMBrakePerc.Value = 0x46;             // 70
+            //SITR.ETCS1.CurrentTrainData.MmiNidKeyAxleLoad.Value = 0x15;         // 21
+            //SITR.ETCS1.CurrentTrainData.MmiMAirtight.Value = 0x0;               // 0
+            //SITR.ETCS1.CurrentTrainData.MmiNidKeyLoadGauge.Value = 0x26;        // 38
+            //SITR.ETCS1.CurrentTrainData.MmiMButtons.Value = 0xff;               // 255
+            //SITR.ETCS1.CurrentTrainData.EVC6alias1.Value = 0x0;                 // 0
+            //SITR.ETCS1.CurrentTrainData.MmiNTrainset.Value = 0x0;               // 0
+            //SITR.ETCS1.CurrentTrainData.MmiNCaptionTrainset.Value = 0x1;        // 1
+            //SITR.ETCS1.CurrentTrainData.MmiXCaptionTrainset.Value = (char)9;    // Bell
+            //SITR.ETCS1.CurrentTrainData.MmiNDataElements.Value = 0x0;           // 0
+            //SITR.ETCS1.CurrentTrainData.MmiNidData.Value = 0x0;                 // 0
+            //SITR.ETCS1.CurrentTrainData.MmiQDataCheck.Value = 0x37;             // 55
+            //SITR.ETCS1.CurrentTrainData.MmiLPacket.Value = 224;
+            //SITR.SMDCtrl.ETCS1.CurrentTrainData.Value = 1;
+            ////SITR.SMDCtrl.ETCS1.CurrentTrainData.Value = 0;
 
-            // Receive telegram EVC-107
+            //// Receive telegram EVC-107
 
-            //Send EVC-6 MMI_CURRENT TRAIN_DATA
-            SITR.ETCS1.CurrentTrainData.MmiMPacket.Value = 6;
-            SITR.ETCS1.CurrentTrainData.MmiMDataEnable.Value = 0x7f00;          // 32512
-            SITR.ETCS1.CurrentTrainData.MmiLTrain.Value = 0x64;                 // 100 metres
-            SITR.ETCS1.CurrentTrainData.MmiVMaxtrain.Value = 0xa0;              // 160
-            SITR.ETCS1.CurrentTrainData.MmiNidKeyTrainCat.Value = 0x3;          // 3
-            SITR.ETCS1.CurrentTrainData.MmiMBrakePerc.Value = 0x46;             // 70
-            SITR.ETCS1.CurrentTrainData.MmiNidKeyAxleLoad.Value = 0x15;         // 21
-            SITR.ETCS1.CurrentTrainData.MmiMAirtight.Value = 0x0;               // 0
-            SITR.ETCS1.CurrentTrainData.MmiNidKeyLoadGauge.Value = 0x26;        // 38
-            SITR.ETCS1.CurrentTrainData.MmiMButtons.Value = 0xff;               // 255
-            SITR.ETCS1.CurrentTrainData.EVC6alias1.Value = 0x0;                 // 0
-            SITR.ETCS1.CurrentTrainData.MmiNTrainset.Value = 0x0;               // 0
-            SITR.ETCS1.CurrentTrainData.MmiNCaptionTrainset.Value = 0x1;        // 1
-            SITR.ETCS1.CurrentTrainData.MmiXCaptionTrainset.Value = (char)10;   // LF
-            SITR.ETCS1.CurrentTrainData.MmiNDataElements.Value = 0x0;           // 0
-            SITR.ETCS1.CurrentTrainData.MmiNidData.Value = 0x3;                 // 3
-            SITR.ETCS1.CurrentTrainData.MmiQDataCheck.Value = 0x31;             // 49
-            SITR.ETCS1.CurrentTrainData.MmiNText.Value = 0x3630;                // 13872
-            SITR.ETCS1.CurrentTrainData.MmiLPacket.Value = 232;
-            SITR.SMDCtrl.ETCS1.CurrentTrainData.Value = 1;
-            //SITR.SMDCtrl.ETCS1.CurrentTrainData.Value = 0;
+            ////Send EVC-6 MMI_CURRENT TRAIN_DATA
+            //SITR.ETCS1.CurrentTrainData.MmiMPacket.Value = 6;
+            //SITR.ETCS1.CurrentTrainData.MmiMDataEnable.Value = 0x7f00;          // 32512
+            //SITR.ETCS1.CurrentTrainData.MmiLTrain.Value = 0x64;                 // 100 metres
+            //SITR.ETCS1.CurrentTrainData.MmiVMaxtrain.Value = 0xa0;              // 160
+            //SITR.ETCS1.CurrentTrainData.MmiNidKeyTrainCat.Value = 0x3;          // 3
+            //SITR.ETCS1.CurrentTrainData.MmiMBrakePerc.Value = 0x46;             // 70
+            //SITR.ETCS1.CurrentTrainData.MmiNidKeyAxleLoad.Value = 0x15;         // 21
+            //SITR.ETCS1.CurrentTrainData.MmiMAirtight.Value = 0x0;               // 0
+            //SITR.ETCS1.CurrentTrainData.MmiNidKeyLoadGauge.Value = 0x26;        // 38
+            //SITR.ETCS1.CurrentTrainData.MmiMButtons.Value = 0xff;               // 255
+            //SITR.ETCS1.CurrentTrainData.EVC6alias1.Value = 0x0;                 // 0
+            //SITR.ETCS1.CurrentTrainData.MmiNTrainset.Value = 0x0;               // 0
+            //SITR.ETCS1.CurrentTrainData.MmiNCaptionTrainset.Value = 0x1;        // 1
+            //SITR.ETCS1.CurrentTrainData.MmiXCaptionTrainset.Value = (char)10;   // LF
+            //SITR.ETCS1.CurrentTrainData.MmiNDataElements.Value = 0x0;           // 0
+            //SITR.ETCS1.CurrentTrainData.MmiNidData.Value = 0x3;                 // 3
+            //SITR.ETCS1.CurrentTrainData.MmiQDataCheck.Value = 0x31;             // 49
+            //SITR.ETCS1.CurrentTrainData.MmiNText.Value = 0x3630;                // 13872
+            //SITR.ETCS1.CurrentTrainData.MmiLPacket.Value = 232;
+            //SITR.SMDCtrl.ETCS1.CurrentTrainData.Value = 1;
+            ////SITR.SMDCtrl.ETCS1.CurrentTrainData.Value = 0;
 
-            // Receive telegram EVC-107
+            //// Receive telegram EVC-107
 
-            //Send EVC-6 MMI_CURRENT TRAIN_DATA
-            SITR.ETCS1.CurrentTrainData.MmiMPacket.Value = 6;
-            SITR.ETCS1.CurrentTrainData.MmiMDataEnable.Value = 0x7f00;          // 32512
-            SITR.ETCS1.CurrentTrainData.MmiLTrain.Value = 0x64;                 // 100 metres
-            SITR.ETCS1.CurrentTrainData.MmiVMaxtrain.Value = 0xa0;              // 160
-            SITR.ETCS1.CurrentTrainData.MmiNidKeyTrainCat.Value = 0x3;          // 3
-            SITR.ETCS1.CurrentTrainData.MmiMBrakePerc.Value = 0x46;             // 70
-            SITR.ETCS1.CurrentTrainData.MmiNidKeyAxleLoad.Value = 0x15;         // 21
-            SITR.ETCS1.CurrentTrainData.MmiMAirtight.Value = 0x0;               // 0
-            SITR.ETCS1.CurrentTrainData.MmiNidKeyLoadGauge.Value = 0x26;        // 38
-            SITR.ETCS1.CurrentTrainData.MmiMButtons.Value = 0xff;               // 255
-            SITR.ETCS1.CurrentTrainData.EVC6alias1.Value = 0x0;                 // 0
-            SITR.ETCS1.CurrentTrainData.MmiNTrainset.Value = 0x0;               // 0
-            SITR.ETCS1.CurrentTrainData.MmiNCaptionTrainset.Value = 0x1;        // 1
-            SITR.ETCS1.CurrentTrainData.MmiXCaptionTrainset.Value = (char)11;   // Vertical tab
-            SITR.ETCS1.CurrentTrainData.MmiNDataElements.Value = 0x0;           // 0
-            SITR.ETCS1.CurrentTrainData.MmiNidData.Value = 0x1;                 // 1
-            SITR.ETCS1.CurrentTrainData.MmiQDataCheck.Value = 0x41;             // 65
-            SITR.ETCS1.CurrentTrainData.MmiLPacket.Value = 216;
-            SITR.SMDCtrl.ETCS1.CurrentTrainData.Value = 1;
-            //SITR.SMDCtrl.ETCS1.CurrentTrainData.Value = 0;
+            ////Send EVC-6 MMI_CURRENT TRAIN_DATA
+            //SITR.ETCS1.CurrentTrainData.MmiMPacket.Value = 6;
+            //SITR.ETCS1.CurrentTrainData.MmiMDataEnable.Value = 0x7f00;          // 32512
+            //SITR.ETCS1.CurrentTrainData.MmiLTrain.Value = 0x64;                 // 100 metres
+            //SITR.ETCS1.CurrentTrainData.MmiVMaxtrain.Value = 0xa0;              // 160
+            //SITR.ETCS1.CurrentTrainData.MmiNidKeyTrainCat.Value = 0x3;          // 3
+            //SITR.ETCS1.CurrentTrainData.MmiMBrakePerc.Value = 0x46;             // 70
+            //SITR.ETCS1.CurrentTrainData.MmiNidKeyAxleLoad.Value = 0x15;         // 21
+            //SITR.ETCS1.CurrentTrainData.MmiMAirtight.Value = 0x0;               // 0
+            //SITR.ETCS1.CurrentTrainData.MmiNidKeyLoadGauge.Value = 0x26;        // 38
+            //SITR.ETCS1.CurrentTrainData.MmiMButtons.Value = 0xff;               // 255
+            //SITR.ETCS1.CurrentTrainData.EVC6alias1.Value = 0x0;                 // 0
+            //SITR.ETCS1.CurrentTrainData.MmiNTrainset.Value = 0x0;               // 0
+            //SITR.ETCS1.CurrentTrainData.MmiNCaptionTrainset.Value = 0x1;        // 1
+            //SITR.ETCS1.CurrentTrainData.MmiXCaptionTrainset.Value = (char)11;   // Vertical tab
+            //SITR.ETCS1.CurrentTrainData.MmiNDataElements.Value = 0x0;           // 0
+            //SITR.ETCS1.CurrentTrainData.MmiNidData.Value = 0x1;                 // 1
+            //SITR.ETCS1.CurrentTrainData.MmiQDataCheck.Value = 0x41;             // 65
+            //SITR.ETCS1.CurrentTrainData.MmiLPacket.Value = 216;
+            //SITR.SMDCtrl.ETCS1.CurrentTrainData.Value = 1;
+            ////SITR.SMDCtrl.ETCS1.CurrentTrainData.Value = 0;
 
-            // Receive telegram EVC-107
+            //// Receive telegram EVC-107
 
-            //Send EVC-6 MMI_CURRENT TRAIN_DATA
-            SITR.ETCS1.CurrentTrainData.MmiMPacket.Value = 6;
-            SITR.ETCS1.CurrentTrainData.MmiMDataEnable.Value = 0x7f00;          // 32512
-            SITR.ETCS1.CurrentTrainData.MmiLTrain.Value = 0x64;                 // 100 metres
-            SITR.ETCS1.CurrentTrainData.MmiVMaxtrain.Value = 0xa0;              // 160
-            SITR.ETCS1.CurrentTrainData.MmiNidKeyTrainCat.Value = 0x3;          // 3
-            SITR.ETCS1.CurrentTrainData.MmiMBrakePerc.Value = 0x46;             // 70
-            SITR.ETCS1.CurrentTrainData.MmiNidKeyAxleLoad.Value = 0x15;         // 21
-            SITR.ETCS1.CurrentTrainData.MmiMAirtight.Value = 0x0;               // 0
-            SITR.ETCS1.CurrentTrainData.MmiNidKeyLoadGauge.Value = 0x26;        // 38
-            SITR.ETCS1.CurrentTrainData.MmiMButtons.Value = 0xff;               // 255
-            SITR.ETCS1.CurrentTrainData.EVC6alias1.Value = 0x0;                 // 0
-            SITR.ETCS1.CurrentTrainData.MmiNTrainset.Value = 0x0;               // 0
-            SITR.ETCS1.CurrentTrainData.MmiNCaptionTrainset.Value = 0x1;        // 1
-            SITR.ETCS1.CurrentTrainData.MmiXCaptionTrainset.Value = (char)12;   // 
-            SITR.ETCS1.CurrentTrainData.MmiNDataElements.Value = 0x0;           // 0
-            SITR.ETCS1.CurrentTrainData.MmiNidData.Value = 0x2;                 // 2
-            SITR.ETCS1.CurrentTrainData.MmiQDataCheck.Value = 0x4e;             // 78
-            SITR.ETCS1.CurrentTrainData.MmiLPacket.Value = 224;
-            SITR.SMDCtrl.ETCS1.CurrentTrainData.Value = 1;
-            //SITR.SMDCtrl.ETCS1.CurrentTrainData.Value = 0;
+            ////Send EVC-6 MMI_CURRENT TRAIN_DATA
+            //SITR.ETCS1.CurrentTrainData.MmiMPacket.Value = 6;
+            //SITR.ETCS1.CurrentTrainData.MmiMDataEnable.Value = 0x7f00;          // 32512
+            //SITR.ETCS1.CurrentTrainData.MmiLTrain.Value = 0x64;                 // 100 metres
+            //SITR.ETCS1.CurrentTrainData.MmiVMaxtrain.Value = 0xa0;              // 160
+            //SITR.ETCS1.CurrentTrainData.MmiNidKeyTrainCat.Value = 0x3;          // 3
+            //SITR.ETCS1.CurrentTrainData.MmiMBrakePerc.Value = 0x46;             // 70
+            //SITR.ETCS1.CurrentTrainData.MmiNidKeyAxleLoad.Value = 0x15;         // 21
+            //SITR.ETCS1.CurrentTrainData.MmiMAirtight.Value = 0x0;               // 0
+            //SITR.ETCS1.CurrentTrainData.MmiNidKeyLoadGauge.Value = 0x26;        // 38
+            //SITR.ETCS1.CurrentTrainData.MmiMButtons.Value = 0xff;               // 255
+            //SITR.ETCS1.CurrentTrainData.EVC6alias1.Value = 0x0;                 // 0
+            //SITR.ETCS1.CurrentTrainData.MmiNTrainset.Value = 0x0;               // 0
+            //SITR.ETCS1.CurrentTrainData.MmiNCaptionTrainset.Value = 0x1;        // 1
+            //SITR.ETCS1.CurrentTrainData.MmiXCaptionTrainset.Value = (char)12;   // 
+            //SITR.ETCS1.CurrentTrainData.MmiNDataElements.Value = 0x0;           // 0
+            //SITR.ETCS1.CurrentTrainData.MmiNidData.Value = 0x2;                 // 2
+            //SITR.ETCS1.CurrentTrainData.MmiQDataCheck.Value = 0x4e;             // 78
+            //SITR.ETCS1.CurrentTrainData.MmiLPacket.Value = 224;
+            //SITR.SMDCtrl.ETCS1.CurrentTrainData.Value = 1;
+            ////SITR.SMDCtrl.ETCS1.CurrentTrainData.Value = 0;
 
-            // Receive telegram EVC-107
+            //// Receive telegram EVC-107
 
-            //Send EVC-6 MMI_CURRENT TRAIN_DATA
-            SITR.ETCS1.CurrentTrainData.MmiMPacket.Value = 6;
-            SITR.ETCS1.CurrentTrainData.MmiMDataEnable.Value = 0x7f00;          // 32512
-            SITR.ETCS1.CurrentTrainData.MmiLTrain.Value = 0x64;                 // 100 metres
-            SITR.ETCS1.CurrentTrainData.MmiVMaxtrain.Value = 0xa0;              // 160
-            SITR.ETCS1.CurrentTrainData.MmiNidKeyTrainCat.Value = 0x3;          // 3
-            SITR.ETCS1.CurrentTrainData.MmiMBrakePerc.Value = 0x46;             // 70
-            SITR.ETCS1.CurrentTrainData.MmiNidKeyAxleLoad.Value = 0x15;         // 21
-            SITR.ETCS1.CurrentTrainData.MmiMAirtight.Value = 0x0;               // 0
-            SITR.ETCS1.CurrentTrainData.MmiNidKeyLoadGauge.Value = 0x26;        // 38
-            SITR.ETCS1.CurrentTrainData.MmiMButtons.Value = 0xff;               // 255
-            SITR.ETCS1.CurrentTrainData.EVC6alias1.Value = 0x0;                 // 0
-            SITR.ETCS1.CurrentTrainData.MmiNTrainset.Value = 0x0;               // 0
-            SITR.ETCS1.CurrentTrainData.MmiNCaptionTrainset.Value = 0x1;        // 1
-            SITR.ETCS1.CurrentTrainData.MmiXCaptionTrainset.Value = (char)13;   // 
-            SITR.ETCS1.CurrentTrainData.MmiNDataElements.Value = 0x0;           // 0
-            SITR.ETCS1.CurrentTrainData.MmiNidData.Value = 0x9;                 // 9
-            SITR.ETCS1.CurrentTrainData.MmiQDataCheck.Value = 0x4f;             // 79
-            SITR.ETCS1.CurrentTrainData.MmiNText.Value = 0x7574;                // 30068
-            SITR.ETCS1.CurrentTrainData.MmiXText.Value = (char)32;              // 
-            SITR.ETCS1.CurrentTrainData.MmiLPacket.Value = 280;
-            SITR.SMDCtrl.ETCS1.CurrentTrainData.Value = 1;
-            //SITR.SMDCtrl.ETCS1.CurrentTrainData.Value = 0;
+            ////Send EVC-6 MMI_CURRENT TRAIN_DATA
+            //SITR.ETCS1.CurrentTrainData.MmiMPacket.Value = 6;
+            //SITR.ETCS1.CurrentTrainData.MmiMDataEnable.Value = 0x7f00;          // 32512
+            //SITR.ETCS1.CurrentTrainData.MmiLTrain.Value = 0x64;                 // 100 metres
+            //SITR.ETCS1.CurrentTrainData.MmiVMaxtrain.Value = 0xa0;              // 160
+            //SITR.ETCS1.CurrentTrainData.MmiNidKeyTrainCat.Value = 0x3;          // 3
+            //SITR.ETCS1.CurrentTrainData.MmiMBrakePerc.Value = 0x46;             // 70
+            //SITR.ETCS1.CurrentTrainData.MmiNidKeyAxleLoad.Value = 0x15;         // 21
+            //SITR.ETCS1.CurrentTrainData.MmiMAirtight.Value = 0x0;               // 0
+            //SITR.ETCS1.CurrentTrainData.MmiNidKeyLoadGauge.Value = 0x26;        // 38
+            //SITR.ETCS1.CurrentTrainData.MmiMButtons.Value = 0xff;               // 255
+            //SITR.ETCS1.CurrentTrainData.EVC6alias1.Value = 0x0;                 // 0
+            //SITR.ETCS1.CurrentTrainData.MmiNTrainset.Value = 0x0;               // 0
+            //SITR.ETCS1.CurrentTrainData.MmiNCaptionTrainset.Value = 0x1;        // 1
+            //SITR.ETCS1.CurrentTrainData.MmiXCaptionTrainset.Value = (char)13;   // 
+            //SITR.ETCS1.CurrentTrainData.MmiNDataElements.Value = 0x0;           // 0
+            //SITR.ETCS1.CurrentTrainData.MmiNidData.Value = 0x9;                 // 9
+            //SITR.ETCS1.CurrentTrainData.MmiQDataCheck.Value = 0x4f;             // 79
+            //SITR.ETCS1.CurrentTrainData.MmiNText.Value = 0x7574;                // 30068
+            //SITR.ETCS1.CurrentTrainData.MmiXText.Value = (char)32;              // 
+            //SITR.ETCS1.CurrentTrainData.MmiLPacket.Value = 280;
+            //SITR.SMDCtrl.ETCS1.CurrentTrainData.Value = 1;
+            ////SITR.SMDCtrl.ETCS1.CurrentTrainData.Value = 0;
 
             //Receive packet EVC-107
 
             //Send EVC-30 MMI_REQUEST_ENABLE
-            SITR.ETCS1.EnableRequest.MmiMPacket.Value = 30;
-            SITR.ETCS1.EnableRequest.MmiNidWindow.Value = 255;      //No specific DMI window
-            SITR.ETCS1.EnableRequest.MmiQRequestEnable.Value = new uint[2] { 0x7c0fc0b8, 0x80000000 };
-            SITR.ETCS1.EnableRequest.MmiLPacket.Value = 128;
-            SITR.SMDCtrl.ETCS1.EnableRequest.Value = 1;
-            //SITR.SMDCtrl.ETCS1.EnableRequest.Value = 0;
+            SendEVC30_MMIRequestEnable(255, 0b00011101000000111111000000111110);
 
             //Send EVC-16 MMI_CURRENT_TRAIN_NUMBER
-            SITR.ETCS1.CurrentTrainNumber.MmiMPacket.Value = 16;
-            SITR.ETCS1.CurrentTrainNumber.MmiLPacket.Value = 64;
-            SITR.ETCS1.CurrentTrainNumber.MmiNidOperation.Value = 0xffffffff;
-            SITR.SMDCtrl.ETCS1.CurrentTrainNumber.Value = 1;
-            //SITR.SMDCtrl.ETCS1.CurrentTrainNumber.Value = 0;
+            SendEVC16_CurrentTrainNumber(0xffffffff);
 
             //Receive packet EVC-116 MMI_NEW_TRAIN_NUMBER
 
+            //Send Cab active with echoed train number
+            SendEVC2_MMIStatus_Cab1Active(0xffffffff);
+
             //Send EVC-30 MMI_ENABLE_REQUEST
-            SITR.ETCS1.EnableRequest.MmiMPacket.Value = 30;
-            SITR.ETCS1.EnableRequest.MmiNidWindow.Value = 255;      //No specific DMI window
-            SITR.ETCS1.EnableRequest.MmiQRequestEnable.Value = new uint[2] { 0xfc0fc0b8, 0x80000000 };
-            SITR.ETCS1.EnableRequest.MmiLPacket.Value = 128;
-            SITR.SMDCtrl.ETCS1.EnableRequest.Value = 1;
-            //SITR.SMDCtrl.ETCS1.EnableRequest.Value = 0;
+            SendEVC30_MMIRequestEnable(255, 0b00011101000000111111000000111111);
 
             //Receive packet EVC-101 MMI_DRIVER_REQUEST (Driver presses Start Button)
 
             //send EVC-8 MMI_DRIVER_MESSAGE
-            SITR.ETCS1.DriverMessage.MmiMPacket.Value = 8;
-            SITR.ETCS1.DriverMessage.MmiLPacket.Value = 80;
-            SITR.ETCS1.DriverMessage.MmiQText.Value = 0x263;        // "#3 MO10 (Ack Staff Responsible Mode)"
-            SITR.SMDCtrl.ETCS1.DriverMessage.Value = 1;
-            //SITR.SMDCtrl.ETCS1.DriverMessage.Value = 0;
+            SendEVC8_MMIDriverMessage(true, 1, 1, 263);             // "#3 MO10 (Ack Staff Responsible Mode)"
 
             //Receive packet EVC-111 MMI_DRIVER_MESSAGE_ACK (Driver acknowledges SR Mode)
 
@@ -344,7 +324,6 @@ namespace Testcase
             SITR.ETCS1.StartAtp.MmiMStartReq.Value=0;
             SITR.ETCS1.StartAtp.MmiLPacket.Value=40;
             SITR.SMDCtrl.ETCS1.StartAtp.Value = 1;
-
         }
 
         public void SendEVC0_MMIStartATP_GoToIdle()
@@ -354,20 +333,18 @@ namespace Testcase
             SITR.ETCS1.StartAtp.MmiMPacket.Value=0;
             SITR.ETCS1.StartAtp.MmiMStartReq.Value=1;
             SITR.ETCS1.StartAtp.MmiLPacket.Value=40;
-            SITR.SMDCtrl.ETCS1.StartAtp.Value = 1;
-            
+            SITR.SMDCtrl.ETCS1.StartAtp.Value = 1;            
         }
 
-        public void SendEVC2_MMIStatus_Cab1Active()
+        public void SendEVC2_MMIStatus_Cab1Active(uint TrainNumber)
         {
             TraceInfo("ETCS->DMI: EVC-2 (MMI_STATUS) \"Cab 1 Active\"");
             
             SITR.ETCS1.Status.MmiMPacket.Value=2;
             SITR.ETCS1.Status.MmiLPacket.Value=72;
-            SITR.ETCS1.Status.MmiNidOperation.Value=0xffffffff; //Train running number 4 294 967 295
+            SITR.ETCS1.Status.MmiNidOperation.Value= TrainNumber; //Train running number 4 294 967 295
             SITR.ETCS1.Status.EVC2alias1.Value=16;              //Cab 1 active
             SITR.SMDCtrl.ETCS1.Status.Value = 1;
-
         }
 
         public void SendEVC14_MMICurrentDriverID(string strDriverID)
@@ -380,22 +357,25 @@ namespace Testcase
             SITR.ETCS1.CurrentDriverId.MmiQAddEnable.Value=192;   // TRN and Settings button enabled
             SITR.ETCS1.CurrentDriverId.MmiXDriverId.Value=strDriverID;
             SITR.SMDCtrl.ETCS1.CurrentDriverId.Value=0;
-
-        }
+        } 
 
         /// <summary>
-        ///     SendEVC8_MMIDriver_Message
-        ///     Sends pre-programmed Driver text message
-        /// <param name="blImportant">Used to indicate whether message is important (True) or Auxilliary (False).</param>
-        /// <param name="MMI_Q_Text_Criteria">Message display type:
-        ///     0 = "Add text/symbol with ACK prompt, to be kept after ACK."
-        ///     1 = "Add text/symbol with ACK prompt, to be removed after ACK."
-        ///     2 = "Add text with ACK/NACK prompt, to be removed after ACK/NACK."
-        ///     3 = "Add informative text/symbol."
-        ///     4 = "Remove text/symbol. Text/symbol to be removed is defined by MMI_I_TEXT."
-        ///     5 = "Text still incomplete. Another instance of EVC-8 follows."</param>
-        /// <param name="MMI_I_Text">Unique text message ID.</param>
-        /// <param name="MMI_Q_Text">Pre-defined text message ID.</param>
+        /// SendEVC8_MMIDriver_Message
+        /// Sends pre-programmed Driver text message
+        /// <param name="blImportant">
+        /// Used to indicate whether message is important (True) or Auxilliary (False).</param>
+        /// <param name="MMI_Q_Text_Criteria">
+        /// Message display type: <br/>
+        /// 0 = "Add text/symbol with ACK prompt, to be kept after ACK."
+        /// 1 = "Add text/symbol with ACK prompt, to be removed after ACK."
+        /// 2 = "Add text with ACK/NACK prompt, to be removed after ACK/NACK."
+        /// 3 = "Add informative text/symbol."
+        /// 4 = "Remove text/symbol. Text/symbol to be removed is defined by MMI_I_TEXT."
+        /// 5 = "Text still incomplete. Another instance of EVC-8 follows."</param>
+        /// <param name="MMI_I_Text">
+        /// Unique text message ID.</param>
+        /// <param name="MMI_Q_Text">
+        /// Pre-defined text message ID.</param>
         /// </summary>
         // 0 = "Level crossing not protected"
         // 1 = "Acknowledgement"
@@ -547,7 +527,7 @@ namespace Testcase
         // 716 = "#3 Symbol ST05 (hour glass)"
         public void SendEVC8_MMIDriverMessage(bool blImportant, ushort MMI_Q_Text_Criteria, byte MMI_I_Text, ushort MMI_Q_Text)
         {
-            TraceInfo("ETCS->DMI: EVC-8 (MMI_Driver_Message) MMI_Q_Text_Class {0}, MMI_Q_Text_Criteria {1}, MMI_I_Text {2}, MMI_Q_Text {3}", 
+            TraceInfo("ETCS->DMI: EVC-8 (MMI_Driver_Message) MMI_Q_Text_Class = {0}, MMI_Q_Text_Criteria = {1}, MMI_I_Text = {2}, MMI_Q_Text = {3}", 
                                                                                     blImportant, MMI_Q_Text_Criteria, MMI_I_Text, MMI_Q_Text);
 
             SITR.ETCS1.DriverMessage.MmiMPacket.Value = 8;                  // Packet ID
@@ -563,6 +543,120 @@ namespace Testcase
             SITR.ETCS1.DriverMessage.MmiQText.Value = MMI_Q_Text;           // Pre-defined text message number (see above)
             SITR.ETCS1.DriverMessage.MmiLPacket.Value = 80;                 // Packet length
             SITR.SMDCtrl.ETCS1.DriverMessage.Value = 1;                     // Send packet
+        }
+
+        public void SendEVC16_CurrentTrainNumber(uint TrainNumber)
+        {
+            SITR.ETCS1.CurrentTrainNumber.MmiMPacket.Value = 16;
+            SITR.ETCS1.CurrentTrainNumber.MmiLPacket.Value = 64;
+            SITR.ETCS1.CurrentTrainNumber.MmiNidOperation.Value = TrainNumber;
+            SITR.SMDCtrl.ETCS1.CurrentTrainNumber.Value = 1;
+        }
+
+        /// <summary>
+        /// Sends EVC-30 packet for specifying which window the DMI should display
+        /// and which buttons are enabled.
+        /// </summary>
+        /// <param name="MMINidWindow">
+        /// Window ID</param>
+        /// <param name="MMI_Q_Request_Enable">
+        /// Bits 31 to 0 of MMI_Q_Request_Enable</param>
+        //  MMI_NID_WINDOW
+        //  0 = "Default"
+        //  1 = "Main"
+        //  2 = "Override"
+        //  3 = "Special"
+        //  4 = "Settings"
+        //  5 = "RBC contact"
+        //  6 = "Train running number"
+        //  7 = "Level"
+        //  8 = "Driver ID"
+        //  9 = "radio network ID"
+        //  10 = "RBC data"
+        //  11 = "Train data"
+        //  12 = "SR speed/distance"
+        //  13 = "Adhesion"
+        //  14 = "Set VBC"
+        //  15 = "Remove VBC"
+        //  16 = "Train data validation"
+        //  17 = "Set VBC validation"
+        //  18 = "Remove VBC validation"
+        //  19 = "Data View"
+        //  20 = "System version"
+        //  21 = "NTC data entry selection"
+        //  22 = "NTC X data"
+        //  23 = "NTC X data validation"
+        //  24 = "NTC X data view"
+        //  25..252 = "Spare"
+        //  253 = "Language"
+        //  254 = "close current window, return to parent"
+        //  255 = "no window specified"
+        //
+        //  MMI_Q_Request_Enable
+        //  0 = "Start"
+        //  1 = "Driver ID"
+        //  2 = "Train data"
+        //  3 = "Level"
+        //  4 = "Train running number"
+        //  5 = "Shunting"
+        //  6 = "Exit Shunting"
+        //  7 = "Non-Leading"
+        //  8 = "Maintain Shunting"
+        //  9 = "EOA"
+        //  10 = "Adhesion"
+        //  11 = "SR speed / distance"
+        //  12 = "Train integrity"
+        //  13 = "Language"
+        //  14 = "Volume"
+        //  15 = "Brightness"
+        //  16 = "System version"
+        //  17 = "Set VBC"
+        //  18 = "Remove VBC"
+        //  19 = "Contact last RBC"
+        //  20 = "Use short number"
+        //  21 = "Enter RBC data"
+        //  22 = "Radio Network ID"
+        //  23 = "Geographical position"
+        //  24 = "End of data entry (NTC)"
+        //  25 = "Set local time, date and offset"
+        //  26 = "Set local offset"
+        //  27 = "Reserved"
+        //  28 = "Start Brake Test"
+        //  29 = "Enable wheel diameter"
+        //  30 = "Enable doppler"
+        //  31 = "Enable brake percentage"
+        //  32 = "System info"
+        public void SendEVC30_MMIRequestEnable(byte MMINidWindow, uint MMI_Q_Request_Enable)
+        {
+            uint Reversed_MMI_Q_Request_Enable = BitReverser32(MMI_Q_Request_Enable);
+
+            TraceInfo("ETCS -> DMI: EVC-30 (MMI_Request_Enable) MMI Window ID: {0}, MMI Q Request (bit 31 to 0): {1}", 
+                                                                            MMINidWindow, Reversed_MMI_Q_Request_Enable);
+
+            SITR.ETCS1.EnableRequest.MmiMPacket.Value = 30;
+            SITR.ETCS1.EnableRequest.MmiNidWindow.Value = MMINidWindow;
+            SITR.ETCS1.EnableRequest.MmiQRequestEnable.Value = new uint[2] { Reversed_MMI_Q_Request_Enable, 0x80000000 };
+            SITR.ETCS1.EnableRequest.MmiLPacket.Value = 128;
+            SITR.SMDCtrl.ETCS1.EnableRequest.Value = 1;
+        }
+        
+        /// <summary>
+        /// Bit-reverses a 32-bit number
+        /// </summary>
+        /// <param name="IntToBeReversed"></param>
+        /// <returns>Reversed 32-bit uint</returns>
+        public uint BitReverser32(uint IntToBeReversed)
+        {
+            uint y = 0;
+
+            for (int i=0; i<32; i++)
+            {
+                y <<= 1;
+                y |= (IntToBeReversed & 1);
+                IntToBeReversed >>= 1;
+            }
+
+            return y;
         }
     }
 }

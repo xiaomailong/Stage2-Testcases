@@ -7,7 +7,7 @@
 	<Tester>TESTER</Tester>
 	<Logpath>C:\01_Projects\05_RefDMI\02_testing\01_laboratory_testing\08_logs</Logpath>
 	<Logwindow>True</Logwindow>
-	<LogWindowAutoClose>False</LogWindowAutoClose>
+	<LogWindowAutoClose>True</LogWindowAutoClose>
 	<LogSizeMaximum>200MB</LogSizeMaximum>
 	<LogEntriesMaximum>20000</LogEntriesMaximum>
 	<LogDirectlyToDisk>False</LogDirectlyToDisk>
