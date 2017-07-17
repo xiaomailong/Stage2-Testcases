@@ -577,6 +577,109 @@ namespace Testcase
         }
 
         /// <summary>
+        ///     SendEVC6_MMI_Current_Train_Data
+        ///     Sends existing Train Data values to the DMI
+        /// <param name="MMI_Q_Data_Enable">Enable mask:
+        ///     Bits:
+        ///     0 = "Train Set ID"
+        ///     1 = "Train Category"
+        ///     2 = "Train Length"
+        ///     3 = "Brake Percentage"
+        ///     4 = "Max. Train Speed"
+        ///     5 = "Axle Load Category"
+        ///     6 = "Airtightness"
+        ///     7 = "Loading Gauge"
+        ///     8..15 = "Spare"</param>
+        /// <param name="MMI_L_Train">Max train length</param>
+        /// <param name="MMI_V_MaxTrain">Max train speed</param>
+        /// <param name="MMI_Nid_Key_Train_Cat">Train category (range 3-20)
+        ///     Values:
+        ///     3 = "PASS 1"
+        ///     4 = "PASS 2"
+        ///     5 = "PASS 3"
+        ///     6 = "TILT 1"
+        ///     7 = "TILT 2"
+        ///     8 = "TILT 3"
+        ///     9 = "TILT 4"
+        ///     10 = "TILT 5"
+        ///     11 = "TILT 6"
+        ///     12 = "TILT 7"
+        ///     13 = "FP 1"
+        ///     14 = "FP 2"
+        ///     15 = "FP 3"
+        ///     16 = "FP 4"
+        ///     17 = "FG 1"
+        ///     18 = "FG 2"
+        ///     19 = "FG 3"
+        ///     20 = "FG 4" </param>
+        /// <param name="MMI_M_Brake_Perc">Brake percentage</param>
+        /// <param name="MMI_Nid_Key_Axle_Load">Axle load category (range 21-33)
+        ///     Values:
+        ///     21 = "A"
+        ///     22 = "HS17"
+        ///     23 = "B1"
+        ///     24 = "B2"
+        ///     25 = "C2"
+        ///     26 = "C3"
+        ///     27 = "C4"
+        ///     28 = "D2"
+        ///     29 = "D3"
+        ///     30 = "D4"
+        ///     31 = "D4XL"
+        ///     32 = "E4"
+        ///     33 = "E5"
+        /// </param>    
+        /// <param name="MMI_M_Airtight">Train equipped with airtight system</param>
+        /// <param name="MMI_Nid_Key_Load_Gauge">Axle load category (range 34-38)
+        ///     Values:
+        ///     34 = "G1"
+        ///     35 = "GA"
+        ///     36 = "GB"
+        ///     37 = "GC"
+        ///     38 = "Out of GC"
+        /// <param name="MMI_M_Buttons">Intended to be used to dstinguish between 'BTN_YES_DATA_ENTRY_COMPLETE', 'BTN_YES_DATA_ENTRY_COMPLETE_DELAY_TYPE','no button' </param>    
+        /// <param name="MMI_M_Trainset_ID">ID of preconfigured train data set</param>
+        /// <param name="MMI_M_Alt_Dem">Control variable for alternative train data entry method</param>
+        /// <param name="MMI_N_Trainsets">Number of trainsets to be shown for fixed TDE</param>
+        /// <param name="MMI_N_Data_Elements">Number of entries in the following array</param>
+        public void SendEVC6_MMICurrentTrainData(ushort MMI_M_Data_Enable, ushort MMI_L_Train, ushort MMI_V_MaxTrain, byte MMI_Nid_Key_Train_Cat,
+            byte MMI_M_Brake_Perc, byte MMI_Nid_Key_Axle_Load, byte MMI_M_Airtight, byte MMI_Nid_Key_Load_Gauge, byte MMI_M_Buttons,
+            uint MMI_M_Trainset_ID, uint MMI_M_Alt_Dem, ushort MMI_N_Trainsets, ushort MMI_N_Data_Elements)
+
+        {
+            TraceInfo("ETCS->DMI: EVC-6 (MMI_Current_Train_Data) MMI_M_Data_Enable {0}, MMI_L_Train {1}, MMI_V_MaxTrain {2}, MMI_Nid_Key_Train_Cat {3}, MMI_M_Brake_Perc {4}, MMI_Nid_Key_Axle_Load {5}, MMI_M_Airtight {6}, MMI_Nid_Key_Load_Gauge {7}, MMI_M_Buttons {8}, MMI_M_Trainset_ID {9}, MMI_M_Alt_Dem {10}, MMI_N_Trainsets {11}, MMI_N_Data,Elements {12}",
+                MMI_M_Data_Enable, MMI_L_Train, MMI_V_MaxTrain, MMI_Nid_Key_Train_Cat, MMI_M_Brake_Perc, MMI_Nid_Key_Axle_Load, MMI_M_Airtight, MMI_Nid_Key_Load_Gauge, MMI_M_Buttons, MMI_M_Trainset_ID, MMI_M_Alt_Dem, MMI_N_Trainsets, MMI_N_Data_Elements);
+
+            SITR.ETCS1.CurrentTrainData.MmiMPacket.Value = 6;                               // Packet ID
+
+            // Train data enabled
+            ushort Reversed_MMI_M_Data_Enable = BitReverser16(MMI_M_Data_Enable);
+            SITR.ETCS1.CurrentTrainData.MmiMDataEnable.Value = Reversed_MMI_M_Data_Enable;    
+                   
+            SITR.ETCS1.CurrentTrainData.MmiLTrain.Value = MMI_L_Train;                      // Train length
+            SITR.ETCS1.CurrentTrainData.MmiVMaxtrain.Value = MMI_V_MaxTrain;                // Max train speed
+            SITR.ETCS1.CurrentTrainData.MmiNidKeyTrainCat.Value = MMI_Nid_Key_Train_Cat;    // Train category
+            SITR.ETCS1.CurrentTrainData.MmiMBrakePerc.Value = MMI_M_Brake_Perc;             // Brake percentage
+            SITR.ETCS1.CurrentTrainData.MmiNidKeyAxleLoad.Value = MMI_Nid_Key_Axle_Load;    // Axle load category
+            SITR.ETCS1.CurrentTrainData.MmiMAirtight.Value = MMI_M_Airtight;                // Train equipped with airtight system
+            SITR.ETCS1.CurrentTrainData.MmiNidKeyLoadGauge.Value = MMI_Nid_Key_Load_Gauge;  // Loading gauge type of train 
+            SITR.ETCS1.CurrentTrainData.MmiMButtons.Value = MMI_M_Buttons;                  // Button available
+            //implementing EVC6_alias_1
+            MMI_M_Trainset_ID = MMI_M_Trainset_ID << 4;
+            MMI_M_Alt_Dem = MMI_M_Alt_Dem << 2;
+            byte EVC6_alias_1 = Convert.ToByte(MMI_M_Trainset_ID | MMI_M_Alt_Dem);
+            SITR.ETCS1.CurrentTrainData.EVC6alias1.Value = EVC6_alias_1;
+
+            SITR.ETCS1.CurrentTrainData.MmiNTrainset.Value = MMI_N_Trainsets;               // Number of trainset
+            SITR.ETCS1.CurrentTrainData.MmiNDataElements.Value = MMI_N_Data_Elements;       // Number of train data to enter
+
+            // Packet length
+            SITR.ETCS1.CurrentTrainData.MmiLPacket.Value = Convert.ToUInt16(176 + MMI_N_Trainsets * 16 + MMI_N_Data_Elements * 32);
+
+            SITR.SMDCtrl.ETCS1.CurrentTrainData.Value = 1;                                  // Send packet
+        }
+
+        /// <summary>
         /// Sends EVC-30 packet for specifying which window the DMI should display
         /// and which buttons are enabled.
         /// </summary>
@@ -687,9 +790,9 @@ namespace Testcase
         /// </summary>
         /// <param name="IntToBeReversed"></param>
         /// <returns>Reversed 16-bit uint</returns>
-        public uint BitReverser16(uint IntToBeReversed)
+        public ushort BitReverser16(ushort IntToBeReversed)
         {
-            uint y = 0;
+            int y = 0;
 
             for (int i = 0; i < 16; i++)
             {
@@ -698,7 +801,8 @@ namespace Testcase
                 IntToBeReversed >>= 1;
             }
 
-            return y;
+            ushort reversedInt  = Convert.ToUInt16(y);
+            return reversedInt;
         }
     }
 }
