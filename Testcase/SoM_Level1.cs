@@ -765,7 +765,45 @@ namespace Testcase
             SITR.ETCS1.EnableRequest.MmiLPacket.Value = 128;
             SITR.SMDCtrl.ETCS1.EnableRequest.Value = 1;
         }
-        
+
+        /// <summary>
+        ///     SendEVC20_MMI_Select_Level
+        ///     Sends ETCS and NTC levels and related additional status information.
+        /// <param name="MMI_N_Levels">Number of levels</param>
+        /// <param name="MMI_Q_Level_Ntc_Id[k]">Qualifier for the variable MMI_M_LEVEL_NTC_ID for the specific level</param>
+        /// <param name="MMI_M_Current_Level[k]">Last used level</param>
+        /// <param name="MMI_M_Level_Flag[k]">Marker to indicate if a level button is enabled or disabled.</param>
+        /// <param name="MMI_M_Inhibited_Level[k]">Inhibit status</param>
+        /// <param name="MMI_M_Inhibit_Enable[k]">Inhibit enabled</param>
+        /// <param name="MMI_M_Level_NTC_ID[k]">Identity of level or NTC</param>
+        /// <param name="MMI_Q_Close_Enable">Close Button Enable</param>
+        public void SendEVC20_MMISelectEnable(uint MMI_N_Levels, uint[] MMI_Q_Level_Ntc_Id, uint[] MMI_M_Current_Level, uint[] MMI_M_Level_Flag,
+            uint[] MMI_M_Inhibited_Level, uint[] MMI_M_Inhibit_Enable, uint[] MMI_M_Level_NTC_ID, byte MMI_Q_Close_Enable)
+        {
+            SITR.ETCS1.SelectLevel.MmiMPacket.Value = 20;                                       //Packet Id
+            SITR.ETCS1.SelectLevel.MmiNLevels.Value = Convert.ToUInt16(MMI_N_Levels);           //Number of levels
+
+            //Dynamic fields
+            for (int k = 0; k < MMI_N_Levels; k++)
+            {
+                //implementing EVC20_alias_1[k]
+                MMI_Q_Level_Ntc_Id[k] = MMI_Q_Level_Ntc_Id[k] << 7;
+                MMI_M_Current_Level[k] = MMI_M_Current_Level[k] << 6;
+                MMI_M_Level_Flag[k] = MMI_M_Level_Flag[k] << 5;
+                MMI_M_Inhibited_Level[k] = MMI_M_Inhibited_Level[k] << 4;
+                MMI_M_Inhibit_Enable[k] = MMI_M_Inhibit_Enable[k] << 3;
+                byte EVC20_alias_1 = Convert.ToByte(MMI_Q_Level_Ntc_Id[k] | MMI_M_Current_Level[k] | MMI_M_Level_Flag[k] | MMI_M_Inhibited_Level[k] | MMI_M_Inhibit_Enable[k]);
+                SITR.Client.Write("ETCS1_SelectLevel_EVC20SelectLevelSub" + k + "_EVC20alias1", EVC20_alias_1);
+
+                SITR.Client.Write("ETCS1_SelectLevel_EVC20SelectLevelSub" + k + "_MmiMLevelNtcId", MMI_M_Level_NTC_ID[k]);
+            }
+
+            SITR.ETCS1.SelectLevel.MmiQCloseEnable.Value = MMI_Q_Close_Enable;                  //Close Button enable?
+            SITR.ETCS1.SelectLevel.MmiLPacket.Value = Convert.ToUInt16(56 + MMI_N_Levels * 16); //Packet length
+
+            SITR.SMDCtrl.ETCS1.SelectLevel.Value = 1;
+        }
+
         /// <summary>
         /// Bit-reverses a 32-bit number
         /// </summary>
