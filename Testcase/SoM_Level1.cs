@@ -66,14 +66,15 @@ namespace Testcase
             //Send EVC-30 MMI_REQUEST_ENABLE
             SendEVC30_MMIRequestEnable(255, 0b0001_1101_0000_0011_1110_0000_0011_1110);
 
-            //Send EVC-20 MMI_SELECT_LEVEL
-            SITR.ETCS1.SelectLevel.MmiMPacket.Value = 20;
-            SITR.ETCS1.SelectLevel.MmiNLevels.Value = 0x7;
-            SITR.ETCS1.SelectLevel.EVC20alias1.Value = 0xe8;
-            SITR.ETCS1.SelectLevel.MmiMLevelNtcId.Value = 0x1;
-            SITR.ETCS1.SelectLevel.MmiQCloseEnable.Value = 168;
-            SITR.ETCS1.SelectLevel.MmiLPacket.Value = 168;
-            SITR.SMDCtrl.ETCS1.SelectLevel.Value = 1;
+            //ETCS->DMI: EVC-20 MMI_SELECT_LEVEL
+            uint[] param_MMI_Q_Level_Ntc_Id = { 1, 1 };
+            uint[] param_MMI_M_Current_Level = { 0, 0 };
+            uint[] param_MMI_M_Level_Flag = { 0, 0 };
+            uint[] param_MMI_M_Inhibited_Level = { 0, 0 };
+            uint[] param_MMI_M_Inhibit_Enable = { 0, 0 };
+            uint[] param_MMI_M_Level_Ntc_Id = { 0, 1 };
+            SendEVC20_MMISelectEnable(1, param_MMI_Q_Level_Ntc_Id, param_MMI_M_Current_Level, param_MMI_M_Level_Flag,
+                param_MMI_M_Inhibited_Level, param_MMI_M_Inhibit_Enable, param_MMI_M_Level_Ntc_Id, 0);
 
             ////Receive EVC-101
 
@@ -784,7 +785,7 @@ namespace Testcase
             SITR.ETCS1.SelectLevel.MmiNLevels.Value = Convert.ToUInt16(MMI_N_Levels);           //Number of levels
 
             //Dynamic fields
-            for (int k = 0; k < MMI_N_Levels; k++)
+            for (int k = 0; k < MMI_N_Levels + 1; k++)
             {
                 //implementing EVC20_alias_1[k]
                 MMI_Q_Level_Ntc_Id[k] = MMI_Q_Level_Ntc_Id[k] << 7;
