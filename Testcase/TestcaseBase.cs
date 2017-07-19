@@ -24,12 +24,7 @@ namespace Testcase
     {
         public override void PreExecution()
         {
-            // Pre-test configuration.
-
-            // Set up safe words
-            SITR.CCUS.ETCSTrTelegram1.Tr1SSW1.Value = 0x8000;
-            SITR.CCUS.ETCSTrTelegram1.Tr1SSW2.Value = 0x8000;
-            SITR.CCUS.ETCSTrTelegram1.Tr1SSW3.Value = 0x8000;
+            // Pre-test configuration.           
         }
 
         public override void PostExecution()
