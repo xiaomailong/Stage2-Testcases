@@ -60,13 +60,13 @@ namespace Testcase
             // Send EVC-8 MMI_DRIVER_MESSAGE
             SendEVC8_MMIDriverMessage(true, 2, 5, 514);
 
-            //Wait for Perform Brake Test input on DMI
-            //Send "NO" back to EVC (EVC-111 MMI_DRIVER_MESSAGE_ACK)
+            // Wait for Perform Brake Test input on DMI
+            // Send "NO" back to EVC (EVC-111 MMI_DRIVER_MESSAGE_ACK)
 
-            //Send EVC-30 MMI_REQUEST_ENABLE
+            // Send EVC-30 MMI_REQUEST_ENABLE
             SendEVC30_MMIRequestEnable(255, 0b0001_1101_0000_0011_1110_0000_0011_1110);
 
-            //ETCS->DMI: EVC-20 MMI_SELECT_LEVEL
+            // ETCS->DMI: EVC-20 MMI_SELECT_LEVEL
             bool[] param_MMI_Q_Level_Ntc_Id = { false, true };
             bool[] param_MMI_M_Current_Level = { false, false };
             bool[] param_MMI_M_Level_Flag = { false, false };
@@ -74,12 +74,12 @@ namespace Testcase
             bool[] param_MMI_M_Inhibit_Enable = { false, false };
             uint[] param_MMI_M_Level_Ntc_Id = { 5, 1 };
 
-            SendEVC20_MMISelectEnable(param_MMI_Q_Level_Ntc_Id, param_MMI_M_Current_Level, 
+            SendEVC20_MMISelectLevel(param_MMI_Q_Level_Ntc_Id, param_MMI_M_Current_Level, 
                                         param_MMI_M_Level_Flag, param_MMI_M_Inhibited_Level, 
                                         param_MMI_M_Inhibit_Enable, param_MMI_M_Level_Ntc_Id, 
                                         true);
 
-            //Send EVC-6 MMI_CURRENT TRAIN_DATA
+            // Send EVC-6 MMI_CURRENT TRAIN_DATA
             SITR.ETCS1.CurrentTrainData.MmiMPacket.Value = 6;
             SITR.ETCS1.CurrentTrainData.MmiMDataEnable.Value = 0x0000;      // 0 - No data available for edit
             SITR.ETCS1.CurrentTrainData.MmiLTrain.Value = 0xc8;             // 200 metres
@@ -110,26 +110,26 @@ namespace Testcase
 
             ////Receive EVC-101
 
-            //Send EVC-30 MMI_REQUEST_ENABLE
+            // Send EVC-30 MMI_REQUEST_ENABLE
             SendEVC30_MMIRequestEnable(255, 0b0001_1101_0000_0011_1111_0000_0011_1110);
 
-            //Send EVC-16 MMI_CURRENT_TRAIN_NUMBER
+            // Send EVC-16 MMI_CURRENT_TRAIN_NUMBER
             SendEVC16_CurrentTrainNumber(0xffffffff);
 
-            //Receive packet EVC-116 MMI_NEW_TRAIN_NUMBER
+            // Receive packet EVC-116 MMI_NEW_TRAIN_NUMBER
 
-            //Send Cab active with echoed train number
+            // Send Cab active with echoed train number
             SendEVC2_MMIStatus_Cab1Active(0xffffffff);
 
-            //Send EVC-30 MMI_ENABLE_REQUEST
+            // Send EVC-30 MMI_ENABLE_REQUEST
             SendEVC30_MMIRequestEnable(255, 0b0001_1101_0000_0011_1111_0000_0011_1111);
 
-            //Receive packet EVC-101 MMI_DRIVER_REQUEST (Driver presses Start Button)
+            // Receive packet EVC-101 MMI_DRIVER_REQUEST (Driver presses Start Button)
 
-            //send EVC-8 MMI_DRIVER_MESSAGE
+            // Send EVC-8 MMI_DRIVER_MESSAGE
             SendEVC8_MMIDriverMessage(true, 1, 1, 263);             // "#3 MO10 (Ack Staff Responsible Mode)"
 
-            //Receive packet EVC-111 MMI_DRIVER_MESSAGE_ACK (Driver acknowledges SR Mode)
+            // Receive packet EVC-111 MMI_DRIVER_MESSAGE_ACK (Driver acknowledges SR Mode)
 
             return GlobalTestResult;
         }
@@ -612,18 +612,18 @@ namespace Testcase
         /// <param name="MMI_M_Inhibit_Enable[k]">Inhibit enabled</param>
         /// <param name="MMI_M_Level_NTC_ID[k]">Identity of level or NTC</param>
         /// <param name="MMI_Q_Close_Enable">Close Button Enable</param>
-        public void SendEVC20_MMISelectEnable(bool[] MMI_Q_Level_Ntc_ID, bool[] MMI_M_Current_Level, bool[] MMI_M_Level_Flag,
+        public void SendEVC20_MMISelectLevel(bool[] MMI_Q_Level_Ntc_ID, bool[] MMI_M_Current_Level, bool[] MMI_M_Level_Flag,
             bool[] MMI_M_Inhibited_Level, bool[] MMI_M_Inhibit_Enable, uint[] MMI_M_Level_NTC_ID, bool MMI_Q_Close_Enable)
         {
-            SITR.ETCS1.SelectLevel.MmiMPacket.Value = 20;                       //Packet Id
+            SITR.ETCS1.SelectLevel.MmiMPacket.Value = 20;                       // Packet Id
 
             ushort NumberOfLevels = (ushort)(MMI_Q_Level_Ntc_ID.Length);
-            SITR.ETCS1.SelectLevel.MmiNLevels.Value = (ushort)(NumberOfLevels - 1);           //Number of levels
+            SITR.ETCS1.SelectLevel.MmiNLevels.Value = NumberOfLevels;           // Number of levels
 
-            //Dynamic fields
+            // Dynamic fields
             for (int k = 0; k < NumberOfLevels; k++)
             {
-                //implementing EVC20_alias_1[k]
+                // Implementing EVC20_alias_1[k]
                 uint uintMMI_Q_Level_Ntc_ID = Convert.ToUInt32(MMI_Q_Level_Ntc_ID[k]);
                 uintMMI_Q_Level_Ntc_ID <<= 7;
 
@@ -646,10 +646,21 @@ namespace Testcase
                 SITR.Client.Write("ETCS1_SelectLevel_EVC20SelectLevelSub" + k + "_MmiMLevelNtcId", MMI_M_Level_NTC_ID[k]);
             }
 
-            SITR.ETCS1.SelectLevel.MmiQCloseEnable.Value = Convert.ToByte(MMI_Q_Close_Enable);          //Close Button enable?
-            SITR.ETCS1.SelectLevel.MmiLPacket.Value = Convert.ToUInt16(56 + NumberOfLevels * 16);       //Packet length
+            SITR.ETCS1.SelectLevel.MmiQCloseEnable.Value = Convert.ToByte(MMI_Q_Close_Enable);          // Close Button enable?
+            SITR.ETCS1.SelectLevel.MmiLPacket.Value = Convert.ToUInt16(56 + NumberOfLevels * 16);       // Packet length
 
             SITR.SMDCtrl.ETCS1.SelectLevel.Value = 1;
+        }
+
+        /// <summary>
+        /// Sends EVC-20 telegram to cancel previous MMI_Select_Level presentation
+        /// </summary>
+        public void SendEVC20_MMISelectLevel_Cancel()
+        {
+            SITR.ETCS1.SelectLevel.MmiMPacket.Value = 20;               // Packet Id
+            SITR.ETCS1.SelectLevel.MmiNLevels.Value = 0;                // No levels - Cancel presentation of previous MMI_Select_Level
+            SITR.ETCS1.SelectLevel.MmiQCloseEnable.Value = 1;           // Close enabled
+            SITR.ETCS1.SelectLevel.MmiLPacket.Value = 56;               // Packet length
         }
 
         /// <summary>
