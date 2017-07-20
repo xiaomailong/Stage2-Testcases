@@ -37,6 +37,9 @@ namespace Testcase
             // Initialise Dynamic Values
             Initialize_DynamicValues();
 
+            // Initialise Dynamic Arrays
+            Initialize_DynamicArrays();
+
             // ETCS->DMI: EVC-0 MMI_START_ATP
             SendEVC0_MMIStartATP_VersionInfo();
 
@@ -67,17 +70,7 @@ namespace Testcase
             SendEVC30_MMIRequestEnable(255, 0b0001_1101_0000_0011_1110_0000_0011_1110);
 
             //ETCS->DMI: EVC-20 MMI_SELECT_LEVEL
-            bool[] param_EVC20_MMI_Q_Level_Ntc_Id = { false, true };
-            bool[] param_EVC20_MMI_M_Current_Level = { false, false };
-            bool[] param_EVC20_MMI_M_Level_Flag = { false, false };
-            bool[] param_EVC20_MMI_M_Inhibited_Level = { false, false };
-            bool[] param_EVC20_MMI_M_Inhibit_Enable = { false, false };
-            uint[] param_EVC20_MMI_M_Level_Ntc_Id = { 5, 1 };
-
-            SendEVC20_MMISelectLevel(param_EVC20_MMI_Q_Level_Ntc_Id, param_EVC20_MMI_M_Current_Level,
-                                        param_EVC20_MMI_M_Level_Flag, param_EVC20_MMI_M_Inhibited_Level,
-                                        param_EVC20_MMI_M_Inhibit_Enable, param_EVC20_MMI_M_Level_Ntc_Id,
-                                        true);
+            SendEVC20_MMISelectLevel_AllLevels();
 
             //ETCS->DMI: Send EVC-6 MMI_CURRENT TRAIN_DATA
             ushort param_EVC6_MmiMDataEnable = 0;      // 0 - No data available for edit
@@ -152,6 +145,20 @@ namespace Testcase
             SITR.ETCS1.Dynamic.EVC01SSW1.Value=0x8000;          // 32768 in decimal
             SITR.ETCS1.Dynamic.EVC01SSW2.Value=0x8000;          // 32768 in decimal
             SITR.ETCS1.Dynamic.EVC01SSW3.Value=0x8000;          // 32768 in decimal
+        }
+
+        /// <summary>
+        /// Initialises all EVC packets that contain dynamic arrays
+        /// </summary>
+        public void Initialize_DynamicArrays()
+        {
+            SITR.SMDCtrl.ETCS1.SelectLevel.Value = 0x8;
+            SITR.SMDCtrl.ETCS1.SetVbc.Value = 0x8;
+            SITR.SMDCtrl.ETCS1.RemoveVbc.Value = 0x8;
+            SITR.SMDCtrl.ETCS1.TrackDescription.Value = 0x8;
+            SITR.SMDCtrl.ETCS1.CurrentTrainData.Value = 0x8;
+            SITR.SMDCtrl.ETCS1.EchoedTrainData.Value = 0x8;
+            SITR.SMDCtrl.ETCS1.DriverMessage.Value = 0x8;
         }
 
         /// <summary>
@@ -671,7 +678,7 @@ namespace Testcase
                 uintMMI_M_Current_Level <<= 6;
 
                 uint uintMMI_M_Level_Flag = Convert.ToUInt32(MMI_M_Level_Flag[k]);
-                uintMMI_M_Current_Level <<= 5;
+                uintMMI_M_Level_Flag <<= 5;
 
                 uint uintMMI_M_Inhibited_Level = Convert.ToUInt32(MMI_M_Inhibited_Level[k]);
                 uintMMI_M_Inhibited_Level <<= 4;
@@ -681,15 +688,45 @@ namespace Testcase
 
 
                 byte EVC20_alias_1 = Convert.ToByte(uintMMI_Q_Level_Ntc_ID | uintMMI_M_Current_Level | uintMMI_M_Level_Flag | uintMMI_M_Inhibited_Level | uintMMI_M_Inhibit_Enable);
-                SITR.Client.Write("ETCS1_SelectLevel_EVC20SelectLevelSub" + k + "_EVC20alias1", EVC20_alias_1);
 
-                SITR.Client.Write("ETCS1_SelectLevel_EVC20SelectLevelSub" + k + "_MmiMLevelNtcId", MMI_M_Level_NTC_ID[k]);
+                if (k < 10)
+                {
+                    SITR.Client.Write("ETCS1_SelectLevel_EVC20SelectLevelSub0" + k + "_EVC20alias1", EVC20_alias_1);
+                    SITR.Client.Write("ETCS1_SelectLevel_EVC20SelectLevelSub0" + k + "_MmiMLevelNtcId", Convert.ToByte(MMI_M_Level_NTC_ID[k]));
+                }
+                else
+                {
+                    SITR.Client.Write("ETCS1_SelectLevel_EVC20SelectLevelSub" + k + "_EVC20alias1", EVC20_alias_1);
+                    SITR.Client.Write("ETCS1_SelectLevel_EVC20SelectLevelSub" + k + "_MmiMLevelNtcId", Convert.ToByte(MMI_M_Level_NTC_ID[k]));
+                }
+                
             }
 
-            SITR.ETCS1.SelectLevel.MmiQCloseEnable.Value = Convert.ToByte(MMI_Q_Close_Enable);          // Close Button enable?
+            uint uintMMI_Q_Close_Enable = Convert.ToUInt32(MMI_Q_Close_Enable);
+            uintMMI_Q_Close_Enable <<= 7;
+
+            SITR.ETCS1.SelectLevel.MmiQCloseEnable.Value = Convert.ToByte(uintMMI_Q_Close_Enable);          // Close Button enable?
             SITR.ETCS1.SelectLevel.MmiLPacket.Value = Convert.ToUInt16(56 + NumberOfLevels * 16);       // Packet length
 
-            SITR.SMDCtrl.ETCS1.SelectLevel.Value = 1;
+            SITR.SMDCtrl.ETCS1.SelectLevel.Value = 0x9;
+        }
+
+        /// <summary>
+        /// Send standard EVC-20 telegram with Levels 0-3, CBTC, and AWS/TPWS selectable. Level 1 is preselected.
+        /// </summary>
+        public void SendEVC20_MMISelectLevel_AllLevels()
+        {
+            bool[] param_EVC20_MMI_Q_Level_Ntc_Id = { true, true, true, true, false, false };
+            bool[] param_EVC20_MMI_M_Current_Level = { false, true, false, false, false, false };
+            bool[] param_EVC20_MMI_M_Level_Flag = { true, true, true, true, true, true };
+            bool[] param_EVC20_MMI_M_Inhibited_Level = { false, false, false, false, false, false };
+            bool[] param_EVC20_MMI_M_Inhibit_Enable = { true, true, true, true, true, true };
+            uint[] param_EVC20_MMI_M_Level_Ntc_Id = { 0, 1, 2, 3, 50, 20 }; // 50 = CBTC, 20 = AWS/TPWS
+
+            SendEVC20_MMISelectLevel(param_EVC20_MMI_Q_Level_Ntc_Id, param_EVC20_MMI_M_Current_Level,
+                                        param_EVC20_MMI_M_Level_Flag, param_EVC20_MMI_M_Inhibited_Level,
+                                        param_EVC20_MMI_M_Inhibit_Enable, param_EVC20_MMI_M_Level_Ntc_Id,
+                                        true);
         }
 
         /// <summary>
@@ -699,7 +736,7 @@ namespace Testcase
         {
             SITR.ETCS1.SelectLevel.MmiMPacket.Value = 20;               // Packet Id
             SITR.ETCS1.SelectLevel.MmiNLevels.Value = 0;                // No levels - Cancel presentation of previous MMI_Select_Level
-            SITR.ETCS1.SelectLevel.MmiQCloseEnable.Value = 1;           // Close enabled
+            SITR.ETCS1.SelectLevel.MmiQCloseEnable.Value = 0x08;        // Close enabled
             SITR.ETCS1.SelectLevel.MmiLPacket.Value = 56;               // Packet length
         }
 
