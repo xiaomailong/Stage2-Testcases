@@ -309,7 +309,7 @@ namespace Testcase
             for (int k = 0; k < MMI_N_Trainsets; k++)
             {
                 //Trainset caption text length
-                SITR.Client.Write("ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub" + k + "_MmiNCapitionTrainset",
+                SITR.Client.Write("ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub1" + k + "_MmiNCapitionTrainset",
                     Convert.ToUInt16(MMI_N_Caption_Trainset[k]));
                 NumberOfCaptionTrainset = +MMI_N_Caption_Trainset[k]; // Total number of CaptionTrainset for the whole telegram
 
@@ -317,8 +317,16 @@ namespace Testcase
                 for (int l = 0; l < MMI_N_Caption_Trainset[k]; l++)
                 {
                     //Trainset caption text character
-                    SITR.Client.Write("ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub" + k + "_EVC06CurrentTrainDataSub" + l +
+                    if (l < 10)
+                    {
+                        SITR.Client.Write("ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub1" + k + "_EVC06CurrentTrainDataSub110" + l +
                         "_MmiXCaptionTrainset", MMI_X_Caption_Trainset[k, l]);
+                    }
+                    else
+                    {
+                        SITR.Client.Write("ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub1" + k + "_EVC06CurrentTrainDataSub11" + l +
+                        "_MmiXCaptionTrainset", MMI_X_Caption_Trainset[k, l]);
+                    }
                 }
             }
 
@@ -328,16 +336,16 @@ namespace Testcase
             for (int k = 0; k < MMI_N_Data_Elements; k++)
             {
                 //Trainset caption text length
-                SITR.Client.Write("ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub" + k + "_MmiNidData", MMI_Nid_Data[k]);
-                SITR.Client.Write("ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub" + k + "_MmiQDataCheck", MMI_Q_Data_Check[k]);
-                SITR.Client.Write("ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub" + k + "_MmiNText", Convert.ToByte(MMI_N_Text[k]));
+                SITR.Client.Write("ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub2" + k + "_MmiNidData", MMI_Nid_Data[k]);
+                SITR.Client.Write("ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub2" + k + "_MmiQDataCheck", MMI_Q_Data_Check[k]);
+                SITR.Client.Write("ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub2" + k + "_MmiNText", Convert.ToByte(MMI_N_Text[k]));
                 NumberOfText = +MMI_N_Text[k]; // Total number of Text for the whole telegram
 
                 //Dynamic fields 2nd Dim
                 for (int l = 0; l < MMI_N_Text[k]; l++)
                 {
                     //Trainset caption text character
-                    SITR.Client.Write("ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub" + k + "_EVC06CurrentTrainDataSub" + l +
+                    SITR.Client.Write("ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub2" + k + "_EVC06CurrentTrainDataSub21" + l +
                         "_MmiXText", MMI_X_Text[k, l]);
                 }
             }
@@ -550,9 +558,9 @@ namespace Testcase
             for (int k = 0; k < EVC6_MmiNTrainset; k++)
             {
                 //Bit-inverted Trainset caption text length
-                uint EVC6_MmiNCaptionTrainset = Convert.ToUInt32(SITR.Client.Read("ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub" + k +
+                uint EVC6_MmiNCaptionTrainset = Convert.ToUInt32(SITR.Client.Read("ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub1" + k +
                     "_MmiNCaptionTrainset"));
-                SITR.Client.Write("ETCS1_EchoedTrainData_EVC10EchoedTrainDataSub" + k + "_MmiNCapitionTrainsetR",
+                SITR.Client.Write("ETCS1_EchoedTrainData_EVC10EchoedTrainDataSub1" + k + "_MmiNCapitionTrainsetR",
                     Convert.ToUInt16(~EVC6_MmiNCaptionTrainset));
                 NumberOfCaptionTrainset = +EVC6_MmiNCaptionTrainset; // Total number of CaptionTrainset for the whole telegram
 
@@ -560,10 +568,20 @@ namespace Testcase
                 for (int l = 0; l < EVC6_MmiNCaptionTrainset; l++)
                 {
                     //Bit-inverted Trainset caption text
-                    uint EVC6_MmiXCaptionTrainset = Convert.ToUInt32(SITR.Client.Read("ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub" + k +
-                        "_EVC06CurrentTrainDataSub" + l + "_MmiXCaptionTrainset"));
-                    SITR.Client.Write("ETCS1_EchoedTrainData_EVC10EchoedTrainDataSub" + k + "_EVC10EchoedTrainDataSub" + l +
-                        "_MmiXCaptionTrainsetR", Convert.ToChar(~EVC6_MmiXCaptionTrainset));
+                    if (l < 10)
+                    {
+                        uint EVC6_MmiXCaptionTrainset = Convert.ToUInt32(SITR.Client.Read("ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub1" + k +
+                        "_EVC06CurrentTrainDataSub110" + l + "_MmiXCaptionTrainset"));
+                        SITR.Client.Write("ETCS1_EchoedTrainData_EVC10EchoedTrainDataSub1" + k + "_EVC10EchoedTrainDataSub110" + l +
+                            "_MmiXCaptionTrainsetR", Convert.ToChar(~EVC6_MmiXCaptionTrainset));
+                    }
+                    else
+                    {
+                        uint EVC6_MmiXCaptionTrainset = Convert.ToUInt32(SITR.Client.Read("ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub1" + k +
+                        "_EVC06CurrentTrainDataSub11" + l + "_MmiXCaptionTrainset"));
+                        SITR.Client.Write("ETCS1_EchoedTrainData_EVC10EchoedTrainDataSub1" + k + "_EVC10EchoedTrainDataSub11" + l +
+                            "_MmiXCaptionTrainsetR", Convert.ToChar(~EVC6_MmiXCaptionTrainset));
+                    }
                 }
             }
 
@@ -682,7 +700,7 @@ namespace Testcase
 
                 uint uintMMI_M_Inhibited_Level = Convert.ToUInt32(MMI_M_Inhibited_Level[k]);
                 uintMMI_M_Inhibited_Level <<= 4;
-
+                77
                 uint uintMMI_M_Inhibit_Enable = Convert.ToUInt32(MMI_M_Inhibit_Enable[k]);
                 uintMMI_M_Inhibit_Enable <<= 3;
 
