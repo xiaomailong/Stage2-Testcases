@@ -13,12 +13,13 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
 using System.Windows.Forms;
+using Testcase.Telegrams;
 
 #endregion
 
 namespace Testcase
 {
-    public class SoM_Level1 : SignalPool
+    public class SoM_Level1 : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -32,27 +33,34 @@ namespace Testcase
 
         public override bool TestcaseEntryPoint()
         {
-            // Test case entry point.
+            // Test case entry point. 
 
-            // Initialise Dynamic Values
-            Initialize_DynamicValues();
-
+            // TODO move initialisation to base class when there are multiple test cases?
+            TraceInfo("Initialise Default Values");
+            EVC0_MMIStartATP.Initialise(this);
+            EVC1_MMIDynamic.Initialise(this);
+            EVC2_MMIStatus.Initialise(this);
+            EVC6_MMICurrentTrainData.Initialise(this);
+            
             // Initialise Dynamic Arrays
             Initialize_DynamicArrays();
 
             // ETCS->DMI: EVC-0 MMI_START_ATP
-            SendEVC0_MMIStartATP_VersionInfo();
+            EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.VersionInfo;
+            EVC0_MMIStartATP.Send();
 
             // DMI->ETCS: EVC-100 MMI_START_MMI
 
             // ETCS->DMI: EVC-0 MMI_START_ATP
-            SendEVC0_MMIStartATP_GoToIdle();
+            EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.GoToIdle;
+            EVC0_MMIStartATP.Send();
 
             // Possible send EVC-3 MMI_SET_TIME_ATP packet      (Wireshark log)
             // Possibly send EVC-30 MMI_Enable_Request packet   (Wireshark log)
 
             //ETCS->DMI: EVC-2 MMI_STATUS
-            SendEVC2_MMIStatus_Cab1Active(0xffffffff);
+            EVC2_MMIStatus.TrainRunningNumber = 0xffffffff;
+            EVC2_MMIStatus.Send();
 
             // ETCS->DMI: EVC-14 MMI_CURRENT_DRIVER_ID
             SendEVC14_MMICurrentDriverID("1234", true, true, false);
@@ -74,7 +82,7 @@ namespace Testcase
 
             //ETCS->DMI: Send EVC-6 MMI_CURRENT TRAIN_DATA
 
-            SendEVC6_MMICurrentTrainData_FixedDataEntry(new string[] { "FLU", "RLU", "Rescue"}, 2);
+            SendEVC6_MMICurrentTrainData_FixedDataEntry(new[] {"FLU", "RLU", "Rescue"}, 2);
 
             //SendEVC6_MMICurrentTrainData(param_EVC6_MmiMDataEnable, param_EVC6_MmiLTrain, param_EVC6_MmiVMaxtrain, param_EVC6_MmiNidKeyTrainCat,
             //    param_EVC6_MmiMBrakePerc, param_EVC6_MmiNidKeyAxleLoad, param_EVC6_MmiMAirtight, param_EVC6_MmiNidKeyLoadGauge,
@@ -95,7 +103,8 @@ namespace Testcase
             // Receive packet EVC-116 MMI_NEW_TRAIN_NUMBER
 
             // Send Cab active with echoed train number
-            SendEVC2_MMIStatus_Cab1Active(0xffffffff);
+            EVC2_MMIStatus.TrainRunningNumber = 0xffffffff;
+            EVC2_MMIStatus.Send();
 
             // Send EVC-30 MMI_ENABLE_REQUEST
             SendEVC30_MMIRequestEnable(255, 0b0001_1101_0000_0011_1111_0000_0011_1111);
@@ -103,34 +112,11 @@ namespace Testcase
             // Receive packet EVC-101 MMI_DRIVER_REQUEST (Driver presses Start Button)
 
             // Send EVC-8 MMI_DRIVER_MESSAGE
-            SendEVC8_MMIDriverMessage(true, 1, 1, 263);             // "#3 MO10 (Ack Staff Responsible Mode)"
+            SendEVC8_MMIDriverMessage(true, 1, 1, 263); // "#3 MO10 (Ack Staff Responsible Mode)"
 
             // Receive packet EVC-111 MMI_DRIVER_MESSAGE_ACK (Driver acknowledges SR Mode)
 
             return GlobalTestResult;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public void Initialize_DynamicValues()
-        {
-            TraceInfo("Set Initial Dynamic values");
-
-            SITR.ETCS1.Dynamic.EVC1alias1.Value = 0;
-            SITR.ETCS1.Dynamic.MmiVTrain.Value = 0;
-            SITR.ETCS1.Dynamic.MmiATrain.Value = 0;
-            SITR.ETCS1.Dynamic.MmiVTarget.Value = -1;
-            SITR.ETCS1.Dynamic.MmiVPermitted.Value = 0;
-            SITR.ETCS1.Dynamic.MmiVIntervention.Value =- 1;
-            SITR.ETCS1.Dynamic.MmiVRelease.Value = -1;
-            SITR.ETCS1.Dynamic.MmiOBraketarget.Value = -1;
-            SITR.ETCS1.Dynamic.MmiOIml.Value = -1;
-            SITR.ETCS1.Dynamic.EVC01Validity1.Value = 0xc800;     // 51200 in decimal
-            SITR.ETCS1.Dynamic.EVC01Validity1.Value = 0xff00;     // 65280 in decimal
-            SITR.ETCS1.Dynamic.EVC01SSW1.Value = 0x8000;          // 32768 in decimal
-            SITR.ETCS1.Dynamic.EVC01SSW2.Value = 0x8000;          // 32768 in decimal
-            SITR.ETCS1.Dynamic.EVC01SSW3.Value = 0x8000;          // 32768 in decimal
         }
 
         /// <summary>
@@ -142,67 +128,14 @@ namespace Testcase
             SITR.SMDCtrl.ETCS1.SetVbc.Value = 0x8;
             SITR.SMDCtrl.ETCS1.RemoveVbc.Value = 0x8;
             SITR.SMDCtrl.ETCS1.TrackDescription.Value = 0x8;
-            SITR.SMDCtrl.ETCS1.CurrentTrainData.Value = 0x8;
+            
             SITR.SMDCtrl.ETCS1.EchoedTrainData.Value = 0x8;
             SITR.SMDCtrl.ETCS1.DriverMessage.Value = 0x8;
         }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public void SendEVC0_MMIStartATP_VersionInfo()
-        {
-            TraceInfo("ETCS->DMI: EVC-0 (MMI_START_ATP) \"Version info request\"");
-
-            SITR.ETCS1.StartAtp.MmiMPacket.Value=0;
-            SITR.ETCS1.StartAtp.MmiMStartReq.Value=0;
-            SITR.ETCS1.StartAtp.MmiLPacket.Value=40;
-            SITR.SMDCtrl.ETCS1.StartAtp.Value = 1;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public void SendEVC0_MMIStartATP_GoToIdle()
-        {
-            TraceInfo("ETCS->DMI: EVC-0 (MMI_START_ATP) \"Go to Idle state\"");
-           
-            SITR.ETCS1.StartAtp.MmiMPacket.Value=0;
-            SITR.ETCS1.StartAtp.MmiMStartReq.Value=1;
-            SITR.ETCS1.StartAtp.MmiLPacket.Value=40;
-            SITR.SMDCtrl.ETCS1.StartAtp.Value = 1;            
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="TrainNumber"></param>
-        public void SendEVC2_MMIStatus_Cab1Active(uint TrainNumber)
-        {
-            TraceInfo("ETCS->DMI: EVC-2 (MMI_STATUS) \"Cab 1 Active\"");
-            
-            SITR.ETCS1.Status.MmiMPacket.Value=2;
-            SITR.ETCS1.Status.MmiLPacket.Value=72;
-            SITR.ETCS1.Status.MmiNidOperation.Value= TrainNumber; //Train running number 4 294 967 295
-            SITR.ETCS1.Status.EVC2alias1.Value=16;              //Cab 1 active
-            SITR.SMDCtrl.ETCS1.Status.Value = 1;
-        }
-
+        
         /// <summary>
         ///     SendEVC6_MMI_Current_Train_Data
         ///     Sends existing Train Data values to the DMI
-        /// <param name="MMI_Q_Data_Enable">Enable mask:
-        ///     Bits:
-        ///     0 = "Train Set ID"
-        ///     1 = "Train Category"
-        ///     2 = "Train Length"
-        ///     3 = "Brake Percentage"
-        ///     4 = "Max. Train Speed"
-        ///     5 = "Axle Load Category"
-        ///     6 = "Airtightness"
-        ///     7 = "Loading Gauge"
-        ///     8..15 = "Spare"</param>
-        /// <param name="MMI_L_Train">Max train length</param>
         /// <param name="MMI_V_MaxTrain">Max train speed</param>
         /// <param name="MMI_Nid_Key_Train_Cat">Train category (range 3-20)
         ///     Values:
@@ -249,97 +182,52 @@ namespace Testcase
         ///     36 = "GB"
         ///     37 = "GC"
         ///     38 = "Out of GC"
+        /// </param>
         /// <param name="MMI_M_Buttons">Intended to be used to dstinguish between 'BTN_YES_DATA_ENTRY_COMPLETE', 'BTN_YES_DATA_ENTRY_COMPLETE_DELAY_TYPE','no button' </param>    
         /// <param name="MMI_M_Trainset_ID">ID of preconfigured train data set</param>
         /// <param name="MMI_M_Alt_Dem">Control variable for alternative train data entry method</param>
         /// <param name="MMI_N_Trainsets">Number of trainsets to be shown for fixed TDE</param>
         /// <param name="MMI_N_Data_Elements">Number of entries in the following array</param>
-        public void SendEVC6_MMICurrentTrainData(ushort MMI_M_Data_Enable, ushort MMI_L_Train, ushort MMI_V_MaxTrain, byte MMI_Nid_Key_Train_Cat,
-            byte MMI_M_Brake_Perc, byte MMI_Nid_Key_Axle_Load, byte MMI_M_Airtight, byte MMI_Nid_Key_Load_Gauge, byte MMI_M_Buttons,
-            uint MMI_M_Trainset_ID, uint MMI_M_Alt_Dem, uint MMI_N_Trainsets, uint[] MMI_N_Caption_Trainset, char[,] MMI_X_Caption_Trainset,
-            uint MMI_N_Data_Elements, byte[] MMI_Nid_Data, byte[] MMI_Q_Data_Check, uint[] MMI_N_Text, char[,] MMI_X_Text)
+        /// </summary>
+        public void SendEVC6_MMICurrentTrainData(MMI_M_DATA_ENABLE MMI_M_Data_Enable, ushort MMI_L_Train, ushort MMI_V_MaxTrain,
+            MMI_NID_KEY MMI_Nid_Key_Train_Cat,
+            byte MMI_M_Brake_Perc, MMI_NID_KEY MMI_Nid_Key_Axle_Load, byte MMI_M_Airtight, MMI_NID_KEY MMI_Nid_Key_Load_Gauge,
+            byte MMI_M_Buttons,
+            ushort MMI_M_Trainset_ID, ushort MMI_M_Alt_Dem, string[] TrainSetCaptions, TrainDataElement[] trainDataElements)
 
         {
-            TraceInfo("ETCS->DMI: EVC-6 (MMI_Current_Train_Data) MMI_M_Data_Enable {0}, MMI_L_Train {1}, MMI_V_MaxTrain {2}, " +
-                        "MMI_Nid_Key_Train_Cat {3}, MMI_M_Brake_Perc {4}, MMI_Nid_Key_Axle_Load {5}, MMI_M_Airtight {6}, " +
-                        "MMI_Nid_Key_Load_Gauge {7}, MMI_M_Buttons {8}, MMI_M_Trainset_ID {9}, MMI_M_Alt_Dem {10}, " +
-                        "MMI_N_Trainsets {11}, MMI_N_Data_Elements {12}",
-                        MMI_M_Data_Enable, MMI_L_Train, MMI_V_MaxTrain,
-                        MMI_Nid_Key_Train_Cat, MMI_M_Brake_Perc, MMI_Nid_Key_Axle_Load, MMI_M_Airtight,
-                        MMI_Nid_Key_Load_Gauge, MMI_M_Buttons, MMI_M_Trainset_ID, MMI_M_Alt_Dem,
-                        MMI_N_Trainsets, MMI_N_Data_Elements);
-
-            SITR.ETCS1.CurrentTrainData.MmiMPacket.Value = 6;                                                   // Packet ID
+            
+            
 
             // Train data enabled
-            ushort Reversed_MMI_M_Data_Enable = BitReverser16(MMI_M_Data_Enable);
-            SITR.ETCS1.CurrentTrainData.MmiMDataEnable.Value = Reversed_MMI_M_Data_Enable;
+            
+            EVC6_MMICurrentTrainData.MMI_M_DATA_ENABLE = MMI_M_Data_Enable;
 
-            SITR.ETCS1.CurrentTrainData.MmiLTrain.Value = MMI_L_Train;                                          // Train length
-            SITR.ETCS1.CurrentTrainData.MmiVMaxtrain.Value = MMI_V_MaxTrain;                                    // Max train speed
-            SITR.ETCS1.CurrentTrainData.MmiNidKeyTrainCat.Value = MMI_Nid_Key_Train_Cat;                        // Train category
-            SITR.ETCS1.CurrentTrainData.MmiMBrakePerc.Value = MMI_M_Brake_Perc;                                 // Brake percentage
-            SITR.ETCS1.CurrentTrainData.MmiNidKeyAxleLoad.Value = MMI_Nid_Key_Axle_Load;                        // Axle load category
-            SITR.ETCS1.CurrentTrainData.MmiMAirtight.Value = MMI_M_Airtight;                                    // Train equipped with airtight system
-            SITR.ETCS1.CurrentTrainData.MmiNidKeyLoadGauge.Value = MMI_Nid_Key_Load_Gauge;                      // Loading gauge type of train 
-            SITR.ETCS1.CurrentTrainData.MmiMButtons.Value = MMI_M_Buttons;                                      // Button available
-            // Implementing EVC6_alias_1
-            MMI_M_Trainset_ID = MMI_M_Trainset_ID << 4;
-            MMI_M_Alt_Dem = MMI_M_Alt_Dem << 2;
-            byte EVC6_alias_1 = Convert.ToByte(MMI_M_Trainset_ID | MMI_M_Alt_Dem);
-            SITR.ETCS1.CurrentTrainData.EVC6alias1.Value = EVC6_alias_1;
+            EVC6_MMICurrentTrainData.MMI_L_TRAIN = MMI_L_Train; // Train length
 
-            SITR.ETCS1.CurrentTrainData.MmiNTrainset.Value = Convert.ToUInt16(MMI_N_Trainsets);                 // Number of trainset
-            // Dynamic fields 1st Dim
-            uint NumberOfCaptionTrainset = 0; //to be used for Packet length
-            for (int k = 0; k < MMI_N_Trainsets; k++)
-            {
-                // Trainset caption text length
-                SITR.Client.Write("ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub1" + k + "_MmiNCaptionTrainset",
-                    Convert.ToUInt16(MMI_N_Caption_Trainset[k]));
-                NumberOfCaptionTrainset += MMI_N_Caption_Trainset[k]; // Total number of CaptionTrainset for the whole telegram
+            EVC6_MMICurrentTrainData.MMI_V_MAXTRAIN = MMI_V_MaxTrain; // Max train speed
+            EVC6_MMICurrentTrainData.MMI_NID_KEY_TRAIN_CAT = MMI_Nid_Key_Train_Cat; // Train category
+            EVC6_MMICurrentTrainData.MMI_M_BRAKE_PERC = MMI_M_Brake_Perc; // Brake percentage
+            EVC6_MMICurrentTrainData.MMI_NID_KEY_AXLE_LOAD = MMI_Nid_Key_Axle_Load; // Axle load category
+            EVC6_MMICurrentTrainData.MMI_M_AIRTIGHT = MMI_M_Airtight; // Train equipped with airtight system
+            EVC6_MMICurrentTrainData.MMI_NID_KEY_LOAD_GAUGE =
+                MMI_Nid_Key_Load_Gauge; // Loading gauge type of train 
+            EVC6_MMICurrentTrainData.MMI_M_BUTTONS = MMI_M_Buttons; // Button available
 
-                // Dynamic fields 2nd Dim
-                for (int l = 0; l < MMI_N_Caption_Trainset[k]; l++)
-                {
-                    // Trainset caption text character
-                    if (l < 10)
-                    {
-                        SITR.Client.Write("ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub1" + k + "_EVC06CurrentTrainDataSub110" + l +
-                        "_MmiXCaptionTrainset", MMI_X_Caption_Trainset[k, l]);
-                    }
-                    else
-                    {
-                        SITR.Client.Write("ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub1" + k + "_EVC06CurrentTrainDataSub11" + l +
-                        "_MmiXCaptionTrainset", MMI_X_Caption_Trainset[k, l]);
-                    }
-                }
-            }
+            EVC6_MMICurrentTrainData.MMI_M_TRAINSET_ID = MMI_M_Trainset_ID;
+            EVC6_MMICurrentTrainData.MMI_M_ALT_DEM = MMI_M_Alt_Dem;
+            
+            EVC6_MMICurrentTrainData.TrainSetCaptions = new List<string>(TrainSetCaptions);
+            EVC6_MMICurrentTrainData.TrainDataElements = new List<TrainDataElement>(trainDataElements);
 
-            SITR.ETCS1.CurrentTrainData.MmiNDataElements.Value = Convert.ToUInt16(MMI_N_Data_Elements);       // Number of train data to enter
-            // Dynamic fields 1st Dim
-            uint NumberOfText = 0; //to be used for Packet length
-            for (int k = 0; k < MMI_N_Data_Elements; k++)
-            {
-                // Trainset caption text length
-                SITR.Client.Write("ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub2" + k + "_MmiNidData", MMI_Nid_Data[k]);
-                SITR.Client.Write("ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub2" + k + "_MmiQDataCheck", MMI_Q_Data_Check[k]);
-                SITR.Client.Write("ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub2" + k + "_MmiNText", Convert.ToByte(MMI_N_Text[k]));
-                NumberOfText += MMI_N_Text[k]; // Total number of Text for the whole telegram
 
-                // Dynamic fields 2nd Dim
-                for (int l = 0; l < MMI_N_Text[k]; l++)
-                {
-                    // Trainset caption text character
-                    SITR.Client.Write("ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub2" + k + "_EVC06CurrentTrainDataSub21" + l +
-                        "_MmiXText", MMI_X_Text[k, l]);
-                }
-            }
-            // Packet length
-            SITR.ETCS1.CurrentTrainData.MmiLPacket.Value = Convert.ToUInt16(176 + MMI_N_Trainsets * 16 + NumberOfCaptionTrainset * 8
-                + MMI_N_Data_Elements * 32 + NumberOfText * 8);
+            TraceInfo(
+                "ETCS->DMI: EVC-6 (MMI_Current_Train_Data)");
 
-            SITR.SMDCtrl.ETCS1.CurrentTrainData.Value = 1;  // Send packet
+            EVC6_MMICurrentTrainData.Send();
+            
+
+            
         }
 
         /// <summary>
@@ -347,87 +235,34 @@ namespace Testcase
         /// </summary>
         /// <param name="Fixed_Trainset_Captions"> Array of strings for trainset captions</param>
         /// <param name="MMI_M_Trainset_ID">Index of trainset to be pre-selected on DMI</param>
-        public void SendEVC6_MMICurrentTrainData_FixedDataEntry(string[] Fixed_Trainset_Captions, ushort MMI_M_Trainset_ID )
+        public void SendEVC6_MMICurrentTrainData_FixedDataEntry(string[] Fixed_Trainset_Captions,
+            ushort MMI_M_Trainset_ID)
 
         {
-            SITR.ETCS1.CurrentTrainData.MmiMPacket.Value = 6;                                   // Packet ID
+
 
             // Train data enabled
-            SITR.ETCS1.CurrentTrainData.MmiMDataEnable.Value = 0x8000;                          // "Train Set ID" data enabled
-            SITR.ETCS1.CurrentTrainData.MmiLTrain.Value = 0x0000;                               // Train length
-            SITR.ETCS1.CurrentTrainData.MmiVMaxtrain.Value = 0x0000;                            // Max train speed
-            SITR.ETCS1.CurrentTrainData.MmiNidKeyTrainCat.Value = 0x0000;                       // Train category
-            SITR.ETCS1.CurrentTrainData.MmiMBrakePerc.Value = 0x0000;                           // Brake percentage
-            SITR.ETCS1.CurrentTrainData.MmiNidKeyAxleLoad.Value = 0x0000;                       // Axle load category
-            SITR.ETCS1.CurrentTrainData.MmiMAirtight.Value = 0x0000;                            // Train equipped with airtight system
-            SITR.ETCS1.CurrentTrainData.MmiNidKeyLoadGauge.Value = 0x0000;                      // Loading gauge type of train 
-            SITR.ETCS1.CurrentTrainData.MmiMButtons.Value = 255;                                // No Buttons available
+            EVC6_MMICurrentTrainData.MMI_M_DATA_ENABLE = MMI_M_DATA_ENABLE.TrainSetID; // "Train Set ID" data enabled
 
-            // Implementing EVC6_alias_1
-            MMI_M_Trainset_ID = Convert.ToUInt16(MMI_M_Trainset_ID << 4);                       // Preselected Trainset ID
-            byte EVC6_alias_1 = Convert.ToByte(MMI_M_Trainset_ID | 0x00);                       // MMI_Alt_Dem = 0: No alternative train data entry method available
+            EVC6_MMICurrentTrainData.MMI_L_TRAIN = 0; // Train length
+            EVC6_MMICurrentTrainData.MMI_V_MAXTRAIN = 0; // Max train speed
 
-            SITR.ETCS1.CurrentTrainData.EVC6alias1.Value = EVC6_alias_1;
-
-            // Train set captions
-            ushort NumberOfTrainsets = Convert.ToUInt16(Fixed_Trainset_Captions.Length);
-
-            // Limit the number of trainsets to 9
-            if (NumberOfTrainsets <= 9)
-            {
-                SITR.ETCS1.CurrentTrainData.MmiNTrainset.Value = NumberOfTrainsets;             // Number of trainsets
-            }
-            else
-            {
-                TraceError("{0} fixed trainsets were attempted to be displayed. Only 9 sets are allowed, the rest have been discarded!!");
-                NumberOfTrainsets = 9;
-                SITR.ETCS1.CurrentTrainData.MmiNTrainset.Value = NumberOfTrainsets;
-            }           
+            EVC6_MMICurrentTrainData.MMI_NID_KEY_TRAIN_CAT = MMI_NID_KEY.NoDedicatedKey; // Train category
+            EVC6_MMICurrentTrainData.MMI_M_BRAKE_PERC = 0; // Brake percentage
+            EVC6_MMICurrentTrainData.MMI_NID_KEY_AXLE_LOAD = MMI_NID_KEY.NoDedicatedKey; // Axle load category
+            EVC6_MMICurrentTrainData.MMI_M_AIRTIGHT = 0; // Train equipped with airtight system
+            EVC6_MMICurrentTrainData.MMI_NID_KEY_LOAD_GAUGE = MMI_NID_KEY.NoDedicatedKey; // Loading gauge type of train 
+            EVC6_MMICurrentTrainData.MMI_M_BUTTONS = 0; // No Buttons available
             
-            ushort TotalNumberOfChars = 0;                                                      // To be used for packet length
-
-            // For all trainsets
-            for (int k = 0; k < NumberOfTrainsets; k++)
-            {
-                char[] TrainCaptionChars = Fixed_Trainset_Captions[k].ToArray();
-                ushort NumberTrainCaptionChars = Convert.ToUInt16( TrainCaptionChars.Length);
-
-                // Limit number of caption characters to 12
-                if(NumberTrainCaptionChars > 12)
-                {
-                    Array.Resize(ref TrainCaptionChars, 12);
-                }
-
-                // Write individual trainset chars
-                SITR.Client.Write("ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub1" + k + "_MmiNCaptionTrainset", NumberTrainCaptionChars);
-
-                // Dynamic fields 1st dimension
-                for (int l = 0; l < NumberTrainCaptionChars; l++)
-                {
-                    // Trainset caption text character
-                    if (l < 10)
-                    {
-                        SITR.Client.Write("ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub1" + k + "_EVC06CurrentTrainDataSub110" + l + "_MmiXCaptionTrainset",
-                                            TrainCaptionChars[l]);
-                    }
-                    else
-                    {
-                        SITR.Client.Write("ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub1" + k + "_EVC06CurrentTrainDataSub11" + l + "_MmiXCaptionTrainset",
-                                            TrainCaptionChars[l]);
-                    }
-                }
-
-                TotalNumberOfChars += NumberTrainCaptionChars;                               // Total number of CaptionXTrainset chars for the whole telegram
-            }
-
-            SITR.ETCS1.CurrentTrainData.MmiNDataElements.Value = 0x00;                       // Number of train data to enter
-
-            // Packet length
-            SITR.ETCS1.CurrentTrainData.MmiLPacket.Value = Convert.ToUInt16(176 + NumberOfTrainsets * 16 + TotalNumberOfChars * 8);
-
-            TraceInfo("ETCS->DMI: EVC-6 (MMI_Current_Train_Data) Fixed Train Data Entry - {0}", Fixed_Trainset_Captions);
-
-            SITR.SMDCtrl.ETCS1.CurrentTrainData.Value = 0x09;                               // Send dynamic packet
+            EVC6_MMICurrentTrainData.MMI_M_TRAINSET_ID = MMI_M_Trainset_ID; // Preselected Trainset ID
+            // MMI_Alt_Dem = 0: No alternative train data entry method available
+            
+            EVC6_MMICurrentTrainData.TrainSetCaptions = new List<string>(Fixed_Trainset_Captions);
+            EVC6_MMICurrentTrainData.TrainDataElements = new List<TrainDataElement>(); // no train data elements
+            
+            TraceInfo("ETCS->DMI: EVC-6 (MMI_Current_Train_Data)");
+            EVC6_MMICurrentTrainData.Send();
+            
         }
 
         /// <summary>
@@ -596,24 +431,26 @@ namespace Testcase
         // 714 = "Brake percentage was successfully changed"                                            
         // 715 = "No Country Selection in LZB PB Mode"                                                  
         // 716 = "#3 Symbol ST05 (hour glass)"
-        public void SendEVC8_MMIDriverMessage(bool blImportant, ushort MMI_Q_Text_Criteria, byte MMI_I_Text, ushort MMI_Q_Text)
+        public void SendEVC8_MMIDriverMessage(bool blImportant, ushort MMI_Q_Text_Criteria, byte MMI_I_Text,
+            ushort MMI_Q_Text)
         {
-            TraceInfo("ETCS->DMI: EVC-8 (MMI_Driver_Message) MMI_Q_Text_Class = {0}, MMI_Q_Text_Criteria = {1}, MMI_I_Text = {2}, MMI_Q_Text = {3}", 
-                                                                                    blImportant, MMI_Q_Text_Criteria, MMI_I_Text, MMI_Q_Text);
+            TraceInfo(
+                "ETCS->DMI: EVC-8 (MMI_Driver_Message) MMI_Q_Text_Class = {0}, MMI_Q_Text_Criteria = {1}, MMI_I_Text = {2}, MMI_Q_Text = {3}",
+                blImportant, MMI_Q_Text_Criteria, MMI_I_Text, MMI_Q_Text);
 
-            SITR.ETCS1.DriverMessage.MmiMPacket.Value = 8;                  // Packet ID
+            SITR.ETCS1.DriverMessage.MmiMPacket.Value = 8; // Packet ID
 
-            uint byteImportant = Convert.ToUInt32(blImportant);             // True = Important, False = Auxilliary
+            uint byteImportant = Convert.ToUInt32(blImportant); // True = Important, False = Auxilliary
             byteImportant = byteImportant << 7;
 
             byte EVC8_alias_1 = Convert.ToByte(byteImportant | MMI_Q_Text_Criteria);
 
-            SITR.ETCS1.DriverMessage.EVC8alias1.Value = EVC8_alias_1;       
-            SITR.ETCS1.DriverMessage.MmiIText.Value = MMI_I_Text;           // ID number
-            SITR.ETCS1.DriverMessage.MmiNText.Value = 0x0;                  // Number of customs text characters. i.e. 0
-            SITR.ETCS1.DriverMessage.MmiQText.Value = MMI_Q_Text;           // Pre-defined text message number (see above)
-            SITR.ETCS1.DriverMessage.MmiLPacket.Value = 80;                 // Packet length
-            SITR.SMDCtrl.ETCS1.DriverMessage.Value = 1;                     // Send packet
+            SITR.ETCS1.DriverMessage.EVC8alias1.Value = EVC8_alias_1;
+            SITR.ETCS1.DriverMessage.MmiIText.Value = MMI_I_Text; // ID number
+            SITR.ETCS1.DriverMessage.MmiNText.Value = 0x0; // Number of customs text characters. i.e. 0
+            SITR.ETCS1.DriverMessage.MmiQText.Value = MMI_Q_Text; // Pre-defined text message number (see above)
+            SITR.ETCS1.DriverMessage.MmiLPacket.Value = 80; // Packet length
+            SITR.SMDCtrl.ETCS1.DriverMessage.Value = 1; // Send packet
         }
 
         /// <summary>
@@ -628,17 +465,20 @@ namespace Testcase
             SITR.ETCS1.EchoedTrainData.MmiNTrainsetsR.Value = Convert.ToUInt16(~EVC6_MmiNTrainset);
 
             // Dynamic fields 1st dimension
-            ushort NumberOfCaptionTrainset = 0;                                 // To be used for Packet length
+            ushort numberOfCaptionTrainset = 0; // To be used for Packet length
 
             for (int k = 0; k < EVC6_MmiNTrainset; k++)
             {
                 // Bit-inverted Trainset caption text length
-                ushort EVC6_MmiNCaptionTrainset = Convert.ToUInt16(SITR.Client.Read("ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub1" + k +
+                ushort EVC6_MmiNCaptionTrainset = Convert.ToUInt16(SITR.Client.Read(
+                    "ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub1" + k +
                     "_MmiNCaptionTrainset"));
 
-                SITR.Client.Write("ETCS1_EchoedTrainData_EVC10EchoedTrainDataSub1" + k + "_MmiNCaptionTrainsetR", Convert.ToUInt16(~EVC6_MmiNCaptionTrainset));
+                SITR.Client.Write("ETCS1_EchoedTrainData_EVC10EchoedTrainDataSub1" + k + "_MmiNCaptionTrainsetR",
+                    Convert.ToUInt16(~EVC6_MmiNCaptionTrainset));
 
-                NumberOfCaptionTrainset += EVC6_MmiNCaptionTrainset;            // Total number of CaptionTrainset for the whole telegram
+                numberOfCaptionTrainset +=
+                    EVC6_MmiNCaptionTrainset; // Total number of CaptionTrainset for the whole telegram
 
                 // Dynamic fields 2nd dimension
                 for (int l = 0; l < EVC6_MmiNCaptionTrainset; l++)
@@ -646,20 +486,24 @@ namespace Testcase
                     // Bit-inverted Trainset caption text
                     if (l < 10)
                     {
-                        ushort EVC6_MmiXCaptionTrainset = Convert.ToUInt16(SITR.Client.Read("ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub1" + k +
-                        "_EVC06CurrentTrainDataSub110" + l + "_MmiXCaptionTrainset"));
+                        ushort EVC6_MmiXCaptionTrainset = Convert.ToUInt16(SITR.Client.Read(
+                            "ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub1" + k +
+                            "_EVC06CurrentTrainDataSub110" + l + "_MmiXCaptionTrainset"));
 
-                        SITR.Client.Write("ETCS1_EchoedTrainData_EVC10EchoedTrainDataSub1" + k + "_EVC10EchoedTrainDataSub110" + l +
-                            "_MmiXCaptionTrainsetR", Convert.ToChar(~EVC6_MmiXCaptionTrainset));
+                        SITR.Client.Write("ETCS1_EchoedTrainData_EVC10EchoedTrainDataSub1" + k +
+                                          "_EVC10EchoedTrainDataSub110" + l +
+                                          "_MmiXCaptionTrainsetR", Convert.ToChar(~EVC6_MmiXCaptionTrainset));
                     }
 
                     else
                     {
-                        ushort EVC6_MmiXCaptionTrainset = Convert.ToUInt16(SITR.Client.Read("ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub1" + k +
-                        "_EVC06CurrentTrainDataSub11" + l + "_MmiXCaptionTrainset"));
+                        ushort EVC6_MmiXCaptionTrainset = Convert.ToUInt16(SITR.Client.Read(
+                            "ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub1" + k +
+                            "_EVC06CurrentTrainDataSub11" + l + "_MmiXCaptionTrainset"));
 
-                        SITR.Client.Write("ETCS1_EchoedTrainData_EVC10EchoedTrainDataSub1" + k + "_EVC10EchoedTrainDataSub11" + l +
-                            "_MmiXCaptionTrainsetR", Convert.ToChar(~EVC6_MmiXCaptionTrainset));
+                        SITR.Client.Write("ETCS1_EchoedTrainData_EVC10EchoedTrainDataSub1" + k +
+                                          "_EVC10EchoedTrainDataSub11" + l +
+                                          "_MmiXCaptionTrainsetR", Convert.ToChar(~EVC6_MmiXCaptionTrainset));
                     }
                 }
             }
@@ -701,7 +545,8 @@ namespace Testcase
             SITR.ETCS1.EchoedTrainData.MmiMDataEnableR.Value = Convert.ToUInt16(EVC6_MmiMDataEnable);
 
             // Packet length
-            SITR.ETCS1.EchoedTrainData.MmiLPacket.Value = Convert.ToUInt16(144 + EVC6_MmiNTrainset * 16 + NumberOfCaptionTrainset * 8);
+            SITR.ETCS1.EchoedTrainData.MmiLPacket.Value =
+                Convert.ToUInt16(144 + EVC6_MmiNTrainset * 16 + numberOfCaptionTrainset * 8);
 
             SITR.SMDCtrl.ETCS1.EchoedTrainData.Value = 0x09;
         }
@@ -717,10 +562,12 @@ namespace Testcase
         /// Enable/disable settings button.</param>
         /// <param name="blCloseButtonEnabled">
         /// Enable/disable Close button.</param>
-        public void SendEVC14_MMICurrentDriverID(string strDriverID, bool blTRNButtonEnabled, bool blSettingsButtonEnabled, bool blCloseButtonEnabled)
+        public void SendEVC14_MMICurrentDriverID(string strDriverID, bool blTRNButtonEnabled,
+            bool blSettingsButtonEnabled, bool blCloseButtonEnabled)
         {
-            TraceInfo("ETCS->DMI: EVC-14 (MMI_CURRENT_DRIVER_ID), Driver ID = {0}, TRN button enabled: {1}, Settings button enabled: {2}, Close Enabled: {3}",
-                                                                    strDriverID, blTRNButtonEnabled, blSettingsButtonEnabled, blCloseButtonEnabled);
+            TraceInfo(
+                "ETCS->DMI: EVC-14 (MMI_CURRENT_DRIVER_ID), Driver ID = {0}, TRN button enabled: {1}, Settings button enabled: {2}, Close Enabled: {3}",
+                strDriverID, blTRNButtonEnabled, blSettingsButtonEnabled, blCloseButtonEnabled);
 
             //convert boolean to uint for bit shifting
             uint uintTRNButton = Convert.ToUInt32(blTRNButtonEnabled);
@@ -764,16 +611,18 @@ namespace Testcase
         /// <param name="MMI_M_Inhibit_Enable[k]">Inhibit enabled</param>
         /// <param name="MMI_M_Level_NTC_ID[k]">Identity of level or NTC</param>
         /// <param name="MMI_Q_Close_Enable">Close Button Enable</param>
-        public void SendEVC20_MMISelectLevel(bool[] MMI_Q_Level_Ntc_ID, bool[] MMI_M_Current_Level, bool[] MMI_M_Level_Flag,
-            bool[] MMI_M_Inhibited_Level, bool[] MMI_M_Inhibit_Enable, uint[] MMI_M_Level_NTC_ID, bool MMI_Q_Close_Enable)
+        public void SendEVC20_MMISelectLevel(bool[] MMI_Q_Level_Ntc_ID, bool[] MMI_M_Current_Level,
+            bool[] MMI_M_Level_Flag,
+            bool[] MMI_M_Inhibited_Level, bool[] MMI_M_Inhibit_Enable, uint[] MMI_M_Level_NTC_ID,
+            bool MMI_Q_Close_Enable)
         {
-            SITR.ETCS1.SelectLevel.MmiMPacket.Value = 20;                       // Packet Id
+            SITR.ETCS1.SelectLevel.MmiMPacket.Value = 20; // Packet Id
 
-            ushort NumberOfLevels = (ushort)(MMI_Q_Level_Ntc_ID.Length);
-            SITR.ETCS1.SelectLevel.MmiNLevels.Value = NumberOfLevels;           // Number of levels
+            ushort numberOfLevels = (ushort) (MMI_Q_Level_Ntc_ID.Length);
+            SITR.ETCS1.SelectLevel.MmiNLevels.Value = numberOfLevels; // Number of levels
 
             // Dynamic fields
-            for (int k = 0; k < NumberOfLevels; k++)
+            for (int k = 0; k < numberOfLevels; k++)
             {
                 // Implementing EVC20_alias_1[k]
                 uint uintMMI_Q_Level_Ntc_ID = Convert.ToUInt32(MMI_Q_Level_Ntc_ID[k]);
@@ -787,31 +636,35 @@ namespace Testcase
 
                 uint uintMMI_M_Inhibited_Level = Convert.ToUInt32(MMI_M_Inhibited_Level[k]);
                 uintMMI_M_Inhibited_Level <<= 4;
-                
+
                 uint uintMMI_M_Inhibit_Enable = Convert.ToUInt32(MMI_M_Inhibit_Enable[k]);
                 uintMMI_M_Inhibit_Enable <<= 3;
 
 
-                byte EVC20_alias_1 = Convert.ToByte(uintMMI_Q_Level_Ntc_ID | uintMMI_M_Current_Level | uintMMI_M_Level_Flag | uintMMI_M_Inhibited_Level | uintMMI_M_Inhibit_Enable);
+                byte EVC20_alias_1 = Convert.ToByte(uintMMI_Q_Level_Ntc_ID | uintMMI_M_Current_Level |
+                                                    uintMMI_M_Level_Flag | uintMMI_M_Inhibited_Level |
+                                                    uintMMI_M_Inhibit_Enable);
 
                 if (k < 10)
                 {
                     SITR.Client.Write("ETCS1_SelectLevel_EVC20SelectLevelSub0" + k + "_EVC20alias1", EVC20_alias_1);
-                    SITR.Client.Write("ETCS1_SelectLevel_EVC20SelectLevelSub0" + k + "_MmiMLevelNtcId", Convert.ToByte(MMI_M_Level_NTC_ID[k]));
+                    SITR.Client.Write("ETCS1_SelectLevel_EVC20SelectLevelSub0" + k + "_MmiMLevelNtcId",
+                        Convert.ToByte(MMI_M_Level_NTC_ID[k]));
                 }
                 else
                 {
                     SITR.Client.Write("ETCS1_SelectLevel_EVC20SelectLevelSub" + k + "_EVC20alias1", EVC20_alias_1);
-                    SITR.Client.Write("ETCS1_SelectLevel_EVC20SelectLevelSub" + k + "_MmiMLevelNtcId", Convert.ToByte(MMI_M_Level_NTC_ID[k]));
+                    SITR.Client.Write("ETCS1_SelectLevel_EVC20SelectLevelSub" + k + "_MmiMLevelNtcId",
+                        Convert.ToByte(MMI_M_Level_NTC_ID[k]));
                 }
-                
             }
 
             uint uintMMI_Q_Close_Enable = Convert.ToUInt32(MMI_Q_Close_Enable);
             uintMMI_Q_Close_Enable <<= 7;
 
-            SITR.ETCS1.SelectLevel.MmiQCloseEnable.Value = Convert.ToByte(uintMMI_Q_Close_Enable);          // Close Button enable?
-            SITR.ETCS1.SelectLevel.MmiLPacket.Value = Convert.ToUInt16(56 + NumberOfLevels * 16);       // Packet length
+            SITR.ETCS1.SelectLevel.MmiQCloseEnable.Value =
+                Convert.ToByte(uintMMI_Q_Close_Enable); // Close Button enable?
+            SITR.ETCS1.SelectLevel.MmiLPacket.Value = Convert.ToUInt16(56 + numberOfLevels * 16); // Packet length
 
             SITR.SMDCtrl.ETCS1.SelectLevel.Value = 0x9;
         }
@@ -821,17 +674,17 @@ namespace Testcase
         /// </summary>
         public void SendEVC20_MMISelectLevel_AllLevels()
         {
-            bool[] param_EVC20_MMI_Q_Level_Ntc_Id = { true, true, true, true, false, false };
-            bool[] param_EVC20_MMI_M_Current_Level = { false, true, false, false, false, false };
-            bool[] param_EVC20_MMI_M_Level_Flag = { true, true, true, true, true, true };
-            bool[] param_EVC20_MMI_M_Inhibited_Level = { false, false, false, false, false, false };
-            bool[] param_EVC20_MMI_M_Inhibit_Enable = { true, true, true, true, true, true };
-            uint[] param_EVC20_MMI_M_Level_Ntc_Id = { 0, 1, 2, 3, 50, 20 }; // 50 = CBTC, 20 = AWS/TPWS
+            bool[] param_EVC20_MMI_Q_Level_Ntc_Id = {true, true, true, true, false, false};
+            bool[] param_EVC20_MMI_M_Current_Level = {false, true, false, false, false, false};
+            bool[] param_EVC20_MMI_M_Level_Flag = {true, true, true, true, true, true};
+            bool[] param_EVC20_MMI_M_Inhibited_Level = {false, false, false, false, false, false};
+            bool[] param_EVC20_MMI_M_Inhibit_Enable = {true, true, true, true, true, true};
+            uint[] param_EVC20_MMI_M_Level_Ntc_Id = {0, 1, 2, 3, 50, 20}; // 50 = CBTC, 20 = AWS/TPWS
 
             SendEVC20_MMISelectLevel(param_EVC20_MMI_Q_Level_Ntc_Id, param_EVC20_MMI_M_Current_Level,
-                                        param_EVC20_MMI_M_Level_Flag, param_EVC20_MMI_M_Inhibited_Level,
-                                        param_EVC20_MMI_M_Inhibit_Enable, param_EVC20_MMI_M_Level_Ntc_Id,
-                                        true);
+                param_EVC20_MMI_M_Level_Flag, param_EVC20_MMI_M_Inhibited_Level,
+                param_EVC20_MMI_M_Inhibit_Enable, param_EVC20_MMI_M_Level_Ntc_Id,
+                true);
         }
 
         /// <summary>
@@ -839,25 +692,26 @@ namespace Testcase
         /// </summary>
         public void SendEVC20_MMISelectLevel_Cancel()
         {
-            SITR.ETCS1.SelectLevel.MmiMPacket.Value = 20;               // Packet Id
-            SITR.ETCS1.SelectLevel.MmiNLevels.Value = 0;                // No levels - Cancel presentation of previous MMI_Select_Level
-            SITR.ETCS1.SelectLevel.MmiQCloseEnable.Value = 0x08;        // Close enabled
-            SITR.ETCS1.SelectLevel.MmiLPacket.Value = 56;               // Packet length
+            SITR.ETCS1.SelectLevel.MmiMPacket.Value = 20; // Packet Id
+            SITR.ETCS1.SelectLevel.MmiNLevels.Value = 0; // No levels - Cancel presentation of previous MMI_Select_Level
+            SITR.ETCS1.SelectLevel.MmiQCloseEnable.Value = 0x08; // Close enabled
+            SITR.ETCS1.SelectLevel.MmiLPacket.Value = 56; // Packet length
         }
 
         /// <summary>
         /// Send_EVC22_MMI_Current_Rbc_Data sends RBC Data to the DMI
         /// </summary>
-        public void Send_EVC22_MMI_Current_Rbc(uint Mmi_Nid_Rbc, uint[] Mmi_Nid_Radio, byte Mmi_Nid_Window, byte Mmi_Q_Close_Enable,
+        public void Send_EVC22_MMI_Current_Rbc(uint Mmi_Nid_Rbc, uint[] Mmi_Nid_Radio, byte Mmi_Nid_Window,
+            byte Mmi_Q_Close_Enable,
             byte Mmi_M_Buttons, string[] Caption_Networks, byte[] Mmi_Nid_Data, byte[] Mmi_Q_Data_check,
-            string[] Text_Data_Elements) {
-
-            SITR.ETCS1.CurrentRbcData.MmiMPacket.Value = 22;                            // Packet Id
-            SITR.ETCS1.CurrentRbcData.MmiNidRbc.Value = Mmi_Nid_Rbc;                    // RBC Id
-            SITR.ETCS1.CurrentRbcData.MmiNidRadio.Value = Mmi_Nid_Radio;                // RBC phone number
-            SITR.ETCS1.CurrentRbcData.MmiNidWindow.Value = Mmi_Nid_Window;              // ETCS Window Id
-            SITR.ETCS1.CurrentRbcData.MmiQCloseEnable.Value = Mmi_Q_Close_Enable;       // Close button enable?
-            SITR.ETCS1.CurrentRbcData.MmiMButtons.Value = Mmi_M_Buttons;                // Buttons available
+            string[] Text_Data_Elements)
+        {
+            SITR.ETCS1.CurrentRbcData.MmiMPacket.Value = 22; // Packet Id
+            SITR.ETCS1.CurrentRbcData.MmiNidRbc.Value = Mmi_Nid_Rbc; // RBC Id
+            SITR.ETCS1.CurrentRbcData.MmiNidRadio.Value = Mmi_Nid_Radio; // RBC phone number
+            SITR.ETCS1.CurrentRbcData.MmiNidWindow.Value = Mmi_Nid_Window; // ETCS Window Id
+            SITR.ETCS1.CurrentRbcData.MmiQCloseEnable.Value = Mmi_Q_Close_Enable; // Close button enable?
+            SITR.ETCS1.CurrentRbcData.MmiMButtons.Value = Mmi_M_Buttons; // Buttons available
 
             //Networks information
             ushort NumberOfNetworks = Convert.ToUInt16(Caption_Networks.Length);
@@ -865,23 +719,25 @@ namespace Testcase
             // Limit the number of networks to 10 (range : 0 - 9 according to VSIS 2.8)
             if (NumberOfNetworks <= 10)
             {
-                SITR.ETCS1.CurrentRbcData.MmiNNetworks.Value = NumberOfNetworks;        // Number of networks
+                SITR.ETCS1.CurrentRbcData.MmiNNetworks.Value = NumberOfNetworks; // Number of networks
             }
             else
             {
-                TraceError("{0} networks were attempted to be displayed. Only 10 are allowed, the rest have been discarded!!");
+                TraceError(
+                    "{0} networks were attempted to be displayed. Only 10 are allowed, the rest have been discarded!!");
                 NumberOfNetworks = 10;
-                SITR.ETCS1.CurrentRbcData.MmiNNetworks.Value = NumberOfNetworks;        // Number of networks
+                SITR.ETCS1.CurrentRbcData.MmiNNetworks.Value = NumberOfNetworks; // Number of networks
             }
 
-            ushort TotalNumberofCaptionsNetwork = 0;                                    // To be used for packet length
+            ushort totalNumberofCaptionsNetwork = 0; // To be used for packet length
 
             //For all networks
             for (int k = 0; k < NumberOfNetworks; k++)
             {
                 char[] NetworkCaptionChars = Caption_Networks[k].ToArray();
                 ushort NumberNetworkCaptionChars = Convert.ToUInt16(NetworkCaptionChars.Length);
-                TotalNumberofCaptionsNetwork += NumberNetworkCaptionChars;              // Total number of CaptionXNetworks chars for the whole telegram
+                totalNumberofCaptionsNetwork +=
+                    NumberNetworkCaptionChars; // Total number of CaptionXNetworks chars for the whole telegram
 
                 // Limit number of caption characters to 16
                 if (NumberNetworkCaptionChars > 16)
@@ -890,7 +746,8 @@ namespace Testcase
                 }
 
                 // Write individual network chars
-                SITR.Client.Write("ETCS1_CurrentTrainData_EVC22CurrentRbcDataSub1" + k + "_MmiNCaptionNetwork", NumberNetworkCaptionChars);
+                SITR.Client.Write("ETCS1_CurrentTrainData_EVC22CurrentRbcDataSub1" + k + "_MmiNCaptionNetwork",
+                    NumberNetworkCaptionChars);
 
                 // Dynamic fields 2nd dimension
                 for (int l = 0; l < NumberNetworkCaptionChars; l++)
@@ -898,73 +755,88 @@ namespace Testcase
                     // Network caption text character
                     if (l < 10)
                     {
-                        SITR.Client.Write("ETCS1_CurrentTrainData_EVC22CurrentRbcDataSub1" + k + "_EVC22CurrentRbcDataSub110" + l + "_MmiXCaptionNetwork",
-                                            NetworkCaptionChars[l]);
+                        SITR.Client.Write(
+                            "ETCS1_CurrentTrainData_EVC22CurrentRbcDataSub1" + k + "_EVC22CurrentRbcDataSub110" + l +
+                            "_MmiXCaptionNetwork",
+                            NetworkCaptionChars[l]);
                     }
                     else
                     {
-                        SITR.Client.Write("ETCS1_CurrentTrainData_EVC22CurrentRbcDataSub1" + k + "_EVC22CurrentRbcDataSub11" + l + "_MmiXCaptionNetwork",
-                                            NetworkCaptionChars[l]);
+                        SITR.Client.Write(
+                            "ETCS1_CurrentTrainData_EVC22CurrentRbcDataSub1" + k + "_EVC22CurrentRbcDataSub11" + l +
+                            "_MmiXCaptionNetwork",
+                            NetworkCaptionChars[l]);
                     }
-                }                
+                }
             }
 
-            ushort NumberOfDataElements = Convert.ToUInt16(Text_Data_Elements.Length);
+            ushort numberOfDataElements = Convert.ToUInt16(Text_Data_Elements.Length);
 
             // Limit the number of data elements to 9 (range : 0 - 8 according to VSIS 2.8)
-            if (NumberOfDataElements <= 9)
+            if (numberOfDataElements <= 9)
             {
-                SITR.ETCS1.CurrentRbcData.MmiNDataElements.Value = NumberOfDataElements;    // Number of data elements to enter
+                SITR.ETCS1.CurrentRbcData.MmiNDataElements.Value =
+                    numberOfDataElements; // Number of data elements to enter
             }
             else
             {
-                TraceError("{0} networks were attempted to be displayed. Only 9 are allowed, the rest have been discarded!!");
-                NumberOfDataElements = 9;
-                SITR.ETCS1.CurrentRbcData.MmiNDataElements.Value = NumberOfDataElements;    // Number of data elements to enter
+                TraceError(
+                    "{0} networks were attempted to be displayed. Only 9 are allowed, the rest have been discarded!!");
+                numberOfDataElements = 9;
+                SITR.ETCS1.CurrentRbcData.MmiNDataElements.Value =
+                    numberOfDataElements; // Number of data elements to enter
             }
 
-            ushort TotalNumberOfDataElementsText = 0;                                       // To be used for packet length
+            ushort totalNumberOfDataElementsText = 0; // To be used for packet length
 
             // For all data elements
-            for(int k =0; k < NumberOfDataElements; k++)
+            for (int k = 0; k < numberOfDataElements; k++)
             {
-                SITR.Client.Write("ETCS1_CurrentRbcData_EVC22CurrentRbcDataSub2" + k + "_MmiNidData", Mmi_Nid_Data[k]);         // Data entry element Id
-                SITR.Client.Write("ETCS1_CurrentRbcData_EVC22CurrentRbcDataSub2" + k + "_MmiQDataCheck", Mmi_Q_Data_check[k]);  // Data Check Result for data element  
+                SITR.Client.Write("ETCS1_CurrentRbcData_EVC22CurrentRbcDataSub2" + k + "_MmiNidData",
+                    Mmi_Nid_Data[k]); // Data entry element Id
+                SITR.Client.Write("ETCS1_CurrentRbcData_EVC22CurrentRbcDataSub2" + k + "_MmiQDataCheck",
+                    Mmi_Q_Data_check[k]); // Data Check Result for data element  
 
-                char[] DataElementsChars = Text_Data_Elements[k].ToArray();
-                ushort NumberDataElementsChars = Convert.ToUInt16(DataElementsChars.Length);
-                TotalNumberOfDataElementsText += NumberDataElementsChars;                   // Total number of XTexts chars for the whole telegram
+                char[] dataElementsChars = Text_Data_Elements[k].ToArray();
+                ushort numberDataElementsChars = Convert.ToUInt16(dataElementsChars.Length);
+                totalNumberOfDataElementsText +=
+                    numberDataElementsChars; // Total number of XTexts chars for the whole telegram
 
                 // Limit number of caption characters to 16
-                if (NumberDataElementsChars > 16)
+                if (numberDataElementsChars > 16)
                 {
-                    Array.Resize(ref DataElementsChars, 16);
+                    Array.Resize(ref dataElementsChars, 16);
                 }
 
                 // Write individual data element chars
-                SITR.Client.Write("ETCS1_CurrentRbcData_EVC22CurrentRbcDataSub2" + k + "_MmiNText", NumberDataElementsChars);
+                SITR.Client.Write("ETCS1_CurrentRbcData_EVC22CurrentRbcDataSub2" + k + "_MmiNText",
+                    numberDataElementsChars);
 
                 // Dynamic fields 2nd dimension
-                for (int l = 0; l < NumberDataElementsChars; l++)
+                for (int l = 0; l < numberDataElementsChars; l++)
                 {
                     // Data element text character
                     if (l < 10)
                     {
-                        SITR.Client.Write("ETCS1_CurrentRbcData_EVC22CurrentRbcDataSub2" + k + "_EVC22CurrentRbcDataSub210" + l + "_MmiXText",
-                                            DataElementsChars[l]);
+                        SITR.Client.Write(
+                            "ETCS1_CurrentRbcData_EVC22CurrentRbcDataSub2" + k + "_EVC22CurrentRbcDataSub210" + l +
+                            "_MmiXText",
+                            dataElementsChars[l]);
                     }
                     else
                     {
-                        SITR.Client.Write("ETCS1_CurrentRbcData_EVC22CurrentRbcDataSub2" + k + "_EVC22CurrentRbcDataSub21" + l + "_MmiXText",
-                                            DataElementsChars[l]);
+                        SITR.Client.Write(
+                            "ETCS1_CurrentRbcData_EVC22CurrentRbcDataSub2" + k + "_EVC22CurrentRbcDataSub21" + l +
+                            "_MmiXText",
+                            dataElementsChars[l]);
                     }
                 }
             }
 
             // Packet length
-            SITR.ETCS1.CurrentTrainData.MmiLPacket.Value = Convert.ToUInt16(192 + NumberOfNetworks * 16 + TotalNumberofCaptionsNetwork * 8
-                + NumberOfDataElements * 32 + TotalNumberOfDataElementsText * 8);
-
+            SITR.ETCS1.CurrentTrainData.MmiLPacket.Value = Convert.ToUInt16(
+                192 + NumberOfNetworks * 16 + totalNumberofCaptionsNetwork * 8
+                + numberOfDataElements * 32 + totalNumberOfDataElementsText * 8);
         }
 
         /// <summary>
@@ -1044,12 +916,12 @@ namespace Testcase
         {
             uint Reversed_MMI_Q_Request_Enable = BitReverser32(MMI_Q_Request_Enable);
 
-            TraceInfo("ETCS->DMI: EVC-30 (MMI_Request_Enable) MMI Window ID: {0}, MMI Q Request (bit 31 to 0): {1}", 
-                                                                            MMINidWindow, Reversed_MMI_Q_Request_Enable);
+            TraceInfo("ETCS->DMI: EVC-30 (MMI_Request_Enable) MMI Window ID: {0}, MMI Q Request (bit 31 to 0): {1}",
+                MMINidWindow, Reversed_MMI_Q_Request_Enable);
 
             SITR.ETCS1.EnableRequest.MmiMPacket.Value = 30;
             SITR.ETCS1.EnableRequest.MmiNidWindow.Value = MMINidWindow;
-            SITR.ETCS1.EnableRequest.MmiQRequestEnable.Value = new uint[2] { Reversed_MMI_Q_Request_Enable, 0x80000000 };
+            SITR.ETCS1.EnableRequest.MmiQRequestEnable.Value = new uint[2] {Reversed_MMI_Q_Request_Enable, 0x80000000};
             SITR.ETCS1.EnableRequest.MmiLPacket.Value = 128;
             SITR.SMDCtrl.ETCS1.EnableRequest.Value = 1;
         }
@@ -1057,17 +929,17 @@ namespace Testcase
         /// <summary>
         /// Bit-reverses a 32-bit number
         /// </summary>
-        /// <param name="IntToBeReversed"></param>
+        /// <param name="intToBeReversed"></param>
         /// <returns>Reversed 32-bit uint</returns>
-        public uint BitReverser32(uint IntToBeReversed)
+        public static uint BitReverser32(uint intToBeReversed)
         {
             uint y = 0;
 
             for (int i = 0; i < 32; i++)
             {
                 y <<= 1;
-                y |= (IntToBeReversed & 1);
-                IntToBeReversed >>= 1;
+                y |= intToBeReversed & 1;
+                intToBeReversed >>= 1;
             }
 
             return y;
@@ -1076,17 +948,17 @@ namespace Testcase
         /// <summary>
         /// Bit-reverses a 16-bit number
         /// </summary>
-        /// <param name="IntToBeReversed"></param>
+        /// <param name="intToBeReversed"></param>
         /// <returns>Reversed 16-bit uint</returns>
-        public ushort BitReverser16(ushort IntToBeReversed)
+        public static ushort BitReverser16(ushort intToBeReversed)
         {
             int y = 0;
 
             for (int i = 0; i < 16; i++)
             {
                 y <<= 1;
-                y |= (IntToBeReversed & 1);
-                IntToBeReversed >>= 1;
+                y |= intToBeReversed & 1;
+                intToBeReversed >>= 1;
             }
 
             ushort reversedInt = Convert.ToUInt16(y);
