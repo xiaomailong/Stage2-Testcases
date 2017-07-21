@@ -750,6 +750,13 @@ namespace Testcase
         }
 
         /// <summary>
+        /// Send_EVC22_MMI_Current_Rbc_Data sends RBC Data to the DMI
+        /// </summary>
+        public void Send_EVC22_MMI_Current_Rbc(uint Mmi_Nid_Rbc, ulong Mmi_Nid_Radio, byte Mmi_Nid_Window, byte Mmi_Q_Close_Enable,
+            byte Mmi_M_Buttons, ushort Mmi_N_Networks, ushort Mmi_N_Data_Elements, byte[] Mmi_Nid_Data, byte[] Mmi_Q_Data_check ) {
+        }
+
+        /// <summary>
         /// Sends EVC-30 packet for specifying which window the DMI should display
         /// and which buttons are enabled.
         /// </summary>
