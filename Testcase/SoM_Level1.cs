@@ -41,7 +41,7 @@ namespace Testcase
             EVC1_MMIDynamic.Initialise(this);
             EVC2_MMIStatus.Initialise(this);
             EVC6_MMICurrentTrainData.Initialise(this);
-            
+
             // Initialise Dynamic Arrays
             Initialize_DynamicArrays();
 
@@ -69,7 +69,11 @@ namespace Testcase
             // DMI input required
 
             // Send EVC-8 MMI_DRIVER_MESSAGE
-            SendEVC8_MMIDriverMessage(true, 2, 5, 514);
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 2;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 5;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 514;
+            EVC8_MMIDriverMessage.Send();
 
             // Wait for Perform Brake Test input on DMI
             // Send "NO" back to EVC (EVC-111 MMI_DRIVER_MESSAGE_ACK)
@@ -112,7 +116,11 @@ namespace Testcase
             // Receive packet EVC-101 MMI_DRIVER_REQUEST (Driver presses Start Button)
 
             // Send EVC-8 MMI_DRIVER_MESSAGE
-            SendEVC8_MMIDriverMessage(true, 1, 1, 263); // "#3 MO10 (Ack Staff Responsible Mode)"
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 263;
+            EVC8_MMIDriverMessage.Send(); // "#3 MO10 (Ack Staff Responsible Mode)"
 
             // Receive packet EVC-111 MMI_DRIVER_MESSAGE_ACK (Driver acknowledges SR Mode)
 
@@ -128,11 +136,10 @@ namespace Testcase
             SITR.SMDCtrl.ETCS1.SetVbc.Value = 0x8;
             SITR.SMDCtrl.ETCS1.RemoveVbc.Value = 0x8;
             SITR.SMDCtrl.ETCS1.TrackDescription.Value = 0x8;
-            
+
             SITR.SMDCtrl.ETCS1.EchoedTrainData.Value = 0x8;
-            SITR.SMDCtrl.ETCS1.DriverMessage.Value = 0x8;
         }
-        
+
         /// <summary>
         ///     SendEVC6_MMI_Current_Train_Data
         ///     Sends existing Train Data values to the DMI
@@ -189,18 +196,18 @@ namespace Testcase
         /// <param name="MMI_N_Trainsets">Number of trainsets to be shown for fixed TDE</param>
         /// <param name="MMI_N_Data_Elements">Number of entries in the following array</param>
         /// </summary>
-        public void SendEVC6_MMICurrentTrainData(MMI_M_DATA_ENABLE MMI_M_Data_Enable, ushort MMI_L_Train, ushort MMI_V_MaxTrain,
+        public void SendEVC6_MMICurrentTrainData(MMI_M_DATA_ENABLE MMI_M_Data_Enable, ushort MMI_L_Train,
+            ushort MMI_V_MaxTrain,
             MMI_NID_KEY MMI_Nid_Key_Train_Cat,
-            byte MMI_M_Brake_Perc, MMI_NID_KEY MMI_Nid_Key_Axle_Load, byte MMI_M_Airtight, MMI_NID_KEY MMI_Nid_Key_Load_Gauge,
+            byte MMI_M_Brake_Perc, MMI_NID_KEY MMI_Nid_Key_Axle_Load, byte MMI_M_Airtight,
+            MMI_NID_KEY MMI_Nid_Key_Load_Gauge,
             byte MMI_M_Buttons,
-            ushort MMI_M_Trainset_ID, ushort MMI_M_Alt_Dem, string[] TrainSetCaptions, TrainDataElement[] trainDataElements)
+            ushort MMI_M_Trainset_ID, ushort MMI_M_Alt_Dem, string[] TrainSetCaptions,
+            TrainDataElement[] trainDataElements)
 
         {
-            
-            
-
             // Train data enabled
-            
+
             EVC6_MMICurrentTrainData.MMI_M_DATA_ENABLE = MMI_M_Data_Enable;
 
             EVC6_MMICurrentTrainData.MMI_L_TRAIN = MMI_L_Train; // Train length
@@ -216,7 +223,7 @@ namespace Testcase
 
             EVC6_MMICurrentTrainData.MMI_M_TRAINSET_ID = MMI_M_Trainset_ID;
             EVC6_MMICurrentTrainData.MMI_M_ALT_DEM = MMI_M_Alt_Dem;
-            
+
             EVC6_MMICurrentTrainData.TrainSetCaptions = new List<string>(TrainSetCaptions);
             EVC6_MMICurrentTrainData.TrainDataElements = new List<TrainDataElement>(trainDataElements);
 
@@ -225,9 +232,6 @@ namespace Testcase
                 "ETCS->DMI: EVC-6 (MMI_Current_Train_Data)");
 
             EVC6_MMICurrentTrainData.Send();
-            
-
-            
         }
 
         /// <summary>
@@ -239,8 +243,6 @@ namespace Testcase
             ushort MMI_M_Trainset_ID)
 
         {
-
-
             // Train data enabled
             EVC6_MMICurrentTrainData.MMI_M_DATA_ENABLE = MMI_M_DATA_ENABLE.TrainSetID; // "Train Set ID" data enabled
 
@@ -251,207 +253,22 @@ namespace Testcase
             EVC6_MMICurrentTrainData.MMI_M_BRAKE_PERC = 0; // Brake percentage
             EVC6_MMICurrentTrainData.MMI_NID_KEY_AXLE_LOAD = MMI_NID_KEY.NoDedicatedKey; // Axle load category
             EVC6_MMICurrentTrainData.MMI_M_AIRTIGHT = 0; // Train equipped with airtight system
-            EVC6_MMICurrentTrainData.MMI_NID_KEY_LOAD_GAUGE = MMI_NID_KEY.NoDedicatedKey; // Loading gauge type of train 
+            EVC6_MMICurrentTrainData.MMI_NID_KEY_LOAD_GAUGE =
+                MMI_NID_KEY.NoDedicatedKey; // Loading gauge type of train 
             EVC6_MMICurrentTrainData.MMI_M_BUTTONS = 0; // No Buttons available
-            
+
             EVC6_MMICurrentTrainData.MMI_M_TRAINSET_ID = MMI_M_Trainset_ID; // Preselected Trainset ID
             // MMI_Alt_Dem = 0: No alternative train data entry method available
-            
+
             EVC6_MMICurrentTrainData.TrainSetCaptions = new List<string>(Fixed_Trainset_Captions);
             EVC6_MMICurrentTrainData.TrainDataElements = new List<TrainDataElement>(); // no train data elements
-            
+
             TraceInfo("ETCS->DMI: EVC-6 (MMI_Current_Train_Data)");
             EVC6_MMICurrentTrainData.Send();
-            
         }
 
-        /// <summary>
-        /// SendEVC8_MMIDriver_Message
-        /// Sends pre-programmed Driver text message
-        /// <param name="blImportant">
-        /// Used to indicate whether message is important (True) or Auxilliary (False).</param>
-        /// <param name="MMI_Q_Text_Criteria">
-        /// Message display type: <br/>
-        /// 0 = "Add text/symbol with ACK prompt, to be kept after ACK."
-        /// 1 = "Add text/symbol with ACK prompt, to be removed after ACK."
-        /// 2 = "Add text with ACK/NACK prompt, to be removed after ACK/NACK."
-        /// 3 = "Add informative text/symbol."
-        /// 4 = "Remove text/symbol. Text/symbol to be removed is defined by MMI_I_TEXT."
-        /// 5 = "Text still incomplete. Another instance of EVC-8 follows."</param>
-        /// <param name="MMI_I_Text">
-        /// Unique text message ID.</param>
-        /// <param name="MMI_Q_Text">
-        /// Pre-defined text message ID.</param>
-        /// </summary>
-        // 0 = "Level crossing not protected"
-        // 1 = "Acknowledgement"
-        // 2..255 = "Reserved for application specific coded text messages from wayside packet #76."    
-        // 256 = "#1 (plain text only)"                                                                 
-        // 257 = "#3 LE07/LE11/LE13/LE15 (Ack Transition to Level #4)"                                  
-        // 258 = "#3 LE09 (Ack Transition to NTC #2)"                                                   
-        // 259 = "#3 MO08 (Ack On Sight Mode)"                                                          
-        // 260 = "#3 ST01 (Brake intervention)"                                                         
-        // 261 = "Spare"                                                                                
-        // 262 = "#3 MO15 (Ack Reversing Mode)"                                                         
-        // 263 = "#3 MO10 (Ack Staff Responsible Mode)"                                                 
-        // 264 = "#3 MO17 (Ack Unfitted Mode)"                                                          
-        // 265 = "#3 MO02 (Ack Shunting ordered by Trackside)"                                          
-        // 266 = "#3 MO05 (Ack Train Trip)"                                                             
-        // 267 = "Balise read error"                                                                    
-        // 268 = "Communication error"                                                                  
-        // 269 = "Runaway movement"                                                                     
-        // 270..272 = "Spare"                                                                           
-        // 273 = "Unauthorized passing of EOA / LOA"                                                    
-        // 274 = "Entering FS"                                                                          
-        // 275 = "Entering OS"                                                                          
-        // 276 = "#3 LE06/LE10/LE12/LE14 (Transition to Level #4)"                                      
-        // 277 = "#3 LE08 (Transition to NTC #2)"                                                       
-        // 278 = "Emergency Brake Failure"                                                              
-        // 279 = "Apply brakes"                                                                         
-        // 280 = " Emergency stop"                                                                      
-        // 281 = "Spare"                                                                                
-        // 282 = "#3 ST04 (Connection Lost/Set-Up failed)"                                              
-        // 283..285 = "Spare"                                                                           
-        // 286 = "#3 ST06 (Reversing is possible)"                                                      
-        // 287..289 = "Spare"                                                                           
-        // 290 = "SH refused"                                                                           
-        // 291 = "Spare"                                                                                
-        // 292 = "SH request failed"                                                                    
-        // 293..295 = "Spare"                                                                           
-        // 296 = "Trackside not compatible"                                                             
-        // 297 = "Spare"                                                                                
-        // 298 = "#3 DR02 (Confirm Track Ahead Free)"                                                   
-        // 299 = "Train is rejected"                                                                    
-        // 300 = "No MA received at level transition"                                                   
-        // 301..304 = "Spare"                                                                           
-        // 305 = "Train divided"                                                                        
-        // 306..309 = "Spare"                                                                           
-        // 310 = "Train data changed"                                                                   
-        // 311..314 = "Spare"                                                                           
-        // 315 = "SR distance exceeded"                                                                 
-        // 316 = "SR stop order"                                                                        
-        // 317..319 = "Spare"                                                                           
-        // 320 = "RV distance exceeded"                                                                 
-        // 321 = "ETCS Isolated"                                                                        
-        // 322..513 = "Spare"                                                                           
-        // 514 = "Perform Brake Test!"                                                                  
-        // 515 = "Unable to start Brake Test"                                                           
-        // 516 = "Brake Test in Progress"                                                               
-        // 517 = "Brake Test failed, perform new Test!"                                                 
-        // 518..519 = "Spare"                                                                           
-        // 520 = "LZB Partial Block Mode"                                                               
-        // 521 = "Override LZB Partial Block Mode"                                                      
-        // 522 = "Restriction #1 km/h in Release Speed Area"                                            
-        // 523 = "Spare"                                                                                
-        // 524 = "Brake Test successful"                                                                
-        // 525 = "Brake Test timeout in #1 Hours"                                                       
-        // 526 = "Brake Test Timeout"                                                                   
-        // 527 = "Brake Test aborted, perform new Test?"                                                
-        // 528 = "Apply Brakes!"                                                                        
-        // 529..530 = "Spare"                                                                           
-        // 531 = "BTM Test in Progress"                                                                 
-        // 532 = "BTM Test Failure"                                                                     
-        // 533 = "BTM Test Timeout"                                                                     
-        // 534 = "BTM Test Timeout in #1 hours"                                                         
-        // 535 = "ATP Restart required in #1 Hours"                                                     
-        // 536 = "Restart ATP!"                                                                         
-        // 537..539 = "Spare"                                                                           
-        // 540 = "No Level available Onboard"                                                           
-        // 541..542 = "Spare"                                                                           
-        // 543 = "#2 failed"                                                                            
-        // 544 = "Spare"                                                                                
-        // 545 = "#3 LE02A (Confirm LZB NTC)"                                                           
-        // 546..551 = "Spare"                                                                           
-        // 552 = "Announced level(s) not supported Onboard"                                             
-        // 553 = "Spare"                                                                                
-        // 554 = "Reactivate the Cabin!"                                                                
-        // 555 = "#3 MO20 (Ack SN Mode)"                                                                
-        // 556..559 = "Spare"                                                                           
-        // 560 = "Trackside malfunction"                                                                
-        // 561..562 = "Spare"                                                                           
-        // 563 = "Trackside Level(s) not supported Onboard"                                             
-        // 564 = "Confirm change of inhibit Level #1"                                                   
-        // 565 = "Confirm change of inhibit STM #2"                                                     
-        // 566..567 = "Spare"                                                                           
-        // 568 = "#3 ST03 (Connection established)"                                                     
-        // 569 = "Radio network registration failed"                                                    
-        // 570 = "Shunting rejected due to #2 Trip"                                                     
-        // 571 = "Spare"                                                                                
-        // 572 = "No Track Description"                                                                 
-        // 573 = "#2 needs data"                                                                        
-        // 574 = "Cabin Reactivation required in #1 hours"                                              
-        // 575..579 = "Spare"                                                                           
-        // 580 = "Procedure Brake Percentage Entry terminated by ATP"                                   
-        // 581 = "Procedure Wheel Diameter Entry terminated by ATP"                                     
-        // 582 = "Procedure Doppler Radar Entry terminated by ATP"                                      
-        // 583 = "Doppler error"                                                                        
-        // 584..605 = "Spare"                                                                           
-        // 606 = "SH Stop Order"                                                                        
-        // 607..608 = "Spare"                                                                           
-        // 609 = "#3 Symbol ST100 (Network registered via one modem)"                                   
-        // 610 = "#3 Symbol ST102 (Network registered via two modems)"                                  
-        // 613 = "#3 Symbol ST103 (Connection Up) "                                                     
-        // 614 = "#3 Symbol ST03B (Connection Up with two RBCs)"                                        
-        // 615 = "#3 Symbol ST03C (Connection Lost/Set-Up failed)"                                      
-        // 616..620 = "Spare"                                                                           
-        // 621 = "Unable to start Brake Test, vehicle not ready"                                        
-        // 622 = "Unblock EB"                                                                           
-        // 623 = "Spare"                                                                                
-        // 624 = "ETCS Failure"                                                                         
-        // 625 = "Tachometer error"                                                                     
-        // 626 = "SDU error"                                                                            
-        // 627 = "Speed Sensor failure"                                                                 
-        // 628 = "ETCS Service Brake not available"                                                     
-        // 629 = "ETCS Traction Cut-off not available"                                                  
-        // 630 = "ETCS Isolation Switch failure"                                                        
-        // 631 = "#2 Isolation input not recognized"                                                    
-        // 632 = "Coasting input not recognised"                                                        
-        // 633 = "Brake Bypass failure"                                                                 
-        // 634 = "Special brake input failure"                                                          
-        // 635 = "Juridical Recording not available"                                                    
-        // 636 = "Euroloop not available"                                                               
-        // 637 = "TIMS not available"                                                                   
-        // 638 = "Degraded Radio service"                                                               
-        // 639 = "No Radio connection possible"                                                         
-        // 640..699 = "Spare"                                                                           
-        // 700 = "#2 brake demand"                                                                      
-        // 701 = "Route unsuitable – axle load category"                                                
-        // 702 = "Route unsuitable – loading gauge"                                                     
-        // 703 = "Route unsuitable – traction system"                                                   
-        // 704 = "#2 is not available"                                                                  
-        // 705 = "New power-up required in #1 hours"                                                    
-        // 706 = "No valid authentication key"                                                          
-        // 707 = "Spare"                                                                                
-        // 708 = "Spare"                                                                                
-        // 709 = "#3 MO22 (Acknowledgement for Limited Supervision)"                                    
-        // 710 = "#3 (Train divided)"                                                                   
-        // 711 = "NL-input signal is withdrawn"                                                         
-        // 712 = "Wheel data settings were successfully changed"                                        
-        // 713 = "Doppler radar settings were successfully changed"                                     
-        // 714 = "Brake percentage was successfully changed"                                            
-        // 715 = "No Country Selection in LZB PB Mode"                                                  
-        // 716 = "#3 Symbol ST05 (hour glass)"
-        public void SendEVC8_MMIDriverMessage(bool blImportant, ushort MMI_Q_Text_Criteria, byte MMI_I_Text,
-            ushort MMI_Q_Text)
-        {
-            TraceInfo(
-                "ETCS->DMI: EVC-8 (MMI_Driver_Message) MMI_Q_Text_Class = {0}, MMI_Q_Text_Criteria = {1}, MMI_I_Text = {2}, MMI_Q_Text = {3}",
-                blImportant, MMI_Q_Text_Criteria, MMI_I_Text, MMI_Q_Text);
-
-            SITR.ETCS1.DriverMessage.MmiMPacket.Value = 8; // Packet ID
-
-            uint byteImportant = Convert.ToUInt32(blImportant); // True = Important, False = Auxilliary
-            byteImportant = byteImportant << 7;
-
-            byte EVC8_alias_1 = Convert.ToByte(byteImportant | MMI_Q_Text_Criteria);
-
-            SITR.ETCS1.DriverMessage.EVC8alias1.Value = EVC8_alias_1;
-            SITR.ETCS1.DriverMessage.MmiIText.Value = MMI_I_Text; // ID number
-            SITR.ETCS1.DriverMessage.MmiNText.Value = 0x0; // Number of customs text characters. i.e. 0
-            SITR.ETCS1.DriverMessage.MmiQText.Value = MMI_Q_Text; // Pre-defined text message number (see above)
-            SITR.ETCS1.DriverMessage.MmiLPacket.Value = 80; // Packet length
-            SITR.SMDCtrl.ETCS1.DriverMessage.Value = 1; // Send packet
-        }
+        
+        
 
         /// <summary>
         /// Sends EVC-10 telegram with echoed train data. Reads all existing Current train data and bit-inverses them.
