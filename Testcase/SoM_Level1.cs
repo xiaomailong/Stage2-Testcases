@@ -119,18 +119,18 @@ namespace Testcase
 
             SITR.ETCS1.Dynamic.EVC1alias1.Value = 0;
             SITR.ETCS1.Dynamic.MmiVTrain.Value = 0;
-            SITR.ETCS1.Dynamic.MmiATrain.Value=0;
-            SITR.ETCS1.Dynamic.MmiVTarget.Value=-1;
-            SITR.ETCS1.Dynamic.MmiVPermitted.Value=0;
-            SITR.ETCS1.Dynamic.MmiVIntervention.Value=-1;
-            SITR.ETCS1.Dynamic.MmiVRelease.Value=-1;
-            SITR.ETCS1.Dynamic.MmiOBraketarget.Value=-1;
-            SITR.ETCS1.Dynamic.MmiOIml.Value=-1;
-            SITR.ETCS1.Dynamic.EVC01Validity1.Value=0xc800;     // 51200 in decimal
-            SITR.ETCS1.Dynamic.EVC01Validity1.Value=0xff00;     // 65280 in decimal
-            SITR.ETCS1.Dynamic.EVC01SSW1.Value=0x8000;          // 32768 in decimal
-            SITR.ETCS1.Dynamic.EVC01SSW2.Value=0x8000;          // 32768 in decimal
-            SITR.ETCS1.Dynamic.EVC01SSW3.Value=0x8000;          // 32768 in decimal
+            SITR.ETCS1.Dynamic.MmiATrain.Value = 0;
+            SITR.ETCS1.Dynamic.MmiVTarget.Value = -1;
+            SITR.ETCS1.Dynamic.MmiVPermitted.Value = 0;
+            SITR.ETCS1.Dynamic.MmiVIntervention.Value =- 1;
+            SITR.ETCS1.Dynamic.MmiVRelease.Value = -1;
+            SITR.ETCS1.Dynamic.MmiOBraketarget.Value = -1;
+            SITR.ETCS1.Dynamic.MmiOIml.Value = -1;
+            SITR.ETCS1.Dynamic.EVC01Validity1.Value = 0xc800;     // 51200 in decimal
+            SITR.ETCS1.Dynamic.EVC01Validity1.Value = 0xff00;     // 65280 in decimal
+            SITR.ETCS1.Dynamic.EVC01SSW1.Value = 0x8000;          // 32768 in decimal
+            SITR.ETCS1.Dynamic.EVC01SSW2.Value = 0x8000;          // 32768 in decimal
+            SITR.ETCS1.Dynamic.EVC01SSW3.Value = 0x8000;          // 32768 in decimal
         }
 
         /// <summary>
@@ -297,7 +297,7 @@ namespace Testcase
                 // Trainset caption text length
                 SITR.Client.Write("ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub1" + k + "_MmiNCaptionTrainset",
                     Convert.ToUInt16(MMI_N_Caption_Trainset[k]));
-                NumberOfCaptionTrainset = +MMI_N_Caption_Trainset[k]; // Total number of CaptionTrainset for the whole telegram
+                NumberOfCaptionTrainset += MMI_N_Caption_Trainset[k]; // Total number of CaptionTrainset for the whole telegram
 
                 // Dynamic fields 2nd Dim
                 for (int l = 0; l < MMI_N_Caption_Trainset[k]; l++)
@@ -325,7 +325,7 @@ namespace Testcase
                 SITR.Client.Write("ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub2" + k + "_MmiNidData", MMI_Nid_Data[k]);
                 SITR.Client.Write("ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub2" + k + "_MmiQDataCheck", MMI_Q_Data_Check[k]);
                 SITR.Client.Write("ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub2" + k + "_MmiNText", Convert.ToByte(MMI_N_Text[k]));
-                NumberOfText = +MMI_N_Text[k]; // Total number of Text for the whole telegram
+                NumberOfText += MMI_N_Text[k]; // Total number of Text for the whole telegram
 
                 // Dynamic fields 2nd Dim
                 for (int l = 0; l < MMI_N_Text[k]; l++)
@@ -636,7 +636,7 @@ namespace Testcase
                     "_MmiNCaptionTrainset"));
                 SITR.Client.Write("ETCS1_EchoedTrainData_EVC10EchoedTrainDataSub1" + k + "_MmiNCaptionTrainsetR",
                     Convert.ToUInt16(~EVC6_MmiNCaptionTrainset));
-                NumberOfCaptionTrainset = +EVC6_MmiNCaptionTrainset; // Total number of CaptionTrainset for the whole telegram
+                NumberOfCaptionTrainset += EVC6_MmiNCaptionTrainset; // Total number of CaptionTrainset for the whole telegram
 
                 //Dynamic fields 2nd Dim
                 for (int l = 0; l < EVC6_MmiNCaptionTrainset; l++)
@@ -928,7 +928,7 @@ namespace Testcase
         {
             uint y = 0;
 
-            for (int i=0; i<32; i++)
+            for (int i = 0; i < 32; i++)
             {
                 y <<= 1;
                 y |= (IntToBeReversed & 1);
@@ -954,7 +954,7 @@ namespace Testcase
                 IntToBeReversed >>= 1;
             }
 
-            ushort reversedInt  = Convert.ToUInt16(y);
+            ushort reversedInt = Convert.ToUInt16(y);
             return reversedInt;
         }
     }
