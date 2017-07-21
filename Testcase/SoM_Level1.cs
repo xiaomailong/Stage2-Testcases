@@ -848,8 +848,123 @@ namespace Testcase
         /// <summary>
         /// Send_EVC22_MMI_Current_Rbc_Data sends RBC Data to the DMI
         /// </summary>
-        public void Send_EVC22_MMI_Current_Rbc(uint Mmi_Nid_Rbc, ulong Mmi_Nid_Radio, byte Mmi_Nid_Window, byte Mmi_Q_Close_Enable,
-            byte Mmi_M_Buttons, ushort Mmi_N_Networks, ushort Mmi_N_Data_Elements, byte[] Mmi_Nid_Data, byte[] Mmi_Q_Data_check ) {
+        public void Send_EVC22_MMI_Current_Rbc(uint Mmi_Nid_Rbc, uint[] Mmi_Nid_Radio, byte Mmi_Nid_Window, byte Mmi_Q_Close_Enable,
+            byte Mmi_M_Buttons, string[] Caption_Networks, byte[] Mmi_Nid_Data, byte[] Mmi_Q_Data_check,
+            string[] Text_Data_Elements) {
+
+            SITR.ETCS1.CurrentRbcData.MmiMPacket.Value = 22;                            // Packet Id
+            SITR.ETCS1.CurrentRbcData.MmiNidRbc.Value = Mmi_Nid_Rbc;                    // RBC Id
+            SITR.ETCS1.CurrentRbcData.MmiNidRadio.Value = Mmi_Nid_Radio;                // RBC phone number
+            SITR.ETCS1.CurrentRbcData.MmiNidWindow.Value = Mmi_Nid_Window;              // ETCS Window Id
+            SITR.ETCS1.CurrentRbcData.MmiQCloseEnable.Value = Mmi_Q_Close_Enable;       // Close button enable?
+            SITR.ETCS1.CurrentRbcData.MmiMButtons.Value = Mmi_M_Buttons;                // Buttons available
+
+            //Networks information
+            ushort NumberOfNetworks = Convert.ToUInt16(Caption_Networks.Length);
+
+            // Limit the number of networks to 10 (range : 0 - 9 according to VSIS 2.8)
+            if (NumberOfNetworks <= 10)
+            {
+                SITR.ETCS1.CurrentRbcData.MmiNNetworks.Value = NumberOfNetworks;        // Number of networks
+            }
+            else
+            {
+                TraceError("{0} networks were attempted to be displayed. Only 10 are allowed, the rest have been discarded!!");
+                NumberOfNetworks = 10;
+                SITR.ETCS1.CurrentRbcData.MmiNNetworks.Value = NumberOfNetworks;        // Number of networks
+            }
+
+            ushort TotalNumberofCaptionsNetwork = 0;                                    // To be used for packet length
+
+            //For all networks
+            for (int k = 0; k < NumberOfNetworks; k++)
+            {
+                char[] NetworkCaptionChars = Caption_Networks[k].ToArray();
+                ushort NumberNetworkCaptionChars = Convert.ToUInt16(NetworkCaptionChars.Length);
+                TotalNumberofCaptionsNetwork += NumberNetworkCaptionChars;              // Total number of CaptionXNetworks chars for the whole telegram
+
+                // Limit number of caption characters to 16
+                if (NumberNetworkCaptionChars > 16)
+                {
+                    Array.Resize(ref NetworkCaptionChars, 16);
+                }
+
+                // Write individual network chars
+                SITR.Client.Write("ETCS1_CurrentTrainData_EVC22CurrentRbcDataSub1" + k + "_MmiNCaptionNetwork", NumberNetworkCaptionChars);
+
+                // Dynamic fields 2nd dimension
+                for (int l = 0; l < NumberNetworkCaptionChars; l++)
+                {
+                    // Network caption text character
+                    if (l < 10)
+                    {
+                        SITR.Client.Write("ETCS1_CurrentTrainData_EVC22CurrentRbcDataSub1" + k + "_EVC22CurrentRbcDataSub110" + l + "_MmiXCaptionNetwork",
+                                            NetworkCaptionChars[l]);
+                    }
+                    else
+                    {
+                        SITR.Client.Write("ETCS1_CurrentTrainData_EVC22CurrentRbcDataSub1" + k + "_EVC22CurrentRbcDataSub11" + l + "_MmiXCaptionNetwork",
+                                            NetworkCaptionChars[l]);
+                    }
+                }                
+            }
+
+            ushort NumberOfDataElements = Convert.ToUInt16(Text_Data_Elements.Length);
+
+            // Limit the number of data elements to 9 (range : 0 - 8 according to VSIS 2.8)
+            if (NumberOfDataElements <= 9)
+            {
+                SITR.ETCS1.CurrentRbcData.MmiNDataElements.Value = NumberOfDataElements;    // Number of data elements to enter
+            }
+            else
+            {
+                TraceError("{0} networks were attempted to be displayed. Only 9 are allowed, the rest have been discarded!!");
+                NumberOfDataElements = 9;
+                SITR.ETCS1.CurrentRbcData.MmiNDataElements.Value = NumberOfDataElements;    // Number of data elements to enter
+            }
+
+            ushort TotalNumberOfDataElementsText = 0;                                       // To be used for packet length
+
+            // For all data elements
+            for(int k =0; k < NumberOfDataElements; k++)
+            {
+                SITR.Client.Write("ETCS1_CurrentRbcData_EVC22CurrentRbcDataSub2" + k + "_MmiNidData", Mmi_Nid_Data[k]);         // Data entry element Id
+                SITR.Client.Write("ETCS1_CurrentRbcData_EVC22CurrentRbcDataSub2" + k + "_MmiQDataCheck", Mmi_Q_Data_check[k]);  // Data Check Result for data element  
+
+                char[] DataElementsChars = Text_Data_Elements[k].ToArray();
+                ushort NumberDataElementsChars = Convert.ToUInt16(DataElementsChars.Length);
+                TotalNumberOfDataElementsText += NumberDataElementsChars;                   // Total number of XTexts chars for the whole telegram
+
+                // Limit number of caption characters to 16
+                if (NumberDataElementsChars > 16)
+                {
+                    Array.Resize(ref DataElementsChars, 16);
+                }
+
+                // Write individual data element chars
+                SITR.Client.Write("ETCS1_CurrentRbcData_EVC22CurrentRbcDataSub2" + k + "_MmiNText", NumberDataElementsChars);
+
+                // Dynamic fields 2nd dimension
+                for (int l = 0; l < NumberDataElementsChars; l++)
+                {
+                    // Data element text character
+                    if (l < 10)
+                    {
+                        SITR.Client.Write("ETCS1_CurrentRbcData_EVC22CurrentRbcDataSub2" + k + "_EVC22CurrentRbcDataSub210" + l + "_MmiXText",
+                                            DataElementsChars[l]);
+                    }
+                    else
+                    {
+                        SITR.Client.Write("ETCS1_CurrentRbcData_EVC22CurrentRbcDataSub2" + k + "_EVC22CurrentRbcDataSub21" + l + "_MmiXText",
+                                            DataElementsChars[l]);
+                    }
+                }
+            }
+
+            // Packet length
+            SITR.ETCS1.CurrentTrainData.MmiLPacket.Value = Convert.ToUInt16(192 + NumberOfNetworks * 16 + TotalNumberofCaptionsNetwork * 8
+                + NumberOfDataElements * 32 + TotalNumberOfDataElementsText * 8);
+
         }
 
         /// <summary>
