@@ -234,92 +234,84 @@ namespace Testcase
             // Packet ID
             SITR.ETCS1.EchoedTrainData.MmiMPacket.Value = 10;
 
-            ushort EVC6_MmiNTrainset = SITR.ETCS1.CurrentTrainData.MmiNTrainset.Value;
-            SITR.ETCS1.EchoedTrainData.MmiNTrainsetsR.Value = Convert.ToUInt16(~EVC6_MmiNTrainset);
+            // TODO is this what the VSIS says? Bit inverting the array length will break it
+            ushort evc6MmiNTrainset = SITR.ETCS1.CurrentTrainData.MmiNTrainset.Value;
+            SITR.ETCS1.EchoedTrainData.MmiNTrainsetsR.Value = Convert.ToUInt16(~evc6MmiNTrainset);
 
             // Dynamic fields 1st dimension
             ushort numberOfCaptionTrainset = 0; // To be used for Packet length
 
-            for (int k = 0; k < EVC6_MmiNTrainset; k++)
+            for (int k = 0; k < evc6MmiNTrainset; k++)
             {
                 // Bit-inverted Trainset caption text length
-                ushort EVC6_MmiNCaptionTrainset = Convert.ToUInt16(SITR.Client.Read(
+                ushort evc6MmiNCaptionTrainset = Convert.ToUInt16(SITR.Client.Read(
                     "ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub1" + k +
                     "_MmiNCaptionTrainset"));
 
                 SITR.Client.Write("ETCS1_EchoedTrainData_EVC10EchoedTrainDataSub1" + k + "_MmiNCaptionTrainsetR",
-                    Convert.ToUInt16(~EVC6_MmiNCaptionTrainset));
+                    Convert.ToUInt16(~evc6MmiNCaptionTrainset));
 
                 numberOfCaptionTrainset +=
-                    EVC6_MmiNCaptionTrainset; // Total number of CaptionTrainset for the whole telegram
+                    evc6MmiNCaptionTrainset; // Total number of CaptionTrainset for the whole telegram
 
                 // Dynamic fields 2nd dimension
-                for (int l = 0; l < EVC6_MmiNCaptionTrainset; l++)
+                for (int l = 0; l < evc6MmiNCaptionTrainset; l++)
                 {
                     // Bit-inverted Trainset caption text
                     if (l < 10)
                     {
-                        ushort EVC6_MmiXCaptionTrainset = Convert.ToUInt16(SITR.Client.Read(
+                        ushort evc6MmiXCaptionTrainset = Convert.ToUInt16(SITR.Client.Read(
                             "ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub1" + k +
                             "_EVC06CurrentTrainDataSub110" + l + "_MmiXCaptionTrainset"));
 
                         SITR.Client.Write("ETCS1_EchoedTrainData_EVC10EchoedTrainDataSub1" + k +
                                           "_EVC10EchoedTrainDataSub110" + l +
-                                          "_MmiXCaptionTrainsetR", Convert.ToChar(~EVC6_MmiXCaptionTrainset));
+                                          "_MmiXCaptionTrainsetR", Convert.ToChar(~evc6MmiXCaptionTrainset));
                     }
 
                     else
                     {
-                        ushort EVC6_MmiXCaptionTrainset = Convert.ToUInt16(SITR.Client.Read(
+                        ushort evc6MmiXCaptionTrainset = Convert.ToUInt16(SITR.Client.Read(
                             "ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub1" + k +
                             "_EVC06CurrentTrainDataSub11" + l + "_MmiXCaptionTrainset"));
 
                         SITR.Client.Write("ETCS1_EchoedTrainData_EVC10EchoedTrainDataSub1" + k +
                                           "_EVC10EchoedTrainDataSub11" + l +
-                                          "_MmiXCaptionTrainsetR", Convert.ToChar(~EVC6_MmiXCaptionTrainset));
+                                          "_MmiXCaptionTrainsetR", Convert.ToChar(~evc6MmiXCaptionTrainset));
                     }
                 }
             }
 
             // EVC10_alias_1
-            ushort EVC6_alias_1 = Convert.ToUInt16(SITR.ETCS1.CurrentTrainData.EVC6alias1.Value);
-            SITR.ETCS1.EchoedTrainData.EVC10alias1.Value = Convert.ToByte(~EVC6_alias_1);
+            SITR.ETCS1.EchoedTrainData.EVC10alias1.Value = (byte) ~SITR.ETCS1.CurrentTrainData.EVC6alias1.Value;
 
             // Bit-inverted Loading gauge type of train 
-            ushort EVC6_MMINidKeyLoadGauge = Convert.ToUInt16(SITR.ETCS1.CurrentTrainData.MmiNidKeyLoadGauge.Value);
-            SITR.ETCS1.EchoedTrainData.MmiNidKeyLoadGaugeR.Value = Convert.ToByte(~EVC6_MMINidKeyLoadGauge);
+            SITR.ETCS1.EchoedTrainData.MmiNidKeyLoadGaugeR.Value = (byte) ~SITR.ETCS1.CurrentTrainData.MmiNidKeyLoadGauge.Value;
 
             // Bit-inverted Train equipped with airtight system
-            ushort EVC6_MAirtight = Convert.ToUInt16(SITR.ETCS1.CurrentTrainData.MmiMAirtight.Value);
-            SITR.ETCS1.EchoedTrainData.MmiMAirtightR.Value = Convert.ToByte(~EVC6_MAirtight);
+            SITR.ETCS1.EchoedTrainData.MmiMAirtightR.Value = (byte) ~SITR.ETCS1.CurrentTrainData.MmiMAirtight.Value;
 
             // Bit-inverted Axle load category 
-            ushort EVC6_MmiNidKeyAxleLoad = Convert.ToUInt16(SITR.ETCS1.CurrentTrainData.MmiNidKeyAxleLoad.Value);
-            SITR.ETCS1.EchoedTrainData.MmiNidKeyAxleLoadR.Value = Convert.ToByte(~EVC6_MmiNidKeyAxleLoad);
+            SITR.ETCS1.EchoedTrainData.MmiNidKeyAxleLoadR.Value = (byte) ~SITR.ETCS1.CurrentTrainData.MmiNidKeyAxleLoad.Value;
 
             // Bit-inverted Max train speed
-            ushort EVC6_VMaxTrain = Convert.ToUInt16(SITR.ETCS1.CurrentTrainData.MmiVMaxtrain.Value);
-            SITR.ETCS1.EchoedTrainData.MmiVMaxtrainR.Value = Convert.ToUInt16(~EVC6_VMaxTrain);
+            SITR.ETCS1.EchoedTrainData.MmiVMaxtrainR.Value = (byte)~SITR.ETCS1.CurrentTrainData.MmiVMaxtrain.Value;
 
             // Bit-inverted Max train length
-            ushort EVC6_LTrain = Convert.ToUInt16(SITR.ETCS1.CurrentTrainData.MmiLTrain.Value);
-            SITR.ETCS1.EchoedTrainData.MmiLTrainR.Value = Convert.ToUInt16(~EVC6_LTrain);
+            SITR.ETCS1.EchoedTrainData.MmiLTrainR.Value = (byte)~SITR.ETCS1.CurrentTrainData.MmiLTrain.Value;
 
             // Bit-inverted Brake percentage
-            ushort EVC6_MmiMBrakePerc = Convert.ToUInt16(SITR.ETCS1.CurrentTrainData.MmiMBrakePerc.Value);
-            SITR.ETCS1.EchoedTrainData.MmiMBrakePercR.Value = Convert.ToByte(~EVC6_MmiMBrakePerc);
+            SITR.ETCS1.EchoedTrainData.MmiMBrakePercR.Value = (byte)~SITR.ETCS1.CurrentTrainData.MmiMBrakePerc.Value;
 
             // Bit-inverted Train category
-            ushort EVC6_MmiNidKeyTrainCat = Convert.ToUInt16(SITR.ETCS1.CurrentTrainData.MmiNidKeyTrainCat.Value);
-            SITR.ETCS1.EchoedTrainData.MmiNidKeyTrainCatR.Value = Convert.ToByte(EVC6_MmiNidKeyTrainCat);
+            SITR.ETCS1.EchoedTrainData.MmiNidKeyTrainCatR.Value = (byte)~SITR.ETCS1.CurrentTrainData.MmiNidKeyTrainCat.Value;
 
             // Bit-inverted Train data enabled
-            ushort EVC6_MmiMDataEnable = Convert.ToUInt16(SITR.ETCS1.CurrentTrainData.MmiMDataEnable.Value);
-            SITR.ETCS1.EchoedTrainData.MmiMDataEnableR.Value = Convert.ToUInt16(EVC6_MmiMDataEnable);
+            SITR.ETCS1.EchoedTrainData.MmiMDataEnableR.Value = (byte)~SITR.ETCS1.CurrentTrainData.MmiMDataEnable.Value;
 
             // Packet length
             SITR.ETCS1.EchoedTrainData.MmiLPacket.Value =
-                Convert.ToUInt16(144 + EVC6_MmiNTrainset * 16 + numberOfCaptionTrainset * 8);
+                Convert.ToUInt16(144 + evc6MmiNTrainset * 16 + numberOfCaptionTrainset * 8);
 
             SITR.SMDCtrl.ETCS1.EchoedTrainData.Value = 0x09;
         }
