@@ -107,7 +107,8 @@ namespace Testcase
             SendEVC30_MMIRequestEnable(255, 0b0001_1101_0000_0011_1111_0000_0011_1110);
 
             // Send EVC-16 MMI_CURRENT_TRAIN_NUMBER
-            SendEVC16_CurrentTrainNumber(0xffffffff);
+            EVC16_CurrentTrainNumber.TrainRunningNumber = 0xffffffff;
+            EVC16_CurrentTrainNumber.Send();
 
             // Receive packet EVC-116 MMI_NEW_TRAIN_NUMBER
 
@@ -321,18 +322,6 @@ namespace Testcase
                 Convert.ToUInt16(144 + EVC6_MmiNTrainset * 16 + numberOfCaptionTrainset * 8);
 
             SITR.SMDCtrl.ETCS1.EchoedTrainData.Value = 0x09;
-        }
-
-        /// <summary>
-        /// Sends EVC-16 telegram with current Train Running Number.
-        /// </summary>
-        /// <param name="TrainNumber">Train Running Number (TRN)</param>
-        public void SendEVC16_CurrentTrainNumber(uint TrainNumber)
-        {
-            SITR.ETCS1.CurrentTrainNumber.MmiMPacket.Value = 16;
-            SITR.ETCS1.CurrentTrainNumber.MmiLPacket.Value = 64;
-            SITR.ETCS1.CurrentTrainNumber.MmiNidOperation.Value = TrainNumber;
-            SITR.SMDCtrl.ETCS1.CurrentTrainNumber.Value = 1;
         }
 
         /// <summary>
