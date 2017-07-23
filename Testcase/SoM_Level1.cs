@@ -41,6 +41,7 @@ namespace Testcase
             EVC1_MMIDynamic.Initialise(this);
             EVC2_MMIStatus.Initialise(this);
             EVC6_MMICurrentTrainData.Initialise(this);
+            EVC14_MMICurrentDriverID.Initialise(this);
 
             // Initialise Dynamic Arrays
             Initialize_DynamicArrays();
@@ -63,7 +64,11 @@ namespace Testcase
             EVC2_MMIStatus.Send();
 
             // ETCS->DMI: EVC-14 MMI_CURRENT_DRIVER_ID
-            SendEVC14_MMICurrentDriverID("1234", true, true, false);
+            EVC14_MMICurrentDriverID.MMI_X_DRIVER_ID = "1234";
+            EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE = EVC14_MMICurrentDriverID.MMIQADDENABLEBUTTONS.Settings |
+                                                        EVC14_MMICurrentDriverID.MMIQADDENABLEBUTTONS.TRN;
+            EVC14_MMICurrentDriverID.MMI_Q_CLOSE_ENABLE = false;
+            EVC14_MMICurrentDriverID.Send();
 
             // Receive EVC-104 MMI_NEW_DRIVER_DATA   
             // DMI input required
@@ -267,8 +272,6 @@ namespace Testcase
             EVC6_MMICurrentTrainData.Send();
         }
 
-        
-        
 
         /// <summary>
         /// Sends EVC-10 telegram with echoed train data. Reads all existing Current train data and bit-inverses them.
@@ -366,43 +369,6 @@ namespace Testcase
                 Convert.ToUInt16(144 + EVC6_MmiNTrainset * 16 + numberOfCaptionTrainset * 8);
 
             SITR.SMDCtrl.ETCS1.EchoedTrainData.Value = 0x09;
-        }
-
-        /// <summary>
-        /// Sends EVC-14 Current Driver ID telegram with enable/disable options for the TRN, Settings, and Close buttons.
-        /// </summary>
-        /// <param name="strDriverID">
-        /// Current Driver ID.</param>
-        /// <param name="blTRNButtonEnabled">
-        /// Enable/disable TRN button.</param>
-        /// <param name="blSettingsButtonEnabled">
-        /// Enable/disable settings button.</param>
-        /// <param name="blCloseButtonEnabled">
-        /// Enable/disable Close button.</param>
-        public void SendEVC14_MMICurrentDriverID(string strDriverID, bool blTRNButtonEnabled,
-            bool blSettingsButtonEnabled, bool blCloseButtonEnabled)
-        {
-            TraceInfo(
-                "ETCS->DMI: EVC-14 (MMI_CURRENT_DRIVER_ID), Driver ID = {0}, TRN button enabled: {1}, Settings button enabled: {2}, Close Enabled: {3}",
-                strDriverID, blTRNButtonEnabled, blSettingsButtonEnabled, blCloseButtonEnabled);
-
-            //convert boolean to uint for bit shifting
-            uint uintTRNButton = Convert.ToUInt32(blTRNButtonEnabled);
-            uintTRNButton = uintTRNButton << 7;
-
-            //convert boolean to uint for bit shifting
-            uint uintSettingsButton = Convert.ToUInt32(blSettingsButtonEnabled);
-            uintSettingsButton = uintSettingsButton << 6;
-
-            //combined "TRN" and "Settings" button bit-masks
-            byte MmiQAddEnable = Convert.ToByte(uintTRNButton | uintSettingsButton);
-
-            SITR.ETCS1.CurrentDriverId.MmiMPacket.Value = 14;
-            SITR.ETCS1.CurrentDriverId.MmiLPacket.Value = 172;
-            SITR.ETCS1.CurrentDriverId.MmiQCloseEnable.Value = Convert.ToByte(blCloseButtonEnabled);
-            SITR.ETCS1.CurrentDriverId.MmiQAddEnable.Value = MmiQAddEnable;
-            SITR.ETCS1.CurrentDriverId.MmiXDriverId.Value = strDriverID;
-            SITR.SMDCtrl.ETCS1.CurrentDriverId.Value = 1;
         }
 
         /// <summary>
