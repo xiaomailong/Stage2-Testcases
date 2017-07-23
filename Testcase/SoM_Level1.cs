@@ -146,90 +146,42 @@ namespace Testcase
         }
 
         /// <summary>
-        ///     SendEVC6_MMI_Current_Train_Data
+        ///     Send EVC6_MMI_Current_Train_Data
         ///     Sends existing Train Data values to the DMI
-        /// <param name="MMI_V_MaxTrain">Max train speed</param>
-        /// <param name="MMI_Nid_Key_Train_Cat">Train category (range 3-20)
-        ///     Values:
-        ///     3 = "PASS 1"
-        ///     4 = "PASS 2"
-        ///     5 = "PASS 3"
-        ///     6 = "TILT 1"
-        ///     7 = "TILT 2"
-        ///     8 = "TILT 3"
-        ///     9 = "TILT 4"
-        ///     10 = "TILT 5"
-        ///     11 = "TILT 6"
-        ///     12 = "TILT 7"
-        ///     13 = "FP 1"
-        ///     14 = "FP 2"
-        ///     15 = "FP 3"
-        ///     16 = "FP 4"
-        ///     17 = "FG 1"
-        ///     18 = "FG 2"
-        ///     19 = "FG 3"
-        ///     20 = "FG 4" </param>
-        /// <param name="MMI_M_Brake_Perc">Brake percentage</param>
-        /// <param name="MMI_Nid_Key_Axle_Load">Axle load category (range 21-33)
-        ///     Values:
-        ///     21 = "A"
-        ///     22 = "HS17"
-        ///     23 = "B1"
-        ///     24 = "B2"
-        ///     25 = "C2"
-        ///     26 = "C3"
-        ///     27 = "C4"
-        ///     28 = "D2"
-        ///     29 = "D3"
-        ///     30 = "D4"
-        ///     31 = "D4XL"
-        ///     32 = "E4"
-        ///     33 = "E5"
-        /// </param>    
-        /// <param name="MMI_M_Airtight">Train equipped with airtight system</param>
-        /// <param name="MMI_Nid_Key_Load_Gauge">Axle load category (range 34-38)
-        ///     Values:
-        ///     34 = "G1"
-        ///     35 = "GA"
-        ///     36 = "GB"
-        ///     37 = "GC"
-        ///     38 = "Out of GC"
-        /// </param>
-        /// <param name="MMI_M_Buttons">Intended to be used to dstinguish between 'BTN_YES_DATA_ENTRY_COMPLETE', 'BTN_YES_DATA_ENTRY_COMPLETE_DELAY_TYPE','no button' </param>    
-        /// <param name="MMI_M_Trainset_ID">ID of preconfigured train data set</param>
-        /// <param name="MMI_M_Alt_Dem">Control variable for alternative train data entry method</param>
-        /// <param name="MMI_N_Trainsets">Number of trainsets to be shown for fixed TDE</param>
-        /// <param name="MMI_N_Data_Elements">Number of entries in the following array</param>
+        /// <param name="mmiVMaxTrain">Max train speed</param>
+        /// <param name="mmiNidKeyTrainCat">Train category (range 3-20)</param>
+        /// <param name="mmiMBrakePerc">Brake percentage</param>
+        /// <param name="mmiNidKeyAxleLoad">Axle load category (range 21-33) </param>    
+        /// <param name="mmiMAirtight">Train equipped with airtight system</param>
+        /// <param name="mmiNidKeyLoadGauge">Axle load category (range 34-38)</param>
+        /// <param name="mmiMButtons">Intended to be used to dstinguish between 'BTN_YES_DATA_ENTRY_COMPLETE', 'BTN_YES_DATA_ENTRY_COMPLETE_DELAY_TYPE','no button' </param>    
+        /// <param name="mmiMTrainsetId">ID of preconfigured train data set</param>
+        /// <param name="mmiMAltDem">Control variable for alternative train data entry method</param>
         /// </summary>
-        public void SendEVC6_MMICurrentTrainData(MMI_M_DATA_ENABLE MMI_M_Data_Enable, ushort MMI_L_Train,
-            ushort MMI_V_MaxTrain,
-            MMI_NID_KEY MMI_Nid_Key_Train_Cat,
-            byte MMI_M_Brake_Perc, MMI_NID_KEY MMI_Nid_Key_Axle_Load, byte MMI_M_Airtight,
-            MMI_NID_KEY MMI_Nid_Key_Load_Gauge,
-            byte MMI_M_Buttons,
-            ushort MMI_M_Trainset_ID, ushort MMI_M_Alt_Dem, string[] TrainSetCaptions,
-            TrainDataElement[] trainDataElements)
-
+        public void SendEVC6_MMICurrentTrainData(MMI_M_DATA_ENABLE mmiMDataEnable, ushort mmiLTrain,
+            ushort mmiVMaxTrain, MMI_NID_KEY mmiNidKeyTrainCat, byte mmiMBrakePerc, MMI_NID_KEY mmiNidKeyAxleLoad,
+            byte mmiMAirtight, MMI_NID_KEY mmiNidKeyLoadGauge, byte mmiMButtons, ushort mmiMTrainsetId,
+            ushort mmiMAltDem, string[] trainSetCaptions, TrainDataElement[] trainDataElements)
         {
             // Train data enabled
 
-            EVC6_MMICurrentTrainData.MMI_M_DATA_ENABLE = MMI_M_Data_Enable;
+            EVC6_MMICurrentTrainData.MMI_M_DATA_ENABLE = mmiMDataEnable;
 
-            EVC6_MMICurrentTrainData.MMI_L_TRAIN = MMI_L_Train; // Train length
+            EVC6_MMICurrentTrainData.MMI_L_TRAIN = mmiLTrain; // Train length
 
-            EVC6_MMICurrentTrainData.MMI_V_MAXTRAIN = MMI_V_MaxTrain; // Max train speed
-            EVC6_MMICurrentTrainData.MMI_NID_KEY_TRAIN_CAT = MMI_Nid_Key_Train_Cat; // Train category
-            EVC6_MMICurrentTrainData.MMI_M_BRAKE_PERC = MMI_M_Brake_Perc; // Brake percentage
-            EVC6_MMICurrentTrainData.MMI_NID_KEY_AXLE_LOAD = MMI_Nid_Key_Axle_Load; // Axle load category
-            EVC6_MMICurrentTrainData.MMI_M_AIRTIGHT = MMI_M_Airtight; // Train equipped with airtight system
+            EVC6_MMICurrentTrainData.MMI_V_MAXTRAIN = mmiVMaxTrain; // Max train speed
+            EVC6_MMICurrentTrainData.MMI_NID_KEY_TRAIN_CAT = mmiNidKeyTrainCat; // Train category
+            EVC6_MMICurrentTrainData.MMI_M_BRAKE_PERC = mmiMBrakePerc; // Brake percentage
+            EVC6_MMICurrentTrainData.MMI_NID_KEY_AXLE_LOAD = mmiNidKeyAxleLoad; // Axle load category
+            EVC6_MMICurrentTrainData.MMI_M_AIRTIGHT = mmiMAirtight; // Train equipped with airtight system
             EVC6_MMICurrentTrainData.MMI_NID_KEY_LOAD_GAUGE =
-                MMI_Nid_Key_Load_Gauge; // Loading gauge type of train 
-            EVC6_MMICurrentTrainData.MMI_M_BUTTONS = MMI_M_Buttons; // Button available
+                mmiNidKeyLoadGauge; // Loading gauge type of train 
+            EVC6_MMICurrentTrainData.MMI_M_BUTTONS = mmiMButtons; // Button available
 
-            EVC6_MMICurrentTrainData.MMI_M_TRAINSET_ID = MMI_M_Trainset_ID;
-            EVC6_MMICurrentTrainData.MMI_M_ALT_DEM = MMI_M_Alt_Dem;
+            EVC6_MMICurrentTrainData.MMI_M_TRAINSET_ID = mmiMTrainsetId;
+            EVC6_MMICurrentTrainData.MMI_M_ALT_DEM = mmiMAltDem;
 
-            EVC6_MMICurrentTrainData.TrainSetCaptions = new List<string>(TrainSetCaptions);
+            EVC6_MMICurrentTrainData.TrainSetCaptions = new List<string>(trainSetCaptions);
             EVC6_MMICurrentTrainData.TrainDataElements = new List<TrainDataElement>(trainDataElements);
 
 
@@ -242,10 +194,10 @@ namespace Testcase
         /// <summary>
         /// Sends EVC-6 telegram with Fixed Data Entry for up to 9 trainset strings.
         /// </summary>
-        /// <param name="Fixed_Trainset_Captions"> Array of strings for trainset captions</param>
-        /// <param name="MMI_M_Trainset_ID">Index of trainset to be pre-selected on DMI</param>
-        public void SendEVC6_MMICurrentTrainData_FixedDataEntry(string[] Fixed_Trainset_Captions,
-            ushort MMI_M_Trainset_ID)
+        /// <param name="fixedTrainsetCaptions"> Array of strings for trainset captions</param>
+        /// <param name="mmiMTrainsetId">Index of trainset to be pre-selected on DMI</param>
+        public void SendEVC6_MMICurrentTrainData_FixedDataEntry(string[] fixedTrainsetCaptions,
+            ushort mmiMTrainsetId)
 
         {
             // Train data enabled
@@ -262,10 +214,10 @@ namespace Testcase
                 MMI_NID_KEY.NoDedicatedKey; // Loading gauge type of train 
             EVC6_MMICurrentTrainData.MMI_M_BUTTONS = 0; // No Buttons available
 
-            EVC6_MMICurrentTrainData.MMI_M_TRAINSET_ID = MMI_M_Trainset_ID; // Preselected Trainset ID
+            EVC6_MMICurrentTrainData.MMI_M_TRAINSET_ID = mmiMTrainsetId; // Preselected Trainset ID
             // MMI_Alt_Dem = 0: No alternative train data entry method available
 
-            EVC6_MMICurrentTrainData.TrainSetCaptions = new List<string>(Fixed_Trainset_Captions);
+            EVC6_MMICurrentTrainData.TrainSetCaptions = new List<string>(fixedTrainsetCaptions);
             EVC6_MMICurrentTrainData.TrainDataElements = new List<TrainDataElement>(); // no train data elements
 
             TraceInfo("ETCS->DMI: EVC-6 (MMI_Current_Train_Data)");

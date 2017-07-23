@@ -171,6 +171,25 @@ namespace Testcase.Telegrams
         /// <summary>
         /// Identifies the train category related subset of MMI_NID_KEY.
         /// Value range 3-20
+        ///     Values:
+        ///     3 = "PASS 1"
+        ///     4 = "PASS 2"
+        ///     5 = "PASS 3"
+        ///     6 = "TILT 1"
+        ///     7 = "TILT 2"
+        ///     8 = "TILT 3"
+        ///     9 = "TILT 4"
+        ///     10 = "TILT 5"
+        ///     11 = "TILT 6"
+        ///     12 = "TILT 7"
+        ///     13 = "FP 1"
+        ///     14 = "FP 2"
+        ///     15 = "FP 3"
+        ///     16 = "FP 4"
+        ///     17 = "FG 1"
+        ///     18 = "FG 2"
+        ///     19 = "FG 3"
+        ///     20 = "FG 4"
         /// </summary>
         public static MMI_NID_KEY MMI_NID_KEY_TRAIN_CAT
         {
@@ -193,6 +212,20 @@ namespace Testcase.Telegrams
         /// <summary>
         /// Identifies the axle load category related subset of MMI_NID_KEY.
         /// Value range 21-33
+        ///     Values:
+        ///     21 = "A"
+        ///     22 = "HS17"
+        ///     23 = "B1"
+        ///     24 = "B2"
+        ///     25 = "C2"
+        ///     26 = "C3"
+        ///     27 = "C4"
+        ///     28 = "D2"
+        ///     29 = "D3"
+        ///     30 = "D4"
+        ///     31 = "D4XL"
+        ///     32 = "E4"
+        ///     33 = "E5"
         /// </summary>
         public static MMI_NID_KEY MMI_NID_KEY_AXLE_LOAD
         {
@@ -215,6 +248,12 @@ namespace Testcase.Telegrams
         /// <summary>
         /// Identifies the loading gauge category related subset of MMI_NID_KEY.
         /// Value range 34-38
+        ///     Values:
+        ///     34 = "G1"
+        ///     35 = "GA"
+        ///     36 = "GB"
+        ///     37 = "GC"
+        ///     38 = "Out of GC"
         /// </summary>
         public static MMI_NID_KEY MMI_NID_KEY_LOAD_GAUGE
         {
