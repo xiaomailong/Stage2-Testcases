@@ -25,7 +25,7 @@ namespace Testcase.TemporaryFunctions
         public static void SendEVC6_MMICurrentTrainData(MMI_M_DATA_ENABLE mmiMDataEnable, ushort mmiLTrain,
             ushort mmiVMaxTrain, MMI_NID_KEY mmiNidKeyTrainCat, byte mmiMBrakePerc, MMI_NID_KEY mmiNidKeyAxleLoad,
             byte mmiMAirtight, MMI_NID_KEY mmiNidKeyLoadGauge, byte mmiMButtons, ushort mmiMTrainsetId,
-            ushort mmiMAltDem, string[] trainSetCaptions, TrainDataElement[] trainDataElements)
+            ushort mmiMAltDem, string[] trainSetCaptions, DataElement[] dataElements)
         {
             // Train data enabled
 
@@ -46,7 +46,7 @@ namespace Testcase.TemporaryFunctions
             EVC6_MMICurrentTrainData.MMI_M_ALT_DEM = mmiMAltDem;
 
             EVC6_MMICurrentTrainData.TrainSetCaptions = new List<string>(trainSetCaptions);
-            EVC6_MMICurrentTrainData.TrainDataElements = new List<TrainDataElement>(trainDataElements);
+            EVC6_MMICurrentTrainData.DataElements = new List<DataElement>(dataElements);
 
             EVC6_MMICurrentTrainData.Send();
         }
@@ -78,7 +78,7 @@ namespace Testcase.TemporaryFunctions
             // MMI_Alt_Dem = 0: No alternative train data entry method available
 
             EVC6_MMICurrentTrainData.TrainSetCaptions = new List<string>(fixedTrainsetCaptions);
-            EVC6_MMICurrentTrainData.TrainDataElements = new List<TrainDataElement>(); // no train data elements
+            EVC6_MMICurrentTrainData.DataElements = new List<DataElement>(); // no train data elements
 
 
             EVC6_MMICurrentTrainData.Send();

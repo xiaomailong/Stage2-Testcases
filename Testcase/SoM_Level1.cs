@@ -45,7 +45,9 @@ namespace Testcase
             EVC6_MMICurrentTrainData.Initialise(this);
             EVC14_MMICurrentDriverID.Initialise(this);
             EVC16_CurrentTrainNumber.Initialise(this);
+            EVC22_MMICurrentRBC.Initialise(this);
             EVC30_MMIRequestEnable.Initialise(this);
+            
 
             // Initialise Dynamic Arrays
             Initialize_DynamicArrays();

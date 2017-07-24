@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using CL345;
+using static Testcase.Telegrams.EVCtoDMI.Variables;
 
 namespace Testcase.Telegrams.EVCtoDMI
 {
@@ -14,7 +15,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         {
             _pool = pool;
             TrainSetCaptions = new List<string>();
-            TrainDataElements = new List<TrainDataElement>();
+            DataElements = new List<DataElement>();
 
             // set as dynamic
             _pool.SITR.SMDCtrl.ETCS1.CurrentTrainData.Value = 0x8;
@@ -32,10 +33,10 @@ namespace Testcase.Telegrams.EVCtoDMI
         {
             if (TrainSetCaptions.Count > 9)
                 throw new ArgumentOutOfRangeException();
-            if (TrainDataElements.Count > 9)
+            if (DataElements.Count > 9)
                 throw new ArgumentOutOfRangeException();
 
-            int totalsizecounter = 160;
+            ushort totalsizecounter = 160;
 
             // set number of trainset captions
             _pool.SITR.ETCS1.CurrentTrainData.MmiNTrainset.Value = (ushort) TrainSetCaptions.Count;
@@ -75,53 +76,12 @@ namespace Testcase.Telegrams.EVCtoDMI
             }
 
             // set number of train data elements
-            _pool.SITR.ETCS1.CurrentTrainData.MmiNDataElements.Value = (ushort) TrainDataElements.Count;
+            _pool.SITR.ETCS1.CurrentTrainData.MmiNDataElements.Value = (ushort) DataElements.Count;
 
-            // populate the train data elements array
-            for (var tdeindex = 0; tdeindex < TrainDataElements.Count; tdeindex++)
-            {
-                var traindataelement = TrainDataElements[tdeindex];
-                var varnamestring = $"ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub2{tdeindex}_";
-                var charArray = traindataelement.EchoText.ToCharArray();
-                if (charArray.Length > 10)
-                    throw new ArgumentOutOfRangeException();
-
-                // set identifier
-                _pool.SITR.Client.Write(varnamestring + "MmiNidData", traindataelement.Identifier);
-
-                // set data check result
-                _pool.SITR.Client.Write(varnamestring + "MmiQDataCheck", traindataelement.QDataCheck);
-
-                // set number of chars
-                _pool.SITR.Client.Write(varnamestring + "MmiNText", charArray.Length);
-
-
-                totalsizecounter += 32;
-
-                // populate the array
-
-                for (var charindex = 0; charindex < charArray.Length; charindex++)
-                {
-                    var character = charArray[charindex];
-
-                    if (charindex < 10)
-                    {
-                        _pool.SITR.Client.Write(
-                            $"EVC06CurrentTrainDataSub210{charindex}_MmiXText",
-                            character);
-                    }
-                    else
-                    {
-                        _pool.SITR.Client.Write(
-                            $"EVC06CurrentTrainDataSub21{charindex}_MmiXText",
-                            character);
-                    }
-                    totalsizecounter += 8;
-                }
-            }
+            totalsizecounter = PopulateDataElements($"ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub2", totalsizecounter, _pool);
 
             // set the total length of the packet
-            _pool.SITR.ETCS1.CurrentTrainData.MmiLPacket.Value = (ushort) totalsizecounter;
+            _pool.SITR.ETCS1.CurrentTrainData.MmiLPacket.Value = totalsizecounter;
 
             _pool.SITR.SMDCtrl.ETCS1.CurrentTrainData.Value = 0x09;
         }
@@ -360,7 +320,7 @@ namespace Testcase.Telegrams.EVCtoDMI
 
         public static List<string> TrainSetCaptions { get; set; }
 
-        public static List<TrainDataElement> TrainDataElements { get; set; }
+        public static List<DataElement> DataElements { get; set; }
     }
 
     [Flags]
@@ -425,12 +385,5 @@ namespace Testcase.Telegrams.EVCtoDMI
         Level2 = 42,
         Level3 = 43,
         Level0 = 44
-    }
-
-    public class TrainDataElement
-    {
-        public ushort Identifier { get; set; }
-        public ushort QDataCheck { get; set; }
-        public string EchoText { get; set; }
     }
 }
