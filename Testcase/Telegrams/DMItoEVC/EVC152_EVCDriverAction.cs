@@ -15,14 +15,17 @@ namespace Testcase.Telegrams
     {
         private static SignalPool _pool;
 
-        public static void Receive(byte mmiDriverAction)
+        public static void Receive(byte mmiMDriverAction)
         {
+            bool bResult = false;
+            
             // Checking packet id
-            _pool.SITR.CCUO.ETCS1DriverAction.MmiMPacket.Equals(152);
+            _pool.SITR.CCUO.ETCS1DriverAction.MmiMPacket.Value.Equals(152);
             // Checking packet length
-            _pool.SITR.CCUO.ETCS1DriverAction.MmiLPacket.Equals(40);
+            _pool.SITR.CCUO.ETCS1DriverAction.MmiLPacket.Value.Equals(40);
             // Checking MMI_M_DRIVER_ACTION 
-            _pool.SITR.CCUO.ETCS1DriverAction.MmiMDriverAction.Equals(mmiDriverAction);
+            bResult = _pool.SITR.CCUO.ETCS1DriverAction.MmiMDriverAction.Value.Equals(mmiMDriverAction);
+            if (bResult) { _pool.TraceInfo("EVC-101 received: MMI_M_DRIVER_ACTION = {0}", mmiMDriverAction); }
         }
     }
 }
