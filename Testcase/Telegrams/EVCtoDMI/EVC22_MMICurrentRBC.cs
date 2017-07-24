@@ -81,7 +81,10 @@ namespace Testcase.Telegrams.EVCtoDMI
             totalsizecounter = PopulateDataElements("ETCS1_CurrentRbcData_EVC22CurrentRbcDataSub2", totalsizecounter, _pool);
 
             // Packet length
-            _pool.SITR.ETCS1.CurrentTrainData.MmiLPacket.Value = totalsizecounter;
+            _pool.SITR.ETCS1.CurrentRbcData.MmiLPacket.Value = totalsizecounter;
+
+            // send
+            _pool.SITR.SMDCtrl.ETCS1.CurrentRbcData.Value = 0x9;
         }
 
         /// <summary>
