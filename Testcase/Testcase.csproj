@@ -92,6 +92,10 @@ if exist "$(TargetPath)" if not exist "$(TargetPath).locked" move "$(TargetPath)
     <Compile Include="Telegrams\EVCtoDMI\EVC30_MMIRequestEnable.cs" />
     <Compile Include="Telegrams\EVCtoDMI\EVC6_MMICurrentTrainData.cs" />
     <Compile Include="Telegrams\EVCtoDMI\EVC8_MMIDriverMessage.cs" />
+    <Compile Include="TemporaryFunctions\Temporary.SendEVC10.cs" />
+    <Compile Include="TemporaryFunctions\Temporary.SendEVC20.cs" />
+    <Compile Include="TemporaryFunctions\Temporary.SendEVC22.cs" />
+    <Compile Include="TemporaryFunctions\Temporary.SendEVC6.cs" />
     <Compile Include="TestcaseBase.cs" />
     <Compile Include="TestCaseTemplate.cs" />
   </ItemGroup>
