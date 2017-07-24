@@ -78,9 +78,11 @@ namespace Testcase.Telegrams
         /// no intention to do a statement about a specific window. Then the special value 'no window
         /// specified' can be used.
         /// </summary>
-        public static ushort MMI_NID_WINDOW { set => _pool.SITR.ETCS1.EnableRequest.MmiNidWindow.Value = (byte) value; }
+        public static ushort MMI_NID_WINDOW
+        {
+            set => _pool.SITR.ETCS1.EnableRequest.MmiNidWindow.Value = (byte) value;
+        }
 
-        
 
         /// <summary>
         /// This variable controls which generic driver requests shall be accessible by the driver
@@ -120,7 +122,10 @@ namespace Testcase.Telegrams
         /// 30 = "Enable Doppler"
         /// 31 = "Enable brake percentage"
         /// </summary>
-        public static EnabledRequests MMI_Q_REQUEST_ENABLE_HIGH { set => _pool.SITR.ETCS1.EnableRequest.MmiQRequestEnable.Value[0] = (uint) value; }
+        public static EnabledRequests MMI_Q_REQUEST_ENABLE_HIGH
+        {
+            set => _pool.SITR.ETCS1.EnableRequest.MmiQRequestEnable.Value[0] = (uint) value;
+        }
 
         /// <summary>
         /// This variable controls which generic driver requests shall be accessible by the driver
@@ -145,39 +150,38 @@ namespace Testcase.Telegrams
         [Flags]
         public enum EnabledRequests : uint
         {
-            Start                       = 0x80000000,
-            DriverID                    = 1 << 30,
-            TrainData                   = 1 << 29,
-            Level                       = 1 << 28,
-            TrainRunningNumber          = 1 << 27,
-            Shunting                    = 1 << 26,
-            ExitShunting                = 1 << 25,
-            NonLeading                  = 1 << 24,
-            MaintainShunting            = 1 << 23,
-            EOA                         = 1 << 22,
-            Adhesion                    = 1 << 21,
-            SRSpeedDistance             = 1 << 20,
-            TrainIntegrity              = 1 << 19,
-            Language                    = 1 << 18,
-            Valume                      = 1 << 17,
-            Brightness                  = 1 << 16,
-            SystemVersion               = 1 << 15,
-            SetVBC                      = 1 << 14,
-            RemoveVBC                   = 1 << 13,
-            ContactLastRBC              = 1 << 12,
-            UseShortNumber              = 1 << 11,
-            EnterRBCData                = 1 << 10,
-            RadioNetworkID              = 1 << 9 ,
-            GeographicalPosition        = 1 << 8 ,
-            EndOfDataEntryNTC           = 1 << 7 ,
-            SetLocalTimeDateAndOffset   = 1 << 6 ,
-            SetLocalOffset              = 1 << 5 ,
-            Reserved                    = 1 << 4 ,
-            StartBrakeTest              = 1 << 3 ,
-            EnableWheelDiameter         = 1 << 2 ,
-            EnableDoppler               = 1 << 1 ,
-            EnableBrakePercentage       = 1 
-
+            Start = 0x80000000,
+            DriverID = 1 << 30,
+            TrainData = 1 << 29,
+            Level = 1 << 28,
+            TrainRunningNumber = 1 << 27,
+            Shunting = 1 << 26,
+            ExitShunting = 1 << 25,
+            NonLeading = 1 << 24,
+            MaintainShunting = 1 << 23,
+            EOA = 1 << 22,
+            Adhesion = 1 << 21,
+            SRSpeedDistance = 1 << 20,
+            TrainIntegrity = 1 << 19,
+            Language = 1 << 18,
+            Valume = 1 << 17,
+            Brightness = 1 << 16,
+            SystemVersion = 1 << 15,
+            SetVBC = 1 << 14,
+            RemoveVBC = 1 << 13,
+            ContactLastRBC = 1 << 12,
+            UseShortNumber = 1 << 11,
+            EnterRBCData = 1 << 10,
+            RadioNetworkID = 1 << 9,
+            GeographicalPosition = 1 << 8,
+            EndOfDataEntryNTC = 1 << 7,
+            SetLocalTimeDateAndOffset = 1 << 6,
+            SetLocalOffset = 1 << 5,
+            Reserved = 1 << 4,
+            StartBrakeTest = 1 << 3,
+            EnableWheelDiameter = 1 << 2,
+            EnableDoppler = 1 << 1,
+            EnableBrakePercentage = 1
         }
     }
 }

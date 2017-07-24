@@ -9,6 +9,7 @@ namespace Testcase.Telegrams
     static class EVC0_MMIStartATP
     {
         private static SignalPool _pool;
+
         public static void Initialise(SignalPool pool)
         {
             _pool = pool;
@@ -43,6 +44,4 @@ namespace Testcase.Telegrams
             GoToIdle
         }
     }
-
-    
 }

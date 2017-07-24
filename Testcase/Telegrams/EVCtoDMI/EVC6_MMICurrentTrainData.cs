@@ -41,7 +41,7 @@ namespace Testcase.Telegrams
             int totalsizecounter = 160;
 
             // set number of trainset captions
-            _pool.SITR.ETCS1.CurrentTrainData.MmiNTrainset.Value = (ushort)TrainSetCaptions.Count;
+            _pool.SITR.ETCS1.CurrentTrainData.MmiNTrainset.Value = (ushort) TrainSetCaptions.Count;
 
             // populate the array of trainset captions
             for (var trainsetindex = 0; trainsetindex < TrainSetCaptions.Count; trainsetindex++)
@@ -86,7 +86,7 @@ namespace Testcase.Telegrams
                 var traindataelement = TrainDataElements[tdeindex];
                 var varnamestring = $"ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub2{tdeindex}_";
                 var charArray = traindataelement.EchoText.ToCharArray();
-                if(charArray.Length > 10)
+                if (charArray.Length > 10)
                     throw new ArgumentOutOfRangeException();
 
                 // set identifier
@@ -94,15 +94,15 @@ namespace Testcase.Telegrams
 
                 // set data check result
                 _pool.SITR.Client.Write(varnamestring + "MmiQDataCheck", traindataelement.QDataCheck);
-                
+
                 // set number of chars
                 _pool.SITR.Client.Write(varnamestring + "MmiNText", charArray.Length);
-                
+
 
                 totalsizecounter += 32;
 
                 // populate the array
-                
+
                 for (var charindex = 0; charindex < charArray.Length; charindex++)
                 {
                     var character = charArray[charindex];

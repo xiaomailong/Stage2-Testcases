@@ -316,28 +316,31 @@ namespace Testcase
             SITR.ETCS1.EchoedTrainData.EVC10alias1.Value = (byte) ~SITR.ETCS1.CurrentTrainData.EVC6alias1.Value;
 
             // Bit-inverted Loading gauge type of train 
-            SITR.ETCS1.EchoedTrainData.MmiNidKeyLoadGaugeR.Value = (byte) ~SITR.ETCS1.CurrentTrainData.MmiNidKeyLoadGauge.Value;
+            SITR.ETCS1.EchoedTrainData.MmiNidKeyLoadGaugeR.Value =
+                (byte) ~SITR.ETCS1.CurrentTrainData.MmiNidKeyLoadGauge.Value;
 
             // Bit-inverted Train equipped with airtight system
             SITR.ETCS1.EchoedTrainData.MmiMAirtightR.Value = (byte) ~SITR.ETCS1.CurrentTrainData.MmiMAirtight.Value;
 
             // Bit-inverted Axle load category 
-            SITR.ETCS1.EchoedTrainData.MmiNidKeyAxleLoadR.Value = (byte) ~SITR.ETCS1.CurrentTrainData.MmiNidKeyAxleLoad.Value;
+            SITR.ETCS1.EchoedTrainData.MmiNidKeyAxleLoadR.Value =
+                (byte) ~SITR.ETCS1.CurrentTrainData.MmiNidKeyAxleLoad.Value;
 
             // Bit-inverted Max train speed
-            SITR.ETCS1.EchoedTrainData.MmiVMaxtrainR.Value = (byte)~SITR.ETCS1.CurrentTrainData.MmiVMaxtrain.Value;
+            SITR.ETCS1.EchoedTrainData.MmiVMaxtrainR.Value = (byte) ~SITR.ETCS1.CurrentTrainData.MmiVMaxtrain.Value;
 
             // Bit-inverted Max train length
-            SITR.ETCS1.EchoedTrainData.MmiLTrainR.Value = (byte)~SITR.ETCS1.CurrentTrainData.MmiLTrain.Value;
+            SITR.ETCS1.EchoedTrainData.MmiLTrainR.Value = (byte) ~SITR.ETCS1.CurrentTrainData.MmiLTrain.Value;
 
             // Bit-inverted Brake percentage
-            SITR.ETCS1.EchoedTrainData.MmiMBrakePercR.Value = (byte)~SITR.ETCS1.CurrentTrainData.MmiMBrakePerc.Value;
+            SITR.ETCS1.EchoedTrainData.MmiMBrakePercR.Value = (byte) ~SITR.ETCS1.CurrentTrainData.MmiMBrakePerc.Value;
 
             // Bit-inverted Train category
-            SITR.ETCS1.EchoedTrainData.MmiNidKeyTrainCatR.Value = (byte)~SITR.ETCS1.CurrentTrainData.MmiNidKeyTrainCat.Value;
+            SITR.ETCS1.EchoedTrainData.MmiNidKeyTrainCatR.Value =
+                (byte) ~SITR.ETCS1.CurrentTrainData.MmiNidKeyTrainCat.Value;
 
             // Bit-inverted Train data enabled
-            SITR.ETCS1.EchoedTrainData.MmiMDataEnableR.Value = (byte)~SITR.ETCS1.CurrentTrainData.MmiMDataEnable.Value;
+            SITR.ETCS1.EchoedTrainData.MmiMDataEnableR.Value = (byte) ~SITR.ETCS1.CurrentTrainData.MmiMDataEnable.Value;
 
             // Packet length
             SITR.ETCS1.EchoedTrainData.MmiLPacket.Value =

@@ -9,10 +9,11 @@ namespace Testcase.Telegrams
     static class EVC1_MMIDynamic
     {
         private static SignalPool _pool;
+
         public static void Initialise(SignalPool pool)
         {
             _pool = pool;
-            
+
             // Set default values
             _pool.SITR.ETCS1.Dynamic.EVC1alias1.Value = 0;
             _pool.SITR.ETCS1.Dynamic.MmiVTrain.Value = 0;

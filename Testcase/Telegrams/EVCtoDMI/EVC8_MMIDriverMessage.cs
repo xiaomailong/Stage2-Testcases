@@ -45,7 +45,9 @@ namespace Testcase.Telegrams
         /// </summary>
         public static MMI_Q_TEXT_CLASS MMI_Q_TEXT_CLASS
         {
-            set { _mmiQTextClass = value;
+            set
+            {
+                _mmiQTextClass = value;
                 SetAlias();
             }
         }
@@ -64,7 +66,7 @@ namespace Testcase.Telegrams
         {
             set
             {
-                _mmiQTextCriteria = value; 
+                _mmiQTextCriteria = value;
                 SetAlias();
             }
         }
@@ -75,7 +77,10 @@ namespace Testcase.Telegrams
         /// 0 = "Spare"
         /// 1..255 = "Valid value"
         /// </summary>
-        public static ushort MMI_I_TEXT { set => _pool.SITR.ETCS1.DriverMessage.MmiIText.Value = (byte) value; }
+        public static ushort MMI_I_TEXT
+        {
+            set => _pool.SITR.ETCS1.DriverMessage.MmiIText.Value = (byte) value;
+        }
 
         /// <summary>
         /// Predefined texts to be displayed by the MMI.
@@ -242,10 +247,10 @@ namespace Testcase.Telegrams
             set
             {
                 var charArray = value.ToCharArray();
-                if(charArray.Length > 0)
+                if (charArray.Length > 0)
                     throw new NotImplementedException();
                 _pool.SITR.ETCS1.DriverMessage.MmiNText.Value = (ushort) charArray.Length;
-                
+
                 // TODO populate the char array
             }
         }

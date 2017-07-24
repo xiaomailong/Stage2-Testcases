@@ -25,7 +25,7 @@ namespace Testcase
         public override void PreExecution()
         {
             // Setup test
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -40,7 +40,6 @@ namespace Testcase
 
         public override bool TestcaseEntryPoint()
         {
-
             return GlobalTestResult;
         }
     }

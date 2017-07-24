@@ -30,7 +30,7 @@ namespace Testcase
 
         public override void PostExecution()
         {
-			// Post-test cleanup.
+            // Post-test cleanup.
         }
 
         /// <summary>
@@ -39,11 +39,12 @@ namespace Testcase
         /// <returns></returns>
         public override bool TestcaseEntryPoint()
         {
-			// As this method should never be called, throw an exception
-            throw new InvalidOperationException("The TestcaseEntryPoint method on TestcaseBase should never be called, it should be overriden");
+            // As this method should never be called, throw an exception
+            throw new InvalidOperationException(
+                "The TestcaseEntryPoint method on TestcaseBase should never be called, it should be overriden");
         }
 
-		public override void RunDebugger()
+        public override void RunDebugger()
         {
             Debugger.Launch();
         }
