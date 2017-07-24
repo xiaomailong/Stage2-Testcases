@@ -84,6 +84,8 @@ if exist "$(TargetPath)" if not exist "$(TargetPath).locked" move "$(TargetPath)
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SoM_Level1.cs" />
+    <Compile Include="Telegrams\DMItoEVC\EVC152_EVCDriverAction.cs" />
+    <Compile Include="Telegrams\DMItoEVC\EVC101_MMIDriverRequest.cs" />
     <Compile Include="Telegrams\EVCtoDMI\EVC0_MMIStartATP.cs" />
     <Compile Include="Telegrams\EVCtoDMI\EVC14_MMICurrentDriverID.cs" />
     <Compile Include="Telegrams\EVCtoDMI\EVC16_CurrentTrainNumber.cs" />
@@ -91,6 +93,7 @@ if exist "$(TargetPath)" if not exist "$(TargetPath).locked" move "$(TargetPath)
     <Compile Include="Telegrams\EVCtoDMI\EVC22_MMICurrentRBC.cs" />
     <Compile Include="Telegrams\EVCtoDMI\EVC2_MMIStatus.cs" />
     <Compile Include="Telegrams\EVCtoDMI\EVC30_MMIRequestEnable.cs" />
+    <Compile Include="Telegrams\EVCtoDMI\EVC33_MMIAdditionalOrder.cs" />
     <Compile Include="Telegrams\EVCtoDMI\EVC6_MMICurrentTrainData.cs" />
     <Compile Include="Telegrams\EVCtoDMI\EVC8_MMIDriverMessage.cs" />
     <Compile Include="Telegrams\EVCtoDMI\Variables.cs" />
@@ -116,9 +119,7 @@ if exist "$(TargetPath)" if not exist "$(TargetPath).locked" move "$(TargetPath)
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Telegrams\DMItoEVC\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -115,7 +115,6 @@ namespace Testcase
             Temporary.SendEVC20_MMISelectLevel_AllLevels(this);
 
             //ETCS->DMI: Send EVC-6 MMI_CURRENT TRAIN_DATA
-
             Temporary.SendEVC6_MMICurrentTrainData_FixedDataEntry(new[] {"FLU", "RLU", "Rescue"}, 2);
 
             //SendEVC6_MMICurrentTrainData(param_EVC6_MmiMDataEnable, param_EVC6_MmiLTrain, param_EVC6_MmiVMaxtrain, param_EVC6_MmiNidKeyTrainCat,
