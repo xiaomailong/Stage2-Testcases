@@ -247,7 +247,7 @@ namespace Testcase.Telegrams
             set
             {
                 var charArray = value.ToCharArray();
-                if (charArray.Length < 0)
+                if (charArray.Length > 0)
                     throw new NotImplementedException();
                 _pool.SITR.ETCS1.DriverMessage.MmiNText.Value = (ushort) charArray.Length;
 
