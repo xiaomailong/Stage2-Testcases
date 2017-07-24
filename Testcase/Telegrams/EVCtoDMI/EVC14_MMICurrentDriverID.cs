@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using CL345;
 
-namespace Testcase.Telegrams
+namespace Testcase.Telegrams.EVCtoDMI
 {
     /// <summary>
     /// This packet shall be sent when the driver is intended to enter/validate /view driver identity number
