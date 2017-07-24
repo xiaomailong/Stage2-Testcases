@@ -18,7 +18,7 @@ namespace Testcase.Telegrams
         public static void Receive(byte mmiMRequest, bool mmiQButton)
         {
             // Checking packet id
-            _pool.SITR.CCUO.ETCS1DriverRequest.MmiMRequest.Equals(101);
+            _pool.SITR.CCUO.ETCS1DriverRequest.MmiMPacket.Equals(101);
             // Checking packet length
             _pool.SITR.CCUO.ETCS1DriverRequest.MmiLPacket.Equals(80);
             // Checking MMI_M_REQUEST
