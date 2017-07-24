@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
 using CL345;
 
-namespace Testcase.Telegrams
+namespace Testcase.Telegrams.EVCtoDMI
 {
     static class EVC6_MMICurrentTrainData
     {

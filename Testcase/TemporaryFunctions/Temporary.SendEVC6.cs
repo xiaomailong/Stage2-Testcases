@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Testcase.Telegrams;
+using Testcase.Telegrams.EVCtoDMI;
 
 namespace Testcase.TemporaryFunctions
 {

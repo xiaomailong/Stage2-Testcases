@@ -14,6 +14,7 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
 using System.Windows.Forms;
 using Testcase.Telegrams;
+using Testcase.Telegrams.EVCtoDMI;
 using Testcase.TemporaryFunctions;
 
 #endregion

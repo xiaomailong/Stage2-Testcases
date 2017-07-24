@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using BT_CSB_Tools.Annotations;
 using CL345;
 
-namespace Testcase.Telegrams
+namespace Testcase.Telegrams.EVCtoDMI
 {
     static class EVC8_MMIDriverMessage
     {
