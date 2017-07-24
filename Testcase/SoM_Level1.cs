@@ -42,6 +42,8 @@ namespace Testcase
             EVC2_MMIStatus.Initialise(this);
             EVC6_MMICurrentTrainData.Initialise(this);
             EVC14_MMICurrentDriverID.Initialise(this);
+            EVC16_CurrentTrainNumber.Initialise(this);
+            EVC30_MMIRequestEnable.Initialise(this);
 
             // Initialise Dynamic Arrays
             Initialize_DynamicArrays();
@@ -84,7 +86,26 @@ namespace Testcase
             // Send "NO" back to EVC (EVC-111 MMI_DRIVER_MESSAGE_ACK)
 
             // Send EVC-30 MMI_REQUEST_ENABLE
-            SendEVC30_MMIRequestEnable(255, 0b0001_1101_0000_0011_1110_0000_0011_1110);
+            var standardflags = EVC30_MMIRequestEnable.EnabledRequests.EnableDoppler |
+                                EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter |
+                                EVC30_MMIRequestEnable.EnabledRequests.StartBrakeTest |
+                                EVC30_MMIRequestEnable.EnabledRequests.SetLocalOffset |
+                                EVC30_MMIRequestEnable.EnabledRequests.RemoveVBC |
+                                EVC30_MMIRequestEnable.EnabledRequests.SetVBC |
+                                EVC30_MMIRequestEnable.EnabledRequests.SystemVersion |
+                                EVC30_MMIRequestEnable.EnabledRequests.Brightness |
+                                EVC30_MMIRequestEnable.EnabledRequests.Valume |
+                                EVC30_MMIRequestEnable.EnabledRequests.NonLeading |
+                                EVC30_MMIRequestEnable.EnabledRequests.Shunting |
+                                EVC30_MMIRequestEnable.EnabledRequests.TrainRunningNumber |
+                                EVC30_MMIRequestEnable.EnabledRequests.Level;
+
+
+            // TODO Have I set the correct flags?
+            // SendEVC30_MMIRequestEnable(255, 0b0001_1101_0000_0011_1110_0000_0011_1110);
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 255;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = standardflags;
+            EVC30_MMIRequestEnable.Send();
 
             //ETCS->DMI: EVC-20 MMI_SELECT_LEVEL
             SendEVC20_MMISelectLevel_AllLevels();
@@ -104,7 +125,11 @@ namespace Testcase
             ////Receive EVC-101
 
             // Send EVC-30 MMI_REQUEST_ENABLE
-            SendEVC30_MMIRequestEnable(255, 0b0001_1101_0000_0011_1111_0000_0011_1110);
+            //SendEVC30_MMIRequestEnable(255, 0b0001_1101_0000_0011_1111_0000_0011_1110);
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 255;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH =
+                standardflags | EVC30_MMIRequestEnable.EnabledRequests.ContactLastRBC;
+            EVC30_MMIRequestEnable.Send();
 
             // Send EVC-16 MMI_CURRENT_TRAIN_NUMBER
             EVC16_CurrentTrainNumber.TrainRunningNumber = 0xffffffff;
@@ -117,7 +142,12 @@ namespace Testcase
             EVC2_MMIStatus.Send();
 
             // Send EVC-30 MMI_ENABLE_REQUEST
-            SendEVC30_MMIRequestEnable(255, 0b0001_1101_0000_0011_1111_0000_0011_1111);
+            // SendEVC30_MMIRequestEnable(255, 0b0001_1101_0000_0011_1111_0000_0011_1111);
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 255;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH =
+                standardflags | EVC30_MMIRequestEnable.EnabledRequests.ContactLastRBC |
+                EVC30_MMIRequestEnable.EnabledRequests.Start;
+            EVC30_MMIRequestEnable.Send();
 
             // Receive packet EVC-101 MMI_DRIVER_REQUEST (Driver presses Start Button)
 
@@ -553,93 +583,6 @@ namespace Testcase
             SITR.ETCS1.CurrentTrainData.MmiLPacket.Value = Convert.ToUInt16(
                 192 + NumberOfNetworks * 16 + totalNumberofCaptionsNetwork * 8
                 + numberOfDataElements * 32 + totalNumberOfDataElementsText * 8);
-        }
-
-        /// <summary>
-        /// Sends EVC-30 packet for specifying which window the DMI should display
-        /// and which buttons are enabled.
-        /// </summary>
-        /// <param name="MMINidWindow">
-        /// Window ID</param>
-        /// <param name="MMI_Q_Request_Enable">
-        /// Bits 31 to 0 of MMI_Q_Request_Enable</param>
-        //  MMI_NID_WINDOW
-        //  0 = "Default"
-        //  1 = "Main"
-        //  2 = "Override"
-        //  3 = "Special"
-        //  4 = "Settings"
-        //  5 = "RBC contact"
-        //  6 = "Train running number"
-        //  7 = "Level"
-        //  8 = "Driver ID"
-        //  9 = "radio network ID"
-        //  10 = "RBC data"
-        //  11 = "Train data"
-        //  12 = "SR speed/distance"
-        //  13 = "Adhesion"
-        //  14 = "Set VBC"
-        //  15 = "Remove VBC"
-        //  16 = "Train data validation"
-        //  17 = "Set VBC validation"
-        //  18 = "Remove VBC validation"
-        //  19 = "Data View"
-        //  20 = "System version"
-        //  21 = "NTC data entry selection"
-        //  22 = "NTC X data"
-        //  23 = "NTC X data validation"
-        //  24 = "NTC X data view"
-        //  25..252 = "Spare"
-        //  253 = "Language"
-        //  254 = "close current window, return to parent"
-        //  255 = "no window specified"
-        //
-        //  MMI_Q_Request_Enable
-        //  0 = "Start"
-        //  1 = "Driver ID"
-        //  2 = "Train data"
-        //  3 = "Level"
-        //  4 = "Train running number"
-        //  5 = "Shunting"
-        //  6 = "Exit Shunting"
-        //  7 = "Non-Leading"
-        //  8 = "Maintain Shunting"
-        //  9 = "EOA"
-        //  10 = "Adhesion"
-        //  11 = "SR speed / distance"
-        //  12 = "Train integrity"
-        //  13 = "Language"
-        //  14 = "Volume"
-        //  15 = "Brightness"
-        //  16 = "System version"
-        //  17 = "Set VBC"
-        //  18 = "Remove VBC"
-        //  19 = "Contact last RBC"
-        //  20 = "Use short number"
-        //  21 = "Enter RBC data"
-        //  22 = "Radio Network ID"
-        //  23 = "Geographical position"
-        //  24 = "End of data entry (NTC)"
-        //  25 = "Set local time, date and offset"
-        //  26 = "Set local offset"
-        //  27 = "Reserved"
-        //  28 = "Start Brake Test"
-        //  29 = "Enable wheel diameter"
-        //  30 = "Enable doppler"
-        //  31 = "Enable brake percentage"
-        //  32 = "System info"
-        public void SendEVC30_MMIRequestEnable(byte MMINidWindow, uint MMI_Q_Request_Enable)
-        {
-            uint Reversed_MMI_Q_Request_Enable = BitReverser32(MMI_Q_Request_Enable);
-
-            TraceInfo("ETCS->DMI: EVC-30 (MMI_Request_Enable) MMI Window ID: {0}, MMI Q Request (bit 31 to 0): {1}",
-                MMINidWindow, Reversed_MMI_Q_Request_Enable);
-
-            SITR.ETCS1.EnableRequest.MmiMPacket.Value = 30;
-            SITR.ETCS1.EnableRequest.MmiNidWindow.Value = MMINidWindow;
-            SITR.ETCS1.EnableRequest.MmiQRequestEnable.Value = new uint[2] {Reversed_MMI_Q_Request_Enable, 0x80000000};
-            SITR.ETCS1.EnableRequest.MmiLPacket.Value = 128;
-            SITR.SMDCtrl.ETCS1.EnableRequest.Value = 1;
         }
 
         /// <summary>
