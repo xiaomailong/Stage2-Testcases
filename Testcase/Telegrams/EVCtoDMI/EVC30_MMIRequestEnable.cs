@@ -161,7 +161,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             SRSpeedDistance = 1 << 20,
             TrainIntegrity = 1 << 19,
             Language = 1 << 18,
-            Valume = 1 << 17,
+            Volume = 1 << 17,
             Brightness = 1 << 16,
             SystemVersion = 1 << 15,
             SetVBC = 1 << 14,

@@ -47,7 +47,7 @@ namespace Testcase
             EVC16_CurrentTrainNumber.Initialise(this);
             EVC22_MMICurrentRBC.Initialise(this);
             EVC30_MMIRequestEnable.Initialise(this);
-            
+            EVC3_MMISetTimeATP.Initialise(this);            
 
             // Initialise Dynamic Arrays
             Initialize_DynamicArrays();
@@ -63,6 +63,10 @@ namespace Testcase
             EVC0_MMIStartATP.Send();
 
             // Possible send EVC-3 MMI_SET_TIME_ATP packet      (Wireshark log)
+            EVC3_MMISetTimeATP.MMI_T_UTC = (uint)(DateTime.UtcNow - new DateTime(1970, 1, 1)).TotalSeconds;
+            EVC3_MMISetTimeATP.MMI_T_ZONE_OFFSET = 0;
+            EVC3_MMISetTimeATP.Send();
+
             // Possibly send EVC-30 MMI_Enable_Request packet   (Wireshark log)
 
             //ETCS->DMI: EVC-2 MMI_STATUS
@@ -98,7 +102,7 @@ namespace Testcase
                                 EVC30_MMIRequestEnable.EnabledRequests.SetVBC |
                                 EVC30_MMIRequestEnable.EnabledRequests.SystemVersion |
                                 EVC30_MMIRequestEnable.EnabledRequests.Brightness |
-                                EVC30_MMIRequestEnable.EnabledRequests.Valume |
+                                EVC30_MMIRequestEnable.EnabledRequests.Volume |
                                 EVC30_MMIRequestEnable.EnabledRequests.NonLeading |
                                 EVC30_MMIRequestEnable.EnabledRequests.Shunting |
                                 EVC30_MMIRequestEnable.EnabledRequests.TrainRunningNumber |
