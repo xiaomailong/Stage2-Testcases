@@ -101,7 +101,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         }
 
         /// <summary>
-        /// RBC id
+        /// RBC ID
         /// </summary>
         public static uint NID_RBC
         {
@@ -149,10 +149,8 @@ namespace Testcase.Telegrams.EVCtoDMI
             } }
 
         /// <summary>
-        /// Identifier of currently active ETCS windows. Not all
-        /// possible windows are controlled/used by this
-        /// variable in the current packet. The relevant
-        /// windows are specified by related requirements.
+        /// Identifier of currently active ETCS window. Not all possible windows are controlled/used by this variable in the current packet.
+        /// The relevant windows are specified by related requirements.
         /// 
         /// Values:
         /// 0 = "Default"
@@ -184,12 +182,12 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// 253 = "Language"
         /// 254 = "close current window, return to parent"
         /// 255 = "no window specified"
-        /// Note1: The definition is according to preliminary SubSet-121 'NID_WINDOW' definition + some
-        /// extension for BT specific design.
-        /// Note2: The variable is already prepared for future use and contains all known possible windows; it
-        /// is assumed that there are use cases where the variable is contained in a sent package, but there is
-        /// no intention to do a statement about a specific window. Then the special value 'no window
-        /// specified' can be used.
+        /// 
+        /// Note1: The definition is according to preliminary SubSet-121 'NID_WINDOW' definition + some extension for BT specific design.
+        /// 
+        /// Note2: The variable is already prepared for future use and contains all known possible windows; it is assumed that there are use
+        /// cases where the variable is contained in a sent package, but there is no intention to do a statement about a specific window.
+        /// Then the special value 'no window specified' can be used.
         /// </summary>
         public static ushort MMI_NID_WINDOW
         {
@@ -211,12 +209,12 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// 'BTN_YES_DATA_ENTRY_COMPLETE_DELAY_TYPE' and
         /// 'no button' (here this shall be interpreted as 'Yes button disabled'). 
         /// Other buttons are not in scope of packet EVC-22.
-        ///
         /// </summary>
-        public static EVC22BUTTONS MMI_M_BUTTONS {
+        public static EVC22BUTTONS MMI_M_BUTTONS
+        {
             set => _pool.SITR.ETCS1.CurrentRbcData.MmiMButtons.Value = (byte) value;
         }
-
+        
         public enum EVC22BUTTONS : ushort
         {
             BTN_YES_DATA_ENTRY_COMPLETE = 36,

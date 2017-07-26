@@ -16,7 +16,6 @@ namespace Testcase.Telegrams.EVCtoDMI
             _pool.SITR.ETCS1.Status.MmiMPacket.Value = 2;
             _pool.SITR.ETCS1.Status.MmiLPacket.Value = 72;
             _pool.SITR.ETCS1.Status.EVC2alias1.Value = 16; //Cab 1 active
-            _pool.SITR.SMDCtrl.ETCS1.Status.Value = 1;
         }
 
         public static uint TrainRunningNumber
@@ -27,6 +26,7 @@ namespace Testcase.Telegrams.EVCtoDMI
 
         public static void Send()
         {
+            _pool.SITR.SMDCtrl.ETCS1.Status.Value = 1;
         }
     }
 }
