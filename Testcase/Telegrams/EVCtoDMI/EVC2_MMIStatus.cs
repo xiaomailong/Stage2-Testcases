@@ -33,8 +33,6 @@ namespace Testcase.Telegrams.EVCtoDMI
             _pool = pool;
 
             // Set default values
-            _pool.TraceInfo("ETCS->DMI: EVC-2 (MMI_STATUS)");
-
             _pool.SITR.ETCS1.Status.MmiMPacket.Value = 2;
             _pool.SITR.ETCS1.Status.MmiLPacket.Value = 72;
         }
@@ -118,6 +116,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static void Send()
         {
+            _pool.TraceInfo("ETCS->DMI: EVC-2 (MMI_STATUS)");
             _pool.SITR.SMDCtrl.ETCS1.Status.Value = 1;
         }
     }
