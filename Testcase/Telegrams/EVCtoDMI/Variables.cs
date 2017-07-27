@@ -9,58 +9,55 @@ namespace Testcase.Telegrams.EVCtoDMI
     static class Variables
     {
         /// <summary>
-        /// This populates the Data Elements of EVC-6, 11 and 22
+        /// This populates the Data Elements of EVC-6, 11, and 22
+        /// 
+        /// Note: EVC-22 captions must be limited to 10 chars compared to the 16 allowed in the VSIS.
         /// </summary>
-        /// <param name="basestring">The base RTSIM signal name to use</param>
-        /// <param name="totalsizecounter">Reference counter for total size of telegram</param>
+        /// <param name="baseString">The base RTSIM signal name to use</param>
+        /// <param name="totalSizeCounter">Reference counter for total size of telegram</param>
         /// <param name="_pool">The SignalPool</param>
         /// <returns></returns>
-        public static ushort PopulateDataElements(string basestring, ushort totalsizecounter, SignalPool _pool)
+        public static ushort PopulateDataElements(string baseString, ushort totalSizeCounter, List<DataElement> dataElements, SignalPool _pool)
         {
-            // populate the data elements array
-            for (var tdeindex = 0; tdeindex < EVC6_MMICurrentTrainData.DataElements.Count; tdeindex++)
+            // Populate the data elements array
+            for (var tdeIndex = 0; tdeIndex < dataElements.Count; tdeIndex++)
             {
-                var traindataelement = EVC6_MMICurrentTrainData.DataElements[tdeindex];
+                var trainDataElement = dataElements[tdeIndex];
 
-                var varnamestring = basestring + tdeindex + "_";
-                var charArray = traindataelement.EchoText.ToCharArray();
+                var varNamestring = baseString + tdeIndex + "_";
+                var charArray = trainDataElement.EchoText.ToCharArray();
                 if (charArray.Length > 10)
-                    throw new ArgumentOutOfRangeException();
+                    throw new ArgumentOutOfRangeException("Too many chars in the caption string!");
 
-                // set identifier
-                _pool.SITR.Client.Write(varnamestring + "MmiNidData", traindataelement.Identifier);
+                // Set identifier
+                _pool.SITR.Client.Write(varNamestring + "MmiNidData", trainDataElement.Identifier);
 
-                // set data check result
-                _pool.SITR.Client.Write(varnamestring + "MmiQDataCheck", traindataelement.QDataCheck);
+                // Set data check result
+                _pool.SITR.Client.Write(varNamestring + "MmiQDataCheck", trainDataElement.QDataCheck);
 
-                // set number of chars
-                _pool.SITR.Client.Write(varnamestring + "MmiNText", charArray.Length);
+                // Set number of chars
+                _pool.SITR.Client.Write(varNamestring + "MmiNText", charArray.Length);
 
+                totalSizeCounter += 32;
 
-                totalsizecounter += 32;
-
-                // populate the array
-
-                for (var charindex = 0; charindex < charArray.Length; charindex++)
+                // Populate the array
+                for (var charIndex = 0; charIndex < charArray.Length; charIndex++)
                 {
-                    var character = charArray[charindex];
+                    var character = charArray[charIndex];
 
-                    if (charindex < 10)
+                    if (charIndex < 10)
                     {
-                        _pool.SITR.Client.Write(
-                            basestring + $"10{charindex}_MmiXText",
-                            character);
+                        _pool.SITR.Client.Write(baseString + $"10{charIndex}_MmiXText", character);
                     }
                     else
                     {
-                        _pool.SITR.Client.Write(
-                            basestring + $"1{charindex}_MmiXText",
-                            character);
+                        _pool.SITR.Client.Write(baseString + $"1{charIndex}_MmiXText", character);
                     }
-                    totalsizecounter += 8;
+
+                    totalSizeCounter += 8;
                 }
             }
-            return totalsizecounter;
+            return totalSizeCounter;
         }
 
         public class DataElement
@@ -179,5 +176,15 @@ namespace Testcase.Telegrams.EVCtoDMI
             BTN_ENTER = 254,
             No_Button = 255
         }
+
+        /// <summary>
+        /// MMI_NID_RBC value specifying to contact last known RBC
+        /// </summary>
+        public const uint ContactLastRBC = 16383;
+
+        /// <summary>
+        /// NID_C as allocated by ERA for Crossrail Central Section
+        /// </summary>
+        public const uint NidC = 4;
     }
 }
