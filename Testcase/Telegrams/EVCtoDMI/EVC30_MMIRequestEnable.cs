@@ -32,6 +32,13 @@ namespace Testcase.Telegrams.EVCtoDMI
             _pool.SITR.SMDCtrl.ETCS1.EnableRequest.Value = 1;
         }
 
+        public static void SendBlank()
+        {
+            _pool.SITR.ETCS1.EnableRequest.MmiNidWindow.Value = 255;
+            _pool.SITR.Client.Write("ETCS1_EnableRequest_MmiQRequestEnable", new uint[2] { 0x00000000, 0x00000000 });
+            _pool.SITR.SMDCtrl.ETCS1.EnableRequest.Value = 1;
+        }
+
         /// <summary>
         /// Identifier of currently active ETCS windows. Not all
         /// possible windows are controlled/used by this
@@ -44,7 +51,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// 2 = "Override"
         /// 3 = "Special"
         /// 4 = "Settings"
-        /// 5 = "RBC contact"
+        /// 5 = "RBC contact" - Only accessed via
         /// 6 = "Train running number"
         /// 7 = "Level"
         /// 8 = "Driver ID"
@@ -77,7 +84,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static ushort MMI_NID_WINDOW
         {
-            set => _pool.SITR.ETCS1.EnableRequest.MmiNidWindow.Value = (byte) value;
+            set => _pool.SITR.ETCS1.EnableRequest.MmiNidWindow.Value = (byte)value;
         }
 
 
@@ -121,32 +128,38 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static EnabledRequests MMI_Q_REQUEST_ENABLE_HIGH
         {
-            set => _pool.SITR.ETCS1.EnableRequest.MmiQRequestEnable.Value[0] = (uint) value;
-        }
-
-        /// <summary>
-        /// This variable controls which generic driver requests shall be accessible by the driver
-        /// True = System Info enabled
-        /// 
-        /// Note:
-        /// Bit-using as following:
-        /// 0 = "System info"
-        /// 1..31 = not used, set to zero
-        /// </summary>
-        public static bool MMI_Q_REQUEST_ENABLE_LOW
-        {
             set
             {
-                if (value)
-                    _pool.SITR.ETCS1.EnableRequest.MmiQRequestEnable.Value[1] = 0x80000000;
-                else
-                    _pool.SITR.ETCS1.EnableRequest.MmiQRequestEnable.Value[1] = 0x00000000;
+                _pool.SITR.Client.Write("ETCS1_EnableRequest_MmiQRequestEnable", new uint[2] { Convert.ToUInt32 (value), 0x80000000 });
             }
+                
         }
+
+        // TODO To implement properly at some point
+        ///// <summary>
+        ///// This variable controls which generic driver requests shall be accessible by the driver
+        ///// True = System Info enabled
+        ///// 
+        ///// Note:
+        ///// Bit-using as following:
+        ///// 0 = "System info"
+        ///// 1..31 = not used, set to zero
+        ///// </summary>
+        //public static bool MMI_Q_REQUEST_ENABLE_LOW
+        //{
+        //    set
+        //    {
+        //        if (value)
+        //            _pool.SITR.ETCS1.EnableRequest.MmiQRequestEnable.Value[1] = 0x80000000;
+        //        else
+        //            _pool.SITR.ETCS1.EnableRequest.MmiQRequestEnable.Value[1] = 0x00000000;
+        //    }
+        //}
 
         [Flags]
         public enum EnabledRequests : uint
         {
+            None = 0,
             Start = 0x80000000,
             DriverID = 1 << 30,
             TrainData = 1 << 29,
@@ -178,7 +191,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             StartBrakeTest = 1 << 3,
             EnableWheelDiameter = 1 << 2,
             EnableDoppler = 1 << 1,
-            EnableBrakePercentage = 1
+            EnableBrakePercentage = 1 << 0
         }
     }
 }
