@@ -38,7 +38,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Test system is powered on
-
+            
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -56,19 +56,23 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
+            
             /*
             Test Step 1
-            Action: Perform SoM in SR mode, Level 1.
-            Expected Result: DMI displays Default window in SR mode, Level 1.Verify the following information,LayerAreas displayed with the same impression of depth shall form a layer as picture below,The level of layers in each area of window as follows,Layer 0: Area E10, E11, F, G1, G2, G3, G4, G5, G6, G7, G8, G9, G10, Z, YLayer 0 areas have no border. Layer -1: Area A1, (A2+A3)*, A4, B*, D, C1, (C2+C3+C4)*, C5, C6, C7, C8, C9, E1, E2, E3, E4, (E5-E9)*.Layer -1 areas are inside layer 0 and have a border. Layer -2: Area B3, B4, B5, B6 and B7.Layer -2 areas are located inside Layer -1 and have a border.Note: ‘*’ symbol is mean that specified area are drawn as one area.
+            Action: Perform SoM in SR mode, Level 1
+            Expected Result: DMI displays Default window in SR mode, Level 1.Verify the following information,LayerAreas displayed with the same impression of depth shall form a layer as picture below,The level of layers in each area of window as follows,Layer 0: Area E10, E11, F, G1, G2, G3, G4, G5, G6, G7, G8, G9, G10, Z, YLayer 0 areas have no border. Layer -1: Area A1, (A2+A3)*, A4, B*, D, C1, (C2+C3+C4)*, C5, C6, C7, C8, C9, E1, E2, E3, E4, (E5-E9)*.Layer -1 areas are inside layer 0 and have a border. Layer -2: Area B3, B4, B5, B6 and B7.Layer -2 areas are located inside Layer -1 and have a border.Note: ‘*’ symbol is mean that specified area are drawn as one area
             Test Step Comment: (1) MMI_gen 4213;   (2) MMI_gen 5944; MMI_gen 4215; MMI_gen 4216; MMI_gen 4217; MMI_gen 4218;
             */
-
+            // Call generic Action Method
+            DmiActions.Perform_SoM_in_SR_mode_Level_1();
+            
+            
             /*
             Test Step 2
             Action: End of test
             Expected Result: 
             */
+            
 
             return GlobalTestResult;
         }

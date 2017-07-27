@@ -40,7 +40,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Test system is powered off
-
+            
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -58,26 +58,29 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
+            
             /*
             Test Step 1
             Action: Power on the test system
             Expected Result: The driver message “Driver’s cab not active” displays on the DMI screen with timestamp on the left. Use the log file to confirm the timestamp is equal to MMI_T_UTC + MMI_T_ZONE_OFFSET from EVC-3
             Test Step Comment: (1) MMI_gen 176 (partly: derived time)
             */
-
+            
+            
             /*
             Test Step 2
             Action: Perform SoM to SR mode, ETCS level 1 and verified the presentation on the DMI screen
-            Expected Result: DMI displays in SR mode, Level 1. The local time is displayed in format hh:mm:ss (24h) on sub-area G13.DMI displays the local time as a single line in grey colour. The background colour is dark-blue.The colon ‘:’ of local time flashes (shown and hide).
+            Expected Result: DMI displays in SR mode, Level 1. The local time is displayed in format hh:mm:ss (24h) on sub-area G13.DMI displays the local time as a single line in grey colour. The background colour is dark-blue.The colon ‘:’ of local time flashes (shown and hide)
             Test Step Comment: (1) MMI_gen 176 (partly: format, sub-area G13)(2) MMI_gen 3613(3) MMI_gen 3852-1 (THR) (partly: flashing colons)
             */
-
+            
+            
             /*
             Test Step 3
             Action: End of test
             Expected Result: 
             */
+            
 
             return GlobalTestResult;
         }

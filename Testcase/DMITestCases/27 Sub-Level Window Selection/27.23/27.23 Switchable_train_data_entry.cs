@@ -37,7 +37,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Test system is powered on.Cabin is activated.SoM is performed until Level 1 is selcted and confirmed.
-
+            
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -55,26 +55,31 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
+            
             /*
             Test Step 1
-            Action: Press ‘Train data’ button.
+            Action: Press ‘Train data’ button
             Expected Result: The Train data window is displayed as  Flexible train data entry or Fixed train data entry.Verify the following information,The Train data window is presented an enabled ‘switch’ button.The ‘switch’ button is located in the bottom right corner of D/F/G area.The label of ‘switch’ button is displayed correctly refer to the type of displayed window as follows,Flexible Train DataThe label of switch button is presented with text ‘Select type’. Fixed Train DataThe label of switch button is presented with text ‘Enter data’.Use the log file to confirm that DMI receives packet EVC-6 with variable MMI_M_ALT_DEM = 1 (switchable)
             Test Step Comment: (1) MMI_gen 8095;   (2) MMI_gen 8098; MMI_gen 8099 (partly: bottom right corner);(3) MMI_gen 8097; (4) MMI_gen 9402 (partly:  MMI_M_ALT_DEM, switchable);
             */
-
+            // Call generic Action Method
+            DmiActions.ShowInstruction(@"Press ‘Train data’ button");
+            
+            
             /*
             Test Step 2
-            Action: Press switch button.
-            Expected Result: Verify the following information,Use the log file to confirm that DMI send out packet EVC-101 [MMI_DRIVER_REQUEST] with variable MMI_M_REQUEST = 59 (Switch).The label of ‘switch’ button is changed correctly refer to the type of displayed window as follows,Flexible Train DataThe label of switch button is presented with text ‘Select type’. Fixed Train DataThe label of switch button is presented with text ‘Enter data’.
+            Action: Press switch button
+            Expected Result: Verify the following information,Use the log file to confirm that DMI send out packet EVC-101 [MMI_DRIVER_REQUEST] with variable MMI_M_REQUEST = 59 (Switch).The label of ‘switch’ button is changed correctly refer to the type of displayed window as follows,Flexible Train DataThe label of switch button is presented with text ‘Select type’. Fixed Train DataThe label of switch button is presented with text ‘Enter data’
             Test Step Comment: (1) MMI_gen 8096;  (2) MMI_gen 8097;
             */
-
+            
+            
             /*
             Test Step 3
             Action: End of test
             Expected Result: 
             */
+            
 
             return GlobalTestResult;
         }

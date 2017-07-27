@@ -41,7 +41,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Test system is power on.Cabin is activatedStart of Mission is completed in SR mode, level1 (set train length = 100m)
-
+            
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -59,43 +59,55 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
+            
             /*
             Test Step 1
-            Action: Drive the train forward passing BG1 with speed = 40 km/h until entering FS mode.
+            Action: Drive the train forward passing BG1 with speed = 40 km/h until entering FS mode
             Expected Result: 
             */
-
+            
+            
             /*
             Test Step 2
-            Action: Continue drive the train forward passing BG2.
+            Action: Continue drive the train forward passing BG2
             Expected Result: 
             */
-
+            
+            
             /*
             Test Step 3
-            Action: The train is in reversing area.
+            Action: The train is in reversing area
             Expected Result: 
             */
-
+            // Call generic Action Method
+            DmiActions.The_train_is_in_reversing_area();
+            
+            
             /*
             Test Step 4
-            Action: Stop the train.
-            Expected Result: The train is standstill.Driver is informed that reversing is possible.
+            Action: Stop the train
+            Expected Result: The train is standstill.Driver is informed that reversing is possible
             */
-
+            // Call generic Action Method
+            DmiActions.Stop_the_train();
+            
+            
             /*
             Test Step 5
-            Action: Change the direction of train to reverse. Then select and confirm RV mode.
-            Expected Result: DMI displays in RV mode, level 1.Verify the following information,(1)    Use the log file to confirm that DMI received packet EVC-1 with variable MMI_O_BRAKETARGET = 2147483647(2)    The symbol infinity '∞' is displayed for distance to target digital in sub-area A2.(3)    The symbol is be horizontally and vertically centered in Sub-Area A2.
+            Action: Change the direction of train to reverse. Then select and confirm RV mode
+            Expected Result: DMI displays in RV mode, level 1.Verify the following information,(1)    Use the log file to confirm that DMI received packet EVC-1 with variable MMI_O_BRAKETARGET = 2147483647(2)    The symbol infinity '∞' is displayed for distance to target digital in sub-area A2.(3)    The symbol is be horizontally and vertically centered in Sub-Area A2
             Test Step Comment: (1) MMI_gen 6777  (partly: receive MMI_O_BRAKETARGET  equal special value);                   (2) MMI_gen 6777 (partly: when MMI_O_BRAKETARGET  equal special value); (3) MMI_gen 6777 (partly: horizontally and vertically centered);
             */
-
+            // Call generic Action Method
+            DmiActions.Change_the_direction_of_train_to_reverse_Then_select_and_confirm_RV_mode();
+            
+            
             /*
             Test Step 6
-            Action: End of test.
+            Action: End of test
             Expected Result: 
             */
+            
 
             return GlobalTestResult;
         }

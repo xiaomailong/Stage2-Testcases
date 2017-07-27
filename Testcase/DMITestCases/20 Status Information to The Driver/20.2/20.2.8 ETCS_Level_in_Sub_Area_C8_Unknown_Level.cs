@@ -37,7 +37,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // System is power on.Cabin is activated.SoM is performed until level 1 is selected and confirm.Main window is closed.
-
+            
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -55,19 +55,21 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
+            
             /*
             Test Step 1
             Action: Use the test script file 15_2_8_a.xml to send EVC-7 with,OBU_TR_M_Level = 15
-            Expected Result: Verify the following information,(1)   No symbol displays in sub-area C8.
+            Expected Result: Verify the following information,(1)   No symbol displays in sub-area C8
             Test Step Comment: (1) MMI_gen 577 (partly: Unknown);
             */
-
+            
+            
             /*
             Test Step 2
             Action: End of test
             Expected Result: 
             */
+            
 
             return GlobalTestResult;
         }

@@ -39,7 +39,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Test system is powered on.Activate Cabin A.Enter Driver ID and perform brake test.Select and confirm Level 1.SoM in performed in SR mode, Level 1.
-
+            
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -57,74 +57,88 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
+            
             /*
             Test Step 1
-            Action: Press ‘Close’ button.
-            Expected Result: DMI displays Default window.Verify the following information,ETSC-DMI using EVC-1 with variable MMI_V_TRAIN = 0 as the train is standstill.The number of the current train speed is displayed in Sub-Area B1.Number 0 is black.The single integer number is aligned right.
+            Action: Press ‘Close’ button
+            Expected Result: DMI displays Default window.Verify the following information,ETSC-DMI using EVC-1 with variable MMI_V_TRAIN = 0 as the train is standstill.The number of the current train speed is displayed in Sub-Area B1.Number 0 is black.The single integer number is aligned right
             Test Step Comment: (1) MMI_gen 6303;(2) MMI_gen 6304;(3) MMI_gen 6307 (partly: digital number is black)(4) MMI_gen 1279 (partly: right most sub-area, 1 digit, integer)
             */
-
+            // Call generic Action Method
+            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            
+            
             /*
             Test Step 2
-            Action: Drive the train forward with speed 50km/h.
-            Expected Result: Verify the following information,The number of the current train speed is coloured white when the speed pointer is red.The 2-digit interger number is aligned right without leading zeroes.The numbers of the current train speed on Speed hub are displayed by no leading with zero.
+            Action: Drive the train forward with speed 50km/h
+            Expected Result: Verify the following information,The number of the current train speed is coloured white when the speed pointer is red.The 2-digit interger number is aligned right without leading zeroes.The numbers of the current train speed on Speed hub are displayed by no leading with zero
             Test Step Comment: (1) MMI_gen 6307 (partly: Speed pointer has the red colour);      (2) MMI_gen 1279 (partly: right most sub-area, 2 digit, integer, no zeroes)(3) MMI_gen 4244;
             */
-
+            
+            
             /*
             Test Step 3
             Action: Drive the train and deaccelarate the speed to 40 km/hr through BG1
-            Expected Result: Verify the following information,The number of the current train speed is coloured black.The 2-digit interger number is aligned right without leading zeroes.
+            Expected Result: Verify the following information,The number of the current train speed is coloured black.The 2-digit interger number is aligned right without leading zeroes
             Test Step Comment: (1) MMI_gen 6307 (partly: Speed pointer has no red colour);(2) MMI_gen 1279 (partly: right most sub-area, 2 digit, integer, no zeroes)
             */
-
+            
+            
             /*
             Test Step 4
             Action: Drive the train and accelarate the speed to 111 km/hr
-            Expected Result: Verify the following information,Three of number 1 (“111”) are displayed in Sub-Area B1, as number 1 has the smallest width.
+            Expected Result: Verify the following information,Three of number 1 (“111”) are displayed in Sub-Area B1, as number 1 has the smallest width
             Test Step Comment: (1) MMI_gen 6306 (partly: INITIAL, different widths of digit in the location)
             */
-
+            
+            
             /*
             Test Step 5
-            Action: Drive the train and accelarate the speed to 108 km/hr.
-            Expected Result: Verify the following information,Even though the numbers are changed (from “111” to “108), the positions of digits remain the same.
+            Action: Drive the train and accelarate the speed to 108 km/hr
+            Expected Result: Verify the following information,Even though the numbers are changed (from “111” to “108), the positions of digits remain the same
             Test Step Comment: (1) MMI_gen 6306 (partly: different widths of digit in the location)
             */
-
+            
+            
             /*
             Test Step 6
-            Action: Stop the train.
-            Expected Result: DMI displays the train speed as zero km/h. 
+            Action: Stop the train
+            Expected Result: DMI displays the train speed as zero km/h
             */
-
+            // Call generic Action Method
+            DmiActions.Stop_the_train();
+            
+            
             /*
             Test Step 7
-            Action: Use the test script file 12_4_a.xml to send EVC-1 with,MMI_V_TRAIN = 389 cm/s (14.004 km/h)Note: The result of test script file may interrupted by ATP-CU, need to execute test script file repeatly to see the result. 
-            Expected Result: The speed digital is changed to 15 km/h.
+            Action: Use the test script file 12_4_a.xml to send EVC-1 with,MMI_V_TRAIN = 389 cm/s (14.004 km/h)Note: The result of test script file may interrupted by ATP-CU, need to execute test script file repeatly to see the result
+            Expected Result: The speed digital is changed to 15 km/h
             Test Step Comment: MMI_gen 1279 (partly: decimal rounded up, near integer)
             */
-
+            
+            
             /*
             Test Step 8
-            Action: Use the test script file 12_4_b.xml to send EVC-1 with,MMI_V_TRAIN = 500 cm/s (18.000 km/h)Note: The result of test script file may interrupted by ATP-CU, need to execute test script file repeatly to see the result.
-            Expected Result: The speed digital is 18 km/h.
+            Action: Use the test script file 12_4_b.xml to send EVC-1 with,MMI_V_TRAIN = 500 cm/s (18.000 km/h)Note: The result of test script file may interrupted by ATP-CU, need to execute test script file repeatly to see the result
+            Expected Result: The speed digital is 18 km/h
             Test Step Comment: MMI_gen 1279 (partly: NEGATIVE, decimal rounded up)
             */
-
+            
+            
             /*
             Test Step 9
-            Action: Use the test script file 12_4_c.xml to send EVC-1 with,MMI_V_TRAIN = 625 cm/s (22.500 km/h)Note: The result of test script file may interrupted by ATP-CU, need to execute test script file repeatly to see the result.
-            Expected Result: The speed digital is 23 km/h.
+            Action: Use the test script file 12_4_c.xml to send EVC-1 with,MMI_V_TRAIN = 625 cm/s (22.500 km/h)Note: The result of test script file may interrupted by ATP-CU, need to execute test script file repeatly to see the result
+            Expected Result: The speed digital is 23 km/h
             Test Step Comment: MMI_gen 1279 (partly: decimal rounded up, far from integer)
             */
-
+            
+            
             /*
             Test Step 10
             Action: End of test
             Expected Result: 
             */
+            
 
             return GlobalTestResult;
         }

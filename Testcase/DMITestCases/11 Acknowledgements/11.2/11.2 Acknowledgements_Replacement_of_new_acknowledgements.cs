@@ -38,7 +38,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // System is powered onCabin is activatedPerform SoM until level 1 is selected and confirmedMain window is closed.
-
+            
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -56,58 +56,66 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
+            
             /*
             Test Step 1
             Action: Use the test script file 6_2_a.xml to send EVC-8 with,MMI_Q_TEXT = 280MMI_Q_TEXT_CRITERIA = 1MMI_I_TEXT = 1
-            Expected Result: DMI displays the text message ‘Emergency stop’ in sub-area E5 with yellow flashing frame.
+            Expected Result: DMI displays the text message ‘Emergency stop’ in sub-area E5 with yellow flashing frame
             */
-
+            
+            
             /*
             Test Step 2
             Action: (Continue from step 1)Send EVC-8 with,MMI_Q_TEXT = 1MMI_Q_TEXT_CRITERIA = 1MMI_I_TEXT = 1
-            Expected Result: Verify the following information,(1)   DMI displays the text message 'Acknowledgement' in sub-area E5 with yellow flashing frame.
+            Expected Result: Verify the following information,(1)   DMI displays the text message 'Acknowledgement' in sub-area E5 with yellow flashing frame
             Test Step Comment: (1) MMI_gen 7036 (partly: immediately replaced in the foreground);
             */
-
+            
+            
             /*
             Test Step 3
-            Action: Press an acknowledgement in sub-area E5.
+            Action: Press an acknowledgement in sub-area E5
             Expected Result: The acknowledgement is remove, no message display on sub-area E5.(1)    Use the log file to confirm that DMI sends out packet [MMI_DRIVER_ACTION (EVC-152)] with the value of variable MMI_M_DRIVER_ACTION refer to sequence below,a)   MMI_M_DRIVER_ACTION = 24 (Ack of Fixed Text information)
             Test Step Comment: (1) MMI_gen 11470 (partly: Bit # 24);
             */
-
+            
+            
             /*
             Test Step 4
             Action: Use the test script file 6_2_b.xml to send EVC-8 with,MMI_Q_TEXT = 1MMI_Q_TEXT_CRITERIA = 1MMI_I_TEXT = 1
-            Expected Result: DMI displays the text message 'Acknowledgement' in sub-area E5 with yellow flashing frame.
+            Expected Result: DMI displays the text message 'Acknowledgement' in sub-area E5 with yellow flashing frame
             */
-
+            
+            
             /*
             Test Step 5
             Action: (Continue from step 4)Send EVC-8 with,MMI_Q_TEXT = 260MMI_Q_TEXT_CRITERIA = 0MMI_I_TEXT = 2
-            Expected Result: The acknowledgement in sub-area E5 is disappeared, DMI displays ST01 symbol with yellow flashing frame in sub-area C9 instead.
+            Expected Result: The acknowledgement in sub-area E5 is disappeared, DMI displays ST01 symbol with yellow flashing frame in sub-area C9 instead
             */
-
+            
+            
             /*
             Test Step 6
             Action: Use the test script file 6_2_c.xml to send EVC-8 with,MMI_Q_TEXT = 269MMI_Q_TEXT_CRITERIA = 1MMI_I_TEXT = 1
-            Expected Result: Verify the following information,(1)    DMI still displays ST01 symbol in sub-area C9.
+            Expected Result: Verify the following information,(1)    DMI still displays ST01 symbol in sub-area C9
             Test Step Comment: (1) MMI_gen 7036 (partly: focus shall not move);
             */
-
+            
+            
             /*
             Test Step 7
-            Action: Press an acknowledgement in sub-area C9.
-            Expected Result: Verify the following information,(1)  There is only the yellow flashing frame around ST01 symbol is removed.(2)  DMI displays text message ‘Runaway movement’ with yellow flashing frame in sub-area E5.
+            Action: Press an acknowledgement in sub-area C9
+            Expected Result: Verify the following information,(1)  There is only the yellow flashing frame around ST01 symbol is removed.(2)  DMI displays text message ‘Runaway movement’ with yellow flashing frame in sub-area E5
             Test Step Comment: (1) MMI_gen 4499 (partly: symbol step back as non-acknowledgementable);(2) MMI_gen 7036 (partly: NEGATIVE, replaced in the background);
             */
-
+            
+            
             /*
             Test Step 8
             Action: End of test
             Expected Result: 
             */
+            
 
             return GlobalTestResult;
         }

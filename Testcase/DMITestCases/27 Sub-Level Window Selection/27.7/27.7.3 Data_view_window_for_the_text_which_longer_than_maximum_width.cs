@@ -37,7 +37,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // All value of Parameter ‘TR_OBU_TrainType’ is set to 2 (Flexible Train Data) in defaultValues_default.xml in OTE.Set the following information in language_mgr.xmlRevise wording from ‘PASS1’ to be ‘For Test Data View truncated by long text’Revise wording from ‘Train category’ to be ‘For Test Data View truncated by long text’SoM is performed in SR mode, Level 1.
-
+            
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -55,19 +55,23 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
+            
             /*
             Test Step 1
-            Action: Press ‘Data view’ button.
-            Expected Result: Verify the following information,(1)   The label part of Data View item No.3 is changed to ‘For Test Data View truncated by long text’.  The text label which longer than the maximum width of label part is not display (truncated).(2)   The data part of Data View item No.3 is changed to ‘For Test Data View truncated by long text’.The data part is displayed as 2 lines.At the 2nd line, the text which longer than the maximum width of data part is not display (truncated).
+            Action: Press ‘Data view’ button
+            Expected Result: Verify the following information,(1)   The label part of Data View item No.3 is changed to ‘For Test Data View truncated by long text’.  The text label which longer than the maximum width of label part is not display (truncated).(2)   The data part of Data View item No.3 is changed to ‘For Test Data View truncated by long text’.The data part is displayed as 2 lines.At the 2nd line, the text which longer than the maximum width of data part is not display (truncated)
             Test Step Comment: (1) MMI_gen 7512;(2) MMI_gen 7514;
             */
-
+            // Call generic Action Method
+            DmiActions.ShowInstruction(@"Press ‘Data view’ button");
+            
+            
             /*
             Test Step 2
-            Action: End of test.
+            Action: End of test
             Expected Result: 
             */
+            
 
             return GlobalTestResult;
         }

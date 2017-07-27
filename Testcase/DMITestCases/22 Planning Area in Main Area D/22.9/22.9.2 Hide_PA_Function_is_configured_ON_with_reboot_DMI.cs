@@ -38,7 +38,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Set the following tags name in configuration file (See the instruction in Appendix 1)HIDE_PA_FUNCTION = 0 (‘ON’ state)System is power ON.
-
+            
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -56,44 +56,64 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
+            
             /*
             Test Step 1
-            Action: Activate cabin A and Perform SoM to SR mode, Level 1.
-            Expected Result: DMI displays in SR mode, level 1.
+            Action: Activate cabin A and Perform SoM to SR mode, Level 1
+            Expected Result: DMI displays in SR mode, level 1
             */
-
+            // Call generic Action Method
+            DmiActions.Activate_cabin_A_and_Perform_SoM_to_SR_mode_Level_1();
+            // Call generic Check Results Method
+            DmiExpectedResults.DMI_displays_in_SR_mode_level_1();
+            
+            
             /*
             Test Step 2
             Action: Drive the train forward with speed = 40 km/h pass BG1
-            Expected Result: DMI shows “Entering FS” message and DMI displays the Planning area.The Hide PA button is appeared on  the area D of the DMI.
+            Expected Result: DMI shows “Entering FS” message and DMI displays the Planning area.The Hide PA button is appeared on  the area D of the DMI
             */
-
+            // Call generic Action Method
+            DmiActions.Drive_the_train_forward_with_speed_40_kmh_pass_BG1();
+            
+            
             /*
             Test Step 3
-            Action: Press Hide PA button.
-            Expected Result: The Planning area is disappeared from the area D of DMI.
+            Action: Press Hide PA button
+            Expected Result: The Planning area is disappeared from the area D of DMI
             Test Step Comment:  Hide PA button
             */
-
+            // Call generic Action Method
+            DmiActions.ShowInstruction(@"Press Hide PA button");
+            
+            
             /*
             Test Step 4
-            Action: Turn off power of DMI 
-            Expected Result: DMI is power off.
+            Action: Turn off power of DMI
+            Expected Result: DMI is power off
             */
-
+            // Call generic Action Method
+            DmiActions.Turn_off_power_of_DMI();
+            // Call generic Check Results Method
+            DmiExpectedResults.DMI_is_power_off();
+            
+            
             /*
             Test Step 5
-            Action: Turn on power of DMI 
-            Expected Result: DMI is power on DMI displays the Planning area The Hide PA button is appeared on the area D of the DMI.
+            Action: Turn on power of DMI
+            Expected Result: DMI is power on DMI displays the Planning area The Hide PA button is appeared on the area D of the DMI
             Test Step Comment: MMI_gen 7341;  MMI_gen 2996 (partly: ON); Hide PA icon
             */
-
+            // Call generic Action Method
+            DmiActions.Turn_on_power_of_DMI();
+            
+            
             /*
             Test Step 6
             Action: End of test
             Expected Result: 
             */
+            
 
             return GlobalTestResult;
         }

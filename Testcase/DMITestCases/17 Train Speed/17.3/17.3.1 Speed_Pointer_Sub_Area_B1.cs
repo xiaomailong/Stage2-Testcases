@@ -37,7 +37,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Test system is powered on.Cabin is activated.SoM is performed in SR mode, Level 1.
-
+            
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -55,25 +55,30 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
+            
             /*
             Test Step 1
-            Action: Drive the train forward, speed up to 25Km/h.
-            Expected Result: Verify the following information,The speed pointer is displayed in sub-area B1. The speed pointer consists of a needle and a circular part centred in sub-area B1. Both parts are displayed in same colour. The dimension of the speed pointer is presented.
+            Action: Drive the train forward, speed up to 25Km/h
+            Expected Result: Verify the following information,The speed pointer is displayed in sub-area B1. The speed pointer consists of a needle and a circular part centred in sub-area B1. Both parts are displayed in same colour. The dimension of the speed pointer is presented
             Test Step Comment: (1) MMI_gen 5965;   (2) MMI_gen 5968;   
             */
-
+            
+            
             /*
             Test Step 2
-            Action: Stop the train.
-            Expected Result: The speed pointer is indicated to zero km/h.
+            Action: Stop the train
+            Expected Result: The speed pointer is indicated to zero km/h
             */
-
+            // Call generic Action Method
+            DmiActions.Stop_the_train();
+            
+            
             /*
             Test Step 3
             Action: End of test
             Expected Result: 
             */
+            
 
             return GlobalTestResult;
         }

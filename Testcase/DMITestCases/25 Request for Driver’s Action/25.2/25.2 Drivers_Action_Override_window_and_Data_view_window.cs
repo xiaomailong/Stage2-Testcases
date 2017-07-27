@@ -38,7 +38,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Test system is powered on.Cabin is activated.SoM is performed in SR mode, Level 1.Override window is opened.
-
+            
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -56,26 +56,29 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
+            
             /*
             Test Step 1
-            Action: Press the ‘EOA’ button.
+            Action: Press the ‘EOA’ button
             Expected Result: DMI displays Default window in SR mode, Level 1 with MO03 symbol in sub-area C7.Verify the following information,(1)    Use the log file to confirm that DMI sends out packet [MMI_DRIVER_REQUEST (EVC-101)] with variable MMI_M_REQUEST = 7 (Start Override EOA (Pass stop))(2)   The Override window is closed, DMI displays Default window.(3)    Use the log file to confirm that DMI sends out packet [MMI_DRIVER_ACTION (EVC-152)] with the value of variable MMI_M_DRIVER_ACTION refer to sequence below,a)    MMI_M_DRIVER_ACTION = 14 (Override selected)
             Test Step Comment: (1) MMI_gen 151 (partly: MMI_M_REQUEST = 7);(2) MMI_gen 151 (partly: close opened menu);(3) MMI_gen 11470 (partly: Bit #14);
             */
-
+            
+            
             /*
             Test Step 2
-            Action: Press the ‘Data view’ button.
-            Expected Result: Verify the following information,(1)    Use the log file to confirm that DMI sends out packet [MMI_DRIVER_REQUEST (EVC-101)] with variable MMI_M_REQUEST = 21 (Start Train Data Veiw)(2)   The Default window is closed, DMI displays Data view window.
+            Action: Press the ‘Data view’ button
+            Expected Result: Verify the following information,(1)    Use the log file to confirm that DMI sends out packet [MMI_DRIVER_REQUEST (EVC-101)] with variable MMI_M_REQUEST = 21 (Start Train Data Veiw)(2)   The Default window is closed, DMI displays Data view window
             Test Step Comment: (1) MMI_gen 151 (partly: MMI_M_REQUEST = 21);(2) MMI_gen 151 (partly: close opened menu);
             */
-
+            
+            
             /*
             Test Step 3
             Action: End of test
             Expected Result: 
             */
+            
 
             return GlobalTestResult;
         }

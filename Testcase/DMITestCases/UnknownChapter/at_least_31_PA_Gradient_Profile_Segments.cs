@@ -37,7 +37,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // System is power on.
-
+            
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -55,37 +55,56 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
+            
             /*
             Test Step 1
-            Action: Activate cabin A.
-            Expected Result: DMI displays the default window. The Driver ID window is displayed.
+            Action: Activate cabin A
+            Expected Result: DMI displays the default window. The Driver ID window is displayed
             */
-
+            // Call generic Action Method
+            DmiActions.Activate_cabin_A();
+            // Call generic Check Results Method
+            DmiExpectedResults.DMI_displays_the_default_window_The_Driver_ID_window_is_displayed();
+            
+            
             /*
             Test Step 2
-            Action: Driver performs SoM to SR mode, level 1.
-            Expected Result: DMI is displayed in SR mode, level 1.
+            Action: Driver performs SoM to SR mode, level 1
+            Expected Result: DMI is displayed in SR mode, level 1
             */
-
+            // Call generic Action Method
+            DmiActions.Driver_performs_SoM_to_SR_mode_level_1();
+            // Call generic Check Results Method
+            DmiExpectedResults.DMI_is_displayed_in_SR_mode_level_1();
+            
+            
             /*
             Test Step 3
-            Action: Drive the train forward pass BG1.
+            Action: Drive the train forward pass BG1
             Expected Result: DMI changes from SR mode to FS mode.The planning area is displayed the PA Gradient Profile. DMI is able to handle more than 16 PA Gradient Profile segments. (see the figure in ‘Comment’ column)Note: PA Gradient Profile value are 2, 4, 6, …. 34. In grey segment bars
             */
-
+            // Call generic Action Method
+            DmiActions.Drive_the_train_forward_pass_BG1();
+            
+            
             /*
             Test Step 4
-            Action: Drive the train forward pass BG2.
-            Expected Result: An information of PA Gradient Profile is updated.The planning area is displayed the PA Gradient Profile. DMI is able to handle more than 31 PA Gradient Profile segments.Note: PA Gradient Profile value are 1, 2, 4, 6, …. 32. In both of grey colour segment bars and dark-grey colour segment bars.Press ‘Scale Up’  button and it will increase the distance scale to [0…1000].
+            Action: Drive the train forward pass BG2
+            Expected Result: An information of PA Gradient Profile is updated.The planning area is displayed the PA Gradient Profile. DMI is able to handle more than 31 PA Gradient Profile segments.Note: PA Gradient Profile value are 1, 2, 4, 6, …. 32. In both of grey colour segment bars and dark-grey colour segment bars.Press ‘Scale Up’  button and it will increase the distance scale to [0…1000]
             Test Step Comment: MMI_gen 7256;
             */
-
+            // Call generic Action Method
+            DmiActions.Drive_the_train_forward_pass_BG2();
+            
+            
             /*
             Test Step 5
-            Action: End of Test.
+            Action: End of Test
             Expected Result: 
             */
+            // Call generic Action Method
+            DmiActions.End_of_Test();
+            
 
             return GlobalTestResult;
         }

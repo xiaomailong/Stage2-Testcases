@@ -37,7 +37,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // System is power on.
-
+            
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -55,38 +55,55 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
+            
             /*
             Test Step 1
-            Action: Activate cabin A. 
-            Expected Result: DMI displays Driver ID window.
+            Action: Activate cabin A
+            Expected Result: DMI displays Driver ID window
             */
-
+            // Call generic Action Method
+            DmiActions.Activate_cabin_A();
+            // Call generic Check Results Method
+            DmiExpectedResults.DMI_displays_Driver_ID_window();
+            
+            
             /*
             Test Step 2
-            Action: Perform SoM to SR mode, level 1.
-            Expected Result: DMI displays in SR mode, level 1.
+            Action: Perform SoM to SR mode, level 1
+            Expected Result: DMI displays in SR mode, level 1
             */
-
+            // Call generic Action Method
+            DmiActions.Perform_SoM_to_SR_mode_level_1();
+            // Call generic Check Results Method
+            DmiExpectedResults.DMI_displays_in_SR_mode_level_1();
+            
+            
             /*
             Test Step 3
-            Action: Drive the train forward passing BG1.
-            Expected Result: DMI remain displays in SR mode, level 1.Verify that the Planning area is not displayed in main area D.
+            Action: Drive the train forward passing BG1
+            Expected Result: DMI remain displays in SR mode, level 1.Verify that the Planning area is not displayed in main area D
             Test Step Comment: MMI_gen 7101 (partly: default  configuration);              
             */
-
+            // Call generic Action Method
+            DmiActions.Drive_the_train_forward_passing_BG1();
+            
+            
             /*
             Test Step 4
-            Action: Drive the train forward passing BG2. 
+            Action: Drive the train forward passing BG2
             Expected Result: DMI changes from SR mode to FS mode.The Planning area is displayed the planning information in main area D.The planning area is displayed the information following:Distance scaleOrder and announcement of track conditionGradient profileSpeed profile discontinuitiesPASPIndication markerHide and show planning informationZoom function(see the example in ‘Comment’ column)
             Test Step Comment: (1) MMI_gen 3063       (partly: FS mode);MMI_gen 7102       (partly: default  configuration);  (2) MMI_gen 9937;   
             */
-
+            // Call generic Action Method
+            DmiActions.Drive_the_train_forward_passing_BG2();
+            
+            
             /*
             Test Step 5
             Action: End of test
             Expected Result: 
             */
+            
 
             return GlobalTestResult;
         }

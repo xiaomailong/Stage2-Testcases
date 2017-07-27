@@ -38,7 +38,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // System is power off .Configure HIDE_PA_FUNCTION to 3 (Timer)Configure HIDE_PA_TIMER to 20s., See the instruction in Appendix 1
-
+            
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -56,87 +56,124 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
+            
             /*
             Test Step 1
-            Action: Power On the system.
-            Expected Result: DMI displays the default window.
+            Action: Power On the system
+            Expected Result: DMI displays the default window
             */
-
+            // Call generic Action Method
+            DmiActions.Power_On_the_system();
+            // Call generic Check Results Method
+            DmiExpectedResults.DMI_displays_the_default_window();
+            
+            
             /*
             Test Step 2
-            Action: Activate cabin A and Perform SoM to SR mode, Level 1.
-            Expected Result: DMI displays in SR mode, level 1.
+            Action: Activate cabin A and Perform SoM to SR mode, Level 1
+            Expected Result: DMI displays in SR mode, level 1
             */
-
+            // Call generic Action Method
+            DmiActions.Activate_cabin_A_and_Perform_SoM_to_SR_mode_Level_1();
+            // Call generic Check Results Method
+            DmiExpectedResults.DMI_displays_in_SR_mode_level_1();
+            
+            
             /*
             Test Step 3
             Action: Drive the train forward with speed = 40 km/h pass BG1
-            Expected Result: DMI shows “Entering FS” message.DMI displays the Planning area. The Hide PA button is appeared on  the area D of the DMI.
+            Expected Result: DMI shows “Entering FS” message.DMI displays the Planning area. The Hide PA button is appeared on  the area D of the DMI
             */
-
+            // Call generic Action Method
+            DmiActions.Drive_the_train_forward_with_speed_40_kmh_pass_BG1();
+            
+            
             /*
             Test Step 4
-            Action: Press Hide PA button.
-            Expected Result: The Planning area is disappeared and hidden from main area D for 20s.After 20s the planning area is displayed.Verify that the Hide PA button is displayed on the planning area.
+            Action: Press Hide PA button
+            Expected Result: The Planning area is disappeared and hidden from main area D for 20s.After 20s the planning area is displayed.Verify that the Hide PA button is displayed on the planning area
             Test Step Comment: MMI_gen 7341;
             */
-
+            // Call generic Action Method
+            DmiActions.ShowInstruction(@"Press Hide PA button");
+            
+            
             /*
             Test Step 5
-            Action: Turn off power of DMI 
-            Expected Result: DMI is power off.
+            Action: Turn off power of DMI
+            Expected Result: DMI is power off
             */
-
+            // Call generic Action Method
+            DmiActions.Turn_off_power_of_DMI();
+            // Call generic Check Results Method
+            DmiExpectedResults.DMI_is_power_off();
+            
+            
             /*
             Test Step 6
-            Action: Turn on power of DMI 
-            Expected Result: DMI is power on DMI displays the Planning area The Hide PA button is appeared on  the main area D of the DMI.
+            Action: Turn on power of DMI
+            Expected Result: DMI is power on DMI displays the Planning area The Hide PA button is appeared on  the main area D of the DMI
             Test Step Comment: MMI_gen 7341;  MMI_gen 2996 (partly: Timer); Hide PA icon
             */
-
+            // Call generic Action Method
+            DmiActions.Turn_on_power_of_DMI();
+            
+            
             /*
             Test Step 7
-            Action: Set HIDE PA TIMER configuration as 30s and repeat test step 1-6.
-            Expected Result: The Planning area is disappeared and hidden from main area D for 30s.After 30s the planning area is displayed.Verify that the Hide PA button is displayed at sub-area D14 on the planning area.
+            Action: Set HIDE PA TIMER configuration as 30s and repeat test step 1-6
+            Expected Result: The Planning area is disappeared and hidden from main area D for 30s.After 30s the planning area is displayed.Verify that the Hide PA button is displayed at sub-area D14 on the planning area
             Test Step Comment: MMI_gen 7341;   MMI_gen 2996 (partly: Timer);
             */
-
+            
+            
             /*
             Test Step 8
-            Action: Set HIDE PA TIMER configuration as 40s and repeat test step 1-6.
-            Expected Result: The Planning area is disappeared and hidden from main area D for 40s.After 40s the planning area is displayed.Verify that the Hide PA button is displayed at sub-area D14 on the planning area.
+            Action: Set HIDE PA TIMER configuration as 40s and repeat test step 1-6
+            Expected Result: The Planning area is disappeared and hidden from main area D for 40s.After 40s the planning area is displayed.Verify that the Hide PA button is displayed at sub-area D14 on the planning area
             */
-
+            
+            
             /*
             Test Step 9
-            Action: Set HIDE PA TIMER configuration as 50s and repeat test step 1-6.
-            Expected Result: The Planning area is disappeared and hidden from main area D for 50s.After 50s the planning area is displayed.Verify that the Hide PA button is displayed at sub-area D14 on the planning area.
+            Action: Set HIDE PA TIMER configuration as 50s and repeat test step 1-6
+            Expected Result: The Planning area is disappeared and hidden from main area D for 50s.After 50s the planning area is displayed.Verify that the Hide PA button is displayed at sub-area D14 on the planning area
             */
-
+            
+            
             /*
             Test Step 10
-            Action: Set HIDE PA TIMER configuration as 60s and repeat test step 1-6.
-            Expected Result: The Planning area is disappeared and hidden from main area D for 60s.After 60s the planning area is displayed.Verify that the Hide PA button is displayed at sub-area D14 on the planning area.
+            Action: Set HIDE PA TIMER configuration as 60s and repeat test step 1-6
+            Expected Result: The Planning area is disappeared and hidden from main area D for 60s.After 60s the planning area is displayed.Verify that the Hide PA button is displayed at sub-area D14 on the planning area
             */
-
+            // Call generic Check Results Method
+            DmiExpectedResults.The_Planning_area_is_disappeared_and_hidden_from_main_area_D_for_60s_After_60s_the_planning_area_is_displayed_Verify_that_the_Hide_PA_button_is_displayed_at_sub_area_D14_on_the_planning_area();
+            
+            
             /*
             Test Step 11
-            Action: Set HIDE PA TIMER configuration as 70s and repeat test step 1-6.
-            Expected Result: The Planning area is disappeared and hidden from main area D for 60s.After 60s the planning area is displayed.Verify that the Hide PA button is displayed at sub-area D14 on the planning area.
+            Action: Set HIDE PA TIMER configuration as 70s and repeat test step 1-6
+            Expected Result: The Planning area is disappeared and hidden from main area D for 60s.After 60s the planning area is displayed.Verify that the Hide PA button is displayed at sub-area D14 on the planning area
             */
-
+            // Call generic Check Results Method
+            DmiExpectedResults.The_Planning_area_is_disappeared_and_hidden_from_main_area_D_for_60s_After_60s_the_planning_area_is_displayed_Verify_that_the_Hide_PA_button_is_displayed_at_sub_area_D14_on_the_planning_area();
+            
+            
             /*
             Test Step 12
-            Action: Set HIDE PA TIMER configuration as 80s and repeat test step 1-6.
-            Expected Result: The Planning area is disappeared and hidden from main area D for 60s.After 60s the planning area is displayed.Verify that the Hide PA button is displayed at sub-area D14 on the planning area.
+            Action: Set HIDE PA TIMER configuration as 80s and repeat test step 1-6
+            Expected Result: The Planning area is disappeared and hidden from main area D for 60s.After 60s the planning area is displayed.Verify that the Hide PA button is displayed at sub-area D14 on the planning area
             */
-
+            // Call generic Check Results Method
+            DmiExpectedResults.The_Planning_area_is_disappeared_and_hidden_from_main_area_D_for_60s_After_60s_the_planning_area_is_displayed_Verify_that_the_Hide_PA_button_is_displayed_at_sub_area_D14_on_the_planning_area();
+            
+            
             /*
             Test Step 13
             Action: End of test
             Expected Result: 
             */
+            
 
             return GlobalTestResult;
         }

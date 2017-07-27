@@ -39,7 +39,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // System is powered on.Cabin is activated.SoM is performed in SR mode, level 1.
-
+            
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -57,40 +57,53 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
+            
             /*
             Test Step 1
-            Action: Drive the train forward pass BG1. Then, press an acknowledgement in sub-area C1 and press on sub-area B to toggle the basic speed hook become visible.
-            Expected Result: DMI displays in OS mode, level 1Verify the following information(1)    Use the log file to confirm that DMI receives the following packets information with a specific value,  EVC-1: MMI_M_WARNING = 0 (Status = NoS, Supervision = CSM)MMI_O_BRAKETARGET = -1 (Default) EVC-7: OBU_TR_M_MODE = 1 (OS mode) (2)   The distance to target bar is not display in sub-area A3. (3)   The distance to target digital is not display in sub-area A2.
+            Action: Drive the train forward pass BG1. Then, press an acknowledgement in sub-area C1 and press on sub-area B to toggle the basic speed hook become visible
+            Expected Result: DMI displays in OS mode, level 1Verify the following information(1)    Use the log file to confirm that DMI receives the following packets information with a specific value,  EVC-1: MMI_M_WARNING = 0 (Status = NoS, Supervision = CSM)MMI_O_BRAKETARGET = -1 (Default) EVC-7: OBU_TR_M_MODE = 1 (OS mode) (2)   The distance to target bar is not display in sub-area A3. (3)   The distance to target digital is not display in sub-area A2
             Test Step Comment: (1) MMI_gen 107 (partly: MMI_M_WARNING, OBU_TR_M_MODE, OS mode CSM); MMI_gen 2567 (partly: MMI_M_WARNING, OBU_TR_M_MODE, OS mode CSM); MMI_gen 6658 (partly: MMI_O_BRAKETARGET is less than zero); MMI_gen 6774 (partly: MMI_O_BRAKETARGET is less than zero);(2) MMI_gen 6658 (partly: not be shown); MMI_gen 6674 (partly: not be shown); MMI_gen 107 (partly: Table 37, OS mode);(3) MMI_gen 2567 (partly: Table 38, OS mode CSM);
             */
-
+            
+            
             /*
             Test Step 2
-            Action: Continue to drive the train forward.Then, stop the train.
-            Expected Result: Verify the following information,(1)    Use the log file to confirm that DMI receives the packet information EVC-1 with following variables,MMI_M_WARNING = 2 (Status = NoS, Supervision = PIM)(2)    The distance to target bar is not display in sub-area A3.(3)   The distance to target digital is display in sub-area A2.
+            Action: Continue to drive the train forward.Then, stop the train
+            Expected Result: Verify the following information,(1)    Use the log file to confirm that DMI receives the packet information EVC-1 with following variables,MMI_M_WARNING = 2 (Status = NoS, Supervision = PIM)(2)    The distance to target bar is not display in sub-area A3.(3)   The distance to target digital is display in sub-area A2
             Test Step Comment: (1) MMI_gen 107 (partly: MMI_M_WARNING, OS mode); MMI_gen 2567 (partly: MMI_M_WARNING, OS mode PIM); (2) MMI_gen 107 (partly: Table 37, OS mode);(3) MMI_gen 2567 (partly: Table 38, OS mode PIM);
             */
-
+            // Call generic Action Method
+            DmiActions.Continue_to_drive_the_train_forward_Then_stop_the_train();
+            // Call generic Check Results Method
+            DmiExpectedResults.Verify_the_following_information_1_Use_the_log_file_to_confirm_that_DMI_receives_the_packet_information_EVC_1_with_following_variables_MMI_M_WARNING_2_Status_NoS_Supervision_PIM2_The_distance_to_target_bar_is_not_display_in_sub_area_A3_3_The_distance_to_target_digital_is_display_in_sub_area_A2();
+            
+            
             /*
             Test Step 3
-            Action: Continue to drive the train forward.Then, stop the train.
-            Expected Result: Verify the following information,(1)    Use the log file to confirm that DMI receives the packet information EVC-1 with following variables,MMI_M_WARNING = 11 (Status = NoS, Supervision = TSM)(2)     The distance to target bar is not display in sub-area A3.(3)    The distance to target digital is display in sub-area A2.
+            Action: Continue to drive the train forward.Then, stop the train
+            Expected Result: Verify the following information,(1)    Use the log file to confirm that DMI receives the packet information EVC-1 with following variables,MMI_M_WARNING = 11 (Status = NoS, Supervision = TSM)(2)     The distance to target bar is not display in sub-area A3.(3)    The distance to target digital is display in sub-area A2
             Test Step Comment: (1) MMI_gen 107 (partly: MMI_M_WARNING, OS mode); MMI_gen 2567 (partly: MMI_M_WARNING, OS mode TSM);(2) MMI_gen 107 (partly: Table 37, OS mode);(3) MMI_gen 2567 (partly: Table 38, OS mode TSM);
             */
-
+            // Call generic Action Method
+            DmiActions.Continue_to_drive_the_train_forward_Then_stop_the_train();
+            
+            
             /*
             Test Step 4
-            Action: Continue to drive the train forward.Then, stop the train.
-            Expected Result: Verify the following information,(1)    Use the log file to confirm that DMI receives the packet information EVC-1 with following variables,MMI_M_WARNING = 3 (Status = Inds, Supervision = RSM)(2)     The distance to target bar is not display in sub-area A3.(3)    The distance to target digital is display in sub-area A2.
+            Action: Continue to drive the train forward.Then, stop the train
+            Expected Result: Verify the following information,(1)    Use the log file to confirm that DMI receives the packet information EVC-1 with following variables,MMI_M_WARNING = 3 (Status = Inds, Supervision = RSM)(2)     The distance to target bar is not display in sub-area A3.(3)    The distance to target digital is display in sub-area A2
             Test Step Comment: (1) MMI_gen 107 (partly: MMI_M_WARNING, OS mode); MMI_gen 2567 (partly: MMI_M_WARNING, OS mode RSM); (2) MMI_gen 107 (partly: Table 37, OS mode);(3) MMI_gen 2567 (partly: Table 38, OS mode RSM);
             */
-
+            // Call generic Action Method
+            DmiActions.Continue_to_drive_the_train_forward_Then_stop_the_train();
+            
+            
             /*
             Test Step 5
             Action: End of test
             Expected Result: 
             */
+            
 
             return GlobalTestResult;
         }

@@ -43,7 +43,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Use the ATP config editor to set the following parameters as follows (See the instruction in Appendix 2),Q_NVDRIVER_ADHES = 1Test system is powered on Activate Cabin A.Start of Mission is completed in SR mode, level 1DMI displays the ‘Default’ window
-
+            
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -61,60 +61,82 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
+            
             /*
             Test Step 1
-            Action: Press ‘Spec’ button.
-            Expected Result: The Special window is displayed. Verify that the Close button is always enabled.
+            Action: Press ‘Spec’ button
+            Expected Result: The Special window is displayed. Verify that the Close button is always enabled
             Test Step Comment: MMI_gen 9199;(partly: Special);
             */
-
+            // Call generic Action Method
+            DmiActions.ShowInstruction(@"Press ‘Spec’ button");
+            
+            
             /*
             Test Step 2
-            Action: Press ‘Close’ button.
-            Expected Result: The Special window is closed. DMI displays the default window.
+            Action: Press ‘Close’ button
+            Expected Result: The Special window is closed. DMI displays the default window
             Test Step Comment: MMI_gen 9199;(partly: Special); MMI_gen 8785 (partly: Special);
             */
-
+            // Call generic Action Method
+            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            
+            
             /*
             Test Step 3
-            Action: Press ‘Spec’ button again.
-            Expected Result: The Special window is displayed.
+            Action: Press ‘Spec’ button again
+            Expected Result: The Special window is displayed
             */
-
+            
+            
             /*
             Test Step 4
-            Action: Press ‘Adhesion’ button.
-            Expected Result: The Adhesion window is displayed. Verify that the Close button is always enabled.
+            Action: Press ‘Adhesion’ button
+            Expected Result: The Adhesion window is displayed. Verify that the Close button is always enabled
             Test Step Comment: MMI_gen 9199 (partly: Adhesion);   
             */
-
+            // Call generic Action Method
+            DmiActions.ShowInstruction(@"Press ‘Adhesion’ button");
+            
+            
             /*
             Test Step 5
-            Action: Press ‘Close’ button.
-            Expected Result: Verify that the Special window is displayed.
+            Action: Press ‘Close’ button
+            Expected Result: Verify that the Special window is displayed
             Test Step Comment: MMI_gen 9199 (partly: Adhesion); MMI_gen 8785 (partly: Adhesion);
             */
-
+            // Call generic Action Method
+            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            
+            
             /*
             Test Step 6
-            Action: Press ‘SR speed/distance’ button.
-            Expected Result: The SR speed/distance window is displayed. Verify that the Close button is always enabled.
+            Action: Press ‘SR speed/distance’ button
+            Expected Result: The SR speed/distance window is displayed. Verify that the Close button is always enabled
             Test Step Comment: MMI_gen 9199 (partly: SR speed/distance);   
             */
-
+            // Call generic Action Method
+            DmiActions.ShowInstruction(@"Press ‘SR speed/distance’ button");
+            
+            
             /*
             Test Step 7
-            Action: Press ‘Close’ button.
-            Expected Result: DMI displays Special window.
+            Action: Press ‘Close’ button
+            Expected Result: DMI displays Special window
             Test Step Comment: MMI_gen 9199 (partly: SR speed/distance); MMI_gen 8785 (partly: SR speed/distance);
             */
-
+            // Call generic Action Method
+            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            // Call generic Check Results Method
+            DmiExpectedResults.DMI_displays_Special_window();
+            
+            
             /*
             Test Step 8
             Action: End of test
             Expected Result: 
             */
+            
 
             return GlobalTestResult;
         }

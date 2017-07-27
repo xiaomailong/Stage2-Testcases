@@ -40,7 +40,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // System is power on.Cabin is activated.Driver ID is entered.Brake test is performed.
-
+            
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -58,26 +58,29 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
+            
             /*
             Test Step 1
-            Action: Select and confirm Level 2.
+            Action: Select and confirm Level 2
             Expected Result: DMI displays RBC contact window.Verify the following information, The symbol LE04 is displayed in sub-area C8.Use the log file to confirm that DMI received packet EVC-7 with variable OBU_TR_M_LEVEL = 3 (Level 2).Use the log file to confirm that DMI sends out packet [MMI_DRIVER_ACTION (EVC-152)] with the value of variable MMI_M_DRIVER_ACTION refer to sequence below,a)   MMI_M_DRIVER_ACTION = 36 (level 2 selected)
             Test Step Comment: (1) MMI_gen 577 (partly: Level is valid and equal to 2, symbol LE04, displayed in area C8);(2) MMI_gen 577 (partly: Level is valid, Derived from variable,Level 2);(3) MMI_gen 11470 (partly: Bit # 36);
             */
-
+            
+            
             /*
             Test Step 2
-            Action: Restart OTE and RBC Simulator.Repeat action step 1 with Level 3.
+            Action: Restart OTE and RBC Simulator.Repeat action step 1 with Level 3
             Expected Result: DMI displays RBC contact window.Verify the following information, The symbol LE05 is displayed in sub-area C8.Use the log file to confirm that DMI received packet EVC-7 with variable OBU_TR_M_LEVEL = 4 (Level 3).Use the log file to confirm that DMI sends out packet [MMI_DRIVER_ACTION (EVC-152)] with the value of variable MMI_M_DRIVER_ACTION refer to sequence below,a)   MMI_M_DRIVER_ACTION = 37 (level 3 selected)
             Test Step Comment: (1) MMI_gen 577 (partly: Level is valid and equal to 3, symbol LE05, displayed in area C8);(2) MMI_gen 577 (partly: Level is valid, Derived from variable,Level 3);(3) MMI_gen 11470 (partly: Bit # 37);
             */
-
+            
+            
             /*
             Test Step 3
             Action: End of test
             Expected Result: 
             */
+            
 
             return GlobalTestResult;
         }

@@ -38,7 +38,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Set the following tags name in configuration file (See the instruction in Appendix 1)HIDE_PA_FUNCTION = 0 (‘ON’ state)System is power ON.
-
+            
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -56,58 +56,82 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
+            
             /*
             Test Step 1
-            Action: Activate cabin A.
-            Expected Result: DMI displays Driver ID window.
+            Action: Activate cabin A
+            Expected Result: DMI displays Driver ID window
             */
-
+            // Call generic Action Method
+            DmiActions.Activate_cabin_A();
+            // Call generic Check Results Method
+            DmiExpectedResults.DMI_displays_Driver_ID_window();
+            
+            
             /*
             Test Step 2
-            Action: Perform SoM to SR mode, level 1.
+            Action: Perform SoM to SR mode, level 1
             Expected Result: DMI displays in SR mode, level 1
             */
-
+            // Call generic Action Method
+            DmiActions.Perform_SoM_to_SR_mode_level_1();
+            // Call generic Check Results Method
+            DmiExpectedResults.DMI_displays_in_SR_mode_level_1();
+            
+            
             /*
             Test Step 3
-            Action: Drive the train forward with speed = 40 km/h pass BG1.
-            Expected Result: DMI displays in FS mode, level 1. The Planning area is displayed the planning information in main area D.
+            Action: Drive the train forward with speed = 40 km/h pass BG1
+            Expected Result: DMI displays in FS mode, level 1. The Planning area is displayed the planning information in main area D
             */
-
+            // Call generic Action Method
+            DmiActions.Drive_the_train_forward_with_speed_40_kmh_pass_BG1();
+            
+            
             /*
             Test Step 4
-            Action: Press the ‘NA01’ symbol in sub-area D14.
-            Expected Result: Verify the following information, The Planning area is disappeared from DMI.Use log file to verify tha DMI still received packet EVC-4 from ETCS Onboard.
+            Action: Press the ‘NA01’ symbol in sub-area D14
+            Expected Result: Verify the following information, The Planning area is disappeared from DMI.Use log file to verify tha DMI still received packet EVC-4 from ETCS Onboard
             Test Step Comment: (1) MMI_gen 7336 (partly: Hide); MMI_gen 7352 (partly: Set); MMI_gen 2996        (partly: 1st bullet, activation of ‘Hide’ button); MMI_gen 7339         (partly: Update);  (2) MMI_gen 6962 (partly: continuously updated objects in the background);         
             */
-
+            // Call generic Action Method
+            DmiActions.ShowInstruction(@"Press the ‘NA01’ symbol in sub-area D14");
+            
+            
             /*
             Test Step 5
-            Action: Press at sensitive area in main area D.
-            Expected Result: Verify the following information, When driver presses main area D in sensitive area. The planning area is reappeared by this activation.NA01 symbol is still display in sub-area D14.All objects on the Planning area is updated according to the packet that sent from ETCS OB.Use log file to verify tha DMI still received packet EVC-4 from ETCS Onboard.
+            Action: Press at sensitive area in main area D
+            Expected Result: Verify the following information, When driver presses main area D in sensitive area. The planning area is reappeared by this activation.NA01 symbol is still display in sub-area D14.All objects on the Planning area is updated according to the packet that sent from ETCS OB.Use log file to verify tha DMI still received packet EVC-4 from ETCS Onboard
             Test Step Comment: (1) MMI_gen 7336 (partly: Show); MMI_gen 7353 (partly: Reset);     MMI_gen 7349;     MMI_gen 2996        (partly: 1st bullet, activation of ‘Show’ button);   (2) MMI_gen 7350 (partly: symbol NA01);(3) MMI_gen 6962 (partly: updated in the background);(4) MMI_gen 6962 (partly: continuously be updated);
             */
-
+            // Call generic Action Method
+            DmiActions.ShowInstruction(@"Press at sensitive area in main area D");
+            
+            
             /*
             Test Step 6
-            Action: Press the ‘NA01’ symbol in sub-area D14.
-            Expected Result: Verify the following information, (1)   The Planning area is disappeared from DMI.(2)   Use log file to verify tha DMI still received packet EVC-4 from ETCS Onboard.
+            Action: Press the ‘NA01’ symbol in sub-area D14
+            Expected Result: Verify the following information, (1)   The Planning area is disappeared from DMI.(2)   Use log file to verify tha DMI still received packet EVC-4 from ETCS Onboard
             Test Step Comment: (1) MMI_gen 6962 (partly: hidden objects);(2) MMI_gen 6962 (partly: continuously updated objects in the background);         
             */
-
+            // Call generic Action Method
+            DmiActions.ShowInstruction(@"Press the ‘NA01’ symbol in sub-area D14");
+            
+            
             /*
             Test Step 7
-            Action: Press at sensitive area in main area D to display the Planning area.
-            Expected Result: The Planning area is reappeared in area D.Verify the following information, (1)   Use the log file to confirm that all objects on the Planning area are updated according to the received packet EVC-4 from ETCS Onboard.
+            Action: Press at sensitive area in main area D to display the Planning area
+            Expected Result: The Planning area is reappeared in area D.Verify the following information, (1)   Use the log file to confirm that all objects on the Planning area are updated according to the received packet EVC-4 from ETCS Onboard
             Test Step Comment: (1) MMI_gen 6962;
             */
-
+            
+            
             /*
             Test Step 8
-            Action: End of test.
+            Action: End of test
             Expected Result: 
             */
+            
 
             return GlobalTestResult;
         }

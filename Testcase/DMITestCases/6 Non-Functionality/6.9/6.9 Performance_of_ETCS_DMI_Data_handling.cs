@@ -37,7 +37,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // 1. The test environment is powered on.2. The RCI client is connected to ETCS-DMI with the concerned ETCS-DMI IP address via port 15001 (Raw connection).3. The RCI is commanded to start logging the following data:- The incoming data message from the MVB port to GPP component.- The outgoing data message from the GPP component to MVB port.- The concerned data in the GPP component.4. The cabin is activated.
-
+            
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -55,46 +55,56 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
+            
             /*
             Test Step 1
-            Action: Perform SoM in SR mode, Level 2.
-            Expected Result: RCI logs the concerned activities as specified in the precondition.
+            Action: Perform SoM in SR mode, Level 2
+            Expected Result: RCI logs the concerned activities as specified in the precondition
             */
-
+            // Call generic Action Method
+            DmiActions.Perform_SoM_in_SR_mode_Level_2();
+            // Call generic Check Results Method
+            DmiExpectedResults.RCI_logs_the_concerned_activities_as_specified_in_the_precondition();
+            
+            
             /*
             Test Step 2
             Action: Observe the timestamps in RCI log and calculate the average differentiation of the response time of the incoming data in:- The MVB port - The GPP component
-            Expected Result: (1) Use the RCI log to confirm the (average) response time differentiation of the incoming data (message) in the GPP component and MVB port (tinGPP – tinMVB) is less than 128 ms.
+            Expected Result: (1) Use the RCI log to confirm the (average) response time differentiation of the incoming data (message) in the GPP component and MVB port (tinGPP – tinMVB) is less than 128 ms
             Test Step Comment: (1) MMI_gen 87 (partly: read);
             */
-
+            
+            
             /*
             Test Step 3
             Action: Follow step 2 to calculate the average differentiation of the response time of the outgoing data
-            Expected Result: (1) Use the RCI log to confirm the (average) response time differentiation of the outgoing data (message) in the MVB port and GPP component (toutGPP - toutMVB) is less than 128 ms.
+            Expected Result: (1) Use the RCI log to confirm the (average) response time differentiation of the outgoing data (message) in the MVB port and GPP component (toutGPP - toutMVB) is less than 128 ms
             Test Step Comment: (1) MMI_gen 87 (partly: write);
             */
-
+            
+            
             /*
             Test Step 4
             Action: Follow step 2 to calculate the data throughput
-            Expected Result: (1) Use the RCI log to confirm the (average) response time differentiation of every incoming or outgoing EVC data (extracted EVC packets) with the size of 50 Bytes in GPP component and MVB port (tEVCinGPP – tinMVB or tEVCoutGPP - toutMVB)is less than 250 ms.
+            Expected Result: (1) Use the RCI log to confirm the (average) response time differentiation of every incoming or outgoing EVC data (extracted EVC packets) with the size of 50 Bytes in GPP component and MVB port (tEVCinGPP – tinMVB or tEVCoutGPP - toutMVB)is less than 250 ms
             Test Step Comment: (1) MMI_gen 89 (partly: throughput);
             */
-
+            
+            
             /*
             Test Step 5
             Action: Send the data of EVC-8 with size of 200 Bytes by 1_9_a.xml
             Expected Result: The big size of data can be transferred to ETCS-DMI screen and the text message of “ABC … BC17” displayed in area E5 – E9.Note: Each group of the text message is identified with number 2 – 17, except the first group
             Test Step Comment: (1) MMI_gen 89 (partly: extra in one shot);
             */
-
+            
+            
             /*
             Test Step 6
             Action: End of test
             Expected Result: 
             */
+            
 
             return GlobalTestResult;
         }

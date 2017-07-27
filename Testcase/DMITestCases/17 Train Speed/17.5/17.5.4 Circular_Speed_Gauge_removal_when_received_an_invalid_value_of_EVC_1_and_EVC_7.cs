@@ -39,7 +39,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // System is power on.Cabin is activated.SoM is performed in SR mode, Level 1.
-
+            
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -57,60 +57,80 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
+            
             /*
             Test Step 1
-            Action: Drive the train forward pass BG1 with speed = 30km/h.Then, stop the train.
-            Expected Result: DMI displays in FS mode, Level 1.
+            Action: Drive the train forward pass BG1 with speed = 30km/h.Then, stop the train
+            Expected Result: DMI displays in FS mode, Level 1
             */
-
+            // Call generic Check Results Method
+            DmiExpectedResults.DMI_displays_in_FS_mode_Level_1();
+            
+            
             /*
             Test Step 2
             Action: Use the test script file 12_5_4_a.xml to send EVC-1 with,MMI_M_WARNING = 7
-            Expected Result: Verify the following information,(1)   The Circular Speed Gauge is removed from sub-area B2.Note: The ciruclar speed guage is re-appear when DMI received packet EVC-1 from ETCS onboard.
+            Expected Result: Verify the following information,(1)   The Circular Speed Gauge is removed from sub-area B2.Note: The ciruclar speed guage is re-appear when DMI received packet EVC-1 from ETCS onboard
             Test Step Comment: (1) MMI_gen 977 (partly: MMI_M_WARNING);
             */
-
+            // Call generic Check Results Method
+            DmiExpectedResults.Verify_the_following_information_1_The_Circular_Speed_Gauge_is_removed_from_sub_area_B2_Note_The_ciruclar_speed_guage_is_re_appear_when_DMI_received_packet_EVC_1_from_ETCS_onboard();
+            
+            
             /*
             Test Step 3
             Action: Use the test script file 12_5_4_b.xml to send EVC-1 with,MMI_V_TARGET = 11112
-            Expected Result: Verify the following information,(1)   The Circular Speed Gauge is removed from sub-area B2.Note: The ciruclar speed guage is re-appear when DMI received packet EVC-1 from ETCS onboard.
+            Expected Result: Verify the following information,(1)   The Circular Speed Gauge is removed from sub-area B2.Note: The ciruclar speed guage is re-appear when DMI received packet EVC-1 from ETCS onboard
             Test Step Comment: (1) MMI_gen 977 (partly: MMI_V_TARGET);
             */
-
+            // Call generic Check Results Method
+            DmiExpectedResults.Verify_the_following_information_1_The_Circular_Speed_Gauge_is_removed_from_sub_area_B2_Note_The_ciruclar_speed_guage_is_re_appear_when_DMI_received_packet_EVC_1_from_ETCS_onboard();
+            
+            
             /*
             Test Step 4
             Action: Use the test script file 12_5_4_c.xml to send EVC-1 with,MMI_V_PERMITTED = 11112
-            Expected Result: Verify the following information,(1)   The Circular Speed Gauge is removed from sub-area B2.Note: The ciruclar speed guage is re-appear when DMI received packet EVC-1 from ETCS onboard.
+            Expected Result: Verify the following information,(1)   The Circular Speed Gauge is removed from sub-area B2.Note: The ciruclar speed guage is re-appear when DMI received packet EVC-1 from ETCS onboard
             Test Step Comment: (1) MMI_gen 977 (partly: MMI_V_PERMITTED);
             */
-
+            // Call generic Check Results Method
+            DmiExpectedResults.Verify_the_following_information_1_The_Circular_Speed_Gauge_is_removed_from_sub_area_B2_Note_The_ciruclar_speed_guage_is_re_appear_when_DMI_received_packet_EVC_1_from_ETCS_onboard();
+            
+            
             /*
             Test Step 5
             Action: Use the test script file 12_5_4_d.xml to send EVC-1 with,MMI_V_INTERVENTION = 11112
-            Expected Result: Verify the following information,(1)   The Circular Speed Gauge is removed from sub-area B2.Note: The ciruclar speed guage is re-appear when DMI received packet EVC-1 from ETCS onboard.
+            Expected Result: Verify the following information,(1)   The Circular Speed Gauge is removed from sub-area B2.Note: The ciruclar speed guage is re-appear when DMI received packet EVC-1 from ETCS onboard
             Test Step Comment: (1) MMI_gen 977 (partly: MMI_V_INTERVENTION);
             */
-
+            // Call generic Check Results Method
+            DmiExpectedResults.Verify_the_following_information_1_The_Circular_Speed_Gauge_is_removed_from_sub_area_B2_Note_The_ciruclar_speed_guage_is_re_appear_when_DMI_received_packet_EVC_1_from_ETCS_onboard();
+            
+            
             /*
             Test Step 6
             Action: Use the test script file 12_5_4_e.xml to send EVC-1 with,MMI_V_RELEASE = 11112
-            Expected Result: Verify the following information,(1)   The Circular Speed Gauge is removed from sub-area B2.Note: The ciruclar speed guage is re-appear when DMI received packet EVC-1 from ETCS onboard.
+            Expected Result: Verify the following information,(1)   The Circular Speed Gauge is removed from sub-area B2.Note: The ciruclar speed guage is re-appear when DMI received packet EVC-1 from ETCS onboard
             Test Step Comment: (1) MMI_gen 977 (partly: MMI_V_RELEASE);
             */
-
+            // Call generic Check Results Method
+            DmiExpectedResults.Verify_the_following_information_1_The_Circular_Speed_Gauge_is_removed_from_sub_area_B2_Note_The_ciruclar_speed_guage_is_re_appear_when_DMI_received_packet_EVC_1_from_ETCS_onboard();
+            
+            
             /*
             Test Step 7
             Action: Use the test script file 12_5_4_f.xml to send EVC-7 with,OBU_TR_M_MODE = 17
-            Expected Result: Verify the following information,(1)   The Circular Speed Gauge is removed from sub-area B2.Note: The ciruclar speed guage is re-appear when DMI received packet EVC-7 from ETCS onboard.
+            Expected Result: Verify the following information,(1)   The Circular Speed Gauge is removed from sub-area B2.Note: The ciruclar speed guage is re-appear when DMI received packet EVC-7 from ETCS onboard
             Test Step Comment: (1) MMI_gen 977 (partly: OBU_TR_M_MODE);
             */
-
+            
+            
             /*
             Test Step 8
             Action: End of test
             Expected Result: 
             */
+            
 
             return GlobalTestResult;
         }

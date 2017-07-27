@@ -41,7 +41,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // System is power OFFSet the following tags name in configuration file (See the instruction in Appendix 1)HIDE_PA_FUNCTION = 2 (‘STORE’ state)HIDE_PA_OS_MODE = 1 (shown)HIDE_PA_SR_MODE = 1 (shown)
-
+            
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -59,129 +59,199 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
+            
             /*
             Test Step 1
-            Action: Power on the system Activate cabin A.
-            Expected Result: DMI displays Driver ID window.
+            Action: Power on the system Activate cabin A
+            Expected Result: DMI displays Driver ID window
             */
-
+            // Call generic Check Results Method
+            DmiExpectedResults.DMI_displays_Driver_ID_window();
+            
+            
             /*
             Test Step 2
-            Action: Perform SoM to SR mode, level 1.
-            Expected Result: DMI displays in SR mode, level 1The Planning area is appeared on DMI.
+            Action: Perform SoM to SR mode, level 1
+            Expected Result: DMI displays in SR mode, level 1The Planning area is appeared on DMI
             */
-
+            // Call generic Action Method
+            DmiActions.Perform_SoM_to_SR_mode_level_1();
+            
+            
             /*
             Test Step 3
             Action: Press Hide PA button
             Expected Result: The Planning area is disappeared from DMI
             */
-
+            // Call generic Action Method
+            DmiActions.ShowInstruction(@"Press Hide PA button");
+            
+            
             /*
             Test Step 4
             Action: Deactive and reacitvate the cabin A
-            Expected Result: DMI displays Driver ID window.
+            Expected Result: DMI displays Driver ID window
             */
-
+            // Call generic Action Method
+            DmiActions.Deactive_and_reacitvate_the_cabin_A();
+            // Call generic Check Results Method
+            DmiExpectedResults.DMI_displays_Driver_ID_window();
+            
+            
             /*
             Test Step 5
-            Action: Perform SoM to SR mode, level 1.
+            Action: Perform SoM to SR mode, level 1
             Expected Result: DMI displays in SR mode, level 1The Planning area is not appear on DMI
             Test Step Comment: MMI_gen 9948 (partly:SR);
             */
-
+            // Call generic Action Method
+            DmiActions.Perform_SoM_to_SR_mode_level_1();
+            
+            
             /*
             Test Step 6
-            Action: Press at sensitive area in main area D.
-            Expected Result: The planning area is reappeared by this activation.
+            Action: Press at sensitive area in main area D
+            Expected Result: The planning area is reappeared by this activation
             */
-
+            // Call generic Action Method
+            DmiActions.ShowInstruction(@"Press at sensitive area in main area D");
+            // Call generic Check Results Method
+            DmiExpectedResults.The_planning_area_is_reappeared_by_this_activation();
+            
+            
             /*
             Test Step 7
-            Action: Drive the train forward with speed = 30 km/h pass BG1.
-            Expected Result: Mode changes to FS modeThe Planning area is appeared on DMI.
+            Action: Drive the train forward with speed = 30 km/h pass BG1
+            Expected Result: Mode changes to FS modeThe Planning area is appeared on DMI
             */
-
+            
+            
             /*
             Test Step 8
             Action: Stop the train and then press Hide PA button
             Expected Result: Train is at standstillThe Planning area is disappeared from DMI
             */
-
+            // Call generic Action Method
+            DmiActions.Stop_the_train_and_then_press_Hide_PA_button();
+            // Call generic Check Results Method
+            DmiExpectedResults.Train_is_at_standstillThe_Planning_area_is_disappeared_from_DMI();
+            
+            
             /*
             Test Step 9
             Action: Deactive and reacitvate the cabin A
-            Expected Result: DMI displays Driver ID window.
+            Expected Result: DMI displays Driver ID window
             */
-
+            // Call generic Action Method
+            DmiActions.Deactive_and_reacitvate_the_cabin_A();
+            // Call generic Check Results Method
+            DmiExpectedResults.DMI_displays_Driver_ID_window();
+            
+            
             /*
             Test Step 10
-            Action: Perform SoM to SR mode, level 1.
+            Action: Perform SoM to SR mode, level 1
             Expected Result: DMI displays in SR mode, leve1
             */
-
+            // Call generic Action Method
+            DmiActions.Perform_SoM_to_SR_mode_level_1();
+            // Call generic Check Results Method
+            DmiExpectedResults.DMI_displays_in_SR_mode_leve1();
+            
+            
             /*
             Test Step 11
-            Action: Drive the train forward with speed = 30 km/h pass BG2.
-            Expected Result: DMI displays in FS modeThe Planning area is not appear on DMI.
+            Action: Drive the train forward with speed = 30 km/h pass BG2
+            Expected Result: DMI displays in FS modeThe Planning area is not appear on DMI
             Test Step Comment: MMI_gen 9948 (partly:FS);
             */
-
+            
+            
             /*
             Test Step 12
-            Action: Press at sensitive area in main area D.
-            Expected Result: The planning area is reappeared by this activation.
+            Action: Press at sensitive area in main area D
+            Expected Result: The planning area is reappeared by this activation
             */
-
+            // Call generic Action Method
+            DmiActions.ShowInstruction(@"Press at sensitive area in main area D");
+            // Call generic Check Results Method
+            DmiExpectedResults.The_planning_area_is_reappeared_by_this_activation();
+            
+            
             /*
             Test Step 13
             Action: Pass BG3 and the comfirm OS mode
             Expected Result: Mode chages to OS modeThe Planning area is appeared on DMI
             */
-
+            
+            
             /*
             Test Step 14
             Action: Stop the train and then press Hide PA button
             Expected Result: Train is at standstillThe Planning area is disappeared from DMI
             */
-
+            // Call generic Action Method
+            DmiActions.Stop_the_train_and_then_press_Hide_PA_button();
+            // Call generic Check Results Method
+            DmiExpectedResults.Train_is_at_standstillThe_Planning_area_is_disappeared_from_DMI();
+            
+            
             /*
             Test Step 15
             Action: Deactive and reacitvate the cabin A
-            Expected Result: DMI displays Driver ID window.
+            Expected Result: DMI displays Driver ID window
             */
-
+            // Call generic Action Method
+            DmiActions.Deactive_and_reacitvate_the_cabin_A();
+            // Call generic Check Results Method
+            DmiExpectedResults.DMI_displays_Driver_ID_window();
+            
+            
             /*
             Test Step 16
-            Action: Perform SoM to SR mode, level 1.
+            Action: Perform SoM to SR mode, level 1
             Expected Result: DMI displays in SR mode, leve1
             */
-
+            // Call generic Action Method
+            DmiActions.Perform_SoM_to_SR_mode_level_1();
+            // Call generic Check Results Method
+            DmiExpectedResults.DMI_displays_in_SR_mode_leve1();
+            
+            
             /*
             Test Step 17
-            Action: Drive the train forward with speed = 30 km/h pass BG4.
+            Action: Drive the train forward with speed = 30 km/h pass BG4
             Expected Result: OS mode Acknowledgment is requested
             */
-
+            
+            
             /*
             Test Step 18
             Action: Acknowledge OS mode
-            Expected Result: Mode chages to OS modeThe Planning area is not appear on DMI.
+            Expected Result: Mode chages to OS modeThe Planning area is not appear on DMI
             Test Step Comment: MMI_gen 9948 (partly:OS);
             */
-
+            // Call generic Action Method
+            DmiActions.Acknowledge_OS_mode();
+            
+            
             /*
             Test Step 19
-            Action: Press at sensitive area in main area D.
-            Expected Result: The planning area is reappeared by this activation.
+            Action: Press at sensitive area in main area D
+            Expected Result: The planning area is reappeared by this activation
             */
-
+            // Call generic Action Method
+            DmiActions.ShowInstruction(@"Press at sensitive area in main area D");
+            // Call generic Check Results Method
+            DmiExpectedResults.The_planning_area_is_reappeared_by_this_activation();
+            
+            
             /*
             Test Step 20
-            Action: End of test.
+            Action: End of test
             Expected Result: 
             */
+            
 
             return GlobalTestResult;
         }

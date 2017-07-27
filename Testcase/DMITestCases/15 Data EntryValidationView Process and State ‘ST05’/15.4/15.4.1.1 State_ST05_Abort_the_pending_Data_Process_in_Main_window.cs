@@ -37,7 +37,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Test system is powered onCabin is activeSoM is performed until level 1 is selected and confirmed.
-
+            
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -55,65 +55,80 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
+            
             /*
             Test Step 1
             Action: At the Main window, press ‘Driver ID’ button
-            Expected Result: DMI displays Driver ID window.
+            Expected Result: DMI displays Driver ID window
             */
-
+            // Call generic Check Results Method
+            DmiExpectedResults.DMI_displays_Driver_ID_window();
+            
+            
             /*
             Test Step 2
             Action: Use the test script file 10_4_1_1_a.xml to send EVC-8 withMMI_Q_TEXT_CRITERIA = 3 MMI_Q_TEXT = 716
             Expected Result: The hourglass symbol ST05 is displayed at window title area
             */
-
+            // Call generic Check Results Method
+            DmiExpectedResults.The_hourglass_symbol_ST05_is_displayed_at_window_title_area();
+            
+            
             /*
             Test Step 3
             Action: Use the test script file 10_4_1_1_b.xml to send EVC-24 withMMI_NID_ENGINE_1 = 1234MMI_M_BRAKE_CONFIG = 55MMI_M_AVAIL_SERVICES = 65535MMI_M_ETC_VER = 16755215
-            Expected Result: Verify the followin information,(1)     The Driver ID window is closed, DMI displays System info window after received packet EVC-24.
+            Expected Result: Verify the followin information,(1)     The Driver ID window is closed, DMI displays System info window after received packet EVC-24
             Test Step Comment: (1) MMI_gen 5507 (partly: Driver ID window, abort an already pending data entry process, received packet of different window from ETCS onboard);
             */
-
+            
+            
             /*
             Test Step 4
-            Action: Perform the following procedure,At System info window, press ‘close’ button.Open Train running number windowRepeat action step 2-3.
-            Expected Result: Verify the followin information,(1)    The Train Running Number window is closed, DMI displays System info window after received packet EVC-24.
+            Action: Perform the following procedure,At System info window, press ‘close’ button.Open Train running number windowRepeat action step 2-3
+            Expected Result: Verify the followin information,(1)    The Train Running Number window is closed, DMI displays System info window after received packet EVC-24
             Test Step Comment: (1) MMI_gen 5507 (partly: Train Running Number window, abort an already pending data entry process, received packet of different window from ETCS onboard);
             */
-
+            
+            
             /*
             Test Step 5
-            Action: Perform the following procedure,At System info window, press ‘close’ button.Open Level windowRepeat action step 2-3.
-            Expected Result: Verify the followin information,(1)    The Level window is closed, DMI displays System info window after received packet EVC-24.
+            Action: Perform the following procedure,At System info window, press ‘close’ button.Open Level windowRepeat action step 2-3
+            Expected Result: Verify the followin information,(1)    The Level window is closed, DMI displays System info window after received packet EVC-24
             Test Step Comment: (1) MMI_gen 5507 (partly: Level  window, abort an already pending data entry process, received packet of different window from ETCS onboard);
             */
-
+            
+            
             /*
             Test Step 6
-            Action: Perform the following procedure,At System info window, press ‘close’ button.Open Train data windowRepeat action step 2-3.
-            Expected Result: Verify the followin information,(1)    The Train data window is closed, DMI displays System info window after received packet EVC-24.
+            Action: Perform the following procedure,At System info window, press ‘close’ button.Open Train data windowRepeat action step 2-3
+            Expected Result: Verify the followin information,(1)    The Train data window is closed, DMI displays System info window after received packet EVC-24
             Test Step Comment: (1) MMI_gen 5507 (partly: Train Data Number window, abort an already pending data validation process, received packet of different window from ETCS onboard);
             */
-
+            
+            
             /*
             Test Step 7
-            Action: Perform the following procedure,At System info window, press ‘close’ button.Open Train data windowEnter and confirm all value of an input fieldsPress on enabled ‘Yes’ button.
-            Expected Result: DMI displays Train data validation window.
+            Action: Perform the following procedure,At System info window, press ‘close’ button.Open Train data windowEnter and confirm all value of an input fieldsPress on enabled ‘Yes’ button
+            Expected Result: DMI displays Train data validation window
             */
-
+            // Call generic Check Results Method
+            DmiExpectedResults.DMI_displays_Train_data_validation_window();
+            
+            
             /*
             Test Step 8
-            Action: Repeat action step 2-3.
-            Expected Result: Verify the followin information,(1)    The Train data validation window is closed, DMI displays System info window after received packet EVC-24.
+            Action: Repeat action step 2-3
+            Expected Result: Verify the followin information,(1)    The Train data validation window is closed, DMI displays System info window after received packet EVC-24
             Test Step Comment: (1) MMI_gen 5507 (partly: Train Data Number window, abort an already pending data entry process, received packet of different window from ETCS onboard);
             */
-
+            
+            
             /*
             Test Step 9
             Action: End of test
             Expected Result: 
             */
+            
 
             return GlobalTestResult;
         }

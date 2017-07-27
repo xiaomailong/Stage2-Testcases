@@ -37,7 +37,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Power on the system.
-
+            
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -55,145 +55,173 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
+            
             /*
             Test Step 1
-            Action: Activate cabin A. Then, observe the appearance of the Driver ID window.
-            Expected Result: The Driver ID window is displayed. All objects, text messages and buttons are presented within the same layer.
+            Action: Activate cabin A. Then, observe the appearance of the Driver ID window
+            Expected Result: The Driver ID window is displayed. All objects, text messages and buttons are presented within the same layer
             Test Step Comment: MMI_gen 4351;
             */
-
+            
+            
             /*
             Test Step 2
-            Action: Enter the Driver ID. Perform brake test. Then select level 1.
-            Expected Result: The Level window is displayed.Verify the following:The Sub-level window covers partially on the screen.When this window is active, driver cannot select anything on the default window underneath e.g. ‘Main menu’ or ‘Settings menu’.All objects, text messages and buttons are presented within the same layer.
+            Action: Enter the Driver ID. Perform brake test. Then select level 1
+            Expected Result: The Level window is displayed.Verify the following:The Sub-level window covers partially on the screen.When this window is active, driver cannot select anything on the default window underneath e.g. ‘Main menu’ or ‘Settings menu’.All objects, text messages and buttons are presented within the same layer
             Test Step Comment: MMI_gen 4354;MMI_gen 4351;
             */
-
+            
+            
             /*
             Test Step 3
-            Action: Confirm level 1 and Select ‘Train data’ button.
-            Expected Result: The Train data window is displayed.Verify the following:(1)   All objects, text messages and buttons are presented within the same layer.(2)   At the top of the window, it displays title with text ‘Train data’, background is black and text label is displayed as grey colour.(3)   For the title, when the number of DMI objects cannot fit within a window is displayed as (1/2) i.e. in this case it displays Train data (1/2) and Train data (2/2).(4)   The Data entry window contains a maximum of 4 or 3 input field. (5)   A close button is displayed as enabled.(6)   Sub-level window covers totally depending on the size of the Sub-Level window.(7)   ‘Next’ and/or ‘Previous’ button is enabled. The scrolling between various windows is not displayed as circular.
+            Action: Confirm level 1 and Select ‘Train data’ button
+            Expected Result: The Train data window is displayed.Verify the following:(1)   All objects, text messages and buttons are presented within the same layer.(2)   At the top of the window, it displays title with text ‘Train data’, background is black and text label is displayed as grey colour.(3)   For the title, when the number of DMI objects cannot fit within a window is displayed as (1/2) i.e. in this case it displays Train data (1/2) and Train data (2/2).(4)   The Data entry window contains a maximum of 4 or 3 input field. (5)   A close button is displayed as enabled.(6)   Sub-level window covers totally depending on the size of the Sub-Level window.(7)   ‘Next’ and/or ‘Previous’ button is enabled. The scrolling between various windows is not displayed as circular
             Test Step Comment: MMI_gen 4351;MMI_gen 4354;MMI_gen 4355;MMI_gen 4358;MMI_gen 4360;
             */
-
+            
+            
             /*
             Test Step 4
-            Action: Confirm and Validate Train data.Then, observe the appearance of the Train Running Number window.
-            Expected Result: The Train Running Number window is displayed.All objects, text messages and buttons are presented within the same layer.
+            Action: Confirm and Validate Train data.Then, observe the appearance of the Train Running Number window
+            Expected Result: The Train Running Number window is displayed.All objects, text messages and buttons are presented within the same layer
             Test Step Comment: MMI_gen 4351;
             */
-
+            
+            
             /*
             Test Step 5
-            Action: Enter and confirm the train running number. Then close the Main window.
-            Expected Result: The Default window is displayed.Verify the following:The Default window is presented as  ‘Total image’ and displayed area with allocation of objects, text messages, and buttons.The Default window is not composed of title, Input field, Close button, ‘Next’ or ‘Previous’ button, The Default window is not displayed the topic of the window.(4)   The Default window is not covering other windows.
+            Action: Enter and confirm the train running number. Then close the Main window
+            Expected Result: The Default window is displayed.Verify the following:The Default window is presented as  ‘Total image’ and displayed area with allocation of objects, text messages, and buttons.The Default window is not composed of title, Input field, Close button, ‘Next’ or ‘Previous’ button, The Default window is not displayed the topic of the window.(4)   The Default window is not covering other windows
             Test Step Comment: MMI_gen 4350;MMI_gen 4352;MMI_gen 4353;MMI_gen 4361;Check more information about ‘Total image’ in [MMI-ETCS-gen]
             */
-
+            
+            
             /*
             Test Step 6
-            Action: Then press and hold the Main menu button 
-            Expected Result: DMI still displays the default window.The Main menu button is shown as pressed state.The sound ‘click’ is played sound once.
+            Action: Then press and hold the Main menu button
+            Expected Result: DMI still displays the default window.The Main menu button is shown as pressed state.The sound ‘click’ is played sound once
             Test Step Comment: MMI_gen 4381;
             */
-
+            
+            
             /*
             Test Step 7
             Action: Slide out of the ‘Main menu’ button
-            Expected Result: DMI still displays the default windowThe visualisation of Main menu button is displayed as enabled state.
+            Expected Result: DMI still displays the default windowThe visualisation of Main menu button is displayed as enabled state
             Test Step Comment: MMI_gen 4382;
             */
-
+            
+            
             /*
             Test Step 8
             Action: Slide back into the ‘Main menu’ button
-            Expected Result: DMI still displays default windowThe visualisation of Main menu button is displayed as pressed state.The sound ‘click’ is not played.
+            Expected Result: DMI still displays default windowThe visualisation of Main menu button is displayed as pressed state.The sound ‘click’ is not played
             Test Step Comment: MMI_gen 4382;
             */
-
+            
+            
             /*
             Test Step 9
             Action: Release the ‘Main menu’ button
-            Expected Result: DMI displays sub-menu of the Main window.
+            Expected Result: DMI displays sub-menu of the Main window
             Test Step Comment: MMI_gen 4381;   MMI_gen 4382;
             */
-
+            
+            
             /*
             Test Step 10
             Action: Press ‘Close’ button
-            Expected Result: DMI displays the default window. 
+            Expected Result: DMI displays the default window
             Test Step Comment: MMI_gen 4381;
             */
-
+            // Call generic Action Method
+            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            // Call generic Check Results Method
+            DmiExpectedResults.DMI_displays_the_default_window();
+            
+            
             /*
             Test Step 11
-            Action: Press and hold the Special button 
+            Action: Press and hold the Special button
             Expected Result: DMI still displays the default windowThe Special button is shown as pressed state.The sound ‘click’ is played once
             Test Step Comment: MMI_gen 4381;
             */
-
+            
+            
             /*
             Test Step 12
             Action: Slide out of Special button
-            Expected Result: DMI still displays the default windowThe visualisation of Special button is shown as enabled state.
+            Expected Result: DMI still displays the default windowThe visualisation of Special button is shown as enabled state
             Test Step Comment: MMI_gen 4382;
             */
-
+            
+            
             /*
             Test Step 13
             Action: Slide back into ‘Special menu’ button
-            Expected Result: DMI still displays the default windowThe visualisation of Special button is displayed in pressed stateThe sound ‘click’ is not played.
+            Expected Result: DMI still displays the default windowThe visualisation of Special button is displayed in pressed stateThe sound ‘click’ is not played
             Test Step Comment: MMI_gen 4382;
             */
-
+            
+            
             /*
             Test Step 14
             Action: Release ‘Special menu’ button
-            Expected Result: DMI displays sub-menu of Special window.
+            Expected Result: DMI displays sub-menu of Special window
             Test Step Comment: MMI_gen 4381;   MMI_gen 4382;
             */
-
+            
+            
             /*
             Test Step 15
             Action: Press ‘Close’ button
-            Expected Result: DMI displays the default window 
+            Expected Result: DMI displays the default window
             Test Step Comment: MMI_gen 4381;
             */
-
+            // Call generic Action Method
+            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            // Call generic Check Results Method
+            DmiExpectedResults.DMI_displays_the_default_window();
+            
+            
             /*
             Test Step 16
-            Action: Press and hold the ‘Settings menu’ button 
+            Action: Press and hold the ‘Settings menu’ button
             Expected Result: DMI still displays the default windowThe Setting button is displayed as pressed state.The sound ‘click’ is played once
             Test Step Comment: MMI_gen 4381;
             */
-
+            
+            
             /*
             Test Step 17
             Action: Slide out of the ‘Setting menu’ button
-            Expected Result: DMI still displays the default windowThe Setting button is shown as enabled state.
+            Expected Result: DMI still displays the default windowThe Setting button is shown as enabled state
             Test Step Comment: MMI_gen 4382;
             */
-
+            
+            
             /*
             Test Step 18
             Action: Slide back into the ‘Settings menu’ button
-            Expected Result: DMI still displays the default windowThe Setting button is shown as  pressed state.The sound ‘click’ is not played.
+            Expected Result: DMI still displays the default windowThe Setting button is shown as  pressed state.The sound ‘click’ is not played
             Test Step Comment: MMI_gen 4382;
             */
-
+            
+            
             /*
             Test Step 19
             Action: Release the ‘Settings menu’ button
-            Expected Result: DMI displays all sub-menus of Setting window.
+            Expected Result: DMI displays all sub-menus of Setting window
             Test Step Comment: MMI_gen 4381;   MMI_gen 4382;
             */
-
+            
+            
             /*
             Test Step 20
             Action: End of test
             Expected Result: 
             */
+            
 
             return GlobalTestResult;
         }

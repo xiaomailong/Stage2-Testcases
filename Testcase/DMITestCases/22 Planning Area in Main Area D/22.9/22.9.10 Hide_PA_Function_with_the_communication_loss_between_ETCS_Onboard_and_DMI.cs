@@ -39,7 +39,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // System is power on
-
+            
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -57,77 +57,114 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
+            
             /*
             Test Step 1
-            Action: Activate cabin A. Driver performs SoM to SR mode, level 1.
-            Expected Result: DMI displays in SR mode, level 1.
+            Action: Activate cabin A. Driver performs SoM to SR mode, level 1
+            Expected Result: DMI displays in SR mode, level 1
             */
-
+            // Call generic Action Method
+            DmiActions.Activate_cabin_A_Driver_performs_SoM_to_SR_mode_level_1();
+            // Call generic Check Results Method
+            DmiExpectedResults.DMI_displays_in_SR_mode_level_1();
+            
+            
             /*
             Test Step 2
             Action: Drive the train forward with speed = 40 km/h pass BG1
-            Expected Result: DMI displays the Planning area The “Entering FS” message is shown. The Hide PA function is enabled and locate at Main area D.
+            Expected Result: DMI displays the Planning area The “Entering FS” message is shown. The Hide PA function is enabled and locate at Main area D
             */
-
+            // Call generic Action Method
+            DmiActions.Drive_the_train_forward_with_speed_40_kmh_pass_BG1();
+            
+            
             /*
             Test Step 3
-            Action: Simulate the communication loss between ETCS onboard and DMI.
-            Expected Result: DMI displays “ATP Down Alarm” message with sound alarm.Verify that the planning area and Hide PA function is disappeared.
+            Action: Simulate the communication loss between ETCS onboard and DMI
+            Expected Result: DMI displays “ATP Down Alarm” message with sound alarm.Verify that the planning area and Hide PA function is disappeared
             Test Step Comment: (1) MMI_gen 7357;
             */
-
+            // Call generic Action Method
+            DmiActions.Simulate_the_communication_loss_between_ETCS_onboard_and_DMI();
+            
+            
             /*
             Test Step 4
-            Action: Press at Main area D.
-            Expected Result: Verify the following information,PA is not be resumed to display on DMI.
+            Action: Press at Main area D
+            Expected Result: Verify the following information,PA is not be resumed to display on DMI
             Test Step Comment: (1) MMI_gen 7357 (partly: sensitive areas, inoperable);
             */
-
+            // Call generic Action Method
+            DmiActions.ShowInstruction(@"Press at Main area D");
+            
+            
             /*
             Test Step 5
-            Action: Re-establish the communication between ETCS onboard and DMI 
-            Expected Result: DMI displays in FS mode, level 1.Verify that DMI displays the planning area and Hide PA button is resumed.
+            Action: Re-establish the communication between ETCS onboard and DMI
+            Expected Result: DMI displays in FS mode, level 1.Verify that DMI displays the planning area and Hide PA button is resumed
             Test Step Comment: (1) MMI_gen 7358;
             */
-
+            // Call generic Action Method
+            DmiActions.Re_establish_the_communication_between_ETCS_onboard_and_DMI();
+            
+            
             /*
             Test Step 6
-            Action: Press Hide PA button 
-            Expected Result: The Planning Information is disappeared from main area D.
+            Action: Press Hide PA button
+            Expected Result: The Planning Information is disappeared from main area D
             */
-
+            // Call generic Action Method
+            DmiActions.ShowInstruction(@"Press Hide PA button");
+            // Call generic Check Results Method
+            DmiExpectedResults.The_Planning_Information_is_disappeared_from_main_area_D();
+            
+            
             /*
             Test Step 7
-            Action: Press at Main area D.
-            Expected Result: Verify the following information,PA is resumed to display at main area D.
+            Action: Press at Main area D
+            Expected Result: Verify the following information,PA is resumed to display at main area D
             Test Step Comment: (1) MMI_gen 7358 (partly: sensitive areas, operable);
             */
-
+            // Call generic Action Method
+            DmiActions.ShowInstruction(@"Press at Main area D");
+            
+            
             /*
             Test Step 8
-            Action: Press Hide PA button 
-            Expected Result: The Planning Information is disappeared from main area D.
+            Action: Press Hide PA button
+            Expected Result: The Planning Information is disappeared from main area D
             */
-
+            // Call generic Action Method
+            DmiActions.ShowInstruction(@"Press Hide PA button");
+            // Call generic Check Results Method
+            DmiExpectedResults.The_Planning_Information_is_disappeared_from_main_area_D();
+            
+            
             /*
             Test Step 9
-            Action: Simulate the communication loss between ETCS onboard and DMI.
-            Expected Result: DMI displays “ATP Down Alarm” message with sound alarm and Hide PA function is disappeared.
+            Action: Simulate the communication loss between ETCS onboard and DMI
+            Expected Result: DMI displays “ATP Down Alarm” message with sound alarm and Hide PA function is disappeared
             */
-
+            // Call generic Action Method
+            DmiActions.Simulate_the_communication_loss_between_ETCS_onboard_and_DMI();
+            
+            
             /*
             Test Step 10
-            Action: Re-establish the communication between ETCS onboard and DMI 
-            Expected Result: Verify the following information,Verify that DMI is not displays the planning area and Hide PA button because state of Hide PA is no affected.
+            Action: Re-establish the communication between ETCS onboard and DMI
+            Expected Result: Verify the following information,Verify that DMI is not displays the planning area and Hide PA button because state of Hide PA is no affected
             Test Step Comment: (1) MMI_gen 7358 (partly: state of Hide PA);
             */
-
+            // Call generic Action Method
+            DmiActions.Re_establish_the_communication_between_ETCS_onboard_and_DMI();
+            
+            
             /*
             Test Step 11
-            Action: End of test.
+            Action: End of test
             Expected Result: 
             */
+            
 
             return GlobalTestResult;
         }

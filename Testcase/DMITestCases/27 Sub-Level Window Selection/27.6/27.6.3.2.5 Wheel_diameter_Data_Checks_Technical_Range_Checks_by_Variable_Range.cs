@@ -42,7 +42,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // 1. The test environment is powered on.2. The cabin is activated.3. The ‘Settings’ window is opened.
-
+            
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -60,45 +60,57 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
+            
             /*
             Test Step 1
-            Action: Open the ‘Wheel diameter’ data entry window from the Settings menu.
-            Expected Result: The ‘Wheel diameter’ data entry window appears on ETCS-DMI screen instead of the ‘Settings’ menu window.
+            Action: Open the ‘Wheel diameter’ data entry window from the Settings menu
+            Expected Result: The ‘Wheel diameter’ data entry window appears on ETCS-DMI screen instead of the ‘Settings’ menu window
             */
-
+            // Call generic Action Method
+            DmiActions.Open_the_Wheel_diameter_data_entry_window_from_the_Settings_menu();
+            // Call generic Check Results Method
+            DmiExpectedResults.The_Wheel_diameter_data_entry_window_appears_on_ETCS_DMI_screen_instead_of_the_Settings_menu_window();
+            
+            
             /*
             Test Step 2
             Action: Enter the minimum inbound values with the numeric keypad and press the data input field (Accept) in the same screen, for the following fields below, Wheel diameter 1: 500Wheel diameter 2: 500Accuracy: 0
-            Expected Result: Input Field(1) The eventually displayed data value in the data area of the input field is replaced by the previously entered values (character or value corresponding to the activated data key - state ‘Selected IF/value of pressed key(s)’):Wheel diameter 1: 500Wheel diameter 2: 500Accuracy: 0EVC-140(2) Use the log file to verify that DMI sends packet EVC-140 with variable:-   MMI_M_SDU_WHEEL_SIZE_1 = 500-   MMI_M_SDU_WHEEL_SIZE_2 = 500-   MMI_M_WHEEL_SIZE_ERR = 0-   MMI_Q_MD_DATASET = 0 (Wheel diameter) 
+            Expected Result: Input Field(1) The eventually displayed data value in the data area of the input field is replaced by the previously entered values (character or value corresponding to the activated data key - state ‘Selected IF/value of pressed key(s)’):Wheel diameter 1: 500Wheel diameter 2: 500Accuracy: 0EVC-140(2) Use the log file to verify that DMI sends packet EVC-140 with variable:-   MMI_M_SDU_WHEEL_SIZE_1 = 500-   MMI_M_SDU_WHEEL_SIZE_2 = 500-   MMI_M_WHEEL_SIZE_ERR = 0-   MMI_Q_MD_DATASET = 0 (Wheel diameter)
             Test Step Comment: Requirements:(1) MMI_gen 11757 (partly:  MMI_gen 4714 (partly: MMI_gen 4679),  MMI_gen 12145 (partly: minimum inbound));(2) MMI_gen 11757 (partly:  MMI_gen 12147)
             */
-
+            
+            
             /*
             Test Step 3
             Action: Enter the outbound value with the numeric keypad and press the data input field (Accept) in the same screen, for the following fields below, Wheel diameter 1: 1501Wheel diameter 2: 499Accuracy: 33
-            Expected Result: Input Field(1) The ‘Enter’ button associated to the data area of the input field is coloured grey and its text is black (state ‘Selected IF/Data value’).(2) The ‘Enter’ button associated to the data area of the input field displays the previously entered value:Wheel diameter 1: 1501Wheel diameter 2: 499Accuracy: 33EVC-140(3) Use the log file to verify that DMI does not send out packet EVC-140 as the ‘Enter’ button is disabled. Echo Texts(4) The data part of the echo text displays “++++”.(5) The data part of the echo text is coloured red.
+            Expected Result: Input Field(1) The ‘Enter’ button associated to the data area of the input field is coloured grey and its text is black (state ‘Selected IF/Data value’).(2) The ‘Enter’ button associated to the data area of the input field displays the previously entered value:Wheel diameter 1: 1501Wheel diameter 2: 499Accuracy: 33EVC-140(3) Use the log file to verify that DMI does not send out packet EVC-140 as the ‘Enter’ button is disabled. Echo Texts(4) The data part of the echo text displays “++++”.(5) The data part of the echo text is coloured red
             Test Step Comment: Requirements:(1) MMI_gen 11757 (partly:  MMI_gen 4714 (partly: state 'Selected IF/data value'));(2) MMI_gen 11757 (partly:  MMI_gen 4714 (partly: previously entered (faulty) value), MMI_gen 12145 (partly: outbound)); MMI_gen 4699 (technical range);(3) MMI_gen 11757 (partly: MMI_gen 12148 (partly: not send packets) , MMI_gen 12147);(4) MMI_gen 11757 (partly:  MMI_gen 12148 (MMI_gen 4713 (partly: indication)));(5) MMI_gen 11757 (partly:  MMI_gen 12148 (MMI_gen 4713 (partly: red)));
             */
-
+            
+            
             /*
             Test Step 4
-            Action: Enter the maximum inbound values with the numeric keypad and press the data input field (Accept) in the same screen, for the following fields below, Wheel diameter 1: 1500Wheel diameter 2: 1500Accuracy: 32Then, press the ‘Yes’ button.
+            Action: Enter the maximum inbound values with the numeric keypad and press the data input field (Accept) in the same screen, for the following fields below, Wheel diameter 1: 1500Wheel diameter 2: 1500Accuracy: 32Then, press the ‘Yes’ button
             Expected Result: Input Field(1) The eventually displayed data value in the data area of the input field is replaced by the entered value (character or value corresponding to the activated data key - state ‘Selected IF/value of pressed key(s)’):Wheel diameter 1: 1500Wheel diameter 2: 1500Accuracy: 32EVC-140(2) Use the log file to verify that DMI sends packet EVC-140 with variable: -   MMI_M_SDU_WHEEL_SIZE_1 = 1500-   MMI_M_SDU_WHEEL_SIZE_2 = 1500-   MMI_M_WHEEL_SIZE_ERR = 32-   MMI_Q_MD_DATASET = 0 (Wheel diameter)
             Test Step Comment: Requirements:(1) MMI_gen 11757 (partly: MMI_gen 4714 (partly: MMI_gen 4679), MMI_gen 12145 (partly: maximum inbound));(2) MMI_gen 11757 (partly: MMI_gen 12147);
             */
-
+            
+            
             /*
             Test Step 5
-            Action: This step is to complete the process of ‘Wheel diameter’:- Press the ‘Yes’ button on the ‘Wheel diameter’ window.- Validate the data in the data validation window.
-            Expected Result: 1. After pressing the ‘Yes’ button, the data validation window (‘Validate Wheel diameter’) appears instead of the ‘Wheel diameter’ data entry window. The data part of echo text displays in white:Wheel diameter 1: 1500Wheel diameter 2: 1500Accuracy: 322. After the data area of the input field containing “Yes” is pressed, the data validation window disappears and returns to the parent window (‘Settings’ window) of ‘Wheel diameter’ window with enabled ‘Wheel diameter’ button.
+            Action: This step is to complete the process of ‘Wheel diameter’:- Press the ‘Yes’ button on the ‘Wheel diameter’ window.- Validate the data in the data validation window
+            Expected Result: 1. After pressing the ‘Yes’ button, the data validation window (‘Validate Wheel diameter’) appears instead of the ‘Wheel diameter’ data entry window. The data part of echo text displays in white:Wheel diameter 1: 1500Wheel diameter 2: 1500Accuracy: 322. After the data area of the input field containing “Yes” is pressed, the data validation window disappears and returns to the parent window (‘Settings’ window) of ‘Wheel diameter’ window with enabled ‘Wheel diameter’ button
             */
-
+            // Call generic Action Method
+            DmiActions.This_step_is_to_complete_the_process_of_Wheel_diameter_Press_the_Yes_button_on_the_Wheel_diameter_window_Validate_the_data_in_the_data_validation_window();
+            
+            
             /*
             Test Step 6
             Action: End of test
             Expected Result: 
             */
+            
 
             return GlobalTestResult;
         }

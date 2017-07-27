@@ -37,7 +37,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Configure atpcu configuration file as following (See the instruction in Appendix 2)M_InstalledLevels = 31NID_NTC_Installe_0 = 20 (TPWS)System is power on.
-
+            
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -55,39 +55,48 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
+            
             /*
             Test Step 1
-            Action: Activate cabin A. 
-            Expected Result: DMI displays the default window. The Driver ID window is displayed.
+            Action: Activate cabin A
+            Expected Result: DMI displays the default window. The Driver ID window is displayed
             */
-
+            // Call generic Action Method
+            DmiActions.Activate_cabin_A();
+            // Call generic Check Results Method
+            DmiExpectedResults.DMI_displays_the_default_window_The_Driver_ID_window_is_displayed();
+            
+            
             /*
             Test Step 2
-            Action: Select ‘TPWS (STM)’ level.
+            Action: Select ‘TPWS (STM)’ level
             Expected Result: Verify the following information:(1)    The confirmation announcement symbol of SN mode is displayed at sub-area C1 and the driver is required to acknowledge. (Please check MO20 symbol in ‘Comment’ column.)(2)     Use the log file to confirm that DMI sends out packet [MMI_DRIVER_ACTION (EVC-152)] with the value of variable MMI_M_DRIVER_ACTION refer to sequence below,a)   MMI_M_DRIVER_ACTION = 38 (Level NTC selected)
             Test Step Comment: (1) MMI_gen 1227 (Partly: STM);    (2) MMI_gen 11470 (partly: Bit #38);
             */
-
+            
+            
             /*
             Test Step 3
-            Action: Confirm SN mode.
+            Action: Confirm SN mode
             Expected Result: Verify the following information:(1)    DMI displays the symbol of TPWS STM level in sub-area C8.        The symbol of SN mode is displayed in sub-area B7. (see the example in ‘Comment’ column)(2)   Use the log file to confirm that DMI sends out packet [MMI_DRIVER_ACTION (EVC-152)] with the value of variable MMI_M_DRIVER_ACTION refer to sequence below,a)   MMI_M_DRIVER_ACTION = 10 (Ack level NTC)
             Test Step Comment: (1) MMI_gen 110 (partly: ETCS Mode, MO19); MMI_gen 1227 (partly: STM);  (2) MMI_gen 11470 (partly: Bit #10);
             */
-
+            
+            
             /*
             Test Step 4
             Action: Complete Start of Mission
             Expected Result: DMI displays in SN mode, level STM (TPWS)(1)     Use the log file to confirm that DMI receives packet EVC-30 with the value of following bit in variable MMI_Q_REQUEST_ENABLE_64,Bit #24 = 1 (End of data entry)(2)     Use the log file to confirm that DMI sends out packet [MMI_DRIVER_ACTION (EVC-152)] with the value of variable MMI_M_DRIVER_ACTION refer to sequence below,a) MMI_M_DRIVER_ACTION = 28 (Ack of SN mode)
             Test Step Comment: (1) MMI_gen 1088 (partly: Bit #24);  (2) MMI_gen 11470 (partly: Bit #28);
             */
-
+            
+            
             /*
             Test Step 5
             Action: End of test
             Expected Result: 
             */
+            
 
             return GlobalTestResult;
         }

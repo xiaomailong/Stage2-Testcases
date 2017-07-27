@@ -38,7 +38,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Set the following tags name in configuration file (See the instruction in Appendix 1)   SPEED_UNIT_TYPE = 1 (Yards)System is powered on.Cabin is activated.SoM is performed in SR mode, level 1.
-
+            
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -56,26 +56,31 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
+            
             /*
             Test Step 1
-            Action: Drive the train forward pass BG1 follow the permitted speed.
+            Action: Drive the train forward pass BG1 follow the permitted speed
             Expected Result: DMI displays in FS mode, level 1.Verify the following information,(1)    The distance to target bar is displayed distance from zero to a maximum of 1760yard according to the distance scale. Distances above 1760yard is limited to the distance scale’s upper boundary.(2)   Use the log file to confirm that the distance to target (bar and digital) is calculated from the received packet information EVC-7 and EVC-1 as follows,(EVC-1) MMI_O_BRAKETARGET - (EVC-7) OBU_TR_O_TRAINThe result of calculation is displayed in Yard unit.Example: The observation point of the distance target is 445. [EVC-1.MMI_O_BRAKETARGET = 1000080700] - [EVC-7.OBU_TR_O_TRAIN = 1000040036] = 40664 cm (406.64 m, 444.71 yard).       The distance target digital in sub-area A2 displays as 445 yard.The distance target bar in sub-area A3 displays over the indicator line No.3 (200m/352 yard)Note: Unit conversion1cm = 0.01m1m = 1.09361yard(3)   Use the log file to confirm that the movement authority is calculated from the received packet information EVC-7 and EVC-4 as follows,(EVC-4) MMI_O_MRSP[0] - (EVC-7) OBU_TR_O_TRAINThe result of calculation is displayed in Yard unit.Example: The observation point of the movement authority is 445. [EVC-4.MMI_O_MRSP[0]= 1000080700] – [EVC-7.OBU_TR_O_TRAIN = 1000040036] = 40664 cm (406.64 m, 444.71 yard). Note: Unit conversion1cm = 0.01m1m = 1.09361yard
             Test Step Comment: (1) MMI_gen 1261 (partly: yard);(2) MMI_gen 6616 (yard); MMI_gen 6773 (yard); MMI_gen 105 (partly: result of calculation);(3) MMI_gen 7110 (partly: yard);
             */
-
+            
+            
             /*
             Test Step 2
-            Action: Stop the train.
-            Expected Result: Verify the following information,Use the log file to check the different of the following received packets is less than zero(EVC-1) MMI_O_BRAKETARGET – (EVC-7) OBU_TR_O_TRAIN < 0(1)    If the result of calculation data is less than 0, The distance to target bar is not display in sub-area A3.
+            Action: Stop the train
+            Expected Result: Verify the following information,Use the log file to check the different of the following received packets is less than zero(EVC-1) MMI_O_BRAKETARGET – (EVC-7) OBU_TR_O_TRAIN < 0(1)    If the result of calculation data is less than 0, The distance to target bar is not display in sub-area A3
             Test Step Comment: (1) MMI_gen 1261 (partly: If not positive distance, distance to target bar not be displayed);
             */
-
+            // Call generic Action Method
+            DmiActions.Stop_the_train();
+            
+            
             /*
             Test Step 3
-            Action: End of test.
+            Action: End of test
             Expected Result: 
             */
+            
 
             return GlobalTestResult;
         }

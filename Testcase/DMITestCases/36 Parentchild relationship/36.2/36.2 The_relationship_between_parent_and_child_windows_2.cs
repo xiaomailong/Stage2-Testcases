@@ -37,7 +37,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Test System is power on.Cabin is activated.Driver ID is entered and Brake test is performed.Level 2 is selected and confirmed.
-
+            
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -55,70 +55,102 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
+            
             /*
             Test Step 1
-            Action: Perform the following procedure,Press and hold ‘Radio Network ID’ button at least 2 second.Release the pressed area.
-            Expected Result: DMI displays Radio Network ID window.
+            Action: Perform the following procedure,Press and hold ‘Radio Network ID’ button at least 2 second.Release the pressed area
+            Expected Result: DMI displays Radio Network ID window
             */
-
+            
+            
             /*
             Test Step 2
-            Action: Press ‘Close’ button.
-            Expected Result: DMI displays RBC contact window.
+            Action: Press ‘Close’ button
+            Expected Result: DMI displays RBC contact window
             Test Step Comment: MMI_gen 8785 (partly: Radio Network ID window);
             */
-
+            // Call generic Action Method
+            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            // Call generic Check Results Method
+            DmiExpectedResults.DMI_displays_RBC_contact_window();
+            
+            
             /*
             Test Step 3
-            Action: Press ‘Enter RBC data’ button.
-            Expected Result: DMI displays RBC data window.
+            Action: Press ‘Enter RBC data’ button
+            Expected Result: DMI displays RBC data window
             */
-
+            // Call generic Check Results Method
+            DmiExpectedResults.DMI_displays_RBC_data_window();
+            
+            
             /*
             Test Step 4
-            Action: Press ‘Close’ button.
-            Expected Result: DMI displays RBC contact window.
+            Action: Press ‘Close’ button
+            Expected Result: DMI displays RBC contact window
             Test Step Comment: MMI_gen 8785 (partly: RBC data window);
             */
-
+            // Call generic Action Method
+            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            // Call generic Check Results Method
+            DmiExpectedResults.DMI_displays_RBC_contact_window();
+            
+            
             /*
             Test Step 5
             Action: Perform the following procedure,Press ‘Enter RBC data’ button.Enter and confirm the following value,RBC ID = 6996969RBC Phone number = 0031840880100
-            Expected Result: DMI displays Main window.
+            Expected Result: DMI displays Main window
             */
-
+            // Call generic Check Results Method
+            DmiExpectedResults.DMI_displays_Main_window();
+            
+            
             /*
             Test Step 6
-            Action: Perform the following procedure,Press ‘Level’ button.Select and confirm Level 2.
-            Expected Result: DMI displays RBC contact window.
+            Action: Perform the following procedure,Press ‘Level’ button.Select and confirm Level 2
+            Expected Result: DMI displays RBC contact window
             */
-
+            // Call generic Check Results Method
+            DmiExpectedResults.DMI_displays_RBC_contact_window();
+            
+            
             /*
             Test Step 7
-            Action: Press ‘Close’ button.
-            Expected Result: DMI displays Main window.
+            Action: Press ‘Close’ button
+            Expected Result: DMI displays Main window
             Test Step Comment: MMI_gen 8785 (partly: RBC contact window);
             */
-
+            // Call generic Action Method
+            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            // Call generic Check Results Method
+            DmiExpectedResults.DMI_displays_Main_window();
+            
+            
             /*
             Test Step 8
-            Action: Perform the following procedure,Press ‘Close’ button.Press ‘Data view’ button.
-            Expected Result: DMI displays Data view window.
+            Action: Perform the following procedure,Press ‘Close’ button.Press ‘Data view’ button
+            Expected Result: DMI displays Data view window
             */
-
+            
+            
             /*
             Test Step 9
-            Action: Press ‘Close’ button.
-            Expected Result: DMI displays Default window.
+            Action: Press ‘Close’ button
+            Expected Result: DMI displays Default window
             Test Step Comment: MMI_gen 8785 (partly: Data view window);
             */
-
+            // Call generic Action Method
+            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            // Call generic Check Results Method
+            DmiExpectedResults.DMI_displays_Default_window();
+            
+            
             /*
             Test Step 10
             Action: End of test
             Expected Result: 
             */
+            
 
             return GlobalTestResult;
         }

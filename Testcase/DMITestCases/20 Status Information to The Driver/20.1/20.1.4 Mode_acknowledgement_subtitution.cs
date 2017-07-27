@@ -39,7 +39,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // System is power ON.SoM is perform in SR mode, Level 1.
-
+            
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -57,32 +57,38 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
+            
             /*
             Test Step 1
-            Action: Drive the train forward passing BG1.Then, press an area C1 for acknowledgement.
-            Expected Result: DMI displays LE07 symbol in sub-area C1.
+            Action: Drive the train forward passing BG1.Then, press an area C1 for acknowledgement
+            Expected Result: DMI displays LE07 symbol in sub-area C1
             */
-
+            
+            
             /*
             Test Step 2
-            Action: Continue to drive the train forward pass BG2.Then, stop the train.
-            Expected Result: DMI displays in FS mode, Level 1.Verify the following information,(1)   The symbol MO08 is displayed for On sight acknowledegement in sub-area C1.
+            Action: Continue to drive the train forward pass BG2.Then, stop the train
+            Expected Result: DMI displays in FS mode, Level 1.Verify the following information,(1)   The symbol MO08 is displayed for On sight acknowledegement in sub-area C1
             Test Step Comment: (1) MMI_gen 11234 (partly: subtituted);
             */
-
+            
+            
             /*
             Test Step 3
-            Action: Press an area C1 for acknowledgement.
-            Expected Result: Verify the following information,(1)   The symbol MO08 is disappear and DMI displays LE07 symbol instead.
+            Action: Press an area C1 for acknowledgement
+            Expected Result: Verify the following information,(1)   The symbol MO08 is disappear and DMI displays LE07 symbol instead
             Test Step Comment: (1) MMI_gen 11234 (partly: driver acknowledge);
             */
-
+            // Call generic Action Method
+            DmiActions.ShowInstruction(@"Press an area C1 for acknowledgement");
+            
+            
             /*
             Test Step 4
-            Action: End of test.
+            Action: End of test
             Expected Result: 
             */
+            
 
             return GlobalTestResult;
         }

@@ -37,7 +37,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // System is power on.
-
+            
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -55,66 +55,91 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
+            
             /*
             Test Step 1
-            Action: Activate cabin A. 
-            Expected Result: DMI displays the default window. The Driver ID window is displayed.
+            Action: Activate cabin A
+            Expected Result: DMI displays the default window. The Driver ID window is displayed
             */
-
+            // Call generic Action Method
+            DmiActions.Activate_cabin_A();
+            // Call generic Check Results Method
+            DmiExpectedResults.DMI_displays_the_default_window_The_Driver_ID_window_is_displayed();
+            
+            
             /*
             Test Step 2
-            Action: Driver performs SoM to SR mode, level 1.
-            Expected Result: DMI displays in SR mode, level 1.
+            Action: Driver performs SoM to SR mode, level 1
+            Expected Result: DMI displays in SR mode, level 1
             */
-
+            // Call generic Action Method
+            DmiActions.Driver_performs_SoM_to_SR_mode_level_1();
+            // Call generic Check Results Method
+            DmiExpectedResults.DMI_displays_in_SR_mode_level_1();
+            
+            
             /*
             Test Step 3
-            Action: Drive the train forward pass BG1.
-            Expected Result: DMI changes from SR mode to FS mode, Level 1 with PA in area D.Verify the following information,The symbol NA04 is displayed at sub-area D12.
+            Action: Drive the train forward pass BG1
+            Expected Result: DMI changes from SR mode to FS mode, Level 1 with PA in area D.Verify the following information,The symbol NA04 is displayed at sub-area D12
             Test Step Comment: (1) MMI_gen 7384 (partly: NA04);
             */
-
+            // Call generic Action Method
+            DmiActions.Drive_the_train_forward_pass_BG1();
+            
+            
             /*
             Test Step 4
-            Action: Presses ‘Scale Down’ button.
-            Expected Result: DMI remains displays in FS mode.Verify the following information,The PA’s distance range is changed to [0…8000].
+            Action: Presses ‘Scale Down’ button
+            Expected Result: DMI remains displays in FS mode.Verify the following information,The PA’s distance range is changed to [0…8000]
             Test Step Comment: (1) MMI_gen 7384 (partly: operable zoom PA);
             */
-
+            
+            
             /*
             Test Step 5
             Action: Presses ‘Scale Down’ button until the distance range is [0…32000]
-            Expected Result: Verify the following information,Verify that the Zoom PA function is switched the PA’s distance range to the next higher range and the visualisation of the PA are updated accordingly.When the distance range is [0…32000], the symbol NA06 is displayed in sub-area D12.
+            Expected Result: Verify the following information,Verify that the Zoom PA function is switched the PA’s distance range to the next higher range and the visualisation of the PA are updated accordingly.When the distance range is [0…32000], the symbol NA06 is displayed in sub-area D12
             Test Step Comment: (1) MMI_gen 7388;   (2) MMI_gen 7385;
             */
-
+            
+            
             /*
             Test Step 6
-            Action: Press ‘Scale Down’ button.
-            Expected Result: Verify the following information,Verify that The ‘Scale Down’ button of the operable Zoom PA function is disabled, visualisation of the PA are not change.
+            Action: Press ‘Scale Down’ button
+            Expected Result: Verify the following information,Verify that The ‘Scale Down’ button of the operable Zoom PA function is disabled, visualisation of the PA are not change
             Test Step Comment: (1) MMI_gen 7379 (partly: disable);  
             */
-
+            // Call generic Action Method
+            DmiActions.ShowInstruction(@"Press ‘Scale Down’ button");
+            
+            
             /*
             Test Step 7
-            Action: Press ‘Scale Up’ button.
-            Expected Result: Verify the following information,The PA’s distance range is changed to [0…16000] and the symbol NA04 is displayed in sub-area D12.
+            Action: Press ‘Scale Up’ button
+            Expected Result: Verify the following information,The PA’s distance range is changed to [0…16000] and the symbol NA04 is displayed in sub-area D12
             Test Step Comment: (1) MMI_gen 7379 (partly: opposite case); 
             */
-
+            // Call generic Action Method
+            DmiActions.ShowInstruction(@"Press ‘Scale Up’ button");
+            
+            
             /*
             Test Step 8
-            Action: Driver presses ‘Hide’ button at position top-right of planning area in sub-area D14.
-            Expected Result: Verify the following information,The Planning information area and the ‘Scale Down’ buttons are disappeared from DMI.  
+            Action: Driver presses ‘Hide’ button at position top-right of planning area in sub-area D14
+            Expected Result: Verify the following information,The Planning information area and the ‘Scale Down’ buttons are disappeared from DMI
             Test Step Comment: (1) MMI_gen 7373 (partly: no visible);
             */
-
+            // Call generic Action Method
+            DmiActions.Driver_presses_Hide_button_at_position_top_right_of_planning_area_in_sub_area_D14();
+            
+            
             /*
             Test Step 9
             Action: End of test
             Expected Result: 
             */
+            
 
             return GlobalTestResult;
         }

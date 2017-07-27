@@ -39,7 +39,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // System is power on.Cabin is activated.SoM is performed in SR mode, level 1.
-
+            
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -57,32 +57,38 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
+            
             /*
             Test Step 1
-            Action: Drive the train forward pass BG1.Then, press an acknowledgement of OS mode in sub-area C1.
-            Expected Result: DMI displays in OS mode, level 1.
+            Action: Drive the train forward pass BG1.Then, press an acknowledgement of OS mode in sub-area C1
+            Expected Result: DMI displays in OS mode, level 1
             */
-
+            // Call generic Check Results Method
+            DmiExpectedResults.DMI_displays_in_OS_mode_level_1();
+            
+            
             /*
             Test Step 2
-            Action: Driving the train with speed equal to 30 km/h.
+            Action: Driving the train with speed equal to 30 km/h
             Expected Result: When a Release speed exists, verify the following information,(1)   DMI displays the release speed digital in sub-area B6.(2)   Sound 'Sinfo' is played once.(3)   Use the log file to confirm that the appearance of the release speed digital is controlled by data packet from ETCS Onboard as follows,EVC-7: OBU_TR_M_MODE = 1 (OS Mode) EVC-1: MMI_V_RELEASE = 1111 (~40 km/h) EVC-1: MMI_M_WARNING != 0, 4, 8, 12 (Not CSM)
             Test Step Comment: (1) MMI_gen 6586 (partly: toggle on);(2) MMI_gen 6586 (partly: sound Sinfo); MMI_gen 9516 (partly: toggling function of release speed digital); MMI_gen 12025 (partly: toggling function of release speed digital);(3) MMI_gen 6586 (partly: Release speed changes); MMI_gen 6468 (partly: OS);
             */
-
+            
+            
             /*
             Test Step 3
             Action: Use the test script file 12_7_3_a.xml to send EVC-1 with,MMI_V_RELEASE = 11112
-            Expected Result: Verify the following information,(1)   Tthe release speed digital in sub-area B6 is removed.
+            Expected Result: Verify the following information,(1)   Tthe release speed digital in sub-area B6 is removed
             Test Step Comment: (1) MMI_gen 6467;
             */
-
+            
+            
             /*
             Test Step 4
             Action: End of test
             Expected Result: 
             */
+            
 
             return GlobalTestResult;
         }

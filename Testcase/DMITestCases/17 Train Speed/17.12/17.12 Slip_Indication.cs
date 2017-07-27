@@ -38,7 +38,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Set the following tags name in configuration file (See the instruction in Appendix 1)SLIP_SPEEDMETER = 1SLIDE_SPEEDMETER = 0Test system is powered onCabin is activeSoM is completed in SR mode, Level 1.
-
+            
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -56,52 +56,67 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
+            
             /*
             Test Step 1
-            Action: Drive the train forward. 
-            Expected Result: DMI changes from SR mode to FS mode. 
+            Action: Drive the train forward
+            Expected Result: DMI changes from SR mode to FS mode
             */
-
+            // Call generic Action Method
+            DmiActions.Drive_the_train_forward();
+            // Call generic Check Results Method
+            DmiExpectedResults.DMI_changes_from_SR_mode_to_FS_mode();
+            
+            
             /*
             Test Step 2
-            Action: Drive the train forward with speed = 140 km/h 
+            Action: Drive the train forward with speed = 140 km/h
             Expected Result: The speed pointer is displayed with speed =140.Verify the following information,Use the log file to confirm that DMI received packet EVC-1 with the following variables,MMI_M_SLIP = 0MMI_M_SLIDE = 0
             Test Step Comment: (1) MMI_gen 1694(partly: slip is not set), MMI_gen 1695(partly: slide is not set), MMI_gen 1692 (partly: ETC speed, slip);   
             */
-
+            // Call generic Action Method
+            DmiActions.Drive_the_train_forward_with_speed_140_kmh();
+            
+            
             /*
             Test Step 3
             Action: Use the test script file 12_12_a.xml to send EVC-1 with,MMI_M_SLIP = 1MMI_M_SLIDE = 0
-            Expected Result: Verify the following information,The Slip indication is displayed and shown as arrow pointing clockwise.The colour of Slip indication is displayed as same as speed digital colour. The Slip indication is displayed on speed hub of the speed pointer. DMI plays sound Sinfo once. 
+            Expected Result: Verify the following information,The Slip indication is displayed and shown as arrow pointing clockwise.The colour of Slip indication is displayed as same as speed digital colour. The Slip indication is displayed on speed hub of the speed pointer. DMI plays sound Sinfo once
             Test Step Comment: (1) MMI_gen 1079 (partly: slip, presented),   MMI_gen 1694(partly: slip is set), MMI_gen 1695(partly: slide is not set), MMI_gen 1692 (partly: ETC speed, slip);   (2) MMI_gen 7013(partly: slip);(3) MMI_gen 1696 (partly:slip);(4) MMI_gen 7012 (partly: slip); MMI_gen 9516 (partly: slip indication); MMI_gen 12025 (partly: slip indication);
             */
-
+            
+            
             /*
             Test Step 4
             Action: Use the test script file 12_12_b.xml to send EVC-1 with,MMI_M_SLIP = 0MMI_M_SLIDE =1
-            Expected Result: Verify the following information,The ‘Slip/Slide’ indication is not displayed on the speed hub.
+            Expected Result: Verify the following information,The ‘Slip/Slide’ indication is not displayed on the speed hub
             Test Step Comment: (1) MMI_gen 1079 (partly: slip, presented),   MMI_gen 1694(partly: slip is not set), MMI_gen 1695(partly: slide is set), MMI_gen 1692 (partly: ETC speed);   
             */
-
+            
+            
             /*
             Test Step 5
             Action: Use the test script file 12_12_c.xml to send EVC-1 with,MMI_M_SLIP = 1MMI_M_SLIDE =1
-            Expected Result: Verify the following information,The ‘Slip’ indication is displayed on the speed hub as a clockwise arrow.
+            Expected Result: Verify the following information,The ‘Slip’ indication is displayed on the speed hub as a clockwise arrow
             Test Step Comment: (1) MMI_gen 1079 (partly: slip, presented),   MMI_gen 1694(partly: slip is set), MMI_gen 1695(partly: slide is set), MMI_gen 1693, MMI_gen 1692 (partly: ETC speed, slip);
             */
-
+            
+            
             /*
             Test Step 6
             Action: Stop the train
-            Expected Result: Train is stand still.
+            Expected Result: Train is stand still
             */
-
+            // Call generic Action Method
+            DmiActions.Stop_the_train();
+            
+            
             /*
             Test Step 7
             Action: End of test
             Expected Result: 
             */
+            
 
             return GlobalTestResult;
         }

@@ -37,7 +37,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // - Test system is powered on- Cabin is active- Complete the SoM in SR mode, level 1- Force the train into FS mode by moving the train forward passing BG1
-
+            
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -55,46 +55,54 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
+            
             /*
             Test Step 1
-            Action: Drive the train forward passing BG2.
+            Action: Drive the train forward passing BG2
             Expected Result: 
             */
-
+            // Call generic Action Method
+            DmiActions.Drive_the_train_forward_passing_BG2();
+            
+            
             /*
             Test Step 2
-            Action: Force the train into RV mode by stopping the train.
-            Expected Result: Verify the following information,Use the log file to confirm that DMI received the EVC-8 with [MMI_DRIVER_MESSAGE (EVC-8).MMI_Q_TEXT] = 286 in order to display a symbol ‘ST06’ in sub-area C6.
+            Action: Force the train into RV mode by stopping the train
+            Expected Result: Verify the following information,Use the log file to confirm that DMI received the EVC-8 with [MMI_DRIVER_MESSAGE (EVC-8).MMI_Q_TEXT] = 286 in order to display a symbol ‘ST06’ in sub-area C6
             Test Step Comment: (1) MMI_gen 7485;
             */
-
+            
+            
             /*
             Test Step 3
-            Action: Change the train direction to reverse.
-            Expected Result: Verify the following information,The acknowledgement for Reversing symbol (MO15) is displayed in area C1.Use the log file to confirm that DMI received the EVC-8 with [MMI_DRIVER_MESSAGE (EVC-8).MMI_Q_TEXT] = 262 in order to display the acknowledgement for Reversing symbol.
+            Action: Change the train direction to reverse
+            Expected Result: Verify the following information,The acknowledgement for Reversing symbol (MO15) is displayed in area C1.Use the log file to confirm that DMI received the EVC-8 with [MMI_DRIVER_MESSAGE (EVC-8).MMI_Q_TEXT] = 262 in order to display the acknowledgement for Reversing symbol
             Test Step Comment: (1) MMI_gen 1227 (partly:MO15);                   (2) MMI_gen 11233 (partly: MO15);
             */
-
+            
+            
             /*
             Test Step 4
-            Action: Press the symbol ‘MO15’ in area C1.
-            Expected Result: Verify the following information,The Reversing symbol (M14) is displayed in area B7.Use the log file to confirm that DMI received the EVC-7 with [MMI_ETCS_MISC_OUT_SIGNALS.OBU_TR_M_MODE] = 14 in order to display the Reversing symbol.
+            Action: Press the symbol ‘MO15’ in area C1
+            Expected Result: Verify the following information,The Reversing symbol (M14) is displayed in area B7.Use the log file to confirm that DMI received the EVC-7 with [MMI_ETCS_MISC_OUT_SIGNALS.OBU_TR_M_MODE] = 14 in order to display the Reversing symbol
             Test Step Comment: (1) MMI_gen 110 (partly:MO14);                   (2) MMI_gen 11084      (partly: Displaying the current ETCS mode);
             */
-
+            
+            
             /*
             Test Step 5
-            Action: Force the train into SL mode by the steps below:Deactivate the CabinForce the simulation to ‘Sleeping’.
-            Expected Result: Verify the following information,Use the log file to confirm that DMI received the EVC-7 with [MMI_ETCS_MISC_OUT_SIGNALS.OBU_TR_M_MODE] = 5.No symbol display in area B7.All ETCS related information to the driver is removed and the text “Driver’s cab not active” is displayed in area E5.
+            Action: Force the train into SL mode by the steps below:Deactivate the CabinForce the simulation to ‘Sleeping’
+            Expected Result: Verify the following information,Use the log file to confirm that DMI received the EVC-7 with [MMI_ETCS_MISC_OUT_SIGNALS.OBU_TR_M_MODE] = 5.No symbol display in area B7.All ETCS related information to the driver is removed and the text “Driver’s cab not active” is displayed in area E5
             Test Step Comment: (1) MMI_gen 11084      (partly: Displaying the current ETCS mode);        (2) MMI_gen 11084 (partly: ETCS mode SL);                           (3) MMI_gen 11278;
             */
-
+            
+            
             /*
             Test Step 6
-            Action: End of test.
+            Action: End of test
             Expected Result: 
             */
+            
 
             return GlobalTestResult;
         }

@@ -38,7 +38,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // System is power on.Cabin is activated.SoM is performed until Level 1 is selected and confirmed.Main window is closed.
-
+            
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -56,33 +56,37 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
+            
             /*
             Test Step 1
             Action: Use the test script file 6_6_a.xml to send EVC-8 with,MMI_Q_TEXT = 260MMI_Q_TEXT_CRITERIA = 2MMI_I_TEXT = 1
-            Expected Result: Verify the following information,(1)    DMI displays ST01 symbol with yellow flashing frame in sub-area C9. 
+            Expected Result: Verify the following information,(1)    DMI displays ST01 symbol with yellow flashing frame in sub-area C9
             Test Step Comment: (1) MMI_gen 4504 (partly: symbols);
             */
-
+            
+            
             /*
             Test Step 2
             Action: Press an acknowledgement on sub-area C9.Then, use the test script file 6_6_b.xml to send EVC-8 with,MMI_Q_TEXT = 298MMI_Q_TEXT_CRITERIA = 2MMI_I_TEXT = 1
-            Expected Result: Verify the following information,(1)    DMI displays DR02 symbol with yes button in area D.
+            Expected Result: Verify the following information,(1)    DMI displays DR02 symbol with yes button in area D
             Test Step Comment: (1) MMI_gen 4504 (partly: TAF);
             */
-
+            
+            
             /*
             Test Step 3
             Action: Press ‘Yes’ button on area D.Then, use the test script file 6_6_c.xml to send EVC-8 with,MMI_Q_TEXT = 263MMI_Q_TEXT_CRITERIA = 2MMI_I_TEXT = 1
-            Expected Result: Verify the following information,(1)    DMI displays MO10 symbol with yellow flashing frame in sub-area C1.
+            Expected Result: Verify the following information,(1)    DMI displays MO10 symbol with yellow flashing frame in sub-area C1
             Test Step Comment: (1) MMI_gen 4504 (partly: symbols);
             */
-
+            
+            
             /*
             Test Step 4
             Action: End of test
             Expected Result: 
             */
+            
 
             return GlobalTestResult;
         }

@@ -43,7 +43,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Power off test system Set the following tags name in configuration file (See the instruction in Appendix 1)CLOCK_TIME_SOURCE = 0 (by Deafult)
-
+            
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -61,52 +61,71 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
+            
             /*
             Test Step 1
             Action: Power on the system and activate the cabin
             Expected Result: DMI displays SB mode
             */
-
+            // Call generic Action Method
+            DmiActions.Power_on_the_system_and_activate_the_cabin();
+            // Call generic Check Results Method
+            DmiExpectedResults.DMI_displays_SB_mode();
+            
+            
             /*
             Test Step 2
             Action: Perform SoM to L1, SR mode
             Expected Result: Mode changes to SR mode , L1
             */
-
+            // Call generic Action Method
+            DmiActions.Perform_SoM_to_L1_SR_mode();
+            // Call generic Check Results Method
+            DmiExpectedResults.Mode_changes_to_SR_mode_L1();
+            
+            
             /*
             Test Step 3
             Action: Use the test script file 29_2_a.xml to send EVC-3 with,MMI_T_UTC = 946728000(2000-01-01,12:00:00)MMI_T_Zone_OFFSET = 4Note: The resolution of MMI_T_Zone_OFFSET is 0.25 hour
-            Expected Result: Verify the following information:DMI displays the updated time as 13:00:00.
+            Expected Result: Verify the following information:DMI displays the updated time as 13:00:00
             Test Step Comment: MMI_gen 2429; MMI_gen 2421 (partly: ETC to ETCS-MMI);
             */
-
+            
+            
             /*
             Test Step 4
-            Action: Select ‘Settings’ button and press ‘Set clock’ button.
+            Action: Select ‘Settings’ button and press ‘Set clock’ button
             Expected Result: Verify the following information:The set clock window is openedThe DMI (yyyy-mm-dd) date is 2000-01-01
             Test Step Comment: MMI_gen 2429; 
             */
-
+            // Call generic Action Method
+            DmiActions.Select_Settings_button_and_press_Set_clock_button();
+            
+            
             /*
             Test Step 5
-            Action: Use the test script file 29_2_b.xml to send EVC-3 with,MMI_T_UTC = 946771200(2000-01-02,12:00:00)MMI_T_Zone_OFFSET = 252Note: The resolution of MMI_T_Zone_OFFSET is 0.25 hour, set the overflow value for negative offset.
-            Expected Result: Verify the following information:DMI displays the updated time as 11:00:00.
+            Action: Use the test script file 29_2_b.xml to send EVC-3 with,MMI_T_UTC = 946771200(2000-01-02,12:00:00)MMI_T_Zone_OFFSET = 252Note: The resolution of MMI_T_Zone_OFFSET is 0.25 hour, set the overflow value for negative offset
+            Expected Result: Verify the following information:DMI displays the updated time as 11:00:00
             Test Step Comment: MMI_gen 2429; MMI_gen 2421 (partly: ETC to ETCS-MMI);
             */
-
+            
+            
             /*
             Test Step 6
-            Action: Select ‘Settings’ button and press ‘Set clock’ button.
+            Action: Select ‘Settings’ button and press ‘Set clock’ button
             Expected Result: Verify the following information:The set clock window is openedThe DMI date (yyyy-mm-dd) is 2000-01-02
             Test Step Comment: MMI_gen 2429; 
             */
-
+            // Call generic Action Method
+            DmiActions.Select_Settings_button_and_press_Set_clock_button();
+            
+            
             /*
             Test Step 7
-            Action: End of test.
+            Action: End of test
             Expected Result: 
             */
+            
 
             return GlobalTestResult;
         }

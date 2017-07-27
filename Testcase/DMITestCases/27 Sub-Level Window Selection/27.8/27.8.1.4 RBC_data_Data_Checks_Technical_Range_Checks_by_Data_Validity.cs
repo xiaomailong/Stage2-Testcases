@@ -40,7 +40,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // 1. The test environment is powered on.2. The cabin is activated.3. The ‘Start of Mission’ procedure is performed until level 2 is selected.4. RBC Data window is opened.
-
+            
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -58,64 +58,85 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
+            
             /*
             Test Step 1
             Action: Enter valid values with the numeric keypad and press the data input field (Accept) in the same screen.RBC ID6996969RBC phone number0031840880100
-            Expected Result: The ‘Yes’ button is enabled.
+            Expected Result: The ‘Yes’ button is enabled
             */
-
+            // Call generic Check Results Method
+            DmiExpectedResults.The_Yes_button_is_enabled();
+            
+            
             /*
             Test Step 2
-            Action: Enter “1” (invalid value) for RBC ID with the numeric keypad and press the data input field (Accept) in the same screen.
-            Expected Result: EVC-22(1) Use the log file to verify that DMI receives packet EVC-22 with variable MMI_M_BUTTONS = 255 (no button) and the 'Yes' button is disabled.
+            Action: Enter “1” (invalid value) for RBC ID with the numeric keypad and press the data input field (Accept) in the same screen
+            Expected Result: EVC-22(1) Use the log file to verify that DMI receives packet EVC-22 with variable MMI_M_BUTTONS = 255 (no button) and the 'Yes' button is disabled
             Test Step Comment: Requirements:(1) MMI_gen 9467;
             */
-
+            // Call generic Check Results Method
+            DmiExpectedResults.EVC_221_Use_the_log_file_to_verify_that_DMI_receives_packet_EVC_22_with_variable_MMI_M_BUTTONS_255_no_button_and_the_Yes_button_is_disabled();
+            
+            
             /*
             Test Step 3
-            Action: Enter “6996969” (valid value) for RBC ID with the numeric keypad and press the data input field (Accept) in the same screen.
-            Expected Result: The ‘Yes’ button is enabled.
+            Action: Enter “6996969” (valid value) for RBC ID with the numeric keypad and press the data input field (Accept) in the same screen
+            Expected Result: The ‘Yes’ button is enabled
             */
-
+            // Call generic Check Results Method
+            DmiExpectedResults.The_Yes_button_is_enabled();
+            
+            
             /*
             Test Step 4
-            Action: Enter “1” (invalid value) for RBC phone number with the numeric keypad and press the data input field (Accept) in the same screen.
-            Expected Result: EVC-22(1) Use the log file to verify that DMI receives packet EVC-22 with variable MMI_M_BUTTONS = 255 (no button) and the 'Yes' button is disabled.
+            Action: Enter “1” (invalid value) for RBC phone number with the numeric keypad and press the data input field (Accept) in the same screen
+            Expected Result: EVC-22(1) Use the log file to verify that DMI receives packet EVC-22 with variable MMI_M_BUTTONS = 255 (no button) and the 'Yes' button is disabled
             Test Step Comment: Requirements:(1) MMI_gen 9467;
             */
-
+            // Call generic Check Results Method
+            DmiExpectedResults.EVC_221_Use_the_log_file_to_verify_that_DMI_receives_packet_EVC_22_with_variable_MMI_M_BUTTONS_255_no_button_and_the_Yes_button_is_disabled();
+            
+            
             /*
             Test Step 5
-            Action: Enter “0031840880100” (valid value) for RBC phone number with the numeric keypad and press the data input field (Accept) in the same screen.
-            Expected Result: The ‘Yes’ button is enabled.
+            Action: Enter “0031840880100” (valid value) for RBC phone number with the numeric keypad and press the data input field (Accept) in the same screen
+            Expected Result: The ‘Yes’ button is enabled
             */
-
+            // Call generic Check Results Method
+            DmiExpectedResults.The_Yes_button_is_enabled();
+            
+            
             /*
             Test Step 6
-            Action: This step is to complete the process of ‘RBC data’:- Press the ‘Yes’ button on the ‘RBC data’ window.
-            Expected Result: The data entry window disappears.
+            Action: This step is to complete the process of ‘RBC data’:- Press the ‘Yes’ button on the ‘RBC data’ window
+            Expected Result: The data entry window disappears
             */
-
+            
+            
             /*
             Test Step 7
             Action: Follow test step 2 to enable the ‘Yes’ button
-            Expected Result: The ‘Yes’ button is enabled.
+            Expected Result: The ‘Yes’ button is enabled
             Test Step Comment: Note: This is a temporary approach for non-support test environment on the data checks.
             */
-
+            // Call generic Check Results Method
+            DmiExpectedResults.The_Yes_button_is_enabled();
+            
+            
             /*
             Test Step 8
             Action: Send the data of ‘Technical Range Check’ failure to ETCS-DMI by 22_8_1_4_a.xmlEVC-22MMI_M_BUTTONS = 255 (No button)
-            Expected Result: EVC-22(1) The 'Yes' button is disabled.
+            Expected Result: EVC-22(1) The 'Yes' button is disabled
             Test Step Comment: Requirements:MMI_gen 9467;Note: This is a temporary approach for non-support test environment on the data checks.
             */
-
+            
+            
             /*
             Test Step 9
             Action: End of test
             Expected Result: 
             */
+            
 
             return GlobalTestResult;
         }

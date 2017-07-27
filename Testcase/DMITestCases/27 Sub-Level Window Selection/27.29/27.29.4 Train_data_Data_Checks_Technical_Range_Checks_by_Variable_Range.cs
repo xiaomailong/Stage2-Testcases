@@ -41,7 +41,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // 1. The test environment is powered on.2. ATP-CU is verified that the train is set as ‘Flexible’.TR_OBU_TrainType = 23. The cabin is activated.4. The ‘Start of Mission’ procedure is performed until the ‘Staff Resonsible’ mode, level 1, is confirmed.5. The ‘Main’ window is opened.
-
+            
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -59,59 +59,71 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
+            
             /*
             Test Step 1
-            Action: Open the ‘Train data’ data entry window from the Main menu.
-            Expected Result: The ‘Train data’ data entry window appears on ETCS-DMI screen instead of the ‘Main’ menu window.
+            Action: Open the ‘Train data’ data entry window from the Main menu
+            Expected Result: The ‘Train data’ data entry window appears on ETCS-DMI screen instead of the ‘Main’ menu window
             */
-
+            // Call generic Action Method
+            DmiActions.Open_the_Train_data_data_entry_window_from_the_Main_menu();
+            
+            
             /*
             Test Step 2
-            Action: Enter “0” (minimum inbound) for Train Length with the numeric keypad and press the data input field (Accept) in the same screen.
+            Action: Enter “0” (minimum inbound) for Train Length with the numeric keypad and press the data input field (Accept) in the same screen
             Expected Result: Input Field(1) The eventually displayed data value in the data area of the input field is replaced by “0” (character or value corresponding to the activated data key - state ‘Selected IF/value of pressed key(s)’).EVC-107(2) Use the log file to verify that DMI sends packet EVC-107 with variable:MMI_L_TRAIN = 0 MMI_NID_DATA = 8 (Length)
             Test Step Comment: Requirements:(1) MMI_gen 8089 (partly: reactions to succeed, MMI_gen 4714 (partly: MMI_gen 4679), MMI_gen 9286 (partly: state switched), MMI_gen 12145 (partly: minimum inbound)), MMI_gen 9413 (partly: state switched);(2) MMI_gen 8089 (partly: reactions to succeed, MMI_gen 12147, MMI_gen 9286 (partly: enabled)), MMI_gen 9413 (partly: enabled);
             */
-
+            
+            
             /*
             Test Step 3
-            Action: Enter “4096” (outbound) for Train Length with the numeric keypad and press the data input field (Accept) in the same screen.
-            Expected Result: Input Field(1) The ‘Enter’ button associated to the data area of the input field is coloured grey and its text is black (state ‘Selected IF/Data value’).(2) The ‘Enter’ button associated to the data area of the input field displays “4096” (previously entered value).EVC-107(3) Use the log file to verify that DMI does not send out packet EVC-107 as the ‘Enter’ button is disabled. Echo Texts(4) The data part of the echo text displays “++++”.(5) The data part of the echo text is coloured red.
+            Action: Enter “4096” (outbound) for Train Length with the numeric keypad and press the data input field (Accept) in the same screen
+            Expected Result: Input Field(1) The ‘Enter’ button associated to the data area of the input field is coloured grey and its text is black (state ‘Selected IF/Data value’).(2) The ‘Enter’ button associated to the data area of the input field displays “4096” (previously entered value).EVC-107(3) Use the log file to verify that DMI does not send out packet EVC-107 as the ‘Enter’ button is disabled. Echo Texts(4) The data part of the echo text displays “++++”.(5) The data part of the echo text is coloured red
             Test Step Comment: Requirements:(1) MMI_gen 8089 (partly: reactions to failing, MMI_gen 4714 (partly: state 'Selected IF/data value'));(2) MMI_gen 8089 (partly: reactions to failing, MMI_gen 4714 (partly: previously entered (faulty) value), MMI_gen 12145 (partly: outbound)); MMI_gen 4699 (technical range);(3) MMI_gen 8089 (partly: MMI_gen 9286 (partly: button ‘Enter’, disabled), MMI_gen 12148 (partly: not send packets), MMI_gen 12147), MMI_gen 9413 (partly: disabled);(4) MMI_gen 8089 (partly: reactions to failing, MMI_gen 12148 (MMI_gen 4713 (partly: indication)));(5) MMI_gen 9404 (partly: MMI_gen 12148 (MMI_gen 4713 (partly: red))), MMI_gen 8089 (partly: reactions to failing, MMI_gen 12148 (MMI_gen 4713 (partly: red)));
             */
-
+            
+            
             /*
             Test Step 4
-            Action: Enter “4095” (maximum inbound) for Train Length with the numeric keypad and press the data input field (Accept) in the same screen.
+            Action: Enter “4095” (maximum inbound) for Train Length with the numeric keypad and press the data input field (Accept) in the same screen
             Expected Result: Input Field(1) The eventually displayed data value in the data area of the input field is replaced by “4095” (character or value corresponding to the activated data key - state ‘Selected IF/value of pressed key(s)’).EVC-107(2) Use the log file to verify that DMI sends packet EVC-107 with variable:MMI_L_TRAIN = 4095 MMI_NID_DATA = 8 (Length)
             Test Step Comment: Requirements:(1) MMI_gen 8089 (partly: MMI_gen 4714 (partly: MMI_gen 4679), MMI_gen 9286 (partly: state switched), MMI_gen 12145 (partly: maximum inbound)), MMI_gen 9413 (partly: state switched); (2) MMI_gen 8089 (partly: reactions to succeed, MMI_gen 12147, MMI_gen 9286 (partly: enabled)), MMI_gen 9413 (partly: enabled);
             */
-
+            
+            
             /*
             Test Step 5
             Action: Follow step 2 – step 4 for Brake Percentage with:Minimum inbound = 10Outbound = 251Maximum inbound = 250
             Expected Result: See step 2 – step 4EVC-107(1) Use the log file to confirm that DMI sends packet EVC-107 with variable:MMI_M_BRAKE_PERC = See Action MMI_NID_DATA = 9 (Brake Percentage)
             Test Step Comment: See step 2 – step 4
             */
-
+            
+            
             /*
             Test Step 6
             Action: Follow step 2 – step 4 for Max speed with:Minimum inbound = 0Outbound = 601Maximum inbound = 600
             Expected Result: See step 2 – step 4EVC-107(1) Use the log file to confirm that DMI sends packet EVC-107 with variable:MMI_V_MAXTRAIN = See Action MMI_NID_DATA = 10 (Maximum speed)
             Test Step Comment: See step 2 – step 4
             */
-
+            
+            
             /*
             Test Step 7
-            Action: This step is to complete the process of ‘Train data’:- Press the ‘Yes’ button on the ‘Train data’ window.- Validate the data in the data validation window.
-            Expected Result: 1. After pressing the ‘Yes’ button, the data validation window (‘Validate Train data’) appears instead of the ‘Train data’ data entry window. The data part of echo text displays “600” in white.2. After the data area of the input field containing “Yes” is pressed, the data validation window disappears and returns to the parent window (‘Settings’ window) of ‘Train data’ window with enabled ‘Train data’ button.
+            Action: This step is to complete the process of ‘Train data’:- Press the ‘Yes’ button on the ‘Train data’ window.- Validate the data in the data validation window
+            Expected Result: 1. After pressing the ‘Yes’ button, the data validation window (‘Validate Train data’) appears instead of the ‘Train data’ data entry window. The data part of echo text displays “600” in white.2. After the data area of the input field containing “Yes” is pressed, the data validation window disappears and returns to the parent window (‘Settings’ window) of ‘Train data’ window with enabled ‘Train data’ button
             */
-
+            // Call generic Action Method
+            DmiActions.This_step_is_to_complete_the_process_of_Train_data_Press_the_Yes_button_on_the_Train_data_window_Validate_the_data_in_the_data_validation_window();
+            
+            
             /*
             Test Step 8
             Action: End of test
             Expected Result: 
             */
+            
 
             return GlobalTestResult;
         }

@@ -38,7 +38,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Set the following tags name in configuration file (See the instruction in Appendix 1)HIDE_PA_SR_MODE = 1System is power ON
-
+            
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -56,25 +56,34 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
+            
             /*
             Test Step 1
-            Action: Activate cabin A. 
-            Expected Result: DMI displays Driver ID window.
+            Action: Activate cabin A
+            Expected Result: DMI displays Driver ID window
             */
-
+            // Call generic Action Method
+            DmiActions.Activate_cabin_A();
+            // Call generic Check Results Method
+            DmiExpectedResults.DMI_displays_Driver_ID_window();
+            
+            
             /*
             Test Step 2
-            Action: Perform SoM in SR mode, Level 1.
+            Action: Perform SoM in SR mode, Level 1
             Expected Result: DMI displays in SR mode, level 1.Verify that there are only the following objects are displayed in PA,PA Distance Scale (0-4000m)PASP with PASP-dark-colour
             Test Step Comment: MMI_gen 7109;
             */
-
+            // Call generic Action Method
+            DmiActions.Perform_SoM_in_SR_mode_Level_1();
+            
+            
             /*
             Test Step 3
             Action: End of test
             Expected Result: 
             */
+            
 
             return GlobalTestResult;
         }

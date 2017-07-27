@@ -39,7 +39,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // System is power on.
-
+            
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -57,25 +57,32 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
+            
             /*
             Test Step 1
-            Action: Activate cabin A. Driver performs SoM in SB mode, level 1.
-            Expected Result: DMI displays in SB mode, Level 1. 
+            Action: Activate cabin A. Driver performs SoM in SB mode, level 1
+            Expected Result: DMI displays in SB mode, Level 1
             */
-
+            // Call generic Check Results Method
+            DmiExpectedResults.DMI_displays_in_SB_mode_Level_1();
+            
+            
             /*
             Test Step 2
-            Action: Press ‘Settings’ button.
-            Expected Result: The Settings window is displayed all sub-menus.Verify that the button for subcategory National is disabled.
+            Action: Press ‘Settings’ button
+            Expected Result: The Settings window is displayed all sub-menus.Verify that the button for subcategory National is disabled
             Test Step Comment: MMI_gen 1547 (partly);
             */
-
+            // Call generic Action Method
+            DmiActions.ShowInstruction(@"Press ‘Settings’ button");
+            
+            
             /*
             Test Step 3
             Action: End of test
             Expected Result: 
             */
+            
 
             return GlobalTestResult;
         }

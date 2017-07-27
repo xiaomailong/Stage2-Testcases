@@ -39,7 +39,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // The system is powered ON
-
+            
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -57,101 +57,139 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
+            
             /*
             Test Step 1
             Action: Activate cabin and perform start of mission to PLZB STM
             Expected Result: DMI displays in PLZB STM mode
             */
-
+            // Call generic Check Results Method
+            DmiExpectedResults.DMI_displays_in_PLZB_STM_mode();
+            
+            
             /*
             Test Step 2
             Action: Select  Main menu
-            Expected Result: DMI displays Main window The Close buton is enable 
+            Expected Result: DMI displays Main window The Close buton is enable
             Test Step Comment: MMI_gen 1319 (partly:bullet1 and bullet2);
             */
-
+            
+            
             /*
             Test Step 3
-            Action: Press Close button 
+            Action: Press Close button
             Expected Result: DMI displays the default window
             Test Step Comment: MMI_gen 1319 (partly:bullet3);
             */
-
+            // Call generic Action Method
+            DmiActions.ShowInstruction(@"Press Close button");
+            // Call generic Check Results Method
+            DmiExpectedResults.DMI_displays_the_default_window();
+            
+            
             /*
             Test Step 4
             Action: Select EOA menu
-            Expected Result: DMI displays EOA window The Close buton is enable 
+            Expected Result: DMI displays EOA window The Close buton is enable
             Test Step Comment: MMI_gen 1319 (partly:bullet1 and bullet2);
             */
-
+            
+            
             /*
             Test Step 5
-            Action: Press Close button 
+            Action: Press Close button
             Expected Result: DMI displays the default window
             Test Step Comment: MMI_gen 1319 (partly:bullet3);
             */
-
+            // Call generic Action Method
+            DmiActions.ShowInstruction(@"Press Close button");
+            // Call generic Check Results Method
+            DmiExpectedResults.DMI_displays_the_default_window();
+            
+            
             /*
             Test Step 6
             Action: Select Data view menu
-            Expected Result: DMI displays Data view window The Close buton is enable 
+            Expected Result: DMI displays Data view window The Close buton is enable
             Test Step Comment: MMI_gen 1319 (partly:bullet1 and bullet2);
             */
-
+            
+            
             /*
             Test Step 7
-            Action: Press Close button 
+            Action: Press Close button
             Expected Result: DMI displays the default window
             Test Step Comment: MMI_gen 1319 (partly:bullet3);
             */
-
+            // Call generic Action Method
+            DmiActions.ShowInstruction(@"Press Close button");
+            // Call generic Check Results Method
+            DmiExpectedResults.DMI_displays_the_default_window();
+            
+            
             /*
             Test Step 8
             Action: Select Special menu
-            Expected Result: DMI displays Special window The Close buton is enable 
+            Expected Result: DMI displays Special window The Close buton is enable
             Test Step Comment: MMI_gen 1319 (partly:bullet1 and bullet2);
             */
-
+            
+            
             /*
             Test Step 9
-            Action: Press Close button 
+            Action: Press Close button
             Expected Result: DMI displays the default window
             */
-
+            // Call generic Action Method
+            DmiActions.ShowInstruction(@"Press Close button");
+            // Call generic Check Results Method
+            DmiExpectedResults.DMI_displays_the_default_window();
+            
+            
             /*
             Test Step 10
             Action: Select Settings menu
-            Expected Result: DMI displays Settings window The Close buton is enable 
+            Expected Result: DMI displays Settings window The Close buton is enable
             Test Step Comment: MMI_gen 1319 (partly:bullet1 and bullet2);
             */
-
+            
+            
             /*
             Test Step 11
             Action: Press National button
-            Expected Result: DMI displays National sub-window The Close buton is enable 
+            Expected Result: DMI displays National sub-window The Close buton is enable
             Test Step Comment: MMI_gen 1319 (partly:bullet1 and bullet2);
             */
-
+            
+            
             /*
             Test Step 12
-            Action: Press Close button 
+            Action: Press Close button
             Expected Result: DMI displays the setting window
             Test Step Comment: MMI_gen 1319 (partly:bullet1 and bullet2);
             */
-
+            // Call generic Action Method
+            DmiActions.ShowInstruction(@"Press Close button");
+            
+            
             /*
             Test Step 13
             Action: Press Close button
             Expected Result: DMI displays the default window
             Test Step Comment: MMI_gen 1319 (partly:bullet3);
             */
-
+            // Call generic Action Method
+            DmiActions.ShowInstruction(@"Press Close button");
+            // Call generic Check Results Method
+            DmiExpectedResults.DMI_displays_the_default_window();
+            
+            
             /*
             Test Step 14
             Action: End of test
             Expected Result: 
             */
+            
 
             return GlobalTestResult;
         }

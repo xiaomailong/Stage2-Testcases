@@ -37,7 +37,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Set the following tags name in configuration file (See the instruction in Appendix 1)HIDE_PA_LEVEL_1 = 0 (Not show PA in the Level 1)HIDE_PA_OS_MODE = 0 (PA will not show in OS mode)HIDE_PA_FUNCTION = 0 (‘ON’ state)System is power ON.
-
+            
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -55,50 +55,73 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
+            
             /*
             Test Step 1
-            Action: Activate Cabin A. 
-            Expected Result: DMI displays Driver ID window.
+            Action: Activate Cabin A
+            Expected Result: DMI displays Driver ID window
             */
-
+            // Call generic Action Method
+            DmiActions.Activate_Cabin_A();
+            // Call generic Check Results Method
+            DmiExpectedResults.DMI_displays_Driver_ID_window();
+            
+            
             /*
             Test Step 2
-            Action: Driver performs SoM to SR mode, level 1.
-            Expected Result: DMI displays in SR mode, level 1.
+            Action: Driver performs SoM to SR mode, level 1
+            Expected Result: DMI displays in SR mode, level 1
             */
-
+            // Call generic Action Method
+            DmiActions.Driver_performs_SoM_to_SR_mode_level_1();
+            // Call generic Check Results Method
+            DmiExpectedResults.DMI_displays_in_SR_mode_level_1();
+            
+            
             /*
             Test Step 3
-            Action: Drive train forward pass BG1.
-            Expected Result: DMI change from SR mode to FS mode.
+            Action: Drive train forward pass BG1
+            Expected Result: DMI change from SR mode to FS mode
             */
-
+            
+            
             /*
             Test Step 4
             Action: Touch main area D
-            Expected Result: Verify that the Planning Area is not displayed on DMI.
+            Expected Result: Verify that the Planning Area is not displayed on DMI
             Test Step Comment: MMI_gen 7102;
             */
-
+            // Call generic Action Method
+            DmiActions.Touch_main_area_D();
+            // Call generic Check Results Method
+            DmiExpectedResults.Verify_that_the_Planning_Area_is_not_displayed_on_DMI();
+            
+            
             /*
             Test Step 5
-            Action: Drive train forward pass BG2.Then, press an acknowledgement of OS mode symbol in area C1.
-            Expected Result: DMI change from FS mode to OS mode.
+            Action: Drive train forward pass BG2.Then, press an acknowledgement of OS mode symbol in area C1
+            Expected Result: DMI change from FS mode to OS mode
             */
-
+            
+            
             /*
             Test Step 6
             Action: Touch main area D
-            Expected Result: Verify that the Planning Area is not displayed on DMI.
+            Expected Result: Verify that the Planning Area is not displayed on DMI
             Test Step Comment: MMI_gen 7101 (partly: disable OS);
             */
-
+            // Call generic Action Method
+            DmiActions.Touch_main_area_D();
+            // Call generic Check Results Method
+            DmiExpectedResults.Verify_that_the_Planning_Area_is_not_displayed_on_DMI();
+            
+            
             /*
             Test Step 7
             Action: End of test
             Expected Result: 
             */
+            
 
             return GlobalTestResult;
         }

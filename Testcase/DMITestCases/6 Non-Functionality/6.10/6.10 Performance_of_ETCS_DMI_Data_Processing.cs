@@ -39,7 +39,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // 1. The test environment is powered on.2. The RCI client is connected to ETCS-DMI with the concerned ETCS-DMI IP address via port 15001 (Raw connection). 3. The RCI is commanded to start logging the following data:- The incoming data received by MVB port.- The concerned data for ETCS-DMI screen update.- The ETCS-DMI screen update according to the incoming data.4. The cabin is activated.
-
+            
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -57,25 +57,32 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
+            
             /*
             Test Step 1
-            Action: Perform SoM in SR mode, Level 2.
-            Expected Result: RCI logs the concerned activities as specified in the precondition.
+            Action: Perform SoM in SR mode, Level 2
+            Expected Result: RCI logs the concerned activities as specified in the precondition
             */
-
+            // Call generic Action Method
+            DmiActions.Perform_SoM_in_SR_mode_Level_2();
+            // Call generic Check Results Method
+            DmiExpectedResults.RCI_logs_the_concerned_activities_as_specified_in_the_precondition();
+            
+            
             /*
             Test Step 2
             Action: Observe the timestamps in RCI log and calculate the average differentiation of the response time of the incoming data and ETCS-DMI update in:- The MVB port- The ETCS-DMI screen
-            Expected Result: (1) Use the RCI log to confirm the  (average) response time differentiation of the incoming data (message) and when related visualization is updated on ETCS-DMI screen (tupdatedDMI – tinMVB) is less than 130 ms.
+            Expected Result: (1) Use the RCI log to confirm the  (average) response time differentiation of the incoming data (message) and when related visualization is updated on ETCS-DMI screen (tupdatedDMI – tinMVB) is less than 130 ms
             Test Step Comment: (1) MMI_gen 3216; MMI_gen 88 (partly: ETCS BA);
             */
-
+            
+            
             /*
             Test Step 3
             Action: End of test
             Expected Result: 
             */
+            
 
             return GlobalTestResult;
         }

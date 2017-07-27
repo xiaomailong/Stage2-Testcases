@@ -37,7 +37,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // System is power on.The default configuration of PA distance scale is not set as [0…1000] (variable DEFAULT_PAGE_DISPLAY in etcs_planningArea.xml is not equal to 0)
-
+            
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -55,64 +55,87 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
+            
             /*
             Test Step 1
-            Action: Activate cabin A. 
-            Expected Result: DMI displays the default window. The Driver ID window is displayed.
+            Action: Activate cabin A
+            Expected Result: DMI displays the default window. The Driver ID window is displayed
             */
-
+            // Call generic Action Method
+            DmiActions.Activate_cabin_A();
+            // Call generic Check Results Method
+            DmiExpectedResults.DMI_displays_the_default_window_The_Driver_ID_window_is_displayed();
+            
+            
             /*
             Test Step 2
-            Action: Driver performs SoM to SR mode, level 1.
-            Expected Result: DMI displays in SR mode, level 1.
+            Action: Driver performs SoM to SR mode, level 1
+            Expected Result: DMI displays in SR mode, level 1
             */
-
+            // Call generic Action Method
+            DmiActions.Driver_performs_SoM_to_SR_mode_level_1();
+            // Call generic Check Results Method
+            DmiExpectedResults.DMI_displays_in_SR_mode_level_1();
+            
+            
             /*
             Test Step 3
-            Action: Drive the train forward pass BG1.
-            Expected Result: DMI changes from SR mode to FS mode with PA in area D.
+            Action: Drive the train forward pass BG1
+            Expected Result: DMI changes from SR mode to FS mode with PA in area D
             */
-
+            // Call generic Action Method
+            DmiActions.Drive_the_train_forward_pass_BG1();
+            
+            
             /*
             Test Step 4
-            Action: Driver presses ‘Scale up’ button for selects distance range to [0…1000].
-            Expected Result: The distance scale range of PA is presented with the range [0…1000].
+            Action: Driver presses ‘Scale up’ button for selects distance range to [0…1000]
+            Expected Result: The distance scale range of PA is presented with the range [0…1000]
             */
-
+            
+            
             /*
             Test Step 5
             Action: Simulate the communication loss between ETCS onboard and DMI.ExamplePause OTE/ATPRemove connection between DMI and PC (MVB or TCP-IP)
-            Expected Result: DMI displays message “ATP Down Alarm” with sound alarm.Verify that the planning area is removed from DMI.
+            Expected Result: DMI displays message “ATP Down Alarm” with sound alarm.Verify that the planning area is removed from DMI
             Test Step Comment: (1) MMI_gen 7393 (partly: symbols);
             */
-
+            
+            
             /*
             Test Step 6
             Action: Perform the following procedure,Press at sub-area D9 twice.Press at sub-area D12.Re-establish the communication  between ETCS onboard and DMI.ExampleStart OTE/ATPConnect DMI to PC (MVB or TCP-IP)
-            Expected Result: DMI displays in FS mode again. The Planning Area information and Zoom PA function are resumed. The distance scale range is displayed with the range [0…1000].
+            Expected Result: DMI displays in FS mode again. The Planning Area information and Zoom PA function are resumed. The distance scale range is displayed with the range [0…1000]
             Test Step Comment: (1) MMI_gen 7394 (partly: symbols);(2) MMI_gen 7393 (partly: sensitive areas, inoperable);         
             */
-
+            
+            
             /*
             Test Step 7
-            Action: Press ‘Scale Down’ button.
-            Expected Result: Verify the following information,The distance scale range of PA is presented with the range [0…2000].
+            Action: Press ‘Scale Down’ button
+            Expected Result: Verify the following information,The distance scale range of PA is presented with the range [0…2000]
             Test Step Comment: (1) MMI_gen 7394 (partly: operable);
             */
-
+            // Call generic Action Method
+            DmiActions.ShowInstruction(@"Press ‘Scale Down’ button");
+            
+            
             /*
             Test Step 8
-            Action: Press ‘Scale Up’ button.
-            Expected Result: Verify the following information,The distance scale range of PA is presented with the range [0…1000].
+            Action: Press ‘Scale Up’ button
+            Expected Result: Verify the following information,The distance scale range of PA is presented with the range [0…1000]
             Test Step Comment: (1) MMI_gen 7394 (partly: operable);
             */
-
+            // Call generic Action Method
+            DmiActions.ShowInstruction(@"Press ‘Scale Up’ button");
+            
+            
             /*
             Test Step 9
             Action: End of test
             Expected Result: 
             */
+            
 
             return GlobalTestResult;
         }

@@ -37,7 +37,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Open defaultValues_default.xml in OTE  then set all value of parameter "TR_OBU_TrainType" to 1 (Now is 2) then you will get the fixed train data entry System is power on
-
+            
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -55,69 +55,97 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
+            
             /*
             Test Step 1
             Action: Activate Cabin AEnter Driver ID and perform brake testSelect and confirm Level 1
-            Expected Result: DMI displays Main window.
+            Expected Result: DMI displays Main window
             */
-
+            // Call generic Check Results Method
+            DmiExpectedResults.DMI_displays_Main_window();
+            
+            
             /*
             Test Step 2
-            Action: Press ‘Train data’ button.
-            Expected Result: DMI displays Train data window.
+            Action: Press ‘Train data’ button
+            Expected Result: DMI displays Train data window
             */
-
+            // Call generic Action Method
+            DmiActions.ShowInstruction(@"Press ‘Train data’ button");
+            // Call generic Check Results Method
+            DmiExpectedResults.DMI_displays_Train_data_window();
+            
+            
             /*
             Test Step 3
-            Action: Select dedicated keyboard button which have different label from an input field without confirmation.
-            Expected Result: The value of input field is changed refer to pressed button.
+            Action: Select dedicated keyboard button which have different label from an input field without confirmation
+            Expected Result: The value of input field is changed refer to pressed button
             */
-
+            
+            
             /*
             Test Step 4
-            Action: Select Close button.Then, select Train data button.
-            Expected Result: DMI displays Train data window.Verify that the train type is not changed to the pressed button from step 3.
+            Action: Select Close button.Then, select Train data button
+            Expected Result: DMI displays Train data window.Verify that the train type is not changed to the pressed button from step 3
             Test Step Comment: MMI_gen 8865 (partly:Negative testing for exception 1);
             */
-
+            
+            
             /*
             Test Step 5
-            Action: Select and confirm dedicated keyboard button which have different label from an input field.Then, press ‘Yes’ button.
-            Expected Result: DMI displays Train data validation window.
+            Action: Select and confirm dedicated keyboard button which have different label from an input field.Then, press ‘Yes’ button
+            Expected Result: DMI displays Train data validation window
             */
-
+            // Call generic Check Results Method
+            DmiExpectedResults.DMI_displays_Train_data_validation_window();
+            
+            
             /*
             Test Step 6
-            Action: Select and confirm ‘No’ button.
-            Expected Result: DMI displays Main window.
+            Action: Select and confirm ‘No’ button
+            Expected Result: DMI displays Main window
             */
-
+            // Call generic Action Method
+            DmiActions.Select_and_confirm_No_button();
+            // Call generic Check Results Method
+            DmiExpectedResults.DMI_displays_Main_window();
+            
+            
             /*
             Test Step 7
-            Action: Select Train data button.
-            Expected Result: DMI displays Train data window.Verify that the train type is not changed to the pressed button from step 5.
+            Action: Select Train data button
+            Expected Result: DMI displays Train data window.Verify that the train type is not changed to the pressed button from step 5
             Test Step Comment: MMI_gen 8865 (partly:Exception 1);
             */
-
+            // Call generic Action Method
+            DmiActions.Select_Train_data_button();
+            
+            
             /*
             Test Step 8
-            Action: Repeat action step 5.Then, select and confirm ‘Yes’ button.
-            Expected Result: DMI displays Main window.
+            Action: Repeat action step 5.Then, select and confirm ‘Yes’ button
+            Expected Result: DMI displays Main window
             */
-
+            // Call generic Check Results Method
+            DmiExpectedResults.DMI_displays_Main_window();
+            
+            
             /*
             Test Step 9
-            Action: Select Train data button.
-            Expected Result: DMI displays Train data window.Verify that the train type is change to pressed button from step 5.
+            Action: Select Train data button
+            Expected Result: DMI displays Train data window.Verify that the train type is change to pressed button from step 5
             Test Step Comment: MMI_gen 8863 (partly:Exception);
             */
-
+            // Call generic Action Method
+            DmiActions.Select_Train_data_button();
+            
+            
             /*
             Test Step 10
             Action: End of test
             Expected Result: 
             */
+            
 
             return GlobalTestResult;
         }

@@ -40,7 +40,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Test system is powered on Cabin is acticvated.SoM is performed in SR mode, level 1DMI displays the ‘Default’ window
-
+            
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -58,26 +58,33 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
+            
             /*
             Test Step 1
-            Action: Press ‘Override’ button.
-            Expected Result: The Override window is displayed. Verify that the Close button is always enabled.
+            Action: Press ‘Override’ button
+            Expected Result: The Override window is displayed. Verify that the Close button is always enabled
             Test Step Comment: MMI_gen 9179;
             */
-
+            // Call generic Action Method
+            DmiActions.ShowInstruction(@"Press ‘Override’ button");
+            
+            
             /*
             Test Step 2
-            Action: Press ‘Close’ button.
-            Expected Result: The Override window is closed. DMI displays the default window.
+            Action: Press ‘Close’ button
+            Expected Result: The Override window is closed. DMI displays the default window
             Test Step Comment: MMI_gen 9179; MMI_gen 8785 (partly: Override window); 
             */
-
+            // Call generic Action Method
+            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            
+            
             /*
             Test Step 3
             Action: End of test
             Expected Result: 
             */
+            
 
             return GlobalTestResult;
         }

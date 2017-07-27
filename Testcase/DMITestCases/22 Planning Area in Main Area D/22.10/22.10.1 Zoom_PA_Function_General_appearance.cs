@@ -38,7 +38,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Set the following tags name in configuration file (See the instruction in Appendix 1)HIDE_PA_OS_MODE = 1 (PA will show in OS mode)System is power on.Cabin is activate.
-
+            
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -56,77 +56,104 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
+            
             /*
             Test Step 1
-            Action: Perform SoM to SR mode, level 2.Then, drive the train forward.
-            Expected Result: DMI displays in SR mode, level 2.Verify that the Zoom PA function is not enabled when DMI displays in SR mode.
+            Action: Perform SoM to SR mode, level 2.Then, drive the train forward
+            Expected Result: DMI displays in SR mode, level 2.Verify that the Zoom PA function is not enabled when DMI displays in SR mode
             Test Step Comment: (1) MMI_gen 7373;
             */
-
+            
+            
             /*
             Test Step 2
-            Action: Received information from RBC.
-            Expected Result: DMI changes from SR mode to FS mode, level 2.
+            Action: Received information from RBC
+            Expected Result: DMI changes from SR mode to FS mode, level 2
             */
-
+            // Call generic Action Method
+            DmiActions.Received_information_from_RBC();
+            // Call generic Check Results Method
+            DmiExpectedResults.DMI_changes_from_SR_mode_to_FS_mode_level_2();
+            
+            
             /*
             Test Step 3
-            Action: Acknowledge OS mode by press at area C1.
-            Expected Result: DMI changes from FS mode to OS mode, level 2.
+            Action: Acknowledge OS mode by press at area C1
+            Expected Result: DMI changes from FS mode to OS mode, level 2
             */
-
+            // Call generic Action Method
+            DmiActions.Acknowledge_OS_mode_by_press_at_area_C1();
+            // Call generic Check Results Method
+            DmiExpectedResults.DMI_changes_from_FS_mode_to_OS_mode_level_2();
+            
+            
             /*
             Test Step 4
-            Action: Stop the train.Then, perform the following procedurePress and hold ‘Scale Up’ button.Slide out ‘Scale Up’ button.Slide back into ‘Scale Up’ button.Release the pressed area.
-            Expected Result: Verify the following information,The PA distance scale is not change until driver release at the ‘Scale Up’ button area.
+            Action: Stop the train.Then, perform the following procedurePress and hold ‘Scale Up’ button.Slide out ‘Scale Up’ button.Slide back into ‘Scale Up’ button.Release the pressed area
+            Expected Result: Verify the following information,The PA distance scale is not change until driver release at the ‘Scale Up’ button area
             Test Step Comment: (1) MMI_gen 7372;           MMI_gen 7370 (partly: Scale Up);
             */
-
+            
+            
             /*
             Test Step 5
-            Action: Perform the following procedurePress and hold ‘Scale Down’ button.Slide out ‘Scale Down’ button.Slide back into ‘Scale Down’ button.Release the pressed area.
-            Expected Result: Verify the following information,The PA distance scale is not change until driver release at the ‘Scale Down’ button area.
+            Action: Perform the following procedurePress and hold ‘Scale Down’ button.Slide out ‘Scale Down’ button.Slide back into ‘Scale Down’ button.Release the pressed area
+            Expected Result: Verify the following information,The PA distance scale is not change until driver release at the ‘Scale Down’ button area
             Test Step Comment: (1) MMI_gen 7372;           MMI_gen 7370 (partly: Scale Down);
             */
-
+            
+            
             /*
             Test Step 6
-            Action: Drive the train forward.
-            Expected Result: DMI still displays as OS mode, Level 2.
+            Action: Drive the train forward
+            Expected Result: DMI still displays as OS mode, Level 2
             */
-
+            // Call generic Action Method
+            DmiActions.Drive_the_train_forward();
+            
+            
             /*
             Test Step 7
-            Action: Received information from RBC.
-            Expected Result: DMI display symbol DR02 (Confirm Track Ahead Free) in Main area D.Verify that ‘Scale Up’ and ‘Scale Down’ button at sub-area D9 and D12 are removed, not display on DMI.
+            Action: Received information from RBC
+            Expected Result: DMI display symbol DR02 (Confirm Track Ahead Free) in Main area D.Verify that ‘Scale Up’ and ‘Scale Down’ button at sub-area D9 and D12 are removed, not display on DMI
             Test Step Comment: (1) MMI_gen 7390;
             */
-
+            // Call generic Action Method
+            DmiActions.Received_information_from_RBC();
+            
+            
             /*
             Test Step 8
-            Action: Acknowledge Track Ahead Free by press ‘Yes’ button in Main area D.
-            Expected Result: The PA is reappear in Main area D.
+            Action: Acknowledge Track Ahead Free by press ‘Yes’ button in Main area D
+            Expected Result: The PA is reappear in Main area D
             */
-
+            
+            
             /*
             Test Step 9
-            Action: Drive the train pass over EOA.
-            Expected Result: The train is tripped. DMI displays the symbol of TR and driver is required to acknowledge TR mode to PT mode.SB &EB applied.The Planning area which including ‘Scale Up’ and ‘Scale Down’ buttons is removed from DMI.
+            Action: Drive the train pass over EOA
+            Expected Result: The train is tripped. DMI displays the symbol of TR and driver is required to acknowledge TR mode to PT mode.SB &EB applied.The Planning area which including ‘Scale Up’ and ‘Scale Down’ buttons is removed from DMI
             Test Step Comment: (1) MMI_gen 7373;
             */
-
+            
+            
             /*
             Test Step 10
-            Action: Stop the train.
-            Expected Result: The train is at standstill.
+            Action: Stop the train
+            Expected Result: The train is at standstill
             */
-
+            // Call generic Action Method
+            DmiActions.Stop_the_train();
+            // Call generic Check Results Method
+            DmiExpectedResults.The_train_is_at_standstill();
+            
+            
             /*
             Test Step 11
             Action: End of test
             Expected Result: 
             */
+            
 
             return GlobalTestResult;
         }

@@ -37,7 +37,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // System is power on.
-
+            
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -55,134 +55,190 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
+            
             /*
             Test Step 1
-            Action: Activate cabin A.
-            Expected Result: The Driver ID window is displayed. 
+            Action: Activate cabin A
+            Expected Result: The Driver ID window is displayed
             */
-
+            // Call generic Action Method
+            DmiActions.Activate_cabin_A();
+            // Call generic Check Results Method
+            DmiExpectedResults.The_Driver_ID_window_is_displayed();
+            
+            
             /*
             Test Step 2
-            Action: Press ‘Settings’ button.
-            Expected Result: The Settings window is displayed.
+            Action: Press ‘Settings’ button
+            Expected Result: The Settings window is displayed
             */
-
+            // Call generic Action Method
+            DmiActions.ShowInstruction(@"Press ‘Settings’ button");
+            // Call generic Check Results Method
+            DmiExpectedResults.The_Settings_window_is_displayed();
+            
+            
             /*
             Test Step 3
-            Action: Press ‘Close’ button.
-            Expected Result: Verify that the Settings window is closed. The Driver ID window is displayed.
+            Action: Press ‘Close’ button
+            Expected Result: Verify that the Settings window is closed. The Driver ID window is displayed
             Test Step Comment: MMI_gen 8787 (partly: Close the Settings window);
             */
-
+            // Call generic Action Method
+            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            
+            
             /*
             Test Step 4
-            Action: Press ‘TRN’ button.
-            Expected Result: The Train Running Number window is displayed.
+            Action: Press ‘TRN’ button
+            Expected Result: The Train Running Number window is displayed
             */
-
+            // Call generic Check Results Method
+            DmiExpectedResults.The_Train_Running_Number_window_is_displayed();
+            
+            
             /*
             Test Step 5
-            Action: Press ‘Close’ button.
-            Expected Result: Verify that the Train Running Number window is closed. The Driver ID window is displayed.
+            Action: Press ‘Close’ button
+            Expected Result: Verify that the Train Running Number window is closed. The Driver ID window is displayed
             Test Step Comment: MMI_gen 8787 (partly: Close the Train Running Number window);
             */
-
+            // Call generic Action Method
+            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            
+            
             /*
             Test Step 6
-            Action: Enter Driver ID and perform brake test.
-            Expected Result: The Level window is displayed.
+            Action: Enter Driver ID and perform brake test
+            Expected Result: The Level window is displayed
             */
-
+            // Call generic Action Method
+            DmiActions.ShowInstruction(@"Enter Driver ID and perform brake test");
+            
+            
             /*
             Test Step 7
-            Action: Select and confirm Level 1.
-            Expected Result: The Main window is displayed.
+            Action: Select and confirm Level 1
+            Expected Result: The Main window is displayed
             */
-
+            // Call generic Check Results Method
+            DmiExpectedResults.The_Main_window_is_displayed();
+            
+            
             /*
             Test Step 8
-            Action: Press ‘Driver ID’ button.
-            Expected Result: The Driver ID window is displayed. The ‘Close’ button is presented as enabled state.
+            Action: Press ‘Driver ID’ button
+            Expected Result: The Driver ID window is displayed. The ‘Close’ button is presented as enabled state
             */
-
+            // Call generic Action Method
+            DmiActions.ShowInstruction(@"Press ‘Driver ID’ button");
+            
+            
             /*
             Test Step 9
-            Action: Close the Driver ID window.
-            Expected Result: Verify that the Driver ID window is closed. The Main window is displayed.
+            Action: Close the Driver ID window
+            Expected Result: Verify that the Driver ID window is closed. The Main window is displayed
             Test Step Comment: MMI_gen 8785 (partly: Close the Driver ID window);
             */
-
+            // Call generic Action Method
+            DmiActions.Close_the_Driver_ID_window();
+            
+            
             /*
             Test Step 10
             Action: Press ‘Train data’ button
-            Expected Result: The Train data window is displayed. The ‘Close’ button is presented as enabled state.
+            Expected Result: The Train data window is displayed. The ‘Close’ button is presented as enabled state
             */
-
+            // Call generic Action Method
+            DmiActions.ShowInstruction(@"Press ‘Train data’ button");
+            
+            
             /*
             Test Step 11
-            Action: Close the Train data window.
-            Expected Result: Verify that the Train data window is closed. The Main window is displayed.
+            Action: Close the Train data window
+            Expected Result: Verify that the Train data window is closed. The Main window is displayed
             Test Step Comment: MMI_gen 8785 (partly: Close the Train data window);
             */
-
+            
+            
             /*
             Test Step 12
             Action: Press ‘Train data’ button
-            Expected Result: The Train data window is displayed.
+            Expected Result: The Train data window is displayed
             */
-
+            // Call generic Action Method
+            DmiActions.ShowInstruction(@"Press ‘Train data’ button");
+            // Call generic Check Results Method
+            DmiExpectedResults.The_Train_data_window_is_displayed();
+            
+            
             /*
             Test Step 13
             Action: If the train data is fixed, re-select the train type and then press ‘Yes’ button.If the train data is flexible, re-entry all train data and then press ‘Yes’ button
-            Expected Result: The Train data validation window is displayed.The ‘Close’ button is presented as enabled state.
+            Expected Result: The Train data validation window is displayed.The ‘Close’ button is presented as enabled state
             */
-
+            
+            
             /*
             Test Step 14
-            Action: Press ‘Close’ button.
-            Expected Result: Verify that the Train data validation window is closed. The Main window is displayed.
+            Action: Press ‘Close’ button
+            Expected Result: Verify that the Train data validation window is closed. The Main window is displayed
             Test Step Comment: MMI_gen 8785 (partly: Close the Train data validation window);
             */
-
+            // Call generic Action Method
+            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            
+            
             /*
             Test Step 15
-            Action: Press ‘Level’ button.
-            Expected Result: The Level window is displayed. The ‘Close’ button is presented as enabled state.
+            Action: Press ‘Level’ button
+            Expected Result: The Level window is displayed. The ‘Close’ button is presented as enabled state
             */
-
+            // Call generic Action Method
+            DmiActions.ShowInstruction(@"Press ‘Level’ button");
+            
+            
             /*
             Test Step 16
-            Action: Close the Level window.
-            Expected Result: Verify that the Level window is closed. The Main window is displayed.
+            Action: Close the Level window
+            Expected Result: Verify that the Level window is closed. The Main window is displayed
             Test Step Comment: MMI_gen 8785 (partly: Close the Level window);
             */
-
+            
+            
             /*
             Test Step 17
-            Action: Press ‘Train running number’ button.
-            Expected Result: The Train Running Number window is displayed. The ‘Close’ button is presented as enabled state.
+            Action: Press ‘Train running number’ button
+            Expected Result: The Train Running Number window is displayed. The ‘Close’ button is presented as enabled state
             */
-
+            
+            
             /*
             Test Step 18
-            Action: Close the Train Running Number window.
-            Expected Result: Verify that the Train Running Number window is closed. The Main window is displayed.
+            Action: Close the Train Running Number window
+            Expected Result: Verify that the Train Running Number window is closed. The Main window is displayed
             Test Step Comment: MMI_gen 8785 (partly: Close the Train Running Number window);
             */
-
+            // Call generic Action Method
+            DmiActions.Close_the_Train_Running_Number_window();
+            
+            
             /*
             Test Step 19
-            Action: Press ‘Close’ button.
+            Action: Press ‘Close’ button
             Expected Result: Verify that the Main window is closed. The Default window is displayed
             Test Step Comment: MMI_gen 8785 (partly: Close the Main window);
             */
-
+            // Call generic Action Method
+            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            
+            
             /*
             Test Step 20
             Action: End of test
             Expected Result: 
             */
+            
 
             return GlobalTestResult;
         }

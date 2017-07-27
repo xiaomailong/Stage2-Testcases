@@ -83,7 +83,7 @@ if exist "$(TargetPath)" if not exist "$(TargetPath).locked" move "$(TargetPath)
   <ItemGroup>
     <Compile Include="DMITestCases\10 General Appearance\10.10\10.10 Screen_Layout_Button_States.cs" />
     <Compile Include="DMITestCases\10 General Appearance\10.12\10.12.1 Navigation_Button_on_the_Planning_Area.cs" />
-    <Compile Include="DMITestCases\10 General Appearance\10.12\10.12.2 Close__Next__Previous_and_Yes_Buttons.cs" />
+    <Compile Include="DMITestCases\10 General Appearance\10.12\10.12.2 Close_Next_Previous_and_Yes_Buttons.cs" />
     <Compile Include="DMITestCases\10 General Appearance\10.12\10.12.3 Navigation_button_Up_and_Down_buttons.cs" />
     <Compile Include="DMITestCases\10 General Appearance\10.2\10.2 Screen_Layout_Layers.cs" />
     <Compile Include="DMITestCases\10 General Appearance\10.3\10.3 Screen_Layout_Frames.cs" />
@@ -96,7 +96,7 @@ if exist "$(TargetPath)" if not exist "$(TargetPath).locked" move "$(TargetPath)
     <Compile Include="DMITestCases\14 Data Validation and Data View Window for TS\14.2\14.2 Data_Validation_Window_for_Fixed_train_data_entry_window.cs" />
     <Compile Include="DMITestCases\15 Data EntryValidationView Process and State ‘ST05’\15.1\15.1 Data_EntryValidationView_process.cs" />
     <Compile Include="DMITestCases\15 Data EntryValidationView Process and State ‘ST05’\15.2\15.2.1 State_ST05_General_Appearance.cs" />
-    <Compile Include="DMITestCases\15 Data EntryValidationView Process and State ‘ST05’\15.2\15.2.2 State_ST05_Main_window_and_windows_in_main_menu_.cs" />
+    <Compile Include="DMITestCases\15 Data EntryValidationView Process and State ‘ST05’\15.2\15.2.2 State_ST05_Main_window_and_windows_in_main_menu.cs" />
     <Compile Include="DMITestCases\15 Data EntryValidationView Process and State ‘ST05’\15.2\15.2.3 State_ST05_Override_window.cs" />
     <Compile Include="DMITestCases\15 Data EntryValidationView Process and State ‘ST05’\15.2\15.2.4 State_ST05_Data_view_window.cs" />
     <Compile Include="DMITestCases\15 Data EntryValidationView Process and State ‘ST05’\15.2\15.2.5 State_ST05_Special_window_and_windows_in_the_special_menu.cs" />
@@ -126,7 +126,7 @@ if exist "$(TargetPath)" if not exist "$(TargetPath).locked" move "$(TargetPath)
     <Compile Include="DMITestCases\17 Train Speed\17.3\17.3.8 Speed_Pointer_Colour_of_speed_pointer_in_OS_mode.cs" />
     <Compile Include="DMITestCases\17 Train Speed\17.3\17.3.9 Speed_Pointer_Colour_of_speed_pointer_in_SB_mode_and_NL_mode.cs" />
     <Compile Include="DMITestCases\17 Train Speed\17.4\17.4 Current_Train_Speed_Digital_Sub_Area_B1.cs" />
-    <Compile Include="DMITestCases\17 Train Speed\17.5\17.5.1 Colouring_Scheme_of_Circular_Speed_Gauge_SB_mode__SR_mode_and_FS_mode_for_CSM_Speed_Monitoring.cs" />
+    <Compile Include="DMITestCases\17 Train Speed\17.5\17.5.1 Colouring_Scheme_of_Circular_Speed_Gauge_SB_mode_SR_mode_and_FS_mode_for_CSM_Speed_Monitoring.cs" />
     <Compile Include="DMITestCases\17 Train Speed\17.5\17.5.2 Colour_Scheme_of_Circular_Speed_Gauge_TSM_of_Speed_Monitoring.cs" />
     <Compile Include="DMITestCases\17 Train Speed\17.5\17.5.3 Colouring_Scheme_of_Circular_Speed_Gauge_FS_mode_for_RSM_Speed_Monitoring.cs" />
     <Compile Include="DMITestCases\17 Train Speed\17.5\17.5.4 Circular_Speed_Gauge_removal_when_received_an_invalid_value_of_EVC_1_and_EVC_7.cs" />
@@ -137,15 +137,15 @@ if exist "$(TargetPath)" if not exist "$(TargetPath).locked" move "$(TargetPath)
     <Compile Include="DMITestCases\17 Train Speed\17.7\17.7.3 Release_Speed_Digital_for_OS_mode.cs" />
     <Compile Include="DMITestCases\17 Train Speed\17.7\17.7.4 Release_Speed_Digital_Release_speed_removal_when_received_an_invalid_value_of_EVC_1_or_EVC_7.cs" />
     <Compile Include="DMITestCases\17 Train Speed\17.8\17.8 Evaluation_of_Train_Speed.cs" />
-    <Compile Include="DMITestCases\18 Brake\18.1\18.1.1 Distance_to_Target__Bar_General_Appearance.cs" />
-    <Compile Include="DMITestCases\18 Brake\18.1\18.1.2 Distance_to_Target__Digital_General_Appearance.cs" />
-    <Compile Include="DMITestCases\18 Brake\18.1\18.1.4 Distance_to_Target_Digital_when_the_communication_between_ETCS__Onboard_and_DMI_is_lost.cs" />
+    <Compile Include="DMITestCases\18 Brake\18.1\18.1.1 Distance_to_Target_Bar_General_Appearance.cs" />
+    <Compile Include="DMITestCases\18 Brake\18.1\18.1.2 Distance_to_Target_Digital_General_Appearance.cs" />
+    <Compile Include="DMITestCases\18 Brake\18.1\18.1.4 Distance_to_Target_Digital_when_the_communication_between_ETCS_Onboard_and_DMI_is_lost.cs" />
     <Compile Include="DMITestCases\18 Brake\18.1\18.1.5 Distance_to_Target_in_RV_mode.cs" />
     <Compile Include="DMITestCases\18 Brake\18.1\18.1.6 Distance_to_Target_Digital_in_RV_mode_with_special_value.cs" />
     <Compile Include="DMITestCases\18 Brake\18.1\18.1.7.1 Distance_to_Target_Appearance_of_Distance_to_Target_in_FS_mode.cs" />
     <Compile Include="DMITestCases\18 Brake\18.1\18.1.7.2 Distance_to_Target_Appearance_of_Distance_to_Target_in_OS_mode.cs" />
-    <Compile Include="DMITestCases\18 Brake\18.1\18.1.7.3 Distance_to_Target_Appearance_of_Distance_to_Target_in_SB__SR_and_SH_mode.cs" />
-    <Compile Include="DMITestCases\18 Brake\18.1\18.1.7.4 Distance_to_Target_Appearance_of_Distance_to_Target_in_LS__TR_and_PT_mode.cs" />
+    <Compile Include="DMITestCases\18 Brake\18.1\18.1.7.3 Distance_to_Target_Appearance_of_Distance_to_Target_in_SB_SR_and_SH_mode.cs" />
+    <Compile Include="DMITestCases\18 Brake\18.1\18.1.7.4 Distance_to_Target_Appearance_of_Distance_to_Target_in_LS_TR_and_PT_mode.cs" />
     <Compile Include="DMITestCases\18 Brake\18.1\18.1.7.5 Distance_to_Target_Appearance_of_Distance_to_Target_in_UN_mode.cs" />
     <Compile Include="DMITestCases\18 Brake\18.1\18.1.7.6 Distance_to_Target_Appearance_of_Distance_to_Target_in_NL_mode.cs" />
     <Compile Include="DMITestCases\18 Brake\18.1\18.1.8 Distance_to_Target_Bar_Maximum_digit_of_Distance_to_Target_Digital.cs" />
@@ -156,24 +156,24 @@ if exist "$(TargetPath)" if not exist "$(TargetPath).locked" move "$(TargetPath)
     <Compile Include="DMITestCases\19 Toggling Function\19.4\19.4 Toggling_function_Default_state_reset_for_Configuration_ON_when_communication_loss.cs" />
     <Compile Include="DMITestCases\19 Toggling Function\19.5\19.5 Toggling_function_Default_state_reset_for_Configuration_OFF_when_communication_loss.cs" />
     <Compile Include="DMITestCases\19 Toggling Function\19.6\19.6 Toggling_function_Additional_Configuration_TIMER.cs" />
-    <Compile Include="DMITestCases\20 Status Information to The Driver\20.1\20.1.1 Mode_Symbols_in_Sub_Area_B7_for_SB__SR__FS_ TR__PT__SH__NL and_SF_mode.cs" />
+    <Compile Include="DMITestCases\20 Status Information to The Driver\20.1\20.1.1 Mode_Symbols_in_Sub_Area_B7_for_SB_SR_FS_ TR_PT_SH_NL and_SF_mode.cs" />
     <Compile Include="DMITestCases\20 Status Information to The Driver\20.1\20.1.2 Mode_Symbols_in_Sub_Area_B7_for_RV_and_SL_mode.cs" />
-    <Compile Include="DMITestCases\20 Status Information to The Driver\20.1\20.1.3 Mode_Symbols_in_Sub_Area_B7_for_OS__UN_mode.cs" />
+    <Compile Include="DMITestCases\20 Status Information to The Driver\20.1\20.1.3 Mode_Symbols_in_Sub_Area_B7_for_OS_UN_mode.cs" />
     <Compile Include="DMITestCases\20 Status Information to The Driver\20.1\20.1.4 Mode_acknowledgement_subtitution.cs" />
     <Compile Include="DMITestCases\20 Status Information to The Driver\20.1\20.1.6 Mode_Symbols_for_LS_mode.cs" />
     <Compile Include="DMITestCases\20 Status Information to The Driver\20.1\20.1.7 Mode_Symbols_for_unused_value_of_variable_OBU_TR_M_MODE.cs" />
     <Compile Include="DMITestCases\20 Status Information to The Driver\20.2\20.2.1 ETCS_Level_in_Sub_Area_C8_Level_0_and_Level_1_by_driver_selection.cs" />
     <Compile Include="DMITestCases\20 Status Information to The Driver\20.2\20.2.10 ETCS_Level_ETCS_Level_Transitions_by_receiving_data_packet_from_ETCS_Onboard_L0_LNTC.cs" />
-    <Compile Include="DMITestCases\20 Status Information to The Driver\20.2\20.2.11 ETCS_Level_ETCS_Level_Transitions_by_receiving_data_packet_from_ETCS_Onboard_LNTC__L1.cs" />
-    <Compile Include="DMITestCases\20 Status Information to The Driver\20.2\20.2.12 ETCS_Level_ETCS_Level_Transitions_by_receiving_data_packet_from_ETCS_Onboard_LNTC__L2.cs" />
-    <Compile Include="DMITestCases\20 Status Information to The Driver\20.2\20.2.13 ETCS_Level_ETCS_Level_Transitions_by_receiving_data_packet_from_ETCS_Onboard_LNTC__L3.cs" />
+    <Compile Include="DMITestCases\20 Status Information to The Driver\20.2\20.2.11 ETCS_Level_ETCS_Level_Transitions_by_receiving_data_packet_from_ETCS_Onboard_LNTC_L1.cs" />
+    <Compile Include="DMITestCases\20 Status Information to The Driver\20.2\20.2.12 ETCS_Level_ETCS_Level_Transitions_by_receiving_data_packet_from_ETCS_Onboard_LNTC_L2.cs" />
+    <Compile Include="DMITestCases\20 Status Information to The Driver\20.2\20.2.13 ETCS_Level_ETCS_Level_Transitions_by_receiving_data_packet_from_ETCS_Onboard_LNTC_L3.cs" />
     <Compile Include="DMITestCases\20 Status Information to The Driver\20.2\20.2.2 ETCS_Level_in_Sub_Area_C8_Level_2_and_Level_3_by_driver_selection.cs" />
-    <Compile Include="DMITestCases\20 Status Information to The Driver\20.2\20.2.3 ETCS_Level_Announcement_symbol_in_Sub_Area_C1_.cs" />
-    <Compile Include="DMITestCases\20 Status Information to The Driver\20.2\20.2.4 ETCS_Level_ETCS_Level_Transitions_by_receiving_data_packet_from_ETCS_Onboard_L1_L0__L0_L1.cs" />
-    <Compile Include="DMITestCases\20 Status Information to The Driver\20.2\20.2.5 ETCS_Level_ETCS_Level_Transitions_by_receiving_data_packet_from_ETCS_Onboard_L2_L3__L3_L2.cs" />
+    <Compile Include="DMITestCases\20 Status Information to The Driver\20.2\20.2.3 ETCS_Level_Announcement_symbol_in_Sub_Area_C1.cs" />
+    <Compile Include="DMITestCases\20 Status Information to The Driver\20.2\20.2.4 ETCS_Level_ETCS_Level_Transitions_by_receiving_data_packet_from_ETCS_Onboard_L1_L0_L0_L1.cs" />
+    <Compile Include="DMITestCases\20 Status Information to The Driver\20.2\20.2.5 ETCS_Level_ETCS_Level_Transitions_by_receiving_data_packet_from_ETCS_Onboard_L2_L3_L3_L2.cs" />
     <Compile Include="DMITestCases\20 Status Information to The Driver\20.2\20.2.7 ETCS_Level_STM_level_symbol.cs" />
     <Compile Include="DMITestCases\20 Status Information to The Driver\20.2\20.2.8 ETCS_Level_in_Sub_Area_C8_Unknown_Level.cs" />
-    <Compile Include="DMITestCases\20 Status Information to The Driver\20.2\20.2.9 NTC_Level_Announcement_symbol_in_Sub_Area_C1_.cs" />
+    <Compile Include="DMITestCases\20 Status Information to The Driver\20.2\20.2.9 NTC_Level_Announcement_symbol_in_Sub_Area_C1.cs" />
     <Compile Include="DMITestCases\20 Status Information to The Driver\20.3\20.3.1.1 Driver_Messages_Visualise_of_the_non_acknowledgeable_symbols.cs" />
     <Compile Include="DMITestCases\20 Status Information to The Driver\20.3\20.3.1.10 Driver_Messages_Visualise_of_the_Text_messages_Unknown_Text_ID_674_708.cs" />
     <Compile Include="DMITestCases\20 Status Information to The Driver\20.3\20.3.1.2 Driver_Messages_Visualise_of_the_Text_messages_Unknown_Text_ID_261_319.cs" />
@@ -189,7 +189,7 @@ if exist "$(TargetPath)" if not exist "$(TargetPath).locked" move "$(TargetPath)
     <Compile Include="DMITestCases\20 Status Information to The Driver\20.3\20.3.4 Driver_Messages_Undefined_value_of_MMI_Q_TEXT_CRITERIA.cs" />
     <Compile Include="DMITestCases\20 Status Information to The Driver\20.4\20.4.1 Building_Texts_General.cs" />
     <Compile Include="DMITestCases\20 Status Information to The Driver\20.5\20.5.1 Adhesion_factor_General_appearance.cs" />
-    <Compile Include="DMITestCases\20 Status Information to The Driver\20.5\20.5.2 Building_Texts_Brake_test_in_Progress_.cs" />
+    <Compile Include="DMITestCases\20 Status Information to The Driver\20.5\20.5.2 Building_Texts_Brake_test_in_Progress.cs" />
     <Compile Include="DMITestCases\20 Status Information to The Driver\20.5\20.5.3 Adhesion_factor_Controlled_data_packet_from_ETCS_Onboard.cs" />
     <Compile Include="DMITestCases\20 Status Information to The Driver\20.6\20.6.1 Level_Crossing_not_protected_Indication_General_Display.cs" />
     <Compile Include="DMITestCases\20 Status Information to The Driver\20.6\20.6.2 Level_Crossing_not_protected_Indication_Packet_Handling.cs" />
@@ -202,31 +202,31 @@ if exist "$(TargetPath)" if not exist "$(TargetPath).locked" move "$(TargetPath)
     <Compile Include="DMITestCases\22 Planning Area in Main Area D\22.11\22.11 Handle_at_least_31_PA_Speed_Profile_Segments.cs" />
     <Compile Include="DMITestCases\22 Planning Area in Main Area D\22.1\22.1.1 Planning_Area_General_Appearance.cs" />
     <Compile Include="DMITestCases\22 Planning Area in Main Area D\22.1\22.1.2 Planning_Area_is_suppressed_in_Level_1_and_OS_mode.cs" />
-    <Compile Include="DMITestCases\22 Planning Area in Main Area D\22.1\22.1.3 Planning_Area_displays_according_to_configuration_in_OS_and_SR_mode_.cs" />
+    <Compile Include="DMITestCases\22 Planning Area in Main Area D\22.1\22.1.3 Planning_Area_displays_according_to_configuration_in_OS_and_SR_mode.cs" />
     <Compile Include="DMITestCases\22 Planning Area in Main Area D\22.1\22.1.4 Planning_Area_forced_into_background_by_TAF_Question_box.cs" />
     <Compile Include="DMITestCases\22 Planning Area in Main Area D\22.2\22.2.1 Planning_Area_Layering_PASP_and_PA_Distance_scale.cs" />
     <Compile Include="DMITestCases\22 Planning Area in Main Area D\22.2\22.2.2 Planning_Area_Layering_Display_information_when_PA_data_is_empty.cs" />
     <Compile Include="DMITestCases\22 Planning Area in Main Area D\22.3\22.3 Planning_Area_PA_Distance_Scale.cs" />
     <Compile Include="DMITestCases\22 Planning Area in Main Area D\22.4\22.4.1 PA_Track_Condition_Non_stopping_area_in_Sub_Area_D2_and_B3.cs" />
-    <Compile Include="DMITestCases\22 Planning Area in Main Area D\22.4\22.4.10 PA_Track_Condition_Change_of_traction_system__not_fitted_Sub_Area_D2_and_B3.cs" />
-    <Compile Include="DMITestCases\22 Planning Area in Main Area D\22.4\22.4.11 PA_Track_Condition_Change_of_traction_system__AC_25_KV_50_Hz_Sub_Area_D2_and_B3.cs" />
-    <Compile Include="DMITestCases\22 Planning Area in Main Area D\22.4\22.4.12 PA_Track_Condition_Change_of_traction_system__AC_15_KV_16_7_Hz_Sub_Area_D2_and_B3.cs" />
-    <Compile Include="DMITestCases\22 Planning Area in Main Area D\22.4\22.4.13 PA_Track_Condition_Change_of_traction_system__DC_3kV_Sub_Area_D2_and_B3.cs" />
-    <Compile Include="DMITestCases\22 Planning Area in Main Area D\22.4\22.4.14 PA_Track_Condition_Change_of_traction_system__DC_1_5_kV_Sub_Area_D2_and_B3.cs" />
-    <Compile Include="DMITestCases\22 Planning Area in Main Area D\22.4\22.4.15 PA_Track_Condition_Change_of_traction_system__DC_600750_V_Sub_Area_D2_and_B3.cs" />
+    <Compile Include="DMITestCases\22 Planning Area in Main Area D\22.4\22.4.10 PA_Track_Condition_Change_of_traction_system_not_fitted_Sub_Area_D2_and_B3.cs" />
+    <Compile Include="DMITestCases\22 Planning Area in Main Area D\22.4\22.4.11 PA_Track_Condition_Change_of_traction_system_AC_25_KV_50_Hz_Sub_Area_D2_and_B3.cs" />
+    <Compile Include="DMITestCases\22 Planning Area in Main Area D\22.4\22.4.12 PA_Track_Condition_Change_of_traction_system_AC_15_KV_16_7_Hz_Sub_Area_D2_and_B3.cs" />
+    <Compile Include="DMITestCases\22 Planning Area in Main Area D\22.4\22.4.13 PA_Track_Condition_Change_of_traction_system_DC_3kV_Sub_Area_D2_and_B3.cs" />
+    <Compile Include="DMITestCases\22 Planning Area in Main Area D\22.4\22.4.14 PA_Track_Condition_Change_of_traction_system_DC_1_5_kV_Sub_Area_D2_and_B3.cs" />
+    <Compile Include="DMITestCases\22 Planning Area in Main Area D\22.4\22.4.15 PA_Track_Condition_Change_of_traction_system_DC_600750_V_Sub_Area_D2_and_B3.cs" />
     <Compile Include="DMITestCases\22 Planning Area in Main Area D\22.4\22.4.16 PA_Track_Condition_30_PA_Track_Conditions.cs" />
     <Compile Include="DMITestCases\22 Planning Area in Main Area D\22.4\22.4.17 PA_Track_Condition_First_symbol_prevails_over_the_next_coming_symbol.cs" />
     <Compile Include="DMITestCases\22 Planning Area in Main Area D\22.4\22.4.2 PA_Track_Condition_Sound_Horn_in_Sub_Area_D2_and_B3.cs" />
-    <Compile Include="DMITestCases\22 Planning Area in Main Area D\22.4\22.4.3 PA_Track_Condition__Lower_Pantograph_in_Sub_Area_D2_and_B3.cs" />
+    <Compile Include="DMITestCases\22 Planning Area in Main Area D\22.4\22.4.3 PA_Track_Condition_Lower_Pantograph_in_Sub_Area_D2_and_B3.cs" />
     <Compile Include="DMITestCases\22 Planning Area in Main Area D\22.4\22.4.4 PA_Track_Condition_Radio_Hole_in_Sub_Area_D2_and_B3.cs" />
     <Compile Include="DMITestCases\22 Planning Area in Main Area D\22.4\22.4.5 PA_Track_Condition_Air_Tightness_in_Sub_Area_D2_and_B3.cs" />
     <Compile Include="DMITestCases\22 Planning Area in Main Area D\22.4\22.4.6 PA_Track_Condition_Switch_off_regenerative_brake_in_Sub_Area_D2_and_B3.cs" />
     <Compile Include="DMITestCases\22 Planning Area in Main Area D\22.4\22.4.8 PA_Track_Condition_Switch_off_magnetic_shoe_brake_in_Sub_Area_D2_and_B3.cs" />
     <Compile Include="DMITestCases\22 Planning Area in Main Area D\22.4\22.4.9 PA_Track_Condition_Switch_off_main_power_switch_in_Sub_Area_D2_and_B3.cs" />
-    <Compile Include="DMITestCases\22 Planning Area in Main Area D\22.5\22.5.1 PA_Gradient_Profile__General_appearance.cs" />
-    <Compile Include="DMITestCases\22 Planning Area in Main Area D\22.5\22.5.2 PA_Gradient_Profile__Display_of_many_PA_Gradient_Profile.cs" />
-    <Compile Include="DMITestCases\22 Planning Area in Main Area D\22.5\22.5.3 PA_Gradient_Profile__Information_updating.cs" />
-    <Compile Include="DMITestCases\22 Planning Area in Main Area D\22.5\22.5.4 PA_Gradient_Profile__Invalid_Information_Ignoring.cs" />
+    <Compile Include="DMITestCases\22 Planning Area in Main Area D\22.5\22.5.1 PA_Gradient_Profile_General_appearance.cs" />
+    <Compile Include="DMITestCases\22 Planning Area in Main Area D\22.5\22.5.2 PA_Gradient_Profile_Display_of_many_PA_Gradient_Profile.cs" />
+    <Compile Include="DMITestCases\22 Planning Area in Main Area D\22.5\22.5.3 PA_Gradient_Profile_Information_updating.cs" />
+    <Compile Include="DMITestCases\22 Planning Area in Main Area D\22.5\22.5.4 PA_Gradient_Profile_Invalid_Information_Ignoring.cs" />
     <Compile Include="DMITestCases\22 Planning Area in Main Area D\22.6\22.6.1 PA_Speed_Profile_Discontinuity_Display_in_sub_area_D6_and_D7.cs" />
     <Compile Include="DMITestCases\22 Planning Area in Main Area D\22.6\22.6.2 PA_Speed_Profile_Discontinuity_Information_updating.cs" />
     <Compile Include="DMITestCases\22 Planning Area in Main Area D\22.7\22.7.1 PA_Speed_Profile_PASP_Display_in_sub_area_D7_and_D8.cs" />
@@ -318,13 +318,13 @@ if exist "$(TargetPath)" if not exist "$(TargetPath).locked" move "$(TargetPath)
     <Compile Include="DMITestCases\27 Sub-Level Window Selection\27.8\27.8.2.1 Radio_Network_ID_window_General_appearance.cs" />
     <Compile Include="DMITestCases\27 Sub-Level Window Selection\27.8\27.8.3.1 RBC_Contact_window_General_appearance.cs" />
     <Compile Include="DMITestCases\27 Sub-Level Window Selection\27.9\27.9.1 SR_SpeedDistance_window_General_appearance.cs" />
-    <Compile Include="DMITestCases\27 Sub-Level Window Selection\27.9\27.9.10 SR_speed__distance_Data_Checks_Technical_Range_Checks_by_Variable_Range.cs" />
-    <Compile Include="DMITestCases\27 Sub-Level Window Selection\27.9\27.9.9 SR_speed__distance_Data_Checks_Technical_Range_Checks_by_Data_Validity.cs" />
+    <Compile Include="DMITestCases\27 Sub-Level Window Selection\27.9\27.9.10 SR_speed_distance_Data_Checks_Technical_Range_Checks_by_Variable_Range.cs" />
+    <Compile Include="DMITestCases\27 Sub-Level Window Selection\27.9\27.9.9 SR_speed_distance_Data_Checks_Technical_Range_Checks_by_Data_Validity.cs" />
     <Compile Include="DMITestCases\29\29.1\29.1 UTC_time_and_offset_timeby_driver.cs" />
     <Compile Include="DMITestCases\29\29.2\29.2 UTC_time_and_offset_timeby_using_EVC_3.cs" />
     <Compile Include="DMITestCases\29\29.3\29.3 UTC_time_and_offset_timeBy_VAP_acting_as_NTP_server.cs" />
-    <Compile Include="DMITestCases\30 Start-Up and Restart Synchronisation\30.1\30.1 Start_Up_with_MMI_M_START_REQ__0_and_1.cs" />
-    <Compile Include="DMITestCases\30 Start-Up and Restart Synchronisation\30.2\30.2 Start_up_error_with_MMI_M_START_REQ__2__3_and_4.cs" />
+    <Compile Include="DMITestCases\30 Start-Up and Restart Synchronisation\30.1\30.1 Start_Up_with_MMI_M_START_REQ_0_and_1.cs" />
+    <Compile Include="DMITestCases\30 Start-Up and Restart Synchronisation\30.2\30.2 Start_up_error_with_MMI_M_START_REQ_2_3_and_4.cs" />
     <Compile Include="DMITestCases\35 Lock Screen %28only TS%29\35.1\35.1 Lock_Screen.cs" />
     <Compile Include="DMITestCases\36 Parentchild relationship\36.1\36.1 The_relationship_between_parent_and_child_windows_1.cs" />
     <Compile Include="DMITestCases\36 Parentchild relationship\36.2\36.2 The_relationship_between_parent_and_child_windows_2.cs" />
@@ -350,19 +350,21 @@ if exist "$(TargetPath)" if not exist "$(TargetPath).locked" move "$(TargetPath)
     <Compile Include="DMITestCases\6 Non-Functionality\6.2\6.2 Internal_Components.cs" />
     <Compile Include="DMITestCases\6 Non-Functionality\6.3\6.3.1 Performance_of_the_new_selection_language.cs" />
     <Compile Include="DMITestCases\6 Non-Functionality\6.6\6.6 Adjustment_of_Sound_Volume.cs" />
-    <Compile Include="DMITestCases\6 Non-Functionality\6.8\6.8 AcclerationDecleration_interval__4_0ms2_to__4_0_ms2.cs" />
+    <Compile Include="DMITestCases\6 Non-Functionality\6.8\6.8 AcclerationDecleration_interval_4_0ms2_to_4_0_ms2.cs" />
     <Compile Include="DMITestCases\6 Non-Functionality\6.9\6.9 Performance_of_ETCS_DMI_Data_handling.cs" />
     <Compile Include="DMITestCases\7 Requirements on Safety Procedures\7.3\7.3 Frozen_Displays.cs" />
     <Compile Include="DMITestCases\7 Requirements on Safety Procedures\7.5\7.5.1 DMI_Failure_Reaction_Reboot_function_SIL0_DMI.cs" />
     <Compile Include="DMITestCases\7 Requirements on Safety Procedures\7.6\7.6 Safety_related_Data_Entry.cs" />
     <Compile Include="DMITestCases\8 Essential Configurability\8.1\8.1 DMI_language_selection_Configurable_at_least_eight_langauges.cs" />
+    <Compile Include="DMITestCases\DMIActions.cs" />
+    <Compile Include="DMITestCases\DMIResults.cs" />
     <Compile Include="DMITestCases\UnknownChapter\1 Introduction.cs" />
     <Compile Include="DMITestCases\UnknownChapter\at_least_31_PA_Gradient_Profile_Segments.cs" />
     <Compile Include="DMITestCases\UnknownChapter\NACKACK_Buttons.cs" />
     <Compile Include="DMITestCases\UnknownChapter\Running_Number_window.cs" />
-    <Compile Include="DMITestCases\UnknownChapter\S1___Driving_too_fast.cs" />
-    <Compile Include="DMITestCases\UnknownChapter\S1___Over_Speed.cs" />
-    <Compile Include="DMITestCases\UnknownChapter\S3___End_of_Intervention.cs" />
+    <Compile Include="DMITestCases\UnknownChapter\S1_Driving_too_fast.cs" />
+    <Compile Include="DMITestCases\UnknownChapter\S1_Over_Speed.cs" />
+    <Compile Include="DMITestCases\UnknownChapter\S3_End_of_Intervention.cs" />
     <Compile Include="DMITestCases\UnknownChapter\Symbol_in_Level_0_and_Level_1.cs" />
     <Compile Include="DMITestCases\UnknownChapter\to_Target_Bar_and_Digital_Appearance_of_distance_to_target_for_Imperial_Unit.cs" />
     <Compile Include="DMITestCases\UnknownChapter\Track_Condition_Switch_off_eddy_current_brake_in_Sub_Area_D2_and_B3.cs" />
@@ -409,7 +411,9 @@ if exist "$(TargetPath)" if not exist "$(TargetPath).locked" move "$(TargetPath)
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="DMITestCases\1 Introduction\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

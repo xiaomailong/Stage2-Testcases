@@ -37,7 +37,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Setup a verbose visualisation for the radio connection status in configuration file (RADIO_STATUS_VISUAL= 1).System is powered ON.
-
+            
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -55,66 +55,87 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
+            
             /*
             Test Step 1
-            Action: Activate Cabin A.
-            Expected Result: DMI displays Driver ID window.Verify that sub-area E1 is divided in two areas.
+            Action: Activate Cabin A
+            Expected Result: DMI displays Driver ID window.Verify that sub-area E1 is divided in two areas
             Test Step Comment: (1) MMI_gen 7527 (partly: divided in two areas);          MMI_gen 11459 (partly: verbose visualisation);
             */
-
+            // Call generic Action Method
+            DmiActions.Activate_Cabin_A();
+            
+            
             /*
             Test Step 2
-            Action: Perform SoM in SR mode, Level 2. 
-            Expected Result: DMI displays Connection established symbol (ST103) in the left part of sub-area E1.Use the log file to confirm that DMI receives packet information EVC-8 with variable MMI_DRIVER_MESSAGE.MMI_Q_TEXT = 568 (ST03 symbol).
+            Action: Perform SoM in SR mode, Level 2
+            Expected Result: DMI displays Connection established symbol (ST103) in the left part of sub-area E1.Use the log file to confirm that DMI receives packet information EVC-8 with variable MMI_DRIVER_MESSAGE.MMI_Q_TEXT = 568 (ST03 symbol)
             Test Step Comment: (1) MMI_gen 2576 (partly: verbose visualisation, connection established); MMI_gen 1855 (partly: connection established);  MMI_gen 11459 (partly: verbose visualisation); MMI_gen 7022 (partly: Radio connection symbols); MMI_gen 3005 (partly: Radio connection symbols);
             */
-
+            // Call generic Action Method
+            DmiActions.Perform_SoM_in_SR_mode_Level_2();
+            
+            
             /*
             Test Step 3
-            Action: Drive the train forward with speed below the permitted speed.
-            Expected Result: The train is moving forward, position is increase.The speed pointer displays the current speed. 
+            Action: Drive the train forward with speed below the permitted speed
+            Expected Result: The train is moving forward, position is increase.The speed pointer displays the current speed
             */
-
+            // Call generic Action Method
+            DmiActions.Drive_the_train_forward_with_speed_below_the_permitted_speed();
+            // Call generic Check Results Method
+            DmiExpectedResults.The_train_is_moving_forward_position_is_increase_The_speed_pointer_displays_the_current_speed();
+            
+            
             /*
             Test Step 4
-            Action: Receives FS MA and track description from RBC.
-            Expected Result: DMI displays in FS mode, Level 2. 
+            Action: Receives FS MA and track description from RBC
+            Expected Result: DMI displays in FS mode, Level 2
             */
-
+            // Call generic Action Method
+            DmiActions.Receives_FS_MA_and_track_description_from_RBC();
+            // Call generic Check Results Method
+            DmiExpectedResults.DMI_displays_in_FS_mode_Level_2();
+            
+            
             /*
             Test Step 5
-            Action: Receives RBC transition order from RBC.
-            Expected Result: DMI displays Connection Up with two RBCs symbol (ST03B) in the left part of sub-area E1.Use the log file to confirm that DMI receives packet information EVC-8 with variable MMI_DRIVER_MESSAGE.MMI_Q_TEXT = 614.DMI displays Network registered via two modems symbol (ST102) in the right part of sub-area E1.Use the log file to confirm that DMI receives packet information EVC-8 with variable MMI_DRIVER_MESSAGE.MMI_Q_TEXT = 610.
+            Action: Receives RBC transition order from RBC
+            Expected Result: DMI displays Connection Up with two RBCs symbol (ST03B) in the left part of sub-area E1.Use the log file to confirm that DMI receives packet information EVC-8 with variable MMI_DRIVER_MESSAGE.MMI_Q_TEXT = 614.DMI displays Network registered via two modems symbol (ST102) in the right part of sub-area E1.Use the log file to confirm that DMI receives packet information EVC-8 with variable MMI_DRIVER_MESSAGE.MMI_Q_TEXT = 610
             Test Step Comment: (1) MMI_gen 2576 (partly: verbose visualisation, Connection Up with two RBCs); MMI_gen 1855 (partly: connection established);  MMI_gen 11459 (partly: verbose visualisation); MMI_gen 11442 (partly: connection Up with wto RBC);(2) MMI_gen 2576 (partly: verbose visualisation, Network registered via two modems); MMI_gen 1855 (partly: connection established);  MMI_gen 11459 (partly: verbose visualisation); MMI_gen 11442 (partly: Network registration via two modems); MMI_gen 7022 (partly: Radio connection symbols); MMI_gen 3005 (partly: Radio connection symbols);
             */
-
+            
+            
             /*
             Test Step 6
-            Action: Receive Terminate communication session from RBC. 
-            Expected Result: DMI displays Connection Up symbol (ST103) in the left part of sub-area E1.Use the log file to confirm that DMI receives packet information EVC-8 with variable MMI_DRIVER_MESSAGE.MMI_Q_TEXT = 613 (ST03 symbol).DMI displays Network registered via one modem symbol (ST100) in the right part of sub-area E1.Use the log file to confirm that DMI receives packet information EVC-8 with variable MMI_DRIVER_MESSAGE.MMI_Q_TEXT = 609.
+            Action: Receive Terminate communication session from RBC
+            Expected Result: DMI displays Connection Up symbol (ST103) in the left part of sub-area E1.Use the log file to confirm that DMI receives packet information EVC-8 with variable MMI_DRIVER_MESSAGE.MMI_Q_TEXT = 613 (ST03 symbol).DMI displays Network registered via one modem symbol (ST100) in the right part of sub-area E1.Use the log file to confirm that DMI receives packet information EVC-8 with variable MMI_DRIVER_MESSAGE.MMI_Q_TEXT = 609
             Test Step Comment: (1) MMI_gen 2576 (partly: verbose visualisation, Connection Up with two RBCs); MMI_gen 1855 (partly: connection up);  MMI_gen 11459 (partly: verbose visualisation); MMI_gen 11442 (partly: connection up with one RBC);(2) MMI_gen 2576 (partly: verbose visualisation, Network registered via one modem); MMI_gen 1855 (partly: connection established);  MMI_gen 11459 (partly: verbose visualisation); MMI_gen 11442 (partly: Network registration via one modem); MMI_gen 7022 (partly: Radio connection symbols); MMI_gen 3005 (partly: Radio connection symbols);
             */
-
+            
+            
             /*
             Test Step 7
-            Action: Simulate RBC communication loss and wait for a few secondsNote: This simulation is performed automatically by UTT file. 
-            Expected Result: DMI displays Connection Lost/Set-Up failed symbol (ST03C) in the left part of sub-area E1.Use the log file to confirm that DMI receives packet information EVC-8 with variable MMI_DRIVER_MESSAGE.MMI_Q_TEXT = 282 (ST04 symbol).
+            Action: Simulate RBC communication loss and wait for a few secondsNote: This simulation is performed automatically by UTT file
+            Expected Result: DMI displays Connection Lost/Set-Up failed symbol (ST03C) in the left part of sub-area E1.Use the log file to confirm that DMI receives packet information EVC-8 with variable MMI_DRIVER_MESSAGE.MMI_Q_TEXT = 282 (ST04 symbol)
             Test Step Comment: (1) MMI_gen 2576 (partly: verbose visualisation, connection lost); MMI_gen 1855 (partly: connection established);  MMI_gen 11459 (partly: verbose visualisation); MMI_gen 7022 (partly: ST03C, MMI_Q_TEXT = 615); MMI_gen 3005 (partly: ST03C, MMI_Q_TEXT = 615);
             */
-
+            
+            
             /*
             Test Step 8
-            Action: Re-establish the radio communication.Note: This simulation is performed automatically by UTT file.
-            Expected Result: DMI displays Connection established symbol (ST103) in the left part of sub-area E1.Use the log file to confirm that DMI receives packet information EVC-8 with variable MMI_DRIVER_MESSAGE.MMI_Q_TEXT = 613.
+            Action: Re-establish the radio communication.Note: This simulation is performed automatically by UTT file
+            Expected Result: DMI displays Connection established symbol (ST103) in the left part of sub-area E1.Use the log file to confirm that DMI receives packet information EVC-8 with variable MMI_DRIVER_MESSAGE.MMI_Q_TEXT = 613
             Test Step Comment: (1) MMI_gen 2576 (partly: verbose visualisation, connection up); MMI_gen 1855 (partly: connection established); MMI_gen 11459 (partly: verbose visualisation); MMI_gen 7022 (partly: Radio connection symbols); MMI_gen 3005 (partly: Radio connection symbols);
             */
-
+            
+            
             /*
             Test Step 9
             Action: End of test
             Expected Result: 
             */
+            
 
             return GlobalTestResult;
         }

@@ -37,7 +37,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Set the following tags name in configuration file (See the instruction in Appendix 1)HIDE_PA_OS_MODE = 1 (PA will show in OS mode)System is power on.Cabin is activate.
-
+            
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -55,50 +55,67 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
+            
             /*
             Test Step 1
-            Action: Perform SoM to SR mode, level 2.
-            Expected Result: DMI displays in SR mode, level 2.
+            Action: Perform SoM to SR mode, level 2
+            Expected Result: DMI displays in SR mode, level 2
             */
-
+            // Call generic Check Results Method
+            DmiExpectedResults.DMI_displays_in_SR_mode_level_2();
+            
+            
             /*
             Test Step 2
-            Action: Receive information from RBC.
-            Expected Result: DMI changes from SR mode to FS mode, level 2.
+            Action: Receive information from RBC
+            Expected Result: DMI changes from SR mode to FS mode, level 2
             */
-
+            // Call generic Check Results Method
+            DmiExpectedResults.DMI_changes_from_SR_mode_to_FS_mode_level_2();
+            
+            
             /*
             Test Step 3
-            Action: Acknowledge OS mode by pressing at area C1.
-            Expected Result: DMI changes from FS mode to OS mode, level 2.
+            Action: Acknowledge OS mode by pressing at area C1
+            Expected Result: DMI changes from FS mode to OS mode, level 2
             */
-
+            // Call generic Check Results Method
+            DmiExpectedResults.DMI_changes_from_FS_mode_to_OS_mode_level_2();
+            
+            
             /*
             Test Step 4
-            Action: Received information from RBC.
-            Expected Result: DMI displays symbol DR02 (Confirm Track Ahead Free) in Main area D.Verify that Planning area is forced into background, and it is not display in Main area D.   
+            Action: Received information from RBC
+            Expected Result: DMI displays symbol DR02 (Confirm Track Ahead Free) in Main area D.Verify that Planning area is forced into background, and it is not display in Main area D
             Test Step Comment: (1) MMI_gen 7097 (partly: force into the background);
             */
-
+            // Call generic Action Method
+            DmiActions.Received_information_from_RBC();
+            
+            
             /*
             Test Step 5
-            Action: Drive the train forward.
-            Expected Result: The symbol DR02 is still displayed in Main area D.
+            Action: Drive the train forward
+            Expected Result: The symbol DR02 is still displayed in Main area D
             */
-
+            // Call generic Action Method
+            DmiActions.Drive_the_train_forward();
+            
+            
             /*
             Test Step 6
-            Action: Press ‘Yes’ button in Main area D.
+            Action: Press ‘Yes’ button in Main area D
             Expected Result: DMI displays PA in Main area D again.Verify that the following object is moving down to the bottom of area D.PASPUse the log file to confirm that DMI sends out packet [MMI_DRIVER_ACTION (EVC-152)] with the value of variable MMI_M_DRIVER_ACTION refer to sequence below,a)   MMI_M_DRIVER_ACTION = 22 (Confirmation of Track Ahead Free)
             Test Step Comment: (1) MMI_gen 7097 (partly: Update information in background);(2) MMI_gen 11470 (partly: Bit # 22);
             */
-
+            
+            
             /*
             Test Step 7
             Action: End of test
             Expected Result: 
             */
+            
 
             return GlobalTestResult;
         }

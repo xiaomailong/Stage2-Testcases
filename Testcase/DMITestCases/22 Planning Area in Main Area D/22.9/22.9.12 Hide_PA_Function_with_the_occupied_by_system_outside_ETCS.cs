@@ -38,7 +38,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Use the ATP config editor to set the following parameters as follows (See the instruction in Appendix 2),M_InstalledLevels = 31NID_NTC_Installed_0 = 1 (ATB)M_DefaultLevels = 31NID_NTC_Default_0 = 1 (ATB)Test system is power on.Cabin is activated.SoM is performed in SR mode, level 1
-
+            
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -56,25 +56,30 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
+            
             /*
             Test Step 1
-            Action: Drive the train forward pass BG1.Then, stop the train.
-            Expected Result: DMI displays in FS mode, Level 1 with PA in Main-area D.
+            Action: Drive the train forward pass BG1.Then, stop the train
+            Expected Result: DMI displays in FS mode, Level 1 with PA in Main-area D
             */
-
+            // Call generic Action Method
+            DmiActions.Drive_the_train_forward_pass_BG1_Then_stop_the_train();
+            
+            
             /*
             Test Step 2
             Action: Perform the following procedure,Press ‘Main’ buttonPress ‘Level’ buttonSelect and confirm  level ‘ATB’At Main window, press ‘Close’ button
-            Expected Result: DMI displays in SN mode, Level ATB.Verify the following information,(1)    All objects of PA in Main-area D are removed.
+            Expected Result: DMI displays in SN mode, Level ATB.Verify the following information,(1)    All objects of PA in Main-area D are removed
             Test Step Comment: (1) MMI_gen 7354;
             */
-
+            
+            
             /*
             Test Step 3
-            Action: End of test.
+            Action: End of test
             Expected Result: 
             */
+            
 
             return GlobalTestResult;
         }

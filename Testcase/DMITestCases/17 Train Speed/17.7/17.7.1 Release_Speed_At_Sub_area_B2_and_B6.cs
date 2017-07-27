@@ -37,7 +37,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // System is power on.
-
+            
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -55,43 +55,63 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
+            
             /*
             Test Step 1
-            Action: Activate cabin A. 
-            Expected Result: DMI displays in SB mode, level 1. The Driver ID window is displayed.
+            Action: Activate cabin A
+            Expected Result: DMI displays in SB mode, level 1. The Driver ID window is displayed
             */
-
+            // Call generic Action Method
+            DmiActions.Activate_cabin_A();
+            // Call generic Check Results Method
+            DmiExpectedResults.DMI_displays_in_SB_mode_level_1_The_Driver_ID_window_is_displayed();
+            
+            
             /*
             Test Step 2
-            Action: Driver performs SoM to SR mode.
-            Expected Result: DMI is displayed in SR mode, level 1.
+            Action: Driver performs SoM to SR mode
+            Expected Result: DMI is displayed in SR mode, level 1
             */
-
+            // Call generic Action Method
+            DmiActions.Driver_performs_SoM_to_SR_mode();
+            // Call generic Check Results Method
+            DmiExpectedResults.DMI_is_displayed_in_SR_mode_level_1();
+            
+            
             /*
             Test Step 3
-            Action: Drive the train forward passing BG1. 
-            Expected Result: The DMI changes from SR to FS mode.
+            Action: Drive the train forward passing BG1
+            Expected Result: The DMI changes from SR to FS mode
             */
-
+            // Call generic Action Method
+            DmiActions.Drive_the_train_forward_passing_BG1();
+            
+            
             /*
             Test Step 4
-            Action: Driving the train with speed equal to 45 km/h.
-            Expected Result: Verify the following information,Verify that the release speed digital is displayed centred in sub-area B6 without leading zeros. The graphical presentation of release speed digital is displayed in area B2. (see the figure 1 and figure 2 in ‘Comment’ column)Use the log file to confirm that the appearance of the release speed digital is controlled by data packet from ETCS Onboard as follows,EVC-7: OBU_TR_M_MODE = 0 (FS Mode)EVC-1: MMI_M_WARNING = 15 (Supervision = Release speed monitoring)EVC-1: MMI_V_RELEASE = 1111 (~40 km/h)The Relaese speed is displayed at the outer part of CSG. (see the figure 2 in ‘Comment’ column)The Relaese speed is separated from the permitted speed. (see the figure 2 in ‘Comment’ column)When a Release speed exists, the presentation is displayed on the CSG according to table 33 (Speed monitoring is RSM)When a Release speed exists, the release speed digital is displayed as a numeric in medium grey colour 
+            Action: Driving the train with speed equal to 45 km/h
+            Expected Result: Verify the following information,Verify that the release speed digital is displayed centred in sub-area B6 without leading zeros. The graphical presentation of release speed digital is displayed in area B2. (see the figure 1 and figure 2 in ‘Comment’ column)Use the log file to confirm that the appearance of the release speed digital is controlled by data packet from ETCS Onboard as follows,EVC-7: OBU_TR_M_MODE = 0 (FS Mode)EVC-1: MMI_M_WARNING = 15 (Supervision = Release speed monitoring)EVC-1: MMI_V_RELEASE = 1111 (~40 km/h)The Relaese speed is displayed at the outer part of CSG. (see the figure 2 in ‘Comment’ column)The Relaese speed is separated from the permitted speed. (see the figure 2 in ‘Comment’ column)When a Release speed exists, the presentation is displayed on the CSG according to table 33 (Speed monitoring is RSM)When a Release speed exists, the release speed digital is displayed as a numeric in medium grey colour
             Test Step Comment: (1) MMI_gen 6460;                 (2) MMI_gen 9967;          (3) MMI_gen 6468 (FS);           (4) MMI_gen 9970 (partly: outer part of CSG);                           (5) MMI_gen 9970 (partly: separated from permitted speed);                                      (6) MMI_gen 9969;                          (7) MMI_gen 6465;                                  Figure 1Figure 2
             */
-
+            
+            
             /*
             Test Step 5
-            Action: Stop the train.
-            Expected Result: Train is standstill.
+            Action: Stop the train
+            Expected Result: Train is standstill
             */
-
+            // Call generic Action Method
+            DmiActions.Stop_the_train();
+            // Call generic Check Results Method
+            DmiExpectedResults.Train_is_standstill();
+            
+            
             /*
             Test Step 6
             Action: End of test
             Expected Result: 
             */
+            
 
             return GlobalTestResult;
         }
