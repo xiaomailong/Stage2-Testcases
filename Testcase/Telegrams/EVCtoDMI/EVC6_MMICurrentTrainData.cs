@@ -17,7 +17,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             TrainSetCaptions = new List<string>();
             DataElements = new List<DataElement>();
 
-            // set as dynamic
+            // Set as dynamic
             _pool.SITR.SMDCtrl.ETCS1.CurrentTrainData.Value = 0x8;
 
             // Set default values
@@ -35,53 +35,55 @@ namespace Testcase.Telegrams.EVCtoDMI
                 throw new ArgumentOutOfRangeException();
             if (DataElements.Count > 9)
                 throw new ArgumentOutOfRangeException();
+            if (TrainSetCaptions.Count != DataElements.Count)
+                throw new Exception("Number of RBC elements and number of captions do not match!");
 
-            ushort totalsizecounter = 160;
+            ushort totalSizeCounter = 160;
 
-            // set number of trainset captions
+            // Set number of trainset captions
             _pool.SITR.ETCS1.CurrentTrainData.MmiNTrainset.Value = (ushort) TrainSetCaptions.Count;
 
-            // populate the array of trainset captions
-            for (var trainsetindex = 0; trainsetindex < TrainSetCaptions.Count; trainsetindex++)
+            // Populate the array of trainset captions
+            for (var trainsetIndex = 0; trainsetIndex < TrainSetCaptions.Count; trainsetIndex++)
             {
-                var charArray = TrainSetCaptions[trainsetindex].ToCharArray();
+                var charArray = TrainSetCaptions[trainsetIndex].ToCharArray();
                 if (charArray.Length > 12)
                     throw new ArgumentOutOfRangeException();
 
-                // set length of char array
+                // Set length of char array
                 _pool.SITR.Client.Write(
-                    $"ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub1{trainsetindex}_MmiNCaptionTrainset",
-                    charArray.Length);
-                totalsizecounter += 16;
+                    $"ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub1{trainsetIndex}_MmiNCaptionTrainset", charArray.Length);
 
-                for (var charindex = 0; charindex < charArray.Length; charindex++)
+                totalSizeCounter += 16;
+
+                for (var charIndex = 0; charIndex < charArray.Length; charIndex++)
                 {
-                    var character = charArray[charindex];
+                    var character = charArray[charIndex];
 
                     // Trainset caption text character
-                    if (charindex < 10)
+                    if (charIndex < 10)
                     {
                         _pool.SITR.Client.Write(
-                            $"ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub1{trainsetindex}_EVC06CurrentTrainDataSub110{charindex}_MmiXCaptionTrainset",
+                            $"ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub1{trainsetIndex}_EVC06CurrentTrainDataSub110{charIndex}_MmiXCaptionTrainset",
                             character);
                     }
                     else
                     {
                         _pool.SITR.Client.Write(
-                            $"ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub1{trainsetindex}_EVC06CurrentTrainDataSub11{charindex}_MmiXCaptionTrainset",
+                            $"ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub1{trainsetIndex}_EVC06CurrentTrainDataSub11{charIndex}_MmiXCaptionTrainset",
                             character);
                     }
-                    totalsizecounter += 8;
+                    totalSizeCounter += 8;
                 }
             }
 
-            // set number of train data elements
+            // Set number of train data elements
             _pool.SITR.ETCS1.CurrentTrainData.MmiNDataElements.Value = (ushort) DataElements.Count;
 
-            totalsizecounter = PopulateDataElements($"ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub2", totalsizecounter, _pool);
+            totalSizeCounter = PopulateDataElements($"ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub2", totalSizeCounter, DataElements, _pool);
 
-            // set the total length of the packet
-            _pool.SITR.ETCS1.CurrentTrainData.MmiLPacket.Value = totalsizecounter;
+            // Set the total length of the packet
+            _pool.SITR.ETCS1.CurrentTrainData.MmiLPacket.Value = totalSizeCounter;
 
             _pool.SITR.SMDCtrl.ETCS1.CurrentTrainData.Value = 0x09;
         }
