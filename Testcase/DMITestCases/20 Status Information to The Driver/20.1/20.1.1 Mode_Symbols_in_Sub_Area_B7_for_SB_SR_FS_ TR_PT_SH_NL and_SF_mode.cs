@@ -13,6 +13,9 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams;
+using Testcase.Telegrams.EVCtoDMI;
+using Testcase.TemporaryFunctions;
 
 namespace Testcase.DMITestCases
 {
@@ -56,47 +59,59 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Verify mode symbol in sub-area B7
-            Expected Result: Verify the following information,Use the log file to verify that DMI received the EVC-7 with [MMI_ETCS_MISC_OUT_SIGNALS.OBU_TR_M_MODE] = 6 in order to display the Stand By symbol.The Stand By symbol (MO13) is displayed in area B7
-            Test Step Comment: (1) MMI_gen 11084 (partly: current ETCS mode);                                 (2) MMI_gen 110 (partly: MO13);
+            Expected Result: Verify the following information,Use the log file to verify that DMI received the EVC-7 with [MMI_ETCS_MISC_OUT_SIGNALS.OBU_TR_M_MODE] = 6 
+            in order to display the Stand By symbol.The Stand By symbol (MO13) is displayed in area B7
+            Test Step Comment: (1) MMI_gen 11084 (partly: current ETCS mode);
+                               (2) MMI_gen 110 (partly: MO13);
             */
-            
-            
+
+            //EVC-1 & EVC-7 telegram are automatically sent to the DMI. However, we want to make sure that EVC-7 is sent with OBU_TR_M_MODE = 6
+            EVC7_MMIEtcsMiscOutSignals.Initialise(this);
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
+
+            //Check feedback on DMI to verify SB Mode ie. EVC-102 [MMI_STATUS_REPORT.MMI_M_MODE_READBACK] = 6
+            EVC102_MMIStatusReport.Evc102modeReadback = EVC102_MMIStatusReport.EVC102modeReadback.StandBy;
+            EVC102_MMIStatusReport.ReadMode();
+
             /*
             Test Step 2
             Action: Perform SoM in Level1 until the ‘Start’ button is pressed
-            Expected Result: Verify the following information,The acknowledgement for Staff Responsible symbol (MO10) is displayed in area C1.Use the log file to confirm that DMI received the EVC-8 with [MMI_DRIVER_MESSAGE (EVC-8).MMI_Q_TEXT] = 263 in order to display the acknowledgement for Staff Responsible symbol
-            Test Step Comment: (1) MMI_gen 1227 (partly:MO10);                                (2) MMI_gen 11233;
+            Expected Result: Verify the following information,The acknowledgement for Staff Responsible symbol (MO10) is displayed in area C1.
+            Use the log file to confirm that DMI received the EVC-8 with [MMI_DRIVER_MESSAGE (EVC-8).MMI_Q_TEXT] = 263 
+            in order to display the acknowledgement for Staff Responsible symbol
+            Test Step Comment: (1) MMI_gen 1227 (partly:MO10);                                
+                               (2) MMI_gen 11233;
             */
-            
-            
+
+
             /*
             Test Step 3
             Action: Press the symbol MO10 in sub-area C1
             Expected Result: Verify the following information,The symbol MO10 is disappear from sub-area C1 and re-appear again.Use the log file to confirm that DMI sends EVC-111 twice with different value of MMI_T_BUTTONEVENT and MMI_Q_BUTTON (1 = pressed, 0 = released).Note: DMI still display in SB mode, Level 1
             Test Step Comment: (1) MMI_gen 9474;(2) MMI_gen 9474; MMI_gen 3375;
             */
-            
-            
+
+
             /*
             Test Step 4
             Action: Press the symbol MO10 in sub-area C1 for 2 second or upper.Then, release the pressed area
             Expected Result: Verify the following information,While the MO10 is pressed, the opacity of the symbol is decreased to 50%The symbol ‘MO10’ is displayed as a Safe Delay-Type buttonDMI received the EVC-7 with [MMI_ETCS_MISC_OUT_SIGNALS.OBU_TR_M_MODE] = 2 in order to display the Staff Responsible symbol.The Staff Responsible symbol (MO9) is displayed in area B7
             Test Step Comment: (1) MMI_gen 12161;(2) MMI_gen 9474;                                     (3) MMI_gen 11084 (partly: current ETCS mode);                                      (4) MMI_gen 110     (partly: MO09);
             */
-            
-            
+
+
             /*
             Test Step 5
             Action: Force the train into FS mode by moving the train forward passing BG1
             Expected Result: Verify the following information,Use the log file to confirm that DMI received the EVC-7 with [MMI_ETCS_MISC_OUT_SIGNALS.OBU_TR_M_MODE] = 0 in order to display the Full Supervision symbol.The Full Supervision symbol (MO11) is displayed in area B7
             Test Step Comment: (1) MMI_gen 11084 (partly: current ETCS mode);                                                 (2) MMI_gen 110 (partly: MO11);
             */
-            
-            
+
+
             /*
             Test Step 6
             Action: Force the train into TR mode by moving the train forward to position of EOA
