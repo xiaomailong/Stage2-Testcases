@@ -37,7 +37,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // System is power off. Configure DEFAULT_LANGUAGE to 1 (Deutsch), 2 (Swedish language), 3 (Dutch language), 4 (Spanish language), 5 (Polish language), 6 (Hungarian Language) and 7 (Czech language)  See the instruction in Appendix 1.
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -55,14 +55,14 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Power on DMI
             Expected Result: ‘Driver’s desk not active’ is displayed on DMI in Deutsch language
             */
-            
-            
+
+
             /*
             Test Step 2
             Action: Activate cabin A
@@ -71,72 +71,72 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Activate_cabin_A();
-            
-            
+
+
             /*
             Test Step 3
             Action: Enter the Driver ID
             Expected Result: Verify the following information,DMI displays the acknowledgement message of perform brake test at area E in Deutsch language
             Test Step Comment: (1) MMI_gen 63 (partly: Fixed text messages, text strings use for messages to the driver);
             */
-            
-            
+
+
             /*
             Test Step 4
             Action: Acknowledge the message
             Expected Result: Verify the following information,DMI displays the text message ‘Brake Test in progress’ in Deutsch language
             Test Step Comment: (1) MMI_gen 63 (partly: Fixed text messages, text strings use for messages to the driver);
             */
-            
-            
+
+
             /*
             Test Step 5
             Action: Select and confirm level 1
             Expected Result: DMI displays in SB mode, level 1.Verify the following information,The buttons at sub-area F1-F4 is displayed in Deutsch language
             Test Step Comment: (1) MMI_gen 63 (partly: text labels displayed on buttons);
             */
-            
-            
+
+
             /*
             Test Step 6
             Action: Select all buttons in the Main menu window
             Expected Result: Verify the following information,Verify that all texts in the window headline, buttons, input fields, echo texts, text labels of input fields are displayed in Deutsch language
             Test Step Comment: (1) MMI_gen 63;
             */
-            
-            
+
+
             /*
             Test Step 7
             Action: Close ‘Main menu’ window and then press sub-area F4
             Expected Result: Verify the following information,The Special window is displayed in Deutsch language
             Test Step Comment: (1) MMI_gen 63 (partly: all text labels);
             */
-            
-            
+
+
             /*
             Test Step 8
             Action: Select all buttons in the Special window
             Expected Result: Verify the following information,All texts in the window headline, buttons, input fields, echo texts, text labels of input fields are displayed in Deutsch language
             Test Step Comment: (1) MMI_gen 63;
             */
-            
-            
+
+
             /*
             Test Step 9
             Action: Close the Special window, then select  Settings menu button
             Expected Result: Verify the following information,The Settings window is displayed with the window headline in Deutsch language
             Test Step Comment: (1) MMI_gen 63 (partly: Window headline);
             */
-            
-            
+
+
             /*
             Test Step 10
             Action: Select all buttons in the Settings window
             Expected Result: Verify the following information,All texts in the window headline, buttons, input fields, echo texts, text labels of input fields are displayed in Deutsch language.The Language Selection window is displayed eight language buttons
             Test Step Comment: (1) MMI_gen 63;
             */
-            
-            
+
+
             /*
             Test Step 11
             Action: Close the Settings window
@@ -146,69 +146,69 @@ namespace Testcase.DMITestCases
             DmiActions.Close_the_Settings_window();
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_the_default_window();
-            
-            
+
+
             /*
             Test Step 12
             Action: Power off the DMI
             Expected Result: 
             */
-            
-            
+
+
             /*
             Test Step 13
             Action: Set DEFAULT_LANGUAGE configuration as 2 (Swedish language). Repeat the actions following step 1-12
             Expected Result: Verify the following information,All texts in the window headline, buttons, input fields, echo texts, text labels of input fields are displayed in Swedish language
             Test Step Comment: (1) MMI_gen 63;
             */
-            
-            
+
+
             /*
             Test Step 14
             Action: Set DEFAULT_LANGUAGE configuration as 3 (Dutch language). Repeat the actions following step 1-12
             Expected Result: Verify the following information,All texts in the window headline, buttons, input fields, echo texts, text labels of input fields are displayed in Dutch language
             Test Step Comment: (1) MMI_gen 63;
             */
-            
-            
+
+
             /*
             Test Step 15
             Action: Set DEFAULT_LANGUAGE configuration as 4 (Spanish language). Repeat the actions following step 1-12
             Expected Result: Verify the following information,All texts in the window headline, buttons, input fields, echo texts, text labels of input fields are displayed in Spanish language
             Test Step Comment: (1) MMI_gen 63;
             */
-            
-            
+
+
             /*
             Test Step 16
             Action: Set DEFAULT_LANGUAGE configuration as 5 (Polish language). Repeat the actions following step 1-12
             Expected Result: Verify the following information,All texts in the window headline, buttons, input fields, echo texts, text labels of input fields are displayed in Polish language
             Test Step Comment: (1) MMI_gen 63;
             */
-            
-            
+
+
             /*
             Test Step 17
             Action: Set DEFAULT_LANGUAGE configuration as 6 (Hungarian language). Repeat the actions following step 1-12
             Expected Result: Verify the following information,All texts in the window headline, buttons, input fields, echo texts, text labels of input fields are displayed in Hungarian language
             Test Step Comment: (1) MMI_gen 63;
             */
-            
-            
+
+
             /*
             Test Step 18
             Action: Set DEFAULT_LANGUAGE configuration as 7 (Czech language). Repeat the actions following step 1-12
             Expected Result: Verify the following information,All texts in the window headline, buttons, input fields, echo texts, text labels of input fields are displayed in Czech language
             Test Step Comment: (1) MMI_gen 63;
             */
-            
-            
+
+
             /*
             Test Step 19
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

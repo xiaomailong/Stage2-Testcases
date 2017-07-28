@@ -37,7 +37,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Test system is powered ON.Cabin is activated.Settings window is opened.
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -55,7 +55,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Press ‘System version’ button
@@ -64,32 +64,32 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘System version’ button");
-            
-            
+
+
             /*
             Test Step 2
             Action: Use the test script file 22_14.xml  to send EVC-34 with MMI_M_OPERATED_SYSTEM_VERSION = 65535
             Expected Result: Verify the following information,InformationThe data view is display a following information correctly refer to received packet informationOperated system version = 255.255
             Test Step Comment: (1) MMI_gen 11988; MMI_gen 8766 (partly: MMI_gen 5336 (partly: valid));  
             */
-            
-            
+
+
             /*
             Test Step 3
             Action: Send EVC-34 with MMI_M_OPERATED_SYSTEM_VERSION = 0
             Expected Result: Verify the following information,InformationThe data view is displayed a following information correctly refer to received packet informationOperated system version = 0.0
             Test Step Comment: (1) MMI_gen 11988; MMI_gen 8766 (partly: MMI_gen 5336 (partly: valid));  
             */
-            
-            
+
+
             /*
             Test Step 4
             Action: Send EVC-34 with MMI_M_OPERATED_SYSTEM_VERSION = 28,638
             Expected Result: Verify the following information,InformationThe data view is display a following information correctly refer to received packet informationOperated system version = 111.222
             Test Step Comment: (1) MMI_gen 11988; MMI_gen 8766 (partly: MMI_gen 5336 (partly: valid));  
             */
-            
-            
+
+
             /*
             Test Step 5
             Action: Press the ‘Close’ button
@@ -100,14 +100,14 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Press the ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.Verify_the_following_information_1_DMI_displays_Setting_window();
-            
-            
+
+
             /*
             Test Step 6
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

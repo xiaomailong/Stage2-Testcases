@@ -38,7 +38,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Set the following tags name in configuration file (See the instruction in Appendix 1)HIDE_PA_OS_MODE = 1 (PA will show in OS mode)System is power on.Cabin is activate.
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -56,7 +56,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Perform SoM to SR mode, level 2.Then, drive the train forward with speed = 30km/h
@@ -66,8 +66,8 @@ namespace Testcase.DMITestCases
             DmiActions.Perform_SoM_to_SR_mode_level_2_Then_drive_the_train_forward_with_speed_30kmh();
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_in_SR_mode_level_2();
-            
-            
+
+
             /*
             Test Step 2
             Action: Received information from RBC
@@ -77,8 +77,8 @@ namespace Testcase.DMITestCases
             DmiActions.Received_information_from_RBC();
             // Call generic Check Results Method
             DmiExpectedResults.DMI_changes_from_SR_mode_to_FS_mode_level_2();
-            
-            
+
+
             /*
             Test Step 3
             Action: Acknowledge OS mode by press at area C1
@@ -88,8 +88,8 @@ namespace Testcase.DMITestCases
             DmiActions.Acknowledge_OS_mode_by_press_at_area_C1();
             // Call generic Check Results Method
             DmiExpectedResults.DMI_changes_from_FS_mode_to_OS_mode_level_2();
-            
-            
+
+
             /*
             Test Step 4
             Action: Received information from RBC.Then, stop the train
@@ -98,22 +98,22 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Received_information_from_RBC_Then_stop_the_train();
-            
-            
+
+
             /*
             Test Step 5
             Action: Press at any location in area D (except ‘Yes’ button in TAF Question box)
             Expected Result: Verify the following information,PA information is not displayed even pressed in any point of area D
             Test Step Comment: (1) MMI_gen 7096 (partly: 2nd bullet);
             */
-            
-            
+
+
             /*
             Test Step 6
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

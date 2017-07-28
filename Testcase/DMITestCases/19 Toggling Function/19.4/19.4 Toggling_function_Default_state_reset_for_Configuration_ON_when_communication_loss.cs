@@ -37,7 +37,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // The DMI is configured TOGGLE_FUNCTION = 0 (‘ON’)System is power on.SoM is performed in SR mode, Level1.
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -55,7 +55,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Drive the train forward pass BG1
@@ -65,8 +65,8 @@ namespace Testcase.DMITestCases
             DmiActions.Drive_the_train_forward_pass_BG1();
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_in_FS_mode_Level_1();
-            
-            
+
+
             /*
             Test Step 2
             Action: Drive the train forward pass BG2.Then, stop the train
@@ -76,8 +76,8 @@ namespace Testcase.DMITestCases
             DmiActions.Drive_the_train_forward_pass_BG2_Then_stop_the_train();
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_in_OS_mode_Level_1();
-            
-            
+
+
             /*
             Test Step 3
             Action: Press a sensitivity area (areas A1-A4 or B) to make a Basic Speed Hook not appear.Then simulate loss-communication between ETCS onboard and DMI (1 second).Note: Stopwatch is required for accuracy of test result
@@ -85,9 +85,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) Information (paragraph 1) under, MMI_gen 6898 (inoperable); MMI_gen 6588 (partly: configuration “ON”, mode OS); MMI_gen 6878 (partly: configuration “ON”, mode OS); MMI_gen 6453;
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_the_message_ATP_Down_Alarm_with_sound_alarm_Verify_the_following_information_The_objects_below_are_not_displayed_on_DMI_White_Basic_speed_HookMedium_grey_basic_speed_hookDistance_to_target_digitalRelease_Speed_Digital();
-            
-            
+            DmiExpectedResults
+                .DMI_displays_the_message_ATP_Down_Alarm_with_sound_alarm_Verify_the_following_information_The_objects_below_are_not_displayed_on_DMI_White_Basic_speed_HookMedium_grey_basic_speed_hookDistance_to_target_digitalRelease_Speed_Digital();
+
+
             /*
             Test Step 4
             Action: Re-establish communication between ETCS onboard and DMI (in 1 second).Note: Stopwatch is required for accuracy of test result
@@ -95,15 +96,16 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 6898 (partly: configuration ‘ON”, mode OS), Information (paragraph 2) under MMI_gen 6898 (re-establish); MMI_gen 6589 (partly: configuration “ON”, mode OS); MMI_gen 6879 (partly: configuration “ON”, mode OS); Information under MMI_gen 6453; MMI_gen 6879 (partly: The Toggling Function's Default state shall be applied); MMI_gen 6589 (partly: The Toggling Function's Default state shall be applied); MMI_gen 6588 (partly: The Toggling Function's Default state shall be applied); MMI_gen 6878 (partly: The Toggling Function's Default state shall be applied);
             */
             // Call generic Action Method
-            DmiActions.Re_establish_communication_between_ETCS_onboard_and_DMI_in_1_second_Note_Stopwatch_is_required_for_accuracy_of_test_result();
-            
-            
+            DmiActions
+                .Re_establish_communication_between_ETCS_onboard_and_DMI_in_1_second_Note_Stopwatch_is_required_for_accuracy_of_test_result();
+
+
             /*
             Test Step 5
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

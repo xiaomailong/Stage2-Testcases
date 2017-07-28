@@ -19,8 +19,8 @@ namespace Testcase.Telegrams.EVCtoDMI
             _pool = pool;
 
             // Set default values
-            _pool.SITR.ETCS1.SetTimeATP.MmiMPacket.Value = 3;          // Packet ID
-            _pool.SITR.ETCS1.SetTimeATP.MmiLPacket.Value = 72;         // Packet length
+            _pool.SITR.ETCS1.SetTimeATP.MmiMPacket.Value = 3; // Packet ID
+            _pool.SITR.ETCS1.SetTimeATP.MmiLPacket.Value = 72; // Packet length
         }
 
         /// <summary>
@@ -52,7 +52,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static void Send()
         {
-            _pool.TraceInfo("ETCS->DMI: EVC-3 (MMI_SET_TIME_ATP) UTC Time = {0}, Time offset = {1}", MMI_T_UTC, MMI_T_ZONE_OFFSET);
+            _pool.TraceInfo("ETCS->DMI: EVC-3 (MMI_SET_TIME_ATP) UTC Time = {0}, Time offset = {1}", MMI_T_UTC,
+                MMI_T_ZONE_OFFSET);
             _pool.SITR.SMDCtrl.ETCS1.SetTimeATP.Value = 1;
         }
     }

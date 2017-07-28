@@ -38,7 +38,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Set the following tags name in configuration file (See the instruction in Appendix 1)HIDE_PA_SR_MODE = 1 (PA will show in SR mode)HIDE_PA_OS_MODE = 1 (PA will show in OS mode)HIDE_PA_LEVEL_1 = 1 (Show PA in the Level 1)HIDE_PA_FUNCTION = 0 (‘ON’ state)System is power ON.
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -56,7 +56,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Activate cabin A
@@ -66,8 +66,8 @@ namespace Testcase.DMITestCases
             DmiActions.Activate_cabin_A();
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Driver_ID_window();
-            
-            
+
+
             /*
             Test Step 2
             Action: Driver performs SoM to SR mode, level 1
@@ -76,22 +76,22 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Driver_performs_SoM_to_SR_mode_level_1();
-            
-            
+
+
             /*
             Test Step 3
             Action: Drive the train forward passing BG1.Then, press an acknowledgement of OS mode symbol in area C1
             Expected Result: DMI displays in OS mode, level 1.Verify that the Planning Area is displayed the planning information in area D.The Hide PA button is displayed on the planning area with ‘Scale up’ and ‘Scale Down’ buttons
             Test Step Comment: (1) MMI_gen 3063 (OS);   (1) MMI_gen 7101;   (2) MMI_gen 7104;
             */
-            
-            
+
+
             /*
             Test Step 4
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

@@ -42,7 +42,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // The DMI is configured TOGGLE_FUNCTION = 2 (‘TIMER’) and TOGGLE_TIMER = 10 (10 seconds), see Appendix 1.System is power on.Cabin is activated.
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -60,14 +60,14 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Perform SoM in SR mode, level 1
             Expected Result: DMI displays Default window in SR mode, level 1.Note: The basic speed hook is appear for 10 seconds
             */
-            
-            
+
+
             /*
             Test Step 2
             Action: Perform the following procedure, Press ‘Spec’ buttonPress ‘SR speed/distance’ buttonEnter and confirm the following data,SR speed = 40 km/hSR distance = 300 m
@@ -75,38 +75,38 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Special_window();
-            
-            
+
+
             /*
             Test Step 3
             Action: Perform the following procedure, Press ‘Close’ buttonPress on sub-area A1.Note: Stopwatch is required
             Expected Result: Verify the following information,(1)   The following objects are displays for 10 seconds before disappear.White basic speed hookMedium-grey basic speed hookDistance to target (digital)
             Test Step Comment: (1) MMI_gen 6897 (partly: switch on the affected ETCS-objects for the configured duration);
             */
-            
-            
+
+
             /*
             Test Step 4
             Action: Repeat action step 3 for sub-area A2-A4 and area B respectively
             Expected Result: See expected result of step 3
             */
-            
-            
+
+
             /*
             Test Step 5
             Action: Perform the following procedure, Press on sub-area A1.Wait for 5 secondsPress on sub-area A1 again
             Expected Result: Verify the following information,(1)    The following objects are displays for 10 seconds before disappear.White basic speed hookMedium-grey basic speed hookDistance to target (digital)
             Test Step Comment: (1) MMI_gen 6897 (partly: retriggerable);
             */
-            
-            
+
+
             /*
             Test Step 6
             Action: Repeat action step 5 for sub-area A2-A4 and area B respectively
             Expected Result: See expected result of step 5
             */
-            
-            
+
+
             /*
             Test Step 7
             Action: Drive the train forward with speed = 10 km/h
@@ -114,8 +114,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Drive_the_train_forward_with_speed_10_kmh();
-            
-            
+
+
             /*
             Test Step 8
             Action: Drive the train forward pass BG1. Then, press an acknowledgement of OS mode in sub-area C1
@@ -123,37 +123,37 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Drive_the_train_forward_pass_BG1_Then_press_an_acknowledgement_of_OS_mode_in_sub_area_C1();
-            
-            
+
+
             /*
             Test Step 9
             Action: Stop the train.Then, repeat action step 3-5
             Expected Result: See expected result of step 3-5 for the following objects,White basic speed hookMedium-grey basic speed hookDistance to target (digital)Release speed digital
             Test Step Comment: (1) MMI_gen 6897;
             */
-            
-            
+
+
             /*
             Test Step 10
             Action: Perform the following procedure,Press ‘Main’ button.Press and hold ‘Shunting’ button at least 2 seconds.Release the pressed button
             Expected Result: DMI displays in SH mode, level 1.Note: The basic speed hook is appear for 10 seconds
             */
-            
-            
+
+
             /*
             Test Step 11
             Action: Repeat action step 3-5
             Expected Result: See expected result of step 3-5 for the following objects,White basic speed hookMedium-grey basic speed hook (if any)
             Test Step Comment: (1) MMI_gen 6897;
             */
-            
-            
+
+
             /*
             Test Step 12
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

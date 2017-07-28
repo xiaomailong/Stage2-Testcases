@@ -39,7 +39,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Configure atpcu configuration file as following:TC_T_Panto_Down = 100TC_T_MainSwitch_Off = 100TC_T_Airtight_Close =100TC_T_Inhib_RBBrake = 100TC_T_ Inhib_ECBrake = 100TC_T_ Inhib_MSBrake = 100TC_T_Change_TractionSyst = 100TC_T_Allowed_CurrentConsump = 100 TC_T_StationPlatform = 100Test system is power on.SoM is performed in SR mode, level 1.
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -57,7 +57,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Drive the train forward with speed = 20 km/h
@@ -67,8 +67,8 @@ namespace Testcase.DMITestCases
             DmiActions.Drive_the_train_forward_with_speed_20_kmh();
             // Call generic Check Results Method
             DmiExpectedResults.The_speed_pointer_is_indicated_as_20_kmh();
-            
-            
+
+
             /*
             Test Step 2
             Action: Drive the train forward pass BG0 with MA and Track descriptionPkt 12,21 and 27
@@ -78,8 +78,8 @@ namespace Testcase.DMITestCases
             DmiActions.Drive_the_train_forward_pass_BG0_with_MA_and_Track_descriptionPkt_12_21_and_27();
             // Call generic Check Results Method
             DmiExpectedResults.Mode_changes_to_FS_mode_L1();
-            
-            
+
+
             /*
             Test Step 3
             Action: Continue to drive the train forward pass BG1 with Track condition Pkt 68:D_TRACKCOND = 200L_TRACKCOND = 200M_TRACKCOND = 3(Lower pantograph)
@@ -87,16 +87,16 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults.Mode_remins_in_FS_mode();
-            
-            
+
+
             /*
             Test Step 4
             Action: Enter Anouncement of Track condition “Non stopping area: Lower Pantograph”
             Expected Result: Verify the following information(1)   DMI displays PL01 or PL02 symbol in sub-area D2.(PL01) or (PL02)
             Test Step Comment: (1) MMI_gen 619(partly: PL01 or PL02);
             */
-            
-            
+
+
             /*
             Test Step 5
             Action: Stop the train
@@ -105,8 +105,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Stop_the_train();
-            
-            
+
+
             /*
             Test Step 6
             Action: Drive the train forward with speed = 20 km/h
@@ -116,16 +116,16 @@ namespace Testcase.DMITestCases
             DmiActions.Drive_the_train_forward_with_speed_20_kmh();
             // Call generic Check Results Method
             DmiExpectedResults.The_speed_pointer_is_indicated_as_20_kmh();
-            
-            
+
+
             /*
             Test Step 7
             Action: Stop the train when the TC01, TC02 or TC03 symbol displays in sub-area B3
             Expected Result: Verify the following informationDMI displays TC01, TC02 or TC03 symbol in sub-area B3.(TC01) or (TC02) or (TC03)Use the log file to confirm that DMI recieved packet information MMI_DRIVER_MESSAGE_ACK (EVC-32) and MMI_ETCS_MISC_OUT_SIGNALS (EVC-7) with the following variables,MMI_M_TRACkCOND_TYPE = 3MMI_Q_TRACKCOND_STEP = 1 (TC02 or TC03) or 2(TC01)MMI_Q_TRACKCOND_ACTION_START = 0 (TC03) or 1(TC02 or TC01)
             Test Step Comment: (1) MMI_gen 10465 (partly:Table40(TC01, TC02 or TC03));(2) MMI_gen 662 (partly: TC01, TC02 or TC03);
             */
-            
-            
+
+
             /*
             Test Step 8
             Action: Drive the train forward with speed = 20 km/h
@@ -135,16 +135,16 @@ namespace Testcase.DMITestCases
             DmiActions.Drive_the_train_forward_with_speed_20_kmh();
             // Call generic Check Results Method
             DmiExpectedResults.The_speed_pointer_is_indicated_as_20_kmh();
-            
-            
+
+
             /*
             Test Step 9
             Action: Enter Track condition “Non stopping area: Raise Pantograph”
             Expected Result: Verify the following information(1)   DMI displays PL03 or PL04 symbol in sub-area D2.(PL03) or (PL04)
             Test Step Comment: (1) MMI_gen 619(partly: PL03 or PL04);
             */
-            
-            
+
+
             /*
             Test Step 10
             Action: Stop the train
@@ -153,8 +153,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Stop_the_train();
-            
-            
+
+
             /*
             Test Step 11
             Action: Drive the train forward with speed = 20 km/h
@@ -164,16 +164,16 @@ namespace Testcase.DMITestCases
             DmiActions.Drive_the_train_forward_with_speed_20_kmh();
             // Call generic Check Results Method
             DmiExpectedResults.The_speed_pointer_is_indicated_as_20_kmh();
-            
-            
+
+
             /*
             Test Step 12
             Action: Stop the train when the TC04 or TC05 symbol displays in sub-area B3
             Expected Result: Verify the following information(1)   DMI displays TC04 or TC05 symbol in sub-area B3. (TC04) or  (TC05)(2)   Use the log file to confirm that DMI recieved packet information MMI_DRIVER_MESSAGE_ACK (EVC-32) and MMI_ETCS_MISC_OUT_SIGNALS (EVC-7) with the following variables,MMI_M_TRACkCOND_TYPE = 3MMI_Q_TRACKCOND_STEP = 3MMI_Q_TRACKCOND_ACTION_END = 0 (TC05) or 1(TC04)
             Test Step Comment: (1) MMI_gen 10465 (partly:Table40(TC04 or TC05));(2) MMI_gen 662 (partly: TC04 or TC05);
             */
-            
-            
+
+
             /*
             Test Step 13
             Action: Drive the train forward with speed = 20 km/h
@@ -183,8 +183,8 @@ namespace Testcase.DMITestCases
             DmiActions.Drive_the_train_forward_with_speed_20_kmh();
             // Call generic Check Results Method
             DmiExpectedResults.The_speed_pointer_is_indicated_as_20_kmh();
-            
-            
+
+
             /*
             Test Step 14
             Action: Stop the train when the track condition symbol has been removed from sub-area B3
@@ -193,14 +193,14 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Stop_the_train_when_the_track_condition_symbol_has_been_removed_from_sub_area_B3();
-            
-            
+
+
             /*
             Test Step 15
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

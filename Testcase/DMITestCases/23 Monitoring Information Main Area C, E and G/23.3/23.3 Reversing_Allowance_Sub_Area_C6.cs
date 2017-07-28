@@ -40,7 +40,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Test system is powered on.Activate Cabin A.SoM is completed in SR mode, Level 1.
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -58,7 +58,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Drive the train forward passing BG1
@@ -66,37 +66,37 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Drive_the_train_forward_passing_BG1();
-            
-            
+
+
             /*
             Test Step 2
             Action: Drive the train forward passing BG2.Then, stop the train
             Expected Result: Verify the following information,Use the log file to confirm that DMI receives packet information [MMI_DRIVER_MESSAGE (EVC-8)] with variable [MMI_DRIVER_MESSAGE (EVC-8)].MMI_Q_TEXT = 286The symbol ST06 is displayed in sub-area C6
             Test Step Comment: (1) MMI_gen 7485 (partly: received packet EVC-8);(2) MMI_gen 7485        (partly: ST06);
             */
-            
-            
+
+
             /*
             Test Step 3
             Action: Change the train direction to ‘Reverse’
             Expected Result: An acknowledgement of ‘Reversing’ mode is displayed in sub-area C1
             */
-            
-            
+
+
             /*
             Test Step 4
             Action: Acknowledges ‘Reversing’ mode by pressing at area C1
             Expected Result: DMI displays in RV mode.The symbol MO14 is displayed in sub-area B7.Use the log file to confirm that DMI sends out packet [MMI_DRIVER_ACTION (EVC-152)] with the value of variable MMI_M_DRIVER_ACTION refer to sequence below,a)   MMI_M_DRIVER_ACTION = 5 (Ack of Reversing mode)
             Test Step Comment: MMI_gen 11470 (partly: Bit # 5);
             */
-            
-            
+
+
             /*
             Test Step 5
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

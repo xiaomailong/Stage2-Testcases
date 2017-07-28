@@ -39,7 +39,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // System is power on.
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -57,7 +57,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Activate cabin A. Driver performs SoM to SR mode, level 1
@@ -67,8 +67,8 @@ namespace Testcase.DMITestCases
             DmiActions.Activate_cabin_A_Driver_performs_SoM_to_SR_mode_level_1();
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_in_SR_mode_level_1();
-            
-            
+
+
             /*
             Test Step 2
             Action: Drive the train forward passing BG1
@@ -77,8 +77,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Drive_the_train_forward_passing_BG1();
-            
-            
+
+
             /*
             Test Step 3
             Action: Simulate the communication loss between ETCS Onboard and DMI
@@ -87,8 +87,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Simulate_the_communication_loss_between_ETCS_Onboard_and_DMI();
-            
-            
+
+
             /*
             Test Step 4
             Action: Re-establish the communication between ETCS onboard and DMI
@@ -97,14 +97,14 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Re_establish_the_communication_between_ETCS_onboard_and_DMI();
-            
-            
+
+
             /*
             Test Step 5
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

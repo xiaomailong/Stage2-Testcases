@@ -40,7 +40,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // System is powered on.Cabin is activated.
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -58,23 +58,23 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Perform the following procedure,Enter Driver ID and skip break testSelect and confirm ‘Level 1’
             Expected Result: DMI displays in SB mode, level 1.Verify the following information(1)    Use the log file to confirm that DMI receives the following packets information with a specific value,  EVC-7: OBU_TR_M_MODE = 6 (SB mode) (2)   The distance to target bar is not display in sub-area A3. (3)   The distance to target digital is not display in sub-area A2.(4)   Use the log file to confirm that DMI receives the packet EVC-1 with variable MMI_O_BRAKETARGET = -1 (Default)
             Test Step Comment: (1) MMI_gen 107 (partly: MMI_M_WARNING, OBU_TR_M_MODE, SB mode); MMI_gen 2567 (partly: MMI_M_WARNING, OBU_TR_M_MODE, SB mode);(2) MMI_gen 6658 (partly: not be shown); MMI_gen 107 (partly: Table 37, SB mode);(3) MMI_gen 2567 (partly: Table 38, SB mode); MMI_gen 6774 (partly: not be shown);(4) MMI_gen 6658 (partly: MMI_O_BRAKETARGET is less than zero); MMI_gen 6774 (partly: MMI_O_BRAKETARGET is less than zero);
             */
-            
-            
+
+
             /*
             Test Step 2
             Action: Perform the following procedure,Perform SoM in SR mode, level1.Press ‘Special’ button.Press ‘SR speed/distance’ button.Enter the value of SR speed = 40 km/h and SR distance = 500mPress ‘Yes’ button.Press on sub-area B to toggle the basic speed hook become visible
             Expected Result: DMI displays in SR mode, level 1Verify the following information(1)    Use the log file to confirm that DMI receives the following packets information with a specific value,  EVC-1: MMI_M_WARNING = 0 (Status = NoS, Supervision = CSM) EVC-7: OBU_TR_M_MODE = 2 (SR mode) (2)   The distance to target bar is not display in sub-area A3. (3)   The distance to target digital is not display in sub-area A2.(4)   Use the log file to confirm that DMI receives the packet EVC-1 with variable MMI_O_BRAKETARGET = -1 (Default)
             Test Step Comment: (1) MMI_gen 107 (partly: MMI_M_WARNING, OBU_TR_M_MODE, SR mode CSM); MMI_gen 2567 (partly: MMI_M_WARNING, OBU_TR_M_MODE, SR mode CSM);(2) MMI_gen 6658 (partly: not be shown); MMI_gen 107 (partly: Table 37, SR mode);(3) MMI_gen 2567 (partly: Table 38, SR mode CSM); MMI_gen 6774 (partly: not be shown);(4) MMI_gen 6658 (partly: MMI_O_BRAKETARGET is less than zero); MMI_gen 6774 (partly: MMI_O_BRAKETARGET is less than zero);
             */
-            
-            
+
+
             /*
             Test Step 3
             Action: Continue to drive the train forward.Then, stop the train
@@ -84,9 +84,10 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.Continue_to_drive_the_train_forward_Then_stop_the_train();
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_1_Use_the_log_file_to_confirm_that_DMI_receives_the_packet_information_EVC_1_with_following_variables_MMI_M_WARNING_2_Status_NoS_Supervision_PIM2_The_distance_to_target_bar_is_not_display_in_sub_area_A3_3_The_distance_to_target_digital_is_display_in_sub_area_A2();
-            
-            
+            DmiExpectedResults
+                .Verify_the_following_information_1_Use_the_log_file_to_confirm_that_DMI_receives_the_packet_information_EVC_1_with_following_variables_MMI_M_WARNING_2_Status_NoS_Supervision_PIM2_The_distance_to_target_bar_is_not_display_in_sub_area_A3_3_The_distance_to_target_digital_is_display_in_sub_area_A2();
+
+
             /*
             Test Step 4
             Action: Continue to drive the train forward.Then, stop the train
@@ -95,22 +96,22 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Continue_to_drive_the_train_forward_Then_stop_the_train();
-            
-            
+
+
             /*
             Test Step 5
             Action: Perform the following procedure,Press ‘Main’ button.Press and hold ‘Shunting’ button at least 2 second.Release the pressed button
             Expected Result: DMI displays in SH mode, level 1.Verify the following information,(1)    Use the log file to confirm that DMI receives the following packets information with a specific value, EVC-7: OBU_TR_M_MODE = 3 (SH mode) (2)    The distance to target bar is not display in sub-area A3.(3)    The distance to target digital is not display in sub-area A2.(4)   Use the log file to confirm that DMI receives the packet EVC-1 with variable MMI_O_BRAKETARGET = -1 (Default)
             Test Step Comment: (1) MMI_gen 107 (partly: MMI_M_WARNING, OBU_TR_M_MODE, SH mode); MMI_gen 2567 (partly: MMI_M_WARNING, OBU_TR_M_MODE, SH mode);(2) MMI_gen 6658 (partly: not be shown); MMI_gen 107 (partly: Table 37, SH mode);(3) MMI_gen 2567 (partly: Table 38, SH mode); MMI_gen 6774 (partly: not be shown);(4) MMI_gen 6658 (partly: MMI_O_BRAKETARGET is less than zero); MMI_gen 6774 (partly: MMI_O_BRAKETARGET is less than zero);
             */
-            
-            
+
+
             /*
             Test Step 6
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

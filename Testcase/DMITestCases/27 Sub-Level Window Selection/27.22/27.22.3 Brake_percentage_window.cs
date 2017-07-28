@@ -37,7 +37,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Configure atpcu configuration file as following (See the instruction in Appendix 2)M_InstalledLevels = 31NID_NTC_Installe_0 = 22 (ATC-2)Test system is powered onCabin is activatedLevel ATC-2 is selected and confirmed.Perform SoM until the train running number is entered.Settings window is openedBrake window is opened
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -55,14 +55,14 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Use the test script file 22_22_3_a.xmlSend EVC-30 with,MMI_NID_WINDOW = 4MMI_Q_REQUEST_ENABLE_64 (#31) = 1
             Expected Result: The ‘Brake percentage’ button is enabled
             */
-            
-            
+
+
             /*
             Test Step 2
             Action: Press ‘Brake percentage’ button
@@ -71,8 +71,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Brake percentage’ button");
-            
-            
+
+
             /*
             Test Step 3
             Action: Press and hold ‘0’ button
@@ -81,8 +81,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press and hold ‘0’ button");
-            
-            
+
+
             /*
             Test Step 4
             Action: Released the pressed button
@@ -93,8 +93,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Released the pressed button");
             // Call generic Check Results Method
             DmiExpectedResults.Verify_the_following_information_The_state_of_button_is_changed_to_Enabled();
-            
-            
+
+
             /*
             Test Step 5
             Action: Perform action step 3-4 for the ‘1’ to ‘9’ buttons.Note: Press the ‘Del’ button to delete an information when entered data is out of input field range is acceptable
@@ -102,11 +102,13 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11727 (partly: MMI_gen 4642);  (2) MMI_gen 11727 (partly: MMI_gen 4692);
             */
             // Call generic Action Method
-            DmiActions.Perform_action_step_3_4_for_the_1_to_9_buttons_Note_Press_the_Del_button_to_delete_an_information_when_entered_data_is_out_of_input_field_range_is_acceptable();
+            DmiActions
+                .Perform_action_step_3_4_for_the_1_to_9_buttons_Note_Press_the_Del_button_to_delete_an_information_when_entered_data_is_out_of_input_field_range_is_acceptable();
             // Call generic Check Results Method
-            DmiExpectedResults.See_the_expected_results_of_Step_3_Step_4_and_the_following_additional_information_The_pressed_key_is_added_in_an_input_field_immediately_The_cursor_is_jumped_to_next_position_after_entered_the_character_immediately();
-            
-            
+            DmiExpectedResults
+                .See_the_expected_results_of_Step_3_Step_4_and_the_following_additional_information_The_pressed_key_is_added_in_an_input_field_immediately_The_cursor_is_jumped_to_next_position_after_entered_the_character_immediately();
+
+
             /*
             Test Step 6
             Action: Press and hold ‘Del’ button.Note: Stopwatch is required
@@ -116,9 +118,10 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press and hold ‘Del’ button.Note: Stopwatch is required");
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_While_press_and_hold_button_less_than_1_5_secSound_Click_is_played_once_The_state_of_button_is_changed_to_Pressed_and_immediately_back_to_Enabled_state_The_last_character_is_removed_from_an_input_field_after_pressing_the_button_While_press_and_hold_button_over_1_5_secThe_state_pressed_and_released_are_switched_repeatly_while_button_is_pressed_and_the_characters_are_removed_from_an_input_field_repeatly_refer_to_pressed_state_The_sound_Click_is_played_repeatly_while_button_is_pressed();
-            
-            
+            DmiExpectedResults
+                .Verify_the_following_information_While_press_and_hold_button_less_than_1_5_secSound_Click_is_played_once_The_state_of_button_is_changed_to_Pressed_and_immediately_back_to_Enabled_state_The_last_character_is_removed_from_an_input_field_after_pressing_the_button_While_press_and_hold_button_over_1_5_secThe_state_pressed_and_released_are_switched_repeatly_while_button_is_pressed_and_the_characters_are_removed_from_an_input_field_repeatly_refer_to_pressed_state_The_sound_Click_is_played_repeatly_while_button_is_pressed();
+
+
             /*
             Test Step 7
             Action: Release ‘Del’ button
@@ -129,19 +132,20 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Release ‘Del’ button");
             // Call generic Check Results Method
             DmiExpectedResults.Verify_the_following_information_The_character_is_stop_removing();
-            
-            
+
+
             /*
             Test Step 8
             Action: Press ‘Del’ button on the numeric keyboard until no number is displayed on the Input Field
             Expected Result: No number is displayed on the Input Field
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Del’ button on the numeric keyboard until no number is displayed on the Input Field");
+            DmiActions.ShowInstruction(
+                @"Press ‘Del’ button on the numeric keyboard until no number is displayed on the Input Field");
             // Call generic Check Results Method
             DmiExpectedResults.No_number_is_displayed_on_the_Input_Field();
-            
-            
+
+
             /*
             Test Step 9
             Action: Enter the data value with 3 characters
@@ -150,16 +154,16 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Enter the data value with 3 characters");
-            
-            
+
+
             /*
             Test Step 10
             Action: Delete the old value and enter the value ‘100’ for brake percentage.Then, confirm an entered data by pressing an input field
             Expected Result: Verify the following information,Packet TransmissionUse the log file to confirm that DMI sent out packet [MMI_NEW_BRAKE_PERCENTAGE (EVC-150)] with following variables,MMI_M_BP_CURRENT = 100Use the log file to confirm that the Brake percentage window is closed because of DMI received packet information [MMI_ECHOED_BRAKE_PERCENTAGE (EVC-51)]
             Test Step Comment: (1) MMI_gen 11823; MMI_gen 4392 (partly: [Enter], touch screen); MMI_gen 4681 (partly: accept the entered value in the input field); MMI_gen 8864 (partly: replace the data value by pressing the input field);(2) MMI_gen 11825;
             */
-            
-            
+
+
             /*
             Test Step 11
             Action: Press ‘Brake percentage’ button
@@ -168,8 +172,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Brake percentage’ button");
-            
-            
+
+
             /*
             Test Step 12
             Action: Delete the old value and enter the value ‘99’ for brake percentage.Then, press and hold an input field
@@ -177,9 +181,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9390 (partly: Brake percentage window);
             */
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Pressed_the_border_of_button_is_removed();
-            
-            
+            DmiExpectedResults
+                .Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Pressed_the_border_of_button_is_removed();
+
+
             /*
             Test Step 13
             Action: Slide out an input field
@@ -189,9 +194,10 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.Slide_out_an_input_field();
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Enabled_the_border_of_button_is_shown_without_a_sound();
-            
-            
+            DmiExpectedResults
+                .Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Enabled_the_border_of_button_is_shown_without_a_sound();
+
+
             /*
             Test Step 14
             Action: Slide back into an input field
@@ -201,9 +207,10 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.Slide_back_into_an_input_field();
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Pressed_the_border_of_button_is_removed();
-            
-            
+            DmiExpectedResults
+                .Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Pressed_the_border_of_button_is_removed();
+
+
             /*
             Test Step 15
             Action: Release the pressed area
@@ -212,8 +219,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Release the pressed area");
-            
-            
+
+
             /*
             Test Step 16
             Action: Press ‘Brake percentage’ button
@@ -222,16 +229,16 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Brake percentage’ button");
-            
-            
+
+
             /*
             Test Step 17
             Action: Use the test script file 22_22_3_b.xmlSend EVC-50 with,MMI_M_BP_MEASURED = 255
             Expected Result: Verify the following information,(1)    The value of echo text ‘Last measured BP’ is show as “_ _ _ _”
             Test Step Comment: (1) MMI_gen 11679; MMI_gen 11831 (partly: MMI_gen 11679);
             */
-            
-            
+
+
             /*
             Test Step 18
             Action: Press ‘Close’ button
@@ -240,14 +247,14 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
-            
-            
+
+
             /*
             Test Step 19
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

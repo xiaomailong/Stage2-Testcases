@@ -40,7 +40,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // System is powered on.Cabin is activated.SoM is performed in SR mode, level 1.
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -58,7 +58,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Drive the train forward pass BG1.Then, stop the train
@@ -67,16 +67,16 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Drive_the_train_forward_pass_BG1_Then_stop_the_train();
-            
-            
+
+
             /*
             Test Step 2
             Action: Use the test script file 13_1_8_a.xml to send EVC-1 with,MMI_O_BRAKETARGET = 1010500000
             Expected Result: Verify the following information,(1)   DMI display the distance to target digital as ‘99999’
             Test Step Comment: (1) MMI_gen 6776 (partly: Greater distance); MMI_gen 104 (partly: able to show up to 5 digits);
             */
-            
-            
+
+
             /*
             Test Step 3
             Action: Use the test script file 13_1_8_b.xml to send EVC-1 with,MMI_M_WARNING = 7
@@ -84,9 +84,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 6877 (partly: MMI_M_WARNING is invalid); 
             */
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_1_The_distance_to_target_bar_and_digital_is_removed_from_the_DMI_After_test_scipt_file_is_executed_the_distance_to_target_bar_and_digital_is_re_appear_refer_to_received_packet_EVC_1_from_ETCS_Onboard();
-            
-            
+            DmiExpectedResults
+                .Verify_the_following_information_1_The_distance_to_target_bar_and_digital_is_removed_from_the_DMI_After_test_scipt_file_is_executed_the_distance_to_target_bar_and_digital_is_re_appear_refer_to_received_packet_EVC_1_from_ETCS_Onboard();
+
+
             /*
             Test Step 4
             Action: Use the test script file 13_1_8_c.xml to send EVC-7 with,OBU_TR_M_MODE = 17
@@ -94,15 +95,16 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 6877 (partly: OBU_TR_M_MODE is invalid); 
             */
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_1_The_distance_to_target_bar_and_digital_is_removed_from_the_DMI_After_test_scipt_file_is_executed_the_distance_to_target_bar_and_digital_is_re_appear_refer_to_received_packet_EVC_1_from_ETCS_Onboard();
-            
-            
+            DmiExpectedResults
+                .Verify_the_following_information_1_The_distance_to_target_bar_and_digital_is_removed_from_the_DMI_After_test_scipt_file_is_executed_the_distance_to_target_bar_and_digital_is_re_appear_refer_to_received_packet_EVC_1_from_ETCS_Onboard();
+
+
             /*
             Test Step 5
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

@@ -43,7 +43,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // System is power on.
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -61,7 +61,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Activate cabin A
@@ -69,37 +69,37 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Activate_cabin_A();
-            
-            
+
+
             /*
             Test Step 2
             Action: Driver performs SoM to SR mode, Level 1
             Expected Result: ATP enters SR mode, Level 1.DMI displays in SR mode
             */
-            
-            
+
+
             /*
             Test Step 3
             Action: Drive the train forward  passing BG1
             Expected Result: DMI changes mode from SR to FS
             */
-            
-            
+
+
             /*
             Test Step 4
             Action: When the supervision status is RSM
             Expected Result: The Release Speed digital is displayed at sub-area B6
             */
-            
-            
+
+
             /*
             Test Step 5
             Action: Stop the train and simulate the communication loss between ETCS Onboard and DMI
             Expected Result: DMI displays the  message “ATP Down Alarm” with sound alarm.Verify that the release speed digital is removed from DMI’s screen. The toggling function is reset to default state
             Test Step Comment: MMI_gen 6588 (partly: Release speed removal);
             */
-            
-            
+
+
             /*
             Test Step 6
             Action: Re-establish the communication between ETCS onboard and DMI
@@ -108,14 +108,14 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Re_establish_the_communication_between_ETCS_onboard_and_DMI();
-            
-            
+
+
             /*
             Test Step 7
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

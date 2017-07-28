@@ -37,7 +37,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // System is powered ON.Cabin is activated.SoM is performed until Level 1 is selcted and confirmed.Settings window is opened.Brake button is enabled.Brake window is opened.
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -55,7 +55,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Press ‘Test’ button
@@ -64,8 +64,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Test’ button");
-            
-            
+
+
             /*
             Test Step 2
             Action: Press and hold ‘Close’ button
@@ -74,8 +74,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press and hold ‘Close’ button");
-            
-            
+
+
             /*
             Test Step 3
             Action: Slide out ‘Close’ button
@@ -86,8 +86,8 @@ namespace Testcase.DMITestCases
             DmiActions.Slide_out_Close_button();
             // Call generic Check Results Method
             DmiExpectedResults.The_border_of_the_button_is_shown_state_Enabled_without_a_sound();
-            
-            
+
+
             /*
             Test Step 4
             Action: Slide back into ‘Close’ button
@@ -98,8 +98,8 @@ namespace Testcase.DMITestCases
             DmiActions.Slide_back_into_Close_button();
             // Call generic Check Results Method
             DmiExpectedResults.The_button_is_back_to_state_Pressed_without_a_sound();
-            
-            
+
+
             /*
             Test Step 5
             Action: Release ‘Close’ button
@@ -110,8 +110,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Release ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Brake_window();
-            
-            
+
+
             /*
             Test Step 6
             Action: Press ‘Test’ button
@@ -119,22 +119,22 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Test’ button");
-            
-            
+
+
             /*
             Test Step 7
             Action: Follow action step 2 – step 5 for ‘ETCS’ button
             Expected Result: See the expected results of Step 2 – Step 5 and the following additional information,DMI close the Brake Test window and displays Brake window instead.Use the log file to confirm that DMI sends out the packet [MMI_DRIVER_REQUEST (EVC-101)] with variable [MMI_DRIVER_REQUEST (EVC-101).MMI_M_REQUEST] = 22 (Start Brake Test)
             Test Step Comment: (1) MMI_gen 11807 (partly: MMI_gen 4557 (partly: button ‘Percentage’));                                   MMI_gen 11811 (partly: close the window and open ‘Brake’window);(2) MMI_gen 11811 (partly: EVC-101);
             */
-            
-            
+
+
             /*
             Test Step 8
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

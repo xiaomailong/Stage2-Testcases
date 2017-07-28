@@ -39,7 +39,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Test system is powered on.Cabin is activated.SoM is performed in SB mode, Level 1.Main window is closed.
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -57,7 +57,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Drive the train forward with speed = 10 km/h
@@ -66,29 +66,29 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Drive_the_train_forward_with_speed_10_kmh();
-            
-            
+
+
             /*
             Test Step 2
             Action: Stop the train.Then, perform the following procedure,Press on sub-area C9.Press ‘Main’ buttonForce the simulation to ‘Non-leading’Press and hold ‘Non-Leading’ button at least 2 second.Release the pressed button
             Expected Result: DMI displays in NL mode, level 1
             */
-            
-            
+
+
             /*
             Test Step 3
             Action: Drive the train with speed = 400 km/h (Maximum speed range of speed dial)
             Expected Result: Verify the following information,(1)   The speed pointer is always display in grey colour..(2)   Use the log file to confirm that DMI received packet EVC-7 with variable OBU_TR_M_MODE = 11 (Non-leading)
             Test Step Comment: (1) MMI_gen 6299 (partly: colour of speed pointer, NL mode);(2) MMI_gen 6299 (partly: OBU_TR_M_MODE);
             */
-            
-            
+
+
             /*
             Test Step 4
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

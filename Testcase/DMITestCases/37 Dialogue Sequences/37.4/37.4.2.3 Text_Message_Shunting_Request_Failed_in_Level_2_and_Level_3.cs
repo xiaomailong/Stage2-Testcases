@@ -40,7 +40,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Test system is power onCabin is activatedSoM is performed in SR mode, level 2
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -58,7 +58,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Enter SH mode by performing the procedure below,Press ‘Main’ buttonPress and hold ‘Shunting’ button at least 2 seconds.Release ‘Shunting’ button
@@ -66,9 +66,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: Level 2:(1) MMI_gen 9151;(2) MMI_gen 11915 (partly: SH request failed); MMI_gen 134 (partly: E5);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Enter SH mode by performing the procedure below,Press ‘Main’ buttonPress and hold ‘Shunting’ button at least 2 seconds.Release ‘Shunting’ button");
-            
-            
+            DmiActions.ShowInstruction(
+                @"Enter SH mode by performing the procedure below,Press ‘Main’ buttonPress and hold ‘Shunting’ button at least 2 seconds.Release ‘Shunting’ button");
+
+
             /*
             Test Step 2
             Action: Re-validate the step1 by re-starting OTE Simulator and starting the precondition with ETCS level 3
@@ -76,17 +77,18 @@ namespace Testcase.DMITestCases
             Test Step Comment: Level 3:(1) MMI_gen 9151;(2) MMI_gen 11915 (partly: SH request failed); MMI_gen 134 (partly: E5);
             */
             // Call generic Action Method
-            DmiActions.Re_validate_the_step1_by_re_starting_OTE_Simulator_and_starting_the_precondition_with_ETCS_level_3();
+            DmiActions
+                .Re_validate_the_step1_by_re_starting_OTE_Simulator_and_starting_the_precondition_with_ETCS_level_3();
             // Call generic Check Results Method
             DmiExpectedResults.See_the_expected_results_at_Step_1();
-            
-            
+
+
             /*
             Test Step 3
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

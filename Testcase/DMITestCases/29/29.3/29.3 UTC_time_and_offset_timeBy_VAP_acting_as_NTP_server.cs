@@ -43,7 +43,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // 1.  Power off test system 2.  Set the following tags name in configuration file (See the instruction in Appendix 1)CLOCK_TIME_SOURCE =  5 (by VAP)
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -61,7 +61,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Power on test system and activate the cabin A (MMI 1)
@@ -69,8 +69,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_SB_mode();
-            
-            
+
+
             /*
             Test Step 2
             Action: Perform SoM to L1, SR mode
@@ -78,8 +78,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Perform_SoM_to_L1_SR_mode();
-            
-            
+
+
             /*
             Test Step 3
             Action: Use the test script file 29_3_1.xml to send packet EVC-TBD with,MMI_T_UTC = 946728000(2000-01-01,12:00:00)MMI_T_Zone_OFFSET =+5
@@ -88,8 +88,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults.Verify_the_following_information1_DMI_time_is_updated_only_its_offset_time();
-            
-            
+
+
             /*
             Test Step 4
             Action: Select ‘Settings’ button and press ‘Set clock’ button
@@ -98,8 +98,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Select_Settings_button_and_press_Set_clock_button();
-            
-            
+
+
             /*
             Test Step 5
             Action: Use the test script file 29_3_2.xml to send packet EVC-TBD with,MMI_T_UTC = 946771200(2000-01-02,12:00:00)MMI_T_Zone_OFFSET =-5
@@ -108,30 +108,30 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults.Verify_the_following_information1_DMI_time_is_updated_only_its_offset_time();
-            
-            
+
+
             /*
             Test Step 6
             Action: Select ‘Settings’ button and press ‘Set clock’ button.Then, observe information that will display on the Set clock window
             Expected Result: Verify the following information:The set clock window is opened(1) The DMI date (yyyy-mm-dd) is not be changed by test script
             Test Step Comment: (1) MMI_gen 12062; MMI_gen 11284;
             */
-            
-            
+
+
             /*
             Test Step 7
             Action: Restart OTE and DMI then retest step1 to to 6 with cabin B (MMI 2)
             Expected Result: Same as the test result in step 1 to 6
             Test Step Comment: MMI_gen 58;
             */
-            
-            
+
+
             /*
             Test Step 8
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

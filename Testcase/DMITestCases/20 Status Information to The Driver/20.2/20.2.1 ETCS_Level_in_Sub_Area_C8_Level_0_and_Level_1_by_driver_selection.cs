@@ -39,7 +39,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // System is power on.Cabin is activated.Driver ID is entered.Brake test is performed.
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -57,7 +57,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Select and confirm Level 0
@@ -66,22 +66,22 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Select_and_confirm_Level_0();
-            
-            
+
+
             /*
             Test Step 2
             Action: Press ‘Level’ button.Then, select and confirm Level 1
             Expected Result: DMI displays Main window in SB mode, Level 1.Verify the following information, The symbol LE03 is displayed in sub-area C8.Use the log file to confirm that DMI received packet EVC-7 with variable OBU_TR_M_LEVEL = 2 (Level 1)
             Test Step Comment: (1) MMI_gen 577 (partly: Level is valid and equal to 1, symbol LE03, displayed in area C8);(2) MMI_gen 577 (partly: Level is valid, Derived from variable,Level 1);
             */
-            
-            
+
+
             /*
             Test Step 3
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

@@ -17,7 +17,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// <param name="totalSizeCounter">Reference counter for total size of telegram</param>
         /// <param name="_pool">The SignalPool</param>
         /// <returns></returns>
-        public static ushort PopulateDataElements(string baseString, ushort totalSizeCounter, List<DataElement> dataElements, SignalPool _pool)
+        public static ushort PopulateDataElements(string baseString, ushort totalSizeCounter,
+            List<DataElement> dataElements, SignalPool _pool)
         {
             // Populate the data elements array
             for (var tdeIndex = 0; tdeIndex < dataElements.Count; tdeIndex++)

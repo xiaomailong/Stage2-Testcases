@@ -40,7 +40,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Test system is powered on Cabin is acticvated.SoM is performed in SR mode, level 1DMI displays the ‘Default’ window
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -58,7 +58,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Press ‘Override’ button
@@ -67,8 +67,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Override’ button");
-            
-            
+
+
             /*
             Test Step 2
             Action: Press ‘Close’ button
@@ -77,14 +77,14 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
-            
-            
+
+
             /*
             Test Step 3
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

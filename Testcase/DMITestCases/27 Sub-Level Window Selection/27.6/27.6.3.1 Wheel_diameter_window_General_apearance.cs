@@ -37,7 +37,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // The Maintenance password in tag name ‘PASS_CODE_MTN’ of the configuration file is set correctly refer to MMI_gen 11722.  Test system is power on.Cabin is activated.Settings window is opened from Driver ID window.Maintenance window is opened.
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -55,7 +55,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Press ‘Wheel diameter’ button
@@ -64,8 +64,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Wheel diameter’ button");
-            
-            
+
+
             /*
             Test Step 2
             Action: Press and hold ‘0’ button
@@ -74,8 +74,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press and hold ‘0’ button");
-            
-            
+
+
             /*
             Test Step 3
             Action: Release the pressed button
@@ -86,8 +86,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Release the pressed button");
             // Call generic Check Results Method
             DmiExpectedResults.Verify_the_following_information_The_state_of_released_button_is_changed_to_enabled();
-            
-            
+
+
             /*
             Test Step 4
             Action: Perform action step 2-3 for the ‘1’ to ‘9’ buttons.Note: Press the ‘Del’ button to delete an information when entered data is out of input field range is acceptable
@@ -95,11 +95,13 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11716 (partly: MMI_gen 4642 (partly: Wheel diameter 1));  (2) MMI_gen 11716 (partly: MMI_gen 4692 (partly: Wheel diameter 1));  
             */
             // Call generic Action Method
-            DmiActions.Perform_action_step_2_3_for_the_1_to_9_buttons_Note_Press_the_Del_button_to_delete_an_information_when_entered_data_is_out_of_input_field_range_is_acceptable();
+            DmiActions
+                .Perform_action_step_2_3_for_the_1_to_9_buttons_Note_Press_the_Del_button_to_delete_an_information_when_entered_data_is_out_of_input_field_range_is_acceptable();
             // Call generic Check Results Method
-            DmiExpectedResults.See_the_expected_results_of_Step_2_Step_3_and_the_following_additional_information_The_pressed_key_is_added_in_an_input_field_immediately_The_cursor_is_jumped_to_next_position_after_entered_the_character_immediately();
-            
-            
+            DmiExpectedResults
+                .See_the_expected_results_of_Step_2_Step_3_and_the_following_additional_information_The_pressed_key_is_added_in_an_input_field_immediately_The_cursor_is_jumped_to_next_position_after_entered_the_character_immediately();
+
+
             /*
             Test Step 5
             Action: Press and hold ‘Del’ button.Note: Stopwatch is required
@@ -109,9 +111,10 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press and hold ‘Del’ button.Note: Stopwatch is required");
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_While_press_and_hold_button_less_than_1_5_secSound_Click_is_played_once_The_state_of_button_is_changed_to_Pressed_and_immediately_back_to_Enabled_state_The_last_character_is_removed_from_an_input_field_after_pressing_the_button_While_press_and_hold_button_over_1_5_secThe_state_pressed_and_released_are_switched_repeatly_while_button_is_pressed_and_the_characters_are_removed_from_an_input_field_repeatly_refer_to_pressed_state_The_sound_Click_is_played_repeatly_while_button_is_pressed();
-            
-            
+            DmiExpectedResults
+                .Verify_the_following_information_While_press_and_hold_button_less_than_1_5_secSound_Click_is_played_once_The_state_of_button_is_changed_to_Pressed_and_immediately_back_to_Enabled_state_The_last_character_is_removed_from_an_input_field_after_pressing_the_button_While_press_and_hold_button_over_1_5_secThe_state_pressed_and_released_are_switched_repeatly_while_button_is_pressed_and_the_characters_are_removed_from_an_input_field_repeatly_refer_to_pressed_state_The_sound_Click_is_played_repeatly_while_button_is_pressed();
+
+
             /*
             Test Step 6
             Action: Release ‘Del’ button
@@ -122,16 +125,16 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Release ‘Del’ button");
             // Call generic Check Results Method
             DmiExpectedResults.Verify_the_following_information_The_character_is_stop_removing();
-            
-            
+
+
             /*
             Test Step 7
             Action: Delete the old value and enter the value ‘1000’ for Wheel diameter 1.Then, confirm an entered data by pressing an input field
             Expected Result: Verify the following information,Input fieldsThe associated ‘Enter’ button is data field itself.An input field is used to allow the driver to enter data.The state of ‘Wheel diameter 1’ input field is changed to ‘accepted’ as follows,The background colour of the Data Area is dark-grey.The colour of data value is white.The next input field ‘Wheel diameter 2’ is in state ‘selected’ as follows,The background colour of the Data Area is medium-grey.The colour of data value is black.Echo TextsThe echo text of ‘Wheel diameter 1’ is changed to white colour.The value of echo text is changed refer to entered data.Entering CharactersThe cursor is displayed as a horizontal line below the position of the next character to be entered.The cursor is flashed by changing from visible to not visible.KeyboardThe keyboard associated to selected input field ‘Wheel diameter 2’ is Numeric keyboard.The keyboard contains enabled button for the number <1> to <9>, <Delete>(NA21) , <0> and disabled <Decimal_Separator>. NA21, Delete button
             Test Step Comment: (1) MMI_gen 11716 (partly: MMI_gen 4682 (partly: Wheel diameter 1));(2) MMI_gen 11716 (partly: MMI_gen 4634 (partly: Wheel diameter 1)); MMI_gen 11697 (partly: entry);(3) MMI_gen 11716 (partly: MMI_gen 4652 (partly: Wheel diameter 1), MMI_gen 4684 (partly: accepted, Wheel diameter 1));(4) MMI_gen 11716 (partly: MMI_gen 4684 (partly: Wheel diameter 2, selected automatically), MMI_gen 4651 (partly: Wheel diameter 2));(5) MMI_gen 11716 (partly: MMI_gen 4700 (partly: Wheel diameter 1));(6) MMI_gen 11716 (partly: MMI_gen 4681 (partly: Wheel diameter 1), MMI_gen 4890, MMI_gen 4698);(7) MMI_gen 11716 (partly: MMI_gen 4689, MMI_gen 4690);(8) MMI_gen 11716 (partly: MMI_gen 4691 (partly: flash, Wheel diameter 2));(9) MMI_gen 11700 (partly: Wheel diameter 2); MMI_gen 11716 (partly: MMI_gen 4912 (partly: Wheel diameter 2), MMI_gen 4678 (partly: Wheel diameter 2));(10) MMI_gen 11716 (partly: MMI_gen 5003 (partly: Wheel diameter 2)); MMI_gen 4392 (partly: [Delete] NA21);
             */
-            
-            
+
+
             /*
             Test Step 8
             Action: Perform action step 2-6 for keypad of the ‘Wheel diameter 2’ input field
@@ -139,17 +142,18 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11716 (partly: MMI_gen 4642 (partly: Wheel diameter 2));  (2) MMI_gen 11716 (partly: MMI_gen 4692 (partly: Wheel diameter 2));  
             */
             // Call generic Check Results Method
-            DmiExpectedResults.See_the_expected_results_of_Step_2_Step_6_and_the_following_additional_information_The_pressed_key_is_added_in_an_input_field_immediately_The_cursor_is_jumped_to_next_position_after_entered_the_character_immediately();
-            
-            
+            DmiExpectedResults
+                .See_the_expected_results_of_Step_2_Step_6_and_the_following_additional_information_The_pressed_key_is_added_in_an_input_field_immediately_The_cursor_is_jumped_to_next_position_after_entered_the_character_immediately();
+
+
             /*
             Test Step 9
             Action: Delete the old value and enter the value ‘1000’ for Wheel diameter 2.Then, confirm an entered data by pressing an input field
             Expected Result: Verify the following information,Input fieldsThe associated ‘Enter’ button is data field itself.An input field is used to allow the driver to enter data.The state of ‘Wheel diameter 2’ input field is changed to ‘accepted’ as follows,The background colour of the Data Area is dark-grey.The colour of data value is white.The next input field ‘Accuracy’ is in state ‘selected’ as follows,The background colour of the Data Area is medium-grey.The colour of data value is black.Echo TextsThe echo text of ‘Wheel diameter 2’ is changed to white colour.The value of echo text is changed refer to entered data.Entering CharactersThe cursor is displayed as a horizontal line below the position of the next character to be entered.The cursor is flashed by changing from visible to not visible.KeyboardThe keyboard associated to selected input field ‘Accuracy’ is Numeric keyboard.The keyboard contains enabled button for the number <1> to <9>, <Delete>(NA21) , <0> and disabled <Decimal_Separator>. NA21, Delete button
             Test Step Comment: (1) MMI_gen 11716 (partly: MMI_gen 4682 (partly: Wheel diameter 2));(2) MMI_gen 11716 (partly: MMI_gen 4634 (partly: Wheel diameter 2)); MMI_gen 11696 (partly: entry);(3) MMI_gen 11716 (partly: MMI_gen 4652 (partly: Wheel diameter 2), MMI_gen 4684 (partly: accepted, Wheel diameter 2));(4) MMI_gen 11716 (partly: MMI_gen 4684 (partly: Accuracy, selected automatically), MMI_gen 4651 (partly: Accuracy));(5) MMI_gen 11716 (partly: MMI_gen 4700 (partly: Wheel diameter 2));(6) MMI_gen 11716 (partly: MMI_gen 4681 (partly: Wheel diameter 2), MMI_gen 4890, MMI_gen 4698);(7) MMI_gen 11716 (partly: MMI_gen 4689, MMI_gen 4690);(8) MMI_gen 11716 (partly: MMI_gen 4691 (partly: flash, Accuracy));(9) MMI_gen 11700 (partly: Accuracy); MMI_gen 11716 (partly: MMI_gen 4912 (partly: Accuracy), MMI_gen 4678 (partly: Accuracy));(10) MMI_gen 11716 (partly: MMI_gen 5003 (partly: Accuracy)); MMI_gen 4392 (partly: [Delete] NA21);
             */
-            
-            
+
+
             /*
             Test Step 10
             Action: Perform action step 2-6 for keypad of the ‘Accuracy’ input field
@@ -157,33 +161,34 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11716 (partly: MMI_gen 4642 (partly: Accuracy));  (2) MMI_gen 11716 (partly: MMI_gen 4692 (partly: Accuracy));  
             */
             // Call generic Check Results Method
-            DmiExpectedResults.See_the_expected_results_of_Step_2_Step_6_and_the_following_additional_information_The_pressed_key_is_added_in_an_input_field_immediately_The_cursor_is_jumped_to_next_position_after_entered_the_character_immediately();
-            
-            
+            DmiExpectedResults
+                .See_the_expected_results_of_Step_2_Step_6_and_the_following_additional_information_The_pressed_key_is_added_in_an_input_field_immediately_The_cursor_is_jumped_to_next_position_after_entered_the_character_immediately();
+
+
             /*
             Test Step 11
             Action: Delete the old value and enter the value ‘30’ for Accuracy.Then, confirm an entered data by pressing an input field
             Expected Result: Verify the following information,Input fieldsThe associated ‘Enter’ button is data field itself.An input field is used to allow the driver to enter data.The state of ‘Accuracy’ input field is changed to ‘accepted’ as follows,The background colour of the Data Area is dark-grey.The colour of data value is white.There is no input field selected.Echo TextsThe echo text of ‘Accuracy’ is changed to white colour.The value of echo text is changed refer to entered data.Data Entry windowThe state of ‘Yes’ button below text label ‘Train data Entry is complete?’ is enabled as follows,The background colour of the Data Area is medium-grey.The colour of data value is black.The border colour is medium-grey
             Test Step Comment: (1) MMI_gen 11716 (partly: MMI_gen 4682 (partly: Accuracy));(2) MMI_gen 11716 (partly: MMI_gen 4634 (partly: Accuracy)); MMI_gen 11698 (partly: entry);(3) MMI_gen 11716 (partly: MMI_gen 4652 (partly: Accuracy), MMI_gen 4684 (partly: accepted, Accuracy));(4) MMI_gen 11716 (partly: MMI_gen 4684 (partly: No next input field, data entry process terminated));(5) MMI_gen 11716 (partly: MMI_gen 4700 (partly: Accuracy));(6) MMI_gen 11716 (partly: MMI_gen 4681 (partly: Accuracy), MMI_gen 4698, MMI_gen 4890);(7) MMI_gen 11716 (partly: MMI_gen 4909 (partly:Enabled), MMI_gen 4910 (partly: Enabled, MMI_gen 4211 (partly: colour))); MMI_gen 4374; 
             */
-            
-            
+
+
             /*
             Test Step 12
             Action: Perform the following procedure,Select ‘Wheel diameter 1’ input field.Enter new value for ‘Wheel diameter 1’.Select ‘Accuracy’ input field
             Expected Result: Verify the following information,The state of ‘Yes’ button below text label ‘Wheel diameter entry is complete?’ is disabled. The state of input field ‘Wheel diameter 1’ is changed to ‘Not selected’ as follows,The value of ‘Wheel diameter 1’ input field is removed, display as blank.The background colour of the input field is dark-grey
             Test Step Comment: (1) MMI_gen 11716 (partly: MMI_gen 4909 (partly: state selected and with recently entered key), MMI_gen 4680 (partly: value has been modified));(2) MMI_gen 11716 (partly: MMI_gen 4680 (partly: Wheel diameter 1, Not selected, Data area is blank), MMI_gen 4649 (partly: data entry, background colour));
             */
-            
-            
+
+
             /*
             Test Step 13
             Action: Confirm the value of ‘Accuracy’
             Expected Result: Verify the following information,The state of input field ‘Wheel diameter 1’ is changed to ‘Selected’
             Test Step Comment: (1) MMI_gen 11716 (partly: MMI_gen 4685);
             */
-            
-            
+
+
             /*
             Test Step 14
             Action: Enter and confirm the new value ‘1000’ for ‘Wheel diameter 1’ value.Press and hold ‘Yes’ button
@@ -191,9 +196,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11716 (partly: MMI_gen 4911 (partly: MMI_gen 4381 (partly: change to state ‘Pressed’ as long as remain actuated)); MMI_gen 4375;(2) MMI_gen 11716 (partly: MMI_gen 4911 (partly: MMI_gen 4381 (partly: sound ‘Click’))); MMI_gen 9512; MMI_gen 968;
             */
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_The_state_of_button_is_changed_to_Pressed_the_border_of_button_is_removed_The_sound_Click_is_played_once();
-            
-            
+            DmiExpectedResults
+                .Verify_the_following_information_The_state_of_button_is_changed_to_Pressed_the_border_of_button_is_removed_The_sound_Click_is_played_once();
+
+
             /*
             Test Step 15
             Action: Slide out the ‘Yes’ button
@@ -203,9 +209,10 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.Slide_out_the_Yes_button();
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_The_border_of_the_input_field_is_shown_state_Enabled_without_a_sound();
-            
-            
+            DmiExpectedResults
+                .Verify_the_following_information_The_border_of_the_input_field_is_shown_state_Enabled_without_a_sound();
+
+
             /*
             Test Step 16
             Action: Slide back into the ‘Yes’ button
@@ -216,8 +223,8 @@ namespace Testcase.DMITestCases
             DmiActions.Slide_back_into_the_Yes_button();
             // Call generic Check Results Method
             DmiExpectedResults.Verify_the_following_information_The_button_is_back_to_state_Pressed_without_a_sound();
-            
-            
+
+
             /*
             Test Step 17
             Action: Release ‘Yes’ button
@@ -226,8 +233,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Release ‘Yes’ button");
-            
-            
+
+
             /*
             Test Step 18
             Action: Press ‘Yes’ button and confirm entered data by pressing an input field
@@ -237,16 +244,16 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Press ‘Yes’ button and confirm entered data by pressing an input field");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_the_Maintenance_window();
-            
-            
+
+
             /*
             Test Step 19
             Action: Perform the following procedure,Press ‘Wheel diameter’ button.Confirm the current data of all input fields without re-entry.Press ‘Yes button.Press ‘Yes’ button and confirm entered data at Wheel diameter validation window
             Expected Result: Verify the following information,The first input field is used to revalidation the Wheel diameter 1.The second input field is used to revalidation the Wheel diameter 2.The third input field is used to revalidation the Accuracy
             Test Step Comment: (1) MMI_gen 11697 (partly: revalidation); (2) MMI_gen 11696 (partly: revalidation);(3) MMI_gen 11698 (partly: revalidation);
             */
-            
-            
+
+
             /*
             Test Step 20
             Action: Press ‘Wheel diameter’ button
@@ -254,32 +261,32 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Wheel diameter’ button");
-            
-            
+
+
             /*
             Test Step 21
             Action: Press and hold the Label area of ‘Wheel diameter 2’ input field
             Expected Result: Verify the following information,The state of ‘Wheel diameter 2’ input field is changed to ‘Pressed’, the border of button is removed.The state of ‘Wheel diameter 2’ input field remains ‘not selected’. The state of ‘Wheel diameter 1’ input field remains ‘selected’.The sound ‘Click’ is played once
             Test Step Comment: (1) MMI_gen 11716 (partly: MMI_gen 4686 (partly: Label part, Wheel diameter 2), MMI_gen 4381 (partly: change to state ‘Pressed’ as long as remain actuated))); MMI_gen 4392 (partly: [Enter], touch screen); MMI_gen 4375;(2) MMI_gen 11716 (partly: MMI_gen 4686 (partly: Label part, Wheel diameter 2), MMI_gen 4381 (partly: the sound for Up-Type button));
             */
-            
-            
+
+
             /*
             Test Step 22
             Action: Slide out the Label part of ‘Wheel diameter 2’ input field
             Expected Result: Verify the following information,The border of ‘Wheel diameter 2’ input field is shown (state ‘Enabled’) without a sound.The state of ‘Wheel diameter 2’ input field remains ‘not selected’. The state of ‘Wheel diameter 1’ input field remains ‘selected’
             Test Step Comment: (1) MMI_gen 11716 (partly: MMI_gen 4686 (partly: Label part, Wheel diameter 2), MMI_gen 4382 (partly: state ‘Enabled’ when slide out with force applied, no sound); MMI_gen 4374;
             */
-            
-            
+
+
             /*
             Test Step 23
             Action: Slide back into the Label part of ‘Wheel diameter 2’ input field
             Expected Result: Verify the following information,The state of ‘Wheel diameter 2’ input field is changed to ‘Pressed’, the border of button is removed.The state of ‘Wheel diameter 2’ input field remains ‘not selected’. The state of ‘Wheel diameter 1’ input field remains ‘selected’
             Test Step Comment: (1) MMI_gen 11716 (partly: MMI_gen 4686 (partly: Label part, Wheel diameter 2), MMI_gen 4382 (partly: state ‘Pressed’ when slide back, no sound); MMI_gen 4375;
             */
-            
-            
+
+
             /*
             Test Step 24
             Action: Release the pressed area
@@ -288,8 +295,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Release the pressed area");
-            
-            
+
+
             /*
             Test Step 25
             Action: Perform action step 21-24 for the Label part of Wheel diameter 1 and Accuracy input field
@@ -297,9 +304,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11716 (partly: MMI_gen 4686 (partly: Label part));
             */
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_The_state_of_an_input_field_is_changed_to_selected_when_release_the_pressed_area_at_the_Label_part_of_input_field();
-            
-            
+            DmiExpectedResults
+                .Verify_the_following_information_The_state_of_an_input_field_is_changed_to_selected_when_release_the_pressed_area_at_the_Label_part_of_input_field();
+
+
             /*
             Test Step 26
             Action: Perform action step 21-24 for the Data part of each input field
@@ -307,9 +315,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11716 (partly: MMI_gen 4686 (partly: Data part)); MMI_gen 9390 (partly: Wheel diameter window);
             */
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_The_state_of_an_input_field_is_changed_to_selected_when_release_the_pressed_area_at_the_Data_part_of_input_field();
-            
-            
+            DmiExpectedResults
+                .Verify_the_following_information_The_state_of_an_input_field_is_changed_to_selected_when_release_the_pressed_area_at_the_Data_part_of_input_field();
+
+
             /*
             Test Step 27
             Action: Press ‘Close’ button
@@ -319,15 +328,16 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_Use_the_log_file_to_confirm_that_DMI_sent_out_packet_MMI_DRIVER_REQUEST_EVC_101_with_variable_MMI_M_REQUEST_54_Exit_Maintenance_The_window_is_closed_and_the_Maintenance_window_is_displayed();
-            
-            
+            DmiExpectedResults
+                .Verify_the_following_information_Use_the_log_file_to_confirm_that_DMI_sent_out_packet_MMI_DRIVER_REQUEST_EVC_101_with_variable_MMI_M_REQUEST_54_Exit_Maintenance_The_window_is_closed_and_the_Maintenance_window_is_displayed();
+
+
             /*
             Test Step 28
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

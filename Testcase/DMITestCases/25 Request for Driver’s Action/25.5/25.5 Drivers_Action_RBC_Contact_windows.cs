@@ -41,7 +41,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Test system is powered on.Cabin is activated.SoM is performed until level 2 is selected and confirmed.
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -59,15 +59,15 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Perform the following procedure,a)   Press and hold the ‘Radio Network ID’ button at least 2 seconds. Then, release the pressed button.b)  Press the ‘Close’ button.c)   Press the ‘Enter RBC Data’ button.d)   Press the ‘Close’ button
             Expected Result: DMI displays RBC Contact window.Verify the following information(1)   Use the log file to confirm that DMI sends out packet [MMI_DRIVER_REQUEST (EVC-101)] with the value of variable MMI_M_REQUEST refer to sequence below,a)   MMI_M_REQUEST = 56 (Start Network ID)b)   MMI_M_REQUEST = 61 (Exit RBC Network ID)c)   MMI_M_REQUEST = 28 (Start RBC Data Entry)d)   MMI_M_REQUEST = 33 (Exit RBC Data Entry)Note: The sequence of MMI_M_REQUEST value are consistent with step of each action.(2)   When the button is pressed in each action, the window of pressed button is closed
             Test Step Comment: (1) MMI_gen 151 (partly: MMI_M_REQUEST = 56, 61, 28, 33) ;(2) MMI_gen 151 (partly: close opened menu);
             */
-            
-            
+
+
             /*
             Test Step 2
             Action: Perform the following procedure,Press the ‘Enter RBC Data’ button.Enter the value of an input fields as follows,RBC ID = 6996969RBC Phone = 0031840880100Press 'Yes' button
@@ -75,30 +75,30 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Main_window();
-            
-            
+
+
             /*
             Test Step 3
             Action: Perform the following procedure,Press the ‘Level’ button.Select and confirm ‘Level 2’At the RBC Contact window, press ‘Close’ button
             Expected Result: Verify the following information(1)   Use the log file to confirm that DMI sends out packet [MMI_DRIVER_REQUEST (EVC-101)] with the value of variable MMI_M_REQUEST = 39 (Exit RBC contact).(2)   The RBC Contact window is closed, DMI displays Main window
             Test Step Comment: (1) MMI_gen 151 (partly: MMI_M_REQUEST = 39);(2) MMI_gen 151 (partly: close opened menu);
             */
-            
-            
+
+
             /*
             Test Step 4
             Action: Perform the following procedure,Press the ‘Level’ button.Select and confirm ‘Level 2’At the RBC Contact window, press ‘Contact last RBC’ button
             Expected Result: DMI displays Main window.Verify the following information(1)   Use the log file to confirm that DMI sends out packet [MMI_DRIVER_REQUEST (EVC-101)] with the value of variable MMI_M_REQUEST = 57 (Contact last RBC).(2)   The RBC Contact window is closed, DMI displays Main window
             Test Step Comment: (1) MMI_gen 151 (partly: MMI_M_REQUEST = 57);(2) MMI_gen 151 (partly: close opened menu);
             */
-            
-            
+
+
             /*
             Test Step 5
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

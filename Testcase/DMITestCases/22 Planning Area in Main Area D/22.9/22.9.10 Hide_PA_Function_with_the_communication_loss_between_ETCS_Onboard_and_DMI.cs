@@ -39,7 +39,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // System is power on
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -57,7 +57,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Activate cabin A. Driver performs SoM to SR mode, level 1
@@ -67,8 +67,8 @@ namespace Testcase.DMITestCases
             DmiActions.Activate_cabin_A_Driver_performs_SoM_to_SR_mode_level_1();
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_in_SR_mode_level_1();
-            
-            
+
+
             /*
             Test Step 2
             Action: Drive the train forward with speed = 40 km/h pass BG1
@@ -76,8 +76,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Drive_the_train_forward_with_speed_40_kmh_pass_BG1();
-            
-            
+
+
             /*
             Test Step 3
             Action: Simulate the communication loss between ETCS onboard and DMI
@@ -86,8 +86,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Simulate_the_communication_loss_between_ETCS_onboard_and_DMI();
-            
-            
+
+
             /*
             Test Step 4
             Action: Press at Main area D
@@ -96,8 +96,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press at Main area D");
-            
-            
+
+
             /*
             Test Step 5
             Action: Re-establish the communication between ETCS onboard and DMI
@@ -106,8 +106,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Re_establish_the_communication_between_ETCS_onboard_and_DMI();
-            
-            
+
+
             /*
             Test Step 6
             Action: Press Hide PA button
@@ -117,8 +117,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Press Hide PA button");
             // Call generic Check Results Method
             DmiExpectedResults.The_Planning_Information_is_disappeared_from_main_area_D();
-            
-            
+
+
             /*
             Test Step 7
             Action: Press at Main area D
@@ -127,8 +127,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press at Main area D");
-            
-            
+
+
             /*
             Test Step 8
             Action: Press Hide PA button
@@ -138,8 +138,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Press Hide PA button");
             // Call generic Check Results Method
             DmiExpectedResults.The_Planning_Information_is_disappeared_from_main_area_D();
-            
-            
+
+
             /*
             Test Step 9
             Action: Simulate the communication loss between ETCS onboard and DMI
@@ -147,8 +147,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Simulate_the_communication_loss_between_ETCS_onboard_and_DMI();
-            
-            
+
+
             /*
             Test Step 10
             Action: Re-establish the communication between ETCS onboard and DMI
@@ -157,14 +157,14 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Re_establish_the_communication_between_ETCS_onboard_and_DMI();
-            
-            
+
+
             /*
             Test Step 11
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

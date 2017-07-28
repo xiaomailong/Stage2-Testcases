@@ -40,7 +40,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // 1. The test environment is powered on.2. The cabin is activated.3. The ‘Settings’ window is opened from the ‘Driver ID’ window.
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -58,16 +58,17 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Press the ‘Settings’ button located on the ‘Driver ID’ window.Then, open the ‘Set VBC’ data entry window from the Settings menu
             Expected Result: The ‘Set VBC’ data entry window appears on ETCS-DMI screen instead of the ‘Settings’ menu window
             */
             // Call generic Check Results Method
-            DmiExpectedResults.The_Set_VBC_data_entry_window_appears_on_ETCS_DMI_screen_instead_of_the_Settings_menu_window();
-            
-            
+            DmiExpectedResults
+                .The_Set_VBC_data_entry_window_appears_on_ETCS_DMI_screen_instead_of_the_Settings_menu_window();
+
+
             /*
             Test Step 2
             Action: Enter “0” (minimum inbound) with the numeric keypad and press the data input field (Accept) in the same screen
@@ -75,9 +76,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: Requirements:(1) MMI_gen 9888 (partly: reactions to succeed, MMI_gen 4714 (partly: MMI_gen 4679), MMI_gen 9286 (partly: state switched), MMI_gen 12145 (partly: minimum inbound)), MMI_gen 9905 (partly: state switched);(2) MMI_gen 9888 (partly: reactions to succeed, MMI_gen 12147, MMI_gen 9286 (partly: enabled)), MMI_gen 9905 (partly: enabled), MMI_gen 9923 (partly: EVC-118, the ‘Enter’ button, accepted data complied with data checks, driver action);(3) MMI_gen 9888 (partly: reactions to succeed, EVC-18)
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Enter “0” (minimum inbound) with the numeric keypad and press the data input field (Accept) in the same screen");
-            
-            
+            DmiActions.ShowInstruction(
+                @"Enter “0” (minimum inbound) with the numeric keypad and press the data input field (Accept) in the same screen");
+
+
             /*
             Test Step 3
             Action: Enter “16777216” (outbound) with the numeric keypad and press the data input field (Accept) in the same screen
@@ -85,9 +87,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: Requirements:(1) MMI_gen 9888 (partly: reactions to failing, MMI_gen 4714 (partly: state 'Selected IF/data value'));(2) MMI_gen 9888 (partly: reactions to failing, MMI_gen 4714 (partly: previously entered (faulty) value), MMI_gen 12145 (partly: outbound)); MMI_gen 4699 (technical range);(3) MMI_gen 9888 (partly: MMI_gen 9286 (partly: button ‘Enter’, disabled), MMI_gen 12148 (partly: not send packets) , MMI_gen 12147), MMI_gen 9905 (partly: disabled), MMI_gen 9923 (partly: EVC-118); (4) MMI_gen 8328 (partly: MMI_gen 12148 (MMI_gen 4713 (partly: indication))), MMI_gen 9888 (partly: reactions to failing, MMI_gen 12148 (MMI_gen 4713 (partly: indication)));(5) MMI_gen 9898 (partly: MMI_gen 12148 (MMI_gen 4713 (partly: red))), MMI_gen 9888 (partly: reactions to failing, MMI_gen 12148 (MMI_gen 4713 (partly: red)));
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Enter “16777216” (outbound) with the numeric keypad and press the data input field (Accept) in the same screen");
-            
-            
+            DmiActions.ShowInstruction(
+                @"Enter “16777216” (outbound) with the numeric keypad and press the data input field (Accept) in the same screen");
+
+
             /*
             Test Step 4
             Action: Enter “16777215” (maximum inbound) with the numeric keypad and press the data input field (Accept) in the same screen
@@ -95,26 +98,29 @@ namespace Testcase.DMITestCases
             Test Step Comment: Requirements:(1) MMI_gen 9888 (partly: MMI_gen 4714 (partly: MMI_gen 4679), MMI_gen 9286 (partly: state switched), MMI_gen 12145 (partly: maximum inbound)), MMI_gen 9905 (partly: state switched); (2) MMI_gen 9888 (partly: reactions to succeed, MMI_gen 12147, MMI_gen 9286 (partly: enabled)), MMI_gen 9905 (partly: enabled), MMI_gen 9923 (partly: EVC-118, the ‘Enter’ button, accepted data complied with data checks, driver action);(3) MMI_gen 9888 (partly: reactions to succeed, EVC-18)
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Enter “16777215” (maximum inbound) with the numeric keypad and press the data input field (Accept) in the same screen");
-            
-            
+            DmiActions.ShowInstruction(
+                @"Enter “16777215” (maximum inbound) with the numeric keypad and press the data input field (Accept) in the same screen");
+
+
             /*
             Test Step 5
             Action: This step is to complete the process of ‘set VBC’:- Press the ‘Yes’ button on the ‘Set VBC’ window.- Validate the data in the data validation window
             Expected Result: 1. After pressing the ‘Yes’ button, the data validation window (‘Validate Set VBC’) appears instead of the ‘Set VBC’ data entry window. The data part of echo text displays “65536” in white.2. After the data area of the input field containing “Yes” is pressed, the data validation window disappears and returns to the parent window (‘Settings’ window) of ‘Set VBC’ window with enabled ‘Set VBC’ button
             */
             // Call generic Action Method
-            DmiActions.This_step_is_to_complete_the_process_of_set_VBC_Press_the_Yes_button_on_the_Set_VBC_window_Validate_the_data_in_the_data_validation_window();
+            DmiActions
+                .This_step_is_to_complete_the_process_of_set_VBC_Press_the_Yes_button_on_the_Set_VBC_window_Validate_the_data_in_the_data_validation_window();
             // Call generic Check Results Method
-            DmiExpectedResults.After_pressing_the_Yes_button_the_data_validation_window_Validate_Set_VBC_appears_instead_of_the_Set_VBC_data_entry_window_The_data_part_of_echo_text_displays_65536_in_white_2_After_the_data_area_of_the_input_field_containing_Yes_is_pressed_the_data_validation_window_disappears_and_returns_to_the_parent_window_Settings_window_of_Set_VBC_window_with_enabled_Set_VBC_button();
-            
-            
+            DmiExpectedResults
+                .After_pressing_the_Yes_button_the_data_validation_window_Validate_Set_VBC_appears_instead_of_the_Set_VBC_data_entry_window_The_data_part_of_echo_text_displays_65536_in_white_2_After_the_data_area_of_the_input_field_containing_Yes_is_pressed_the_data_validation_window_disappears_and_returns_to_the_parent_window_Settings_window_of_Set_VBC_window_with_enabled_Set_VBC_button();
+
+
             /*
             Test Step 6
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

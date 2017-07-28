@@ -38,7 +38,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // System is power on.
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -56,7 +56,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Activate cabin A
@@ -66,8 +66,8 @@ namespace Testcase.DMITestCases
             DmiActions.Activate_cabin_A();
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_in_SB_mode_The_Driver_ID_window_is_displayed();
-            
-            
+
+
             /*
             Test Step 2
             Action: Driver performs SoM to SR mode, level 1
@@ -77,15 +77,15 @@ namespace Testcase.DMITestCases
             DmiActions.Driver_performs_SoM_to_SR_mode_level_1();
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_in_SR_mode_level_1();
-            
-            
+
+
             /*
             Test Step 3
             Action: Drive the train forward passing BG1Then drive the train forward with speed = 60 km/h in FS mode
             Expected Result: DMI changes from SR to FS mode.Verify that the distance to target bar is displayed in sub-area A2.The distance to target digital is displayed as numeric in Metric units
             */
-            
-            
+
+
             /*
             Test Step 4
             Action: Drive the train forward passing BG2
@@ -95,16 +95,16 @@ namespace Testcase.DMITestCases
             DmiActions.Drive_the_train_forward_passing_BG2();
             // Call generic Check Results Method
             DmiExpectedResults.DMI_remains_displays_in_FS_mode();
-            
-            
+
+
             /*
             Test Step 5
             Action: Simulate a communication loss between ETCS Onboard and DMI
             Expected Result: DMI displays the  message “ATP Down Alarm” with sound alarm.Verify that the distance to target digital is removed from DMI’s screen. The toggling function is disabled
             Test Step Comment: MMI_gen 6878 (partly: Distance to target Digital removal);
             */
-            
-            
+
+
             /*
             Test Step 6
             Action: Re-establish the communication between ETCS onboard and DMI
@@ -113,14 +113,14 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Re_establish_the_communication_between_ETCS_onboard_and_DMI();
-            
-            
+
+
             /*
             Test Step 7
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

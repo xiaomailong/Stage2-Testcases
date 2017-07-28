@@ -43,7 +43,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // System is power on.
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -61,7 +61,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Activate cabin A
@@ -71,15 +71,15 @@ namespace Testcase.DMITestCases
             DmiActions.Activate_cabin_A();
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_the_default_window_The_Driver_ID_window_is_displayed();
-            
-            
+
+
             /*
             Test Step 2
             Action: Enter the Driver ID. Perform brake test and then select Level 0
             Expected Result: ATP enters level 0.DMI displays the symbol of Level 0 in sub-area C8
             */
-            
-            
+
+
             /*
             Test Step 3
             Action: Select ‘Train data’ button
@@ -87,22 +87,22 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults.The_Train_data_window_is_displayed();
-            
-            
+
+
             /*
             Test Step 4
             Action: Enter and confirm the train data
             Expected Result: The Train data validation window is displayed
             */
-            
-            
+
+
             /*
             Test Step 5
             Action: Driver validates the train data
             Expected Result: DMI displays the Train running window
             */
-            
-            
+
+
             /*
             Test Step 6
             Action: Enter and confirm the Train running number
@@ -112,39 +112,39 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Enter and confirm the Train running number");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_the_Main_window();
-            
-            
+
+
             /*
             Test Step 7
             Action: Press ‘Start’ button and confirm UN mode
             Expected Result: DMI displays in UN mode, level 0
             */
-            
-            
+
+
             /*
             Test Step 8
             Action: Drive the train forward and observe all objects on DMI’s screen
             Expected Result: Verify that when DMI displays in UN mode, the supervision status is not presented to the driver and there is no release speed on DMI
             Test Step Comment: MMI_gen 6468 (partly: UN mode, supervision status and the release speed are not displayed);   
             */
-            
-            
+
+
             /*
             Test Step 9
             Action: Stop at position 100m. Then, select level 1
             Expected Result: DMI displays the symbol of level 1 in sub-area C8 instead of level 0.DMI displays in level 1 with train trip announcement symbol which requires the driver’s action. The train trip symbol is displayed with yellow flashing frame
             Test Step Comment: MMI_gen 4222 (partly: frame is displayed with yellow flashing);
             */
-            
-            
+
+
             /*
             Test Step 10
             Action: Driver acknowledges train trip
             Expected Result: DMI displays in PT mode.Use the log file to confirm that DMI sends out packet [MMI_DRIVER_ACTION (EVC-152)] with the value of variable MMI_M_DRIVER_ACTION refer to sequence below,a)   MMI_M_DRIVER_ACTION = 2 (Ack of Train Trip)
             Test Step Comment: MMI_gen 11470 (partly: Bit #2);   
             */
-            
-            
+
+
             /*
             Test Step 11
             Action: Press ‘Start’ button and confirm SR mode
@@ -152,14 +152,14 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_in_SR_mode_level_1();
-            
-            
+
+
             /*
             Test Step 12
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

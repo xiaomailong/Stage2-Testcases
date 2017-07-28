@@ -41,7 +41,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // System is power OFF.Configure atpcu configuration file as following (See the instruction in Appendix 2)M_InstalledLevels = 31NID_NTC_Installed_0 = 1 (ATB)
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -59,14 +59,14 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Perform the following action:         Power on the systemActivate the cabin Perform start of mission to Unfitted mode , Level 0
             Expected Result: DMI displays Unfitted mode, Level 0
             */
-            
-            
+
+
             /*
             Test Step 2
             Action: Drive the train forward with 30 km/h then pass BG0 with level transition announcement
@@ -75,8 +75,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Drive_the_train_forward_with_30_kmh_then_pass_BG0_with_level_transition_announcement();
-            
-            
+
+
             /*
             Test Step 3
             Action: Pass the level transition acknowledgement area
@@ -85,16 +85,16 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Pass_the_level_transition_acknowledgement_area();
-            
-            
+
+
             /*
             Test Step 4
             Action: Press acknowledgement LE09 symbol in sub-area C1
             Expected Result: DMI replaces LE09 symbol with LE08 in sub-area C1
             Test Step Comment: MMI_gen 9431 (partly: LE08);
             */
-            
-            
+
+
             /*
             Test Step 5
             Action: Pass BG1 at level transition border
@@ -102,14 +102,14 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Pass_BG1_at_level_transition_border();
-            
-            
+
+
             /*
             Test Step 6
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

@@ -48,7 +48,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // System is power on.
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -66,7 +66,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Perform SoM to Level 1 in SR mode
@@ -76,8 +76,8 @@ namespace Testcase.DMITestCases
             DmiActions.Perform_SoM_to_Level_1_in_SR_mode();
             // Call generic Check Results Method
             DmiExpectedResults.ETCS_OB_enters_SR_mode_in_Level_1();
-            
-            
+
+
             /*
             Test Step 2
             Action: Drive the train forward with speed at 40 km/h
@@ -87,8 +87,8 @@ namespace Testcase.DMITestCases
             DmiActions.Drive_the_train_forward_with_speed_at_40_kmh();
             // Call generic Check Results Method
             DmiExpectedResults.The_train_can_drive_forward_and_all_brakes_are_not_applied();
-            
-            
+
+
             /*
             Test Step 3
             Action: Train runs pass BG1
@@ -98,16 +98,16 @@ namespace Testcase.DMITestCases
             DmiActions.Train_runs_pass_BG1();
             // Call generic Check Results Method
             DmiExpectedResults.ETCS_OB_enters_FS_mode_in_Level_1();
-            
-            
+
+
             /*
             Test Step 4
             Action: Accelerate the train with max acceleration (100% throttle) until train speed at 107 km/h
             Expected Result: (1) Use the DMI appearance and log file to verify that train enters intervention status in CSM.DMI Appearance- The DMI displays dark grey colour on CSG from 0 km/h to Vperm.- The DMI displays red colour on CSG from Vperm to Vtrain.Log FileUse log file to verify that the DMI receives EVC-1 with the change value of variable ‘MMI_M_WARNING’ from value 12 to other value.(2) Sound ‘S3_end_of_intervention.wav’ is played once after emergency brake is deactivated with disappearance of symbol ST01.Note The intervention status information is deactivated as soon as there is no more emergency brake command from the speed and monitoring function, refers to section 6.5.7.2.4 in [MMI-ETCS-gen]
             Test Step Comment: (1) MMI_gen 12039 (partly: MMI_M_WARNING = 12);(2) MMI_gen 12038 (partly: MMI_M_WARNING = 12 is no more active); MMI_gen 12039 (partly: MMI_M_WARNING = 12 is no more active);Note DMI appearance refers to Table 33: Conditions for display and colour of the CSG in [MMI-ETCS-gen].
             */
-            
-            
+
+
             /*
             Test Step 5
             Action: Stop the train
@@ -117,8 +117,8 @@ namespace Testcase.DMITestCases
             DmiActions.Stop_the_train();
             // Call generic Check Results Method
             DmiExpectedResults.The_train_is_at_standstill();
-            
-            
+
+
             /*
             Test Step 6
             Action: Deactivate cabin A and power off the system
@@ -128,8 +128,8 @@ namespace Testcase.DMITestCases
             DmiActions.Deactivate_cabin_A_and_power_off_the_system();
             // Call generic Check Results Method
             DmiExpectedResults.System_is_power_off_and_DMI_displays_No_contact_with_ATP();
-            
-            
+
+
             /*
             Test Step 7
             Action: Power on the system and perform SoM to Level 1 in SR mode
@@ -139,8 +139,8 @@ namespace Testcase.DMITestCases
             DmiActions.Power_on_the_system_and_perform_SoM_to_Level_1_in_SR_mode();
             // Call generic Check Results Method
             DmiExpectedResults.ETCS_OB_enters_SR_mode_in_Level_1();
-            
-            
+
+
             /*
             Test Step 8
             Action: Drive the train forward with speed at 40 km/h
@@ -150,8 +150,8 @@ namespace Testcase.DMITestCases
             DmiActions.Drive_the_train_forward_with_speed_at_40_kmh();
             // Call generic Check Results Method
             DmiExpectedResults.The_train_can_drive_forward_and_all_brakes_are_not_applied();
-            
-            
+
+
             /*
             Test Step 9
             Action: Train runs pass BG1
@@ -161,16 +161,16 @@ namespace Testcase.DMITestCases
             DmiActions.Train_runs_pass_BG1();
             // Call generic Check Results Method
             DmiExpectedResults.ETCS_OB_enters_FS_mode_in_Level_1();
-            
-            
+
+
             /*
             Test Step 10
             Action: Accelerate the train with max acceleration (100% throttle) until train speed at 80 km/h.  And wait until emergency brake is applied from ETCS onboard
             Expected Result: (1) Use the DMI appearance and log file to verify that train enters intervention status in TSM.DMI Appearance- The DMI displays yellow colour on CSG from 0 to Vperm.- The DMI displays red colour on CSG from Vperm to Vtrain.Log FileUse log file to verify that the DMI receives EVC-1 with the change value of variable ‘MMI_M_WARNING’ from value 13 to other value.(2)  Sound ‘S3_end_of_intervention.wav’ is played once after emergency brake is deactivated with disappearance of symbol ST01. Note The intervention status information is deactivated as soon as there is no more emergency brake command from the speed and monitoring function, refers to section 6.5.7.5.2 in [MMI-ETCS-gen]
             Test Step Comment: (1) MMI_gen 12039 (partly: MMI_M_WARNING = 13); (2) MMI_gen 12038 (partly: MMI_M_WARNING = 13 is no more active); MMI_gen 12039 (partly: MMI_M_WARNING = 13 is no more active);Note DMI appearance refers to Table 33: Conditions for display and colour of the CSG in [MMI-ETCS-gen].
             */
-            
-            
+
+
             /*
             Test Step 11
             Action: Stop the train
@@ -180,14 +180,14 @@ namespace Testcase.DMITestCases
             DmiActions.Stop_the_train();
             // Call generic Check Results Method
             DmiExpectedResults.The_train_is_at_standstill();
-            
-            
+
+
             /*
             Test Step 12
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

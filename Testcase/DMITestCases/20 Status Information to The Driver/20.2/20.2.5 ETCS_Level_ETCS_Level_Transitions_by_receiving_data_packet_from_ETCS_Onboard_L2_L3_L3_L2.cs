@@ -37,7 +37,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // -     System is power ON.-     SoM is performed in SR mode, Level 2
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -55,7 +55,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Drive the train forward pass BG1
@@ -64,8 +64,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Drive_the_train_forward_pass_BG1();
-            
-            
+
+
             /*
             Test Step 2
             Action: Drive the train forward pass a distance to level transition
@@ -73,8 +73,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Drive_the_train_forward_pass_a_distance_to_level_transition();
-            
-            
+
+
             /*
             Test Step 3
             Action: Drive the train forward pass BG2
@@ -83,8 +83,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Drive_the_train_forward_pass_BG2();
-            
-            
+
+
             /*
             Test Step 4
             Action: Drive the train forward pass a distance to level transition
@@ -92,14 +92,14 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Drive_the_train_forward_pass_a_distance_to_level_transition();
-            
-            
+
+
             /*
             Test Step 5
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

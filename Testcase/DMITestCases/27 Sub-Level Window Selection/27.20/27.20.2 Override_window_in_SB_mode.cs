@@ -37,7 +37,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Test system is powered on.The cabin is activatedDriver ID is enteredLevel 2 is selected and confirmed
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -55,7 +55,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Press ‘Enter RBC Data’ button
@@ -63,8 +63,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_RBC_Data_window();
-            
-            
+
+
             /*
             Test Step 2
             Action: Enter and confirm the following values, RBC ID= 6996969RBC Phone number = 0031840880100Then, press ‘Yes’ button
@@ -72,8 +72,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Main_window();
-            
-            
+
+
             /*
             Test Step 3
             Action: Perform the following procedure,Press ‘Train data’ button.Enter and validate train data
@@ -81,8 +81,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Main_window_with_enabled_Start_button();
-            
-            
+
+
             /*
             Test Step 4
             Action: Press ‘Close’ button
@@ -92,8 +92,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Default_window();
-            
-            
+
+
             /*
             Test Step 5
             Action: Press ‘Override’ button
@@ -102,8 +102,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Override’ button");
-            
-            
+
+
             /*
             Test Step 6
             Action: Perform the following procedure, Press ‘Close’ buttonPress ‘Main’ buttonPress ‘Level’ buttonSelect and confirm Level 1.Press ‘Close’ buttonPress ‘Override’ button
@@ -111,15 +111,16 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8415 (partly: touch screen, label “EOA”);              MMI_gen 11225 (partly: EVC-30, disabled);(2) MMI_gen 11225 (partly: disabled);
             */
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_The_EOA_button_is_in_disable_state_Use_the_log_file_to_confirm_that_DMI_receives_EVC_30_with_with_bit_No_9_of_variable_MMI_Q_REQUEST_ENABLE_64_0_Disable_Start_Override_EOA();
-            
-            
+            DmiExpectedResults
+                .Verify_the_following_information_The_EOA_button_is_in_disable_state_Use_the_log_file_to_confirm_that_DMI_receives_EVC_30_with_with_bit_No_9_of_variable_MMI_Q_REQUEST_ENABLE_64_0_Disable_Start_Override_EOA();
+
+
             /*
             Test Step 7
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

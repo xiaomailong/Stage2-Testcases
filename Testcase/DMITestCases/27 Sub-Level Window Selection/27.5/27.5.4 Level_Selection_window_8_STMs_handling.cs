@@ -39,7 +39,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Power off the system Configure atpcu configuration file as following (See the instruction in Appendix 2)M_InstalledLevels = 4082NID_NTC_Installe_0 = 1NID_NTC_Installe_1 = 20NID_NTC_Installe_2 = 28NID_NTC_Installe_3 = 9NID_NTC_Installe_4 = 6NID_NTC_Installe_5 = 10NID_NTC_Installe_6 = 22NID_NTC_Installe_7 = 0
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -57,7 +57,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Power on the system and activate the cabin
@@ -67,22 +67,22 @@ namespace Testcase.DMITestCases
             DmiActions.Power_on_the_system_and_activate_the_cabin();
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Driver_ID_window_in_SB_mode();
-            
-            
+
+
             /*
             Test Step 2
             Action: Enetr Driver ID and skip brake test
             Expected Result: Verify the following information,The level selection window displays 8 folllowing STMs accroding to configuration settingATBTPWS/AWSTBL1+PZB/LZBPZBLZBATC2ASFA
             Test Step Comment: MMI_gen 1077;
             */
-            
-            
+
+
             /*
             Test Step 3
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

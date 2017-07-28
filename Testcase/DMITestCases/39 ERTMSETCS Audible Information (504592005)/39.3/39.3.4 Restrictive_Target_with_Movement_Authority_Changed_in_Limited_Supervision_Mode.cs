@@ -41,7 +41,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // System is power on.
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -59,7 +59,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Perform SoM to Level 1 in SR mode
@@ -69,8 +69,8 @@ namespace Testcase.DMITestCases
             DmiActions.Perform_SoM_to_Level_1_in_SR_mode();
             // Call generic Check Results Method
             DmiExpectedResults.ETCS_OB_enters_SR_mode_in_Level_1();
-            
-            
+
+
             /*
             Test Step 2
             Action: Drive the train forward with constant speed at 20 km/h
@@ -80,8 +80,8 @@ namespace Testcase.DMITestCases
             DmiActions.Drive_the_train_forward_with_constant_speed_at_20_kmh();
             // Call generic Check Results Method
             DmiExpectedResults.The_train_can_drive_forward_and_all_brakes_are_not_applied();
-            
-            
+
+
             /*
             Test Step 3
             Action: Train runs pass BG1
@@ -90,8 +90,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Train_runs_pass_BG1();
-            
-            
+
+
             /*
             Test Step 4
             Action: Train runs pass BG2
@@ -100,8 +100,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Train_runs_pass_BG2();
-            
-            
+
+
             /*
             Test Step 5
             Action: Stop the train
@@ -111,14 +111,14 @@ namespace Testcase.DMITestCases
             DmiActions.Stop_the_train();
             // Call generic Check Results Method
             DmiExpectedResults.The_train_is_at_standstill();
-            
-            
+
+
             /*
             Test Step 6
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

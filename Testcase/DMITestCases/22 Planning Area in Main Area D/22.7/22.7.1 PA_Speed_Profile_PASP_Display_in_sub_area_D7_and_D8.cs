@@ -37,7 +37,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // System is power on.Complete to perform SoM in SR mode, Level 1.The default configuration of PA distance scale is set as [0…4000] (variable DEFAULT_PAGE_DISPLAY in etcs_planningArea.xml is equal to 2)
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -55,7 +55,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Drive the train forward and pass BG1.Then, slow down the train to make it stop at position 100m
@@ -63,8 +63,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults.DMI_changes_from_SR_to_FS_mode_The_Planning_Area_is_displayed();
-            
-            
+
+
             /*
             Test Step 2
             Action: Stop the train
@@ -73,16 +73,16 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Stop_the_train();
-            
-            
+
+
             /*
             Test Step 3
             Action: Press <Scale Down> button
             Expected Result: Verify the following information,There are only 3 speed discontinuities displayed at sub-area D7 and The width of each PA Speed Profile segments are displayed correctly refer as follows,0-500m: The width is covered all of sub-area D7.501-1000m: The width is covered only ¾ of sub-area D7.1001-2000m: The width is covered half of sub-area D7.2001-8000m: The width is covered only ¼ of sub-area D7.Use the log file to confirm that DMI receives packet information [MMI_TRACK_DESCRIPTION (EVC-4)] with variable MMI_V_MRSP_CURR = 2777 (approximately 100km/h).Use the log file to confirm the start position for each segment of PA speed profile from the differentiate of variable [MMI_TRACK_DESCRIPTION (EVC-4).MMI_O_MRSP] and [MMI_ETCS_MISC_OUT_SIGNALS (EVC-7).OBU_TR_O_TRAIN] as follows,[MMI_TRACK_DESCRIPTION (EVC-4).MMI_O_MRSP[0]] – [MMI_ETCS_MISC_OUT_SIGNALS (EVC-7).OBU_TR_O_TRAIN] is approximately to 60000 (600m)[MMI_TRACK_DESCRIPTION (EVC-4).MMI_O_MRSP[1]] – [MMI_ETCS_MISC_OUT_SIGNALS (EVC-7).OBU_TR_O_TRAIN] is approximately to 110000 (1100m)[MMI_TRACK_DESCRIPTION (EVC-4).MMI_O_MRSP[2]] – [MMI_ETCS_MISC_OUT_SIGNALS (EVC-7).OBU_TR_O_TRAIN] is approximately to 210000 (2100m)[MMI_TRACK_DESCRIPTION (EVC-4).MMI_O_MRSP[3]] – [MMI_ETCS_MISC_OUT_SIGNALS (EVC-7).OBU_TR_O_TRAIN] is approximately to 410000 (4100m)[MMI_TRACK_DESCRIPTION (EVC-4).MMI_O_MRSP[4]] – [MMI_ETCS_MISC_OUT_SIGNALS (EVC-7).OBU_TR_O_TRAIN] is approximately to 610000 (6100m).The symbol PL21 is displayed in sub area D6-D7 at position 6000m.   PL21Use the log file to confirm the value for each index of variable MMI_V_MRSP in received packet [MMI_TRACK_DESCRIPTION (EVC-4)] as follows,MMI_V_MRSP[4] > MMI_V_MRSP[3]Note: The first index is MMI_V_MRSP[0]The PASP is displayed within 8000m according to movement authorize (MA) and up to the first zero target speed.At the fourth speed restriction (position 2001-8000m), there is PL23 symbol displays at position 8000m
             Test Step Comment: (1) MMI_gen 648    (partly: width of each PASP segment);      MMI_gen 644          (partly: 3rd bullet, 4th bullet);                                         MMI_gen 9944         (partly: shown in D7);                   MMI_gen 7323 (partly: PASP width, MMI_gen 644); MMI_gen 7316 (partly: up to 3 speed discontinuities);      MMI_gen 7318 (partly: update the current PASP); MMI_gen 644 (partly: 1st bullet);(2) MMI_gen 9946 (partly: PL21);      (3) MMI_gen 9946 (partly: 1st bullet);(4) MMI_gen 9943 (partly: within movement authority and up to the first target at zero speed);(5) MMI_gen 9945;
             */
-            
-            
+
+
             /*
             Test Step 4
             Action: Drive the train forward
@@ -91,8 +91,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Drive_the_train_forward();
-            
-            
+
+
             /*
             Test Step 5
             Action: Continue to drive the train forward
@@ -101,8 +101,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Continue_to_drive_the_train_forward();
-            
-            
+
+
             /*
             Test Step 6
             Action: Continue to drive the train forward
@@ -111,8 +111,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Continue_to_drive_the_train_forward();
-            
-            
+
+
             /*
             Test Step 7
             Action: Continue to drive the train forward
@@ -121,8 +121,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Continue_to_drive_the_train_forward();
-            
-            
+
+
             /*
             Test Step 8
             Action: Continue to drive the train forward
@@ -131,8 +131,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Continue_to_drive_the_train_forward();
-            
-            
+
+
             /*
             Test Step 9
             Action: Simulate the communication loss between ETCS Onboard and DMI
@@ -141,8 +141,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Simulate_the_communication_loss_between_ETCS_Onboard_and_DMI();
-            
-            
+
+
             /*
             Test Step 10
             Action: Re-establish the communication between ETCS onboard and DMI
@@ -152,14 +152,14 @@ namespace Testcase.DMITestCases
             DmiActions.Re_establish_the_communication_between_ETCS_onboard_and_DMI();
             // Call generic Check Results Method
             DmiExpectedResults.The_PA_Speed_Profile_segments_are_reappeared();
-            
-            
+
+
             /*
             Test Step 11
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

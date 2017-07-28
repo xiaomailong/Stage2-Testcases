@@ -37,7 +37,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Test system is powered on Cabin A is activated.Enter Driver ID and perform brake test.Level is entered and confirmed.
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -55,7 +55,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Perform the following procedure,Press ‘Level’ button.Enter and confirm Level 2.Press ‘RBC data’ button
@@ -64,8 +64,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_RBC_data_window();
-            
-            
+
+
             /*
             Test Step 2
             Action: Perform the following procedure,Drive the train forward until the brake is appliedStop driving the trainAcknowledge the ‘Brake intervention’ symbol by pressing area E1
@@ -73,16 +73,17 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8868 (partly: RBC data entry);(2) MMI_gen 11283 (partly: RBC data entry); MMI_gen 3374 (partly: NEGATIVE, close by ETCS OB);
             */
             // Call generic Action Method
-            DmiActions.Perform_the_following_procedure_Drive_the_train_forward_until_the_brake_is_appliedStop_driving_the_trainAcknowledge_the_Brake_intervention_symbol_by_pressing_area_E1();
-            
-            
+            DmiActions
+                .Perform_the_following_procedure_Drive_the_train_forward_until_the_brake_is_appliedStop_driving_the_trainAcknowledge_the_Brake_intervention_symbol_by_pressing_area_E1();
+
+
             /*
             Test Step 3
             Action: Perform the following procedure,Press and hold  ‘Radio network ID’ button at least 2 seconds.Release the pressed area
             Expected Result: DMI displays Radio network ID window
             */
-            
-            
+
+
             /*
             Test Step 4
             Action: Perform the following procedure,Drive the train forward until the brake is appliedStop driving the trainAcknowledge the ‘Brake intervention’ symbol by pressing area E1
@@ -90,15 +91,16 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8868 (partly: Radio network ID);(2) MMI_gen 11283 (partly: Radio network ID);
             */
             // Call generic Action Method
-            DmiActions.Perform_the_following_procedure_Drive_the_train_forward_until_the_brake_is_appliedStop_driving_the_trainAcknowledge_the_Brake_intervention_symbol_by_pressing_area_E1();
-            
-            
+            DmiActions
+                .Perform_the_following_procedure_Drive_the_train_forward_until_the_brake_is_appliedStop_driving_the_trainAcknowledge_the_Brake_intervention_symbol_by_pressing_area_E1();
+
+
             /*
             Test Step 5
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

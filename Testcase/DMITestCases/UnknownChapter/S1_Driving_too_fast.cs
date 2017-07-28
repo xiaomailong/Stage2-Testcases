@@ -50,7 +50,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // System is power on.
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -68,7 +68,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Perform SoM to Level 1 in SR mode
@@ -78,8 +78,8 @@ namespace Testcase.DMITestCases
             DmiActions.Perform_SoM_to_Level_1_in_SR_mode();
             // Call generic Check Results Method
             DmiExpectedResults.ETCS_OB_enters_SR_mode_in_Level_1();
-            
-            
+
+
             /*
             Test Step 2
             Action: Drive the train forward with speed at 40 km/h
@@ -89,8 +89,8 @@ namespace Testcase.DMITestCases
             DmiActions.Drive_the_train_forward_with_speed_at_40_kmh();
             // Call generic Check Results Method
             DmiExpectedResults.The_train_can_drive_forward_and_all_brakes_are_not_applied();
-            
-            
+
+
             /*
             Test Step 3
             Action: Train runs pass BG1
@@ -100,16 +100,16 @@ namespace Testcase.DMITestCases
             DmiActions.Train_runs_pass_BG1();
             // Call generic Check Results Method
             DmiExpectedResults.ETCS_OB_enters_FS_mode_in_Level_1();
-            
-            
+
+
             /*
             Test Step 4
             Action: Accelerate the train with max acceleration (100% throttle) above permitted speed
             Expected Result: (1) Sound ‘S1_toofast.wav’ is played once when over-speed status in CSM supervision is active as figure below.(2) Use log file to verify that train speed is exceeded permitted supervision limit in CSM when DMI receives EVC-1 with variable [MMI_M_WARNING = 8]
             Test Step Comment: (1) MMI_gen 12029 (partly: MMI_M_WARNING = 8 with TDG file)(2) MMI_gen 12060 (partly: MMI_M_WARNING = 8 with TDG file)Note Sound file is stored in DMI_ERTMS_BL3 product in database path:/proj/ccmbkk3/mmi_v.
             */
-            
-            
+
+
             /*
             Test Step 5
             Action: Stop the train
@@ -119,8 +119,8 @@ namespace Testcase.DMITestCases
             DmiActions.Stop_the_train();
             // Call generic Check Results Method
             DmiExpectedResults.The_train_is_at_standstill();
-            
-            
+
+
             /*
             Test Step 6
             Action: Use test script 36_1_a.xml to send dynamic information via EVC-1 with:-- MMI_M_WARNING = 8- MMI_V_TRAIN = 2880- MMI_V_PERMITTED = 2777- MMI_V_INTERVENTION = 2929
@@ -129,8 +129,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults.Sound_S1_toofast_wav_is_played_once();
-            
-            
+
+
             /*
             Test Step 7
             Action: Deactivate cabin A and power off the system
@@ -140,8 +140,8 @@ namespace Testcase.DMITestCases
             DmiActions.Deactivate_cabin_A_and_power_off_the_system();
             // Call generic Check Results Method
             DmiExpectedResults.System_is_power_off_and_DMI_displays_No_contact_with_ATP();
-            
-            
+
+
             /*
             Test Step 8
             Action: Power on the system and perform SoM to Level 1 in SR mode
@@ -151,8 +151,8 @@ namespace Testcase.DMITestCases
             DmiActions.Power_on_the_system_and_perform_SoM_to_Level_1_in_SR_mode();
             // Call generic Check Results Method
             DmiExpectedResults.ETCS_OB_enters_SR_mode_in_Level_1();
-            
-            
+
+
             /*
             Test Step 9
             Action: Drive the train forward with speed at 40 km/h
@@ -162,8 +162,8 @@ namespace Testcase.DMITestCases
             DmiActions.Drive_the_train_forward_with_speed_at_40_kmh();
             // Call generic Check Results Method
             DmiExpectedResults.The_train_can_drive_forward_and_all_brakes_are_not_applied();
-            
-            
+
+
             /*
             Test Step 10
             Action: Train runs pass BG1
@@ -173,16 +173,16 @@ namespace Testcase.DMITestCases
             DmiActions.Train_runs_pass_BG1();
             // Call generic Check Results Method
             DmiExpectedResults.ETCS_OB_enters_FS_mode_in_Level_1();
-            
-            
+
+
             /*
             Test Step 11
             Action: Accelerate the train with max acceleration (100% throttle) until speed at 95 km/h.Wait until train enters PIM supervision and then increase train speed above permitted speed
             Expected Result: (1) Sound ‘S1_toofast.wav’ is played once when over-speed status in PIM supervision is active as figure below.(2) Use log file to verify that train speed is exceeded permitted supervision limit in PIM when DMI receives EVC-1 with variable [MMI_M_WARNING = 10]
             Test Step Comment: (1) MMI_gen 12029 (partly: MMI_M_WARNING = 10 with TDG file)(2) MMI_gen 12060 (partly: MMI_M_WARNING = 10 with TDG file)
             */
-            
-            
+
+
             /*
             Test Step 12
             Action: Stop the train
@@ -192,8 +192,8 @@ namespace Testcase.DMITestCases
             DmiActions.Stop_the_train();
             // Call generic Check Results Method
             DmiExpectedResults.The_train_is_at_standstill();
-            
-            
+
+
             /*
             Test Step 13
             Action: Use test script 36_1_b.xml to send dynamic information via EVC-1 with:-- MMI_M_WARNING = 10- MMI_V_TRAIN = 2806- MMI_V_PERMITTED = 2687- MMI_V_INTERVENTION = 2882
@@ -202,14 +202,14 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults.Sound_S1_toofast_wav_is_played_once();
-            
-            
+
+
             /*
             Test Step 14
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

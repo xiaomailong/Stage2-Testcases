@@ -19,8 +19,8 @@ namespace Testcase.Telegrams.EVCtoDMI
             _pool = pool;
 
             // Set default values
-            _pool.SITR.ETCS1.GeoPosition.MmiMPacket.Value = 5;          // Packet ID
-            _pool.SITR.ETCS1.GeoPosition.MmiLPacket.Value = 80;         // Packet length
+            _pool.SITR.ETCS1.GeoPosition.MmiMPacket.Value = 5; // Packet ID
+            _pool.SITR.ETCS1.GeoPosition.MmiLPacket.Value = 80; // Packet length
         }
 
         /// <summary>
@@ -53,7 +53,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static void Send()
         {
-            _pool.TraceInfo("ETCS->DMI: EVC-5 (MMI_GEO_POSITION) Absolute Postion = {0}, Relative Position = {1}", MMI_M_ABSOLUTPOS, MMI_M_RELATIVPOS);
+            _pool.TraceInfo("ETCS->DMI: EVC-5 (MMI_GEO_POSITION) Absolute Postion = {0}, Relative Position = {1}",
+                MMI_M_ABSOLUTPOS, MMI_M_RELATIVPOS);
             _pool.SITR.SMDCtrl.ETCS1.GeoPosition.Value = 1;
         }
     }

@@ -37,7 +37,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Set the following tags name in configuration file (See the instruction in Appendix 1)   SPEED_UNIT_TYPE = 0 (meter)System is power on.
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -55,7 +55,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Activate cabin A
@@ -65,8 +65,8 @@ namespace Testcase.DMITestCases
             DmiActions.Activate_cabin_A();
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_in_SB_mode_level_1_The_Driver_ID_window_is_displayed();
-            
-            
+
+
             /*
             Test Step 2
             Action: Driver performs SoM to SR mode
@@ -76,8 +76,8 @@ namespace Testcase.DMITestCases
             DmiActions.Driver_performs_SoM_to_SR_mode();
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_in_SR_mode_level_1();
-            
-            
+
+
             /*
             Test Step 3
             Action: Drive the train forward pass BG1
@@ -87,8 +87,8 @@ namespace Testcase.DMITestCases
             DmiActions.Drive_the_train_forward_pass_BG1();
             // Call generic Check Results Method
             DmiExpectedResults.DMI_changes_from_SR_to_FS_mode();
-            
-            
+
+
             /*
             Test Step 4
             Action: Drive the train follow the permitted speed
@@ -97,8 +97,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Drive_the_train_follow_the_permitted_speed();
-            
-            
+
+
             /*
             Test Step 5
             Action: Stop the train
@@ -107,14 +107,14 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Stop_the_train();
-            
-            
+
+
             /*
             Test Step 6
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

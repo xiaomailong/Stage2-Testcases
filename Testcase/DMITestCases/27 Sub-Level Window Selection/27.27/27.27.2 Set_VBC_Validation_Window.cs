@@ -37,7 +37,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // System is powered ON.Cabin is activated.Perform SoM until level 1 is selected and confirmed.The VBC code is not stored on ETCS. (See the information in the “Data View” menu)Settings window is opened.Set VBC window is opened.
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -55,7 +55,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Perform the following procedure,Enter and confirm value ‘65536’ at input field.Press ‘Yes’ button
@@ -64,8 +64,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Perform_the_following_procedure_Enter_and_confirm_value_65536_at_input_field_Press_Yes_button();
-            
-            
+
+
             /*
             Test Step 2
             Action: Press ‘No’ button
@@ -76,8 +76,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Press ‘No’ button");
             // Call generic Check Results Method
             DmiExpectedResults.The_value_of_input_field_is_changed_refer_to_selected_button();
-            
-            
+
+
             /*
             Test Step 3
             Action: Press and hold an input field
@@ -87,9 +87,10 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press and hold an input field");
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Pressed_the_border_of_button_is_removed();
-            
-            
+            DmiExpectedResults
+                .Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Pressed_the_border_of_button_is_removed();
+
+
             /*
             Test Step 4
             Action: Slide out an input field
@@ -99,9 +100,10 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.Slide_out_an_input_field();
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Enabled_the_border_of_button_is_shown_without_a_sound();
-            
-            
+            DmiExpectedResults
+                .Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Enabled_the_border_of_button_is_shown_without_a_sound();
+
+
             /*
             Test Step 5
             Action: Slide back into an input field
@@ -111,9 +113,10 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.Slide_back_into_an_input_field();
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Pressed_the_border_of_button_is_removed();
-            
-            
+            DmiExpectedResults
+                .Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Pressed_the_border_of_button_is_removed();
+
+
             /*
             Test Step 6
             Action: Released the pressed area
@@ -122,8 +125,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Released the pressed area");
-            
-            
+
+
             /*
             Test Step 7
             Action: Perform the following procedure,Enter and confirm value ‘65536’ at input field.Press ‘Yes’ button
@@ -133,8 +136,8 @@ namespace Testcase.DMITestCases
             DmiActions.Perform_the_following_procedure_Enter_and_confirm_value_65536_at_input_field_Press_Yes_button();
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Set_VBC_Validation_window();
-            
-            
+
+
             /*
             Test Step 8
             Action: Press ‘Close’ button
@@ -143,8 +146,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
-            
-            
+
+
             /*
             Test Step 9
             Action: Perform the following procedure,Press ‘Set VBC’ button.Enter and confirm value ‘65536’ at input field.Press ‘Yes’ button
@@ -152,8 +155,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Set_VBC_Validation_window();
-            
-            
+
+
             /*
             Test Step 10
             Action: Press ‘Yes’ button
@@ -164,8 +167,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Press ‘Yes’ button");
             // Call generic Check Results Method
             DmiExpectedResults.The_value_of_input_field_is_changed_refer_to_selected_button();
-            
-            
+
+
             /*
             Test Step 11
             Action: Confirm entered data by pressing an input field
@@ -174,15 +177,15 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Confirm_entered_data_by_pressing_an_input_field();
-            
-            
+
+
             /*
             Test Step 12
             Action: Perform the following procedure,Press ‘Set VBC’ button.Enter and confirm value ‘65536’ at input field.Press ‘Yes’ button.Then, simulate loss-communication between ETCS onboard and DMI
             Expected Result: DMI displays Default window with the message “ATP Down Alarm” and sound alarm
             */
-            
-            
+
+
             /*
             Test Step 13
             Action: Re-establish communication between ETCS onboard and DMI
@@ -191,14 +194,14 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Re_establish_communication_between_ETCS_onboard_and_DMI();
-            
-            
+
+
             /*
             Test Step 14
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

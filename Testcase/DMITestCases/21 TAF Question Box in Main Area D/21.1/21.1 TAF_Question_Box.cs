@@ -39,7 +39,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // System is power on.Cabin is activate.
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -57,7 +57,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Perform SoM to SR mode, level 2.Then, drive the train forward with speed = 30km/h
@@ -67,8 +67,8 @@ namespace Testcase.DMITestCases
             DmiActions.Perform_SoM_to_SR_mode_level_2_Then_drive_the_train_forward_with_speed_30kmh();
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_in_SR_mode_level_2();
-            
-            
+
+
             /*
             Test Step 2
             Action: Received information from RBC
@@ -78,8 +78,8 @@ namespace Testcase.DMITestCases
             DmiActions.Received_information_from_RBC();
             // Call generic Check Results Method
             DmiExpectedResults.DMI_changes_from_SR_mode_to_FS_mode_level_2();
-            
-            
+
+
             /*
             Test Step 3
             Action: Acknowledge OS mode by press at area C1
@@ -89,8 +89,8 @@ namespace Testcase.DMITestCases
             DmiActions.Acknowledge_OS_mode_by_press_at_area_C1();
             // Call generic Check Results Method
             DmiExpectedResults.DMI_changes_from_FS_mode_to_OS_mode_level_2();
-            
-            
+
+
             /*
             Test Step 4
             Action: Press ‘Main’ button
@@ -100,8 +100,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Press ‘Main’ button");
             // Call generic Check Results Method
             DmiExpectedResults.The_Main_window_is_displayed();
-            
-            
+
+
             /*
             Test Step 5
             Action: Received information from RBC.Then, stop the train
@@ -110,40 +110,40 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Received_information_from_RBC_Then_stop_the_train();
-            
-            
+
+
             /*
             Test Step 6
             Action: Press at Question part of Track Ahead Free
             Expected Result: Verify the following information,Use the log file to confirm that DMI did not send out packet information MMI_DRIVER_MESSAGE_ACK (EVC-111)
             Test Step Comment: (1) MMI_gen 6951 (partly: NEGATIVE, sensitive area);
             */
-            
-            
+
+
             /*
             Test Step 7
             Action: Press and hold Answer part of Track Ahead Free.(‘Yes’ button)
             Expected Result: Verify the following information,(1)   ‘The ‘Yes’ button is shown as pressed state. (2)   The sound ‘Click’ is played once.(3)   Use the log file to confirm that DMI send out packet information MMI_DRIVER_MESSAGE_ACK (EVC-111) with the following variables,MMI_Q_ACK = 1MMI_Q_BUTTON = 1MMI_T_BUTTONEVENT  is not blank
             Test Step Comment: (1) MMI_gen 6951 (partly: Up-Type, enabled according packet EVC-8);                                MMI_gen 4381 (partly: change to state ‘Pressed’ as long as remain actuated)(2) MMI_gen 4381 (partly: the sound for Up-Type button); MMI_gen 9512; MMI_gen 968 (partly: use the ‘click’ sound);(3) MMI_gen 6951 (partly: MMI_gen 11387 (partly: send events of Pressed independently to ETCS), MMI_gen 11907 (partly: EVC-111, timestamp))); arn_043#3843; MMI_gen 3200 (partly: TAF, pressed);
             */
-            
-            
+
+
             /*
             Test Step 8
             Action: Slide out ‘Yes’ button
             Expected Result: Verify the following information,The ‘Yes’ button becomes the ‘Enabled’ state without a sound
             Test Step Comment: (1) MMI_gen 6951 (partly: Up-Type);              MMI_gen 4382 (partly: state ‘Enabled’ when slide out with force applied, no sound);                       
             */
-            
-            
+
+
             /*
             Test Step 9
             Action: Slide back into ‘Yes’ button
             Expected Result: Verify the following information,(1)   The ‘Yes’ button turns to the ‘Pressed’ state without a sound
             Test Step Comment: (1) MMI_gen 6951 (partly: Up-Type);              MMI_gen 4382 (partly: state ‘Pressed’ when slide back, no sound))); 
             */
-            
-            
+
+
             /*
             Test Step 10
             Action: Release ‘Yes’ button
@@ -152,30 +152,30 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Release ‘Yes’ button");
-            
-            
+
+
             /*
             Test Step 11
             Action: Use the test script file 16_1.xml to send EVC-8 with,MMI_Q_TEXT_CRITERIA = 2MMI_Q_TEXT = 298
             Expected Result: Verify the following information,DMI displays TAF Question box which contain only ‘Yes’ button
             Test Step Comment: (1) MMI_gen 4504 (partly: TAF Question Box);
             */
-            
-            
+
+
             /*
             Test Step 12
             Action: Perform the following procedure,Set the train direction to ‘Neutral’Drive the train forward
             Expected Result: Verify the following information,TAF Question box is removed after ST01 symbol is displayed in sub-area C9
             Test Step Comment: (1) MMI_gen 6963 (partly: NEGATIVE, 2nd bullet);
             */
-            
-            
+
+
             /*
             Test Step 13
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

@@ -37,7 +37,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Test system is powered onSoM is performed until level 1 is selected and confirmedMain window is closed
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -55,7 +55,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Use the test script file 15_1_7_a.xml to send EVC-7 with, MMI_OBU_TR_M_MODE = 17 (“Not used”)
@@ -64,8 +64,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults.Verify_the_following_information_1_There_is_no_symbol_displayed_on_sub_area_B7();
-            
-            
+
+
             /*
             Test Step 2
             Action: Use the test script file 15_1_7_b.xml to send EVC-7 with, MMI_OBU_TR_M_MODE = 127 (“Not used”)
@@ -74,8 +74,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults.Verify_the_following_information_1_There_is_no_symbol_displayed_on_sub_area_B7();
-            
-            
+
+
             /*
             Test Step 3
             Action: Use the test script file 15_1_7_c.xml to send EVC-7 with, MMI_OBU_TR_M_MODE = 129 (“Not used”)
@@ -84,8 +84,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults.Verify_the_following_information_1_There_is_no_symbol_displayed_on_sub_area_B7();
-            
-            
+
+
             /*
             Test Step 4
             Action: Use the test script file 15_1_7_d.xml to send EVC-7 with, MMI_OBU_TR_M_MODE = 255 (“Not used”)
@@ -94,8 +94,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults.Verify_the_following_information_1_There_is_no_symbol_displayed_on_sub_area_B7();
-            
-            
+
+
             /*
             Test Step 5
             Action: Use the test script file 15_1_7_e.xml to send EVC-7 with, MMI_OBU_TR_M_MODE = 18 (“Not used”)
@@ -104,8 +104,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults.Verify_the_following_information_1_There_is_no_symbol_displayed_on_sub_area_B7();
-            
-            
+
+
             /*
             Test Step 6
             Action: Use the test script file 15_1_7_f.xml to send EVC-7 with, MMI_OBU_TR_M_MODE = 126 (“Not used”)
@@ -114,8 +114,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults.Verify_the_following_information_1_There_is_no_symbol_displayed_on_sub_area_B7();
-            
-            
+
+
             /*
             Test Step 7
             Action: Use the test script file 15_1_7_g.xml to send EVC-7 with, MMI_OBU_TR_M_MODE = 130 (“Not used”)
@@ -124,8 +124,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults.Verify_the_following_information_1_There_is_no_symbol_displayed_on_sub_area_B7();
-            
-            
+
+
             /*
             Test Step 8
             Action: Use the test script file 15_1_7_h.xml to send EVC-7 with, MMI_OBU_TR_M_MODE = 254 (“Not used”)
@@ -134,14 +134,14 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults.Verify_the_following_information_1_There_is_no_symbol_displayed_on_sub_area_B7();
-            
-            
+
+
             /*
             Test Step 9
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

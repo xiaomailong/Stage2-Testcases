@@ -37,7 +37,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Test system is powered ONCabin is activeSoM is completed in SR mode, Level 1
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -55,14 +55,14 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Drive the train forward pass BG1. Then press ‘Special menu’ button
             Expected Result: The Special window is displayed with enabled/disabled sub-menus button.Verify that the Adhesion button is enabled
             */
-            
-            
+
+
             /*
             Test Step 2
             Action: Press ‘Adhesion’ button
@@ -71,8 +71,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Adhesion’ button");
-            
-            
+
+
             /*
             Test Step 3
             Action: Press and hold every buttons on the dedicate keyboard respectively
@@ -81,8 +81,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press and hold every buttons on the dedicate keyboard respectively");
-            
-            
+
+
             /*
             Test Step 4
             Action: Released the pressed button
@@ -91,16 +91,16 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Released the pressed button");
-            
-            
+
+
             /*
             Test Step 5
             Action: Select and confirm ‘Slippery rail’ button
             Expected Result: Verify the following information, Use the log file to confirm that DMI sends out the packet [MMI_DRIVER_REQUEST (EVC-101)] with variable [MMI_DRIVER_REQUEST (EVC-101).MMI_M_REQUEST] = 11.The window is closed and returned to the ‘Special’ window.Note: The adhesion symbol ST02 is displayed in sub-area A4
             Test Step Comment: (1) MMI_gen 11089 (partly: Slippery rail);               MMI_gen 8306 (partly: MMI_gen 4682)); MMI_gen 4392 (partly: [Enter], touch screen);                                                          (2) MMI_gen 11089 (partly: closure), MMI_gen 8306 (partly: MMI_gen 4684 (partly: terminated)); 
             */
-            
-            
+
+
             /*
             Test Step 6
             Action: Press ‘Adhesion’ button
@@ -110,16 +110,16 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Press ‘Adhesion’ button");
             // Call generic Check Results Method
             DmiExpectedResults.The_Adhesion_window_is_displayed();
-            
-            
+
+
             /*
             Test Step 7
             Action: Select and confirm ‘Non Slippery rail’ button
             Expected Result: Verify the following information, Use the log file to confirm that DMI sends out the packet [MMI_DRIVER_REQUEST (EVC-101)] with variable [MMI_DRIVER_REQUEST (EVC-101).MMI_M_REQUEST] = 10. The window is closed and returned to the ‘Special’ window.Note: The adhesion symbol ST02 is removed
             Test Step Comment: (1) MMI_gen 11089 (partly: Non Slippery rail);               MMI_gen 8306 (partly: MMI_gen 4682));  MMI_gen 4392 (partly: [Enter], touch screen);                                                (2) MMI_gen 11089 (partly: closure), MMI_gen 8306 (partly: MMI_gen 4684 (partly: terminated)); 
             */
-            
-            
+
+
             /*
             Test Step 8
             Action: Press ‘Adhesion’ button
@@ -129,16 +129,16 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Press ‘Adhesion’ button");
             // Call generic Check Results Method
             DmiExpectedResults.The_Adhesion_window_is_displayed();
-            
-            
+
+
             /*
             Test Step 9
             Action: Select ‘Non slippery rail’.Then, press and hold an input field
             Expected Result: Verify the following information,Use the log file to confirm that DMI sends out the packet [MMI_DRIVER_REQUEST (EVC-101)] with variable [MMI_DRIVER_REQUEST (EVC-101).MMI_Q_BUTTON] =  1 and MMI_T_BUTTONEVENT is not blank.The sound ‘Click’ played once
             Test Step Comment: (1) MMI_gen 11449-1 (THR) (partly: MMI_gen 11387 (partly: send events of Pressed independently to ETCS, MMI_gen 11907 (partly: EVC-101, timestamp))); MMI_gen 3375;(2) MMI_gen 11449-1 (THR) (partly: up-type button, MMI_gen 4381 (partly: the sound for Up-Type button), MMI_gen 9512, MMI_gen 968);
             */
-            
-            
+
+
             /*
             Test Step 10
             Action: Slide out of an input field
@@ -147,8 +147,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults.Verify_the_following_information_No_sound_Click_is_played();
-            
-            
+
+
             /*
             Test Step 11
             Action: Slide back into an input field
@@ -159,8 +159,8 @@ namespace Testcase.DMITestCases
             DmiActions.Slide_back_into_an_input_field();
             // Call generic Check Results Method
             DmiExpectedResults.Verify_the_following_information_No_sound_Click_is_played();
-            
-            
+
+
             /*
             Test Step 12
             Action: Release the pressed area
@@ -169,22 +169,22 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Release the pressed area");
-            
-            
+
+
             /*
             Test Step 13
             Action: Press the ‘Adhesion’ button.Then, press the ‘Close’ button
             Expected Result: Verify the following information,(1)   DMI displays Special window
             Test Step Comment: (1) MMI_gen 4392 (partly: returning to the parent window);
             */
-            
-            
+
+
             /*
             Test Step 14
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

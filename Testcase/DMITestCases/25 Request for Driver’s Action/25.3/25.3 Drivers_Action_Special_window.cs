@@ -40,7 +40,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Test system is powered on.Cabin is activated.SoM is performed in SR mode, Level 1.Special window is opened.
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -58,15 +58,15 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Press the ‘SR speed/distance’ button
             Expected Result: Verify the following information,(1)    Use the log file to confirm that DMI sends out packet [MMI_DRIVER_REQUEST (EVC-101)] with variable MMI_M_REQUEST = 13 (Change SR Rules)(2)   The Special window is closed, DMI displays SR speed/distance window
             Test Step Comment: (1) MMI_gen 151 (partly: MMI_M_REQUEST = 13);(2) MMI_gen 151 (partly: close opened menu);
             */
-            
-            
+
+
             /*
             Test Step 2
             Action: Press the ‘Close’ button
@@ -75,8 +75,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press the ‘Close’ button");
-            
-            
+
+
             /*
             Test Step 3
             Action: Drive the train forward pass BG1.Then, stop the train and press the ‘Special’ button
@@ -84,38 +84,38 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Special_window_with_enabled_Adhesion_button();
-            
-            
+
+
             /*
             Test Step 4
             Action: Press the ‘Adhesion’ button.Then, select and confirm ‘Slippery rail’ button
             Expected Result: Verify the following information,(1)    Use the log file to confirm that DMI sends out packet [MMI_DRIVER_REQUEST (EVC-101)] with variable MMI_M_REQUEST = 11 (Set adhesion coefficient to ‘slippery rail’)(2)   The Adhesion window is closed, DMI displays Special window
             Test Step Comment: (1) MMI_gen 151 (partly: MMI_M_REQUEST = 11);(2) MMI_gen 151 (partly: close opened menu);
             */
-            
-            
+
+
             /*
             Test Step 5
             Action: Press the ‘Adhesion’ button.Then, select and confirm ‘Non slippery rail’ button
             Expected Result: DMI displays Special window.Verify the following information,(1)    Use the log file to confirm that DMI sends out packet [MMI_DRIVER_REQUEST (EVC-101)] with variable MMI_M_REQUEST = 10 (Restore adhesion coefficient to ‘non-slippery rail’)(2)   The Adhesion window is closed, DMI displays Special window
             Test Step Comment: (1) MMI_gen 151 (partly: MMI_M_REQUEST = 10);(2) MMI_gen 151 (partly: close opened menu);
             */
-            
-            
+
+
             /*
             Test Step 6
             Action: Perform the following procedure,Press and hold ‘Train integrity’ button at least 2 seconds.Release the pressed button
             Expected Result: Verify the following information,(1)    Use the log file to confirm that DMI sends out packet [MMI_DRIVER_REQUEST (EVC-101)] with variable MMI_M_REQUEST = 38 (Start procedure ‘Train Integrity’)(2)   The Special window is closed, DMI displays Default window
             Test Step Comment: (1) MMI_gen 151 (partly: MMI_M_REQUEST = 38);(2) MMI_gen 151 (partly: close opened menu);
             */
-            
-            
+
+
             /*
             Test Step 7
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

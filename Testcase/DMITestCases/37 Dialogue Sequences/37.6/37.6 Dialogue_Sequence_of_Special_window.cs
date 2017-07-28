@@ -43,7 +43,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Use the ATP config editor to set the following parameters as follows (See the instruction in Appendix 2),Q_NVDRIVER_ADHES = 1Test system is powered on Activate Cabin A.Start of Mission is completed in SR mode, level 1DMI displays the ‘Default’ window
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -61,7 +61,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Press ‘Spec’ button
@@ -70,8 +70,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Spec’ button");
-            
-            
+
+
             /*
             Test Step 2
             Action: Press ‘Close’ button
@@ -80,15 +80,15 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
-            
-            
+
+
             /*
             Test Step 3
             Action: Press ‘Spec’ button again
             Expected Result: The Special window is displayed
             */
-            
-            
+
+
             /*
             Test Step 4
             Action: Press ‘Adhesion’ button
@@ -97,8 +97,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Adhesion’ button");
-            
-            
+
+
             /*
             Test Step 5
             Action: Press ‘Close’ button
@@ -107,8 +107,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
-            
-            
+
+
             /*
             Test Step 6
             Action: Press ‘SR speed/distance’ button
@@ -117,8 +117,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘SR speed/distance’ button");
-            
-            
+
+
             /*
             Test Step 7
             Action: Press ‘Close’ button
@@ -129,14 +129,14 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Special_window();
-            
-            
+
+
             /*
             Test Step 8
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

@@ -37,7 +37,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // All value of Parameter ‘TR_OBU_TrainType’ is set to 2 (Flexible Train Data) in defaultValues_default.xml in OTE.Test system is powered on SoM is performed in SR mode, Level 1.
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -55,7 +55,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Press ‘Data view’ button
@@ -64,8 +64,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Data view’ button");
-            
-            
+
+
             /*
             Test Step 2
             Action: Press and hold ‘Next’ button
@@ -75,9 +75,10 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press and hold ‘Next’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_1_The_state_of_button_is_changed_to_Pressed_the_border_of_button_is_removed_2_The_sound_Click_is_played_once();
-            
-            
+            DmiExpectedResults
+                .Verify_the_following_information_1_The_state_of_button_is_changed_to_Pressed_the_border_of_button_is_removed_2_The_sound_Click_is_played_once();
+
+
             /*
             Test Step 3
             Action: Slide out the ‘Next’ button
@@ -87,9 +88,10 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.Slide_out_the_Next_button();
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_1_The_border_of_the_button_is_shown_state_Enabled_without_a_sound();
-            
-            
+            DmiExpectedResults
+                .Verify_the_following_information_1_The_border_of_the_button_is_shown_state_Enabled_without_a_sound();
+
+
             /*
             Test Step 4
             Action: Slide back into the ‘Next’ button
@@ -100,8 +102,8 @@ namespace Testcase.DMITestCases
             DmiActions.Slide_back_into_the_Next_button();
             // Call generic Check Results Method
             DmiExpectedResults.Verify_the_following_information_1_The_button_is_back_to_state_Pressed_without_a_sound();
-            
-            
+
+
             /*
             Test Step 5
             Action: Release ‘Next’ button
@@ -111,9 +113,10 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Release ‘Next’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_that_the_Data_view_is_displayed_the_next_page_of_the_train_data_The_window_title_of_the_next_page_is_displayed_with_text_Data_view_22_Data_View_ItemsThe_data_view_items_are_displayed_correctly_refer_to_following_items_RBC_IDRBC_phone_numberVBC_set_code_if_anyThe_data_part_of_RBC_phone_number_is_displayed_as_2_lines_Navigation_buttonsThe_state_of_Previous_and_Next_button_are_displayed_as_follows_Next_button_is_disabled_displays_as_symbol_NA18_2_Previous_button_is_enabled_displays_as_symbol_NA18();
-            
-            
+            DmiExpectedResults
+                .Verify_that_the_Data_view_is_displayed_the_next_page_of_the_train_data_The_window_title_of_the_next_page_is_displayed_with_text_Data_view_22_Data_View_ItemsThe_data_view_items_are_displayed_correctly_refer_to_following_items_RBC_IDRBC_phone_numberVBC_set_code_if_anyThe_data_part_of_RBC_phone_number_is_displayed_as_2_lines_Navigation_buttonsThe_state_of_Previous_and_Next_button_are_displayed_as_follows_Next_button_is_disabled_displays_as_symbol_NA18_2_Previous_button_is_enabled_displays_as_symbol_NA18();
+
+
             /*
             Test Step 6
             Action: Perform action step 2-5 for ‘Previous’ button
@@ -123,17 +126,18 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.Perform_action_step_2_5_for_Previous_button();
             // Call generic Check Results Method
-            DmiExpectedResults.See_the_expected_result_of_step_2_5_and_the_following_points_1_The_state_of_Previous_and_Next_button_are_displayed_as_follows_Next_button_is_enabled_displays_as_symbol_NA17_Previous_button_is_enabled_displays_as_symbol_NA19();
-            
-            
+            DmiExpectedResults
+                .See_the_expected_result_of_step_2_5_and_the_following_points_1_The_state_of_Previous_and_Next_button_are_displayed_as_follows_Next_button_is_enabled_displays_as_symbol_NA17_Previous_button_is_enabled_displays_as_symbol_NA19();
+
+
             /*
             Test Step 7
             Action: Use the test script file 22_7_1_a.xml to send EVC-13 with,MMI_X_DRIVER_ID =0MMI_NID_OPERATION = 4294967295MMI_M_DATA_ENABLE = 256MMI_N_CAPTION_TRAINSET = 13MMI_X_CAPTION_TRAINSET =0 (Note: All index of this variable are same)MMI_NID_KEY_TRAIN_CAT = 21MMI_L_TRAIN = 4096MMI_M_BRAKE_PERC = 9MMI_V_MAXTRAIN = 601MMI_NID_KEY_AXLE_LOAD = 20MMI_M_AIRTIGHT = 3MMI_NID_KEY_LOAD_GAUGE = 33MMI_N_CAPTION_NETWORK = 17MMI_X_CAPTION_NETWORK = 0(Note: All index of this variable are same)MMI_NID_RBC = 0MMI_NID_RADIO = 0xFFFFFFFFFFFFFFFFMMI_N_VBC = 0
             Expected Result: Verify the following information,DMI displays the following information respectively with blank value:Page 1:Driver IDTrain running numberPage 2:Radio Network IDRBC Phone Number
             Test Step Comment: (1) MMI_gen 8586 (partly: modify by other ETCS external source); MMI_gen 8582 (partly: MMI_gen 5336 (partly: NEGATIVE, display only Driver ID/Train running number/ Radio Network ID/ RBC Phone number);
             */
-            
-            
+
+
             /*
             Test Step 8
             Action: Use the test script file 22_7_1_b.xml to send EVC-13 with,MMI_X_DRIVER_ID = 0x31323334363738393132333436373839MMI_M_DATA_ENABLE = 254MMI_N_CAPTION_NETWORK = 16MMI_X_CAPTION_TRAINSET[0] = 65MMI_X_CAPTION_TRAINSET[1] = 66MMI_X_CAPTION_TRAINSET[2] = 67MMI_X_CAPTION_TRAINSET[3] = 68MMI_X_CAPTION_TRAINSET[4] = 69MMI_X_CAPTION_TRAINSET[5] = 70MMI_X_CAPTION_TRAINSET[6] = 71MMI_X_CAPTION_TRAINSET[7] = 72MMI_X_CAPTION_TRAINSET[8] = 73MMI_X_CAPTION_TRAINSET[9] = 74MMI_X_CAPTION_TRAINSET[10] = 75MMI_X_CAPTION_TRAINSET[11] = 76MMI_X_CAPTION_TRAINSET[12] =77MMI_X_CAPTION_TRAINSET[13] = 78MMI_X_CAPTION_TRAINSET[14] = 79MMI_X_CAPTION_TRAINSET[15] = 80MMI_NID_RADIO = 0x9999999999999999
@@ -141,9 +145,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7514;
             */
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_1_The_data_part_of_following_information_are_automatically_insert_a_line_brake_at_the_end_of_first_line_represented_as_2_lines_Page_1Driver_IDPage_2Radio_Network_IDRBC_Phone_Number();
-            
-            
+            DmiExpectedResults
+                .Verify_the_following_information_1_The_data_part_of_following_information_are_automatically_insert_a_line_brake_at_the_end_of_first_line_represented_as_2_lines_Page_1Driver_IDPage_2Radio_Network_IDRBC_Phone_Number();
+
+
             /*
             Test Step 9
             Action: Press the ‘Close’ button
@@ -154,14 +159,14 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Press the ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.Verify_the_following_information_1_DMI_displays_Default_window();
-            
-            
+
+
             /*
             Test Step 10
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

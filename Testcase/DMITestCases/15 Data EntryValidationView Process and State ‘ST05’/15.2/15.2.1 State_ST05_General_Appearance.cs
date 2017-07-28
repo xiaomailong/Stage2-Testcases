@@ -37,7 +37,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Test system is powered on Activate Cabin AEnter the Driver ID and perform brake testSelect and confirm Level 1.
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -55,23 +55,23 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Perform the following procedure,Activate Cabin A.Enter Driver ID and perform break test.Select and confirm Level 1
             Expected Result: DMI displays Main window.Verify the following information,Use the log file to confirm that DMI receives packet EVC-30 with the value of following bit in variable MMI_Q_REQUEST_ENABLE_64,Bit #0 = 0 (Start)Bit #1 = 1 (Driver ID)Bit #2 = 1 (Train Data)Bit #3 = 1 (Level )Bit #4 = 1 (Train running number)Bit #5 = 1 (Shunting)Bit #7 = 0 (Non-Leading)Bit #8 = 0 (Maintain Shunting)Bit #9 = 0 (EOA)Bit #28 =1 (Start Brake Test)Bit #32 = 1 (System info)And displays the buttons which have the bit value is 1
             Test Step Comment: (1) MMI_gen 5728 (partly: ‘Main’ window, menu window, EVC-30, before ST05 state); MMI_gen 1088 (partly: Bit #1 to #9 and #28, #32);
             */
-            
-            
+
+
             /*
             Test Step 2
             Action: Use the test script file 10_2_a.xml to send EVC-8 withMMI_Q_TEXT_CRITERIA = 3 MMI_Q_TEXT = 716Note: Stopwatch is required for accuracy of test result
             Expected Result: Verify the following information,The hourglass symbol ST05 is displayed at window title area.The hourglass symbol ST05 is vertically aligned center of the window title area.All buttons and the ‘Close’ button are disabled.The disabled Close button NA12 is display in area G.The symbol ST05 is move to the right every second.After symbol ST05 is moved to the end of the window title area, the symbol comes back to the first position and keeps moving to the right
             Test Step Comment: (1) MMI_gen 12018, MMI_gen 8355 (partly: EVC-8);(2) MMI_gen 8355 (partly: vertically centered)(3) MMI_gen 168 (partly: disabled buttons, ‘Main’ window, menu window); MMI_gen 5464 (partly: state ST05, 4th bullet); MMI_gen 4395 (partly: close button, disabled); (4) MMI_gen 4396 (partly: close, NA12);(5) MMI_gen 8355 (partly: Move to the right every second);(6) MMI_gen 8355 (partly: no more possible to display);
             */
-            
-            
+
+
             /*
             Test Step 3
             Action: Use the test script file 10_2_b.xml to send EVC-8 withMMI_Q_TEXT_CRITERIA = 4MMI_Q_TEXT = 716
@@ -80,8 +80,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Use_the_test_script_file_10_2_b_xml_to_send_EVC_8_withMMI_Q_TEXT_CRITERIA_4MMI_Q_TEXT_716();
-            
-            
+
+
             /*
             Test Step 4
             Action: Press ‘Train data’ button
@@ -91,16 +91,16 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Press ‘Train data’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Train_data_window();
-            
-            
+
+
             /*
             Test Step 5
             Action: Confirm the value of input field refer to specified type of Train data window below,Fixed Train data window: Confirm the value of Train typeFlexible Train data window: Confirm the value of Train length
             Expected Result: Verify the following information,The ‘Selected’ state (medium-grey background with black text) of the input fields are changed to the ‘Accepted’ state (dark-grey background with white text).The buttons are stated as follows:The keypad is enabled.The ‘Close’ button is enabled.The ‘Yes’ button is enabled
             Test Step Comment: (1) MMI_gen 5728 (partly: ‘Train data’ window, data entry window, before ST05 state)(2) MMI_gen 5728 (partly: ‘Train data’ window, data entry window, before ST05 state, state of buttons)
             */
-            
-            
+
+
             /*
             Test Step 6
             Action: Use the test script file 10_2_a.xml to send EVC-8 withMMI_Q_TEXT_CRITERIA = 3 MMI_Q_TEXT = 716
@@ -109,8 +109,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Use_the_test_script_file_10_2_a_xml_to_send_EVC_8_withMMI_Q_TEXT_CRITERIA_3_MMI_Q_TEXT_716();
-            
-            
+
+
             /*
             Test Step 7
             Action: Use the test script file 10_2_b.xml to send EVC-8 withMMI_Q_TEXT_CRITERIA = 4MMI_Q_TEXT = 716
@@ -119,16 +119,16 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Use_the_test_script_file_10_2_b_xml_to_send_EVC_8_withMMI_Q_TEXT_CRITERIA_4MMI_Q_TEXT_716();
-            
-            
+
+
             /*
             Test Step 8
             Action: Perform the following procedure,Confirm all value in Train data window.Press ‘Yes’ button.Press ‘Yes’ button (on keypad)
             Expected Result: DMI displays Train data validation window with “Yes” in the input field.Verify the following information,The input field is in ‘Selected’ state (medium-grey background with black text). The buttons are stated as follows:The keypad is enabled.The ‘Close’ button is enabled
             Test Step Comment: (1) MMI_gen 5728 (partly: ‘Train data’ validation window, data validation window, before ST05 state)(2) MMI_gen 5728 (partly: ‘Train data’ validation window, data validation window, before ST05 state, state of buttons)
             */
-            
-            
+
+
             /*
             Test Step 9
             Action: Use the test script file 10_2_a.xml to send EVC-8 withMMI_Q_TEXT_CRITERIA = 3 MMI_Q_TEXT = 716
@@ -137,8 +137,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Use_the_test_script_file_10_2_a_xml_to_send_EVC_8_withMMI_Q_TEXT_CRITERIA_3_MMI_Q_TEXT_716();
-            
-            
+
+
             /*
             Test Step 10
             Action: Use the test script file 10_2_b.xml to send EVC-8 withMMI_Q_TEXT_CRITERIA = 4MMI_Q_TEXT = 716
@@ -147,8 +147,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Use_the_test_script_file_10_2_b_xml_to_send_EVC_8_withMMI_Q_TEXT_CRITERIA_4MMI_Q_TEXT_716();
-            
-            
+
+
             /*
             Test Step 11
             Action: Confirm entered data by pressing an input field
@@ -158,8 +158,8 @@ namespace Testcase.DMITestCases
             DmiActions.Confirm_entered_data_by_pressing_an_input_field();
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Train_Running_Number_window();
-            
-            
+
+
             /*
             Test Step 12
             Action: Enter and confirm Train running number
@@ -168,8 +168,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Enter and confirm Train running number");
-            
-            
+
+
             /*
             Test Step 13
             Action: Use the test script file 10_2_a.xml to send EVC-8 withMMI_Q_TEXT_CRITERIA = 3 MMI_Q_TEXT = 716
@@ -178,16 +178,16 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Use_the_test_script_file_10_2_a_xml_to_send_EVC_8_withMMI_Q_TEXT_CRITERIA_3_MMI_Q_TEXT_716();
-            
-            
+
+
             /*
             Test Step 14
             Action: Then, simulate the communication loss between ETCS Onboard and DMI and re-establish the communication between ETCS onboard and DMI
             Expected Result: Verify the following information,The hourglass symbol ST05 is removed.The ‘Main’ window is closed and DMI returns to the default window.The state of all buttons is restored according to the last received EVC-30, see Step 12:Button Start is enabledButton Driver ID is enabledButton Train Data is enabledButton Level is enabledButton Train running number is enabledButton Shunting is enabledButton Non-Leading is disabledButton Maintain Shunting is disabled
             Test Step Comment: (1) MMI_gen 5728 (partly: removal);(2) MMI_gen 5732 (partly: close the ‘Main’ window, switch back the default window);(3) MMI_gen 5728 (partly: restore (after ST05), default window);
             */
-            
-            
+
+
             /*
             Test Step 15
             Action: Press ‘Data view’ button
@@ -196,8 +196,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Data view’ button");
-            
-            
+
+
             /*
             Test Step 16
             Action: Use the test script file 10_2_a.xml to send EVC-8 withMMI_Q_TEXT_CRITERIA = 3 MMI_Q_TEXT = 716
@@ -206,8 +206,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Use_the_test_script_file_10_2_a_xml_to_send_EVC_8_withMMI_Q_TEXT_CRITERIA_3_MMI_Q_TEXT_716();
-            
-            
+
+
             /*
             Test Step 17
             Action: Use the test script file 10_2_b.xml to send EVC-8 withMMI_Q_TEXT_CRITERIA = 4MMI_Q_TEXT = 716
@@ -216,30 +216,30 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Use_the_test_script_file_10_2_b_xml_to_send_EVC_8_withMMI_Q_TEXT_CRITERIA_4MMI_Q_TEXT_716();
-            
-            
+
+
             /*
             Test Step 18
             Action: Use the test script file 10_2_a.xml to send EVC-8 withMMI_Q_TEXT_CRITERIA = 3 MMI_Q_TEXT = 716Then, start the stopwatch (to verify expected result of the next step).Note: Stopwatch is required for accuracy of test result
             Expected Result: Verify the following information,The hourglass symbol ST05 is displayed
             Test Step Comment: (1) MMI_gen 5731 (partly: before the expiration of 45 seconds, current window ‘Data view’);
             */
-            
-            
+
+
             /*
             Test Step 19
             Action: Wait for 46 second.Note: Stopwatch is required for accuracy of test result
             Expected Result: Verify the following information,The hourglass symbol ST05 is removed.The ‘Data view’ window is closed and DMI returns to the default window.The state of all buttons is restored according to the last received EVC-30, see Step 12
             Test Step Comment: (1) MMI_gen 5728 (partly: removal);(2) MMI_gen 5731 (partly: close the ‘Data view’ window, switch back the default window);(3) MMI_gen 5728 (partly: restore (after ST05), default window);
             */
-            
-            
+
+
             /*
             Test Step 20
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

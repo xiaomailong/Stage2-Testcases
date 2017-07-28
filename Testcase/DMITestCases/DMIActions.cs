@@ -13,6 +13,7 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+
 // ReSharper disable UnusedMember.Global
 
 namespace Testcase.DMITestCases
@@ -942,7 +943,7 @@ namespace Testcase.DMITestCases
         {
             throw new NotImplementedException();
         }
-        
+
         /// <summary>
         /// Description: Increase the train speed to 106 km/h
         /// Used in:
@@ -1108,7 +1109,6 @@ namespace Testcase.DMITestCases
             throw new NotImplementedException();
         }
 
-        
 
         /// <summary>
         /// Description: Drive the train forward

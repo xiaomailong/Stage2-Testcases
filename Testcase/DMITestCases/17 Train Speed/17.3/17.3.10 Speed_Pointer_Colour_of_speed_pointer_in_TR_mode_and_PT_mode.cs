@@ -40,7 +40,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Test system is powered on.Cabin is activated.SoM is performed in SR mode, Level 1.
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -58,7 +58,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Drive the train forward pass BG1
@@ -68,8 +68,8 @@ namespace Testcase.DMITestCases
             DmiActions.Drive_the_train_forward_pass_BG1();
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_in_FS_mode_level_1();
-            
-            
+
+
             /*
             Test Step 2
             Action: Force the train into TR mode by moving the train forward to position of EOA
@@ -78,22 +78,22 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Force_the_train_into_TR_mode_by_moving_the_train_forward_to_position_of_EOA();
-            
-            
+
+
             /*
             Test Step 3
             Action: Perform the following procedure,Press an acknowledgement in sub-area C1.Chage the train direction to ‘Reverse’Drive the train with speed = 40 km/h
             Expected Result: DMI displays in PT mode, level 1.Verify the following information,(1)   Use the log file to confirm that DMI received the EVC-7 with variable OBU_TR_M_MODE = 8 (Post trip)(2)   The speed pointer is always display in grey colour.Note: The train will be force to stop due to runaway movement is detect when the train moving back over 200m
             Test Step Comment: (1) MMI_gen 6299 (partly: OBU_TR_M_MODE = 8);(2) MMI_gen 6299 (partly: colour of speed pointer, PT mode);
             */
-            
-            
+
+
             /*
             Test Step 4
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

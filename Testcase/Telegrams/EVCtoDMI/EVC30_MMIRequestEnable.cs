@@ -35,7 +35,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         public static void SendBlank()
         {
             _pool.SITR.ETCS1.EnableRequest.MmiNidWindow.Value = 255;
-            _pool.SITR.Client.Write("ETCS1_EnableRequest_MmiQRequestEnable", new uint[2] { 0x00000000, 0x00000000 });
+            _pool.SITR.Client.Write("ETCS1_EnableRequest_MmiQRequestEnable", new uint[2] {0x00000000, 0x00000000});
             _pool.SITR.SMDCtrl.ETCS1.EnableRequest.Value = 1;
         }
 
@@ -84,7 +84,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static ushort MMI_NID_WINDOW
         {
-            set => _pool.SITR.ETCS1.EnableRequest.MmiNidWindow.Value = (byte)value;
+            set => _pool.SITR.ETCS1.EnableRequest.MmiNidWindow.Value = (byte) value;
         }
 
 
@@ -130,9 +130,9 @@ namespace Testcase.Telegrams.EVCtoDMI
         {
             set
             {
-                _pool.SITR.Client.Write("ETCS1_EnableRequest_MmiQRequestEnable", new uint[2] { Convert.ToUInt32 (value), 0x80000000 });
+                _pool.SITR.Client.Write("ETCS1_EnableRequest_MmiQRequestEnable",
+                    new uint[2] {Convert.ToUInt32(value), 0x80000000});
             }
-                
         }
 
         // TODO To implement properly at some point

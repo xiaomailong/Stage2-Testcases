@@ -38,7 +38,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Test system is powered on.Activate Cabin A.SoM in performed in SR mode, Level 1.
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -56,7 +56,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Drive the train forward pass BG1
@@ -65,8 +65,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Drive_the_train_forward_pass_BG1();
-            
-            
+
+
             /*
             Test Step 2
             Action: Drive the train forward pass BG2
@@ -75,32 +75,32 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Drive_the_train_forward_pass_BG2();
-            
-            
+
+
             /*
             Test Step 3
             Action: Drive the train forward pass BG3.Then, Stop the Train
             Expected Result: DMI displays in FS mode, Level 1.Verify the following information,Use the log file to confirm that DMI received packet information EVC-33 with following variables,MMI_Q_TRACKCOND_STEP = 1MMI_M_TKCOND_TYPE = 16DMI displays LX01 symbol in sub-area B5
             Test Step Comment: (1) MMI_gen 10481;  (2) MMI_gen 9503; MMI_gen 10485; MMI_gen 10483;
             */
-            
-            
+
+
             /*
             Test Step 4
             Action: Simulate loss-communication between DMI and ETCS onboard
             Expected Result: Verify the following information,All LX01 symbols are removed from sub-area B3-B5
             Test Step Comment: (1) MMI_gen 10486 (partly: criteria, MMI_gen 244);
             */
-            
-            
+
+
             /*
             Test Step 5
             Action: Re-establish communication between DMI and ETCS onboard.Then, drive the train forward
             Expected Result: Verify the following information,All LX01 symbols are reappear in sub-area B3-B5
             Test Step Comment: (1) Note under MMI_gen 10486;
             */
-            
-            
+
+
             /*
             Test Step 6
             Action: Continue to drive the train forward with speed below permitted speed
@@ -109,8 +109,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Continue_to_drive_the_train_forward_with_speed_below_permitted_speed();
-            
-            
+
+
             /*
             Test Step 7
             Action: Continue to drive the train forward with speed below permitted speed
@@ -119,8 +119,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Continue_to_drive_the_train_forward_with_speed_below_permitted_speed();
-            
-            
+
+
             /*
             Test Step 8
             Action: Continue to drive the train forward with speed below permitted speed
@@ -129,37 +129,37 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Continue_to_drive_the_train_forward_with_speed_below_permitted_speed();
-            
-            
+
+
             /*
             Test Step 9
             Action: Perform the following procedure,Restart OTE and DMI.Perform SoM in SR mode, Level 1.Repeat action step 1-3
             Expected Result: The LX01 symbols are displayed in sub-area B3-B5
             */
-            
-            
+
+
             /*
             Test Step 10
             Action: Deactivate cabin.Then, simulate loss-communication between DMI and ETCS onboard
             Expected Result: Verify the following information,(1)    All LX01 symbols are removed from sub-area B3-B5
             Test Step Comment: (1) MMI_gen 10486 (partly: criteria, MMI_gen 240);
             */
-            
-            
+
+
             /*
             Test Step 11
             Action: Re-establish communication between DMI and ETCS onboard.Then, activate cabin
             Expected Result: Verify the following information,(1)    All LX01 symbols are reappear in sub-area B3-B5
             Test Step Comment: (1) Note under MMI_gen 10486;
             */
-            
-            
+
+
             /*
             Test Step 12
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

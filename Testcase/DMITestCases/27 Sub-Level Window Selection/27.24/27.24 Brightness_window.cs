@@ -37,7 +37,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Test system is powered onCabin is activeSettings window is opened.
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -55,7 +55,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Press ‘Brightness’ button
@@ -64,8 +64,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Brightness’ button");
-            
-            
+
+
             /*
             Test Step 2
             Action: Press and hold ‘-’ button.Note: Stopwatch is required for accuracy of test result
@@ -73,9 +73,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8080 (partly: MMI_gen 4913 (partly: MMI_gen 4384 (partly: sound ‘Click’)));(2) MMI_gen 8080 (partly: MMI_gen 4913 (partly: MMI_gen 4384 (partly: Change to state ‘Pressed’ and immediately back to state ‘Enabled’)));   (3) MMI_gen 8080 (partly: MMI_gen 4679, MMI_gen 4913 (partly: MMI_gen 4384 (partly: ETCS-MMI’s function associated to the button))); (4) MMI_gen 8082 (partly: entry); MMI_gen 8080 (partly: MMI_gen 4634);(5) MMI_gen 8080 (partly: MMI_gen 4651);(6) MMI_gen 8080 (partly: MMI_gen 4647 (partly: left aligned));(7) MMI_gen 8080 (partly: MMI_gen 4913 (partly: MMI_gen 4386 (partly: visual of repeat function)));(8) MMI_gen 8080 (partly: MMI_gen 4913 (partly: MMI_gen 4386 (partly: audible of repeat function)));Note: The repeat function is expected refer to developer’s action list (no reference requirement).                                                         
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press and hold ‘-’ button.Note: Stopwatch is required for accuracy of test result");
-            
-            
+            DmiActions.ShowInstruction(
+                @"Press and hold ‘-’ button.Note: Stopwatch is required for accuracy of test result");
+
+
             /*
             Test Step 3
             Action: Release ‘-’ button
@@ -86,8 +87,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Release ‘-’ button");
             // Call generic Check Results Method
             DmiExpectedResults.Verify_the_following_information_The_input_field_is_stop_decreasing();
-            
-            
+
+
             /*
             Test Step 4
             Action: Press and hold ‘+’ button.Note: Stopwatch is required for accuracy of test result
@@ -95,9 +96,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8080 (partly: MMI_gen 4913 (partly: MMI_gen 4384 (partly: sound ‘Click’)));(2) MMI_gen 8080 (partly: MMI_gen 4913 (partly:  MMI_gen 4384 (partly: Change to state ‘Pressed’ and immediately back to state ‘Enabled’)));    (3) MMI_gen 8080 (partly: MMI_gen 4679, MMI_gen 4913 (partly:  MMI_gen 4384 (partly: ETCS-MMI’s function associated to the button))); (4) MMI_gen 8080 (partly: MMI_gen 4913 (partly: MMI_gen 4386 (partly: visual of repeat function)));(5) MMI_gen 8080 (partly: MMI_gen 4913 (partly: MMI_gen 4386 (partly: audible of repeat function)));Note: The repeat function is expected refer to developer’s action list (no reference requirement).                    
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press and hold ‘+’ button.Note: Stopwatch is required for accuracy of test result");
-            
-            
+            DmiActions.ShowInstruction(
+                @"Press and hold ‘+’ button.Note: Stopwatch is required for accuracy of test result");
+
+
             /*
             Test Step 5
             Action: Release ‘+’ button
@@ -108,8 +110,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Release ‘+’ button");
             // Call generic Check Results Method
             DmiExpectedResults.Verify_the_following_information_The_input_field_is_stop_increasing();
-            
-            
+
+
             /*
             Test Step 6
             Action: Press and hold an input field
@@ -119,9 +121,10 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press and hold an input field");
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Pressed_the_border_of_button_is_removed();
-            
-            
+            DmiExpectedResults
+                .Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Pressed_the_border_of_button_is_removed();
+
+
             /*
             Test Step 7
             Action: Slide out an input field
@@ -131,9 +134,10 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.Slide_out_an_input_field();
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Enabled_the_border_of_button_is_shown_without_a_sound();
-            
-            
+            DmiExpectedResults
+                .Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Enabled_the_border_of_button_is_shown_without_a_sound();
+
+
             /*
             Test Step 8
             Action: Slide back into an input field
@@ -143,9 +147,10 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.Slide_back_into_an_input_field();
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Pressed_the_border_of_button_is_removed();
-            
-            
+            DmiExpectedResults
+                .Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Pressed_the_border_of_button_is_removed();
+
+
             /*
             Test Step 9
             Action: Release the pressed area
@@ -154,24 +159,24 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Release the pressed area");
-            
-            
+
+
             /*
             Test Step 10
             Action: Press ‘Brightness’ button on Settings menu window
             Expected Result: DMI displays Brightness window.(1)   The brightness is saved by remaining luminance as confirmed an entered data is replaced in input field
             Test Step Comment: (1) MMI_gen 8080 (partly: MMI_gen 4681 (partly: entered data is replaced);
             */
-            
-            
+
+
             /*
             Test Step 11
             Action: Confirm the current data without re-entry by pressing an input field.Then, press ‘Brightness’  button
             Expected Result: DMI displays Brightness window.The brightness is still same
             Test Step Comment: (1) MMI_gen 8082 (partly: revalidation);
             */
-            
-            
+
+
             /*
             Test Step 12
             Action: Press ‘Close’ button
@@ -182,14 +187,14 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.Verify_the_following_information_1_DMI_displays_the_Settings_window();
-            
-            
+
+
             /*
             Test Step 13
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

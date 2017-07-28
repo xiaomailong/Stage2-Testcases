@@ -40,7 +40,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // System is power on.The default configuration of PA distance scale is set as [0…4000]
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -58,7 +58,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Activate cabin A. Then  perform SoM to SR mode, level 1
@@ -68,8 +68,8 @@ namespace Testcase.DMITestCases
             DmiActions.Activate_cabin_A_Then_perform_SoM_to_SR_mode_level_1();
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_SR_mode_level_1();
-            
-            
+
+
             /*
             Test Step 2
             Action: Drive the train forward pass BG1.Then, stop the train
@@ -78,24 +78,24 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Drive_the_train_forward_pass_BG1_Then_stop_the_train();
-            
-            
+
+
             /*
             Test Step 3
             Action: Press <Scale Down> button 3 times
             Expected Result: The distance scale is changed to 0-32000 m.The PA Gradient Profiles are displayed within MA (0-8000m), the upper boundary of PA Gradient profile is displayed at the same position of target zero speed (8000m)
             Test Step Comment: (1) MMI_gen 7264 (partly: 5th bullet);
             */
-            
-            
+
+
             /*
             Test Step 4
             Action: Press <Scale Up> button 3 times.Then, drive the train forward
             Expected Result: The PA Gradient Profile segment bars are continuously updated.At the lowest PA Gradient Profile, the lower boundary is stuck to the zero line.The PA Gradient Profile bar is become shorter accordingly
             Test Step Comment: (1) MMI_gen 7266 (partly: 4th bullet, lower boundary);          MMI_gen 7266 (partly: 2nd bullet, result of calculation);                      (2) MMI_gen 7266 (partly: 3rd bar become shorter);             MMI_gen 7264 (partly: 4th  bullet, shortened);                   
             */
-            
-            
+
+
             /*
             Test Step 5
             Action: Continue to drive the train forward
@@ -104,14 +104,14 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Continue_to_drive_the_train_forward();
-            
-            
+
+
             /*
             Test Step 6
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

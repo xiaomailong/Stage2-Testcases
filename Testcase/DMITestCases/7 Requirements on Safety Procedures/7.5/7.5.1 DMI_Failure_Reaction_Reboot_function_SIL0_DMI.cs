@@ -38,7 +38,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // -   System is power on.-   Cabin is activated.-   SoM is perform until level 1 is selected and confirmed.
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -56,21 +56,21 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Use the test script file 2_5_1_a.xml to send EVC-0 with,MMI_M_START_REQ = 10 (DMI reboot, Indication error)
             Expected Result: Verify the following information,(1)   DMI is rebooted
             Test Step Comment: (1) MMI_gen 11439;
             */
-            
-            
+
+
             /*
             Test Step 2
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

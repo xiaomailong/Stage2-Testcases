@@ -37,7 +37,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // System is power on.
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -55,7 +55,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Activate cabin A
@@ -65,8 +65,8 @@ namespace Testcase.DMITestCases
             DmiActions.Activate_cabin_A();
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_in_SB_mode_The_Driver_ID_window_is_displayed();
-            
-            
+
+
             /*
             Test Step 2
             Action: Driver performs SoM to SR mode, Level 1.Note: Please set Train length = 100m during train data entry process
@@ -74,8 +74,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_in_SR_mode_level_1();
-            
-            
+
+
             /*
             Test Step 3
             Action: Drive the train forward passing BG1Then drive the train forward  with speed = 40 km/h in FS mode
@@ -83,15 +83,15 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults.DMI_changes_from_SR_to_FS_mode();
-            
-            
+
+
             /*
             Test Step 4
             Action: Driving forward passing BG2
             Expected Result: 
             */
-            
-            
+
+
             /*
             Test Step 5
             Action: The train is in reversing area
@@ -101,8 +101,8 @@ namespace Testcase.DMITestCases
             DmiActions.The_train_is_in_reversing_area();
             // Call generic Check Results Method
             DmiExpectedResults.DMI_remains_displays_in_FS_mode();
-            
-            
+
+
             /*
             Test Step 6
             Action: Stop the train
@@ -110,8 +110,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Stop_the_train();
-            
-            
+
+
             /*
             Test Step 7
             Action: Change the direction of train to reverse. Then select and confirm RV mode
@@ -120,14 +120,14 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Change_the_direction_of_train_to_reverse_Then_select_and_confirm_RV_mode();
-            
-            
+
+
             /*
             Test Step 8
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

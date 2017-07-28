@@ -23,7 +23,7 @@ namespace Testcase.Telegrams
         {
             switch (Evc102modeReadback)
             {
-                case EVC102modeReadback.FullSupervision:                    
+                case EVC102modeReadback.FullSupervision:
                     _modeRead = "FS - Full Supervision";
                     _bResult = _pool.SITR.CCUO.ETCS1StatusReport.MmiMModeReadback.Equals(255);
                     break;
@@ -90,17 +90,19 @@ namespace Testcase.Telegrams
                 case EVC102modeReadback.NoPower:
                     _modeRead = "NP - No Power";
                     _bResult = _pool.SITR.CCUO.ETCS1StatusReport.MmiMModeReadback.Equals(239);
-                    break;              
+                    break;
             }
 
             if (_bResult)
             {
-                _pool.TraceReport("DMI->ETCS: EVC-102 [MMI_STATUS_REPORT.MMI_M_MODE_READBACK] = \""+_modeRead+"\" PASSED.");
+                _pool.TraceReport("DMI->ETCS: EVC-102 [MMI_STATUS_REPORT.MMI_M_MODE_READBACK] = \"" + _modeRead +
+                                  "\" PASSED.");
             }
             else
             {
-                _pool.TraceError("DMI->ETCS: Check EVC-102 [MMI_STATUS_REPORT.MMI_M_MODE_READBACK] = "+ _pool.SITR.CCUO.ETCS1StatusReport.MmiMModeReadback.Value
-                    + "FAILED.");
+                _pool.TraceError("DMI->ETCS: Check EVC-102 [MMI_STATUS_REPORT.MMI_M_MODE_READBACK] = " +
+                                 _pool.SITR.CCUO.ETCS1StatusReport.MmiMModeReadback.Value
+                                 + "FAILED.");
             }
         }
 
@@ -126,6 +128,5 @@ namespace Testcase.Telegrams
             PassiveShunting,
             NoPower
         }
-
     }
 }

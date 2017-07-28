@@ -38,7 +38,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Set the following tags name in configuration file (See the instruction in Appendix 1)HIDE_PA_FUNCTION = 0 (‘ON’ state)System is power ON.
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -56,7 +56,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Activate cabin A
@@ -66,8 +66,8 @@ namespace Testcase.DMITestCases
             DmiActions.Activate_cabin_A();
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Driver_ID_window();
-            
-            
+
+
             /*
             Test Step 2
             Action: Perform SoM to SR mode, level 1
@@ -77,8 +77,8 @@ namespace Testcase.DMITestCases
             DmiActions.Perform_SoM_to_SR_mode_level_1();
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_in_SR_mode_level_1();
-            
-            
+
+
             /*
             Test Step 3
             Action: Drive the train forward with speed = 40 km/h pass BG1
@@ -86,8 +86,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Drive_the_train_forward_with_speed_40_kmh_pass_BG1();
-            
-            
+
+
             /*
             Test Step 4
             Action: Press the ‘NA01’ symbol in sub-area D14
@@ -96,8 +96,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press the ‘NA01’ symbol in sub-area D14");
-            
-            
+
+
             /*
             Test Step 5
             Action: Press at sensitive area in main area D
@@ -106,8 +106,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press at sensitive area in main area D");
-            
-            
+
+
             /*
             Test Step 6
             Action: Press the ‘NA01’ symbol in sub-area D14
@@ -116,22 +116,22 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press the ‘NA01’ symbol in sub-area D14");
-            
-            
+
+
             /*
             Test Step 7
             Action: Press at sensitive area in main area D to display the Planning area
             Expected Result: The Planning area is reappeared in area D.Verify the following information, (1)   Use the log file to confirm that all objects on the Planning area are updated according to the received packet EVC-4 from ETCS Onboard
             Test Step Comment: (1) MMI_gen 6962;
             */
-            
-            
+
+
             /*
             Test Step 8
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

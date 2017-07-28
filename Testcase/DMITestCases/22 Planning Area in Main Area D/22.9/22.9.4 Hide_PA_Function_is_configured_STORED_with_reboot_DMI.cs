@@ -38,7 +38,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Set the following tags name in configuration file (See the instruction in Appendix 1)HIDE_PA_FUNCTION = 2 (‘Stored’ state)System is power off
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -56,7 +56,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Power On the system
@@ -66,8 +66,8 @@ namespace Testcase.DMITestCases
             DmiActions.Power_On_the_system();
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_the_default_window();
-            
-            
+
+
             /*
             Test Step 2
             Action: Activate cabin A and Perform SoM to SR mode, Level 1
@@ -77,8 +77,8 @@ namespace Testcase.DMITestCases
             DmiActions.Activate_cabin_A_and_Perform_SoM_to_SR_mode_Level_1();
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_in_SR_mode_and_level_1();
-            
-            
+
+
             /*
             Test Step 3
             Action: Drive the train forward with speed = 40 km/h pass BG1
@@ -87,8 +87,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Drive_the_train_forward_with_speed_40_kmh_pass_BG1();
-            
-            
+
+
             /*
             Test Step 4
             Action: Press Hide PA button
@@ -96,8 +96,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press Hide PA button");
-            
-            
+
+
             /*
             Test Step 5
             Action: Turn off power of DMI
@@ -107,8 +107,8 @@ namespace Testcase.DMITestCases
             DmiActions.Turn_off_power_of_DMI();
             // Call generic Check Results Method
             DmiExpectedResults.DMI_is_power_off();
-            
-            
+
+
             /*
             Test Step 6
             Action: Turn on power of DMI
@@ -117,14 +117,14 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Turn_on_power_of_DMI();
-            
-            
+
+
             /*
             Test Step 7
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

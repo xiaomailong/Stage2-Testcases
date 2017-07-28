@@ -21,13 +21,13 @@ namespace Testcase.Telegrams.EVCtoDMI
             _pool = pool;
 
             // Set default values
-            _pool.SITR.ETCS1.SystemVersion.MmiMPacket.Value = 34;           // Packet ID
-            _pool.SITR.ETCS1.SystemVersion.MmiLPacket.Value = 48;           // Packet length
+            _pool.SITR.ETCS1.SystemVersion.MmiMPacket.Value = 34; // Packet ID
+            _pool.SITR.ETCS1.SystemVersion.MmiLPacket.Value = 48; // Packet length
         }
 
         private static void SetOperatedSystemVersion()
         {
-            _pool.SITR.ETCS1.SystemVersion.MmiMOperatedSystemVersion.Value = (ushort)(_x << 8 | _y);
+            _pool.SITR.ETCS1.SystemVersion.MmiMOperatedSystemVersion.Value = (ushort) (_x << 8 | _y);
         }
 
         /// <summary>
@@ -63,6 +63,6 @@ namespace Testcase.Telegrams.EVCtoDMI
         public static void Send()
         {
             _pool.SITR.SMDCtrl.ETCS1.SystemVersion.Value = 1;
-        }      
+        }
     }
 }

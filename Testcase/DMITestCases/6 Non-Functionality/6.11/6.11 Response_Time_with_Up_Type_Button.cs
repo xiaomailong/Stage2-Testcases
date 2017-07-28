@@ -41,7 +41,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // System is power on.
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -59,7 +59,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Perform SoM to Level 1 in SR mode
@@ -69,46 +69,46 @@ namespace Testcase.DMITestCases
             DmiActions.Perform_SoM_to_Level_1_in_SR_mode();
             // Call generic Check Results Method
             DmiExpectedResults.ETCS_OB_enters_SR_mode_in_Level_1();
-            
-            
+
+
             /*
             Test Step 2
             Action: Verify response time of DMI on actuation of ‘Train data’ button in ‘Main’ window
             Expected Result: Use log file to verify that response time of DMI on actuation of the ‘Train data’ buttons is not exceeded 130 ms when DMI sends EVC-101 with verification below:-- In packet EVC-101 that variable [MMI_M_REQUEST = 3] and [MMI_Q_BUTTON = 0], the different time between time when ODL log receives this packet and timestamp in variable ‘MMI_T_BUTTONEVENT’ is not exceeded 130 ms. Note Use epoch & unix timestamp converter to convert timestamp recorded in variable ‘MMI_T_BUTTONEVENT’
             Test Step Comment: MMI_gen 65 (partly: ‘Train data’ button);Note All buttons of a menu window (TS) shall be up-type buttons, refers to MMI_gen 4557
             */
-            
-            
+
+
             /*
             Test Step 3
             Action: Verify response time of DMI on actuation of ‘Start’ button in ‘Main’ window
             Expected Result: Use log file to verify that response time of DMI on actuation of the ‘Start’ buttons is not exceeded 130 ms when DMI sends EVC-101 with verification below:-- In packet EVC-101 that variable [MMI_M_REQUEST = 9] and [MMI_Q_BUTTON = 0], the different time between time when ODL log receives this packet and timestamp in variable ‘MMI_T_BUTTONEVENT’ is not exceeded 130 ms. Note Use epoch & unix timestamp converter to convert timestamp recorded in variable ‘MMI_T_BUTTONEVENT’
             Test Step Comment: MMI_gen 65 (partly: ‘Start’ button);
             */
-            
-            
+
+
             /*
             Test Step 4
             Action: Press ‘Data view’ button in sub area F3 and then press ‘Close’ button in ‘Data view’ window
             Expected Result: Use log file to verify that response time of DMI on actuation of the ‘Data view’ buttons is not exceeded 130 ms when DMI sends EVC-101 with verification below:-- In packet EVC-101 that variable [MMI_M_REQUEST = 21] and [MMI_Q_BUTTON = 0], the different time between time when ODL log receives this packet and timestamp in variable ‘MMI_T_BUTTONEVENT’ is not exceeded 130 ms. Note Use epoch & unix timestamp converter to convert timestamp recorded in variable ‘MMI_T_BUTTONEVENT’
             Test Step Comment: MMI_gen 65 (partly: ‘Data view’ button);
             */
-            
-            
+
+
             /*
             Test Step 5
             Action: Press SE04 symbol in sub area F5. Then press ‘System Version’ button in ‘Settings’ window
             Expected Result: Use log file to verify that response time of DMI on actuation of the ‘System Version’ buttons is not exceeded 130 ms when DMI sends EVC-101 with verification below:-- In packet EVC-101 that variable [MMI_M_REQUEST = 55] and [MMI_Q_BUTTON = 0], the different time between time when ODL log receives this packet and timestamp in variable ‘MMI_T_BUTTONEVENT’ is not exceeded 130 ms. Note Use epoch & unix timestamp converter to convert timestamp recorded in variable ‘MMI_T_BUTTONEVENT’
             Test Step Comment: MMI_gen 65 (partly: ‘System Version’ button);
             */
-            
-            
+
+
             /*
             Test Step 6
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

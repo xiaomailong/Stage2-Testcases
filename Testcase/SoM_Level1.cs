@@ -47,7 +47,7 @@ namespace Testcase
             EVC16_CurrentTrainNumber.Initialise(this);
             EVC22_MMICurrentRBC.Initialise(this);
             EVC30_MMIRequestEnable.Initialise(this);
-            EVC3_MMISetTimeATP.Initialise(this);            
+            EVC3_MMISetTimeATP.Initialise(this);
 
             // Initialise Dynamic Arrays
             Initialize_DynamicArrays();
@@ -63,7 +63,7 @@ namespace Testcase
             EVC0_MMIStartATP.Send();
 
             // Possible send EVC-3 MMI_SET_TIME_ATP packet      (Wireshark log)
-            EVC3_MMISetTimeATP.MMI_T_UTC = (uint)(DateTime.UtcNow - new DateTime(1970, 1, 1)).TotalSeconds;
+            EVC3_MMISetTimeATP.MMI_T_UTC = (uint) (DateTime.UtcNow - new DateTime(1970, 1, 1)).TotalSeconds;
             EVC3_MMISetTimeATP.MMI_T_ZONE_OFFSET = 0;
             EVC3_MMISetTimeATP.Send();
 

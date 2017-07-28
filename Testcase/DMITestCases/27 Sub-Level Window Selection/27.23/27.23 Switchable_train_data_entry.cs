@@ -37,7 +37,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Test system is powered on.Cabin is activated.SoM is performed until Level 1 is selcted and confirmed.
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -55,7 +55,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Press ‘Train data’ button
@@ -64,22 +64,22 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Train data’ button");
-            
-            
+
+
             /*
             Test Step 2
             Action: Press switch button
             Expected Result: Verify the following information,Use the log file to confirm that DMI send out packet EVC-101 [MMI_DRIVER_REQUEST] with variable MMI_M_REQUEST = 59 (Switch).The label of ‘switch’ button is changed correctly refer to the type of displayed window as follows,Flexible Train DataThe label of switch button is presented with text ‘Select type’. Fixed Train DataThe label of switch button is presented with text ‘Enter data’
             Test Step Comment: (1) MMI_gen 8096;  (2) MMI_gen 8097;
             */
-            
-            
+
+
             /*
             Test Step 3
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

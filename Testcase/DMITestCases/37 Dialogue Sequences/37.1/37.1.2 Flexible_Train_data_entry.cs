@@ -37,7 +37,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // System is power on
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -55,18 +55,19 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Perform the following procedure,Activate Cabin AEnter Driver ID and perform brake testSelect and confirm Level 1
             Expected Result: DMI displays Main window
             */
             // Call generic Action Method
-            DmiActions.Perform_the_following_procedure_Activate_Cabin_AEnter_Driver_ID_and_perform_brake_testSelect_and_confirm_Level_1();
+            DmiActions
+                .Perform_the_following_procedure_Activate_Cabin_AEnter_Driver_ID_and_perform_brake_testSelect_and_confirm_Level_1();
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Main_window();
-            
-            
+
+
             /*
             Test Step 2
             Action: Press ‘Train data’ button
@@ -74,23 +75,23 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Train data’ button");
-            
-            
+
+
             /*
             Test Step 3
             Action: Modify and confirm an valid value for each following input field,Train category = ‘TILT1’Train length = ‘4000’Brake percentage = ‘100’Maximum speed = ‘120’Axel load category = ‘B1’Airtight = ‘No’Loading gauge = ‘Out of GC’
             Expected Result: Verifies that the value of each input field are changed refer to specifies entered data
             */
-            
-            
+
+
             /*
             Test Step 4
             Action: Press ‘Close’ button.Then, select Train data button
             Expected Result: DMI displays Train data window.Verifies the displayed values of each input field are same as action step No.2
             Test Step Comment: MMI_gen 8865 (partly: Exception 1);
             */
-            
-            
+
+
             /*
             Test Step 5
             Action: Repeat action step 3.Then, press ‘Yes’ button
@@ -100,8 +101,8 @@ namespace Testcase.DMITestCases
             DmiActions.Repeat_action_step_3_Then_press_Yes_button();
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Train_data_validation_window();
-            
-            
+
+
             /*
             Test Step 6
             Action: Select and confirm ‘No’ button
@@ -110,8 +111,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Select_and_confirm_No_button();
-            
-            
+
+
             /*
             Test Step 7
             Action: Repeat action step 3.Then, press ‘Yes’ button
@@ -121,8 +122,8 @@ namespace Testcase.DMITestCases
             DmiActions.Repeat_action_step_3_Then_press_Yes_button();
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Train_data_validation_window();
-            
-            
+
+
             /*
             Test Step 8
             Action: Select and confirm ‘Yes’ button in Train data validation window
@@ -130,8 +131,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Main_window();
-            
-            
+
+
             /*
             Test Step 9
             Action: Select Train data button
@@ -140,8 +141,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Select_Train_data_button();
-            
-            
+
+
             /*
             Test Step 10
             Action: Press ‘Close’ button
@@ -151,14 +152,14 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Main_window();
-            
-            
+
+
             /*
             Test Step 11
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

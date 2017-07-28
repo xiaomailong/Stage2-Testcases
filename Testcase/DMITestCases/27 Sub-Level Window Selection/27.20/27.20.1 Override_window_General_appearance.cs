@@ -39,7 +39,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Test system is powered on.The cabin is activated.SoM is performed until Train Running number is confirmed.
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -57,7 +57,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Perform the following procedure,Press ‘Close’ button.Press ‘Override’ button
@@ -65,9 +65,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8415 (partly: touch screen, label “EOA”);              MMI_gen 11225 (partly: EVC-30, disabled);(2) MMI_gen 11225 (partly: disalbed);
             */
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_The_EOA_button_is_in_disable_state_Use_the_log_file_to_confirm_that_DMI_receives_EVC_30_with_with_bit_No_9_of_variable_MMI_Q_REQUEST_ENABLE_64_0_Disable_Start_Override_EOA();
-            
-            
+            DmiExpectedResults
+                .Verify_the_following_information_The_EOA_button_is_in_disable_state_Use_the_log_file_to_confirm_that_DMI_receives_EVC_30_with_with_bit_No_9_of_variable_MMI_Q_REQUEST_ENABLE_64_0_Disable_Start_Override_EOA();
+
+
             /*
             Test Step 2
             Action: Perform the following procedure,Press ‘Close’ button.Press ‘Main’ button
@@ -75,16 +76,16 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Main_window();
-            
-            
+
+
             /*
             Test Step 3
             Action: Press ‘Start’ button.Then, acknowledge ‘SR’ mode
             Expected Result: DMI displays Default window in SR mode, Level 1.Use the log file to confirm that DMI receives EVC-30 with with bit No.9 of variable MMI_Q_REQUEST_ENABLE_64 = 1 (Enable Start Override EOA)
             Test Step Comment: (1) MMI_gen 11225 (partly: EVC-30, enabled);
             */
-            
-            
+
+
             /*
             Test Step 4
             Action: Press ‘Override’ button
@@ -93,16 +94,16 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Override’ button");
-            
-            
+
+
             /*
             Test Step 5
             Action: Press and hold ‘EOA’ button
             Expected Result: DMI displays the Override window.The sound ‘Click’ is played once.The ‘EOA’ button is shown as the ‘Pressed’ state, the border of button is removed. Use the log file to confirm that DMI sends EVC-101 with variable MMI_M_REQUEST = 7 (Start Override EOA (Pass stop) and MMI_T_BUTTONEVENT is not blank
             Test Step Comment: (1) MMI_gen 11415 (partly: MMI_gen 11387 (partly: button Up-Type, MMI_gen 4381 (partly: the sound for Up-Type button))), MMI_gen 9512, MMI_gen 968;(2) MMI_gen 11415 (partly: MMI_gen 11387 (partly: button Up-Type, MMI_gen 4381 (partly: change to state ‘Pressed’ as long as remain actuated))); MMI_gen 4375;(3) MMI_gen 11415 (partly: MMI_gen 11387 (partly: send events of Pressed independently to ETCS), MMI_gen 11907 (partly: EVC-101, timestamp)), MMI_gen 11226 (partly: EVC-101); MMI_gen 3375;
             */
-            
-            
+
+
             /*
             Test Step 6
             Action: Slide out of ‘EOA’ button
@@ -111,8 +112,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults.The_border_of_the_button_is_shown_state_Enabled_without_a_sound();
-            
-            
+
+
             /*
             Test Step 7
             Action: Slide back into ‘EOA’ button
@@ -121,30 +122,30 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults.The_button_is_back_to_state_Pressed_without_a_sound();
-            
-            
+
+
             /*
             Test Step 8
             Action: Release ‘EOA’ button
             Expected Result: Verify the following information,DMI displays the ‘Default’ window.Use the log file to confirm that DMI sends EVC-101 with variable MMI_M_REQUEST = 7 (Start Override EOA (Pass stop)) and MMI_T_BUTTONEVENT is not blank.Use the log file to confirm that DMI receives EVC-2 with variable MMI_M_OVERRIDE_EOA = 1 (function is active)  and DMI displays symbol ‘Override’ MO03 in sub-area C7
             Test Step Comment: (1) MMI_gen 11415 (partly: MMI_gen 11387 (partly: button Up-Type, MMI_gen 4381 (partly: exit state ‘Pressed’, execute function associated to the button))), MMI_gen 11226 (partly: closure, parent window);(2) MMI_gen 11415 (partly: MMI_gen 11387 (partly: send events of Released independently to ETCS), MMI_gen 11907 (partly: EVC-101, timestamp)), MMI_gen 11226 (partly: EVC-101); MMI_gen 3375;(3) MMI_gen 11231;
             */
-            
-            
+
+
             /*
             Test Step 9
             Action: Perform the following procedure, Press ‘Main’ buttonPress and hold ‘Shunting’ button up to 2 secondRelease ‘Shunting’ button
             Expected Result: DMI displays Default window in SH mode, Level 1
             */
-            
-            
+
+
             /*
             Test Step 10
             Action: Perform the following procedure,Press ‘Main’ buttonPress and hold ‘Exit Shunting’ button up to 2 secondRelease ‘Exit Shunting’ buttonEnter Driver IDClose the ‘Main’ window
             Expected Result: DMI displays Default window in SB mode, Level 1
             */
-            
-            
+
+
             /*
             Test Step 11
             Action: Press ‘Override’ button
@@ -154,9 +155,10 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Override’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_The_EOA_button_is_in_disable_state_Use_the_log_file_to_confirm_that_DMI_receives_EVC_30_with_with_bit_No_9_of_variable_MMI_Q_REQUEST_ENABLE_64_0_Disable_Start_Override_EOA();
-            
-            
+            DmiExpectedResults
+                .Verify_the_following_information_The_EOA_button_is_in_disable_state_Use_the_log_file_to_confirm_that_DMI_receives_EVC_30_with_with_bit_No_9_of_variable_MMI_Q_REQUEST_ENABLE_64_0_Disable_Start_Override_EOA();
+
+
             /*
             Test Step 12
             Action: Press ‘Close’ button
@@ -167,14 +169,14 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.Verify_the_following_information_1_DMI_displays_Default_window();
-            
-            
+
+
             /*
             Test Step 13
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

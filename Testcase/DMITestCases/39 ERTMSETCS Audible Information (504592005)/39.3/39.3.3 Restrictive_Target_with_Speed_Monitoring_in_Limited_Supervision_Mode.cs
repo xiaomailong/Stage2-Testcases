@@ -40,7 +40,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // System is power on.
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -58,7 +58,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Perform SoM to Level 1 in SR mode
@@ -68,8 +68,8 @@ namespace Testcase.DMITestCases
             DmiActions.Perform_SoM_to_Level_1_in_SR_mode();
             // Call generic Check Results Method
             DmiExpectedResults.ETCS_OB_enters_SR_mode_in_Level_1();
-            
-            
+
+
             /*
             Test Step 2
             Action: Drive the train forward with constant speed at 20 km/h
@@ -79,24 +79,24 @@ namespace Testcase.DMITestCases
             DmiActions.Drive_the_train_forward_with_constant_speed_at_20_kmh();
             // Call generic Check Results Method
             DmiExpectedResults.The_train_can_drive_forward_and_all_brakes_are_not_applied();
-            
-            
+
+
             /*
             Test Step 3
             Action: Drive the train forward pass BG1.Then, press an LS mode acknowledgement on sub-area C1
             Expected Result: ETCS OB enters LS mode in Level 1
             Test Step Comment: Note Sound ‘Sinfo’ is played once because driver’s acknowledgement is displayed, refers to MMI_gen 9393
             */
-            
-            
+
+
             /*
             Test Step 4
             Action: Continue to drive the train forward with constant speed at 20 km/h
             Expected Result: Sound ‘Sinfo’ is not played when train enters PIM, TSM and RSM with verification below:-Log FileUse log file to verify that when train enters PIM, TSM and RSM in LS mode, restrictive target doesn’t exist as follows:-- When train is in LS mode, the DMI receives EVC-7 with variable [MMI_OBU_TR_M_Mode = 12].- When train enters PIM, the DMI receives EVC-1 with variable [MMI_M_WARNING = 2].- When train enters TSM, the DMI receives EVC-1 with variable [MMI_M_WARNING = 11].- When train enters RSM, the DMI receives EVC-1 with variable [MMI_M_WARNING = 3 or 15].- The DMI receives EVC-1 with variable [MMI_V_TARGET = -1] all the time.- The DMI receives EVC-1 with variable [MMI_O_BRAKETARGET = -1] all the time
             Test Step Comment: MMI_gen 12043 (partly: speed monitoring in LS mode)
             */
-            
-            
+
+
             /*
             Test Step 5
             Action: Stop the train
@@ -106,14 +106,14 @@ namespace Testcase.DMITestCases
             DmiActions.Stop_the_train();
             // Call generic Check Results Method
             DmiExpectedResults.The_train_is_at_standstill();
-            
-            
+
+
             /*
             Test Step 6
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

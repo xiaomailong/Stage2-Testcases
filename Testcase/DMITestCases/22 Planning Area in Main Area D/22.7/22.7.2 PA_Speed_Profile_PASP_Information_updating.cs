@@ -38,7 +38,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // System is power on.
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -56,7 +56,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Activate cabin A then  perform SoM to SR mode, selects level 1
@@ -64,8 +64,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_in_SR_mode_level_1();
-            
-            
+
+
             /*
             Test Step 2
             Action: Drive the train forward pass BG1.Then, Stop the train
@@ -74,30 +74,30 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Drive_the_train_forward_pass_BG1_Then_Stop_the_train();
-            
-            
+
+
             /*
             Test Step 3
             Action: Use the test script file  17_7_2.xml to send EVC-4 with,MMI_N_MRSP = 0MMI_V_MRSP_CURR = 2777
             Expected Result: The value of PA Gradient Profile is changed to 20.The previous PASP segment from step 2 is removed from DMI.The current PASP Segment is end up in infinity (see picture in comment)
             Test Step Comment: (1) MMI_gen 7313 (partly: Delete all PASP segments);(2) MMI_gen 7313       (partly: 2nd  bullet);           
             */
-            
-            
+
+
             /*
             Test Step 4
             Action: (Continue from step 3)Send EVC-4 with,MMI_N_MRSP = 0MMI_V_MRSP_CURR = 0
             Expected Result: The value of PA Gradient Profile is changed to 10.Verify the following information,The current PASP Segments are deleted from area D7.The background colour of area D7 and D8 is PASP-Dark colour (see picture in comment)
             Test Step Comment: (1) MMI_gen 7313       (partly: 1st bullet);           (2) MMI_gen 2897;
             */
-            
-            
+
+
             /*
             Test Step 5
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

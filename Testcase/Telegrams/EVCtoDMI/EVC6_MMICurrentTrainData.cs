@@ -52,7 +52,8 @@ namespace Testcase.Telegrams.EVCtoDMI
 
                 // Set length of char array
                 _pool.SITR.Client.Write(
-                    $"ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub1{trainsetIndex}_MmiNCaptionTrainset", charArray.Length);
+                    $"ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub1{trainsetIndex}_MmiNCaptionTrainset",
+                    charArray.Length);
 
                 totalSizeCounter += 16;
 
@@ -80,7 +81,8 @@ namespace Testcase.Telegrams.EVCtoDMI
             // Set number of train data elements
             _pool.SITR.ETCS1.CurrentTrainData.MmiNDataElements.Value = (ushort) DataElements.Count;
 
-            totalSizeCounter = PopulateDataElements($"ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub2", totalSizeCounter, DataElements, _pool);
+            totalSizeCounter = PopulateDataElements($"ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub2",
+                totalSizeCounter, DataElements, _pool);
 
             // Set the total length of the packet
             _pool.SITR.ETCS1.CurrentTrainData.MmiLPacket.Value = totalSizeCounter;

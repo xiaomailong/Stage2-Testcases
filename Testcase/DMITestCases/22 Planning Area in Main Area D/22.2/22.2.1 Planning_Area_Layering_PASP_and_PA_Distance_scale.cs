@@ -38,7 +38,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // System is power on.
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -56,7 +56,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Activate cabin A
@@ -66,8 +66,8 @@ namespace Testcase.DMITestCases
             DmiActions.Activate_cabin_A();
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Driver_ID_window();
-            
-            
+
+
             /*
             Test Step 2
             Action: Perform SoM in SR mode, Level 1
@@ -77,22 +77,22 @@ namespace Testcase.DMITestCases
             DmiActions.Perform_SoM_in_SR_mode_Level_1();
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_in_SR_mode_level_1();
-            
-            
+
+
             /*
             Test Step 3
             Action: Driver drives the train passing BG1
             Expected Result: DMI changes from SR mode to FS mode.Verify the order (background to fore ground) for each objects in PA as follows,PASPPA Distance ScaleIndication MarkerPA Track Condition, Gradient profile and Speed DiscontinuitiesHide/Show and Zoom PA buttons.Note: The object which have a lower order (i.e. PASP) cannot overlap the higher order object
             Test Step Comment: MMI_gen 7108;
             */
-            
-            
+
+
             /*
             Test Step 4
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

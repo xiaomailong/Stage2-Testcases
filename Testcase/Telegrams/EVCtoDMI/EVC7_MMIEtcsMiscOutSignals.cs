@@ -24,16 +24,15 @@ namespace Testcase.Telegrams.EVCtoDMI
             _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7SSW1.Value = 0x8000; // 32768 in decimal
             _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7SSW2.Value = 0x8000; // 32768 in decimal
             _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7SSW3.Value = 0x8000; // 32768 in decimal
-
         }
 
         private static void SetAliasB1()
         {
             var brakeTestStatus = (byte) _brakeTestStatus;
-            var level = (byte)_level;
-            _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7alias1B1.Value = (byte)(brakeTestStatus << 4 | level);
-        }      
-        
+            var level = (byte) _level;
+            _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7alias1B1.Value = (byte) (brakeTestStatus << 4 | level);
+        }
+
         public static MMI_OBU_TR_BRAKETEST_STATUS MMI_OBU_TR_BrakeTest_Status
         {
             set
@@ -42,6 +41,7 @@ namespace Testcase.Telegrams.EVCtoDMI
                 SetAliasB1();
             }
         }
+
         public static MMI_OBU_TR_M_LEVEL MMI_OBU_TR_M_Level
         {
             set
@@ -53,7 +53,7 @@ namespace Testcase.Telegrams.EVCtoDMI
 
         public static MMI_OBU_TR_M_MODE MMI_OBU_TR_M_Mode
         {
-            set => _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrMMode.Value = (byte)value;
+            set => _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrMMode.Value = (byte) value;
         }
 
         public enum MMI_OBU_TR_BRAKETEST_STATUS : ushort
@@ -74,7 +74,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             L2 = 3,
             L3 = 4,
             Unknown = 15
-        }       
+        }
 
         public enum MMI_OBU_TR_M_MODE : ushort
         {
@@ -97,6 +97,5 @@ namespace Testcase.Telegrams.EVCtoDMI
             NoPower = 16,
             Unknown = 128
         }
-
     }
 }

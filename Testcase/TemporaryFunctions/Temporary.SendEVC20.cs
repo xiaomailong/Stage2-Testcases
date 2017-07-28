@@ -45,8 +45,8 @@ namespace Testcase.TemporaryFunctions
 
 
                 byte evc20Alias1 = Convert.ToByte(uintMmiQLevelNtcId | uintMmiMCurrentLevel |
-                                                    uintMmiMLevelFlag | uintMmiMInhibitedLevel |
-                                                    uintMmiMInhibitEnable);
+                                                  uintMmiMLevelFlag | uintMmiMInhibitedLevel |
+                                                  uintMmiMInhibitEnable);
 
                 if (k < 10)
                 {

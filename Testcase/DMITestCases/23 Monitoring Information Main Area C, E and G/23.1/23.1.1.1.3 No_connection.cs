@@ -39,7 +39,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Setup a verbose visualisation for the radio connection status in configuration file (RADIO_STATUS_VISUAL= 1).System is powered ON.Cabin is activated
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -57,28 +57,28 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Perform SoM in SR mode, level 2
             Expected Result: DMI displays in SR mode, Level 2.DMI display the radio connection symbols in sub-area E1 refer to received packet of EVC-8 with unique value of MMI_I_TEXT in each packet and follolwing value of MMI_Q_TEXT,MMI_Q_TEXT = 568 (Connection established) or 613 (Connection Up)  or  MMI_Q_TEXT = 609 (Network registed via one modem) or MMI_Q_TEXT = 610 (Network registred via two modems)
             */
-            
-            
+
+
             /*
             Test Step 2
             Action: Press and hold ‘Shunting’ button at least 2 second.Then, release the pressed button.Note: Stopwatch is required
             Expected Result: DMI displays in SH mode, level 2.When the time is passed 60 seconds ,Verify the following information,(1)    Use the log file to confirm that DMI received multiple packets of EVC-8 with variable MMI_Q_TEXT_CRITERIA = 4 with the same value of MMI_I_TEXT in expected No.1 of test step 1.(2)     No symbol display in sub-area E1
             Test Step Comment: (1) MMI_gen 11441 (partly: removing all related text messages);(2) MMI_gen 11441 (partly: no symbols shall be displayed);
             */
-            
-            
+
+
             /*
             Test Step 3
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

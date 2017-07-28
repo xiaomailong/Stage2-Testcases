@@ -25,7 +25,7 @@ namespace Testcase.TemporaryFunctions
 
             EVC22_MMICurrentRBC.NetworkCaptions = new List<string>(textDataElements);
             EVC22_MMICurrentRBC.DataElements = new List<Variables.DataElement>();
-            
+
             EVC22_MMICurrentRBC.Send();
         }
     }

@@ -40,7 +40,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // System is power on.Cabin is activated.Settings window is opened.Maintenance password window is opened.The correct password is entered, the Maintenance window is opened.
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -58,7 +58,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Press ‘Wheel diameter’ button
@@ -67,8 +67,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Wheel diameter’ button");
-            
-            
+
+
             /*
             Test Step 2
             Action: Confirm all value of each input field.Then, press ‘Yes’ button
@@ -77,8 +77,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Confirm_all_value_of_each_input_field_Then_press_Yes_button();
-            
-            
+
+
             /*
             Test Step 3
             Action: Press ‘Yes’ button.Then, confirm an entered data by pressing at an input field
@@ -86,9 +86,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 3203 (partly: Maintenance Data Validation);
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Settings_window_Verify_the_following_information_1_Use_the_log_file_to_confirm_that_DMI_sent_out_packet_EVC_141_with_variable_based_on_confirmed_data_to_ETCS_Onboard();
-            
-            
+            DmiExpectedResults
+                .DMI_displays_Settings_window_Verify_the_following_information_1_Use_the_log_file_to_confirm_that_DMI_sent_out_packet_EVC_141_with_variable_based_on_confirmed_data_to_ETCS_Onboard();
+
+
             /*
             Test Step 4
             Action: Press ‘Radar’ button
@@ -97,8 +98,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Radar’ button");
-            
-            
+
+
             /*
             Test Step 5
             Action: Confirm all value of each input field.Then, press ‘Yes’ button
@@ -107,8 +108,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Confirm_all_value_of_each_input_field_Then_press_Yes_button();
-            
-            
+
+
             /*
             Test Step 6
             Action: Perform the following procedure,Press ‘Yes’ button.Confirm an entered data by pressing at an input field.At ‘Maintenance’ window, press ‘Close’ button
@@ -116,9 +117,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 3203 (partly: Maintenance Data Validation);
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Settings_window_Verify_the_following_information_1_Use_the_log_file_to_confirm_that_DMI_sent_out_packet_EVC_141_with_variable_based_on_confirmed_data_to_ETCS_Onboard();
-            
-            
+            DmiExpectedResults
+                .DMI_displays_Settings_window_Verify_the_following_information_1_Use_the_log_file_to_confirm_that_DMI_sent_out_packet_EVC_141_with_variable_based_on_confirmed_data_to_ETCS_Onboard();
+
+
             /*
             Test Step 7
             Action: Press ‘Set VBC’ button
@@ -127,8 +129,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Set VBC’ button");
-            
-            
+
+
             /*
             Test Step 8
             Action: Enter and confirm the value ‘65536’ at an input field.Then, press ‘Yes’ button
@@ -136,9 +138,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 3203 (Set VBC Data Entry);(2) MMI_gen 3226 (partly: Set VBC Data Validation);(3) MMI_gen 3205 (partly: Set VBC Data Entry and Validation);(4) MMI_gen 3390 (partly: Set VBC Validation);(5) MMI_gen 3391 (partly: Set VBC Data Entry and Validation);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Enter and confirm the value ‘65536’ at an input field.Then, press ‘Yes’ button");
-            
-            
+            DmiActions.ShowInstruction(
+                @"Enter and confirm the value ‘65536’ at an input field.Then, press ‘Yes’ button");
+
+
             /*
             Test Step 9
             Action: Press ‘Yes’ button.Then, confirm an entered value by pressing at an input field
@@ -146,17 +149,18 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 3203 (partly: Set VBC Data Validation);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Yes’ button.Then, confirm an entered value by pressing at an input field");
-            
-            
+            DmiActions.ShowInstruction(
+                @"Press ‘Yes’ button.Then, confirm an entered value by pressing at an input field");
+
+
             /*
             Test Step 10
             Action: Press ‘Remove VBC’ window
             Expected Result: DMI displays Remove VBC window.Verify the following information,(1)    Use the log file to confirm that DMI received packet EVC-19 from ETCS Onboard.(2)   The format of presentation in Remove VBC window is presented as an input field
             Test Step Comment: (1) MMI_gen 3226 (partly: Remove VBC Data Entry);(2)  MMI_gen 3390 (partly: Remove VBC Data entry);
             */
-            
-            
+
+
             /*
             Test Step 11
             Action: Enter and confirm the value ‘65536’ at an input field.Then, press ‘Yes’ button
@@ -164,9 +168,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 3203 (Remove VBC Data Entry);(2) MMI_gen 3226 (partly: Remove VBC Data Validation);(3) MMI_gen 3205 (partly: Remove VBC Data Entry and Validation);(4) MMI_gen 3390 (partly: Remove VBC Validation);(5) MMI_gen 3391 (partly: Remove VBC Data Entry and Validation);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Enter and confirm the value ‘65536’ at an input field.Then, press ‘Yes’ button");
-            
-            
+            DmiActions.ShowInstruction(
+                @"Enter and confirm the value ‘65536’ at an input field.Then, press ‘Yes’ button");
+
+
             /*
             Test Step 12
             Action: Press ‘Yes’ button.Then, confirm an entered value by pressing at an input field
@@ -174,17 +179,18 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 3203 (partly: Remove VBC Data Validation);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Yes’ button.Then, confirm an entered value by pressing at an input field");
-            
-            
+            DmiActions.ShowInstruction(
+                @"Press ‘Yes’ button.Then, confirm an entered value by pressing at an input field");
+
+
             /*
             Test Step 13
             Action: Perform the following procedure,Press ‘Close’ buttonEnter Driver ID and skip brake test.Select and confirm ‘Level 1’.Press ‘Train data’ button
             Expected Result: DMI displays Train data window.Verify the following information,(1)    Use the log file to confirm that DMI received packet EVC-6 from ETCS Onboard.(2)   The format of presentation in Train data window is presented as an input fields
             Test Step Comment: (1) MMI_gen 3226 (partly: Train Data Entry);(2)  MMI_gen 3390 (partly: Train Data entry);
             */
-            
-            
+
+
             /*
             Test Step 14
             Action: Confirm all value of each input field.Then, press ‘Yes’ button
@@ -193,8 +199,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Confirm_all_value_of_each_input_field_Then_press_Yes_button();
-            
-            
+
+
             /*
             Test Step 15
             Action: Press ‘Yes’ button.Then, confirm an entered value by pressing at an input field
@@ -202,25 +208,26 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 3203 (partly: Train Data Validation);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Yes’ button.Then, confirm an entered value by pressing at an input field");
-            
-            
+            DmiActions.ShowInstruction(
+                @"Press ‘Yes’ button.Then, confirm an entered value by pressing at an input field");
+
+
             /*
             Test Step 16
             Action: Perform the following procedure,Enter and confirm the train running numberPress ‘Close’ button.Press ‘Settings’ button.Press ‘Brake’ button.Use the test script file 2_6_a.xml to send EVC-30 with MMI_NID_WINDOW = 4 and MMI_Q_REQUEST_ENABLE_64 (#31) =1Press the enabled 'Brake percentage' button
             Expected Result: DMI displays Brake percentage window.Verify the following information,(1)    Use the log file to confirm that DMI received packet EVC-50 from ETCS Onboard.(2)   The format of presentation in Brake Percentage window is presented as an input field
             Test Step Comment: (1) MMI_gen 3226 (partly: Brake Percentage Data Entry);(2)  MMI_gen 3390 (partly: Brake Percentage Data Entry);
             */
-            
-            
+
+
             /*
             Test Step 17
             Action: Confirm the current value of brake percentage by pressing at an input field
             Expected Result: DMI displays Brake percentage validation window.Verify the following information,(1)    Use the log file to confirm that DMI sent out packet EVC-150 with variable based on confirmed data to ETCS Onboard.(2)    Use the log file to confirm that DMI received packet EVC-51 from ETCS Onboard.(3)   The position of ‘Yes’ button on Brake percentage validation window is located at the different location of ‘Yes’ button on Brake percentage window.(4)   The format of presentation in Brake percentage validation window is difference from Brake percentage window as follows,           -   The data pending for confirmation of Brake percentage validation window is presented as echo texts.(5)   The presentation of echo text in Brake percentage validation window is located at the difference location of an input fields in Brake percentage window
             Test Step Comment: (1) MMI_gen 3203 (partly: Brake Percentage Data Entry);(2)MMI_gen 3226 (partly: Brake percentage Validation);(3) MMI_gen 3205 (partly: Brake percentage Entry and Validation);(4) MMI_gen 3390 (partly: Brake percentage Validation);(5) MMI_gen 3391 (partly: Brake percentage Data Entry and Validation);
             */
-            
-            
+
+
             /*
             Test Step 18
             Action: Press ‘Yes’ button.Then, confirm an entered value by pressing at an input field
@@ -228,15 +235,16 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 3203 (partly: Brake percentage Validation);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Yes’ button.Then, confirm an entered value by pressing at an input field");
-            
-            
+            DmiActions.ShowInstruction(
+                @"Press ‘Yes’ button.Then, confirm an entered value by pressing at an input field");
+
+
             /*
             Test Step 19
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

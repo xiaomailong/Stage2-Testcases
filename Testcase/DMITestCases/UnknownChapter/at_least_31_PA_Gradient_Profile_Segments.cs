@@ -37,7 +37,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // System is power on.
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -55,7 +55,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Activate cabin A
@@ -65,8 +65,8 @@ namespace Testcase.DMITestCases
             DmiActions.Activate_cabin_A();
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_the_default_window_The_Driver_ID_window_is_displayed();
-            
-            
+
+
             /*
             Test Step 2
             Action: Driver performs SoM to SR mode, level 1
@@ -76,8 +76,8 @@ namespace Testcase.DMITestCases
             DmiActions.Driver_performs_SoM_to_SR_mode_level_1();
             // Call generic Check Results Method
             DmiExpectedResults.DMI_is_displayed_in_SR_mode_level_1();
-            
-            
+
+
             /*
             Test Step 3
             Action: Drive the train forward pass BG1
@@ -85,8 +85,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Drive_the_train_forward_pass_BG1();
-            
-            
+
+
             /*
             Test Step 4
             Action: Drive the train forward pass BG2
@@ -95,8 +95,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Drive_the_train_forward_pass_BG2();
-            
-            
+
+
             /*
             Test Step 5
             Action: End of Test
@@ -104,7 +104,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.End_of_Test();
-            
+
 
             return GlobalTestResult;
         }

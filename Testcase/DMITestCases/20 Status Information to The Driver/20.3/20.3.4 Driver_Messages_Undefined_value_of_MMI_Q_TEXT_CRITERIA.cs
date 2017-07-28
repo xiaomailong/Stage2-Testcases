@@ -40,7 +40,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Test system is power onSoM is perform until Level 1 is selected and confirmed.Main window is closed.
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -58,37 +58,37 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Use the test script file 15_3_4.xml to send EVC-8 with,MMI_Q_TEXT = 527MMI_Q_TEXT_CRITERIA = 5MMI_Q_TEXT_CLASS = 0MMI_I_TEXT = 1
             Expected Result: Verify the following information,(1)    DMI displays the driver message ‘Brake Test aborted, perform new Test?’ in sub-area E5 without yellow flashing frame
             Test Step Comment: (1) MMI_gen 7040 (partly: text message, decision path is not affected, Note 1 under MMI_gen 7040: CRITERIA = 5));
             */
-            
-            
+
+
             /*
             Test Step 2
             Action: (Continue from step 1)Send EVC-8 with,MMI_Q_TEXT = 259MMI_Q_TEXT_CRITERIA = 5MMI_Q_TEXT_CLASS = 0MMI_I_TEXT = 2
             Expected Result: Verify the following information,(1)    DMI displays the Symbol MO08 in sub-area C1 without yellow flashing frame
             Test Step Comment: (1) MMI_gen 7040 (partly: symbol, decision path is not affected, Note 1 and Note 2 under MMI_gen 7040: CRITERIA = 5); MMI_gen 1699 (partly: The Driver message is displayed as a symbol); MMI_gen 147 (partly: driver message is a symbol, MMI_gen 3005);
             */
-            
-            
+
+
             /*
             Test Step 3
             Action: (Continue from step 1)Send EVC-8 with,MMI_Q_TEXT = 263MMI_Q_TEXT_CRITERIA = 2MMI_Q_TEXT_CLASS = 0MMI_I_TEXT = 2
             Expected Result: Verify the following information,(1)    DMI displays the Symbol MO10 in sub-area C1 without yellow flashing frame
             Test Step Comment: (1) MMI_gen 7040 (partly: symbol, decision path is not affected, Note 2 under MMI_gen 7040: CRITERIA = 2); MMI_gen 1699 (partly: The Driver message is displayed as a symbol); MMI_gen 147 (partly: driver message is a symbol, MMI_gen 3005);
             */
-            
-            
+
+
             /*
             Test Step 4
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

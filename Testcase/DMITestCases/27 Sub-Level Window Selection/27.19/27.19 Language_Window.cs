@@ -37,7 +37,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Test system is powered onCabin is activeSettings window is opened.
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -55,7 +55,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Press ‘Language’ button
@@ -64,8 +64,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Language’ button");
-            
-            
+
+
             /*
             Test Step 2
             Action: Press and hold every buttons on the dedicate keyboard respectively
@@ -74,8 +74,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press and hold every buttons on the dedicate keyboard respectively");
-            
-            
+
+
             /*
             Test Step 3
             Action: Released the pressed button
@@ -86,8 +86,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Released the pressed button");
             // Call generic Check Results Method
             DmiExpectedResults.Verify_the_following_information_The_state_of_button_is_changed_to_Enabled();
-            
-            
+
+
             /*
             Test Step 4
             Action: Select ‘Deutsch’ button.Then, press and hold an input field
@@ -95,9 +95,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9390 (partly: Language window);
             */
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Pressed_the_border_of_button_is_removed();
-            
-            
+            DmiExpectedResults
+                .Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Pressed_the_border_of_button_is_removed();
+
+
             /*
             Test Step 5
             Action: Slide out an input field
@@ -107,9 +108,10 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.Slide_out_an_input_field();
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Enabled_the_border_of_button_is_shown_without_a_sound();
-            
-            
+            DmiExpectedResults
+                .Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Enabled_the_border_of_button_is_shown_without_a_sound();
+
+
             /*
             Test Step 6
             Action: Slide back into an input field
@@ -119,9 +121,10 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.Slide_back_into_an_input_field();
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Pressed_the_border_of_button_is_removed();
-            
-            
+            DmiExpectedResults
+                .Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Pressed_the_border_of_button_is_removed();
+
+
             /*
             Test Step 7
             Action: Release the pressed area
@@ -130,24 +133,24 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Release the pressed area");
-            
-            
+
+
             /*
             Test Step 8
             Action: Perform the following procedure, Press ‘Language’ button.Select and confirm ‘English’ language
             Expected Result: Verify the following information,Use the log file to confirm that DMI sends out the packet [MMI_NEW_LANGUAGE (EVC-122)] with variable [MMI_NEW_LANGUAGE (EVC-122).MMI_NID_LANGUAGE].Note: The correctness of value cannot verify because it’s not specify in the [GenVSIS].The language is updated, DMI displays all texts and button labeled as English language
             Test Step Comment: (1) MMI_gen 11286;              MMI_gen 8064 (partly: MMI_gen 4682); MMI_gen 4392 (partly: [Enter], touch screen);                           (2) MMI_gen 8064 (partly: MMI_gen 4681);
             */
-            
-            
+
+
             /*
             Test Step 9
             Action: Perform the following procedure, Press ‘Language’ button.Confirm the current data without re-entry by press at input field
             Expected Result: Verify the following information,Use the log file to confirm that DMI sends out the packet [MMI_NEW_LANGUAGE (EVC-122)] with the value of variable  [MMI_NEW_LANGUAGE (EVC-122).MMI_NID_LANGUAGE] is same as action step 8.Note: The correctness of value cannot verify because it’s not specify in the [GenVSIS].The language is still same, DMI displays all texts and button labeled as English language
             Test Step Comment: (1) MMI_gen 11286;              MMI_gen 8064 (partly: MMI_gen 4682);                     MMI_gen 8066 (partly: revalidation);                         (2) MMI_gen 8064 (partly: MMI_gen 4681 (partly: accept the entered value));
             */
-            
-            
+
+
             /*
             Test Step 10
             Action: Press ‘Language’ buttonThen, press the ‘Close’ button
@@ -156,14 +159,14 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults.Verify_the_following_information_1_DMI_displays_Settings_window();
-            
-            
+
+
             /*
             Test Step 11
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

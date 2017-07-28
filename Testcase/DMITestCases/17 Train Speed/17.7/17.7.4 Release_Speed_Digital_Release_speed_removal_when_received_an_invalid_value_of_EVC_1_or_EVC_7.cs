@@ -32,13 +32,14 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 12_7_4.tdg, 12_7_4_a.xml, 12_7_4_b.xml
     /// </summary>
-    public class Release_Speed_Digital_Release_speed_removal_when_received_an_invalid_value_of_EVC_1_or_EVC_7 : TestcaseBase
+    public class
+        Release_Speed_Digital_Release_speed_removal_when_received_an_invalid_value_of_EVC_1_or_EVC_7 : TestcaseBase
     {
         public override void PreExecution()
         {
             // Pre-conditions from TestSpec:
             // System is power on.Cabin is activated.SoM is performed in SR mode, level 1.
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -56,7 +57,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Drive the train forward pass BG1.Then, stop the train
@@ -66,30 +67,30 @@ namespace Testcase.DMITestCases
             DmiActions.Drive_the_train_forward_pass_BG1_Then_stop_the_train();
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_in_FS_mode_level_1();
-            
-            
+
+
             /*
             Test Step 2
             Action: Use the test script file 12_7_4_a.xml to send EVC-1 with,MMI_M_WARNING = 7
             Expected Result: Verify the following information,(1)   The release speed in sub-area B2 and B6 are removed from the DMI.(2)   After test scipt file is executed, the release speed in sub-area B2 and B6 are re-appear refer to received packet EVC-1 from ETCS Onboard
             Test Step Comment: (1) MMI_gen 6587 (partly: MMI_M_WARNING is invalid);(2) MMI_gen 6587 (partly: toggle function is reset to default state);
             */
-            
-            
+
+
             /*
             Test Step 3
             Action: Use the test script file 12_7_4_b.xml to send EVC-7 with,OBU_TR_M_MODE = 17
             Expected Result: Verify the following information,(1)   The release speed are sub-area B2 and B6 is removed from the DMI.(2)   After test scipt file is executed, the release speed in sub-area B2 and B6 is are re-appear refer to received packet EVC-7 from ETCS Onboard
             Test Step Comment: (1) MMI_gen 6587 (partly: OBU_TR_M_MODE is invalid);(2) MMI_gen 6587 (partly: toggle function is reset to default state);
             */
-            
-            
+
+
             /*
             Test Step 4
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

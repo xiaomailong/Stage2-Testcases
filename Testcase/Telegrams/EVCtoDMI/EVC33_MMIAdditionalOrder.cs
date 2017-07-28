@@ -32,7 +32,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         private static void SetAlias()
         {
-            _pool.SITR.ETCS1.AdditionalOrder.EVC33alias1.Value = (byte)(_mmiQTrackCondStep << 4 | (byte) _mmiQTrackCondAction << 3);
+            _pool.SITR.ETCS1.AdditionalOrder.EVC33alias1.Value =
+                (byte) (_mmiQTrackCondStep << 4 | (byte) _mmiQTrackCondAction << 3);
         }
 
         /// <summary>
@@ -132,7 +133,7 @@ namespace Testcase.Telegrams.EVCtoDMI
     /// </summary>
     public enum MMI_Q_TRACKCOND_ACTION : byte
     {
-        WithDriverAction = 0,       // manual
-        WithoutDriverAction = 1     // automatic
+        WithDriverAction = 0, // manual
+        WithoutDriverAction = 1 // automatic
     }
 }

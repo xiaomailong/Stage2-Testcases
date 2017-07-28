@@ -39,7 +39,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Configure atpcu configuration file as following:TC_T_Panto_Down = 100TC_T_MainSwitch_Off = 100TC_T_Airtight_Close =100TC_T_Inhib_RBBrake = 100TC_T_ Inhib_ECBrake = 100TC_T_ Inhib_MSBrake = 100TC_T_Change_TractionSyst = 100TC_T_Allowed_CurrentConsump = 100 TC_T_StationPlatform = 100Test system is power on.SoM is performed in SR mode, level 1.
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -57,7 +57,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Drive the train forward with speed = 20 km/h
@@ -67,8 +67,8 @@ namespace Testcase.DMITestCases
             DmiActions.Drive_the_train_forward_with_speed_20_kmh();
             // Call generic Check Results Method
             DmiExpectedResults.The_speed_pointer_is_indicated_as_20_kmh();
-            
-            
+
+
             /*
             Test Step 2
             Action: Drive the train forward pass BG0 with MA and Track descriptionPkt 12,21 and 27
@@ -78,8 +78,8 @@ namespace Testcase.DMITestCases
             DmiActions.Drive_the_train_forward_pass_BG0_with_MA_and_Track_descriptionPkt_12_21_and_27();
             // Call generic Check Results Method
             DmiExpectedResults.Mode_changes_to_FS_mode_L1();
-            
-            
+
+
             /*
             Test Step 3
             Action: Continue to drive the train forward pass BG1 with Track condition Pkt 68:D_TRACKCOND = 400L_TRACKCOND = 500M_TRACKCOND = 5(Air tightness)
@@ -87,16 +87,16 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults.Mode_remins_in_FS_mode();
-            
-            
+
+
             /*
             Test Step 4
             Action: Enter Anouncement of Track condition “Air tightness”
             Expected Result: Verify the following information(1)   DMI displays PL17 or PL19 symbol in sub-area D2. PL17 or PL19
             Test Step Comment: (1) MMI_gen 619(partly: PL17 or PL19);
             */
-            
-            
+
+
             /*
             Test Step 5
             Action: Stop the train
@@ -105,8 +105,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Stop_the_train();
-            
-            
+
+
             /*
             Test Step 6
             Action: Drive the train forward with speed = 20 km/h
@@ -116,16 +116,16 @@ namespace Testcase.DMITestCases
             DmiActions.Drive_the_train_forward_with_speed_20_kmh();
             // Call generic Check Results Method
             DmiExpectedResults.The_speed_pointer_is_indicated_as_20_kmh();
-            
-            
+
+
             /*
             Test Step 7
             Action: Stop the train when the TC19 or TC21 symbol displays in sub-area B3
             Expected Result: Verify the following information(1)   DMI displays TC19 or TC21 symbol in sub-area B3. (TC19) or  (TC21)(2)   Use the log file to confirm that DMI received packet information MMI_TRACK_CONDITIONS (EVC-32) with the following variables,MMI_M_TRACkCOND_TYPE = 5MMI_Q_TRACKCOND_STEP = 1 (TC19 or TC21) or 2(TC19)MMI_Q_TRACKCOND_ACTION_START = 0 (TC21) or 1 (TC19)
             Test Step Comment: (1) MMI_gen 10465 (partly:Table40(TC19 or TC21));(2) MMI_gen 662(partly: TC19 or TC21);
             */
-            
-            
+
+
             /*
             Test Step 8
             Action: Drive the train forward with speed = 20 km/h
@@ -135,16 +135,16 @@ namespace Testcase.DMITestCases
             DmiActions.Drive_the_train_forward_with_speed_20_kmh();
             // Call generic Check Results Method
             DmiExpectedResults.The_speed_pointer_is_indicated_as_20_kmh();
-            
-            
+
+
             /*
             Test Step 9
             Action: Enter Track condition “Air tightness”
             Expected Result: Verify the following information(1)   DMI displays PL03 or PL04 symbol in sub-area D2. (PL18) or  (PL20)
             Test Step Comment: (1) MMI_gen 619(partly: PL18 or PL20);
             */
-            
-            
+
+
             /*
             Test Step 10
             Action: Stop the train
@@ -153,23 +153,23 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Stop_the_train();
-            
-            
+
+
             /*
             Test Step 11
             Action: Driver the train forward with speed = 30km/h
             Expected Result: The speed pointer is indicated as 30  km/h
             */
-            
-            
+
+
             /*
             Test Step 12
             Action: Stop the train when the TC20 or TC22 symbol displays in sub-area B3
             Expected Result: Verify the following information(1)   DMI displays TC20 or TC22 symbol in sub-area B3. (TC20) or  (TC22)(2)   Use the log file to confirm that DMI received packet information MMI_TRACK_CONDITIONS (EVC-32) with the following variables,MMI_M_TRACkCOND_TYPE = 5MMI_Q_TRACKCOND_STEP = 3MMI_Q_TRACKCOND_ACTION_END = 0 (TC22) or 1(TC20)
             Test Step Comment: (1) MMI_gen 10465 (partly:Table40(TC20 or TC22));(2) MMI_gen 662(partly: TC20 or TC22);
             */
-            
-            
+
+
             /*
             Test Step 13
             Action: Drive the train forward with speed = 20 km/h
@@ -179,8 +179,8 @@ namespace Testcase.DMITestCases
             DmiActions.Drive_the_train_forward_with_speed_20_kmh();
             // Call generic Check Results Method
             DmiExpectedResults.The_speed_pointer_is_indicated_as_20_kmh();
-            
-            
+
+
             /*
             Test Step 14
             Action: Stop the train when the track condition symbol has been removed
@@ -189,14 +189,14 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Stop_the_train_when_the_track_condition_symbol_has_been_removed();
-            
-            
+
+
             /*
             Test Step 15
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

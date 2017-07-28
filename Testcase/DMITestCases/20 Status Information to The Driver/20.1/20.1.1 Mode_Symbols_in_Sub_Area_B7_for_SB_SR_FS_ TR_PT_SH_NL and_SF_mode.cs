@@ -41,7 +41,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // - Test system is powered on- Cabin is active
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -120,24 +120,24 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Force_the_train_into_TR_mode_by_moving_the_train_forward_to_position_of_EOA();
-            
-            
+
+
             /*
             Test Step 7
             Action: Perform the following procedure,Wait until the train is stopped.Stop the train (set speed to 0 and set direction to nuetral)Press at sub-area C9
             Expected Result: Verify the following information,Use the log file to confirm that DMI received the EVC-8 with [MMI_DRIVER_MESSAGE (EVC-8).MMI_Q_TEXT] = 266 in order to display the acknowledgement for Trip symbol.The acknowledgement for Trip symbol (MO05) is displayed in area C1
             Test Step Comment: (1) MMI_gen 11233;                             (2) MMI_gen 1227 (partly: MO05);
             */
-            
-            
+
+
             /*
             Test Step 8
             Action: Press the symbol ‘MO05’ in sub-area C1
             Expected Result: Verify the following information,Use the log file to confirm that DMI received the EVC-7 with [MMI_ETCS_MISC_OUT_SIGNALS.OBU_TR_M_MODE] = 8 in order to display the Post Trip symbol.The Post trip symbol (MO06) is displayed in area B7
             Test Step Comment: (1) MMI_gen 11084 (partly: current ETCS mode);                                    (2) MMI_gen 110 (partly: MO06);
             */
-            
-            
+
+
             /*
             Test Step 9
             Action: Force the train into SR mode by the steps below:Press ‘Main’ button.Press ‘Start’ button.Acknowledge SR mode
@@ -145,38 +145,38 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_in_SR_mode_Level_1();
-            
-            
+
+
             /*
             Test Step 10
             Action: Force the train into SH mode by the steps below:Press ‘Main’ button.Press and hold ‘Shunting’ button for 2 second or upper.Release the pressed area
             Expected Result: Verify the following information,Use the log file to confirm that DMI received the EVC-7 with [MMI_ETCS_MISC_OUT_SIGNALS.OBU_TR_M_MODE] = 3 in order to display the Shunting symbol.The Shunting symbol (MO01) is displayed in area B7
             Test Step Comment: (1) MMI_gen 11084 (partly: current ETCS mode);                                    (2) MMI_gen 110 (partly: MO01);
             */
-            
-            
+
+
             /*
             Test Step 11
             Action: Force the train into NL mode by the steps below:Press ‘Main’ button. Press and hold ‘Exit Shunting’ button for 2 second or upper.Release the pressed area.Enter the Driver ID with no performing brake test when Driver ID window is displayed.If the Level window is display, select and confirm Level1. Then, enter the train data and Train running number.Force the simulation to ‘Non-leading’. Press and hold ‘Non-leading’ button for 2 second or upper.Release the pressed area
             Expected Result: Verify the following information,Use the log file to confirm that DMI received the EVC-7 with [MMI_ETCS_MISC_OUT_SIGNALS.OBU_TR_M_MODE] = 11 in order to display the Non-leading.The Non-leading symbol (MO12) is displayed in area B7
             Test Step Comment: (1) MMI_gen 11084 (partly: current ETCS mode);                                   (2) MMI_gen 110 (partly: MO12);
             */
-            
-            
+
+
             /*
             Test Step 12
             Action: Force the train into SF mode by the steps below:Unforce the simulation of ‘Non-leading’.De-activate cabin A.Activate cabin B.Activate cabin A
             Expected Result: Verify the following information,Use the log file to confirm that DMI received the EVC-7 with [MMI_ETCS_MISC_OUT_SIGNALS.OBU_TR_M_MODE] = 9 in order to display the System failure symbol.The System failure symbol (MO18) is displayed in area B7
             Test Step Comment: (1) MMI_gen 11084 (partly: current ETCS mode);                                (2) MMI_gen 110 (partly: MO18);
             */
-            
-            
+
+
             /*
             Test Step 13
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

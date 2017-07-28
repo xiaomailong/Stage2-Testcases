@@ -42,7 +42,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // 1. System is power on.2. Configuration with Level STM-ATB (STM ID = 1).3. Set language to English.
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -60,22 +60,22 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Perform SoM to Level STM-ATB in SN mode
             Expected Result: ETCS OB enters Level STM-ATB, SN mode
             */
-            
-            
+
+
             /*
             Test Step 2
             Action: Use test script file 6_7.xml to send STM text message and ETCS text message to the DMI via STM-38 and EVC-8, respectively with:-Message 1: STM-38- MMI_STM_Q_ACK = 1- MMI_STM_X_TEXT = 2Message 2: EVC-8- MMI_Q_TEXT_CLASS = 0- MMI_Q_TEXT_CRITERIA = 1- MMI_Q_TEXT = 268Message 3: STM-38- MMI_STM_Q_ACK = 1- MMI_STM_X_TEXT = 4Message 4: EVC-8- MMI_Q_TEXT_CLASS = 0- MMI_Q_TEXT_CRITERIA = 1- MMI_Q_TEXT = 305
             Expected Result: Verify the following information:After DMI receives test script- Text message ‘2 - Brakes are not operated’ is displayed in sub-area E5 with yellow flashing frame surrounded area (E5+E6+E7+E8+E9).- Sound Sinfo is not played.5 seconds later- Text message ‘Communication error’ is displayed in sub-area E5 with yellow flashing frame surrounded area (E5+E6+E7+E8+E9).- Sound Sinfo is played once.5 seconds later- Text message ‘4 - Brake feedback fault’ is displayed in sub-area E5 with yellow flashing frame surrounded area (E5+E6+E7+E8+E9).- Sound Sinfo is not played.5 seconds later- Text message ‘Train divided’ is displayed in sub-area E5 with yellow flashing frame surrounded area (E5+E6+E7+E8+E9).- Sound Sinfo is played once
             Test Step Comment: MMI_gen 4483 (partly: NTC);
             */
-            
-            
+
+
             /*
             Test Step 3
             Action: Press sub-area (E5+E6+E7+E8+E9) for acknowledgement
@@ -84,8 +84,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press sub-area (E5+E6+E7+E8+E9) for acknowledgement");
-            
-            
+
+
             /*
             Test Step 4
             Action: Press sub-area (E5+E6+E7+E8+E9) for acknowledgement
@@ -94,8 +94,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press sub-area (E5+E6+E7+E8+E9) for acknowledgement");
-            
-            
+
+
             /*
             Test Step 5
             Action: Press sub-area (E5+E6+E7+E8+E9) for acknowledgement
@@ -104,8 +104,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press sub-area (E5+E6+E7+E8+E9) for acknowledgement");
-            
-            
+
+
             /*
             Test Step 6
             Action: Press sub-area (E5+E6+E7+E8+E9) for acknowledgement
@@ -114,14 +114,14 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press sub-area (E5+E6+E7+E8+E9) for acknowledgement");
-            
-            
+
+
             /*
             Test Step 7
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

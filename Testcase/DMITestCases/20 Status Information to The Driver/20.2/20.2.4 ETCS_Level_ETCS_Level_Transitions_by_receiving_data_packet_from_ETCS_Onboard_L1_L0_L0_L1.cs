@@ -40,7 +40,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // System is power ON.
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -58,7 +58,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Acivate cabin A
@@ -66,8 +66,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Driver_ID_window();
-            
-            
+
+
             /*
             Test Step 2
             Action: Perform SoM in SR mode, Level 1
@@ -75,8 +75,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Perform_SoM_in_SR_mode_Level_1();
-            
-            
+
+
             /*
             Test Step 3
             Action: Drive the train forward pass BG1
@@ -85,8 +85,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Drive_the_train_forward_pass_BG1();
-            
-            
+
+
             /*
             Test Step 4
             Action: Press an area C1 for acknowledgement
@@ -95,8 +95,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press an area C1 for acknowledgement");
-            
-            
+
+
             /*
             Test Step 5
             Action: Drive the train pass a distance to level transition
@@ -104,8 +104,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Drive_the_train_pass_a_distance_to_level_transition();
-            
-            
+
+
             /*
             Test Step 6
             Action: Drive the train forward pass BG3
@@ -114,8 +114,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Drive_the_train_forward_pass_BG3();
-            
-            
+
+
             /*
             Test Step 7
             Action: Drive the train pass a distance to level transition
@@ -123,14 +123,14 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Drive_the_train_pass_a_distance_to_level_transition();
-            
-            
+
+
             /*
             Test Step 8
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

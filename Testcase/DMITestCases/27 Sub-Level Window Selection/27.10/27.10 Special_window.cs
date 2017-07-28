@@ -38,7 +38,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Test system is powered on Cabin A is activatedSoM is completed in SR mode, level 1
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -56,7 +56,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Press ‘Spec’ button
@@ -65,16 +65,16 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Spec’ button");
-            
-            
+
+
             /*
             Test Step 2
             Action: Press ‘Train integrity’ button
             Expected Result: Verify the following information,The ‘Train Integrity’ button becomes state ‘Pressed’, then state ‘Enabled’ once the button is immediately releasedThe Special window is still displayed.The ‘Click’ sound is played once.Use the log file to confirm that DMI sends EVC-101 twice with different value of MMI_T_BUTTONEVENT and MMI_Q_BUTTON (1 = pressed, 0 = released)
             Test Step Comment: (1) MMI_gen 8438-1 (THR) (partly: button ‘Train integrity’, MMI_gen 11450-1 (THR) (partly: Delay-Type button, MMI_gen 4388 (partly: less than the 2 seconds, return to state ‘Enabled’)));(2) MMI_gen 8438-1 (THR) (partly: button ‘Train integrity’, MMI_gen 11450-1 (THR) (partly: Delay-Type button, MMI_gen 4388 (partly: less than the 2 seconds, no valid button activation considered by onboard)));(3) MMI_gen 8438-1 (THR) (partly: button ‘Train integrity’, MMI_gen 11450-1 (THR) (partly: Delay-Type button, MMI_gen 4388 (partly: the sound for button Delay-Type))); MMI_gen 9512, MMI_gen 968;(4) MMI_gen 8438-1 (THR) (partly: button ‘Train integrity’, MMI_gen 11450-1 (THR) (partly: send events of Pressed and Released independently to ETCS), MMI_gen 11907 (partly: EVC-101, timestamp)); MMI_gen 3375;
             */
-            
-            
+
+
             /*
             Test Step 3
             Action: Press and hold ‘Train integrity’ button for 2s.Note: Stopwatch is required for accuracy of test result
@@ -82,25 +82,26 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1)  MMI_gen 8438-1 (THR) (partly: button ‘Train integrity’, MMI_gen 11450-1 (THR) (partly: Delay-Type button, MMI_gen 4388 (partly: the sound for button Delay-Type))); MMI_gen 9512; MMI_gen 968;(2) MMI_gen 8438-1 (THR) (partly: button ‘Train integrity’, MMI_gen 11450-1 (THR) (partly: Delay-Type button, MMI_gen 4388 (partly: change to pressed state)));(3) MMI_gen 8438-1 (THR) (partly: button ‘Train integrity’, MMI_gen 11450-1 (THR) (partly: Delay-Type button, MMI_gen 4388 (partly: toggle between the “pressed” and “enabled” states as long as the button remains pressed by the driver)));(4) MMI_gen 8438-1 (THR) (partly: button ‘Train integrity’, MMI_gen 11450-1 (THR) (partly: send events of Pressed independently to ETCS), MMI_gen 11907 (partly: EVC-101, timestamp))); MMI_gen 3375;(5) MMI_gen 8438-1 (THR) (partly: button ‘Train integrity’, MMI_gen 11450-1 (THR) (partly: Delay-Type button, MMI_gen 4388 (partly: after 2 seconds, the button is change again to the state ‘Pressed’)));
             */
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_While_press_and_hold_button_less_than_2_secThe_Click_sound_is_played_once_The_state_of_button_is_changed_to_Pressed_The_state_pressed_and_enabled_are_switched_repeatly_while_button_is_pressed_Use_the_log_file_to_confirm_that_DMI_sends_EVC_101_with_variable_MMI_T_BUTTONEVENT_and_MMI_Q_BUTTON_1_pressed_While_press_and_hold_button_over_2_secThe_state_of_button_is_changed_to_Pressed_and_without_toggle();
-            
-            
+            DmiExpectedResults
+                .Verify_the_following_information_While_press_and_hold_button_less_than_2_secThe_Click_sound_is_played_once_The_state_of_button_is_changed_to_Pressed_The_state_pressed_and_enabled_are_switched_repeatly_while_button_is_pressed_Use_the_log_file_to_confirm_that_DMI_sends_EVC_101_with_variable_MMI_T_BUTTONEVENT_and_MMI_Q_BUTTON_1_pressed_While_press_and_hold_button_over_2_secThe_state_of_button_is_changed_to_Pressed_and_without_toggle();
+
+
             /*
             Test Step 4
             Action: Slide out from the “Train Integrity” button
             Expected Result: Verify the following information,The ‘Train Integrity’ button turns to the ‘Enabled’ state without a sound
             Test Step Comment: (1) MMI_gen 8438-1 (THR) (partly: button ‘Train Integrity’, MMI_gen 11450-1 (THR) (partly: Delay-Type button, MMI_gen 4389 (partly: state ‘Enabled’ when slide out with force applied (stop toggling state ‘Pressed’ and ‘Enabled’), no sound)))
             */
-            
-            
+
+
             /*
             Test Step 5
             Action: Slide back to the “Train integrity’ button and hold it for 1 seconds. Then, slide out again.Note: Stopwatch is required for accuracy of test result
             Expected Result: Verify the following information, (1)  The ‘Train Integrity’ button turns to the ‘Enabled’ state without a sound
             Test Step Comment: (1) MMI_gen 8438-1 (THR) (partly: button ‘Train nintegrity’, MMI_gen 11450-1 (THR) (partly: Delay-Type button, MMI_gen 4388 (partly: to reset toggling state ‘Pressed’ and ‘Enabled’, no sound), MMI_gen 4389 (partly: to reset toggling state ‘Pressed’ and ‘Enabled’, no sound)));
             */
-            
-            
+
+
             /*
             Test Step 6
             Action: Slide back to the “Train Integrity” button and hold it for 2 seconds.Note: Stopwatch is required for accuracy of test result
@@ -108,17 +109,18 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8438-1 (THR) (partly: button ‘Train Integrity’, MMI_gen 11450-1 (THR) (partly: Delay-Type button, MMI_gen 4389 (partly: start toggling state ‘Pressed’ and ‘Enabled’ when slide back, no sound)));(2) MMI_gen 8438-1 (THR) (partly: button ‘Train Integrity’, MMI_gen 11450-1 (THR) (partly: Delay-Type button, MMI_gen 4388 (partly: after 2 seconds, the button is change again to the state ‘Pressed’)));
             */
             // Call generic Check Results Method
-            DmiExpectedResults.While_press_and_hold_button_less_than_2_secThe_state_pressed_and_enabled_are_switched_repeatly_while_button_is_pressed_without_a_sound_While_press_and_hold_button_over_2_secThe_state_of_button_is_changed_to_Pressed_and_without_toggle();
-            
-            
+            DmiExpectedResults
+                .While_press_and_hold_button_less_than_2_secThe_state_pressed_and_enabled_are_switched_repeatly_while_button_is_pressed_without_a_sound_While_press_and_hold_button_over_2_secThe_state_of_button_is_changed_to_Pressed_and_without_toggle();
+
+
             /*
             Test Step 7
             Action: Release ‘Train integrity’ button
             Expected Result: DMI displays Default window.Verify the following information,Use the log file to confirm that DMI sends EVC-101 with the variable MMI_M_REQUEST = 38 (Start procedure ‘Train Integrity’)
             Test Step Comment: (1) MMI_gen 8438-1 (THR) (partly: button ‘Train Integrity’, MMI_gen 11450-1 (THR) (partly: send events of Released to ETCS, MMI_gen 4388 (partly: after 2 seconds button Up-Type is followed, button Delay-Type, MMI_gen 4381 (partly: exit state ‘Pressed’, execute function associated to the button))), MMI_gen 11907 (partly: EVC-101, timestamp)), MMI_gen 1779; MMI_gen 3375;
             */
-            
-            
+
+
             /*
             Test Step 8
             Action: Press ‘Spec’ button
@@ -128,16 +130,16 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Press ‘Spec’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Special_window();
-            
-            
+
+
             /*
             Test Step 9
             Action: Press and hold ‘SR speed/distance’ button
             Expected Result: Verify the following information,The sound ‘Click’ is played once.The ‘SR speed/distance’ button is shown as pressed state, the border of button is removed
             Test Step Comment: (1) MMI_gen 8434 (partly: MMI_gen 4557 (partly: SR speed/distance),  MMI_gen 4381 (partly: the sound for Up-Type button))); MMI_gen 9512; MMI_gen 968;(2) MMI_gen 8434 (partly: MMI_gen 4557 (partly: SR speed/distance), MMI_gen 4381 (partly: change to state ‘Pressed’ as long as remain actuated))); MMI_gen 4375;
             */
-            
-            
+
+
             /*
             Test Step 10
             Action: Slide out of ‘SR speed/distance’ button
@@ -146,8 +148,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults.The_border_of_the_button_is_shown_state_Enabled_without_a_sound();
-            
-            
+
+
             /*
             Test Step 11
             Action: Slide back into ‘SR speed/distance’ button
@@ -156,24 +158,24 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults.The_button_is_back_to_state_Pressed_without_a_sound();
-            
-            
+
+
             /*
             Test Step 12
             Action: Release ‘SR speed/distance’ button
             Expected Result: Verify the following information,DMI displays SR speed/distance window.Use the log file to confirm that DMI sends out the packet [MMI_DRIVER_REQUEST (EVC-101)] with variable [MMI_DRIVER_REQUEST (EVC-101).MMI_M_REQUEST = 13 (Change SR rules)
             Test Step Comment: (1) MMI_gen 8434 (partly: MMI_gen 4557 (partly: SR speed/distance), MMI_gen 4381 (partly: exit state ‘Pressed’, execute function associated to the button))); (2) MMI_gen 1706;
             */
-            
-            
+
+
             /*
             Test Step 13
             Action: Follow action step 9 – step 12 for the ‘Close’ button
             Expected Result: See the expected results of Step 9 – Step 12 and the following additional information, (1) DMI displays Special window refer to released button
             Test Step Comment: (1) MMI_gen 8434 (partly: MMI_gen 4557 (partly: button ‘Close’));
             */
-            
-            
+
+
             /*
             Test Step 14
             Action: Drive the train forward pass BG1
@@ -182,16 +184,16 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Drive_the_train_forward_pass_BG1();
-            
-            
+
+
             /*
             Test Step 15
             Action: Stop the train.Then, Follow action step 9 – step 12 for the ‘Adhesion’ button
             Expected Result: See the expected results of Step 9 – Step 12 and the following additional information, DMI displays Adhesion window refer to released button
             Test Step Comment: (1) MMI_gen 8434 (partly: MMI_gen 4557 (partly: Adhesion button) MMI_gen 4381 (partly: exit state ‘Pressed’, execute function associated to the button))); MMI_gen 12138;
             */
-            
-            
+
+
             /*
             Test Step 16
             Action: Press ‘Close’ button
@@ -201,8 +203,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Special_window();
-            
-            
+
+
             /*
             Test Step 17
             Action: Drive the train forward
@@ -211,8 +213,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Drive_the_train_forward();
-            
-            
+
+
             /*
             Test Step 18
             Action: Stop the train
@@ -221,8 +223,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Stop_the_train();
-            
-            
+
+
             /*
             Test Step 19
             Action: Press the ‘Close’ button
@@ -231,14 +233,14 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press the ‘Close’ button");
-            
-            
+
+
             /*
             Test Step 20
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

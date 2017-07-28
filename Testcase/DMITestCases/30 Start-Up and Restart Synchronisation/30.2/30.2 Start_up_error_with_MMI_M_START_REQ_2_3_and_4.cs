@@ -37,7 +37,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Power on test system and start OTE.
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -55,15 +55,15 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Use 25_2_a.xml script to simulate the [MMI_START_ATP(EVC-0).MMI_M_START_REQ] = 2
             Expected Result: (1)    DMI displays the message “MMI type not supported” instead of “starting up” in area E5
             Test Step Comment: (1) MMI_gen 236 (partly: MMI_M_START_REQ = 2)
             */
-            
-            
+
+
             /*
             Test Step 2
             Action: Restart OTE and ATP again until the message “starting up” is displayed in area E5
@@ -71,16 +71,16 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Restart_OTE_and_ATP_again_until_the_message_starting_up_is_displayed_in_area_E5();
-            
-            
+
+
             /*
             Test Step 3
             Action: Use 25_2_b.xml script to simulate the [MMI_START_ATP(EVC-0).MMI_M_START_REQ] = 3
             Expected Result: (1)    DMI displays the message “Incompatible IF versions” instead of “starting up” in area E5
             Test Step Comment: (1) MMI_gen 236 (partly: MMI_M_START_REQ = 3)
             */
-            
-            
+
+
             /*
             Test Step 4
             Action: Restart OTE and ATP again until the message “starting up” is displayed in area E5
@@ -88,22 +88,22 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Restart_OTE_and_ATP_again_until_the_message_starting_up_is_displayed_in_area_E5();
-            
-            
+
+
             /*
             Test Step 5
             Action: Use 25_2_c.xml script to simulate the [MMI_START_ATP(EVC-0).MMI_M_START_REQ] = 4
             Expected Result: (1)    DMI displays the message “Incompatible SW versions” instead of “starting up” in area E5
             Test Step Comment: (1) MMI_gen 236 (partly: MMI_M_START_REQ = 4)
             */
-            
-            
+
+
             /*
             Test Step 6
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

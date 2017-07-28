@@ -39,7 +39,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // System is power OFF.Configure atpcu configuration file as following (See the instruction in Appendix 2)- M_InstalledLevels = 31- NID_NTC_Installe_0 = 1 (ATB)
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -57,29 +57,29 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Peform following action:Power ON the systemActivate cabin A  perform Start of Mission to ATB STM until train running number entry
             Expected Result: DMI displays main window
             */
-            
-            
+
+
             /*
             Test Step 2
             Action: Press the ‘Start’ button
             Expected Result: The acknowledgement for NTC symbol (MO20) is displayed in area C1
             */
-            
-            
+
+
             /*
             Test Step 3
             Action: Use the test script file 15_2_9_a.xml to send EVC-8 with,MMI_Q_TEXT = 257MMI_Q_TEXT_CRITERIA = 1MMI_N_TEXT = 1MMI_X_TEXT = 0
             Expected Result: Verify the following information,The displays in sub-area C1 is not changed, DMI still displays MO20 symbol
             Test Step Comment: MMI_gen 9429 (partly, NTC);
             */
-            
-            
+
+
             /*
             Test Step 4
             Action: Confirm NTC
@@ -87,14 +87,14 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_in_ATB_STM_mode_Level_NTC();
-            
-            
+
+
             /*
             Test Step 5
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

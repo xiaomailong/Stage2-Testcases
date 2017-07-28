@@ -42,7 +42,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Open defaultValues_default.xml in OTE  then set all value of parameter "TR_OBU_TrainType" to 1Test system is powered ON.Cabin is activated.Perform SoM until until Level 1 is selected and confirmed.
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -60,7 +60,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Press ‘Train Data’ button
@@ -69,16 +69,16 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Train Data’ button");
-            
-            
+
+
             /*
             Test Step 2
             Action: Press and hold the button on keypad
             Expected Result: Verify the following information,(1)   The state of ‘PASS 2‘ button is changed to ‘Pressed’ and immediately back to ‘Enabled’ state.(2)   The sound ‘Click’ is played once.(3)   The Input Field displays the value associated to the data key according to the pressings in state ‘Pressed’.(4)   The cursor is displayed as horizontal line below the value of the dedicated-keyboard data key in the input field
             Test Step Comment: (1) MMI_gen 8086 (partly: MMI_gen 4913 (partly: Train Set); MMI_gen 4384 (partly: Change to state ‘Pressed’ and immediately back to state ‘Enabled’);   (2) MMI_gen 8086 (partly: MMI_gen 4913 (partly: Train Set)); MMI_gen 4384 (partly: sound ‘Click’); MMI_gen 9512; MMI_gen 968;(3) MMI_gen 8086 (partly: MMI_gen 4679 (partly: Train Set, MMI_gen 4913 (partly: Train Set); MMI_gen 4384 (partly: ETCS-MMI’s function associated to the button));(4) MMI_gen 8086 (partly: MMI_gen 4689, MMI_gen 4690);
             */
-            
-            
+
+
             /*
             Test Step 3
             Action: Release pressed button
@@ -87,23 +87,23 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Release pressed button");
-            
-            
+
+
             /*
             Test Step 4
             Action: Perform action step 2-3 for the remaining buttons on keypad
             Expected Result: See the expected results of Step 2 – Step 3
             */
-            
-            
+
+
             /*
             Test Step 5
             Action: Press the keypad#1 (see picture below)Then, confirm an entered data by pressing an input field
             Expected Result: Verify the following information,Input fields(1) The associated ‘Enter’ button is data field itself.(2) An input field is used to allow the driver to enter data.(3) The state of ‘Train Set’ input field is changed to ‘accepted’ as follows,The background colour of the Data Area is dark-grey.The colour of data value is white.(4) There is no input field selected.Echo Texts(5) The echo text of ‘Train Set’ is changed to white colour.(6) The value of echo text is changed refer to entered data.Data Entry window(7) The state of ‘Yes’ button below text label ‘Train data Entry is complete?’ is enabled as follows,The background colour of the Data Area is medium-grey.The colour of data value is black.The colour of border is medium-grey.Packet transmission(8) Use the log file to confirm that DMI sent out packet [MMI_NEW_TRAIN_DATA (EVC-107)] with following variablesMMI_M_TRAINSET_ID = 1MMI_N_DATA_ELEMENTS = 1MMI_M_BUTTONS = 254(9) The data part of the echo text of train category is displayed according to [MMI_CURRENT_TRAIN_DATA  (EVC-6)] with the following variables,MMI_NID_DATA = 6 (Train Data Set Identifier)MMI_N_TEXT = Character lengthMMI_X_TEXT = Selected button(10)   Use the log file to confirm that DMI received packet EVC-6 with variable MMI_M_BUTTONS = 36 (BTN_YES_DATA_ENTRY_COMPLETE)
             Test Step Comment: (1) MMI_gen 8086 (partly: MMI_gen 4682 (partly: Train Set));(2) MMI_gen 8086 (partly: MMI_gen 4634 (partly: Train Set));(3) MMI_gen 8086 (partly: MMI_gen 4652 (partly: Train Set), MMI_gen 4684 (partly: accepted, Train Set));(4) MMI_gen 8086 (partly: MMI_gen 4684 (partly: No next input field, data entry process terminated));(5) MMI_gen 8086 (partly: MMI_gen 4700 (partly: Train Set));(6) MMI_gen 8086 (partly: MMI_gen 4681 (partly: Train Set), MMI_gen 4698, MMI_gen 4890);(7) MMI_gen 8086 (partly: MMI_gen 4909 (partly: Enabled), MMI_gen 4910 (partly: Enabled, MMI_gen 4211 (partly: colour))); MMI_gen 4374;(8) MMI_gen 9460 (partly: [Enter] EVC-107); MMI_gen 11385; (9) MMI_gen 9405 (partly:Train Set);(10) MMI_gen 9409;
             */
-            
-            
+
+
             /*
             Test Step 6
             Action: Press and hold ‘Yes’ button
@@ -111,9 +111,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8086 (partly: MMI_gen 4911 (partly: [Yes], Train category, MMI_gen 4381 (partly: change to state ‘Pressed’ as long as remain actuated)); MMI_gen 4375;(2) MMI_gen 8086 (partly: MMI_gen 4911 (partly: [Yes], Train category, MMI_gen 4381 (partly: sound ‘Click’)); MMI_gen 9512; MMI_gen 968;
             */
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_1_The_state_of_button_is_changed_to_Pressed_the_border_of_button_is_removed_2_The_sound_Click_is_played_once();
-            
-            
+            DmiExpectedResults
+                .Verify_the_following_information_1_The_state_of_button_is_changed_to_Pressed_the_border_of_button_is_removed_2_The_sound_Click_is_played_once();
+
+
             /*
             Test Step 7
             Action: Slide out the ‘Yes’ button
@@ -123,9 +124,10 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.Slide_out_the_Yes_button();
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_1_The_border_of_the_button_is_shown_state_Enabled_without_a_sound();
-            
-            
+            DmiExpectedResults
+                .Verify_the_following_information_1_The_border_of_the_button_is_shown_state_Enabled_without_a_sound();
+
+
             /*
             Test Step 8
             Action: Slide back into the ‘Yes’ button
@@ -136,8 +138,8 @@ namespace Testcase.DMITestCases
             DmiActions.Slide_back_into_the_Yes_button();
             // Call generic Check Results Method
             DmiExpectedResults.Verify_the_following_information_1_The_button_is_back_to_state_Pressed_without_a_sound();
-            
-            
+
+
             /*
             Test Step 9
             Action: Release ‘Yes’ button
@@ -146,8 +148,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Release ‘Yes’ button");
-            
-            
+
+
             /*
             Test Step 10
             Action: Press ‘Close’ button
@@ -157,39 +159,39 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Train_data_window();
-            
-            
+
+
             /*
             Test Step 11
             Action: Confirm the current data without re-entry by pressing an input field
             Expected Result: The state of train type input field is changed to ‘Selected’
             */
-            
-            
+
+
             /*
             Test Step 12
             Action: Press and hold the Label area of ‘Train type’ input field
             Expected Result: Verify the following information,(1)   The state of ‘Train type’ input field is changed to ‘Pressed’, the border of button is removed.The state of ‘Train type’ input field remains ‘accepted’. (2)   The sound ‘Click’ is played once
             Test Step Comment: (1) MMI_gen 8086 (partly: MMI_gen 4686 (partly: Label area, Train type), MMI_gen 4381 (partly: change to state ‘Pressed’ as long as remain actuated))); MMI_gen 4392 (partly: [Enter], touch screen); MMI_gen 4375;(2) MMI_gen 8086 (partly: MMI_gen 4686 (partly: Label area, Train type), MMI_gen 4381 (partly: the sound for Up-Type button));
             */
-            
-            
+
+
             /*
             Test Step 13
             Action: Slide out the Label area of ‘Train type’ input field
             Expected Result: Verify the following information,(1)   The border of ‘Train type’ input field is shown (state ‘Enabled’) without a sound.The state of ‘Train type’ input field remains ‘accepted’
             Test Step Comment: (1) MMI_gen 8086 (partly: MMI_gen 4686 (partly: Label area, Train type), MMI_gen 4382 (partly: state ‘Enabled’ when slide out with force applied, no sound); MMI_gen 4374;
             */
-            
-            
+
+
             /*
             Test Step 14
             Action: Slide back into the Label area of ‘Train type’ input field
             Expected Result: Verify the following information,(1)   The state of ‘Train type’ input field is changed to ‘Pressed’, the border of button is removed.The state of ‘Train type’ input field remains ‘accepted’
             Test Step Comment: (1) MMI_gen 8086 (partly: MMI_gen 4686 (partly: Label area, Train type), MMI_gen 4382 (partly: state ‘Pressed’ when slide back, no sound)); MMI_gen 4375;
             */
-            
-            
+
+
             /*
             Test Step 15
             Action: Release the pressed area
@@ -198,16 +200,16 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Release the pressed area");
-            
-            
+
+
             /*
             Test Step 16
             Action: Confirm the current data without re-entry by pressing an input field.Then, perform action step 12-15 for the Data area of each input field
             Expected Result: Verify the following information,(1)   The state of an input field is changed to ‘selected’ when release the pressed area at the Data area of input field
             Test Step Comment: (1) MMI_gen 8086 (partly: MMI_gen 4686 (partly: Data area, Up-Type button)); MMI_gen 9390 (partly: Fixed Train data window);
             */
-            
-            
+
+
             /*
             Test Step 17
             Action: Press ‘Close’ button
@@ -216,8 +218,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
-            
-            
+
+
             /*
             Test Step 18
             Action: Press ‘Train data’ button.Then, use the test script file 22_29_2_b.xml to send EVC-6 with,MMI_M_BUTTONS = 36
@@ -225,9 +227,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9409 (partly: other rule, MMI_gen 4909 (partly: otherwise));
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Train_data_window_Verify_the_following_information_1_The_state_of_Yes_button_below_text_label_Train_data_Entry_is_complete_still_disabled();
-            
-            
+            DmiExpectedResults
+                .DMI_displays_Train_data_window_Verify_the_following_information_1_The_state_of_Yes_button_below_text_label_Train_data_Entry_is_complete_still_disabled();
+
+
             /*
             Test Step 19
             Action: Press ‘Close’ button
@@ -237,22 +240,22 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Main_window();
-            
-            
+
+
             /*
             Test Step 20
             Action: Use the test script file 22_29_2_a.xml to send EVC-6 with,MMI_M_DATA_ENABLE = 1MMI_N_TRAINSETS = 10MMI_N_CAPTION_TRAINSET = 1 for every indexEach index of MMI_X_CAPTION_TRAINSET are set as following value,ABCDEFGHIJ
             Expected Result: Verify the following information,(1)   DMI displays Train data window with only 9 buttons of keypad that all labels correspond with received packet EVC-20.OR(1)   DMI does not display Train data window because of the value of MMI_N_TRAINSETS is invalid
             Test Step Comment: (1) MMI_gen 11382;
             */
-            
-            
+
+
             /*
             Test Step 21
             Action: End ot Test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

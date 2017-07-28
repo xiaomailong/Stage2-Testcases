@@ -37,7 +37,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Open defaultValues_default.xml in OTE  then set all value of parameter "  TR_OBU_TrainType" to 2System is powered ON.Cabin is activated.SoM is performed until Level 1 is selected and confirmed.Train data window is opened.
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -55,7 +55,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Enter and confirm all data in Train data window
@@ -64,8 +64,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Enter and confirm all data in Train data window");
-            
-            
+
+
             /*
             Test Step 2
             Action: Press ‘No’ button
@@ -76,8 +76,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Press ‘No’ button");
             // Call generic Check Results Method
             DmiExpectedResults.The_value_of_input_field_is_changed_refer_to_selected_button();
-            
-            
+
+
             /*
             Test Step 3
             Action: Confirm entered data by pressing an input field
@@ -87,20 +87,22 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.Confirm_entered_data_by_pressing_an_input_field();
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_DMI_displays_Train_data_window_Use_the_log_file_to_confirm_that_DMI_sends_out_the_packet_MMI_DRIVER_REQUEST_EVC_101_with_variable_MMI_DRIVER_REQUEST_EVC_101_MMI_M_REQUEST_4_Exit_Train_data();
-            
-            
+            DmiExpectedResults
+                .Verify_the_following_information_DMI_displays_Train_data_window_Use_the_log_file_to_confirm_that_DMI_sends_out_the_packet_MMI_DRIVER_REQUEST_EVC_101_with_variable_MMI_DRIVER_REQUEST_EVC_101_MMI_M_REQUEST_4_Exit_Train_data();
+
+
             /*
             Test Step 4
             Action: Perform the following procedure,Enter and confirm all data in Train data window.Press ‘Yes’ button
             Expected Result: DMI displays Train data validation window
             */
             // Call generic Action Method
-            DmiActions.Perform_the_following_procedure_Enter_and_confirm_all_data_in_Train_data_window_Press_Yes_button();
+            DmiActions
+                .Perform_the_following_procedure_Enter_and_confirm_all_data_in_Train_data_window_Press_Yes_button();
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Train_data_validation_window();
-            
-            
+
+
             /*
             Test Step 5
             Action: Press ‘Close’ button
@@ -110,20 +112,22 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_DMI_displays_Main_window_Use_the_log_file_to_confirm_that_DMI_sends_out_the_packet_MMI_DRIVER_REQUEST_EVC_101_with_variable_MMI_DRIVER_REQUEST_EVC_101_MMI_M_REQUEST_4_Exit_Train_data();
-            
-            
+            DmiExpectedResults
+                .Verify_the_following_information_DMI_displays_Main_window_Use_the_log_file_to_confirm_that_DMI_sends_out_the_packet_MMI_DRIVER_REQUEST_EVC_101_with_variable_MMI_DRIVER_REQUEST_EVC_101_MMI_M_REQUEST_4_Exit_Train_data();
+
+
             /*
             Test Step 6
             Action: Perform the following procedure,Press ‘Train data’ button.Enter and confirm all data in Train data window.Press ‘Yes’ button
             Expected Result: DMI displays Train data validation window
             */
             // Call generic Action Method
-            DmiActions.Perform_the_following_procedure_Press_Train_data_button_Enter_and_confirm_all_data_in_Train_data_window_Press_Yes_button();
+            DmiActions
+                .Perform_the_following_procedure_Press_Train_data_button_Enter_and_confirm_all_data_in_Train_data_window_Press_Yes_button();
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Train_data_validation_window();
-            
-            
+
+
             /*
             Test Step 7
             Action: Press ‘Yes’ button
@@ -134,8 +138,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Press ‘Yes’ button");
             // Call generic Check Results Method
             DmiExpectedResults.The_value_of_input_field_is_changed_refer_to_selected_button();
-            
-            
+
+
             /*
             Test Step 8
             Action: Confirm entered data by pressing an input field
@@ -145,9 +149,10 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.Confirm_entered_data_by_pressing_an_input_field();
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Train_Running_Number_window_Verify_the_following_information_The_Train_data_validation_is_closed_Use_the_log_file_to_confirm_that_DMI_sends_out_the_packet_MMI_CONFIRMED_TRAIN_DATA_EVC_110_with_variable_based_on_confirmed_data();
-            
-            
+            DmiExpectedResults
+                .DMI_displays_Train_Running_Number_window_Verify_the_following_information_The_Train_data_validation_is_closed_Use_the_log_file_to_confirm_that_DMI_sends_out_the_packet_MMI_CONFIRMED_TRAIN_DATA_EVC_110_with_variable_based_on_confirmed_data();
+
+
             /*
             Test Step 9
             Action: Perform the following procedure,Enter and confirm ‘Train running number’Press ‘Train data’ button.Enter and confirm all data in Train data window.Press ‘Yes’ button.Then, Simulate loss-communication between ETCS onboard and DMI
@@ -155,8 +160,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Default_window_with_the_message_ATP_Down_Alarm_and_sound_alarm();
-            
-            
+
+
             /*
             Test Step 10
             Action: Re-establish communication between ETCS onboard and DMI
@@ -165,14 +170,14 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Re_establish_communication_between_ETCS_onboard_and_DMI();
-            
-            
+
+
             /*
             Test Step 11
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

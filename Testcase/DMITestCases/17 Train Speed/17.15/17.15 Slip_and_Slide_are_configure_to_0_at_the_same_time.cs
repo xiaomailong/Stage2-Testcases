@@ -38,7 +38,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Set the following tags name in configuration file (See the instruction in Appendix 1)SLIP_SPEEDMETER = 0SLIDE_SPEEDMETER = 0Test system is powered onCabin is activeSoM is completed in SR mode, Level 1.
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -56,7 +56,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Driver the train forward
@@ -66,8 +66,8 @@ namespace Testcase.DMITestCases
             DmiActions.Driver_the_train_forward();
             // Call generic Check Results Method
             DmiExpectedResults.DMI_changes_from_SR_mode_to_FS_mode();
-            
-            
+
+
             /*
             Test Step 2
             Action: Drive the train forward with speed = 140 km/h
@@ -77,8 +77,8 @@ namespace Testcase.DMITestCases
             DmiActions.Drive_the_train_forward_with_speed_140_kmh();
             // Call generic Check Results Method
             DmiExpectedResults.The_speed_pointer_is_displayed_with_speed_140();
-            
-            
+
+
             /*
             Test Step 3
             Action: Use the test script file 12_15_a.xml to send EVC-1 with,MMI_M_SLIP = 1MMI_M_SLIDE =0
@@ -87,8 +87,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults.Verify_that_Slip_and_Slide_indicator_are_not_display_on_DMI();
-            
-            
+
+
             /*
             Test Step 4
             Action: Use the test script file 12_15_b.xml to send EVC-1 with,MMI_M_SLIP = 0MMI_M_SLIDE = 1
@@ -97,8 +97,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults.Verify_that_Slip_and_Slide_indicator_are_not_display_on_DMI();
-            
-            
+
+
             /*
             Test Step 5
             Action: Use the test script file 12_15_c.xml to send EVC-1 with,MMI_M_SLIP = 1MMI_M_SLIDE = 1
@@ -107,14 +107,14 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults.Verify_that_Slip_and_Slide_indicator_are_not_display_on_DMI();
-            
-            
+
+
             /*
             Test Step 6
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

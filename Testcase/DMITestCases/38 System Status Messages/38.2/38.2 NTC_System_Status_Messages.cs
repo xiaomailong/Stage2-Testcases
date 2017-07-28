@@ -37,7 +37,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // System is power offConfigure atpcu configuration file as following (See the instruction in Appendix 2)M_InstalledLevels = 63NID_NTC_Installe_0 = 1 (ATB)NID_NTC_Installe_1 = 9 (PLZB)Q_CustomConfig = 3
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -55,7 +55,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Power on the system and activate the cabin
@@ -65,15 +65,15 @@ namespace Testcase.DMITestCases
             DmiActions.Power_on_the_system_and_activate_the_cabin();
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Driver_ID_window_in_SB_mode();
-            
-            
+
+
             /*
             Test Step 2
             Action: Perform the following action:Enter Driver IDskip the brake testSelect and comfirm ATB STMSelect Train data
             Expected Result: DMI displays Train data entry window
             */
-            
-            
+
+
             /*
             Test Step 3
             Action: Drive the train forward
@@ -82,8 +82,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Drive_the_train_forward();
-            
-            
+
+
             /*
             Test Step 4
             Action: Release service brake and complete train data enrty
@@ -91,23 +91,23 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_train_running_number_window();
-            
-            
+
+
             /*
             Test Step 5
             Action: Turn off STM Simulator and then complete start of mission
             Expected Result: The text message “ATB failed” and “ATB is not avaliable “display in sub-area E5
             Test Step Comment: MMI_gen 9522 (partly: table 77, failed and is not available);
             */
-            
-            
+
+
             /*
             Test Step 6
             Action: Restart OTE and STM Simulator
             Expected Result: OTE and STM Simulator are started
             */
-            
-            
+
+
             /*
             Test Step 7
             Action: Start up PZLB STM and then ATPCU
@@ -115,16 +115,16 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Driver_ID_window_in_SB_mode();
-            
-            
+
+
             /*
             Test Step 8
             Action: Perform start of mission to PLZB STM until train data entry completely
             Expected Result: DMI display PLZB specific data window
             Test Step Comment: MMI_gen 9522 (partly: table 77, needed data);
             */
-            
-            
+
+
             /*
             Test Step 9
             Action: Enter and confirm PLZB specific data
@@ -132,8 +132,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_train_running_number_window();
-            
-            
+
+
             /*
             Test Step 10
             Action: Complete start of mission
@@ -143,14 +143,14 @@ namespace Testcase.DMITestCases
             DmiActions.Complete_start_of_mission();
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_in_PLZB_STM_mode();
-            
-            
+
+
             /*
             Test Step 11
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

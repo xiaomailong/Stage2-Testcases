@@ -16,20 +16,26 @@ namespace Testcase.Telegrams
     /// </summary>
     static class EVC107_MMINewTrainData
     {
-        private static SignalPool _pool;        
+        private static SignalPool _pool;
 
         public static void ReceiveVariableTD(ushort mmiLTrain, ushort mmiVMaxTrain)
         {
             bool bResult = false;
-            
+
             // Checking packet id
             _pool.SITR.CCUO.ETCS1NewTrainData.MmiMPacket.Value.Equals(107);
             // Checking MMI_L_TRAIN
             bResult = _pool.SITR.CCUO.ETCS1NewTrainData.MmiLTrain.Value.Equals(mmiLTrain);
-            if (bResult) { _pool.TraceInfo("EVC-107 received: MMI_L_TRAIN = {0}", mmiLTrain); }
+            if (bResult)
+            {
+                _pool.TraceInfo("EVC-107 received: MMI_L_TRAIN = {0}", mmiLTrain);
+            }
             // Checking MMI_V_MAXTRAIN
             bResult = _pool.SITR.CCUO.ETCS1NewTrainData.MmiVMaxtrain.Value.Equals(mmiVMaxTrain);
-            if (bResult) { _pool.TraceInfo("EVC-107 received: MMI_V_MAXTRAIN = {0}", mmiVMaxTrain); }
+            if (bResult)
+            {
+                _pool.TraceInfo("EVC-107 received: MMI_V_MAXTRAIN = {0}", mmiVMaxTrain);
+            }
         }
     }
 }

@@ -38,7 +38,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // System is power ON.Cabin is activated.SoM is perform until train running number is entered.
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -56,22 +56,22 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Press the 'Start' button
             Expected Result: The acknowledgement for Staff Responsible symbol (MO10) is displayed in sub-area C1
             */
-            
-            
+
+
             /*
             Test Step 2
             Action: Use the test script file 15_2_3_a.xml to send EVC-8 with,MMI_Q_TEXT = 257MMI_Q_TEXT_CRITERIA = 1MMI_N_TEXT = 1MMI_X_TEXT = 0
             Expected Result: Verify the following information,(1)    The displays in sub-area C1 is not changed, DMI still displays MO10 symbol
             Test Step Comment: (1) MMI_gen 9429;
             */
-            
-            
+
+
             /*
             Test Step 3
             Action: Perform the following procedure,Deactivate CabinActivate CabinEnter Driver ID and skip brake testSelect and confirm Level 1.Press ‘Close’ button
@@ -79,110 +79,110 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_in_SB_mode_level_1();
-            
-            
+
+
             /*
             Test Step 4
             Action: Use the test script file 15_2_3_b.xml to send EVC-8 with,MMI_Q_TEXT = 257MMI_Q_TEXT_CRITERIA = 1MMI_N_TEXT = 1MMI_X_TEXT = 0
             Expected Result: Verify the following information,(1)  DMI displays the LE07 symbol with yellow flashing frame in sub-area C1
             Test Step Comment: (1) MMI_gen 1310 (partly:LE07);     
             */
-            
-            
+
+
             /*
             Test Step 5
             Action: (Continue from step 4) Send EVC-8 with,MMI_Q_TEXT = 257MMI_Q_TEXT_CRITERIA = 1MMI_N_TEXT = 1MMI_X_TEXT = 1
             Expected Result: Verify the following information,(1)  DMI displays the LE11 symbol with yellow flashing frame in sub-area C1
             Test Step Comment: (1) MMI_gen 1310 (partly:LE11);     
             */
-            
-            
+
+
             /*
             Test Step 6
             Action: (Continue from step 5) Send EVC-8 with,MMI_Q_TEXT = 257MMI_Q_TEXT_CRITERIA = 1MMI_N_TEXT = 1MMI_X_TEXT = 2
             Expected Result: Verify the following information,(1)  DMI displays the LE13 symbol with yellow flashing frame in sub-area C1
             Test Step Comment: (1) MMI_gen 1310 (partly:LE13);     
             */
-            
-            
+
+
             /*
             Test Step 7
             Action: (Continue from step 6)Send EVC-8 with,MMI_Q_TEXT = 257MMI_Q_TEXT_CRITERIA = 1MMI_N_TEXT = 1MMI_X_TEXT = 3
             Expected Result: Verify the following information,(1)  DMI displays the LE15 symbol with yellow flashing frame in sub-area C1
             Test Step Comment: (1) MMI_gen 1310 (partly:LE15);     
             */
-            
-            
+
+
             /*
             Test Step 8
             Action: (Continue from step 7) Send EVC-8 with,MMI_Q_TEXT = 258MMI_Q_TEXT_CRITERIA = 1MMI_N_TEXT = 1MMI_X_TEXT = 9
             Expected Result: Verify the following information,(1)  DMI displays the LE09a symbol with yellow flashing frame in sub-area C1
             Test Step Comment: (1) MMI_gen 1310 (partly:LE09a);     
             */
-            
-            
+
+
             /*
             Test Step 9
             Action: (Continue from step 8) Send EVC-8 with,MMI_Q_TEXT = 258MMI_Q_TEXT_CRITERIA = 1MMI_N_TEXT = 1MMI_X_TEXT = 4
             Expected Result: Verify the following information,(1)  DMI displays the LE09 symbol with yellow flashing frame in sub-area C1
             Test Step Comment: (1) MMI_gen 1310 (partly:LE09);     
             */
-            
-            
+
+
             /*
             Test Step 10
             Action: (Continue from step 9) Send EVC-8 with,MMI_Q_TEXT = 276MMI_Q_TEXT_CRITERIA = 3MMI_N_TEXT = 1MMI_X_TEXT = 0
             Expected Result: Verify the following information,(1)  DMI displays the LE06 symbol without yellow flashing frame in sub-area C1
             Test Step Comment: (1) MMI_gen 1310 (partly:LE06);     
             */
-            
-            
+
+
             /*
             Test Step 11
             Action: (Continue from step 10)Send EVC-8 with,MMI_Q_TEXT = 276MMI_Q_TEXT_CRITERIA = 3MMI_N_TEXT = 1MMI_X_TEXT = 1
             Expected Result: Verify the following information,(1)  DMI displays the LE10 symbol without yellow flashing frame in sub-area C1
             Test Step Comment: (1) MMI_gen 1310 (partly:LE10);     
             */
-            
-            
+
+
             /*
             Test Step 12
             Action: (Continue from step 11)Send EVC-8 with,MMI_Q_TEXT = 276MMI_Q_TEXT_CRITERIA = 3MMI_N_TEXT = 1MMI_X_TEXT = 2
             Expected Result: Verify the following information,(1)  DMI displays the LE12 symbol without yellow flashing frame in sub-area C1
             Test Step Comment: (1) MMI_gen 1310 (partly:LE12);     
             */
-            
-            
+
+
             /*
             Test Step 13
             Action: (Continue from step 12)Send EVC-8 with,MMI_Q_TEXT = 276MMI_Q_TEXT_CRITERIA = 3MMI_N_TEXT = 1MMI_X_TEXT = 3
             Expected Result: Verify the following information,(1)  DMI displays the LE14 symbol without yellow flashing frame in sub-area C1
             Test Step Comment: (1) MMI_gen 1310 (partly:LE14);     
             */
-            
-            
+
+
             /*
             Test Step 14
             Action: (Continue from step 13)Send EVC-8 with,MMI_Q_TEXT = 277MMI_Q_TEXT_CRITERIA = 3MMI_N_TEXT = 1MMI_X_TEXT = 9
             Expected Result: Verify the following information,(1)  DMI displays the LE08a symbol without yellow flashing frame in sub-area C1
             Test Step Comment: (1) MMI_gen 1310 (partly:LE08a);     
             */
-            
-            
+
+
             /*
             Test Step 15
             Action: (Continue from step 14)Send EVC-8 with,MMI_Q_TEXT = 277MMI_Q_TEXT_CRITERIA = 3MMI_N_TEXT = 1MMI_X_TEXT = 4
             Expected Result: Verify the following information,(1)  DMI displays the LE08 symbol without yellow flashing frame in sub-area C1
             Test Step Comment: (1) MMI_gen 1310 (partly:LE08);     
             */
-            
-            
+
+
             /*
             Test Step 16
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

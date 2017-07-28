@@ -38,7 +38,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Test system is power on.Cabin is activated.
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -56,7 +56,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Press ‘Settings’ button
@@ -66,9 +66,10 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Settings’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Settings_window_Verify_the_following_information_The_Close_button_is_enabled();
-            
-            
+            DmiExpectedResults
+                .DMI_displays_Settings_window_Verify_the_following_information_The_Close_button_is_enabled();
+
+
             /*
             Test Step 2
             Action: Press ‘Maintenance’ button
@@ -77,8 +78,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Maintenance’ button");
-            
-            
+
+
             /*
             Test Step 3
             Action: Press ‘Close’ button
@@ -89,8 +90,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Settings_window();
-            
-            
+
+
             /*
             Test Step 4
             Action: Perform the following procedure,Press ‘Maintenance’ button.Enter the Maintenance window by entering the password same as a value in tag ‘PASS_CODE_MTN’ of the configuration file and confirming the password
@@ -98,9 +99,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9231 (partly: Maintenance window);   
             */
             // Call generic Action Method
-            DmiActions.Perform_the_following_procedure_Press_Maintenance_button_Enter_the_Maintenance_window_by_entering_the_password_same_as_a_value_in_tag_PASS_CODE_MTN_of_the_configuration_file_and_confirming_the_password();
-            
-            
+            DmiActions
+                .Perform_the_following_procedure_Press_Maintenance_button_Enter_the_Maintenance_window_by_entering_the_password_same_as_a_value_in_tag_PASS_CODE_MTN_of_the_configuration_file_and_confirming_the_password();
+
+
             /*
             Test Step 5
             Action: Press ‘Close’ button
@@ -111,8 +113,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Settings_window();
-            
-            
+
+
             /*
             Test Step 6
             Action: Perform the following procedure, Press ‘Close’ button.Enter Driver ID and perform brake test.Select and confirm Level 1.Press ‘Close’ button
@@ -120,8 +122,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Default_window();
-            
-            
+
+
             /*
             Test Step 7
             Action: Press ‘Settings’ button
@@ -131,9 +133,10 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Settings’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Settings_window_Verify_the_following_information_The_Close_button_is_enabled();
-            
-            
+            DmiExpectedResults
+                .DMI_displays_Settings_window_Verify_the_following_information_The_Close_button_is_enabled();
+
+
             /*
             Test Step 8
             Action: Press ‘Close’ button
@@ -144,8 +147,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_the_Default_window();
-            
-            
+
+
             /*
             Test Step 9
             Action: Press ‘Settings’ button
@@ -155,8 +158,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Press ‘Settings’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Settings_window();
-            
-            
+
+
             /*
             Test Step 10
             Action: Press ‘System version’ button
@@ -164,8 +167,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘System version’ button");
-            
-            
+
+
             /*
             Test Step 11
             Action: Press ‘Close’ button
@@ -176,8 +179,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Settings_window();
-            
-            
+
+
             /*
             Test Step 12
             Action: Press ‘Language’ button
@@ -186,8 +189,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Language’ button");
-            
-            
+
+
             /*
             Test Step 13
             Action: Press ‘Close’ button
@@ -198,8 +201,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Settings_window();
-            
-            
+
+
             /*
             Test Step 14
             Action: Press ‘Language’ button
@@ -209,8 +212,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Press ‘Language’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Language_window();
-            
-            
+
+
             /*
             Test Step 15
             Action: Confirm entered data by pressing input field
@@ -221,8 +224,8 @@ namespace Testcase.DMITestCases
             DmiActions.Confirm_entered_data_by_pressing_input_field();
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Settings_window();
-            
-            
+
+
             /*
             Test Step 16
             Action: Press ‘Volume’ button
@@ -231,8 +234,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Volume’ button");
-            
-            
+
+
             /*
             Test Step 17
             Action: Press ‘Close’ button
@@ -243,8 +246,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Settings_window();
-            
-            
+
+
             /*
             Test Step 18
             Action: Press ‘Volume’ button
@@ -254,8 +257,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Press ‘Volume’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Volume_window();
-            
-            
+
+
             /*
             Test Step 19
             Action: Confirm entered data by pressing input field
@@ -266,8 +269,8 @@ namespace Testcase.DMITestCases
             DmiActions.Confirm_entered_data_by_pressing_input_field();
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Settings_window();
-            
-            
+
+
             /*
             Test Step 20
             Action: Press ‘Brightness’ button
@@ -276,8 +279,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Brightness’ button");
-            
-            
+
+
             /*
             Test Step 21
             Action: Press ‘Close’ button
@@ -288,8 +291,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Settings_window();
-            
-            
+
+
             /*
             Test Step 22
             Action: Press ‘Brightness’ button
@@ -297,8 +300,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Brightness’ button");
-            
-            
+
+
             /*
             Test Step 23
             Action: Confirm entered data by pressing input field
@@ -309,8 +312,8 @@ namespace Testcase.DMITestCases
             DmiActions.Confirm_entered_data_by_pressing_input_field();
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Settings_window();
-            
-            
+
+
             /*
             Test Step 24
             Action: Press ‘System version’ button
@@ -319,8 +322,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘System version’ button");
-            
-            
+
+
             /*
             Test Step 25
             Action: Press ‘Close’ button
@@ -331,8 +334,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Settings_window();
-            
-            
+
+
             /*
             Test Step 26
             Action: Press ‘Set VBC’ button
@@ -341,8 +344,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Set VBC’ button");
-            
-            
+
+
             /*
             Test Step 27
             Action: Press ‘Close’ button
@@ -353,16 +356,16 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Settings_window();
-            
-            
+
+
             /*
             Test Step 28
             Action: Perforrm the following procedure,Press ‘Set VBC’ button. Enter the value 65536 and confirm by pressing an input field.Press ‘Yes’ button
             Expected Result: DMI displays Validate Set VBC window. Verify the following information,The ‘Close’ button is enabled
             Test Step Comment: (1) MMI_gen 9231 (partly: Validate Set VBC window);    Table 71 (Partly: step S6-1 (Set VBC window));
             */
-            
-            
+
+
             /*
             Test Step 29
             Action: Press ‘Close’ button
@@ -373,8 +376,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Settings_window();
-            
-            
+
+
             /*
             Test Step 30
             Action: Perform a following procedure,Press ‘Set VBC’ buttonEnter and confirm value 65536At Validate set VBC window, press ‘No’ button and press an input field
@@ -383,16 +386,16 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Set_VBC_window();
-            
-            
+
+
             /*
             Test Step 31
             Action: Perform a following procedure,Enter and confirm value 65536At Validate set VBC window, press ‘Yes’ button and press an input field
             Expected Result: DMI displays Settings window.The ‘Remove VBC’ button is enabled
             Test Step Comment: Table 71 (Partly: step S6-2 (Set VBC validation window));
             */
-            
-            
+
+
             /*
             Test Step 32
             Action: Press ‘Remove VBC’ button
@@ -401,8 +404,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Remove VBC’ button");
-            
-            
+
+
             /*
             Test Step 33
             Action: Press ‘Close’ button
@@ -413,16 +416,16 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Settings_window();
-            
-            
+
+
             /*
             Test Step 34
             Action: Perforrm the following procedure,Enter the value 65536 and confirm by pressing an input field.Press ‘Yes’ button
             Expected Result: DMI displays Validate Remove VBC window. Verify the following information,The ‘Close’ button is enabled
             Test Step Comment: (1) MMI_gen 9231 (partly: Validate Remove VBC window);    
             */
-            
-            
+
+
             /*
             Test Step 35
             Action: Press ‘Close’ button
@@ -433,8 +436,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Settings_window();
-            
-            
+
+
             /*
             Test Step 36
             Action: Perforrm the following procedure,Press ‘Remove VBC’ button. Enter the value 65536 and confirm by pressing an input field.At the Validate remove VBC window, press ‘No’ button and press an input field
@@ -443,16 +446,16 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Remove_VBC_window();
-            
-            
+
+
             /*
             Test Step 37
             Action: Perform a following procedure,Enter and confirm value 65536At the Validate remove VBC window, press ‘Yes’ button and press an input field
             Expected Result: DMI displays Settings window.The ‘Remove VBC’ button is disabled
             Test Step Comment: Table 71 (Partly: step 76-2 (Remove VBC validation window));
             */
-            
-            
+
+
             /*
             Test Step 38
             Action: Press ‘Brake’ button
@@ -461,8 +464,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Brake’ button");
-            
-            
+
+
             /*
             Test Step 39
             Action: Press ‘Close’ button
@@ -473,16 +476,16 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Settings_window();
-            
-            
+
+
             /*
             Test Step 40
             Action: Press ‘System Info’ button
             Expected Result: DMI displays System Info window.Verify the following information,The ‘Close’ button is enabled
             Test Step Comment: (1) MMI_gen 9231 (partly: System Info window);    
             */
-            
-            
+
+
             /*
             Test Step 41
             Action: Press ‘Close’ button
@@ -493,8 +496,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Settings_window();
-            
-            
+
+
             /*
             Test Step 42
             Action: Press ‘Set Clock’ button
@@ -503,8 +506,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Set Clock’ button");
-            
-            
+
+
             /*
             Test Step 43
             Action: Press ‘Close’ button
@@ -515,16 +518,16 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Settings_window();
-            
-            
+
+
             /*
             Test Step 44
             Action: Press ‘Close’ button.Then, simulate loss-communication between ETCS onboard and DMI
             Expected Result: DMI displays Default window with the  message “ATP Down Alarm” and sound alarm.Verify the following information,The ‘Settings’ button is displays as enabled state in sub-area F5
             Test Step Comment: (1) MMI_gen 11995 (partly: enable settings);
             */
-            
-            
+
+
             /*
             Test Step 45
             Action: Press ‘Settings’ button
@@ -533,8 +536,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Settings’ button");
-            
-            
+
+
             /*
             Test Step 46
             Action: Press ‘Language’ button
@@ -543,8 +546,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Language’ button");
-            
-            
+
+
             /*
             Test Step 47
             Action: Press ‘Close’ button
@@ -554,8 +557,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Settings_window();
-            
-            
+
+
             /*
             Test Step 48
             Action: Press ‘Brightness’ button
@@ -564,8 +567,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Brightness’ button");
-            
-            
+
+
             /*
             Test Step 49
             Action: Press ‘Close’ button
@@ -575,8 +578,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Settings_window();
-            
-            
+
+
             /*
             Test Step 50
             Action: Press ‘Volume’ button
@@ -585,8 +588,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Volume’ button");
-            
-            
+
+
             /*
             Test Step 51
             Action: Press ‘Close’ button
@@ -596,14 +599,14 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Settings_window();
-            
-            
+
+
             /*
             Test Step 52
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

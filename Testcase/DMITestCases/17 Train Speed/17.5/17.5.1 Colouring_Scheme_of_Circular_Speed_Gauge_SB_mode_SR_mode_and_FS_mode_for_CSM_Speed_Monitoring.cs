@@ -35,13 +35,14 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 12_5_1.tdg
     /// </summary>
-    public class Colouring_Scheme_of_Circular_Speed_Gauge_SB_mode_SR_mode_and_FS_mode_for_CSM_Speed_Monitoring : TestcaseBase
+    public class
+        Colouring_Scheme_of_Circular_Speed_Gauge_SB_mode_SR_mode_and_FS_mode_for_CSM_Speed_Monitoring : TestcaseBase
     {
         public override void PreExecution()
         {
             // Pre-conditions from TestSpec:
             // System is power on.Cabin is activated.Perform SoM until Level 1 is selected and confirmed.
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -59,23 +60,23 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Perform the following procedure,Press ‘Train data’ button.Enter and validate all train data.Enter the train running number
             Expected Result: DMI displays Main window in SB mode, Level 1.Verify the following information,(1)    Use the log file to confirm that DMI received packet EVC-7 with variable OBU_TR_M_MODE = 6 (Standby mode).(2)    The CSG is still not displayed on DMI
             Test Step Comment: (1) MMI_gen 972 (partly: OBU_TR_M_MODE, table 33, mode SB); MMI_gen 6310 (partly: mode);(2) MMI_gen 972 (partly: CSG shall not displayed, table 33, mode SB);
             */
-            
-            
+
+
             /*
             Test Step 2
             Action: Perform the following procedure,Press ‘Start’ button.Press and hold sub-area C1 up to 2 second.Release the pressed area
             Expected Result: DMI displays Default window in SR mode, Level 1.Verify the following information,(1)     Use the log file to confirm that DMI received packet EVC-7 with variable OBU_TR_M_MODE = 2 (Staff Responsible mode)(2)    The CSG is still not displayed on DMI
             Test Step Comment: (1) MMI_gen 972 (partly: OBU_TR_M_MODE, table 33, mode SR); MMI_gen 6310 (partly: mode);(2) MMI_gen 972 (partly: CSG shall not displayed, table 33, mode SR);
             */
-            
-            
+
+
             /*
             Test Step 3
             Action: Drive the train forward pass BG1 with speed = 30km/h
@@ -84,38 +85,38 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Drive_the_train_forward_pass_BG1_with_speed_30kmh();
-            
-            
+
+
             /*
             Test Step 4
             Action: Continue to drive the train forward with speed = 151 km/h
             Expected Result: Verify the following information,(1)   Use the log file to confirm that DMI received packet EVC-1 with following variables, MMI_M_WARNING = 8 (Status=OvS, Supervision=CSM).MMI_V_INTERVENTION > 4166 (150 km/h)(2)   The CSG at 0-150 km/h is dark-grey colour.(3)   The CSG at beyond 150km/h is orange colour.(4)   The CSG between the hook (Vperm = 150 km/h) and Vsbi is have a same width with hook
             Test Step Comment: (1) MMI_gen 972 (partly: MMI_M_WARNING, MMI_V_INTERVEN); MMI_gen 6310 (partly: supervision status, intervention speed);(2) MMI_gen 972 (partly: FS mode, CSM, 0km/h <= CSG <= Vperm);(3) MMI_gen 972 (partly: FS mode, CSM, Vperm <= CSG <= Vsbi );(4) MMI_gen 1155 (partly: Over-speed); MMI_gen 1182 (partly: Vsbi);
             */
-            
-            
+
+
             /*
             Test Step 5
             Action: Continue to drive the train forward with speed = 155 km/h.Note: dV_warning_max is defined in chapter 3 of [SUBSET-026]
             Expected Result: Verify the following information,(1)   Use the log file to confirm that DMI received packet EVC-1 with following variables, MMI_M_WARNING = 4 (Status=WaS, Supervision=CSM).(2)   The CSG at 0-150 km/h is dark-grey colour.(3)   The CSG at beyond 150km/h is orange colour.(4)   The CSG between the hook (Vperm = 150 km/h) and Vsbi is have a same width with hook.(5)   Sound S2 is played continuously while the Warning Status is active
             Test Step Comment: (1) MMI_gen 972 (partly: MMI_M_WARNING, MMI_V_INTERVEN); MMI_gen 6310 (partly: supervision status, intervention speed);(2) MMI_gen 972 (partly: FS mode, CSM, 0km/h <= CSG <= Vperm);(3) MMI_gen 972 (partly: FS mode, CSM, Vperm <= CSG <= Vsbi );(4) MMI_gen 1155 (partly: Warning);(5)   MMI_gen 5774; MMI_gen 11921 (partly: MMI_M_WARNING = 4);
             */
-            
-            
+
+
             /*
             Test Step 6
             Action: Drive the train forward with speed greater than MMI_V_INTERVENTION from step 4
             Expected Result: Verify the following information,(1)   Use the log file to confirm that DMI received packet EVC-1 with following variables, MMI_M_WARNING = 12 (Status=IntS, Supervision=CSM).(2)   The CSG at 0-150 km/h is dark-grey colour.(3)   The CSG at beyond 150km/h is red colour.(4)   The CSG between the hook (Vperm = 150 km/h) and Vsbi is have a same width with hook.(5) Sound S2 is muted because of Warning Stauts is deactive
             Test Step Comment: (1) MMI_gen 972 (partly: MMI_M_WARNING, MMI_V_INTERVEN); MMI_gen 6310 (partly: supervision status);(2) MMI_gen 972 (partly: FS mode, CSM, 0km/h <= CSG <= Vperm);(3) MMI_gen 972 (partly: FS mode, CSM, Vperm <= CSG <= Vsbi );(4) MMI_gen 1155 (partly: Intervention);(5) MMI_gen 11921 (partly: NEGATIVE, MMI_M_WARNING = 4);
             */
-            
-            
+
+
             /*
             Test Step 7
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

@@ -38,7 +38,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Test system is powered on
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -56,7 +56,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Perform SoM in SR mode, Level 1
@@ -65,14 +65,14 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Perform_SoM_in_SR_mode_Level_1();
-            
-            
+
+
             /*
             Test Step 2
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

@@ -42,7 +42,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // System is powered on.Cabin is activated.SoM is performed in SR mode, level 1.
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -60,7 +60,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Drive the train forward pass BG1
@@ -69,8 +69,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Drive_the_train_forward_pass_BG1();
-            
-            
+
+
             /*
             Test Step 2
             Action: Continue to drive the train forward.Then, stop the train
@@ -79,8 +79,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Continue_to_drive_the_train_forward_Then_stop_the_train();
-            
-            
+
+
             /*
             Test Step 3
             Action: Continue to drive the train forward.Then, stop the train
@@ -89,8 +89,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Continue_to_drive_the_train_forward_Then_stop_the_train();
-            
-            
+
+
             /*
             Test Step 4
             Action: Use the test script file 13_1_7_a.xml to send EVC-1 with,MMI_M_WARNING = 7
@@ -98,9 +98,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 6758 (partly: MMI_M_WARNING is invalid);
             */
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_1_The_distance_to_target_bar_and_digital_is_removed_from_the_DMI_Note_After_test_scipt_file_is_executed_the_distance_to_target_bar_and_digital_is_re_appear_refer_to_received_packet_EVC_1_from_ETCS_Onboard();
-            
-            
+            DmiExpectedResults
+                .Verify_the_following_information_1_The_distance_to_target_bar_and_digital_is_removed_from_the_DMI_Note_After_test_scipt_file_is_executed_the_distance_to_target_bar_and_digital_is_re_appear_refer_to_received_packet_EVC_1_from_ETCS_Onboard();
+
+
             /*
             Test Step 5
             Action: Use the test script file 13_1_7_b.xml to send EVC-7 with,OBU_TR_M_MODE = 17
@@ -108,9 +109,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 6758 (partly: OBU_TR_M_MODE is invalid);
             */
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_1_The_distance_to_target_bar_and_digital_is_removed_from_the_DMI_Note_After_test_scipt_file_is_executed_the_distance_to_target_bar_and_digital_is_re_appear_refer_to_received_packet_EVC_1_from_ETCS_Onboard();
-            
-            
+            DmiExpectedResults
+                .Verify_the_following_information_1_The_distance_to_target_bar_and_digital_is_removed_from_the_DMI_Note_After_test_scipt_file_is_executed_the_distance_to_target_bar_and_digital_is_re_appear_refer_to_received_packet_EVC_1_from_ETCS_Onboard();
+
+
             /*
             Test Step 6
             Action: Continue to drive the train forward.Then, stop the train
@@ -119,14 +121,14 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Continue_to_drive_the_train_forward_Then_stop_the_train();
-            
-            
+
+
             /*
             Test Step 7
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

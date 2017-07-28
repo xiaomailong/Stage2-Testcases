@@ -41,7 +41,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // 1. The test environment is powered on.2. The cabin is activated.3. The ‘Start of Mission’ procedure is performed until the ‘Staff Responsible’ mode, level 1, is confirmed.4. The ‘Special’ window is opened.
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -59,7 +59,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Open the ‘SR speed / distance’ data entry window from the Special menu
@@ -68,56 +68,58 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.Open_the_SR_speed_distance_data_entry_window_from_the_Special_menu();
             // Call generic Check Results Method
-            DmiExpectedResults.The_SR_speed_distance_data_entry_window_appears_on_ETCS_DMI_screen_instead_of_the_Special_menu_window();
-            
-            
+            DmiExpectedResults
+                .The_SR_speed_distance_data_entry_window_appears_on_ETCS_DMI_screen_instead_of_the_Special_menu_window();
+
+
             /*
             Test Step 2
             Action: Enter “0” (minimum inbound) for SR speed with the numeric keypad and press the data input field (Accept) in the same screen
             Expected Result: Input Field(1) The eventually displayed data value in the data area of the input field is replaced by “0” (character or value corresponding to the activated data key - state ‘Selected IF/value of pressed key(s)’).EVC-106(2) Use the log file to verify that DMI sends packet EVC-106 with variable:MMI_V_STFF = 0 MMI_M_BUTTONS =  254 (BTN_ENTER) MMI_NID_DATA = 15 (SR Speed)
             Test Step Comment: Requirements:(1) MMI_gen 8297 (partly: reactions to succeed, MMI_gen 4714 (partly: MMI_gen 4679), MMI_gen 9286 (partly: state switched), MMI_gen 12145 (partly: minimum inbound));(2) MMI_gen 8297 (partly: reactions to succeed, MMI_gen 12147, MMI_gen 9286 (partly: enabled)); MMI_gen 9509 (partly: EVC-106, the ‘Enter’ button, accepted data complied with data checks, driver action);
             */
-            
-            
+
+
             /*
             Test Step 3
             Action: Enter “601” (outbound) for SR speed with the numeric keypad and press the data input field (Accept) in the same screen
             Expected Result: Input Field(1) The ‘Enter’ button associated to the data area of the input field is coloured grey and its text is black (state ‘Selected IF/Data value’).(2) The ‘Enter’ button associated to the data area of the input field displays “601” (previously entered value).EVC-106(3) Use the log file to verify that DMI does not send out packet EVC-106 as the ‘Enter’ button is disabled. Echo Texts(4) The data part of the echo text displays “++++”.(5) The data part of the echo text is coloured red
             Test Step Comment: Requirements:(1) MMI_gen 8297 (partly: reactions to failing, MMI_gen 4714 (partly: state 'Selected IF/data value'));(2) MMI_gen 8297 (partly: reactions to failing, MMI_gen 4714 (partly: previously entered (faulty) value), MMI_gen 12145 (partly: outbound)); MMI_gen 4699 (technical range);(3) MMI_gen 8297 (partly: MMI_gen 9286 (partly: button ‘Enter’, disabled), MMI_gen 12148 (partly: not send packets) , MMI_gen 12147); MMI_gen 9509 (partly: EVC-106); (4) MMI_gen 8297 (partly: reactions to failing, MMI_gen 12148 (MMI_gen 4713 (partly: indication)));(5) MMI_gen 8297 (partly: reactions to failing, MMI_gen 12148 (MMI_gen 4713 (partly: red)));
             */
-            
-            
+
+
             /*
             Test Step 4
             Action: Enter “600” (maximum inbound) for SR speed with the numeric keypad and press the data input field (Accept) in the same screen
             Expected Result: Input Field(1) The eventually displayed data value in the data area of the input field is replaced by “600” (character or value corresponding to the activated data key - state ‘Selected IF/value of pressed key(s)’).EVC-106(2) Use the log file to verify that DMI sends packet EVC-106 with variable:MMI_V_STFF = 600MMI_M_BUTTONS =  254 (BTN_ENTER)MMI_NID_DATA = 15 (SR Speed)
             Test Step Comment: Requirements:(1) MMI_gen 8297 (partly: MMI_gen 4714 (partly: MMI_gen 4679), MMI_gen 9286 (partly: state switched), MMI_gen 12145 (partly: maximum inbound)); (2) MMI_gen 8297 (partly: reactions to succeed, MMI_gen 12147, MMI_gen 9286 (partly: enabled)); MMI_gen 9509 (partly: EVC-106, the ‘Enter’ button, accepted data complied with data checks, driver action);
             */
-            
-            
+
+
             /*
             Test Step 5
             Action: Follow step 2 – step 8 for SR distance with:Minimum inbound = 0Outbound = 100001Maximum inbound = 100000
             Expected Result: See step 2 – step 4EVC-106(1) Use the log file to confirm that DMI sends packet EVC-106 with variable:MMI_L_STFF = See ActionMMI_M_BUTTONS =  254 (BTN_ENTER)MMI_NID_DATA = 16 (SR Distance)
             Test Step Comment: See step 2 – step 4Requirements:(1) MMI_gen 8297 (partly: MMI_gen 9286 (partly: enabled)); MMI_gen 9510 (partly: EVC-106, the ‘Enter’ button, accepted data complied with data checks, driver action, only affect the object indicated in MMI_NID_DATA);
             */
-            
-            
+
+
             /*
             Test Step 6
             Action: This step is to complete the process of ‘SR speed / distance’:- Press the ‘Yes’ button on the ‘SR speed / distance’ window.- Validate the data in the data validation window
             Expected Result: 1. After pressing the ‘Yes’ button, the data validation window (‘Validate SR speed / distance’) appears instead of the ‘SR speed / distance’ data entry window. The data part of echo text displays in white:SR Speed: 600SR Distance: 1000002. After the data area of the input field containing “Yes” is pressed, the data validation window disappears and returns to the parent window (‘Settings’ window) of ‘SR speed / distance’ window with enabled ‘SR speed / distance’ button
             */
             // Call generic Action Method
-            DmiActions.This_step_is_to_complete_the_process_of_SR_speed_distance_Press_the_Yes_button_on_the_SR_speed_distance_window_Validate_the_data_in_the_data_validation_window();
-            
-            
+            DmiActions
+                .This_step_is_to_complete_the_process_of_SR_speed_distance_Press_the_Yes_button_on_the_SR_speed_distance_window_Validate_the_data_in_the_data_validation_window();
+
+
             /*
             Test Step 7
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

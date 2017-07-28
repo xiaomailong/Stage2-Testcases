@@ -20,7 +20,7 @@ namespace Testcase.Telegrams.EVCtoDMI
     static class EVC2_MMIStatus
     {
         private static SignalPool _pool;
-        private static byte _mmiMAdhesion;    // Adhesion can only be set by trackside for Crossrail project
+        private static byte _mmiMAdhesion; // Adhesion can only be set by trackside for Crossrail project
         private static MMI_M_ACTIVE_CABIN _mmiMActiveCabin;
         private static bool _mmiMOverrideEOA;
 
@@ -105,10 +105,11 @@ namespace Testcase.Telegrams.EVCtoDMI
 
         private static void SetAlias()
         {
-            var mmiMActiveCabin = (byte)_mmiMActiveCabin;
-            var mmiMOverrideEOA = Convert.ToByte( _mmiMOverrideEOA );
+            var mmiMActiveCabin = (byte) _mmiMActiveCabin;
+            var mmiMOverrideEOA = Convert.ToByte(_mmiMOverrideEOA);
 
-            _pool.SITR.ETCS1.Status.EVC2alias1.Value = (byte)(_mmiMAdhesion << 6 | mmiMActiveCabin << 4 | mmiMOverrideEOA << 3);
+            _pool.SITR.ETCS1.Status.EVC2alias1.Value =
+                (byte) (_mmiMAdhesion << 6 | mmiMActiveCabin << 4 | mmiMOverrideEOA << 3);
         }
 
         /// <summary>

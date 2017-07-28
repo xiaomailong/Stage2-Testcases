@@ -37,7 +37,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Test system is powered onCabin is activePerform a complete SoM to enter SR mode, ETCS level 1.
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -55,7 +55,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Drive the train forward with the permitted speed
@@ -63,8 +63,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_in_SR_mode_level_1();
-            
-            
+
+
             /*
             Test Step 2
             Action: Pass BG1 with Pkt 12,21 and 27
@@ -74,16 +74,16 @@ namespace Testcase.DMITestCases
             DmiActions.Pass_BG1_with_Pkt_12_21_and_27();
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_in_FS_mode_level_1();
-            
-            
+
+
             /*
             Test Step 3
             Action: Pass BG2 with pkt 79 Geographical position
             Expected Result: Verify the Geographical Position indicatorThe symbol ‘DR03’ is displayed in sub-area G12 as toggled off (the position is known by onbaord)DMI receives EVC-30 with bit No.23 of variable MMI_Q_REQUEST_ENABLE_64 = 1 (DMI displays that position is known by onboard)
             Test Step Comment: (1) MMI_gen 9866, MMI_gen 9872, MMI_gen 9875;(2) MMI_gen 9416 (partly: EVC-30. MMI_Q_REQUEST_ENABLE_64 = 1 = known onboard); MMI_gen 1088 (partly: Bit #23);
             */
-            
-            
+
+
             /*
             Test Step 4
             Action: Press on the ‘DR03’ symbol, on sub-area G12 to toggle on the Geographical Position function and verify the presentation on the screen
@@ -91,9 +91,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9872, MMI_gen 9873 (partly: toggle on state for touchscreen); MMI_gen 9877;MMI_gen 9878;MMI_gen 2495 (partly: kilometer_meter format); MMI_gen 2498;       (2) MMI_gen 655, (3) MMI_gen 656 (partly: transmit EVC-101, touch screen)
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press on the ‘DR03’ symbol, on sub-area G12 to toggle on the Geographical Position function and verify the presentation on the screen");
-            
-            
+            DmiActions.ShowInstruction(
+                @"Press on the ‘DR03’ symbol, on sub-area G12 to toggle on the Geographical Position function and verify the presentation on the screen");
+
+
             /*
             Test Step 5
             Action: Press on the ‘DR03’ symbol on sub-area G12 to toggle off the Geographical Position function and verify the presentation on the screen
@@ -101,41 +102,43 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9872, MMI_gen 9873 (partly: toggle off state for touchscreen); MMI_gen 9875;
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press on the ‘DR03’ symbol on sub-area G12 to toggle off the Geographical Position function and verify the presentation on the screen");
-            
-            
+            DmiActions.ShowInstruction(
+                @"Press on the ‘DR03’ symbol on sub-area G12 to toggle off the Geographical Position function and verify the presentation on the screen");
+
+
             /*
             Test Step 6
             Action: Stop the train, the driver presses the symbol of Geographical Position at sub-area G12 again
             Expected Result: The Geographical Position is displayed with valid value of the train position. Verify that the Geographic Position is displayed the fractional part that consists of three digits. The integral part consists of four digits. A space character is inserted between the kilometre and the metre parts.The full sub-area G12 is displayed as grey background. The geographical position is displayed in black and located at centre of the G12 area
             Test Step Comment: (1) MMI_gen 2495 ( partly: maximum 3 digits of meter, maximum 4 digits of kilometer);    MMI_gen 9872;     (2) MMI_gen 9878;    (3) MMI_gen 9873 (partly: toggle on state for touchscreen);                                 
             */
-            
-            
+
+
             /*
             Test Step 7
             Action: Start driving the train forward
             Expected Result: Verify that the last status of geographical position is not changed. The full sub-area G12 is displayed as grey background. The geographical position is displayed in black and located at centre of the G12 area
             Test Step Comment: MMI_gen 9874 (partly: toggled on);   
             */
-            
-            
+
+
             /*
             Test Step 8
             Action: Press on the ‘DR03’ symbol on sub-area G12 to toggle off the Geographical Position function and verify the presentation on the screen
             Expected Result: The grey background colour in previous step is  replaced by symbol ‘DR03’ in sub-area G12
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press on the ‘DR03’ symbol on sub-area G12 to toggle off the Geographical Position function and verify the presentation on the screen");
-            
-            
+            DmiActions.ShowInstruction(
+                @"Press on the ‘DR03’ symbol on sub-area G12 to toggle off the Geographical Position function and verify the presentation on the screen");
+
+
             /*
             Test Step 9
             Action: Pass BG3 with the new Geographical position
             Expected Result: The symbol ‘DR03’ remains in sub-area G12
             */
-            
-            
+
+
             /*
             Test Step 10
             Action: Press on the ‘DR03’ symbol, on sub-area G12 to toggle on the Geographical Position function and verify the presentation on the screen
@@ -143,17 +146,18 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 2495 ( partly: 2 digits of meter, at least 1 digit of kilometer);    
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press on the ‘DR03’ symbol, on sub-area G12 to toggle on the Geographical Position function and verify the presentation on the screen");
-            
-            
+            DmiActions.ShowInstruction(
+                @"Press on the ‘DR03’ symbol, on sub-area G12 to toggle on the Geographical Position function and verify the presentation on the screen");
+
+
             /*
             Test Step 11
             Action: Perform the following procedure,Stop the trainPress ‘Main’ button.Press and hold ‘Shunting’ button for 2 second or upper.Release the pressed area
             Expected Result: DMI displays in SH mode, level 1.Verify that the symbol of Geographical Position at sub-area G12 is not displayed. In sub-area G12, it is not displayed as a sensitive area for toggle on/off.DMI receives EVC-30 with bit No.23 of variable MMI_Q_REQUEST_ENABLE_64 = 0 or EVC-5 with variable MMI_M_ABSOLUTPOS < 0 (DMI displays that position is NOT known by onboard)
             Test Step Comment: (1) MMI_gen 9879;   (2) MMI_gen 9416 (partly: not known by onboard, EVC-30)
             */
-            
-            
+
+
             /*
             Test Step 12
             Action: Perform the following procedure,Press ‘Main’ button.Press and hold ‘Exit Shunting’ button for 2 second or upper.Release the pressed area.Perform SoM in SR mode, Level 1.Drive the train forward
@@ -161,8 +165,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_in_SR_mode_Level_1();
-            
-            
+
+
             /*
             Test Step 13
             Action: Pass BG4 with the new Geographical position
@@ -170,22 +174,22 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults.The_symbol_DR03_displays_in_sub_area_G12();
-            
-            
+
+
             /*
             Test Step 14
             Action: Perform the following procedure,Stop the train.Use the test script file 18_4_1.xml to send EVC-5 with MMI_M_ABSOLUTPOS = 8388609Press at sub-area G12
             Expected Result: Verify the following information,Verify that the symbol of Geographical Position at sub-area G12 is not displayed. In sub-area G12, it is not displayed as a sensitive area for toggle on/off.Use the log file to confirm that DMI did not send out packet EVC-101 EVC-101 with variable MMI_M_REQUEST = 8
             Test Step Comment: (1) MMI_gen 9416 (partly: not known by onboard, EVC-5); MMI_gen 9879 (partly: not display symbol DR03);   (2) MMI_gen 9879 (partly: G12 not be sensitive);   
             */
-            
-            
+
+
             /*
             Test Step 15
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

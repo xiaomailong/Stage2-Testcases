@@ -37,7 +37,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Set the following tag names (See the instruction in Appendix 1)MIN_BRIGHT = 10MAX_BRIGHT = 100Test system is powered ONCabin A is activated
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -55,7 +55,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Press ‘Settings’ button
@@ -65,8 +65,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Press ‘Settings’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Settings_window();
-            
-            
+
+
             /*
             Test Step 2
             Action: Press ‘Brightness’ button
@@ -75,16 +75,16 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Brightness’ button");
-            
-            
+
+
             /*
             Test Step 3
             Action: Press and hold ‘-‘ button in order to decreasing brightness to defined minimum level
             Expected Result: The adjust luminance is used by DMI.Verify the following informationVerify that value of an input field is decreasing while button is pressed and the brightness is dimmer than before pressing button.Verify that the minimum level of bightness is defined as 10
             Test Step Comment: (1) MMI_gen 258 (partly: adjustment of the brightness);(2) MMI_gen 258 (partly: defined minimum level);  
             */
-            
-            
+
+
             /*
             Test Step 4
             Action: Press ‘Close’ button
@@ -94,8 +94,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Settings_window();
-            
-            
+
+
             /*
             Test Step 5
             Action: Press ‘Close’ button
@@ -105,51 +105,51 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Driver_ID_window();
-            
-            
+
+
             /*
             Test Step 6
             Action: Perform the following procedure,Press ‘Settings’ button.Press ‘Brightness’ button
             Expected Result: DMI displays Brightness window.The value of an input field is restored to 55 and the brightness is not effected from setting of step 3
             */
-            
-            
+
+
             /*
             Test Step 7
             Action: Press and hold ‘+‘ button in order to increasing brightness to defined maximum level
             Expected Result: The value of an input field is increasing while button is pressed and the brightness is brighter than before pressing button.The maximum level of bightness is defined as 100
             */
-            
-            
+
+
             /*
             Test Step 8
             Action: Perform the following procedure,Decrease the brightness to minimum value.De-activate CabinActivate CabinPress ‘Settings’ button.Press ‘Brightness’ button
             Expected Result: The brightness is increased from the minimum and the value of and input field is 55 (median value between 10 an 100)
             Test Step Comment: MMI_gen 3091 (partly: In case no luminance is stored);
             */
-            
-            
+
+
             /*
             Test Step 9
             Action: Repeat action Step 7.Then, confirm entered data by pressing an input fied
             Expected Result: DMI displays Settings window with luminance increased refer to entered data
             */
-            
-            
+
+
             /*
             Test Step 10
             Action: Press ‘Brightness’ button.Then, repeat action step 8
             Expected Result: The ‘Brightness’ window is come up with maximum value of the luminance range
             Test Step Comment: MMI_gen 3091 (partly: The last stored luminance shall be used when opening the desk);
             */
-            
-            
+
+
             /*
             Test Step 11
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

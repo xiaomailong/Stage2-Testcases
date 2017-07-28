@@ -41,7 +41,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Power off test systemSet the following OTE configuration file (OteCfg_PC.cfg)- tractionAcceleration 400- serviceBrakeDeceleration 400- emergencyBrakeDeceleration 400
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -59,7 +59,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Power on the system and activate cabin
@@ -69,30 +69,30 @@ namespace Testcase.DMITestCases
             DmiActions.Power_on_the_system_and_activate_cabin();
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_in_SB_mode();
-            
-            
+
+
             /*
             Test Step 2
             Action: Perform Start of Mission to SR mode , eevel 1
             Expected Result: Mode changes to SR mode , Level 1
             */
-            
-            
+
+
             /*
             Test Step 3
             Action: Pass BG0 with MA and Track description
             Expected Result: Mode changes to FS mode
             */
-            
-            
+
+
             /*
             Test Step 4
             Action: Full accelerate the traction (100%) until service brake is applied
             Expected Result: The speedometer movement goes up and down smoothly
             Test Step Comment: MMI_gen 68;
             */
-            
-            
+
+
             /*
             Test Step 5
             Action: End of Test
@@ -100,7 +100,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.End_of_Test();
-            
+
 
             return GlobalTestResult;
         }

@@ -37,7 +37,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Set the following tags name in configuration file (See the instruction in Appendix 1)HIDE_PA_FUNCTION = 1 (‘OFF’ state)HIDE_PA_SR_MODE = 0 (PA will not show in SR mode)System is power OFF.
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -55,7 +55,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Power On the system
@@ -65,8 +65,8 @@ namespace Testcase.DMITestCases
             DmiActions.Power_On_the_system();
             // Call generic Check Results Method
             DmiExpectedResults.The_DMI_displays_the_default_window();
-            
-            
+
+
             /*
             Test Step 2
             Action: Activate cabin A and Perform SoM to SR mode, Level 1
@@ -76,8 +76,8 @@ namespace Testcase.DMITestCases
             DmiActions.Activate_cabin_A_and_Perform_SoM_to_SR_mode_Level_1();
             // Call generic Check Results Method
             DmiExpectedResults.The_DMI_displays_in_SR_mode_level_1();
-            
-            
+
+
             /*
             Test Step 3
             Action: Drive the train forward with speed = 40 km/h pass BG1
@@ -88,8 +88,8 @@ namespace Testcase.DMITestCases
             DmiActions.Drive_the_train_forward_with_speed_40_kmh_pass_BG1();
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_in_FS_mode_Level_1_There_is_no_PA_display_on_DMI();
-            
-            
+
+
             /*
             Test Step 4
             Action: Press the main area D
@@ -97,8 +97,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press the main area D");
-            
-            
+
+
             /*
             Test Step 5
             Action: Stop the train. Then, deactivate cabin A
@@ -108,8 +108,8 @@ namespace Testcase.DMITestCases
             DmiActions.Stop_the_train_Then_deactivate_cabin_A();
             // Call generic Check Results Method
             DmiExpectedResults.The_train_is_at_standstill_DMI_is_displays_in_SB_mode();
-            
-            
+
+
             /*
             Test Step 6
             Action: Activate cabin A and Perform SoM to SR mode, Level 1
@@ -119,8 +119,8 @@ namespace Testcase.DMITestCases
             DmiActions.Activate_cabin_A_and_Perform_SoM_to_SR_mode_Level_1();
             // Call generic Check Results Method
             DmiExpectedResults.The_DMI_displays_in_SR_mode_level_1();
-            
-            
+
+
             /*
             Test Step 7
             Action: Drive the train forward with speed = 40 km/h pass BG2
@@ -129,21 +129,21 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Drive_the_train_forward_with_speed_40_kmh_pass_BG2();
-            
-            
+
+
             /*
             Test Step 8
             Action: Press the area D
             Expected Result: The DMI displays the PA.The Hide PA button is appeared on  the area D of the DMI
             */
-            
-            
+
+
             /*
             Test Step 9
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

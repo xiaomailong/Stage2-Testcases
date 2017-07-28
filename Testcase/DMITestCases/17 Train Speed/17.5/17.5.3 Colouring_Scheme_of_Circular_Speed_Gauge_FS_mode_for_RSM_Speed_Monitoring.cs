@@ -37,7 +37,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // System is power on.Cabin is activated.SoM is performed in SR mode, Level 1.
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -55,7 +55,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Drive the train forward pass BG1 with speed = 30km/h
@@ -64,22 +64,22 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Drive_the_train_forward_pass_BG1_with_speed_30kmh();
-            
-            
+
+
             /*
             Test Step 2
             Action: Continue to drive the train forward with speed = 51 km/h
             Expected Result: Verify the following information,(1)   Use the log file to confirm that DMI received packet EVC-1 with following variables, MMI_M_WARNING = 15 (Status=IntS and Inds, Supervision=RSM).(2)   All section of CSG is yellow colour
             Test Step Comment: (1) MMI_gen 972 (partly: MMI_V_RELEASE); MMI_gen 6310 (partly: release speed); MMI_gen 5902 (partly: MMI_M_WARNING = 15);(2) MMI_gen 972 (partly: FS mode, RSM, IntS, Vtarget <= CSG <= Vperm); MMI_gen 1182 (partly: Vrelease);
             */
-            
-            
+
+
             /*
             Test Step 3
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

@@ -38,7 +38,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // The system is powered OFFThe default language is EnglishSet the following tags name in configuration file (See the instruction in Appendix 1 and change configuration file to Language_mgr.xml)Replace English text with Russian text<ENG> Brake Test in Progress</ENG> to <ENG> Выполнение опробования тормозов</ENG>
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -56,7 +56,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Power on the system and activate cabin
@@ -64,8 +64,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Power_on_the_system_and_activate_cabin();
-            
-            
+
+
             /*
             Test Step 2
             Action: Enter and confirm Driver ID Then   perform brake test
@@ -73,16 +73,17 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 3722 (partly:ETCS) ;
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_shall_not_display_text_message_Brake_Test_in_Progress_in_any_other_languages_since_the_text_is_replaced_with_Russian_character_code_language();
-            
-            
+            DmiExpectedResults
+                .DMI_shall_not_display_text_message_Brake_Test_in_Progress_in_any_other_languages_since_the_text_is_replaced_with_Russian_character_code_language();
+
+
             /*
             Test Step 3
             Action: Select ATB STM and  complete Start of mission
             Expected Result: DMI displays in SN mode, Level STM-ATB
             */
-            
-            
+
+
             /*
             Test Step 4
             Action: Press settings menu and start to perform brake test by pressing ‘Test’ button in the Brake window
@@ -90,15 +91,16 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 3722 (partly:NTC) ;
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_shall_not_display_text_message_Brake_Test_in_Progress_in_any_other_languages_since_the_text_is_replaced_with_Russian_character_code_language();
-            
-            
+            DmiExpectedResults
+                .DMI_shall_not_display_text_message_Brake_Test_in_Progress_in_any_other_languages_since_the_text_is_replaced_with_Russian_character_code_language();
+
+
             /*
             Test Step 5
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }

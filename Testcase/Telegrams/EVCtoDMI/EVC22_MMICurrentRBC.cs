@@ -36,7 +36,7 @@ namespace Testcase.Telegrams.EVCtoDMI
                 throw new ArgumentOutOfRangeException();
 
             _pool.SITR.ETCS1.CurrentRbcData.MmiNNetworks.Value = numberOfNetworks; // Number of networks
-            
+
             ushort totalsizecounter = 176;
 
             //For all networks
@@ -45,11 +45,11 @@ namespace Testcase.Telegrams.EVCtoDMI
                 var caption = NetworkCaptions[k].ToCharArray();
                 ushort numberNetworkCaptionChars = (ushort) caption.Length;
                 var varnamestring = $"ETCS1_CurrentTrainData_EVC22CurrentRbcDataSub1{k}_";
-               
+
                 // Limit number of caption characters to 16
-                if(caption.Length > 16)
+                if (caption.Length > 16)
                     throw new ArgumentOutOfRangeException();
-                
+
                 // Write individual network chars
                 _pool.SITR.Client.Write(
                     $"{varnamestring}MmiNCaptionNetwork",
@@ -76,9 +76,11 @@ namespace Testcase.Telegrams.EVCtoDMI
                 }
             }
 
-            _pool.SITR.ETCS1.CurrentRbcData.MmiNDataElements.Value = (ushort)DataElements.Count; // Number of data elements to enter
+            _pool.SITR.ETCS1.CurrentRbcData.MmiNDataElements.Value =
+                (ushort) DataElements.Count; // Number of data elements to enter
 
-            totalsizecounter = PopulateDataElements("ETCS1_CurrentRbcData_EVC22CurrentRbcDataSub2", totalsizecounter, _pool);
+            totalsizecounter = PopulateDataElements("ETCS1_CurrentRbcData_EVC22CurrentRbcDataSub2", totalsizecounter,
+                _pool);
 
             // Packet length
             _pool.SITR.ETCS1.CurrentRbcData.MmiLPacket.Value = totalsizecounter;
@@ -95,7 +97,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             get => _nidC;
             set
             {
-                _nidC = value; 
+                _nidC = value;
                 SetMMINidRBC();
             }
         }
@@ -108,7 +110,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             get => _nidRbc;
             set
             {
-                _nidRbc = value; 
+                _nidRbc = value;
                 SetMMINidRBC();
             }
         }
@@ -136,17 +138,23 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// 14 bit unsigned int for NID_RBC)
         ///
         /// </summary>
-        private static uint MMI_NID_RBC { set => _pool.SITR.ETCS1.CurrentRbcData.MmiNidRbc.Value = value; }
+        private static uint MMI_NID_RBC
+        {
+            set => _pool.SITR.ETCS1.CurrentRbcData.MmiNidRbc.Value = value;
+        }
 
         /// <summary>
         /// RBC phone number
         /// </summary>
-        public static ulong MMI_NID_RADIO {
+        public static ulong MMI_NID_RADIO
+        {
             set
             {
                 var bytes = BitConverter.GetBytes(value);
-                _pool.SITR.ETCS1.CurrentRbcData.MmiNidRadio.Value = new[] {BitConverter.ToUInt32(bytes, 2), BitConverter.ToUInt32(bytes, 0)};
-            } }
+                _pool.SITR.ETCS1.CurrentRbcData.MmiNidRadio.Value = new[]
+                    {BitConverter.ToUInt32(bytes, 2), BitConverter.ToUInt32(bytes, 0)};
+            }
+        }
 
         /// <summary>
         /// Identifier of currently active ETCS window. Not all possible windows are controlled/used by this variable in the current packet.
@@ -191,7 +199,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static ushort MMI_NID_WINDOW
         {
-            set => _pool.SITR.ETCS1.CurrentRbcData.MmiNidWindow.Value = (byte)value;
+            set => _pool.SITR.ETCS1.CurrentRbcData.MmiNidWindow.Value = (byte) value;
         }
 
         /// <summary>
@@ -200,7 +208,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static bool MMI_Q_CLOSE_ENABLE
         {
-            set => _pool.SITR.ETCS1.CurrentDriverId.MmiQCloseEnable.Value = (byte)(value ? 0x80 : 0x00);
+            set => _pool.SITR.ETCS1.CurrentDriverId.MmiQCloseEnable.Value = (byte) (value ? 0x80 : 0x00);
         }
 
         /// <summary>
@@ -214,7 +222,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         {
             set => _pool.SITR.ETCS1.CurrentRbcData.MmiMButtons.Value = (byte) value;
         }
-        
+
         public enum EVC22BUTTONS : ushort
         {
             BTN_YES_DATA_ENTRY_COMPLETE = 36,

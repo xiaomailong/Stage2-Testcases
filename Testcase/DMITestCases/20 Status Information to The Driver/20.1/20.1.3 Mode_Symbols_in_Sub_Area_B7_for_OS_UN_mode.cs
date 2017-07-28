@@ -37,7 +37,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // System is power on.
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -55,7 +55,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            
+
             /*
             Test Step 1
             Action: Activate cabin A
@@ -65,8 +65,8 @@ namespace Testcase.DMITestCases
             DmiActions.Activate_cabin_A();
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_in_SB_mode_The_Driver_ID_window_is_displayed();
-            
-            
+
+
             /*
             Test Step 2
             Action: Enter Driver ID and perform brake test
@@ -76,8 +76,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Enter Driver ID and perform brake test");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Level_window();
-            
-            
+
+
             /*
             Test Step 3
             Action: Select and confirm Level 0
@@ -86,8 +86,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Select_and_confirm_Level_0();
-            
-            
+
+
             /*
             Test Step 4
             Action: Press ‘Train data’ button
@@ -97,8 +97,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Press ‘Train data’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Train_data_window();
-            
-            
+
+
             /*
             Test Step 5
             Action: Enter and confirm value in each input field.Then, press ‘Yes’ button
@@ -106,8 +106,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Train_data_validation_window();
-            
-            
+
+
             /*
             Test Step 6
             Action: Press ‘Yes’ button.Then, confirmed selected value by pressing an input field
@@ -115,8 +115,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Train_Running_Number_window();
-            
-            
+
+
             /*
             Test Step 7
             Action: Enter and confirm Train running number
@@ -126,8 +126,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Enter and confirm Train running number");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Main_window();
-            
-            
+
+
             /*
             Test Step 8
             Action: Press ‘Start’ button
@@ -136,24 +136,24 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Start’ button");
-            
-            
+
+
             /*
             Test Step 9
             Action: Acknowledge UN mode
             Expected Result: Verify the following information,(1)    The symbol MO16 is displayed in sub-area B7. (2)     Use the log file to confirm that DMI received the EVC-7 with [MMI_ETCS_MISC_OUT_SIGNALS.OBU_TR_M_MODE] = 4 in order to display the Unfitted symbol.(3)     Use the log file to confirm that DMI sends out packet [MMI_DRIVER_ACTION (EVC-152)] with the value of variable MMI_M_DRIVER_ACTION refer to sequence below,          a)   MMI_M_DRIVER_ACTION = 4 (Ack of Unfitted mode)
             Test Step Comment: (1) MMI_gen 110 (partly: MO16);  (2) MMI_gen 11084 (partly: ETCS mode UN); (3) MMI_gen 11470 (partly: Bit # 4);                                               
             */
-            
-            
+
+
             /*
             Test Step 10
             Action: Perform the following procedure,De-activate Cabin A.Activate Cabin A.Perform SoM in SR mode, Level 1
             Expected Result: DMI displays Default window in SR mode, Level 1.(1)   Use the log file to confirm that DMI sends out packet [MMI_DRIVER_ACTION (EVC-152)] with the value of variable MMI_M_DRIVER_ACTION refer to sequence below,      a)    MMI_M_DRIVER_ACTION = 3 (Ack of Staff Responsible mode)
             Test Step Comment: (1) MMI_gen 11470 (partly: Bit #3);                     
             */
-            
-            
+
+
             /*
             Test Step 11
             Action: Drive the train forward passing BG1
@@ -162,8 +162,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Drive_the_train_forward_passing_BG1();
-            
-            
+
+
             /*
             Test Step 12
             Action: Acknowledge OS mode
@@ -172,29 +172,29 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Acknowledge_OS_mode();
-            
-            
+
+
             /*
             Test Step 13
             Action: Stop the train.Then, press ‘Over-ride’ button
             Expected Result: When the train is stopped, EOA button is enabled
             */
-            
-            
+
+
             /*
             Test Step 14
             Action: Press ‘EOA’ button
             Expected Result: Verify the following information, (1)   The symbol MO03 is displayed for Override EOA symbol in sub-area C7.(2) Use the log DMI received packet information EVC-2 with variable MMI_M_OVERRIDE_EOA = 1
             Test Step Comment: (1) MMI_gen 11231 (partly: MO03);(2) MMI_gen 11231 (partly: EVC-2);
             */
-            
-            
+
+
             /*
             Test Step 15
             Action: End of test
             Expected Result: 
             */
-            
+
 
             return GlobalTestResult;
         }
