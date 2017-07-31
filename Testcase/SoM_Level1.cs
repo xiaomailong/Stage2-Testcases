@@ -42,15 +42,16 @@ namespace Testcase
             EVC0_MMIStartATP.Initialise(this);
             EVC1_MMIDynamic.Initialise(this);
             EVC2_MMIStatus.Initialise(this);
+            EVC3_MMISetTimeATP.Initialise(this);
             EVC6_MMICurrentTrainData.Initialise(this);
+            EVC8_MMIDriverMessage.Initialise(this);
             EVC14_MMICurrentDriverID.Initialise(this);
             EVC16_CurrentTrainNumber.Initialise(this);
             EVC22_MMICurrentRBC.Initialise(this);
             EVC30_MMIRequestEnable.Initialise(this);
-            EVC3_MMISetTimeATP.Initialise(this);
 
             // Initialise Dynamic Arrays
-            Initialize_DynamicArrays();
+            Initialise_DynamicArrays();
 
             // ETCS->DMI: EVC-0 MMI_START_ATP
             EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.VersionInfo;
@@ -62,22 +63,25 @@ namespace Testcase
             EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.GoToIdle;
             EVC0_MMIStartATP.Send();
 
-            // Possible send EVC-3 MMI_SET_TIME_ATP packet      (Wireshark log)
-            EVC3_MMISetTimeATP.MMI_T_UTC = (uint) (DateTime.UtcNow - new DateTime(1970, 1, 1)).TotalSeconds;
+            // Possible send EVC-3 MMI_SET_TIME_ATP packet
+            EVC3_MMISetTimeATP.MMI_T_UTC = (uint)(DateTime.UtcNow - new DateTime(1970, 1, 1)).TotalSeconds;
             EVC3_MMISetTimeATP.MMI_T_ZONE_OFFSET = 0;
             EVC3_MMISetTimeATP.Send();
 
-            // Possibly send EVC-30 MMI_Enable_Request packet   (Wireshark log)
+            // Possibly send EVC-30 MMI_Enable_Request packet
 
             //ETCS->DMI: EVC-2 MMI_STATUS
             EVC2_MMIStatus.TrainRunningNumber = 0xffffffff;
+            EVC2_MMIStatus.MMI_M_ACTIVE_CABIN = MMI_M_ACTIVE_CABIN.Cabin1Active;
+            EVC2_MMIStatus.MMI_M_ADHESION = 0x0;
+            EVC2_MMIStatus.MMI_M_OVERRIDE_EOA = false;
             EVC2_MMIStatus.Send();
 
             // ETCS->DMI: EVC-14 MMI_CURRENT_DRIVER_ID
             EVC14_MMICurrentDriverID.MMI_X_DRIVER_ID = "1234";
             EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE = EVC14_MMICurrentDriverID.MMIQADDENABLEBUTTONS.Settings |
                                                         EVC14_MMICurrentDriverID.MMIQADDENABLEBUTTONS.TRN;
-            EVC14_MMICurrentDriverID.MMI_Q_CLOSE_ENABLE = false;
+            EVC14_MMICurrentDriverID.MMI_Q_CLOSE_ENABLE = true;
             EVC14_MMICurrentDriverID.Send();
 
             // Receive EVC-104 MMI_NEW_DRIVER_DATA   
@@ -97,7 +101,7 @@ namespace Testcase
             var standardflags = EVC30_MMIRequestEnable.EnabledRequests.EnableDoppler |
                                 EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter |
                                 EVC30_MMIRequestEnable.EnabledRequests.StartBrakeTest |
-                                EVC30_MMIRequestEnable.EnabledRequests.SetLocalOffset |
+                                EVC30_MMIRequestEnable.EnabledRequests.SetLocalTimeDateAndOffset |
                                 EVC30_MMIRequestEnable.EnabledRequests.RemoveVBC |
                                 EVC30_MMIRequestEnable.EnabledRequests.SetVBC |
                                 EVC30_MMIRequestEnable.EnabledRequests.SystemVersion |
@@ -105,12 +109,16 @@ namespace Testcase
                                 EVC30_MMIRequestEnable.EnabledRequests.Volume |
                                 EVC30_MMIRequestEnable.EnabledRequests.NonLeading |
                                 EVC30_MMIRequestEnable.EnabledRequests.Shunting |
+                                EVC30_MMIRequestEnable.EnabledRequests.TrainData |
                                 EVC30_MMIRequestEnable.EnabledRequests.TrainRunningNumber |
-                                EVC30_MMIRequestEnable.EnabledRequests.Level;
-
+                                EVC30_MMIRequestEnable.EnabledRequests.Level |
+                                EVC30_MMIRequestEnable.EnabledRequests.ContactLastRBC |
+                                EVC30_MMIRequestEnable.EnabledRequests.EnterRBCData |
+                                EVC30_MMIRequestEnable.EnabledRequests.RadioNetworkID |
+                                EVC30_MMIRequestEnable.EnabledRequests.UseShortNumber;
 
             // TODO Have I set the correct flags?
-            // SendEVC30_MMIRequestEnable(255, 0b0001_1101_0000_0011_1110_0000_0011_1110);
+            EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = 255;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = standardflags;
             EVC30_MMIRequestEnable.Send();
@@ -119,20 +127,30 @@ namespace Testcase
             Temporary.SendEVC20_MMISelectLevel_AllLevels(this);
 
             //ETCS->DMI: Send EVC-6 MMI_CURRENT TRAIN_DATA
-            Temporary.SendEVC6_MMICurrentTrainData_FixedDataEntry(new[] {"FLU", "RLU", "Rescue"}, 2);
-
-            //SendEVC6_MMICurrentTrainData(param_EVC6_MmiMDataEnable, param_EVC6_MmiLTrain, param_EVC6_MmiVMaxtrain, param_EVC6_MmiNidKeyTrainCat,
-            //    param_EVC6_MmiMBrakePerc, param_EVC6_MmiNidKeyAxleLoad, param_EVC6_MmiMAirtight, param_EVC6_MmiNidKeyLoadGauge,
-            //    param_EVC6_MmiMButtons, param_EVC6_MTrainsetId, param_EVC6_MAltDem, param_EVC6_MmiNTrainsets, param_EVC6_MmiNCaptionTrainset,
-            //    param_EVC6_MmiXCaptionTrainset, param_EVC6_MmiNDataElements, null, null, null, null);
+            //Temporary.SendEVC6_MMICurrentTrainData_FixedDataEntry(new[] {"FLU", "RLU", "Rescue"}, 2);
 
             //ETCS->DMI: Send EVC-10 MMI_ECHOED_TRAIN_DATA
-            //SendEVC10_MMIEchoedTrainData();
+            //Temporary.SendEVC10_MMIEchoedTrainData(this);
 
-            ////Receive EVC-101
+            //Receive EVC-101
+
+            // Send EVC-22
+            EVC22_MMICurrentRBC.MMI_NID_RADIO = 07123456;
+            EVC22_MMICurrentRBC.MMI_NID_WINDOW = 9;
+            EVC22_MMICurrentRBC.MMI_M_BUTTONS = EVC22_MMICurrentRBC.EVC22BUTTONS.BTN_YES_DATA_ENTRY_COMPLETE;
+            EVC22_MMICurrentRBC.NID_RBC = 1234;
+            EVC22_MMICurrentRBC.MMI_Q_CLOSE_ENABLE = true;
+
+            EVC22_MMICurrentRBC.NetworkCaptions = new List<string> { "RBC1", "RBC2", "RBC3" };
+            EVC22_MMICurrentRBC.Send();
+
+            //EVC22_MMICurrentRBC.DataElements = new List<Variables.DataElement>{
+            //    { new Variables.DataElement { Identifier = 1, QDataCheck = 0, EchoText = "1234" } },
+            //    { new Variables.DataElement { Identifier = 2, QDataCheck = 0, EchoText = "07123456" } },
+            //};
 
             // Send EVC-30 MMI_REQUEST_ENABLE
-            //SendEVC30_MMIRequestEnable(255, 0b0001_1101_0000_0011_1111_0000_0011_1110);
+            EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = 255;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH =
                 standardflags | EVC30_MMIRequestEnable.EnabledRequests.ContactLastRBC;
@@ -145,11 +163,11 @@ namespace Testcase
             // Receive packet EVC-116 MMI_NEW_TRAIN_NUMBER
 
             // Send Cab active with echoed train number
-            EVC2_MMIStatus.TrainRunningNumber = 0xffffffff;
+            EVC2_MMIStatus.TrainRunningNumber = 0x1111;
             EVC2_MMIStatus.Send();
 
             // Send EVC-30 MMI_ENABLE_REQUEST
-            // SendEVC30_MMIRequestEnable(255, 0b0001_1101_0000_0011_1111_0000_0011_1111);
+            EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = 255;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH =
                 standardflags | EVC30_MMIRequestEnable.EnabledRequests.ContactLastRBC |
@@ -162,8 +180,8 @@ namespace Testcase
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
             EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
-            EVC8_MMIDriverMessage.MMI_Q_TEXT = 263;
-            EVC8_MMIDriverMessage.Send(); // "#3 MO10 (Ack Staff Responsible Mode)"
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 263;     // "#3 MO10 (Ack Staff Responsible Mode)"
+            EVC8_MMIDriverMessage.Send();
 
             // Receive packet EVC-111 MMI_DRIVER_MESSAGE_ACK (Driver acknowledges SR Mode)
 
@@ -173,13 +191,13 @@ namespace Testcase
         /// <summary>
         /// Initialises all EVC packets that contain dynamic arrays
         /// </summary>
-        private void Initialize_DynamicArrays()
+        private void Initialise_DynamicArrays()
         {
             SITR.SMDCtrl.ETCS1.SelectLevel.Value = 0x8;
             SITR.SMDCtrl.ETCS1.SetVbc.Value = 0x8;
             SITR.SMDCtrl.ETCS1.RemoveVbc.Value = 0x8;
             SITR.SMDCtrl.ETCS1.TrackDescription.Value = 0x8;
-
+            SITR.SMDCtrl.ETCS1.CurrentRbcData.Value = 0x8;
             SITR.SMDCtrl.ETCS1.EchoedTrainData.Value = 0x8;
         }
 
