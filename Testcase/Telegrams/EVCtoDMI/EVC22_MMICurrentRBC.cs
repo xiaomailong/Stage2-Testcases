@@ -10,9 +10,13 @@ namespace Testcase.Telegrams.EVCtoDMI
     static class EVC22_MMICurrentRBC
     {
         private static SignalPool _pool;
-        private static uint _nidC;
+        private static uint _nidC = NidC;
         private static uint _nidRbc;
 
+        /// <summary>
+        /// Initialise EVC-22 MMI Current RBC Data telegram
+        /// </summary>
+        /// <param name="pool"></param>
         public static void Initialise(SignalPool pool)
         {
             _pool = pool;
@@ -20,41 +24,43 @@ namespace Testcase.Telegrams.EVCtoDMI
             NetworkCaptions = new List<string>();
             DataElements = new List<DataElement>();
 
-            // activate dynamic array
+            // Activate dynamic array
             _pool.SITR.SMDCtrl.ETCS1.CurrentRbcData.Value = 0x8;
 
-            // set default values
-            _pool.SITR.ETCS1.CurrentRbcData.MmiMPacket.Value = 22; // Packet Id
+            // Set default values
+            _pool.SITR.ETCS1.CurrentRbcData.MmiMPacket.Value = 22; // Packet ID
         }
 
+        /// <summary>
+        /// Send EVC-22 MMI Current RBC Data telegram
+        /// </summary>
         public static void Send()
         {
-            ushort numberOfNetworks = (ushort) NetworkCaptions.Count;
+            ushort numberOfNetworks = (ushort)NetworkCaptions.Count;
             if (numberOfNetworks > 10)
-                throw new ArgumentOutOfRangeException();
+                throw new ArgumentOutOfRangeException("Too many RBC networks!");
             if (DataElements.Count > 9)
-                throw new ArgumentOutOfRangeException();
+                throw new ArgumentOutOfRangeException("Too many Data elements!");
 
             _pool.SITR.ETCS1.CurrentRbcData.MmiNNetworks.Value = numberOfNetworks; // Number of networks
 
-            ushort totalsizecounter = 176;
+            ushort totalSizeCounter = 176;
 
-            //For all networks
+            // For all networks
             for (int k = 0; k < numberOfNetworks; k++)
             {
                 var caption = NetworkCaptions[k].ToCharArray();
-                ushort numberNetworkCaptionChars = (ushort) caption.Length;
-                var varnamestring = $"ETCS1_CurrentTrainData_EVC22CurrentRbcDataSub1{k}_";
+                ushort numberNetworkCaptionChars = (ushort)caption.Length;
+                var varnamestring = $"ETCS1_CurrentRbcData_EVC22CurrentRbcDataSub1{k}_";
 
                 // Limit number of caption characters to 16
                 if (caption.Length > 16)
-                    throw new ArgumentOutOfRangeException();
+                    throw new ArgumentOutOfRangeException("Too many characters in caption string!");
 
                 // Write individual network chars
-                _pool.SITR.Client.Write(
-                    $"{varnamestring}MmiNCaptionNetwork",
-                    numberNetworkCaptionChars);
-                totalsizecounter += 16;
+                _pool.SITR.Client.Write($"{varnamestring}MmiNCaptionNetwork", numberNetworkCaptionChars);
+
+                totalSizeCounter += 16;
 
                 // Dynamic fields 2nd dimension
                 for (int l = 0; l < numberNetworkCaptionChars; l++)
@@ -63,29 +69,26 @@ namespace Testcase.Telegrams.EVCtoDMI
                     if (l < 10)
                     {
                         _pool.SITR.Client.Write(
-                            $"{varnamestring}EVC22CurrentRbcDataSub110{l}_MmiXCaptionNetwork",
-                            caption[l]);
+                            $"{varnamestring}EVC22CurrentRbcDataSub110{l}_MmiXCaptionNetwork", caption[l]);
                     }
                     else
                     {
                         _pool.SITR.Client.Write(
-                            $"{varnamestring}EVC22CurrentRbcDataSub11{l}_MmiXCaptionNetwork",
-                            caption[l]);
+                            $"{varnamestring}EVC22CurrentRbcDataSub11{l}_MmiXCaptionNetwork", caption[l]);
                     }
-                    totalsizecounter += 8;
+
+                    totalSizeCounter += 8;
                 }
             }
 
-            _pool.SITR.ETCS1.CurrentRbcData.MmiNDataElements.Value =
-                (ushort) DataElements.Count; // Number of data elements to enter
+            _pool.SITR.ETCS1.CurrentRbcData.MmiNDataElements.Value = (ushort)DataElements.Count; // Number of data elements to enter
 
-            totalsizecounter = PopulateDataElements("ETCS1_CurrentRbcData_EVC22CurrentRbcDataSub2", totalsizecounter,
-                _pool);
+            totalSizeCounter = PopulateDataElements("ETCS1_CurrentRbcData_EVC22CurrentRbcDataSub2", totalSizeCounter, DataElements, _pool);
 
-            // Packet length
-            _pool.SITR.ETCS1.CurrentRbcData.MmiLPacket.Value = totalsizecounter;
+            // Set packet length
+            _pool.SITR.ETCS1.CurrentRbcData.MmiLPacket.Value = totalSizeCounter;
 
-            // send
+            // Send dynamic packet
             _pool.SITR.SMDCtrl.ETCS1.CurrentRbcData.Value = 0x9;
         }
 
@@ -95,6 +98,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         public static uint NID_C
         {
             get => _nidC;
+
             set
             {
                 _nidC = value;
@@ -108,6 +112,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         public static uint NID_RBC
         {
             get => _nidRbc;
+
             set
             {
                 _nidRbc = value;
@@ -138,10 +143,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// 14 bit unsigned int for NID_RBC)
         ///
         /// </summary>
-        private static uint MMI_NID_RBC
-        {
-            set => _pool.SITR.ETCS1.CurrentRbcData.MmiNidRbc.Value = value;
-        }
+        private static uint MMI_NID_RBC { set => _pool.SITR.ETCS1.CurrentRbcData.MmiNidRbc.Value = value; }
 
         /// <summary>
         /// RBC phone number
@@ -151,8 +153,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             set
             {
                 var bytes = BitConverter.GetBytes(value);
-                _pool.SITR.ETCS1.CurrentRbcData.MmiNidRadio.Value = new[]
-                    {BitConverter.ToUInt32(bytes, 2), BitConverter.ToUInt32(bytes, 0)};
+                _pool.SITR.ETCS1.CurrentRbcData.MmiNidRadio.Value = new[] { BitConverter.ToUInt32(bytes, 2), BitConverter.ToUInt32(bytes, 0) };
             }
         }
 
@@ -199,7 +200,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static ushort MMI_NID_WINDOW
         {
-            set => _pool.SITR.ETCS1.CurrentRbcData.MmiNidWindow.Value = (byte) value;
+            set => _pool.SITR.ETCS1.CurrentRbcData.MmiNidWindow.Value = (byte)value;
         }
 
         /// <summary>
@@ -208,7 +209,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static bool MMI_Q_CLOSE_ENABLE
         {
-            set => _pool.SITR.ETCS1.CurrentDriverId.MmiQCloseEnable.Value = (byte) (value ? 0x80 : 0x00);
+            set => _pool.SITR.ETCS1.CurrentDriverId.MmiQCloseEnable.Value = (byte)(value ? 0x80 : 0x00);
         }
 
         /// <summary>
@@ -220,9 +221,12 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static EVC22BUTTONS MMI_M_BUTTONS
         {
-            set => _pool.SITR.ETCS1.CurrentRbcData.MmiMButtons.Value = (byte) value;
+            set => _pool.SITR.ETCS1.CurrentRbcData.MmiMButtons.Value = (byte)value;
         }
 
+        /// <summary>
+        /// EVC-22 Button type to be shown in RBC Data window
+        /// </summary>
         public enum EVC22BUTTONS : ushort
         {
             BTN_YES_DATA_ENTRY_COMPLETE = 36,
@@ -230,8 +234,15 @@ namespace Testcase.Telegrams.EVCtoDMI
             NoButton = 255
         }
 
+        /// <summary>
+        /// List of captions for the RBC elements.
+        /// String must be limited to 10 chars compared to the allowed 16, otherwise the PopulateDataElements method will throw an exception
+        /// </summary>
         public static List<string> NetworkCaptions { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static List<DataElement> DataElements { get; set; }
     }
 }
