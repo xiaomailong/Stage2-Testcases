@@ -13,6 +13,9 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams;
+using Testcase.Telegrams.EVCtoDMI;
+using Testcase.TemporaryFunctions;
 
 namespace Testcase.DMITestCases
 {
@@ -440,6 +443,7 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void DMI_displays_in_SR_mode_Level_1()
         {
+            EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.StaffResponsible;
             throw new NotImplementedException();
         }
 
@@ -715,6 +719,7 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void DMI_displays_in_FS_mode_Level_1()
         {
+            EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.FullSupervision;
             throw new NotImplementedException();
         }
 

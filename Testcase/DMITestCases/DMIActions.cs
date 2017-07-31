@@ -13,6 +13,9 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams;
+using Testcase.Telegrams.EVCtoDMI;
+using Testcase.TemporaryFunctions;
 
 // ReSharper disable UnusedMember.Global
 
@@ -1064,6 +1067,8 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void Force_the_train_into_TR_mode_by_moving_the_train_forward_to_position_of_EOA()
         {
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Trip;
+            EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.Trip;
             throw new NotImplementedException();
         }
 

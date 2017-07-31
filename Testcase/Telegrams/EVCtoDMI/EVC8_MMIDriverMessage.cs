@@ -33,7 +33,7 @@ namespace Testcase.Telegrams.EVCtoDMI
 
         public static void Send()
         {
-            _pool.SITR.SMDCtrl.ETCS1.DriverMessage.Value = 1;
+            _pool.SITR.SMDCtrl.ETCS1.DriverMessage.Value = 0x9;
         }
 
         /// <summary>

@@ -372,6 +372,7 @@ if exist "$(TargetPath)" if not exist "$(TargetPath).locked" move "$(TargetPath)
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SoM_Level1.cs" />
+    <Compile Include="Telegrams\DMItoEVC\EVC111_MMIDriverMessageAck.cs" />
     <Compile Include="Telegrams\DMItoEVC\EVC102_MMIStatusReport.cs" />
     <Compile Include="Telegrams\DMItoEVC\EVC107_MMINewTrainData.cs" />
     <Compile Include="Telegrams\DMItoEVC\EVC152_EVCDriverAction.cs" />

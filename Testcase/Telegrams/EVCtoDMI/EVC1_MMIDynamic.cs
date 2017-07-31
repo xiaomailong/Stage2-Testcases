@@ -26,5 +26,10 @@ namespace Testcase.Telegrams.EVCtoDMI
             _pool.SITR.ETCS1.Dynamic.EVC01SSW2.Value = 0x8000; // 32768 in decimal
             _pool.SITR.ETCS1.Dynamic.EVC01SSW3.Value = 0x8000; // 32768 in decimal
         }
+
+        public static ushort MMI_V_TRAIN
+        {
+            set => _pool.SITR.ETCS1.Dynamic.MmiVTrain.Value = (byte)value;
+        }
     }
 }
