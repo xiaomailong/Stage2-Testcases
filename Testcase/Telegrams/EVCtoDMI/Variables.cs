@@ -48,11 +48,11 @@ namespace Testcase.Telegrams.EVCtoDMI
 
                     if (charIndex < 10)
                     {
-                        _pool.SITR.Client.Write(baseString + $"10{charIndex}_MmiXText", character);
+                        _pool.SITR.Client.Write(varNamestring + baseString.Substring( baseString.LastIndexOf('_') + 1 ) + $"10{charIndex}_MmiXText", character);
                     }
                     else
                     {
-                        _pool.SITR.Client.Write(baseString + $"1{charIndex}_MmiXText", character);
+                        _pool.SITR.Client.Write(varNamestring + baseString.Substring( baseString.LastIndexOf('_') + 1 ) + $"1{charIndex}_MmiXText", character);
                     }
 
                     totalSizeCounter += 8;
@@ -186,6 +186,6 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// <summary>
         /// NID_C as allocated by ERA for Crossrail Central Section
         /// </summary>
-        public const uint NidC = 4;
+        public const uint NidC = 3;
     }
 }
