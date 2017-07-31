@@ -1,9 +1,13 @@
-﻿using System;
+﻿#region usings
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using CL345;
 using static Testcase.Telegrams.EVCtoDMI.Variables;
+
+#endregion
 
 namespace Testcase.Telegrams.EVCtoDMI
 {
@@ -50,7 +54,9 @@ namespace Testcase.Telegrams.EVCtoDMI
             for (int k = 0; k < numberOfNetworks; k++)
             {
                 var caption = NetworkCaptions[k].ToCharArray();
+
                 ushort numberNetworkCaptionChars = (ushort)caption.Length;
+
                 var varnamestring = $"ETCS1_CurrentRbcData_EVC22CurrentRbcDataSub1{k}_";
 
                 // Limit number of caption characters to 16
