@@ -2,10 +2,17 @@
 
 namespace Testcase.Telegrams.EVCtoDMI
 {
+    /// <summary>
+    /// This packet shall be sent when the ETC needs to establish contact and exchange start-up information with the MMI.
+    /// </summary>
     static class EVC0_MMIStartATP
     {
         private static SignalPool _pool;
 
+        /// <summary>
+        /// Initialise EVC-0 telegram.
+        /// </summary>
+        /// <param name="pool"></param>
         public static void Initialise(SignalPool pool)
         {
             _pool = pool;
@@ -17,6 +24,9 @@ namespace Testcase.Telegrams.EVCtoDMI
 
         public static EVC0Type Evc0Type { get; set; }
 
+        /// <summary>
+        /// Send EVC-0 telegram.
+        /// </summary>
         public static void Send()
         {
             switch (Evc0Type)
@@ -34,6 +44,13 @@ namespace Testcase.Telegrams.EVCtoDMI
             }
         }
 
+        /// <summary>
+        /// EVC-0 telegram start-up type
+        /// 
+        /// Values:
+        /// Request Version Information
+        /// Go to Idle
+        /// </summary>
         public enum EVC0Type
         {
             VersionInfo,
