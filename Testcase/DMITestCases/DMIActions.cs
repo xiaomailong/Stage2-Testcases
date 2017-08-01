@@ -16,7 +16,6 @@ using CL345;
 using Testcase.Telegrams;
 using Testcase.Telegrams.EVCtoDMI;
 using Testcase.TemporaryFunctions;
-using static Testcase.SP;
 
 // ReSharper disable UnusedMember.Global
 

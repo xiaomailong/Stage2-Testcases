@@ -105,8 +105,8 @@ namespace Testcase.DMITestCases
 
             // Symbol MO10 on DMI area C1 is pressed and released 
             //ie. EVC-111 sent twice with different value of MMI_T_BUTTONEVENT and MMI_Q_BUTTON (1 = pressed, 0 = released)
-            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = EVC111_MMIDriverMessageAck.MMI_Q_BUTTON.Pressed;
-            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = EVC111_MMIDriverMessageAck.MMI_Q_BUTTON.Released;
+            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
+            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
 
             /*
             Expected Result: Verify the following information,The symbol MO10 is disappear from sub-area C1 and re-appear again.
@@ -128,10 +128,10 @@ namespace Testcase.DMITestCases
             */
 
             //While pressing DMI C1 area..
-            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = EVC111_MMIDriverMessageAck.MMI_Q_BUTTON.Pressed;
+            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
 
             //..then release it
-            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = EVC111_MMIDriverMessageAck.MMI_Q_BUTTON.Released;
+            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
 
             /*
             Expected Result: Verify the following information,While the MO10 is pressed, the opacity of the symbol is decreased to 50%
@@ -217,8 +217,8 @@ namespace Testcase.DMITestCases
             /*
             Action: Press the symbol ‘MO05’ in sub-area C1
             */
-            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = EVC111_MMIDriverMessageAck.MMI_Q_BUTTON.Pressed;
-            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = EVC111_MMIDriverMessageAck.MMI_Q_BUTTON.Released;
+            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
+            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
             /*
             Expected Result: Verify the following information,
             Use the log file to confirm that DMI received the EVC-7 with [MMI_ETCS_MISC_OUT_SIGNALS.OBU_TR_M_MODE] = 8 in order to display the Post Trip symbol.
