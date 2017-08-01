@@ -62,9 +62,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays the default window. The Driver ID window is displayed
             */
             // Call generic Action Method
-            DmiActions.Activate_cabin_A();
+            DmiActions.Activate_cabin_A(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_the_default_window_The_Driver_ID_window_is_displayed();
+            DmiExpectedResults.DMI_displays_the_default_window_The_Driver_ID_window_is_displayed(this);
 
 
             /*
@@ -73,9 +73,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI is displayed in SR mode, level 1
             */
             // Call generic Action Method
-            DmiActions.Driver_performs_SoM_to_SR_mode_level_1();
+            DmiActions.Driver_performs_SoM_to_SR_mode_level_1(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_is_displayed_in_SR_mode_level_1();
+            DmiExpectedResults.DMI_is_displayed_in_SR_mode_level_1(this);
 
 
             /*
@@ -84,7 +84,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI changes from SR mode to FS mode.The planning area is displayed the PA Gradient Profile. DMI is able to handle more than 16 PA Gradient Profile segments. (see the figure in ‘Comment’ column)Note: PA Gradient Profile value are 2, 4, 6, …. 34. In grey segment bars
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_pass_BG1();
+            DmiActions.Drive_the_train_forward_pass_BG1(this);
 
 
             /*
@@ -94,7 +94,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 7256;
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_pass_BG2();
+            DmiActions.Drive_the_train_forward_pass_BG2(this);
 
 
             /*
@@ -103,7 +103,7 @@ namespace Testcase.DMITestCases
             Expected Result: 
             */
             // Call generic Action Method
-            DmiActions.End_of_Test();
+            DmiActions.End_of_Test(this);
 
 
             return GlobalTestResult;

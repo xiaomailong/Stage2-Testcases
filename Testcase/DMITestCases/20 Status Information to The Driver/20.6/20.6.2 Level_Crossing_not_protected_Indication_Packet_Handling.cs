@@ -64,7 +64,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 10482 (partly: invalid MMI_M_TRACKCOND_STEP);
             */
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_There_is_no_symbol_display_in_sub_area_B3_B5();
+            DmiExpectedResults.Verify_the_following_information_There_is_no_symbol_display_in_sub_area_B3_B5(this);
 
 
             /*
@@ -74,7 +74,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 10482 (partly: invalid MMI_M_TRACKCOND_TYPE);
             */
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_There_is_no_symbol_display_in_sub_area_B3_B5();
+            DmiExpectedResults.Verify_the_following_information_There_is_no_symbol_display_in_sub_area_B3_B5(this);
 
 
             /*
@@ -92,7 +92,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions
-                .Use_the_test_script_file_15_6_2_d_xml_to_send_EVC_33_withMMI_Q_TRACKCOND_STEP_4MMI_NID_TRACKCOND_0();
+                .Use_the_test_script_file_15_6_2_d_xml_to_send_EVC_33_withMMI_Q_TRACKCOND_STEP_4MMI_NID_TRACKCOND_0(this);
 
 
             /*
@@ -110,7 +110,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions
-                .Use_the_test_script_file_15_6_2_d_xml_to_send_EVC_33_withMMI_Q_TRACKCOND_STEP_4MMI_NID_TRACKCOND_0();
+                .Use_the_test_script_file_15_6_2_d_xml_to_send_EVC_33_withMMI_Q_TRACKCOND_STEP_4MMI_NID_TRACKCOND_0(this);
 
 
             /*
@@ -128,7 +128,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions
-                .Use_the_test_script_file_15_6_2_d_xml_to_send_EVC_33_withMMI_Q_TRACKCOND_STEP_4MMI_NID_TRACKCOND_0();
+                .Use_the_test_script_file_15_6_2_d_xml_to_send_EVC_33_withMMI_Q_TRACKCOND_STEP_4MMI_NID_TRACKCOND_0(this);
 
 
             /*

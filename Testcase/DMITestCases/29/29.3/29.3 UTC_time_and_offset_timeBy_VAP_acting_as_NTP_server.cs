@@ -68,7 +68,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays SB mode
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_SB_mode();
+            DmiExpectedResults.DMI_displays_SB_mode(this);
 
 
             /*
@@ -77,7 +77,7 @@ namespace Testcase.DMITestCases
             Expected Result: Mode changes to SR mode
             */
             // Call generic Action Method
-            DmiActions.Perform_SoM_to_L1_SR_mode();
+            DmiActions.Perform_SoM_to_L1_SR_mode(this);
 
 
             /*
@@ -87,7 +87,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 12062; MMI_gen 2421 (partly: VAP acting as NTP server);MMI_gen 11284;Note: ‘EVC-TBD’ will be provided by VSIS in order to support VAP interface 
             */
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information1_DMI_time_is_updated_only_its_offset_time();
+            DmiExpectedResults.Verify_the_following_information1_DMI_time_is_updated_only_its_offset_time(this);
 
 
             /*
@@ -97,7 +97,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 12062; MMI_gen 11284;
             */
             // Call generic Action Method
-            DmiActions.Select_Settings_button_and_press_Set_clock_button();
+            DmiActions.Select_Settings_button_and_press_Set_clock_button(this);
 
 
             /*
@@ -107,7 +107,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 12062; MMI_gen 2421 (partly: VAP acting as NTP server);MMI_gen 11284;Note: ‘EVC-TBD’ will be provided by VSIS in order to support VAP interface
             */
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information1_DMI_time_is_updated_only_its_offset_time();
+            DmiExpectedResults.Verify_the_following_information1_DMI_time_is_updated_only_its_offset_time(this);
 
 
             /*

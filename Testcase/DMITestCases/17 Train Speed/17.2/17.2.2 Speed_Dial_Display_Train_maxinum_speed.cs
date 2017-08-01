@@ -64,9 +64,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays SB mode
             */
             // Call generic Action Method
-            DmiActions.Power_on_the_system_and_activate_the_cabin();
+            DmiActions.Power_on_the_system_and_activate_the_cabin(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_SB_mode();
+            DmiExpectedResults.DMI_displays_SB_mode(this);
 
 
             /*

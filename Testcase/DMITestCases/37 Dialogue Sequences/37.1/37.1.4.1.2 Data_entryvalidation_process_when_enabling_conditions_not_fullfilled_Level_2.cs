@@ -63,7 +63,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8868 (partly: after the start-up dialogue sequence);
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_RBC_data_window();
+            DmiExpectedResults.DMI_displays_RBC_data_window(this);
 
 
             /*
@@ -74,7 +74,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions
-                .Perform_the_following_procedure_Drive_the_train_forward_until_the_brake_is_appliedStop_driving_the_trainAcknowledge_the_Brake_intervention_symbol_by_pressing_area_E1();
+                .Perform_the_following_procedure_Drive_the_train_forward_until_the_brake_is_appliedStop_driving_the_trainAcknowledge_the_Brake_intervention_symbol_by_pressing_area_E1(this);
 
 
             /*
@@ -92,7 +92,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions
-                .Perform_the_following_procedure_Drive_the_train_forward_until_the_brake_is_appliedStop_driving_the_trainAcknowledge_the_Brake_intervention_symbol_by_pressing_area_E1();
+                .Perform_the_following_procedure_Drive_the_train_forward_until_the_brake_is_appliedStop_driving_the_trainAcknowledge_the_Brake_intervention_symbol_by_pressing_area_E1(this);
 
 
             /*

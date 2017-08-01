@@ -65,7 +65,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 577 (partly: Level is valid and equal to 0, symbol LE01, displayed in area C8);(2) MMI_gen 577 (partly: Level is valid, Derived from variable,Level 0);
             */
             // Call generic Action Method
-            DmiActions.Select_and_confirm_Level_0();
+            DmiActions.Select_and_confirm_Level_0(this);
 
 
             /*

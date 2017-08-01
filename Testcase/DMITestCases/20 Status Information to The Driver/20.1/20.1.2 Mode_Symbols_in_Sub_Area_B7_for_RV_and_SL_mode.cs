@@ -62,7 +62,7 @@ namespace Testcase.DMITestCases
             Expected Result: 
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_passing_BG2();
+            DmiActions.Drive_the_train_forward_passing_BG2(this);
 
 
             /*

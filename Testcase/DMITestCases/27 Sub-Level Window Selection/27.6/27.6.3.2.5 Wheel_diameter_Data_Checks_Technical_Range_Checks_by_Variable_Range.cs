@@ -67,10 +67,10 @@ namespace Testcase.DMITestCases
             Expected Result: The ‘Wheel diameter’ data entry window appears on ETCS-DMI screen instead of the ‘Settings’ menu window
             */
             // Call generic Action Method
-            DmiActions.Open_the_Wheel_diameter_data_entry_window_from_the_Settings_menu();
+            DmiActions.Open_the_Wheel_diameter_data_entry_window_from_the_Settings_menu(this);
             // Call generic Check Results Method
             DmiExpectedResults
-                .The_Wheel_diameter_data_entry_window_appears_on_ETCS_DMI_screen_instead_of_the_Settings_menu_window();
+                .The_Wheel_diameter_data_entry_window_appears_on_ETCS_DMI_screen_instead_of_the_Settings_menu_window(this);
 
 
             /*
@@ -104,7 +104,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions
-                .This_step_is_to_complete_the_process_of_Wheel_diameter_Press_the_Yes_button_on_the_Wheel_diameter_window_Validate_the_data_in_the_data_validation_window();
+                .This_step_is_to_complete_the_process_of_Wheel_diameter_Press_the_Yes_button_on_the_Wheel_diameter_window_Validate_the_data_in_the_data_validation_window(this);
 
 
             /*

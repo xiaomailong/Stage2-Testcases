@@ -85,7 +85,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Default window
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Default_window();
+            DmiExpectedResults.DMI_displays_Default_window(this);
 
 
             /*

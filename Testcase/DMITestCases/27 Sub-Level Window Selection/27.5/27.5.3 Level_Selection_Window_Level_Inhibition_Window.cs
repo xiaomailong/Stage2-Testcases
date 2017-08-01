@@ -191,7 +191,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen2201 (partly: MMI_gen 4382 (partly: state ‘Enabled’ when slide out with force applied, no sound));
             */
             // Call generic Action Method
-            DmiActions.Slide_out_Close_button();
+            DmiActions.Slide_out_Close_button(this);
 
 
             /*
@@ -201,7 +201,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 2201 (partly: MMI_gen 4382 (partly: state ‘Pressed’ when slide back, no sound));
             */
             // Call generic Action Method
-            DmiActions.Slide_back_into_Close_button();
+            DmiActions.Slide_back_into_Close_button(this);
 
 
             /*

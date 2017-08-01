@@ -84,7 +84,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 2327;(2) MMI_gen 972 (partly: OBU_TR_M_MODE, table 33, mode FS); MMI_gen 6310 (partly: mode);(3) MMI_gen 972 (partly: MMI_V_PERMITTED); MMI_gen 6310 (partly: permitted speed);(4) MMI_gen 972 (partly: FS mode, CSM, 0km/h <= CSG <= Vperm);(5) MMI_gen 1154 (partly: Outer border of the Speed Dial, Placed at Permitted Speed); MMI_gen 1182 (partly: speed dial, Vperm);
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_pass_BG1_with_speed_30kmh();
+            DmiActions.Drive_the_train_forward_pass_BG1_with_speed_30kmh(this);
 
 
             /*

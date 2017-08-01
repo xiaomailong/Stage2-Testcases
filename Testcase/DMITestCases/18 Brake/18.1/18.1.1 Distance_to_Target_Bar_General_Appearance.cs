@@ -62,9 +62,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SB mode, level 1. The Driver ID window is displayed
             */
             // Call generic Action Method
-            DmiActions.Activate_cabin_A();
+            DmiActions.Activate_cabin_A(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_SB_mode_level_1_The_Driver_ID_window_is_displayed();
+            DmiExpectedResults.DMI_displays_in_SB_mode_level_1_The_Driver_ID_window_is_displayed(this);
 
 
             /*
@@ -73,9 +73,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SR mode, level 1
             */
             // Call generic Action Method
-            DmiActions.Driver_performs_SoM_to_SR_mode();
+            DmiActions.Driver_performs_SoM_to_SR_mode(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_SR_mode_level_1();
+            DmiExpectedResults.DMI_displays_in_SR_mode_level_1(this);
 
 
             /*
@@ -84,9 +84,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI changes from SR to FS mode
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_pass_BG1();
+            DmiActions.Drive_the_train_forward_pass_BG1(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_changes_from_SR_to_FS_mode();
+            DmiExpectedResults.DMI_changes_from_SR_to_FS_mode(this);
 
 
             /*
@@ -96,7 +96,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 986;             (2) MMI_gen 6613 (partly: left column);                            (3) MMI_gen 1261 (partly: display distances);                          (4) MMI_gen 1261 (partly: Limitation);                  (5) MMI_gen 6659;                        (6) MMI_gen 987 (partly: vertical rectangular, right column of sub-area A3, left aligned);                  (7) MMI_gen 1261 (partly: calculation); MMI_gen 6616 (meter); MMI_gen 6773 (meter); MMI_gen 105 (partly: result of calculation);     
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_follow_the_permitted_speed();
+            DmiActions.Drive_the_train_follow_the_permitted_speed(this);
 
 
             /*
@@ -106,7 +106,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 1261 (partly: If not positive distance, distance to target bar not be displayed);
             */
             // Call generic Action Method
-            DmiActions.Stop_the_train();
+            DmiActions.Stop_the_train(this);
 
 
             /*

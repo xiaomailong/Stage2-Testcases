@@ -139,7 +139,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 12018 (partly: windows in main menu);(2) MMI_gen 168 (partly: disabled buttons, windows in main menu); MMI_gen 5646 (partly: State ‘ST05’ button is disabled, windows in main menu); MMI_gen 5719 (partly: State ‘ST05’ button is disabled, windows in main menu); MMI_gen 4395 (partly: close button, disabled, windows in main menu);(3) MMI_gen 4396 (partly: close, NA12, windows in main menu);(4) MMI_gen 168 (partly: deselect input field, windows in main menu);(5) MMI_gen 5728 (partly: removal, EVC, windows in main menu);(6) MMI_gen 5728 (partly: restore after ST05, windows in main menu);(7) MMI_gen 4396 (partly: close, NA11, windows in main menu);(8) MMI_gen 5728 (partly: input field, windows in main menu)
             */
             // Call generic Action Method
-            DmiActions.Repeat_action_step_2_with_Validate_Train_Data_window();
+            DmiActions.Repeat_action_step_2_with_Validate_Train_Data_window(this);
 
 
             /*
@@ -173,7 +173,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: See step 9 for the Validate Train Data window in the Main menu
             */
             // Call generic Action Method
-            DmiActions.Repeat_action_step_2_with_Validate_Train_Data_window();
+            DmiActions.Repeat_action_step_2_with_Validate_Train_Data_window(this);
 
 
             /*
@@ -191,7 +191,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: See step 4 for the Level window in the Main menu
             */
             // Call generic Check Results Method
-            DmiExpectedResults.See_the_expectation_in_step_4();
+            DmiExpectedResults.See_the_expectation_in_step_4(this);
 
 
             /*
@@ -219,7 +219,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: See step 4 for the Level inhibition window in the Main menu
             */
             // Call generic Check Results Method
-            DmiExpectedResults.See_the_expectation_in_step_4();
+            DmiExpectedResults.See_the_expectation_in_step_4(this);
 
 
             /*
@@ -237,7 +237,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: See step 4 for Train running number window in the Main menu
             */
             // Call generic Check Results Method
-            DmiExpectedResults.See_the_expectation_in_step_4();
+            DmiExpectedResults.See_the_expectation_in_step_4(this);
 
 
             /*

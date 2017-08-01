@@ -64,9 +64,9 @@ namespace Testcase.DMITestCases
             Expected Result: The speed pointer is indicated as 20  km/h
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_with_speed_20_kmh();
+            DmiActions.Drive_the_train_forward_with_speed_20_kmh(this);
             // Call generic Check Results Method
-            DmiExpectedResults.The_speed_pointer_is_indicated_as_20_kmh();
+            DmiExpectedResults.The_speed_pointer_is_indicated_as_20_kmh(this);
 
 
             /*
@@ -75,7 +75,7 @@ namespace Testcase.DMITestCases
             Expected Result: Mode changes to FS mode , level 1
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_pass_BG0_with_MA_and_Track_descriptionPkt_12_21_and_27();
+            DmiActions.Drive_the_train_forward_pass_BG0_with_MA_and_Track_descriptionPkt_12_21_and_27(this);
 
 
             /*
@@ -100,7 +100,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9980 (partly: Table 45 (PL09));MMI_gen 9979 (partly: ANNOUNCE); MMI_gen 636 (partly: ANNOUNCE);(2) MMI_gen 2604 (partly: bottom of the symbol, D2);
             */
             // Call generic Action Method
-            DmiActions.Stop_the_train();
+            DmiActions.Stop_the_train(this);
 
 
             /*
@@ -109,9 +109,9 @@ namespace Testcase.DMITestCases
             Expected Result: The speed pointer is indicated as 20  km/h
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_with_speed_20_kmh();
+            DmiActions.Drive_the_train_forward_with_speed_20_kmh(this);
             // Call generic Check Results Method
-            DmiExpectedResults.The_speed_pointer_is_indicated_as_20_kmh();
+            DmiExpectedResults.The_speed_pointer_is_indicated_as_20_kmh(this);
 
 
             /*
@@ -128,9 +128,9 @@ namespace Testcase.DMITestCases
             Expected Result: The speed pointer is indicated as 20  km/h
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_with_speed_20_kmh();
+            DmiActions.Drive_the_train_forward_with_speed_20_kmh(this);
             // Call generic Check Results Method
-            DmiExpectedResults.The_speed_pointer_is_indicated_as_20_kmh();
+            DmiExpectedResults.The_speed_pointer_is_indicated_as_20_kmh(this);
 
 
             /*
@@ -140,10 +140,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9965;
             */
             // Call generic Action Method
-            DmiActions.Stop_the_train_when_the_track_condition_symbol_has_been_removed_from_sub_area_B3();
+            DmiActions.Stop_the_train_when_the_track_condition_symbol_has_been_removed_from_sub_area_B3(this);
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information1_Use_the_log_file_to_confirm_that_DMI_received_packet_information_MMI_TRACK_CONDITIONS_EVC_32_with_the_following_variables_MMI_Q_TRACKCOND_STEP_4MMI_NID_TRACKCOND_same_value_with_expected_result_No_2_of_step_7();
+                .Verify_the_following_information1_Use_the_log_file_to_confirm_that_DMI_received_packet_information_MMI_TRACK_CONDITIONS_EVC_32_with_the_following_variables_MMI_Q_TRACKCOND_STEP_4MMI_NID_TRACKCOND_same_value_with_expected_result_No_2_of_step_7(this);
 
 
             /*

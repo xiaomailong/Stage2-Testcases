@@ -67,7 +67,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .The_Remove_VBC_data_entry_window_appears_on_ETCS_DMI_screen_instead_of_the_Settings_menu_window();
+                .The_Remove_VBC_data_entry_window_appears_on_ETCS_DMI_screen_instead_of_the_Settings_menu_window(this);
 
 
             /*
@@ -101,7 +101,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Enter “1” (invalid value) with the numeric keypad in the same screen");
             // Call generic Check Results Method
             DmiExpectedResults
-                .Input_Field1_The_eventually_displayed_data_value_in_the_data_area_of_the_input_field_is_replaced_by_1_character_or_value_corresponding_to_the_activated_data_key_state_Selected_IFvalue_of_pressed_keys();
+                .Input_Field1_The_eventually_displayed_data_value_in_the_data_area_of_the_input_field_is_replaced_by_1_character_or_value_corresponding_to_the_activated_data_key_state_Selected_IFvalue_of_pressed_keys(this);
 
 
             /*
@@ -134,7 +134,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Enter “65536” (valid value) with the numeric keypad");
             // Call generic Check Results Method
             DmiExpectedResults
-                .Input_Field1_The_eventually_displayed_data_value_in_the_data_area_of_the_input_field_is_replaced_by_65536_character_or_value_corresponding_to_the_activated_data_key_state_Selected_IFvalue_of_pressed_keys();
+                .Input_Field1_The_eventually_displayed_data_value_in_the_data_area_of_the_input_field_is_replaced_by_65536_character_or_value_corresponding_to_the_activated_data_key_state_Selected_IFvalue_of_pressed_keys(this);
 
 
             /*
@@ -154,7 +154,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions
-                .This_step_is_to_complete_the_process_of_Remove_VBC_Press_the_Yes_button_on_the_Remove_VBC_window_Validate_the_data_in_the_data_validation_window();
+                .This_step_is_to_complete_the_process_of_Remove_VBC_Press_the_Yes_button_on_the_Remove_VBC_window_Validate_the_data_in_the_data_validation_window(this);
 
 
             /*

@@ -68,7 +68,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 107 (partly: MMI_M_WARNING, OBU_TR_M_MODE, FS mode CSM); MMI_gen 6658 (partly: MMI_O_BRAKETARGET is less than zero); MMI_gen 2567 (partly: MMI_M_WARNING, OBU_TR_M_MODE, FS mode CSM); MMI_gen 6774 (partly: MMI_O_BRAKETARGET is less than zero);(2) MMI_gen 6658 (partly: not be shown); MMI_gen 107 (partly: Table 37, FS mode, CSM);(3) MMI_gen 2567 (partly: Table 38, FS mode CSM); MMI_gen 6774 (partly: not be shown);
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_pass_BG1();
+            DmiActions.Drive_the_train_forward_pass_BG1(this);
 
 
             /*
@@ -78,7 +78,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 107 (partly: MMI_M_WARNING, FS mode PIM); MMI_gen 6658 (partly: NEGATIVE, MMI_O_BRAKETARGET is more than zero); MMI_gen 2567 (partly: MMI_M_WARNING, FS mode PIM);(2) MMI_gen 6658 (partly: NEGATIVE, shown); MMI_gen 107 (partly: Table 37, FS mode, PIM); MMI_gen 5817 (partly: MMI_M_WARNING = 2);(3) MMI_gen 5817 (partly: sound Sinfo); MMI_gen 9516 (partly: PIM supervision); MMI_gen 12025 (partly: PIM supervision);(4) MMI_gen 2567 (partly: Table 38, FS mode PIM);
             */
             // Call generic Action Method
-            DmiActions.Continue_to_drive_the_train_forward_Then_stop_the_train();
+            DmiActions.Continue_to_drive_the_train_forward_Then_stop_the_train(this);
 
 
             /*
@@ -88,7 +88,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 107 (partly: MMI_M_WARNING, FS mode TSM); MMI_gen 6658 (partly: NEGATIVE, MMI_O_BRAKETARGET is more than zero); MMI_gen 2567 (partly: MMI_M_WARNING, FS mode TSM);(2) MMI_gen 6658 (partly: NEGATIVE, shown); MMI_gen 107 (partly: Table 37, FS mode, TSM);(3) MMI_gen 2567 (partly: Table 38, FS mode TSM);
             */
             // Call generic Action Method
-            DmiActions.Continue_to_drive_the_train_forward_Then_stop_the_train();
+            DmiActions.Continue_to_drive_the_train_forward_Then_stop_the_train(this);
 
 
             /*
@@ -99,7 +99,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_1_The_distance_to_target_bar_and_digital_is_removed_from_the_DMI_Note_After_test_scipt_file_is_executed_the_distance_to_target_bar_and_digital_is_re_appear_refer_to_received_packet_EVC_1_from_ETCS_Onboard();
+                .Verify_the_following_information_1_The_distance_to_target_bar_and_digital_is_removed_from_the_DMI_Note_After_test_scipt_file_is_executed_the_distance_to_target_bar_and_digital_is_re_appear_refer_to_received_packet_EVC_1_from_ETCS_Onboard(this);
 
 
             /*
@@ -110,7 +110,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_1_The_distance_to_target_bar_and_digital_is_removed_from_the_DMI_Note_After_test_scipt_file_is_executed_the_distance_to_target_bar_and_digital_is_re_appear_refer_to_received_packet_EVC_1_from_ETCS_Onboard();
+                .Verify_the_following_information_1_The_distance_to_target_bar_and_digital_is_removed_from_the_DMI_Note_After_test_scipt_file_is_executed_the_distance_to_target_bar_and_digital_is_re_appear_refer_to_received_packet_EVC_1_from_ETCS_Onboard(this);
 
 
             /*
@@ -120,7 +120,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 107 (partly: MMI_M_WARNING, OBU_TR_M_MODE, FS mode RSM); MMI_gen 6658 (partly: NEGATIVE, MMI_O_BRAKETARGET is more than zero); MMI_gen 2567 (partly: MMI_M_WARNING, OBU_TR_M_MODE, FS mode RSM);(2) MMI_gen 6658 (partly: NEGATIVE, shown); MMI_gen 107 (partly: Table 37, FS mode, RSM);(3) MMI_gen 2567 (partly: Table 38, FS mode RSM);
             */
             // Call generic Action Method
-            DmiActions.Continue_to_drive_the_train_forward_Then_stop_the_train();
+            DmiActions.Continue_to_drive_the_train_forward_Then_stop_the_train(this);
 
 
             /*

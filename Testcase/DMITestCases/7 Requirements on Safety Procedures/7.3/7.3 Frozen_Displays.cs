@@ -73,7 +73,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .The_Default_window_is_displayed_Verify_the_following_information_The_local_time_is_displayed_in_form_of_hhmmss_with_flashing_colons_at_sub_area_G13();
+                .The_Default_window_is_displayed_Verify_the_following_information_The_local_time_is_displayed_in_form_of_hhmmss_with_flashing_colons_at_sub_area_G13(this);
 
 
             /*
@@ -84,7 +84,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .The_Default_window_is_displayed_Verify_the_following_information_The_local_time_is_displayed_in_form_of_hhmmss_with_flashing_colons_at_sub_area_G13();
+                .The_Default_window_is_displayed_Verify_the_following_information_The_local_time_is_displayed_in_form_of_hhmmss_with_flashing_colons_at_sub_area_G13(this);
 
 
             /*
@@ -95,7 +95,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .The_Default_window_is_displayed_Verify_the_following_information_The_local_time_is_displayed_in_form_of_hhmmss_with_flashing_colons_at_sub_area_G13();
+                .The_Default_window_is_displayed_Verify_the_following_information_The_local_time_is_displayed_in_form_of_hhmmss_with_flashing_colons_at_sub_area_G13(this);
 
 
             /*

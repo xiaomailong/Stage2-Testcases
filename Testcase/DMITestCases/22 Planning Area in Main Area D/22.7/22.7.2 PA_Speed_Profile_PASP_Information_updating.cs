@@ -63,7 +63,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SR mode, level 1
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_SR_mode_level_1();
+            DmiExpectedResults.DMI_displays_in_SR_mode_level_1(this);
 
 
             /*
@@ -73,7 +73,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 2599 (partly: value 0); MMI_gen 7323 (partly: MMI_gen 2599);(2) MMI_gen 2599 (partly: 1st bullet);(3) MMI_gen 2599 (partly: 3rd bullet);
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_pass_BG1_Then_Stop_the_train();
+            DmiActions.Drive_the_train_forward_pass_BG1_Then_Stop_the_train(this);
 
 
             /*

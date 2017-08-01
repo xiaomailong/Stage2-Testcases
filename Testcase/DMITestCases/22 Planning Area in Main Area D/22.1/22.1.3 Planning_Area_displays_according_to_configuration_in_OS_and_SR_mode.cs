@@ -63,9 +63,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Driver ID window
             */
             // Call generic Action Method
-            DmiActions.Activate_cabin_A();
+            DmiActions.Activate_cabin_A(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Driver_ID_window();
+            DmiExpectedResults.DMI_displays_Driver_ID_window(this);
 
 
             /*
@@ -75,7 +75,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 3063 (SR);   (1) MMI_gen 7101;   (2) MMI_gen 7104;
             */
             // Call generic Action Method
-            DmiActions.Driver_performs_SoM_to_SR_mode_level_1();
+            DmiActions.Driver_performs_SoM_to_SR_mode_level_1(this);
 
 
             /*

@@ -84,7 +84,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 4470 (partly: 'NACK', MMI_gen 4382 (partly: state ‘Enabled’ when slide out with force applied, no sound))); MMI_gen 4374;
             */
             // Call generic Check Results Method
-            DmiExpectedResults.The_border_of_the_button_is_shown_state_Enabled_without_a_sound();
+            DmiExpectedResults.The_border_of_the_button_is_shown_state_Enabled_without_a_sound(this);
 
 
             /*
@@ -94,7 +94,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMMI_gen 4470 (partly: 'NACK', MMI_gen 4382 (partly: state ‘Pressed’ when slide back, no sound))); MMI_gen 4375;
             */
             // Call generic Check Results Method
-            DmiExpectedResults.The_button_is_back_to_state_Pressed_without_a_sound();
+            DmiExpectedResults.The_button_is_back_to_state_Pressed_without_a_sound(this);
 
 
             /*

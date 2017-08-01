@@ -83,7 +83,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_While_press_and_hold_button_less_than_2_secThe_Click_sound_is_played_once_The_state_of_button_is_changed_to_Pressed_The_state_pressed_and_enabled_are_switched_repeatly_while_button_is_pressed_Use_the_log_file_to_confirm_that_DMI_sends_EVC_101_with_variable_MMI_T_BUTTONEVENT_and_MMI_Q_BUTTON_1_pressed_While_press_and_hold_button_over_2_secThe_state_of_button_is_changed_to_Pressed_and_without_toggle();
+                .Verify_the_following_information_While_press_and_hold_button_less_than_2_secThe_Click_sound_is_played_once_The_state_of_button_is_changed_to_Pressed_The_state_pressed_and_enabled_are_switched_repeatly_while_button_is_pressed_Use_the_log_file_to_confirm_that_DMI_sends_EVC_101_with_variable_MMI_T_BUTTONEVENT_and_MMI_Q_BUTTON_1_pressed_While_press_and_hold_button_over_2_secThe_state_of_button_is_changed_to_Pressed_and_without_toggle(this);
 
 
             /*
@@ -110,7 +110,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .While_press_and_hold_button_less_than_2_secThe_state_pressed_and_enabled_are_switched_repeatly_while_button_is_pressed_without_a_sound_While_press_and_hold_button_over_2_secThe_state_of_button_is_changed_to_Pressed_and_without_toggle();
+                .While_press_and_hold_button_less_than_2_secThe_state_pressed_and_enabled_are_switched_repeatly_while_button_is_pressed_without_a_sound_While_press_and_hold_button_over_2_secThe_state_of_button_is_changed_to_Pressed_and_without_toggle(this);
 
 
             /*
@@ -129,7 +129,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Spec’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Special_window();
+            DmiExpectedResults.DMI_displays_Special_window(this);
 
 
             /*
@@ -147,7 +147,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 8434 (partly: MMI_gen 4557 (partly: SR speed/distance), MMI_gen 4382 (partly: state ‘Enabled’ when slide out with force applied, no sound))); MMI_gen 4374;
             */
             // Call generic Check Results Method
-            DmiExpectedResults.The_border_of_the_button_is_shown_state_Enabled_without_a_sound();
+            DmiExpectedResults.The_border_of_the_button_is_shown_state_Enabled_without_a_sound(this);
 
 
             /*
@@ -157,7 +157,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 8434 (partly: MMI_gen 4557 (partly: SR speed/distance), MMI_gen 4382 (partly: state ‘Pressed’ when slide back, no sound))); MMI_gen 4375;
             */
             // Call generic Check Results Method
-            DmiExpectedResults.The_button_is_back_to_state_Pressed_without_a_sound();
+            DmiExpectedResults.The_button_is_back_to_state_Pressed_without_a_sound(this);
 
 
             /*
@@ -183,7 +183,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 600 (partly: enabling #10);(2) MMI_gen 600 (partly: enabling #10, EVC-30);
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_pass_BG1();
+            DmiActions.Drive_the_train_forward_pass_BG1(this);
 
 
             /*
@@ -202,7 +202,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Special_window();
+            DmiExpectedResults.DMI_displays_Special_window(this);
 
 
             /*
@@ -212,7 +212,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 600 (partly: Disabling, #11, #12);(2) MMI_gen 600 (partly: Disabling, EVC-30, #11, #12);
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward();
+            DmiActions.Drive_the_train_forward(this);
 
 
             /*
@@ -222,7 +222,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 600 (partly: Enabling, #11, #12);(2) MMI_gen 600 (partly: Enabling, EVC-30, #11, #12);
             */
             // Call generic Action Method
-            DmiActions.Stop_the_train();
+            DmiActions.Stop_the_train(this);
 
 
             /*

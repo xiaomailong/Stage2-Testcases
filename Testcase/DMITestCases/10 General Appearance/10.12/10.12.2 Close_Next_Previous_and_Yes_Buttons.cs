@@ -64,7 +64,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 4392 (partly: bullet e, delete NA21); MMI_gen 4440 (partly: delete, enabled);(2) MMI_gen 4440 (partly: other navigation buttons); MMI_gen 4396 (partly: close, NA12); MMI_gen 4392 (partly: bullet a, close button);  MMI_gen 4395 (partly: close button, disabled);
             */
             // Call generic Action Method
-            DmiActions.Activate_cabin_A();
+            DmiActions.Activate_cabin_A(this);
 
 
             /*
@@ -92,7 +92,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Release the pressed button");
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_The_state_of_pressed_button_is_changed_to_Enabled_state();
+                .Verify_the_following_information_The_state_of_pressed_button_is_changed_to_Enabled_state(this);
 
 
             /*
@@ -101,7 +101,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays the Main window
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_the_Main_window();
+            DmiExpectedResults.DMI_displays_the_Main_window(this);
 
 
             /*
@@ -202,7 +202,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press Close button");
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Main_window();
+            DmiExpectedResults.DMI_displays_Main_window(this);
 
 
             /*

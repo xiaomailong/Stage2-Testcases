@@ -63,7 +63,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in FS mode, Level 1 with PA in Main-area D
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_pass_BG1_Then_stop_the_train();
+            DmiActions.Drive_the_train_forward_pass_BG1_Then_stop_the_train(this);
 
 
             /*

@@ -67,9 +67,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SB mode
             */
             // Call generic Action Method
-            DmiActions.Power_on_the_system_and_activate_cabin();
+            DmiActions.Power_on_the_system_and_activate_cabin(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_SB_mode();
+            DmiExpectedResults.DMI_displays_in_SB_mode(this);
 
 
             /*
@@ -78,9 +78,9 @@ namespace Testcase.DMITestCases
             Expected Result: Mode changes to SR mode , L1
             */
             // Call generic Action Method
-            DmiActions.Perform_SoM_to_L1_SR_mode();
+            DmiActions.Perform_SoM_to_L1_SR_mode(this);
             // Call generic Check Results Method
-            DmiExpectedResults.Mode_changes_to_SR_mode_L1();
+            DmiExpectedResults.Mode_changes_to_SR_mode_L1(this);
 
 
             /*
@@ -89,9 +89,9 @@ namespace Testcase.DMITestCases
             Expected Result: The speed pointer is indicated as 20  km/h
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_up_to_20_kmh();
+            DmiActions.Drive_the_train_up_to_20_kmh(this);
             // Call generic Check Results Method
-            DmiExpectedResults.The_speed_pointer_is_indicated_as_20_kmh();
+            DmiExpectedResults.The_speed_pointer_is_indicated_as_20_kmh(this);
 
 
             /*
@@ -100,7 +100,7 @@ namespace Testcase.DMITestCases
             Expected Result: Mode changes to FS mode , Level 1
             */
             // Call generic Action Method
-            DmiActions.Pass_BG0_with_MA_and_Track_descriptionPkt_12_21_and_27();
+            DmiActions.Pass_BG0_with_MA_and_Track_descriptionPkt_12_21_and_27(this);
 
 
             /*
@@ -109,7 +109,7 @@ namespace Testcase.DMITestCases
             Expected Result: Mode remins in FS mode
             */
             // Call generic Check Results Method
-            DmiExpectedResults.Mode_remins_in_FS_mode();
+            DmiExpectedResults.Mode_remins_in_FS_mode(this);
 
 
             /*

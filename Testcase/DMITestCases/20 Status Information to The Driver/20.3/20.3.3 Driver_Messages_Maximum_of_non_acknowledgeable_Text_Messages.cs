@@ -116,7 +116,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .DMI_displays_the_message_ATP_Down_Alarm_with_sound_alarm_Verify_the_following_information_1_The_non_acknowledgeable_message_list_is_flushed_no_driver_message_display_in_area_E5_E9();
+                .DMI_displays_the_message_ATP_Down_Alarm_with_sound_alarm_Verify_the_following_information_1_The_non_acknowledgeable_message_list_is_flushed_no_driver_message_display_in_area_E5_E9(this);
 
 
             /*
@@ -135,7 +135,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .DMI_displays_the_message_ATP_Down_Alarm_with_sound_alarm_Verify_the_following_information_1_The_non_acknowledgeable_message_list_is_flushed_no_driver_message_display_in_area_E5_E9();
+                .DMI_displays_the_message_ATP_Down_Alarm_with_sound_alarm_Verify_the_following_information_1_The_non_acknowledgeable_message_list_is_flushed_no_driver_message_display_in_area_E5_E9(this);
 
 
             /*

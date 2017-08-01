@@ -70,7 +70,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays the default window. The Driver ID window is displayed
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_the_default_window_The_Driver_ID_window_is_displayed();
+            DmiExpectedResults.DMI_displays_the_default_window_The_Driver_ID_window_is_displayed(this);
 
 
             /*
@@ -81,7 +81,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Enter Driver ID and  selects level 1");
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_SB_mode_level_1();
+            DmiExpectedResults.DMI_displays_in_SB_mode_level_1(this);
 
 
             /*
@@ -90,7 +90,7 @@ namespace Testcase.DMITestCases
             Expected Result: The Settings window is presented with all sub-menus
             */
             // Call generic Check Results Method
-            DmiExpectedResults.The_Settings_window_is_presented_with_all_sub_menus();
+            DmiExpectedResults.The_Settings_window_is_presented_with_all_sub_menus(this);
 
 
             /*
@@ -106,7 +106,7 @@ namespace Testcase.DMITestCases
             Expected Result: The Settings window is displayed
             */
             // Call generic Check Results Method
-            DmiExpectedResults.The_Settings_window_is_displayed();
+            DmiExpectedResults.The_Settings_window_is_displayed(this);
 
 
             /*
@@ -115,7 +115,7 @@ namespace Testcase.DMITestCases
             Expected Result: Cabin A is deactivated
             */
             // Call generic Check Results Method
-            DmiExpectedResults.Cabin_A_is_deactivated();
+            DmiExpectedResults.Cabin_A_is_deactivated(this);
 
 
             /*
@@ -124,7 +124,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays the default window. The Driver ID window is displayed
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_the_default_window_The_Driver_ID_window_is_displayed();
+            DmiExpectedResults.DMI_displays_the_default_window_The_Driver_ID_window_is_displayed(this);
 
 
             /*
@@ -135,7 +135,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Enter Driver ID and  selects level 1");
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_SB_mode_level_1();
+            DmiExpectedResults.DMI_displays_in_SB_mode_level_1(this);
 
 
             /*

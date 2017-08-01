@@ -142,7 +142,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Press ‘Down’ button at sub-area E11");
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_1_The_display_information_in_sub_area_E5_E9_are_not_changed();
+                .Verify_the_following_information_1_The_display_information_in_sub_area_E5_E9_are_not_changed(this);
 
 
             /*
@@ -169,7 +169,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_1_The_display_information_in_sub_area_E5_E9_are_not_changed();
+                .Verify_the_following_information_1_The_display_information_in_sub_area_E5_E9_are_not_changed(this);
 
 
             /*

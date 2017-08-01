@@ -62,9 +62,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Driver ID window in SB mode
             */
             // Call generic Action Method
-            DmiActions.Power_on_the_system_and_activate_the_cabin();
+            DmiActions.Power_on_the_system_and_activate_the_cabin(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Driver_ID_window_in_SB_mode();
+            DmiExpectedResults.DMI_displays_Driver_ID_window_in_SB_mode(this);
 
 
             /*
@@ -81,7 +81,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 9522 (partly: table 77, Runaway movement);
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward();
+            DmiActions.Drive_the_train_forward(this);
 
 
             /*
@@ -90,7 +90,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays train running number window
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_train_running_number_window();
+            DmiExpectedResults.DMI_displays_train_running_number_window(this);
 
 
             /*
@@ -114,7 +114,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Driver ID window in SB mode
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Driver_ID_window_in_SB_mode();
+            DmiExpectedResults.DMI_displays_Driver_ID_window_in_SB_mode(this);
 
 
             /*
@@ -131,7 +131,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays train running number window
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_train_running_number_window();
+            DmiExpectedResults.DMI_displays_train_running_number_window(this);
 
 
             /*
@@ -140,9 +140,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in PLZB STM mode
             */
             // Call generic Action Method
-            DmiActions.Complete_start_of_mission();
+            DmiActions.Complete_start_of_mission(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_PLZB_STM_mode();
+            DmiExpectedResults.DMI_displays_in_PLZB_STM_mode(this);
 
 
             /*

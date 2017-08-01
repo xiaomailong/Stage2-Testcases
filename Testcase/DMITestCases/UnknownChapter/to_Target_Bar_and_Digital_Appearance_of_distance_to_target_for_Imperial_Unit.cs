@@ -72,7 +72,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 1261 (partly: If not positive distance, distance to target bar not be displayed);
             */
             // Call generic Action Method
-            DmiActions.Stop_the_train();
+            DmiActions.Stop_the_train(this);
 
 
             /*

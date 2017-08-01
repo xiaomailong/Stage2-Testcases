@@ -65,9 +65,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in OS mode, level 1
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_pass_BG1_Then_press_an_acknowledgement_of_OS_mode_in_sub_area_C1();
+            DmiActions.Drive_the_train_forward_pass_BG1_Then_press_an_acknowledgement_of_OS_mode_in_sub_area_C1(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_OS_mode_level_1();
+            DmiExpectedResults.DMI_displays_in_OS_mode_level_1(this);
 
 
             /*
@@ -85,10 +85,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 6299 (partly: MMI_M_WARNING, train speed in relation to permitted speed MMI_V_PERMITTED, OS mode in CSM supervision);(2) MMI_gen 6299 (partly: colour of speed pointer, OS mode in CSM supervision);
             */
             // Call generic Action Method
-            DmiActions.Increase_the_train_speed_to_31_kmh();
+            DmiActions.Increase_the_train_speed_to_31_kmh(this);
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_1_Use_the_log_file_to_confirm_that_DMI_received_the_packet_information_EVC_1_with_the_following_condition_MMI_M_WARNING_8_Status_OvS_Supervision_CSM_while_the_value_of_MMI_V_TRAIN_861_31_kmh_which_greater_than_MMI_V_PERMITTED2_The_speed_pointer_display_in_orange_colour();
+                .Verify_the_following_information_1_Use_the_log_file_to_confirm_that_DMI_received_the_packet_information_EVC_1_with_the_following_condition_MMI_M_WARNING_8_Status_OvS_Supervision_CSM_while_the_value_of_MMI_V_TRAIN_861_31_kmh_which_greater_than_MMI_V_PERMITTED2_The_speed_pointer_display_in_orange_colour(this);
 
 
             /*
@@ -98,7 +98,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 6299 (partly: MMI_M_WARNING, train speed in relation to permitted speed MMI_V_PERMITTED, OS mode in CSM supervision);(2) MMI_gen 6299 (partly: colour of speed pointer, OS mode in CSM supervision);
             */
             // Call generic Action Method
-            DmiActions.Increase_the_train_speed_to_35_kmh_Note_dV_warning_max_is_defined_in_chapter_3_of_SUBSET_026();
+            DmiActions.Increase_the_train_speed_to_35_kmh_Note_dV_warning_max_is_defined_in_chapter_3_of_SUBSET_026(this);
 
 
             /*
@@ -108,10 +108,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 6299 (partly: MMI_M_WARNING, train speed in relation to permitted speed MMI_V_PERMITTED, OS mode in CSM supervision);(2) MMI_gen 6299 (partly: colour of speed pointer, OS mode in CSM supervision);(3) MMI_gen 6299 (partly: MMI_M_WARNING, OS mode in CSM supervision);(4) MMI_gen 6299 (partly: colour of speed pointer, OS mode in CSM supervision);
             */
             // Call generic Action Method
-            DmiActions.Increase_the_train_speed_to_36_kmh();
+            DmiActions.Increase_the_train_speed_to_36_kmh(this);
             // Call generic Check Results Method
             DmiExpectedResults
-                .The_train_speed_is_force_to_decrease_because_of_emergency_brake_is_applied_by_ETCS_onboard_Verify_the_following_information_Before_train_speed_is_decreased1_Use_the_log_file_to_confirm_that_DMI_received_the_packet_information_EVC_1_with_the_following_condition_MMI_M_WARNING_12_Status_IntS_Supervision_CSM_while_the_value_of_MMI_V_TRAIN_1000_36_kmh_which_greater_than_MMI_V_INTERVENTION2_The_speed_pointer_display_in_red_colourAfter_train_speed_is_decreased3_Use_the_log_file_to_confirm_that_DMI_received_the_packet_information_EVC_1_with_the_following_condition_MMI_M_WARNING_12_Status_IntS_Supervision_CSM_while_the_value_of_MMI_V_TRAIN_is_lower_than_MMI_V_INTERVENTION4_The_speed_pointer_display_in_grey_colour();
+                .The_train_speed_is_force_to_decrease_because_of_emergency_brake_is_applied_by_ETCS_onboard_Verify_the_following_information_Before_train_speed_is_decreased1_Use_the_log_file_to_confirm_that_DMI_received_the_packet_information_EVC_1_with_the_following_condition_MMI_M_WARNING_12_Status_IntS_Supervision_CSM_while_the_value_of_MMI_V_TRAIN_1000_36_kmh_which_greater_than_MMI_V_INTERVENTION2_The_speed_pointer_display_in_red_colourAfter_train_speed_is_decreased3_Use_the_log_file_to_confirm_that_DMI_received_the_packet_information_EVC_1_with_the_following_condition_MMI_M_WARNING_12_Status_IntS_Supervision_CSM_while_the_value_of_MMI_V_TRAIN_is_lower_than_MMI_V_INTERVENTION4_The_speed_pointer_display_in_grey_colour(this);
 
 
             /*
@@ -122,7 +122,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .DMI_displays_in_OS_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_grey_colour();
+                .DMI_displays_in_OS_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_grey_colour(this);
 
 
             /*
@@ -133,7 +133,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .DMI_displays_in_OS_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_white_colour();
+                .DMI_displays_in_OS_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_white_colour(this);
 
 
             /*
@@ -144,7 +144,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .DMI_displays_in_OS_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_orange_colour();
+                .DMI_displays_in_OS_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_orange_colour(this);
 
 
             /*
@@ -155,7 +155,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .DMI_displays_in_OS_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_orange_colour();
+                .DMI_displays_in_OS_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_orange_colour(this);
 
 
             /*
@@ -166,7 +166,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .DMI_displays_in_OS_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_red_colour();
+                .DMI_displays_in_OS_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_red_colour(this);
 
 
             /*
@@ -177,7 +177,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .DMI_displays_in_OS_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_white_colour();
+                .DMI_displays_in_OS_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_white_colour(this);
 
 
             /*
@@ -188,7 +188,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .DMI_displays_in_OS_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_grey_colour();
+                .DMI_displays_in_OS_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_grey_colour(this);
 
 
             /*
@@ -199,7 +199,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .DMI_displays_in_OS_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_grey_colour();
+                .DMI_displays_in_OS_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_grey_colour(this);
 
 
             /*
@@ -210,7 +210,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .DMI_displays_in_OS_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_white_colour();
+                .DMI_displays_in_OS_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_white_colour(this);
 
 
             /*
@@ -221,7 +221,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .DMI_displays_in_OS_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_yellow_colour();
+                .DMI_displays_in_OS_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_yellow_colour(this);
 
 
             /*
@@ -240,7 +240,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .DMI_displays_in_OS_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_orange_colour();
+                .DMI_displays_in_OS_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_orange_colour(this);
 
 
             /*
@@ -251,7 +251,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .DMI_displays_in_OS_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_orange_colour();
+                .DMI_displays_in_OS_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_orange_colour(this);
 
 
             /*
@@ -262,7 +262,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .DMI_displays_in_OS_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_red_colour();
+                .DMI_displays_in_OS_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_red_colour(this);
 
 
             /*
@@ -273,7 +273,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .DMI_displays_in_OS_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_yellow_colour();
+                .DMI_displays_in_OS_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_yellow_colour(this);
 
 
             /*
@@ -284,7 +284,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .DMI_displays_in_OS_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_grey_colour();
+                .DMI_displays_in_OS_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_grey_colour(this);
 
 
             /*
@@ -295,7 +295,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .DMI_displays_in_OS_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_yellow_colour();
+                .DMI_displays_in_OS_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_yellow_colour(this);
 
 
             /*
@@ -306,7 +306,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .DMI_displays_in_OS_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_yellow_colour();
+                .DMI_displays_in_OS_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_yellow_colour(this);
 
 
             /*
@@ -317,7 +317,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .DMI_displays_in_OS_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_red_colour();
+                .DMI_displays_in_OS_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_red_colour(this);
 
 
             /*

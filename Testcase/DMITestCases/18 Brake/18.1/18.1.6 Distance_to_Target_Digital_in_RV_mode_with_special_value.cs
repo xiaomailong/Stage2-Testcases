@@ -80,7 +80,7 @@ namespace Testcase.DMITestCases
             Expected Result: 
             */
             // Call generic Action Method
-            DmiActions.The_train_is_in_reversing_area();
+            DmiActions.The_train_is_in_reversing_area(this);
 
 
             /*
@@ -89,7 +89,7 @@ namespace Testcase.DMITestCases
             Expected Result: The train is standstill.Driver is informed that reversing is possible
             */
             // Call generic Action Method
-            DmiActions.Stop_the_train();
+            DmiActions.Stop_the_train(this);
 
 
             /*
@@ -99,7 +99,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 6777  (partly: receive MMI_O_BRAKETARGET  equal special value);                   (2) MMI_gen 6777 (partly: when MMI_O_BRAKETARGET  equal special value); (3) MMI_gen 6777 (partly: horizontally and vertically centered);
             */
             // Call generic Action Method
-            DmiActions.Change_the_direction_of_train_to_reverse_Then_select_and_confirm_RV_mode();
+            DmiActions.Change_the_direction_of_train_to_reverse_Then_select_and_confirm_RV_mode(this);
 
 
             /*

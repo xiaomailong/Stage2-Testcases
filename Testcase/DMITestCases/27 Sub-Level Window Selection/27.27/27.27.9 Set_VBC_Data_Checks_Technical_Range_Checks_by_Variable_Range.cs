@@ -66,7 +66,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .The_Set_VBC_data_entry_window_appears_on_ETCS_DMI_screen_instead_of_the_Settings_menu_window();
+                .The_Set_VBC_data_entry_window_appears_on_ETCS_DMI_screen_instead_of_the_Settings_menu_window(this);
 
 
             /*
@@ -109,10 +109,10 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions
-                .This_step_is_to_complete_the_process_of_set_VBC_Press_the_Yes_button_on_the_Set_VBC_window_Validate_the_data_in_the_data_validation_window();
+                .This_step_is_to_complete_the_process_of_set_VBC_Press_the_Yes_button_on_the_Set_VBC_window_Validate_the_data_in_the_data_validation_window(this);
             // Call generic Check Results Method
             DmiExpectedResults
-                .After_pressing_the_Yes_button_the_data_validation_window_Validate_Set_VBC_appears_instead_of_the_Set_VBC_data_entry_window_The_data_part_of_echo_text_displays_65536_in_white_2_After_the_data_area_of_the_input_field_containing_Yes_is_pressed_the_data_validation_window_disappears_and_returns_to_the_parent_window_Settings_window_of_Set_VBC_window_with_enabled_Set_VBC_button();
+                .After_pressing_the_Yes_button_the_data_validation_window_Validate_Set_VBC_appears_instead_of_the_Set_VBC_data_entry_window_The_data_part_of_echo_text_displays_65536_in_white_2_After_the_data_area_of_the_input_field_containing_Yes_is_pressed_the_data_validation_window_disappears_and_returns_to_the_parent_window_Settings_window_of_Set_VBC_window_with_enabled_Set_VBC_button(this);
 
 
             /*

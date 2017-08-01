@@ -85,7 +85,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SR mode, Level 1
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_SR_mode_Level_1();
+            DmiExpectedResults.DMI_displays_in_SR_mode_Level_1(this);
 
 
             /*
@@ -119,7 +119,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions
-                .Perform_the_following_procedure_Enter_Driver_IDSelect_and_confirm_Level_1_Note_If_Level_window_is_display();
+                .Perform_the_following_procedure_Enter_Driver_IDSelect_and_confirm_Level_1_Note_If_Level_window_is_display(this);
 
 
             /*

@@ -62,9 +62,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in FS mode, Level 1
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_pass_BG1();
+            DmiActions.Drive_the_train_forward_pass_BG1(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_FS_mode_Level_1();
+            DmiExpectedResults.DMI_displays_in_FS_mode_Level_1(this);
 
 
             /*
@@ -73,9 +73,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in OS mode, Level 1
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_pass_BG2_Then_stop_the_train();
+            DmiActions.Drive_the_train_forward_pass_BG2_Then_stop_the_train(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_OS_mode_Level_1();
+            DmiExpectedResults.DMI_displays_in_OS_mode_Level_1(this);
 
 
             /*
@@ -86,7 +86,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .DMI_displays_the_message_ATP_Down_Alarm_with_sound_alarm_Verify_the_following_information_The_objects_below_are_not_displayed_on_DMI_White_Basic_speed_HookMedium_grey_basic_speed_hookDistance_to_target_digitalRelease_Speed_Digital();
+                .DMI_displays_the_message_ATP_Down_Alarm_with_sound_alarm_Verify_the_following_information_The_objects_below_are_not_displayed_on_DMI_White_Basic_speed_HookMedium_grey_basic_speed_hookDistance_to_target_digitalRelease_Speed_Digital(this);
 
 
             /*
@@ -97,7 +97,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions
-                .Re_establish_communication_between_ETCS_onboard_and_DMI_in_1_second_Note_Stopwatch_is_required_for_accuracy_of_test_result();
+                .Re_establish_communication_between_ETCS_onboard_and_DMI_in_1_second_Note_Stopwatch_is_required_for_accuracy_of_test_result(this);
 
 
             /*

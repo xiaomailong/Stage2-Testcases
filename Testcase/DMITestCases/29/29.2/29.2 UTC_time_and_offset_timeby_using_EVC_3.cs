@@ -68,9 +68,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays SB mode
             */
             // Call generic Action Method
-            DmiActions.Power_on_the_system_and_activate_the_cabin();
+            DmiActions.Power_on_the_system_and_activate_the_cabin(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_SB_mode();
+            DmiExpectedResults.DMI_displays_SB_mode(this);
 
 
             /*
@@ -79,9 +79,9 @@ namespace Testcase.DMITestCases
             Expected Result: Mode changes to SR mode , L1
             */
             // Call generic Action Method
-            DmiActions.Perform_SoM_to_L1_SR_mode();
+            DmiActions.Perform_SoM_to_L1_SR_mode(this);
             // Call generic Check Results Method
-            DmiExpectedResults.Mode_changes_to_SR_mode_L1();
+            DmiExpectedResults.Mode_changes_to_SR_mode_L1(this);
 
 
             /*
@@ -99,7 +99,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 2429; 
             */
             // Call generic Action Method
-            DmiActions.Select_Settings_button_and_press_Set_clock_button();
+            DmiActions.Select_Settings_button_and_press_Set_clock_button(this);
 
 
             /*
@@ -117,7 +117,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 2429; 
             */
             // Call generic Action Method
-            DmiActions.Select_Settings_button_and_press_Set_clock_button();
+            DmiActions.Select_Settings_button_and_press_Set_clock_button(this);
 
 
             /*

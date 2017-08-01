@@ -71,7 +71,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .Received_packet_information_is_stored_to_internal_memory_the_symbol_in_sub_area_B3_B5_still_not_changed();
+                .Received_packet_information_is_stored_to_internal_memory_the_symbol_in_sub_area_B3_B5_still_not_changed(this);
 
 
             /*
@@ -82,7 +82,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .Received_packet_information_is_stored_to_internal_memory_the_symbol_in_sub_area_B3_B5_still_not_changed();
+                .Received_packet_information_is_stored_to_internal_memory_the_symbol_in_sub_area_B3_B5_still_not_changed(this);
 
 
             /*
@@ -92,7 +92,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .Received_packet_information_is_stored_to_internal_memory_the_symbol_in_sub_area_B3_B5_still_not_changed();
+                .Received_packet_information_is_stored_to_internal_memory_the_symbol_in_sub_area_B3_B5_still_not_changed(this);
 
 
             /*
@@ -102,7 +102,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .Received_packet_information_is_stored_to_internal_memory_the_symbol_in_sub_area_B3_B5_still_not_changed();
+                .Received_packet_information_is_stored_to_internal_memory_the_symbol_in_sub_area_B3_B5_still_not_changed(this);
 
 
             /*
@@ -112,7 +112,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .Received_packet_information_is_stored_to_internal_memory_the_symbol_in_sub_area_B3_B5_still_not_changed();
+                .Received_packet_information_is_stored_to_internal_memory_the_symbol_in_sub_area_B3_B5_still_not_changed(this);
 
 
             /*
@@ -122,7 +122,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .Received_packet_information_is_stored_to_internal_memory_the_symbol_in_sub_area_B3_B5_still_not_changed();
+                .Received_packet_information_is_stored_to_internal_memory_the_symbol_in_sub_area_B3_B5_still_not_changed(this);
 
 
             /*
@@ -132,7 +132,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .Received_packet_information_is_stored_to_internal_memory_the_symbol_in_sub_area_B3_B5_still_not_changed();
+                .Received_packet_information_is_stored_to_internal_memory_the_symbol_in_sub_area_B3_B5_still_not_changed(this);
 
 
             /*
@@ -142,7 +142,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .Received_packet_information_is_stored_to_internal_memory_the_symbol_in_sub_area_B3_B5_still_not_changed();
+                .Received_packet_information_is_stored_to_internal_memory_the_symbol_in_sub_area_B3_B5_still_not_changed(this);
 
 
             /*
@@ -160,7 +160,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .Received_packet_information_is_stored_to_internal_memory_the_symbol_in_sub_area_B3_B5_still_not_changed();
+                .Received_packet_information_is_stored_to_internal_memory_the_symbol_in_sub_area_B3_B5_still_not_changed(this);
 
 
             /*
@@ -195,7 +195,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions
-                .Send_EVC_32_with_MMI_Q_TRACKCOND_UPDATE_1MMI_N_TRACKCONDITIONS_1MMI_NID_TRACKCOND_3MMI_Q_TRACKCOND_STEP_4();
+                .Send_EVC_32_with_MMI_Q_TRACKCOND_UPDATE_1MMI_N_TRACKCONDITIONS_1MMI_NID_TRACKCOND_3MMI_Q_TRACKCOND_STEP_4(this);
 
 
             /*
@@ -421,7 +421,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_1_The_symbol_TC03_is_re_appear_if_ETCS_Onboard_is_re_transmit_EVC_32_to_DMI();
+                .Verify_the_following_information_1_The_symbol_TC03_is_re_appear_if_ETCS_Onboard_is_re_transmit_EVC_32_to_DMI(this);
 
 
             /*
@@ -431,7 +431,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 668 (partly: MMI_gen 240);
             */
             // Call generic Action Method
-            DmiActions.Deactivate_cabin_Then_simulate_loss_communication_between_ETCS_onboard_and_DMI();
+            DmiActions.Deactivate_cabin_Then_simulate_loss_communication_between_ETCS_onboard_and_DMI(this);
 
 
             /*
@@ -441,10 +441,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: Note under MMI_gen 668;
             */
             // Call generic Action Method
-            DmiActions.Activate_cabin_Then_re_establish_communication_between_ETCS_onboard_and_DMI();
+            DmiActions.Activate_cabin_Then_re_establish_communication_between_ETCS_onboard_and_DMI(this);
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_1_The_symbol_TC03_is_re_appear_if_ETCS_Onboard_is_re_transmit_EVC_32_to_DMI();
+                .Verify_the_following_information_1_The_symbol_TC03_is_re_appear_if_ETCS_Onboard_is_re_transmit_EVC_32_to_DMI(this);
 
 
             /*

@@ -64,7 +64,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7025 (partly: packet EVC-8, 1st bullet);(2) MMI_gen 7025 (partly: 2nd bullet, #1);(3) MMI_gen 1046 (partly: bullet a, non-acknowledgeable Text message); (4) MMI_gen 1046 (b) (partly: attached to the first line);   (5) MMI_gen 1046 (b) (partly: separated from the first character by an indent);           (6) MMI_gen 1046 (b) (partly: format of local time);
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_pass_BG1_Then_stop_the_train();
+            DmiActions.Drive_the_train_forward_pass_BG1_Then_stop_the_train(this);
 
 
             /*

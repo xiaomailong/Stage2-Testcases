@@ -65,7 +65,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SR mode, level 1 and the Planning Area is displayed in area D
             */
             // Call generic Action Method
-            DmiActions.Driver_performs_SoM_to_SR_mode_level_1();
+            DmiActions.Driver_performs_SoM_to_SR_mode_level_1(this);
 
 
             /*
@@ -75,7 +75,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 7332 (Partly: MMI_O_IML is less than zero);
             */
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_indication_marker_shall_not_be_shown_in_area_D7();
+            DmiExpectedResults.Verify_the_indication_marker_shall_not_be_shown_in_area_D7(this);
 
 
             /*
@@ -109,9 +109,9 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions
-                .Use_the_test_script_file_17_8_d_xml_to_send_EVC_1_with_MMI_O_IML_1000120000_1200mNote_The_result_of_test_script_file_may_interrupted_by_ATP_CU_need_to_execute_test_script_file_repeatly_to_see_the_result();
+                .Use_the_test_script_file_17_8_d_xml_to_send_EVC_1_with_MMI_O_IML_1000120000_1200mNote_The_result_of_test_script_file_may_interrupted_by_ATP_CU_need_to_execute_test_script_file_repeatly_to_see_the_result(this);
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_indication_marker_shall_not_be_shown_in_area_D7();
+            DmiExpectedResults.Verify_the_indication_marker_shall_not_be_shown_in_area_D7(this);
 
 
             /*
@@ -122,7 +122,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions
-                .Use_the_test_script_file_17_8_d_xml_to_send_EVC_1_with_MMI_O_IML_1000120000_1200mNote_The_result_of_test_script_file_may_interrupted_by_ATP_CU_need_to_execute_test_script_file_repeatly_to_see_the_result();
+                .Use_the_test_script_file_17_8_d_xml_to_send_EVC_1_with_MMI_O_IML_1000120000_1200mNote_The_result_of_test_script_file_may_interrupted_by_ATP_CU_need_to_execute_test_script_file_repeatly_to_see_the_result(this);
 
 
             /*
@@ -133,9 +133,9 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions
-                .Use_the_test_script_file_17_8_d_xml_to_send_EVC_1_with_MMI_O_IML_1000120000_1200mNote_The_result_of_test_script_file_may_interrupted_by_ATP_CU_need_to_execute_test_script_file_repeatly_to_see_the_result();
+                .Use_the_test_script_file_17_8_d_xml_to_send_EVC_1_with_MMI_O_IML_1000120000_1200mNote_The_result_of_test_script_file_may_interrupted_by_ATP_CU_need_to_execute_test_script_file_repeatly_to_see_the_result(this);
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_indication_marker_shall_not_be_shown_in_area_D7();
+            DmiExpectedResults.Verify_the_indication_marker_shall_not_be_shown_in_area_D7(this);
 
 
             /*
@@ -144,9 +144,9 @@ namespace Testcase.DMITestCases
             Expected Result: Train is standstill
             */
             // Call generic Action Method
-            DmiActions.Stop_the_train();
+            DmiActions.Stop_the_train(this);
             // Call generic Check Results Method
-            DmiExpectedResults.Train_is_standstill();
+            DmiExpectedResults.Train_is_standstill(this);
 
 
             /*

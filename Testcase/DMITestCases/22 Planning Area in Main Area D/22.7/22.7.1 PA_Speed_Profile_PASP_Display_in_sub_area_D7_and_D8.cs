@@ -62,7 +62,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI changes from SR to FS mode. The Planning Area is displayed
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_changes_from_SR_to_FS_mode_The_Planning_Area_is_displayed();
+            DmiExpectedResults.DMI_changes_from_SR_to_FS_mode_The_Planning_Area_is_displayed(this);
 
 
             /*
@@ -72,7 +72,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9943 (partly: area D7);(2) MMI_gen 7315  (partly: resolution ¼ of the width); (3) MMI_gen 7323 (partly: colour PASP-Light); (4) MMI_gen 7315 (partly: 1st bullet); MMI_gen 9944 (partly: the width of D7);   (5) MMI_gen 9944 (partly: represent the ceiling permitted speed);   
             */
             // Call generic Action Method
-            DmiActions.Stop_the_train();
+            DmiActions.Stop_the_train(this);
 
 
             /*
@@ -90,7 +90,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 3027 (partly: 1st bullet, 3rd bullet);
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward();
+            DmiActions.Drive_the_train_forward(this);
 
 
             /*
@@ -100,7 +100,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 3027 (partly: 4th bullet);                 (2) MMI_gen 7321; MMI_gen 7315 (partly: resolution ¼ of the width); MMI_gen 648 (partly: width of each PASP segment); MMI_gen 7316 (partly: up to 3 speed discontinuities);             
             */
             // Call generic Action Method
-            DmiActions.Continue_to_drive_the_train_forward();
+            DmiActions.Continue_to_drive_the_train_forward(this);
 
 
             /*
@@ -110,7 +110,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 3027 (partly: 4th bullet);                 (2) MMI_gen 7321; MMI_gen 7315 (partly: resolution ¼ of the width); MMI_gen 648 (partly: width of each PASP segment); MMI_gen 7316 (partly: up to 3 speed discontinuities);                  
             */
             // Call generic Action Method
-            DmiActions.Continue_to_drive_the_train_forward();
+            DmiActions.Continue_to_drive_the_train_forward(this);
 
 
             /*
@@ -120,7 +120,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 3027 (partly: 4th bullet);                 (2) MMI_gen 7321; MMI_gen 7315 (partly: resolution ¼ of the width); MMI_gen 648 (partly: width of each PASP segment); MMI_gen 7316 (partly: up to 3 speed discontinuities);                   
             */
             // Call generic Action Method
-            DmiActions.Continue_to_drive_the_train_forward();
+            DmiActions.Continue_to_drive_the_train_forward(this);
 
 
             /*
@@ -130,7 +130,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 3027 (partly: 4th bullet);                 (2) MMI_gen 7321; MMI_gen 7315 (partly: resolution ¼ of the width); MMI_gen 648 (partly: width of each PASP segment); MMI_gen 7316 (partly: up to 3 speed discontinuities);             (3) MMI_gen 9946 (partly: speed decrease to the first target at zero speed);(4) MMI_gen 9946 (partly: 2nd  bullet);(5) MMI_gen 9946 (partly: PL21);      
             */
             // Call generic Action Method
-            DmiActions.Continue_to_drive_the_train_forward();
+            DmiActions.Continue_to_drive_the_train_forward(this);
 
 
             /*
@@ -140,7 +140,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7325;
             */
             // Call generic Action Method
-            DmiActions.Simulate_the_communication_loss_between_ETCS_Onboard_and_DMI();
+            DmiActions.Simulate_the_communication_loss_between_ETCS_Onboard_and_DMI(this);
 
 
             /*
@@ -149,9 +149,9 @@ namespace Testcase.DMITestCases
             Expected Result: The PA Speed Profile segments are reappeared
             */
             // Call generic Action Method
-            DmiActions.Re_establish_the_communication_between_ETCS_onboard_and_DMI();
+            DmiActions.Re_establish_the_communication_between_ETCS_onboard_and_DMI(this);
             // Call generic Check Results Method
-            DmiExpectedResults.The_PA_Speed_Profile_segments_are_reappeared();
+            DmiExpectedResults.The_PA_Speed_Profile_segments_are_reappeared(this);
 
 
             /*

@@ -64,7 +64,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Driver ID’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Driver_ID_window();
+            DmiExpectedResults.DMI_displays_Driver_ID_window(this);
 
 
             /*
@@ -75,7 +75,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions
-                .Perform_the_following_procedure_Drive_the_train_forward_until_the_brake_is_appliedStop_driving_the_trainAcknowledge_the_Brake_intervention_symbol_by_pressing_area_E1();
+                .Perform_the_following_procedure_Drive_the_train_forward_until_the_brake_is_appliedStop_driving_the_trainAcknowledge_the_Brake_intervention_symbol_by_pressing_area_E1(this);
 
 
             /*
@@ -86,7 +86,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Level’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Level_window();
+            DmiExpectedResults.DMI_displays_Level_window(this);
 
 
             /*
@@ -97,7 +97,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions
-                .Perform_the_following_procedure_Drive_the_train_forward_until_the_brake_is_appliedStop_driving_the_trainAcknowledge_the_Brake_intervention_symbol_by_pressing_area_E1();
+                .Perform_the_following_procedure_Drive_the_train_forward_until_the_brake_is_appliedStop_driving_the_trainAcknowledge_the_Brake_intervention_symbol_by_pressing_area_E1(this);
 
 
             /*
@@ -108,7 +108,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Train data’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Train_data_window();
+            DmiExpectedResults.DMI_displays_Train_data_window(this);
 
 
             /*
@@ -119,7 +119,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions
-                .Perform_the_following_procedure_Drive_the_train_forward_until_the_brake_is_appliedStop_driving_the_trainAcknowledge_the_Brake_intervention_symbol_by_pressing_area_E1();
+                .Perform_the_following_procedure_Drive_the_train_forward_until_the_brake_is_appliedStop_driving_the_trainAcknowledge_the_Brake_intervention_symbol_by_pressing_area_E1(this);
 
 
             /*
@@ -128,7 +128,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Train data validation window
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Train_data_validation_window();
+            DmiExpectedResults.DMI_displays_Train_data_validation_window(this);
 
 
             /*
@@ -139,7 +139,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions
-                .Perform_the_following_procedure_Drive_the_train_forward_until_the_brake_is_appliedStop_driving_the_trainAcknowledge_the_Brake_intervention_symbol_by_pressing_area_E1();
+                .Perform_the_following_procedure_Drive_the_train_forward_until_the_brake_is_appliedStop_driving_the_trainAcknowledge_the_Brake_intervention_symbol_by_pressing_area_E1(this);
 
 
             /*
@@ -148,7 +148,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Train Running Number window
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Train_Running_Number_window();
+            DmiExpectedResults.DMI_displays_Train_Running_Number_window(this);
 
 
             /*
@@ -159,7 +159,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions
-                .Perform_the_following_procedure_Drive_the_train_forward_until_the_brake_is_appliedStop_driving_the_trainAcknowledge_the_Brake_intervention_symbol_by_pressing_area_E1();
+                .Perform_the_following_procedure_Drive_the_train_forward_until_the_brake_is_appliedStop_driving_the_trainAcknowledge_the_Brake_intervention_symbol_by_pressing_area_E1(this);
 
 
             /*
@@ -168,7 +168,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Main window
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Main_window();
+            DmiExpectedResults.DMI_displays_Main_window(this);
 
 
             /*
@@ -177,7 +177,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Language window
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Language_window();
+            DmiExpectedResults.DMI_displays_Language_window(this);
 
 
             /*
@@ -188,7 +188,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions
-                .Perform_the_following_procedure_Drive_the_train_forward_until_the_brake_is_appliedStop_driving_the_trainAcknowledge_the_Brake_intervention_symbol_by_pressing_area_E1();
+                .Perform_the_following_procedure_Drive_the_train_forward_until_the_brake_is_appliedStop_driving_the_trainAcknowledge_the_Brake_intervention_symbol_by_pressing_area_E1(this);
 
 
             /*
@@ -208,7 +208,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions
-                .Perform_the_following_procedure_Drive_the_train_forward_until_the_brake_is_appliedStop_driving_the_trainAcknowledge_the_Brake_intervention_symbol_by_pressing_area_E1();
+                .Perform_the_following_procedure_Drive_the_train_forward_until_the_brake_is_appliedStop_driving_the_trainAcknowledge_the_Brake_intervention_symbol_by_pressing_area_E1(this);
 
 
             /*
@@ -219,7 +219,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Volume’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Volume_window();
+            DmiExpectedResults.DMI_displays_Volume_window(this);
 
 
             /*
@@ -230,7 +230,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions
-                .Perform_the_following_procedure_Drive_the_train_forward_until_the_brake_is_appliedStop_driving_the_trainAcknowledge_the_Brake_intervention_symbol_by_pressing_area_E1();
+                .Perform_the_following_procedure_Drive_the_train_forward_until_the_brake_is_appliedStop_driving_the_trainAcknowledge_the_Brake_intervention_symbol_by_pressing_area_E1(this);
 
 
             /*
@@ -249,7 +249,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions
-                .Perform_the_following_procedure_Drive_the_train_forward_until_the_brake_is_appliedStop_driving_the_trainAcknowledge_the_Brake_intervention_symbol_by_pressing_area_E1();
+                .Perform_the_following_procedure_Drive_the_train_forward_until_the_brake_is_appliedStop_driving_the_trainAcknowledge_the_Brake_intervention_symbol_by_pressing_area_E1(this);
 
 
             /*

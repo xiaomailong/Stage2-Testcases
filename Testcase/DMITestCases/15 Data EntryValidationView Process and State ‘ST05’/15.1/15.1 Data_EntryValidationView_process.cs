@@ -101,7 +101,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 5647
             */
             // Call generic Check Results Method
-            DmiExpectedResults.The_Default_window_is_displayed();
+            DmiExpectedResults.The_Default_window_is_displayed(this);
 
 
             /*
@@ -119,7 +119,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 5647
             */
             // Call generic Check Results Method
-            DmiExpectedResults.The_Default_window_is_displayed();
+            DmiExpectedResults.The_Default_window_is_displayed(this);
 
 
             /*
@@ -137,7 +137,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 5647
             */
             // Call generic Check Results Method
-            DmiExpectedResults.The_Default_window_is_displayed();
+            DmiExpectedResults.The_Default_window_is_displayed(this);
 
 
             /*
@@ -179,7 +179,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 5647
             */
             // Call generic Check Results Method
-            DmiExpectedResults.The_Default_window_is_displayed();
+            DmiExpectedResults.The_Default_window_is_displayed(this);
 
 
             /*

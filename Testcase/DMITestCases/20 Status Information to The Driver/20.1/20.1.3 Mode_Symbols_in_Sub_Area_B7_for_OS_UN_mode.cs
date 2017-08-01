@@ -62,9 +62,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SB mode. The Driver ID window is displayed
             */
             // Call generic Action Method
-            DmiActions.Activate_cabin_A();
+            DmiActions.Activate_cabin_A(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_SB_mode_The_Driver_ID_window_is_displayed();
+            DmiExpectedResults.DMI_displays_in_SB_mode_The_Driver_ID_window_is_displayed(this);
 
 
             /*
@@ -75,7 +75,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Enter Driver ID and perform brake test");
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Level_window();
+            DmiExpectedResults.DMI_displays_Level_window(this);
 
 
             /*
@@ -85,7 +85,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11470 (partly: Bit # 34);
             */
             // Call generic Action Method
-            DmiActions.Select_and_confirm_Level_0();
+            DmiActions.Select_and_confirm_Level_0(this);
 
 
             /*
@@ -96,7 +96,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Train data’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Train_data_window();
+            DmiExpectedResults.DMI_displays_Train_data_window(this);
 
 
             /*
@@ -105,7 +105,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Train data validation window
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Train_data_validation_window();
+            DmiExpectedResults.DMI_displays_Train_data_validation_window(this);
 
 
             /*
@@ -114,7 +114,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Train Running Number window
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Train_Running_Number_window();
+            DmiExpectedResults.DMI_displays_Train_Running_Number_window(this);
 
 
             /*
@@ -125,7 +125,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Enter and confirm Train running number");
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Main_window();
+            DmiExpectedResults.DMI_displays_Main_window(this);
 
 
             /*
@@ -161,7 +161,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 1227 (partly: MO08);        (2) MMI_gen 11233 (partly: MO17ไ);(3) MMI_gen 11470 (partly: Bit # 0);                     
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_passing_BG1();
+            DmiActions.Drive_the_train_forward_passing_BG1(this);
 
 
             /*
@@ -171,7 +171,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 110 (partly:MO07);  (2) MMI_gen 11084 (partly: ETCS mode OS);                           
             */
             // Call generic Action Method
-            DmiActions.Acknowledge_OS_mode();
+            DmiActions.Acknowledge_OS_mode(this);
 
 
             /*

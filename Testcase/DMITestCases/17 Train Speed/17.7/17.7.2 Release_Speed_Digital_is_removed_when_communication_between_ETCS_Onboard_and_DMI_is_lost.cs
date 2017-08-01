@@ -68,7 +68,7 @@ namespace Testcase.DMITestCases
             Expected Result: ATP is in SB mode.DMI displays in SB mode
             */
             // Call generic Action Method
-            DmiActions.Activate_cabin_A();
+            DmiActions.Activate_cabin_A(this);
 
 
             /*
@@ -107,7 +107,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 6589 (partly: Release speed re-appeared);    
             */
             // Call generic Action Method
-            DmiActions.Re_establish_the_communication_between_ETCS_onboard_and_DMI();
+            DmiActions.Re_establish_the_communication_between_ETCS_onboard_and_DMI(this);
 
 
             /*

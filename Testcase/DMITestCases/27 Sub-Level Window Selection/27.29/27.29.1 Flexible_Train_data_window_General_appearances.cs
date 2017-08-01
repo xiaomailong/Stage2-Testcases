@@ -82,7 +82,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_The_state_of_button_is_changed_to_Pressed_the_border_of_button_is_removed_The_sound_Click_is_played_once();
+                .Verify_the_following_information_The_state_of_button_is_changed_to_Pressed_the_border_of_button_is_removed_The_sound_Click_is_played_once(this);
 
 
             /*
@@ -93,7 +93,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_The_border_of_the_button_is_shown_state_Enabled_without_a_sound();
+                .Verify_the_following_information_The_border_of_the_button_is_shown_state_Enabled_without_a_sound(this);
 
 
             /*
@@ -103,7 +103,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8086 (partly: MMI_gen 9391 (partly: [More], Train category, MMI_gen 4382 (partly: state ‘Pressed’ when slide back, no sound))); MMI_gen 4375;
             */
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_The_button_is_back_to_state_Pressed_without_a_sound();
+            DmiExpectedResults.Verify_the_following_information_The_button_is_back_to_state_Pressed_without_a_sound(this);
 
 
             /*
@@ -129,7 +129,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8086 (partly: MMI_gen 4913 (partly: Train category); MMI_gen 4384 (partly: ETCS-MMI’s function associated to the button));
             */
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_The_state_of_released_button_is_changed_to_enabled();
+            DmiExpectedResults.Verify_the_following_information_The_state_of_released_button_is_changed_to_enabled(this);
 
 
             /*
@@ -138,7 +138,7 @@ namespace Testcase.DMITestCases
             Expected Result: See the expected results of Step 7 – Step 8
             */
             // Call generic Check Results Method
-            DmiExpectedResults.See_the_expected_results_of_Step_7_Step_8();
+            DmiExpectedResults.See_the_expected_results_of_Step_7_Step_8(this);
 
 
             /*
@@ -167,7 +167,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Press and hold ‘Del’ button.Note: Stopwatch is required");
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_While_press_and_hold_button_less_than_1_5_secSound_Click_is_played_once_The_state_of_button_is_changed_to_Pressed_and_immediately_back_to_Enabled_state_The_last_character_is_removed_from_an_input_field_after_pressing_the_button_While_press_and_hold_button_over_1_5_secThe_state_pressed_and_released_are_switched_repeatly_while_button_is_pressed_and_the_characters_are_removed_from_an_input_field_repeatly_refer_to_pressed_state_The_sound_Click_is_played_repeatly_while_button_is_pressed();
+                .Verify_the_following_information_While_press_and_hold_button_less_than_1_5_secSound_Click_is_played_once_The_state_of_button_is_changed_to_Pressed_and_immediately_back_to_Enabled_state_The_last_character_is_removed_from_an_input_field_after_pressing_the_button_While_press_and_hold_button_over_1_5_secThe_state_pressed_and_released_are_switched_repeatly_while_button_is_pressed_and_the_characters_are_removed_from_an_input_field_repeatly_refer_to_pressed_state_The_sound_Click_is_played_repeatly_while_button_is_pressed(this);
 
 
             /*
@@ -179,7 +179,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Release ‘Del’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_The_character_is_stop_removing();
+            DmiExpectedResults.Verify_the_following_information_The_character_is_stop_removing(this);
 
 
             /*
@@ -196,7 +196,7 @@ namespace Testcase.DMITestCases
             Expected Result: See the expected results of Step 11 – Step 13
             */
             // Call generic Check Results Method
-            DmiExpectedResults.See_the_expected_results_of_Step_11_Step_13();
+            DmiExpectedResults.See_the_expected_results_of_Step_11_Step_13(this);
 
 
             /*
@@ -213,7 +213,7 @@ namespace Testcase.DMITestCases
             Expected Result: See the expected results of Step 11 – Step 13
             */
             // Call generic Check Results Method
-            DmiExpectedResults.See_the_expected_results_of_Step_11_Step_13();
+            DmiExpectedResults.See_the_expected_results_of_Step_11_Step_13(this);
 
 
             /*
@@ -238,7 +238,7 @@ namespace Testcase.DMITestCases
             Expected Result: See the expected results of Step 7 – Step 8
             */
             // Call generic Check Results Method
-            DmiExpectedResults.See_the_expected_results_of_Step_7_Step_8();
+            DmiExpectedResults.See_the_expected_results_of_Step_7_Step_8(this);
 
 
             /*
@@ -255,7 +255,7 @@ namespace Testcase.DMITestCases
             Expected Result: See the expected results of Step 7 – Step 8
             */
             // Call generic Check Results Method
-            DmiExpectedResults.See_the_expected_results_of_Step_7_Step_8();
+            DmiExpectedResults.See_the_expected_results_of_Step_7_Step_8(this);
 
 
             /*
@@ -272,7 +272,7 @@ namespace Testcase.DMITestCases
             Expected Result: See the expected results of Step 7 – Step 8
             */
             // Call generic Check Results Method
-            DmiExpectedResults.See_the_expected_results_of_Step_7_Step_8();
+            DmiExpectedResults.See_the_expected_results_of_Step_7_Step_8(this);
 
 
             /*
@@ -313,7 +313,7 @@ namespace Testcase.DMITestCases
             Expected Result: The state of ‘Yes’ button is changed to enabled
             */
             // Call generic Check Results Method
-            DmiExpectedResults.The_state_of_Yes_button_is_changed_to_enabled();
+            DmiExpectedResults.The_state_of_Yes_button_is_changed_to_enabled(this);
 
 
             /*
@@ -332,7 +332,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Train_data_window();
+            DmiExpectedResults.DMI_displays_Train_data_window(this);
 
 
             /*
@@ -377,7 +377,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_The_state_of_an_input_field_is_changed_to_selected_when_release_the_pressed_area_at_the_Label_area_of_input_field();
+                .Verify_the_following_information_The_state_of_an_input_field_is_changed_to_selected_when_release_the_pressed_area_at_the_Label_area_of_input_field(this);
 
 
             /*
@@ -388,7 +388,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_The_state_of_an_input_field_is_changed_to_selected_when_release_the_pressed_area_at_the_Data_area_of_input_field();
+                .Verify_the_following_information_The_state_of_an_input_field_is_changed_to_selected_when_release_the_pressed_area_at_the_Data_area_of_input_field(this);
 
 
             /*
@@ -409,7 +409,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .DMI_displays_Train_data_window_Verify_the_following_information_1_The_state_of_Yes_button_below_text_label_Train_data_Entry_is_complete_still_disabled();
+                .DMI_displays_Train_data_window_Verify_the_following_information_1_The_state_of_Yes_button_below_text_label_Train_data_Entry_is_complete_still_disabled(this);
 
 
             /*

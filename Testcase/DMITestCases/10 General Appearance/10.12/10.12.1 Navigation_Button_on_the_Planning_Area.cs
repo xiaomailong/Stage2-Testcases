@@ -80,7 +80,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9391 (partly: MMI_gen 4382 (partly: when slide out with force applied, no sound));
             */
             // Call generic Check Results Method
-            DmiExpectedResults.The_distance_range_on_the_Planning_area_is_not_changed_The_sound_click_is_not_played();
+            DmiExpectedResults.The_distance_range_on_the_Planning_area_is_not_changed_The_sound_click_is_not_played(this);
 
 
             /*
@@ -90,7 +90,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9391 (partly: MMI_gen 4382 (partly: when slide back, no sound));
             */
             // Call generic Check Results Method
-            DmiExpectedResults.The_distance_range_on_the_Planning_area_is_not_changed_The_sound_click_is_not_played();
+            DmiExpectedResults.The_distance_range_on_the_Planning_area_is_not_changed_The_sound_click_is_not_played(this);
 
 
             /*
@@ -124,7 +124,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9391 (partly: MMI_gen 4382 (partly: when slide out with force applied, no sound));
             */
             // Call generic Check Results Method
-            DmiExpectedResults.The_distance_range_on_the_Planning_range_is_not_changed_The_sound_click_is_not_played();
+            DmiExpectedResults.The_distance_range_on_the_Planning_range_is_not_changed_The_sound_click_is_not_played(this);
 
 
             /*
@@ -134,7 +134,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9391 (partly: MMI_gen 4382 (partly: when slide back, no sound));
             */
             // Call generic Check Results Method
-            DmiExpectedResults.The_distance_range_on_the_Planning_range_is_not_changed_The_sound_click_is_not_played();
+            DmiExpectedResults.The_distance_range_on_the_Planning_range_is_not_changed_The_sound_click_is_not_played(this);
 
 
             /*
@@ -176,7 +176,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9391 (partly: MMI_gen 4382 (partly: when slide out with force applied, no sound));
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_still_displays_the_planning_area_The_sound_click_is_not_played();
+            DmiExpectedResults.DMI_still_displays_the_planning_area_The_sound_click_is_not_played(this);
 
 
             /*
@@ -186,7 +186,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9391 (partly: MMI_gen 4382 (partly: when slide back, no sound));
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_still_displays_the_planning_area_The_sound_click_is_not_played();
+            DmiExpectedResults.DMI_still_displays_the_planning_area_The_sound_click_is_not_played(this);
 
 
             /*
@@ -212,7 +212,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9391 (partly: MMI_gen 4382 (partly: when slide out with force applied, no sound));
             */
             // Call generic Check Results Method
-            DmiExpectedResults.The_planning_area_still_hidden_The_sound_click_is_not_played();
+            DmiExpectedResults.The_planning_area_still_hidden_The_sound_click_is_not_played(this);
 
 
             /*
@@ -222,7 +222,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9391 (partly: MMI_gen 4382 (partly: when slide back, no sound));
             */
             // Call generic Check Results Method
-            DmiExpectedResults.The_planning_area_still_hidden_The_sound_click_is_not_played();
+            DmiExpectedResults.The_planning_area_still_hidden_The_sound_click_is_not_played(this);
 
 
             /*

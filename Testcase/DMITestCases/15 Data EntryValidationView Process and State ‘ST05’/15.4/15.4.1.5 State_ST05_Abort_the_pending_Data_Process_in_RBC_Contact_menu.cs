@@ -62,7 +62,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays RBC Data window
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_RBC_Data_window();
+            DmiExpectedResults.DMI_displays_RBC_Data_window(this);
 
 
             /*
@@ -71,7 +71,7 @@ namespace Testcase.DMITestCases
             Expected Result: The hourglass symbol ST05 is displayed at window title area
             */
             // Call generic Check Results Method
-            DmiExpectedResults.The_hourglass_symbol_ST05_is_displayed_at_window_title_area();
+            DmiExpectedResults.The_hourglass_symbol_ST05_is_displayed_at_window_title_area(this);
 
 
             /*

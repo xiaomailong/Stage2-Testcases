@@ -94,7 +94,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 3200 (partly: MMI_gen 4382 (partly: Brake Intervention, state ‘Enabled’ when slide out with force applied, no sound));
             */
             // Call generic Check Results Method
-            DmiExpectedResults.The_border_of_the_button_is_shown_state_Enabled_without_a_sound();
+            DmiExpectedResults.The_border_of_the_button_is_shown_state_Enabled_without_a_sound(this);
 
 
             /*
@@ -104,7 +104,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 3200 (partly: Brake Intervention, MMI_gen 4382 (partly: state ‘Pressed’ when slide back, no sound));
             */
             // Call generic Check Results Method
-            DmiExpectedResults.The_button_is_back_to_state_Pressed_without_a_sound();
+            DmiExpectedResults.The_button_is_back_to_state_Pressed_without_a_sound(this);
 
 
             /*
@@ -137,7 +137,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SR mode, Level 1
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_SR_mode_Level_1();
+            DmiExpectedResults.DMI_displays_in_SR_mode_Level_1(this);
 
 
             /*

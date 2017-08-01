@@ -64,7 +64,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in OS mode, level 1
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_OS_mode_level_1();
+            DmiExpectedResults.DMI_displays_in_OS_mode_level_1(this);
 
 
             /*

@@ -109,7 +109,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Adhesion’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.The_Adhesion_window_is_displayed();
+            DmiExpectedResults.The_Adhesion_window_is_displayed(this);
 
 
             /*
@@ -128,7 +128,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Adhesion’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.The_Adhesion_window_is_displayed();
+            DmiExpectedResults.The_Adhesion_window_is_displayed(this);
 
 
             /*
@@ -146,7 +146,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11449-1 (THR) (partly: safe-up type, MMI_gen 11387 (partly: button Up-Type, MMI_gen 4382 (partly: when slide out with force applied, no sound)));
             */
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_No_sound_Click_is_played();
+            DmiExpectedResults.Verify_the_following_information_No_sound_Click_is_played(this);
 
 
             /*
@@ -156,9 +156,9 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11449-1 (THR) (partly: safe-up type, MMI_gen 11387 (partly: button Up-Type, MMI_gen 4382 (partly: when slide back, no sound)));
             */
             // Call generic Action Method
-            DmiActions.Slide_back_into_an_input_field();
+            DmiActions.Slide_back_into_an_input_field(this);
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_No_sound_Click_is_played();
+            DmiExpectedResults.Verify_the_following_information_No_sound_Click_is_played(this);
 
 
             /*

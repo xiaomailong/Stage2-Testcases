@@ -63,7 +63,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 972 (partly: OBU_TR_M_MODE); MMI_gen 6310 (partly: mode);(2) MMI_gen 972 (partly: MMI_V_RELEASE); MMI_gen 6310 (partly: release speed); MMI_gen 5902 (partly: MMI_M_WARNING = 3);(3) MMI_gen 972 (partly: FS mode, RSM, IndS,  Vtarget <= CSG <= Vperm); MMI_gen 1182 (partly: Vrelease);
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_pass_BG1_with_speed_30kmh();
+            DmiActions.Drive_the_train_forward_pass_BG1_with_speed_30kmh(this);
 
 
             /*

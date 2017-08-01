@@ -74,7 +74,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 9430 (partly:Negative LE08); 
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_with_30_kmh_then_pass_BG0_with_level_transition_announcement();
+            DmiActions.Drive_the_train_forward_with_30_kmh_then_pass_BG0_with_level_transition_announcement(this);
 
 
             /*
@@ -84,7 +84,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 9431 (partly: LE09); 
             */
             // Call generic Action Method
-            DmiActions.Pass_the_level_transition_acknowledgement_area();
+            DmiActions.Pass_the_level_transition_acknowledgement_area(this);
 
 
             /*
@@ -101,7 +101,7 @@ namespace Testcase.DMITestCases
             Expected Result: Mode changes to ATB STM mode, Level NTC
             */
             // Call generic Action Method
-            DmiActions.Pass_BG1_at_level_transition_border();
+            DmiActions.Pass_BG1_at_level_transition_border(this);
 
 
             /*

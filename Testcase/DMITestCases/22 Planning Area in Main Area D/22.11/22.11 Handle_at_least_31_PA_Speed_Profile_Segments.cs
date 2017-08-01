@@ -62,9 +62,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays the default window. The Driver ID window is displayed
             */
             // Call generic Action Method
-            DmiActions.Activate_cabin_A();
+            DmiActions.Activate_cabin_A(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_the_default_window_The_Driver_ID_window_is_displayed();
+            DmiExpectedResults.DMI_displays_the_default_window_The_Driver_ID_window_is_displayed(this);
 
 
             /*
@@ -73,9 +73,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI is displayed in SR mode, level 1
             */
             // Call generic Action Method
-            DmiActions.Driver_performs_SoM_to_SR_mode_level_1();
+            DmiActions.Driver_performs_SoM_to_SR_mode_level_1(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_is_displayed_in_SR_mode_level_1();
+            DmiExpectedResults.DMI_is_displayed_in_SR_mode_level_1(this);
 
 
             /*
@@ -99,7 +99,7 @@ namespace Testcase.DMITestCases
             Expected Result: From step 6 to Step 27. Verify that the PA Speed Profile segment’s speed is higher than the the speed of the previous segment. DMI is displayed as symbol PL21 on the planning area. (see the figure in ‘Comment’ column)
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_follow_the_permitted_speed();
+            DmiActions.Drive_the_train_follow_the_permitted_speed(this);
 
 
             /*
@@ -327,7 +327,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 7286 (partly: PL23);
             */
             // Call generic Action Method
-            DmiActions.Continue_to_drive_the_train_forward();
+            DmiActions.Continue_to_drive_the_train_forward(this);
 
 
             /*

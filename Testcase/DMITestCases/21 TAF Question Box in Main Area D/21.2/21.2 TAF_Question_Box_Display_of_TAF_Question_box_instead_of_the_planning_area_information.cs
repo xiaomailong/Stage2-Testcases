@@ -63,9 +63,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SR mode, level 2
             */
             // Call generic Action Method
-            DmiActions.Perform_SoM_to_SR_mode_level_2_Then_drive_the_train_forward_with_speed_30kmh();
+            DmiActions.Perform_SoM_to_SR_mode_level_2_Then_drive_the_train_forward_with_speed_30kmh(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_SR_mode_level_2();
+            DmiExpectedResults.DMI_displays_in_SR_mode_level_2(this);
 
 
             /*
@@ -74,9 +74,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI changes from SR mode to FS mode, level 2
             */
             // Call generic Action Method
-            DmiActions.Received_information_from_RBC();
+            DmiActions.Received_information_from_RBC(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_changes_from_SR_mode_to_FS_mode_level_2();
+            DmiExpectedResults.DMI_changes_from_SR_mode_to_FS_mode_level_2(this);
 
 
             /*
@@ -85,9 +85,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI changes from FS mode to OS mode, level 2
             */
             // Call generic Action Method
-            DmiActions.Acknowledge_OS_mode_by_press_at_area_C1();
+            DmiActions.Acknowledge_OS_mode_by_press_at_area_C1(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_changes_from_FS_mode_to_OS_mode_level_2();
+            DmiExpectedResults.DMI_changes_from_FS_mode_to_OS_mode_level_2(this);
 
 
             /*
@@ -97,7 +97,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7096 (partly: Placed in Main-Area D);(2) MMI_gen 7096 (partly: 1st bullet);(3) MMI_gen 7096 (partly: 3rd bullet, 4th bullet);
             */
             // Call generic Action Method
-            DmiActions.Received_information_from_RBC_Then_stop_the_train();
+            DmiActions.Received_information_from_RBC_Then_stop_the_train(this);
 
 
             /*

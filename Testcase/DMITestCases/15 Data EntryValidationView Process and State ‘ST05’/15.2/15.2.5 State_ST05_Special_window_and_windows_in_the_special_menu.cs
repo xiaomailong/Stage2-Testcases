@@ -116,7 +116,7 @@ namespace Testcase.DMITestCases
             Expected Result: 
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_passing_BG1();
+            DmiActions.Drive_the_train_forward_passing_BG1(this);
 
 
             /*
@@ -125,7 +125,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Special window with enabled Adhesion button
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Special_window_with_enabled_Adhesion_button();
+            DmiExpectedResults.DMI_displays_Special_window_with_enabled_Adhesion_button(this);
 
 
             /*

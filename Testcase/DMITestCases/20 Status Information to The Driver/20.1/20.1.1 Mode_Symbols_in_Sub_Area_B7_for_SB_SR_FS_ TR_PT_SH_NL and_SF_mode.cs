@@ -150,7 +150,7 @@ namespace Testcase.DMITestCases
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
 
             // VISUAL CHECK - The Staff Responsible symbol (MO9) is displayed in area B7
-            DmiExpectedResults.DMI_displays_in_SR_mode_Level_1();
+            DmiExpectedResults.DMI_displays_in_SR_mode_Level_1(this);
             // OR
             EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.StaffResponsible;
             #endregion
@@ -184,7 +184,7 @@ namespace Testcase.DMITestCases
                                (2) MMI_gen 110 (partly: MO04);
             */
             // Call generic Action Method
-            DmiActions.Force_the_train_into_TR_mode_by_moving_the_train_forward_to_position_of_EOA();
+            DmiActions.Force_the_train_into_TR_mode_by_moving_the_train_forward_to_position_of_EOA(this);
             #endregion
 
             #region Test Step 7
@@ -266,7 +266,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SR mode, Level 1
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_SR_mode_Level_1();
+            DmiExpectedResults.DMI_displays_in_SR_mode_Level_1(this);
             #endregion
 
             /*

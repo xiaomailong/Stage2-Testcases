@@ -66,7 +66,7 @@ namespace Testcase.DMITestCases
             Expected Result: The ‘Train data’ data entry window appears on ETCS-DMI screen instead of the ‘Main’ menu window
             */
             // Call generic Action Method
-            DmiActions.Open_the_Train_data_data_entry_window_from_the_Main_menu();
+            DmiActions.Open_the_Train_data_data_entry_window_from_the_Main_menu(this);
 
 
             /*
@@ -116,7 +116,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions
-                .This_step_is_to_complete_the_process_of_Train_data_Press_the_Yes_button_on_the_Train_data_window_Validate_the_data_in_the_data_validation_window();
+                .This_step_is_to_complete_the_process_of_Train_data_Press_the_Yes_button_on_the_Train_data_window_Validate_the_data_in_the_data_validation_window(this);
 
 
             /*

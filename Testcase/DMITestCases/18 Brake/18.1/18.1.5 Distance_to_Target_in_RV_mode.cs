@@ -62,9 +62,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SB mode. The Driver ID window is displayed
             */
             // Call generic Action Method
-            DmiActions.Activate_cabin_A();
+            DmiActions.Activate_cabin_A(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_SB_mode_The_Driver_ID_window_is_displayed();
+            DmiExpectedResults.DMI_displays_in_SB_mode_The_Driver_ID_window_is_displayed(this);
 
 
             /*
@@ -73,7 +73,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SR mode, level 1
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_SR_mode_level_1();
+            DmiExpectedResults.DMI_displays_in_SR_mode_level_1(this);
 
 
             /*
@@ -82,7 +82,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI changes from SR to FS mode
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_changes_from_SR_to_FS_mode();
+            DmiExpectedResults.DMI_changes_from_SR_to_FS_mode(this);
 
 
             /*
@@ -98,9 +98,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI remains displays in FS mode
             */
             // Call generic Action Method
-            DmiActions.The_train_is_in_reversing_area();
+            DmiActions.The_train_is_in_reversing_area(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_remains_displays_in_FS_mode();
+            DmiExpectedResults.DMI_remains_displays_in_FS_mode(this);
 
 
             /*
@@ -109,7 +109,7 @@ namespace Testcase.DMITestCases
             Expected Result: The train is at standstill.Driver is informed that reversing is possible
             */
             // Call generic Action Method
-            DmiActions.Stop_the_train();
+            DmiActions.Stop_the_train(this);
 
 
             /*
@@ -119,7 +119,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1)MMI_gen 105           (partly: RV mode);                        (2) MMI_gen 2567 (partly RV mode); MMI_gen 107 (partly: ETCS mode, Table 37, RV mode);
             */
             // Call generic Action Method
-            DmiActions.Change_the_direction_of_train_to_reverse_Then_select_and_confirm_RV_mode();
+            DmiActions.Change_the_direction_of_train_to_reverse_Then_select_and_confirm_RV_mode(this);
 
 
             /*

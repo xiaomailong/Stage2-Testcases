@@ -66,9 +66,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SB mode
             */
             // Call generic Action Method
-            DmiActions.Power_on_the_system_and_activate_cabin();
+            DmiActions.Power_on_the_system_and_activate_cabin(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_SB_mode();
+            DmiExpectedResults.DMI_displays_in_SB_mode(this);
 
 
             /*
@@ -99,7 +99,7 @@ namespace Testcase.DMITestCases
             Expected Result: 
             */
             // Call generic Action Method
-            DmiActions.End_of_Test();
+            DmiActions.End_of_Test(this);
 
 
             return GlobalTestResult;

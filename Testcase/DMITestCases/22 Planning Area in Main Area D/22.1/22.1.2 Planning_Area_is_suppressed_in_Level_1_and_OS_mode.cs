@@ -62,9 +62,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Driver ID window
             */
             // Call generic Action Method
-            DmiActions.Activate_Cabin_A();
+            DmiActions.Activate_Cabin_A(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Driver_ID_window();
+            DmiExpectedResults.DMI_displays_Driver_ID_window(this);
 
 
             /*
@@ -73,9 +73,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SR mode, level 1
             */
             // Call generic Action Method
-            DmiActions.Driver_performs_SoM_to_SR_mode_level_1();
+            DmiActions.Driver_performs_SoM_to_SR_mode_level_1(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_SR_mode_level_1();
+            DmiExpectedResults.DMI_displays_in_SR_mode_level_1(this);
 
 
             /*
@@ -92,9 +92,9 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 7102;
             */
             // Call generic Action Method
-            DmiActions.Touch_main_area_D();
+            DmiActions.Touch_main_area_D(this);
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_that_the_Planning_Area_is_not_displayed_on_DMI();
+            DmiExpectedResults.Verify_that_the_Planning_Area_is_not_displayed_on_DMI(this);
 
 
             /*
@@ -111,9 +111,9 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 7101 (partly: disable OS);
             */
             // Call generic Action Method
-            DmiActions.Touch_main_area_D();
+            DmiActions.Touch_main_area_D(this);
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_that_the_Planning_Area_is_not_displayed_on_DMI();
+            DmiExpectedResults.Verify_that_the_Planning_Area_is_not_displayed_on_DMI(this);
 
 
             /*

@@ -80,7 +80,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_The_state_of_pressed_button_is_changed_to_Enabled_state();
+                .Verify_the_following_information_The_state_of_pressed_button_is_changed_to_Enabled_state(this);
 
 
             /*
@@ -98,9 +98,9 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 2205-1 (THR) (partly: safe-up type, MMI_gen 11387 (partly: button Up-Type, MMI_gen 4382 (partly: when slide out with force applied, no sound)));
             */
             // Call generic Action Method
-            DmiActions.Slide_out_an_input_field();
+            DmiActions.Slide_out_an_input_field(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_still_displays_Level_window_No_sound_Click_is_played();
+            DmiExpectedResults.DMI_still_displays_Level_window_No_sound_Click_is_played(this);
 
 
             /*
@@ -110,9 +110,9 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 2205-1 (THR) (partly: safe-up type, MMI_gen 11387 (partly: button Up-Type, MMI_gen 4382 (partly: when slide back, no sound)));
             */
             // Call generic Action Method
-            DmiActions.Slide_back_into_an_input_field();
+            DmiActions.Slide_back_into_an_input_field(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_still_displays_Level_window_No_sound_Click_is_played();
+            DmiExpectedResults.DMI_still_displays_Level_window_No_sound_Click_is_played(this);
 
 
             /*
@@ -164,7 +164,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11383 (partly: MMI_gen 4382 (partly: state ‘Enabled’ when slide out with force applied, no sound));
             */
             // Call generic Action Method
-            DmiActions.Slide_out_Close_button();
+            DmiActions.Slide_out_Close_button(this);
 
 
             /*
@@ -174,7 +174,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11383 (partly: MMI_gen 4382 (partly: state ‘Pressed’ when slide back, no sound));
             */
             // Call generic Action Method
-            DmiActions.Slide_back_into_Close_button();
+            DmiActions.Slide_back_into_Close_button(this);
 
 
             /*
@@ -212,7 +212,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 1630 (partly: NEAGTIVE, 2nd  bullet); MMI_gen 2277;
             */
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_DMI_displays_Main_window();
+            DmiExpectedResults.Verify_the_following_information_DMI_displays_Main_window(this);
 
 
             /*

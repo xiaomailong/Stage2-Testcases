@@ -70,7 +70,7 @@ namespace Testcase.DMITestCases
             Expected Result: The speed pointer is indicated to zero km/h
             */
             // Call generic Action Method
-            DmiActions.Stop_the_train();
+            DmiActions.Stop_the_train(this);
 
 
             /*

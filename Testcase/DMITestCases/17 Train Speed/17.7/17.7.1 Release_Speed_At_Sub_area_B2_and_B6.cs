@@ -62,9 +62,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SB mode, level 1. The Driver ID window is displayed
             */
             // Call generic Action Method
-            DmiActions.Activate_cabin_A();
+            DmiActions.Activate_cabin_A(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_SB_mode_level_1_The_Driver_ID_window_is_displayed();
+            DmiExpectedResults.DMI_displays_in_SB_mode_level_1_The_Driver_ID_window_is_displayed(this);
 
 
             /*
@@ -73,9 +73,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI is displayed in SR mode, level 1
             */
             // Call generic Action Method
-            DmiActions.Driver_performs_SoM_to_SR_mode();
+            DmiActions.Driver_performs_SoM_to_SR_mode(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_is_displayed_in_SR_mode_level_1();
+            DmiExpectedResults.DMI_is_displayed_in_SR_mode_level_1(this);
 
 
             /*
@@ -84,7 +84,7 @@ namespace Testcase.DMITestCases
             Expected Result: The DMI changes from SR to FS mode
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_passing_BG1();
+            DmiActions.Drive_the_train_forward_passing_BG1(this);
 
 
             /*
@@ -101,9 +101,9 @@ namespace Testcase.DMITestCases
             Expected Result: Train is standstill
             */
             // Call generic Action Method
-            DmiActions.Stop_the_train();
+            DmiActions.Stop_the_train(this);
             // Call generic Check Results Method
-            DmiExpectedResults.Train_is_standstill();
+            DmiExpectedResults.Train_is_standstill(this);
 
 
             /*

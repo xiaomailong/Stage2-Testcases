@@ -64,9 +64,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in FS mode, Level 1 with the ST06 symbol at sub-area C6
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_pass_BG1_Then_stop_the_train();
+            DmiActions.Drive_the_train_forward_pass_BG1_Then_stop_the_train(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_FS_mode_Level_1_with_the_ST06_symbol_at_sub_area_C6();
+            DmiExpectedResults.DMI_displays_in_FS_mode_Level_1_with_the_ST06_symbol_at_sub_area_C6(this);
 
 
             /*
@@ -83,7 +83,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 6299 (partly: OBU_TR_M_MODE, MMI_M_WARNING, train speed in relation to permitted speed MMI_V_PERMITTED, RV mode in CSM supervision);(2) MMI_gen 6299 (partly: colour of speed pointer, RV mode in CSM supervision);
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_with_speed_5_kmh();
+            DmiActions.Drive_the_train_with_speed_5_kmh(this);
 
 
             /*

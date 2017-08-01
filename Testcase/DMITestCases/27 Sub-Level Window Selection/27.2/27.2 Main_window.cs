@@ -81,7 +81,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 8349 (partly: MMI_gen 4557 (partly: button ‘Start’, MMI_gen 4382 (partly: state ‘Enabled’ when slide out with force applied, no sound))); MMI_gen 4374;
             */
             // Call generic Check Results Method
-            DmiExpectedResults.The_border_of_the_button_is_shown_state_Enabled_without_a_sound();
+            DmiExpectedResults.The_border_of_the_button_is_shown_state_Enabled_without_a_sound(this);
 
 
             /*
@@ -91,7 +91,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 8349 (partly: MMI_gen 4557 (partly: button ‘Start’, MMI_gen 4382 (partly: state ‘Pressed’ when slide back, no sound))); MMI_gen 4375;
             */
             // Call generic Check Results Method
-            DmiExpectedResults.The_button_is_back_to_state_Pressed_without_a_sound();
+            DmiExpectedResults.The_button_is_back_to_state_Pressed_without_a_sound(this);
 
 
             /*
@@ -134,7 +134,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_While_press_and_hold_button_less_than_2_secThe_Click_sound_is_played_once_The_state_of_button_is_changed_to_Pressed_The_state_pressed_and_enabled_are_switched_repeatly_while_button_is_pressed_Use_the_log_file_to_confirm_that_DMI_sends_EVC_101_with_variable_MMI_T_BUTTONEVENT_and_MMI_Q_BUTTON_1_pressed_While_press_and_hold_button_over_2_secThe_state_of_button_is_changed_to_Pressed_and_without_toggle();
+                .Verify_the_following_information_While_press_and_hold_button_less_than_2_secThe_Click_sound_is_played_once_The_state_of_button_is_changed_to_Pressed_The_state_pressed_and_enabled_are_switched_repeatly_while_button_is_pressed_Use_the_log_file_to_confirm_that_DMI_sends_EVC_101_with_variable_MMI_T_BUTTONEVENT_and_MMI_Q_BUTTON_1_pressed_While_press_and_hold_button_over_2_secThe_state_of_button_is_changed_to_Pressed_and_without_toggle(this);
 
 
             /*
@@ -145,7 +145,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_The_Shunting_button_turns_to_the_Enabled_state_without_a_sound();
+                .Verify_the_following_information_The_Shunting_button_turns_to_the_Enabled_state_without_a_sound(this);
 
 
             /*
@@ -156,7 +156,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_The_Shunting_button_turns_to_the_Enabled_state_without_a_sound();
+                .Verify_the_following_information_The_Shunting_button_turns_to_the_Enabled_state_without_a_sound(this);
 
 
             /*
@@ -167,7 +167,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .While_press_and_hold_button_less_than_2_secThe_state_pressed_and_enabled_are_switched_repeatly_while_button_is_pressed_without_a_sound_While_press_and_hold_button_over_2_secThe_state_of_button_is_changed_to_Pressed_and_without_toggle();
+                .While_press_and_hold_button_less_than_2_secThe_state_pressed_and_enabled_are_switched_repeatly_while_button_is_pressed_without_a_sound_While_press_and_hold_button_over_2_secThe_state_of_button_is_changed_to_Pressed_and_without_toggle(this);
 
 
             /*
@@ -220,7 +220,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions
-                .Perform_the_following_procedure_Enter_Driver_IDSelect_and_confirm_Level_1_Note_If_Level_window_is_display();
+                .Perform_the_following_procedure_Enter_Driver_IDSelect_and_confirm_Level_1_Note_If_Level_window_is_display(this);
 
 
             /*

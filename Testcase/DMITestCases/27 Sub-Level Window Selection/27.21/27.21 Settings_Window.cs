@@ -79,7 +79,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8465 (partly: MMI_gen 4557 (partly: Language button, MMI_gen 4382 (partly: state ‘Enabled’ when slide out with force applied, no sound)));
             */
             // Call generic Check Results Method
-            DmiExpectedResults.The_border_of_the_button_is_shown_state_Enabled_without_a_sound();
+            DmiExpectedResults.The_border_of_the_button_is_shown_state_Enabled_without_a_sound(this);
 
 
             /*
@@ -89,7 +89,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8465 (partly: MMI_gen 4557 (partly: Language button, MMI_gen 4382 (partly: state ‘Pressed’ when slide back, no sound)));  
             */
             // Call generic Check Results Method
-            DmiExpectedResults.The_button_is_back_to_state_Pressed_without_a_sound();
+            DmiExpectedResults.The_button_is_back_to_state_Pressed_without_a_sound(this);
 
 
             /*
@@ -99,7 +99,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 8465 (partly: MMI_gen 4557 (partly: Language button),  MMI_gen 4381 (partly: exit state ‘Pressed’, execute function associated to the button));  
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Language_window();
+            DmiExpectedResults.DMI_displays_Language_window(this);
 
 
             /*
@@ -110,7 +110,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Settings_window();
+            DmiExpectedResults.DMI_displays_Settings_window(this);
 
 
             /*
@@ -152,7 +152,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Settings_window();
+            DmiExpectedResults.DMI_displays_Settings_window(this);
 
 
             /*
@@ -179,9 +179,9 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions
-                .Use_the_test_script_file_22_21_a_xml_to_send_EVC_30_with_MMI_Q_REQUEST_ENABLE_64_25_0MMI_Q_REQUEST_ENABLE_64_26_0();
+                .Use_the_test_script_file_22_21_a_xml_to_send_EVC_30_with_MMI_Q_REQUEST_ENABLE_64_25_0MMI_Q_REQUEST_ENABLE_64_26_0(this);
             // Call generic Check Results Method
-            DmiExpectedResults.The_Set_Clock_button_is_disabled();
+            DmiExpectedResults.The_Set_Clock_button_is_disabled(this);
 
 
             /*
@@ -191,7 +191,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 11545 (partly: EVC-30, Enabling, #25);
             */
             // Call generic Check Results Method
-            DmiExpectedResults.The_Set_Clock_button_is_enabled();
+            DmiExpectedResults.The_Set_Clock_button_is_enabled(this);
 
 
             /*
@@ -201,9 +201,9 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions
-                .Use_the_test_script_file_22_21_a_xml_to_send_EVC_30_with_MMI_Q_REQUEST_ENABLE_64_25_0MMI_Q_REQUEST_ENABLE_64_26_0();
+                .Use_the_test_script_file_22_21_a_xml_to_send_EVC_30_with_MMI_Q_REQUEST_ENABLE_64_25_0MMI_Q_REQUEST_ENABLE_64_26_0(this);
             // Call generic Check Results Method
-            DmiExpectedResults.The_Set_Clock_button_is_disabled();
+            DmiExpectedResults.The_Set_Clock_button_is_disabled(this);
 
 
             /*
@@ -213,7 +213,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 11545 (partly: EVC-30, Enabling, #25, #26);
             */
             // Call generic Check Results Method
-            DmiExpectedResults.The_Set_Clock_button_is_enabled();
+            DmiExpectedResults.The_Set_Clock_button_is_enabled(this);
 
 
             /*
@@ -223,9 +223,9 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions
-                .Use_the_test_script_file_22_21_a_xml_to_send_EVC_30_with_MMI_Q_REQUEST_ENABLE_64_25_0MMI_Q_REQUEST_ENABLE_64_26_0();
+                .Use_the_test_script_file_22_21_a_xml_to_send_EVC_30_with_MMI_Q_REQUEST_ENABLE_64_25_0MMI_Q_REQUEST_ENABLE_64_26_0(this);
             // Call generic Check Results Method
-            DmiExpectedResults.The_Set_Clock_button_is_disabled();
+            DmiExpectedResults.The_Set_Clock_button_is_disabled(this);
 
 
             /*
@@ -235,7 +235,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 11545 (partly: EVC-30, Enabling, #26);
             */
             // Call generic Check Results Method
-            DmiExpectedResults.The_Set_Clock_button_is_enabled();
+            DmiExpectedResults.The_Set_Clock_button_is_enabled(this);
 
 
             /*

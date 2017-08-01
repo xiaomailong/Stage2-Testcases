@@ -62,9 +62,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SR mode, Level 1
             */
             // Call generic Action Method
-            DmiActions.Activate_cabin_A_Driver_performs_SoM_to_SR_mode_level_1();
+            DmiActions.Activate_cabin_A_Driver_performs_SoM_to_SR_mode_level_1(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_SR_mode_Level_1();
+            DmiExpectedResults.DMI_displays_in_SR_mode_Level_1(this);
 
 
             /*
@@ -88,7 +88,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 244 (partly: 1st bullet);                                        (2) MMI_gen 244 (partly: 2nd bullet);                               (3) MMI_gen 244 (partly: 3rd bullet);                            MMI_gen 157 (partly: sound);                                             (4) MMI_gen 244 (partly: 4th bullet);                                                                 
             */
             // Call generic Action Method
-            DmiActions.Simulate_the_communication_loss_between_DMI_and_ETCS_Onboard();
+            DmiActions.Simulate_the_communication_loss_between_DMI_and_ETCS_Onboard(this);
 
 
             /*
@@ -106,7 +106,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 246 (partly: 1st bullet, text/symbol);              (2) MMI_gen 246 (partly: 2nd bullet);                                 (3) MMI_gen 246 (partly: 3rd bullet);
             */
             // Call generic Action Method
-            DmiActions.Re_establish_the_communication_between_DMI_and_ETCS_Onboard();
+            DmiActions.Re_establish_the_communication_between_DMI_and_ETCS_Onboard(this);
 
 
             /*
@@ -115,9 +115,9 @@ namespace Testcase.DMITestCases
             Expected Result: The train is at standstill
             */
             // Call generic Action Method
-            DmiActions.Stop_the_train();
+            DmiActions.Stop_the_train(this);
             // Call generic Check Results Method
-            DmiExpectedResults.The_train_is_at_standstill();
+            DmiExpectedResults.The_train_is_at_standstill(this);
 
 
             /*
@@ -126,7 +126,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI enters ‘ATP-down’ state with continuous 1000Hz sound
             */
             // Call generic Action Method
-            DmiActions.Simulate_the_communication_loss_between_DMI_and_ETCS_Onboard();
+            DmiActions.Simulate_the_communication_loss_between_DMI_and_ETCS_Onboard(this);
 
 
             /*
@@ -136,7 +136,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 246 (partly: before driver’s confirmation);
             */
             // Call generic Action Method
-            DmiActions.Re_establish_the_communication_between_DMI_and_ETCS_Onboard();
+            DmiActions.Re_establish_the_communication_between_DMI_and_ETCS_Onboard(this);
 
 
             /*

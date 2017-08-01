@@ -62,9 +62,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in FS mode, Level 1
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_pass_BG1();
+            DmiActions.Drive_the_train_forward_pass_BG1(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_FS_mode_Level_1();
+            DmiExpectedResults.DMI_displays_in_FS_mode_Level_1(this);
 
 
             /*
@@ -150,9 +150,9 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 10473 (partly: MMI_gen 668 (partly: MMI_gen 244);
             */
             // Call generic Action Method
-            DmiActions.Simulate_loss_communication_between_ETCS_onboard_and_DMI();
+            DmiActions.Simulate_loss_communication_between_ETCS_onboard_and_DMI(this);
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_1_The_symbol_TC37_is_removed_from_DMI();
+            DmiExpectedResults.Verify_the_following_information_1_The_symbol_TC37_is_removed_from_DMI(this);
 
 
             /*
@@ -162,9 +162,9 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 10473 (partly: Note under MMI_gen 668);
             */
             // Call generic Action Method
-            DmiActions.Re_establish_communication_between_ETCS_onboard_and_DMI();
+            DmiActions.Re_establish_communication_between_ETCS_onboard_and_DMI(this);
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_1_The_symbol_TC37_is_resume_to_display_on_DMI();
+            DmiExpectedResults.Verify_the_following_information_1_The_symbol_TC37_is_resume_to_display_on_DMI(this);
 
 
             /*
@@ -174,9 +174,9 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 10473 (partly: MMI_gen 668 (partly: MMI_gen 240);
             */
             // Call generic Action Method
-            DmiActions.Deactivate_cabin_Then_simulate_loss_communication_between_ETCS_onboard_and_DMI();
+            DmiActions.Deactivate_cabin_Then_simulate_loss_communication_between_ETCS_onboard_and_DMI(this);
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_1_The_symbol_TC37_is_removed_from_DMI();
+            DmiExpectedResults.Verify_the_following_information_1_The_symbol_TC37_is_removed_from_DMI(this);
 
 
             /*
@@ -186,9 +186,9 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 10473 (partly: Note under MMI_gen 668);
             */
             // Call generic Action Method
-            DmiActions.Activate_cabin_Then_re_establish_communication_between_ETCS_onboard_and_DMI();
+            DmiActions.Activate_cabin_Then_re_establish_communication_between_ETCS_onboard_and_DMI(this);
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_1_The_symbol_TC37_is_resume_to_display_on_DMI();
+            DmiExpectedResults.Verify_the_following_information_1_The_symbol_TC37_is_resume_to_display_on_DMI(this);
 
 
             /*

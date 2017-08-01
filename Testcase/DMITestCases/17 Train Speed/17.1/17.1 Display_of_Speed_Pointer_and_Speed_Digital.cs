@@ -71,9 +71,9 @@ namespace Testcase.DMITestCases
             Expected Result: The train is at standstill
             */
             // Call generic Action Method
-            DmiActions.Stop_the_train();
+            DmiActions.Stop_the_train(this);
             // Call generic Check Results Method
-            DmiExpectedResults.The_train_is_at_standstill();
+            DmiExpectedResults.The_train_is_at_standstill(this);
 
 
             /*

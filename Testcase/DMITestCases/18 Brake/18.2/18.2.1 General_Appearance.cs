@@ -138,7 +138,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions
-                .This_step_is_to_clear_the_symbol_ST01_after_verification_of_the_previous_step_Use_the_test_script_file_13_2_1_b_xml_to_send_EVC_8_with_MMI_Q_TEXT_CRITERIA_4MMI_I_TEXT_1();
+                .This_step_is_to_clear_the_symbol_ST01_after_verification_of_the_previous_step_Use_the_test_script_file_13_2_1_b_xml_to_send_EVC_8_with_MMI_Q_TEXT_CRITERIA_4MMI_I_TEXT_1(this);
 
 
             /*
@@ -156,7 +156,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions
-                .This_step_is_to_clear_the_symbol_ST01_after_verification_of_the_previous_step_Use_the_test_script_file_13_2_1_b_xml_to_send_EVC_8_with_MMI_Q_TEXT_CRITERIA_4MMI_I_TEXT_1();
+                .This_step_is_to_clear_the_symbol_ST01_after_verification_of_the_previous_step_Use_the_test_script_file_13_2_1_b_xml_to_send_EVC_8_with_MMI_Q_TEXT_CRITERIA_4MMI_I_TEXT_1(this);
 
 
             /*

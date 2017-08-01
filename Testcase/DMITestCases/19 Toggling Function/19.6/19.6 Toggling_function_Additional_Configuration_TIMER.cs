@@ -74,7 +74,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Special window
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Special_window();
+            DmiExpectedResults.DMI_displays_Special_window(this);
 
 
             /*
@@ -113,7 +113,7 @@ namespace Testcase.DMITestCases
             Expected Result: Train is moving forward
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_with_speed_10_kmh();
+            DmiActions.Drive_the_train_forward_with_speed_10_kmh(this);
 
 
             /*
@@ -122,7 +122,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in OS mode, level 1.Note: The basic speed hook is appear for 10 seconds
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_pass_BG1_Then_press_an_acknowledgement_of_OS_mode_in_sub_area_C1();
+            DmiActions.Drive_the_train_forward_pass_BG1_Then_press_an_acknowledgement_of_OS_mode_in_sub_area_C1(this);
 
 
             /*

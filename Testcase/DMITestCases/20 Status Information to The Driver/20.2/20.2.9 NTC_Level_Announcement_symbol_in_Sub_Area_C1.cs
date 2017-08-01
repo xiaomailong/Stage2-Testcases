@@ -86,7 +86,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in ATB STM mode, Level NTC
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_ATB_STM_mode_Level_NTC();
+            DmiExpectedResults.DMI_displays_in_ATB_STM_mode_Level_NTC(this);
 
 
             /*

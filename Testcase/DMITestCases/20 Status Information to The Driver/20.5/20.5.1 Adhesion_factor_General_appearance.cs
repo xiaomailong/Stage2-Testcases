@@ -62,7 +62,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI still displays in SR mode.Verify that ‘Adhesion’ button is enabled
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_still_displays_in_SR_mode_Verify_that_Adhesion_button_is_enabled();
+            DmiExpectedResults.DMI_still_displays_in_SR_mode_Verify_that_Adhesion_button_is_enabled(this);
 
 
             /*
@@ -80,7 +80,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 1688;  
             */
             // Call generic Action Method
-            DmiActions.Simulate_the_communication_loss_between_ETCS_Onboard_and_DMI();
+            DmiActions.Simulate_the_communication_loss_between_ETCS_Onboard_and_DMI(this);
 
 
             /*
@@ -89,7 +89,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify that the Adhesion symbol ST02 is resumed
             */
             // Call generic Action Method
-            DmiActions.Re_establish_the_communication_between_ETCS_onboard_and_DMI();
+            DmiActions.Re_establish_the_communication_between_ETCS_onboard_and_DMI(this);
 
 
             /*
@@ -100,10 +100,10 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions
-                .Perform_the_following_procedure_Press_Special_button_Press_Adhesion_button_Select_and_confirm_Non_slippery_rail_button();
+                .Perform_the_following_procedure_Press_Special_button_Press_Adhesion_button_Select_and_confirm_Non_slippery_rail_button(this);
             // Call generic Check Results Method
             DmiExpectedResults
-                .No_adhesion_factor_indication_is_displayed_Verify_the_following_information_Use_the_log_file_to_confirm_that_DMI_receives_EVC_2_with_following_variable_MMI_M_ADHESION_1_0_bit_Low_Adhesion_from_Trackside_is_not_set_MMI_M_ADHESION_0_0_bit_Low_Adhesion_by_Driver_is_not_set();
+                .No_adhesion_factor_indication_is_displayed_Verify_the_following_information_Use_the_log_file_to_confirm_that_DMI_receives_EVC_2_with_following_variable_MMI_M_ADHESION_1_0_bit_Low_Adhesion_from_Trackside_is_not_set_MMI_M_ADHESION_0_0_bit_Low_Adhesion_by_Driver_is_not_set(this);
 
 
             /*
@@ -113,10 +113,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7088 (partly: EVC-2, ‘Low Adhesion from Trackside’);(2) MMI_gen 111;
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_passing_BG2();
+            DmiActions.Drive_the_train_forward_passing_BG2(this);
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_Use_the_log_file_to_confirm_that_DMI_receives_EVC_2_with_variable_MMI_M_ADHESION_1_1_bit_Low_Adhesion_from_Trackside_is_set_DMI_displays_symbol_ST02_in_sub_area_A4();
+                .Verify_the_following_information_Use_the_log_file_to_confirm_that_DMI_receives_EVC_2_with_variable_MMI_M_ADHESION_1_1_bit_Low_Adhesion_from_Trackside_is_set_DMI_displays_symbol_ST02_in_sub_area_A4(this);
 
 
             /*
@@ -126,10 +126,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7088 (partly: No symbol displayed);    
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward();
+            DmiActions.Drive_the_train_forward(this);
             // Call generic Check Results Method
             DmiExpectedResults
-                .No_adhesion_factor_indication_is_displayed_Verify_the_following_information_Use_the_log_file_to_confirm_that_DMI_receives_EVC_2_with_following_variable_MMI_M_ADHESION_1_0_bit_Low_Adhesion_from_Trackside_is_not_set_MMI_M_ADHESION_0_0_bit_Low_Adhesion_by_Driver_is_not_set();
+                .No_adhesion_factor_indication_is_displayed_Verify_the_following_information_Use_the_log_file_to_confirm_that_DMI_receives_EVC_2_with_following_variable_MMI_M_ADHESION_1_0_bit_Low_Adhesion_from_Trackside_is_not_set_MMI_M_ADHESION_0_0_bit_Low_Adhesion_by_Driver_is_not_set(this);
 
 
             /*
@@ -138,7 +138,7 @@ namespace Testcase.DMITestCases
             Expected Result: The Train is at standstill
             */
             // Call generic Action Method
-            DmiActions.Stop_the_train();
+            DmiActions.Stop_the_train(this);
 
 
             /*

@@ -62,7 +62,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SR mode, level 1
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_SR_mode_level_1();
+            DmiExpectedResults.DMI_displays_in_SR_mode_level_1(this);
 
 
             /*
@@ -71,9 +71,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI changes from SR mode to FS mode
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_passing_BG1();
+            DmiActions.Drive_the_train_forward_passing_BG1(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_changes_from_SR_mode_to_FS_mode();
+            DmiExpectedResults.DMI_changes_from_SR_mode_to_FS_mode(this);
 
 
             /*
@@ -83,7 +83,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9938 (partly: MMI_gen 7213 (partly: Scale number colour));  (2) MMI_gen 9938 (partly: MMI_gen 7212 (partly: 9 distance scale lines));  (3) MMI_gen 9938 (partly: MMI_gen 7213 (partly: Distance scale lines colour)); (4) MMI_gen 9938 (partly: MMI_gen 7148        (partly: If not specified, range [0..4000] is default)); (5) MMI_gen 9938 (partly: MMI_gen 7116 (partly: [0..4000], Displayed Numbers in Units));(6) MMI_gen 9938 (partly: MMI_gen 7116 (partly: [0..4000], Displayed Distance Scale Lines));(7) MMI_gen 9938 (partly: functions displayed in D2-D8);          Note: MMI_gen 7212 and MMI_gen 7213 shall also verify by Code Review in Chapter 39.
             */
             // Call generic Action Method
-            DmiActions.Stop_the_train();
+            DmiActions.Stop_the_train(this);
 
 
             /*
@@ -140,7 +140,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays the message “ATP Down Alarm” with sound.The PA is removed from DMI
             */
             // Call generic Action Method
-            DmiActions.Simulate_the_communication_loss_between_ETCS_Onboard_and_DMI();
+            DmiActions.Simulate_the_communication_loss_between_ETCS_Onboard_and_DMI(this);
 
 
             /*
@@ -150,7 +150,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 7147 (partly: Communication loss);
             */
             // Call generic Action Method
-            DmiActions.Re_establish_the_communication_between_ETCS_onboard_and_DMI();
+            DmiActions.Re_establish_the_communication_between_ETCS_onboard_and_DMI(this);
 
 
             /*

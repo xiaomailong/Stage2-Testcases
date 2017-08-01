@@ -67,7 +67,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Press ‘Settings’ button");
             // Call generic Check Results Method
             DmiExpectedResults
-                .DMI_displays_Settings_window_Verify_the_following_information_The_Close_button_is_enabled();
+                .DMI_displays_Settings_window_Verify_the_following_information_The_Close_button_is_enabled(this);
 
 
             /*
@@ -89,7 +89,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Settings_window();
+            DmiExpectedResults.DMI_displays_Settings_window(this);
 
 
             /*
@@ -100,7 +100,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions
-                .Perform_the_following_procedure_Press_Maintenance_button_Enter_the_Maintenance_window_by_entering_the_password_same_as_a_value_in_tag_PASS_CODE_MTN_of_the_configuration_file_and_confirming_the_password();
+                .Perform_the_following_procedure_Press_Maintenance_button_Enter_the_Maintenance_window_by_entering_the_password_same_as_a_value_in_tag_PASS_CODE_MTN_of_the_configuration_file_and_confirming_the_password(this);
 
 
             /*
@@ -112,7 +112,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Settings_window();
+            DmiExpectedResults.DMI_displays_Settings_window(this);
 
 
             /*
@@ -121,7 +121,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Default window
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Default_window();
+            DmiExpectedResults.DMI_displays_Default_window(this);
 
 
             /*
@@ -134,7 +134,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Press ‘Settings’ button");
             // Call generic Check Results Method
             DmiExpectedResults
-                .DMI_displays_Settings_window_Verify_the_following_information_The_Close_button_is_enabled();
+                .DMI_displays_Settings_window_Verify_the_following_information_The_Close_button_is_enabled(this);
 
 
             /*
@@ -146,7 +146,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_the_Default_window();
+            DmiExpectedResults.DMI_displays_the_Default_window(this);
 
 
             /*
@@ -157,7 +157,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Settings’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Settings_window();
+            DmiExpectedResults.DMI_displays_Settings_window(this);
 
 
             /*
@@ -178,7 +178,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Settings_window();
+            DmiExpectedResults.DMI_displays_Settings_window(this);
 
 
             /*
@@ -200,7 +200,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Settings_window();
+            DmiExpectedResults.DMI_displays_Settings_window(this);
 
 
             /*
@@ -211,7 +211,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Language’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Language_window();
+            DmiExpectedResults.DMI_displays_Language_window(this);
 
 
             /*
@@ -221,9 +221,9 @@ namespace Testcase.DMITestCases
             Test Step Comment: Table 71 (Partly: step S2 (Language window));
             */
             // Call generic Action Method
-            DmiActions.Confirm_entered_data_by_pressing_input_field();
+            DmiActions.Confirm_entered_data_by_pressing_input_field(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Settings_window();
+            DmiExpectedResults.DMI_displays_Settings_window(this);
 
 
             /*
@@ -245,7 +245,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Settings_window();
+            DmiExpectedResults.DMI_displays_Settings_window(this);
 
 
             /*
@@ -256,7 +256,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Volume’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Volume_window();
+            DmiExpectedResults.DMI_displays_Volume_window(this);
 
 
             /*
@@ -266,9 +266,9 @@ namespace Testcase.DMITestCases
             Test Step Comment: Table 71 (Partly: step S3 (Volume window));
             */
             // Call generic Action Method
-            DmiActions.Confirm_entered_data_by_pressing_input_field();
+            DmiActions.Confirm_entered_data_by_pressing_input_field(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Settings_window();
+            DmiExpectedResults.DMI_displays_Settings_window(this);
 
 
             /*
@@ -290,7 +290,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Settings_window();
+            DmiExpectedResults.DMI_displays_Settings_window(this);
 
 
             /*
@@ -309,9 +309,9 @@ namespace Testcase.DMITestCases
             Test Step Comment: Table 71 (Partly: step S4 (Brightness window));
             */
             // Call generic Action Method
-            DmiActions.Confirm_entered_data_by_pressing_input_field();
+            DmiActions.Confirm_entered_data_by_pressing_input_field(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Settings_window();
+            DmiExpectedResults.DMI_displays_Settings_window(this);
 
 
             /*
@@ -333,7 +333,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Settings_window();
+            DmiExpectedResults.DMI_displays_Settings_window(this);
 
 
             /*
@@ -355,7 +355,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Settings_window();
+            DmiExpectedResults.DMI_displays_Settings_window(this);
 
 
             /*
@@ -375,7 +375,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Settings_window();
+            DmiExpectedResults.DMI_displays_Settings_window(this);
 
 
             /*
@@ -385,7 +385,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: Table 71 (Partly: step S6-2 (Set VBC validation window));
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Set_VBC_window();
+            DmiExpectedResults.DMI_displays_Set_VBC_window(this);
 
 
             /*
@@ -415,7 +415,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Settings_window();
+            DmiExpectedResults.DMI_displays_Settings_window(this);
 
 
             /*
@@ -435,7 +435,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Settings_window();
+            DmiExpectedResults.DMI_displays_Settings_window(this);
 
 
             /*
@@ -445,7 +445,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: Table 71 (Partly: step 76-2 (Remove VBC validation window));
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Remove_VBC_window();
+            DmiExpectedResults.DMI_displays_Remove_VBC_window(this);
 
 
             /*
@@ -475,7 +475,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Settings_window();
+            DmiExpectedResults.DMI_displays_Settings_window(this);
 
 
             /*
@@ -495,7 +495,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Settings_window();
+            DmiExpectedResults.DMI_displays_Settings_window(this);
 
 
             /*
@@ -517,7 +517,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Settings_window();
+            DmiExpectedResults.DMI_displays_Settings_window(this);
 
 
             /*
@@ -556,7 +556,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Settings_window();
+            DmiExpectedResults.DMI_displays_Settings_window(this);
 
 
             /*
@@ -577,7 +577,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Settings_window();
+            DmiExpectedResults.DMI_displays_Settings_window(this);
 
 
             /*
@@ -598,7 +598,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Settings_window();
+            DmiExpectedResults.DMI_displays_Settings_window(this);
 
 
             /*

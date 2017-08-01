@@ -62,7 +62,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SR mode, level 2
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_SR_mode_level_2();
+            DmiExpectedResults.DMI_displays_in_SR_mode_level_2(this);
 
 
             /*
@@ -71,7 +71,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI changes from SR mode to FS mode, level 2
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_changes_from_SR_mode_to_FS_mode_level_2();
+            DmiExpectedResults.DMI_changes_from_SR_mode_to_FS_mode_level_2(this);
 
 
             /*
@@ -80,7 +80,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI changes from FS mode to OS mode, level 2
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_changes_from_FS_mode_to_OS_mode_level_2();
+            DmiExpectedResults.DMI_changes_from_FS_mode_to_OS_mode_level_2(this);
 
 
             /*
@@ -90,7 +90,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7097 (partly: force into the background);
             */
             // Call generic Action Method
-            DmiActions.Received_information_from_RBC();
+            DmiActions.Received_information_from_RBC(this);
 
 
             /*
@@ -99,7 +99,7 @@ namespace Testcase.DMITestCases
             Expected Result: The symbol DR02 is still displayed in Main area D
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward();
+            DmiActions.Drive_the_train_forward(this);
 
 
             /*

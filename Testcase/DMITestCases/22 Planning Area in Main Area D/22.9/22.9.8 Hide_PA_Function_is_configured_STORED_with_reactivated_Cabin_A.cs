@@ -62,9 +62,9 @@ namespace Testcase.DMITestCases
             Expected Result: The DMI displays the default window
             */
             // Call generic Action Method
-            DmiActions.Power_On_the_system();
+            DmiActions.Power_On_the_system(this);
             // Call generic Check Results Method
-            DmiExpectedResults.The_DMI_displays_the_default_window();
+            DmiExpectedResults.The_DMI_displays_the_default_window(this);
 
 
             /*
@@ -73,7 +73,7 @@ namespace Testcase.DMITestCases
             Expected Result: The DMI displays in SR mode,  level 1
             */
             // Call generic Action Method
-            DmiActions.Activate_cabin_A_and_Perform_SoM_to_SR_mode_Level_1();
+            DmiActions.Activate_cabin_A_and_Perform_SoM_to_SR_mode_Level_1(this);
 
 
             /*
@@ -82,7 +82,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in FS mode, Level 1 with PA in area D
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_with_speed_40_kmh_pass_BG1();
+            DmiActions.Drive_the_train_forward_with_speed_40_kmh_pass_BG1(this);
 
 
             /*
@@ -93,7 +93,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press Hide PA button");
             // Call generic Check Results Method
-            DmiExpectedResults.The_Planning_area_is_disappeared_from_the_area_D_of_the_DMI();
+            DmiExpectedResults.The_Planning_area_is_disappeared_from_the_area_D_of_the_DMI(this);
 
 
             /*
@@ -102,9 +102,9 @@ namespace Testcase.DMITestCases
             Expected Result: The train is at standstill.DMI is displays in SB mode
             */
             // Call generic Action Method
-            DmiActions.Stop_the_train_Then_deactivate_cabin_A();
+            DmiActions.Stop_the_train_Then_deactivate_cabin_A(this);
             // Call generic Check Results Method
-            DmiExpectedResults.The_train_is_at_standstill_DMI_is_displays_in_SB_mode();
+            DmiExpectedResults.The_train_is_at_standstill_DMI_is_displays_in_SB_mode(this);
 
 
             /*
@@ -113,9 +113,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SR mode, Level 1
             */
             // Call generic Action Method
-            DmiActions.Activate_cabin_A_and_Perform_SoM_to_SR_mode_Level_1();
+            DmiActions.Activate_cabin_A_and_Perform_SoM_to_SR_mode_Level_1(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_SR_mode_Level_1();
+            DmiExpectedResults.DMI_displays_in_SR_mode_Level_1(this);
 
 
             /*
@@ -125,9 +125,9 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 7340;MMI_gen 2996 (partly: Stored);
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_with_speed_40_kmh_pass_BG2();
+            DmiActions.Drive_the_train_forward_with_speed_40_kmh_pass_BG2(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_FS_mode_Level_1_There_is_no_PA_display_on_DMI();
+            DmiExpectedResults.DMI_displays_in_FS_mode_Level_1_There_is_no_PA_display_on_DMI(this);
 
 
             /*

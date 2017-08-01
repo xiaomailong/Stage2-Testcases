@@ -63,7 +63,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8033 (partly: MMI_gen 4689, MMI_gen 4690, MMI_gen 4691 (partly: flashing));
             */
             // Call generic Action Method
-            DmiActions.Activate_cabin_A();
+            DmiActions.Activate_cabin_A(this);
 
 
             /*
@@ -102,7 +102,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Press and hold ‘Del’ button.Note: Stopwatch is required");
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_While_press_and_hold_button_less_than_1_5_secSound_Click_is_played_once_The_state_of_button_is_changed_to_Pressed_and_immediately_back_to_Enabled_state_The_last_character_is_removed_from_an_input_field_after_pressing_the_button_While_press_and_hold_button_over_1_5_secThe_state_pressed_and_released_are_switched_repeatly_while_button_is_pressed_and_the_characters_are_removed_from_an_input_field_repeatly_refer_to_pressed_state_The_sound_Click_is_played_repeatly_while_button_is_pressed();
+                .Verify_the_following_information_While_press_and_hold_button_less_than_1_5_secSound_Click_is_played_once_The_state_of_button_is_changed_to_Pressed_and_immediately_back_to_Enabled_state_The_last_character_is_removed_from_an_input_field_after_pressing_the_button_While_press_and_hold_button_over_1_5_secThe_state_pressed_and_released_are_switched_repeatly_while_button_is_pressed_and_the_characters_are_removed_from_an_input_field_repeatly_refer_to_pressed_state_The_sound_Click_is_played_repeatly_while_button_is_pressed(this);
 
 
             /*
@@ -114,7 +114,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Release ‘Del’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_The_character_is_stop_removing();
+            DmiExpectedResults.Verify_the_following_information_The_character_is_stop_removing(this);
 
 
             /*
@@ -177,7 +177,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Enter the data value with 5 characters");
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_The_5_characters_are_added_on_an_input_field_as_one_group_e_g_12345();
+                .Verify_the_following_information_The_5_characters_are_added_on_an_input_field_as_one_group_e_g_12345(this);
 
 
             /*
@@ -187,10 +187,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8033 (partly: MMI_gen 4694 (partly: MMI_gen 4246));
             */
             // Call generic Action Method
-            DmiActions.Continue_to_enter_the_6th_character();
+            DmiActions.Continue_to_enter_the_6th_character(this);
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_The_fifth_character_is_shown_after_a_gap_of_fourth_character_separated_as_2_groups_e_g_1234_56();
+                .Verify_the_following_information_The_fifth_character_is_shown_after_a_gap_of_fourth_character_separated_as_2_groups_e_g_1234_56(this);
 
 
             /*
@@ -200,10 +200,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8033 (partly: MMI_gen 4694 (partly: MMI_gen 4247));
             */
             // Call generic Action Method
-            DmiActions.Continue_to_enter_the_new_value_more_than_8_characters();
+            DmiActions.Continue_to_enter_the_new_value_more_than_8_characters(this);
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_The_data_value_is_separated_as_2_lines_In_each_line_is_displayed_only_8_characters();
+                .Verify_the_following_information_The_data_value_is_separated_as_2_lines_In_each_line_is_displayed_only_8_characters(this);
 
 
             /*

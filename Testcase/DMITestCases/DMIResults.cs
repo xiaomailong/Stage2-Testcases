@@ -54,7 +54,7 @@ namespace Testcase.DMITestCases
         ///     Step 49 in TC-ID: 34.7 in 37.7 Dialogue Sequence of Settings window
         ///     Step 51 in TC-ID: 34.7 in 37.7 Dialogue Sequence of Settings window
         /// </summary>
-        public static void DMI_displays_Settings_window()
+        public static void DMI_displays_Settings_window(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -82,7 +82,7 @@ namespace Testcase.DMITestCases
         ///     Step 1 in TC-ID: 22.26 in 27.26 System info window
         ///     Step 1 in TC-ID: 34.1.4 in 37.1.4.1.1 Data entry/validation process when enabling conditions not fullfilled: Level 1
         /// </summary>
-        public static void DMI_displays_Driver_ID_window()
+        public static void DMI_displays_Driver_ID_window(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -99,7 +99,7 @@ namespace Testcase.DMITestCases
         ///     Step 1 in TC-ID: 17.11 in 22.11 Handle at least 31 PA Speed Profile Segments
         ///     Step 1 in TC-ID: 17.12 in Handle at least 31 PA Gradient Profile Segments
         /// </summary>
-        public static void DMI_displays_the_default_window_The_Driver_ID_window_is_displayed()
+        public static void DMI_displays_the_default_window_The_Driver_ID_window_is_displayed(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -111,7 +111,7 @@ namespace Testcase.DMITestCases
         ///     Step 8 in TC-ID: 1.2 in 6.2 Internal Components
         ///     Step 3 in TC-ID: 15.2.3 in 20.2.3 ETCS Level :Announcement symbol in Sub-Area C1.
         /// </summary>
-        public static void DMI_displays_in_SB_mode_level_1()
+        public static void DMI_displays_in_SB_mode_level_1(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -122,7 +122,7 @@ namespace Testcase.DMITestCases
         ///     Step 3 in TC-ID: 1.2 in 6.2 Internal Components
         ///     Step 2 in TC-ID: 1.6 in 6.6 Adjustment of Sound Volume
         /// </summary>
-        public static void The_Settings_window_is_presented_with_all_sub_menus()
+        public static void The_Settings_window_is_presented_with_all_sub_menus(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -133,7 +133,7 @@ namespace Testcase.DMITestCases
         ///     Step 5 in TC-ID: 1.2 in 6.2 Internal Components
         ///     Step 2 in TC-ID: 33.1 in 36.1 The relationship between parent and child windows (1)
         /// </summary>
-        public static void The_Settings_window_is_displayed()
+        public static void The_Settings_window_is_displayed(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -144,7 +144,7 @@ namespace Testcase.DMITestCases
         ///     Step 6 in TC-ID: 1.2 in 6.2 Internal Components
         ///     Step 8 in TC-ID: 1.6 in 6.6 Adjustment of Sound Volume
         /// </summary>
-        public static void Cabin_A_is_deactivated()
+        public static void Cabin_A_is_deactivated(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -156,7 +156,7 @@ namespace Testcase.DMITestCases
         ///     Step 21 in TC-ID: 5.10 in 10.10 Screen Layout: Button States
         ///     Step 1 in TC-ID: 17.4.17 in 22.4.17 PA Track Condition: First symbol prevails over the next coming symbol
         /// </summary>
-        public static void DMI_displays_in_SB_mode()
+        public static void DMI_displays_in_SB_mode(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -167,7 +167,7 @@ namespace Testcase.DMITestCases
         ///     Step 1 in TC-ID: 1.9 in 6.9 Performance of ETCS-DMI: Data handling
         ///     Step 1 in TC-ID: 1.10 in 6.10 Performance of ETCS-DMI Data Processing
         /// </summary>
-        public static void RCI_logs_the_concerned_activities_as_specified_in_the_precondition()
+        public static void RCI_logs_the_concerned_activities_as_specified_in_the_precondition(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -186,7 +186,7 @@ namespace Testcase.DMITestCases
         ///     Step 1 in TC-ID: 36.3.3 in 39.3.3 Restrictive Target with Speed Monitoring in Limited Supervision Mode
         ///     Step 1 in TC-ID: 36.3.4 in 39.3.4 Restrictive Target with Movement Authority Changed in Limited Supervision Mode
         /// </summary>
-        public static void ETCS_OB_enters_SR_mode_in_Level_1()
+        public static void ETCS_OB_enters_SR_mode_in_Level_1(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -199,7 +199,7 @@ namespace Testcase.DMITestCases
         ///     Step 4 in TC-ID: 2.3 in 7.3 Frozen Display(s)
         /// </summary>
         public static void
-            The_Default_window_is_displayed_Verify_the_following_information_The_local_time_is_displayed_in_form_of_hhmmss_with_flashing_colons_at_sub_area_G13()
+            The_Default_window_is_displayed_Verify_the_following_information_The_local_time_is_displayed_in_form_of_hhmmss_with_flashing_colons_at_sub_area_G13(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -211,7 +211,7 @@ namespace Testcase.DMITestCases
         ///     Step 6 in TC-ID: 2.6 in 7.6 Safety related Data Entry
         /// </summary>
         public static void
-            DMI_displays_Settings_window_Verify_the_following_information_1_Use_the_log_file_to_confirm_that_DMI_sent_out_packet_EVC_141_with_variable_based_on_confirmed_data_to_ETCS_Onboard()
+            DMI_displays_Settings_window_Verify_the_following_information_1_Use_the_log_file_to_confirm_that_DMI_sent_out_packet_EVC_141_with_variable_based_on_confirmed_data_to_ETCS_Onboard(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -230,7 +230,7 @@ namespace Testcase.DMITestCases
         ///     Step 9 in TC-ID: 22.1.2 in 27.1.2 ETCS Specfic submenus and SN sub menus
         ///     Step 13 in TC-ID: 22.1.2 in 27.1.2 ETCS Specfic submenus and SN sub menus
         /// </summary>
-        public static void DMI_displays_the_default_window()
+        public static void DMI_displays_the_default_window(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -241,7 +241,7 @@ namespace Testcase.DMITestCases
         ///     Step 3 in TC-ID: 5.3 in 10.3 Screen Layout: Frames
         ///     Step 12 in TC-ID: 33.1 in 36.1 The relationship between parent and child windows (1)
         /// </summary>
-        public static void The_Train_data_window_is_displayed()
+        public static void The_Train_data_window_is_displayed(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -252,7 +252,7 @@ namespace Testcase.DMITestCases
         ///     Step 6 in TC-ID: 5.3 in 10.3 Screen Layout: Frames
         ///     Step 5 in TC-ID: 5.12.2 in 10.12.2 Close, Next, Previous and Yes Buttons
         /// </summary>
-        public static void DMI_displays_the_Main_window()
+        public static void DMI_displays_the_Main_window(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -280,7 +280,7 @@ namespace Testcase.DMITestCases
         ///     Step 2 in TC-ID: 17.10.4 in 22.10.4 Zoom PA Function with the communication loss between ETCS Onboard and DMI
         ///     Step 1 in TC-ID: 18.4.1 in 23.4.1 Geographical Position: General presentation
         /// </summary>
-        public static void DMI_displays_in_SR_mode_level_1()
+        public static void DMI_displays_in_SR_mode_level_1(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -291,7 +291,7 @@ namespace Testcase.DMITestCases
         ///     Step 1 in TC-ID: 5.10 in 10.10 Screen Layout: Button States
         ///     Step 3 in TC-ID: 22.20.2 in 27.20.2 Override window in SB mode
         /// </summary>
-        public static void DMI_displays_Main_window_with_enabled_Start_button()
+        public static void DMI_displays_Main_window_with_enabled_Start_button(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -305,7 +305,7 @@ namespace Testcase.DMITestCases
         ///     Step 17 in TC-ID: 5.10 in 10.10 Screen Layout: Button States
         ///     Step 19 in TC-ID: 5.10 in 10.10 Screen Layout: Button States
         /// </summary>
-        public static void DMI_disiplays_in_SB_mode()
+        public static void DMI_disiplays_in_SB_mode(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -316,7 +316,7 @@ namespace Testcase.DMITestCases
         ///     Step 3 in TC-ID: 5.12.1 in 10.12.1 Navigation Button on the Planning Area
         ///     Step 4 in TC-ID: 5.12.1 in 10.12.1 Navigation Button on the Planning Area
         /// </summary>
-        public static void The_distance_range_on_the_Planning_area_is_not_changed_The_sound_click_is_not_played()
+        public static void The_distance_range_on_the_Planning_area_is_not_changed_The_sound_click_is_not_played(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -327,7 +327,7 @@ namespace Testcase.DMITestCases
         ///     Step 8 in TC-ID: 5.12.1 in 10.12.1 Navigation Button on the Planning Area
         ///     Step 9 in TC-ID: 5.12.1 in 10.12.1 Navigation Button on the Planning Area
         /// </summary>
-        public static void The_distance_range_on_the_Planning_range_is_not_changed_The_sound_click_is_not_played()
+        public static void The_distance_range_on_the_Planning_range_is_not_changed_The_sound_click_is_not_played(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -338,7 +338,7 @@ namespace Testcase.DMITestCases
         ///     Step 14 in TC-ID: 5.12.1 in 10.12.1 Navigation Button on the Planning Area
         ///     Step 15 in TC-ID: 5.12.1 in 10.12.1 Navigation Button on the Planning Area
         /// </summary>
-        public static void DMI_still_displays_the_planning_area_The_sound_click_is_not_played()
+        public static void DMI_still_displays_the_planning_area_The_sound_click_is_not_played(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -349,7 +349,7 @@ namespace Testcase.DMITestCases
         ///     Step 18 in TC-ID: 5.12.1 in 10.12.1 Navigation Button on the Planning Area
         ///     Step 19 in TC-ID: 5.12.1 in 10.12.1 Navigation Button on the Planning Area
         /// </summary>
-        public static void The_planning_area_still_hidden_The_sound_click_is_not_played()
+        public static void The_planning_area_still_hidden_The_sound_click_is_not_played(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -360,7 +360,7 @@ namespace Testcase.DMITestCases
         ///     Step 4 in TC-ID: 5.12.2 in 10.12.2 Close, Next, Previous and Yes Buttons
         ///     Step 3 in TC-ID: 22.5.1 in 27.5.1 Level Selection Window: General appearance
         /// </summary>
-        public static void Verify_the_following_information_The_state_of_pressed_button_is_changed_to_Enabled_state()
+        public static void Verify_the_following_information_The_state_of_pressed_button_is_changed_to_Enabled_state(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -387,7 +387,7 @@ namespace Testcase.DMITestCases
         ///     Step 10 in TC-ID: 34.1.2 in 37.1.2 Flexible Train data entry
         ///     Step 11 in TC-ID: 34.1.4 in 37.1.4.1.1 Data entry/validation process when enabling conditions not fullfilled: Level 1
         /// </summary>
-        public static void DMI_displays_Main_window()
+        public static void DMI_displays_Main_window(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -406,7 +406,7 @@ namespace Testcase.DMITestCases
         ///     Step 13 in TC-ID: 22.22.1 in 27.22.1 Brake window
         ///     Step 3 in TC-ID: 22.22.2  in 27.22.2 Brake test window
         /// </summary>
-        public static void The_border_of_the_button_is_shown_state_Enabled_without_a_sound()
+        public static void The_border_of_the_button_is_shown_state_Enabled_without_a_sound(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -425,7 +425,7 @@ namespace Testcase.DMITestCases
         ///     Step 14 in TC-ID: 22.22.1 in 27.22.1 Brake window
         ///     Step 4 in TC-ID: 22.22.2  in 27.22.2 Brake test window
         /// </summary>
-        public static void The_button_is_back_to_state_Pressed_without_a_sound()
+        public static void The_button_is_back_to_state_Pressed_without_a_sound(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -441,7 +441,7 @@ namespace Testcase.DMITestCases
         ///     Step 3 in TC-ID: 20.1 in 25.1 Driver’s Action: Main window
         ///     Step 1 in TC-ID: 26.1 in 1 Introduction
         /// </summary>
-        public static void DMI_displays_in_SR_mode_Level_1()
+        public static void DMI_displays_in_SR_mode_Level_1(SignalPool pool)
         {
             EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.StaffResponsible;
             throw new NotImplementedException();
@@ -455,7 +455,7 @@ namespace Testcase.DMITestCases
         ///     Step 10 in TC-ID: 6.3 in 11.3 Acknowledgements: Priority of new incoming acknowledgements
         ///     Step 11 in TC-ID: 6.3 in 11.3 Acknowledgements: Priority of new incoming acknowledgements
         /// </summary>
-        public static void The_display_information_on_DMI_still_not_change_ST01_symbol_is_displayed_on_sub_area_C9()
+        public static void The_display_information_on_DMI_still_not_change_ST01_symbol_is_displayed_on_sub_area_C9(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -471,7 +471,7 @@ namespace Testcase.DMITestCases
         ///     Step 9 in TC-ID: 22.22.4  in 27.22.4 Brake percentage validation window
         ///     Step 12 in TC-ID: 22.28.2 in 27.28.2 ‘Remove VBC’ Validation Window
         /// </summary>
-        public static void DMI_displays_Default_window_with_the_message_ATP_Down_Alarm_and_sound_alarm()
+        public static void DMI_displays_Default_window_with_the_message_ATP_Down_Alarm_and_sound_alarm(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -494,7 +494,7 @@ namespace Testcase.DMITestCases
         ///     Step 2 in TC-ID: 22.28.2 in 27.28.2 ‘Remove VBC’ Validation Window
         ///     Step 7 in TC-ID: 22.28.2 in 27.28.2 ‘Remove VBC’ Validation Window
         /// </summary>
-        public static void The_value_of_input_field_is_changed_refer_to_selected_button()
+        public static void The_value_of_input_field_is_changed_refer_to_selected_button(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -506,7 +506,7 @@ namespace Testcase.DMITestCases
         ///     Step 3 in TC-ID: 9.2 in 14.2 Data Validation Window for Fixed train data entry window
         /// </summary>
         public static void
-            Verify_the_following_information_DMI_displays_Train_data_window_Use_the_log_file_to_confirm_that_DMI_sends_out_the_packet_MMI_DRIVER_REQUEST_EVC_101_with_variable_MMI_DRIVER_REQUEST_EVC_101_MMI_M_REQUEST_4_Exit_Train_data()
+            Verify_the_following_information_DMI_displays_Train_data_window_Use_the_log_file_to_confirm_that_DMI_sends_out_the_packet_MMI_DRIVER_REQUEST_EVC_101_with_variable_MMI_DRIVER_REQUEST_EVC_101_MMI_M_REQUEST_4_Exit_Train_data(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -525,7 +525,7 @@ namespace Testcase.DMITestCases
         ///     Step 7 in TC-ID: 34.1.2 in 37.1.2 Flexible Train data entry
         ///     Step 7 in TC-ID: 34.1.4 in 37.1.4.1.1 Data entry/validation process when enabling conditions not fullfilled: Level 1
         /// </summary>
-        public static void DMI_displays_Train_data_validation_window()
+        public static void DMI_displays_Train_data_validation_window(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -537,7 +537,7 @@ namespace Testcase.DMITestCases
         ///     Step 5 in TC-ID: 9.2 in 14.2 Data Validation Window for Fixed train data entry window
         /// </summary>
         public static void
-            Verify_the_following_information_DMI_displays_Main_window_Use_the_log_file_to_confirm_that_DMI_sends_out_the_packet_MMI_DRIVER_REQUEST_EVC_101_with_variable_MMI_DRIVER_REQUEST_EVC_101_MMI_M_REQUEST_4_Exit_Train_data()
+            Verify_the_following_information_DMI_displays_Main_window_Use_the_log_file_to_confirm_that_DMI_sends_out_the_packet_MMI_DRIVER_REQUEST_EVC_101_with_variable_MMI_DRIVER_REQUEST_EVC_101_MMI_M_REQUEST_4_Exit_Train_data(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -549,7 +549,7 @@ namespace Testcase.DMITestCases
         ///     Step 8 in TC-ID: 9.2 in 14.2 Data Validation Window for Fixed train data entry window
         /// </summary>
         public static void
-            DMI_displays_Train_Running_Number_window_Verify_the_following_information_The_Train_data_validation_is_closed_Use_the_log_file_to_confirm_that_DMI_sends_out_the_packet_MMI_CONFIRMED_TRAIN_DATA_EVC_110_with_variable_based_on_confirmed_data()
+            DMI_displays_Train_Running_Number_window_Verify_the_following_information_The_Train_data_validation_is_closed_Use_the_log_file_to_confirm_that_DMI_sends_out_the_packet_MMI_CONFIRMED_TRAIN_DATA_EVC_110_with_variable_based_on_confirmed_data(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -562,7 +562,7 @@ namespace Testcase.DMITestCases
         ///     Step 9 in TC-ID: 10.1 in 15.1 Data Entry/Validation/View process
         ///     Step 14 in TC-ID: 10.1 in 15.1 Data Entry/Validation/View process
         /// </summary>
-        public static void The_Default_window_is_displayed()
+        public static void The_Default_window_is_displayed(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -577,7 +577,7 @@ namespace Testcase.DMITestCases
         ///     Step 2 in TC-ID: 34.1.1 in 37.1.1 Fixed Train data entry
         ///     Step 5 in TC-ID: 34.1.4 in 37.1.4.1.1 Data entry/validation process when enabling conditions not fullfilled: Level 1
         /// </summary>
-        public static void DMI_displays_Train_data_window()
+        public static void DMI_displays_Train_data_window(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -589,7 +589,7 @@ namespace Testcase.DMITestCases
         ///     Step 6 in TC-ID: 15.1.3 in 20.1.3 Mode Symbols in Sub-Area B7 for OS, UN mode
         ///     Step 9 in TC-ID: 34.1.4 in 37.1.4.1.1 Data entry/validation process when enabling conditions not fullfilled: Level 1
         /// </summary>
-        public static void DMI_displays_Train_Running_Number_window()
+        public static void DMI_displays_Train_Running_Number_window(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -603,7 +603,7 @@ namespace Testcase.DMITestCases
         ///     Step 35 in TC-ID: 10.2.6 in 15.2.6 State 'ST05': Settings window and windows in setting menu
         ///     Step 37 in TC-ID: 10.2.6 in 15.2.6 State 'ST05': Settings window and windows in setting menu
         /// </summary>
-        public static void See_the_expectation_in_step_4()
+        public static void See_the_expectation_in_step_4(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -615,7 +615,7 @@ namespace Testcase.DMITestCases
         ///     Step 4 in TC-ID: 10.2.6 in 15.2.6 State 'ST05': Settings window and windows in setting menu
         /// </summary>
         public static void
-            Verify_the_following_informationDMI_in_the_entry_state_of_ST051_The_hourglass_symbol_ST05_is_displayed_2_Verify_all_buttons_and_the_close_button_is_disable_3_The_disabled_Close_button_NA12_is_display_in_area_G_10_seconds_laterDMI_in_the_exit_state_of_ST054_The_hourglass_symbol_ST05_is_removed_5_The_state_of_all_buttons_is_restored_according_to_the_last_status_before_script_is_sent_6_The_enabled_Close_button_NA11_is_display_in_area_G()
+            Verify_the_following_informationDMI_in_the_entry_state_of_ST051_The_hourglass_symbol_ST05_is_displayed_2_Verify_all_buttons_and_the_close_button_is_disable_3_The_disabled_Close_button_NA12_is_display_in_area_G_10_seconds_laterDMI_in_the_exit_state_of_ST054_The_hourglass_symbol_ST05_is_removed_5_The_state_of_all_buttons_is_restored_according_to_the_last_status_before_script_is_sent_6_The_enabled_Close_button_NA11_is_display_in_area_G(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -626,7 +626,7 @@ namespace Testcase.DMITestCases
         ///     Step 8 in TC-ID: 10.2.5 in 15.2.5 State 'ST05': Special window and windows in the special menu
         ///     Step 3 in TC-ID: 20.3 in 25.3 Driver’s Action: Special window
         /// </summary>
-        public static void DMI_displays_Special_window_with_enabled_Adhesion_button()
+        public static void DMI_displays_Special_window_with_enabled_Adhesion_button(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -638,7 +638,7 @@ namespace Testcase.DMITestCases
         ///     Step 8 in TC-ID: 10.2.6 in 15.2.6 State 'ST05': Settings window and windows in setting menu
         /// </summary>
         public static void
-            Verify_the_following_informationDMI_in_the_entry_state_of_ST051_The_hourglass_symbol_ST05_is_displayed_2_Verify_all_buttons_and_the_close_button_is_disable_3_The_disabled_Close_button_NA12_is_display_in_area_G_4_The_Input_Field_is_deselected_10_seconds_laterDMI_in_the_exit_state_of_ST055_The_hourglass_symbol_ST05_is_removed_6_The_state_of_all_buttons_is_restored_according_to_the_last_status_before_script_is_sent_7_The_enabled_Close_button_NA11_is_display_in_area_G_8_The_input_field_is_in_the_Selected_state()
+            Verify_the_following_informationDMI_in_the_entry_state_of_ST051_The_hourglass_symbol_ST05_is_displayed_2_Verify_all_buttons_and_the_close_button_is_disable_3_The_disabled_Close_button_NA12_is_display_in_area_G_4_The_Input_Field_is_deselected_10_seconds_laterDMI_in_the_exit_state_of_ST055_The_hourglass_symbol_ST05_is_removed_6_The_state_of_all_buttons_is_restored_according_to_the_last_status_before_script_is_sent_7_The_enabled_Close_button_NA11_is_display_in_area_G_8_The_input_field_is_in_the_Selected_state(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -654,7 +654,7 @@ namespace Testcase.DMITestCases
         ///     Step 29 in TC-ID: 10.2.6 in 15.2.6 State 'ST05': Settings window and windows in setting menu
         ///     Step 39 in TC-ID: 10.2.6 in 15.2.6 State 'ST05': Settings window and windows in setting menu
         /// </summary>
-        public static void See_the_expectation_in_step_2()
+        public static void See_the_expectation_in_step_2(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -667,7 +667,7 @@ namespace Testcase.DMITestCases
         ///     Step 31 in TC-ID: 10.2.6 in 15.2.6 State 'ST05': Settings window and windows in setting menu
         ///     Step 41 in TC-ID: 10.2.6 in 15.2.6 State 'ST05': Settings window and windows in setting menu
         /// </summary>
-        public static void See_the_expectation_in_step_8()
+        public static void See_the_expectation_in_step_8(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -681,7 +681,7 @@ namespace Testcase.DMITestCases
         ///     Step 1 in TC-ID: 10.4.1.4 in 15.4.1.4 State ‘ST05’: Abort the pending Data Process in Settings window
         ///     Step 2 in TC-ID: 10.4.1.5 in 15.4.1.5 State ‘ST05’: Abort the pending Data Process in RBC Contact menu
         /// </summary>
-        public static void The_hourglass_symbol_ST05_is_displayed_at_window_title_area()
+        public static void The_hourglass_symbol_ST05_is_displayed_at_window_title_area(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -692,7 +692,7 @@ namespace Testcase.DMITestCases
         ///     Step 1 in TC-ID: 10.4.1.3 in 15.4.1.3 State ‘ST05’: Abort the pending Data Process in Special window
         ///     Step 24 in TC-ID: 22.9.1 in 27.9.1 SR Speed/Distance window: General appearance
         /// </summary>
-        public static void DMI_displays_SR_speeddistance_window()
+        public static void DMI_displays_SR_speeddistance_window(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -703,7 +703,7 @@ namespace Testcase.DMITestCases
         ///     Step 1 in TC-ID: 10.4.1.5 in 15.4.1.5 State ‘ST05’: Abort the pending Data Process in RBC Contact menu
         ///     Step 1 in TC-ID: 22.20.2 in 27.20.2 Override window in SB mode
         /// </summary>
-        public static void DMI_displays_RBC_Data_window()
+        public static void DMI_displays_RBC_Data_window(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -717,7 +717,7 @@ namespace Testcase.DMITestCases
         ///     Step 1 in TC-ID: 14.5 in 19.5 Toggling function: Default state reset for Configuration ‘OFF’ when communication loss
         ///     Step 1 in TC-ID: 18.7 in 23.7 Tunnel stopping area track condition
         /// </summary>
-        public static void DMI_displays_in_FS_mode_Level_1()
+        public static void DMI_displays_in_FS_mode_Level_1(SignalPool pool)
         {
             EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.FullSupervision;
             throw new NotImplementedException();
@@ -739,7 +739,7 @@ namespace Testcase.DMITestCases
         ///     Step 5 in TC-ID: 36.3.3 in 39.3.3 Restrictive Target with Speed Monitoring in Limited Supervision Mode
         ///     Step 5 in TC-ID: 36.3.4 in 39.3.4 Restrictive Target with Movement Authority Changed in Limited Supervision Mode
         /// </summary>
-        public static void The_train_is_at_standstill()
+        public static void The_train_is_at_standstill(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -752,7 +752,7 @@ namespace Testcase.DMITestCases
         ///     Step 1 in TC-ID: 29.2 in 29.2 UTC time and offset time(by using EVC-3)
         ///     Step 1 in TC-ID: 29.3 in 29.3 UTC time and offset time(By VAP acting as NTP server)
         /// </summary>
-        public static void DMI_displays_SB_mode()
+        public static void DMI_displays_SB_mode(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -764,7 +764,7 @@ namespace Testcase.DMITestCases
         ///     Step 2 in TC-ID: 12.3.3 in 17.3.3 Speed Pointer: Colour of speed pointer in SR mode
         /// </summary>
         public static void
-            Verify_the_following_information_1_Use_the_log_file_to_confirm_that_DMI_received_the_packet_information_EVC_1_with_the_following_condition_MMI_M_WARNING_8_Status_OvS_Supervision_CSM_while_the_value_of_MMI_V_TRAIN_1139_41_kmh_which_greater_than_MMI_V_PERMITTED2_The_speed_pointer_display_in_orange_colour()
+            Verify_the_following_information_1_Use_the_log_file_to_confirm_that_DMI_received_the_packet_information_EVC_1_with_the_following_condition_MMI_M_WARNING_8_Status_OvS_Supervision_CSM_while_the_value_of_MMI_V_TRAIN_1139_41_kmh_which_greater_than_MMI_V_PERMITTED2_The_speed_pointer_display_in_orange_colour(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -776,7 +776,7 @@ namespace Testcase.DMITestCases
         ///     Step 3 in TC-ID: 12.3.3 in 17.3.3 Speed Pointer: Colour of speed pointer in SR mode
         /// </summary>
         public static void
-            Verify_the_following_information_1_Use_the_log_file_to_confirm_that_DMI_received_the_packet_information_EVC_1_with_the_following_condition_MMI_M_WARNING_4_Status_WaS_Supervision_CSM_while_the_value_of_MMI_V_TRAIN_1250_45_kmh_which_greater_than_MMI_V_PERMITTED_but_lower_than_MMI_V_INTERVENTION2_The_speed_pointer_display_in_orange_colour()
+            Verify_the_following_information_1_Use_the_log_file_to_confirm_that_DMI_received_the_packet_information_EVC_1_with_the_following_condition_MMI_M_WARNING_4_Status_WaS_Supervision_CSM_while_the_value_of_MMI_V_TRAIN_1250_45_kmh_which_greater_than_MMI_V_PERMITTED_but_lower_than_MMI_V_INTERVENTION2_The_speed_pointer_display_in_orange_colour(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -788,7 +788,7 @@ namespace Testcase.DMITestCases
         ///     Step 4 in TC-ID: 12.3.3 in 17.3.3 Speed Pointer: Colour of speed pointer in SR mode
         /// </summary>
         public static void
-            The_train_speed_is_force_to_decrease_because_of_emergency_brake_is_applied_by_ETCS_onboard_Verify_the_following_information_Before_train_speed_is_decreased1_Use_the_log_file_to_confirm_that_DMI_received_the_packet_information_EVC_1_with_the_following_condition_MMI_M_WARNING_12_Status_IntS_Supervision_CSM_while_the_value_of_MMI_V_TRAIN_1278_46_kmh_which_greater_than_MMI_V_INTERVENTION2_The_speed_pointer_display_in_red_colourAfter_train_speed_is_decreased3_Use_the_log_file_to_confirm_that_DMI_received_the_packet_information_EVC_1_with_the_following_condition_MMI_M_WARNING_12_Status_IntS_Supervision_CSM_while_the_value_of_MMI_V_TRAIN_is_lower_than_MMI_V_INTERVENTION4_The_speed_pointer_display_in_grey_colour()
+            The_train_speed_is_force_to_decrease_because_of_emergency_brake_is_applied_by_ETCS_onboard_Verify_the_following_information_Before_train_speed_is_decreased1_Use_the_log_file_to_confirm_that_DMI_received_the_packet_information_EVC_1_with_the_following_condition_MMI_M_WARNING_12_Status_IntS_Supervision_CSM_while_the_value_of_MMI_V_TRAIN_1278_46_kmh_which_greater_than_MMI_V_INTERVENTION2_The_speed_pointer_display_in_red_colourAfter_train_speed_is_decreased3_Use_the_log_file_to_confirm_that_DMI_received_the_packet_information_EVC_1_with_the_following_condition_MMI_M_WARNING_12_Status_IntS_Supervision_CSM_while_the_value_of_MMI_V_TRAIN_is_lower_than_MMI_V_INTERVENTION4_The_speed_pointer_display_in_grey_colour(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -800,7 +800,7 @@ namespace Testcase.DMITestCases
         ///     Step 14 in TC-ID: 12.3.2 in 17.3.2 Speed Pointer: Colour of speed pointer in FS mode
         /// </summary>
         public static void
-            DMI_displays_in_FS_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_grey_colour()
+            DMI_displays_in_FS_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_grey_colour(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -814,7 +814,7 @@ namespace Testcase.DMITestCases
         ///     Step 19 in TC-ID: 12.3.3 in 17.3.3 Speed Pointer: Colour of speed pointer in SR mode
         /// </summary>
         public static void
-            DMI_displays_in_SR_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_grey_colour()
+            DMI_displays_in_SR_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_grey_colour(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -827,7 +827,7 @@ namespace Testcase.DMITestCases
         ///     Step 13 in TC-ID: 12.3.3 in 17.3.3 Speed Pointer: Colour of speed pointer in SR mode
         /// </summary>
         public static void
-            DMI_displays_in_SR_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_white_colour()
+            DMI_displays_in_SR_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_white_colour(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -841,7 +841,7 @@ namespace Testcase.DMITestCases
         ///     Step 16 in TC-ID: 12.3.3 in 17.3.3 Speed Pointer: Colour of speed pointer in SR mode
         /// </summary>
         public static void
-            DMI_displays_in_SR_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_orange_colour()
+            DMI_displays_in_SR_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_orange_colour(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -853,7 +853,7 @@ namespace Testcase.DMITestCases
         ///     Step 17 in TC-ID: 12.3.3 in 17.3.3 Speed Pointer: Colour of speed pointer in SR mode
         /// </summary>
         public static void
-            DMI_displays_in_SR_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_red_colour()
+            DMI_displays_in_SR_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_red_colour(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -865,7 +865,7 @@ namespace Testcase.DMITestCases
         ///     Step 18 in TC-ID: 12.3.3 in 17.3.3 Speed Pointer: Colour of speed pointer in SR mode
         /// </summary>
         public static void
-            DMI_displays_in_SR_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_yellow_colour()
+            DMI_displays_in_SR_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_yellow_colour(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -877,7 +877,7 @@ namespace Testcase.DMITestCases
         ///     Step 3 in TC-ID: 12.3.7 in 17.3.7 Speed Pointer: Colour of speed pointer in LS mode
         /// </summary>
         public static void
-            Verify_the_following_information_1_Use_the_log_file_to_confirm_that_DMI_received_the_packet_information_EVC_1_with_the_following_condition_MMI_M_WARNING_8_Status_OvS_Supervision_CSM_while_the_value_of_MMI_V_TRAIN_2806_101_kmh_which_greater_than_MMI_V_PERMITTED2_The_speed_pointer_display_in_orange_colour()
+            Verify_the_following_information_1_Use_the_log_file_to_confirm_that_DMI_received_the_packet_information_EVC_1_with_the_following_condition_MMI_M_WARNING_8_Status_OvS_Supervision_CSM_while_the_value_of_MMI_V_TRAIN_2806_101_kmh_which_greater_than_MMI_V_PERMITTED2_The_speed_pointer_display_in_orange_colour(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -889,7 +889,7 @@ namespace Testcase.DMITestCases
         ///     Step 4 in TC-ID: 12.3.7 in 17.3.7 Speed Pointer: Colour of speed pointer in LS mode
         /// </summary>
         public static void
-            Verify_the_following_information_1_Use_the_log_file_to_confirm_that_DMI_received_the_packet_information_EVC_1_with_the_following_condition_MMI_M_WARNING_4_Status_WaS_Supervision_CSM_while_the_value_of_MMI_V_TRAIN_2917_105_kmh_which_greater_than_MMI_V_PERMITTED_but_lower_than_MMI_V_INTERVENTION2_The_speed_pointer_display_in_orange_colour()
+            Verify_the_following_information_1_Use_the_log_file_to_confirm_that_DMI_received_the_packet_information_EVC_1_with_the_following_condition_MMI_M_WARNING_4_Status_WaS_Supervision_CSM_while_the_value_of_MMI_V_TRAIN_2917_105_kmh_which_greater_than_MMI_V_PERMITTED_but_lower_than_MMI_V_INTERVENTION2_The_speed_pointer_display_in_orange_colour(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -901,7 +901,7 @@ namespace Testcase.DMITestCases
         ///     Step 5 in TC-ID: 12.3.7 in 17.3.7 Speed Pointer: Colour of speed pointer in LS mode
         /// </summary>
         public static void
-            The_train_speed_is_force_to_decrease_because_of_emergency_brake_is_applied_by_ETCS_onboard_Verify_the_following_information_Before_train_speed_is_decreased1_Use_the_log_file_to_confirm_that_DMI_received_the_packet_information_EVC_1_with_the_following_condition_MMI_M_WARNING_12_Status_IntS_Supervision_CSM_while_the_value_of_MMI_V_TRAIN_2944_106_kmh_which_greater_than_MMI_V_INTERVENTION2_The_speed_pointer_display_in_red_colourAfter_train_speed_is_decreased3_Use_the_log_file_to_confirm_that_DMI_received_the_packet_information_EVC_1_with_the_following_condition_MMI_M_WARNING_12_Status_IntS_Supervision_CSM_while_the_value_of_MMI_V_TRAIN_is_lower_than_MMI_V_INTERVENTION4_The_speed_pointer_display_in_grey_colour()
+            The_train_speed_is_force_to_decrease_because_of_emergency_brake_is_applied_by_ETCS_onboard_Verify_the_following_information_Before_train_speed_is_decreased1_Use_the_log_file_to_confirm_that_DMI_received_the_packet_information_EVC_1_with_the_following_condition_MMI_M_WARNING_12_Status_IntS_Supervision_CSM_while_the_value_of_MMI_V_TRAIN_2944_106_kmh_which_greater_than_MMI_V_INTERVENTION2_The_speed_pointer_display_in_red_colourAfter_train_speed_is_decreased3_Use_the_log_file_to_confirm_that_DMI_received_the_packet_information_EVC_1_with_the_following_condition_MMI_M_WARNING_12_Status_IntS_Supervision_CSM_while_the_value_of_MMI_V_TRAIN_is_lower_than_MMI_V_INTERVENTION4_The_speed_pointer_display_in_grey_colour(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -915,7 +915,7 @@ namespace Testcase.DMITestCases
         ///     Step 19 in TC-ID: 12.3.4 in 17.3.4 Speed Pointer: Colour of speed pointer in UN mode
         /// </summary>
         public static void
-            DMI_displays_in_UN_mode_level_0_Verify_the_following_information_1_The_speed_pointer_display_in_grey_colour()
+            DMI_displays_in_UN_mode_level_0_Verify_the_following_information_1_The_speed_pointer_display_in_grey_colour(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -928,7 +928,7 @@ namespace Testcase.DMITestCases
         ///     Step 13 in TC-ID: 12.3.4 in 17.3.4 Speed Pointer: Colour of speed pointer in UN mode
         /// </summary>
         public static void
-            DMI_displays_in_UN_mode_level_0_Verify_the_following_information_1_The_speed_pointer_display_in_white_colour()
+            DMI_displays_in_UN_mode_level_0_Verify_the_following_information_1_The_speed_pointer_display_in_white_colour(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -942,7 +942,7 @@ namespace Testcase.DMITestCases
         ///     Step 16 in TC-ID: 12.3.4 in 17.3.4 Speed Pointer: Colour of speed pointer in UN mode
         /// </summary>
         public static void
-            DMI_displays_in_UN_mode_level_0_Verify_the_following_information_1_The_speed_pointer_display_in_orange_colour()
+            DMI_displays_in_UN_mode_level_0_Verify_the_following_information_1_The_speed_pointer_display_in_orange_colour(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -954,7 +954,7 @@ namespace Testcase.DMITestCases
         ///     Step 17 in TC-ID: 12.3.4 in 17.3.4 Speed Pointer: Colour of speed pointer in UN mode
         /// </summary>
         public static void
-            DMI_displays_in_UN_mode_level_0_Verify_the_following_information_1_The_speed_pointer_display_in_red_colour()
+            DMI_displays_in_UN_mode_level_0_Verify_the_following_information_1_The_speed_pointer_display_in_red_colour(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -966,7 +966,7 @@ namespace Testcase.DMITestCases
         ///     Step 18 in TC-ID: 12.3.4 in 17.3.4 Speed Pointer: Colour of speed pointer in UN mode
         /// </summary>
         public static void
-            DMI_displays_in_UN_mode_level_0_Verify_the_following_information_1_The_speed_pointer_display_in_yellow_colour()
+            DMI_displays_in_UN_mode_level_0_Verify_the_following_information_1_The_speed_pointer_display_in_yellow_colour(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -979,7 +979,7 @@ namespace Testcase.DMITestCases
         ///     Step 1 in TC-ID: 14.2 in 19.2 Toggling function: Additional Configuration ‘ON’
         ///     Step 1 in TC-ID: 14.3 in 19.3 Toggling function: Additional Configuration ‘TIMER’
         /// </summary>
-        public static void DMI_displays_in_FS_mode_Level_1_with_the_ST06_symbol_at_sub_area_C6()
+        public static void DMI_displays_in_FS_mode_Level_1_with_the_ST06_symbol_at_sub_area_C6(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -991,7 +991,7 @@ namespace Testcase.DMITestCases
         ///     Step 3 in TC-ID: 12.3.8 in 17.3.8 Speed Pointer: Colour of speed pointer in OS mode
         /// </summary>
         public static void
-            Verify_the_following_information_1_Use_the_log_file_to_confirm_that_DMI_received_the_packet_information_EVC_1_with_the_following_condition_MMI_M_WARNING_8_Status_OvS_Supervision_CSM_while_the_value_of_MMI_V_TRAIN_861_31_kmh_which_greater_than_MMI_V_PERMITTED2_The_speed_pointer_display_in_orange_colour()
+            Verify_the_following_information_1_Use_the_log_file_to_confirm_that_DMI_received_the_packet_information_EVC_1_with_the_following_condition_MMI_M_WARNING_8_Status_OvS_Supervision_CSM_while_the_value_of_MMI_V_TRAIN_861_31_kmh_which_greater_than_MMI_V_PERMITTED2_The_speed_pointer_display_in_orange_colour(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1003,7 +1003,7 @@ namespace Testcase.DMITestCases
         ///     Step 5 in TC-ID: 12.3.8 in 17.3.8 Speed Pointer: Colour of speed pointer in OS mode
         /// </summary>
         public static void
-            The_train_speed_is_force_to_decrease_because_of_emergency_brake_is_applied_by_ETCS_onboard_Verify_the_following_information_Before_train_speed_is_decreased1_Use_the_log_file_to_confirm_that_DMI_received_the_packet_information_EVC_1_with_the_following_condition_MMI_M_WARNING_12_Status_IntS_Supervision_CSM_while_the_value_of_MMI_V_TRAIN_1000_36_kmh_which_greater_than_MMI_V_INTERVENTION2_The_speed_pointer_display_in_red_colourAfter_train_speed_is_decreased3_Use_the_log_file_to_confirm_that_DMI_received_the_packet_information_EVC_1_with_the_following_condition_MMI_M_WARNING_12_Status_IntS_Supervision_CSM_while_the_value_of_MMI_V_TRAIN_is_lower_than_MMI_V_INTERVENTION4_The_speed_pointer_display_in_grey_colour()
+            The_train_speed_is_force_to_decrease_because_of_emergency_brake_is_applied_by_ETCS_onboard_Verify_the_following_information_Before_train_speed_is_decreased1_Use_the_log_file_to_confirm_that_DMI_received_the_packet_information_EVC_1_with_the_following_condition_MMI_M_WARNING_12_Status_IntS_Supervision_CSM_while_the_value_of_MMI_V_TRAIN_1000_36_kmh_which_greater_than_MMI_V_INTERVENTION2_The_speed_pointer_display_in_red_colourAfter_train_speed_is_decreased3_Use_the_log_file_to_confirm_that_DMI_received_the_packet_information_EVC_1_with_the_following_condition_MMI_M_WARNING_12_Status_IntS_Supervision_CSM_while_the_value_of_MMI_V_TRAIN_is_lower_than_MMI_V_INTERVENTION4_The_speed_pointer_display_in_grey_colour(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1022,7 +1022,7 @@ namespace Testcase.DMITestCases
         ///     Step 20 in TC-ID: 12.3.7 in 17.3.7 Speed Pointer: Colour of speed pointer in LS mode
         /// </summary>
         public static void
-            DMI_displays_in_LS_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_grey_colour()
+            DMI_displays_in_LS_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_grey_colour(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1036,7 +1036,7 @@ namespace Testcase.DMITestCases
         ///     Step 17 in TC-ID: 12.3.7 in 17.3.7 Speed Pointer: Colour of speed pointer in LS mode
         /// </summary>
         public static void
-            DMI_displays_in_LS_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_orange_colour()
+            DMI_displays_in_LS_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_orange_colour(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1049,7 +1049,7 @@ namespace Testcase.DMITestCases
         ///     Step 24 in TC-ID: 12.3.7 in 17.3.7 Speed Pointer: Colour of speed pointer in LS mode
         /// </summary>
         public static void
-            DMI_displays_in_LS_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_red_colour()
+            DMI_displays_in_LS_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_red_colour(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1062,7 +1062,7 @@ namespace Testcase.DMITestCases
         ///     Step 23 in TC-ID: 12.3.7 in 17.3.7 Speed Pointer: Colour of speed pointer in LS mode
         /// </summary>
         public static void
-            DMI_displays_in_LS_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_yellow_colour()
+            DMI_displays_in_LS_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_yellow_colour(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1073,7 +1073,7 @@ namespace Testcase.DMITestCases
         ///     Step 1 in TC-ID: 12.3.8 in 17.3.8 Speed Pointer: Colour of speed pointer in OS mode
         ///     Step 1 in TC-ID: 12.7.3 in 17.7.3 Release Speed Digital for OS mode
         /// </summary>
-        public static void DMI_displays_in_OS_mode_level_1()
+        public static void DMI_displays_in_OS_mode_level_1(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1087,7 +1087,7 @@ namespace Testcase.DMITestCases
         ///     Step 21 in TC-ID: 12.3.8 in 17.3.8 Speed Pointer: Colour of speed pointer in OS mode
         /// </summary>
         public static void
-            DMI_displays_in_OS_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_grey_colour()
+            DMI_displays_in_OS_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_grey_colour(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1100,7 +1100,7 @@ namespace Testcase.DMITestCases
         ///     Step 14 in TC-ID: 12.3.8 in 17.3.8 Speed Pointer: Colour of speed pointer in OS mode
         /// </summary>
         public static void
-            DMI_displays_in_OS_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_white_colour()
+            DMI_displays_in_OS_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_white_colour(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1114,7 +1114,7 @@ namespace Testcase.DMITestCases
         ///     Step 18 in TC-ID: 12.3.8 in 17.3.8 Speed Pointer: Colour of speed pointer in OS mode
         /// </summary>
         public static void
-            DMI_displays_in_OS_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_orange_colour()
+            DMI_displays_in_OS_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_orange_colour(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1127,7 +1127,7 @@ namespace Testcase.DMITestCases
         ///     Step 24 in TC-ID: 12.3.8 in 17.3.8 Speed Pointer: Colour of speed pointer in OS mode
         /// </summary>
         public static void
-            DMI_displays_in_OS_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_red_colour()
+            DMI_displays_in_OS_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_red_colour(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1141,7 +1141,7 @@ namespace Testcase.DMITestCases
         ///     Step 23 in TC-ID: 12.3.8 in 17.3.8 Speed Pointer: Colour of speed pointer in OS mode
         /// </summary>
         public static void
-            DMI_displays_in_OS_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_yellow_colour()
+            DMI_displays_in_OS_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_yellow_colour(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1153,7 +1153,7 @@ namespace Testcase.DMITestCases
         ///     Step 1 in TC-ID: 12.7.4 in 17.7.4 Release Speed Digital: Release speed removal when received an invalid value of EVC-1 or EVC-7
         ///     Step 2 in TC-ID: 18.4.1 in 23.4.1 Geographical Position: General presentation
         /// </summary>
-        public static void DMI_displays_in_FS_mode_level_1()
+        public static void DMI_displays_in_FS_mode_level_1(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1168,7 +1168,7 @@ namespace Testcase.DMITestCases
         ///     Step 6 in TC-ID: 12.5.4 in 17.5.4 Circular Speed Gauge removal when received an invalid value of EVC-1 and EVC-7
         /// </summary>
         public static void
-            Verify_the_following_information_1_The_Circular_Speed_Gauge_is_removed_from_sub_area_B2_Note_The_ciruclar_speed_guage_is_re_appear_when_DMI_received_packet_EVC_1_from_ETCS_onboard()
+            Verify_the_following_information_1_The_Circular_Speed_Gauge_is_removed_from_sub_area_B2_Note_The_ciruclar_speed_guage_is_re_appear_when_DMI_received_packet_EVC_1_from_ETCS_onboard(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1179,7 +1179,7 @@ namespace Testcase.DMITestCases
         ///     Step 1 in TC-ID: 12.7.1 in 17.7.1 Release Speed: At Sub-area B2 and B6
         ///     Step 1 in TC-ID: 13.1.1 in 18.1.1 Distance to Target  Bar: General Appearance
         /// </summary>
-        public static void DMI_displays_in_SB_mode_level_1_The_Driver_ID_window_is_displayed()
+        public static void DMI_displays_in_SB_mode_level_1_The_Driver_ID_window_is_displayed(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1191,7 +1191,7 @@ namespace Testcase.DMITestCases
         ///     Step 2 in TC-ID: 17.11 in 22.11 Handle at least 31 PA Speed Profile Segments
         ///     Step 2 in TC-ID: 17.12 in Handle at least 31 PA Gradient Profile Segments
         /// </summary>
-        public static void DMI_is_displayed_in_SR_mode_level_1()
+        public static void DMI_is_displayed_in_SR_mode_level_1(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1202,7 +1202,7 @@ namespace Testcase.DMITestCases
         ///     Step 5 in TC-ID: 12.7.1 in 17.7.1 Release Speed: At Sub-area B2 and B6
         ///     Step 9 in TC-ID: 17.8 in 22.8 PA Indication Marker: Sub-Area D7
         /// </summary>
-        public static void Train_is_standstill()
+        public static void Train_is_standstill(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1216,7 +1216,7 @@ namespace Testcase.DMITestCases
         ///     Step 1 in TC-ID: 12.15 in 17.15 Slip and Slide are configure to 0 at the same time
         ///     Step 2 in TC-ID: 17.3 in 22.3 Planning Area: PA Distance Scale
         /// </summary>
-        public static void DMI_changes_from_SR_mode_to_FS_mode()
+        public static void DMI_changes_from_SR_mode_to_FS_mode(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1228,7 +1228,7 @@ namespace Testcase.DMITestCases
         ///     Step 5 in TC-ID: 12.13 in 17.13 Slide Indication
         /// </summary>
         public static void
-            Verify_the_following_information_The_SlipSlide_indication_is_not_displayed_on_the_speed_hub_Sound_Sinfo_is_not_played()
+            Verify_the_following_information_The_SlipSlide_indication_is_not_displayed_on_the_speed_hub_Sound_Sinfo_is_not_played(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1239,7 +1239,7 @@ namespace Testcase.DMITestCases
         ///     Step 2 in TC-ID: 12.14 in 17.14 Slip and Slide are configure to 1 at the same time
         ///     Step 2 in TC-ID: 12.15 in 17.15 Slip and Slide are configure to 0 at the same time
         /// </summary>
-        public static void The_speed_pointer_is_displayed_with_speed_140()
+        public static void The_speed_pointer_is_displayed_with_speed_140(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1251,7 +1251,7 @@ namespace Testcase.DMITestCases
         ///     Step 4 in TC-ID: 12.15 in 17.15 Slip and Slide are configure to 0 at the same time
         ///     Step 5 in TC-ID: 12.15 in 17.15 Slip and Slide are configure to 0 at the same time
         /// </summary>
-        public static void Verify_that_Slip_and_Slide_indicator_are_not_display_on_DMI()
+        public static void Verify_that_Slip_and_Slide_indicator_are_not_display_on_DMI(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1262,7 +1262,7 @@ namespace Testcase.DMITestCases
         ///     Step 3 in TC-ID: 13.1.1 in 18.1.1 Distance to Target  Bar: General Appearance
         ///     Step 3 in TC-ID: 13.1.5 in 18.1.5 Distance to Target in RV mode
         /// </summary>
-        public static void DMI_changes_from_SR_to_FS_mode()
+        public static void DMI_changes_from_SR_to_FS_mode(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1275,7 +1275,7 @@ namespace Testcase.DMITestCases
         ///     Step 1 in TC-ID: 15.1.3 in 20.1.3 Mode Symbols in Sub-Area B7 for OS, UN mode
         ///     Step 1 in TC-ID: 17.10.2 in 22.10.2 Zoom PA Function with Scale Up
         /// </summary>
-        public static void DMI_displays_in_SB_mode_The_Driver_ID_window_is_displayed()
+        public static void DMI_displays_in_SB_mode_The_Driver_ID_window_is_displayed(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1286,7 +1286,7 @@ namespace Testcase.DMITestCases
         ///     Step 4 in TC-ID: 13.1.4 in 18.1.4 Distance to Target Digital when the communication between ETCS  Onboard and DMI is lost
         ///     Step 5 in TC-ID: 13.1.5 in 18.1.5 Distance to Target in RV mode
         /// </summary>
-        public static void DMI_remains_displays_in_FS_mode()
+        public static void DMI_remains_displays_in_FS_mode(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1298,7 +1298,7 @@ namespace Testcase.DMITestCases
         ///     Step 5 in TC-ID: 13.1.7.1 in 18.1.7.1 Distance to Target: Appearance of Distance to Target in FS mode
         /// </summary>
         public static void
-            Verify_the_following_information_1_The_distance_to_target_bar_and_digital_is_removed_from_the_DMI_Note_After_test_scipt_file_is_executed_the_distance_to_target_bar_and_digital_is_re_appear_refer_to_received_packet_EVC_1_from_ETCS_Onboard()
+            Verify_the_following_information_1_The_distance_to_target_bar_and_digital_is_removed_from_the_DMI_Note_After_test_scipt_file_is_executed_the_distance_to_target_bar_and_digital_is_re_appear_refer_to_received_packet_EVC_1_from_ETCS_Onboard(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1310,7 +1310,7 @@ namespace Testcase.DMITestCases
         ///     Step 3 in TC-ID: 13.1.7.3 in 18.1.7.3 Distance to Target: Appearance of Distance to Target in SB, SR and SH mode
         /// </summary>
         public static void
-            Verify_the_following_information_1_Use_the_log_file_to_confirm_that_DMI_receives_the_packet_information_EVC_1_with_following_variables_MMI_M_WARNING_2_Status_NoS_Supervision_PIM2_The_distance_to_target_bar_is_not_display_in_sub_area_A3_3_The_distance_to_target_digital_is_display_in_sub_area_A2()
+            Verify_the_following_information_1_Use_the_log_file_to_confirm_that_DMI_receives_the_packet_information_EVC_1_with_following_variables_MMI_M_WARNING_2_Status_NoS_Supervision_PIM2_The_distance_to_target_bar_is_not_display_in_sub_area_A3_3_The_distance_to_target_digital_is_display_in_sub_area_A2(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1322,7 +1322,7 @@ namespace Testcase.DMITestCases
         ///     Step 4 in TC-ID: 13.1.8 in 18.1.8 Distance to Target Bar: Maximum digit of Distance to Target Digital
         /// </summary>
         public static void
-            Verify_the_following_information_1_The_distance_to_target_bar_and_digital_is_removed_from_the_DMI_After_test_scipt_file_is_executed_the_distance_to_target_bar_and_digital_is_re_appear_refer_to_received_packet_EVC_1_from_ETCS_Onboard()
+            Verify_the_following_information_1_The_distance_to_target_bar_and_digital_is_removed_from_the_DMI_After_test_scipt_file_is_executed_the_distance_to_target_bar_and_digital_is_re_appear_refer_to_received_packet_EVC_1_from_ETCS_Onboard(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1335,7 +1335,7 @@ namespace Testcase.DMITestCases
         ///     Step 2 in TC-ID: 14.3 in 19.3 Toggling function: Additional Configuration ‘TIMER’
         /// </summary>
         public static void
-            DMI_displays_in_RV_mode_Level_1_Verify_the_following_information_The_objects_below_are_displayed_on_DMI_White_Basic_speed_HookDistance_to_target_digitalThe_objects_below_are_not_displayed_on_DMI_Medium_grey_basic_speed_hookRelease_Speed_Digital()
+            DMI_displays_in_RV_mode_Level_1_Verify_the_following_information_The_objects_below_are_displayed_on_DMI_White_Basic_speed_HookDistance_to_target_digitalThe_objects_below_are_not_displayed_on_DMI_Medium_grey_basic_speed_hookRelease_Speed_Digital(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1357,7 +1357,7 @@ namespace Testcase.DMITestCases
         ///     Step 17 in TC-ID: 14.3 in 19.3 Toggling function: Additional Configuration ‘TIMER’
         /// </summary>
         public static void
-            Verify_the_following_information_The_objects_below_are_not_toggled_visibleinvisible_always_remain_the_same_as_the_previous_stepWhite_Basic_speed_HookMedium_grey_basic_speed_hookDistance_to_target_digitalRelease_Speed_Digital()
+            Verify_the_following_information_The_objects_below_are_not_toggled_visibleinvisible_always_remain_the_same_as_the_previous_stepWhite_Basic_speed_HookMedium_grey_basic_speed_hookDistance_to_target_digitalRelease_Speed_Digital(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1370,7 +1370,7 @@ namespace Testcase.DMITestCases
         ///     Step 4 in TC-ID: 14.3 in 19.3 Toggling function: Additional Configuration ‘TIMER’
         ///     Step 1 in TC-ID: 22.12 in 27.12 Subcategory ‘National’
         /// </summary>
-        public static void DMI_displays_in_SB_mode_Level_1()
+        public static void DMI_displays_in_SB_mode_Level_1(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1382,7 +1382,7 @@ namespace Testcase.DMITestCases
         ///     Step 15 in TC-ID: 14.2 in 19.2 Toggling function: Additional Configuration ‘ON’
         /// </summary>
         public static void
-            Verify_the_following_information_The_objects_below_are_toggled_visible_the_same_as_the_previous_stepinvisible_White_basic_speed_hookMedium_grey_basic_speed_hookDistance_to_target_digitalRelease_Speed_Digital()
+            Verify_the_following_information_The_objects_below_are_toggled_visible_the_same_as_the_previous_stepinvisible_White_basic_speed_hookMedium_grey_basic_speed_hookDistance_to_target_digitalRelease_Speed_Digital(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1394,7 +1394,7 @@ namespace Testcase.DMITestCases
         ///     Step 16 in TC-ID: 14.3 in 19.3 Toggling function: Additional Configuration ‘TIMER’
         /// </summary>
         public static void
-            DMI_displays_in_LS_mode_Level_1_Verify_the_following_information_The_objects_below_are_displayed_on_DMI_Distance_to_target_digitalRelease_Speed_DigitalThe_objects_below_are_not_displayed_on_DMI_White_Basic_speed_HookMedium_grey_basic_speed_hook()
+            DMI_displays_in_LS_mode_Level_1_Verify_the_following_information_The_objects_below_are_displayed_on_DMI_Distance_to_target_digitalRelease_Speed_DigitalThe_objects_below_are_not_displayed_on_DMI_White_Basic_speed_HookMedium_grey_basic_speed_hook(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1406,7 +1406,7 @@ namespace Testcase.DMITestCases
         ///     Step 24 in TC-ID: 14.2 in 19.2 Toggling function: Additional Configuration ‘ON’
         /// </summary>
         public static void
-            Verify_the_following_information_The_white_basic_speed_hook_is_toggled_visible_the_same_as_the_visible_stepinvisibleThe_objects_below_are_not_toggled_visibleinvisible_always_remain_the_same_as_the_previous_step_Medium_grey_basic_speed_hookDistance_to_target_digitalRelease_Speed_Digital()
+            Verify_the_following_information_The_white_basic_speed_hook_is_toggled_visible_the_same_as_the_visible_stepinvisibleThe_objects_below_are_not_toggled_visibleinvisible_always_remain_the_same_as_the_previous_step_Medium_grey_basic_speed_hookDistance_to_target_digitalRelease_Speed_Digital(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1422,7 +1422,7 @@ namespace Testcase.DMITestCases
         ///     Step 21 in TC-ID: 14.3 in 19.3 Toggling function: Additional Configuration ‘TIMER’
         /// </summary>
         public static void
-            Verify_the_following_information_The_objects_below_are_not_toggled_visibleinvisible_always_remain_the_same_as_the_previous_stepWhite_basic_speed_hookMedium_grey_basic_speed_hookDistance_to_target_digitalRelease_Speed_Digital()
+            Verify_the_following_information_The_objects_below_are_not_toggled_visibleinvisible_always_remain_the_same_as_the_previous_stepWhite_basic_speed_hookMedium_grey_basic_speed_hookDistance_to_target_digitalRelease_Speed_Digital(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1434,7 +1434,7 @@ namespace Testcase.DMITestCases
         ///     Step 11 in TC-ID: 14.3 in 19.3 Toggling function: Additional Configuration ‘TIMER’
         /// </summary>
         public static void
-            DMI_displays_in_FS_mode_Level_1_Verify_the_following_information_The_objects_below_are_displayed_on_DMI_Distance_to_target_digitalRelease_Speed_DigitalThe_objects_below_are_not_displayed_on_DMI_White_Basic_speed_HookMedium_grey_basic_speed_hook()
+            DMI_displays_in_FS_mode_Level_1_Verify_the_following_information_The_objects_below_are_displayed_on_DMI_Distance_to_target_digitalRelease_Speed_DigitalThe_objects_below_are_not_displayed_on_DMI_White_Basic_speed_HookMedium_grey_basic_speed_hook(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1446,7 +1446,7 @@ namespace Testcase.DMITestCases
         ///     Step 20 in TC-ID: 14.3 in 19.3 Toggling function: Additional Configuration ‘TIMER’
         /// </summary>
         public static void
-            DMI_displays_in_PT_mode_Level_1_Verify_the_following_information_The_objects_below_are_not_displayed_on_DMI_White_Basic_speed_HookMedium_grey_basic_speed_hookDistance_to_target_digitalRelease_Speed_Digital()
+            DMI_displays_in_PT_mode_Level_1_Verify_the_following_information_The_objects_below_are_not_displayed_on_DMI_White_Basic_speed_HookMedium_grey_basic_speed_hookDistance_to_target_digitalRelease_Speed_Digital(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1459,7 +1459,7 @@ namespace Testcase.DMITestCases
         ///     Step 3 in TC-ID: 14.5 in 19.5 Toggling function: Default state reset for Configuration ‘OFF’ when communication loss
         /// </summary>
         public static void
-            DMI_displays_the_message_ATP_Down_Alarm_with_sound_alarm_Verify_the_following_information_The_objects_below_are_not_displayed_on_DMI_White_Basic_speed_HookMedium_grey_basic_speed_hookDistance_to_target_digitalRelease_Speed_Digital()
+            DMI_displays_the_message_ATP_Down_Alarm_with_sound_alarm_Verify_the_following_information_The_objects_below_are_not_displayed_on_DMI_White_Basic_speed_HookMedium_grey_basic_speed_hookDistance_to_target_digitalRelease_Speed_Digital(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1470,7 +1470,7 @@ namespace Testcase.DMITestCases
         ///     Step 2 in TC-ID: 14.4 in 19.4 Toggling function: Default state reset for Configuration ‘ON’ when communication loss
         ///     Step 2 in TC-ID: 14.5 in 19.5 Toggling function: Default state reset for Configuration ‘OFF’ when communication loss
         /// </summary>
-        public static void DMI_displays_in_OS_mode_Level_1()
+        public static void DMI_displays_in_OS_mode_Level_1(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1483,7 +1483,7 @@ namespace Testcase.DMITestCases
         ///     Step 16 in TC-ID: 22.10 in 27.10 Special window
         ///     Step 7 in TC-ID: 34.6 in 37.6 Dialogue Sequence of Special window
         /// </summary>
-        public static void DMI_displays_Special_window()
+        public static void DMI_displays_Special_window(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1494,7 +1494,7 @@ namespace Testcase.DMITestCases
         ///     Step 2 in TC-ID: 15.1.3 in 20.1.3 Mode Symbols in Sub-Area B7 for OS, UN mode
         ///     Step 3 in TC-ID: 34.1.4 in 37.1.4.1.1 Data entry/validation process when enabling conditions not fullfilled: Level 1
         /// </summary>
-        public static void DMI_displays_Level_window()
+        public static void DMI_displays_Level_window(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1511,7 +1511,7 @@ namespace Testcase.DMITestCases
         ///     Step 7 in TC-ID: 15.1.7 in 20.1.7 Mode Symbols for unused value of variable OBU_TR_M_MODE
         ///     Step 8 in TC-ID: 15.1.7 in 20.1.7 Mode Symbols for unused value of variable OBU_TR_M_MODE
         /// </summary>
-        public static void Verify_the_following_information_1_There_is_no_symbol_displayed_on_sub_area_B7()
+        public static void Verify_the_following_information_1_There_is_no_symbol_displayed_on_sub_area_B7(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1524,7 +1524,7 @@ namespace Testcase.DMITestCases
         ///     Step 1 in TC-ID: 15.2.12 in 20.2.12 ETCS Level: ETCS Level Transitions by receiving data packet from ETCS Onboard (LNTC ->L2)
         ///     Step 1 in TC-ID: 15.2.13 in 20.2.13 ETCS Level: ETCS Level Transitions by receiving data packet from ETCS Onboard (LNTC ->L3)
         /// </summary>
-        public static void DMI_displays_in_ATB_STM_mode_Level_NTC()
+        public static void DMI_displays_in_ATB_STM_mode_Level_NTC(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1536,7 +1536,7 @@ namespace Testcase.DMITestCases
         ///     Step 13 in TC-ID: 15.3.2 in 20.3.2 Driver Messages: Processing of incoming Driver Messages
         /// </summary>
         public static void
-            Verify_the_following_information_1_The_display_information_in_sub_area_E5_E9_are_not_changed()
+            Verify_the_following_information_1_The_display_information_in_sub_area_E5_E9_are_not_changed(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1548,7 +1548,7 @@ namespace Testcase.DMITestCases
         ///     Step 9 in TC-ID: 15.3.3 in 20.3.3 Driver Messages: Maximum of non-acknowledgeable Text Messages
         /// </summary>
         public static void
-            DMI_displays_the_message_ATP_Down_Alarm_with_sound_alarm_Verify_the_following_information_1_The_non_acknowledgeable_message_list_is_flushed_no_driver_message_display_in_area_E5_E9()
+            DMI_displays_the_message_ATP_Down_Alarm_with_sound_alarm_Verify_the_following_information_1_The_non_acknowledgeable_message_list_is_flushed_no_driver_message_display_in_area_E5_E9(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1559,7 +1559,7 @@ namespace Testcase.DMITestCases
         ///     Step 1 in TC-ID: 15.5.1 in 20.5.1 Adhesion factor: General appearance
         ///     Step 1 in TC-ID: 15.5.2 in 20.5.3 Adhesion factor: Controlled data packet from ETCS Onboard
         /// </summary>
-        public static void DMI_still_displays_in_SR_mode_Verify_that_Adhesion_button_is_enabled()
+        public static void DMI_still_displays_in_SR_mode_Verify_that_Adhesion_button_is_enabled(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1571,7 +1571,7 @@ namespace Testcase.DMITestCases
         ///     Step 7 in TC-ID: 15.5.1 in 20.5.1 Adhesion factor: General appearance
         /// </summary>
         public static void
-            No_adhesion_factor_indication_is_displayed_Verify_the_following_information_Use_the_log_file_to_confirm_that_DMI_receives_EVC_2_with_following_variable_MMI_M_ADHESION_1_0_bit_Low_Adhesion_from_Trackside_is_not_set_MMI_M_ADHESION_0_0_bit_Low_Adhesion_by_Driver_is_not_set()
+            No_adhesion_factor_indication_is_displayed_Verify_the_following_information_Use_the_log_file_to_confirm_that_DMI_receives_EVC_2_with_following_variable_MMI_M_ADHESION_1_0_bit_Low_Adhesion_from_Trackside_is_not_set_MMI_M_ADHESION_0_0_bit_Low_Adhesion_by_Driver_is_not_set(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1583,7 +1583,7 @@ namespace Testcase.DMITestCases
         ///     Step 3 in TC-ID: 15.5.2 in 20.5.3 Adhesion factor: Controlled data packet from ETCS Onboard
         /// </summary>
         public static void
-            Verify_the_following_information_Use_the_log_file_to_confirm_that_DMI_receives_EVC_2_with_variable_MMI_M_ADHESION_1_1_bit_Low_Adhesion_from_Trackside_is_set_DMI_displays_symbol_ST02_in_sub_area_A4()
+            Verify_the_following_information_Use_the_log_file_to_confirm_that_DMI_receives_EVC_2_with_variable_MMI_M_ADHESION_1_1_bit_Low_Adhesion_from_Trackside_is_set_DMI_displays_symbol_ST02_in_sub_area_A4(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1595,7 +1595,7 @@ namespace Testcase.DMITestCases
         ///     Step 4 in TC-ID: 15.4.2 in 20.5.2 Building Texts: Brake test in Progress!
         /// </summary>
         public static void
-            DMI_shall_not_display_text_message_Brake_Test_in_Progress_in_any_other_languages_since_the_text_is_replaced_with_Russian_character_code_language()
+            DMI_shall_not_display_text_message_Brake_Test_in_Progress_in_any_other_languages_since_the_text_is_replaced_with_Russian_character_code_language(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1606,7 +1606,7 @@ namespace Testcase.DMITestCases
         ///     Step 1 in TC-ID: 15.6.2 in 20.6.2 Level Crossing “not protected” Indication: Packet Handling
         ///     Step 2 in TC-ID: 15.6.2 in 20.6.2 Level Crossing “not protected” Indication: Packet Handling
         /// </summary>
-        public static void Verify_the_following_information_There_is_no_symbol_display_in_sub_area_B3_B5()
+        public static void Verify_the_following_information_There_is_no_symbol_display_in_sub_area_B3_B5(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1618,7 +1618,7 @@ namespace Testcase.DMITestCases
         ///     Step 1 in TC-ID: 16.2 in 21.2 TAF Question Box: Display of TAF Question box instead of the planning area information
         ///     Step 1 in TC-ID: 17.1.4 in 22.1.4 Planning Area forced into background by TAF Question box
         /// </summary>
-        public static void DMI_displays_in_SR_mode_level_2()
+        public static void DMI_displays_in_SR_mode_level_2(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1631,7 +1631,7 @@ namespace Testcase.DMITestCases
         ///     Step 2 in TC-ID: 17.1.4 in 22.1.4 Planning Area forced into background by TAF Question box
         ///     Step 2 in TC-ID: 17.10.1 in 22.10.1 Zoom PA Function: General appearance
         /// </summary>
-        public static void DMI_changes_from_SR_mode_to_FS_mode_level_2()
+        public static void DMI_changes_from_SR_mode_to_FS_mode_level_2(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1644,7 +1644,7 @@ namespace Testcase.DMITestCases
         ///     Step 3 in TC-ID: 17.1.4 in 22.1.4 Planning Area forced into background by TAF Question box
         ///     Step 3 in TC-ID: 17.10.1 in 22.10.1 Zoom PA Function: General appearance
         /// </summary>
-        public static void DMI_changes_from_FS_mode_to_OS_mode_level_2()
+        public static void DMI_changes_from_FS_mode_to_OS_mode_level_2(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1655,7 +1655,7 @@ namespace Testcase.DMITestCases
         ///     Step 4 in TC-ID: 16.1 in 21.1 TAF Question Box
         ///     Step 7 in TC-ID: 33.1 in 36.1 The relationship between parent and child windows (1)
         /// </summary>
-        public static void The_Main_window_is_displayed()
+        public static void The_Main_window_is_displayed(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1666,7 +1666,7 @@ namespace Testcase.DMITestCases
         ///     Step 4 in TC-ID: 17.1.2 in 22.1.2 Planning Area is suppressed in Level 1 and OS mode
         ///     Step 6 in TC-ID: 17.1.2 in 22.1.2 Planning Area is suppressed in Level 1 and OS mode
         /// </summary>
-        public static void Verify_that_the_Planning_Area_is_not_displayed_on_DMI()
+        public static void Verify_that_the_Planning_Area_is_not_displayed_on_DMI(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1724,7 +1724,7 @@ namespace Testcase.DMITestCases
         ///     Step 1 in TC-ID: 17.4.16 in 22.4.16 PA Track Condition: 30 PA Track Conditions
         ///     Step 3 in TC-ID: 17.4.17 in 22.4.17 PA Track Condition: First symbol prevails over the next coming symbol
         /// </summary>
-        public static void The_speed_pointer_is_indicated_as_20_kmh()
+        public static void The_speed_pointer_is_indicated_as_20_kmh(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1737,7 +1737,7 @@ namespace Testcase.DMITestCases
         ///     Step 9 in TC-ID: 17.4.2 in 22.4.2 PA Track Condition: Sound Horn in Sub-Area D2 and B3
         /// </summary>
         public static void
-            Verify_the_following_information1_Use_the_log_file_to_confirm_that_DMI_received_packet_information_MMI_TRACK_CONDITIONS_EVC_32_with_the_following_variables_MMI_Q_TRACKCOND_STEP_4MMI_NID_TRACKCOND_same_value_with_expected_result_No_2_of_step_7()
+            Verify_the_following_information1_Use_the_log_file_to_confirm_that_DMI_received_packet_information_MMI_TRACK_CONDITIONS_EVC_32_with_the_following_variables_MMI_Q_TRACKCOND_STEP_4MMI_NID_TRACKCOND_same_value_with_expected_result_No_2_of_step_7(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1761,7 +1761,7 @@ namespace Testcase.DMITestCases
         ///     Step 2 in TC-ID: 17.4.15 in 22.4.15 PA Track Condition: Change of traction system, DC 600/750 V Sub-Area D2 and B3
         ///     Step 2 in TC-ID: 17.4.16 in 22.4.16 PA Track Condition: 30 PA Track Conditions
         /// </summary>
-        public static void Mode_changes_to_FS_mode_L1()
+        public static void Mode_changes_to_FS_mode_L1(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1775,7 +1775,7 @@ namespace Testcase.DMITestCases
         ///     Step 3 in TC-ID: 17.4.5 in 22.4.5 PA Track Condition: Air Tightness in Sub-Area D2 and B3
         ///     Step 5 in TC-ID: 17.4.17 in 22.4.17 PA Track Condition: First symbol prevails over the next coming symbol
         /// </summary>
-        public static void Mode_remins_in_FS_mode()
+        public static void Mode_remins_in_FS_mode(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1795,7 +1795,7 @@ namespace Testcase.DMITestCases
         ///     Step 9 in TC-ID: 17.4.15 in 22.4.15 PA Track Condition: Change of traction system, DC 600/750 V Sub-Area D2 and B3
         /// </summary>
         public static void
-            Verify_the_following_information1_Use_the_log_file_to_confirm_that_DMI_received_packet_information_MMI_TRACK_CONDITIONS_EVC_32_with_the_following_variables_MMI_Q_TRACKCOND_STEP_4MMI_NID_TRACKCOND_Same_value_with_expected_result_No_2_of_step_7()
+            Verify_the_following_information1_Use_the_log_file_to_confirm_that_DMI_received_packet_information_MMI_TRACK_CONDITIONS_EVC_32_with_the_following_variables_MMI_Q_TRACKCOND_STEP_4MMI_NID_TRACKCOND_Same_value_with_expected_result_No_2_of_step_7(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1814,7 +1814,7 @@ namespace Testcase.DMITestCases
         ///     Step 3 in TC-ID: 17.4.14 in 22.4.14 PA Track Condition: Change of traction system, DC 1.5 kV Sub-Area D2 and B3
         ///     Step 3 in TC-ID: 17.4.15 in 22.4.15 PA Track Condition: Change of traction system, DC 600/750 V Sub-Area D2 and B3
         /// </summary>
-        public static void Mode_remians_in_FS_mode()
+        public static void Mode_remians_in_FS_mode(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1825,7 +1825,7 @@ namespace Testcase.DMITestCases
         ///     Step 8 in TC-ID: 17.4.6 in 22.4.6 PA Track Condition: Switch off regenerative brake in Sub-Area D2 and B3
         ///     Step 8 in TC-ID: 17.4.7 in PA Track Condition: Switch off eddy current brake in Sub-Area D2 and B3
         /// </summary>
-        public static void The_speed_pointer_is_indicated_as_40_kmh()
+        public static void The_speed_pointer_is_indicated_as_40_kmh(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1838,7 +1838,7 @@ namespace Testcase.DMITestCases
         ///     Step 2 in TC-ID: 29.1 in 29.1 UTC time and offset time(by driver)
         ///     Step 2 in TC-ID: 29.2 in 29.2 UTC time and offset time(by using EVC-3)
         /// </summary>
-        public static void Mode_changes_to_SR_mode_L1()
+        public static void Mode_changes_to_SR_mode_L1(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1850,7 +1850,7 @@ namespace Testcase.DMITestCases
         ///     Step 1 in TC-ID: 17.5.3 in 22.5.3 PA Gradient Profile:  Information updating
         ///     Step 1 in TC-ID: 17.5.4 in 22.5.4 PA Gradient Profile:  Invalid Information Ignoring
         /// </summary>
-        public static void DMI_displays_SR_mode_level_1()
+        public static void DMI_displays_SR_mode_level_1(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1864,7 +1864,7 @@ namespace Testcase.DMITestCases
         ///     Step 13 in TC-ID: 17.5.4 in 22.5.4 PA Gradient Profile:  Invalid Information Ignoring
         /// </summary>
         public static void
-            Verify_that_the_value_of_PA_Gradient_Profile_is_not_change_still_display_PA_Gradient_Profiles_value_11_and_22()
+            Verify_that_the_value_of_PA_Gradient_Profile_is_not_change_still_display_PA_Gradient_Profiles_value_11_and_22(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1875,7 +1875,7 @@ namespace Testcase.DMITestCases
         ///     Step 9 in TC-ID: 17.6.1 in 22.6.1 PA Speed Profile Discontinuity: Display in sub-area D6 and D7
         ///     Step 10 in TC-ID: 17.7.1 in 22.7.1 PA Speed Profile (PASP): Display in sub-area D7 and D8
         /// </summary>
-        public static void The_PA_Speed_Profile_segments_are_reappeared()
+        public static void The_PA_Speed_Profile_segments_are_reappeared(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1886,7 +1886,7 @@ namespace Testcase.DMITestCases
         ///     Step 1 in TC-ID: 17.6.2 in 22.6.2 PA Speed Profile Discontinuity: Information updating
         ///     Step 1 in TC-ID: 17.7.1 in 22.7.1 PA Speed Profile (PASP): Display in sub-area D7 and D8
         /// </summary>
-        public static void DMI_changes_from_SR_to_FS_mode_The_Planning_Area_is_displayed()
+        public static void DMI_changes_from_SR_to_FS_mode_The_Planning_Area_is_displayed(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1898,7 +1898,7 @@ namespace Testcase.DMITestCases
         ///     Step 5 in TC-ID: 17.6.2 in 22.6.2 PA Speed Profile Discontinuity: Information updating
         ///     Step 6 in TC-ID: 17.6.2 in 22.6.2 PA Speed Profile Discontinuity: Information updating
         /// </summary>
-        public static void Verify_the_following_information_An_information_of_PA_in_area_D_are_not_updated()
+        public static void Verify_the_following_information_An_information_of_PA_in_area_D_are_not_updated(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1910,7 +1910,7 @@ namespace Testcase.DMITestCases
         ///     Step 6 in TC-ID: 17.8 in 22.8 PA Indication Marker: Sub-Area D7
         ///     Step 8 in TC-ID: 17.8 in 22.8 PA Indication Marker: Sub-Area D7
         /// </summary>
-        public static void Verify_the_indication_marker_shall_not_be_shown_in_area_D7()
+        public static void Verify_the_indication_marker_shall_not_be_shown_in_area_D7(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1923,7 +1923,7 @@ namespace Testcase.DMITestCases
         ///     Step 5 in TC-ID: 17.9.4 in 22.9.4 Hide PA Function is configured ‘STORED’ with reboot DMI
         ///     Step 5 in TC-ID: 17.9.5 in 22.9.6 Hide PA Function is configured ‘TIMER’ with reboot DMI
         /// </summary>
-        public static void DMI_is_power_off()
+        public static void DMI_is_power_off(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1934,7 +1934,7 @@ namespace Testcase.DMITestCases
         ///     Step 1 in TC-ID: 17.9.3 in 22.9.3 Hide PA Function is configured ‘OFF’ with reboot DMI
         ///     Step 8 in TC-ID: 34.7 in 37.7 Dialogue Sequence of Settings window
         /// </summary>
-        public static void DMI_displays_the_Default_window()
+        public static void DMI_displays_the_Default_window(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1945,7 +1945,7 @@ namespace Testcase.DMITestCases
         ///     Step 2 in TC-ID: 17.9.3 in 22.9.3 Hide PA Function is configured ‘OFF’ with reboot DMI
         ///     Step 2 in TC-ID: 17.9.4 in 22.9.4 Hide PA Function is configured ‘STORED’ with reboot DMI
         /// </summary>
-        public static void DMI_displays_in_SR_mode_and_level_1()
+        public static void DMI_displays_in_SR_mode_and_level_1(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1958,7 +1958,7 @@ namespace Testcase.DMITestCases
         ///     Step 1 in TC-ID: 17.9.8 in 22.9.8 Hide PA Function is configured ‘STORED’ with reactivated Cabin A
         ///     Step 1 in TC-ID: 17.9.9 in 22.9.9 Hide PA Function is configured ‘TIMER’ with reactivated Cabin A
         /// </summary>
-        public static void The_DMI_displays_the_default_window()
+        public static void The_DMI_displays_the_default_window(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1972,7 +1972,7 @@ namespace Testcase.DMITestCases
         ///     Step 2 in TC-ID: 17.9.9 in 22.9.9 Hide PA Function is configured ‘TIMER’ with reactivated Cabin A
         ///     Step 6 in TC-ID: 17.9.9 in 22.9.9 Hide PA Function is configured ‘TIMER’ with reactivated Cabin A
         /// </summary>
-        public static void The_DMI_displays_in_SR_mode_level_1()
+        public static void The_DMI_displays_in_SR_mode_level_1(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1983,7 +1983,7 @@ namespace Testcase.DMITestCases
         ///     Step 4 in TC-ID: 17.9.6 in 22.9.5 Hide PA Function is configured ‘ON’ with reactivated Cabin A
         ///     Step 8 in TC-ID: 17.9.6 in 22.9.5 Hide PA Function is configured ‘ON’ with reactivated Cabin A
         /// </summary>
-        public static void The_Planning_area_is_disappeared_from_the_main_area_D_of_the_DMI()
+        public static void The_Planning_area_is_disappeared_from_the_main_area_D_of_the_DMI(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1996,7 +1996,7 @@ namespace Testcase.DMITestCases
         ///     Step 5 in TC-ID: 17.9.8 in 22.9.8 Hide PA Function is configured ‘STORED’ with reactivated Cabin A
         ///     Step 5 in TC-ID: 17.9.9 in 22.9.9 Hide PA Function is configured ‘TIMER’ with reactivated Cabin A
         /// </summary>
-        public static void The_train_is_at_standstill_DMI_is_displays_in_SB_mode()
+        public static void The_train_is_at_standstill_DMI_is_displays_in_SB_mode(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2009,7 +2009,7 @@ namespace Testcase.DMITestCases
         ///     Step 12 in TC-ID: 17.9.5 in 22.9.6 Hide PA Function is configured ‘TIMER’ with reboot DMI
         /// </summary>
         public static void
-            The_Planning_area_is_disappeared_and_hidden_from_main_area_D_for_60s_After_60s_the_planning_area_is_displayed_Verify_that_the_Hide_PA_button_is_displayed_at_sub_area_D14_on_the_planning_area()
+            The_Planning_area_is_disappeared_and_hidden_from_main_area_D_for_60s_After_60s_the_planning_area_is_displayed_Verify_that_the_Hide_PA_button_is_displayed_at_sub_area_D14_on_the_planning_area(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2020,7 +2020,7 @@ namespace Testcase.DMITestCases
         ///     Step 3 in TC-ID: 17.9.7 in 22.9.7 Hide PA Function is configured ‘OFF’ with reactivated Cabin A
         ///     Step 7 in TC-ID: 17.9.8 in 22.9.8 Hide PA Function is configured ‘STORED’ with reactivated Cabin A
         /// </summary>
-        public static void DMI_displays_in_FS_mode_Level_1_There_is_no_PA_display_on_DMI()
+        public static void DMI_displays_in_FS_mode_Level_1_There_is_no_PA_display_on_DMI(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2032,7 +2032,7 @@ namespace Testcase.DMITestCases
         ///     Step 4 in TC-ID: 17.9.9 in 22.9.9 Hide PA Function is configured ‘TIMER’ with reactivated Cabin A
         ///     Step 8 in TC-ID: 17.9.9 in 22.9.9 Hide PA Function is configured ‘TIMER’ with reactivated Cabin A
         /// </summary>
-        public static void The_Planning_area_is_disappeared_from_the_area_D_of_the_DMI()
+        public static void The_Planning_area_is_disappeared_from_the_area_D_of_the_DMI(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2043,7 +2043,7 @@ namespace Testcase.DMITestCases
         ///     Step 6 in TC-ID: 17.9.10 (Default Configuration) in 22.9.10 Hide PA Function with the communication loss between ETCS Onboard and DMI
         ///     Step 8 in TC-ID: 17.9.10 (Default Configuration) in 22.9.10 Hide PA Function with the communication loss between ETCS Onboard and DMI
         /// </summary>
-        public static void The_Planning_Information_is_disappeared_from_main_area_D()
+        public static void The_Planning_Information_is_disappeared_from_main_area_D(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2055,7 +2055,7 @@ namespace Testcase.DMITestCases
         ///     Step 12 in TC-ID: 17.9.11 in 22.9.11 Hide PA Function configured ‘STORED’ with re-activate cabin
         ///     Step 19 in TC-ID: 17.9.11 in 22.9.11 Hide PA Function configured ‘STORED’ with re-activate cabin
         /// </summary>
-        public static void The_planning_area_is_reappeared_by_this_activation()
+        public static void The_planning_area_is_reappeared_by_this_activation(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2066,7 +2066,7 @@ namespace Testcase.DMITestCases
         ///     Step 8 in TC-ID: 17.9.11 in 22.9.11 Hide PA Function configured ‘STORED’ with re-activate cabin
         ///     Step 14 in TC-ID: 17.9.11 in 22.9.11 Hide PA Function configured ‘STORED’ with re-activate cabin
         /// </summary>
-        public static void Train_is_at_standstillThe_Planning_area_is_disappeared_from_DMI()
+        public static void Train_is_at_standstillThe_Planning_area_is_disappeared_from_DMI(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2077,7 +2077,7 @@ namespace Testcase.DMITestCases
         ///     Step 10 in TC-ID: 17.9.11 in 22.9.11 Hide PA Function configured ‘STORED’ with re-activate cabin
         ///     Step 16 in TC-ID: 17.9.11 in 22.9.11 Hide PA Function configured ‘STORED’ with re-activate cabin
         /// </summary>
-        public static void DMI_displays_in_SR_mode_leve1()
+        public static void DMI_displays_in_SR_mode_leve1(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2089,7 +2089,7 @@ namespace Testcase.DMITestCases
         ///     Step 3 in TC-ID: 18.1.1.1.2 in 23.1.1.1.2 Verbose Visualization
         /// </summary>
         public static void
-            The_train_is_moving_forward_position_is_increase_The_speed_pointer_displays_the_current_speed()
+            The_train_is_moving_forward_position_is_increase_The_speed_pointer_displays_the_current_speed(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2100,7 +2100,7 @@ namespace Testcase.DMITestCases
         ///     Step 5 in TC-ID: 18.1.1.1.1 in 23.1.1.1.1 Concise Visualization
         ///     Step 4 in TC-ID: 18.1.1.1.2 in 23.1.1.1.2 Verbose Visualization
         /// </summary>
-        public static void DMI_displays_in_FS_mode_Level_2()
+        public static void DMI_displays_in_FS_mode_Level_2(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2111,7 +2111,7 @@ namespace Testcase.DMITestCases
         ///     Step 9 in TC-ID: 18.1.1.1.1 in 23.1.1.1.1 Concise Visualization
         ///     Step 10 in TC-ID: 18.1.1.1.1 in 23.1.1.1.1 Concise Visualization
         /// </summary>
-        public static void No_symbol_display_in_sub_area_E1()
+        public static void No_symbol_display_in_sub_area_E1(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2124,7 +2124,7 @@ namespace Testcase.DMITestCases
         ///     Step 4 in TC-ID: 18.4.3 in 23.4.3 Geographical Position: Additional requirements
         ///     Step 9 in TC-ID: 18.4.3 in 23.4.3 Geographical Position: Additional requirements
         /// </summary>
-        public static void The_symbol_DR03_displays_in_sub_area_G12()
+        public static void The_symbol_DR03_displays_in_sub_area_G12(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2136,7 +2136,7 @@ namespace Testcase.DMITestCases
         ///     Step 17 in TC-ID: 22.18 in Train Running Number window
         ///     Step 4 in TC-ID: 33.1 in 36.1 The relationship between parent and child windows (1)
         /// </summary>
-        public static void The_Train_Running_Number_window_is_displayed()
+        public static void The_Train_Running_Number_window_is_displayed(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2147,7 +2147,7 @@ namespace Testcase.DMITestCases
         ///     Step 1 in TC-ID: 18.6.1 in 23.6.1 Visualise of the Track Conditions Symbols
         ///     Step 2 in TC-ID: 18.6.1 in 23.6.1 Visualise of the Track Conditions Symbols
         /// </summary>
-        public static void Verify_the_following_information_1_There_is_no_symbol_display_in_sub_area_B3_B5()
+        public static void Verify_the_following_information_1_There_is_no_symbol_display_in_sub_area_B3_B5(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2159,7 +2159,7 @@ namespace Testcase.DMITestCases
         ///     Step 8 in TC-ID: 18.6.1 in 23.6.1 Visualise of the Track Conditions Symbols
         /// </summary>
         public static void
-            Verify_the_following_information_1_The_display_in_sub_area_B3_B5_still_not_change_because_of_all_areas_are_already_displaying_symbols()
+            Verify_the_following_information_1_The_display_in_sub_area_B3_B5_still_not_change_because_of_all_areas_are_already_displaying_symbols(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2178,7 +2178,7 @@ namespace Testcase.DMITestCases
         ///     Step 11 in TC-ID: 18.6.2 in 23.6.2 Maximum of Track Conditions in internal memory
         /// </summary>
         public static void
-            Received_packet_information_is_stored_to_internal_memory_the_symbol_in_sub_area_B3_B5_still_not_changed()
+            Received_packet_information_is_stored_to_internal_memory_the_symbol_in_sub_area_B3_B5_still_not_changed(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2190,7 +2190,7 @@ namespace Testcase.DMITestCases
         ///     Step 45 in TC-ID: 18.6.2 in 23.6.2 Maximum of Track Conditions in internal memory
         /// </summary>
         public static void
-            Verify_the_following_information_1_The_symbol_TC03_is_re_appear_if_ETCS_Onboard_is_re_transmit_EVC_32_to_DMI()
+            Verify_the_following_information_1_The_symbol_TC03_is_re_appear_if_ETCS_Onboard_is_re_transmit_EVC_32_to_DMI(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2201,7 +2201,7 @@ namespace Testcase.DMITestCases
         ///     Step 11 in TC-ID: 18.7 in 23.7 Tunnel stopping area track condition
         ///     Step 13 in TC-ID: 18.7 in 23.7 Tunnel stopping area track condition
         /// </summary>
-        public static void Verify_the_following_information_1_The_symbol_TC37_is_removed_from_DMI()
+        public static void Verify_the_following_information_1_The_symbol_TC37_is_removed_from_DMI(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2212,7 +2212,7 @@ namespace Testcase.DMITestCases
         ///     Step 12 in TC-ID: 18.7 in 23.7 Tunnel stopping area track condition
         ///     Step 14 in TC-ID: 18.7 in 23.7 Tunnel stopping area track condition
         /// </summary>
-        public static void Verify_the_following_information_1_The_symbol_TC37_is_resume_to_display_on_DMI()
+        public static void Verify_the_following_information_1_The_symbol_TC37_is_resume_to_display_on_DMI(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2230,7 +2230,7 @@ namespace Testcase.DMITestCases
         ///     Step 2 in TC-ID: 36.3.3 in 39.3.3 Restrictive Target with Speed Monitoring in Limited Supervision Mode
         ///     Step 2 in TC-ID: 36.3.4 in 39.3.4 Restrictive Target with Movement Authority Changed in Limited Supervision Mode
         /// </summary>
-        public static void The_train_can_drive_forward_and_all_brakes_are_not_applied()
+        public static void The_train_can_drive_forward_and_all_brakes_are_not_applied(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2245,7 +2245,7 @@ namespace Testcase.DMITestCases
         ///     Step 9 in TC-ID: 36.2 in Sound S3 - End of Intervention
         ///     Step 3 in TC-ID: 36.3.1 in 39.3.1 Restrictive Target with Speed Monitoring in Full Supervision Mode
         /// </summary>
-        public static void ETCS_OB_enters_FS_mode_in_Level_1()
+        public static void ETCS_OB_enters_FS_mode_in_Level_1(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2257,7 +2257,7 @@ namespace Testcase.DMITestCases
         ///     Step 6 in TC-ID: 36.1 in Sound S1 - Driving too fast
         ///     Step 13 in TC-ID: 36.1 in Sound S1 - Driving too fast
         /// </summary>
-        public static void Sound_S1_toofast_wav_is_played_once()
+        public static void Sound_S1_toofast_wav_is_played_once(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2269,7 +2269,7 @@ namespace Testcase.DMITestCases
         ///     Step 2 in TC-ID: 22.1.1 in 27.1.1 Sub-Level Window: General appearances
         /// </summary>
         public static void
-            Verify_the_following_information_The_Main_Override_Data_View_and_Special_buttons_are_invisible_The_Settings_button_is_visible()
+            Verify_the_following_information_The_Main_Override_Data_View_and_Special_buttons_are_invisible_The_Settings_button_is_visible(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2280,7 +2280,7 @@ namespace Testcase.DMITestCases
         ///     Step 8 in TC-ID: 22.1.1 in 27.1.1 Sub-Level Window: General appearances
         ///     Step 17 in TC-ID: 22.5.1 in 27.5.1 Level Selection Window: General appearance
         /// </summary>
-        public static void Verify_the_following_information_DMI_displays_Main_window()
+        public static void Verify_the_following_information_DMI_displays_Main_window(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2297,7 +2297,7 @@ namespace Testcase.DMITestCases
         ///     Step 9 in TC-ID: 33.3 in 36.2 The relationship between parent and child windows (2)
         ///     Step 6 in TC-ID: 34.7 in 37.7 Dialogue Sequence of Settings window
         /// </summary>
-        public static void DMI_displays_Default_window()
+        public static void DMI_displays_Default_window(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2310,7 +2310,7 @@ namespace Testcase.DMITestCases
         ///     Step 12 in TC-ID: 34.1.4 in 37.1.4.1.1 Data entry/validation process when enabling conditions not fullfilled: Level 1
         ///     Step 14 in TC-ID: 34.7 in 37.7 Dialogue Sequence of Settings window
         /// </summary>
-        public static void DMI_displays_Language_window()
+        public static void DMI_displays_Language_window(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2322,7 +2322,7 @@ namespace Testcase.DMITestCases
         ///     Step 35 in TC-ID: 22.1.1 in 27.1.1 Sub-Level Window: General appearances
         /// </summary>
         public static void
-            Verify_the_following_information_The_buttons_Main_Override_Data_View_and_Special_buttons_are_invisibled_in_any_other_state_The_Settings_button_is_still_visible()
+            Verify_the_following_information_The_buttons_Main_Override_Data_View_and_Special_buttons_are_invisibled_in_any_other_state_The_Settings_button_is_still_visible(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2333,7 +2333,7 @@ namespace Testcase.DMITestCases
         ///     Step 1 in TC-ID: 22.1.2 in 27.1.2 ETCS Specfic submenus and SN sub menus
         ///     Step 10 in TC-ID: 35.2 in 38.2 NTC System Status Messages
         /// </summary>
-        public static void DMI_displays_in_PLZB_STM_mode()
+        public static void DMI_displays_in_PLZB_STM_mode(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2345,7 +2345,7 @@ namespace Testcase.DMITestCases
         ///     Step 3 in TC-ID: 22.10 in 27.10 Special window
         /// </summary>
         public static void
-            Verify_the_following_information_While_press_and_hold_button_less_than_2_secThe_Click_sound_is_played_once_The_state_of_button_is_changed_to_Pressed_The_state_pressed_and_enabled_are_switched_repeatly_while_button_is_pressed_Use_the_log_file_to_confirm_that_DMI_sends_EVC_101_with_variable_MMI_T_BUTTONEVENT_and_MMI_Q_BUTTON_1_pressed_While_press_and_hold_button_over_2_secThe_state_of_button_is_changed_to_Pressed_and_without_toggle()
+            Verify_the_following_information_While_press_and_hold_button_less_than_2_secThe_Click_sound_is_played_once_The_state_of_button_is_changed_to_Pressed_The_state_pressed_and_enabled_are_switched_repeatly_while_button_is_pressed_Use_the_log_file_to_confirm_that_DMI_sends_EVC_101_with_variable_MMI_T_BUTTONEVENT_and_MMI_Q_BUTTON_1_pressed_While_press_and_hold_button_over_2_secThe_state_of_button_is_changed_to_Pressed_and_without_toggle(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2357,7 +2357,7 @@ namespace Testcase.DMITestCases
         ///     Step 11 in TC-ID: 7.1 in 27.2 Main window
         /// </summary>
         public static void
-            Verify_the_following_information_The_Shunting_button_turns_to_the_Enabled_state_without_a_sound()
+            Verify_the_following_information_The_Shunting_button_turns_to_the_Enabled_state_without_a_sound(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2370,7 +2370,7 @@ namespace Testcase.DMITestCases
         ///     Step 6 in TC-ID: 22.10 in 27.10 Special window
         /// </summary>
         public static void
-            While_press_and_hold_button_less_than_2_secThe_state_pressed_and_enabled_are_switched_repeatly_while_button_is_pressed_without_a_sound_While_press_and_hold_button_over_2_secThe_state_of_button_is_changed_to_Pressed_and_without_toggle()
+            While_press_and_hold_button_less_than_2_secThe_state_pressed_and_enabled_are_switched_repeatly_while_button_is_pressed_without_a_sound_While_press_and_hold_button_over_2_secThe_state_of_button_is_changed_to_Pressed_and_without_toggle(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2381,7 +2381,7 @@ namespace Testcase.DMITestCases
         ///     Step 5 in TC-ID: 22.5.1 in 27.5.1 Level Selection Window: General appearance
         ///     Step 6 in TC-ID: 22.5.1 in 27.5.1 Level Selection Window: General appearance
         /// </summary>
-        public static void DMI_still_displays_Level_window_No_sound_Click_is_played()
+        public static void DMI_still_displays_Level_window_No_sound_Click_is_played(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2393,7 +2393,7 @@ namespace Testcase.DMITestCases
         ///     Step 1 in TC-ID: 35.2 in 38.2 NTC System Status Messages
         ///     Step 7 in TC-ID: 35.2 in 38.2 NTC System Status Messages
         /// </summary>
-        public static void DMI_displays_Driver_ID_window_in_SB_mode()
+        public static void DMI_displays_Driver_ID_window_in_SB_mode(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2414,7 +2414,7 @@ namespace Testcase.DMITestCases
         ///     Step 12 in TC-ID: 22.29.1 in 27.29.1 Flexible Train data window: General appearances
         /// </summary>
         public static void
-            Verify_the_following_information_While_press_and_hold_button_less_than_1_5_secSound_Click_is_played_once_The_state_of_button_is_changed_to_Pressed_and_immediately_back_to_Enabled_state_The_last_character_is_removed_from_an_input_field_after_pressing_the_button_While_press_and_hold_button_over_1_5_secThe_state_pressed_and_released_are_switched_repeatly_while_button_is_pressed_and_the_characters_are_removed_from_an_input_field_repeatly_refer_to_pressed_state_The_sound_Click_is_played_repeatly_while_button_is_pressed()
+            Verify_the_following_information_While_press_and_hold_button_less_than_1_5_secSound_Click_is_played_once_The_state_of_button_is_changed_to_Pressed_and_immediately_back_to_Enabled_state_The_last_character_is_removed_from_an_input_field_after_pressing_the_button_While_press_and_hold_button_over_1_5_secThe_state_pressed_and_released_are_switched_repeatly_while_button_is_pressed_and_the_characters_are_removed_from_an_input_field_repeatly_refer_to_pressed_state_The_sound_Click_is_played_repeatly_while_button_is_pressed(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2434,7 +2434,7 @@ namespace Testcase.DMITestCases
         ///     Step 6 in TC-ID: 22.28.1 in 27.28.1 ‘Remove VBC’ Data Entry Window
         ///     Step 13 in TC-ID: 22.29.1 in 27.29.1 Flexible Train data window: General appearances
         /// </summary>
-        public static void Verify_the_following_information_The_character_is_stop_removing()
+        public static void Verify_the_following_information_The_character_is_stop_removing(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2457,7 +2457,7 @@ namespace Testcase.DMITestCases
         ///     Step 9 in TC-ID: 22.28.2 in 27.28.2 ‘Remove VBC’ Validation Window
         /// </summary>
         public static void
-            Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Enabled_the_border_of_button_is_shown_without_a_sound()
+            Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Enabled_the_border_of_button_is_shown_without_a_sound(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2471,7 +2471,7 @@ namespace Testcase.DMITestCases
         ///     Step 18 in TC-ID: 22.6.3.1 in 27.6.3.1 Wheel diameter window: General apearance
         ///     Step 16 in TC-ID: 22.6.5.1 in 27.6.5.1 Radar window: General appearance
         /// </summary>
-        public static void DMI_displays_the_Maintenance_window()
+        public static void DMI_displays_the_Maintenance_window(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2482,7 +2482,7 @@ namespace Testcase.DMITestCases
         ///     Step 16 in TC-ID: 22.6.1 in 27.6.1 Password window
         ///     Step 17 in TC-ID: 22.6.1 in 27.6.1 Password window
         /// </summary>
-        public static void DMI_displays_the_Settings_window()
+        public static void DMI_displays_the_Settings_window(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2493,7 +2493,7 @@ namespace Testcase.DMITestCases
         ///     Step 4 in TC-ID: 22.6.2 in 27.6.2 Maintenance window
         ///     Step 7 in TC-ID: 22.6.2 in 27.6.2 Maintenance window
         /// </summary>
-        public static void The_Maintenance_button_is_disabled()
+        public static void The_Maintenance_button_is_disabled(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2504,7 +2504,7 @@ namespace Testcase.DMITestCases
         ///     Step 16 in TC-ID: 22.6.2 in 27.6.2 Maintenance window
         ///     Step 5 in TC-ID: 22.14 in 27.14 System Version window
         /// </summary>
-        public static void Verify_the_following_information_1_DMI_displays_Setting_window()
+        public static void Verify_the_following_information_1_DMI_displays_Setting_window(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2521,7 +2521,7 @@ namespace Testcase.DMITestCases
         ///     Step 3 in TC-ID: 22.28.1 in 27.28.1 ‘Remove VBC’ Data Entry Window
         ///     Step 8 in TC-ID: 22.29.1 in 27.29.1 Flexible Train data window: General appearances
         /// </summary>
-        public static void Verify_the_following_information_The_state_of_released_button_is_changed_to_enabled()
+        public static void Verify_the_following_information_The_state_of_released_button_is_changed_to_enabled(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2533,7 +2533,7 @@ namespace Testcase.DMITestCases
         ///     Step 4 in TC-ID: 22.6.5.1 in 27.6.5.1 Radar window: General appearance
         /// </summary>
         public static void
-            See_the_expected_results_of_Step_2_Step_3_and_the_following_additional_information_The_pressed_key_is_added_in_an_input_field_immediately_The_cursor_is_jumped_to_next_position_after_entered_the_character_immediately()
+            See_the_expected_results_of_Step_2_Step_3_and_the_following_additional_information_The_pressed_key_is_added_in_an_input_field_immediately_The_cursor_is_jumped_to_next_position_after_entered_the_character_immediately(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2546,7 +2546,7 @@ namespace Testcase.DMITestCases
         ///     Step 8 in TC-ID: 22.6.5.1 in 27.6.5.1 Radar window: General appearance
         /// </summary>
         public static void
-            See_the_expected_results_of_Step_2_Step_6_and_the_following_additional_information_The_pressed_key_is_added_in_an_input_field_immediately_The_cursor_is_jumped_to_next_position_after_entered_the_character_immediately()
+            See_the_expected_results_of_Step_2_Step_6_and_the_following_additional_information_The_pressed_key_is_added_in_an_input_field_immediately_The_cursor_is_jumped_to_next_position_after_entered_the_character_immediately(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2561,7 +2561,7 @@ namespace Testcase.DMITestCases
         ///     Step 3 in TC-ID: 22.29.1 in 27.29.1 Flexible Train data window: General appearances
         /// </summary>
         public static void
-            Verify_the_following_information_The_state_of_button_is_changed_to_Pressed_the_border_of_button_is_removed_The_sound_Click_is_played_once()
+            Verify_the_following_information_The_state_of_button_is_changed_to_Pressed_the_border_of_button_is_removed_The_sound_Click_is_played_once(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2573,7 +2573,7 @@ namespace Testcase.DMITestCases
         ///     Step 13 in TC-ID: 22.6.5.1 in 27.6.5.1 Radar window: General appearance
         /// </summary>
         public static void
-            Verify_the_following_information_The_border_of_the_input_field_is_shown_state_Enabled_without_a_sound()
+            Verify_the_following_information_The_border_of_the_input_field_is_shown_state_Enabled_without_a_sound(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2587,7 +2587,7 @@ namespace Testcase.DMITestCases
         ///     Step 20 in TC-ID: 22.9.1 in 27.9.1 SR Speed/Distance window: General appearance
         ///     Step 5 in TC-ID: 22.29.1 in 27.29.1 Flexible Train data window: General appearances
         /// </summary>
-        public static void Verify_the_following_information_The_button_is_back_to_state_Pressed_without_a_sound()
+        public static void Verify_the_following_information_The_button_is_back_to_state_Pressed_without_a_sound(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2599,7 +2599,7 @@ namespace Testcase.DMITestCases
         ///     Step 23 in TC-ID: 22.6.5.1 in 27.6.5.1 Radar window: General appearance
         /// </summary>
         public static void
-            Verify_the_following_information_The_state_of_an_input_field_is_changed_to_selected_when_release_the_pressed_area_at_the_Label_part_of_input_field()
+            Verify_the_following_information_The_state_of_an_input_field_is_changed_to_selected_when_release_the_pressed_area_at_the_Label_part_of_input_field(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2611,7 +2611,7 @@ namespace Testcase.DMITestCases
         ///     Step 31 in TC-ID: 22.8.1.1 in 27.8.1.1
         /// </summary>
         public static void
-            Verify_the_following_information_The_state_of_an_input_field_is_changed_to_selected_when_release_the_pressed_area_at_the_Data_part_of_input_field()
+            Verify_the_following_information_The_state_of_an_input_field_is_changed_to_selected_when_release_the_pressed_area_at_the_Data_part_of_input_field(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2623,7 +2623,7 @@ namespace Testcase.DMITestCases
         ///     Step 25 in TC-ID: 22.6.5.1 in 27.6.5.1 Radar window: General appearance
         /// </summary>
         public static void
-            Verify_the_following_information_Use_the_log_file_to_confirm_that_DMI_sent_out_packet_MMI_DRIVER_REQUEST_EVC_101_with_variable_MMI_M_REQUEST_54_Exit_Maintenance_The_window_is_closed_and_the_Maintenance_window_is_displayed()
+            Verify_the_following_information_Use_the_log_file_to_confirm_that_DMI_sent_out_packet_MMI_DRIVER_REQUEST_EVC_101_with_variable_MMI_M_REQUEST_54_Exit_Maintenance_The_window_is_closed_and_the_Maintenance_window_is_displayed(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2635,7 +2635,7 @@ namespace Testcase.DMITestCases
         ///     Step 1 in TC-ID: 22.6.3.2.5 in 27.6.3.2.5 ‘Wheel diameter’ Data Checks: Technical Range Checks by Variable Range
         /// </summary>
         public static void
-            The_Wheel_diameter_data_entry_window_appears_on_ETCS_DMI_screen_instead_of_the_Settings_menu_window()
+            The_Wheel_diameter_data_entry_window_appears_on_ETCS_DMI_screen_instead_of_the_Settings_menu_window(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2647,7 +2647,7 @@ namespace Testcase.DMITestCases
         ///     Step 5 in TC-ID: 22.6.5.2.3.2  in 1 Introduction
         /// </summary>
         public static void
-            Input_Field_All1_The_Enter_button_associated_to_the_data_area_of_the_input_field_displays_the_previously_entered_value_Echo_Texts_All2_The_data_part_of_the_echo_text_displays()
+            Input_Field_All1_The_Enter_button_associated_to_the_data_area_of_the_input_field_displays_the_previously_entered_value_Echo_Texts_All2_The_data_part_of_the_echo_text_displays(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2660,7 +2660,7 @@ namespace Testcase.DMITestCases
         ///     Step 8 in TC-ID: 22.6.6.1 in 27.6.6.1
         /// </summary>
         public static void
-            Verify_the_following_information_DMI_displays_Maintenance_window_Use_the_log_file_to_confirm_that_DMI_sends_out_the_packet_MMI_DRIVER_REQUEST_EVC_101_with_variable_MMI_DRIVER_REQUEST_EVC_101_MMI_M_REQUEST_54_Exit_Maintenance()
+            Verify_the_following_information_DMI_displays_Maintenance_window_Use_the_log_file_to_confirm_that_DMI_sends_out_the_packet_MMI_DRIVER_REQUEST_EVC_101_with_variable_MMI_DRIVER_REQUEST_EVC_101_MMI_M_REQUEST_54_Exit_Maintenance(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2671,7 +2671,7 @@ namespace Testcase.DMITestCases
         ///     Step 7 in TC-ID: 22.6.4.1 in 27.6.4.1
         ///     Step 9 in TC-ID: 22.6.4.1 in 27.6.4.1
         /// </summary>
-        public static void DMI_displays_Wheel_diameter_validation_window()
+        public static void DMI_displays_Wheel_diameter_validation_window(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2684,7 +2684,7 @@ namespace Testcase.DMITestCases
         ///     Step 37 in TC-ID: 22.29.1 in 27.29.1 Flexible Train data window: General appearances
         /// </summary>
         public static void
-            Verify_the_following_information_The_state_of_an_input_field_is_changed_to_selected_when_release_the_pressed_area_at_the_Data_area_of_input_field()
+            Verify_the_following_information_The_state_of_an_input_field_is_changed_to_selected_when_release_the_pressed_area_at_the_Data_area_of_input_field(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2695,7 +2695,7 @@ namespace Testcase.DMITestCases
         ///     Step 1 in TC-ID: 22.6.5.2.3.2  in 1 Introduction
         ///     Step 1 in TC-ID: 22.6.5.2.5 in 27.6.5.2.5 ‘Radar’ Data Checks: Technical Range Checks by Variable Range
         /// </summary>
-        public static void The_Radar_data_entry_window_appears_on_ETCS_DMI_screen_instead_of_the_Settings_menu_window()
+        public static void The_Radar_data_entry_window_appears_on_ETCS_DMI_screen_instead_of_the_Settings_menu_window(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2706,7 +2706,7 @@ namespace Testcase.DMITestCases
         ///     Step 7 in TC-ID: 22.6.6.1 in 27.6.6.1
         ///     Step 9 in TC-ID: 22.6.6.1 in 27.6.6.1
         /// </summary>
-        public static void DMI_displays_Radar_validation_window()
+        public static void DMI_displays_Radar_validation_window(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2720,7 +2720,7 @@ namespace Testcase.DMITestCases
         ///     Step 6 in TC-ID: 22.29.2 in 27.29.2 Fixed Train data window: General appearances
         /// </summary>
         public static void
-            Verify_the_following_information_1_The_state_of_button_is_changed_to_Pressed_the_border_of_button_is_removed_2_The_sound_Click_is_played_once()
+            Verify_the_following_information_1_The_state_of_button_is_changed_to_Pressed_the_border_of_button_is_removed_2_The_sound_Click_is_played_once(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2734,7 +2734,7 @@ namespace Testcase.DMITestCases
         ///     Step 7 in TC-ID: 22.29.2 in 27.29.2 Fixed Train data window: General appearances
         /// </summary>
         public static void
-            Verify_the_following_information_1_The_border_of_the_button_is_shown_state_Enabled_without_a_sound()
+            Verify_the_following_information_1_The_border_of_the_button_is_shown_state_Enabled_without_a_sound(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2747,7 +2747,7 @@ namespace Testcase.DMITestCases
         ///     Step 5 in TC-ID: 22.26 in 27.26 System info window
         ///     Step 8 in TC-ID: 22.29.2 in 27.29.2 Fixed Train data window: General appearances
         /// </summary>
-        public static void Verify_the_following_information_1_The_button_is_back_to_state_Pressed_without_a_sound()
+        public static void Verify_the_following_information_1_The_button_is_back_to_state_Pressed_without_a_sound(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2759,7 +2759,7 @@ namespace Testcase.DMITestCases
         ///     Step 5 in TC-ID: 22.7.2 in 27.7.2 Data view window for Fixed Train data entry
         /// </summary>
         public static void
-            Verify_that_the_Data_view_is_displayed_the_next_page_of_the_train_data_The_window_title_of_the_next_page_is_displayed_with_text_Data_view_22_Data_View_ItemsThe_data_view_items_are_displayed_correctly_refer_to_following_items_RBC_IDRBC_phone_numberVBC_set_code_if_anyThe_data_part_of_RBC_phone_number_is_displayed_as_2_lines_Navigation_buttonsThe_state_of_Previous_and_Next_button_are_displayed_as_follows_Next_button_is_disabled_displays_as_symbol_NA18_2_Previous_button_is_enabled_displays_as_symbol_NA18()
+            Verify_that_the_Data_view_is_displayed_the_next_page_of_the_train_data_The_window_title_of_the_next_page_is_displayed_with_text_Data_view_22_Data_View_ItemsThe_data_view_items_are_displayed_correctly_refer_to_following_items_RBC_IDRBC_phone_numberVBC_set_code_if_anyThe_data_part_of_RBC_phone_number_is_displayed_as_2_lines_Navigation_buttonsThe_state_of_Previous_and_Next_button_are_displayed_as_follows_Next_button_is_disabled_displays_as_symbol_NA18_2_Previous_button_is_enabled_displays_as_symbol_NA18(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2771,7 +2771,7 @@ namespace Testcase.DMITestCases
         ///     Step 6 in TC-ID: 22.7.2 in 27.7.2 Data view window for Fixed Train data entry
         /// </summary>
         public static void
-            See_the_expected_result_of_step_2_5_and_the_following_points_1_The_state_of_Previous_and_Next_button_are_displayed_as_follows_Next_button_is_enabled_displays_as_symbol_NA17_Previous_button_is_enabled_displays_as_symbol_NA19()
+            See_the_expected_result_of_step_2_5_and_the_following_points_1_The_state_of_Previous_and_Next_button_are_displayed_as_follows_Next_button_is_enabled_displays_as_symbol_NA17_Previous_button_is_enabled_displays_as_symbol_NA19(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2783,7 +2783,7 @@ namespace Testcase.DMITestCases
         ///     Step 8 in TC-ID: 22.7.2 in 27.7.2 Data view window for Fixed Train data entry
         /// </summary>
         public static void
-            Verify_the_following_information_1_The_data_part_of_following_information_are_automatically_insert_a_line_brake_at_the_end_of_first_line_represented_as_2_lines_Page_1Driver_IDPage_2Radio_Network_IDRBC_Phone_Number()
+            Verify_the_following_information_1_The_data_part_of_following_information_are_automatically_insert_a_line_brake_at_the_end_of_first_line_represented_as_2_lines_Page_1Driver_IDPage_2Radio_Network_IDRBC_Phone_Number(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2794,7 +2794,7 @@ namespace Testcase.DMITestCases
         ///     Step 9 in TC-ID: 22.7.1 in 27.7.1 Data view window for Flexible Train data entry
         ///     Step 12 in TC-ID: 22.20.1 in 27.20.1 Override window: General appearance
         /// </summary>
-        public static void Verify_the_following_information_1_DMI_displays_Default_window()
+        public static void Verify_the_following_information_1_DMI_displays_Default_window(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2809,7 +2809,7 @@ namespace Testcase.DMITestCases
         ///     Step 4 in TC-ID: 22.28.1 in 27.28.1 ‘Remove VBC’ Data Entry Window
         /// </summary>
         public static void
-            See_the_expected_results_of_Step_3_Step_4_and_the_following_additional_information_The_pressed_key_is_added_in_an_input_field_immediately_The_cursor_is_jumped_to_next_position_after_entered_the_character_immediately()
+            See_the_expected_results_of_Step_3_Step_4_and_the_following_additional_information_The_pressed_key_is_added_in_an_input_field_immediately_The_cursor_is_jumped_to_next_position_after_entered_the_character_immediately(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2822,7 +2822,7 @@ namespace Testcase.DMITestCases
         ///     Step 12 in TC-ID: 22.9.1 in 27.9.1 SR Speed/Distance window: General appearance
         /// </summary>
         public static void
-            Verify_the_following_information_The_5_characters_are_added_on_an_input_field_as_one_group_e_g_10000()
+            Verify_the_following_information_The_5_characters_are_added_on_an_input_field_as_one_group_e_g_10000(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2835,7 +2835,7 @@ namespace Testcase.DMITestCases
         ///     Step 13 in TC-ID: 22.9.1 in 27.9.1 SR Speed/Distance window: General appearance
         /// </summary>
         public static void
-            Verify_the_following_information_The_fifth_character_is_shown_after_a_gap_of_fourth_character_separated_as_2_groups_e_g_1000_00()
+            Verify_the_following_information_The_fifth_character_is_shown_after_a_gap_of_fourth_character_separated_as_2_groups_e_g_1000_00(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2848,7 +2848,7 @@ namespace Testcase.DMITestCases
         ///     Step 15 in TC-ID: 7.3.2 in 27.17.3 Entering Characters
         /// </summary>
         public static void
-            Verify_the_following_information_The_data_value_is_separated_as_2_lines_In_each_line_is_displayed_only_8_characters()
+            Verify_the_following_information_The_data_value_is_separated_as_2_lines_In_each_line_is_displayed_only_8_characters(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2861,7 +2861,7 @@ namespace Testcase.DMITestCases
         ///     Step 4 in TC-ID: 22.29.1 in 27.29.1 Flexible Train data window: General appearances
         /// </summary>
         public static void
-            Verify_the_following_information_The_border_of_the_button_is_shown_state_Enabled_without_a_sound()
+            Verify_the_following_information_The_border_of_the_button_is_shown_state_Enabled_without_a_sound(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2874,7 +2874,7 @@ namespace Testcase.DMITestCases
         ///     Step 3 in TC-ID: 33.3 in 36.2 The relationship between parent and child windows (2)
         ///     Step 1 in TC-ID: 34.1.4.2 in 37.1.4.1.2 Data entry/validation process when enabling conditions not fullfilled: Level 2
         /// </summary>
-        public static void DMI_displays_RBC_data_window()
+        public static void DMI_displays_RBC_data_window(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2887,7 +2887,7 @@ namespace Testcase.DMITestCases
         ///     Step 36 in TC-ID: 22.29.1 in 27.29.1 Flexible Train data window: General appearances
         /// </summary>
         public static void
-            Verify_the_following_information_The_state_of_an_input_field_is_changed_to_selected_when_release_the_pressed_area_at_the_Label_area_of_input_field()
+            Verify_the_following_information_The_state_of_an_input_field_is_changed_to_selected_when_release_the_pressed_area_at_the_Label_area_of_input_field(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2900,7 +2900,7 @@ namespace Testcase.DMITestCases
         ///     Step 5 in TC-ID: 22.8.1.4 in 27.8.1.4 ‘RBC data’ Data Checks: Technical Range Checks by Data Validity
         ///     Step 7 in TC-ID: 22.8.1.4 in 27.8.1.4 ‘RBC data’ Data Checks: Technical Range Checks by Data Validity
         /// </summary>
-        public static void The_Yes_button_is_enabled()
+        public static void The_Yes_button_is_enabled(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2912,7 +2912,7 @@ namespace Testcase.DMITestCases
         ///     Step 4 in TC-ID: 22.8.1.4 in 27.8.1.4 ‘RBC data’ Data Checks: Technical Range Checks by Data Validity
         /// </summary>
         public static void
-            EVC_221_Use_the_log_file_to_verify_that_DMI_receives_packet_EVC_22_with_variable_MMI_M_BUTTONS_255_no_button_and_the_Yes_button_is_disabled()
+            EVC_221_Use_the_log_file_to_verify_that_DMI_receives_packet_EVC_22_with_variable_MMI_M_BUTTONS_255_no_button_and_the_Yes_button_is_disabled(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2924,7 +2924,7 @@ namespace Testcase.DMITestCases
         ///     Step 12 in TC-ID: 22.8.2.1 in 27.8.2.1 Radio Network ID window: General appearance
         /// </summary>
         public static void
-            Verify_the_following_information_DMI_closes_the_Radio_Network_ID_window_Use_the_log_file_to_confirm_that_DMI_sends_EVC_112_with_the_following_variables_MMI_M_BUTTONS_254MMI_N_DATA_ELEMENTS_1MMI_M_NID_DATA_3MMI_NID_MN_index_of_selected_network_ID_refer_to_EVC_22_from_previous_step_the_1st_index_is_start_with_0()
+            Verify_the_following_information_DMI_closes_the_Radio_Network_ID_window_Use_the_log_file_to_confirm_that_DMI_sends_EVC_112_with_the_following_variables_MMI_M_BUTTONS_254MMI_N_DATA_ELEMENTS_1MMI_M_NID_DATA_3MMI_NID_MN_index_of_selected_network_ID_refer_to_EVC_22_from_previous_step_the_1st_index_is_start_with_0(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2938,7 +2938,7 @@ namespace Testcase.DMITestCases
         ///     Step 4 in TC-ID: 33.3 in 36.2 The relationship between parent and child windows (2)
         ///     Step 6 in TC-ID: 33.3 in 36.2 The relationship between parent and child windows (2)
         /// </summary>
-        public static void DMI_displays_RBC_contact_window()
+        public static void DMI_displays_RBC_contact_window(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2949,7 +2949,7 @@ namespace Testcase.DMITestCases
         ///     Step 19 in TC-ID: 22.8.3.1 in 27.8.3.1 RBC Contact window: General appearance
         ///     Step 21 in TC-ID: 22.8.3.1 in 27.8.3.1 RBC Contact window: General appearance
         /// </summary>
-        public static void DMI_displays_RBC_Contact_window()
+        public static void DMI_displays_RBC_Contact_window(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2960,7 +2960,7 @@ namespace Testcase.DMITestCases
         ///     Step 9 in TC-ID: 22.9.1 in 27.9.1 SR Speed/Distance window: General appearance
         ///     Step 14 in TC-ID: 22.9.1 in 27.9.1 SR Speed/Distance window: General appearance
         /// </summary>
-        public static void Verify_the_following_information_The_value_pressed_key_is_not_added_into_an_input_field()
+        public static void Verify_the_following_information_The_value_pressed_key_is_not_added_into_an_input_field(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2972,7 +2972,7 @@ namespace Testcase.DMITestCases
         ///     Step 1 in TC-ID: 22.9.10 in 27.9.10 ‘SR speed / distance’ Data Checks: Technical Range Checks by Variable Range
         /// </summary>
         public static void
-            The_SR_speed_distance_data_entry_window_appears_on_ETCS_DMI_screen_instead_of_the_Special_menu_window()
+            The_SR_speed_distance_data_entry_window_appears_on_ETCS_DMI_screen_instead_of_the_Special_menu_window(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2986,7 +2986,7 @@ namespace Testcase.DMITestCases
         ///     Step 4 in TC-ID: 22.29.3 in 27.29.3 ‘Train data’ (Flexible) Data Checks: Technical Range Checks by Data Validity
         /// </summary>
         public static void
-            Input_Field1_The_eventually_displayed_data_value_in_the_data_area_of_the_input_field_is_replaced_by_1_character_or_value_corresponding_to_the_activated_data_key_state_Selected_IFvalue_of_pressed_keys()
+            Input_Field1_The_eventually_displayed_data_value_in_the_data_area_of_the_input_field_is_replaced_by_1_character_or_value_corresponding_to_the_activated_data_key_state_Selected_IFvalue_of_pressed_keys(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2998,7 +2998,7 @@ namespace Testcase.DMITestCases
         ///     Step 7 in TC-ID: 22.22.5 in 27.22.5 ‘Brake percentage’ Data Checks: Technical Range Checks by Data Validity
         /// </summary>
         public static void
-            Input_Field1_The_eventually_displayed_data_value_in_the_data_area_of_the_input_field_is_replaced_by_40_character_or_value_corresponding_to_the_activated_data_key_state_Selected_IFvalue_of_pressed_keys()
+            Input_Field1_The_eventually_displayed_data_value_in_the_data_area_of_the_input_field_is_replaced_by_40_character_or_value_corresponding_to_the_activated_data_key_state_Selected_IFvalue_of_pressed_keys(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -3009,7 +3009,7 @@ namespace Testcase.DMITestCases
         ///     Step 6 in TC-ID: 22.11 in 27.11 Adhesion Window
         ///     Step 8 in TC-ID: 22.11 in 27.11 Adhesion Window
         /// </summary>
-        public static void The_Adhesion_window_is_displayed()
+        public static void The_Adhesion_window_is_displayed(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -3020,7 +3020,7 @@ namespace Testcase.DMITestCases
         ///     Step 10 in TC-ID: 22.11 in 27.11 Adhesion Window
         ///     Step 11 in TC-ID: 22.11 in 27.11 Adhesion Window
         /// </summary>
-        public static void Verify_the_following_information_No_sound_Click_is_played()
+        public static void Verify_the_following_information_No_sound_Click_is_played(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -3031,7 +3031,7 @@ namespace Testcase.DMITestCases
         ///     Step 1 in TC-ID: 22.13.1 in 27.13.1 Set Clock function: General appearance
         ///     Step 44 in TC-ID: 22.13.1 in 27.13.1 Set Clock function: General appearance
         /// </summary>
-        public static void The_Set_clock_button_is_disabled()
+        public static void The_Set_clock_button_is_disabled(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -3043,7 +3043,7 @@ namespace Testcase.DMITestCases
         ///     Step 45 in TC-ID: 22.13.1 in 27.13.1 Set Clock function: General appearance
         ///     Step 48 in TC-ID: 22.13.1 in 27.13.1 Set Clock function: General appearance
         /// </summary>
-        public static void The_Set_clock_button_is_enabled()
+        public static void The_Set_clock_button_is_enabled(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -3054,7 +3054,7 @@ namespace Testcase.DMITestCases
         ///     Step 33 in TC-ID: 22.13.1 in 27.13.1 Set Clock function: General appearance
         ///     Step 29 in TC-ID: 22.29.1 in 27.29.1 Flexible Train data window: General appearances
         /// </summary>
-        public static void The_state_of_Yes_button_is_changed_to_enabled()
+        public static void The_state_of_Yes_button_is_changed_to_enabled(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -3065,7 +3065,7 @@ namespace Testcase.DMITestCases
         ///     Step 50 in TC-ID: 22.13.1 in 27.13.1 Set Clock function: General appearance
         ///     Step 10 in TC-ID: 22.19 in 27.19 Language Window
         /// </summary>
-        public static void Verify_the_following_information_1_DMI_displays_Settings_window()
+        public static void Verify_the_following_information_1_DMI_displays_Settings_window(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -3076,7 +3076,7 @@ namespace Testcase.DMITestCases
         ///     Step 4 in TC-ID: 22.17 in 27.17.1 Driver ID window: General Display
         ///     Step 1 in TC-ID: 33.1 in 36.1 The relationship between parent and child windows (1)
         /// </summary>
-        public static void The_Driver_ID_window_is_displayed()
+        public static void The_Driver_ID_window_is_displayed(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -3089,7 +3089,7 @@ namespace Testcase.DMITestCases
         ///     Step 7 in TC-ID: 22.28.1 in 27.28.1 ‘Remove VBC’ Data Entry Window
         /// </summary>
         public static void
-            Verify_the_following_information_The_5_characters_are_added_on_an_input_field_as_one_group_e_g_12345()
+            Verify_the_following_information_The_5_characters_are_added_on_an_input_field_as_one_group_e_g_12345(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -3103,7 +3103,7 @@ namespace Testcase.DMITestCases
         ///     Step 8 in TC-ID: 22.28.1 in 27.28.1 ‘Remove VBC’ Data Entry Window
         /// </summary>
         public static void
-            Verify_the_following_information_The_fifth_character_is_shown_after_a_gap_of_fourth_character_separated_as_2_groups_e_g_1234_56()
+            Verify_the_following_information_The_fifth_character_is_shown_after_a_gap_of_fourth_character_separated_as_2_groups_e_g_1234_56(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -3115,7 +3115,7 @@ namespace Testcase.DMITestCases
         ///     Step 3 in TC-ID: 22.19 in 27.19 Language Window
         ///     Step 4 in TC-ID: 22.22.3  in 27.22.3 Brake percentage window
         /// </summary>
-        public static void Verify_the_following_information_The_state_of_button_is_changed_to_Enabled()
+        public static void Verify_the_following_information_The_state_of_button_is_changed_to_Enabled(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -3126,7 +3126,7 @@ namespace Testcase.DMITestCases
         ///     Step 7 in TC-ID: 22.18 in Train Running Number window
         ///     Step 8 in TC-ID: 22.22.3  in 27.22.3 Brake percentage window
         /// </summary>
-        public static void No_number_is_displayed_on_the_Input_Field()
+        public static void No_number_is_displayed_on_the_Input_Field(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -3161,7 +3161,7 @@ namespace Testcase.DMITestCases
         ///     Step 8 in TC-ID: 22.28.2 in 27.28.2 ‘Remove VBC’ Validation Window
         /// </summary>
         public static void
-            Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Pressed_the_border_of_button_is_removed()
+            Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Pressed_the_border_of_button_is_removed(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -3174,7 +3174,7 @@ namespace Testcase.DMITestCases
         ///     Step 6 in TC-ID: 22.20.2 in 27.20.2 Override window in SB mode
         /// </summary>
         public static void
-            Verify_the_following_information_The_EOA_button_is_in_disable_state_Use_the_log_file_to_confirm_that_DMI_receives_EVC_30_with_with_bit_No_9_of_variable_MMI_Q_REQUEST_ENABLE_64_0_Disable_Start_Override_EOA()
+            Verify_the_following_information_The_EOA_button_is_in_disable_state_Use_the_log_file_to_confirm_that_DMI_receives_EVC_30_with_with_bit_No_9_of_variable_MMI_Q_REQUEST_ENABLE_64_0_Disable_Start_Override_EOA(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -3186,7 +3186,7 @@ namespace Testcase.DMITestCases
         ///     Step 16 in TC-ID: 22.21 in 27.21 Settings Window
         ///     Step 18 in TC-ID: 22.21 in 27.21 Settings Window
         /// </summary>
-        public static void The_Set_Clock_button_is_disabled()
+        public static void The_Set_Clock_button_is_disabled(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -3198,7 +3198,7 @@ namespace Testcase.DMITestCases
         ///     Step 17 in TC-ID: 22.21 in 27.21 Settings Window
         ///     Step 19 in TC-ID: 22.21 in 27.21 Settings Window
         /// </summary>
-        public static void The_Set_Clock_button_is_enabled()
+        public static void The_Set_Clock_button_is_enabled(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -3209,7 +3209,7 @@ namespace Testcase.DMITestCases
         ///     Step 4 in TC-ID: 22.22.1 in 27.22.1 Brake window
         ///     Step 8 in TC-ID: 22.22.1 in 27.22.1 Brake window
         /// </summary>
-        public static void DMI_displays_Settings_button()
+        public static void DMI_displays_Settings_button(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -3220,7 +3220,7 @@ namespace Testcase.DMITestCases
         ///     Step 5 in TC-ID: 22.22.1 in 27.22.1 Brake window
         ///     Step 9 in TC-ID: 22.22.1 in 27.22.1 Brake window
         /// </summary>
-        public static void The_Brake_button_is_disabled()
+        public static void The_Brake_button_is_disabled(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -3231,7 +3231,7 @@ namespace Testcase.DMITestCases
         ///     Step 16 in TC-ID: 22.22.1 in 27.22.1 Brake window
         ///     Step 5 in TC-ID: 22.22.2  in 27.22.2 Brake test window
         /// </summary>
-        public static void DMI_displays_Brake_window()
+        public static void DMI_displays_Brake_window(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -3244,7 +3244,7 @@ namespace Testcase.DMITestCases
         ///     Step 5 in TC-ID: 22.22.4  in 27.22.4 Brake percentage validation window
         /// </summary>
         public static void
-            Verify_the_following_information_DMI_displays_Brake_window_Use_the_log_file_to_confirm_that_DMI_sends_out_the_packet_MMI_DRIVER_REQUEST_EVC_101_with_variable_MMI_DRIVER_REQUEST_EVC_101_MMI_M_REQUEST_60_Exit_brake_percentage()
+            Verify_the_following_information_DMI_displays_Brake_window_Use_the_log_file_to_confirm_that_DMI_sends_out_the_packet_MMI_DRIVER_REQUEST_EVC_101_with_variable_MMI_DRIVER_REQUEST_EVC_101_MMI_M_REQUEST_60_Exit_brake_percentage(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -3255,7 +3255,7 @@ namespace Testcase.DMITestCases
         ///     Step 4 in TC-ID: 22.22.4  in 27.22.4 Brake percentage validation window
         ///     Step 6 in TC-ID: 22.22.4  in 27.22.4 Brake percentage validation window
         /// </summary>
-        public static void DMI_displays_Brake_percentage_validation_window()
+        public static void DMI_displays_Brake_percentage_validation_window(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -3267,7 +3267,7 @@ namespace Testcase.DMITestCases
         ///     Step 1 in TC-ID: 22.22.6 in 27.22.6 ‘Brake percentage’ Data Checks: Technical Range Checks by Variable Range
         /// </summary>
         public static void
-            The_Brake_percentage_data_entry_window_appears_on_ETCS_DMI_screen_instead_of_the_Special_menu_window()
+            The_Brake_percentage_data_entry_window_appears_on_ETCS_DMI_screen_instead_of_the_Special_menu_window(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -3278,7 +3278,7 @@ namespace Testcase.DMITestCases
         ///     Step 3 in TC-ID: 22.24 in 27.24 Brightness window
         ///     Step 3 in TC-ID: 22.25 in 27.25 Volume window
         /// </summary>
-        public static void Verify_the_following_information_The_input_field_is_stop_decreasing()
+        public static void Verify_the_following_information_The_input_field_is_stop_decreasing(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -3289,7 +3289,7 @@ namespace Testcase.DMITestCases
         ///     Step 5 in TC-ID: 22.24 in 27.24 Brightness window
         ///     Step 5 in TC-ID: 22.25 in 27.25 Volume window
         /// </summary>
-        public static void Verify_the_following_information_The_input_field_is_stop_increasing()
+        public static void Verify_the_following_information_The_input_field_is_stop_increasing(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -3300,7 +3300,7 @@ namespace Testcase.DMITestCases
         ///     Step 12 in TC-ID: 22.24 in 27.24 Brightness window
         ///     Step 12 in TC-ID: 22.25 in 27.25 Volume window
         /// </summary>
-        public static void Verify_the_following_information_1_DMI_displays_the_Settings_window()
+        public static void Verify_the_following_information_1_DMI_displays_the_Settings_window(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -3312,7 +3312,7 @@ namespace Testcase.DMITestCases
         ///     Step 2 in TC-ID: 22.28.1 in 27.28.1 ‘Remove VBC’ Data Entry Window
         /// </summary>
         public static void
-            Verify_the_following_information_The_state_of_button_is_changed_to_Pressed_and_immediately_back_to_Enabled_state_The_sound_Click_is_played_once_The_Input_Field_displays_the_value_associated_to_the_data_key_according_to_the_pressings_in_state_Pressed_The_cursor_is_displayed_as_horizontal_line_below_the_value_of_the_numeric_keyboard_data_key_in_the_input_field_The_input_field_is_used_to_enter_the_VBC_code_The_colour_of_data_value_is_black_An_echo_text_is_composed_of_Label_Part_and_Data_Part_The_Data_part_of_echo_text_is_left_aligned()
+            Verify_the_following_information_The_state_of_button_is_changed_to_Pressed_and_immediately_back_to_Enabled_state_The_sound_Click_is_played_once_The_Input_Field_displays_the_value_associated_to_the_data_key_according_to_the_pressings_in_state_Pressed_The_cursor_is_displayed_as_horizontal_line_below_the_value_of_the_numeric_keyboard_data_key_in_the_input_field_The_input_field_is_used_to_enter_the_VBC_code_The_colour_of_data_value_is_black_An_echo_text_is_composed_of_Label_Part_and_Data_Part_The_Data_part_of_echo_text_is_left_aligned(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -3324,7 +3324,7 @@ namespace Testcase.DMITestCases
         ///     Step 9 in TC-ID: 22.28.1 in 27.28.1 ‘Remove VBC’ Data Entry Window
         /// </summary>
         public static void
-            Verify_the_following_information_The_data_value_is_separated_into_2_lines_In_each_line_is_displayed_only_8_characters()
+            Verify_the_following_information_The_data_value_is_separated_into_2_lines_In_each_line_is_displayed_only_8_characters(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -3335,7 +3335,7 @@ namespace Testcase.DMITestCases
         ///     Step 13 in TC-ID: 22.27.1 in 27.27.1 ‘Set VBC’ Data Entry Window
         ///     Step 30 in TC-ID: 34.7 in 37.7 Dialogue Sequence of Settings window
         /// </summary>
-        public static void DMI_displays_Set_VBC_window()
+        public static void DMI_displays_Set_VBC_window(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -3346,7 +3346,7 @@ namespace Testcase.DMITestCases
         ///     Step 14 in TC-ID: 22.27.1 in 27.27.1 ‘Set VBC’ Data Entry Window
         ///     Step 14 in TC-ID: 22.28.1 in 27.28.1 ‘Remove VBC’ Data Entry Window
         /// </summary>
-        public static void The_state_of_VBC_Code_input_field_is_changed_to_accepted()
+        public static void The_state_of_VBC_Code_input_field_is_changed_to_accepted(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -3358,7 +3358,7 @@ namespace Testcase.DMITestCases
         ///     Step 19 in TC-ID: 22.28.1 in 27.28.1 ‘Remove VBC’ Data Entry Window
         /// </summary>
         public static void
-            Verify_the_following_information_The_state_of_an_input_field_is_changed_to_accepted_when_release_the_pressed_area_at_the_Data_area_of_input_field()
+            Verify_the_following_information_The_state_of_an_input_field_is_changed_to_accepted_when_release_the_pressed_area_at_the_Data_area_of_input_field(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -3369,7 +3369,7 @@ namespace Testcase.DMITestCases
         ///     Step 7 in TC-ID: 22.27.2 in 27.27.2 ‘Set VBC’ Validation Window
         ///     Step 9 in TC-ID: 22.27.2 in 27.27.2 ‘Set VBC’ Validation Window
         /// </summary>
-        public static void DMI_displays_Set_VBC_Validation_window()
+        public static void DMI_displays_Set_VBC_Validation_window(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -3381,7 +3381,7 @@ namespace Testcase.DMITestCases
         ///     Step 1 in TC-ID: 22.27.9 in 27.27.9 ‘Set VBC’ Data Checks: Technical Range Checks by Variable Range
         /// </summary>
         public static void
-            The_Set_VBC_data_entry_window_appears_on_ETCS_DMI_screen_instead_of_the_Settings_menu_window()
+            The_Set_VBC_data_entry_window_appears_on_ETCS_DMI_screen_instead_of_the_Settings_menu_window(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -3393,7 +3393,7 @@ namespace Testcase.DMITestCases
         ///     Step 7 in TC-ID: 22.28.3 in 27.28.3 ‘Remove VBC’ Data Checks: Technical Range Checks by Data Validity
         /// </summary>
         public static void
-            Input_Field1_The_eventually_displayed_data_value_in_the_data_area_of_the_input_field_is_replaced_by_65536_character_or_value_corresponding_to_the_activated_data_key_state_Selected_IFvalue_of_pressed_keys()
+            Input_Field1_The_eventually_displayed_data_value_in_the_data_area_of_the_input_field_is_replaced_by_65536_character_or_value_corresponding_to_the_activated_data_key_state_Selected_IFvalue_of_pressed_keys(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -3405,7 +3405,7 @@ namespace Testcase.DMITestCases
         ///     Step 5 in TC-ID: 22.27.9 in 27.27.9 ‘Set VBC’ Data Checks: Technical Range Checks by Variable Range
         /// </summary>
         public static void
-            After_pressing_the_Yes_button_the_data_validation_window_Validate_Set_VBC_appears_instead_of_the_Set_VBC_data_entry_window_The_data_part_of_echo_text_displays_65536_in_white_2_After_the_data_area_of_the_input_field_containing_Yes_is_pressed_the_data_validation_window_disappears_and_returns_to_the_parent_window_Settings_window_of_Set_VBC_window_with_enabled_Set_VBC_button()
+            After_pressing_the_Yes_button_the_data_validation_window_Validate_Set_VBC_appears_instead_of_the_Set_VBC_data_entry_window_The_data_part_of_echo_text_displays_65536_in_white_2_After_the_data_area_of_the_input_field_containing_Yes_is_pressed_the_data_validation_window_disappears_and_returns_to_the_parent_window_Settings_window_of_Set_VBC_window_with_enabled_Set_VBC_button(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -3416,7 +3416,7 @@ namespace Testcase.DMITestCases
         ///     Step 13 in TC-ID: 22.28.1 in 27.28.1 ‘Remove VBC’ Data Entry Window
         ///     Step 36 in TC-ID: 34.7 in 37.7 Dialogue Sequence of Settings window
         /// </summary>
-        public static void DMI_displays_Remove_VBC_window()
+        public static void DMI_displays_Remove_VBC_window(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -3427,7 +3427,7 @@ namespace Testcase.DMITestCases
         ///     Step 4 in TC-ID: 22.28.2 in 27.28.2 ‘Remove VBC’ Validation Window
         ///     Step 6 in TC-ID: 22.28.2 in 27.28.2 ‘Remove VBC’ Validation Window
         /// </summary>
-        public static void DMI_displays_Remove_VBC_Validation_window()
+        public static void DMI_displays_Remove_VBC_Validation_window(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -3439,7 +3439,7 @@ namespace Testcase.DMITestCases
         ///     Step 1 in TC-ID: 22.28.9 in 27.28.9 ‘Remove VBC’ Data Checks: Technical Range Checks by Variable Range
         /// </summary>
         public static void
-            The_Remove_VBC_data_entry_window_appears_on_ETCS_DMI_screen_instead_of_the_Settings_menu_window()
+            The_Remove_VBC_data_entry_window_appears_on_ETCS_DMI_screen_instead_of_the_Settings_menu_window(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -3452,7 +3452,7 @@ namespace Testcase.DMITestCases
         ///     Step 22 in TC-ID: 22.29.1 in 27.29.1 Flexible Train data window: General appearances
         ///     Step 24 in TC-ID: 22.29.1 in 27.29.1 Flexible Train data window: General appearances
         /// </summary>
-        public static void See_the_expected_results_of_Step_7_Step_8()
+        public static void See_the_expected_results_of_Step_7_Step_8(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -3463,7 +3463,7 @@ namespace Testcase.DMITestCases
         ///     Step 15 in TC-ID: 22.29.1 in 27.29.1 Flexible Train data window: General appearances
         ///     Step 17 in TC-ID: 22.29.1 in 27.29.1 Flexible Train data window: General appearances
         /// </summary>
-        public static void See_the_expected_results_of_Step_11_Step_13()
+        public static void See_the_expected_results_of_Step_11_Step_13(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -3475,7 +3475,7 @@ namespace Testcase.DMITestCases
         ///     Step 18 in TC-ID: 22.29.2 in 27.29.2 Fixed Train data window: General appearances
         /// </summary>
         public static void
-            DMI_displays_Train_data_window_Verify_the_following_information_1_The_state_of_Yes_button_below_text_label_Train_data_Entry_is_complete_still_disabled()
+            DMI_displays_Train_data_window_Verify_the_following_information_1_The_state_of_Yes_button_below_text_label_Train_data_Entry_is_complete_still_disabled(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -3487,7 +3487,7 @@ namespace Testcase.DMITestCases
         ///     Step 5 in TC-ID: 29.1 in 29.1 UTC time and offset time(by driver)
         /// </summary>
         public static void
-            Verify_the_following_information_The_new_UTC_time_and_offset_time_are_changed_and_displayed_according_to_the_entered_data_from_the_driver_Use_the_log_file_to_verify_that_DMI_sends_out_packet_EVC_109_to_ETCS_OB_correctly()
+            Verify_the_following_information_The_new_UTC_time_and_offset_time_are_changed_and_displayed_according_to_the_entered_data_from_the_driver_Use_the_log_file_to_verify_that_DMI_sends_out_packet_EVC_109_to_ETCS_OB_correctly(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -3498,7 +3498,7 @@ namespace Testcase.DMITestCases
         ///     Step 3 in TC-ID: 29.3 in 29.3 UTC time and offset time(By VAP acting as NTP server)
         ///     Step 5 in TC-ID: 29.3 in 29.3 UTC time and offset time(By VAP acting as NTP server)
         /// </summary>
-        public static void Verify_the_following_information1_DMI_time_is_updated_only_its_offset_time()
+        public static void Verify_the_following_information1_DMI_time_is_updated_only_its_offset_time(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -3509,7 +3509,7 @@ namespace Testcase.DMITestCases
         ///     Step 16 in TC-ID: 34.1.4 in 37.1.4.1.1 Data entry/validation process when enabling conditions not fullfilled: Level 1
         ///     Step 18 in TC-ID: 34.7 in 37.7 Dialogue Sequence of Settings window
         /// </summary>
-        public static void DMI_displays_Volume_window()
+        public static void DMI_displays_Volume_window(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -3521,7 +3521,7 @@ namespace Testcase.DMITestCases
         ///     Step 1 in TC-ID: 34.4.2.2 in 37.4.2.2 SH Symbol in Level 2 and Level 3
         /// </summary>
         public static void
-            Verify_the_following_information_Use_the_log_file_to_confirm_that_DMI_receives_EVC_7_with_variable_OBU_TR_M_MODE_3_SH_Shunting_The_symbol_MO01_is_display_in_area_B7_DMI_closes_Main_window_and_returns_to_the_Default_window()
+            Verify_the_following_information_Use_the_log_file_to_confirm_that_DMI_receives_EVC_7_with_variable_OBU_TR_M_MODE_3_SH_Shunting_The_symbol_MO01_is_display_in_area_B7_DMI_closes_Main_window_and_returns_to_the_Default_window(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -3534,7 +3534,7 @@ namespace Testcase.DMITestCases
         ///     Step 2 in TC-ID: 34.4.2.2 in 37.4.2.2 SH Symbol in Level 2 and Level 3
         ///     Step 2 in TC-ID: 34.4.2.3 in 37.4.2.3 Text Message “Shunting Request Failed” in Level 2 and Level 3
         /// </summary>
-        public static void See_the_expected_results_at_Step_1()
+        public static void See_the_expected_results_at_Step_1(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -3545,7 +3545,7 @@ namespace Testcase.DMITestCases
         ///     Step 1 in TC-ID: 34.7 in 37.7 Dialogue Sequence of Settings window
         ///     Step 7 in TC-ID: 34.7 in 37.7 Dialogue Sequence of Settings window
         /// </summary>
-        public static void DMI_displays_Settings_window_Verify_the_following_information_The_Close_button_is_enabled()
+        public static void DMI_displays_Settings_window_Verify_the_following_information_The_Close_button_is_enabled(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -3556,7 +3556,7 @@ namespace Testcase.DMITestCases
         ///     Step 4 in TC-ID: 35.2 in 38.2 NTC System Status Messages
         ///     Step 9 in TC-ID: 35.2 in 38.2 NTC System Status Messages
         /// </summary>
-        public static void DMI_displays_train_running_number_window()
+        public static void DMI_displays_train_running_number_window(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -3567,7 +3567,7 @@ namespace Testcase.DMITestCases
         ///     Step 7 in TC-ID: 36.1 in Sound S1 - Driving too fast
         ///     Step 6 in TC-ID: 36.2 in Sound S3 - End of Intervention
         /// </summary>
-        public static void System_is_power_off_and_DMI_displays_No_contact_with_ATP()
+        public static void System_is_power_off_and_DMI_displays_No_contact_with_ATP(SignalPool pool)
         {
             throw new NotImplementedException();
         }

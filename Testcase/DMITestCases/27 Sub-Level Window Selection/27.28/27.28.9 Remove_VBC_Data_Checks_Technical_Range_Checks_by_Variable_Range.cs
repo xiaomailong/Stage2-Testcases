@@ -63,7 +63,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .The_Remove_VBC_data_entry_window_appears_on_ETCS_DMI_screen_instead_of_the_Settings_menu_window();
+                .The_Remove_VBC_data_entry_window_appears_on_ETCS_DMI_screen_instead_of_the_Settings_menu_window(this);
 
 
             /*
@@ -106,7 +106,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions
-                .This_step_is_to_complete_the_process_of_Remove_VBC_Press_the_Yes_button_on_the_Remove_VBC_window_Validate_the_data_in_the_data_validation_window();
+                .This_step_is_to_complete_the_process_of_Remove_VBC_Press_the_Yes_button_on_the_Remove_VBC_window_Validate_the_data_in_the_data_validation_window(this);
 
 
             /*

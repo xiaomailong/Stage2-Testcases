@@ -63,7 +63,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 1563         (partly: disabled);             
             */
             // Call generic Check Results Method
-            DmiExpectedResults.The_Set_clock_button_is_disabled();
+            DmiExpectedResults.The_Set_clock_button_is_disabled(this);
 
 
             /*
@@ -81,7 +81,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 1563         (partly: enabled);             
             */
             // Call generic Check Results Method
-            DmiExpectedResults.The_Set_clock_button_is_enabled();
+            DmiExpectedResults.The_Set_clock_button_is_enabled(this);
 
 
             /*
@@ -113,7 +113,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Release pressed button");
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_The_state_of_released_button_is_changed_to_enabled();
+            DmiExpectedResults.Verify_the_following_information_The_state_of_released_button_is_changed_to_enabled(this);
 
 
             /*
@@ -124,7 +124,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions
-                .Perform_action_step_3_4_for_the_1_to_9_buttons_Note_Press_the_Del_button_to_delete_an_information_when_entered_data_is_out_of_input_field_range_is_acceptable();
+                .Perform_action_step_3_4_for_the_1_to_9_buttons_Note_Press_the_Del_button_to_delete_an_information_when_entered_data_is_out_of_input_field_range_is_acceptable(this);
 
 
             /*
@@ -274,7 +274,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11942 (partly: MMI_gen 4682 (partly: Offset));(2) MMI_gen 11942 (partly: MMI_gen 4634 (partly: Offset));(3) MMI_gen 11942 (partly: MMI_gen 4652 (partly: Offset), MMI_gen 4684 (partly: accepted, Offset));(4) MMI_gen 11942 (partly: MMI_gen 4684 (partly: No next input field, data entry process terminated));(5) MMI_gen 11942 (partly: MMI_gen 4700 (partly: Offset));(6) MMI_gen 11942 (partly: MMI_gen 4681 (partly: Offset), MMI_gen 4890, MMI_gen 4698);(7) MMI_gen 11942 (partly: MMI_gen 4909 (partly: Enabled), MMI_gen 4910 (partly: Enabled, MMI_gen 4211 (partly: colour))); MMI_gen 4374;
             */
             // Call generic Action Method
-            DmiActions.Confirm_an_entered_data_by_pressing_an_input_field();
+            DmiActions.Confirm_an_entered_data_by_pressing_an_input_field(this);
 
 
             /*
@@ -339,7 +339,7 @@ namespace Testcase.DMITestCases
             Expected Result: The state of ‘Yes’ button is changed to enabled
             */
             // Call generic Check Results Method
-            DmiExpectedResults.The_state_of_Yes_button_is_changed_to_enabled();
+            DmiExpectedResults.The_state_of_Yes_button_is_changed_to_enabled(this);
 
 
             /*
@@ -428,7 +428,7 @@ namespace Testcase.DMITestCases
             Expected Result: The Set clock button is disabled
             */
             // Call generic Check Results Method
-            DmiExpectedResults.The_Set_clock_button_is_disabled();
+            DmiExpectedResults.The_Set_clock_button_is_disabled(this);
 
 
             /*
@@ -438,7 +438,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 1563         (partly: enabled bit#26);             
             */
             // Call generic Check Results Method
-            DmiExpectedResults.The_Set_clock_button_is_enabled();
+            DmiExpectedResults.The_Set_clock_button_is_enabled(this);
 
 
             /*
@@ -467,7 +467,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 1563         (partly: enabled bit#25);             
             */
             // Call generic Check Results Method
-            DmiExpectedResults.The_Set_clock_button_is_enabled();
+            DmiExpectedResults.The_Set_clock_button_is_enabled(this);
 
 
             /*
@@ -490,7 +490,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press the ‘Close’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_1_DMI_displays_Settings_window();
+            DmiExpectedResults.Verify_the_following_information_1_DMI_displays_Settings_window(this);
 
 
             /*

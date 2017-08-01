@@ -63,9 +63,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays SR mode, level 1
             */
             // Call generic Action Method
-            DmiActions.Activate_cabin_A_Then_perform_SoM_to_SR_mode_level_1();
+            DmiActions.Activate_cabin_A_Then_perform_SoM_to_SR_mode_level_1(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_SR_mode_level_1();
+            DmiExpectedResults.DMI_displays_SR_mode_level_1(this);
 
 
             /*
@@ -74,7 +74,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI changes from SR to FS mode. The Planning Area is displayed in area D with PA Gradient Profile value = 1 and PA Gradient Profile colour is grey
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_pass_BG1_Then_stop_the_train();
+            DmiActions.Drive_the_train_forward_pass_BG1_Then_stop_the_train(this);
 
 
             /*
@@ -137,7 +137,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_that_the_value_of_PA_Gradient_Profile_is_not_change_still_display_PA_Gradient_Profiles_value_11_and_22();
+                .Verify_that_the_value_of_PA_Gradient_Profile_is_not_change_still_display_PA_Gradient_Profiles_value_11_and_22(this);
 
 
             /*
@@ -148,7 +148,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_that_the_value_of_PA_Gradient_Profile_is_not_change_still_display_PA_Gradient_Profiles_value_11_and_22();
+                .Verify_that_the_value_of_PA_Gradient_Profile_is_not_change_still_display_PA_Gradient_Profiles_value_11_and_22(this);
 
 
             /*
@@ -159,7 +159,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_that_the_value_of_PA_Gradient_Profile_is_not_change_still_display_PA_Gradient_Profiles_value_11_and_22();
+                .Verify_that_the_value_of_PA_Gradient_Profile_is_not_change_still_display_PA_Gradient_Profiles_value_11_and_22(this);
 
 
             /*
@@ -170,7 +170,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_that_the_value_of_PA_Gradient_Profile_is_not_change_still_display_PA_Gradient_Profiles_value_11_and_22();
+                .Verify_that_the_value_of_PA_Gradient_Profile_is_not_change_still_display_PA_Gradient_Profiles_value_11_and_22(this);
 
 
             /*

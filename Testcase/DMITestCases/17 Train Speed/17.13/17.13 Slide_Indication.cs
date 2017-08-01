@@ -63,9 +63,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI changes from SR mode to FS mode
             */
             // Call generic Action Method
-            DmiActions.Driver_the_train_forward();
+            DmiActions.Driver_the_train_forward(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_changes_from_SR_mode_to_FS_mode();
+            DmiExpectedResults.DMI_changes_from_SR_mode_to_FS_mode(this);
 
 
             /*
@@ -75,7 +75,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 1694 (partly: slip is not set), MMI_gen 1695 (partly: slide is not set), MMI_gen 1692 (partly: ETC speed, slide);
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_with_speed_140_kmh();
+            DmiActions.Drive_the_train_forward_with_speed_140_kmh(this);
 
 
             /*
@@ -94,7 +94,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_The_SlipSlide_indication_is_not_displayed_on_the_speed_hub_Sound_Sinfo_is_not_played();
+                .Verify_the_following_information_The_SlipSlide_indication_is_not_displayed_on_the_speed_hub_Sound_Sinfo_is_not_played(this);
 
 
             /*
@@ -105,7 +105,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_The_SlipSlide_indication_is_not_displayed_on_the_speed_hub_Sound_Sinfo_is_not_played();
+                .Verify_the_following_information_The_SlipSlide_indication_is_not_displayed_on_the_speed_hub_Sound_Sinfo_is_not_played(this);
 
 
             /*

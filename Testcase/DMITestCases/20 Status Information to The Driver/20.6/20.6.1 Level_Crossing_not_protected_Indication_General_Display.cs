@@ -64,7 +64,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 10481;  (2) MMI_gen 9503; MMI_gen 10485; 
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_pass_BG1();
+            DmiActions.Drive_the_train_forward_pass_BG1(this);
 
 
             /*
@@ -74,7 +74,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 10481;  (2) MMI_gen 9503; MMI_gen 10485;
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_pass_BG2();
+            DmiActions.Drive_the_train_forward_pass_BG2(this);
 
 
             /*
@@ -108,7 +108,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 10484 (partly: removed stored LX);(2) MMI_gen 10484 (partly: reception packet EVC-33, NID = MMI_NID_TRACKCOND);
             */
             // Call generic Action Method
-            DmiActions.Continue_to_drive_the_train_forward_with_speed_below_permitted_speed();
+            DmiActions.Continue_to_drive_the_train_forward_with_speed_below_permitted_speed(this);
 
 
             /*
@@ -118,7 +118,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 10484 (partly: removed stored LX);(2) MMI_gen 10484 (partly: reception packet EVC-33, NID = MMI_NID_TRACKCOND);
             */
             // Call generic Action Method
-            DmiActions.Continue_to_drive_the_train_forward_with_speed_below_permitted_speed();
+            DmiActions.Continue_to_drive_the_train_forward_with_speed_below_permitted_speed(this);
 
 
             /*
@@ -128,7 +128,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 10484 (partly: removed stored LX);(2) MMI_gen 10484 (partly: reception packet EVC-33, NID = MMI_NID_TRACKCOND);
             */
             // Call generic Action Method
-            DmiActions.Continue_to_drive_the_train_forward_with_speed_below_permitted_speed();
+            DmiActions.Continue_to_drive_the_train_forward_with_speed_below_permitted_speed(this);
 
 
             /*

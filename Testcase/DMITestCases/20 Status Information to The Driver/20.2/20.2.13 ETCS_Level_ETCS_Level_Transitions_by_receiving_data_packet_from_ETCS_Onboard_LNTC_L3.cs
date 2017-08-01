@@ -68,9 +68,9 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions
-                .Perform_the_following_action_Power_on_the_systemActivate_the_cabin_Perform_start_of_mission_to_ATB_STM_mode_Level_NTC();
+                .Perform_the_following_action_Power_on_the_systemActivate_the_cabin_Perform_start_of_mission_to_ATB_STM_mode_Level_NTC(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_ATB_STM_mode_Level_NTC();
+            DmiExpectedResults.DMI_displays_in_ATB_STM_mode_Level_NTC(this);
 
 
             /*
@@ -80,7 +80,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 9430 (partly:Negative LE14); 
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_with_30_kmh_and_then_pass_BG0_with_level_transition_announcement();
+            DmiActions.Drive_the_train_forward_with_30_kmh_and_then_pass_BG0_with_level_transition_announcement(this);
 
 
             /*
@@ -90,7 +90,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 9431 (partly: LE15); 
             */
             // Call generic Action Method
-            DmiActions.Pass_the_level_transition_acknowledgement_area();
+            DmiActions.Pass_the_level_transition_acknowledgement_area(this);
 
 
             /*
@@ -107,7 +107,7 @@ namespace Testcase.DMITestCases
             Expected Result: Mode changes to FS mode, Level 3
             */
             // Call generic Action Method
-            DmiActions.Pass_BG1_at_level_transition_border();
+            DmiActions.Pass_BG1_at_level_transition_border(this);
 
 
             /*

@@ -71,7 +71,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 643 (partly: 1st bullet, changes during train movement, 3rd bullet, move to calculated Y-coordinate);
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward();
+            DmiActions.Drive_the_train_forward(this);
 
 
             /*
@@ -81,7 +81,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 643 (partly: 4th bullet, deleted);
             */
             // Call generic Action Method
-            DmiActions.Continue_to_drive_the_train_forward();
+            DmiActions.Continue_to_drive_the_train_forward(this);
 
 
             /*
@@ -115,7 +115,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 1418 (partly: 1st bullet, PL23 on top of PL22 and PL21);
             */
             // Call generic Action Method
-            DmiActions.Stop_the_train();
+            DmiActions.Stop_the_train(this);
 
 
             /*
@@ -125,7 +125,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 6956 (partly: MMI_gen 244);
             */
             // Call generic Action Method
-            DmiActions.Simulate_the_communication_loss_between_ETCS_Onboard_and_DMI();
+            DmiActions.Simulate_the_communication_loss_between_ETCS_Onboard_and_DMI(this);
 
 
             /*
@@ -135,9 +135,9 @@ namespace Testcase.DMITestCases
             Test Step Comment: Note under MMI_gen 6956;
             */
             // Call generic Action Method
-            DmiActions.Re_establish_the_communication_between_ETCS_onboard_and_DMI();
+            DmiActions.Re_establish_the_communication_between_ETCS_onboard_and_DMI(this);
             // Call generic Check Results Method
-            DmiExpectedResults.The_PA_Speed_Profile_segments_are_reappeared();
+            DmiExpectedResults.The_PA_Speed_Profile_segments_are_reappeared(this);
 
 
             /*
@@ -154,7 +154,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 6956 (partly: MMI_gen 240);
             */
             // Call generic Action Method
-            DmiActions.Simulate_the_communication_loss_between_ETCS_Onboard_and_DMI();
+            DmiActions.Simulate_the_communication_loss_between_ETCS_Onboard_and_DMI(this);
 
 
             /*
@@ -164,7 +164,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: Note under MMI_gen 6956;
             */
             // Call generic Action Method
-            DmiActions.Re_establish_the_communication_between_ETCS_onboard_and_DMI();
+            DmiActions.Re_establish_the_communication_between_ETCS_onboard_and_DMI(this);
 
 
             /*

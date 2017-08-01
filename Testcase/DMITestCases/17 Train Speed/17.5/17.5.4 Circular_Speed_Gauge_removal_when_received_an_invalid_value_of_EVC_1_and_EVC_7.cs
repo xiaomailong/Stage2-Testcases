@@ -64,7 +64,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in FS mode, Level 1
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_FS_mode_Level_1();
+            DmiExpectedResults.DMI_displays_in_FS_mode_Level_1(this);
 
 
             /*
@@ -75,7 +75,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_1_The_Circular_Speed_Gauge_is_removed_from_sub_area_B2_Note_The_ciruclar_speed_guage_is_re_appear_when_DMI_received_packet_EVC_1_from_ETCS_onboard();
+                .Verify_the_following_information_1_The_Circular_Speed_Gauge_is_removed_from_sub_area_B2_Note_The_ciruclar_speed_guage_is_re_appear_when_DMI_received_packet_EVC_1_from_ETCS_onboard(this);
 
 
             /*
@@ -86,7 +86,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_1_The_Circular_Speed_Gauge_is_removed_from_sub_area_B2_Note_The_ciruclar_speed_guage_is_re_appear_when_DMI_received_packet_EVC_1_from_ETCS_onboard();
+                .Verify_the_following_information_1_The_Circular_Speed_Gauge_is_removed_from_sub_area_B2_Note_The_ciruclar_speed_guage_is_re_appear_when_DMI_received_packet_EVC_1_from_ETCS_onboard(this);
 
 
             /*
@@ -97,7 +97,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_1_The_Circular_Speed_Gauge_is_removed_from_sub_area_B2_Note_The_ciruclar_speed_guage_is_re_appear_when_DMI_received_packet_EVC_1_from_ETCS_onboard();
+                .Verify_the_following_information_1_The_Circular_Speed_Gauge_is_removed_from_sub_area_B2_Note_The_ciruclar_speed_guage_is_re_appear_when_DMI_received_packet_EVC_1_from_ETCS_onboard(this);
 
 
             /*
@@ -108,7 +108,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_1_The_Circular_Speed_Gauge_is_removed_from_sub_area_B2_Note_The_ciruclar_speed_guage_is_re_appear_when_DMI_received_packet_EVC_1_from_ETCS_onboard();
+                .Verify_the_following_information_1_The_Circular_Speed_Gauge_is_removed_from_sub_area_B2_Note_The_ciruclar_speed_guage_is_re_appear_when_DMI_received_packet_EVC_1_from_ETCS_onboard(this);
 
 
             /*
@@ -119,7 +119,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_1_The_Circular_Speed_Gauge_is_removed_from_sub_area_B2_Note_The_ciruclar_speed_guage_is_re_appear_when_DMI_received_packet_EVC_1_from_ETCS_onboard();
+                .Verify_the_following_information_1_The_Circular_Speed_Gauge_is_removed_from_sub_area_B2_Note_The_ciruclar_speed_guage_is_re_appear_when_DMI_received_packet_EVC_1_from_ETCS_onboard(this);
 
 
             /*

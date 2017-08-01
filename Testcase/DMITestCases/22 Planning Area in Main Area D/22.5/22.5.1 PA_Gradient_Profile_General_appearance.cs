@@ -64,9 +64,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SR mode, level 1
             */
             // Call generic Action Method
-            DmiActions.Activate_cabin_A_Driver_performs_SoM_to_SR_mode_level_1();
+            DmiActions.Activate_cabin_A_Driver_performs_SoM_to_SR_mode_level_1(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_SR_mode_level_1();
+            DmiExpectedResults.DMI_displays_in_SR_mode_level_1(this);
 
 
             /*
@@ -76,7 +76,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 638;      MMI_gen 9940;    (2) MMI_gen 640;              MMI_gen 7268;                       (3) MMI_gen 639;             (4) MMI_gen 2605;       (5) MMI_gen 3050 (partly: white line);         (6) MMI_gen 3034 (partly: grey line);           (7) MMI_gen 7270   (partly: black line);
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_passing_BG1();
+            DmiActions.Drive_the_train_forward_passing_BG1(this);
 
 
             /*
@@ -86,7 +86,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 7271;   
             */
             // Call generic Action Method
-            DmiActions.Simulate_the_communication_loss_between_ETCS_Onboard_and_DMI();
+            DmiActions.Simulate_the_communication_loss_between_ETCS_Onboard_and_DMI(this);
 
 
             /*
@@ -96,7 +96,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: Note under MMI_gen 7271;
             */
             // Call generic Action Method
-            DmiActions.Re_establish_the_communication_between_ETCS_onboard_and_DMI();
+            DmiActions.Re_establish_the_communication_between_ETCS_onboard_and_DMI(this);
 
 
             /*

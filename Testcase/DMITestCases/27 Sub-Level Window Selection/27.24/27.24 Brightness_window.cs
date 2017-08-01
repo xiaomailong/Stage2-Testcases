@@ -86,7 +86,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Release ‘-’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_The_input_field_is_stop_decreasing();
+            DmiExpectedResults.Verify_the_following_information_The_input_field_is_stop_decreasing(this);
 
 
             /*
@@ -109,7 +109,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Release ‘+’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_The_input_field_is_stop_increasing();
+            DmiExpectedResults.Verify_the_following_information_The_input_field_is_stop_increasing(this);
 
 
             /*
@@ -122,7 +122,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Press and hold an input field");
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Pressed_the_border_of_button_is_removed();
+                .Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Pressed_the_border_of_button_is_removed(this);
 
 
             /*
@@ -132,10 +132,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9390 (partly: Brightness window);
             */
             // Call generic Action Method
-            DmiActions.Slide_out_an_input_field();
+            DmiActions.Slide_out_an_input_field(this);
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Enabled_the_border_of_button_is_shown_without_a_sound();
+                .Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Enabled_the_border_of_button_is_shown_without_a_sound(this);
 
 
             /*
@@ -145,10 +145,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9390 (partly: Brightness window);
             */
             // Call generic Action Method
-            DmiActions.Slide_back_into_an_input_field();
+            DmiActions.Slide_back_into_an_input_field(this);
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Pressed_the_border_of_button_is_removed();
+                .Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Pressed_the_border_of_button_is_removed(this);
 
 
             /*
@@ -186,7 +186,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_1_DMI_displays_the_Settings_window();
+            DmiExpectedResults.Verify_the_following_information_1_DMI_displays_the_Settings_window(this);
 
 
             /*

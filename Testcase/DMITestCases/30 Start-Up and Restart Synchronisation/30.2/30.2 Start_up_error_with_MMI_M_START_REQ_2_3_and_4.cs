@@ -70,7 +70,7 @@ namespace Testcase.DMITestCases
             Expected Result: 
             */
             // Call generic Action Method
-            DmiActions.Restart_OTE_and_ATP_again_until_the_message_starting_up_is_displayed_in_area_E5();
+            DmiActions.Restart_OTE_and_ATP_again_until_the_message_starting_up_is_displayed_in_area_E5(this);
 
 
             /*
@@ -87,7 +87,7 @@ namespace Testcase.DMITestCases
             Expected Result: 
             */
             // Call generic Action Method
-            DmiActions.Restart_OTE_and_ATP_again_until_the_message_starting_up_is_displayed_in_area_E5();
+            DmiActions.Restart_OTE_and_ATP_again_until_the_message_starting_up_is_displayed_in_area_E5(this);
 
 
             /*

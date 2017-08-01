@@ -70,9 +70,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Driver ID window
             */
             // Call generic Action Method
-            DmiActions.Activate_Cabin_A();
+            DmiActions.Activate_Cabin_A(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Driver_ID_window();
+            DmiExpectedResults.DMI_displays_Driver_ID_window(this);
 
 
             /*

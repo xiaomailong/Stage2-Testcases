@@ -62,7 +62,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays RBC Data window
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_RBC_Data_window();
+            DmiExpectedResults.DMI_displays_RBC_Data_window(this);
 
 
             /*
@@ -71,7 +71,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Main window
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Main_window();
+            DmiExpectedResults.DMI_displays_Main_window(this);
 
 
             /*
@@ -80,7 +80,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Main window with enabled ‘Start’ button
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Main_window_with_enabled_Start_button();
+            DmiExpectedResults.DMI_displays_Main_window_with_enabled_Start_button(this);
 
 
             /*
@@ -91,7 +91,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Default_window();
+            DmiExpectedResults.DMI_displays_Default_window(this);
 
 
             /*
@@ -112,7 +112,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_The_EOA_button_is_in_disable_state_Use_the_log_file_to_confirm_that_DMI_receives_EVC_30_with_with_bit_No_9_of_variable_MMI_Q_REQUEST_ENABLE_64_0_Disable_Start_Override_EOA();
+                .Verify_the_following_information_The_EOA_button_is_in_disable_state_Use_the_log_file_to_confirm_that_DMI_receives_EVC_30_with_with_bit_No_9_of_variable_MMI_Q_REQUEST_ENABLE_64_0_Disable_Start_Override_EOA(this);
 
 
             /*

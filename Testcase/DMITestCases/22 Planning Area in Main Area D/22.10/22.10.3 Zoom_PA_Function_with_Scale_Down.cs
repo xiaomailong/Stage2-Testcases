@@ -62,9 +62,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays the default window. The Driver ID window is displayed
             */
             // Call generic Action Method
-            DmiActions.Activate_cabin_A();
+            DmiActions.Activate_cabin_A(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_the_default_window_The_Driver_ID_window_is_displayed();
+            DmiExpectedResults.DMI_displays_the_default_window_The_Driver_ID_window_is_displayed(this);
 
 
             /*
@@ -73,9 +73,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SR mode, level 1
             */
             // Call generic Action Method
-            DmiActions.Driver_performs_SoM_to_SR_mode_level_1();
+            DmiActions.Driver_performs_SoM_to_SR_mode_level_1(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_SR_mode_level_1();
+            DmiExpectedResults.DMI_displays_in_SR_mode_level_1(this);
 
 
             /*
@@ -85,7 +85,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7384 (partly: NA04);
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_pass_BG1();
+            DmiActions.Drive_the_train_forward_pass_BG1(this);
 
 
             /*
@@ -131,7 +131,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7373 (partly: no visible);
             */
             // Call generic Action Method
-            DmiActions.Driver_presses_Hide_button_at_position_top_right_of_planning_area_in_sub_area_D14();
+            DmiActions.Driver_presses_Hide_button_at_position_top_right_of_planning_area_in_sub_area_D14(this);
 
 
             /*

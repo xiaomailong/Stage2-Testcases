@@ -65,7 +65,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Driver ID window
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Driver_ID_window();
+            DmiExpectedResults.DMI_displays_Driver_ID_window(this);
 
 
             /*
@@ -74,7 +74,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SR mode Level 1
             */
             // Call generic Action Method
-            DmiActions.Perform_SoM_in_SR_mode_Level_1();
+            DmiActions.Perform_SoM_in_SR_mode_Level_1(this);
 
 
             /*
@@ -84,7 +84,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7025 (partly: 2nd bullet, #4, Ack Level 0 transition); MMI_gen 1310 (partly:LE07); MMI_gen 9431 (partly: LE07);(2) MMI_gen 11470 (partly: Bit #6);
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_pass_BG1();
+            DmiActions.Drive_the_train_forward_pass_BG1(this);
 
 
             /*
@@ -103,7 +103,7 @@ namespace Testcase.DMITestCases
             Expected Result: Level transition from Level 1 to Level 0.DMI displays symbol LE01 in area C8
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_pass_a_distance_to_level_transition();
+            DmiActions.Drive_the_train_pass_a_distance_to_level_transition(this);
 
 
             /*
@@ -113,7 +113,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9430          (partly:LE10);(2) MMI_gen 7025 (partly: 2nd bullet, #4, non-Ack Level 1 transition);
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_pass_BG3();
+            DmiActions.Drive_the_train_forward_pass_BG3(this);
 
 
             /*
@@ -122,7 +122,7 @@ namespace Testcase.DMITestCases
             Expected Result: Level transition from Level 0 to Level 1.DMI displays symbol LE03 in area C8
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_pass_a_distance_to_level_transition();
+            DmiActions.Drive_the_train_pass_a_distance_to_level_transition(this);
 
 
             /*

@@ -65,7 +65,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions
-                .Use_the_test_script_file_22_22_1_a_xml_to_send_EVC_30_with_MMI_NID_WINDOW_4MMI_Q_REQUEST_ENABLE_64_31_0MMI_Q_REQUEST_ENABLE_64_28_0();
+                .Use_the_test_script_file_22_22_1_a_xml_to_send_EVC_30_with_MMI_NID_WINDOW_4MMI_Q_REQUEST_ENABLE_64_31_0MMI_Q_REQUEST_ENABLE_64_28_0(this);
 
 
             /*
@@ -94,7 +94,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Settings_button();
+            DmiExpectedResults.DMI_displays_Settings_button(this);
 
 
             /*
@@ -104,9 +104,9 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions
-                .Use_the_test_script_file_22_22_1_a_xml_to_send_EVC_30_with_MMI_NID_WINDOW_4MMI_Q_REQUEST_ENABLE_64_31_0MMI_Q_REQUEST_ENABLE_64_28_0();
+                .Use_the_test_script_file_22_22_1_a_xml_to_send_EVC_30_with_MMI_NID_WINDOW_4MMI_Q_REQUEST_ENABLE_64_31_0MMI_Q_REQUEST_ENABLE_64_28_0(this);
             // Call generic Check Results Method
-            DmiExpectedResults.The_Brake_button_is_disabled();
+            DmiExpectedResults.The_Brake_button_is_disabled(this);
 
 
             /*
@@ -135,7 +135,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Settings_button();
+            DmiExpectedResults.DMI_displays_Settings_button(this);
 
 
             /*
@@ -145,9 +145,9 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions
-                .Use_the_test_script_file_22_22_1_a_xml_to_send_EVC_30_with_MMI_NID_WINDOW_4MMI_Q_REQUEST_ENABLE_64_31_0MMI_Q_REQUEST_ENABLE_64_28_0();
+                .Use_the_test_script_file_22_22_1_a_xml_to_send_EVC_30_with_MMI_NID_WINDOW_4MMI_Q_REQUEST_ENABLE_64_31_0MMI_Q_REQUEST_ENABLE_64_28_0(this);
             // Call generic Check Results Method
-            DmiExpectedResults.The_Brake_button_is_disabled();
+            DmiExpectedResults.The_Brake_button_is_disabled(this);
 
 
             /*
@@ -183,7 +183,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 11816 (partly: MMI_gen 4557 (partly: button ‘Test’, MMI_gen 4382 (partly: state ‘Enabled’ when slide out with force applied, no sound))); MMI_gen 4374;
             */
             // Call generic Check Results Method
-            DmiExpectedResults.The_border_of_the_button_is_shown_state_Enabled_without_a_sound();
+            DmiExpectedResults.The_border_of_the_button_is_shown_state_Enabled_without_a_sound(this);
 
 
             /*
@@ -193,7 +193,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 11816 (partly: MMI_gen 4557 (partly: button ‘Test’, MMI_gen 4382 (partly: state ‘Pressed’ when slide back, no sound))); MMI_gen 4375;
             */
             // Call generic Check Results Method
-            DmiExpectedResults.The_button_is_back_to_state_Pressed_without_a_sound();
+            DmiExpectedResults.The_button_is_back_to_state_Pressed_without_a_sound(this);
 
 
             /*
@@ -212,7 +212,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Brake_window();
+            DmiExpectedResults.DMI_displays_Brake_window(this);
 
 
             /*

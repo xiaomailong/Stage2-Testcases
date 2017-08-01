@@ -66,7 +66,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 105 (partly: equation, MMI_O_BRAKETARGET – OBU_TR_O_TRAIN); MMI_gen 104 (partly: able to show); MMI_gen 6771;(2) MMI_gen 104 (partly: no leading zero);(3) MMI_gen 104 (partly: right aligned);
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_pass_BG1_Then_stop_the_train();
+            DmiActions.Drive_the_train_forward_pass_BG1_Then_stop_the_train(this);
 
 
             /*
@@ -85,7 +85,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_1_The_distance_to_target_bar_and_digital_is_removed_from_the_DMI_After_test_scipt_file_is_executed_the_distance_to_target_bar_and_digital_is_re_appear_refer_to_received_packet_EVC_1_from_ETCS_Onboard();
+                .Verify_the_following_information_1_The_distance_to_target_bar_and_digital_is_removed_from_the_DMI_After_test_scipt_file_is_executed_the_distance_to_target_bar_and_digital_is_re_appear_refer_to_received_packet_EVC_1_from_ETCS_Onboard(this);
 
 
             /*
@@ -96,7 +96,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_1_The_distance_to_target_bar_and_digital_is_removed_from_the_DMI_After_test_scipt_file_is_executed_the_distance_to_target_bar_and_digital_is_re_appear_refer_to_received_packet_EVC_1_from_ETCS_Onboard();
+                .Verify_the_following_information_1_The_distance_to_target_bar_and_digital_is_removed_from_the_DMI_After_test_scipt_file_is_executed_the_distance_to_target_bar_and_digital_is_re_appear_refer_to_received_packet_EVC_1_from_ETCS_Onboard(this);
 
 
             /*

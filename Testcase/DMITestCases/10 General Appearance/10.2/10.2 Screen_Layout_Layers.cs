@@ -64,7 +64,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 4213;   (2) MMI_gen 5944; MMI_gen 4215; MMI_gen 4216; MMI_gen 4217; MMI_gen 4218;
             */
             // Call generic Action Method
-            DmiActions.Perform_SoM_in_SR_mode_Level_1();
+            DmiActions.Perform_SoM_in_SR_mode_Level_1(this);
 
 
             /*

@@ -73,9 +73,9 @@ namespace Testcase.DMITestCases
             Expected Result: ETCS OB enters SR mode in Level 1
             */
             // Call generic Action Method
-            DmiActions.Perform_SoM_to_Level_1_in_SR_mode();
+            DmiActions.Perform_SoM_to_Level_1_in_SR_mode(this);
             // Call generic Check Results Method
-            DmiExpectedResults.ETCS_OB_enters_SR_mode_in_Level_1();
+            DmiExpectedResults.ETCS_OB_enters_SR_mode_in_Level_1(this);
 
 
             /*
@@ -84,9 +84,9 @@ namespace Testcase.DMITestCases
             Expected Result: The train can drive forward and all brakes are not applied
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_with_speed_at_40_kmh();
+            DmiActions.Drive_the_train_forward_with_speed_at_40_kmh(this);
             // Call generic Check Results Method
-            DmiExpectedResults.The_train_can_drive_forward_and_all_brakes_are_not_applied();
+            DmiExpectedResults.The_train_can_drive_forward_and_all_brakes_are_not_applied(this);
 
 
             /*
@@ -95,9 +95,9 @@ namespace Testcase.DMITestCases
             Expected Result: ETCS OB enters FS mode in Level 1
             */
             // Call generic Action Method
-            DmiActions.Train_runs_pass_BG1();
+            DmiActions.Train_runs_pass_BG1(this);
             // Call generic Check Results Method
-            DmiExpectedResults.ETCS_OB_enters_FS_mode_in_Level_1();
+            DmiExpectedResults.ETCS_OB_enters_FS_mode_in_Level_1(this);
 
 
             /*
@@ -114,9 +114,9 @@ namespace Testcase.DMITestCases
             Expected Result: The train is at standstill
             */
             // Call generic Action Method
-            DmiActions.Stop_the_train();
+            DmiActions.Stop_the_train(this);
             // Call generic Check Results Method
-            DmiExpectedResults.The_train_is_at_standstill();
+            DmiExpectedResults.The_train_is_at_standstill(this);
 
 
             /*
@@ -125,9 +125,9 @@ namespace Testcase.DMITestCases
             Expected Result: System is power off and DMI displays ‘No contact with ATP’
             */
             // Call generic Action Method
-            DmiActions.Deactivate_cabin_A_and_power_off_the_system();
+            DmiActions.Deactivate_cabin_A_and_power_off_the_system(this);
             // Call generic Check Results Method
-            DmiExpectedResults.System_is_power_off_and_DMI_displays_No_contact_with_ATP();
+            DmiExpectedResults.System_is_power_off_and_DMI_displays_No_contact_with_ATP(this);
 
 
             /*
@@ -136,9 +136,9 @@ namespace Testcase.DMITestCases
             Expected Result: ETCS OB enters SR mode in Level 1
             */
             // Call generic Action Method
-            DmiActions.Power_on_the_system_and_perform_SoM_to_Level_1_in_SR_mode();
+            DmiActions.Power_on_the_system_and_perform_SoM_to_Level_1_in_SR_mode(this);
             // Call generic Check Results Method
-            DmiExpectedResults.ETCS_OB_enters_SR_mode_in_Level_1();
+            DmiExpectedResults.ETCS_OB_enters_SR_mode_in_Level_1(this);
 
 
             /*
@@ -147,9 +147,9 @@ namespace Testcase.DMITestCases
             Expected Result: The train can drive forward and all brakes are not applied
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_with_speed_at_40_kmh();
+            DmiActions.Drive_the_train_forward_with_speed_at_40_kmh(this);
             // Call generic Check Results Method
-            DmiExpectedResults.The_train_can_drive_forward_and_all_brakes_are_not_applied();
+            DmiExpectedResults.The_train_can_drive_forward_and_all_brakes_are_not_applied(this);
 
 
             /*
@@ -158,9 +158,9 @@ namespace Testcase.DMITestCases
             Expected Result: ETCS OB enters FS mode in Level 1
             */
             // Call generic Action Method
-            DmiActions.Train_runs_pass_BG1();
+            DmiActions.Train_runs_pass_BG1(this);
             // Call generic Check Results Method
-            DmiExpectedResults.ETCS_OB_enters_FS_mode_in_Level_1();
+            DmiExpectedResults.ETCS_OB_enters_FS_mode_in_Level_1(this);
 
 
             /*
@@ -177,9 +177,9 @@ namespace Testcase.DMITestCases
             Expected Result: The train is at standstill
             */
             // Call generic Action Method
-            DmiActions.Stop_the_train();
+            DmiActions.Stop_the_train(this);
             // Call generic Check Results Method
-            DmiExpectedResults.The_train_is_at_standstill();
+            DmiExpectedResults.The_train_is_at_standstill(this);
 
 
             /*

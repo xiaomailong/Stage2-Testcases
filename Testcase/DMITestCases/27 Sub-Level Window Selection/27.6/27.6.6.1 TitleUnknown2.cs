@@ -73,7 +73,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘No’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.The_value_of_input_field_is_changed_refer_to_selected_button();
+            DmiExpectedResults.The_value_of_input_field_is_changed_refer_to_selected_button(this);
 
 
             /*
@@ -86,7 +86,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Press and hold an input field");
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Pressed_the_border_of_button_is_removed();
+                .Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Pressed_the_border_of_button_is_removed(this);
 
 
             /*
@@ -96,10 +96,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9390 (partly: Radar Validation window);
             */
             // Call generic Action Method
-            DmiActions.Slide_out_an_input_field();
+            DmiActions.Slide_out_an_input_field(this);
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Enabled_the_border_of_button_is_shown_without_a_sound();
+                .Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Enabled_the_border_of_button_is_shown_without_a_sound(this);
 
 
             /*
@@ -109,10 +109,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9390 (partly: Radar Validation window);
             */
             // Call generic Action Method
-            DmiActions.Slide_back_into_an_input_field();
+            DmiActions.Slide_back_into_an_input_field(this);
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Pressed_the_border_of_button_is_removed();
+                .Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Pressed_the_border_of_button_is_removed(this);
 
 
             /*
@@ -132,9 +132,9 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions
-                .Perform_the_following_procedure_Press_Radar_button_Enter_and_confirm_all_data_in_Radar_window_Press_Yes_button();
+                .Perform_the_following_procedure_Press_Radar_button_Enter_and_confirm_all_data_in_Radar_window_Press_Yes_button(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Radar_validation_window();
+            DmiExpectedResults.DMI_displays_Radar_validation_window(this);
 
 
             /*
@@ -147,7 +147,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_DMI_displays_Maintenance_window_Use_the_log_file_to_confirm_that_DMI_sends_out_the_packet_MMI_DRIVER_REQUEST_EVC_101_with_variable_MMI_DRIVER_REQUEST_EVC_101_MMI_M_REQUEST_54_Exit_Maintenance();
+                .Verify_the_following_information_DMI_displays_Maintenance_window_Use_the_log_file_to_confirm_that_DMI_sends_out_the_packet_MMI_DRIVER_REQUEST_EVC_101_with_variable_MMI_DRIVER_REQUEST_EVC_101_MMI_M_REQUEST_54_Exit_Maintenance(this);
 
 
             /*
@@ -157,9 +157,9 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions
-                .Perform_the_following_procedure_Press_Radar_button_Enter_and_confirm_all_data_in_Radar_window_Press_Yes_button();
+                .Perform_the_following_procedure_Press_Radar_button_Enter_and_confirm_all_data_in_Radar_window_Press_Yes_button(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Radar_validation_window();
+            DmiExpectedResults.DMI_displays_Radar_validation_window(this);
 
 
             /*
@@ -171,7 +171,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Yes’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.The_value_of_input_field_is_changed_refer_to_selected_button();
+            DmiExpectedResults.The_value_of_input_field_is_changed_refer_to_selected_button(this);
 
 
             /*
@@ -181,7 +181,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11793 (partly: closure); MMI_gen 11794 (partly: MMI_gen 5720 (partly: closed));(2) MMI_gen 11793 (partly: open Maintenance window);(3) MMI_gen 11793 (partly: EVC-141); MMI_gen 11794 (partly: MMI_gen 5720 (partly: ConfirmedData-Packet));
             */
             // Call generic Action Method
-            DmiActions.Confirm_entered_data_by_pressing_an_input_field();
+            DmiActions.Confirm_entered_data_by_pressing_an_input_field(this);
 
 
             /*
@@ -190,7 +190,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Default window with the  message “ATP Down Alarm” and sound alarm
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Default_window_with_the_message_ATP_Down_Alarm_and_sound_alarm();
+            DmiExpectedResults.DMI_displays_Default_window_with_the_message_ATP_Down_Alarm_and_sound_alarm(this);
 
 
             /*
@@ -200,7 +200,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11794 (partly: MMI_gen 2519 (partly: Radar Validation window, All Request buttons except negative validations));(2) MMI_gen 11794 (partly: MMI_gen 2519 (partly: Radar Validation window, All negative validations));(3) MMI_gen 11794 (partly: MMI_gen 1426 (partly: Radar Validation window)); MMI_gen 4377 (partly: shown);
             */
             // Call generic Action Method
-            DmiActions.Re_establish_communication_between_ETCS_onboard_and_DMI();
+            DmiActions.Re_establish_communication_between_ETCS_onboard_and_DMI(this);
 
 
             /*

@@ -64,9 +64,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SR mode, level 1
             */
             // Call generic Action Method
-            DmiActions.Activate_cabin_A_Driver_performs_SoM_to_SR_mode_level_1();
+            DmiActions.Activate_cabin_A_Driver_performs_SoM_to_SR_mode_level_1(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_SR_mode_level_1();
+            DmiExpectedResults.DMI_displays_in_SR_mode_level_1(this);
 
 
             /*
@@ -75,7 +75,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays the Planning area The “Entering FS” message is shown. The Hide PA function is enabled and locate at Main area D
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_with_speed_40_kmh_pass_BG1();
+            DmiActions.Drive_the_train_forward_with_speed_40_kmh_pass_BG1(this);
 
 
             /*
@@ -85,7 +85,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7357;
             */
             // Call generic Action Method
-            DmiActions.Simulate_the_communication_loss_between_ETCS_onboard_and_DMI();
+            DmiActions.Simulate_the_communication_loss_between_ETCS_onboard_and_DMI(this);
 
 
             /*
@@ -105,7 +105,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7358;
             */
             // Call generic Action Method
-            DmiActions.Re_establish_the_communication_between_ETCS_onboard_and_DMI();
+            DmiActions.Re_establish_the_communication_between_ETCS_onboard_and_DMI(this);
 
 
             /*
@@ -116,7 +116,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press Hide PA button");
             // Call generic Check Results Method
-            DmiExpectedResults.The_Planning_Information_is_disappeared_from_main_area_D();
+            DmiExpectedResults.The_Planning_Information_is_disappeared_from_main_area_D(this);
 
 
             /*
@@ -137,7 +137,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press Hide PA button");
             // Call generic Check Results Method
-            DmiExpectedResults.The_Planning_Information_is_disappeared_from_main_area_D();
+            DmiExpectedResults.The_Planning_Information_is_disappeared_from_main_area_D(this);
 
 
             /*
@@ -146,7 +146,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays “ATP Down Alarm” message with sound alarm and Hide PA function is disappeared
             */
             // Call generic Action Method
-            DmiActions.Simulate_the_communication_loss_between_ETCS_onboard_and_DMI();
+            DmiActions.Simulate_the_communication_loss_between_ETCS_onboard_and_DMI(this);
 
 
             /*
@@ -156,7 +156,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7358 (partly: state of Hide PA);
             */
             // Call generic Action Method
-            DmiActions.Re_establish_the_communication_between_ETCS_onboard_and_DMI();
+            DmiActions.Re_establish_the_communication_between_ETCS_onboard_and_DMI(this);
 
 
             /*

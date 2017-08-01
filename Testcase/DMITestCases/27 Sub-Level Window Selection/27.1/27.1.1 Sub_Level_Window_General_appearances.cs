@@ -64,7 +64,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_The_Main_Override_Data_View_and_Special_buttons_are_invisible_The_Settings_button_is_visible();
+                .Verify_the_following_information_The_Main_Override_Data_View_and_Special_buttons_are_invisible_The_Settings_button_is_visible(this);
 
 
             /*
@@ -75,7 +75,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_The_Main_Override_Data_View_and_Special_buttons_are_invisible_The_Settings_button_is_visible();
+                .Verify_the_following_information_The_Main_Override_Data_View_and_Special_buttons_are_invisible_The_Settings_button_is_visible(this);
 
 
             /*
@@ -85,9 +85,9 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions
-                .Perform_the_following_procedure_Activate_Cabin_AEnter_Driver_ID_and_perform_brake_testSelect_and_confirm_Level_1();
+                .Perform_the_following_procedure_Activate_Cabin_AEnter_Driver_ID_and_perform_brake_testSelect_and_confirm_Level_1(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Main_window();
+            DmiExpectedResults.DMI_displays_Main_window(this);
 
 
             /*
@@ -131,7 +131,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 2955 (partly: ‘Main’, MMI_gen 4381 (partly: exit state ‘Pressed’, execute function associated to the button)) , MMI_gen 12137 (partly: Sub-level window, main)
             */
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_DMI_displays_Main_window();
+            DmiExpectedResults.Verify_the_following_information_DMI_displays_Main_window(this);
 
 
             /*
@@ -142,7 +142,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Default_window();
+            DmiExpectedResults.DMI_displays_Default_window(this);
 
 
             /*
@@ -185,7 +185,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Default_window();
+            DmiExpectedResults.DMI_displays_Default_window(this);
 
 
             /*
@@ -228,7 +228,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Default_window();
+            DmiExpectedResults.DMI_displays_Default_window(this);
 
 
             /*
@@ -271,7 +271,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Default_window();
+            DmiExpectedResults.DMI_displays_Default_window(this);
 
 
             /*
@@ -314,7 +314,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Language’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Language_window();
+            DmiExpectedResults.DMI_displays_Language_window(this);
 
 
             /*
@@ -359,7 +359,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_The_buttons_Main_Override_Data_View_and_Special_buttons_are_invisibled_in_any_other_state_The_Settings_button_is_still_visible();
+                .Verify_the_following_information_The_buttons_Main_Override_Data_View_and_Special_buttons_are_invisibled_in_any_other_state_The_Settings_button_is_still_visible(this);
 
 
             /*
@@ -370,7 +370,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_The_buttons_Main_Override_Data_View_and_Special_buttons_are_invisibled_in_any_other_state_The_Settings_button_is_still_visible();
+                .Verify_the_following_information_The_buttons_Main_Override_Data_View_and_Special_buttons_are_invisibled_in_any_other_state_The_Settings_button_is_still_visible(this);
 
 
             /*

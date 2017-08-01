@@ -85,7 +85,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Released the pressed button");
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_The_state_of_button_is_changed_to_Enabled();
+            DmiExpectedResults.Verify_the_following_information_The_state_of_button_is_changed_to_Enabled(this);
 
 
             /*
@@ -96,7 +96,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Pressed_the_border_of_button_is_removed();
+                .Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Pressed_the_border_of_button_is_removed(this);
 
 
             /*
@@ -106,10 +106,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9390 (partly: Language window);
             */
             // Call generic Action Method
-            DmiActions.Slide_out_an_input_field();
+            DmiActions.Slide_out_an_input_field(this);
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Enabled_the_border_of_button_is_shown_without_a_sound();
+                .Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Enabled_the_border_of_button_is_shown_without_a_sound(this);
 
 
             /*
@@ -119,10 +119,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9390 (partly: Language window);
             */
             // Call generic Action Method
-            DmiActions.Slide_back_into_an_input_field();
+            DmiActions.Slide_back_into_an_input_field(this);
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Pressed_the_border_of_button_is_removed();
+                .Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Pressed_the_border_of_button_is_removed(this);
 
 
             /*
@@ -158,7 +158,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 4392 (partly: returning to the parent window);
             */
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_1_DMI_displays_Settings_window();
+            DmiExpectedResults.Verify_the_following_information_1_DMI_displays_Settings_window(this);
 
 
             /*

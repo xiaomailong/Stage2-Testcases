@@ -62,9 +62,9 @@ namespace Testcase.DMITestCases
             Expected Result: RCI logs the concerned activities as specified in the precondition
             */
             // Call generic Action Method
-            DmiActions.Perform_SoM_in_SR_mode_Level_2();
+            DmiActions.Perform_SoM_in_SR_mode_Level_2(this);
             // Call generic Check Results Method
-            DmiExpectedResults.RCI_logs_the_concerned_activities_as_specified_in_the_precondition();
+            DmiExpectedResults.RCI_logs_the_concerned_activities_as_specified_in_the_precondition(this);
 
 
             /*

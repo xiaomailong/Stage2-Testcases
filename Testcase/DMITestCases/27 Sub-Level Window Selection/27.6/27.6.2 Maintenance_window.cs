@@ -81,7 +81,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions
-                .Perform_the_following_procedure_Press_Maintenance_button_Enter_the_Maintenance_window_by_entering_the_password_same_as_a_value_in_tag_PASS_CODE_MTN_of_the_configuration_file_and_confirming_the_password();
+                .Perform_the_following_procedure_Press_Maintenance_button_Enter_the_Maintenance_window_by_entering_the_password_same_as_a_value_in_tag_PASS_CODE_MTN_of_the_configuration_file_and_confirming_the_password(this);
 
 
             /*
@@ -91,9 +91,9 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions
-                .Perform_the_following_procedure_Return_to_the_Setting_window_by_pressing_Close_button_Use_test_script_file_22_6_2_a_xml_to_disable_wheel_diameter_and_doppler_by_sending_EVC_30_with_MMI_NID_WINDOW_4MMI_Q_REQUEST_ENABLE_64_29_0MMI_Q_REQUEST_ENABLE_64_30_0();
+                .Perform_the_following_procedure_Return_to_the_Setting_window_by_pressing_Close_button_Use_test_script_file_22_6_2_a_xml_to_disable_wheel_diameter_and_doppler_by_sending_EVC_30_with_MMI_NID_WINDOW_4MMI_Q_REQUEST_ENABLE_64_29_0MMI_Q_REQUEST_ENABLE_64_30_0(this);
             // Call generic Check Results Method
-            DmiExpectedResults.The_Maintenance_button_is_disabled();
+            DmiExpectedResults.The_Maintenance_button_is_disabled(this);
 
 
             /*
@@ -112,7 +112,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions
-                .Perform_the_following_procedure_Press_Maintenance_button_Enter_the_Maintenance_window_by_entering_the_password_same_as_a_value_in_tag_PASS_CODE_MTN_of_the_configuration_file_and_confirming_the_password();
+                .Perform_the_following_procedure_Press_Maintenance_button_Enter_the_Maintenance_window_by_entering_the_password_same_as_a_value_in_tag_PASS_CODE_MTN_of_the_configuration_file_and_confirming_the_password(this);
 
 
             /*
@@ -122,9 +122,9 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions
-                .Perform_the_following_procedure_Return_to_the_Setting_window_by_pressing_Close_button_Use_test_script_file_22_6_2_a_xml_to_disable_wheel_diameter_and_doppler_by_sending_EVC_30_with_MMI_NID_WINDOW_4MMI_Q_REQUEST_ENABLE_64_29_0MMI_Q_REQUEST_ENABLE_64_30_0();
+                .Perform_the_following_procedure_Return_to_the_Setting_window_by_pressing_Close_button_Use_test_script_file_22_6_2_a_xml_to_disable_wheel_diameter_and_doppler_by_sending_EVC_30_with_MMI_NID_WINDOW_4MMI_Q_REQUEST_ENABLE_64_29_0MMI_Q_REQUEST_ENABLE_64_30_0(this);
             // Call generic Check Results Method
-            DmiExpectedResults.The_Maintenance_button_is_disabled();
+            DmiExpectedResults.The_Maintenance_button_is_disabled(this);
 
 
             /*
@@ -158,7 +158,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 11743 (partly: MMI_gen 4557 (partly: button ‘Wheel diameter’, MMI_gen 4382 (partly: state ‘Enabled’ when slide out with force applied, no sound))); MMI_gen 4374;
             */
             // Call generic Check Results Method
-            DmiExpectedResults.The_border_of_the_button_is_shown_state_Enabled_without_a_sound();
+            DmiExpectedResults.The_border_of_the_button_is_shown_state_Enabled_without_a_sound(this);
 
 
             /*
@@ -168,7 +168,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 11743 (partly: MMI_gen 4557 (partly: button ‘Wheel diameter’, MMI_gen 4382 (partly: state ‘Pressed’ when slide back, no sound))); MMI_gen 4375;
             */
             // Call generic Check Results Method
-            DmiExpectedResults.The_button_is_back_to_state_Pressed_without_a_sound();
+            DmiExpectedResults.The_button_is_back_to_state_Pressed_without_a_sound(this);
 
 
             /*
@@ -187,7 +187,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_the_Maintenance_window();
+            DmiExpectedResults.DMI_displays_the_Maintenance_window(this);
 
 
             /*
@@ -207,7 +207,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_1_DMI_displays_Setting_window();
+            DmiExpectedResults.Verify_the_following_information_1_DMI_displays_Setting_window(this);
 
 
             /*

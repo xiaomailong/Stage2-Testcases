@@ -85,7 +85,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Release the pressed button");
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_The_state_of_released_button_is_changed_to_enabled();
+            DmiExpectedResults.Verify_the_following_information_The_state_of_released_button_is_changed_to_enabled(this);
 
 
             /*
@@ -96,10 +96,10 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions
-                .Perform_action_step_2_3_for_the_1_to_9_buttons_Note_Press_the_Del_button_to_delete_an_information_when_entered_data_is_out_of_input_field_range_is_acceptable();
+                .Perform_action_step_2_3_for_the_1_to_9_buttons_Note_Press_the_Del_button_to_delete_an_information_when_entered_data_is_out_of_input_field_range_is_acceptable(this);
             // Call generic Check Results Method
             DmiExpectedResults
-                .See_the_expected_results_of_Step_2_Step_3_and_the_following_additional_information_The_pressed_key_is_added_in_an_input_field_immediately_The_cursor_is_jumped_to_next_position_after_entered_the_character_immediately();
+                .See_the_expected_results_of_Step_2_Step_3_and_the_following_additional_information_The_pressed_key_is_added_in_an_input_field_immediately_The_cursor_is_jumped_to_next_position_after_entered_the_character_immediately(this);
 
 
             /*
@@ -112,7 +112,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Press and hold ‘Del’ button.Note: Stopwatch is required");
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_While_press_and_hold_button_less_than_1_5_secSound_Click_is_played_once_The_state_of_button_is_changed_to_Pressed_and_immediately_back_to_Enabled_state_The_last_character_is_removed_from_an_input_field_after_pressing_the_button_While_press_and_hold_button_over_1_5_secThe_state_pressed_and_released_are_switched_repeatly_while_button_is_pressed_and_the_characters_are_removed_from_an_input_field_repeatly_refer_to_pressed_state_The_sound_Click_is_played_repeatly_while_button_is_pressed();
+                .Verify_the_following_information_While_press_and_hold_button_less_than_1_5_secSound_Click_is_played_once_The_state_of_button_is_changed_to_Pressed_and_immediately_back_to_Enabled_state_The_last_character_is_removed_from_an_input_field_after_pressing_the_button_While_press_and_hold_button_over_1_5_secThe_state_pressed_and_released_are_switched_repeatly_while_button_is_pressed_and_the_characters_are_removed_from_an_input_field_repeatly_refer_to_pressed_state_The_sound_Click_is_played_repeatly_while_button_is_pressed(this);
 
 
             /*
@@ -124,7 +124,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Release ‘Del’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_The_character_is_stop_removing();
+            DmiExpectedResults.Verify_the_following_information_The_character_is_stop_removing(this);
 
 
             /*
@@ -143,7 +143,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .See_the_expected_results_of_Step_2_Step_6_and_the_following_additional_information_The_pressed_key_is_added_in_an_input_field_immediately_The_cursor_is_jumped_to_next_position_after_entered_the_character_immediately();
+                .See_the_expected_results_of_Step_2_Step_6_and_the_following_additional_information_The_pressed_key_is_added_in_an_input_field_immediately_The_cursor_is_jumped_to_next_position_after_entered_the_character_immediately(this);
 
 
             /*
@@ -178,7 +178,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_The_state_of_button_is_changed_to_Pressed_the_border_of_button_is_removed_The_sound_Click_is_played_once();
+                .Verify_the_following_information_The_state_of_button_is_changed_to_Pressed_the_border_of_button_is_removed_The_sound_Click_is_played_once(this);
 
 
             /*
@@ -188,10 +188,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11771 (partly: MMI_gen 4911 (partly: MMI_gen 4382 (partly: state ‘Enabled’ when slide out with force applied, no sound))); MMI_gen 4374;
             */
             // Call generic Action Method
-            DmiActions.Slide_out_the_Yes_button();
+            DmiActions.Slide_out_the_Yes_button(this);
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_The_border_of_the_input_field_is_shown_state_Enabled_without_a_sound();
+                .Verify_the_following_information_The_border_of_the_input_field_is_shown_state_Enabled_without_a_sound(this);
 
 
             /*
@@ -201,9 +201,9 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11771 (partly: MMI_gen 4911 (partly: MMI_gen 4382 (partly: state ‘Pressed’ when slide back, no sound))); MMI_gen 4375;
             */
             // Call generic Action Method
-            DmiActions.Slide_back_into_the_Yes_button();
+            DmiActions.Slide_back_into_the_Yes_button(this);
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_The_button_is_back_to_state_Pressed_without_a_sound();
+            DmiExpectedResults.Verify_the_following_information_The_button_is_back_to_state_Pressed_without_a_sound(this);
 
 
             /*
@@ -224,7 +224,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Yes’ button and confirm entered data by pressing an input field");
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_the_Maintenance_window();
+            DmiExpectedResults.DMI_displays_the_Maintenance_window(this);
 
 
             /*
@@ -286,7 +286,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_The_state_of_an_input_field_is_changed_to_selected_when_release_the_pressed_area_at_the_Label_part_of_input_field();
+                .Verify_the_following_information_The_state_of_an_input_field_is_changed_to_selected_when_release_the_pressed_area_at_the_Label_part_of_input_field(this);
 
 
             /*
@@ -297,7 +297,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_The_state_of_an_input_field_is_changed_to_selected_when_release_the_pressed_area_at_the_Data_area_of_input_field();
+                .Verify_the_following_information_The_state_of_an_input_field_is_changed_to_selected_when_release_the_pressed_area_at_the_Data_area_of_input_field(this);
 
 
             /*
@@ -310,7 +310,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_Use_the_log_file_to_confirm_that_DMI_sent_out_packet_MMI_DRIVER_REQUEST_EVC_101_with_variable_MMI_M_REQUEST_54_Exit_Maintenance_The_window_is_closed_and_the_Maintenance_window_is_displayed();
+                .Verify_the_following_information_Use_the_log_file_to_confirm_that_DMI_sent_out_packet_MMI_DRIVER_REQUEST_EVC_101_with_variable_MMI_M_REQUEST_54_Exit_Maintenance_The_window_is_closed_and_the_Maintenance_window_is_displayed(this);
 
 
             /*

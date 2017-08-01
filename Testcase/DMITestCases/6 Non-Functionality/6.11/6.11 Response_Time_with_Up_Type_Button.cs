@@ -66,9 +66,9 @@ namespace Testcase.DMITestCases
             Expected Result: ETCS OB enters SR mode in Level 1
             */
             // Call generic Action Method
-            DmiActions.Perform_SoM_to_Level_1_in_SR_mode();
+            DmiActions.Perform_SoM_to_Level_1_in_SR_mode(this);
             // Call generic Check Results Method
-            DmiExpectedResults.ETCS_OB_enters_SR_mode_in_Level_1();
+            DmiExpectedResults.ETCS_OB_enters_SR_mode_in_Level_1(this);
 
 
             /*

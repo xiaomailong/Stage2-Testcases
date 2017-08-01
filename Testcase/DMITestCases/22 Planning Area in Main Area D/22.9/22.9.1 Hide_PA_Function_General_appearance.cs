@@ -63,9 +63,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Driver ID window
             */
             // Call generic Action Method
-            DmiActions.Activate_cabin_A();
+            DmiActions.Activate_cabin_A(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Driver_ID_window();
+            DmiExpectedResults.DMI_displays_Driver_ID_window(this);
 
 
             /*
@@ -74,9 +74,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SR mode, level 1
             */
             // Call generic Action Method
-            DmiActions.Perform_SoM_to_SR_mode_level_1();
+            DmiActions.Perform_SoM_to_SR_mode_level_1(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_SR_mode_level_1();
+            DmiExpectedResults.DMI_displays_in_SR_mode_level_1(this);
 
 
             /*
@@ -85,7 +85,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in FS mode, level 1. The Planning area is displayed the planning information in main area D
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_with_speed_40_kmh_pass_BG1();
+            DmiActions.Drive_the_train_forward_with_speed_40_kmh_pass_BG1(this);
 
 
             /*

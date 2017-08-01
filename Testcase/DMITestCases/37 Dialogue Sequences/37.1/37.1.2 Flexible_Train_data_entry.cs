@@ -63,9 +63,9 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions
-                .Perform_the_following_procedure_Activate_Cabin_AEnter_Driver_ID_and_perform_brake_testSelect_and_confirm_Level_1();
+                .Perform_the_following_procedure_Activate_Cabin_AEnter_Driver_ID_and_perform_brake_testSelect_and_confirm_Level_1(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Main_window();
+            DmiExpectedResults.DMI_displays_Main_window(this);
 
 
             /*
@@ -98,9 +98,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Train data validation window
             */
             // Call generic Action Method
-            DmiActions.Repeat_action_step_3_Then_press_Yes_button();
+            DmiActions.Repeat_action_step_3_Then_press_Yes_button(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Train_data_validation_window();
+            DmiExpectedResults.DMI_displays_Train_data_validation_window(this);
 
 
             /*
@@ -110,7 +110,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 8865 (partly: Exception 1);
             */
             // Call generic Action Method
-            DmiActions.Select_and_confirm_No_button();
+            DmiActions.Select_and_confirm_No_button(this);
 
 
             /*
@@ -119,9 +119,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Train data validation window
             */
             // Call generic Action Method
-            DmiActions.Repeat_action_step_3_Then_press_Yes_button();
+            DmiActions.Repeat_action_step_3_Then_press_Yes_button(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Train_data_validation_window();
+            DmiExpectedResults.DMI_displays_Train_data_validation_window(this);
 
 
             /*
@@ -130,7 +130,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Main window
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Main_window();
+            DmiExpectedResults.DMI_displays_Main_window(this);
 
 
             /*
@@ -140,7 +140,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 8863 (partly: Exception);
             */
             // Call generic Action Method
-            DmiActions.Select_Train_data_button();
+            DmiActions.Select_Train_data_button(this);
 
 
             /*
@@ -151,7 +151,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Main_window();
+            DmiExpectedResults.DMI_displays_Main_window(this);
 
 
             /*

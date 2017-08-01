@@ -76,7 +76,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Press and hold ‘Next’ button");
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_1_The_state_of_button_is_changed_to_Pressed_the_border_of_button_is_removed_2_The_sound_Click_is_played_once();
+                .Verify_the_following_information_1_The_state_of_button_is_changed_to_Pressed_the_border_of_button_is_removed_2_The_sound_Click_is_played_once(this);
 
 
             /*
@@ -86,10 +86,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9391 (partly: [Next], MMI_gen 4382 (partly: state ‘Enabled’ when slide out with force applied, no sound));
             */
             // Call generic Action Method
-            DmiActions.Slide_out_the_Next_button();
+            DmiActions.Slide_out_the_Next_button(this);
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_1_The_border_of_the_button_is_shown_state_Enabled_without_a_sound();
+                .Verify_the_following_information_1_The_border_of_the_button_is_shown_state_Enabled_without_a_sound(this);
 
 
             /*
@@ -99,9 +99,9 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9391 (partly: [Next], Train category, MMI_gen 4382 (partly: state ‘Pressed’ when slide back, no sound));
             */
             // Call generic Action Method
-            DmiActions.Slide_back_into_the_Next_button();
+            DmiActions.Slide_back_into_the_Next_button(this);
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_1_The_button_is_back_to_state_Pressed_without_a_sound();
+            DmiExpectedResults.Verify_the_following_information_1_The_button_is_back_to_state_Pressed_without_a_sound(this);
 
 
             /*
@@ -114,7 +114,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Release ‘Next’ button");
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_that_the_Data_view_is_displayed_the_next_page_of_the_train_data_The_window_title_of_the_next_page_is_displayed_with_text_Data_view_22_Data_View_ItemsThe_data_view_items_are_displayed_correctly_refer_to_following_items_RBC_IDRBC_phone_numberVBC_set_code_if_anyThe_data_part_of_RBC_phone_number_is_displayed_as_2_lines_Navigation_buttonsThe_state_of_Previous_and_Next_button_are_displayed_as_follows_Next_button_is_disabled_displays_as_symbol_NA18_2_Previous_button_is_enabled_displays_as_symbol_NA18();
+                .Verify_that_the_Data_view_is_displayed_the_next_page_of_the_train_data_The_window_title_of_the_next_page_is_displayed_with_text_Data_view_22_Data_View_ItemsThe_data_view_items_are_displayed_correctly_refer_to_following_items_RBC_IDRBC_phone_numberVBC_set_code_if_anyThe_data_part_of_RBC_phone_number_is_displayed_as_2_lines_Navigation_buttonsThe_state_of_Previous_and_Next_button_are_displayed_as_follows_Next_button_is_disabled_displays_as_symbol_NA18_2_Previous_button_is_enabled_displays_as_symbol_NA18(this);
 
 
             /*
@@ -124,10 +124,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 4394 (partly: enabled [next], disabled [previous]); MMI_gen 4396 (partly: Next, NA17, Previous, NA19); MMI_gen 4358; 
             */
             // Call generic Action Method
-            DmiActions.Perform_action_step_2_5_for_Previous_button();
+            DmiActions.Perform_action_step_2_5_for_Previous_button(this);
             // Call generic Check Results Method
             DmiExpectedResults
-                .See_the_expected_result_of_step_2_5_and_the_following_points_1_The_state_of_Previous_and_Next_button_are_displayed_as_follows_Next_button_is_enabled_displays_as_symbol_NA17_Previous_button_is_enabled_displays_as_symbol_NA19();
+                .See_the_expected_result_of_step_2_5_and_the_following_points_1_The_state_of_Previous_and_Next_button_are_displayed_as_follows_Next_button_is_enabled_displays_as_symbol_NA17_Previous_button_is_enabled_displays_as_symbol_NA19(this);
 
 
             /*
@@ -146,7 +146,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_1_The_data_part_of_following_information_are_automatically_insert_a_line_brake_at_the_end_of_first_line_represented_as_2_lines_Page_1Driver_IDPage_2Radio_Network_IDRBC_Phone_Number();
+                .Verify_the_following_information_1_The_data_part_of_following_information_are_automatically_insert_a_line_brake_at_the_end_of_first_line_represented_as_2_lines_Page_1Driver_IDPage_2Radio_Network_IDRBC_Phone_Number(this);
 
 
             /*

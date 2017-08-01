@@ -67,9 +67,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Driver ID window
             */
             // Call generic Action Method
-            DmiActions.Activate_cabin_A();
+            DmiActions.Activate_cabin_A(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Driver_ID_window();
+            DmiExpectedResults.DMI_displays_Driver_ID_window(this);
 
 
             /*
@@ -80,7 +80,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Settings’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.The_Settings_window_is_presented_with_all_sub_menus();
+            DmiExpectedResults.The_Settings_window_is_presented_with_all_sub_menus(this);
 
 
             /*
@@ -116,7 +116,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 257 (partly: adjusted (after saved));               MMI_gen 3093 (partly: sound ‘Click’);     
             */
             // Call generic Action Method
-            DmiActions.Close_the_Settings_window();
+            DmiActions.Close_the_Settings_window(this);
 
 
             /*
@@ -133,7 +133,7 @@ namespace Testcase.DMITestCases
             Expected Result: Cabin A is deactivated
             */
             // Call generic Check Results Method
-            DmiExpectedResults.Cabin_A_is_deactivated();
+            DmiExpectedResults.Cabin_A_is_deactivated(this);
 
 
             /*

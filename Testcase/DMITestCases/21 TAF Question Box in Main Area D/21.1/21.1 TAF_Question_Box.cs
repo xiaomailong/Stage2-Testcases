@@ -64,9 +64,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SR mode, level 2
             */
             // Call generic Action Method
-            DmiActions.Perform_SoM_to_SR_mode_level_2_Then_drive_the_train_forward_with_speed_30kmh();
+            DmiActions.Perform_SoM_to_SR_mode_level_2_Then_drive_the_train_forward_with_speed_30kmh(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_SR_mode_level_2();
+            DmiExpectedResults.DMI_displays_in_SR_mode_level_2(this);
 
 
             /*
@@ -75,9 +75,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI changes from SR mode to FS mode, level 2
             */
             // Call generic Action Method
-            DmiActions.Received_information_from_RBC();
+            DmiActions.Received_information_from_RBC(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_changes_from_SR_mode_to_FS_mode_level_2();
+            DmiExpectedResults.DMI_changes_from_SR_mode_to_FS_mode_level_2(this);
 
 
             /*
@@ -86,9 +86,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI changes from FS mode to OS mode, level 2
             */
             // Call generic Action Method
-            DmiActions.Acknowledge_OS_mode_by_press_at_area_C1();
+            DmiActions.Acknowledge_OS_mode_by_press_at_area_C1(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_changes_from_FS_mode_to_OS_mode_level_2();
+            DmiExpectedResults.DMI_changes_from_FS_mode_to_OS_mode_level_2(this);
 
 
             /*
@@ -99,7 +99,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Main’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.The_Main_window_is_displayed();
+            DmiExpectedResults.The_Main_window_is_displayed(this);
 
 
             /*
@@ -109,7 +109,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 3966 (partly:Placed in Main-Area D);              MMI_gen 6963 (partly: Placed in Main-Area D, in the focus of acknowledgement list); MMI_gen 3374 (partly: TAF, button is visible);(2) MMI_gen 6946; MMI_gen 3374 (partly: button is not faulty);(3 ) MMI_gen 6948;(4) MMI_gen 6949 (partly: DR02);(5) MMI_gen 6949 (partly: Background colour of Question part);(6) MMI_gen 6950 (partly: Label ‘Yes’);(7) MMI_gen 6950 (partly: Background colour of Answer part);(8) MMI_gen 3966 (partly: 1st bullet); MMI_gen 3374 (partly: not covered by open half-grid array window);(9) MMI_gen 3966 (partly: 2nd bullet);(10) MMI_gen 3966 (partly: 3rd  bullet);(11) MMI_gen 6963 (partly: 1st bullet); MMI_gen 6951 (partly: Enabled Yes button by EVC-8); MMI_gen 3374 (partly: enabled by ETCS);(12) MMI_gen 6953 (partly: same border, MMI_gen 4211 (partly: medium grey colour line));
             */
             // Call generic Action Method
-            DmiActions.Received_information_from_RBC_Then_stop_the_train();
+            DmiActions.Received_information_from_RBC_Then_stop_the_train(this);
 
 
             /*

@@ -65,9 +65,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in FS mode, level 1
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_pass_BG1();
+            DmiActions.Drive_the_train_forward_pass_BG1(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_FS_mode_level_1();
+            DmiExpectedResults.DMI_displays_in_FS_mode_level_1(this);
 
 
             /*
@@ -77,7 +77,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 6299 (partly: OBU_TR_M_MODE = 7);(2) MMI_gen 6299 (partly: colour of speed pointer, TR mode);
             */
             // Call generic Action Method
-            DmiActions.Force_the_train_into_TR_mode_by_moving_the_train_forward_to_position_of_EOA();
+            DmiActions.Force_the_train_into_TR_mode_by_moving_the_train_forward_to_position_of_EOA(this);
 
 
             /*

@@ -71,9 +71,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI changes from SR mode to FS mode, level 2
             */
             // Call generic Action Method
-            DmiActions.Received_information_from_RBC();
+            DmiActions.Received_information_from_RBC(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_changes_from_SR_mode_to_FS_mode_level_2();
+            DmiExpectedResults.DMI_changes_from_SR_mode_to_FS_mode_level_2(this);
 
 
             /*
@@ -82,9 +82,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI changes from FS mode to OS mode, level 2
             */
             // Call generic Action Method
-            DmiActions.Acknowledge_OS_mode_by_press_at_area_C1();
+            DmiActions.Acknowledge_OS_mode_by_press_at_area_C1(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_changes_from_FS_mode_to_OS_mode_level_2();
+            DmiExpectedResults.DMI_changes_from_FS_mode_to_OS_mode_level_2(this);
 
 
             /*
@@ -109,7 +109,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI still displays as OS mode, Level 2
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward();
+            DmiActions.Drive_the_train_forward(this);
 
 
             /*
@@ -119,7 +119,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7390;
             */
             // Call generic Action Method
-            DmiActions.Received_information_from_RBC();
+            DmiActions.Received_information_from_RBC(this);
 
 
             /*
@@ -143,9 +143,9 @@ namespace Testcase.DMITestCases
             Expected Result: The train is at standstill
             */
             // Call generic Action Method
-            DmiActions.Stop_the_train();
+            DmiActions.Stop_the_train(this);
             // Call generic Check Results Method
-            DmiExpectedResults.The_train_is_at_standstill();
+            DmiExpectedResults.The_train_is_at_standstill(this);
 
 
             /*

@@ -66,9 +66,9 @@ namespace Testcase.DMITestCases
             Expected Result: ETCS OB enters SR mode in Level 1
             */
             // Call generic Action Method
-            DmiActions.Perform_SoM_to_Level_1_in_SR_mode();
+            DmiActions.Perform_SoM_to_Level_1_in_SR_mode(this);
             // Call generic Check Results Method
-            DmiExpectedResults.ETCS_OB_enters_SR_mode_in_Level_1();
+            DmiExpectedResults.ETCS_OB_enters_SR_mode_in_Level_1(this);
 
 
             /*
@@ -77,9 +77,9 @@ namespace Testcase.DMITestCases
             Expected Result: The train can drive forward and all brakes are not applied
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_with_constant_speed_at_20_kmh();
+            DmiActions.Drive_the_train_forward_with_constant_speed_at_20_kmh(this);
             // Call generic Check Results Method
-            DmiExpectedResults.The_train_can_drive_forward_and_all_brakes_are_not_applied();
+            DmiExpectedResults.The_train_can_drive_forward_and_all_brakes_are_not_applied(this);
 
 
             /*
@@ -89,7 +89,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 12043 (partly: restrictive target becomes applicable by MA changed)
             */
             // Call generic Action Method
-            DmiActions.Train_runs_pass_BG1();
+            DmiActions.Train_runs_pass_BG1(this);
 
 
             /*
@@ -99,7 +99,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 12043 (partly: more restrictive target exists by MA changed)Note When variable [EVC-1. MMI_V_TARGET] is changed from 1666 to 416, variable [EVC-1. MMI_O_BRAKETARGET] is changed to upper value. So at that time sound Sinfo is played because of the changing of variable [EVC-1. MMI_V_TARGET]. 
             */
             // Call generic Action Method
-            DmiActions.Train_runs_pass_BG2();
+            DmiActions.Train_runs_pass_BG2(this);
 
 
             /*
@@ -108,9 +108,9 @@ namespace Testcase.DMITestCases
             Expected Result: The train is at standstill
             */
             // Call generic Action Method
-            DmiActions.Stop_the_train();
+            DmiActions.Stop_the_train(this);
             // Call generic Check Results Method
-            DmiExpectedResults.The_train_is_at_standstill();
+            DmiExpectedResults.The_train_is_at_standstill(this);
 
 
             /*

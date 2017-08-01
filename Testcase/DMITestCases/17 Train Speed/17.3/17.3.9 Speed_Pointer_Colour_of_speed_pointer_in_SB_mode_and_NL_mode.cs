@@ -65,7 +65,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 6299 (partly: colour of speed pointer, SB mode);(2) MMI_gen 6299 (partly: OBU_TR_M_MODE);
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_with_speed_10_kmh();
+            DmiActions.Drive_the_train_forward_with_speed_10_kmh(this);
 
 
             /*

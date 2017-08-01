@@ -65,9 +65,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays SR mode, level 1
             */
             // Call generic Action Method
-            DmiActions.Activate_cabin_A_Then_perform_SoM_to_SR_mode_level_1();
+            DmiActions.Activate_cabin_A_Then_perform_SoM_to_SR_mode_level_1(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_SR_mode_level_1();
+            DmiExpectedResults.DMI_displays_SR_mode_level_1(this);
 
 
             /*
@@ -77,7 +77,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7262 (partly: process all valid entries); (2) MMI_gen 7264 (partly: 2nd  bullet, result of calculation);    MMI_gen 7264 (partly: 3rd bullet, lower boundary); (3) MMI_gen 7262 (partly: reception of packet EVC-4); 
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_pass_BG1_Then_stop_the_train();
+            DmiActions.Drive_the_train_forward_pass_BG1_Then_stop_the_train(this);
 
 
             /*
@@ -103,7 +103,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7266 (partly: 2nd bullet, result of calculation);
             */
             // Call generic Action Method
-            DmiActions.Continue_to_drive_the_train_forward();
+            DmiActions.Continue_to_drive_the_train_forward(this);
 
 
             /*

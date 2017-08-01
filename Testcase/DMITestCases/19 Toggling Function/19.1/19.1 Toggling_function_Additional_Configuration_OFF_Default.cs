@@ -79,9 +79,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in FS mode, Level 1 with the ST06 symbol at sub-area C6
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_pass_BG1_Then_stop_the_train();
+            DmiActions.Drive_the_train_forward_pass_BG1_Then_stop_the_train(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_FS_mode_Level_1_with_the_ST06_symbol_at_sub_area_C6();
+            DmiExpectedResults.DMI_displays_in_FS_mode_Level_1_with_the_ST06_symbol_at_sub_area_C6(this);
 
 
             /*
@@ -92,10 +92,10 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions
-                .Perform_the_following_procedure_Chage_the_train_direction_to_reversePress_the_symbol_in_sub_area_C1();
+                .Perform_the_following_procedure_Chage_the_train_direction_to_reversePress_the_symbol_in_sub_area_C1(this);
             // Call generic Check Results Method
             DmiExpectedResults
-                .DMI_displays_in_RV_mode_Level_1_Verify_the_following_information_The_objects_below_are_displayed_on_DMI_White_Basic_speed_HookDistance_to_target_digitalThe_objects_below_are_not_displayed_on_DMI_Medium_grey_basic_speed_hookRelease_Speed_Digital();
+                .DMI_displays_in_RV_mode_Level_1_Verify_the_following_information_The_objects_below_are_displayed_on_DMI_White_Basic_speed_HookDistance_to_target_digitalThe_objects_below_are_not_displayed_on_DMI_Medium_grey_basic_speed_hookRelease_Speed_Digital(this);
 
 
             /*
@@ -108,7 +108,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Press, at least twice, on area A1-A4, and area B respectively");
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_The_objects_below_are_not_toggled_visibleinvisible_always_remain_the_same_as_the_previous_stepWhite_Basic_speed_HookMedium_grey_basic_speed_hookDistance_to_target_digitalRelease_Speed_Digital();
+                .Verify_the_following_information_The_objects_below_are_not_toggled_visibleinvisible_always_remain_the_same_as_the_previous_stepWhite_Basic_speed_HookMedium_grey_basic_speed_hookDistance_to_target_digitalRelease_Speed_Digital(this);
 
 
             /*
@@ -117,9 +117,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SB mode, Level 1
             */
             // Call generic Action Method
-            DmiActions.Perform_the_following_procedure_De_activate_Cabin_AActivate_Cabin_A();
+            DmiActions.Perform_the_following_procedure_De_activate_Cabin_AActivate_Cabin_A(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_SB_mode_Level_1();
+            DmiExpectedResults.DMI_displays_in_SB_mode_Level_1(this);
 
 
             /*
@@ -129,7 +129,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11868 (partly: SR mode), Table 34 (CSM), Table 38 (CSM), MMI_gen 6450 (partly: 2nd bullet, SR mode), MMI_gen 6898 (partly: configuration ‘OFF’, SR mode);(2) MMI_gen 6890 (partly: SR mode, un-concerned object), Table 35 (CSM)
             */
             // Call generic Action Method
-            DmiActions.Perform_SoM_in_SR_mode_Level_1();
+            DmiActions.Perform_SoM_in_SR_mode_Level_1(this);
 
 
             /*
@@ -140,7 +140,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions
-                .Perform_the_following_procedure_Press_Spec_button_Press_SR_speeddisาtance_button_Enter_and_confirm_the_following_data_SR_speed_40_kmhSR_distance_300_m();
+                .Perform_the_following_procedure_Press_Spec_button_Press_SR_speeddisาtance_button_Enter_and_confirm_the_following_data_SR_speed_40_kmhSR_distance_300_m(this);
 
 
             /*
@@ -172,7 +172,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions
-                .Drive_the_train_forward_pass_BG2_with_speed_20kmh_or_below_permitted_speed_Then_press_an_area_C1_for_acknowledgement();
+                .Drive_the_train_forward_pass_BG2_with_speed_20kmh_or_below_permitted_speed_Then_press_an_area_C1_for_acknowledgement(this);
 
 
             /*
@@ -183,10 +183,10 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions
-                .Stop_the_train_Press_at_least_twice_on_area_A1_A4_and_area_B_respectively_Then_continue_to_drive_the_train_forward_after_expected_result_verified();
+                .Stop_the_train_Press_at_least_twice_on_area_A1_A4_and_area_B_respectively_Then_continue_to_drive_the_train_forward_after_expected_result_verified(this);
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_The_objects_below_are_not_toggled_visibleinvisible_always_remain_the_same_as_the_previous_stepWhite_Basic_speed_HookMedium_grey_basic_speed_hookDistance_to_target_digitalRelease_Speed_Digital();
+                .Verify_the_following_information_The_objects_below_are_not_toggled_visibleinvisible_always_remain_the_same_as_the_previous_stepWhite_Basic_speed_HookMedium_grey_basic_speed_hookDistance_to_target_digitalRelease_Speed_Digital(this);
 
 
             /*
@@ -196,7 +196,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 6892 (partly: FS mode, Table 38 (not CSM), Table 35 (not CSM))(2) MMI_gen 6890 (partly: FS mode, unidentified mode, un-concerned object), Table 34 (not CSM)
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_pass_BG3();
+            DmiActions.Drive_the_train_forward_pass_BG3(this);
 
 
             /*
@@ -207,10 +207,10 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions
-                .Stop_the_train_Then_press_at_least_twice_on_area_A1_A4_and_area_B_respectively_Then_continue_to_drive_the_train_forward_after_expected_result_verified();
+                .Stop_the_train_Then_press_at_least_twice_on_area_A1_A4_and_area_B_respectively_Then_continue_to_drive_the_train_forward_after_expected_result_verified(this);
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_The_objects_below_are_not_toggled_visibleinvisible_always_remain_the_same_as_the_previous_stepWhite_Basic_speed_HookMedium_grey_basic_speed_hookDistance_to_target_digitalRelease_Speed_Digital();
+                .Verify_the_following_information_The_objects_below_are_not_toggled_visibleinvisible_always_remain_the_same_as_the_previous_stepWhite_Basic_speed_HookMedium_grey_basic_speed_hookDistance_to_target_digitalRelease_Speed_Digital(this);
 
 
             /*
@@ -220,7 +220,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11868 (partly: OS mode), Table 34 (not CSM), Table 35 (not CSM), Table 38 (not CSM), MMI_gen 6450 (partly: 2nd bullet, OS mode), MMI_gen 6898 (configuration ‘OFF’, OS mode);
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_pass_BG4_Then_acknowledge_OS_mode_by_press_a_sub_area_C1();
+            DmiActions.Drive_the_train_forward_pass_BG4_Then_acknowledge_OS_mode_by_press_a_sub_area_C1(this);
 
 
             /*
@@ -230,7 +230,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 6890 (partly: OS mode, toggle on), MMI_gen 6896 (partly: configuration ‘OFF’, OS mode, toggle visible), MMI_gen 6894 (partly: OS mode); 
             */
             // Call generic Action Method
-            DmiActions.Stop_the_train_Press_the_speedometer_once();
+            DmiActions.Stop_the_train_Press_the_speedometer_once(this);
 
 
             /*
@@ -244,7 +244,7 @@ namespace Testcase.DMITestCases
                 @"Press, at least twice, on area A1-A4, and area B respectively.Then, continue to drive the train forward after expected result verified");
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_The_objects_below_are_toggled_visible_the_same_as_the_previous_stepinvisible_White_basic_speed_hookMedium_grey_basic_speed_hookDistance_to_target_digitalRelease_Speed_Digital();
+                .Verify_the_following_information_The_objects_below_are_toggled_visible_the_same_as_the_previous_stepinvisible_White_basic_speed_hookMedium_grey_basic_speed_hookDistance_to_target_digitalRelease_Speed_Digital(this);
 
 
             /*
@@ -254,10 +254,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 6892 (partly: LS mode, Table 35 (not CSM), Table 38 (not CSM))(2) MMI_gen 6890 (partly: LS mode, unidentified mode, un-concerned object), Table 34 (not CSM)
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_pass_BG5_Then_acknowledge_LS_mode_by_press_a_sub_area_C1();
+            DmiActions.Drive_the_train_forward_pass_BG5_Then_acknowledge_LS_mode_by_press_a_sub_area_C1(this);
             // Call generic Check Results Method
             DmiExpectedResults
-                .DMI_displays_in_LS_mode_Level_1_Verify_the_following_information_The_objects_below_are_displayed_on_DMI_Distance_to_target_digitalRelease_Speed_DigitalThe_objects_below_are_not_displayed_on_DMI_White_Basic_speed_HookMedium_grey_basic_speed_hook();
+                .DMI_displays_in_LS_mode_Level_1_Verify_the_following_information_The_objects_below_are_displayed_on_DMI_Distance_to_target_digitalRelease_Speed_DigitalThe_objects_below_are_not_displayed_on_DMI_White_Basic_speed_HookMedium_grey_basic_speed_hook(this);
 
 
             /*
@@ -268,10 +268,10 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions
-                .Stop_the_train_Press_at_least_twice_on_area_A1_A4_and_area_B_respectively_Then_continue_to_drive_the_train_forward_after_expected_result_verified();
+                .Stop_the_train_Press_at_least_twice_on_area_A1_A4_and_area_B_respectively_Then_continue_to_drive_the_train_forward_after_expected_result_verified(this);
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_The_objects_below_are_not_toggled_visibleinvisible_always_remain_the_same_as_the_previous_stepWhite_Basic_speed_HookMedium_grey_basic_speed_hookDistance_to_target_digitalRelease_Speed_Digital();
+                .Verify_the_following_information_The_objects_below_are_not_toggled_visibleinvisible_always_remain_the_same_as_the_previous_stepWhite_Basic_speed_HookMedium_grey_basic_speed_hookDistance_to_target_digitalRelease_Speed_Digital(this);
 
 
             /*
@@ -281,7 +281,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 6892 (partly: TR mode, Table 34, Table 38, Table 35), MMI_gen 6890 (partly: TR mode, unidentified mode, un-concerned object)
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_pass_through_EOA();
+            DmiActions.Drive_the_train_pass_through_EOA(this);
 
 
             /*
@@ -292,10 +292,10 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions
-                .Stop_the_train_Then_press_at_least_twice_on_area_A1_A4_and_area_B_respectively_Then_continue_to_drive_the_train_forward_after_expected_result_verified();
+                .Stop_the_train_Then_press_at_least_twice_on_area_A1_A4_and_area_B_respectively_Then_continue_to_drive_the_train_forward_after_expected_result_verified(this);
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_The_objects_below_are_not_toggled_visibleinvisible_always_remain_the_same_as_the_previous_stepWhite_Basic_speed_HookMedium_grey_basic_speed_hookDistance_to_target_digitalRelease_Speed_Digital();
+                .Verify_the_following_information_The_objects_below_are_not_toggled_visibleinvisible_always_remain_the_same_as_the_previous_stepWhite_Basic_speed_HookMedium_grey_basic_speed_hookDistance_to_target_digitalRelease_Speed_Digital(this);
 
 
             /*
@@ -305,7 +305,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 6892 (partly: PT mode, Table 34, Table 38, Table 35), MMI_gen 6890 (partly: PT mode, unidentified mode, un-concerned object)
             */
             // Call generic Action Method
-            DmiActions.Acknowledge_TR_mode_by_press_a_sub_area_C1();
+            DmiActions.Acknowledge_TR_mode_by_press_a_sub_area_C1(this);
 
 
             /*
@@ -316,10 +316,10 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions
-                .Stop_the_train_Then_press_at_least_twice_on_area_A1_A4_and_area_B_respectively_Then_continue_to_drive_the_train_forward_after_expected_result_verified();
+                .Stop_the_train_Then_press_at_least_twice_on_area_A1_A4_and_area_B_respectively_Then_continue_to_drive_the_train_forward_after_expected_result_verified(this);
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_The_objects_below_are_not_toggled_visibleinvisible_always_remain_the_same_as_the_previous_stepWhite_Basic_speed_HookMedium_grey_basic_speed_hookDistance_to_target_digitalRelease_Speed_Digital();
+                .Verify_the_following_information_The_objects_below_are_not_toggled_visibleinvisible_always_remain_the_same_as_the_previous_stepWhite_Basic_speed_HookMedium_grey_basic_speed_hookDistance_to_target_digitalRelease_Speed_Digital(this);
 
 
             /*
@@ -330,7 +330,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions
-                .Perform_the_following_procedure_Press_Main_button_Press_and_hold_Shunting_button_up_to_2_second_Release_Shunting_button();
+                .Perform_the_following_procedure_Press_Main_button_Press_and_hold_Shunting_button_up_to_2_second_Release_Shunting_button(this);
 
 
             /*
@@ -354,7 +354,7 @@ namespace Testcase.DMITestCases
                 @"Press, at least twice, on area A1-A4, and area B respectively.Then, continue to drive the train forward after expected result verified");
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_The_white_basic_speed_hook_is_toggled_visible_the_same_as_the_visible_stepinvisibleThe_objects_below_are_not_toggled_visibleinvisible_always_remain_the_same_as_the_previous_step_Medium_grey_basic_speed_hookDistance_to_target_digitalRelease_Speed_Digital();
+                .Verify_the_following_information_The_white_basic_speed_hook_is_toggled_visible_the_same_as_the_visible_stepinvisibleThe_objects_below_are_not_toggled_visibleinvisible_always_remain_the_same_as_the_previous_step_Medium_grey_basic_speed_hookDistance_to_target_digitalRelease_Speed_Digital(this);
 
 
             /*

@@ -106,7 +106,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays the train speed as zero km/h
             */
             // Call generic Action Method
-            DmiActions.Stop_the_train();
+            DmiActions.Stop_the_train(this);
 
 
             /*

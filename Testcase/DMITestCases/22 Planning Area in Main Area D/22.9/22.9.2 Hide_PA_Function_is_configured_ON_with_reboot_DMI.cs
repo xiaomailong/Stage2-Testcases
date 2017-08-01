@@ -63,9 +63,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SR mode, level 1
             */
             // Call generic Action Method
-            DmiActions.Activate_cabin_A_and_Perform_SoM_to_SR_mode_Level_1();
+            DmiActions.Activate_cabin_A_and_Perform_SoM_to_SR_mode_Level_1(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_SR_mode_level_1();
+            DmiExpectedResults.DMI_displays_in_SR_mode_level_1(this);
 
 
             /*
@@ -74,7 +74,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI shows “Entering FS” message and DMI displays the Planning area.The Hide PA button is appeared on  the area D of the DMI
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_with_speed_40_kmh_pass_BG1();
+            DmiActions.Drive_the_train_forward_with_speed_40_kmh_pass_BG1(this);
 
 
             /*
@@ -93,9 +93,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI is power off
             */
             // Call generic Action Method
-            DmiActions.Turn_off_power_of_DMI();
+            DmiActions.Turn_off_power_of_DMI(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_is_power_off();
+            DmiExpectedResults.DMI_is_power_off(this);
 
 
             /*
@@ -105,7 +105,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 7341;  MMI_gen 2996 (partly: ON); Hide PA icon
             */
             // Call generic Action Method
-            DmiActions.Turn_on_power_of_DMI();
+            DmiActions.Turn_on_power_of_DMI(this);
 
 
             /*

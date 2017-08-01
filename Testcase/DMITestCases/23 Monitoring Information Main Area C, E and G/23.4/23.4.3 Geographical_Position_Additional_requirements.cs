@@ -63,9 +63,9 @@ namespace Testcase.DMITestCases
             Expected Result: The symbol ‘DR03’ displays in sub-area G12
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_pass_BG1();
+            DmiActions.Drive_the_train_forward_pass_BG1(this);
             // Call generic Check Results Method
-            DmiExpectedResults.The_symbol_DR03_displays_in_sub_area_G12();
+            DmiExpectedResults.The_symbol_DR03_displays_in_sub_area_G12(this);
 
 
             /*
@@ -82,7 +82,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SR mode, Level 1
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_SR_mode_Level_1();
+            DmiExpectedResults.DMI_displays_in_SR_mode_Level_1(this);
 
 
             /*
@@ -91,9 +91,9 @@ namespace Testcase.DMITestCases
             Expected Result: The symbol ‘DR03’ displays in sub-area G12
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_pass_BG1();
+            DmiActions.Drive_the_train_forward_pass_BG1(this);
             // Call generic Check Results Method
-            DmiExpectedResults.The_symbol_DR03_displays_in_sub_area_G12();
+            DmiExpectedResults.The_symbol_DR03_displays_in_sub_area_G12(this);
 
 
             /*
@@ -137,9 +137,9 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 2499 (partly: reset the default state of toggle to off, MMI_gen 242);
             */
             // Call generic Action Method
-            DmiActions.Activate_cabin_A();
+            DmiActions.Activate_cabin_A(this);
             // Call generic Check Results Method
-            DmiExpectedResults.The_symbol_DR03_displays_in_sub_area_G12();
+            DmiExpectedResults.The_symbol_DR03_displays_in_sub_area_G12(this);
 
 
             /*
@@ -149,7 +149,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 2499 (partly: removal, MMI_gen 244);
             */
             // Call generic Action Method
-            DmiActions.Simulate_loss_communication_between_ETCS_onboard_and_DMI();
+            DmiActions.Simulate_loss_communication_between_ETCS_onboard_and_DMI(this);
 
 
             /*

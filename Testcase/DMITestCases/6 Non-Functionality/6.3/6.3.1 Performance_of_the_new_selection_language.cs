@@ -70,7 +70,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 60;
             */
             // Call generic Action Method
-            DmiActions.Activate_cabin_A();
+            DmiActions.Activate_cabin_A(this);
 
 
             /*
@@ -96,7 +96,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 61 (partly: Engilsh);MMI_gen_11892 (partly: Engilsh);MMI_gen 4368 (partly: language dependent text);
             */
             // Call generic Action Method
-            DmiActions.Complete_start_of_mission();
+            DmiActions.Complete_start_of_mission(this);
 
 
             /*

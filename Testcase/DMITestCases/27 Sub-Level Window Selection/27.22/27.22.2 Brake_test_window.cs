@@ -83,9 +83,9 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 11807 (partly: MMI_gen 4557 (partly: button ‘Close’, MMI_gen 4382 (partly: state ‘Enabled’ when slide out with force applied, no sound))); MMI_gen 4374;
             */
             // Call generic Action Method
-            DmiActions.Slide_out_Close_button();
+            DmiActions.Slide_out_Close_button(this);
             // Call generic Check Results Method
-            DmiExpectedResults.The_border_of_the_button_is_shown_state_Enabled_without_a_sound();
+            DmiExpectedResults.The_border_of_the_button_is_shown_state_Enabled_without_a_sound(this);
 
 
             /*
@@ -95,9 +95,9 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 11807 (partly: MMI_gen 4557 (partly: button ‘Close’, MMI_gen 4382 (partly: state ‘Pressed’ when slide back, no sound))); MMI_gen 4375;
             */
             // Call generic Action Method
-            DmiActions.Slide_back_into_Close_button();
+            DmiActions.Slide_back_into_Close_button(this);
             // Call generic Check Results Method
-            DmiExpectedResults.The_button_is_back_to_state_Pressed_without_a_sound();
+            DmiExpectedResults.The_button_is_back_to_state_Pressed_without_a_sound(this);
 
 
             /*
@@ -109,7 +109,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Release ‘Close’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Brake_window();
+            DmiExpectedResults.DMI_displays_Brake_window(this);
 
 
             /*

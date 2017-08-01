@@ -62,9 +62,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Driver ID window
             */
             // Call generic Action Method
-            DmiActions.Activate_Cabin_A();
+            DmiActions.Activate_Cabin_A(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Driver_ID_window();
+            DmiExpectedResults.DMI_displays_Driver_ID_window(this);
 
 
             /*
@@ -85,7 +85,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Press and hold ‘Next’ button");
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_1_The_state_of_button_is_changed_to_Pressed_the_border_of_button_is_removed_2_The_sound_Click_is_played_once();
+                .Verify_the_following_information_1_The_state_of_button_is_changed_to_Pressed_the_border_of_button_is_removed_2_The_sound_Click_is_played_once(this);
 
 
             /*
@@ -95,10 +95,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9391 (partly: [Next], MMI_gen 4382 (partly: state ‘Enabled’ when slide out with force applied, no sound));
             */
             // Call generic Action Method
-            DmiActions.Slide_out_the_Next_button();
+            DmiActions.Slide_out_the_Next_button(this);
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_1_The_border_of_the_button_is_shown_state_Enabled_without_a_sound();
+                .Verify_the_following_information_1_The_border_of_the_button_is_shown_state_Enabled_without_a_sound(this);
 
 
             /*
@@ -108,9 +108,9 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9391 (partly: [Next], MMI_gen 4382 (partly: state ‘Enabled’ when slide out with force applied, no sound));
             */
             // Call generic Action Method
-            DmiActions.Slide_back_into_the_Next_button();
+            DmiActions.Slide_back_into_the_Next_button(this);
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_1_The_button_is_back_to_state_Pressed_without_a_sound();
+            DmiExpectedResults.Verify_the_following_information_1_The_button_is_back_to_state_Pressed_without_a_sound(this);
 
 
             /*
@@ -139,7 +139,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Settings_window();
+            DmiExpectedResults.DMI_displays_Settings_window(this);
 
 
             /*

@@ -68,9 +68,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays the default window. The Driver ID window is displayed
             */
             // Call generic Action Method
-            DmiActions.Activate_cabin_A();
+            DmiActions.Activate_cabin_A(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_the_default_window_The_Driver_ID_window_is_displayed();
+            DmiExpectedResults.DMI_displays_the_default_window_The_Driver_ID_window_is_displayed(this);
 
 
             /*
@@ -86,7 +86,7 @@ namespace Testcase.DMITestCases
             Expected Result: The Train data window is displayed
             */
             // Call generic Check Results Method
-            DmiExpectedResults.The_Train_data_window_is_displayed();
+            DmiExpectedResults.The_Train_data_window_is_displayed(this);
 
 
             /*
@@ -111,7 +111,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Enter and confirm the Train running number");
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_the_Main_window();
+            DmiExpectedResults.DMI_displays_the_Main_window(this);
 
 
             /*
@@ -151,7 +151,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SR mode, level 1
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_SR_mode_level_1();
+            DmiExpectedResults.DMI_displays_in_SR_mode_level_1(this);
 
 
             /*

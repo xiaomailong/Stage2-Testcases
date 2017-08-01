@@ -70,7 +70,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 63 (partly: Window headline);
             */
             // Call generic Action Method
-            DmiActions.Activate_cabin_A();
+            DmiActions.Activate_cabin_A(this);
 
 
             /*
@@ -143,9 +143,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays the default window
             */
             // Call generic Action Method
-            DmiActions.Close_the_Settings_window();
+            DmiActions.Close_the_Settings_window(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_the_default_window();
+            DmiExpectedResults.DMI_displays_the_default_window(this);
 
 
             /*

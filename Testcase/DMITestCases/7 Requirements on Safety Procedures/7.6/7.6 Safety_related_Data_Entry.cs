@@ -76,7 +76,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 3203 (Maintenance Data Entry);(2) MMI_gen 3226 (partly: Maintenance Data Validation);(3) MMI_gen 3205 (partly: Maintenance Data Entry and Validation);(4) MMI_gen 3390 (partly: Maintenance Validation);(5) MMI_gen 3391 (partly: Maintenance Data Entry and Validation);
             */
             // Call generic Action Method
-            DmiActions.Confirm_all_value_of_each_input_field_Then_press_Yes_button();
+            DmiActions.Confirm_all_value_of_each_input_field_Then_press_Yes_button(this);
 
 
             /*
@@ -87,7 +87,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .DMI_displays_Settings_window_Verify_the_following_information_1_Use_the_log_file_to_confirm_that_DMI_sent_out_packet_EVC_141_with_variable_based_on_confirmed_data_to_ETCS_Onboard();
+                .DMI_displays_Settings_window_Verify_the_following_information_1_Use_the_log_file_to_confirm_that_DMI_sent_out_packet_EVC_141_with_variable_based_on_confirmed_data_to_ETCS_Onboard(this);
 
 
             /*
@@ -107,7 +107,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 3203 (Maintenance Data Entry);(2) MMI_gen 3226 (partly: Maintenance Data Validation);(3) MMI_gen 3205 (partly: Maintenance Data Entry and Validation);(4) MMI_gen 3390 (partly: Maintenance Validation);(5) MMI_gen 3391 (partly: Maintenance Data Entry and Validation);
             */
             // Call generic Action Method
-            DmiActions.Confirm_all_value_of_each_input_field_Then_press_Yes_button();
+            DmiActions.Confirm_all_value_of_each_input_field_Then_press_Yes_button(this);
 
 
             /*
@@ -118,7 +118,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .DMI_displays_Settings_window_Verify_the_following_information_1_Use_the_log_file_to_confirm_that_DMI_sent_out_packet_EVC_141_with_variable_based_on_confirmed_data_to_ETCS_Onboard();
+                .DMI_displays_Settings_window_Verify_the_following_information_1_Use_the_log_file_to_confirm_that_DMI_sent_out_packet_EVC_141_with_variable_based_on_confirmed_data_to_ETCS_Onboard(this);
 
 
             /*
@@ -198,7 +198,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 3203 (partly: Train Data Entry);(2) MMI_gen 3226 (partly: Train Data Validation);(3) MMI_gen 3205 (partly: Train Data Entry and Validation);(4) MMI_gen 3390 (partly: Train Validation);(5) MMI_gen 3391 (partly: Train Data Entry and Validation);
             */
             // Call generic Action Method
-            DmiActions.Confirm_all_value_of_each_input_field_Then_press_Yes_button();
+            DmiActions.Confirm_all_value_of_each_input_field_Then_press_Yes_button(this);
 
 
             /*

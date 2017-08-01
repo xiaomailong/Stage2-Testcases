@@ -62,7 +62,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SR mode, level 1
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_SR_mode_level_1();
+            DmiExpectedResults.DMI_displays_in_SR_mode_level_1(this);
 
 
             /*
@@ -71,9 +71,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in FS mode, level 1
             */
             // Call generic Action Method
-            DmiActions.Pass_BG1_with_Pkt_12_21_and_27();
+            DmiActions.Pass_BG1_with_Pkt_12_21_and_27(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_FS_mode_level_1();
+            DmiExpectedResults.DMI_displays_in_FS_mode_level_1(this);
 
 
             /*
@@ -164,7 +164,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SR mode, Level 1
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_SR_mode_Level_1();
+            DmiExpectedResults.DMI_displays_in_SR_mode_Level_1(this);
 
 
             /*
@@ -173,7 +173,7 @@ namespace Testcase.DMITestCases
             Expected Result: The symbol ‘DR03’ displays in sub-area G12
             */
             // Call generic Check Results Method
-            DmiExpectedResults.The_symbol_DR03_displays_in_sub_area_G12();
+            DmiExpectedResults.The_symbol_DR03_displays_in_sub_area_G12(this);
 
 
             /*

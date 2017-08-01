@@ -64,7 +64,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Settings’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Settings_window();
+            DmiExpectedResults.DMI_displays_Settings_window(this);
 
 
             /*
@@ -93,7 +93,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Settings_window();
+            DmiExpectedResults.DMI_displays_Settings_window(this);
 
 
             /*
@@ -104,7 +104,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Driver_ID_window();
+            DmiExpectedResults.DMI_displays_Driver_ID_window(this);
 
 
             /*

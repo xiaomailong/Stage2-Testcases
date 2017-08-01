@@ -94,7 +94,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_informationDMI_in_the_entry_state_of_ST051_The_hourglass_symbol_ST05_is_displayed_2_Verify_all_buttons_and_the_close_button_is_disable_3_The_disabled_Close_button_NA12_is_display_in_area_G_4_The_Input_Field_is_deselected_10_seconds_laterDMI_in_the_exit_state_of_ST055_The_hourglass_symbol_ST05_is_removed_6_The_state_of_all_buttons_is_restored_according_to_the_last_status_before_script_is_sent_7_The_enabled_Close_button_NA11_is_display_in_area_G_8_The_input_field_is_in_the_Selected_state();
+                .Verify_the_following_informationDMI_in_the_entry_state_of_ST051_The_hourglass_symbol_ST05_is_displayed_2_Verify_all_buttons_and_the_close_button_is_disable_3_The_disabled_Close_button_NA12_is_display_in_area_G_4_The_Input_Field_is_deselected_10_seconds_laterDMI_in_the_exit_state_of_ST055_The_hourglass_symbol_ST05_is_removed_6_The_state_of_all_buttons_is_restored_according_to_the_last_status_before_script_is_sent_7_The_enabled_Close_button_NA11_is_display_in_area_G_8_The_input_field_is_in_the_Selected_state(this);
 
 
             /*
@@ -113,7 +113,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_informationDMI_in_the_entry_state_of_ST051_The_hourglass_symbol_ST05_is_displayed_2_Verify_all_buttons_and_the_close_button_is_disable_3_The_disabled_Close_button_NA12_is_display_in_area_G_10_seconds_laterDMI_in_the_exit_state_of_ST054_The_hourglass_symbol_ST05_is_removed_5_The_state_of_all_buttons_is_restored_according_to_the_last_status_before_script_is_sent_6_The_enabled_Close_button_NA11_is_display_in_area_G();
+                .Verify_the_following_informationDMI_in_the_entry_state_of_ST051_The_hourglass_symbol_ST05_is_displayed_2_Verify_all_buttons_and_the_close_button_is_disable_3_The_disabled_Close_button_NA12_is_display_in_area_G_10_seconds_laterDMI_in_the_exit_state_of_ST054_The_hourglass_symbol_ST05_is_removed_5_The_state_of_all_buttons_is_restored_according_to_the_last_status_before_script_is_sent_6_The_enabled_Close_button_NA11_is_display_in_area_G(this);
 
 
             /*
@@ -150,7 +150,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_informationDMI_in_the_entry_state_of_ST051_The_hourglass_symbol_ST05_is_displayed_2_Verify_all_buttons_and_the_close_button_is_disable_3_The_disabled_Close_button_NA12_is_display_in_area_G_4_The_Input_Field_is_deselected_10_seconds_laterDMI_in_the_exit_state_of_ST055_The_hourglass_symbol_ST05_is_removed_6_The_state_of_all_buttons_is_restored_according_to_the_last_status_before_script_is_sent_7_The_enabled_Close_button_NA11_is_display_in_area_G_8_The_input_field_is_in_the_Selected_state();
+                .Verify_the_following_informationDMI_in_the_entry_state_of_ST051_The_hourglass_symbol_ST05_is_displayed_2_Verify_all_buttons_and_the_close_button_is_disable_3_The_disabled_Close_button_NA12_is_display_in_area_G_4_The_Input_Field_is_deselected_10_seconds_laterDMI_in_the_exit_state_of_ST055_The_hourglass_symbol_ST05_is_removed_6_The_state_of_all_buttons_is_restored_according_to_the_last_status_before_script_is_sent_7_The_enabled_Close_button_NA11_is_display_in_area_G_8_The_input_field_is_in_the_Selected_state(this);
 
 
             /*
@@ -168,7 +168,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: See step 2 for Radar window in the Settings menu
             */
             // Call generic Check Results Method
-            DmiExpectedResults.See_the_expectation_in_step_2();
+            DmiExpectedResults.See_the_expectation_in_step_2(this);
 
 
             /*
@@ -186,7 +186,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: See step 8 for Validate Radar window in the Settings menu
             */
             // Call generic Check Results Method
-            DmiExpectedResults.See_the_expectation_in_step_8();
+            DmiExpectedResults.See_the_expectation_in_step_8(this);
 
 
             /*
@@ -195,7 +195,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SR mode, level 1
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_SR_mode_level_1();
+            DmiExpectedResults.DMI_displays_in_SR_mode_level_1(this);
 
 
             /*
@@ -233,7 +233,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: See step 2 for Language window in the Settings menu
             */
             // Call generic Check Results Method
-            DmiExpectedResults.See_the_expectation_in_step_2();
+            DmiExpectedResults.See_the_expectation_in_step_2(this);
 
 
             /*
@@ -251,7 +251,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: See step 2 for Volume window in the Settings menu
             */
             // Call generic Check Results Method
-            DmiExpectedResults.See_the_expectation_in_step_2();
+            DmiExpectedResults.See_the_expectation_in_step_2(this);
 
 
             /*
@@ -269,7 +269,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: See step 2 for Brightness window in the Settings menu
             */
             // Call generic Check Results Method
-            DmiExpectedResults.See_the_expectation_in_step_2();
+            DmiExpectedResults.See_the_expectation_in_step_2(this);
 
 
             /*
@@ -303,7 +303,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: See step 2 for Set VBC window in the Settings menu
             */
             // Call generic Check Results Method
-            DmiExpectedResults.See_the_expectation_in_step_2();
+            DmiExpectedResults.See_the_expectation_in_step_2(this);
 
 
             /*
@@ -314,7 +314,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions
-                .Perform_the_following_procedureEnter_VBC_Code_65536Confirm_entered_data_by_pressing_an_input_field_Press_Yes_button_Press_Yes_button_on_keypad();
+                .Perform_the_following_procedureEnter_VBC_Code_65536Confirm_entered_data_by_pressing_an_input_field_Press_Yes_button_Press_Yes_button_on_keypad(this);
 
 
             /*
@@ -324,7 +324,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: See step 8 for Validate set VBC window in the Settings menu
             */
             // Call generic Check Results Method
-            DmiExpectedResults.See_the_expectation_in_step_8();
+            DmiExpectedResults.See_the_expectation_in_step_8(this);
 
 
             /*
@@ -342,7 +342,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: See step 2 for Remove VBC window in the Settings menu
             */
             // Call generic Check Results Method
-            DmiExpectedResults.See_the_expectation_in_step_2();
+            DmiExpectedResults.See_the_expectation_in_step_2(this);
 
 
             /*
@@ -353,7 +353,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions
-                .Perform_the_following_procedureEnter_VBC_Code_65536Confirm_entered_data_by_pressing_an_input_field_Press_Yes_button_Press_Yes_button_on_keypad();
+                .Perform_the_following_procedureEnter_VBC_Code_65536Confirm_entered_data_by_pressing_an_input_field_Press_Yes_button_Press_Yes_button_on_keypad(this);
 
 
             /*
@@ -363,7 +363,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: See step 8 for Validate remove VBC window in the Settings menu
             */
             // Call generic Check Results Method
-            DmiExpectedResults.See_the_expectation_in_step_8();
+            DmiExpectedResults.See_the_expectation_in_step_8(this);
 
 
             /*
@@ -397,7 +397,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: See step 4 for Brake window in the Settings menu
             */
             // Call generic Check Results Method
-            DmiExpectedResults.See_the_expectation_in_step_4();
+            DmiExpectedResults.See_the_expectation_in_step_4(this);
 
 
             /*
@@ -417,7 +417,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: See step 4 for Brake test window in the Settings menu
             */
             // Call generic Check Results Method
-            DmiExpectedResults.See_the_expectation_in_step_4();
+            DmiExpectedResults.See_the_expectation_in_step_4(this);
 
 
             /*
@@ -435,7 +435,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: See step 2 for Brake percentage window in the Settings menu
             */
             // Call generic Check Results Method
-            DmiExpectedResults.See_the_expectation_in_step_2();
+            DmiExpectedResults.See_the_expectation_in_step_2(this);
 
 
             /*
@@ -453,7 +453,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: See step 8 for Validate brake percentage window in the Settings menu
             */
             // Call generic Check Results Method
-            DmiExpectedResults.See_the_expectation_in_step_8();
+            DmiExpectedResults.See_the_expectation_in_step_8(this);
 
 
             /*

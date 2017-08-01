@@ -73,10 +73,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 107 (partly: MMI_M_WARNING, OS mode); MMI_gen 2567 (partly: MMI_M_WARNING, OS mode PIM); (2) MMI_gen 107 (partly: Table 37, OS mode);(3) MMI_gen 2567 (partly: Table 38, OS mode PIM);
             */
             // Call generic Action Method
-            DmiActions.Continue_to_drive_the_train_forward_Then_stop_the_train();
+            DmiActions.Continue_to_drive_the_train_forward_Then_stop_the_train(this);
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_1_Use_the_log_file_to_confirm_that_DMI_receives_the_packet_information_EVC_1_with_following_variables_MMI_M_WARNING_2_Status_NoS_Supervision_PIM2_The_distance_to_target_bar_is_not_display_in_sub_area_A3_3_The_distance_to_target_digital_is_display_in_sub_area_A2();
+                .Verify_the_following_information_1_Use_the_log_file_to_confirm_that_DMI_receives_the_packet_information_EVC_1_with_following_variables_MMI_M_WARNING_2_Status_NoS_Supervision_PIM2_The_distance_to_target_bar_is_not_display_in_sub_area_A3_3_The_distance_to_target_digital_is_display_in_sub_area_A2(this);
 
 
             /*
@@ -86,7 +86,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 107 (partly: MMI_M_WARNING, OS mode); MMI_gen 2567 (partly: MMI_M_WARNING, OS mode TSM);(2) MMI_gen 107 (partly: Table 37, OS mode);(3) MMI_gen 2567 (partly: Table 38, OS mode TSM);
             */
             // Call generic Action Method
-            DmiActions.Continue_to_drive_the_train_forward_Then_stop_the_train();
+            DmiActions.Continue_to_drive_the_train_forward_Then_stop_the_train(this);
 
 
             /*
@@ -96,7 +96,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 107 (partly: MMI_M_WARNING, OS mode); MMI_gen 2567 (partly: MMI_M_WARNING, OS mode RSM); (2) MMI_gen 107 (partly: Table 37, OS mode);(3) MMI_gen 2567 (partly: Table 38, OS mode RSM);
             */
             // Call generic Action Method
-            DmiActions.Continue_to_drive_the_train_forward_Then_stop_the_train();
+            DmiActions.Continue_to_drive_the_train_forward_Then_stop_the_train(this);
 
 
             /*

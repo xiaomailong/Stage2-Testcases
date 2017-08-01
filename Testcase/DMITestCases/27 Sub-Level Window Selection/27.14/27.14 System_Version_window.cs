@@ -99,7 +99,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press the ‘Close’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_1_DMI_displays_Setting_window();
+            DmiExpectedResults.Verify_the_following_information_1_DMI_displays_Setting_window(this);
 
 
             /*

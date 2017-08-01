@@ -65,7 +65,7 @@ namespace Testcase.DMITestCases
             Expected Result: The ‘Yes’ button is enabled
             */
             // Call generic Check Results Method
-            DmiExpectedResults.The_Yes_button_is_enabled();
+            DmiExpectedResults.The_Yes_button_is_enabled(this);
 
 
             /*
@@ -76,7 +76,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .EVC_221_Use_the_log_file_to_verify_that_DMI_receives_packet_EVC_22_with_variable_MMI_M_BUTTONS_255_no_button_and_the_Yes_button_is_disabled();
+                .EVC_221_Use_the_log_file_to_verify_that_DMI_receives_packet_EVC_22_with_variable_MMI_M_BUTTONS_255_no_button_and_the_Yes_button_is_disabled(this);
 
 
             /*
@@ -85,7 +85,7 @@ namespace Testcase.DMITestCases
             Expected Result: The ‘Yes’ button is enabled
             */
             // Call generic Check Results Method
-            DmiExpectedResults.The_Yes_button_is_enabled();
+            DmiExpectedResults.The_Yes_button_is_enabled(this);
 
 
             /*
@@ -96,7 +96,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .EVC_221_Use_the_log_file_to_verify_that_DMI_receives_packet_EVC_22_with_variable_MMI_M_BUTTONS_255_no_button_and_the_Yes_button_is_disabled();
+                .EVC_221_Use_the_log_file_to_verify_that_DMI_receives_packet_EVC_22_with_variable_MMI_M_BUTTONS_255_no_button_and_the_Yes_button_is_disabled(this);
 
 
             /*
@@ -105,7 +105,7 @@ namespace Testcase.DMITestCases
             Expected Result: The ‘Yes’ button is enabled
             */
             // Call generic Check Results Method
-            DmiExpectedResults.The_Yes_button_is_enabled();
+            DmiExpectedResults.The_Yes_button_is_enabled(this);
 
 
             /*
@@ -122,7 +122,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: Note: This is a temporary approach for non-support test environment on the data checks.
             */
             // Call generic Check Results Method
-            DmiExpectedResults.The_Yes_button_is_enabled();
+            DmiExpectedResults.The_Yes_button_is_enabled(this);
 
 
             /*

@@ -63,9 +63,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI changes from SR mode to FS mode
             */
             // Call generic Action Method
-            DmiActions.Driver_the_train_forward();
+            DmiActions.Driver_the_train_forward(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_changes_from_SR_mode_to_FS_mode();
+            DmiExpectedResults.DMI_changes_from_SR_mode_to_FS_mode(this);
 
 
             /*
@@ -74,9 +74,9 @@ namespace Testcase.DMITestCases
             Expected Result: The speed pointer is displayed with speed =140
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_with_speed_140_kmh();
+            DmiActions.Drive_the_train_forward_with_speed_140_kmh(this);
             // Call generic Check Results Method
-            DmiExpectedResults.The_speed_pointer_is_displayed_with_speed_140();
+            DmiExpectedResults.The_speed_pointer_is_displayed_with_speed_140(this);
 
 
             /*
@@ -86,7 +86,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 1692 (partly: ETC speed, disabled);   
             */
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_that_Slip_and_Slide_indicator_are_not_display_on_DMI();
+            DmiExpectedResults.Verify_that_Slip_and_Slide_indicator_are_not_display_on_DMI(this);
 
 
             /*
@@ -96,7 +96,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 1692 (partly: ETC speed, disabled);   
             */
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_that_Slip_and_Slide_indicator_are_not_display_on_DMI();
+            DmiExpectedResults.Verify_that_Slip_and_Slide_indicator_are_not_display_on_DMI(this);
 
 
             /*
@@ -106,7 +106,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 1692 (partly: ETC speed, disabled);   
             */
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_that_Slip_and_Slide_indicator_are_not_display_on_DMI();
+            DmiExpectedResults.Verify_that_Slip_and_Slide_indicator_are_not_display_on_DMI(this);
 
 
             /*

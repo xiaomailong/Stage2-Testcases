@@ -72,7 +72,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_RBC_contact_window();
+            DmiExpectedResults.DMI_displays_RBC_contact_window(this);
 
 
             /*
@@ -81,7 +81,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays RBC data window
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_RBC_data_window();
+            DmiExpectedResults.DMI_displays_RBC_data_window(this);
 
 
             /*
@@ -93,7 +93,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_RBC_contact_window();
+            DmiExpectedResults.DMI_displays_RBC_contact_window(this);
 
 
             /*
@@ -102,7 +102,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Main window
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Main_window();
+            DmiExpectedResults.DMI_displays_Main_window(this);
 
 
             /*
@@ -111,7 +111,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays RBC contact window
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_RBC_contact_window();
+            DmiExpectedResults.DMI_displays_RBC_contact_window(this);
 
 
             /*
@@ -123,7 +123,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Main_window();
+            DmiExpectedResults.DMI_displays_Main_window(this);
 
 
             /*
@@ -142,7 +142,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Default_window();
+            DmiExpectedResults.DMI_displays_Default_window(this);
 
 
             /*

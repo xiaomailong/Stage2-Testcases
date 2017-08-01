@@ -92,7 +92,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Released the pressed button");
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_The_state_of_button_is_changed_to_Enabled();
+            DmiExpectedResults.Verify_the_following_information_The_state_of_button_is_changed_to_Enabled(this);
 
 
             /*
@@ -103,10 +103,10 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions
-                .Perform_action_step_3_4_for_the_1_to_9_buttons_Note_Press_the_Del_button_to_delete_an_information_when_entered_data_is_out_of_input_field_range_is_acceptable();
+                .Perform_action_step_3_4_for_the_1_to_9_buttons_Note_Press_the_Del_button_to_delete_an_information_when_entered_data_is_out_of_input_field_range_is_acceptable(this);
             // Call generic Check Results Method
             DmiExpectedResults
-                .See_the_expected_results_of_Step_3_Step_4_and_the_following_additional_information_The_pressed_key_is_added_in_an_input_field_immediately_The_cursor_is_jumped_to_next_position_after_entered_the_character_immediately();
+                .See_the_expected_results_of_Step_3_Step_4_and_the_following_additional_information_The_pressed_key_is_added_in_an_input_field_immediately_The_cursor_is_jumped_to_next_position_after_entered_the_character_immediately(this);
 
 
             /*
@@ -119,7 +119,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Press and hold ‘Del’ button.Note: Stopwatch is required");
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_While_press_and_hold_button_less_than_1_5_secSound_Click_is_played_once_The_state_of_button_is_changed_to_Pressed_and_immediately_back_to_Enabled_state_The_last_character_is_removed_from_an_input_field_after_pressing_the_button_While_press_and_hold_button_over_1_5_secThe_state_pressed_and_released_are_switched_repeatly_while_button_is_pressed_and_the_characters_are_removed_from_an_input_field_repeatly_refer_to_pressed_state_The_sound_Click_is_played_repeatly_while_button_is_pressed();
+                .Verify_the_following_information_While_press_and_hold_button_less_than_1_5_secSound_Click_is_played_once_The_state_of_button_is_changed_to_Pressed_and_immediately_back_to_Enabled_state_The_last_character_is_removed_from_an_input_field_after_pressing_the_button_While_press_and_hold_button_over_1_5_secThe_state_pressed_and_released_are_switched_repeatly_while_button_is_pressed_and_the_characters_are_removed_from_an_input_field_repeatly_refer_to_pressed_state_The_sound_Click_is_played_repeatly_while_button_is_pressed(this);
 
 
             /*
@@ -131,7 +131,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Release ‘Del’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_The_character_is_stop_removing();
+            DmiExpectedResults.Verify_the_following_information_The_character_is_stop_removing(this);
 
 
             /*
@@ -143,7 +143,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(
                 @"Press ‘Del’ button on the numeric keyboard until no number is displayed on the Input Field");
             // Call generic Check Results Method
-            DmiExpectedResults.No_number_is_displayed_on_the_Input_Field();
+            DmiExpectedResults.No_number_is_displayed_on_the_Input_Field(this);
 
 
             /*
@@ -182,7 +182,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Pressed_the_border_of_button_is_removed();
+                .Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Pressed_the_border_of_button_is_removed(this);
 
 
             /*
@@ -192,10 +192,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9390 (partly: Brake percentage window);
             */
             // Call generic Action Method
-            DmiActions.Slide_out_an_input_field();
+            DmiActions.Slide_out_an_input_field(this);
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Enabled_the_border_of_button_is_shown_without_a_sound();
+                .Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Enabled_the_border_of_button_is_shown_without_a_sound(this);
 
 
             /*
@@ -205,10 +205,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9390 (partly: Brake percentage window);
             */
             // Call generic Action Method
-            DmiActions.Slide_back_into_an_input_field();
+            DmiActions.Slide_back_into_an_input_field(this);
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Pressed_the_border_of_button_is_removed();
+                .Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Pressed_the_border_of_button_is_removed(this);
 
 
             /*

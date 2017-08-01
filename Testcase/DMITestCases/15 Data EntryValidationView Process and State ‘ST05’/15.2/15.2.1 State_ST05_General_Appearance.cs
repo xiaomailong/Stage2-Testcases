@@ -79,7 +79,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 5728 (partly: removal, EVC);(2) MMI_gen 5728 (partly: restore (after ST05), ‘Main’ window, menu window);(3) MMI_gen 4396 (partly: close, NA11);
             */
             // Call generic Action Method
-            DmiActions.Use_the_test_script_file_10_2_b_xml_to_send_EVC_8_withMMI_Q_TEXT_CRITERIA_4MMI_Q_TEXT_716();
+            DmiActions.Use_the_test_script_file_10_2_b_xml_to_send_EVC_8_withMMI_Q_TEXT_CRITERIA_4MMI_Q_TEXT_716(this);
 
 
             /*
@@ -90,7 +90,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Train data’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Train_data_window();
+            DmiExpectedResults.DMI_displays_Train_data_window(this);
 
 
             /*
@@ -108,7 +108,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 12018(2) MMI_gen 168 (partly: disabled button, ‘Train data’ window, data entry window);(3) Note under MMI_gen 5728;(4) MMI_gen 168 (partly: deselect input field);
             */
             // Call generic Action Method
-            DmiActions.Use_the_test_script_file_10_2_a_xml_to_send_EVC_8_withMMI_Q_TEXT_CRITERIA_3_MMI_Q_TEXT_716();
+            DmiActions.Use_the_test_script_file_10_2_a_xml_to_send_EVC_8_withMMI_Q_TEXT_CRITERIA_3_MMI_Q_TEXT_716(this);
 
 
             /*
@@ -118,7 +118,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 5728 (partly: removal, EVC);(2) MMI_gen 5728 (partly: restore (after ST05), ‘Train data’ window, data entry window);(3) MMI_gen 5728 (partly: MMI_gen 5211, MMI_gen 4683 (partly: data entry))
             */
             // Call generic Action Method
-            DmiActions.Use_the_test_script_file_10_2_b_xml_to_send_EVC_8_withMMI_Q_TEXT_CRITERIA_4MMI_Q_TEXT_716();
+            DmiActions.Use_the_test_script_file_10_2_b_xml_to_send_EVC_8_withMMI_Q_TEXT_CRITERIA_4MMI_Q_TEXT_716(this);
 
 
             /*
@@ -136,7 +136,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 12018;(2) MMI_gen 168 (partly: disabled button, ‘Train data’ validation window, data validation window);(3) Note under MMI_gen 5728; MMI_gen 5719 (partly: exception, state ST05);(4) MMI_gen 168 (partly: deselect input field);
             */
             // Call generic Action Method
-            DmiActions.Use_the_test_script_file_10_2_a_xml_to_send_EVC_8_withMMI_Q_TEXT_CRITERIA_3_MMI_Q_TEXT_716();
+            DmiActions.Use_the_test_script_file_10_2_a_xml_to_send_EVC_8_withMMI_Q_TEXT_CRITERIA_3_MMI_Q_TEXT_716(this);
 
 
             /*
@@ -146,7 +146,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 5728 (partly: removal, EVC);(2) MMI_gen 5728 (partly: restore (after ST05), ‘Train data’ validation window, data validation window);(3) MMI_gen 5728 (partly: MMI_gen 5211, MMI_gen 4683 (partly: data validation))
             */
             // Call generic Action Method
-            DmiActions.Use_the_test_script_file_10_2_b_xml_to_send_EVC_8_withMMI_Q_TEXT_CRITERIA_4MMI_Q_TEXT_716();
+            DmiActions.Use_the_test_script_file_10_2_b_xml_to_send_EVC_8_withMMI_Q_TEXT_CRITERIA_4MMI_Q_TEXT_716(this);
 
 
             /*
@@ -155,9 +155,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Train Running Number window
             */
             // Call generic Action Method
-            DmiActions.Confirm_entered_data_by_pressing_an_input_field();
+            DmiActions.Confirm_entered_data_by_pressing_an_input_field(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Train_Running_Number_window();
+            DmiExpectedResults.DMI_displays_Train_Running_Number_window(this);
 
 
             /*
@@ -177,7 +177,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 12018, MMI_gen 5732 (partly: before communication lost, current window ‘Main’);(2) MMI_gen 168 (partly: disabled buttons, ‘Main’ window, menu window);
             */
             // Call generic Action Method
-            DmiActions.Use_the_test_script_file_10_2_a_xml_to_send_EVC_8_withMMI_Q_TEXT_CRITERIA_3_MMI_Q_TEXT_716();
+            DmiActions.Use_the_test_script_file_10_2_a_xml_to_send_EVC_8_withMMI_Q_TEXT_CRITERIA_3_MMI_Q_TEXT_716(this);
 
 
             /*
@@ -205,7 +205,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 12018;(2) MMI_gen 168 (partly: disabled button, data view window);(3) Note under MMI_gen 5728;
             */
             // Call generic Action Method
-            DmiActions.Use_the_test_script_file_10_2_a_xml_to_send_EVC_8_withMMI_Q_TEXT_CRITERIA_3_MMI_Q_TEXT_716();
+            DmiActions.Use_the_test_script_file_10_2_a_xml_to_send_EVC_8_withMMI_Q_TEXT_CRITERIA_3_MMI_Q_TEXT_716(this);
 
 
             /*
@@ -215,7 +215,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 5728 (partly: removal, EVC);(2) MMI_gen 5728 (partly: restore (after ST05), data view window);
             */
             // Call generic Action Method
-            DmiActions.Use_the_test_script_file_10_2_b_xml_to_send_EVC_8_withMMI_Q_TEXT_CRITERIA_4MMI_Q_TEXT_716();
+            DmiActions.Use_the_test_script_file_10_2_b_xml_to_send_EVC_8_withMMI_Q_TEXT_CRITERIA_4MMI_Q_TEXT_716(this);
 
 
             /*

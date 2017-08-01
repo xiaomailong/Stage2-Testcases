@@ -65,9 +65,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays SB mode
             */
             // Call generic Action Method
-            DmiActions.Power_on_the_system_and_activate_cabin();
+            DmiActions.Power_on_the_system_and_activate_cabin(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_SB_mode();
+            DmiExpectedResults.DMI_displays_SB_mode(this);
 
 
             /*
@@ -76,9 +76,9 @@ namespace Testcase.DMITestCases
             Expected Result: Mode changes to SR mode , L1
             */
             // Call generic Action Method
-            DmiActions.Perform_SoM_to_L1_SR_mode();
+            DmiActions.Perform_SoM_to_L1_SR_mode(this);
             // Call generic Check Results Method
-            DmiExpectedResults.Mode_changes_to_SR_mode_L1();
+            DmiExpectedResults.Mode_changes_to_SR_mode_L1(this);
 
 
             /*
@@ -87,7 +87,7 @@ namespace Testcase.DMITestCases
             Expected Result: The set clock window is opened
             */
             // Call generic Action Method
-            DmiActions.Select_Settings_button_and_press_Set_clock_button();
+            DmiActions.Select_Settings_button_and_press_Set_clock_button(this);
 
 
             /*
@@ -98,7 +98,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_The_new_UTC_time_and_offset_time_are_changed_and_displayed_according_to_the_entered_data_from_the_driver_Use_the_log_file_to_verify_that_DMI_sends_out_packet_EVC_109_to_ETCS_OB_correctly();
+                .Verify_the_following_information_The_new_UTC_time_and_offset_time_are_changed_and_displayed_according_to_the_entered_data_from_the_driver_Use_the_log_file_to_verify_that_DMI_sends_out_packet_EVC_109_to_ETCS_OB_correctly(this);
 
 
             /*
@@ -109,7 +109,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_The_new_UTC_time_and_offset_time_are_changed_and_displayed_according_to_the_entered_data_from_the_driver_Use_the_log_file_to_verify_that_DMI_sends_out_packet_EVC_109_to_ETCS_OB_correctly();
+                .Verify_the_following_information_The_new_UTC_time_and_offset_time_are_changed_and_displayed_according_to_the_entered_data_from_the_driver_Use_the_log_file_to_verify_that_DMI_sends_out_packet_EVC_109_to_ETCS_OB_correctly(this);
 
 
             /*

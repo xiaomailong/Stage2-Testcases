@@ -63,7 +63,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9430 (partly: LE14);(2) MMI_gen 7025 (partly: 2nd bullet, #4, non-Ack Level 3 transition);
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_pass_BG1();
+            DmiActions.Drive_the_train_forward_pass_BG1(this);
 
 
             /*
@@ -72,7 +72,7 @@ namespace Testcase.DMITestCases
             Expected Result: Level transition from Level 2 to Level 3
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_pass_a_distance_to_level_transition();
+            DmiActions.Drive_the_train_forward_pass_a_distance_to_level_transition(this);
 
 
             /*
@@ -82,7 +82,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9430 (partly: LE12);(2) MMI_gen 7025 (partly: 2nd bullet, #4, non-Ack Level 2 transition);
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_pass_BG2();
+            DmiActions.Drive_the_train_forward_pass_BG2(this);
 
 
             /*
@@ -91,7 +91,7 @@ namespace Testcase.DMITestCases
             Expected Result: Level transition from Level 3 to Level 2
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_pass_a_distance_to_level_transition();
+            DmiActions.Drive_the_train_forward_pass_a_distance_to_level_transition(this);
 
 
             /*

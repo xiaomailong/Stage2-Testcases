@@ -63,9 +63,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Driver ID window
             */
             // Call generic Action Method
-            DmiActions.Activate_Cabin_A();
+            DmiActions.Activate_Cabin_A(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Driver_ID_window();
+            DmiExpectedResults.DMI_displays_Driver_ID_window(this);
 
 
             /*
@@ -83,7 +83,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 2576 (partly: concise visualisation, connection established); MMI_gen 1855 (partly: connection established);  MMI_gen 11459 (partly: concise visualisation); 
             */
             // Call generic Action Method
-            DmiActions.Perform_SoM_in_SR_mode_Level_2();
+            DmiActions.Perform_SoM_in_SR_mode_Level_2(this);
 
 
             /*
@@ -92,10 +92,10 @@ namespace Testcase.DMITestCases
             Expected Result: The train is moving forward, position is increase.The speed pointer displays the current speed
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_with_speed_below_the_permitted_speed();
+            DmiActions.Drive_the_train_forward_with_speed_below_the_permitted_speed(this);
             // Call generic Check Results Method
             DmiExpectedResults
-                .The_train_is_moving_forward_position_is_increase_The_speed_pointer_displays_the_current_speed();
+                .The_train_is_moving_forward_position_is_increase_The_speed_pointer_displays_the_current_speed(this);
 
 
             /*
@@ -104,9 +104,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in FS mode, Level 2
             */
             // Call generic Action Method
-            DmiActions.Receives_FS_MA_and_track_description_from_RBC();
+            DmiActions.Receives_FS_MA_and_track_description_from_RBC(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_FS_mode_Level_2();
+            DmiExpectedResults.DMI_displays_in_FS_mode_Level_2(this);
 
 
             /*
@@ -139,7 +139,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 2576 (partly: concise visualisation, Network registered via two modems); MMI_gen 1855 (partly: connection established);  MMI_gen 11459 (partly: concise visualisation);
             */
             // Call generic Check Results Method
-            DmiExpectedResults.No_symbol_display_in_sub_area_E1();
+            DmiExpectedResults.No_symbol_display_in_sub_area_E1(this);
 
 
             /*
@@ -149,7 +149,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 2576 (partly: concise visualisation, Network registered via one modems); MMI_gen 1855 (partly: connection established);  MMI_gen 11459 (partly: concise visualisation); 
             */
             // Call generic Check Results Method
-            DmiExpectedResults.No_symbol_display_in_sub_area_E1();
+            DmiExpectedResults.No_symbol_display_in_sub_area_E1(this);
 
 
             /*

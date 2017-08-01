@@ -70,9 +70,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Driver ID window
             */
             // Call generic Action Method
-            DmiActions.Activate_Cabin_A();
+            DmiActions.Activate_Cabin_A(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Driver_ID_window();
+            DmiExpectedResults.DMI_displays_Driver_ID_window(this);
 
 
             /*
@@ -119,7 +119,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Press and hold an input field");
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Pressed_the_border_of_button_is_removed();
+                .Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Pressed_the_border_of_button_is_removed(this);
 
 
             /*
@@ -129,10 +129,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9390 (partly: Radio Network ID window);
             */
             // Call generic Action Method
-            DmiActions.Slide_out_an_input_field();
+            DmiActions.Slide_out_an_input_field(this);
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Enabled_the_border_of_button_is_shown_without_a_sound();
+                .Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Enabled_the_border_of_button_is_shown_without_a_sound(this);
 
 
             /*
@@ -142,10 +142,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9390 (partly: Radio Network ID window);
             */
             // Call generic Action Method
-            DmiActions.Slide_back_into_an_input_field();
+            DmiActions.Slide_back_into_an_input_field(this);
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Pressed_the_border_of_button_is_removed();
+                .Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Pressed_the_border_of_button_is_removed(this);
 
 
             /*
@@ -158,7 +158,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Release the pressed area");
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_DMI_closes_the_Radio_Network_ID_window_Use_the_log_file_to_confirm_that_DMI_sends_EVC_112_with_the_following_variables_MMI_M_BUTTONS_254MMI_N_DATA_ELEMENTS_1MMI_M_NID_DATA_3MMI_NID_MN_index_of_selected_network_ID_refer_to_EVC_22_from_previous_step_the_1st_index_is_start_with_0();
+                .Verify_the_following_information_DMI_closes_the_Radio_Network_ID_window_Use_the_log_file_to_confirm_that_DMI_sends_EVC_112_with_the_following_variables_MMI_M_BUTTONS_254MMI_N_DATA_ELEMENTS_1MMI_M_NID_DATA_3MMI_NID_MN_index_of_selected_network_ID_refer_to_EVC_22_from_previous_step_the_1st_index_is_start_with_0(this);
 
 
             /*
@@ -179,7 +179,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_DMI_closes_the_Radio_Network_ID_window_Use_the_log_file_to_confirm_that_DMI_sends_EVC_112_with_the_following_variables_MMI_M_BUTTONS_254MMI_N_DATA_ELEMENTS_1MMI_M_NID_DATA_3MMI_NID_MN_index_of_selected_network_ID_refer_to_EVC_22_from_previous_step_the_1st_index_is_start_with_0();
+                .Verify_the_following_information_DMI_closes_the_Radio_Network_ID_window_Use_the_log_file_to_confirm_that_DMI_sends_EVC_112_with_the_following_variables_MMI_M_BUTTONS_254MMI_N_DATA_ELEMENTS_1MMI_M_NID_DATA_3MMI_NID_MN_index_of_selected_network_ID_refer_to_EVC_22_from_previous_step_the_1st_index_is_start_with_0(this);
 
 
             /*
@@ -197,7 +197,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 4681 (partly: accept the entered value); MMI_gen 8864 (partly: driver accepts the data value by pressing the input field);
             */
             // Call generic Action Method
-            DmiActions.Confirm_an_entered_data_by_pressing_an_input_field();
+            DmiActions.Confirm_an_entered_data_by_pressing_an_input_field(this);
 
 
             /*
@@ -218,7 +218,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Close’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_RBC_contact_window();
+            DmiExpectedResults.DMI_displays_RBC_contact_window(this);
 
 
             /*

@@ -66,7 +66,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Driver ID window
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Driver_ID_window();
+            DmiExpectedResults.DMI_displays_Driver_ID_window(this);
 
 
             /*
@@ -75,7 +75,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SR mode, level 1The Planning area is appeared on DMI
             */
             // Call generic Action Method
-            DmiActions.Perform_SoM_to_SR_mode_level_1();
+            DmiActions.Perform_SoM_to_SR_mode_level_1(this);
 
 
             /*
@@ -93,9 +93,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Driver ID window
             */
             // Call generic Action Method
-            DmiActions.Deactive_and_reacitvate_the_cabin_A();
+            DmiActions.Deactive_and_reacitvate_the_cabin_A(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Driver_ID_window();
+            DmiExpectedResults.DMI_displays_Driver_ID_window(this);
 
 
             /*
@@ -105,7 +105,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 9948 (partly:SR);
             */
             // Call generic Action Method
-            DmiActions.Perform_SoM_to_SR_mode_level_1();
+            DmiActions.Perform_SoM_to_SR_mode_level_1(this);
 
 
             /*
@@ -116,7 +116,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press at sensitive area in main area D");
             // Call generic Check Results Method
-            DmiExpectedResults.The_planning_area_is_reappeared_by_this_activation();
+            DmiExpectedResults.The_planning_area_is_reappeared_by_this_activation(this);
 
 
             /*
@@ -132,9 +132,9 @@ namespace Testcase.DMITestCases
             Expected Result: Train is at standstillThe Planning area is disappeared from DMI
             */
             // Call generic Action Method
-            DmiActions.Stop_the_train_and_then_press_Hide_PA_button();
+            DmiActions.Stop_the_train_and_then_press_Hide_PA_button(this);
             // Call generic Check Results Method
-            DmiExpectedResults.Train_is_at_standstillThe_Planning_area_is_disappeared_from_DMI();
+            DmiExpectedResults.Train_is_at_standstillThe_Planning_area_is_disappeared_from_DMI(this);
 
 
             /*
@@ -143,9 +143,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Driver ID window
             */
             // Call generic Action Method
-            DmiActions.Deactive_and_reacitvate_the_cabin_A();
+            DmiActions.Deactive_and_reacitvate_the_cabin_A(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Driver_ID_window();
+            DmiExpectedResults.DMI_displays_Driver_ID_window(this);
 
 
             /*
@@ -154,9 +154,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SR mode, leve1
             */
             // Call generic Action Method
-            DmiActions.Perform_SoM_to_SR_mode_level_1();
+            DmiActions.Perform_SoM_to_SR_mode_level_1(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_SR_mode_leve1();
+            DmiExpectedResults.DMI_displays_in_SR_mode_leve1(this);
 
 
             /*
@@ -175,7 +175,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press at sensitive area in main area D");
             // Call generic Check Results Method
-            DmiExpectedResults.The_planning_area_is_reappeared_by_this_activation();
+            DmiExpectedResults.The_planning_area_is_reappeared_by_this_activation(this);
 
 
             /*
@@ -191,9 +191,9 @@ namespace Testcase.DMITestCases
             Expected Result: Train is at standstillThe Planning area is disappeared from DMI
             */
             // Call generic Action Method
-            DmiActions.Stop_the_train_and_then_press_Hide_PA_button();
+            DmiActions.Stop_the_train_and_then_press_Hide_PA_button(this);
             // Call generic Check Results Method
-            DmiExpectedResults.Train_is_at_standstillThe_Planning_area_is_disappeared_from_DMI();
+            DmiExpectedResults.Train_is_at_standstillThe_Planning_area_is_disappeared_from_DMI(this);
 
 
             /*
@@ -202,9 +202,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Driver ID window
             */
             // Call generic Action Method
-            DmiActions.Deactive_and_reacitvate_the_cabin_A();
+            DmiActions.Deactive_and_reacitvate_the_cabin_A(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Driver_ID_window();
+            DmiExpectedResults.DMI_displays_Driver_ID_window(this);
 
 
             /*
@@ -213,9 +213,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SR mode, leve1
             */
             // Call generic Action Method
-            DmiActions.Perform_SoM_to_SR_mode_level_1();
+            DmiActions.Perform_SoM_to_SR_mode_level_1(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_SR_mode_leve1();
+            DmiExpectedResults.DMI_displays_in_SR_mode_leve1(this);
 
 
             /*
@@ -232,7 +232,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 9948 (partly:OS);
             */
             // Call generic Action Method
-            DmiActions.Acknowledge_OS_mode();
+            DmiActions.Acknowledge_OS_mode(this);
 
 
             /*
@@ -243,7 +243,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press at sensitive area in main area D");
             // Call generic Check Results Method
-            DmiExpectedResults.The_planning_area_is_reappeared_by_this_activation();
+            DmiExpectedResults.The_planning_area_is_reappeared_by_this_activation(this);
 
 
             /*

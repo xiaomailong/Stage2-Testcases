@@ -63,9 +63,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SB mode. The Driver ID window is displayed
             */
             // Call generic Action Method
-            DmiActions.Activate_cabin_A();
+            DmiActions.Activate_cabin_A(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_SB_mode_The_Driver_ID_window_is_displayed();
+            DmiExpectedResults.DMI_displays_in_SB_mode_The_Driver_ID_window_is_displayed(this);
 
 
             /*
@@ -74,9 +74,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SR mode, level 1
             */
             // Call generic Action Method
-            DmiActions.Driver_performs_SoM_to_SR_mode_level_1();
+            DmiActions.Driver_performs_SoM_to_SR_mode_level_1(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_SR_mode_level_1();
+            DmiExpectedResults.DMI_displays_in_SR_mode_level_1(this);
 
 
             /*
@@ -92,9 +92,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI remains displays in FS mode
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_passing_BG2();
+            DmiActions.Drive_the_train_forward_passing_BG2(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_remains_displays_in_FS_mode();
+            DmiExpectedResults.DMI_remains_displays_in_FS_mode(this);
 
 
             /*
@@ -112,7 +112,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 6879 (partly: Distance to target Digital re-appeared);
             */
             // Call generic Action Method
-            DmiActions.Re_establish_the_communication_between_ETCS_onboard_and_DMI();
+            DmiActions.Re_establish_the_communication_between_ETCS_onboard_and_DMI(this);
 
 
             /*

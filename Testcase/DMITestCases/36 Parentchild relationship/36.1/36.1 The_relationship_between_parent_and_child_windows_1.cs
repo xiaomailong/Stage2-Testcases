@@ -62,9 +62,9 @@ namespace Testcase.DMITestCases
             Expected Result: The Driver ID window is displayed
             */
             // Call generic Action Method
-            DmiActions.Activate_cabin_A();
+            DmiActions.Activate_cabin_A(this);
             // Call generic Check Results Method
-            DmiExpectedResults.The_Driver_ID_window_is_displayed();
+            DmiExpectedResults.The_Driver_ID_window_is_displayed(this);
 
 
             /*
@@ -75,7 +75,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Settings’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.The_Settings_window_is_displayed();
+            DmiExpectedResults.The_Settings_window_is_displayed(this);
 
 
             /*
@@ -94,7 +94,7 @@ namespace Testcase.DMITestCases
             Expected Result: The Train Running Number window is displayed
             */
             // Call generic Check Results Method
-            DmiExpectedResults.The_Train_Running_Number_window_is_displayed();
+            DmiExpectedResults.The_Train_Running_Number_window_is_displayed(this);
 
 
             /*
@@ -122,7 +122,7 @@ namespace Testcase.DMITestCases
             Expected Result: The Main window is displayed
             */
             // Call generic Check Results Method
-            DmiExpectedResults.The_Main_window_is_displayed();
+            DmiExpectedResults.The_Main_window_is_displayed(this);
 
 
             /*
@@ -141,7 +141,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 8785 (partly: Close the Driver ID window);
             */
             // Call generic Action Method
-            DmiActions.Close_the_Driver_ID_window();
+            DmiActions.Close_the_Driver_ID_window(this);
 
 
             /*
@@ -169,7 +169,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Train data’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.The_Train_data_window_is_displayed();
+            DmiExpectedResults.The_Train_data_window_is_displayed(this);
 
 
             /*
@@ -220,7 +220,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 8785 (partly: Close the Train Running Number window);
             */
             // Call generic Action Method
-            DmiActions.Close_the_Train_Running_Number_window();
+            DmiActions.Close_the_Train_Running_Number_window(this);
 
 
             /*

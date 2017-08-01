@@ -64,7 +64,7 @@ namespace Testcase.DMITestCases
             Expected Result: The symbol ‘DR03’ is displayed in sub-area G12
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_pass_BG1();
+            DmiActions.Drive_the_train_forward_pass_BG1(this);
 
 
             /*

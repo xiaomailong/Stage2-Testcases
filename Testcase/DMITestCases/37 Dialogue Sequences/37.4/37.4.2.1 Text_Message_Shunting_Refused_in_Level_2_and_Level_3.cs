@@ -77,9 +77,9 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions
-                .Re_validate_the_step1_by_re_starting_OTE_Simulator_and_starting_the_precondition_with_ETCS_level_3();
+                .Re_validate_the_step1_by_re_starting_OTE_Simulator_and_starting_the_precondition_with_ETCS_level_3(this);
             // Call generic Check Results Method
-            DmiExpectedResults.See_the_expected_results_at_Step_1();
+            DmiExpectedResults.See_the_expected_results_at_Step_1(this);
 
 
             /*

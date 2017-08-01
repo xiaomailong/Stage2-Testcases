@@ -63,7 +63,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Main window with enabled ‘Start’ button
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Main_window_with_enabled_Start_button();
+            DmiExpectedResults.DMI_displays_Main_window_with_enabled_Start_button(this);
 
 
             /*
@@ -104,9 +104,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI disiplays in SB mode
             */
             // Call generic Action Method
-            DmiActions.Deativate_and_activate_the_cabin();
+            DmiActions.Deativate_and_activate_the_cabin(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_disiplays_in_SB_mode();
+            DmiExpectedResults.DMI_disiplays_in_SB_mode(this);
 
 
             /*
@@ -123,9 +123,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI disiplays in SB mode
             */
             // Call generic Action Method
-            DmiActions.Deativate_and_activate_the_cabin();
+            DmiActions.Deativate_and_activate_the_cabin(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_disiplays_in_SB_mode();
+            DmiExpectedResults.DMI_disiplays_in_SB_mode(this);
 
 
             /*
@@ -149,9 +149,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI disiplays in SB mode
             */
             // Call generic Action Method
-            DmiActions.Deativate_and_activate_the_cabin();
+            DmiActions.Deativate_and_activate_the_cabin(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_disiplays_in_SB_mode();
+            DmiExpectedResults.DMI_disiplays_in_SB_mode(this);
 
 
             /*
@@ -175,7 +175,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI disiplays in FS mode
             */
             // Call generic Action Method
-            DmiActions.Pass_BG1_with_Pkt_12_21_and_27();
+            DmiActions.Pass_BG1_with_Pkt_12_21_and_27(this);
 
 
             /*
@@ -192,7 +192,7 @@ namespace Testcase.DMITestCases
             Expected Result: Train is at standstill
             */
             // Call generic Action Method
-            DmiActions.Stop_the_train();
+            DmiActions.Stop_the_train(this);
 
 
             /*
@@ -201,9 +201,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI disiplays in SB mode
             */
             // Call generic Action Method
-            DmiActions.Deactivate_and_activate_cabin();
+            DmiActions.Deactivate_and_activate_cabin(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_disiplays_in_SB_mode();
+            DmiExpectedResults.DMI_disiplays_in_SB_mode(this);
 
 
             /*
@@ -220,9 +220,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI disiplays in SB mode
             */
             // Call generic Action Method
-            DmiActions.Deactivate_and_activate_cabin();
+            DmiActions.Deactivate_and_activate_cabin(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_disiplays_in_SB_mode();
+            DmiExpectedResults.DMI_disiplays_in_SB_mode(this);
 
 
             /*
@@ -238,7 +238,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SB mode
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_SB_mode();
+            DmiExpectedResults.DMI_displays_in_SB_mode(this);
 
 
             /*

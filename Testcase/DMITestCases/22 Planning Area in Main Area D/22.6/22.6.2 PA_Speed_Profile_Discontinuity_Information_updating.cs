@@ -63,9 +63,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI changes from SR to FS mode. The Planning Area is displayed
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_pass_BG1_Then_Stop_the_train();
+            DmiActions.Drive_the_train_forward_pass_BG1_Then_Stop_the_train(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_changes_from_SR_to_FS_mode_The_Planning_Area_is_displayed();
+            DmiExpectedResults.DMI_changes_from_SR_to_FS_mode_The_Planning_Area_is_displayed(this);
 
 
             /*
@@ -91,7 +91,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7291 (partly: 1st bullet, MMI_V_MRSP has an invalid value);
             */
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_An_information_of_PA_in_area_D_are_not_updated();
+            DmiExpectedResults.Verify_the_following_information_An_information_of_PA_in_area_D_are_not_updated(this);
 
 
             /*
@@ -101,7 +101,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7291 (partly: 2nd bullet, MMI_O_MRSP has an invalid value);
             */
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_An_information_of_PA_in_area_D_are_not_updated();
+            DmiExpectedResults.Verify_the_following_information_An_information_of_PA_in_area_D_are_not_updated(this);
 
 
             /*
@@ -111,7 +111,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7291 (partly: 3rd bullet, value is not positive);
             */
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_An_information_of_PA_in_area_D_are_not_updated();
+            DmiExpectedResults.Verify_the_following_information_An_information_of_PA_in_area_D_are_not_updated(this);
 
 
             /*

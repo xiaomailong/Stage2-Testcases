@@ -64,9 +64,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays SR mode, level 1
             */
             // Call generic Action Method
-            DmiActions.Activate_cabin_A_Then_perform_SoM_to_SR_mode_level_1();
+            DmiActions.Activate_cabin_A_Then_perform_SoM_to_SR_mode_level_1(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_SR_mode_level_1();
+            DmiExpectedResults.DMI_displays_SR_mode_level_1(this);
 
 
             /*
@@ -76,7 +76,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7257 (partly: 1st bullet (normal value));(2) MMI_gen 7257 (Partly: 2nd bullet);
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_pass_BG1();
+            DmiActions.Drive_the_train_forward_pass_BG1(this);
 
 
             /*
@@ -86,7 +86,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7317 (partly: updated according variable MMI_G_GRADIENT_CURR);                    MMI_gen 7263 (partly: 1st bullet);       (2) MMI_gen 7263 (partly:EVC-4, The gradient profile ends);
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_pass_BG2();
+            DmiActions.Drive_the_train_forward_pass_BG2(this);
 
 
             /*
@@ -96,7 +96,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7257 (partly: delete all PA Gradient profile, 1st bullet (special value));
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_pass_BG3();
+            DmiActions.Drive_the_train_forward_pass_BG3(this);
 
 
             /*

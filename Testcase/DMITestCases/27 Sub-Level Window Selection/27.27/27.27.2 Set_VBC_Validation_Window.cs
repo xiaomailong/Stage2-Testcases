@@ -63,7 +63,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9925 (partly: EVC-28);(2) MMI_gen 9925 (partly: open Set VBC Validation window, touch screen);(3) MMI_gen 8563 (partly: MMI_gen 5215 (partly: Close button, Window title, Input field, No button, Yes button)); MMI_gen 4392 (partly: [Close] NA11);(4) MMI_gen 8564;(5) MMI_gen 8563 (partly: MMI_gen 5216);(6) MMI_gen 8563 (partly: MMI_gen 7943);(7) MMI_gen 8563 (partly: MMI_gen 5303);(8) MMI_gen 8563 (partly: MMI_gen 5214 (partly: single input field));          (9) MMI_gen 8563 (partly: MMI_gen 5484 (partly: empty)); (10) MMI_gen 8563 (partly: MMI_gen 5214 (partly: dedicated keyboard, MMI_gen 5006), MMI_gen 5006);(11) MMI_gen 8563 (partly: MMI_gen 5263 (partly: MMI_gen 4696));(12) MMI_gen 8563 (partly: MMI_gen 5263 (partly: MMI_gen 4702 (partly: right aligned)));(13) MMI_gen 8563 (partly: MMI_gen 5263 (partly: MMI_gen 4704 (partly: left aligned)));(14) MMI_gen 8563 (partly: MMI_gen 5263 (partly: MMI_gen 4701 (partly: same order), MMI_gen 4697));(15) MMI_gen 8563 (partly: MMI_gen 5263 (partly: MMI_gen 4698));(16) MMI_gen 8563 (partly: MMI_gen 5263 (partly: MMI_gen 4701 (partly: Main area A, B, C and E));(17) MMI_gen 8563 (partly: MMI_gen 5263 (partly: MMI_gen 4700 (partly: data validation process)));(18) MMI_gen 9928; MMI_gen 8565;(19) MMI_gen 4350;(20) MMI_gen 4351;(21) MMI_gen 4353;
             */
             // Call generic Action Method
-            DmiActions.Perform_the_following_procedure_Enter_and_confirm_value_65536_at_input_field_Press_Yes_button();
+            DmiActions.Perform_the_following_procedure_Enter_and_confirm_value_65536_at_input_field_Press_Yes_button(this);
 
 
             /*
@@ -75,7 +75,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘No’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.The_value_of_input_field_is_changed_refer_to_selected_button();
+            DmiExpectedResults.The_value_of_input_field_is_changed_refer_to_selected_button(this);
 
 
             /*
@@ -88,7 +88,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(@"Press and hold an input field");
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Pressed_the_border_of_button_is_removed();
+                .Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Pressed_the_border_of_button_is_removed(this);
 
 
             /*
@@ -98,10 +98,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9390 (partly: Set VBC Validation window);
             */
             // Call generic Action Method
-            DmiActions.Slide_out_an_input_field();
+            DmiActions.Slide_out_an_input_field(this);
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Enabled_the_border_of_button_is_shown_without_a_sound();
+                .Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Enabled_the_border_of_button_is_shown_without_a_sound(this);
 
 
             /*
@@ -111,10 +111,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9390 (partly: Set VBC Validation window);
             */
             // Call generic Action Method
-            DmiActions.Slide_back_into_an_input_field();
+            DmiActions.Slide_back_into_an_input_field(this);
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Pressed_the_border_of_button_is_removed();
+                .Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Pressed_the_border_of_button_is_removed(this);
 
 
             /*
@@ -133,9 +133,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Set VBC Validation window
             */
             // Call generic Action Method
-            DmiActions.Perform_the_following_procedure_Enter_and_confirm_value_65536_at_input_field_Press_Yes_button();
+            DmiActions.Perform_the_following_procedure_Enter_and_confirm_value_65536_at_input_field_Press_Yes_button(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Set_VBC_Validation_window();
+            DmiExpectedResults.DMI_displays_Set_VBC_Validation_window(this);
 
 
             /*
@@ -154,7 +154,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Set VBC Validation window
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Set_VBC_Validation_window();
+            DmiExpectedResults.DMI_displays_Set_VBC_Validation_window(this);
 
 
             /*
@@ -166,7 +166,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press ‘Yes’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.The_value_of_input_field_is_changed_refer_to_selected_button();
+            DmiExpectedResults.The_value_of_input_field_is_changed_refer_to_selected_button(this);
 
 
             /*
@@ -176,7 +176,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9926 (partly: MMI_gen 5720 (partly: closed));(2) MMI_gen 9927; MMI_gen 9926 (partly: MMI_gen 5720 (partly: ConfirmedData-Packet));
             */
             // Call generic Action Method
-            DmiActions.Confirm_entered_data_by_pressing_an_input_field();
+            DmiActions.Confirm_entered_data_by_pressing_an_input_field(this);
 
 
             /*
@@ -193,7 +193,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9926 ( partly: MMI_gen 2519 (partly: Set VBC Validation window, All Request buttons except negative validations));(2) MMI_gen 9926 (partly: MMI_gen 2519 (partly: Set VBC Validation window, All negative validations));(3) MMI_gen 9926 ( partly: MMI_gen 1426 (partly: Set VBC Validation window)); MMI_gen 4377 (partly: shown);
             */
             // Call generic Action Method
-            DmiActions.Re_establish_communication_between_ETCS_onboard_and_DMI();
+            DmiActions.Re_establish_communication_between_ETCS_onboard_and_DMI(this);
 
 
             /*

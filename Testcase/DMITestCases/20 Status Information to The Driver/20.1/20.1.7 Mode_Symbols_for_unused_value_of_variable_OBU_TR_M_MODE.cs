@@ -63,7 +63,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 580;
             */
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_1_There_is_no_symbol_displayed_on_sub_area_B7();
+            DmiExpectedResults.Verify_the_following_information_1_There_is_no_symbol_displayed_on_sub_area_B7(this);
 
 
             /*
@@ -73,7 +73,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 580;
             */
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_1_There_is_no_symbol_displayed_on_sub_area_B7();
+            DmiExpectedResults.Verify_the_following_information_1_There_is_no_symbol_displayed_on_sub_area_B7(this);
 
 
             /*
@@ -83,7 +83,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 580;
             */
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_1_There_is_no_symbol_displayed_on_sub_area_B7();
+            DmiExpectedResults.Verify_the_following_information_1_There_is_no_symbol_displayed_on_sub_area_B7(this);
 
 
             /*
@@ -93,7 +93,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 580;
             */
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_1_There_is_no_symbol_displayed_on_sub_area_B7();
+            DmiExpectedResults.Verify_the_following_information_1_There_is_no_symbol_displayed_on_sub_area_B7(this);
 
 
             /*
@@ -103,7 +103,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 580;
             */
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_1_There_is_no_symbol_displayed_on_sub_area_B7();
+            DmiExpectedResults.Verify_the_following_information_1_There_is_no_symbol_displayed_on_sub_area_B7(this);
 
 
             /*
@@ -113,7 +113,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 580;
             */
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_1_There_is_no_symbol_displayed_on_sub_area_B7();
+            DmiExpectedResults.Verify_the_following_information_1_There_is_no_symbol_displayed_on_sub_area_B7(this);
 
 
             /*
@@ -123,7 +123,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 580;
             */
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_1_There_is_no_symbol_displayed_on_sub_area_B7();
+            DmiExpectedResults.Verify_the_following_information_1_There_is_no_symbol_displayed_on_sub_area_B7(this);
 
 
             /*
@@ -133,7 +133,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 580;
             */
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_1_There_is_no_symbol_displayed_on_sub_area_B7();
+            DmiExpectedResults.Verify_the_following_information_1_There_is_no_symbol_displayed_on_sub_area_B7(this);
 
 
             /*

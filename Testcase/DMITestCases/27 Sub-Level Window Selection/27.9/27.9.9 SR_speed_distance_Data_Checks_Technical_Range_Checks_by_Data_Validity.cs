@@ -66,10 +66,10 @@ namespace Testcase.DMITestCases
             Expected Result: The ‘SR speed / distance’ data entry window appears on ETCS-DMI screen instead of the ‘Special’ menu window
             */
             // Call generic Action Method
-            DmiActions.Open_the_SR_speed_distance_data_entry_window_from_the_Special_menu();
+            DmiActions.Open_the_SR_speed_distance_data_entry_window_from_the_Special_menu(this);
             // Call generic Check Results Method
             DmiExpectedResults
-                .The_SR_speed_distance_data_entry_window_appears_on_ETCS_DMI_screen_instead_of_the_Special_menu_window();
+                .The_SR_speed_distance_data_entry_window_appears_on_ETCS_DMI_screen_instead_of_the_Special_menu_window(this);
 
 
             /*
@@ -98,7 +98,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .Input_Field1_The_eventually_displayed_data_value_in_the_data_area_of_the_input_field_is_replaced_by_1_character_or_value_corresponding_to_the_activated_data_key_state_Selected_IFvalue_of_pressed_keys();
+                .Input_Field1_The_eventually_displayed_data_value_in_the_data_area_of_the_input_field_is_replaced_by_1_character_or_value_corresponding_to_the_activated_data_key_state_Selected_IFvalue_of_pressed_keys(this);
 
 
             /*
@@ -125,7 +125,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .Input_Field1_The_eventually_displayed_data_value_in_the_data_area_of_the_input_field_is_replaced_by_40_character_or_value_corresponding_to_the_activated_data_key_state_Selected_IFvalue_of_pressed_keys();
+                .Input_Field1_The_eventually_displayed_data_value_in_the_data_area_of_the_input_field_is_replaced_by_40_character_or_value_corresponding_to_the_activated_data_key_state_Selected_IFvalue_of_pressed_keys(this);
 
 
             /*
@@ -151,7 +151,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions
-                .This_step_is_to_complete_the_process_of_SR_speed_distance_Press_the_Yes_button_on_the_SR_speed_distance_window_Validate_the_data_in_the_data_validation_window();
+                .This_step_is_to_complete_the_process_of_SR_speed_distance_Press_the_Yes_button_on_the_SR_speed_distance_window_Validate_the_data_in_the_data_validation_window(this);
 
 
             /*

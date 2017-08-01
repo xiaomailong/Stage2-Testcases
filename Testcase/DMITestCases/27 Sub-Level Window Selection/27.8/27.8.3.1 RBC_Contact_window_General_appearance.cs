@@ -87,7 +87,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 8516 (partly: MMI_gen 4557 (partly: button ‘Enter RBC data’, MMI_gen 4382 (partly: state ‘Enabled’ when slide out with force applied, no sound))); MMI_gen 4374;
             */
             // Call generic Check Results Method
-            DmiExpectedResults.The_border_of_the_button_is_shown_state_Enabled_without_a_sound();
+            DmiExpectedResults.The_border_of_the_button_is_shown_state_Enabled_without_a_sound(this);
 
 
             /*
@@ -97,7 +97,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 8516 (partly: MMI_gen 4557 (partly: button ‘Enter RBC data’, MMI_gen 4382 (partly: state ‘Pressed’ when slide back, no sound))); MMI_gen 4375;
             */
             // Call generic Check Results Method
-            DmiExpectedResults.The_button_is_back_to_state_Pressed_without_a_sound();
+            DmiExpectedResults.The_button_is_back_to_state_Pressed_without_a_sound(this);
 
 
             /*
@@ -158,7 +158,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .While_press_and_hold_button_less_than_2_secThe_state_pressed_and_enabled_are_switched_repeatly_while_button_is_pressed_without_a_sound_While_press_and_hold_button_over_2_secThe_state_of_button_is_changed_to_Pressed_and_without_toggle();
+                .While_press_and_hold_button_less_than_2_secThe_state_pressed_and_enabled_are_switched_repeatly_while_button_is_pressed_without_a_sound_While_press_and_hold_button_over_2_secThe_state_of_button_is_changed_to_Pressed_and_without_toggle(this);
 
 
             /*
@@ -177,7 +177,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(@"Press Close button");
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_RBC_contact_window();
+            DmiExpectedResults.DMI_displays_RBC_contact_window(this);
 
 
             /*
@@ -186,7 +186,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Main window
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Main_window();
+            DmiExpectedResults.DMI_displays_Main_window(this);
 
 
             /*
@@ -196,7 +196,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9507 (partly: Enabled Contact last RBC);
             */
             // Call generic Action Method
-            DmiActions.Restart_OTE_and_RBC_simulator_Then_perform_SoM_until_Level_2_is_selected_and_confirmed();
+            DmiActions.Restart_OTE_and_RBC_simulator_Then_perform_SoM_until_Level_2_is_selected_and_confirmed(this);
 
 
             /*
@@ -221,9 +221,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays RBC Contact window
             */
             // Call generic Action Method
-            DmiActions.Restart_OTE_and_RBC_simulator_Then_perform_SoM_until_Level_2_is_selected_and_confirmed();
+            DmiActions.Restart_OTE_and_RBC_simulator_Then_perform_SoM_until_Level_2_is_selected_and_confirmed(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_RBC_Contact_window();
+            DmiExpectedResults.DMI_displays_RBC_Contact_window(this);
 
 
             /*
@@ -240,9 +240,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays RBC Contact window
             */
             // Call generic Action Method
-            DmiActions.Restart_OTE_and_RBC_simulator_Then_perform_SoM_until_Level_2_is_selected_and_confirmed();
+            DmiActions.Restart_OTE_and_RBC_simulator_Then_perform_SoM_until_Level_2_is_selected_and_confirmed(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_RBC_Contact_window();
+            DmiExpectedResults.DMI_displays_RBC_Contact_window(this);
 
 
             /*

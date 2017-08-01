@@ -120,7 +120,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .The_display_information_on_DMI_still_not_change_ST01_symbol_is_displayed_on_sub_area_C9();
+                .The_display_information_on_DMI_still_not_change_ST01_symbol_is_displayed_on_sub_area_C9(this);
 
 
             /*
@@ -130,7 +130,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .The_display_information_on_DMI_still_not_change_ST01_symbol_is_displayed_on_sub_area_C9();
+                .The_display_information_on_DMI_still_not_change_ST01_symbol_is_displayed_on_sub_area_C9(this);
 
 
             /*
@@ -140,7 +140,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .The_display_information_on_DMI_still_not_change_ST01_symbol_is_displayed_on_sub_area_C9();
+                .The_display_information_on_DMI_still_not_change_ST01_symbol_is_displayed_on_sub_area_C9(this);
 
 
             /*
@@ -150,7 +150,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .The_display_information_on_DMI_still_not_change_ST01_symbol_is_displayed_on_sub_area_C9();
+                .The_display_information_on_DMI_still_not_change_ST01_symbol_is_displayed_on_sub_area_C9(this);
 
 
             /*
@@ -242,7 +242,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 6923 (partly: MMI_gen 244);
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Default_window_with_the_message_ATP_Down_Alarm_and_sound_alarm();
+            DmiExpectedResults.DMI_displays_Default_window_with_the_message_ATP_Down_Alarm_and_sound_alarm(this);
 
 
             /*

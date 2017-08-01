@@ -65,9 +65,9 @@ namespace Testcase.DMITestCases
             Expected Result: The speed pointer is indicated as 20  km/h
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_up_to_20_kmh();
+            DmiActions.Drive_the_train_up_to_20_kmh(this);
             // Call generic Check Results Method
-            DmiExpectedResults.The_speed_pointer_is_indicated_as_20_kmh();
+            DmiExpectedResults.The_speed_pointer_is_indicated_as_20_kmh(this);
 
 
             /*
@@ -76,9 +76,9 @@ namespace Testcase.DMITestCases
             Expected Result: Mode changes to FS mode , L1
             */
             // Call generic Action Method
-            DmiActions.Pass_BG0_with_MA_and_Track_descriptionPkt_12_21_and_27();
+            DmiActions.Pass_BG0_with_MA_and_Track_descriptionPkt_12_21_and_27(this);
             // Call generic Check Results Method
-            DmiExpectedResults.Mode_changes_to_FS_mode_L1();
+            DmiExpectedResults.Mode_changes_to_FS_mode_L1(this);
 
 
             /*
@@ -96,7 +96,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 1652;MMI_gen 1050;
             */
             // Call generic Action Method
-            DmiActions.Continue_driving_with_20_Kmh();
+            DmiActions.Continue_driving_with_20_Kmh(this);
 
 
             /*
@@ -105,7 +105,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays remianing track condition symbols on sub-area D2 and D3
             */
             // Call generic Action Method
-            DmiActions.Continue_driving_with_20_Kmh();
+            DmiActions.Continue_driving_with_20_Kmh(this);
 
 
             /*
@@ -114,7 +114,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays remianing track condition symbols on sub-area D2
             */
             // Call generic Action Method
-            DmiActions.Continue_driving_with_20_Kmh();
+            DmiActions.Continue_driving_with_20_Kmh(this);
 
 
             /*
@@ -124,7 +124,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 3051;
             */
             // Call generic Action Method
-            DmiActions.Simulate_loss_communication_between_ETCS_onboard_and_DMI();
+            DmiActions.Simulate_loss_communication_between_ETCS_onboard_and_DMI(this);
 
 
             /*

@@ -63,7 +63,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays the Driver ID window
             */
             // Call generic Action Method
-            DmiActions.Power_on_the_system_and_activate_cabin();
+            DmiActions.Power_on_the_system_and_activate_cabin(this);
 
 
             /*
@@ -74,7 +74,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .DMI_shall_not_display_text_message_Brake_Test_in_Progress_in_any_other_languages_since_the_text_is_replaced_with_Russian_character_code_language();
+                .DMI_shall_not_display_text_message_Brake_Test_in_Progress_in_any_other_languages_since_the_text_is_replaced_with_Russian_character_code_language(this);
 
 
             /*
@@ -92,7 +92,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .DMI_shall_not_display_text_message_Brake_Test_in_Progress_in_any_other_languages_since_the_text_is_replaced_with_Russian_character_code_language();
+                .DMI_shall_not_display_text_message_Brake_Test_in_Progress_in_any_other_languages_since_the_text_is_replaced_with_Russian_character_code_language(this);
 
 
             /*

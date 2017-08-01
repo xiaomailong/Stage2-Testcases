@@ -69,7 +69,7 @@ namespace Testcase.DMITestCases
                 @"Enter SH mode by performing the procedure below,Press ‘Main’ buttonPress and hold ‘Shunting’ button at least 2 seconds.Release ‘Shunting’ button");
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_Use_the_log_file_to_confirm_that_DMI_receives_EVC_7_with_variable_OBU_TR_M_MODE_3_SH_Shunting_The_symbol_MO01_is_display_in_area_B7_DMI_closes_Main_window_and_returns_to_the_Default_window();
+                .Verify_the_following_information_Use_the_log_file_to_confirm_that_DMI_receives_EVC_7_with_variable_OBU_TR_M_MODE_3_SH_Shunting_The_symbol_MO01_is_display_in_area_B7_DMI_closes_Main_window_and_returns_to_the_Default_window(this);
 
 
             /*
@@ -79,9 +79,9 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions
-                .Re_validate_the_step1_by_re_starting_OTE_Simulator_and_starting_the_precondition_with_ETCS_level_3();
+                .Re_validate_the_step1_by_re_starting_OTE_Simulator_and_starting_the_precondition_with_ETCS_level_3(this);
             // Call generic Check Results Method
-            DmiExpectedResults.See_the_expected_results_at_Step_1();
+            DmiExpectedResults.See_the_expected_results_at_Step_1(this);
 
 
             /*
