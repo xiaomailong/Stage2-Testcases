@@ -10,7 +10,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         private static SignalPool _pool;
 
         /// <summary>
-        /// Initialise EVC-0 telegram.
+        /// Initialise EVC-0 MMI_Start_ATP telegram.
         /// </summary>
         /// <param name="pool"></param>
         public static void Initialise(SignalPool pool)

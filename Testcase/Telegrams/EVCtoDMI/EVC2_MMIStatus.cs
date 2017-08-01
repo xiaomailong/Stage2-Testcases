@@ -17,6 +17,9 @@ using Testcase.TemporaryFunctions;
 
 namespace Testcase.Telegrams.EVCtoDMI
 {
+    /// <summary>
+    /// This packet contains status information for the driver and shall be sent to the MMI when­ever any of the status has changed.
+    /// </summary>
     static class EVC2_MMIStatus
     {
         private static SignalPool _pool;
@@ -59,8 +62,8 @@ namespace Testcase.Telegrams.EVCtoDMI
 
         /// <summary>
         /// Adhesion status
-        /// Values:
         /// 
+        /// Values:
         /// 0x0 = "No low adhesion"
         /// 0x1 = "Low Adhesion by Driver"
         /// 0x2 = "Low Adhesion from Trackside"

@@ -3,12 +3,16 @@
 namespace Testcase.Telegrams.EVCtoDMI
 {
     /// <summary>
-    /// This packet shall be sent when the driver is intended to enter/validate /view train running number
+    /// This packet shall be sent when the driver is intended to enter/validate/view train running number.
     /// </summary>
     static class EVC16_CurrentTrainNumber
     {
         private static SignalPool _pool;
 
+        /// <summary>
+        /// Initialse EVC-16 Current_Train_Number telegram.
+        /// </summary>
+        /// <param name="pool"></param>
         public static void Initialise(SignalPool pool)
         {
             _pool = pool;
@@ -35,6 +39,9 @@ namespace Testcase.Telegrams.EVCtoDMI
             set => _pool.SITR.ETCS1.CurrentTrainNumber.MmiNidOperation.Value = value;
         }
 
+        /// <summary>
+        /// Send EVC-16 telegram.
+        /// </summary>
         public static void Send()
         {
             _pool.SITR.SMDCtrl.ETCS1.CurrentTrainNumber.Value = 1;

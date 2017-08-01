@@ -6,6 +6,11 @@ using CL345;
 
 namespace Testcase.Telegrams.EVCtoDMI
 {
+    /// <summary>
+    /// This packet shall be sent whenever the time is changed in the ETC clock function.
+    /// Note that there is a corresponding message from MMI to ETC. The issue of the message depends on which of the units are selected as “clock master”.
+    /// This may vary from system to system, but in a specific system, only the clock master is allowed to initiate the message.
+    /// </summary>
     class EVC3_MMISetTimeATP
     {
         private static SignalPool _pool;

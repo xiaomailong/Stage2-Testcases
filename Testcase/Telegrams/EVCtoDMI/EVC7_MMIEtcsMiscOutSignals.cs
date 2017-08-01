@@ -5,6 +5,7 @@ namespace Testcase.Telegrams.EVCtoDMI
     /// <summary>
     /// The signals in this telegram are outputs from the generic ETCS OB R4 system.
     /// This telegram collects miscellaneous output signals to the train.
+    /// 
     /// Note:
     /// This packet is routed via dedicated port and thus no header nor length information is contained in the (plain) data set.
     /// It is also protected via SDTv2.
@@ -16,7 +17,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         private static MMI_OBU_TR_M_LEVEL _level;
 
         /// <summary>
-        /// Initialise EVC-7 telegram
+        /// Initialise EVC-7 MMI ETCS Misc Out Signals telegram
         /// </summary>
         /// <param name="pool"></param>
         public static void Initialise(SignalPool pool)

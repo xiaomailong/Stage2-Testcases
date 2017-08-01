@@ -6,12 +6,15 @@ using CL345;
 
 namespace Testcase.Telegrams.EVCtoDMI
 {
+    /// <summary>
+    /// This packet contains the geographical position to be presented on request by the driver.
+    /// </summary>
     static class EVC5_MMIGeoPosition
     {
         private static SignalPool _pool;
 
         /// <summary>
-        /// Initialises an instance of telegram EVC-5 telegram.
+        /// Initialise an instance of telegram EVC-5 telegram.
         /// </summary>
         /// <param name="pool"></param>
         public static void Initialise(SignalPool pool)
