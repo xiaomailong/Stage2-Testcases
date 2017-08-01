@@ -187,5 +187,15 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// NID_C as allocated by ERA for Crossrail Central Section
         /// </summary>
         public const uint NidC = 3;
+
+        /// <summary>
+        /// Conversion factor for cm/s to km/h
+        /// </summary>
+        public const double CmSToKmH = 0.036;
+
+        /// <summary>
+        /// Conversion factor for cm/s to mph
+        /// </summary>
+        public const double CmSToMph = 0.02237;
     }
 }
