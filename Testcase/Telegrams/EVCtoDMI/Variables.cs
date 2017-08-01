@@ -197,5 +197,145 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// Conversion factor for cm/s to mph
         /// </summary>
         public const double CmSToMph = 0.02237;
+
+        /// <summary>
+        /// Driver Request enum
+        /// Values:
+        /// Values:
+        /// 0 = "Spare"
+        /// 1 = "Start Shunting"
+        /// 2 = "Exit Shunting"
+        /// 3 = "Start Train Data Entry"
+        /// 4 = "Exit Train Data Entry"
+        /// 5 = "Start Non-Leading"
+        /// 6 = "Exit Non-Leading"
+        /// 7 = "Start Override EOA (Pass stop)"
+        /// 8 = "Geographical position request"
+        /// 9 = "Start"
+        /// 10 = "Restore adhesion coefficient to 'non-slippery rail'"
+        /// 11 = "Set adhesion coefficient to 'slippery rail'"
+        /// 12 = "Exit Change SR rules"
+        /// 13 = "Change SR rules"
+        /// 14 = "Continue shunting on desk closure"
+        /// 15 = "Spare"
+        /// 16 = "Spare"
+        /// 17 = "Spare"
+        /// 18 = "Spare"
+        /// 19 = "Spare"
+        /// 20 = "Change Driver identity"
+        /// 21 = "Start Train Data View"
+        /// 22 = "Start Brake Test"
+        /// 23 = "Start Set VBC"
+        /// 24 = "Start Remove VBC"
+        /// 25 = "Exit Set VBC"
+        /// 26 = "Exit Remove VBC"
+        /// 27 = "Change Level (or inhibit status)"
+        /// 28 = "Start RBC Data Entry"
+        /// 29 = "System Info request"
+        /// 30 = "Change Train Running Number"
+        /// 31 = "Exit Change Train Running Number"
+        /// 32 = "Exit Change Level (or inhibit status)"
+        /// 33 = "Exit RBC Data Entry"
+        /// 34 = "Exit Driver Data Entry"
+        /// 35 = "Spare"
+        /// 36 = "Spare"
+        /// 37 = "Spare"
+        /// 38 = "Start procedure 'Train Integrity'"
+        /// 39 = "Exit RBC contact"
+        /// 40 = "Level entered"
+        /// 41 = "start NTC 1 data entry"
+        /// 42 = "start NTC 2 data entry"
+        /// 43 = "start NTC 3 data entry"
+        /// 44 = "start NTC 4 data entry"
+        /// 45 = "start NTC 5 data entry"
+        /// 46 = "start NTC 6 data entry"
+        /// 47 = "start NTC 7 data entry"
+        /// 48 = "start NTC 8 data entry"
+        /// 49 = "Exit NTC data entry"
+        /// 50 = "Exit NTC data entry selection"
+        /// 51 = "Change Brake Percentage"
+        /// 52 = "Change Doppler"
+        /// 53 = "Change Wheel Diameter"
+        /// 54 = "Exit maintenance"
+        /// 55 = "System Version request"
+        /// 56 = "Start Network ID"
+        /// 57 = "Contact last RBC"
+        /// 58 = "Settings"
+        /// 59 = "Switch"
+        /// 60 = "Exit brake percentage"
+        /// 61 = "Exit RBC Network ID"
+        /// 62..255 = "Spare"
+        /// 
+        /// Note1: Values 3 and 4 also apply on customised Train Data Entry(packets EVC-60, EVC-61, EVC-160, EVC-161).
+        /// Note 2: The number of the NTC x in 'start NTC x data entry' will match the sequence number of the related NTC in the list provided with EVC-31.
+        /// </summary>
+        public enum MMI_M_REQUEST : byte
+        {
+            StartShunting = 1,
+            ExitShunting = 2,
+            StartTrainDataEntry = 3,
+            ExitTrainDataEntry = 4,
+            StartNonLeading = 5,
+            ExitNonLeading = 6,
+            StartOverrideEOA = 7,
+            GeographicalPositionRequest = 8,
+            Start = 9,
+            RestoreAdhesionCoefficientToNonSlipperyRail = 10,
+            SetAdhesionCoefficientToSlipperyRail = 11,
+            ExitChangeSRrules = 12,
+            ChangeSRrules = 13,
+            ContinueShuntingOnDeskClosure = 14,
+            ChangeDriverIdentity = 20,
+            StartTrainDataView = 21,
+            StartBrakeTest = 22,
+            StartSetVBC = 23,
+            StartRemoveVBC = 24,
+            ExitSetVBC = 25,
+            ExitRemoveVBC = 26,
+            ChangeLevel = 27,
+            StartRBCdataEntry = 28,
+            SystemInfoRequest = 29,
+            ChangeTrainRunningNumber = 30,
+            ExitChangeTrainRunningNumber = 31,
+            ExitChangeLevel = 32,
+            ExitRBCdataEntry = 33,
+            ExitDriverDataEntry = 34,
+            StartProcedureTrainIntegrity = 38,
+            ExitRBCcontact = 39,
+            LevelEntered = 40,
+            startNTC1DataEntry = 41,
+            startNTC2DataEntry = 42,
+            startNTC3DataEntry = 43,
+            startNTC4DataEntry = 44,
+            startNTC5DataEntry = 45,
+            startNTC6DataEntry = 46,
+            startNTC7DataEntry = 47,
+            startNTC8DataEntry = 48,
+            ExitNTCDataEntry = 49,
+            ExitNTCDataEntrySelection = 50,
+            ChangeBrakePercentage = 51,
+            ChangeDoppler = 52,
+            ChangeWheelDiameter = 53,
+            ExitMaintenance = 54,
+            SystemVersionRequest = 55,
+            StartNetworkID = 56,
+            ContactLastRBC = 57,
+            Settings = 58,
+            Switch = 59,
+            ExitBrakePercentage = 60,
+            ExitRBCNetworkID = 61
+        }
+
+        /// <summary>
+        /// Button Event Enum
+        /// Values:
+        /// 0 = "released"
+        /// 1 = "pressed"
+        /// </summary>
+        public enum MMI_Q_BUTTON : byte
+        {
+            Released = 0,
+            Pressed = 1
+        }
     }
 }
