@@ -8,8 +8,7 @@ using CL345;
 namespace Testcase.Telegrams
 {
     /// <summary>
-    /// This packet shall be sent when the driver requests for an action from the ATP, 
-    /// typically by pressing a button..
+    /// This packet shall be sent when the driver requests for an action from the ATP, typically by pressing a button.
     /// </summary>
     static class EVC102_MMIStatusReport
     {
@@ -20,10 +19,10 @@ namespace Testcase.Telegrams
 
         private static void CheckModeReadBack(MMI_M_MODE_READBACK modeReadBack)
         {
-            //For each element of enum MMI_M_MODE_READBACK 
+            // For each element of enum MMI_M_MODE_READBACK 
             foreach (MMI_M_MODE_READBACK mmiMModeReadBackElement in Enum.GetValues(typeof(MMI_M_MODE_READBACK)))
             {
-                //Compare to the value to be checked
+                // Compare to the value to be checked
                 if (mmiMModeReadBackElement == modeReadBack)
                 {
                     _modeRead = mmiMModeReadBackElement.ToString();
@@ -32,7 +31,7 @@ namespace Testcase.Telegrams
                 }
             }
 
-            //if check passes
+            // If check passes
             if (_bResult)
             {
                 _pool.TraceReport("DMI->ETCS: EVC-102 [MMI_STATUS_REPORT.MMI_M_MODE_READBACK] = " + modeReadBack +
@@ -47,7 +46,8 @@ namespace Testcase.Telegrams
         }
 
         /// <summary>
-        /// Contains the current mode as shown on the DMI (bit-inverted compared to the receibved mode)
+        /// Contains the current mode as shown on the DMI (bit-inverted compared to the received mode)
+        /// 
         /// Values:
         /// 0 = "Shown Mode Invalid"
         /// 1 = "No Mode displayed"
@@ -81,7 +81,7 @@ namespace Testcase.Telegrams
         }
 
         /// <summary>
-        /// var enum used for Check_MMI_M_MODE_READBACK
+        /// Enum used for Check_MMI_M_MODE_READBACK
         /// </summary>
         public enum MMI_M_MODE_READBACK : ushort
         {
