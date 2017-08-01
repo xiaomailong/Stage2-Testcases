@@ -267,7 +267,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_in_SR_mode_Level_1();
-
+            #endregion
 
             /*
             Test Step 10
