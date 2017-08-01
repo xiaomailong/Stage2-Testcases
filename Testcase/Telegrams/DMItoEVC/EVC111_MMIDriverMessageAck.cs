@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Collections;
 using CL345;
+using Testcase.Telegrams.EVCtoDMI;
 
 namespace Testcase.Telegrams
 {
@@ -16,9 +17,9 @@ namespace Testcase.Telegrams
         private static SignalPool _pool;
         private static bool _bResult;
         private static string _buttonState;
-        private static MMI_Q_BUTTON _buttonStateTested;
+        private static Variables.MMI_Q_BUTTON _buttonStateTested;
 
-        private static void CheckButtonState(MMI_Q_BUTTON buttonStateTested)
+        private static void CheckButtonState(Variables.MMI_Q_BUTTON buttonStateTested)
         {
             // Convert byte EVC111_alias_1 into an array of bits.
             BitArray _evc111alias1 = new BitArray(new[] { _pool.SITR.CCUO.ETCS1DriverMessageAck.EVC111alias1.Value });
@@ -30,7 +31,7 @@ namespace Testcase.Telegrams
             bool _bButtonStateTested = _baButtonStateTested[0];
 
             //For each element of enum MMI_Q_BUTTON 
-            foreach (MMI_Q_BUTTON mmiQButtonElement in Enum.GetValues(typeof(MMI_Q_BUTTON)))
+            foreach (Variables.MMI_Q_BUTTON mmiQButtonElement in Enum.GetValues(typeof(Variables.MMI_Q_BUTTON)))
             {
                 //Compare to the value to be checked
                 if (mmiQButtonElement == buttonStateTested)
@@ -53,20 +54,20 @@ namespace Testcase.Telegrams
                     "TimeStamp = " + _pool.SITR.CCUO.ETCS1DriverMessageAck.MmiTButtonEvent);
             }
         }
-       
-        public static MMI_Q_BUTTON Check_MMI_Q_BUTTON
+
+        /// <summary>
+        /// Button event (pressed or released)
+        /// Values:
+        /// 0 = "released"
+        /// 1 = "pressed"
+        /// </summary>
+        public static Variables.MMI_Q_BUTTON Check_MMI_Q_BUTTON
         {
             set
             {
                 _buttonStateTested = value;
                 CheckButtonState(_buttonStateTested);
             }
-        }
-
-        public enum MMI_Q_BUTTON : byte
-        {
-            Released = 0,
-            Pressed = 1
-        }
+        }      
     }
 }

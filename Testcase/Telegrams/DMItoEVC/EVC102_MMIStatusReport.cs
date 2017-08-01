@@ -27,7 +27,7 @@ namespace Testcase.Telegrams
                 if (mmiMModeReadBackElement == modeReadBack)
                 {
                     _modeRead = mmiMModeReadBackElement.ToString();
-                    _bResult = _pool.SITR.CCUO.ETCS1StatusReport.MmiMModeReadback.Equals(modeReadBack);
+                    _bResult = _pool.SITR.CCUO.ETCS1StatusReport.MmiMModeReadback.Value.Equals(modeReadBack);
                     break;
                 }
             }
@@ -45,7 +45,32 @@ namespace Testcase.Telegrams
                                  + "FAILED.");
             }
         }
-       
+
+        /// <summary>
+        /// Contains the current mode as shown on the DMI (bit-inverted compared to the receibved mode)
+        /// Values:
+        /// 0 = "Shown Mode Invalid"
+        /// 1 = "No Mode displayed"
+        /// 255 = "FS - Full Supervision"
+        /// 254 = "OS - On-sight"
+        /// 253 = "SR - Staff Responsible"
+        /// 252 = "SH - Shunting"
+        /// 251 = "UN - Unfitted"
+        /// 250 = "SL - Sleeping"
+        /// 249 = "SB - Standby"
+        /// 248 = "TR - Trip"
+        /// 247 = "PT - Post trip"
+        /// 246 = "SF - System failure"
+        /// 245 = "IS - Isolation"
+        /// 244 = "NL - Non-leading"
+        /// 243 = "LS - Limited Supervision"
+        /// 242 = "SN - National System"
+        /// 241 = "RV - Reversing"
+        /// 240 = "PS - Passive Shunting"
+        /// 239 = "NP - No Power"
+        /// 2..238 = "Not used"
+        /// Note: The Read-Back values of the mode shall be bit-inverted compared to the sent mode.
+        /// </summary>
         public static MMI_M_MODE_READBACK Check_MMI_M_MODE_READBACK
         {
             set
@@ -55,6 +80,9 @@ namespace Testcase.Telegrams
             }
         }
 
+        /// <summary>
+        /// var enum used for Check_MMI_M_MODE_READBACK
+        /// </summary>
         public enum MMI_M_MODE_READBACK : ushort
         {
             ShownModeInvalid = 0,
