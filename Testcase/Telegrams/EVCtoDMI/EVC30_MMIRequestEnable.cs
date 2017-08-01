@@ -4,15 +4,9 @@ using CL345;
 namespace Testcase.Telegrams.EVCtoDMI
 {
     /// <summary>
-    /// The packet is used by the ETC to dynamically
-    /// enable/disable generic and customised (i.e. project
-    /// specific) procedures on the MMI.
-    /// Note: The customisable contents of the packet
-    /// (variables MMI_Q_EVC_PROJECT,
-    /// MMI_M_CUST_PROC_ID,
-    /// MMI_Q_CUST_REQUEST_ENABLE) may be
-    /// customised by projects. This has to be specified in
-    /// the project's documentation.
+    /// The packet is used by the ETC to dynamically enable/disable generic and customised (i.e. project specific) procedures on the MMI.
+    /// Note: The customisable contents of the packet (variables MMI_Q_EVC_PROJECT, MMI_M_CUST_PROC_ID, MMI_Q_CUST_REQUEST_ENABLE) may be
+    /// customised by projects. This has to be specified in the project's documentation.
     /// </summary>
     static class EVC30_MMIRequestEnable
     {
@@ -40,10 +34,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         }
 
         /// <summary>
-        /// Identifier of currently active ETCS windows. Not all
-        /// possible windows are controlled/used by this
-        /// variable in the current packet. The relevant
-        /// windows are specified by related requirements.
+        /// Identifier of currently active ETCS windows. Not all possible windows are controlled/used by this variable in the current packet.
+        /// The relevant windows are specified by related requirements.
         /// 
         /// Values:
         /// 0 = "Default"
@@ -86,7 +78,6 @@ namespace Testcase.Telegrams.EVCtoDMI
         {
             set => _pool.SITR.ETCS1.EnableRequest.MmiNidWindow.Value = (byte) value;
         }
-
 
         /// <summary>
         /// This variable controls which generic driver requests shall be accessible by the driver

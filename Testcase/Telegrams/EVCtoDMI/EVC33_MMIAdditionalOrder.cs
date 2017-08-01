@@ -6,6 +6,9 @@ using CL345;
 
 namespace Testcase.Telegrams.EVCtoDMI
 {
+    /// <summary>
+    /// Packet replacing old ATP-3 packet. This packet is the additional order or announcement.
+    /// </summary>
     static class EVC33_MMIAdditionalOrder
     {
         private static SignalPool _pool;
@@ -23,6 +26,7 @@ namespace Testcase.Telegrams.EVCtoDMI
 
         /// <summary>
         /// Sets EVC33_alias_1
+        /// 
         /// Bits:
         /// 0 = evc33_spare3
         /// 1 = evc33_spare2
@@ -37,8 +41,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         }
 
         /// <summary>
-        /// Send EVC33_Additional_Order telegram.
-        /// Packet replacing old ATP-3 packet. This packet is the additional order or announcement.
+        /// Send EVC33 Additional Order telegram.
         /// </summary>
         public static void Send()
         {
@@ -52,6 +55,7 @@ namespace Testcase.Telegrams.EVCtoDMI
 
         /// <summary>
         /// NID assigned to Track Condition.
+        /// 
         /// Values:
         /// 0..31 = "NID assigned to Track Condition.
         /// 32.255 = "spare"
@@ -64,6 +68,7 @@ namespace Testcase.Telegrams.EVCtoDMI
 
         /// <summary>
         /// Sets the track condition type.
+        /// 
         /// Values:
         /// 0 = "Non Stopping Area"
         /// 1 = "Tunnel Stopping Area"
@@ -92,6 +97,7 @@ namespace Testcase.Telegrams.EVCtoDMI
 
         /// <summary>
         /// Variable describing step of the track condition.
+        /// 
         /// Values:
         /// 0 = "Approaching area"
         /// 1 = "Announce area"
@@ -111,6 +117,7 @@ namespace Testcase.Telegrams.EVCtoDMI
 
         /// <summary>
         /// Required driver action
+        /// 
         /// Values:
         /// 0 = "With driver action (manual)"
         /// 1 = "Without driver action (automatic)"
@@ -127,6 +134,7 @@ namespace Testcase.Telegrams.EVCtoDMI
 
     /// <summary>
     /// Required driver action
+    /// 
     /// Values:
     /// 0 = With driver action (manual)
     /// 1 = Without driver action (automatic)

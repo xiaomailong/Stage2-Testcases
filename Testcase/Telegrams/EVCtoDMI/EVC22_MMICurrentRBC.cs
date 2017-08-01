@@ -11,6 +11,13 @@ using static Testcase.Telegrams.EVCtoDMI.Variables;
 
 namespace Testcase.Telegrams.EVCtoDMI
 {
+    /// <summary>
+    /// This packet is sent sporadically by ETC and is intended to support the following use cases:
+    /// 1.) Display 'RBC contact', 'RBC data' or 'Radio Network ID' when entering RBC data. Send 'RBC' data in "data view" procedure.
+    /// 2.) Display/change echo text after data checks have been performed by ETC;
+    ///     this also includes control over the allowed driver actions in case some data check has failed.
+    /// It also gives the ETC the ability to control the status/type of the "Yes" button, if specified by functional requirements for ETC and DMI.
+    /// </summary>
     static class EVC22_MMICurrentRBC
     {
         private static SignalPool _pool;
@@ -247,7 +254,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         public static List<string> NetworkCaptions { get; set; }
 
         /// <summary>
-        /// 
+        /// List of DataElements
         /// </summary>
         public static List<DataElement> DataElements { get; set; }
     }

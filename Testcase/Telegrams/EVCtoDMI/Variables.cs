@@ -61,17 +61,20 @@ namespace Testcase.Telegrams.EVCtoDMI
             return totalSizeCounter;
         }
 
+        /// <summary>
+        /// Data to be checked and verified by the EVC.
+        /// </summary>
         public class DataElement
         {
-            public ushort Identifier { get; set; }
-            public ushort QDataCheck { get; set; }
-            public string EchoText { get; set; }
+            public ushort Identifier { get; set; }      // Identifier of a data set
+            public ushort QDataCheck { get; set; }      // Result of data check
+            public string EchoText { get; set; }        // Echo text of data
         }
 
         /// <summary>
-        /// Identifier of MMI Buttons
+        /// Identifier of MMI Buttons.
         /// 
-        /// Variables:
+        /// Values:
         /// 0 = "BTN_MAIN"
         /// 1 = "BTN_OVERRIDE"
         /// 2 = "BTN_DATA_VIEW"
@@ -200,7 +203,7 @@ namespace Testcase.Telegrams.EVCtoDMI
 
         /// <summary>
         /// Driver Request enum
-        /// Values:
+        /// 
         /// Values:
         /// 0 = "Spare"
         /// 1 = "Start Shunting"
@@ -266,7 +269,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// 61 = "Exit RBC Network ID"
         /// 62..255 = "Spare"
         /// 
-        /// Note1: Values 3 and 4 also apply on customised Train Data Entry(packets EVC-60, EVC-61, EVC-160, EVC-161).
+        /// Note 1: Values 3 and 4 also apply to customised Train Data Entry (packets EVC-60, EVC-61, EVC-160, EVC-161).
         /// Note 2: The number of the NTC x in 'start NTC x data entry' will match the sequence number of the related NTC in the list provided with EVC-31.
         /// </summary>
         public enum MMI_M_REQUEST : byte
@@ -327,7 +330,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         }
 
         /// <summary>
-        /// Button Event Enum
+        /// Button Event enum
+        /// 
         /// Values:
         /// 0 = "released"
         /// 1 = "pressed"

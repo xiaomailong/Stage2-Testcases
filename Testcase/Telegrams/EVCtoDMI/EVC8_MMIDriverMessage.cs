@@ -3,6 +3,14 @@ using CL345;
 
 namespace Testcase.Telegrams.EVCtoDMI
 {
+    /// <summary>
+    /// This packet shall be sent when a message originating from the ETC or from wayside shall be presented to the driver.
+    /// MMI_Q_TEXT_CRITERIA indicates how the MMI shall manage the predefined message.
+    /// Some values of MMI_Q_TEXT shall result in the MMI activating a symbol according to [ERA] and not a text.
+    /// Except for the presentation, the basic principle is however the same.
+    /// MMI_Q_TEXT also contains special values e.g. for deletion of message groups.
+    /// Refer to the description of the Q_TEXT variable regarding the use of the free text carried by X_TEXT.
+    /// </summary>
     static class EVC8_MMIDriverMessage
     {
         private static SignalPool _pool;
@@ -10,15 +18,14 @@ namespace Testcase.Telegrams.EVCtoDMI
         private static ushort _mmiQTextCriteria;
 
         /// <summary>
-        /// Initialises dynamic packet EVC-8
+        /// Initialise dynamic EVC-8 MMI Driver Message telegram.
         /// </summary>
         /// <param name="pool"></param>
         public static void Initialise(SignalPool pool)
         {
             _pool = pool;
 
-
-            // set as dynamic
+            // Set as dynamic
             _pool.SITR.SMDCtrl.ETCS1.DriverMessage.Value = 0x8;
 
             // Set default values
@@ -36,7 +43,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         }
 
         /// <summary>
-        /// Sends dynamic length packet EVC-8.
+        /// Send dynamic length EVC-8 telegram.
         /// </summary>
         public static void Send()
         {
@@ -56,7 +63,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         }
 
         /// <summary>
-        /// Criteria for handling of text/symbol
+        /// Criteria for handling of text/symbol.
+        /// 
         /// Values:
         /// 0 = "Add text/symbol with ack prompt, to be kept after ack"
         /// 1 = "Add text/symbol with ack prompt, to be removed after ack"
@@ -75,7 +83,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         }
 
         /// <summary>
-        /// The identifier of the transmitted text. Used to identify the text for addressing, acknowledgment and removing
+        /// The identifier of the transmitted text. Used to identify the text for addressing, acknowledgment and removing.
+        /// 
         /// Values:
         /// 0 = "Spare"
         /// 1..255 = "Valid value"
@@ -87,6 +96,7 @@ namespace Testcase.Telegrams.EVCtoDMI
 
         /// <summary>
         /// Predefined texts to be displayed by the MMI.
+        /// 
         /// Values:
         /// 0 = "Level crossing not protected"
         /// 1 = "Acknowledgement"

@@ -5,12 +5,24 @@ using static Testcase.Telegrams.EVCtoDMI.Variables;
 
 namespace Testcase.Telegrams.EVCtoDMI
 {
+    /// <summary>
+    /// This packet is sent sporadically by ETC and is intended to support the following use cases:
+    /// 1.) Display Train Data when entering Train Data Entry (TDE) window.
+    /// 2.) Display/change echo text after data checks have been performed by ETC;
+    ///     This also includes control over the allowed driver actions in case some data check has failed.
+    /// It also gives the ETC the ability to control the status/type of the "Yes" button, if specified by functional requirements for ETC and DMI.
+    /// Note: Parameter 'MMI_N_DATA_ELEMENTS' distinguishes between use case 1.) and 2.)
+    /// </summary>
     static class EVC6_MMICurrentTrainData
     {
         private static SignalPool _pool;
         private static int _trainsetid = 0;
         private static int _maltdem = 0;
 
+        /// <summary>
+        /// Initialise an instance of EVC-6 MMI Current Train Data telegram.
+        /// </summary>
+        /// <param name="pool"></param>
         public static void Initialise(SignalPool pool)
         {
             _pool = pool;
@@ -91,14 +103,12 @@ namespace Testcase.Telegrams.EVCtoDMI
         }
 
         /// <summary>
-        /// A bit mask that, for each variable, tells if a data value is enabled (e.g. for 'edit' in EVC-6). 1==
-        /// 'enabled'.
+        /// A bit mask that, for each variable, tells if a data value is enabled (e.g. for 'edit' in EVC-6).
+        /// 1 == 'enabled'.
         /// The variable supports the following use cases:
         /// 1.) Controls edit ability of related data object during TDE procedure (EVC-6, no data view).
-        /// 2.) In case of a Train Data View procedure this variable controls visibility of data items
-        /// (ERA_ERTMS_015560, v3.4.0, chapter 11.5.1.5).
-        /// 3.) In packet EVC-10 this variable controls highlighting of changed data items
-        /// (ERA_ERTMS_015560, v3.4.0, chapter 11.4.1.4, 10.3.3.5).
+        /// 2.) In case of a Train Data View procedure this variable controls visibility of data items (ERA_ERTMS_015560, v3.4.0, chapter 11.5.1.5).
+        /// 3.) In packet EVC-10 this variable controls highlighting of changed data items (ERA_ERTMS_015560, v3.4.0, chapter 11.4.1.4, 10.3.3.5).
         /// </summary>
         public static MMI_M_DATA_ENABLE MMI_M_DATA_ENABLE
         {
@@ -107,6 +117,7 @@ namespace Testcase.Telegrams.EVCtoDMI
 
         /// <summary>
         /// Max train length
+        /// 
         /// Values:
         /// 0 = "'No default value' =&gt; Data field shall remain empty"
         /// 1..4095 = "total train length"
@@ -119,6 +130,7 @@ namespace Testcase.Telegrams.EVCtoDMI
 
         /// <summary>
         /// Max train speed
+        /// 
         /// Values:
         /// 0 = "'No default value' =&gt; TD entry field shall remain empty."
         /// 1..600 = "max train speed"
@@ -131,6 +143,7 @@ namespace Testcase.Telegrams.EVCtoDMI
 
         /// <summary>
         /// Identifies the train category related subset of MMI_NID_KEY.
+        /// 
         /// Value range 3-20
         ///     Values:
         ///     3 = "PASS 1"
@@ -158,7 +171,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         }
 
         /// <summary>
-        /// Brake percentage as input for calculation of braking characteristics
+        /// Brake percentage as input for calculation of braking characteristics.
+        /// 
         /// Values:
         /// 0 = "No default value' =&gt; Data field shall remain empty"
         /// 1..9 = "Reserved"
@@ -172,6 +186,7 @@ namespace Testcase.Telegrams.EVCtoDMI
 
         /// <summary>
         /// Identifies the axle load category related subset of MMI_NID_KEY.
+        /// 
         /// Value range 21-33
         ///     Values:
         ///     21 = "A"
@@ -194,7 +209,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         }
 
         /// <summary>
-        /// Train equipped with airtight system
+        /// Train equipped with airtight system.
+        /// 
         /// Values:
         /// 0 = "Not equipped"
         /// 1 = "Equipped"
@@ -208,6 +224,7 @@ namespace Testcase.Telegrams.EVCtoDMI
 
         /// <summary>
         /// Identifies the loading gauge category related subset of MMI_NID_KEY.
+        /// 
         /// Value range 34-38
         ///     Values:
         ///     34 = "G1"
@@ -222,7 +239,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         }
 
         /// <summary>
-        /// Identifier of MMI Buttons
+        /// Identifier of MMI Buttons.
+        /// 
         /// Values:
         /// 0 = "BTN_MAIN"
         /// 1 = "BTN_OVERRIDE"
@@ -283,7 +301,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         }
 
         /// <summary>
-        /// Id of selected preconfigured train data set
+        /// ID of selected pre-configured train data set.
+        /// 
         /// Values:
         /// 0 = "Train data entry method by train data set is not selected --&gt; use 'flexible TDE'"
         /// 1..9 = "Train data set ID 1..9"
@@ -300,7 +319,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         }
 
         /// <summary>
-        /// Control information for alternative train data entry method
+        /// Control information for alternative train data entry method.
+        /// 
         /// Values:
         /// 0 = "No alternative train data entry method enabled (covers 'fixed train data entry' and 'flexible
         /// train data entry' according to ERA_ERTMS_15560, v3.4.0, ch. 11.3.9.6.a+b)"
@@ -308,10 +328,10 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// entry' according to ERA_ERTMS_15560, v3.4.0, ch. 11.3.9.6.c)"
         /// 2 = "Reserved"
         /// 3 = "Reserved"
+        /// 
         /// Note: In case no alternative TDE method is enabled, the variable "MMI_M_TRAINSET_ID"
         /// determines between "flexible TDE" (MMI_M_TRAINSET_ID = 0) or "train set TDE"
-        /// (MMI_M_TRAINSET_ID != 0). This approach is chosen to deviate not too much between BL2 and
-        /// BL3 interface.
+        /// (MMI_M_TRAINSET_ID != 0). This approach is chosen to deviate not too much between BL2 and BL3 interface.
         /// </summary>
         public static ushort MMI_M_ALT_DEM
         {

@@ -10,6 +10,10 @@ namespace Testcase.Telegrams.EVCtoDMI
     {
         private static SignalPool _pool;
 
+        /// <summary>
+        /// Initialise EVC-14 MMI_Current_Driver_ID telegram.
+        /// </summary>
+        /// <param name="pool"></param>
         public static void Initialise(SignalPool pool)
         {
             _pool = pool;
