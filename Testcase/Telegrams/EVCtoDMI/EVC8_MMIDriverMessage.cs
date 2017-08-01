@@ -9,6 +9,10 @@ namespace Testcase.Telegrams.EVCtoDMI
         private static MMI_Q_TEXT_CLASS _mmiQTextClass;
         private static ushort _mmiQTextCriteria;
 
+        /// <summary>
+        /// Initialises dynamic packet EVC-8
+        /// </summary>
+        /// <param name="pool"></param>
         public static void Initialise(SignalPool pool)
         {
             _pool = pool;
@@ -31,6 +35,9 @@ namespace Testcase.Telegrams.EVCtoDMI
             _pool.SITR.ETCS1.DriverMessage.EVC8alias1.Value = (byte) (mmiQTextClass << 7 | _mmiQTextCriteria);
         }
 
+        /// <summary>
+        /// Sends dynamic length packet EVC-8.
+        /// </summary>
         public static void Send()
         {
             _pool.SITR.SMDCtrl.ETCS1.DriverMessage.Value = 0x9;
