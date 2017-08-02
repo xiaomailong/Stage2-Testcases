@@ -16,10 +16,18 @@ namespace Testcase.Telegrams
     {
         private static SignalPool _pool;
         private static bool _bResult;
-        private static string _buttonState;
-        private static Variables.MMI_Q_BUTTON _buttonStateTested;
+        private static Variables.MMI_Q_BUTTON _qButton;
 
-        private static void CheckButtonState(Variables.MMI_Q_BUTTON buttonStateTested)
+        /// <summary>
+        /// Initialise EVC-111 MMI_Driver_Message_Ack telegram.
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Initialise(SignalPool pool)
+        {
+            _pool = pool;
+        }
+
+        private static void CheckButtonState(Variables.MMI_Q_BUTTON qButton)
         {
             // Convert byte EVC111_alias_1 into an array of bits.
             BitArray _evc111alias1 = new BitArray(new[] { _pool.SITR.CCUO.ETCS1DriverMessageAck.EVC111alias1.Value });
@@ -27,32 +35,35 @@ namespace Testcase.Telegrams
             bool _mmiQButton = _evc111alias1[3];
 
             // Convert byte buttonStateTested to bool
-            BitArray _baButtonStateTested = new BitArray(new[] { (byte) buttonStateTested });
-            bool _bButtonStateTested = _baButtonStateTested[0];
+            BitArray _baqButton = new BitArray(new[] { (byte)qButton });
+            bool _bqButton = _baqButton[0];
 
             //For each element of enum MMI_Q_BUTTON 
             foreach (Variables.MMI_Q_BUTTON mmiQButtonElement in Enum.GetValues(typeof(Variables.MMI_Q_BUTTON)))
             {
                 //Compare to the value to be checked
-                if (mmiQButtonElement == buttonStateTested)
+                if (mmiQButtonElement == qButton)
                 {
-                    _buttonState = mmiQButtonElement.ToString();
-                    _bResult = _mmiQButton.Equals(_bButtonStateTested);
+                    // Check MMI_Q_BUTTON value
+                    _bResult = _mmiQButton.Equals(_bqButton);
                     break;
                 }
             }
 
-            //if check passes
-            if (_bResult)
+            if (_bResult) // if check passes
             {
-                _pool.TraceReport("DMI->ETCS: EVC-111 [MMI_DRIVER_MESSAGE_ACK.MMI_Q_BUTTON] = " + _bButtonStateTested +
-                    " - \"" + _buttonState + "\" PASSED. TimeStamp = " + _pool.SITR.CCUO.ETCS1DriverMessageAck.MmiTButtonEvent);
+                _pool.TraceReport("DMI->ETCS: EVC-111 [MMI_DRIVER_MESSAGE_ACK.MMI_Q_BUTTON] = \"" +
+                    qButton.ToString() + "\" PASSED. TimeStamp = " +
+                    _pool.SITR.CCUO.ETCS1DriverMessageAck.MmiTButtonEvent);
             }
-            else
+            else // else display the real value extracted from EVC-111 [MMI_DRIVER_MESSAGE_ACK] 
             {
-                _pool.TraceError("DMI->ETCS: Check EVC-111 [MMI_DRIVER_MESSAGE_ACK.MMI_Q_BUTTON] = " + _mmiQButton + "FAILED." +
-                    "TimeStamp = " + _pool.SITR.CCUO.ETCS1DriverMessageAck.MmiTButtonEvent);
+                _pool.TraceError("DMI->ETCS: Check EVC-111 [MMI_DRIVER_MESSAGE_ACK.MMI_Q_BUTTON] = \"" +
+                    Enum.GetName(typeof(Variables.MMI_Q_BUTTON), _mmiQButton) + "\" FAILED. TimeStamp = " +                    
+                    _pool.SITR.CCUO.ETCS1DriverMessageAck.MmiTButtonEvent);
             }
+
+
         }
 
         /// <summary>
@@ -65,8 +76,8 @@ namespace Testcase.Telegrams
         {
             set
             {
-                _buttonStateTested = value;
-                CheckButtonState(_buttonStateTested);
+                _qButton = value;
+                CheckButtonState(_qButton);
             }
         }      
     }

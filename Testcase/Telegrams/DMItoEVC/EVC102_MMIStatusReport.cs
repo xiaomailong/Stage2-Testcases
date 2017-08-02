@@ -14,34 +14,42 @@ namespace Testcase.Telegrams
     {
         private static SignalPool _pool;
         private static bool _bResult;
-        private static string _modeRead;
-        private static MMI_M_MODE_READBACK _modeReadBack;     
+        private static MMI_M_MODE_READBACK _mModeReadBack;
 
-        private static void CheckModeReadBack(MMI_M_MODE_READBACK modeReadBack)
+        /// <summary>
+        /// Initialise EVC-102 MMI_Status_Report telegram.
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Initialise(SignalPool pool)
         {
-            // For each element of enum MMI_M_MODE_READBACK 
+            _pool = pool;
+        }
+
+            private static void CheckModeReadBack(MMI_M_MODE_READBACK mModeReadBack)
+        {
+            //For each element of enum MMI_M_MODE_READBACK 
             foreach (MMI_M_MODE_READBACK mmiMModeReadBackElement in Enum.GetValues(typeof(MMI_M_MODE_READBACK)))
             {
-                // Compare to the value to be checked
-                if (mmiMModeReadBackElement == modeReadBack)
+                //Compare to the value to be checked
+                if (mmiMModeReadBackElement == mModeReadBack)
                 {
-                    _modeRead = mmiMModeReadBackElement.ToString();
-                    _bResult = _pool.SITR.CCUO.ETCS1StatusReport.MmiMModeReadback.Value.Equals(modeReadBack);
+                    // Check MMI_M_MODE_READBACK value
+                    _bResult = _pool.SITR.CCUO.ETCS1StatusReport.MmiMModeReadback.Value.Equals(mModeReadBack);
                     break;
                 }
             }
-
-            // If check passes
-            if (_bResult)
+            
+            if (_bResult) //if check passes
             {
-                _pool.TraceReport("DMI->ETCS: EVC-102 [MMI_STATUS_REPORT.MMI_M_MODE_READBACK] = " + modeReadBack +
-                    " - \"" + _modeRead + "\" PASSED.");
+                _pool.TraceReport("DMI->ETCS: EVC-102 [MMI_STATUS_REPORT.MMI_M_MODE_READBACK] = " + mModeReadBack +
+                    " - \"" + mModeReadBack.ToString() + "\" PASSED.");
             }
-            else
+            else // else display the real value extracted from EVC-102 [MMI_STATUS_REPORT.MMI_M_MODE_READBACK] 
             {
-                _pool.TraceError("DMI->ETCS: Check EVC-102 [MMI_STATUS_REPORT.MMI_M_MODE_READBACK] = " +
-                                 _pool.SITR.CCUO.ETCS1StatusReport.MmiMModeReadback.Value
-                                 + "FAILED.");
+                _pool.TraceError("DMI->ETCS: Check EVC-102 [MMI_STATUS_REPORT.MMI_M_MODE_READBACK] = " + 
+                    _pool.SITR.CCUO.ETCS1StatusReport.MmiMModeReadback.Value + " - \"" + 
+                    Enum.GetName(typeof(MMI_M_MODE_READBACK), _pool.SITR.CCUO.ETCS1StatusReport.MmiMModeReadback.Value ) +
+                    "\" FAILED.");
             }
         }
 
@@ -75,8 +83,8 @@ namespace Testcase.Telegrams
         {
             set
             {
-                _modeReadBack = value;
-                CheckModeReadBack(_modeReadBack);
+                _mModeReadBack = value;
+                CheckModeReadBack(_mModeReadBack);
             }
         }
 

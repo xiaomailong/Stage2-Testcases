@@ -16,14 +16,65 @@ namespace Testcase.Telegrams
     static class EVC101_MMIDriverRequest
     {
         private static SignalPool _pool;
+        private static bool _bResult;
         private static Variables.MMI_M_REQUEST _mRequest;
-      
 
-        private static void CheckMRequestState(Variables.MMI_M_REQUEST mRequest, bool buttonState)
+        /// <summary>
+        /// Initialise EVC-101 MMI_Driver_Request telegram.
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Initialise(SignalPool pool)
         {
-            bool bResult = false;
+            _pool = pool;
+        }
 
-          
+        private static void CheckMRequestState(Variables.MMI_M_REQUEST mRequest, Variables.MMI_Q_BUTTON qButton)
+        {
+            // Convert byte EVC101_alias_1 into an array of bits.
+            BitArray _evc101alias1 = new BitArray(new[] { _pool.SITR.CCUO.ETCS1DriverRequest.EVC101alias1.Value });
+            // Extract bool MMI_Q_BUTTON (7th bit according to VSIS 2.9)
+            bool _mmiQButton = _evc101alias1[7];
+
+            // Convert byte qButton to bool
+            BitArray _baqButton = new BitArray(new[] { (byte)qButton });
+            bool _bqButton = _baqButton[0];
+
+            // For each element of enum MMI_M_REQUEST
+            foreach (Variables.MMI_M_REQUEST mmiMRequestElement in Enum.GetValues(typeof(Variables.MMI_M_REQUEST)))
+            {
+                // Compare to the value to be checked
+                if (mmiMRequestElement == mRequest)
+                {
+                    // For each element of enum MMI_Q_BUTTON
+                    foreach (Variables.MMI_Q_BUTTON mmiQButtonElement in Enum.GetValues(typeof(Variables.MMI_Q_BUTTON)))
+                    {
+                        // Compare to the value to be checked
+                        if (mmiQButtonElement == qButton)
+                        {
+                            // Double check: MMI_M_REQUEST & MMI_Q_BUTTON values
+                            _bResult = (_pool.SITR.CCUO.ETCS1DriverRequest.MmiMRequest.Value.Equals(mRequest)) &&
+                                (_mmiQButton.Equals(_bqButton));
+                            break;
+                        }
+                    }
+
+                    break;
+                }
+            }
+           
+            if (_bResult) // if check passes
+            {
+                _pool.TraceReport("DMI->ETCS: EVC-101 [MMI_DRIVER_REQUEST] => " + mRequest +
+                    " - \"" + mRequest.ToString() + "\" -> " + qButton.ToString() + " PASSED. TimeStamp = " + 
+                    _pool.SITR.CCUO.ETCS1DriverRequest.MmiTButtonevent);
+            }
+            else // else display the real values extracted from EVC-101 [MMI_DRIVER_REQUEST] 
+            {
+                _pool.TraceError("DMI->ETCS: Check EVC-101 [MMI_DRIVER_REQUEST] => MMI_M_REQUEST = " + 
+                    Enum.GetName(typeof(Variables.MMI_M_REQUEST), _pool.SITR.CCUO.ETCS1DriverRequest.MmiMRequest.Value) + 
+                    ", MMI_Q_BUTTON = " + Enum.GetName(typeof(Variables.MMI_Q_BUTTON), _mmiQButton) + " FAILED. TimeStamp = " +
+                    _pool.SITR.CCUO.ETCS1DriverRequest.MmiTButtonevent);
+            }
         }
 
         /// <summary>
@@ -102,6 +153,7 @@ namespace Testcase.Telegrams
             set
             {
                 _mRequest = value;
+                CheckMRequestState(_mRequest, Variables.MMI_Q_BUTTON.Pressed);
             }
         }
 
@@ -181,7 +233,7 @@ namespace Testcase.Telegrams
             set
             {
                 _mRequest = value;
-
+                CheckMRequestState(_mRequest, Variables.MMI_Q_BUTTON.Released);
             }
         }
     }
