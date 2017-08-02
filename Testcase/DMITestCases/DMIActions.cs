@@ -16,6 +16,7 @@ using CL345;
 using Testcase.Telegrams;
 using Testcase.Telegrams.EVCtoDMI;
 using Testcase.TemporaryFunctions;
+using static Testcase.Telegrams.EVCtoDMI.Variables;
 
 // ReSharper disable UnusedMember.Global
 
@@ -26,6 +27,37 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class DmiActions
     {
+        public static void Complete_SoM_L1_SR(SignalPool pool)
+        {
+            EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.GoToIdle;
+            EVC0_MMIStartATP.Send();
+
+            // Set train running number, cab 1 active, and other defaults
+            EVC2_MMIStatus.TrainRunningNumber = 1;
+            EVC2_MMIStatus.MMI_M_ACTIVE_CABIN = MMI_M_ACTIVE_CABIN.Cabin1Active;
+            EVC2_MMIStatus.MMI_M_ADHESION = 0x0;
+            EVC2_MMIStatus.MMI_M_OVERRIDE_EOA = false;
+            EVC2_MMIStatus.Send();
+
+            // Set driver ID
+            EVC14_MMICurrentDriverID.MMI_X_DRIVER_ID = "1234";
+            EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE = EVC14_MMICurrentDriverID.MMIQADDENABLEBUTTONS.Settings |
+                                                        EVC14_MMICurrentDriverID.MMIQADDENABLEBUTTONS.TRN;
+            EVC14_MMICurrentDriverID.MMI_Q_CLOSE_ENABLE = true;
+            EVC14_MMICurrentDriverID.Send();
+
+            // Set to level 1 and SR mode
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_BrakeTest_Status = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_BRAKETEST_STATUS.BrakeTestNotInProgress;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
+
+            // Enable buttons and force default window
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Start | standardFlags;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 0;
+            EVC30_MMIRequestEnable.Send();
+        }
+        
         /// <summary>
         /// Description: Prompts the tester with a dialog box
         /// Used in:
@@ -504,7 +536,7 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
-        /// Description: Activate cabin A
+        /// Description: Activate cabin 1
         /// Used in:
         ///     Step 2 in TC-ID: 1.3.1 in 6.3.1 Performance of the new selection language
         ///     Step 1 in TC-ID: 1.6 in 6.6 Adjustment of Sound Volume
@@ -533,9 +565,13 @@ namespace Testcase.DMITestCases
         ///     Step 1 in TC-ID: 7.3.2 in 27.17.3 Entering Characters
         ///     Step 1 in TC-ID: 33.1 in 36.1 The relationship between parent and child windows (1)
         /// </summary>
-        public static void Activate_cabin_A(SignalPool pool)
+        public static void Activate_Cabin_1(SignalPool pool)
         {
-            throw new NotImplementedException();
+            EVC2_MMIStatus.TrainRunningNumber = 1;
+            EVC2_MMIStatus.MMI_M_ACTIVE_CABIN = MMI_M_ACTIVE_CABIN.Cabin1Active;
+            EVC2_MMIStatus.MMI_M_ADHESION = 0x0;
+            EVC2_MMIStatus.MMI_M_OVERRIDE_EOA = false;
+            EVC2_MMIStatus.Send();
         }
 
         /// <summary>
@@ -714,7 +750,7 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void Stop_the_train(SignalPool pool)
         {
-            throw new NotImplementedException();
+            EVC1_MMIDynamic.MMI_V_TRAIN = 0;    // Set speed to zero
         }
 
         /// <summary>
@@ -1671,21 +1707,6 @@ namespace Testcase.DMITestCases
         ///     Step 16 in TC-ID: 17.9.11 in 22.9.11 Hide PA Function configured ‘STORED’ with re-activate cabin
         /// </summary>
         public static void Perform_SoM_to_SR_mode_level_1(SignalPool pool)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Description: Activate Cabin A
-        /// Used in:
-        ///     Step 1 in TC-ID: 17.1.2 in 22.1.2 Planning Area is suppressed in Level 1 and OS mode
-        ///     Step 1 in TC-ID: 18.1.1.1.1 in 23.1.1.1.1 Concise Visualization
-        ///     Step 1 in TC-ID: 18.1.1.1.2 in 23.1.1.1.2 Verbose Visualization
-        ///     Step 2 in TC-ID: 22.5.2 in 27.5.2 Level Selection window: Packet sending/receiving
-        ///     Step 2 in TC-ID: 22.8.2.1 in 27.8.2.1 Radio Network ID window: General appearance
-        ///     Step 1 in TC-ID: 22.26 in 27.26 System info window
-        /// </summary>
-        public static void Activate_Cabin_A(SignalPool pool)
         {
             throw new NotImplementedException();
         }
