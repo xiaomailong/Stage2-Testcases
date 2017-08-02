@@ -341,5 +341,31 @@ namespace Testcase.Telegrams.EVCtoDMI
             Released = 0,
             Pressed = 1
         }
+
+        /// <summary>
+        /// Collection of flags used to enable standard buttons on DMI.
+        /// </summary>
+        public static EVC30_MMIRequestEnable.EnabledRequests standardFlags = 
+            EVC30_MMIRequestEnable.EnabledRequests.EnableDoppler |
+            EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter |
+            EVC30_MMIRequestEnable.EnabledRequests.StartBrakeTest |
+            EVC30_MMIRequestEnable.EnabledRequests.SetLocalTimeDateAndOffset |
+            EVC30_MMIRequestEnable.EnabledRequests.RemoveVBC |
+            EVC30_MMIRequestEnable.EnabledRequests.SetVBC |
+            EVC30_MMIRequestEnable.EnabledRequests.SystemVersion |
+            EVC30_MMIRequestEnable.EnabledRequests.Brightness |
+            EVC30_MMIRequestEnable.EnabledRequests.Volume |
+            EVC30_MMIRequestEnable.EnabledRequests.NonLeading |
+            EVC30_MMIRequestEnable.EnabledRequests.Shunting |
+            EVC30_MMIRequestEnable.EnabledRequests.TrainData |
+            EVC30_MMIRequestEnable.EnabledRequests.TrainRunningNumber |
+            EVC30_MMIRequestEnable.EnabledRequests.Level |
+            EVC30_MMIRequestEnable.EnabledRequests.ContactLastRBC |
+            EVC30_MMIRequestEnable.EnabledRequests.EnterRBCData |
+            EVC30_MMIRequestEnable.EnabledRequests.RadioNetworkID |
+            EVC30_MMIRequestEnable.EnabledRequests.UseShortNumber |
+            EVC30_MMIRequestEnable.EnabledRequests.DriverID |
+            EVC30_MMIRequestEnable.EnabledRequests.Language |
+            EVC30_MMIRequestEnable.EnabledRequests.SRSpeedDistance;
     }
 }

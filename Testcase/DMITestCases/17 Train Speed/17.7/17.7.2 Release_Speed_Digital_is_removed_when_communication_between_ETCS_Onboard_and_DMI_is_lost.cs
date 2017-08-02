@@ -68,7 +68,7 @@ namespace Testcase.DMITestCases
             Expected Result: ATP is in SB mode.DMI displays in SB mode
             */
             // Call generic Action Method
-            DmiActions.Activate_cabin_A(this);
+            DmiActions.Activate_Cabin_1(this);
 
 
             /*

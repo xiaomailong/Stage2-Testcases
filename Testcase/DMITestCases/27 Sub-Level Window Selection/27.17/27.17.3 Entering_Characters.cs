@@ -63,7 +63,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8033 (partly: MMI_gen 4689, MMI_gen 4690, MMI_gen 4691 (partly: flashing));
             */
             // Call generic Action Method
-            DmiActions.Activate_cabin_A(this);
+            DmiActions.Activate_Cabin_1(this);
 
 
             /*

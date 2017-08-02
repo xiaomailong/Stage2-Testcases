@@ -63,7 +63,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7527 (partly: divided in two areas);          MMI_gen 11459 (partly: verbose visualisation);
             */
             // Call generic Action Method
-            DmiActions.Activate_Cabin_A(this);
+            DmiActions.Activate_Cabin_1(this);
 
 
             /*

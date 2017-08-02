@@ -720,7 +720,6 @@ namespace Testcase.DMITestCases
         public static void DMI_displays_in_FS_mode_Level_1(SignalPool pool)
         {
             EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.FullSupervision;
-            throw new NotImplementedException();
         }
 
         /// <summary>

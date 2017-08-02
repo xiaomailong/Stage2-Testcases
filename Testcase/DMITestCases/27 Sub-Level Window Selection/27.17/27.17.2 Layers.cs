@@ -64,7 +64,7 @@ namespace Testcase.DMITestCases
             Expected Result: The Driver ID window is displayed cover  the half-grid array in area D, F and G
             */
             // Call generic Action Method
-            DmiActions.Activate_cabin_A(this);
+            DmiActions.Activate_Cabin_1(this);
 
 
             /*
