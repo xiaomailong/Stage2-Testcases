@@ -12,8 +12,8 @@ namespace Testcase.Telegrams.EVCtoDMI
     static class EVC34_MMISystemVersion
     {
         private static SignalPool _pool;
-        private static byte _x = 0;
-        private static byte _y = 0;
+        private static byte _systemVersionX = 0;
+        private static byte _systemVersionY = 0;
 
         /// <summary>
         /// Initialise an instance of EVC-34 telegram.
@@ -30,7 +30,7 @@ namespace Testcase.Telegrams.EVCtoDMI
 
         private static void SetOperatedSystemVersion()
         {
-            _pool.SITR.ETCS1.SystemVersion.MmiMOperatedSystemVersion.Value = (ushort) (_x << 8 | _y);
+            _pool.SITR.ETCS1.SystemVersion.MmiMOperatedSystemVersion.Value = (ushort) (_systemVersionX << 8 | _systemVersionY);
         }
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         {
             set
             {
-                _x = value;
+                _systemVersionX = value;
                 SetOperatedSystemVersion();
             }
         }
@@ -60,7 +60,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         {
             set
             {
-                _y = value;
+                _systemVersionY = value;
                 SetOperatedSystemVersion();
             }
         }
