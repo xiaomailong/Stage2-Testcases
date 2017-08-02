@@ -137,7 +137,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 2499 (partly: reset the default state of toggle to off, MMI_gen 242);
             */
             // Call generic Action Method
-            DmiActions.Activate_cabin_A(this);
+            DmiActions.Activate_Cabin_1(this);
             // Call generic Check Results Method
             DmiExpectedResults.The_symbol_DR03_displays_in_sub_area_G12(this);
 

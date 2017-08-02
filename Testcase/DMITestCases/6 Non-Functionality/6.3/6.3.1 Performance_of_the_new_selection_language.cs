@@ -70,7 +70,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 60;
             */
             // Call generic Action Method
-            DmiActions.Activate_cabin_A(this);
+            DmiActions.Activate_Cabin_1(this);
 
 
             /*

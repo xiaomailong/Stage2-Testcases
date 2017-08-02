@@ -13,6 +13,7 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.EVCtoDMI;
 
 namespace Testcase.DMITestCases
 {
@@ -41,6 +42,7 @@ namespace Testcase.DMITestCases
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
+            DmiActions.Complete_SoM_L1_SR(this);
         }
 
         public override void PostExecution()
@@ -56,33 +58,30 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
             /*
             Test Step 1
             Action: Drive the train forward, speed up to 25 Km/h
-            Expected Result: Verify the following information,(1)   The speed pointer and the speed digital are displayed in area B1 with constantly movement and indicated the train speed at 25km/h.(2)   Verify that the speed pointer in sub-area B1 and Circular Speed Gauge (CSG) in sub-area B2 are displayed as correlately.(3)   Use the log file to confirm that DMI received packet information EVC-1 with variable MMI_V_TRAIN = 694 (~25km/h)
-            Test Step Comment: (1) MMI_gen 1277;(2) MMI_gen 5954;(3) MMI_gen 11822;
+            Expected Result:
+            The speed pointer and the speed digital are displayed in area B1 with constantly movement and indicated the train speed at 25 km/h.
             */
-
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 25;
+            WaitForVerification("Is the DMI speed needle displaying 25 km/h?");
 
             /*
             Test Step 2
             Action: Stop the train
             Expected Result: The train is at standstill
             */
+            
             // Call generic Action Method
             DmiActions.Stop_the_train(this);
-            // Call generic Check Results Method
-            DmiExpectedResults.The_train_is_at_standstill(this);
-
+            WaitForVerification("Is the DMI speed needle displaying 0 km/h?");      
 
             /*
             Test Step 3
             Action: End of test
             Expected Result: 
             */
-
-
             return GlobalTestResult;
         }
     }

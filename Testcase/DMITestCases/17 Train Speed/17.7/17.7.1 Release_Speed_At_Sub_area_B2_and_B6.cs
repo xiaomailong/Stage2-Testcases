@@ -62,7 +62,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SB mode, level 1. The Driver ID window is displayed
             */
             // Call generic Action Method
-            DmiActions.Activate_cabin_A(this);
+            DmiActions.Activate_Cabin_1(this);
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_in_SB_mode_level_1_The_Driver_ID_window_is_displayed(this);
 
