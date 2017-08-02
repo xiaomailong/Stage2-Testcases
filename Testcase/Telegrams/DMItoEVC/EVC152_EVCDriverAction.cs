@@ -15,35 +15,42 @@ namespace Testcase.Telegrams
     {
         private static SignalPool _pool;       
         private static MMI_M_DRIVER_ACTION _driverAction;
-        private static string _sDriverAction;
         private static bool _bResult;
+
+        /// <summary>
+        /// Initialise EVC-152 MMI_Driver_Action telegram.
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Initialise(SignalPool pool)
+        {
+            _pool = pool;
+        }
 
         private static void CheckDriverAction(MMI_M_DRIVER_ACTION driverAction)
         {
-
             // For each element of enum MMI_M_DRIVER_ACTION
             foreach (MMI_M_DRIVER_ACTION mmiMDriverActionElement in Enum.GetValues(typeof(MMI_M_DRIVER_ACTION)))
             {
                 // Compare to the value to be checked
                 if (mmiMDriverActionElement == driverAction)
                 {
-                    _sDriverAction = mmiMDriverActionElement.ToString();
+                    // Check MMI_M_DRIVER_ACTION value
                     _bResult = _pool.SITR.CCUO.ETCS1DriverAction.MmiMDriverAction.Value.Equals(driverAction);
                     break;
                 }
             }
 
-            //if check passes
-            if (_bResult)
+            if (_bResult) // if check passes
             {
                 _pool.TraceReport("DMI->ETCS: EVC-152 [MMI_DRIVER_ACTION.MMI_M_DRIVER_ACTION] = " + driverAction +
-                    " - \"" + _sDriverAction + "\" PASSED.");
+                    " - \"" + driverAction.ToString() + "\" PASSED.");
             }
-            else
+            else // else display the real value extracted from EVC-152 [MMI_DRIVER_ACTION] 
             {
-                _pool.TraceError("DMI->ETCS: Check EVC-152 [MMI_DRIVER_ACTION.MMI_M_DRIVER_ACTION] = " +
-                                 _pool.SITR.CCUO.ETCS1DriverAction.MmiMDriverAction.Value
-                                 + "FAILED.");
+                _pool.TraceError("DMI->ETCS: Check EVC-152 [MMI_DRIVER_ACTION.MMI_M_DRIVER_ACTION] = " + 
+                    _pool.SITR.CCUO.ETCS1DriverAction.MmiMDriverAction.Value + " - \"" + 
+                    Enum.GetName(typeof(MMI_M_DRIVER_ACTION), _pool.SITR.CCUO.ETCS1DriverAction.MmiMDriverAction.Value) + 
+                    "\" FAILED.");
             }
         }
 
