@@ -73,7 +73,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: Requirements:(1) MMI_gen 9888 (partly: reactions to failing, EVC-18, MMI_gen 12147);(2) MMI_gen 9901;(3) MMI_gen 9888 (partly: reactions to failing, MMI_gen 4714 (partly: state 'Selected IF/data value')); MMI_gen 9310 (partly: accept data);(4) MMI_gen 9888 (partly: reactions to failing, MMI_gen 4714 (partly: previously entered (faulty) value)); MMI_gen 4699 (partly: technical range);(5) MMI_gen 8328 (partly: MMI_gen 4713 (partly: indication)), MMI_gen 9888 (partly: reactions to failing, MMI_gen 4713 (partly: indication)); MMI_gen 9310 (partly: [technical range, failed], [echo text]); (6) MMI_gen 9898 (partly: MMI_gen 4713 (partly: red)), MMI_gen 9888 (partly: reactions to failing, MMI_gen 4713 (partly: red));
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(
+            DmiActions.ShowInstruction(this,
                 @"Enter “1” (invalid value) with the numeric keypad and press the data input field (Accept) in the same screen");
 
 

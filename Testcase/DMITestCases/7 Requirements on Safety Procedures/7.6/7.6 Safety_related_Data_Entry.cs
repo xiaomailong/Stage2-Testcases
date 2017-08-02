@@ -138,7 +138,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 3203 (Set VBC Data Entry);(2) MMI_gen 3226 (partly: Set VBC Data Validation);(3) MMI_gen 3205 (partly: Set VBC Data Entry and Validation);(4) MMI_gen 3390 (partly: Set VBC Validation);(5) MMI_gen 3391 (partly: Set VBC Data Entry and Validation);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(
+            DmiActions.ShowInstruction(this,
                 @"Enter and confirm the value ‘65536’ at an input field.Then, press ‘Yes’ button");
 
 
@@ -149,7 +149,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 3203 (partly: Set VBC Data Validation);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(
+            DmiActions.ShowInstruction(this,
                 @"Press ‘Yes’ button.Then, confirm an entered value by pressing at an input field");
 
 
@@ -168,7 +168,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 3203 (Remove VBC Data Entry);(2) MMI_gen 3226 (partly: Remove VBC Data Validation);(3) MMI_gen 3205 (partly: Remove VBC Data Entry and Validation);(4) MMI_gen 3390 (partly: Remove VBC Validation);(5) MMI_gen 3391 (partly: Remove VBC Data Entry and Validation);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(
+            DmiActions.ShowInstruction(this,
                 @"Enter and confirm the value ‘65536’ at an input field.Then, press ‘Yes’ button");
 
 
@@ -179,7 +179,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 3203 (partly: Remove VBC Data Validation);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(
+            DmiActions.ShowInstruction(this,
                 @"Press ‘Yes’ button.Then, confirm an entered value by pressing at an input field");
 
 
@@ -208,7 +208,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 3203 (partly: Train Data Validation);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(
+            DmiActions.ShowInstruction(this,
                 @"Press ‘Yes’ button.Then, confirm an entered value by pressing at an input field");
 
 
@@ -235,7 +235,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 3203 (partly: Brake percentage Validation);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(
+            DmiActions.ShowInstruction(this,
                 @"Press ‘Yes’ button.Then, confirm an entered value by pressing at an input field");
 
 

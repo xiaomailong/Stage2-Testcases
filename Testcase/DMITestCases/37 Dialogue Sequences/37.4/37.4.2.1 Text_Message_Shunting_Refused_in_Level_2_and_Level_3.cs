@@ -66,7 +66,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 11915 (partly: SH refused); MMI_gen 134 (partly: E5);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(
+            DmiActions.ShowInstruction(this,
                 @"Enter SH mode by performing the procedure below,Press ‘Main’ buttonPress and hold ‘Shunting’ button at least 2 seconds.Release ‘Shunting’ button");
 
 

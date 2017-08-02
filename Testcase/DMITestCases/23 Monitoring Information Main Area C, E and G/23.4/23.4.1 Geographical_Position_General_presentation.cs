@@ -91,7 +91,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9872, MMI_gen 9873 (partly: toggle on state for touchscreen); MMI_gen 9877;MMI_gen 9878;MMI_gen 2495 (partly: kilometer_meter format); MMI_gen 2498;       (2) MMI_gen 655, (3) MMI_gen 656 (partly: transmit EVC-101, touch screen)
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(
+            DmiActions.ShowInstruction(this,
                 @"Press on the ‘DR03’ symbol, on sub-area G12 to toggle on the Geographical Position function and verify the presentation on the screen");
 
 
@@ -102,7 +102,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9872, MMI_gen 9873 (partly: toggle off state for touchscreen); MMI_gen 9875;
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(
+            DmiActions.ShowInstruction(this,
                 @"Press on the ‘DR03’ symbol on sub-area G12 to toggle off the Geographical Position function and verify the presentation on the screen");
 
 
@@ -128,7 +128,7 @@ namespace Testcase.DMITestCases
             Expected Result: The grey background colour in previous step is  replaced by symbol ‘DR03’ in sub-area G12
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(
+            DmiActions.ShowInstruction(this,
                 @"Press on the ‘DR03’ symbol on sub-area G12 to toggle off the Geographical Position function and verify the presentation on the screen");
 
 
@@ -146,7 +146,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 2495 ( partly: 2 digits of meter, at least 1 digit of kilometer);    
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(
+            DmiActions.ShowInstruction(this,
                 @"Press on the ‘DR03’ symbol, on sub-area G12 to toggle on the Geographical Position function and verify the presentation on the screen");
 
 

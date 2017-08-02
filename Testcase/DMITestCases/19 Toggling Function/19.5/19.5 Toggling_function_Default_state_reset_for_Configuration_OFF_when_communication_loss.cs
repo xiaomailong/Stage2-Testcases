@@ -85,7 +85,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) Information (paragraph 1) under, MMI_gen 6898 (inoperable); MMI_gen 6588 (partly: configuration “OFF”, mode OS); MMI_gen 6878 (partly: configuration “OFF”, mode OS);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(
+            DmiActions.ShowInstruction(this,
                 @"Press a sensitivity area (areas A1-A4 or B) to make a Basic Speed Hook appear.Then simulate loss-communication between ETCS onboard and DMI (1 second).Note: Stopwatch is required for accuracy of test result");
             // Call generic Check Results Method
             DmiExpectedResults

@@ -115,7 +115,7 @@ namespace Testcase.DMITestCases
             Expected Result: No character is displayed on the Input Field
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(
+            DmiActions.ShowInstruction(this,
                 @"Press ‘Del’ button on the numeric keyboard until no number is displayed on the Input Field");
 
 

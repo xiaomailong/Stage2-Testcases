@@ -73,7 +73,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8074 (partly: MMI_gen 4913 (partly:  MMI_gen 4384 (partly: sound ‘Click’)));(2) MMI_gen 8074 (partly: MMI_gen 4913 (partly: MMI_gen 4384 (partly: Change to state ‘Pressed’ and immediately back to state ‘Enabled’)));   (3) MMI_gen 8074 (partly: MMI_gen 4679, MMI_gen 4913 (partly: MMI_gen 4384 (partly: ETCS-MMI’s function associated to the button)));(4) MMI_gen 8076 (partly: entry); MMI_gen 8074 (partly: MMI_gen 4634);(5) MMI_gen 8074 (partly: MMI_gen 4651);(6) MMI_gen 8074 (partly: MMI_gen 4647 (partly: left aligned));(7) MMI_gen 8074 (partly: MMI_gen 4913 (partly: MMI_gen 4386 (partly: visual of repeat function)));(8) MMI_gen 8074 (partly: MMI_gen 4913 (partly: MMI_gen 4386 (partly: audible of repeat function))); Note: The repeat function is expected refer to developer’s action list (no reference requirement).                                                         
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(
+            DmiActions.ShowInstruction(this,
                 @"Press and hold ‘-’ button.Note: Stopwatch is required for accuracy of test result");
 
 
@@ -96,7 +96,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8074 (partly: MMI_gen 4913 (partly: MMI_gen 4384 (partly: sound ‘Click’)));(2) MMI_gen 8074 (partly: MMI_gen 4913 (partly: MMI_gen 4384 (partly: Change to state ‘Pressed’ and immediately back to state ‘Enabled’)));   (3) MMI_gen 8074 (partly: MMI_gen 4679, MMI_gen 4913 (partly:  MMI_gen 4384 (partly: ETCS-MMI’s function associated to the button))); (4) MMI_gen 8074 (partly: MMI_gen 4913 (partly: MMI_gen 4386 (partly: visual of repeat function)));(5) MMI_gen 8074 (partly: MMI_gen 4913 (partly: MMI_gen 4386 (partly: audible of repeat function)));Note: The repeat function is expected refer to developer’s action list (no reference requirement).                    
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(
+            DmiActions.ShowInstruction(this,
                 @"Press and hold ‘+’ button.Note: Stopwatch is required for accuracy of test result");
 
 

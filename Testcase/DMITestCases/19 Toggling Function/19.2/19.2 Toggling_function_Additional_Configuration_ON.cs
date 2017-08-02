@@ -144,7 +144,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 6890 (partly: Areas A, Area B, SR mode);                                  MMI_gen 6896 (partly: configuration ‘ON’, SR mode); MMI_gen 6894 (partly: SR mode); (2) MMI_gen 6890 (partly: SR mode, un-concerned object, toggle on) , Table 35 (not CSM) 
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(
+            DmiActions.ShowInstruction(this,
                 @"Press, at least twice, on area A1-A4, and area B respectively.Then, continue to drive the train forward after expected result verified");
 
 
@@ -225,7 +225,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 6890 (partly: Areas A, Area B, OS mode);                                  MMI_gen 6896 (partly: configuration ‘ON’, OS mode);                                      MMI_gen 6894 (partly: OS mode);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(
+            DmiActions.ShowInstruction(this,
                 @"Press, at least twice, on area A1-A4, and area B respectively.Then, continue to drive the train forward after expected result verified");
             // Call generic Check Results Method
             DmiExpectedResults
@@ -335,7 +335,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 6890 (partly: Areas A, Area B, SH mode);                                  MMI_gen 6896 (partly: configuration ‘ON’, SH mode);                                      MMI_gen 6894 (partly: SH mode); (2) MMI_gen 6890 (partly: SH mode, un-concerned object), Table 34 (CSM), Table 38 (CSM), Table 35 (CSM)
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(
+            DmiActions.ShowInstruction(this,
                 @"Press, at least twice, on area A1-A4, and area B respectively.Then, continue to drive the train forward after expected result verified");
             // Call generic Check Results Method
             DmiExpectedResults

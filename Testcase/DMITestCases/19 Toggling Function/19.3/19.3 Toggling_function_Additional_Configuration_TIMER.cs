@@ -129,7 +129,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 6890 (partly: Areas A, SR mode, toggle off), MMI_gen 6896 (partly: configuration ‘TIMER’, SR mode, toggle invisible), MMI_gen 6894 (partly: SR mode);    (2) MMI_gen 6890 (partly: SR mode, un-concerned object, toggle on) , Table 35 (not CSM)
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(
+            DmiActions.ShowInstruction(this,
                 @"Press the speedometer onceNote: Stopwatch is required for accuracy of test result");
 
 
@@ -140,7 +140,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 6890 (partly: Areas A, Area B, SR mode);                                  MMI_gen 6896 (partly: configuration ‘TIMER’, SR mode); MMI_gen 6894 (partly: SR mode); (2) MMI_gen 6890 (partly: SR mode, un-concerned object, toggle on) , Table 35 (not CSM) 
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(
+            DmiActions.ShowInstruction(this,
                 @"Press, only once, on area A1-A4, and area B respectively.Then, continue to drive the train forward after expected result verified.Note: Stopwatch is required for accuracy of test result");
 
 
@@ -214,7 +214,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 6890 (partly: Areas A, Area B, OS mode);                                  MMI_gen 6896 (partly: configuration ‘TIMER’, OS mode);                                      MMI_gen 6894 (partly: OS mode);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(
+            DmiActions.ShowInstruction(this,
                 @"Press, only once, on area A1-A4, and area B respectively.Then, continue to drive the train forward after expected result verified.Note: Stopwatch is required for accuracy of test result");
 
 
@@ -311,7 +311,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 6890 (partly: SH mode, toggle off), MMI_gen 6896 (partly: configuration ‘TIMER’, SH mode, toggle invisible), MMI_gen 6894 (partly: SH mode);(2) MMI_gen 6890 (partly: SH mode, un-concerned object), Table 34 (CSM), Table 38 (CSM), Table 35 (CSM)
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(
+            DmiActions.ShowInstruction(this,
                 @"Press the speedometer onceNote: Stopwatch is required for accuracy of test result");
 
 
@@ -322,7 +322,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 6890 (partly: Areas A, Area B, SH mode);                                  MMI_gen 6896 (partly: configuration ‘TIMER’, SH mode);                                      MMI_gen 6894 (partly: SH mode); (2) MMI_gen 6890 (partly: SH mode, un-concerned object), Table 34 (CSM), Table 38 (CSM), Table 35 (CSM)
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(
+            DmiActions.ShowInstruction(this,
                 @"Press, only once, on area A1-A4, and area B respectively.Then, continue to drive the train forward after expected result verified.Note: Stopwatch is required for accuracy of test result");
 
 
@@ -333,7 +333,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) Information (paragraph 1) under MMI_gen 6898 (inoperable)
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(
+            DmiActions.ShowInstruction(this,
                 @"Press a sensitivity area (areas A1-A4 or B) to make a Basic Speed Hook appear.Then simulate loss-communication between ETCS onboard and DMI (1 second).Note: Stopwatch is required for accuracy of test result");
             // Call generic Check Results Method
             DmiExpectedResults

@@ -65,7 +65,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11914 (partly: receives SH symbol, Level 2/3); MMI_gen 11084 (partly: SH);(2) MMI_gen 11914 (partly: display the symbol when receive SH symbol); MMI_gen 110 (partly: MO10);(3) MMI_gen 11914 (partly: close main window and return to the default window);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(
+            DmiActions.ShowInstruction(this,
                 @"Enter SH mode by performing the procedure below,Press ‘Main’ buttonPress and hold ‘Shunting’ button at least 2 seconds.Release ‘Shunting’ button");
             // Call generic Check Results Method
             DmiExpectedResults

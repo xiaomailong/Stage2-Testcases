@@ -217,7 +217,7 @@ namespace Testcase.DMITestCases
             Expected Result: The state of ‘VBC Code’ input field is changed to ‘accepted’
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(
+            DmiActions.ShowInstruction(this,
                 @"Enter the value ‘65536’ for VBC code.Then, confirm an entered data by pressing an input field");
             // Call generic Check Results Method
             DmiExpectedResults.The_state_of_VBC_Code_input_field_is_changed_to_accepted(this);

@@ -448,7 +448,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 2450 (partly: bit #26);(2) MMI_gen 1563 (partly: disabled bit #25);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(
+            DmiActions.ShowInstruction(this,
                 @"Press ‘Set Clock’ button. Then, select an input field ‘Offset’ at second page");
 
 
@@ -477,7 +477,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 2450 (partly: bit #25);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(
+            DmiActions.ShowInstruction(this,
                 @"Press ‘Set Clock’ button. Then, select an input field ‘Offset’ at second page");
 
 
