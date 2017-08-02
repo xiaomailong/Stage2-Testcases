@@ -20,7 +20,8 @@ namespace Testcase.DMITestCases
     /// 17.3.1 Speed Pointer: Sub-Area B1
     /// TC-ID: 12.3
     /// 
-    /// This test case verifies the presentation of speed pointer that displays in sub-area B1. The dimensions and colours of speed pointer shall comply with [ERA] standard.
+    /// This test case verifies the presentation of speed pointer that displays in sub-area B1.
+    /// The dimensions and colours of speed pointer shall comply with [ERA] standard.
     /// 
     /// Tested Requirements:
     /// MMI_gen 5965; MMI_gen 5968; 
@@ -31,7 +32,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// N/A
     /// </summary>
-    public class Speed_Pointer_Sub_Area_B1 : TestcaseBase
+    public class TC_12_3_Speed_Pointer : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -55,14 +56,15 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
+            TraceInfo("This is a repeat of TC_12_1_Display_of_Speed_Pointer_and_Speed_Digital." +
+                        "Please see results of this test case.");
 
             /*
             Test Step 1
-            Action: Drive the train forward, speed up to 25Km/h
+            Action: Drive the train forward, speed up to 25 km/h
             Expected Result: Verify the following information,The speed pointer is displayed in sub-area B1. The speed pointer consists of a needle and a circular part centred in sub-area B1. Both parts are displayed in same colour. The dimension of the speed pointer is presented
             Test Step Comment: (1) MMI_gen 5965;   (2) MMI_gen 5968;   
             */
-
 
             /*
             Test Step 2
@@ -70,15 +72,12 @@ namespace Testcase.DMITestCases
             Expected Result: The speed pointer is indicated to zero km/h
             */
             // Call generic Action Method
-            DmiActions.Stop_the_train(this);
-
 
             /*
             Test Step 3
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }
