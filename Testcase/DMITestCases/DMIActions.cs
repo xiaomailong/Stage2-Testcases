@@ -33,537 +33,56 @@ namespace Testcase.DMITestCases
             EVC0_MMIStartATP.Send();
 
             // Set train running number, cab 1 active, and other defaults
-            EVC2_MMIStatus.TrainRunningNumber = 1;
-            EVC2_MMIStatus.MMI_M_ACTIVE_CABIN = MMI_M_ACTIVE_CABIN.Cabin1Active;
-            EVC2_MMIStatus.MMI_M_ADHESION = 0x0;
-            EVC2_MMIStatus.MMI_M_OVERRIDE_EOA = false;
-            EVC2_MMIStatus.Send();
+            Activate_Cabin_1(pool);
 
             // Set driver ID
-            EVC14_MMICurrentDriverID.MMI_X_DRIVER_ID = "1234";
-            EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE = EVC14_MMICurrentDriverID.MMIQADDENABLEBUTTONS.Settings |
-                                                        EVC14_MMICurrentDriverID.MMIQADDENABLEBUTTONS.TRN;
-            EVC14_MMICurrentDriverID.MMI_Q_CLOSE_ENABLE = true;
-            EVC14_MMICurrentDriverID.Send();
+            Set_Driver_ID(pool, "1234");
 
             // Set to level 1 and SR mode
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_BrakeTest_Status = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_BRAKETEST_STATUS.BrakeTestNotInProgress;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
 
-            // Enable buttons and force default window
+            // Enable standard buttons including Start, and display Default window.
+            FinishedSoM_Default_Window(pool);
+        }
+
+        /// <summary>
+        /// Enable standard buttons including Start, and display Default window.
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void FinishedSoM_Default_Window (SignalPool pool)
+        {
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Start | standardFlags;
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = 0;
             EVC30_MMIRequestEnable.Send();
         }
+ 
+        /// <summary>
+        /// Set Driver ID string
+        /// </summary>
+        /// <param name="pool"></param>
+        /// <param name="driverID"></param>
+        public static void Set_Driver_ID(SignalPool pool, string driverID)
+        {
+            EVC14_MMICurrentDriverID.MMI_X_DRIVER_ID = driverID;
+            EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE = EVC14_MMICurrentDriverID.MMIQADDENABLEBUTTONS.Settings |
+                                                        EVC14_MMICurrentDriverID.MMIQADDENABLEBUTTONS.TRN;
+            EVC14_MMICurrentDriverID.MMI_Q_CLOSE_ENABLE = true;
+            EVC14_MMICurrentDriverID.Send();
+        }
         
         /// <summary>
         /// Description: Prompts the tester with a dialog box
-        /// Used in:
-        ///     Step 1 in TC-ID: 1.1 in 6.1 Properties of each Display Unit’s Screen
-        ///     Step 2 in TC-ID: 1.1 in 6.1 Properties of each Display Unit’s Screen
-        ///     Step 4 in TC-ID: 1.1 in 6.1 Properties of each Display Unit’s Screen
-        ///     Step 5 in TC-ID: 1.1 in 6.1 Properties of each Display Unit’s Screen
-        ///     Step 2 in TC-ID: 1.2 in 6.2 Internal Components
-        ///     Step 8 in TC-ID: 1.2 in 6.2 Internal Components
-        ///     Step 2 in TC-ID: 1.6 in 6.6 Adjustment of Sound Volume
-        ///     Step 3 in TC-ID: 1.6 in 6.6 Adjustment of Sound Volume
-        ///     Step 1 in TC-ID: 2.6 in 7.6 Safety related Data Entry
-        ///     Step 4 in TC-ID: 2.6 in 7.6 Safety related Data Entry
-        ///     Step 7 in TC-ID: 2.6 in 7.6 Safety related Data Entry
-        ///     Step 8 in TC-ID: 2.6 in 7.6 Safety related Data Entry
-        ///     Step 9 in TC-ID: 2.6 in 7.6 Safety related Data Entry
-        ///     Step 11 in TC-ID: 2.6 in 7.6 Safety related Data Entry
-        ///     Step 12 in TC-ID: 2.6 in 7.6 Safety related Data Entry
-        ///     Step 15 in TC-ID: 2.6 in 7.6 Safety related Data Entry
-        ///     Step 18 in TC-ID: 2.6 in 7.6 Safety related Data Entry
-        ///     Step 6 in TC-ID: 5.3 in 10.3 Screen Layout: Frames
-        ///     Step 10 in TC-ID: 5.8 in 10.8 Screen Layout: Windows
-        ///     Step 15 in TC-ID: 5.8 in 10.8 Screen Layout: Windows
-        ///     Step 4 in TC-ID: 5.12.2 in 10.12.2 Close, Next, Previous and Yes Buttons
-        ///     Step 6 in TC-ID: 5.12.2 in 10.12.2 Close, Next, Previous and Yes Buttons
-        ///     Step 17 in TC-ID: 5.12.2 in 10.12.2 Close, Next, Previous and Yes Buttons
-        ///     Step 1 in TC-ID: 6.1 in 11.1 Acknowledgements: General
-        ///     Step 19 in TC-ID: 6.1 in 11.1 Acknowledgements: General
-        ///     Step 14 in TC-ID: 6.3 in 11.3 Acknowledgements: Priority of new incoming acknowledgements
-        ///     Step 15 in TC-ID: 6.3 in 11.3 Acknowledgements: Priority of new incoming acknowledgements
-        ///     Step 16 in TC-ID: 6.3 in 11.3 Acknowledgements: Priority of new incoming acknowledgements
-        ///     Step 17 in TC-ID: 6.3 in 11.3 Acknowledgements: Priority of new incoming acknowledgements
-        ///     Step 18 in TC-ID: 6.3 in 11.3 Acknowledgements: Priority of new incoming acknowledgements
-        ///     Step 19 in TC-ID: 6.3 in 11.3 Acknowledgements: Priority of new incoming acknowledgements
-        ///     Step 22 in TC-ID: 6.3 in 11.3 Acknowledgements: Priority of new incoming acknowledgements
-        ///     Step 11 in TC-ID: 6.4 in Acknowledgements: NACK/ACK Buttons
-        ///     Step 3 in TC-ID: 6.7 in 11.7 Acknowledgements: Shared Area with NTC-Acknowledgement
-        ///     Step 4 in TC-ID: 6.7 in 11.7 Acknowledgements: Shared Area with NTC-Acknowledgement
-        ///     Step 5 in TC-ID: 6.7 in 11.7 Acknowledgements: Shared Area with NTC-Acknowledgement
-        ///     Step 6 in TC-ID: 6.7 in 11.7 Acknowledgements: Shared Area with NTC-Acknowledgement
-        ///     Step 1 in TC-ID: 9.1 in Data Validation Window for Flexible train data entry window
-        ///     Step 2 in TC-ID: 9.1 in Data Validation Window for Flexible train data entry window
-        ///     Step 5 in TC-ID: 9.1 in Data Validation Window for Flexible train data entry window
-        ///     Step 7 in TC-ID: 9.1 in Data Validation Window for Flexible train data entry window
-        ///     Step 1 in TC-ID: 9.2 in 14.2 Data Validation Window for Fixed train data entry window
-        ///     Step 2 in TC-ID: 9.2 in 14.2 Data Validation Window for Fixed train data entry window
-        ///     Step 5 in TC-ID: 9.2 in 14.2 Data Validation Window for Fixed train data entry window
-        ///     Step 7 in TC-ID: 9.2 in 14.2 Data Validation Window for Fixed train data entry window
-        ///     Step 4 in TC-ID: 10.2 in 15.2.1 State 'ST05': General Appearance
-        ///     Step 12 in TC-ID: 10.2 in 15.2.1 State 'ST05': General Appearance
-        ///     Step 15 in TC-ID: 10.2 in 15.2.1 State 'ST05': General Appearance
-        ///     Step 3 in TC-ID: 10.2.2 in 15.2.2 State 'ST05': Main window and windows in main menu.
-        ///     Step 17 in TC-ID: 10.2.2 in 15.2.2 State 'ST05': Main window and windows in main menu.
-        ///     Step 1 in TC-ID: 10.2.5 in 15.2.5 State 'ST05': Special window and windows in the special menu
-        ///     Step 5 in TC-ID: 10.2.6 in 15.2.6 State 'ST05': Settings window and windows in setting menu
-        ///     Step 14 in TC-ID: 10.2.6 in 15.2.6 State 'ST05': Settings window and windows in setting menu
-        ///     Step 16 in TC-ID: 10.2.6 in 15.2.6 State 'ST05': Settings window and windows in setting menu
-        ///     Step 36 in TC-ID: 10.2.6 in 15.2.6 State 'ST05': Settings window and windows in setting menu
-        ///     Step 1 in TC-ID: 12.4 in 17.4 Current Train Speed Digital: Sub-Area B1
-        ///     Step 8 in TC-ID: 13.2.1 in 18.2.1 General Appearance
-        ///     Step 9 in TC-ID: 13.2.1 in 18.2.1 General Appearance
-        ///     Step 3 in TC-ID: 14.1 in 19.1 Toggling function: Additional Configuration ‘OFF’ (Default)
-        ///     Step 7 in TC-ID: 14.1 in 19.1 Toggling function: Additional Configuration ‘OFF’ (Default)
-        ///     Step 8 in TC-ID: 14.1 in 19.1 Toggling function: Additional Configuration ‘OFF’ (Default)
-        ///     Step 15 in TC-ID: 14.1 in 19.1 Toggling function: Additional Configuration ‘OFF’ (Default)
-        ///     Step 23 in TC-ID: 14.1 in 19.1 Toggling function: Additional Configuration ‘OFF’ (Default)
-        ///     Step 24 in TC-ID: 14.1 in 19.1 Toggling function: Additional Configuration ‘OFF’ (Default)
-        ///     Step 25 in TC-ID: 14.1 in 19.1 Toggling function: Additional Configuration ‘OFF’ (Default)
-        ///     Step 3 in TC-ID: 14.2 in 19.2 Toggling function: Additional Configuration ‘ON’
-        ///     Step 7 in TC-ID: 14.2 in 19.2 Toggling function: Additional Configuration ‘ON’
-        ///     Step 8 in TC-ID: 14.2 in 19.2 Toggling function: Additional Configuration ‘ON’
-        ///     Step 15 in TC-ID: 14.2 in 19.2 Toggling function: Additional Configuration ‘ON’
-        ///     Step 23 in TC-ID: 14.2 in 19.2 Toggling function: Additional Configuration ‘ON’
-        ///     Step 24 in TC-ID: 14.2 in 19.2 Toggling function: Additional Configuration ‘ON’
-        ///     Step 3 in TC-ID: 14.3 in 19.3 Toggling function: Additional Configuration ‘TIMER’
-        ///     Step 7 in TC-ID: 14.3 in 19.3 Toggling function: Additional Configuration ‘TIMER’
-        ///     Step 8 in TC-ID: 14.3 in 19.3 Toggling function: Additional Configuration ‘TIMER’
-        ///     Step 15 in TC-ID: 14.3 in 19.3 Toggling function: Additional Configuration ‘TIMER’
-        ///     Step 23 in TC-ID: 14.3 in 19.3 Toggling function: Additional Configuration ‘TIMER’
-        ///     Step 24 in TC-ID: 14.3 in 19.3 Toggling function: Additional Configuration ‘TIMER’
-        ///     Step 25 in TC-ID: 14.3 in 19.3 Toggling function: Additional Configuration ‘TIMER’
-        ///     Step 3 in TC-ID: 14.5 in 19.5 Toggling function: Default state reset for Configuration ‘OFF’ when communication loss
-        ///     Step 5 in TC-ID: 14.5 in 19.5 Toggling function: Default state reset for Configuration ‘OFF’ when communication loss
-        ///     Step 2 in TC-ID: 15.1.3 in 20.1.3 Mode Symbols in Sub-Area B7 for OS, UN mode
-        ///     Step 4 in TC-ID: 15.1.3 in 20.1.3 Mode Symbols in Sub-Area B7 for OS, UN mode
-        ///     Step 7 in TC-ID: 15.1.3 in 20.1.3 Mode Symbols in Sub-Area B7 for OS, UN mode
-        ///     Step 8 in TC-ID: 15.1.3 in 20.1.3 Mode Symbols in Sub-Area B7 for OS, UN mode
-        ///     Step 3 in TC-ID: 15.1.4 in 20.1.4 Mode acknowledgement subtitution
-        ///     Step 4 in TC-ID: 15.2.4 in 20.2.4 ETCS Level: ETCS Level Transitions by receiving data packet from ETCS Onboard (L1->L0, L0->L1)
-        ///     Step 8 in TC-ID: 15.3.2 in 20.3.2 Driver Messages: Processing of incoming Driver Messages
-        ///     Step 9 in TC-ID: 15.3.2 in 20.3.2 Driver Messages: Processing of incoming Driver Messages
-        ///     Step 10 in TC-ID: 15.3.2 in 20.3.2 Driver Messages: Processing of incoming Driver Messages
-        ///     Step 3 in TC-ID: 15.3.3 in 20.3.3 Driver Messages: Maximum of non-acknowledgeable Text Messages
-        ///     Step 6 in TC-ID: 15.3.3 in 20.3.3 Driver Messages: Maximum of non-acknowledgeable Text Messages
-        ///     Step 4 in TC-ID: 16.1 in 21.1 TAF Question Box
-        ///     Step 10 in TC-ID: 16.1 in 21.1 TAF Question Box
-        ///     Step 4 in TC-ID: 17.3 in 22.3 Planning Area: PA Distance Scale
-        ///     Step 5 in TC-ID: 17.3 in 22.3 Planning Area: PA Distance Scale
-        ///     Step 7 in TC-ID: 17.3 in 22.3 Planning Area: PA Distance Scale
-        ///     Step 8 in TC-ID: 17.3 in 22.3 Planning Area: PA Distance Scale
-        ///     Step 4 in TC-ID: 17.9.1 in 22.9.1 Hide PA Function: General appearance
-        ///     Step 5 in TC-ID: 17.9.1 in 22.9.1 Hide PA Function: General appearance
-        ///     Step 6 in TC-ID: 17.9.1 in 22.9.1 Hide PA Function: General appearance
-        ///     Step 3 in TC-ID: 17.9.2 in 22.9.2 Hide PA Function is configured ‘ON’ with reboot DMI
-        ///     Step 4 in TC-ID: 17.9.3 in 22.9.3 Hide PA Function is configured ‘OFF’ with reboot DMI
-        ///     Step 5 in TC-ID: 17.9.3 in 22.9.3 Hide PA Function is configured ‘OFF’ with reboot DMI
-        ///     Step 6 in TC-ID: 17.9.3 in 22.9.3 Hide PA Function is configured ‘OFF’ with reboot DMI
-        ///     Step 4 in TC-ID: 17.9.4 in 22.9.4 Hide PA Function is configured ‘STORED’ with reboot DMI
-        ///     Step 4 in TC-ID: 17.9.6 in 22.9.5 Hide PA Function is configured ‘ON’ with reactivated Cabin A
-        ///     Step 8 in TC-ID: 17.9.6 in 22.9.5 Hide PA Function is configured ‘ON’ with reactivated Cabin A
-        ///     Step 4 in TC-ID: 17.9.5 in 22.9.6 Hide PA Function is configured ‘TIMER’ with reboot DMI
-        ///     Step 4 in TC-ID: 17.9.7 in 22.9.7 Hide PA Function is configured ‘OFF’ with reactivated Cabin A
-        ///     Step 4 in TC-ID: 17.9.8 in 22.9.8 Hide PA Function is configured ‘STORED’ with reactivated Cabin A
-        ///     Step 8 in TC-ID: 17.9.8 in 22.9.8 Hide PA Function is configured ‘STORED’ with reactivated Cabin A
-        ///     Step 4 in TC-ID: 17.9.9 in 22.9.9 Hide PA Function is configured ‘TIMER’ with reactivated Cabin A
-        ///     Step 8 in TC-ID: 17.9.9 in 22.9.9 Hide PA Function is configured ‘TIMER’ with reactivated Cabin A
-        ///     Step 4 in TC-ID: 17.9.10 (Default Configuration) in 22.9.10 Hide PA Function with the communication loss between ETCS Onboard and DMI
-        ///     Step 6 in TC-ID: 17.9.10 (Default Configuration) in 22.9.10 Hide PA Function with the communication loss between ETCS Onboard and DMI
-        ///     Step 7 in TC-ID: 17.9.10 (Default Configuration) in 22.9.10 Hide PA Function with the communication loss between ETCS Onboard and DMI
-        ///     Step 8 in TC-ID: 17.9.10 (Default Configuration) in 22.9.10 Hide PA Function with the communication loss between ETCS Onboard and DMI
-        ///     Step 3 in TC-ID: 17.9.11 in 22.9.11 Hide PA Function configured ‘STORED’ with re-activate cabin
-        ///     Step 6 in TC-ID: 17.9.11 in 22.9.11 Hide PA Function configured ‘STORED’ with re-activate cabin
-        ///     Step 12 in TC-ID: 17.9.11 in 22.9.11 Hide PA Function configured ‘STORED’ with re-activate cabin
-        ///     Step 19 in TC-ID: 17.9.11 in 22.9.11 Hide PA Function configured ‘STORED’ with re-activate cabin
-        ///     Step 6 in TC-ID: 17.10.2 in 22.10.2 Zoom PA Function with Scale Up
-        ///     Step 7 in TC-ID: 17.10.2 in 22.10.2 Zoom PA Function with Scale Up
-        ///     Step 6 in TC-ID: 17.10.3 in 22.10.3 Zoom PA Function with Scale Down
-        ///     Step 7 in TC-ID: 17.10.3 in 22.10.3 Zoom PA Function with Scale Down
-        ///     Step 7 in TC-ID: 17.10.4 in 22.10.4 Zoom PA Function with the communication loss between ETCS Onboard and DMI
-        ///     Step 8 in TC-ID: 17.10.4 in 22.10.4 Zoom PA Function with the communication loss between ETCS Onboard and DMI
-        ///     Step 4 in TC-ID: 18.4.1 in 23.4.1 Geographical Position: General presentation
-        ///     Step 5 in TC-ID: 18.4.1 in 23.4.1 Geographical Position: General presentation
-        ///     Step 8 in TC-ID: 18.4.1 in 23.4.1 Geographical Position: General presentation
-        ///     Step 10 in TC-ID: 18.4.1 in 23.4.1 Geographical Position: General presentation
-        ///     Step 8 in TC-ID: 18.4.3 in 23.4.3 Geographical Position: Additional requirements
-        ///     Step 11 in TC-ID: 18.4.3 in 23.4.3 Geographical Position: Additional requirements
-        ///     Step 4 in TC-ID: 18.7 in 23.7 Tunnel stopping area track condition
-        ///     Step 5 in TC-ID: 18.7 in 23.7 Tunnel stopping area track condition
-        ///     Step 2 in TC-ID: 20.3 in 25.3 Driver’s Action: Special window
-        ///     Step 3 in TC-ID: 20.4 in 25.4 Driver’s Action: Settings window
-        ///     Step 7 in TC-ID: 20.4 in 25.4 Driver’s Action: Settings window
-        ///     Step 4 in TC-ID: 22.1.1 in 27.1.1 Sub-Level Window: General appearances
-        ///     Step 9 in TC-ID: 22.1.1 in 27.1.1 Sub-Level Window: General appearances
-        ///     Step 14 in TC-ID: 22.1.1 in 27.1.1 Sub-Level Window: General appearances
-        ///     Step 19 in TC-ID: 22.1.1 in 27.1.1 Sub-Level Window: General appearances
-        ///     Step 24 in TC-ID: 22.1.1 in 27.1.1 Sub-Level Window: General appearances
-        ///     Step 29 in TC-ID: 22.1.1 in 27.1.1 Sub-Level Window: General appearances
-        ///     Step 31 in TC-ID: 22.1.1 in 27.1.1 Sub-Level Window: General appearances
-        ///     Step 32 in TC-ID: 22.1.1 in 27.1.1 Sub-Level Window: General appearances
-        ///     Step 3 in TC-ID: 22.1.2 in 27.1.2 ETCS Specfic submenus and SN sub menus
-        ///     Step 5 in TC-ID: 22.1.2 in 27.1.2 ETCS Specfic submenus and SN sub menus
-        ///     Step 7 in TC-ID: 22.1.2 in 27.1.2 ETCS Specfic submenus and SN sub menus
-        ///     Step 9 in TC-ID: 22.1.2 in 27.1.2 ETCS Specfic submenus and SN sub menus
-        ///     Step 12 in TC-ID: 22.1.2 in 27.1.2 ETCS Specfic submenus and SN sub menus
-        ///     Step 13 in TC-ID: 22.1.2 in 27.1.2 ETCS Specfic submenus and SN sub menus
-        ///     Step 1 in TC-ID: 7.1 in 27.2 Main window
-        ///     Step 14 in TC-ID: 7.1 in 27.2 Main window
-        ///     Step 8 in TC-ID: 22.5.1 in 27.5.1 Level Selection Window: General appearance
-        ///     Step 14 in TC-ID: 22.5.1 in 27.5.1 Level Selection Window: General appearance
-        ///     Step 15 in TC-ID: 22.5.1 in 27.5.1 Level Selection Window: General appearance
-        ///     Step 1 in TC-ID: 22.5.3 in 27.5.3 Level Selection Window: Level Inhibition Window
-        ///     Step 11 in TC-ID: 22.5.3 in 27.5.3 Level Selection Window: Level Inhibition Window
-        ///     Step 15 in TC-ID: 22.5.3 in 27.5.3 Level Selection Window: Level Inhibition Window
-        ///     Step 18 in TC-ID: 22.5.3 in 27.5.3 Level Selection Window: Level Inhibition Window
-        ///     Step 19 in TC-ID: 22.5.3 in 27.5.3 Level Selection Window: Level Inhibition Window
-        ///     Step 1 in TC-ID: 22.6.1 in 27.6.1 Password window
-        ///     Step 3 in TC-ID: 22.6.1 in 27.6.1 Password window
-        ///     Step 4 in TC-ID: 22.6.1 in 27.6.1 Password window
-        ///     Step 5 in TC-ID: 22.6.1 in 27.6.1 Password window
-        ///     Step 6 in TC-ID: 22.6.1 in 27.6.1 Password window
-        ///     Step 10 in TC-ID: 22.6.1 in 27.6.1 Password window
-        ///     Step 13 in TC-ID: 22.6.1 in 27.6.1 Password window
-        ///     Step 14 in TC-ID: 22.6.2 in 27.6.2 Maintenance window
-        ///     Step 16 in TC-ID: 22.6.2 in 27.6.2 Maintenance window
-        ///     Step 1 in TC-ID: 22.6.3.1 in 27.6.3.1 Wheel diameter window: General apearance
-        ///     Step 2 in TC-ID: 22.6.3.1 in 27.6.3.1 Wheel diameter window: General apearance
-        ///     Step 3 in TC-ID: 22.6.3.1 in 27.6.3.1 Wheel diameter window: General apearance
-        ///     Step 5 in TC-ID: 22.6.3.1 in 27.6.3.1 Wheel diameter window: General apearance
-        ///     Step 6 in TC-ID: 22.6.3.1 in 27.6.3.1 Wheel diameter window: General apearance
-        ///     Step 17 in TC-ID: 22.6.3.1 in 27.6.3.1 Wheel diameter window: General apearance
-        ///     Step 18 in TC-ID: 22.6.3.1 in 27.6.3.1 Wheel diameter window: General apearance
-        ///     Step 20 in TC-ID: 22.6.3.1 in 27.6.3.1 Wheel diameter window: General apearance
-        ///     Step 24 in TC-ID: 22.6.3.1 in 27.6.3.1 Wheel diameter window: General apearance
-        ///     Step 27 in TC-ID: 22.6.3.1 in 27.6.3.1 Wheel diameter window: General apearance
-        ///     Step 2 in TC-ID: 22.6.4.1 in 27.6.4.1
-        ///     Step 3 in TC-ID: 22.6.4.1 in 27.6.4.1
-        ///     Step 6 in TC-ID: 22.6.4.1 in 27.6.4.1
-        ///     Step 8 in TC-ID: 22.6.4.1 in 27.6.4.1
-        ///     Step 10 in TC-ID: 22.6.4.1 in 27.6.4.1
-        ///     Step 1 in TC-ID: 22.6.5.1 in 27.6.5.1 Radar window: General appearance
-        ///     Step 2 in TC-ID: 22.6.5.1 in 27.6.5.1 Radar window: General appearance
-        ///     Step 3 in TC-ID: 22.6.5.1 in 27.6.5.1 Radar window: General appearance
-        ///     Step 5 in TC-ID: 22.6.5.1 in 27.6.5.1 Radar window: General appearance
-        ///     Step 6 in TC-ID: 22.6.5.1 in 27.6.5.1 Radar window: General appearance
-        ///     Step 15 in TC-ID: 22.6.5.1 in 27.6.5.1 Radar window: General appearance
-        ///     Step 16 in TC-ID: 22.6.5.1 in 27.6.5.1 Radar window: General appearance
-        ///     Step 18 in TC-ID: 22.6.5.1 in 27.6.5.1 Radar window: General appearance
-        ///     Step 22 in TC-ID: 22.6.5.1 in 27.6.5.1 Radar window: General appearance
-        ///     Step 25 in TC-ID: 22.6.5.1 in 27.6.5.1 Radar window: General appearance
-        ///     Step 2 in TC-ID: 22.6.6.1 in 27.6.6.1
-        ///     Step 3 in TC-ID: 22.6.6.1 in 27.6.6.1
-        ///     Step 6 in TC-ID: 22.6.6.1 in 27.6.6.1
-        ///     Step 8 in TC-ID: 22.6.6.1 in 27.6.6.1
-        ///     Step 10 in TC-ID: 22.6.6.1 in 27.6.6.1
-        ///     Step 1 in TC-ID: 22.7.1 in 27.7.1 Data view window for Flexible Train data entry
-        ///     Step 2 in TC-ID: 22.7.1 in 27.7.1 Data view window for Flexible Train data entry
-        ///     Step 5 in TC-ID: 22.7.1 in 27.7.1 Data view window for Flexible Train data entry
-        ///     Step 9 in TC-ID: 22.7.1 in 27.7.1 Data view window for Flexible Train data entry
-        ///     Step 1 in TC-ID: 22.7.2 in 27.7.2 Data view window for Fixed Train data entry
-        ///     Step 2 in TC-ID: 22.7.2 in 27.7.2 Data view window for Fixed Train data entry
-        ///     Step 5 in TC-ID: 22.7.2 in 27.7.2 Data view window for Fixed Train data entry
-        ///     Step 1 in TC-ID: 22.7.3 in 27.7.3 Data view window for the text which longer than maximum width
-        ///     Step 3 in TC-ID: 22.8.1.1 in 27.8.1.1
-        ///     Step 4 in TC-ID: 22.8.1.1 in 27.8.1.1
-        ///     Step 6 in TC-ID: 22.8.1.1 in 27.8.1.1
-        ///     Step 7 in TC-ID: 22.8.1.1 in 27.8.1.1
-        ///     Step 8 in TC-ID: 22.8.1.1 in 27.8.1.1
-        ///     Step 13 in TC-ID: 22.8.1.1 in 27.8.1.1
-        ///     Step 22 in TC-ID: 22.8.1.1 in 27.8.1.1
-        ///     Step 29 in TC-ID: 22.8.1.1 in 27.8.1.1
-        ///     Step 37 in TC-ID: 22.8.1.1 in 27.8.1.1
-        ///     Step 6 in TC-ID: 22.8.2.1 in 27.8.2.1 Radio Network ID window: General appearance
-        ///     Step 7 in TC-ID: 22.8.2.1 in 27.8.2.1 Radio Network ID window: General appearance
-        ///     Step 10 in TC-ID: 22.8.2.1 in 27.8.2.1 Radio Network ID window: General appearance
-        ///     Step 11 in TC-ID: 22.8.2.1 in 27.8.2.1 Radio Network ID window: General appearance
-        ///     Step 15 in TC-ID: 22.8.2.1 in 27.8.2.1 Radio Network ID window: General appearance
-        ///     Step 16 in TC-ID: 22.8.2.1 in 27.8.2.1 Radio Network ID window: General appearance
-        ///     Step 18 in TC-ID: 22.8.2.1 in 27.8.2.1 Radio Network ID window: General appearance
-        ///     Step 7 in TC-ID: 22.8.3.1 in 27.8.3.1 RBC Contact window: General appearance
-        ///     Step 14 in TC-ID: 22.8.3.1 in 27.8.3.1 RBC Contact window: General appearance
-        ///     Step 3 in TC-ID: 22.9.1 in 27.9.1 SR Speed/Distance window: General appearance
-        ///     Step 4 in TC-ID: 22.9.1 in 27.9.1 SR Speed/Distance window: General appearance
-        ///     Step 6 in TC-ID: 22.9.1 in 27.9.1 SR Speed/Distance window: General appearance
-        ///     Step 7 in TC-ID: 22.9.1 in 27.9.1 SR Speed/Distance window: General appearance
-        ///     Step 8 in TC-ID: 22.9.1 in 27.9.1 SR Speed/Distance window: General appearance
-        ///     Step 12 in TC-ID: 22.9.1 in 27.9.1 SR Speed/Distance window: General appearance
-        ///     Step 21 in TC-ID: 22.9.1 in 27.9.1 SR Speed/Distance window: General appearance
-        ///     Step 28 in TC-ID: 22.9.1 in 27.9.1 SR Speed/Distance window: General appearance
-        ///     Step 33 in TC-ID: 22.9.1 in 27.9.1 SR Speed/Distance window: General appearance
-        ///     Step 3 in TC-ID: 22.9.9 in 27.9.9 ‘SR speed / distance’ Data Checks: Technical Range Checks by Data Validity
-        ///     Step 1 in TC-ID: 22.10 in 27.10 Special window
-        ///     Step 8 in TC-ID: 22.10 in 27.10 Special window
-        ///     Step 16 in TC-ID: 22.10 in 27.10 Special window
-        ///     Step 19 in TC-ID: 22.10 in 27.10 Special window
-        ///     Step 2 in TC-ID: 22.11 in 27.11 Adhesion Window
-        ///     Step 3 in TC-ID: 22.11 in 27.11 Adhesion Window
-        ///     Step 4 in TC-ID: 22.11 in 27.11 Adhesion Window
-        ///     Step 6 in TC-ID: 22.11 in 27.11 Adhesion Window
-        ///     Step 8 in TC-ID: 22.11 in 27.11 Adhesion Window
-        ///     Step 12 in TC-ID: 22.11 in 27.11 Adhesion Window
-        ///     Step 2 in TC-ID: 22.12 in 27.12 Subcategory ‘National’
-        ///     Step 4 in TC-ID: 22.13.1 in 27.13.1 Set Clock function: General appearance
-        ///     Step 5 in TC-ID: 22.13.1 in 27.13.1 Set Clock function: General appearance
-        ///     Step 6 in TC-ID: 22.13.1 in 27.13.1 Set Clock function: General appearance
-        ///     Step 8 in TC-ID: 22.13.1 in 27.13.1 Set Clock function: General appearance
-        ///     Step 9 in TC-ID: 22.13.1 in 27.13.1 Set Clock function: General appearance
-        ///     Step 39 in TC-ID: 22.13.1 in 27.13.1 Set Clock function: General appearance
-        ///     Step 46 in TC-ID: 22.13.1 in 27.13.1 Set Clock function: General appearance
-        ///     Step 49 in TC-ID: 22.13.1 in 27.13.1 Set Clock function: General appearance
-        ///     Step 50 in TC-ID: 22.13.1 in 27.13.1 Set Clock function: General appearance
-        ///     Step 1 in TC-ID: 22.14 in 27.14 System Version window
-        ///     Step 5 in TC-ID: 22.14 in 27.14 System Version window
-        ///     Step 10 in TC-ID: 22.17 in 27.17.1 Driver ID window: General Display
-        ///     Step 13 in TC-ID: 22.17 in 27.17.1 Driver ID window: General Display
-        ///     Step 17 in TC-ID: 22.17 in 27.17.1 Driver ID window: General Display
-        ///     Step 4 in TC-ID: 7.3.2 in 27.17.3 Entering Characters
-        ///     Step 5 in TC-ID: 7.3.2 in 27.17.3 Entering Characters
-        ///     Step 6 in TC-ID: 7.3.2 in 27.17.3 Entering Characters
-        ///     Step 10 in TC-ID: 7.3.2 in 27.17.3 Entering Characters
-        ///     Step 13 in TC-ID: 7.3.2 in 27.17.3 Entering Characters
-        ///     Step 4 in TC-ID: 22.18 in Train Running Number window
-        ///     Step 5 in TC-ID: 22.18 in Train Running Number window
-        ///     Step 6 in TC-ID: 22.18 in Train Running Number window
-        ///     Step 7 in TC-ID: 22.18 in Train Running Number window
-        ///     Step 8 in TC-ID: 22.18 in Train Running Number window
-        ///     Step 10 in TC-ID: 22.18 in Train Running Number window
-        ///     Step 13 in TC-ID: 22.18 in Train Running Number window
-        ///     Step 15 in TC-ID: 22.18 in Train Running Number window
-        ///     Step 17 in TC-ID: 22.18 in Train Running Number window
-        ///     Step 1 in TC-ID: 22.19 in 27.19 Language Window
-        ///     Step 2 in TC-ID: 22.19 in 27.19 Language Window
-        ///     Step 3 in TC-ID: 22.19 in 27.19 Language Window
-        ///     Step 7 in TC-ID: 22.19 in 27.19 Language Window
-        ///     Step 4 in TC-ID: 22.20.1 in 27.20.1 Override window: General appearance
-        ///     Step 11 in TC-ID: 22.20.1 in 27.20.1 Override window: General appearance
-        ///     Step 12 in TC-ID: 22.20.1 in 27.20.1 Override window: General appearance
-        ///     Step 4 in TC-ID: 22.20.2 in 27.20.2 Override window in SB mode
-        ///     Step 5 in TC-ID: 22.20.2 in 27.20.2 Override window in SB mode
-        ///     Step 6 in TC-ID: 22.21 in 27.21 Settings Window
-        ///     Step 11 in TC-ID: 22.21 in 27.21 Settings Window
-        ///     Step 3 in TC-ID: 22.22.1 in 27.22.1 Brake window
-        ///     Step 4 in TC-ID: 22.22.1 in 27.22.1 Brake window
-        ///     Step 7 in TC-ID: 22.22.1 in 27.22.1 Brake window
-        ///     Step 8 in TC-ID: 22.22.1 in 27.22.1 Brake window
-        ///     Step 11 in TC-ID: 22.22.1 in 27.22.1 Brake window
-        ///     Step 16 in TC-ID: 22.22.1 in 27.22.1 Brake window
-        ///     Step 1 in TC-ID: 22.22.2  in 27.22.2 Brake test window
-        ///     Step 2 in TC-ID: 22.22.2  in 27.22.2 Brake test window
-        ///     Step 5 in TC-ID: 22.22.2  in 27.22.2 Brake test window
-        ///     Step 6 in TC-ID: 22.22.2  in 27.22.2 Brake test window
-        ///     Step 2 in TC-ID: 22.22.3  in 27.22.3 Brake percentage window
-        ///     Step 3 in TC-ID: 22.22.3  in 27.22.3 Brake percentage window
-        ///     Step 4 in TC-ID: 22.22.3  in 27.22.3 Brake percentage window
-        ///     Step 6 in TC-ID: 22.22.3  in 27.22.3 Brake percentage window
-        ///     Step 7 in TC-ID: 22.22.3  in 27.22.3 Brake percentage window
-        ///     Step 8 in TC-ID: 22.22.3  in 27.22.3 Brake percentage window
-        ///     Step 9 in TC-ID: 22.22.3  in 27.22.3 Brake percentage window
-        ///     Step 11 in TC-ID: 22.22.3  in 27.22.3 Brake percentage window
-        ///     Step 15 in TC-ID: 22.22.3  in 27.22.3 Brake percentage window
-        ///     Step 16 in TC-ID: 22.22.3  in 27.22.3 Brake percentage window
-        ///     Step 18 in TC-ID: 22.22.3  in 27.22.3 Brake percentage window
-        ///     Step 2 in TC-ID: 22.22.4  in 27.22.4 Brake percentage validation window
-        ///     Step 5 in TC-ID: 22.22.4  in 27.22.4 Brake percentage validation window
-        ///     Step 7 in TC-ID: 22.22.4  in 27.22.4 Brake percentage validation window
-        ///     Step 3 in TC-ID: 22.22.5 in 27.22.5 ‘Brake percentage’ Data Checks: Technical Range Checks by Data Validity
-        ///     Step 1 in TC-ID: 22.23 in 27.23 Switchable train data entry
-        ///     Step 1 in TC-ID: 22.24 in 27.24 Brightness window
-        ///     Step 2 in TC-ID: 22.24 in 27.24 Brightness window
-        ///     Step 3 in TC-ID: 22.24 in 27.24 Brightness window
-        ///     Step 4 in TC-ID: 22.24 in 27.24 Brightness window
-        ///     Step 5 in TC-ID: 22.24 in 27.24 Brightness window
-        ///     Step 6 in TC-ID: 22.24 in 27.24 Brightness window
-        ///     Step 9 in TC-ID: 22.24 in 27.24 Brightness window
-        ///     Step 12 in TC-ID: 22.24 in 27.24 Brightness window
-        ///     Step 1 in TC-ID: 22.25 in 27.25 Volume window
-        ///     Step 2 in TC-ID: 22.25 in 27.25 Volume window
-        ///     Step 3 in TC-ID: 22.25 in 27.25 Volume window
-        ///     Step 4 in TC-ID: 22.25 in 27.25 Volume window
-        ///     Step 5 in TC-ID: 22.25 in 27.25 Volume window
-        ///     Step 6 in TC-ID: 22.25 in 27.25 Volume window
-        ///     Step 9 in TC-ID: 22.25 in 27.25 Volume window
-        ///     Step 12 in TC-ID: 22.25 in 27.25 Volume window
-        ///     Step 3 in TC-ID: 22.26 in 27.26 System info window
-        ///     Step 6 in TC-ID: 22.26 in 27.26 System info window
-        ///     Step 8 in TC-ID: 22.26 in 27.26 System info window
-        ///     Step 1 in TC-ID: 22.27.1 in 27.27.1 ‘Set VBC’ Data Entry Window
-        ///     Step 2 in TC-ID: 22.27.1 in 27.27.1 ‘Set VBC’ Data Entry Window
-        ///     Step 3 in TC-ID: 22.27.1 in 27.27.1 ‘Set VBC’ Data Entry Window
-        ///     Step 5 in TC-ID: 22.27.1 in 27.27.1 ‘Set VBC’ Data Entry Window
-        ///     Step 6 in TC-ID: 22.27.1 in 27.27.1 ‘Set VBC’ Data Entry Window
-        ///     Step 7 in TC-ID: 22.27.1 in 27.27.1 ‘Set VBC’ Data Entry Window
-        ///     Step 13 in TC-ID: 22.27.1 in 27.27.1 ‘Set VBC’ Data Entry Window
-        ///     Step 14 in TC-ID: 22.27.1 in 27.27.1 ‘Set VBC’ Data Entry Window
-        ///     Step 18 in TC-ID: 22.27.1 in 27.27.1 ‘Set VBC’ Data Entry Window
-        ///     Step 20 in TC-ID: 22.27.1 in 27.27.1 ‘Set VBC’ Data Entry Window
-        ///     Step 2 in TC-ID: 22.27.2 in 27.27.2 ‘Set VBC’ Validation Window
-        ///     Step 3 in TC-ID: 22.27.2 in 27.27.2 ‘Set VBC’ Validation Window
-        ///     Step 6 in TC-ID: 22.27.2 in 27.27.2 ‘Set VBC’ Validation Window
-        ///     Step 8 in TC-ID: 22.27.2 in 27.27.2 ‘Set VBC’ Validation Window
-        ///     Step 10 in TC-ID: 22.27.2 in 27.27.2 ‘Set VBC’ Validation Window
-        ///     Step 2 in TC-ID: 22.27.3 in 27.27.3 ‘Set VBC’ Data Checks: Technical Range Checks by Data Validity
-        ///     Step 3 in TC-ID: 22.27.3 in 27.27.3 ‘Set VBC’ Data Checks: Technical Range Checks by Data Validity
-        ///     Step 4 in TC-ID: 22.27.3 in 27.27.3 ‘Set VBC’ Data Checks: Technical Range Checks by Data Validity
-        ///     Step 5 in TC-ID: 22.27.3 in 27.27.3 ‘Set VBC’ Data Checks: Technical Range Checks by Data Validity
-        ///     Step 6 in TC-ID: 22.27.3 in 27.27.3 ‘Set VBC’ Data Checks: Technical Range Checks by Data Validity
-        ///     Step 7 in TC-ID: 22.27.3 in 27.27.3 ‘Set VBC’ Data Checks: Technical Range Checks by Data Validity
-        ///     Step 8 in TC-ID: 22.27.3 in 27.27.3 ‘Set VBC’ Data Checks: Technical Range Checks by Data Validity
-        ///     Step 2 in TC-ID: 22.27.9 in 27.27.9 ‘Set VBC’ Data Checks: Technical Range Checks by Variable Range
-        ///     Step 3 in TC-ID: 22.27.9 in 27.27.9 ‘Set VBC’ Data Checks: Technical Range Checks by Variable Range
-        ///     Step 4 in TC-ID: 22.27.9 in 27.27.9 ‘Set VBC’ Data Checks: Technical Range Checks by Variable Range
-        ///     Step 1 in TC-ID: 22.28.1 in 27.28.1 ‘Remove VBC’ Data Entry Window
-        ///     Step 2 in TC-ID: 22.28.1 in 27.28.1 ‘Remove VBC’ Data Entry Window
-        ///     Step 3 in TC-ID: 22.28.1 in 27.28.1 ‘Remove VBC’ Data Entry Window
-        ///     Step 5 in TC-ID: 22.28.1 in 27.28.1 ‘Remove VBC’ Data Entry Window
-        ///     Step 6 in TC-ID: 22.28.1 in 27.28.1 ‘Remove VBC’ Data Entry Window
-        ///     Step 7 in TC-ID: 22.28.1 in 27.28.1 ‘Remove VBC’ Data Entry Window
-        ///     Step 13 in TC-ID: 22.28.1 in 27.28.1 ‘Remove VBC’ Data Entry Window
-        ///     Step 14 in TC-ID: 22.28.1 in 27.28.1 ‘Remove VBC’ Data Entry Window
-        ///     Step 18 in TC-ID: 22.28.1 in 27.28.1 ‘Remove VBC’ Data Entry Window
-        ///     Step 20 in TC-ID: 22.28.1 in 27.28.1 ‘Remove VBC’ Data Entry Window
-        ///     Step 2 in TC-ID: 22.28.2 in 27.28.2 ‘Remove VBC’ Validation Window
-        ///     Step 5 in TC-ID: 22.28.2 in 27.28.2 ‘Remove VBC’ Validation Window
-        ///     Step 7 in TC-ID: 22.28.2 in 27.28.2 ‘Remove VBC’ Validation Window
-        ///     Step 8 in TC-ID: 22.28.2 in 27.28.2 ‘Remove VBC’ Validation Window
-        ///     Step 11 in TC-ID: 22.28.2 in 27.28.2 ‘Remove VBC’ Validation Window
-        ///     Step 2 in TC-ID: 22.28.3 in 27.28.3 ‘Remove VBC’ Data Checks: Technical Range Checks by Data Validity
-        ///     Step 3 in TC-ID: 22.28.3 in 27.28.3 ‘Remove VBC’ Data Checks: Technical Range Checks by Data Validity
-        ///     Step 4 in TC-ID: 22.28.3 in 27.28.3 ‘Remove VBC’ Data Checks: Technical Range Checks by Data Validity
-        ///     Step 5 in TC-ID: 22.28.3 in 27.28.3 ‘Remove VBC’ Data Checks: Technical Range Checks by Data Validity
-        ///     Step 6 in TC-ID: 22.28.3 in 27.28.3 ‘Remove VBC’ Data Checks: Technical Range Checks by Data Validity
-        ///     Step 7 in TC-ID: 22.28.3 in 27.28.3 ‘Remove VBC’ Data Checks: Technical Range Checks by Data Validity
-        ///     Step 8 in TC-ID: 22.28.3 in 27.28.3 ‘Remove VBC’ Data Checks: Technical Range Checks by Data Validity
-        ///     Step 2 in TC-ID: 22.28.9 in 27.28.9 ‘Remove VBC’ Data Checks: Technical Range Checks by Variable Range
-        ///     Step 3 in TC-ID: 22.28.9 in 27.28.9 ‘Remove VBC’ Data Checks: Technical Range Checks by Variable Range
-        ///     Step 4 in TC-ID: 22.28.9 in 27.28.9 ‘Remove VBC’ Data Checks: Technical Range Checks by Variable Range
-        ///     Step 1 in TC-ID: 22.29.1 in 27.29.1 Flexible Train data window: General appearances
-        ///     Step 12 in TC-ID: 22.29.1 in 27.29.1 Flexible Train data window: General appearances
-        ///     Step 13 in TC-ID: 22.29.1 in 27.29.1 Flexible Train data window: General appearances
-        ///     Step 31 in TC-ID: 22.29.1 in 27.29.1 Flexible Train data window: General appearances
-        ///     Step 35 in TC-ID: 22.29.1 in 27.29.1 Flexible Train data window: General appearances
-        ///     Step 38 in TC-ID: 22.29.1 in 27.29.1 Flexible Train data window: General appearances
-        ///     Step 1 in TC-ID: 22.29.2 in 27.29.2 Fixed Train data window: General appearances
-        ///     Step 3 in TC-ID: 22.29.2 in 27.29.2 Fixed Train data window: General appearances
-        ///     Step 9 in TC-ID: 22.29.2 in 27.29.2 Fixed Train data window: General appearances
-        ///     Step 10 in TC-ID: 22.29.2 in 27.29.2 Fixed Train data window: General appearances
-        ///     Step 15 in TC-ID: 22.29.2 in 27.29.2 Fixed Train data window: General appearances
-        ///     Step 17 in TC-ID: 22.29.2 in 27.29.2 Fixed Train data window: General appearances
-        ///     Step 19 in TC-ID: 22.29.2 in 27.29.2 Fixed Train data window: General appearances
-        ///     Step 3 in TC-ID: 22.29.3 in 27.29.3 ‘Train data’ (Flexible) Data Checks: Technical Range Checks by Data Validity
-        ///     Step 2 in TC-ID: 33.1 in 36.1 The relationship between parent and child windows (1)
-        ///     Step 3 in TC-ID: 33.1 in 36.1 The relationship between parent and child windows (1)
-        ///     Step 5 in TC-ID: 33.1 in 36.1 The relationship between parent and child windows (1)
-        ///     Step 6 in TC-ID: 33.1 in 36.1 The relationship between parent and child windows (1)
-        ///     Step 8 in TC-ID: 33.1 in 36.1 The relationship between parent and child windows (1)
-        ///     Step 10 in TC-ID: 33.1 in 36.1 The relationship between parent and child windows (1)
-        ///     Step 12 in TC-ID: 33.1 in 36.1 The relationship between parent and child windows (1)
-        ///     Step 14 in TC-ID: 33.1 in 36.1 The relationship between parent and child windows (1)
-        ///     Step 15 in TC-ID: 33.1 in 36.1 The relationship between parent and child windows (1)
-        ///     Step 19 in TC-ID: 33.1 in 36.1 The relationship between parent and child windows (1)
-        ///     Step 2 in TC-ID: 33.3 in 36.2 The relationship between parent and child windows (2)
-        ///     Step 4 in TC-ID: 33.3 in 36.2 The relationship between parent and child windows (2)
-        ///     Step 7 in TC-ID: 33.3 in 36.2 The relationship between parent and child windows (2)
-        ///     Step 9 in TC-ID: 33.3 in 36.2 The relationship between parent and child windows (2)
-        ///     Step 2 in TC-ID: 34.1.1 in 37.1.1 Fixed Train data entry
-        ///     Step 2 in TC-ID: 34.1.2 in 37.1.2 Flexible Train data entry
-        ///     Step 10 in TC-ID: 34.1.2 in 37.1.2 Flexible Train data entry
-        ///     Step 1 in TC-ID: 34.1.4 in 37.1.4.1.1 Data entry/validation process when enabling conditions not fullfilled: Level 1
-        ///     Step 3 in TC-ID: 34.1.4 in 37.1.4.1.1 Data entry/validation process when enabling conditions not fullfilled: Level 1
-        ///     Step 5 in TC-ID: 34.1.4 in 37.1.4.1.1 Data entry/validation process when enabling conditions not fullfilled: Level 1
-        ///     Step 14 in TC-ID: 34.1.4 in 37.1.4.1.1 Data entry/validation process when enabling conditions not fullfilled: Level 1
-        ///     Step 16 in TC-ID: 34.1.4 in 37.1.4.1.1 Data entry/validation process when enabling conditions not fullfilled: Level 1
-        ///     Step 21 in TC-ID: 34.1.4 in 37.1.4.1.1 Data entry/validation process when enabling conditions not fullfilled: Level 1
-        ///     Step 1 in TC-ID: 34.4.2.1 in 37.4.2.1 Text Message “Shunting Refused” in Level 2 and Level 3
-        ///     Step 1 in TC-ID: 34.4.2.2 in 37.4.2.2 SH Symbol in Level 2 and Level 3
-        ///     Step 1 in TC-ID: 34.4.2.3 in 37.4.2.3 Text Message “Shunting Request Failed” in Level 2 and Level 3
-        ///     Step 1 in TC-ID: 34.5 in 37.5 Dialogue Sequence of Override window
-        ///     Step 2 in TC-ID: 34.5 in 37.5 Dialogue Sequence of Override window
-        ///     Step 1 in TC-ID: 34.6 in 37.6 Dialogue Sequence of Special window
-        ///     Step 2 in TC-ID: 34.6 in 37.6 Dialogue Sequence of Special window
-        ///     Step 4 in TC-ID: 34.6 in 37.6 Dialogue Sequence of Special window
-        ///     Step 5 in TC-ID: 34.6 in 37.6 Dialogue Sequence of Special window
-        ///     Step 6 in TC-ID: 34.6 in 37.6 Dialogue Sequence of Special window
-        ///     Step 7 in TC-ID: 34.6 in 37.6 Dialogue Sequence of Special window
-        ///     Step 1 in TC-ID: 34.7 in 37.7 Dialogue Sequence of Settings window
-        ///     Step 2 in TC-ID: 34.7 in 37.7 Dialogue Sequence of Settings window
-        ///     Step 3 in TC-ID: 34.7 in 37.7 Dialogue Sequence of Settings window
-        ///     Step 5 in TC-ID: 34.7 in 37.7 Dialogue Sequence of Settings window
-        ///     Step 7 in TC-ID: 34.7 in 37.7 Dialogue Sequence of Settings window
-        ///     Step 8 in TC-ID: 34.7 in 37.7 Dialogue Sequence of Settings window
-        ///     Step 9 in TC-ID: 34.7 in 37.7 Dialogue Sequence of Settings window
-        ///     Step 10 in TC-ID: 34.7 in 37.7 Dialogue Sequence of Settings window
-        ///     Step 11 in TC-ID: 34.7 in 37.7 Dialogue Sequence of Settings window
-        ///     Step 12 in TC-ID: 34.7 in 37.7 Dialogue Sequence of Settings window
-        ///     Step 13 in TC-ID: 34.7 in 37.7 Dialogue Sequence of Settings window
-        ///     Step 14 in TC-ID: 34.7 in 37.7 Dialogue Sequence of Settings window
-        ///     Step 16 in TC-ID: 34.7 in 37.7 Dialogue Sequence of Settings window
-        ///     Step 17 in TC-ID: 34.7 in 37.7 Dialogue Sequence of Settings window
-        ///     Step 18 in TC-ID: 34.7 in 37.7 Dialogue Sequence of Settings window
-        ///     Step 20 in TC-ID: 34.7 in 37.7 Dialogue Sequence of Settings window
-        ///     Step 21 in TC-ID: 34.7 in 37.7 Dialogue Sequence of Settings window
-        ///     Step 22 in TC-ID: 34.7 in 37.7 Dialogue Sequence of Settings window
-        ///     Step 24 in TC-ID: 34.7 in 37.7 Dialogue Sequence of Settings window
-        ///     Step 25 in TC-ID: 34.7 in 37.7 Dialogue Sequence of Settings window
-        ///     Step 26 in TC-ID: 34.7 in 37.7 Dialogue Sequence of Settings window
-        ///     Step 27 in TC-ID: 34.7 in 37.7 Dialogue Sequence of Settings window
-        ///     Step 29 in TC-ID: 34.7 in 37.7 Dialogue Sequence of Settings window
-        ///     Step 32 in TC-ID: 34.7 in 37.7 Dialogue Sequence of Settings window
-        ///     Step 33 in TC-ID: 34.7 in 37.7 Dialogue Sequence of Settings window
-        ///     Step 35 in TC-ID: 34.7 in 37.7 Dialogue Sequence of Settings window
-        ///     Step 38 in TC-ID: 34.7 in 37.7 Dialogue Sequence of Settings window
-        ///     Step 39 in TC-ID: 34.7 in 37.7 Dialogue Sequence of Settings window
-        ///     Step 41 in TC-ID: 34.7 in 37.7 Dialogue Sequence of Settings window
-        ///     Step 42 in TC-ID: 34.7 in 37.7 Dialogue Sequence of Settings window
-        ///     Step 43 in TC-ID: 34.7 in 37.7 Dialogue Sequence of Settings window
-        ///     Step 45 in TC-ID: 34.7 in 37.7 Dialogue Sequence of Settings window
-        ///     Step 46 in TC-ID: 34.7 in 37.7 Dialogue Sequence of Settings window
-        ///     Step 47 in TC-ID: 34.7 in 37.7 Dialogue Sequence of Settings window
-        ///     Step 48 in TC-ID: 34.7 in 37.7 Dialogue Sequence of Settings window
-        ///     Step 49 in TC-ID: 34.7 in 37.7 Dialogue Sequence of Settings window
-        ///     Step 50 in TC-ID: 34.7 in 37.7 Dialogue Sequence of Settings window
-        ///     Step 51 in TC-ID: 34.7 in 37.7 Dialogue Sequence of Settings window
         /// </summary>
-        public static void ShowInstruction(string instruction)
+        public static void ShowInstruction(SignalPool pool, string instruction)
         {
-            throw new NotImplementedException();
+            pool.WaitForAcknowledgement(instruction);
         }
 
         /// <summary>
         /// Description: Activate cabin 1
-        /// Used in:
-        ///     Step 2 in TC-ID: 1.3.1 in 6.3.1 Performance of the new selection language
-        ///     Step 1 in TC-ID: 1.6 in 6.6 Adjustment of Sound Volume
-        ///     Step 2 in TC-ID: 3.1 in 8.1 DMI language selection: Configurable at least eight langauges
-        ///     Step 1 in TC-ID: 5.3 in 10.3 Screen Layout: Frames
-        ///     Step 1 in TC-ID: 5.12.2 in 10.12.2 Close, Next, Previous and Yes Buttons
-        ///     Step 1 in TC-ID: 12.7.1 in 17.7.1 Release Speed: At Sub-area B2 and B6
-        ///     Step 1 in TC-ID: 12.7.2 in 17.7.2 Release Speed Digital is removed when communication between ETCS Onboard and DMI is lost
-        ///     Step 1 in TC-ID: 13.1.1 in 18.1.1 Distance to Target  Bar: General Appearance
-        ///     Step 1 in TC-ID: 13.1.4 in 18.1.4 Distance to Target Digital when the communication between ETCS  Onboard and DMI is lost
-        ///     Step 1 in TC-ID: 13.1.5 in 18.1.5 Distance to Target in RV mode
-        ///     Step 1 in TC-ID: 15.1.3 in 20.1.3 Mode Symbols in Sub-Area B7 for OS, UN mode
-        ///     Step 1 in TC-ID: 15.2.6 in 20.2.7 ETCS Level: STM level symbol
-        ///     Step 1 in TC-ID: 17.1.1 in 22.1.1 Planning Area: General Appearance
-        ///     Step 1 in TC-ID: 17.1.3 in 22.1.3 Planning Area displays according to configuration in OS and SR mode.
-        ///     Step 1 in TC-ID: 17.2.1 in 22.2.1 Planning Area-Layering: PASP and PA Distance scale
-        ///     Step 1 in TC-ID: 17.2.2 in 22.2.2 Planning Area-Layering: Display information when PA data is empty
-        ///     Step 1 in TC-ID: 17.9.1 in 22.9.1 Hide PA Function: General appearance
-        ///     Step 1 in TC-ID: 17.10.2 in 22.10.2 Zoom PA Function with Scale Up
-        ///     Step 1 in TC-ID: 17.10.3 in 22.10.3 Zoom PA Function with Scale Down
-        ///     Step 1 in TC-ID: 17.10.4 in 22.10.4 Zoom PA Function with the communication loss between ETCS Onboard and DMI
-        ///     Step 1 in TC-ID: 17.11 in 22.11 Handle at least 31 PA Speed Profile Segments
-        ///     Step 1 in TC-ID: 17.12 in Handle at least 31 PA Gradient Profile Segments
-        ///     Step 9 in TC-ID: 18.4.3 in 23.4.3 Geographical Position: Additional requirements
-        ///     Step 1 in TC-ID: 8.2.1 in 27.17.2 Layers
-        ///     Step 1 in TC-ID: 7.3.2 in 27.17.3 Entering Characters
-        ///     Step 1 in TC-ID: 33.1 in 36.1 The relationship between parent and child windows (1)
         /// </summary>
         public static void Activate_Cabin_1(SignalPool pool)
         {
