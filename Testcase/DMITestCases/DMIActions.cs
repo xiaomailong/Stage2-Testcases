@@ -27,6 +27,11 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class DmiActions
     {
+        /// <summary>
+        /// Forces DMI into completed SoM, L1, SR Mode. Displays Default window.
+        /// No user input required.
+        /// </summary>
+        /// <param name="pool"></param>
         public static void Complete_SoM_L1_SR(SignalPool pool)
         {
             EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.GoToIdle;
@@ -39,7 +44,6 @@ namespace Testcase.DMITestCases
             Set_Driver_ID(pool, "1234");
 
             // Set to level 1 and SR mode
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_BrakeTest_Status = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_BRAKETEST_STATUS.BrakeTestNotInProgress;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
 
