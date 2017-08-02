@@ -7,7 +7,7 @@
       <ClientSettings xmlns:d4p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
       <ClientType>RTSIMClient</ClientType>
       <ConfigFile>fl_config.xml</ConfigFile>
-      <ConfigVersion>name=Crossrail version=Ref DMIReference DMI crc=0x98F77875 </ConfigVersion>
+      <ConfigVersion>name=Crossrail version=Ref DMIReference DMI crc=0xF6385EA6 </ConfigVersion>
       <ConsistType></ConsistType>
       <IPAddress>10.0.0.46</IPAddress>
       <IsEnabled>True</IsEnabled>
