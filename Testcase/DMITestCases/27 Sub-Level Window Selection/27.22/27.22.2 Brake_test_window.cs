@@ -63,7 +63,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11807 (partly: MMI_gen 7909);(2) MMI_gen 11808; MMI_gen 4360 (partly: window title);(3) MMI_gen 11807 (partly: MMI_gen 4556 (partly: Close button, Window Title, Button 1)); MMI_gen 11809; MMI_gen 4392 (partly: [Close] NA11);          (4) MMI_gen 11807 (partly: MMI_gen 4630, MMI gen 5944 (partly: touch screen));(5) MMI_gen 4350;(6) MMI_gen 4351;(7) MMI_gen 4353;
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Test’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Test’ button");
 
 
             /*
@@ -73,7 +73,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11807 (partly: MMI_gen 4557 (partly: button ‘Close), MMI_gen 4381 (partly: the sound for Up-Type button)); MMI_gen 9512; MMI_gen 968;(2) MMI_gen 11807 (partly: partly: MMI_gen 4557 (partly: button ‘Close’), MMI_gen 4381 (partly: change to state ‘Pressed’ as long as remain actuated)); MMI_gen 4375;
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press and hold ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Press and hold ‘Close’ button");
 
 
             /*
@@ -107,7 +107,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 11807 (partly: MMI_gen 4557 (partly: button ‘Close’, MMI_gen 4381 (partly: exit state ‘Pressed’, execute function associated to the button))); MMI_gen 4392 (partly: returning to the parent window);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Release ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Release ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Brake_window(this);
 
@@ -118,7 +118,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Brake test window
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Test’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Test’ button");
 
 
             /*

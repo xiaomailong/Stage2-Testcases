@@ -96,7 +96,7 @@ namespace Testcase.DMITestCases
             Expected Result: The DMI displays the PA.The Hide PA button is appeared on the area D of the DMI
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press the main area D");
+            DmiActions.ShowInstruction(this, @"Press the main area D");
 
 
             /*

@@ -185,7 +185,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays the Maintenance window
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_the_Maintenance_window(this);
 
@@ -205,7 +205,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 4392 (partly: returning to the parent window);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.Verify_the_following_information_1_DMI_displays_Setting_window(this);
 

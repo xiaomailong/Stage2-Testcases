@@ -135,7 +135,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 4381;
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_the_default_window(this);
 
@@ -179,7 +179,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 4381;
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_the_default_window(this);
 

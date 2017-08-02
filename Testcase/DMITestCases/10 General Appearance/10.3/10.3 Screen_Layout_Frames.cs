@@ -109,7 +109,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays the Main window
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Enter and confirm the Train running number");
+            DmiActions.ShowInstruction(this, @"Enter and confirm the Train running number");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_the_Main_window(this);
 

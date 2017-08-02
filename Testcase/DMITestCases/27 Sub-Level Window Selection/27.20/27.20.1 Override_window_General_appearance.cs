@@ -93,7 +93,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8413 (partly: MMI_gen 7909);    (2) MMI_gen 8414;  MMI_gen 4360 (partly: window title);(3) MMI_gen 8413 (partly: MMI_gen 4556 (partly: Close button, Window Title)); MMI_gen 8415 (partly: touch screen); MMI_gen 4392 (partly: [Close] NA11); MMI_gen 4355 (partly: Buttons, Close button);(4) MMI_gen 11225 (partly: enabled);(5) MMI_gen 8413 (partly: MMI_gen 4630, MMI gen 5944 (partly: touch screen));   (6) MMI_gen 4350;(7) MMI_gen 4351;(8) MMI_gen 4353;(9) MMI_gen 4354;
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Override’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Override’ button");
 
 
             /*
@@ -153,7 +153,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8415 (partly: touch screen, label “EOA”);              MMI_gen 11225 (partly: EVC-30, disabled);(2) MMI_gen 11225 (partly: disabled);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Override’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Override’ button");
             // Call generic Check Results Method
             DmiExpectedResults
                 .Verify_the_following_information_The_EOA_button_is_in_disable_state_Use_the_log_file_to_confirm_that_DMI_receives_EVC_30_with_with_bit_No_9_of_variable_MMI_Q_REQUEST_ENABLE_64_0_Disable_Start_Override_EOA(this);
@@ -166,7 +166,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 4392 (partly: returning to the parent window);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.Verify_the_following_information_1_DMI_displays_Default_window(this);
 

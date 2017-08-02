@@ -90,7 +90,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9489 (partly: C2);  MMI_gen 9488 (partly:toggle off, C3); MMI_gen 9487; MMI_gen 9481 (partly: C3);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press at sub-area C2");
+            DmiActions.ShowInstruction(this, @"Press at sub-area C2");
 
 
             /*
@@ -100,7 +100,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9488 (partly:toggle on, C2);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press at sub-area C2");
+            DmiActions.ShowInstruction(this, @"Press at sub-area C2");
 
 
             /*

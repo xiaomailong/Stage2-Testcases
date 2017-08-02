@@ -87,7 +87,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7977 (partly: MMI_gen 4913 (partly: MMI_gen 4384 (partly: ETCS-MMI’s function associated to the button)));
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Released the pressed button");
+            DmiActions.ShowInstruction(this, @"Released the pressed button");
             // Call generic Check Results Method
             DmiExpectedResults.Verify_the_following_information_The_state_of_button_is_changed_to_Enabled(this);
 
@@ -99,7 +99,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7977 (partly: MMI_gen 4913 (partly: MMI_gen 4384 (partly: sound ‘Click’)));(2) MMI_gen 7977 (partly: MMI_gen 4913 (partly: MMI_gen 4384 (partly: Change to state ‘Pressed’ and immediately back to state ‘Enabled’)));(3) MMI_gen 7977 (partly: MMI_gen 4913 (partly: MMI_gen 4384 (partly: ETCS-MMI’s function associated to the button))); MMI_gen 4393 (partly: [Delete]);(4) MMI_gen 7977 (partly: MMI_gen 4913 (partly: MMI_gen 4386 (partly: visual of repeat function)));(5) MMI_gen 7977 (partly: MMI_gen 4913 (partly: MMI_gen 4386 (partly: audible of repeat function)));
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press and hold ‘Del’ button.Note: Stopwatch is required");
+            DmiActions.ShowInstruction(this, @"Press and hold ‘Del’ button.Note: Stopwatch is required");
             // Call generic Check Results Method
             DmiExpectedResults
                 .Verify_the_following_information_While_press_and_hold_button_less_than_1_5_secSound_Click_is_played_once_The_state_of_button_is_changed_to_Pressed_and_immediately_back_to_Enabled_state_The_last_character_is_removed_from_an_input_field_after_pressing_the_button_While_press_and_hold_button_over_1_5_secThe_state_pressed_and_released_are_switched_repeatly_while_button_is_pressed_and_the_characters_are_removed_from_an_input_field_repeatly_refer_to_pressed_state_The_sound_Click_is_played_repeatly_while_button_is_pressed(this);
@@ -112,7 +112,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7977 (partly: MMI_gen 4913 (partly: MMI_gen 4384 (partly: ETCS-MMI’s function associated to the button))); 
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Release ‘Del’ button");
+            DmiActions.ShowInstruction(this, @"Release ‘Del’ button");
             // Call generic Check Results Method
             DmiExpectedResults.Verify_the_following_information_The_character_is_stop_removing(this);
 
@@ -136,7 +136,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7977 (partly: MMI_gen 4694 (partly: NEGATIVE, 6th character));
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Enter the data value with 5 characters");
+            DmiActions.ShowInstruction(this, @"Enter the data value with 5 characters");
 
 
             /*
@@ -159,7 +159,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9390 (partly: Train Running Number window);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press and hold an input field");
+            DmiActions.ShowInstruction(this, @"Press and hold an input field");
             // Call generic Check Results Method
             DmiExpectedResults
                 .Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Pressed_the_border_of_button_is_removed(this);
@@ -198,7 +198,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9959 (partly: switch back to the previous window); MMI_gen 7977 (partly: MMI_gen 4681 (partly: accept the entered value), MMI_gen 4684 (partly: terminated));(2) MMI_gen 7979 (partly: entry); MMI_gen 9959 (partly: EVC-116); MMI_gen 7977 (partly: MMI_gen 4682); MMI_gen 4392 (partly: [Enter], touch screen); MMI_gen 9390 (partly: Train Running Number window);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Release the pressed area");
+            DmiActions.ShowInstruction(this, @"Release the pressed area");
 
 
             /*
@@ -217,7 +217,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7979 (partly: revalidation);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Train Running Number’ button on Main window");
+            DmiActions.ShowInstruction(this, @"Press ‘Train Running Number’ button on Main window");
 
 
             /*
@@ -234,7 +234,7 @@ namespace Testcase.DMITestCases
             Expected Result: The Train Running Number window is displayed
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Train Running Number’ button on Main window");
+            DmiActions.ShowInstruction(this, @"Press ‘Train Running Number’ button on Main window");
             // Call generic Check Results Method
             DmiExpectedResults.The_Train_Running_Number_window_is_displayed(this);
 

@@ -73,7 +73,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 8563 (partly: MMI_gen 5484 (partly: filled ‘No’));
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘No’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘No’ button");
             // Call generic Check Results Method
             DmiExpectedResults.The_value_of_input_field_is_changed_refer_to_selected_button(this);
 
@@ -85,7 +85,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9390 (partly: Set VBC Validation window);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press and hold an input field");
+            DmiActions.ShowInstruction(this, @"Press and hold an input field");
             // Call generic Check Results Method
             DmiExpectedResults
                 .Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Pressed_the_border_of_button_is_removed(this);
@@ -124,7 +124,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9926 (partly: No button, open Set VBC window);(2) MMI_gen 9926 (partly: EVC-101, MMI_gen 5724); MMI_gen 4392 (partly: [Enter], touch screen); MMI_gen 9390 (partly: Set VBC Validation window);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Released the pressed area");
+            DmiActions.ShowInstruction(this, @"Released the pressed area");
 
 
             /*
@@ -145,7 +145,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9926 (partly: Close button, open Settings window); MMI_gen 4392 (partly: returning to the parent window);(2) MMI_gen 9926 (partly: EVC-101); 
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
 
 
             /*
@@ -164,7 +164,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 8563 (partly: MMI_gen 5484 (partly: filled ‘Yes’));
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Yes’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Yes’ button");
             // Call generic Check Results Method
             DmiExpectedResults.The_value_of_input_field_is_changed_refer_to_selected_button(this);
 

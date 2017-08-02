@@ -115,7 +115,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 4392 (partly: returning to the parent window);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
 
 
             /*
@@ -175,7 +175,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays RBC contact window
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press Close button");
+            DmiActions.ShowInstruction(this, @"Press Close button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_RBC_contact_window(this);
 

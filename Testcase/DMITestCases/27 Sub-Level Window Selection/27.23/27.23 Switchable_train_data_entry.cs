@@ -63,7 +63,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8095;   (2) MMI_gen 8098; MMI_gen 8099 (partly: bottom right corner);(3) MMI_gen 8097; (4) MMI_gen 9402 (partly:  MMI_M_ALT_DEM, switchable);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Train data’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Train data’ button");
 
 
             /*

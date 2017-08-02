@@ -80,7 +80,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11234 (partly: driver acknowledge);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press an area C1 for acknowledgement");
+            DmiActions.ShowInstruction(this, @"Press an area C1 for acknowledgement");
 
 
             /*

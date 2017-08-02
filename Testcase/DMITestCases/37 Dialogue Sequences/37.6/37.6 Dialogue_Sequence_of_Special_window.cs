@@ -69,7 +69,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 9199;(partly: Special);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Spec’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Spec’ button");
 
 
             /*
@@ -79,7 +79,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 9199;(partly: Special); MMI_gen 8785 (partly: Special);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
 
 
             /*
@@ -96,7 +96,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 9199 (partly: Adhesion);   
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Adhesion’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Adhesion’ button");
 
 
             /*
@@ -106,7 +106,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 9199 (partly: Adhesion); MMI_gen 8785 (partly: Adhesion);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
 
 
             /*
@@ -116,7 +116,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 9199 (partly: SR speed/distance);   
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘SR speed/distance’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘SR speed/distance’ button");
 
 
             /*
@@ -126,7 +126,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 9199 (partly: SR speed/distance); MMI_gen 8785 (partly: SR speed/distance);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Special_window(this);
 

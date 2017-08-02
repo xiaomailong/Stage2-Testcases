@@ -68,7 +68,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8859 (partly: special window);(2) MMI_gen 5646 (partly: always enable, special window);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Spec’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Spec’ button");
 
 
             /*

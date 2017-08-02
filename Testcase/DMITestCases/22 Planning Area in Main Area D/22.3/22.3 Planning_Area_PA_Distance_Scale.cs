@@ -93,7 +93,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9938 (partly: MMI_gen 7213 (partly: Scale number colour)); (2) MMI_gen 9938 (partly: MMI_gen 7212      (partly: 9 distance scale lines));(3) MMI_gen 9938 (partly: MMI_gen 7213   (partly: Distance scale lines colour)); (4) MMI_gen 9938 (partly: MMI_gen 7116 (partly: [0..2000], Displayed Numbers in Units));(5) MMI_gen 9938 (partly: MMI_gen 7116 (partly: [0..2000], Displayed Distance Scale Lines));(6) MMI_gen 9938 (partly: functions displayed in D2-D8);         Note: MMI_gen 7212 and MMI_gen 7213 shall also verify by Code Review in Chapter 39. 
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Scale up’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Scale up’ button");
 
 
             /*
@@ -103,7 +103,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9938 (partly: MMI_gen 7213 (partly: Scale number colour));(2) MMI_gen 9938 (partly: MMI_gen 7212      (partly: 9 distance scale lines)); (3) MMI_gen 9938 (partly: MMI_gen 7213   (partly: Distance scale lines colour));(4) MMI_gen 9938 (partly: MMI_gen 7116 (partly: [0..1000], Displayed Numbers in Units));(5) MMI_gen 9938 (partly: MMI_gen 7116 (partly: [0..1000], Displayed Distance Scale Lines));(6) MMI_gen 9938 (partly: functions displayed in D2-D8);          Note: MMI_gen 7212 and MMI_gen 7213 shall also verify by Code Review in Chapter 39. 
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Scale up’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Scale up’ button");
 
 
             /*
@@ -121,7 +121,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9938 (partly: MMI_gen 7213 (partly: Scale number colour)); (2) MMI_gen 9938 (partly: MMI_gen 7212      (partly: 9 distance scale lines));(3) MMI_gen 9938 (partly: MMI_gen 7213   (partly: Distance scale lines colour));(4) MMI_gen 9938 (partly: MMI_gen 7116 (partly: [0..16000], Displayed Numbers in Units));(5) MMI_gen 9938 (partly: MMI_gen 7116 (partly: [0..16000], Displayed Distance Scale Lines));(6) MMI_gen 9938 (partly: functions displayed in D2-D8);         Note: MMI_gen 7212 and MMI_gen 7213 shall also verify by Code Review in Chapter 39. 
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Scale down’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Scale down’ button");
 
 
             /*
@@ -131,7 +131,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9938 (partly: MMI_gen 7213 (partly: Scale number colour));(2) MMI_gen 9938 (partly: MMI_gen 7212      (partly: 9 distance scale lines));(3) MMI_gen 9938 (partly: MMI_gen 7213   (partly: Distance scale lines colour));(4) MMI_gen 9938 (partly: MMI_gen 7116 (partly: [0..32000], Displayed Numbers in Units));(5) MMI_gen 9938 (partly: MMI_gen 7116 (partly: [0..32000], Displayed Distance Scale Lines));(6) MMI_gen 9938 (partly: functions displayed in D2-D8);      Note: MMI_gen 7212 and MMI_gen 7213 shall also verify by Code Review in Chapter 39. 
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Scale down’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Scale down’ button");
 
 
             /*

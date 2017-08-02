@@ -71,7 +71,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 11833 (partly: MMI_gen 5484 (partly: filled ‘No’));
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘No’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘No’ button");
             // Call generic Check Results Method
             DmiExpectedResults.The_value_of_input_field_is_changed_refer_to_selected_button(this);
 
@@ -108,7 +108,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11836 (partly: Close button, open Brake window);(2) MMI_gen 11836 (partly: EVC-101); MMI_gen 4392 (partly: returning to the parent window);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults
                 .Verify_the_following_information_DMI_displays_Brake_window_Use_the_log_file_to_confirm_that_DMI_sends_out_the_packet_MMI_DRIVER_REQUEST_EVC_101_with_variable_MMI_DRIVER_REQUEST_EVC_101_MMI_M_REQUEST_60_Exit_brake_percentage(this);
@@ -133,7 +133,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 11833 (partly: MMI_gen 5484 (partly: filled ‘Yes’));
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Yes’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Yes’ button");
             // Call generic Check Results Method
             DmiExpectedResults.The_value_of_input_field_is_changed_refer_to_selected_button(this);
 

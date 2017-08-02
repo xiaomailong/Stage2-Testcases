@@ -63,7 +63,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9461 (partly: EVC-10, Flexible Train data);(2) MMI_gen 9461 (partly: open Train data Validation window, touch screen);(3) MMI_gen 8555 (partly: MMI_gen 5215 (partly: Close button, Window title, Input field, No button, Yes button));(4) MMI_gen 8556;(5) MMI_gen 8555 (partly: MMI_gen 5216);(6) MMI_gen 8555 (partly: MMI_gen 7943);(7) MMI_gen 8555 (partly: MMI_gen 5303);(8) MMI_gen 8555 (partly: MMI_gen 5214 (partly: single input field));          (9) MMI_gen 8555 (partly: MMI_gen 5484 (partly: empty)); (10) MMI_gen 8555 (partly: MMI_gen 5214 (partly: dedicated keyboard, MMI_gen 5006), MMI_gen 5006);(11) MMI_gen 8555 (partly: MMI_gen 5263 (partly: MMI_gen 4696));(12) MMI_gen 8555 (partly: MMI_gen 5263 (partly: MMI_gen 4702 (partly: right aligned)));(13) MMI_gen 8555 (partly: MMI_gen 5263 (partly: MMI_gen 4704 (partly: left aligned)));(14) MMI_gen 8557; MMI_gen 8555 (partly: MMI_gen 5263 (partly: MMI_gen 4701 (partly: same order), MMI_gen 4697));(15) MMI_gen 8555 (partly: MMI_gen 5263 (partly: MMI_gen 4698));(16) MMI_gen 8555 (partly: MMI_gen 5263 (partly: MMI_gen 4701 (partly: Main area A, B, C and E));(17) MMI_gen 8555 (partly: MMI_gen 5263 (partly: MMI_gen 4700 (partly: data validation process)));(18) MMI_gen 9462 (partly: Flexible Train data);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Enter and confirm all data in Train data window");
+            DmiActions.ShowInstruction(this, @"Enter and confirm all data in Train data window");
 
 
             /*
@@ -73,7 +73,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 8555 (partly: MMI_gen 5484 (partly: filled ‘No’));
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘No’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘No’ button");
             // Call generic Check Results Method
             DmiExpectedResults.The_value_of_input_field_is_changed_refer_to_selected_button(this);
 
@@ -110,7 +110,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9463 (partly: Close button, open Main window);(2) MMI_gen 9463 (partly: EVC-101);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults
                 .Verify_the_following_information_DMI_displays_Main_window_Use_the_log_file_to_confirm_that_DMI_sends_out_the_packet_MMI_DRIVER_REQUEST_EVC_101_with_variable_MMI_DRIVER_REQUEST_EVC_101_MMI_M_REQUEST_4_Exit_Train_data(this);
@@ -135,7 +135,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 8555 (partly: MMI_gen 5484 (partly: filled ‘Yes’));
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Yes’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Yes’ button");
             // Call generic Check Results Method
             DmiExpectedResults.The_value_of_input_field_is_changed_refer_to_selected_button(this);
 

@@ -71,7 +71,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 11760 (partly: MMI_gen 5484 (partly: filled ‘No’));
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘No’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘No’ button");
             // Call generic Check Results Method
             DmiExpectedResults.The_value_of_input_field_is_changed_refer_to_selected_button(this);
 
@@ -83,7 +83,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9390 (partly: Wheel Diameter Validation window);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press and hold an input field");
+            DmiActions.ShowInstruction(this, @"Press and hold an input field");
             // Call generic Check Results Method
             DmiExpectedResults
                 .Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Pressed_the_border_of_button_is_removed(this);
@@ -122,7 +122,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11768 (partly: No button, open Maintenance window);(2) MMI_gen 11768 (partly: EVC-101); MMI_gen 5724; MMI_gen 4392 (partly: [Enter], touch screen); MMI_gen 9390 (partly: Wheel Diameter Validation window);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Release the pressed area");
+            DmiActions.ShowInstruction(this, @"Release the pressed area");
             // Call generic Check Results Method
             DmiExpectedResults
                 .Verify_the_following_information_DMI_displays_Maintenance_window_Use_the_log_file_to_confirm_that_DMI_sends_out_the_packet_MMI_DRIVER_REQUEST_EVC_101_with_variable_MMI_DRIVER_REQUEST_EVC_101_MMI_M_REQUEST_54_Exit_Maintenance(this);
@@ -147,7 +147,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11768 (partly: Close button, open Maintenance window); MMI_gen 4392 (partly: returning to the parent window);(2) MMI_gen 11768 (partly: EVC-101); 
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults
                 .Verify_the_following_information_DMI_displays_Maintenance_window_Use_the_log_file_to_confirm_that_DMI_sends_out_the_packet_MMI_DRIVER_REQUEST_EVC_101_with_variable_MMI_DRIVER_REQUEST_EVC_101_MMI_M_REQUEST_54_Exit_Maintenance(this);
@@ -172,7 +172,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 11760 (partly: MMI_gen 5484 (partly: filled ‘Yes’));
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Yes’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Yes’ button");
             // Call generic Check Results Method
             DmiExpectedResults.The_value_of_input_field_is_changed_refer_to_selected_button(this);
 

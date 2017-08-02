@@ -63,7 +63,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8351 (partly: touch screen, enabling condition of ‘Start’ button); MMI_gen 591 (partly: EVC-30, enabling, start);(2) MMI_gen 4350;(3) MMI_gen 4351;(4) MMI_gen 4353;(5) MMI_gen 4354;
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Enter and confirm the Train running number");
+            DmiActions.ShowInstruction(this, @"Enter and confirm the Train running number");
 
 
             /*
@@ -185,7 +185,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 1423 (partly: DMI equipped with TS, replace)(2) MMI_gen 591 (partly: enabling condition of ‘Exit Shunting’ button, disabling condition of ‘Start’, ‘Train data’, ‘Level’, ‘Train running number’ and ‘Shunting’ buttons); (3) MMI_gen 591 (partly: enabling condition of ‘Exit Shunting’ button, disabling condition of ‘Start’, ‘Train data’, ‘Level’, ‘Train running number’ and ‘Shunting’ buttons”); MMI_gen 4377 (partly: shown);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Main’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Main’ button");
 
 
             /*

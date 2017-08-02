@@ -63,7 +63,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8087; MMI_gen 4355 (partly: Window title);(2) MMI_gen 8088; MMI_gen 8086 (partly: MMI_gen 4360 (partly: tonal number of window));(3) MMI_gen 8086 (partly: MMI_gen 4888);(4) MMI_gen 8086 (partly: MMI_gen 4799 (partly: Close button, Previous button, Next button, Window Title, Input fields)); MMI_gen 4392 (partly: [Previous : NA19], [Next: NA17], [Close] NA11); MMI_gen 4355 (partly: Buttons, Close button); MMI_gen 4396 (partly: Previous, NA19); MMI_gen 4394 (partly: disabled [previous]);(5) MMI_gen 8086 (partly: MMI_gen 4891 (partly: Yes button, Area for [Window Title] Entry complete?));(6) MMI_gen 8086 (partly: MMI_gen 4910 (partly: Disabled, MMI_gen 4211 (partly: colour)), MMI_gen 4909 (partly: Disabled)); MMI_gen 4377 (partly: shown);(7) MMI_gen 8086 (partly: MMI_gen 4908 (partly: extended));(8) MMI_gen 8086 (partly: MMI_gen 4637 (partly: Main-areas D and F)); MMI_gen 4355 (partly: input fields);(9) MMI_gen 8086 (partly: MMI_gen 4640);(10) MMI_gen 8086 (partly: MMI_gen 4641);(11) MMI_gen 8086 (partly: MMI_gen 9412);(12) MMI_gen 8086 (partly: MMI_gen 4645);(13) MMI_gen 8086 (partly: MMI_gen 4646 (partly: right aligned));(14) MMI_gen 8086 (partly: MMI_gen 4647 (partly: left aligned));(15) MMI_gen 8086 (partly: MMI_gen 4648);(16) MMI_gen 8086 (partly: MMI_gen 4720);(17) MMI_gen 8086 (partly: MMI_gen 4651 (partly: Train category), MMI_gen 4683 (partly: selected), MMI_gen 5211 (partly: selected));(18) MMI_gen 8086 (partly: MMI_gen 4649 (partly: selected ‘Train category’), MMI_gen 4651 (partly: Length, Brake percentage, Max speed), MMI_gen 4683 (partly: not selected), MMI_gen 5211 (partly: not selected));(19) MMI_gen 8115 (partly: Train category); MMI_gen 8086 (partly: MMI_gen 4912 ( partly: Train category), MMI_gen 4678 (partly: Train category)); (20) MMI_gen 8086 (partly: MMI_gen 9336 (partly: Train category, More button)); MMI_gen 4392 (partly: [More: NA23]);(21) MMI_gen 8142 (partly: First page of Train category keyboard associated); MMI_gen 8143 (partly: PASS, TILT, FP1);(22) MMI_gen 8086 (partly: MMI_gen 5190);(23) MMI_gen 8086 (partly: MMI_gen 4696);(24) MMI_gen 8086 (partly: MMI_gen 4697); MMI_gen 187 (partly: label part of echo text);(25) MMI_gen 8086 (partly: MMI_gen 4701);(26) MMI_gen 8086 (partly: MMI_gen 4702 (partly: right aligned));(27) MMI_gen 8086 (partly: MMI_gen 4704 (partly: left aligned));(28) MMI_gen 8086 (partly: MMI_gen 4700 (partly: otherwise, grey)); MMI_gen 4241;(29) MMI_gen 8086 (partly: MMI_gen 4691 (partly: flash, Train category));(30) MMI_gen 8086 (partly: MMI_gen 4689, MMI_gen 4690);(31) MMI_gen 187 (partly: EVC-6, MMI_N_DATA_ELEMENT = 0, MMI_M_DATA_ENABLE ); MMI_gen 9402 (partly: flexible);(32) MMI_gen 187 (partly: enable editing of the parameters pointed out, label part of input fields);(33) MMI_gen 187 (partly: Not editable  data);(34) MMI_gen 187 (partly: Data value part of echo text and input fields, arn_043#3306);(35) MMI_gen 4350;(36) MMI_gen 4351;(37) MMI_gen 4353;
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Train Data’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Train Data’ button");
 
 
             /*
@@ -164,7 +164,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8086 (partly: MMI_gen 4913 (partly: Length)); MMI_gen 4384 (partly: sound ‘Click’);(2) MMI_gen 8086 (partly: MMI_gen 4913 (partly: Length)); MMI_gen 4384 (partly: Change to state ‘Pressed’ and immediately back to state ‘Enabled’);   (3) MMI_gen 8086 (partly: MMI_gen 4913 (partly: Length)); MMI_gen 4384 (partly: ETCS-MMI’s function associated to the button); MMI_gen 4393 (partly: [Delete]);(4) MMI_gen 8086 (partly: MMI_gen 4913 (partly: Length)); MMI_gen 4386 (partly: visual of repeat function);(5) MMI_gen 8086 (partly: MMI_gen 4913 (partly: Length)); MMI_gen 4386 (partly: audible of repeat function);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press and hold ‘Del’ button.Note: Stopwatch is required");
+            DmiActions.ShowInstruction(this, @"Press and hold ‘Del’ button.Note: Stopwatch is required");
             // Call generic Check Results Method
             DmiExpectedResults
                 .Verify_the_following_information_While_press_and_hold_button_less_than_1_5_secSound_Click_is_played_once_The_state_of_button_is_changed_to_Pressed_and_immediately_back_to_Enabled_state_The_last_character_is_removed_from_an_input_field_after_pressing_the_button_While_press_and_hold_button_over_1_5_secThe_state_pressed_and_released_are_switched_repeatly_while_button_is_pressed_and_the_characters_are_removed_from_an_input_field_repeatly_refer_to_pressed_state_The_sound_Click_is_played_repeatly_while_button_is_pressed(this);
@@ -177,7 +177,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8086 (partly: MMI_gen 4913 (partly: Length)); MMI_gen 4384 (partly: ETCS-MMI’s function associated to the button);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Release ‘Del’ button");
+            DmiActions.ShowInstruction(this, @"Release ‘Del’ button");
             // Call generic Check Results Method
             DmiExpectedResults.Verify_the_following_information_The_character_is_stop_removing(this);
 
@@ -330,7 +330,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Train data window
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Train_data_window(this);
 
@@ -366,7 +366,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8086 (partly: MMI_gen 4686 (partly: Label area, Length), MMI_gen 4381 (partly: exit state ‘Pressed’, execute function associated to the button)); MMI_gen 4374;
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Release the pressed area");
+            DmiActions.ShowInstruction(this, @"Release the pressed area");
 
 
             /*
@@ -398,7 +398,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9459 (partly: EVC-101);(2) MMI_gen 9459 (partly: MMI_gen 12071 (partly: EVC-30), MMI_gen 4355 (partly: [Close]));(3) MMI_gen 9459 (partly: MMI_gen 12071 (partly: closure), MMI_gen 4355 (partly: [Close])); MMI_gen 4392 (partly: returning to the parent window);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
 
 
             /*

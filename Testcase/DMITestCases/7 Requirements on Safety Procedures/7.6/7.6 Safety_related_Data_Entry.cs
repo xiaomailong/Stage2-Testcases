@@ -66,7 +66,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 3226 (partly: Maintenance Data Entry);(2)  MMI_gen 3390 (partly: Maintenance Data entry);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Wheel diameter’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Wheel diameter’ button");
 
 
             /*
@@ -97,7 +97,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 3226 (partly: Maintenance Data Entry);(2)  MMI_gen 3390 (partly: Maintenance Data entry);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Radar’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Radar’ button");
 
 
             /*
@@ -128,7 +128,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 3226 (partly: Set VBC Data Entry);(2)  MMI_gen 3390 (partly: Set VBC Data entry);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Set VBC’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Set VBC’ button");
 
 
             /*

@@ -123,7 +123,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8859 (partly: windows in setting menu);(2) MMI_gen 5646 (partly: always enable, windows in setting menu);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Wheel diameter’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Wheel diameter’ button");
 
 
             /*
@@ -205,7 +205,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8859 (partly: settings window);(2) MMI_gen 5646 (partly: always enable, settings window);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Setting’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Setting’ button");
 
 
             /*
@@ -223,7 +223,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8859 (partly: windows in setting menu);(2) MMI_gen 5646 (partly: always enable, windows in setting menu);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Language’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Language’ button");
 
 
             /*
@@ -407,7 +407,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8859 (partly: windows in setting menu);(2) MMI_gen 5646 (partly: always enable, windows in setting menu);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Test’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Test’ button");
 
 
             /*

@@ -66,7 +66,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 1784 (partly: NEGATIVE, condition is not fulfilled);(2) MMI_gen 1784 (partly: NEGATIVE, 1st bullet);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Enter Driver ID and perform brake test");
+            DmiActions.ShowInstruction(this, @"Enter Driver ID and perform brake test");
 
 
             /*
@@ -148,7 +148,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 2217 (partly: Level inhibition window, yellow); MMI_gen 1979 (partly: table 54, yellow);(2) MMI_gen 2219 (partly lnside the data area of input field);                                (3) MMI_gen 1871 (partly: MMI_gen 4651 (partly: data value colour));
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘L inh’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘L inh’ button");
 
 
             /*
@@ -181,7 +181,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 2201 (partly: MMI_gen 4381 (partly: change to state ‘Pressed’ as long as remain actuated));
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press and hold ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Press and hold ‘Close’ button");
 
 
             /*
@@ -211,7 +211,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 2201 (partly: Up-type, Level window reappear);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Release ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Release ‘Close’ button");
 
 
             /*
@@ -221,7 +221,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 2201 (partly: discarded);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘L inh’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘L inh’ button");
 
 
             /*

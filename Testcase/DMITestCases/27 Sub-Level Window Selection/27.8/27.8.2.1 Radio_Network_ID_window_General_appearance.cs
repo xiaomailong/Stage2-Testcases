@@ -106,7 +106,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8044 (partly: MMI_gen 4913, MMI_gen 4384 (partly: ETCS-MMI’s function associated to the button));(2) MMI_gen 8044 (partly: MMI_gen 4634); MMI_gen 8046 (partly: entry);(3) MMI_gen 8044 (partly: MMI_gen 4647 (partly: left aligned));
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Release the pressed button");
+            DmiActions.ShowInstruction(this, @"Release the pressed button");
 
 
             /*
@@ -116,7 +116,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9390 (partly: Radio Network ID window);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press and hold an input field");
+            DmiActions.ShowInstruction(this, @"Press and hold an input field");
             // Call generic Check Results Method
             DmiExpectedResults
                 .Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Pressed_the_border_of_button_is_removed(this);
@@ -155,7 +155,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9449 (partly: closed); MMI_gen 8044 (partly: MMI_gen 4682, MMI_gen 4681 (partly: accept the entered value), MMI_gen 4684 (partly: terminated));(2) MMI_gen 9449 (partly: EVC-112); MI_gen 8044 (partly: MMI_gen 4682, MMI_gen 4681 (partly: accept the entered value)); MMI_gen 4392 (partly: [Enter], touch screen); MMI_gen 9390 (partly: Radio Network ID window); MMI_gen 8864 (partly: the value stored onboard);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Release the pressed area");
+            DmiActions.ShowInstruction(this, @"Release the pressed area");
             // Call generic Check Results Method
             DmiExpectedResults
                 .Verify_the_following_information_DMI_closes_the_Radio_Network_ID_window_Use_the_log_file_to_confirm_that_DMI_sends_EVC_112_with_the_following_variables_MMI_M_BUTTONS_254MMI_N_DATA_ELEMENTS_1MMI_M_NID_DATA_3MMI_NID_MN_index_of_selected_network_ID_refer_to_EVC_22_from_previous_step_the_1st_index_is_start_with_0(this);
@@ -168,7 +168,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8046 (partly: revalidation);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Radio Network ID’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Radio Network ID’ button");
 
 
             /*
@@ -207,7 +207,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8864 (partly: Radio Network ID window); MMI_gen 4681 (partly: replace the current data value with the entered data value);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Radio Network ID’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Radio Network ID’ button");
 
 
             /*
@@ -216,7 +216,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays RBC contact window
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_RBC_contact_window(this);
 
@@ -236,7 +236,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 12139;(2) MMI_gen 4392 (partly: returning to the parent window);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
 
 
             /*

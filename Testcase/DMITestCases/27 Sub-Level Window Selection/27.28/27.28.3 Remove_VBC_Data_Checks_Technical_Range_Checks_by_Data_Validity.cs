@@ -88,7 +88,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: Requirements:(1) MMI_gen 9912 (partly: MMI_gen 4714 (partly: state 'Selected IF/data value');(2) MMI_gen 9912 (partly: reactions to failing, MMI_gen 4714 (partly: previously entered (faulty) value)); MMI_gen 4699 (technical range);(3) MMI_gen 9912 (partly: MMI_gen 9286 (partly: button ‘Enter’, disabled), MMI_gen 12148 (partly: not send packets)), MMI_gen 9920 (partly: disabled), MMI_gen 9924 (partly: EVC-119); MMI_gen 9310 (partly: [technical range, No OK, button ‘Enter’ disabled]);(4) MMI_gen 8339 (partly: MMI_gen 12148 (MMI_gen 4713 (partly: indication))), MMI_gen 9912 (partly: reactions to failing, MMI_gen 12148 (MMI_gen 4713 (partly: indication)));(5) MMI_gen 9913 (partly: MMI_gen 12148 (MMI_gen 4713 (partly: red))), MMI_gen 9912 (partly: reactions to failing, MMI_gen 12148 (MMI_gen 4713 (partly: red)));
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press the data input field once again (Accept) in the same screen");
+            DmiActions.ShowInstruction(this, @"Press the data input field once again (Accept) in the same screen");
 
 
             /*
@@ -98,7 +98,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: Requirements:(1) MMI_gen 9912 (partly: MMI_gen 4714 (partly: MMI_gen 4679), MMI_gen 9286 (partly: button ‘Enter’, enabled)), MMI_gen 9920 (partly: state switched); MMI_gen 9310 (partly: press one key);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Enter “1” (invalid value) with the numeric keypad in the same screen");
+            DmiActions.ShowInstruction(this, @"Enter “1” (invalid value) with the numeric keypad in the same screen");
             // Call generic Check Results Method
             DmiExpectedResults
                 .Input_Field1_The_eventually_displayed_data_value_in_the_data_area_of_the_input_field_is_replaced_by_1_character_or_value_corresponding_to_the_activated_data_key_state_Selected_IFvalue_of_pressed_keys(this);
@@ -111,7 +111,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: Requirements:(1) MMI_gen 9912 (partly: reactions to failing, EVC-19, MMI_gen 12147); MMI_gen 9310 (partly: [Up-Type enabled button ‘Enter’], accept data);(2) MMI_gen 9916; (3) MMI_gen 9912 (partly: reactions to failing, MMI_gen 4714 (partly: state 'Selected IF/data value'));
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press the data input field (Accept)");
+            DmiActions.ShowInstruction(this, @"Press the data input field (Accept)");
 
 
             /*
@@ -121,7 +121,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: Requirements:(1) MMI_gen 9912 (partly: MMI_gen 4714 (partly: state 'Selected IF/data value');(2) MMI_gen 9912 (partly: reactions to failing, MMI_gen 4714 (partly: previously entered (faulty) value)); MMI_gen 4699 (technical range);(3) MMI_gen 9912 (partly: MMI_gen 9286 (partly: button ‘Enter’, disabled), MMI_gen 12148 (partly: not send packets)), MMI_gen 9920 (partly: disabled), MMI_gen 9924 (partly: EVC-119); MMI_gen 9310 (partly: [technical range, No OK, button ‘Enter’ disabled]);(4) MMI_gen 8339 (partly: MMI_gen 12148 (MMI_gen 4713 (partly: indication))), MMI_gen 9912 (partly: reactions to failing, MMI_gen 12148 (MMI_gen 4713 (partly: indication)));(5) MMI_gen 9913 (partly: MMI_gen 12148 (MMI_gen 4713 (partly: red))), MMI_gen 9912 (partly: reactions to failing, MMI_gen 12148 (MMI_gen 4713 (partly: red)));
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press the data input field once again (Accept) in the same screen");
+            DmiActions.ShowInstruction(this, @"Press the data input field once again (Accept) in the same screen");
 
 
             /*
@@ -131,7 +131,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: Requirements:(1) MMI_gen 9912 (partly: reactions to succeed, MMI_gen 4714 (partly: MMI_gen 4679), MMI_gen 9286 (partly: button ‘Enter’, enabled)), MMI_gen 9920 (partly: state switched); MMI_gen 9310 (partly: press one key);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Enter “65536” (valid value) with the numeric keypad");
+            DmiActions.ShowInstruction(this, @"Enter “65536” (valid value) with the numeric keypad");
             // Call generic Check Results Method
             DmiExpectedResults
                 .Input_Field1_The_eventually_displayed_data_value_in_the_data_area_of_the_input_field_is_replaced_by_65536_character_or_value_corresponding_to_the_activated_data_key_state_Selected_IFvalue_of_pressed_keys(this);
@@ -144,7 +144,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: Requirements:(1) MMI_gen 9912 (partly: reactions to succeed, MMI_gen 9286 (partly: enabled)), MMI_gen 9920 (partly: enabled), MMI_gen 9924 (partly: EVC-119, the ‘Enter’ button, accepted data complied with data checks, driver action);(2) MMI_gen 9912 (partly: reactions to succeed, EVC-19) MMI_gen 9310 (partly: [technical range, Yes OK]);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press the data input field (Accept) in the same screen");
+            DmiActions.ShowInstruction(this, @"Press the data input field (Accept) in the same screen");
 
 
             /*

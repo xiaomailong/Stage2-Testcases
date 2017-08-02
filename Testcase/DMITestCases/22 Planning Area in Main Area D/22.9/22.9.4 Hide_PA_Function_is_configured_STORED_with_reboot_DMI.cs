@@ -95,7 +95,7 @@ namespace Testcase.DMITestCases
             Expected Result: The Planning area is disappeared from the main area D of DMI
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press Hide PA button");
+            DmiActions.ShowInstruction(this, @"Press Hide PA button");
 
 
             /*

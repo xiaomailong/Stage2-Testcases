@@ -84,7 +84,7 @@ namespace Testcase.DMITestCases
             Expected Result: The Planning area is disappeared from DMI
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press Hide PA button");
+            DmiActions.ShowInstruction(this, @"Press Hide PA button");
 
 
             /*
@@ -114,7 +114,7 @@ namespace Testcase.DMITestCases
             Expected Result: The planning area is reappeared by this activation
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press at sensitive area in main area D");
+            DmiActions.ShowInstruction(this, @"Press at sensitive area in main area D");
             // Call generic Check Results Method
             DmiExpectedResults.The_planning_area_is_reappeared_by_this_activation(this);
 
@@ -173,7 +173,7 @@ namespace Testcase.DMITestCases
             Expected Result: The planning area is reappeared by this activation
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press at sensitive area in main area D");
+            DmiActions.ShowInstruction(this, @"Press at sensitive area in main area D");
             // Call generic Check Results Method
             DmiExpectedResults.The_planning_area_is_reappeared_by_this_activation(this);
 
@@ -241,7 +241,7 @@ namespace Testcase.DMITestCases
             Expected Result: The planning area is reappeared by this activation
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press at sensitive area in main area D");
+            DmiActions.ShowInstruction(this, @"Press at sensitive area in main area D");
             // Call generic Check Results Method
             DmiExpectedResults.The_planning_area_is_reappeared_by_this_activation(this);
 

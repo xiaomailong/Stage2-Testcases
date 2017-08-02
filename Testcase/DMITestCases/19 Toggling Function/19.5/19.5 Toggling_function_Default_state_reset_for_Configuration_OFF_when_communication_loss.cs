@@ -110,7 +110,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) Information (paragraph 2) under MMI_gen 6898 (re-establish, operable); Information under MMI_gen 6453; MMI_gen 6879 (partly: The Toggling Function's Default state shall be applied); MMI_gen 6589 (partly: The Toggling Function's Default state shall be applied); MMI_gen 6589 (partly: The Toggling Function's Default state shall be applied); MMI_gen 6878 (partly: The Toggling Function's Default state shall be applied); MMI_gen 6588 (partly: The Toggling Function's Default state shall be applied);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press the speedometer once");
+            DmiActions.ShowInstruction(this, @"Press the speedometer once");
 
 
             /*

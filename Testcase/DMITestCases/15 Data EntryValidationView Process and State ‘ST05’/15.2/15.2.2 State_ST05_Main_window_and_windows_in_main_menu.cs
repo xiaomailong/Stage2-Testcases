@@ -89,7 +89,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8859 (partly: windows in main menu);(2) MMI_gen 5646 (partly: always enable, windows in main menu);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Driver ID’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Driver ID’ button");
 
 
             /*
@@ -209,7 +209,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8859 (partly: windows in main menu);(2) MMI_gen 5646 (partly: always enable, windows in main menu);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘L inh’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘L inh’ button");
 
 
             /*

@@ -137,7 +137,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9390 (partly: Driver ID window);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press and hold an input field");
+            DmiActions.ShowInstruction(this, @"Press and hold an input field");
             // Call generic Check Results Method
             DmiExpectedResults
                 .Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Pressed_the_border_of_button_is_removed(this);
@@ -176,7 +176,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 184 (partly: closed), MMI_gen 8033 (partly: MMI_gen 4682, MMI_gen 4681 (partly: accept the entered value), MMI_gen 4684 (partly: terminated);(2) MMI_gen 8035 (partly: revalidation), MMI_gen 184 (partly: EVC-104); MMI_gen 9390 (partly: Driver ID window);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Release the pressed area");
+            DmiActions.ShowInstruction(this, @"Release the pressed area");
 
 
             /*
@@ -211,7 +211,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8033 (partly: MMI_gen 4681 (partly: entered value in the input field replace the current data)); MMI_gen 8864 (partly: Driver ID window); 
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Driver ID’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Driver ID’ button");
 
 
             /*

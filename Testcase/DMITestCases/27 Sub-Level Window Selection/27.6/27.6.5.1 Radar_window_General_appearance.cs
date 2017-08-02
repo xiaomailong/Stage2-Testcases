@@ -63,7 +63,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11773;(2) MMI_gen 11771 (partly: MMI_gen 4888);(3) MMI_gen 11771 (partly: MMI_gen 4799 (partly: Close button, Window Title, Input fields)); MMI_gen 4392 (partly: [Close] NA11); MMI_gen 4355 (partly: Buttons, Close button); (4) MMI_gen 11771 (partly: MMI_gen 4891 (partly: Yes button, Area for [Window Title] Entry complete?));(5) MMI_gen 11771 (partly: MMI_gen 4910 (partly: Disabled, MMI_gen 4211 (partly: colour)), MMI_gen 4909 (partly: Disabled)); MMI_gen 4377 (partly: shown);(6) MMI_gen 11771 (partly: MMI_gen 4908 (partly: extended));(7) MMI_gen 11771 (partly: MMI_gen 4637 (partly: Main-areas D and F)); MMI_gen 4355 (partly: input fields);(8) MMI_gen 11771 (partly: MMI_gen 4640);(9) MMI_gen 11771 (partly: MMI_gen 4641);(10) MMI_gen 11771 (partly: MMI_gen 9412); MMI_gen 11774 (partly: label);(11) MMI_gen 11771 (partly: MMI_gen 4645);(12) MMI_gen 11771 (partly: MMI_gen 4646 (partly: right aligned));(13) MMI_gen 11771 (partly: MMI_gen 4647 (partly: left aligned));(14) MMI_gen 11771 (partly: MMI_gen 4648);(15) MMI_gen 11771 (partly: MMI_gen 4720);(16) MMI_gen 11771 (partly: MMI_gen 4651 (partly: Radar 1), MMI_gen 4683 (partly: selected), MMI_gen 5211 (partly: selected));(17) MMI_gen 11771 (partly: MMI_gen 4649 (partly: selected ‘Radar 1’), MMI_gen 4651 (partly: Radar 2), MMI_gen 4683 (partly: not selected), MMI_gen 5211 (partly: not selected));(18) MMI_gen 11784 (partly: Radar 1); MMI_gen 11771 (partly: MMI_gen 4912 (partly: Radar 1), MMI_gen 4678 (partly: Radar 1)); (19) MMI_gen 11771 (partly: MMI_gen 5003); MMI_gen 4392 (partly: [Delete] NA21);(20) MMI_gen 11771 (partly: MMI_gen 5190);(21) MMI_gen 11771 (partly: MMI_gen 4696);(22) MMI_gen 11771 (partly: MMI_gen 4697); (23) MMI_gen 11771 (partly: MMI_gen 4701);(24) MMI_gen 11771 (partly: MMI_gen 4702 (partly: right aligned));(25) MMI_gen 11771 (partly: MMI_gen 4704 (partly: left aligned));(26) MMI_gen 11771 (partly: MMI_gen 4700 (partly: otherwise, grey)); MMI_gen 4241;(27) MMI_gen 11771 (partly: MMI_gen 4691 (partly: flash, Radar 1));(28) MMI_gen 11771 (partly: MMI_gen 4689, MMI_gen 4690);(29) MMI_gen 11772;(30) MMI_gen 11775; MMI_gen 11783;(31) MMI_gen 4350;(32) MMI_gen 4351;(33) MMI_gen 4353;
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Radar’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Radar’ button");
 
 
             /*
@@ -73,7 +73,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11771 (partly: MMI_gen 4913 (partly: Radar 1), MMI_gen 4384 (partly: Change to state ‘Pressed’ and immediately back to state ‘Enabled’));   (2) MMI_gen 11771 (partly: MMI_gen 4913 (partly: Radar 1), MMI_gen 4384 (partly: sound ‘Click’)); MMI_gen 9512; MMI_gen 968;(3) MMI_gen 11771 (partly: MMI_gen 4679 (partly: Radar 1), MMI_gen 4913 (partly: Radar 1), MMI_gen 4384 (partly: ETCS-MMI’s function associated to the button));(4) MMI_gen 11771 (partly: MMI_gen 4689, MMI_gen 4690);(5) MMI_gen 11774 (partly: entry);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press and hold ‘0’ button");
+            DmiActions.ShowInstruction(this, @"Press and hold ‘0’ button");
 
 
             /*
@@ -83,7 +83,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11771 (partly: MMI_gen 4913 (partly: Radar 1), MMI_gen 4384 (partly: ETCS-MMI’s function associated to the button));
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Release the pressed button");
+            DmiActions.ShowInstruction(this, @"Release the pressed button");
             // Call generic Check Results Method
             DmiExpectedResults.Verify_the_following_information_The_state_of_released_button_is_changed_to_enabled(this);
 
@@ -109,7 +109,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11771 (partly: MMI_gen 4913 (partly: Radar 1), MMI_gen 4384 (partly: sound ‘Click’)); MMI_gen 9512; MMI_gen 968;(2) MMI_gen 11771 (partly: MMI_gen 4913 (partly: Radar 1), MMI_gen 4384 (partly: Change to state ‘Pressed’ and immediately back to state ‘Enabled’));   (3) MMI_gen 11771 (partly: MMI_gen 4913 (partly: Radar 1), MMI_gen 4384 (partly: ETCS-MMI’s function associated to the button)); MMI_gen 4393 (partly: [Delete]);(4) MMI_gen 11771 (partly: MMI_gen 4913 (partly: Radar 1), MMI_gen 4386 (partly: visual of repeat function));(5) MMI_gen 11771 (partly: MMI_gen 4913 (partly: Radar 1), MMI_gen 4386 (partly: audible of repeat function));
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press and hold ‘Del’ button.Note: Stopwatch is required");
+            DmiActions.ShowInstruction(this, @"Press and hold ‘Del’ button.Note: Stopwatch is required");
             // Call generic Check Results Method
             DmiExpectedResults
                 .Verify_the_following_information_While_press_and_hold_button_less_than_1_5_secSound_Click_is_played_once_The_state_of_button_is_changed_to_Pressed_and_immediately_back_to_Enabled_state_The_last_character_is_removed_from_an_input_field_after_pressing_the_button_While_press_and_hold_button_over_1_5_secThe_state_pressed_and_released_are_switched_repeatly_while_button_is_pressed_and_the_characters_are_removed_from_an_input_field_repeatly_refer_to_pressed_state_The_sound_Click_is_played_repeatly_while_button_is_pressed(this);
@@ -122,7 +122,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11771 (partly: MMI_gen 4913 (partly: Radar 1)), MMI_gen 4384 (partly: ETCS-MMI’s function associated to the button));
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Release ‘Del’ button");
+            DmiActions.ShowInstruction(this, @"Release ‘Del’ button");
             // Call generic Check Results Method
             DmiExpectedResults.Verify_the_following_information_The_character_is_stop_removing(this);
 
@@ -213,7 +213,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11771 (partly: MMI_gen 4911 (partly: MMI_gen 4381 (partly: exit state ‘pressed’), MMI_gen 4384 (partly: ETCS-MMI’s function associated to the button)));(2) MMI_gen 11785;(3) MMI_gen 11787;
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Release ‘Yes’ button");
+            DmiActions.ShowInstruction(this, @"Release ‘Yes’ button");
 
 
             /*
@@ -222,7 +222,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays the Maintenance window
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Yes’ button and confirm entered data by pressing an input field");
+            DmiActions.ShowInstruction(this, @"Press ‘Yes’ button and confirm entered data by pressing an input field");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_the_Maintenance_window(this);
 
@@ -241,7 +241,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Radar window
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Radar’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Radar’ button");
 
 
             /*
@@ -275,7 +275,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11771 (partly: MMI_gen 4686 (partly: Label area, Radar 2), MMI_gen 4381 (partly: exit state ‘Pressed’, execute function associated to the button)); MMI_gen 4374;
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Release the pressed area");
+            DmiActions.ShowInstruction(this, @"Release the pressed area");
 
 
             /*
@@ -307,7 +307,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11786 (partly: EVC-101);(2) MMI_gen 11786 (partly: closure); MMI_gen 4392 (partly: returning to the parent window);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults
                 .Verify_the_following_information_Use_the_log_file_to_confirm_that_DMI_sent_out_packet_MMI_DRIVER_REQUEST_EVC_101_with_variable_MMI_M_REQUEST_54_Exit_Maintenance_The_window_is_closed_and_the_Maintenance_window_is_displayed(this);

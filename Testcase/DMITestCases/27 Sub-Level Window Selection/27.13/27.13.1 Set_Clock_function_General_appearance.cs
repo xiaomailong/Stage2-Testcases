@@ -91,7 +91,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11939;(2) MMI_gen 11941; MMI_gen 4355 (partly: Window title);   (3) MMI_gen 4360 (partly: total number of window);(4) MMI_gen 11942 (partly: MMI_gen 4888);(5) MMI_gen 11942 (partly: MMI_gen 4799 (partly: Close button, Previous button, Next button, Window Title, Input fields)); MMI_gen 4392 (partly: [Previous : NA19], [Next: NA17], [Close] NA11); MMI_gen 4355 (partly: Buttons, Close button); MMI_gen 4396 (partly: Previous, NA19); MMI_gen 4394 (partly: disabled [previous]); MMI_gen 4358;(6) MMI_gen 11942 (partly: MMI_gen 4891 (partly: Yes button, Area for [Window Title] Entry complete?), question ‘Clock set?);(7) MMI_gen 11942 (partly: MMI_gen 4910 (partly: Disabled, MMI_gen 4211 (partly: colour)), MMI_gen 4909 (partly: Disabled)); MMI_gen 4377 (partly: shown);(8) MMI_gen 11942 (partly: MMI_gen 4908 (partly: extended));(9) MMI_gen 11942 (partly: MMI_gen 4640);(10 MMI_gen 11942 (partly: MMI_gen 4640);(11) MMI_gen 11942 (partly: MMI_gen 4641);(12) MMI_gen 11942 (partly: MMI_gen 9412);(13) MMI_gen 11942 (partly: MMI_gen 4645);(14) MMI_gen 11942 (partly: MMI_gen 4646 (partly: right aligned));(15) MMI_gen 11942 (partly: MMI_gen 4647 (partly: left aligned));(16) MMI_gen 11942 (partly: MMI_gen 4648);(17) MMI_gen 11942 (partly: MMI_gen 4720); MMI_gen 12125 (partly: page 1);(18) MMI_gen 11942 (partly: MMI_gen 4651 (partly: Train category), MMI_gen 4683 ( partly: selected), MMI_gen 5211 (partly: selected));(19) MMI_gen 11942 (partly: MMI_gen 4649 (partly: selected ‘Year’), MMI_gen 4651 (partly: Month, Day), MMI_gen 4683 (partly: not selected), MMI_gen 5211 (partly: not selected));(20) MMI_gen 11951 (partly: label);(21) MMI_gen 11952 (partly: label);    (22) MMI_gen 11953 (partly: label);(23) MMI_gen 11944 (partly: Year); MMI_gen 11942 (partly: MMI_gen 4912 (partly: Year), MMI_gen 4678 (partly: Year));(24) MMI_gen 11942 (partly: MMI_gen 5003 (partly: Year)); MMI_gen 4392 (partly: [Delete] NA21);(25) MMI_gen 11942 (partly: MMI_gen 5190);(26) MMI_gen 11942 (partly: MMI_gen 4696);(27) MMI_gen 11942 (partly: MMI_gen 4701);(28) MMI_gen 11942 (partly: MMI_gen 4702 (partly: right aligned));(29) MMI_gen 11942 (partly: MMI_gen 4704 (partly: left aligned));(30) MMI_gen 11942 (partly: MMI_gen 4700 (partly: otherwise, grey)); MMI_gen 4241;(31) MMI_gen 12127;(32) MMI_gen 12128;(33) MMI_gen 11946 (partly: updated);(34) MMI_gen 11942 (partly: MMI_gen 4691 (partly: flash, Year));(35) MMI_gen 11942 (partly: MMI_gen 4689, MMI_gen 4690);(36) MMI_gen 4350;(37) MMI_gen 4351;(38) MMI_gen 4353;
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Set Clock’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Set Clock’ button");
 
 
             /*
@@ -101,7 +101,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11942 (partly: MMI_gen 4913 (partly: Year); MMI_gen 4384 (partly: Change to state ‘Pressed’ and immediately back to state ‘Enabled’);   (2) MMI_gen 11942 (partly: MMI_gen 4913 (partly: Year); MMI_gen 4384 (partly: sound ‘Click’); MMI_gen 9512; MMI_gen 968;(3) MMI_gen 11942 partly: MMI_gen 4679 (partly: Year), MMI_gen 4913 (partly: RBC ID), MMI_gen 4384 (partly: ETCS-MMI’s function associated to the button));(4) MMI_gen 11942 (partly: MMI_gen 4689, MMI_gen 4690);(5) MMI_gen 11951 (partly: entry);(6) MMI_gen 178; (7) MMI_gen 11946 (partly: driver modified);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press and hold ‘0’ button");
+            DmiActions.ShowInstruction(this, @"Press and hold ‘0’ button");
 
 
             /*
@@ -111,7 +111,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11942 (partly: MMI_gen 4913 (partly: Year); MMI_gen 4384 (partly: ETCS-MMI’s function associated to the button);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Release pressed button");
+            DmiActions.ShowInstruction(this, @"Release pressed button");
             // Call generic Check Results Method
             DmiExpectedResults.Verify_the_following_information_The_state_of_released_button_is_changed_to_enabled(this);
 
@@ -134,7 +134,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11942 (partly: MMI_gen 4913 (partly: Year), MMI_gen 4384 (partly: sound ‘Click’));(2) MMI_gen 11942 (partly: MMI_gen 4913 (partly: Year), MMI_gen 4384 (partly: Change to state ‘Pressed’ and immediately back to state ‘Enabled’));    (3) MMI_gen 11942 (partly: MMI_gen 4913 (partly: Year), MMI_gen 4384 (partly: ETCS-MMI’s function associated to the button)); MMI_gen 4393 (partly: [Delete]);(4) MMI_gen 11942  (partly: MMI_gen 4913 (partly: Year), MMI_gen 4386 (partly: visual of repeat function));(5) MMI_gen 11942 (partly: MMI_gen 4913 (partly: Year), MMI_gen 4386 (partly: audible of repeat function));
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press and hold ‘Del’ button.Note: Stopwatch is required");
+            DmiActions.ShowInstruction(this, @"Press and hold ‘Del’ button.Note: Stopwatch is required");
 
 
             /*
@@ -144,7 +144,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11942 (partly: MMI_gen 4913 (partly: Year)), MMI_gen 4384 (partly: ETCS-MMI’s function associated to the button));
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Release ‘Del’ button");
+            DmiActions.ShowInstruction(this, @"Release ‘Del’ button");
 
 
             /*
@@ -388,7 +388,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11942 (partly: MMI_gen 4686 (partly: Label area, Month), MMI_gen 4381 (partly: exit state ‘Pressed’, execute function associated to the button)); MMI_gen 4374;
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Release the pressed area");
+            DmiActions.ShowInstruction(this, @"Release the pressed area");
 
 
             /*
@@ -488,7 +488,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 4392 (partly: returning to the parent window);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press the ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Press the ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.Verify_the_following_information_1_DMI_displays_Settings_window(this);
 

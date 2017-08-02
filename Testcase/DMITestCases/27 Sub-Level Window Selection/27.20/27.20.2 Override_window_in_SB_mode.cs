@@ -89,7 +89,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Default window
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Default_window(this);
 
@@ -101,7 +101,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8415 (partly: touch screen, label “EOA”);              MMI_gen 11225 (partly: EVC-30, enabled);(2) MMI_gen 11225 (partly: enabled);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Override’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Override’ button");
 
 
             /*

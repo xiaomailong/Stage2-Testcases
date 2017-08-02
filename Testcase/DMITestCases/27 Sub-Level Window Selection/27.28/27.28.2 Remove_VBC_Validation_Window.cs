@@ -73,7 +73,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 8572 (partly: MMI_gen 5484 (partly: filled ‘No’));
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘No’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘No’ button");
             // Call generic Check Results Method
             DmiExpectedResults.The_value_of_input_field_is_changed_refer_to_selected_button(this);
 
@@ -106,7 +106,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9933 (partly: Close button, open Remove VBC window); MMI_gen 4392 (partly: returning to the parent window);(2) MMI_gen 9933 (partly: EVC-101);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
 
 
             /*
@@ -125,7 +125,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 8572 (partly: MMI_gen 5484 (partly: filled ‘Yes’));
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Yes’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Yes’ button");
             // Call generic Check Results Method
             DmiExpectedResults.The_value_of_input_field_is_changed_refer_to_selected_button(this);
 
@@ -137,7 +137,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9390 (partly: Remove VBC Validation window);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press and hold an input field");
+            DmiActions.ShowInstruction(this, @"Press and hold an input field");
             // Call generic Check Results Method
             DmiExpectedResults
                 .Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Pressed_the_border_of_button_is_removed(this);
@@ -176,7 +176,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9933 (partly: MMI_gen 5720 (partly: closed));(2) MMI_gen 9934; MMI_gen 9933 (partly: MMI_gen 5720 (partly: ConfirmedData-Packet)); MMI_gen 9390 (partly: Remove VBC Validation window);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Release the pressed area");
+            DmiActions.ShowInstruction(this, @"Release the pressed area");
 
 
             /*

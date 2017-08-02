@@ -119,7 +119,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 137 (partly: enabled);(2) MMI_gen 137 (partly: NA13);(3) MMI_gen 11455 (partly: Down button, area E11); MMI_gen 164 (partly: Down, scroll through); MMI_gen 134 (partly: visibility window); MMI_gen 143 (partly: 1st line of the next lower text message is not yet visible);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Down’ button at sub-area E11");
+            DmiActions.ShowInstruction(this, @"Press ‘Down’ button at sub-area E11");
 
 
             /*
@@ -129,7 +129,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 143 (partly: opposite case, moves one line down); (2) MMI_gen 140 (partly: disabled);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Down’ button at sub-area E11");
+            DmiActions.ShowInstruction(this, @"Press ‘Down’ button at sub-area E11");
 
 
             /*
@@ -139,7 +139,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 164 (partly: Down, No wrap around); MMI_gen 11455 (partly: not be circular); MMI_gen 147 (partly:remove text driver message, MMI_I_TEXT = 2);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Down’ button at sub-area E11");
+            DmiActions.ShowInstruction(this, @"Press ‘Down’ button at sub-area E11");
             // Call generic Check Results Method
             DmiExpectedResults
                 .Verify_the_following_information_1_The_display_information_in_sub_area_E5_E9_are_not_changed(this);

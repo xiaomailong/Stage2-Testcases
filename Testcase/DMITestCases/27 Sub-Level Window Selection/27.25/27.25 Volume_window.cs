@@ -63,7 +63,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8074 (partly: MMI_gen 5189 (partly: touch screen), MMI_gen 5944 (partly: touch screen));(2) MMI_gen 8075;(3) MMI_gen 8074 (partly: half grid array);(4) MMI_gen 8074 (partly: MMI_gen 4640 (partly: only data area), MMI_gen 4720, MMI_gen 4889 (partly: merge label and data));(5) MMI_gen 8074 (party: MMI_gen 4722 (partly: Table 12 <Close> button, Window title, Input field)); MMI_gen 4392 (partly: [Close] NA11);(6) MMI_gen 8074 (partly: MMI_gen 4637 (partly: Main-areas D and F));(7) MMI_gen 8074 (partly: note under the MMI_gen 9412);(8) MMI_gen 8074 (partly: single input field, only data part);(9) MMI_gen 8077; MMI_gen 8074 (partly: MMI_gen 4912);(10) MMI_gen 8074 (partly: MMI_gen 4678);(11) MMI_gen 4350;(12) MMI_gen 4351;(13) MMI_gen 4353; 
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Volume’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Volume’ button");
 
 
             /*
@@ -84,7 +84,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8064 (partly: MMI_gen 4913 (partly: MMI_gen 4384 (partly: ETCS-MMI’s function associated to the button)));
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Release ‘-’ button");
+            DmiActions.ShowInstruction(this, @"Release ‘-’ button");
             // Call generic Check Results Method
             DmiExpectedResults.Verify_the_following_information_The_input_field_is_stop_decreasing(this);
 
@@ -107,7 +107,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8074 (partly: MMI_gen 4913 (partly: MMI_gen 4384 (partly: ETCS-MMI’s function associated to the button)));
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Release ‘+’ button");
+            DmiActions.ShowInstruction(this, @"Release ‘+’ button");
             // Call generic Check Results Method
             DmiExpectedResults.Verify_the_following_information_The_input_field_is_stop_increasing(this);
 
@@ -119,7 +119,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9390 (partly: Volume window);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press and hold an input field");
+            DmiActions.ShowInstruction(this, @"Press and hold an input field");
             // Call generic Check Results Method
             DmiExpectedResults
                 .Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Pressed_the_border_of_button_is_removed(this);
@@ -158,7 +158,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8074 (partly: MMI_gen 4682, MMI_gen 4681 (partly: accept the entered value), MMI_gen 4684 (partly: terminated)); MMI_gen 9390 (partly: Volume window);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Released the pressed area");
+            DmiActions.ShowInstruction(this, @"Released the pressed area");
 
 
             /*
@@ -184,7 +184,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 4392 (partly: returning to the parent window);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.Verify_the_following_information_1_DMI_displays_the_Settings_window(this);
 

@@ -130,7 +130,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 2194 (partly: present the first level marked); MMI_gen 2206 (partly: 2nd bullet); MMI_gen 8864 (partly: the value stored onboard);(2) MMI_gen 4392 (partly: [Close] NA11);(3) MMI_gen 1630 (partly: fulfilled condition, EVC-20);(4) MMI_gen 2206 (partly: list provided by EVC-20);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Level’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Level’ button");
 
 
             /*
@@ -184,7 +184,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11383 (partly: EVC-101, MMI_gen 4381 (partly: exit state ‘Pressed’, execute function associated to the button));(2) MMI_gen 11383 (partly: closure);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Release ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Release ‘Close’ button");
 
 
             /*
@@ -194,7 +194,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11383 (partly: discarded);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Level’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Level’ button");
 
 
             /*

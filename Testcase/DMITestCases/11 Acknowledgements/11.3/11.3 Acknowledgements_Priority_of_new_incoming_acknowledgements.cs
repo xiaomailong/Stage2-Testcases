@@ -175,7 +175,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays MO17 symbol on sub-area C1
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press an acknowledgement on sub-area C1");
+            DmiActions.ShowInstruction(this, @"Press an acknowledgement on sub-area C1");
 
 
             /*
@@ -185,7 +185,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 4486 (partly: level acknowledgement); MMI_gen 4482 (partly: moveable focus);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press an acknowledgement on sub-area C1");
+            DmiActions.ShowInstruction(this, @"Press an acknowledgement on sub-area C1");
 
 
             /*
@@ -195,7 +195,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 4486 (partly: other acknowledgement);(2) MMI_gen 4482 (partly: overflow);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press an acknowledgement on sub-area C1");
+            DmiActions.ShowInstruction(this, @"Press an acknowledgement on sub-area C1");
 
 
             /*
@@ -205,7 +205,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 4486 (partly: the oldest entry);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press an acknowledgement on sub-area E5");
+            DmiActions.ShowInstruction(this, @"Press an acknowledgement on sub-area E5");
 
 
             /*
@@ -215,7 +215,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 4486 (partly: the oldest entry);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press an acknowledgement on sub-area E5");
+            DmiActions.ShowInstruction(this, @"Press an acknowledgement on sub-area E5");
 
 
             /*
@@ -225,7 +225,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 4486 (partly: the oldest entry); MMI_gen 4482 (partly: 10 pending acknowledgements);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press an acknowledgement on sub-area E5");
+            DmiActions.ShowInstruction(this, @"Press an acknowledgement on sub-area E5");
 
 
             /*
@@ -252,7 +252,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 6923 (partly: flush the entire acknowledgement list);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press an acknowledgement on sub-area E5");
+            DmiActions.ShowInstruction(this, @"Press an acknowledgement on sub-area E5");
 
 
             /*

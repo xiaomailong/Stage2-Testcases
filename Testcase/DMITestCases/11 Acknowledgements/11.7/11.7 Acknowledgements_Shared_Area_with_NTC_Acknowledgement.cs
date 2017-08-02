@@ -83,7 +83,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 4483 (partly: NTC);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press sub-area (E5+E6+E7+E8+E9) for acknowledgement");
+            DmiActions.ShowInstruction(this, @"Press sub-area (E5+E6+E7+E8+E9) for acknowledgement");
 
 
             /*
@@ -93,7 +93,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 4483 (partly: NTC);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press sub-area (E5+E6+E7+E8+E9) for acknowledgement");
+            DmiActions.ShowInstruction(this, @"Press sub-area (E5+E6+E7+E8+E9) for acknowledgement");
 
 
             /*
@@ -103,7 +103,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 4483 (partly: NTC);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press sub-area (E5+E6+E7+E8+E9) for acknowledgement");
+            DmiActions.ShowInstruction(this, @"Press sub-area (E5+E6+E7+E8+E9) for acknowledgement");
 
 
             /*
@@ -113,7 +113,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: This test step is to clear expected result of the previous test step.
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press sub-area (E5+E6+E7+E8+E9) for acknowledgement");
+            DmiActions.ShowInstruction(this, @"Press sub-area (E5+E6+E7+E8+E9) for acknowledgement");
 
 
             /*

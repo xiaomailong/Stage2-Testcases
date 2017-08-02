@@ -74,7 +74,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 1547 (partly);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Settings’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Settings’ button");
 
 
             /*

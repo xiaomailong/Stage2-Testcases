@@ -63,7 +63,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11987 (partly: open);     (2) MMI_gen 11987 (partly: EVC-34);(3) MMI_gen 8766 (partly: MMI_gen 5338);  (4) MMI_gen 8766 (partly: MMI_gen 5383 (partly: MMI_gen 5944 (partly: touchscreen)));(5) MMI_gen 8766 (partly: MMI_gen 5335);  (6) MMI_gen 8766 (partly: MMI_gen 5340 (partly: right aligned));  (7) MMI_gen 8766 (partly: MMI_gen 5342 (partly: left aligned));  (8) MMI_gen 8766 (partly: MMI_gen 5337);  (9) MMI_gen 8767; (10) MMI_gen 8768;(11) MMI_gen 8766 (partly: MMI_gen 5306 (partly: Close button, Window title)); MMI_gen 4392 (partly: [Close] NA11);(12) MMI_gen 4350;(13) MMI_gen 4351;(14) MMI_gen 4353;
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘System version’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘System version’ button");
 
 
             /*
@@ -97,7 +97,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 4392 (partly: returning to the parent window);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press the ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Press the ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.Verify_the_following_information_1_DMI_displays_Setting_window(this);
 

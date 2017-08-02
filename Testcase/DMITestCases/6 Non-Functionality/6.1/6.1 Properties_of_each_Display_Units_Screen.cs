@@ -62,7 +62,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Settings window
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Settings’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Settings’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Settings_window(this);
 
@@ -74,7 +74,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 3091 (partly: default luminance);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Brightness’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Brightness’ button");
 
 
             /*
@@ -91,7 +91,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Settings window
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Settings_window(this);
 
@@ -102,7 +102,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Driver ID window
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Driver_ID_window(this);
 

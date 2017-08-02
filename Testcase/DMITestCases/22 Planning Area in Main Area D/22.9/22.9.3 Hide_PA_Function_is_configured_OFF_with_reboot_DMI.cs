@@ -96,7 +96,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 2996 (partly: Configuration is Off and activation of the Show button);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press on area D of the DMI");
+            DmiActions.ShowInstruction(this, @"Press on area D of the DMI");
 
 
             /*
@@ -106,7 +106,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 2996 (partly: Activation of the Hide button);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press Hide PA button");
+            DmiActions.ShowInstruction(this, @"Press Hide PA button");
 
 
             /*
@@ -115,7 +115,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays the Planning area
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press on area D of the DMI");
+            DmiActions.ShowInstruction(this, @"Press on area D of the DMI");
 
 
             /*

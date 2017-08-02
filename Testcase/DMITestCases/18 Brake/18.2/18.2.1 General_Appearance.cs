@@ -117,7 +117,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 1400 (partly: sub-area E1);                                        (2) MMI_gen 1382 (partly: MMI_gen4499 (partly: flashing frame));                    (3) MMI_gen 1382 (partly: MMI_gen4499 (partly: symbol after acknowledgement is given));                                    (4) MMI_gen 1382 (partly: MMI_gen146);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press on sub-area E1 (below ST01 symbol)");
+            DmiActions.ShowInstruction(this, @"Press on sub-area E1 (below ST01 symbol)");
 
 
             /*
@@ -127,7 +127,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 1382 (partly: MMI_gen 4499 (partly: sensitive area));
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press on sub-area E1 (below ST01 symbol)");
+            DmiActions.ShowInstruction(this, @"Press on sub-area E1 (below ST01 symbol)");
 
 
             /*

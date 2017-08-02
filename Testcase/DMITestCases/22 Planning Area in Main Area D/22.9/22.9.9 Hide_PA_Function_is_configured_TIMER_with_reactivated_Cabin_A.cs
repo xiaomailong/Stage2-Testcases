@@ -94,7 +94,7 @@ namespace Testcase.DMITestCases
             Expected Result: The Planning area is disappeared from the area D of the DMI
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press Hide PA button");
+            DmiActions.ShowInstruction(this, @"Press Hide PA button");
             // Call generic Check Results Method
             DmiExpectedResults.The_Planning_area_is_disappeared_from_the_area_D_of_the_DMI(this);
 
@@ -137,7 +137,7 @@ namespace Testcase.DMITestCases
             Expected Result: The Planning area is disappeared from the area D of the DMI
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press Hide PA button");
+            DmiActions.ShowInstruction(this, @"Press Hide PA button");
             // Call generic Check Results Method
             DmiExpectedResults.The_Planning_area_is_disappeared_from_the_area_D_of_the_DMI(this);
 

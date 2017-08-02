@@ -95,7 +95,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 7341;
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press Hide PA button");
+            DmiActions.ShowInstruction(this, @"Press Hide PA button");
 
 
             /*

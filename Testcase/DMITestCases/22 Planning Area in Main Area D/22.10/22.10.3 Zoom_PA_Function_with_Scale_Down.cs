@@ -111,7 +111,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7379 (partly: disable);  
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Scale Down’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Scale Down’ button");
 
 
             /*
@@ -121,7 +121,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7379 (partly: opposite case); 
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Scale Up’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Scale Up’ button");
 
 
             /*

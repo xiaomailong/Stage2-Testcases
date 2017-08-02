@@ -89,7 +89,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8033 (partly: MMI_gen 4913 (partly: MMI_gen 4384 (partly: ETCS-MMI’s function associated to the button)));
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Released the pressed button");
+            DmiActions.ShowInstruction(this, @"Released the pressed button");
 
 
             /*
@@ -99,7 +99,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8033 (partly: MMI_gen 4913 (partly: MMI_gen 4384 (partly: sound ‘Click)));(2) MMI_gen 8033 (partly: MMI_gen 4913 (partly: MMI_gen 4384 (partly: Change to state ‘Pressed’ and immediately back to state ‘Enabled’))); MMI_gen 4393 (partly: [Delete]);(3) MMI_gen 8033 (partly: MMI_gen 4913 (partly:MMI_gen 4384 (partly: ETCS-MMI’s function associated to the button)));(4) MMI_gen 8033 (partly: MMI_gen 4913 (partly:  MMI_gen 4386 (partly: visual of repeat function)));(5) MMI_gen 8033 (partly: MMI_gen 4913 (partly: MMI_gen 4386 (partly: audible of repeat function)));
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press and hold ‘Del’ button.Note: Stopwatch is required");
+            DmiActions.ShowInstruction(this, @"Press and hold ‘Del’ button.Note: Stopwatch is required");
             // Call generic Check Results Method
             DmiExpectedResults
                 .Verify_the_following_information_While_press_and_hold_button_less_than_1_5_secSound_Click_is_played_once_The_state_of_button_is_changed_to_Pressed_and_immediately_back_to_Enabled_state_The_last_character_is_removed_from_an_input_field_after_pressing_the_button_While_press_and_hold_button_over_1_5_secThe_state_pressed_and_released_are_switched_repeatly_while_button_is_pressed_and_the_characters_are_removed_from_an_input_field_repeatly_refer_to_pressed_state_The_sound_Click_is_played_repeatly_while_button_is_pressed(this);
@@ -112,7 +112,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8033 (partly: MMI_gen 4913 (partly: MMI_gen 4384 (partly: ETCS-MMI’s function associated to the button)));
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Release ‘Del’ button");
+            DmiActions.ShowInstruction(this, @"Release ‘Del’ button");
             // Call generic Check Results Method
             DmiExpectedResults.Verify_the_following_information_The_character_is_stop_removing(this);
 
@@ -148,7 +148,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8033 (partly: MMI_gen 4913 (partly:  MMI_gen 4384 (partly: ETCS-MMI’s function associated to the button)));
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Released the pressed button");
+            DmiActions.ShowInstruction(this, @"Released the pressed button");
 
 
             /*
@@ -174,7 +174,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8033 (partly: MMI_gen 4694 (partly: NEGATIVE, 6th character));
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Enter the data value with 5 characters");
+            DmiActions.ShowInstruction(this, @"Enter the data value with 5 characters");
             // Call generic Check Results Method
             DmiExpectedResults
                 .Verify_the_following_information_The_5_characters_are_added_on_an_input_field_as_one_group_e_g_12345(this);

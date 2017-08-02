@@ -62,7 +62,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Driver ID window
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Driver ID’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Driver ID’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Driver_ID_window(this);
 
@@ -84,7 +84,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Level window
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Level’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Level’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Level_window(this);
 
@@ -106,7 +106,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Train data window
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Train data’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Train data’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Train_data_window(this);
 
@@ -197,7 +197,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Brighness window
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Brightness’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Brightness’ button");
 
 
             /*
@@ -217,7 +217,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Volume window
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Volume’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Volume’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Volume_window(this);
 
@@ -267,7 +267,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 9199 (partly: SR speed/distance);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘SR speed/distance’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘SR speed/distance’ button");
 
 
             /*

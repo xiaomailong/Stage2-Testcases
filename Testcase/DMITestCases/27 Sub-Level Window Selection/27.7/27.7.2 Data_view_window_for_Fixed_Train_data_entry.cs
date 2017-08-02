@@ -63,7 +63,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 2482;(2) MMI_gen 230 (partly: open);(3) MMI_gen 8582 (partly: MMI_gen 5338);  (4) MMI_gen 8582 (partly: MMI_gen 5383 (partly: MMI_gen 5944 (partly: touchscreen)));(5) MMI_gen 8582 (partly: MMI_gen 5335);  (6) MMI_gen 8582 (partly: MMI_gen 5340 (partly: right aligned));  (7) MMI_gen 8582 (partly: MMI_gen 5342 (partly: left aligned));  (8) MMI_gen 8582 (partly: MMI_gen 5337);   (9) MMI_gen 8582 (partly: MMI_gen 5339);  (10) MMI_gen 8582 (partly: MMI_gen 5336 (partly: valid));         (11) MMI_gen 8583; (12) MMI_gen 8584 (partly: ETCS); MMI_gen 8585 (partly:Fixed train data, window #1); MMI_gen 8586 (partly: modify by the driver); MMI_gen 9428; MMI_gen 230 (partly: EVC-13);(13) MMI_gen 8582 (partly: MMI_gen 5306 (partly: Close button, Previous button, Next button, Window title)); MMI_gen 4392 (partly: [Previous : NA19], [Next: NA17], [Close] NA11); MMI_gen 4396 (partly: Previous, NA19, Next, NA17); MMI_gen 4394 (partly: disabled [previous]);(14) MMI_gen 4350;(15) MMI_gen 4351;(16) MMI_gen 4353;(17) MMI_gen 4354;
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Data view’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Data view’ button");
 
 
             /*
@@ -73,7 +73,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9391 (partly: [Next], MMI_gen 4381 (partly: change to state ‘Pressed’ as long as remain actuated));(2) MMI_gen 9391 (partly: [Next], MMI_gen 4381 (partly: sound ‘Click’));
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press and hold ‘Next’ button");
+            DmiActions.ShowInstruction(this, @"Press and hold ‘Next’ button");
             // Call generic Check Results Method
             DmiExpectedResults
                 .Verify_the_following_information_1_The_state_of_button_is_changed_to_Pressed_the_border_of_button_is_removed_2_The_sound_Click_is_played_once(this);
@@ -111,7 +111,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8584 (partly: ETCS), MMI_gen 8585 (partly: Fixed train, window #2);       (2) MMI_gen 8585 (partly: Fixed train, window #2); MMI_gen 8582 (partly: MMI_gen 5336 (partly: valid));(3) MMI_gen 8582 (partly: MMI_gen 7510);(4) MMI_gen 4394 (partly: enabled [previous], disabled [next]); MMI_gen 4396 (partly: Next, NA18.2, Previous, NA18); MMI_gen 4358;          
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Release ‘Next’ button");
+            DmiActions.ShowInstruction(this, @"Release ‘Next’ button");
             // Call generic Check Results Method
             DmiExpectedResults
                 .Verify_that_the_Data_view_is_displayed_the_next_page_of_the_train_data_The_window_title_of_the_next_page_is_displayed_with_text_Data_view_22_Data_View_ItemsThe_data_view_items_are_displayed_correctly_refer_to_following_items_RBC_IDRBC_phone_numberVBC_set_code_if_anyThe_data_part_of_RBC_phone_number_is_displayed_as_2_lines_Navigation_buttonsThe_state_of_Previous_and_Next_button_are_displayed_as_follows_Next_button_is_disabled_displays_as_symbol_NA18_2_Previous_button_is_enabled_displays_as_symbol_NA18(this);

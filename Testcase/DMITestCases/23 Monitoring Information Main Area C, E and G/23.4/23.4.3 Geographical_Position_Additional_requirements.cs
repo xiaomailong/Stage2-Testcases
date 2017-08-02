@@ -127,7 +127,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 2499 (partly: not display symbol DR03, MMI_gen 242);(2) MMI_gen 2499 (partly: not be sensitive, MMI_gen 242);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press at sub-area G12");
+            DmiActions.ShowInstruction(this, @"Press at sub-area G12");
 
 
             /*
@@ -159,7 +159,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 2499 (partly: not display symbol DR03, MMI_gen 244);(2) MMI_gen 2499 (partly: not be sensitive, MMI_gen 244);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press at sub-area G12");
+            DmiActions.ShowInstruction(this, @"Press at sub-area G12");
 
 
             /*

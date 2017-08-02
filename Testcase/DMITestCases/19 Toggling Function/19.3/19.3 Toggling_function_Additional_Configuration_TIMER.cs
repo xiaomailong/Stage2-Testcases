@@ -89,7 +89,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 6892 (partly: Area A and B, RV mode) MMI_gen 6890 (partly: RV mode, unidentified mode, un-concerned object);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press, at least twice, on area A1-A4, and area B respectively");
+            DmiActions.ShowInstruction(this, @"Press, at least twice, on area A1-A4, and area B respectively");
             // Call generic Check Results Method
             DmiExpectedResults
                 .Verify_the_following_information_The_objects_below_are_not_toggled_visibleinvisible_always_remain_the_same_as_the_previous_stepWhite_Basic_speed_HookMedium_grey_basic_speed_hookDistance_to_target_digitalRelease_Speed_Digital(this);

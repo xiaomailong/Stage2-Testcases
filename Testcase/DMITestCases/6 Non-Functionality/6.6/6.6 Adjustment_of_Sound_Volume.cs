@@ -78,7 +78,7 @@ namespace Testcase.DMITestCases
             Expected Result: The Settings window is presented with all sub-menus
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Settings’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Settings’ button");
             // Call generic Check Results Method
             DmiExpectedResults.The_Settings_window_is_presented_with_all_sub_menus(this);
 
@@ -90,7 +90,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 3094 (partly: 1st bullet);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Volume’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Volume’ button");
 
 
             /*

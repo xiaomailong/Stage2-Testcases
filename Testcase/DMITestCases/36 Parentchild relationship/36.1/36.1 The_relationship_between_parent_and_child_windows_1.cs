@@ -73,7 +73,7 @@ namespace Testcase.DMITestCases
             Expected Result: The Settings window is displayed
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Settings’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Settings’ button");
             // Call generic Check Results Method
             DmiExpectedResults.The_Settings_window_is_displayed(this);
 
@@ -85,7 +85,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 8787 (partly: Close the Settings window);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
 
 
             /*
@@ -104,7 +104,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 8787 (partly: Close the Train Running Number window);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
 
 
             /*
@@ -113,7 +113,7 @@ namespace Testcase.DMITestCases
             Expected Result: The Level window is displayed
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Enter Driver ID and perform brake test");
+            DmiActions.ShowInstruction(this, @"Enter Driver ID and perform brake test");
 
 
             /*
@@ -131,7 +131,7 @@ namespace Testcase.DMITestCases
             Expected Result: The Driver ID window is displayed. The ‘Close’ button is presented as enabled state
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Driver ID’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Driver ID’ button");
 
 
             /*
@@ -150,7 +150,7 @@ namespace Testcase.DMITestCases
             Expected Result: The Train data window is displayed. The ‘Close’ button is presented as enabled state
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Train data’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Train data’ button");
 
 
             /*
@@ -167,7 +167,7 @@ namespace Testcase.DMITestCases
             Expected Result: The Train data window is displayed
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Train data’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Train data’ button");
             // Call generic Check Results Method
             DmiExpectedResults.The_Train_data_window_is_displayed(this);
 
@@ -186,7 +186,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 8785 (partly: Close the Train data validation window);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
 
 
             /*
@@ -195,7 +195,7 @@ namespace Testcase.DMITestCases
             Expected Result: The Level window is displayed. The ‘Close’ button is presented as enabled state
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Level’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Level’ button");
 
 
             /*
@@ -230,7 +230,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 8785 (partly: Close the Main window);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
 
 
             /*

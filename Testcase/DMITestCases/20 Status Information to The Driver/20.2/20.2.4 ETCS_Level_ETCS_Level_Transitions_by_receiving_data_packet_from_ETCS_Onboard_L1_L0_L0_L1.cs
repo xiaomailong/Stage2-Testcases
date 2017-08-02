@@ -94,7 +94,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9431          (partly: The symbol LE06 is replace respectively LE07); MMI_gen 9430          (partly:LE06);(2) MMI_gen 7025 (partly: 2nd bullet, #4, non-Ack Level 0 transition);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press an area C1 for acknowledgement");
+            DmiActions.ShowInstruction(this, @"Press an area C1 for acknowledgement");
 
 
             /*

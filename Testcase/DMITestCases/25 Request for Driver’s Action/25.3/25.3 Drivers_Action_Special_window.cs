@@ -74,7 +74,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 151 (partly: MMI_M_REQUEST = 12);(2) MMI_gen 151 (partly: close opened menu);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press the ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Press the ‘Close’ button");
 
 
             /*

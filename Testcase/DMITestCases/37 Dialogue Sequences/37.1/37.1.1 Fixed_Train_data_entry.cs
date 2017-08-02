@@ -71,7 +71,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Train data window
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Train data’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Train data’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Train_data_window(this);
 

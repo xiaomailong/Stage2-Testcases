@@ -66,7 +66,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 9179;
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Override’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Override’ button");
 
 
             /*
@@ -76,7 +76,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 9179; MMI_gen 8785 (partly: Override window); 
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
 
 
             /*

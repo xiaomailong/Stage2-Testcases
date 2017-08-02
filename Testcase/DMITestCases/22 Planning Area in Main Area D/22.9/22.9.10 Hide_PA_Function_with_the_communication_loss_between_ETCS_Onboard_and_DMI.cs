@@ -95,7 +95,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7357 (partly: sensitive areas, inoperable);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press at Main area D");
+            DmiActions.ShowInstruction(this, @"Press at Main area D");
 
 
             /*
@@ -114,7 +114,7 @@ namespace Testcase.DMITestCases
             Expected Result: The Planning Information is disappeared from main area D
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press Hide PA button");
+            DmiActions.ShowInstruction(this, @"Press Hide PA button");
             // Call generic Check Results Method
             DmiExpectedResults.The_Planning_Information_is_disappeared_from_main_area_D(this);
 
@@ -126,7 +126,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7358 (partly: sensitive areas, operable);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press at Main area D");
+            DmiActions.ShowInstruction(this, @"Press at Main area D");
 
 
             /*
@@ -135,7 +135,7 @@ namespace Testcase.DMITestCases
             Expected Result: The Planning Information is disappeared from main area D
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press Hide PA button");
+            DmiActions.ShowInstruction(this, @"Press Hide PA button");
             // Call generic Check Results Method
             DmiExpectedResults.The_Planning_Information_is_disappeared_from_main_area_D(this);
 

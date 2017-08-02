@@ -63,7 +63,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7512;(2) MMI_gen 7514;
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Data view’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Data view’ button");
 
 
             /*

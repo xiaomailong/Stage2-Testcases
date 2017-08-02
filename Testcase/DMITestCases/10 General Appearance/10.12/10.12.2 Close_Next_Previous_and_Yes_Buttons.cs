@@ -89,7 +89,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 4393 (partly: delete, MMI_gen 4384 (partly: ETCS-MMI’s function associated to the button));
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Release the pressed button");
+            DmiActions.ShowInstruction(this, @"Release the pressed button");
             // Call generic Check Results Method
             DmiExpectedResults
                 .Verify_the_following_information_The_state_of_pressed_button_is_changed_to_Enabled_state(this);
@@ -111,7 +111,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 4392 (partly: bullet a, close button, NA11); MMI_gen 4396 (partly: close, NA11); 
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Driver ID’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Driver ID’ button");
 
 
             /*
@@ -200,7 +200,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Main window
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press Close button");
+            DmiActions.ShowInstruction(this, @"Press Close button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Main_window(this);
 

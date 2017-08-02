@@ -83,7 +83,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11938 (partly: disable, MMI_gen 11810);                                     MMI_gen 11810 (partly: disable);(2) MMI_gen 11938 (partly: enable);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Brake’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Brake’ button");
 
 
             /*
@@ -92,7 +92,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Settings button
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Settings_button(this);
 
@@ -124,7 +124,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11938 (partly: enable, MMI_gen 11810);                                     MMI_gen 11810 (partly: enable);(2) MMI_gen 11938 (partly: disable);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Brake’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Brake’ button");
 
 
             /*
@@ -133,7 +133,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Settings button
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Settings_button(this);
 
@@ -165,7 +165,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11804;(2) MMI_gen 11818; MMI_gen 4360 (partly: window title);(3) MMI_gen 11816 (partly: MMI_gen 7909);(4) MMI_gen 11816 (MMI_gen 4556 (partly: Close button, Window Title, Button 1, Button2); MMI_gen 11817; MMI_gen 4392 (partly: [Close] NA11);         (5) MMI_gen 11938 (partly: enable, MMI_gen 11810);                                     MMI_gen 11810 (partly: enable); (6) MMI_gen 11816 (partly: MMI_gen 4630, MMI gen 5944 (partly: touch screen));(7) MMI_gen 4350;(8) MMI_gen 4351;(9) MMI_gen 4353;
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Brake’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Brake’ button");
 
 
             /*
@@ -210,7 +210,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Brake window
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Brake_window(this);
 

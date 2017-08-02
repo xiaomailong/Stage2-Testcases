@@ -89,7 +89,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: Requirements:(1) MMI_gen 11823 (partly: MMI_gen 4714 (partly: state 'Selected IF/data value');(2) MMI_gen 11823 (partly: MMI_gen 4714 (partly: previously entered (faulty) value)); MMI_gen 4699 (partly: technical range);(3) MMI_gen 11823 (partly: MMI_gen 9286 (partly: button ‘Enter’, disabled), MMI_gen 12148 (partly: not send packets)); MMI_gen 9310 (partly: [technical range, No OK, button ‘Enter’ disabled]);(4) MMI_gen 11823 (partly: MMI_gen 12148 (MMI_gen 4713 (partly: indication)));(5) MMI_gen 11823 (partly: MMI_gen 12148 (MMI_gen 4713 (partly: red)));
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press the data input field once again (Accept) in the same screen");
+            DmiActions.ShowInstruction(this, @"Press the data input field once again (Accept) in the same screen");
 
 
             /*

@@ -68,7 +68,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 4483 (partly: received incoming acknowledgements); MMI_gen 11232 (partly: MMI_gen 4483 (partly: received incoming acknowledgement));(2) MMI_gen 4495; MMI_gen 4483 (partly: by default); MMI_gen 11232 (partly: MMI_gen 4483 (partly: by default), MMI_gen 4495));(3) MMI_gen 9393 (partly: flashing frame surround the object); MMI_gen 4471 (partly: symbol is surrounded by flashing yellow frame); MMI_gen 4466 (partly: offer an acknowledgement located on total image); MMI_gen 11232 (partly: MMI_gen 9393 (partly: flashing frame surround the object), MMI_gen 4471 (partly: symbol is surrounded by flashing yellow frame), MMI_gen 4466 (partly: offer an acknowledgement located on total image));(4) MMI_gen 9393 (partly: sound ‘Sinfo’); MMI_gen 4483 (partly: sound ‘Sinfo’); MMI_gen 11232 (partly: MMI_gen 9393 (partly: sound ‘Sinfo’), MMI_gen 4483 (partly: sound ‘Sinfo’)); MMI_gen 9516 (partly: acknowledgable information); MMI_gen 12025 (partly: acknowledgable information);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Start’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Start’ button");
 
 
             /*
@@ -219,7 +219,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 4499 (partly: text message step back as non-acknowledgementable);(2) MMI_gen 3200 (partly: Mode acknowledgement, released, MMI_gen 11387 (partly: send events of Released independently to ETCS), MMI_gen 11907 (partly: EVC-101, timestamp));
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Release the pressed area");
+            DmiActions.ShowInstruction(this, @"Release the pressed area");
 
 
             /*

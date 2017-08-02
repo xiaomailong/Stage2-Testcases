@@ -63,7 +63,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8064 (partly: MMI_gen 5189 (partly: touch screen), MMI_gen 5944 (partly: touch screen));(2) MMI_gen 8065;(3) MMI_gen 8064 (partly: half grid array);(4) MMI_gen 8064 (partly: MMI_gen 4640 (partly: only data area), MMI_gen 4720, MMI_gen 4889 (partly: merge label and data));(5) MMI_gen 8064 (party: MMI_gen 4722 (partly: Table 12 <Close> button, Window title, Input field)); MMI_gen 4392 (partly: [Close] NA11);(6) MMI_gen 8064 (partly: MMI_gen 4637 (partly: Main-areas D and F));(7) MMI_gen 8064 (partly: note under the MMI_gen 9412);(8) MMI_gen 8064 (partly: single input field, only data part);(9) MMI_gen 8067; MMI_gen 8064 (partly: MMI_gen 4912);(10) MMI_gen 8064 (partly: MMI_gen 4678);(11) MMI_gen 4350;(12) MMI_gen 4351;(13) MMI_gen 4353;
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Language’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Language’ button");
 
 
             /*
@@ -73,7 +73,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8064 (partly: MMI_gen 4679); (2) MMI_gen 8064 (partly: MMI_gen 4913 (partly: MMI_gen 4384 (partly: sound ‘Click’)));(3) MMI_gen 8064 (partly: MMI_gen 4913 (partly: MMI_gen 4384 (partly: Change to state ‘Pressed’ and immediately back to state ‘Enabled’)));   (4) MMI_gen 8064 (partly: MMI_gen 4913);                      (5) MMI_gen 8066 (partly: entry); MMI_gen 8064 (partly: MMI_gen 4634);(6) MMI_gen 8064 (partly: MMI_gen 4651);(7) MMI_gen 8064 (partly: MMI_gen 4647 (partly: left aligned));
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press and hold every buttons on the dedicate keyboard respectively");
+            DmiActions.ShowInstruction(this, @"Press and hold every buttons on the dedicate keyboard respectively");
 
 
             /*
@@ -83,7 +83,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8064 (partly: MMI_gen 4913 (partly: MMI_gen 4384 (partly: ETCS-MMI’s function associated to the button)));
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Released the pressed button");
+            DmiActions.ShowInstruction(this, @"Released the pressed button");
             // Call generic Check Results Method
             DmiExpectedResults.Verify_the_following_information_The_state_of_button_is_changed_to_Enabled(this);
 
@@ -132,7 +132,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11286;              MMI_gen 8064 (partly: MMI_gen 4682, MMI_gen 4684 (partly: terminated)); MMI_gen 9390 (partly: Language window);                         (2) MMI_gen 8064 (partly: MMI_gen 4681);                    
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Release the pressed area");
+            DmiActions.ShowInstruction(this, @"Release the pressed area");
 
 
             /*

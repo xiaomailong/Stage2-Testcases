@@ -64,7 +64,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9231 (partly: Settings window);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Settings’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Settings’ button");
             // Call generic Check Results Method
             DmiExpectedResults
                 .DMI_displays_Settings_window_Verify_the_following_information_The_Close_button_is_enabled(this);
@@ -77,7 +77,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9231 (partly: Maintenance password);   
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Maintenance’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Maintenance’ button");
 
 
             /*
@@ -87,7 +87,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 8785 (partly: additional DMI technical function, Maintenance password);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Settings_window(this);
 
@@ -110,7 +110,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 8785 (partly: additional DMI technical function, Maintenance);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Settings_window(this);
 
@@ -131,7 +131,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9231 (partly: Settings window);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Settings’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Settings’ button");
             // Call generic Check Results Method
             DmiExpectedResults
                 .DMI_displays_Settings_window_Verify_the_following_information_The_Close_button_is_enabled(this);
@@ -144,7 +144,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 8785 (partly: Settings);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_the_Default_window(this);
 
@@ -155,7 +155,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Settings window
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Settings’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Settings’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Settings_window(this);
 
@@ -166,7 +166,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays System version window
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘System version’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘System version’ button");
 
 
             /*
@@ -176,7 +176,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 8785 (partly: System version);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Settings_window(this);
 
@@ -188,7 +188,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11992;(2) MMI_gen 9231 (partly: Language window);   
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Language’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Language’ button");
 
 
             /*
@@ -198,7 +198,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 8785 (partly: Language);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Settings_window(this);
 
@@ -209,7 +209,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Language window
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Language’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Language’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Language_window(this);
 
@@ -233,7 +233,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11994; (2) MMI_gen 9231 (partly: Volume window);   
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Volume’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Volume’ button");
 
 
             /*
@@ -243,7 +243,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 8785 (partly: Volume);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Settings_window(this);
 
@@ -254,7 +254,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Volume window
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Volume’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Volume’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Volume_window(this);
 
@@ -278,7 +278,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11993; (2) MMI_gen 9231 (partly: Volume window);   
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Brightness’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Brightness’ button");
 
 
             /*
@@ -288,7 +288,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 8785 (partly: Brightness);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Settings_window(this);
 
@@ -299,7 +299,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Brightness window
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Brightness’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Brightness’ button");
 
 
             /*
@@ -321,7 +321,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9231 (partly: System version window);    
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘System version’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘System version’ button");
 
 
             /*
@@ -331,7 +331,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 8785 (partly: System version);Table 71 (Partly: step S5 (System version window));
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Settings_window(this);
 
@@ -343,7 +343,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9231 (partly: Set VBC window);    
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Set VBC’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Set VBC’ button");
 
 
             /*
@@ -353,7 +353,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 8785 (partly: Set VBC);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Settings_window(this);
 
@@ -373,7 +373,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 8785 (partly: Set VBC validation);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Settings_window(this);
 
@@ -403,7 +403,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9231 (partly: Remove VBC window);    
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Remove VBC’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Remove VBC’ button");
 
 
             /*
@@ -413,7 +413,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 8785 (partly: Remove VBC);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Settings_window(this);
 
@@ -433,7 +433,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 8785 (partly: Remove VBC validation);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Settings_window(this);
 
@@ -463,7 +463,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9231 (partly: Brake window);    
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Brake’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Brake’ button");
 
 
             /*
@@ -473,7 +473,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 8785 (partly: additional DMI technical function, Brake);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Settings_window(this);
 
@@ -493,7 +493,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 8785 (partly: additional DMI technical function, System Info);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Settings_window(this);
 
@@ -505,7 +505,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9231 (partly: Set Clock window);    
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Set Clock’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Set Clock’ button");
 
 
             /*
@@ -515,7 +515,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 8785 (partly: additional DMI technical function, Set Clock);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Settings_window(this);
 
@@ -535,7 +535,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11995 (partly: enable language, brightnesss and volume);(2) MMI_gen 11995 (partly: no request send to ETC, settings button is pressed);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Settings’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Settings’ button");
 
 
             /*
@@ -545,7 +545,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11992;(2) MMI_gen 9231 (partly: Language window);   (3) MMI_gen 11995 (partly: no request send to ETC, language button is pressed);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Language’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Language’ button");
 
 
             /*
@@ -554,7 +554,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Settings window
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Settings_window(this);
 
@@ -566,7 +566,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11993;(2) MMI_gen 9231 (partly: Brightness window);   (3) MMI_gen 11995 (partly: no request send to ETC, Brightness button is pressed);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Brightness’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Brightness’ button");
 
 
             /*
@@ -575,7 +575,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Settings window
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Settings_window(this);
 
@@ -587,7 +587,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11994;(2) MMI_gen 9231 (partly: Volume window);   (3) MMI_gen 11995 (partly: no request send to ETC, Volume button is pressed);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Volume’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Volume’ button");
 
 
             /*
@@ -596,7 +596,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Settings window
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Settings_window(this);
 

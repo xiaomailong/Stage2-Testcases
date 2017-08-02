@@ -79,7 +79,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SB mode, level 1
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Enter Driver ID and  selects level 1");
+            DmiActions.ShowInstruction(this, @"Enter Driver ID and  selects level 1");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_in_SB_mode_level_1(this);
 
@@ -133,7 +133,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SB mode, level 1
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Enter Driver ID and  selects level 1");
+            DmiActions.ShowInstruction(this, @"Enter Driver ID and  selects level 1");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_in_SB_mode_level_1(this);
 

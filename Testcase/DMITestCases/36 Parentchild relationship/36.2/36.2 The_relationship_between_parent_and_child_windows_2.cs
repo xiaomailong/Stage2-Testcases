@@ -70,7 +70,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 8785 (partly: Radio Network ID window);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_RBC_contact_window(this);
 
@@ -91,7 +91,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 8785 (partly: RBC data window);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_RBC_contact_window(this);
 
@@ -121,7 +121,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 8785 (partly: RBC contact window);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Main_window(this);
 
@@ -140,7 +140,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 8785 (partly: Data view window);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Default_window(this);
 

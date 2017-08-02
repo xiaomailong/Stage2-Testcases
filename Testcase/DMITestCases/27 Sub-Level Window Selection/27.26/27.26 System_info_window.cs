@@ -82,7 +82,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9391 (partly: [Next], MMI_gen 4381 (partly: change to state ‘Pressed’ as long as remain actuated));(2) MMI_gen 9391 (partly: [Next], MMI_gen 4381 (partly: sound ‘Click’));
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press and hold ‘Next’ button");
+            DmiActions.ShowInstruction(this, @"Press and hold ‘Next’ button");
             // Call generic Check Results Method
             DmiExpectedResults
                 .Verify_the_following_information_1_The_state_of_button_is_changed_to_Pressed_the_border_of_button_is_removed_2_The_sound_Click_is_played_once(this);
@@ -120,7 +120,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 4394 (partly: enabled [previous], disabled [next]); MMI_gen 4396 (partly: Next, NA18.2, Previous, NA18);(2) MMI_gen 4358;
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Release ‘Next’ button");
+            DmiActions.ShowInstruction(this, @"Release ‘Next’ button");
 
 
             /*
@@ -137,7 +137,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Settings window
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Settings_window(this);
 

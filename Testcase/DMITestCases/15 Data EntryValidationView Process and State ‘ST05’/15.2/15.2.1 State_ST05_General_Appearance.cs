@@ -88,7 +88,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Train data window
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Train data’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Train data’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Train_data_window(this);
 
@@ -167,7 +167,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 5728 (partly: default window, EVC-30, before ST05 state)
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Enter and confirm Train running number");
+            DmiActions.ShowInstruction(this, @"Enter and confirm Train running number");
 
 
             /*
@@ -195,7 +195,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 5728 (partly: data view window, before ST05 state, state of buttons);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Data view’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Data view’ button");
 
 
             /*

@@ -79,7 +79,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 138 (partly: remove oldest important message, new of the second group); MMI_gen 135 (partly: 50 entries in total, first group topmost);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press <Down> button until it is disabled");
+            DmiActions.ShowInstruction(this, @"Press <Down> button until it is disabled");
 
 
             /*
@@ -105,7 +105,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 138 (partly: remove oldest auxiliary text message);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press <Down> button until it is disabled");
+            DmiActions.ShowInstruction(this, @"Press <Down> button until it is disabled");
 
 
             /*

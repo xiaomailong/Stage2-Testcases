@@ -97,7 +97,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 167;(2) MMI_gen 11925, MMI_gen 2956, MMI_gen 2959 (partly: state ‘Active’), MMI_gen 11924
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
 
 
             /*
@@ -140,7 +140,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Default window
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Default_window(this);
 
@@ -183,7 +183,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Default window
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Default_window(this);
 
@@ -226,7 +226,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Default window
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Default_window(this);
 
@@ -269,7 +269,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Default window
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Default_window(this);
 
@@ -312,7 +312,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Language window
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Language’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Language’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Language_window(this);
 
@@ -331,7 +331,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 2957 (partly: Deutsch);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
 
 
             /*
@@ -340,7 +340,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Setting window
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Setting’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Setting’ button");
 
 
             /*

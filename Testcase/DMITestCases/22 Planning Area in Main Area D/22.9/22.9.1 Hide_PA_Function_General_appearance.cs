@@ -95,7 +95,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7336 (partly: Hide); MMI_gen 7352 (partly: Set); MMI_gen 2996        (partly: 1st bullet, activation of ‘Hide’ button); MMI_gen 7339         (partly: Update);  (2) MMI_gen 6962 (partly: continuously updated objects in the background);         
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press the ‘NA01’ symbol in sub-area D14");
+            DmiActions.ShowInstruction(this, @"Press the ‘NA01’ symbol in sub-area D14");
 
 
             /*
@@ -105,7 +105,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7336 (partly: Show); MMI_gen 7353 (partly: Reset);     MMI_gen 7349;     MMI_gen 2996        (partly: 1st bullet, activation of ‘Show’ button);   (2) MMI_gen 7350 (partly: symbol NA01);(3) MMI_gen 6962 (partly: updated in the background);(4) MMI_gen 6962 (partly: continuously be updated);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press at sensitive area in main area D");
+            DmiActions.ShowInstruction(this, @"Press at sensitive area in main area D");
 
 
             /*
@@ -115,7 +115,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 6962 (partly: hidden objects);(2) MMI_gen 6962 (partly: continuously updated objects in the background);         
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press the ‘NA01’ symbol in sub-area D14");
+            DmiActions.ShowInstruction(this, @"Press the ‘NA01’ symbol in sub-area D14");
 
 
             /*

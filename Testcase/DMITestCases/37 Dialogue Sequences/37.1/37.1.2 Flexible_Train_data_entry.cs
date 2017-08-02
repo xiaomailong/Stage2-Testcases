@@ -74,7 +74,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Train data window.Note: Please memo the value of each input field to be compare with action step 4
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Train data’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Train data’ button");
 
 
             /*
@@ -149,7 +149,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Main window
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Main_window(this);
 

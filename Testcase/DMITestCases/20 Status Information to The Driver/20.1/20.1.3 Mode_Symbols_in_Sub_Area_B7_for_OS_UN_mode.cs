@@ -73,7 +73,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Level window
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Enter Driver ID and perform brake test");
+            DmiActions.ShowInstruction(this, @"Enter Driver ID and perform brake test");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Level_window(this);
 
@@ -94,7 +94,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Train data window
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Train data’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Train data’ button");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Train_data_window(this);
 
@@ -123,7 +123,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Main window
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Enter and confirm Train running number");
+            DmiActions.ShowInstruction(this, @"Enter and confirm Train running number");
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Main_window(this);
 
@@ -135,7 +135,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 1227 (partly: MO17);                                          (2) MMI_gen 11233 (partly: MO17);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Start’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Start’ button");
 
 
             /*

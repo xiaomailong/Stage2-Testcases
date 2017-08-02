@@ -97,7 +97,7 @@ namespace Testcase.DMITestCases
             Expected Result: The Main window is displayed
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Press ‘Main’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Main’ button");
             // Call generic Check Results Method
             DmiExpectedResults.The_Main_window_is_displayed(this);
 
@@ -151,7 +151,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 6951 (sensitive area);(2) MMI_gen 6951 (partly: Safe-Up-Type, MMI_gen 11387 (partly: send events of Pressed independently to ETCS),  MMI_gen 11907 (partly: EVC-111, timestamp))); MMI_gen 4381 (partly: exit state ‘Pressed’, execute function associated to the button); arn_043#3843; MMI_gen 3200 (partly: TAF, released);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(@"Release ‘Yes’ button");
+            DmiActions.ShowInstruction(this, @"Release ‘Yes’ button");
 
 
             /*
