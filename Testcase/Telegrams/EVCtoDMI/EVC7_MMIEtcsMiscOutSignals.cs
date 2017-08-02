@@ -25,20 +25,21 @@ namespace Testcase.Telegrams.EVCtoDMI
             _pool = pool;
 
             // Set default values
-            _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7alias1B0.Value = 0x0;
-            _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrMAdhesion.Value = 0x64; // 100 in decimal
-            _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrNidStmHs.Value = 0xff; // 255 in decimal
-            _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrNidStmDa.Value = 0xff; // 255 in decimal
-            _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrBrakeTestTimeOut.Value = 0x700; // 1792 in decimal
-            _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrOTrain.Value = 1000000000;
-            _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity1.Value = 0x7c88; // 31880 in decimal
-            _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity2.Value = 0xfc00; // 64512 in decimal
-            _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7SSW1.Value = 0x8000; // 32768 in decimal
-            _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7SSW2.Value = 0x8000; // 32768 in decimal
-            _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7SSW3.Value = 0x8000; // 32768 in decimal
+            _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7alias1B0.Value = 0x2;                   // Brake test not in progress, Level 1
+            _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrMMode.Value = 0x6;                  // Standby mode
+            _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrMAdhesion.Value = 1;                // Non-slippery rail
+            _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrNidStmHs.Value = 255;               // No STM in hot standby
+            _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrNidStmDa.Value = 255;               // No STM
+            _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrBrakeTestTimeOut.Value = 2880;      // 48 hours
+            _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrOTrain.Value = 1000000000;          // Initial position
+            _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity1.Value = 0x7c88;               // 31880 in decimal
+            _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity2.Value = 0xfc00;               // 64512 in decimal
+            _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7SSW1.Value = 0x8000;                    // 32768 in decimal
+            _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7SSW2.Value = 0x8000;                    // 32768 in decimal
+            _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7SSW3.Value = 0x8000;                    // 32768 in decimal
         }
 
-        private static void SetAliasB1()
+        private static void SetAlias1B1()
         {
             var brakeTestStatus = (byte) _brakeTestStatus;
             var level = (byte) _level;
@@ -46,22 +47,98 @@ namespace Testcase.Telegrams.EVCtoDMI
         }
 
         /// <summary>
-        /// EB test in progress
+        /// Current applied adhesion coefficient.
         /// 
-        /// Values
+        /// Values:
+        /// 0 = "Slippery rail" (DEFAULT)
+        /// 1 = "Non-slippery rail"
+        /// 2..255 = "spare"
+        /// </summary>
+        public static byte MMI_OBU_TR_M_ADHESION
+        {
+            get => _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrMAdhesion.Value;
+            set => _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrMAdhesion.Value = (byte)value;
+        }
+
+        /// <summary>
+        /// Current nominal position of the train.
+        /// 
+        /// Values:
+        /// -2147483648 = "Unknown" (DEFAULT)
+        /// 
+        /// Note 1: Currently the ETCS Onboard counts this coordinate from 0 to maximum value. Negative values are not used.
+        /// Note 2: The odometer related variables will only contain bit 0-31 of the source variable.
+        ///         I.e. The variable will wrap from 2147483647 -> 0. The receiver should be able to handle this.
+        /// </summary>
+        public static int MMI_OBU_TR_O_TRAIN
+        {
+            get => _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrOTrain.Value;
+            set => _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrOTrain.Value = (int)value;
+        }
+
+        /// <summary>
+        /// The time until the next brake test is due
+        /// 
+        /// Values:
+        /// 0 = "Brake Test mandatory"
+        /// 1..64800 = "Remaining time in minutes to brake test timeout"
+        /// 64801..65534 = "spare"
+        /// 65535 = "brake test will never timeout"
+        /// </summary>
+        public static ushort BRAKE_TEST_TIMEOUT
+        {
+            get => _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrBrakeTestTimeOut.Value;
+            set => _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrBrakeTestTimeOut.Value = (ushort)value;
+        }
+
+        /// <summary>
+        /// NID_NTC in "Data Available" (DA) state.
+        /// 
+        /// Values:
+        /// 0..254 = "NID_NTC of the related STM"
+        /// 255 = "no STM" (DEFAULT)
+        /// 
+        /// Note: Used NID_NTC values shall be coded as defined the same as for variable "NID_NTC" in Subset-026, ch.7.5.1.98
+        /// </summary>
+        public static byte OBU_TR_NID_STM_DA
+        {
+            get => _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrNidStmDa.Value;
+            set => _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrNidStmDa.Value = (byte)value;
+        }
+
+        /// <summary>
+        /// NID_NTC in "Hot Standby" (HS) state.
+        /// 
+        /// Values:
+        /// 0..254 = "NID_NTC of the related STM"
+        /// 255 = "no STM" (DEFAULT)
+        /// 
+        /// Note: Used NID_NTC values shall be coded as defined the same as for variable "NID_NTC" in Subset-026, ch.7.5.1.98
+        /// </summary>
+        public static byte OBU_TR_NID_STM_HS
+        {
+            get => _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrNidStmHs.Value;
+            set => _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrNidStmHs.Value = (byte)value;
+        }
+
+        /// <summary>
+        /// ETCS EB test status
+        /// 
+        /// Values:
         /// 0 = BrakeTestNotInProgress
         /// 1 = BrakeTestInProgress
         /// 2 = BrakeTestSuccessful
         /// 3 = BrakeTestFailed
         /// 4 = UnableToStartBrakeTest
         /// 5 = Aborted
+        /// 6..255 = "spare"
         /// </summary>
         public static MMI_OBU_TR_BRAKETEST_STATUS MMI_OBU_TR_BrakeTest_Status
         {
             set
             {
                 _brakeTestStatus = value;
-                SetAliasB1();
+                SetAlias1B1();
             }
         }
 
@@ -82,7 +159,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             set
             {
                 _level = value;
-                SetAliasB1();
+                SetAlias1B1();
             }
         }
 
