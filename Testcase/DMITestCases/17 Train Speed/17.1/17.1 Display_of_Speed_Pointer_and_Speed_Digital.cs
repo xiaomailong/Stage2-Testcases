@@ -33,7 +33,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// N/A
     /// </summary>
-    public class Display_of_Speed_Pointer_and_Speed_Digital : TestcaseBase
+    public class TC_12_1_Display_of_Speed_Pointer_and_Speed_Digital : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -65,8 +65,9 @@ namespace Testcase.DMITestCases
             The speed pointer and the speed digital are displayed in area B1 with constantly movement and indicated the train speed at 25 km/h.
             */
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 25;
-            WaitForVerification("Is the DMI speed needle displaying 25 km/h?");
-
+            WaitForVerification("1. Is the speed pointer showing 25 km/h?" + Environment.NewLine + 
+                                "2. Is the speed digital showing 25?" + Environment.NewLine +
+                                "3. Are the speed pointer and speed digital both coloured light grey?");
             /*
             Test Step 2
             Action: Stop the train
@@ -75,7 +76,7 @@ namespace Testcase.DMITestCases
             
             // Call generic Action Method
             DmiActions.Stop_the_train(this);
-            WaitForVerification("Is the DMI speed needle displaying 0 km/h?");      
+            WaitForVerification("Are the speed pointer and speed digital showing 0?");     
 
             /*
             Test Step 3
