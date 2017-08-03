@@ -76,7 +76,7 @@ namespace Testcase.DMITestCases
             DmiActions.Activate_Cabin_1(this);
             DmiActions.Send_SB_Mode(this);
 
-            DmiExpectedResults.SB_mode_displayed(this);
+            DmiExpectedResults.SB_Mode_displayed(this);
 
             #endregion
 
@@ -106,10 +106,11 @@ namespace Testcase.DMITestCases
                                (2) MMI_gen 9474; MMI_gen 3375;
             */
 
+            DmiActions.ShowInstruction(this, "Press DMI Sub Area C1");
             DmiExpectedResults.SR_Mode_Ack_pressed_and_released(this);        
             
             DmiExpectedResults.SR_Mode_Ack_requested(this);
-            DmiExpectedResults.SB_mode_displayed(this);
+            DmiExpectedResults.SB_Mode_displayed(this);
 
             #endregion
 
@@ -126,11 +127,12 @@ namespace Testcase.DMITestCases
                                (4) MMI_gen 110     (partly: MO09);
             */
 
+            DmiActions.ShowInstruction(this, "Press and hold DMI Sub Area 19");
             DmiExpectedResults.SR_Mode_Ack_pressed_and_hold(this);
 
             DmiActions.Send_SR_Mode(this);
             
-            DmiExpectedResults.DMI_displays_in_SR_mode_Level_1(this);
+            DmiExpectedResults.SR_Mode_displayed(this);
 
             #endregion
 
@@ -139,18 +141,16 @@ namespace Testcase.DMITestCases
             Action: Force the train into FS mode by moving the train forward passing BG1
             Expected Result: Verify the following information, 
             Use the log file to confirm that DMI received the EVC-7 with [MMI_ETCS_MISC_OUT_SIGNALS.OBU_TR_M_MODE] = 0 in order to display the Full Supervision symbol.
-            */
-
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
-
-            /*
             The Full Supervision symbol (MO11) is displayed in area B7
             Test Step Comment: (1) MMI_gen 11084 (partly: current ETCS mode);                                                 
                                (2) MMI_gen 110 (partly: MO11);
             */
 
-            //VISUAL CHECK - The Full Supervision symbol (MO11) is displayed in area B7            
-            EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.FullSupervision;
+            DmiActions.Drive_train_forward_passing_BG1(this);
+            DmiActions.Send_FS_Mode(this);
+
+            DmiExpectedResults.DMI_changes_from_SR_to_FS_mode(this);
+
             #endregion
 
             #region Test Step 6
@@ -162,19 +162,19 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11084 (partly: current ETCS mode);                            
                                (2) MMI_gen 110 (partly: MO04);
             */
-            // Call generic Action Method
-            DmiActions.Force_the_train_into_TR_mode_by_moving_the_train_forward_to_position_of_EOA(this);
+            
+            DmiActions.Force_train_forward_overpassing_EOA(this);
+            DmiActions.Send_TR_Mode(this);
+            DmiActions.Apply_Brakes(this);
+
+            DmiExpectedResults.TR_Mode_displayed(this);
+
             #endregion
 
             #region Test Step 7
             /*
             Action: Perform the following procedure,
             Wait until the train is stopped. Stop the train (set speed to 0 and set direction to nuetral)
-            */
-
-            DmiActions.Stop_the_train(this);
-
-            /*
             Press at sub-area C9
             Expected Result: Verify the following information,
             Use the log file to confirm that DMI received the EVC-8 with [MMI_DRIVER_MESSAGE (EVC-8).MMI_Q_TEXT] = 266 in order to display the acknowledgement for Trip symbol.
@@ -182,17 +182,15 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11233;                             
                                (2) MMI_gen 1227 (partly: MO05);
             */
-            EVC8_MMIDriverMessage.Initialise(this);
-            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
-            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
-            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
-            EVC8_MMIDriverMessage.MMI_Q_TEXT = 266;
-            EVC8_MMIDriverMessage.Send();
 
-            // VISUAL CHECK in order to confirm that TR Mode acknowledgement symbol (MO05) is displayed on DMI area C1.
+            DmiActions.Stop_the_train(this);
+            DmiActions.Send_TR_Mode_Ack(this);
 
-            // DMI still displays TR mode
-            EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.Trip;
+            DmiExpectedResults.TR_Mode_Ack_requested(this);
+            DmiExpectedResults.TR_Mode_displayed(this);
+
+            DmiActions.ShowInstruction(this,"Press DMI Sub Area C9");
+            DmiExpectedResults.Brake_Intervention_symbol_pressed_and_released(this);
 
             #endregion
 
@@ -266,7 +264,7 @@ namespace Testcase.DMITestCases
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
 
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_SR_mode_Level_1(this);
+            DmiExpectedResults.SR_Mode_displayed(this);
             #endregion
 
             /*

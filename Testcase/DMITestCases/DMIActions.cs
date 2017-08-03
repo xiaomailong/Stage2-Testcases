@@ -89,7 +89,7 @@ namespace Testcase.DMITestCases
         /// <summary>
         /// Description: Activate cabin 1
         /// Used in:
-        ///     Step 1 in TC-ID: 15.1.1
+        ///     Step 1 in TC-ID: 15.1.1 in 20.1.1
         /// </summary>
         public static void Activate_Cabin_1(SignalPool pool)
         {
@@ -104,7 +104,7 @@ namespace Testcase.DMITestCases
         /// <summary>
         /// Description: SB mode sent to be displayed on th DMI
         /// Used in:
-        ///     Step 1 in TC-ID: 15.1.1
+        ///     Step 1 in TC-ID: 15.1.1 in 20.1.1
         /// </summary>
         /// <param name="pool"></param>
         public static void Send_SB_Mode(SignalPool pool)
@@ -115,7 +115,7 @@ namespace Testcase.DMITestCases
         /// <summary>
         /// Description: SR mode acknowledgement request sent to the driver
         /// Used in:
-        ///     Step 2 in TC-ID: 15.1.1
+        ///     Step 2 in TC-ID: 15.1.1 in 20.1.1
         /// </summary>
         /// <param name="pool"></param>
         public static void Send_SR_Mode_Ack(SignalPool pool)
@@ -130,12 +130,49 @@ namespace Testcase.DMITestCases
         /// <summary>
         /// Description: SR mode sent to be displayed on th DMI
         /// Used in:
-        ///     Step 1 in TC-ID: 15.1.1
+        ///     Step 1 in TC-ID: 15.1.1 in 20.1.1
         /// </summary>
         /// <param name="pool"></param>
         public static void Send_SR_Mode(SignalPool pool)
         {
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
+        }
+
+        /// <summary>
+        /// Description: FS mode sent to be displayed on th DMI
+        /// Used in:
+        ///     Step 5 in TC-ID: 15.1.1 in 20.1.1
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Send_FS_Mode(SignalPool pool)
+        {
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
+        }
+
+        /// <summary>
+        /// Description: TR mode sent to be displayed on th DMI
+        /// Used in:
+        ///     Step 6 in TC-ID: 15.1.1 in 20.1.1
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Send_TR_Mode(SignalPool pool)
+        {
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Trip;
+        }
+
+        /// <summary>
+        /// Description: TR mode acknowledgement request sent to the driver
+        /// Used in:
+        ///     Step 7 in TC-ID: 15.1.1 in 20.1.1
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Send_TR_Mode_Ack(SignalPool pool)
+        {
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 266;     // "#3 MO05 (Ack Train Trip)" 
+            EVC8_MMIDriverMessage.Send();
         }
 
         /// <summary>
@@ -265,7 +302,7 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
-        /// Description: Stop the train
+        /// Description: Apply Brakes
         /// Used in:
         ///     Step 16 in TC-ID: 5.10 in 10.10 Screen Layout: Button States
         ///     Step 2 in TC-ID: 12.1 in 17.1 Display of Speed Pointer and Speed Digital
@@ -311,6 +348,21 @@ namespace Testcase.DMITestCases
         ///     Step 5 in TC-ID: 36.3.2 in 39.3.2 Restrictive Target with Movement Authority Changed in Full Supervision Mode
         ///     Step 5 in TC-ID: 36.3.3 in 39.3.3 Restrictive Target with Speed Monitoring in Limited Supervision Mode
         ///     Step 5 in TC-ID: 36.3.4 in 39.3.4 Restrictive Target with Movement Authority Changed in Limited Supervision Mode
+        ///     Step 6 in TC-ID: 15.1.1 in 20.1.1
+        /// </summary>
+        public static void Apply_Brakes(SignalPool pool)
+        {
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 0;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 260; // "#3 ST01 (Brake intervention)"
+            EVC8_MMIDriverMessage.Send();
+        }
+
+        /// <summary>
+        /// Description: Stop the train
+        /// Used in:
+        ///     Step 7 in TC-ID: 15.1.1 in 20.1.1
         /// </summary>
         public static void Stop_the_train(SignalPool pool)
         {
@@ -437,8 +489,9 @@ namespace Testcase.DMITestCases
         ///     Step 2 in TC-ID: 17.3 in 22.3 Planning Area: PA Distance Scale
         ///     Step 2 in TC-ID: 17.5.1 in 22.5.1 PA Gradient Profile:  General appearance
         ///     Step 1 in TC-ID: 18.3 in 23.3 Reversing Allowance: Sub-Area C6
+        ///     Step 5 in TC-ID: 15.1.1 in 20.1.1
         /// </summary>
-        public static void Drive_the_train_forward_passing_BG1(SignalPool pool)
+        public static void Drive_train_forward_passing_BG1(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -665,11 +718,9 @@ namespace Testcase.DMITestCases
         ///     Step 2 in TC-ID: 12.3.10 in 17.3.10 Speed Pointer: Colour of speed pointer in TR mode and PT mode
         ///     Step 6 in TC-ID: 15.1.1 in 20.1.1 Mode Symbols in Sub-Area B7 for SB, SR, FS, TR, PT, SH, NL and SF mode
         /// </summary>
-        public static void Force_the_train_into_TR_mode_by_moving_the_train_forward_to_position_of_EOA(SignalPool pool)
+        public static void Force_train_forward_overpassing_EOA(SignalPool pool)
         {
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Trip;
-            EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.Trip;
-            throw new NotImplementedException();
+
         }
 
         /// <summary>

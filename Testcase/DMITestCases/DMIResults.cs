@@ -29,7 +29,7 @@ namespace Testcase.DMITestCases
         /// <summary>
         /// Description: SR Mode acknowledgement is requested on DMI area C1
         /// Used in:
-        ///     Step 2 in TC-ID: 15.1.1
+        ///     Step 2 in TC-ID: 15.1.1 in 20.1.1
         /// </summary>
         public static void SR_Mode_Ack_requested(SignalPool pool)
         {
@@ -39,7 +39,7 @@ namespace Testcase.DMITestCases
         /// <summary>
         /// Description: SR mode Acknowledgement symbol on DMI area C1 is pressed and released.
         /// Used in:
-        ///     Step 3 in TC-ID: 15.1.1
+        ///     Step 3 in TC-ID: 15.1.1 in 20.1.1
         /// </summary>
         public static void SR_Mode_Ack_pressed_and_released(SignalPool pool)
         {
@@ -51,7 +51,7 @@ namespace Testcase.DMITestCases
         /// <summary>
         /// Description: SR mode Acknowledgement symbol on DMI area C1 is pressed and hold
         /// Used in:
-        ///     Step 4 in TC-ID: 15.1.1
+        ///     Step 4 in TC-ID: 15.1.1 in 20.1.1
         /// </summary>
         public static void SR_Mode_Ack_pressed_and_hold(SignalPool pool)
         {
@@ -63,7 +63,37 @@ namespace Testcase.DMITestCases
             
         }
 
+        /// <summary>
+        /// Description: DMI displays TR mode
+        /// Used in:
+        ///     Step 6 in TC-ID: 15.1.1 in 20.1.1
+        /// </summary>
+        public static void TR_Mode_displayed(SignalPool pool)
+        {
+            EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.Trip;
+            pool.WaitForAcknowledgement("Is the Trip mode symbol (MO04) displayed in area B7?");
+        }
 
+        /// <summary>
+        /// Description: TR Mode acknowledgement is requested on DMI area C1
+        /// Used in:
+        ///     Step 2 in TC-ID: 15.1.1 in 20.1.1
+        /// </summary>
+        public static void TR_Mode_Ack_requested(SignalPool pool)
+        {
+            pool.WaitForAcknowledgement("Is the acknowledgement for Train Trip symbol (MO05) displayed in area C1?");
+        }
+
+        /// <summary>
+        /// Description: Brake intervention symbol on DMI area C9 is pressed and released.
+        /// Used in:
+        ///     Step 7 in TC-ID: 15.1.1 in 20.1.1
+        /// </summary>
+        public static void Brake_Intervention_symbol_pressed_and_released(SignalPool pool)
+        {
+            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
+            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
+        }
 
         /// <summary>
         /// Description: DMI displays Settings window
@@ -287,34 +317,6 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
-        /// Description: DMI displays in SR mode, level 1
-        /// Used in:
-        ///     Step 11 in TC-ID: 5.3 in 10.3 Screen Layout: Frames
-        ///     Step 13 in TC-ID: 10.2.6 in 15.2.6 State 'ST05': Settings window and windows in setting menu
-        ///     Step 2 in TC-ID: 13.1.1 in 18.1.1 Distance to Target  Bar: General Appearance
-        ///     Step 2 in TC-ID: 13.1.4 in 18.1.4 Distance to Target Digital when the communication between ETCS  Onboard and DMI is lost
-        ///     Step 2 in TC-ID: 13.1.5 in 18.1.5 Distance to Target in RV mode
-        ///     Step 2 in TC-ID: 17.1.1 in 22.1.1 Planning Area: General Appearance
-        ///     Step 2 in TC-ID: 17.1.2 in 22.1.2 Planning Area is suppressed in Level 1 and OS mode
-        ///     Step 2 in TC-ID: 17.2.1 in 22.2.1 Planning Area-Layering: PASP and PA Distance scale
-        ///     Step 1 in TC-ID: 17.3 in 22.3 Planning Area: PA Distance Scale
-        ///     Step 1 in TC-ID: 17.5.1 in 22.5.1 PA Gradient Profile:  General appearance
-        ///     Step 1 in TC-ID: 17.7.2 in 22.7.2 PA Speed Profile (PASP): Information updating
-        ///     Step 2 in TC-ID: 17.9.1 in 22.9.1 Hide PA Function: General appearance
-        ///     Step 1 in TC-ID: 17.9.2 in 22.9.2 Hide PA Function is configured ‘ON’ with reboot DMI
-        ///     Step 2 in TC-ID: 17.9.5 in 22.9.6 Hide PA Function is configured ‘TIMER’ with reboot DMI
-        ///     Step 1 in TC-ID: 17.9.10 (Default Configuration) in 22.9.10 Hide PA Function with the communication loss between ETCS Onboard and DMI
-        ///     Step 2 in TC-ID: 17.10.2 in 22.10.2 Zoom PA Function with Scale Up
-        ///     Step 2 in TC-ID: 17.10.3 in 22.10.3 Zoom PA Function with Scale Down
-        ///     Step 2 in TC-ID: 17.10.4 in 22.10.4 Zoom PA Function with the communication loss between ETCS Onboard and DMI
-        ///     Step 1 in TC-ID: 18.4.1 in 23.4.1 Geographical Position: General presentation
-        /// </summary>
-        public static void DMI_displays_in_SR_mode_level_1(SignalPool pool)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
         /// Description: DMI displays Main window with enabled ‘Start’ button
         /// Used in:
         ///     Step 1 in TC-ID: 5.10 in 10.10 Screen Layout: Button States
@@ -446,20 +448,58 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
-        /// Description: DMI displays in SR mode, Level 1
+        /// Description: DMI displays SR mode
         /// Used in:
         ///     Step 9 in TC-ID: 6.1 in 11.1 Acknowledgements: General
+        ///     Step 4 in TC-ID: 15.1.1 in 20.1.1 Mode Symbols in Sub-Area B7 for SB, SR, FS, TR, PT, SH, NL and SF mode
         ///     Step 9 in TC-ID: 15.1.1 in 20.1.1 Mode Symbols in Sub-Area B7 for SB, SR, FS, TR, PT, SH, NL and SF mode
         ///     Step 6 in TC-ID: 17.9.8 in 22.9.8 Hide PA Function is configured ‘STORED’ with reactivated Cabin A
         ///     Step 12 in TC-ID: 18.4.1 in 23.4.1 Geographical Position: General presentation
         ///     Step 3 in TC-ID: 18.4.3 in 23.4.3 Geographical Position: Additional requirements
         ///     Step 3 in TC-ID: 20.1 in 25.1 Driver’s Action: Main window
         ///     Step 1 in TC-ID: 26.1 in 1 Introduction
+        ///     Step 11 in TC-ID: 5.3 in 10.3 Screen Layout: Frames
+        ///     Step 13 in TC-ID: 10.2.6 in 15.2.6 State 'ST05': Settings window and windows in setting menu
+        ///     Step 2 in TC-ID: 13.1.1 in 18.1.1 Distance to Target  Bar: General Appearance
+        ///     Step 2 in TC-ID: 13.1.4 in 18.1.4 Distance to Target Digital when the communication between ETCS  Onboard and DMI is lost
+        ///     Step 2 in TC-ID: 13.1.5 in 18.1.5 Distance to Target in RV mode
+        ///     Step 2 in TC-ID: 17.1.1 in 22.1.1 Planning Area: General Appearance
+        ///     Step 2 in TC-ID: 17.1.2 in 22.1.2 Planning Area is suppressed in Level 1 and OS mode
+        ///     Step 2 in TC-ID: 17.2.1 in 22.2.1 Planning Area-Layering: PASP and PA Distance scale
+        ///     Step 1 in TC-ID: 17.3 in 22.3 Planning Area: PA Distance Scale
+        ///     Step 1 in TC-ID: 17.5.1 in 22.5.1 PA Gradient Profile:  General appearance
+        ///     Step 1 in TC-ID: 17.7.2 in 22.7.2 PA Speed Profile (PASP): Information updating
+        ///     Step 2 in TC-ID: 17.9.1 in 22.9.1 Hide PA Function: General appearance
+        ///     Step 1 in TC-ID: 17.9.2 in 22.9.2 Hide PA Function is configured ‘ON’ with reboot DMI
+        ///     Step 2 in TC-ID: 17.9.5 in 22.9.6 Hide PA Function is configured ‘TIMER’ with reboot DMI
+        ///     Step 1 in TC-ID: 17.9.10 (Default Configuration) in 22.9.10 Hide PA Function with the communication loss between ETCS Onboard and DMI
+        ///     Step 2 in TC-ID: 17.10.2 in 22.10.2 Zoom PA Function with Scale Up
+        ///     Step 2 in TC-ID: 17.10.3 in 22.10.3 Zoom PA Function with Scale Down
+        ///     Step 2 in TC-ID: 17.10.4 in 22.10.4 Zoom PA Function with the communication loss between ETCS Onboard and DMI
+        ///     Step 1 in TC-ID: 18.4.1 in 23.4.1 Geographical Position: General presentation
+        ///     Step 2 in TC-ID: 12.7.1 in 17.7.1 Release Speed: At Sub-area B2 and B6
+        ///     Step 2 in TC-ID: 17.11 in 22.11 Handle at least 31 PA Speed Profile Segments
+        ///     Step 2 in TC-ID: 17.12 in Handle at least 31 PA Gradient Profile Segments
+        ///     Step 2 in TC-ID: 17.4.17 in 22.4.17 PA Track Condition: First symbol prevails over the next coming symbol
+        ///     Step 2 in TC-ID: 29.1 in 29.1 UTC time and offset time(by driver)
+        ///     Step 2 in TC-ID: 29.2 in 29.2 UTC time and offset time(by using EVC-3)
+        ///     Step 1 in TC-ID: 17.5.2 in 22.5.2 PA Gradient Profile:  Display of many PA Gradient Profile
+        ///     Step 1 in TC-ID: 17.5.3 in 22.5.3 PA Gradient Profile:  Information updating
+        ///     Step 1 in TC-ID: 17.5.4 in 22.5.4 PA Gradient Profile:  Invalid Information Ignoring
+        ///     Step 2 in TC-ID: 17.9.3 in 22.9.3 Hide PA Function is configured ‘OFF’ with reboot DMI
+        ///     Step 2 in TC-ID: 17.9.4 in 22.9.4 Hide PA Function is configured ‘STORED’ with reboot DMI
+        ///     Step 2 in TC-ID: 17.9.6 in 22.9.5 Hide PA Function is configured ‘ON’ with reactivated Cabin A
+        ///     Step 2 in TC-ID: 17.9.7 in 22.9.7 Hide PA Function is configured ‘OFF’ with reactivated Cabin A
+        ///     Step 6 in TC-ID: 17.9.7 in 22.9.7 Hide PA Function is configured ‘OFF’ with reactivated Cabin A
+        ///     Step 2 in TC-ID: 17.9.9 in 22.9.9 Hide PA Function is configured ‘TIMER’ with reactivated Cabin A
+        ///     Step 6 in TC-ID: 17.9.9 in 22.9.9 Hide PA Function is configured ‘TIMER’ with reactivated Cabin A
+        ///     Step 10 in TC-ID: 17.9.11 in 22.9.11 Hide PA Function configured ‘STORED’ with re-activate cabin
+        ///     Step 16 in TC-ID: 17.9.11 in 22.9.11 Hide PA Function configured ‘STORED’ with re-activate cabin
         /// </summary>
-        public static void DMI_displays_in_SR_mode_Level_1(SignalPool pool)
+        public static void SR_Mode_displayed(SignalPool pool)
         {
             EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.StaffResponsible;
-            throw new NotImplementedException();
+            pool.WaitForAcknowledgement("Is the Staff Responsible mode symbol (MO9) displayed in area B7?");
         }
 
         /// <summary>
@@ -724,20 +764,6 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
-        /// Description: DMI displays in FS mode, Level 1
-        /// Used in:
-        ///     Step 1 in TC-ID: 11.2 in 16.2 Sound of Warning Speed Status and Over Speed Status in TSM
-        ///     Step 1 in TC-ID: 12.5.4 in 17.5.4 Circular Speed Gauge removal when received an invalid value of EVC-1 and EVC-7
-        ///     Step 1 in TC-ID: 14.4 in 19.4 Toggling function: Default state reset for Configuration ‘ON’ when communication loss
-        ///     Step 1 in TC-ID: 14.5 in 19.5 Toggling function: Default state reset for Configuration ‘OFF’ when communication loss
-        ///     Step 1 in TC-ID: 18.7 in 23.7 Tunnel stopping area track condition
-        /// </summary>
-        public static void DMI_displays_in_FS_mode_Level_1(SignalPool pool)
-        {
-            EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.FullSupervision;
-        }
-
-        /// <summary>
         /// Description: The train is at standstill
         /// Used in:
         ///     Step 2 in TC-ID: 12.1 in 17.1 Display of Speed Pointer and Speed Digital
@@ -775,7 +801,7 @@ namespace Testcase.DMITestCases
         ///     Step 21 in TC-ID: 5.10 in 10.10 Screen Layout: Button States
         ///     Step 1 in TC-ID: 17.4.17 in 22.4.17 PA Track Condition: First symbol prevails over the next coming symbol
         /// </summary>
-        public static void SB_mode_displayed(SignalPool pool)
+        public static void SB_Mode_displayed(SignalPool pool)
         {
             EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.StandBy;
             pool.WaitForAcknowledgement("Is the Stand By mode symbol (MO13) displayed in area B7?");
@@ -1176,6 +1202,11 @@ namespace Testcase.DMITestCases
         ///     Step 1 in TC-ID: 12.3.10 in 17.3.10 Speed Pointer: Colour of speed pointer in TR mode and PT mode
         ///     Step 1 in TC-ID: 12.7.4 in 17.7.4 Release Speed Digital: Release speed removal when received an invalid value of EVC-1 or EVC-7
         ///     Step 2 in TC-ID: 18.4.1 in 23.4.1 Geographical Position: General presentation
+        ///     Step 1 in TC-ID: 11.2 in 16.2 Sound of Warning Speed Status and Over Speed Status in TSM
+        ///     Step 1 in TC-ID: 12.5.4 in 17.5.4 Circular Speed Gauge removal when received an invalid value of EVC-1 and EVC-7
+        ///     Step 1 in TC-ID: 14.4 in 19.4 Toggling function: Default state reset for Configuration ‘ON’ when communication loss
+        ///     Step 1 in TC-ID: 14.5 in 19.5 Toggling function: Default state reset for Configuration ‘OFF’ when communication loss
+        ///     Step 1 in TC-ID: 18.7 in 23.7 Tunnel stopping area track condition
         /// </summary>
         public static void DMI_displays_in_FS_mode_level_1(SignalPool pool)
         {
@@ -1209,38 +1240,12 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
-        /// Description: DMI is displayed in SR mode, level 1
-        /// Used in:
-        ///     Step 2 in TC-ID: 12.7.1 in 17.7.1 Release Speed: At Sub-area B2 and B6
-        ///     Step 2 in TC-ID: 17.11 in 22.11 Handle at least 31 PA Speed Profile Segments
-        ///     Step 2 in TC-ID: 17.12 in Handle at least 31 PA Gradient Profile Segments
-        /// </summary>
-        public static void DMI_is_displayed_in_SR_mode_level_1(SignalPool pool)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
         /// Description: Train is standstill
         /// Used in:
         ///     Step 5 in TC-ID: 12.7.1 in 17.7.1 Release Speed: At Sub-area B2 and B6
         ///     Step 9 in TC-ID: 17.8 in 22.8 PA Indication Marker: Sub-Area D7
         /// </summary>
         public static void Train_is_standstill(SignalPool pool)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Description: DMI changes from SR mode to FS mode
-        /// Used in:
-        ///     Step 1 in TC-ID: 12.12 in 17.12 Slip Indication
-        ///     Step 1 in TC-ID: 12.13 in 17.13 Slide Indication
-        ///     Step 1 in TC-ID: 12.14 in 17.14 Slip and Slide are configure to 1 at the same time
-        ///     Step 1 in TC-ID: 12.15 in 17.15 Slip and Slide are configure to 0 at the same time
-        ///     Step 2 in TC-ID: 17.3 in 22.3 Planning Area: PA Distance Scale
-        /// </summary>
-        public static void DMI_changes_from_SR_mode_to_FS_mode(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1285,10 +1290,17 @@ namespace Testcase.DMITestCases
         /// Used in:
         ///     Step 3 in TC-ID: 13.1.1 in 18.1.1 Distance to Target  Bar: General Appearance
         ///     Step 3 in TC-ID: 13.1.5 in 18.1.5 Distance to Target in RV mode
+        ///     Step 1 in TC-ID: 12.12 in 17.12 Slip Indication
+        ///     Step 1 in TC-ID: 12.13 in 17.13 Slide Indication
+        ///     Step 1 in TC-ID: 12.14 in 17.14 Slip and Slide are configure to 1 at the same time
+        ///     Step 1 in TC-ID: 12.15 in 17.15 Slip and Slide are configure to 0 at the same time
+        ///     Step 2 in TC-ID: 17.3 in 22.3 Planning Area: PA Distance Scale
+        ///     Step 5 in TC-ID: 15.1.1 in 20.1.1
         /// </summary>
         public static void DMI_changes_from_SR_to_FS_mode(SignalPool pool)
         {
-            throw new NotImplementedException();
+            EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.FullSupervision;
+            pool.WaitForAcknowledgement("Is the SR mode symbol deleted and replaced by FS mode symbol (MO11) on DMI area B7");
         }
 
         /// <summary>
@@ -1854,31 +1866,6 @@ namespace Testcase.DMITestCases
             throw new NotImplementedException();
         }
 
-
-        /// <summary>
-        /// Description: Mode changes to SR mode , L1
-        /// Used in:
-        ///     Step 2 in TC-ID: 17.4.17 in 22.4.17 PA Track Condition: First symbol prevails over the next coming symbol
-        ///     Step 2 in TC-ID: 29.1 in 29.1 UTC time and offset time(by driver)
-        ///     Step 2 in TC-ID: 29.2 in 29.2 UTC time and offset time(by using EVC-3)
-        /// </summary>
-        public static void Mode_changes_to_SR_mode_L1(SignalPool pool)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Description: DMI displays SR mode, level 1
-        /// Used in:
-        ///     Step 1 in TC-ID: 17.5.2 in 22.5.2 PA Gradient Profile:  Display of many PA Gradient Profile
-        ///     Step 1 in TC-ID: 17.5.3 in 22.5.3 PA Gradient Profile:  Information updating
-        ///     Step 1 in TC-ID: 17.5.4 in 22.5.4 PA Gradient Profile:  Invalid Information Ignoring
-        /// </summary>
-        public static void DMI_displays_SR_mode_level_1(SignalPool pool)
-        {
-            throw new NotImplementedException();
-        }
-
         /// <summary>
         /// Description: Verify that the value of PA Gradient Profile is not change, still display PA Gradient Profiles value = 11 and 22
         /// Used in:
@@ -1964,17 +1951,6 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
-        /// Description: DMI displays in SR mode and level 1
-        /// Used in:
-        ///     Step 2 in TC-ID: 17.9.3 in 22.9.3 Hide PA Function is configured ‘OFF’ with reboot DMI
-        ///     Step 2 in TC-ID: 17.9.4 in 22.9.4 Hide PA Function is configured ‘STORED’ with reboot DMI
-        /// </summary>
-        public static void DMI_displays_in_SR_mode_and_level_1(SignalPool pool)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
         /// Description: The DMI displays the default window
         /// Used in:
         ///     Step 1 in TC-ID: 17.9.6 in 22.9.5 Hide PA Function is configured ‘ON’ with reactivated Cabin A
@@ -1983,20 +1959,6 @@ namespace Testcase.DMITestCases
         ///     Step 1 in TC-ID: 17.9.9 in 22.9.9 Hide PA Function is configured ‘TIMER’ with reactivated Cabin A
         /// </summary>
         public static void The_DMI_displays_the_default_window(SignalPool pool)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Description: The DMI displays in SR mode, level 1
-        /// Used in:
-        ///     Step 2 in TC-ID: 17.9.6 in 22.9.5 Hide PA Function is configured ‘ON’ with reactivated Cabin A
-        ///     Step 2 in TC-ID: 17.9.7 in 22.9.7 Hide PA Function is configured ‘OFF’ with reactivated Cabin A
-        ///     Step 6 in TC-ID: 17.9.7 in 22.9.7 Hide PA Function is configured ‘OFF’ with reactivated Cabin A
-        ///     Step 2 in TC-ID: 17.9.9 in 22.9.9 Hide PA Function is configured ‘TIMER’ with reactivated Cabin A
-        ///     Step 6 in TC-ID: 17.9.9 in 22.9.9 Hide PA Function is configured ‘TIMER’ with reactivated Cabin A
-        /// </summary>
-        public static void The_DMI_displays_in_SR_mode_level_1(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2091,17 +2053,6 @@ namespace Testcase.DMITestCases
         ///     Step 14 in TC-ID: 17.9.11 in 22.9.11 Hide PA Function configured ‘STORED’ with re-activate cabin
         /// </summary>
         public static void Train_is_at_standstillThe_Planning_area_is_disappeared_from_DMI(SignalPool pool)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Description: DMI displays in SR mode, leve1
-        /// Used in:
-        ///     Step 10 in TC-ID: 17.9.11 in 22.9.11 Hide PA Function configured ‘STORED’ with re-activate cabin
-        ///     Step 16 in TC-ID: 17.9.11 in 22.9.11 Hide PA Function configured ‘STORED’ with re-activate cabin
-        /// </summary>
-        public static void DMI_displays_in_SR_mode_leve1(SignalPool pool)
         {
             throw new NotImplementedException();
         }
