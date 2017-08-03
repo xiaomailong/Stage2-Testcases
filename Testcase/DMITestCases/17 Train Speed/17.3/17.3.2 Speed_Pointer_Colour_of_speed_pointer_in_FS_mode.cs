@@ -13,6 +13,8 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.XML;
+using Testcase.Telegrams.EVCtoDMI;
 
 namespace Testcase.DMITestCases
 {
@@ -20,14 +22,18 @@ namespace Testcase.DMITestCases
     /// 17.3.2 Speed Pointer: Colour of speed pointer in FS mode
     /// TC-ID: 12.3.2
     /// 
-    /// This test case verifies the colour of speed pointer which display refer to received packet EVC-1 while the train is running in each supervision status and speed monitoring for FS mode and verifies the sound S2 which played when received MMI_M_WARNING = 6.
+    /// This test case verifies the colour of speed pointer which display refer to received packet EVC-1 while the train is running
+    /// in each supervision status and speed monitoring for FS mode and verifies the sound S2 which played when received
+    /// MMI_M_WARNING = 6.
     /// 
     /// Tested Requirements:
     /// MMI_gen 6299 (partly: FS mode); MMI_gen 11921 (partly: MMI_M_WARNING = 6);
     /// 
     /// Scenario:
-    /// 1.Drive the train forward pass BG1 at position 100m. Then, verify the display of speed pointer refer to received packet EVC-1.BG1: Packet 12, 21 and 27 (Entering FS)
-    /// 2.Continue to drive the train forward with the specify speed. Then, verify the display of speed pointer refer to received packet EVC-1.
+    /// 1. Drive the train forward pass BG1 at position 100 m. Verify the display of speed pointer refer to received packet EVC-1.
+    ///     BG1: Packet 12, 21 and 27 (Entering FS)
+    /// 2. Continue to drive the train forward with the specified speed.
+    ///     Verify the display of speed pointer refer to received packet EVC-1.
     /// 
     /// Used files:
     /// 12_3_2.tdg, 12_3_2_a.xml, 12_3_2_b.xml, 12_3_2_c.xml, 12_3_2_d.xml, 12_3_2_e.xml, 12_3_2_f.xml
@@ -41,6 +47,7 @@ namespace Testcase.DMITestCases
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
+            DmiActions.Complete_SoM_L1_FS(this);
         }
 
         public override void PostExecution()
@@ -59,37 +66,39 @@ namespace Testcase.DMITestCases
 
             /*
             Test Step 1
-            Action: Drive the train forward with speed = 40km/h pass BG1
-            Expected Result: DMI displays in FS mode, level 1.Verify the following information,(1)   Use the log file to confirm that DMI received the packet information EVC-1 and EVC-7 with following variables,(EVC-7) OBU_TR_M_MODE = 0 (Full Supervision)(EVC-1) MMI_M_WARNING = 0 (Status = NoS, Supervision = CSM)(EVC-1) MMI_V_PERMITTED = 1111 (40km/h)(2)   The speed pointer display in grey colour
+            Action: Drive the train forward with speed = 40 km/h pass BG1
+            Expected Result:
+            DMI displays in FS mode, level 1
+            The speed pointer display in grey colour
             Test Step Comment: (1) MMI_gen 6299 (partly: OBU_TR_M_MODE, MMI_M_WARNING, train speed in relation to permitted speed MMI_V_PERMITTED, FS mode in CSM supervision);(2) MMI_gen 6299 (partly: colour of speed pointer, FS mode in CSM supervision);
             */
-
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 40;
+            XML_12_3_2_a.Send(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. Is the speed pointer displaying 40 km/h?" + Environment.NewLine +
+                                "2. Is the speed pointer grey?");
 
             /*
             Test Step 2
             Action: Increase the train speed to 41 km/h
-            Expected Result: Verify the following information,(1)   Use the log file to confirm that DMI received the packet information EVC-1 with the following condition,MMI_M_WARNING = 8 (Status = OvS, Supervision = CSM) while the value of MMI_V_TRAIN = 1139 (41 km/h) which greater than MMI_V_PERMITTED(2)   The speed pointer display in orange colour
+            Expected Result: The speed pointer display in orange colour
             Test Step Comment: (1) MMI_gen 6299 (partly: MMI_M_WARNING, train speed in relation to permitted speed MMI_V_PERMITTED, FS mode in CSM supervision);(2) MMI_gen 6299 (partly: colour of speed pointer, FS mode in CSM supervision);
             */
-            // Call generic Action Method
-            DmiActions.Increase_the_train_speed_to_41_kmh(this);
-            // Call generic Check Results Method
-            DmiExpectedResults
-                .Verify_the_following_information_1_Use_the_log_file_to_confirm_that_DMI_received_the_packet_information_EVC_1_with_the_following_condition_MMI_M_WARNING_8_Status_OvS_Supervision_CSM_while_the_value_of_MMI_V_TRAIN_1139_41_kmh_which_greater_than_MMI_V_PERMITTED2_The_speed_pointer_display_in_orange_colour(this);
-
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 41;
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. Is the speed pointer displaying 41 km/h?" + Environment.NewLine +
+                                "2. Is the speed pointer orange?");
 
             /*
             Test Step 3
-            Action: Increase the train speed to 45 km/h.Note: dV_warning_max is defined in chapter 3 of [SUBSET-026]
-            Expected Result: Verify the following information,(1)   Use the log file to confirm that DMI received the packet information EVC-1 with the following condition,MMI_M_WARNING = 4 (Status = WaS, Supervision = CSM) while the value of MMI_V_TRAIN = 1250 (45 km/h) which greater than MMI_V_PERMITTED but lower than MMI_V_INTERVENTION(2)   The speed pointer display in orange colour
+            Action: Increase the train speed to 45 km/h.
+            Expected Result: MI_M_WARNING = 4 (Status = WaS, Supervision = CSM) while the value of MMI_V_TRAIN = 1250 (45 km/h) which greater than MMI_V_PERMITTED but lower than MMI_V_INTERVENTION(2)   The speed pointer display in orange colour
             Test Step Comment: (1) MMI_gen 6299 (partly: MMI_M_WARNING, train speed in relation to permitted speed MMI_V_PERMITTED, FS mode in CSM supervision);(2) MMI_gen 6299 (partly: colour of speed pointer, FS mode in CSM supervision);
             */
-            // Call generic Action Method
-            DmiActions.Increase_the_train_speed_to_45_kmh_Note_dV_warning_max_is_defined_in_chapter_3_of_SUBSET_026(this);
-            // Call generic Check Results Method
-            DmiExpectedResults
-                .Verify_the_following_information_1_Use_the_log_file_to_confirm_that_DMI_received_the_packet_information_EVC_1_with_the_following_condition_MMI_M_WARNING_4_Status_WaS_Supervision_CSM_while_the_value_of_MMI_V_TRAIN_1250_45_kmh_which_greater_than_MMI_V_PERMITTED_but_lower_than_MMI_V_INTERVENTION2_The_speed_pointer_display_in_orange_colour(this);
-
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 45;
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. Is the speed pointer displaying 45 km/h?" + Environment.NewLine +
+                                "2. Is the speed pointer orange?");
 
             /*
             Test Step 4

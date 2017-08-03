@@ -29,6 +29,30 @@ namespace Testcase.DMITestCases
     public class DmiActions
     {
         /// <summary>
+        /// Forces DMI into completed SoM, L1, FS Mode. Displays Default window.
+        /// No user input required.
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Complete_SoM_L1_FS(SignalPool pool)
+        {
+            EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.GoToIdle;
+            EVC0_MMIStartATP.Send();
+
+            // Set train running number, cab 1 active, and other defaults
+            Activate_Cabin_1(pool);
+
+            // Set driver ID
+            Set_Driver_ID(pool, "1234");
+
+            // Set to level 1 and SR mode
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
+
+            // Enable standard buttons including Start, and display Default window.
+            FinishedSoM_Default_Window(pool);
+        }
+
+        /// <summary>
         /// Forces DMI into completed SoM, L1, SR Mode. Displays Default window.
         /// No user input required.
         /// </summary>
@@ -517,29 +541,6 @@ namespace Testcase.DMITestCases
         ///     Step 1 in TC-ID: 35.2 in 38.2 NTC System Status Messages
         /// </summary>
         public static void Power_on_the_system_and_activate_the_cabin(SignalPool pool)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Description: Increase the train speed to 41 km/h
-        /// Used in:
-        ///     Step 2 in TC-ID: 12.3.2 in 17.3.2 Speed Pointer: Colour of speed pointer in FS mode
-        ///     Step 2 in TC-ID: 12.3.3 in 17.3.3 Speed Pointer: Colour of speed pointer in SR mode
-        /// </summary>
-        public static void Increase_the_train_speed_to_41_kmh(SignalPool pool)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Description: Increase the train speed to 45 km/h.Note: dV_warning_max is defined in chapter 3 of [SUBSET-026]
-        /// Used in:
-        ///     Step 3 in TC-ID: 12.3.2 in 17.3.2 Speed Pointer: Colour of speed pointer in FS mode
-        ///     Step 3 in TC-ID: 12.3.3 in 17.3.3 Speed Pointer: Colour of speed pointer in SR mode
-        /// </summary>
-        public static void
-            Increase_the_train_speed_to_45_kmh_Note_dV_warning_max_is_defined_in_chapter_3_of_SUBSET_026(SignalPool pool)
         {
             throw new NotImplementedException();
         }
