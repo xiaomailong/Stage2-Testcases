@@ -30,18 +30,19 @@ namespace Testcase.Telegrams.EVCtoDMI
             _pool = pool;
 
             // Set default values
-            _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7alias1B0.Value = 0x2;                   // Brake test not in progress, Level 1
-            _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrMMode.Value = 0x6;                  // Standby mode
-            _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrMAdhesion.Value = 1;                // Non-slippery rail
-            _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrNidStmHs.Value = 255;               // No STM in hot standby
-            _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrNidStmDa.Value = 255;               // No STM
-            _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrBrakeTestTimeOut.Value = 2880;      // 48 hours
-            _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrOTrain.Value = 1000000000;          // Initial position
-            _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity1.Value = 0x7c88;               // 31880 in decimal
-            _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity2.Value = 0xfc00;               // 64512 in decimal
-            _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7SSW1.Value = 0x8000;                    // 32768 in decimal
-            _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7SSW2.Value = 0x8000;                    // 32768 in decimal
-            _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7SSW3.Value = 0x8000;                    // 32768 in decimal
+            _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7alias1B0.Value = 0x02;              // Brake test not in progress, Level 1
+            _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7alias1B1.Value = 0x00;              // No EB test in progress, no EB, no radio
+            _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrMMode.Value = 0x6;              // Standby mode
+            _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrMAdhesion.Value = 1;            // Non-slippery rail
+            _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrNidStmHs.Value = 255;           // No STM in hot standby
+            _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrNidStmDa.Value = 255;           // No STM
+            _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrBrakeTestTimeOut.Value = 2880;  // 48 hours
+            _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrOTrain.Value = 1000000000;      // Initial position
+            _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity1.Value = 0xFFFF;           // All validity bits set
+            _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity2.Value = 0xFFFF;           // All validity bits set
+            _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7SSW1.Value = 0x8000;                // 32768 in decimal
+            _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7SSW2.Value = 0x8000;                // 32768 in decimal
+            _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7SSW3.Value = 0x8000;                // 32768 in decimal
         }
 
         private static void SetAlias1B1()
