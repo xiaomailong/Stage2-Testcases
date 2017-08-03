@@ -30,8 +30,8 @@ namespace Testcase.Telegrams.EVCtoDMI
             _pool = pool;
 
             // Set default values
-            _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7alias1B0.Value = 0x02;              // Brake test not in progress, Level 1
-            _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7alias1B1.Value = 0x00;              // No EB test in progress, no EB, no radio
+            _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7alias1B0.Value = 0x00;              // No EB test in progress, no EB, no radio
+            _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7alias1B1.Value = 0x02;              // Brake test not in progress, Level 1
             _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrMMode.Value = 0x6;              // Standby mode
             _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrMAdhesion.Value = 1;            // Non-slippery rail
             _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrNidStmHs.Value = 255;           // No STM in hot standby
@@ -45,19 +45,18 @@ namespace Testcase.Telegrams.EVCtoDMI
             _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7SSW3.Value = 0x8000;                // 32768 in decimal
         }
 
-        private static void SetAlias1B1()
+        private static void SetAlias1B0()
         {
-
-            _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7alias1B1.Value =
+            _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7alias1B0.Value =
                 (byte)(_trainEBTestInProgress << 6 | _trainEBStatus << 5 | _radioStatusInformation << 4 |
                         _stmInHsStateExists << 3 | _stmInDaStateExists << 2);
         }
 
-        private static void SetAlias1B0()
+        private static void SetAlias1B1()
         {
             var etcsBrakeTestStatus = (byte)_etcsBrakeTestStatus;
             var level = (byte)_level;
-            _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7alias1B0.Value = (byte)(etcsBrakeTestStatus << 4 | level);
+            _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7alias1B1.Value = (byte)(etcsBrakeTestStatus << 4 | level);
         }
 
         /// <summary>
@@ -149,7 +148,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             set
             {
                 _trainEBTestInProgress = value;
-                SetAlias1B1();
+                SetAlias1B0();
             }
         }
 
@@ -167,7 +166,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             set
             {
                 _trainEBStatus = value;
-                SetAlias1B1();
+                SetAlias1B0();
             }
         }
 
@@ -185,7 +184,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             set
             {
                 _radioStatusInformation = value;
-                SetAlias1B1();
+                SetAlias1B0();
             }
         }
 
@@ -203,7 +202,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             set
             {
                 _stmInHsStateExists = value;
-                SetAlias1B1();
+                SetAlias1B0();
             }
         }
 
@@ -221,7 +220,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             set
             {
                 _stmInDaStateExists = value;
-                SetAlias1B1();
+                SetAlias1B0();
             }
         }
 
@@ -244,7 +243,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             set
             {
                 _etcsBrakeTestStatus = value;
-                SetAlias1B0();
+                SetAlias1B1();
             }
         }
 
@@ -267,7 +266,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             set
             {
                 _level = value;
-                SetAlias1B0();
+                SetAlias1B1();
             }
         }
 
