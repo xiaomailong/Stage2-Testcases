@@ -15,6 +15,7 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
 using Testcase.Telegrams;
 using Testcase.Telegrams.EVCtoDMI;
+using Testcase.Telegrams.DMItoEVC;
 using Testcase.TemporaryFunctions;
 using static Testcase.Telegrams.EVCtoDMI.Variables;
 
@@ -83,6 +84,8 @@ namespace Testcase.DMITestCases
 
         /// <summary>
         /// Description: Activate cabin 1
+        /// Used in:
+        ///     Step 1 in TC-ID: 15.1.1
         /// </summary>
         public static void Activate_Cabin_1(SignalPool pool)
         {
@@ -91,6 +94,44 @@ namespace Testcase.DMITestCases
             EVC2_MMIStatus.MMI_M_ADHESION = 0x0;
             EVC2_MMIStatus.MMI_M_OVERRIDE_EOA = false;
             EVC2_MMIStatus.Send();
+           
+        }
+
+        /// <summary>
+        /// Description: SB mode sent to be displayed on th DMI
+        /// Used in:
+        ///     Step 1 in TC-ID: 15.1.1
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Send_SB_Mode(SignalPool pool)
+        {
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
+        }
+
+        /// <summary>
+        /// Description: SR mode acknowledgement request sent to the driver
+        /// Used in:
+        ///     Step 2 in TC-ID: 15.1.1
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Send_SR_Mode_Ack(SignalPool pool)
+        {
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 263;     // "#3 MO10 (Ack Staff Responsible Mode)"
+            EVC8_MMIDriverMessage.Send();
+        }
+
+        /// <summary>
+        /// Description: SR mode sent to be displayed on th DMI
+        /// Used in:
+        ///     Step 1 in TC-ID: 15.1.1
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Send_SR_Mode(SignalPool pool)
+        {
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
         }
 
         /// <summary>

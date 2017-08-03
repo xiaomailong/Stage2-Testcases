@@ -13,8 +13,10 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
-using Testcase.Telegrams;
+using Testcase.DMITestCases;
+using Testcase.Telegrams.DMItoEVC;
 using Testcase.Telegrams.EVCtoDMI;
+using static Testcase.Telegrams.EVCtoDMI.Variables;
 using Testcase.TemporaryFunctions;
 
 namespace Testcase.DMITestCases
@@ -35,7 +37,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 15_1_1.tdg
     /// </summary>
-    public class Mode_Symbols_in_Sub_Area_B7_for_SB_SR_FS_TR_PT_SH_NL_and_SF_mode : TestcaseBase
+    public class TC_15_1_1_ETCS_Mode_Symbols : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -68,23 +70,19 @@ namespace Testcase.DMITestCases
                                (2) MMI_gen 110 (partly: MO13);
             */
 
-            // EVC-1 & EVC-7 telegram are automatically sent to the DMI. However, we want to make sure that EVC-7 is sent with OBU_TR_M_MODE = 6
-            EVC7_MMIEtcsMiscOutSignals.Initialise(this);
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
+            EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.GoToIdle;
+            EVC0_MMIStartATP.Send();
 
-            // Check feedback on DMI to verify SB Mode ie. EVC-102 [MMI_STATUS_REPORT.MMI_M_MODE_READBACK] = 6
-            EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.StandBy;
+            DmiActions.Activate_Cabin_1(this);
+            DmiActions.Send_SB_Mode(this);
+
+            DmiExpectedResults.SB_mode_displayed(this);
+
             #endregion
 
             #region Test Step 2
             /*
             Action: Perform SoM in Level1 until the ‘Start’ button is pressed
-            */
-
-            // Performing L1 SoM which results with a SR Mode acknowledgement request ie. EVC-8 [MMI_DRIVER_MESSAGE (EVC-8).MMI_Q_TEXT] = 263
-            TestcaseRunner.AddTestcase(typeof(SoM_Level1));
-
-            /*
             Expected Result: Verify the following information,The acknowledgement for Staff Responsible symbol (MO10) is displayed in area C1.
             Use the log file to confirm that DMI received the EVC-8 with [MMI_DRIVER_MESSAGE (EVC-8).MMI_Q_TEXT] = 263 
             in order to display the acknowledgement for Staff Responsible symbol
@@ -92,23 +90,15 @@ namespace Testcase.DMITestCases
                                (2) MMI_gen 11233;
             */
 
-            EVC8_MMIDriverMessage.MMI_Q_TEXT = 263;
-            EVC8_MMIDriverMessage.Send();
-            // VISUAL CHECK in order to confirm that SR Mode acknowledgement symbol (MO10) is displayed on DMI area C1.
+            DmiActions.Send_SR_Mode_Ack(this);
+
+            DmiExpectedResults.SR_Mode_Ack_requested(this);
 
             #endregion
 
             #region Test Step 3
             /*
             Action: Press the symbol MO10 in sub-area C1
-            */
-
-            // Symbol MO10 on DMI area C1 is pressed and released 
-            //ie. EVC-111 sent twice with different value of MMI_T_BUTTONEVENT and MMI_Q_BUTTON (1 = pressed, 0 = released)
-            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
-            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
-
-            /*
             Expected Result: Verify the following information,The symbol MO10 is disappear from sub-area C1 and re-appear again.
             Use the log file to confirm that DMI sends EVC-111 twice with different value of MMI_T_BUTTONEVENT and MMI_Q_BUTTON (1 = pressed, 0 = released).
             Note: DMI still display in SB mode, Level 1
@@ -116,24 +106,16 @@ namespace Testcase.DMITestCases
                                (2) MMI_gen 9474; MMI_gen 3375;
             */
 
-            // VISUAL CHECK in order to confirm that the symbol MO10 disappears from sub-area C1 and re-appears again.
-
-            // DMI still displays SB mode
-            EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.StandBy;
-            #endregion
+            DmiExpectedResults.SR_Mode_Ack_pressed_and_released(this);        
             
+            DmiExpectedResults.SR_Mode_Ack_requested(this);
+            DmiExpectedResults.SB_mode_displayed(this);
+
+            #endregion
+
             #region Test Step 4
             /*
             Action: Press the symbol MO10 in sub-area C1 for 2 second or upper.Then, release the pressed area
-            */
-
-            //While pressing DMI C1 area..
-            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
-
-            //..then release it
-            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
-
-            /*
             Expected Result: Verify the following information,While the MO10 is pressed, the opacity of the symbol is decreased to 50%
             The symbol ‘MO10’ is displayed as a Safe Delay-Type button
             DMI received the EVC-7 with [MMI_ETCS_MISC_OUT_SIGNALS.OBU_TR_M_MODE] = 2 in order to display the Staff Responsible symbol.
@@ -144,15 +126,12 @@ namespace Testcase.DMITestCases
                                (4) MMI_gen 110     (partly: MO09);
             */
 
-            // VISUAL CHECK in order to confirm that the opacity of the symbol is decreased to 50%.
+            DmiExpectedResults.SR_Mode_Ack_pressed_and_hold(this);
 
-            // SR Mode is enable ie. DMI received the EVC-7 with [MMI_ETCS_MISC_OUT_SIGNALS.OBU_TR_M_MODE] = 2
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
-
-            // VISUAL CHECK - The Staff Responsible symbol (MO9) is displayed in area B7
+            DmiActions.Send_SR_Mode(this);
+            
             DmiExpectedResults.DMI_displays_in_SR_mode_Level_1(this);
-            // OR
-            EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.StaffResponsible;
+
             #endregion
 
             #region Test Step 5
@@ -193,7 +172,7 @@ namespace Testcase.DMITestCases
             Wait until the train is stopped. Stop the train (set speed to 0 and set direction to nuetral)
             */
 
-            EVC1_MMIDynamic.MMI_V_TRAIN = 0;
+            DmiActions.Stop_the_train(this);
 
             /*
             Press at sub-area C9
@@ -203,6 +182,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11233;                             
                                (2) MMI_gen 1227 (partly: MO05);
             */
+            EVC8_MMIDriverMessage.Initialise(this);
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 266;
             EVC8_MMIDriverMessage.Send();
 
@@ -219,6 +202,7 @@ namespace Testcase.DMITestCases
             */
             EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
             EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
+            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.TrainTripAck;
             /*
             Expected Result: Verify the following information,
             Use the log file to confirm that DMI received the EVC-7 with [MMI_ETCS_MISC_OUT_SIGNALS.OBU_TR_M_MODE] = 8 in order to display the Post Trip symbol.
@@ -236,8 +220,8 @@ namespace Testcase.DMITestCases
             #region Test Step 9
             /*
             Action: Force the train into SR mode by the steps below:
-            Press ‘Main’ button.
-            */
+            Press ‘Main’ button.            
+            */           
             // Main Window is displayed ie. EVC-30 [MMI_ENABLE_REQUEST.MMI_NID_WINDOW] = 1 ("Main Window") is sent to the DMI.
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
             var standardflags = EVC30_MMIRequestEnable.EnabledRequests.EnableDoppler |
@@ -260,28 +244,81 @@ namespace Testcase.DMITestCases
             /* 
             Press ‘Start’ button ie. EVC-152 [MMI_DRIVER_ACTION.MMI_M_DRIVER_ACTION] = 19 ("Start selected") is received.
             */
+            EVC101_MMIDriverRequest.Initialise(this);
+            EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.Start;
+            EVC152_MMIDriverAction.Initialise(this);
+            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.StartSelected;
+
+            // SR Mode Ack is displayed
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 263;     // "#3 MO10 (Ack Staff Responsible Mode)"
+            EVC8_MMIDriverMessage.Send();
             
-            /*
-            Acknowledge SR mode
-            Expected Result: DMI displays in SR mode, Level 1
-            */
+            //Acknowledge SR mode
+            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
+
+            //..then release it
+            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
+
+            //Expected Result: DMI displays in SR mode, Level 1
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
+
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_in_SR_mode_Level_1(this);
             #endregion
 
             /*
             Test Step 10
-            Action: Force the train into SH mode by the steps below:Press ‘Main’ button.Press and hold ‘Shunting’ button for 2 second or upper.Release the pressed area
-            Expected Result: Verify the following information,Use the log file to confirm that DMI received the EVC-7 with [MMI_ETCS_MISC_OUT_SIGNALS.OBU_TR_M_MODE] = 3 in order to display the Shunting symbol.The Shunting symbol (MO01) is displayed in area B7
-            Test Step Comment: (1) MMI_gen 11084 (partly: current ETCS mode);                                    (2) MMI_gen 110 (partly: MO01);
+            Action: Force the train into SH mode by the steps below:
+            */
+            //Press ‘Main’ button.
+
+            // Main Window is displayed ie. EVC-30 [MMI_ENABLE_REQUEST.MMI_NID_WINDOW] = 1 ("Main Window") is sent to the DMI.
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
+            standardflags = EVC30_MMIRequestEnable.EnabledRequests.EnableDoppler |
+                            EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter |
+                            EVC30_MMIRequestEnable.EnabledRequests.StartBrakeTest |
+                            EVC30_MMIRequestEnable.EnabledRequests.SetLocalOffset |
+                            EVC30_MMIRequestEnable.EnabledRequests.RemoveVBC |
+                            EVC30_MMIRequestEnable.EnabledRequests.SetVBC |
+                            EVC30_MMIRequestEnable.EnabledRequests.SystemVersion |
+                            EVC30_MMIRequestEnable.EnabledRequests.Brightness |
+                            EVC30_MMIRequestEnable.EnabledRequests.Volume |
+                            EVC30_MMIRequestEnable.EnabledRequests.NonLeading |
+                            EVC30_MMIRequestEnable.EnabledRequests.Shunting |
+                            EVC30_MMIRequestEnable.EnabledRequests.TrainRunningNumber |
+                            EVC30_MMIRequestEnable.EnabledRequests.Level |
+                            EVC30_MMIRequestEnable.EnabledRequests.DriverID |
+                            EVC30_MMIRequestEnable.EnabledRequests.Start;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = standardflags;
+            EVC30_MMIRequestEnable.Send();
+            /*
+            Press and hold ‘Shunting’ button for 2 second or upper.
+
+            Release the pressed area
+
+            Expected Result: Verify the following information,
+            Use the log file to confirm that DMI received the EVC-7 with [MMI_ETCS_MISC_OUT_SIGNALS.OBU_TR_M_MODE] = 3 in order to display the Shunting symbol.
+            The Shunting symbol (MO01) is displayed in area B7
+            Test Step Comment: (1) MMI_gen 11084 (partly: current ETCS mode);                                    
+                               (2) MMI_gen 110 (partly: MO01);
             */
 
 
             /*
             Test Step 11
-            Action: Force the train into NL mode by the steps below:Press ‘Main’ button. Press and hold ‘Exit Shunting’ button for 2 second or upper.Release the pressed area.Enter the Driver ID with no performing brake test when Driver ID window is displayed.If the Level window is display, select and confirm Level1. Then, enter the train data and Train running number.Force the simulation to ‘Non-leading’. Press and hold ‘Non-leading’ button for 2 second or upper.Release the pressed area
-            Expected Result: Verify the following information,Use the log file to confirm that DMI received the EVC-7 with [MMI_ETCS_MISC_OUT_SIGNALS.OBU_TR_M_MODE] = 11 in order to display the Non-leading.The Non-leading symbol (MO12) is displayed in area B7
-            Test Step Comment: (1) MMI_gen 11084 (partly: current ETCS mode);                                   (2) MMI_gen 110 (partly: MO12);
+            Action: Force the train into NL mode by the steps below:Press ‘Main’ button. 
+            Press and hold ‘Exit Shunting’ button for 2 second or upper.Release the pressed area.
+            Enter the Driver ID with no performing brake test when Driver ID window is displayed.
+            If the Level window is display, select and confirm Level1. Then, enter the train data and Train running number.
+            Force the simulation to ‘Non-leading’. Press and hold ‘Non-leading’ button for 2 second or upper.Release the pressed area
+            Expected Result: Verify the following information,
+            Use the log file to confirm that DMI received the EVC-7 with [MMI_ETCS_MISC_OUT_SIGNALS.OBU_TR_M_MODE] = 11 in order to display the Non-leading.
+            The Non-leading symbol (MO12) is displayed in area B7
+            Test Step Comment: (1) MMI_gen 11084 (partly: current ETCS mode);                                   
+                               (2) MMI_gen 110 (partly: MO12);
             */
 
 

@@ -17,6 +17,7 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
 using Testcase.Telegrams.EVCtoDMI;
+using Testcase.Telegrams.DMItoEVC;
 
 #endregion
 
@@ -43,6 +44,11 @@ namespace Testcase
             EVC22_MMICurrentRBC.Initialise(this);
             EVC30_MMIRequestEnable.Initialise(this);
             EVC34_MMISystemVersion.Initialise(this);
+
+            EVC101_MMIDriverRequest.Initialise(this);
+            EVC102_MMIStatusReport.Initialise(this);
+            EVC111_MMIDriverMessageAck.Initialise(this);
+            EVC152_MMIDriverAction.Initialise(this);
 
             // Initialises all EVC packets that contain dynamic arrays
             SITR.SMDCtrl.ETCS1.SelectLevel.Value = 0x8;

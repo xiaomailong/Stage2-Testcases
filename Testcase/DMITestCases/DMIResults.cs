@@ -15,6 +15,8 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
 using Testcase.Telegrams;
 using Testcase.Telegrams.EVCtoDMI;
+using Testcase.Telegrams.DMItoEVC;
+using static Testcase.Telegrams.EVCtoDMI.Variables;
 using Testcase.TemporaryFunctions;
 
 namespace Testcase.DMITestCases
@@ -24,6 +26,45 @@ namespace Testcase.DMITestCases
     /// </summary>
     public static class DmiExpectedResults
     {
+        /// <summary>
+        /// Description: SR Mode acknowledgement is requested on DMI area C1
+        /// Used in:
+        ///     Step 2 in TC-ID: 15.1.1
+        /// </summary>
+        public static void SR_Mode_Ack_requested(SignalPool pool)
+        {
+            pool.WaitForAcknowledgement("Is the acknowledgement for Staff Responsible symbol (MO10) displayed in area C1?");
+        }
+
+        /// <summary>
+        /// Description: SR mode Acknowledgement symbol on DMI area C1 is pressed and released.
+        /// Used in:
+        ///     Step 3 in TC-ID: 15.1.1
+        /// </summary>
+        public static void SR_Mode_Ack_pressed_and_released(SignalPool pool)
+        {
+            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
+            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
+            pool.WaitForAcknowledgement("Has the MO10 symbol disappeared from sub-area C1 and re-appeared again?");
+        }
+
+        /// <summary>
+        /// Description: SR mode Acknowledgement symbol on DMI area C1 is pressed and hold
+        /// Used in:
+        ///     Step 4 in TC-ID: 15.1.1
+        /// </summary>
+        public static void SR_Mode_Ack_pressed_and_hold(SignalPool pool)
+        {
+            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
+            pool.Wait_Realtime(2000);
+            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
+            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.StaffResponsibleModeAck;
+            pool.WaitForAcknowledgement("Has the MO10 symbol opacity decreased to 50%?");
+            
+        }
+
+
+
         /// <summary>
         /// Description: DMI displays Settings window
         /// Used in:
@@ -145,18 +186,6 @@ namespace Testcase.DMITestCases
         ///     Step 8 in TC-ID: 1.6 in 6.6 Adjustment of Sound Volume
         /// </summary>
         public static void Cabin_A_is_deactivated(SignalPool pool)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Description: DMI displays in SB mode
-        /// Used in:
-        ///     Step 1 in TC-ID: 1.8 in 6.8 Accleration/Decleration interval -4.0m/s2 to +4.0 m/s2
-        ///     Step 21 in TC-ID: 5.10 in 10.10 Screen Layout: Button States
-        ///     Step 1 in TC-ID: 17.4.17 in 22.4.17 PA Track Condition: First symbol prevails over the next coming symbol
-        /// </summary>
-        public static void DMI_displays_in_SB_mode(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -292,20 +321,6 @@ namespace Testcase.DMITestCases
         ///     Step 3 in TC-ID: 22.20.2 in 27.20.2 Override window in SB mode
         /// </summary>
         public static void DMI_displays_Main_window_with_enabled_Start_button(SignalPool pool)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Description: DMI disiplays in SB mode
-        /// Used in:
-        ///     Step 6 in TC-ID: 5.10 in 10.10 Screen Layout: Button States
-        ///     Step 8 in TC-ID: 5.10 in 10.10 Screen Layout: Button States
-        ///     Step 11 in TC-ID: 5.10 in 10.10 Screen Layout: Button States
-        ///     Step 17 in TC-ID: 5.10 in 10.10 Screen Layout: Button States
-        ///     Step 19 in TC-ID: 5.10 in 10.10 Screen Layout: Button States
-        /// </summary>
-        public static void DMI_disiplays_in_SB_mode(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -747,13 +762,23 @@ namespace Testcase.DMITestCases
         /// Description: DMI displays SB mode
         /// Used in:
         ///     Step 1 in TC-ID: 12.2.2 in 17.2.2 Speed Dial: Display Train maxinum speed
+        ///     Step 1 in TC-ID: 15.1.1
         ///     Step 1 in TC-ID: 29.1 in 29.1 UTC time and offset time(by driver)
         ///     Step 1 in TC-ID: 29.2 in 29.2 UTC time and offset time(by using EVC-3)
         ///     Step 1 in TC-ID: 29.3 in 29.3 UTC time and offset time(By VAP acting as NTP server)
+        ///     Step 6 in TC-ID: 5.10 in 10.10 Screen Layout: Button States
+        ///     Step 8 in TC-ID: 5.10 in 10.10 Screen Layout: Button States
+        ///     Step 11 in TC-ID: 5.10 in 10.10 Screen Layout: Button States
+        ///     Step 17 in TC-ID: 5.10 in 10.10 Screen Layout: Button States
+        ///     Step 19 in TC-ID: 5.10 in 10.10 Screen Layout: Button States
+        ///     Step 1 in TC-ID: 1.8 in 6.8 Accleration/Decleration interval -4.0m/s2 to +4.0 m/s2
+        ///     Step 21 in TC-ID: 5.10 in 10.10 Screen Layout: Button States
+        ///     Step 1 in TC-ID: 17.4.17 in 22.4.17 PA Track Condition: First symbol prevails over the next coming symbol
         /// </summary>
-        public static void DMI_displays_SB_mode(SignalPool pool)
+        public static void SB_mode_displayed(SignalPool pool)
         {
-            throw new NotImplementedException();
+            EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.StandBy;
+            pool.WaitForAcknowledgement("Is the Stand By mode symbol (MO13) displayed in area B7?");
         }
 
         /// <summary>
