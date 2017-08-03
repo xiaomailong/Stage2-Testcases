@@ -75,7 +75,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.Driver_performs_SoM_to_SR_mode(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_is_displayed_in_SR_mode_level_1(this);
+            DmiExpectedResults.SR_Mode_displayed(this);
 
 
             /*
@@ -84,7 +84,7 @@ namespace Testcase.DMITestCases
             Expected Result: The DMI changes from SR to FS mode
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_passing_BG1(this);
+            DmiActions.Drive_train_forward_passing_BG1(this);
 
 
             /*

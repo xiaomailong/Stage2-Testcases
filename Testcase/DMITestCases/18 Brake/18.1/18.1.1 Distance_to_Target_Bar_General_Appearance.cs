@@ -75,7 +75,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.Driver_performs_SoM_to_SR_mode(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_SR_mode_level_1(this);
+            DmiExpectedResults.SR_Mode_displayed(this);
 
 
             /*

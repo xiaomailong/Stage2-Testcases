@@ -70,7 +70,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.Power_on_the_system_and_activate_the_cabin(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_SB_mode(this);
+            DmiExpectedResults.SB_Mode_displayed(this);
 
 
             /*
@@ -81,7 +81,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.Perform_SoM_to_L1_SR_mode(this);
             // Call generic Check Results Method
-            DmiExpectedResults.Mode_changes_to_SR_mode_L1(this);
+            DmiExpectedResults.SR_Mode_displayed(this);
 
 
             /*

@@ -66,7 +66,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.Activate_cabin_A_Then_perform_SoM_to_SR_mode_level_1(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_SR_mode_level_1(this);
+            DmiExpectedResults.SR_Mode_displayed(this);
 
 
             /*

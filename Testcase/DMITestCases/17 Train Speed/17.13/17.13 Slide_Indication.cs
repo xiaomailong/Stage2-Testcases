@@ -65,7 +65,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.Driver_the_train_forward(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_changes_from_SR_mode_to_FS_mode(this);
+            DmiExpectedResults.DMI_changes_from_SR_to_FS_mode(this);
 
 
             /*

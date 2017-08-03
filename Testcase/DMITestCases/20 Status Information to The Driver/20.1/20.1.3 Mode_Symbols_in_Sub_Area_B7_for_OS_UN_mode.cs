@@ -161,7 +161,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 1227 (partly: MO08);        (2) MMI_gen 11233 (partly: MO17ไ);(3) MMI_gen 11470 (partly: Bit # 0);                     
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_passing_BG1(this);
+            DmiActions.Drive_train_forward_passing_BG1(this);
 
 
             /*

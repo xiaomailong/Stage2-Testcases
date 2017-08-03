@@ -77,7 +77,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 6299 (partly: OBU_TR_M_MODE = 7);(2) MMI_gen 6299 (partly: colour of speed pointer, TR mode);
             */
             // Call generic Action Method
-            DmiActions.Force_the_train_into_TR_mode_by_moving_the_train_forward_to_position_of_EOA(this);
+            DmiActions.Force_train_forward_overpassing_EOA(this);
 
 
             /*

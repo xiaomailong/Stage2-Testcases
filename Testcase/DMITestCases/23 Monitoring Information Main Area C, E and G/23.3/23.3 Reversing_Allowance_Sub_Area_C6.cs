@@ -65,7 +65,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI changes from SR mode to FS mode, Level 1
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_passing_BG1(this);
+            DmiActions.Drive_train_forward_passing_BG1(this);
 
 
             /*

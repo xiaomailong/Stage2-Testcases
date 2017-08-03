@@ -62,7 +62,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SR mode, level 1
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_SR_mode_level_1(this);
+            DmiExpectedResults.SR_Mode_displayed(this);
 
 
             /*
@@ -71,9 +71,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI changes from SR mode to FS mode
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_passing_BG1(this);
+            DmiActions.Drive_train_forward_passing_BG1(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_changes_from_SR_mode_to_FS_mode(this);
+            DmiExpectedResults.DMI_changes_from_SR_to_FS_mode(this);
 
 
             /*

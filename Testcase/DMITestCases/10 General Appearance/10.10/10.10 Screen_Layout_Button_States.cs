@@ -106,7 +106,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.Deativate_and_activate_the_cabin(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_disiplays_in_SB_mode(this);
+            DmiExpectedResults.SB_Mode_displayed(this);
 
 
             /*
@@ -125,7 +125,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.Deativate_and_activate_the_cabin(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_disiplays_in_SB_mode(this);
+            DmiExpectedResults.SB_Mode_displayed(this);
 
 
             /*
@@ -151,7 +151,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.Deativate_and_activate_the_cabin(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_disiplays_in_SB_mode(this);
+            DmiExpectedResults.SB_Mode_displayed(this);
 
 
             /*
@@ -203,7 +203,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.Deactivate_and_activate_cabin(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_disiplays_in_SB_mode(this);
+            DmiExpectedResults.SB_Mode_displayed(this);
 
 
             /*
@@ -222,7 +222,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.Deactivate_and_activate_cabin(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_disiplays_in_SB_mode(this);
+            DmiExpectedResults.SB_Mode_displayed(this);
 
 
             /*
@@ -238,7 +238,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SB mode
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_SB_mode(this);
+            DmiExpectedResults.SB_Mode_displayed(this);
 
 
             /*

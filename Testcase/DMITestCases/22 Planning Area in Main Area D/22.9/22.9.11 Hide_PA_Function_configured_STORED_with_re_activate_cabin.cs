@@ -156,7 +156,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.Perform_SoM_to_SR_mode_level_1(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_SR_mode_leve1(this);
+            DmiExpectedResults.SR_Mode_displayed(this);
 
 
             /*
@@ -215,7 +215,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.Perform_SoM_to_SR_mode_level_1(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_SR_mode_leve1(this);
+            DmiExpectedResults.SR_Mode_displayed(this);
 
 
             /*

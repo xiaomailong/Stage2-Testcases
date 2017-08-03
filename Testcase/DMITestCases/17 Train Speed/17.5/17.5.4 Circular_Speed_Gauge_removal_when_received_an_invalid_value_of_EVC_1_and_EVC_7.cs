@@ -64,7 +64,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in FS mode, Level 1
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_FS_mode_Level_1(this);
+            DmiExpectedResults.DMI_displays_in_FS_mode_level_1(this);
 
 
             /*
