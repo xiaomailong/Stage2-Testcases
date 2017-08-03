@@ -13,7 +13,12 @@ namespace Testcase.Telegrams.EVCtoDMI
     static class EVC7_MMIEtcsMiscOutSignals
     {
         private static SignalPool _pool;
-        private static MMI_OBU_TR_BRAKETEST_STATUS _brakeTestStatus;
+        private static byte _trainEBTestInProgress;
+        private static byte _trainEBStatus;
+        private static byte _radioStatusInformation;
+        private static byte _stmInHsStateExists;
+        private static byte _stmInDaStateExists;
+        private static MMI_OBU_TR_BRAKETEST_STATUS _etcsBrakeTestStatus;
         private static MMI_OBU_TR_M_LEVEL _level;
 
         /// <summary>
@@ -41,9 +46,17 @@ namespace Testcase.Telegrams.EVCtoDMI
 
         private static void SetAlias1B1()
         {
-            var brakeTestStatus = (byte) _brakeTestStatus;
-            var level = (byte) _level;
-            _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7alias1B1.Value = (byte) (brakeTestStatus << 4 | level);
+
+            _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7alias1B1.Value =
+                (byte)(_trainEBTestInProgress << 6 | _trainEBStatus << 5 | _radioStatusInformation << 4 |
+                        _stmInHsStateExists << 3 | _stmInDaStateExists << 2);
+        }
+
+        private static void SetAlias1B0()
+        {
+            var etcsBrakeTestStatus = (byte)_etcsBrakeTestStatus;
+            var level = (byte)_level;
+            _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7alias1B0.Value = (byte)(etcsBrakeTestStatus << 4 | level);
         }
 
         /// <summary>
@@ -122,6 +135,96 @@ namespace Testcase.Telegrams.EVCtoDMI
         }
 
         /// <summary>
+        /// Train EB test in progress
+        /// 
+        /// Values:
+        /// 0 = "No EB test in progress"    (DEFAULT)
+        /// 1 = "EB test in progress"
+        /// </summary>
+        public static byte MMI_OBU_TR_EBTestInProgress
+        {
+            get => _trainEBTestInProgress;
+
+            set
+            {
+                _trainEBTestInProgress = value;
+                SetAlias1B1();
+            }
+        }
+
+        /// <summary>
+        /// Train EB status
+        /// 
+        /// Values:
+        /// 0 = "No EB has been commanded by ETCS"
+        /// 1 = "EB has been commanded by ETCS" (DEFAULT)
+        /// </summary>
+        public static byte MMI_OBU_TR_EB_Status
+        {
+            get => _trainEBStatus;
+
+            set
+            {
+                _trainEBStatus = value;
+                SetAlias1B1();
+            }
+        }
+
+        /// <summary>
+        /// Radio status information
+        /// 
+        /// Values:
+        /// 0 = "No radio connection"   (DEFAULT)
+        /// 1 = "Radio connection established"
+        /// </summary>
+        public static byte MMI_OBU_TR_RadioStatus
+        {
+            get => _radioStatusInformation;
+
+            set
+            {
+                _radioStatusInformation = value;
+                SetAlias1B1();
+            }
+        }
+
+        /// <summary>
+        /// Defines if a STM is allowed to enter HS state
+        /// 
+        /// Values:
+        /// 0 = "No STM is in HS state" (DEFAULT)
+        /// 1 = "One STM is allowed to enter HS state. See corresponding OBU_TR_NID_STM_HS variable"
+        /// </summary>
+        public static byte MMI_OBU_TR_STM_HS_ENABLED
+        {
+            get => _stmInHsStateExists;
+
+            set
+            {
+                _stmInHsStateExists = value;
+                SetAlias1B1();
+            }
+        }
+
+        /// <summary>
+        /// Defines if a STM is allowed to enter DA state.
+        /// 
+        /// Values:
+        /// 0 = "No STM is in DA state" (DEFAULT)
+        /// 1 = "One STM is allowed to enter DA state. See corresponding OBU_TR_NID_STM_DA variable"
+        /// </summary>
+        public static byte MMI_OBU_TR_STM_DA_ENABLED
+        {
+            get => _stmInDaStateExists;
+
+            set
+            {
+                _stmInDaStateExists = value;
+                SetAlias1B1();
+            }
+        }
+
+        /// <summary>
         /// ETCS EB test status
         /// 
         /// Values:
@@ -135,10 +238,12 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static MMI_OBU_TR_BRAKETEST_STATUS MMI_OBU_TR_BrakeTest_Status
         {
+            get => _etcsBrakeTestStatus;
+
             set
             {
-                _brakeTestStatus = value;
-                SetAlias1B1();
+                _etcsBrakeTestStatus = value;
+                SetAlias1B0();
             }
         }
 
@@ -156,10 +261,12 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static MMI_OBU_TR_M_LEVEL MMI_OBU_TR_M_Level
         {
+            get => _level;
+
             set
             {
                 _level = value;
-                SetAlias1B1();
+                SetAlias1B0();
             }
         }
 
