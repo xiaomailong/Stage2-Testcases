@@ -68,7 +68,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays SB mode
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_SB_mode(this);
+            DmiExpectedResults.SB_mode_displayed(this);
 
 
             /*
