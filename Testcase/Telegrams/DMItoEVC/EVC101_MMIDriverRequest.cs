@@ -7,7 +7,7 @@ using CL345;
 using Testcase.Telegrams.EVCtoDMI;
 
 
-namespace Testcase.Telegrams
+namespace Testcase.Telegrams.DMItoEVC
 {
     /// <summary>
     /// This packet shall be sent when the driver requests for an action from the ATP, 

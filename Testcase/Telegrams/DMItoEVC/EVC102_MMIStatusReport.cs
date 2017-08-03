@@ -5,7 +5,7 @@ using System.Text;
 using System.Collections;
 using CL345;
 
-namespace Testcase.Telegrams
+namespace Testcase.Telegrams.DMItoEVC
 {
     /// <summary>
     /// This packet shall be sent when the driver requests for an action from the ATP, typically by pressing a button.
