@@ -36,7 +36,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             _pool.SITR.ETCS1.Dynamic.MmiOBraketarget.Value = -1;    // No restrictive discontinuity of the static speed profile
             _pool.SITR.ETCS1.Dynamic.MmiOIml.Value = -1;            // Spare
             _pool.SITR.ETCS1.Dynamic.EVC01Validity1.Value = 0xc800; // 51200 in decimal
-            _pool.SITR.ETCS1.Dynamic.EVC01Validity1.Value = 0xff00; // 65280 in decimal
+            _pool.SITR.ETCS1.Dynamic.EVC01Validity2.Value = 0xff00; // 65280 in decimal
             _pool.SITR.ETCS1.Dynamic.EVC01SSW1.Value = 0x8000; // 32768 in decimal
             _pool.SITR.ETCS1.Dynamic.EVC01SSW2.Value = 0x8000; // 32768 in decimal
             _pool.SITR.ETCS1.Dynamic.EVC01SSW3.Value = 0x8000; // 32768 in decimal
