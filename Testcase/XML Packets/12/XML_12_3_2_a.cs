@@ -34,7 +34,7 @@ namespace Testcase.XML
 
             EVC1_MMIDynamic.MMI_M_SLIDE = 0;
             EVC1_MMIDynamic.MMI_M_SLIP = 0;
-            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_PreIndication_Monitoring;
+            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_PreIndication_Monitoring;   // 2
             EVC1_MMIDynamic.MMI_A_TRAIN = 0;
             EVC1_MMIDynamic.MMI_V_TRAIN = 1111;
             EVC1_MMIDynamic.MMI_V_TARGET = 1083;
@@ -58,8 +58,8 @@ namespace Testcase.XML
             EVC7_MMIEtcsMiscOutSignals.OBU_TR_NID_STM_DA = 255;
             EVC7_MMIEtcsMiscOutSignals.BRAKE_TEST_TIMEOUT = 46;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 1000000000;
-            _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity1.Value = 4415; // All validity bits set
-            _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity2.Value = 63;   // All validity bits set
+            //_pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity1.Value = 4415; // All validity bits set
+            //_pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity2.Value = 63;   // All validity bits set
         }
     }
 }
