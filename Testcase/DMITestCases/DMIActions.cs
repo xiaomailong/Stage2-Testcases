@@ -118,11 +118,38 @@ namespace Testcase.DMITestCases
         public static void Activate_Cabin_1(SignalPool pool)
         {
             EVC2_MMIStatus.TrainRunningNumber = 1;
-            EVC2_MMIStatus.MMI_M_ACTIVE_CABIN = MMI_M_ACTIVE_CABIN.Cabin1Active;
+            EVC2_MMIStatus.MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.Cabin1Active;
             EVC2_MMIStatus.MMI_M_ADHESION = 0x0;
             EVC2_MMIStatus.MMI_M_OVERRIDE_EOA = false;
             EVC2_MMIStatus.Send();
            
+        }
+
+        /// <summary>
+        /// Description: Activate cabin 2
+        /// Used in:
+        ///     Step 12 in TC-ID: 15.1.1 in 20.1.1
+        /// </summary>
+        public static void Activate_Cabin_2(SignalPool pool)
+        {
+            EVC2_MMIStatus.TrainRunningNumber = 1;
+            EVC2_MMIStatus.MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.Cabin2Active;
+            EVC2_MMIStatus.MMI_M_ADHESION = 0x0;
+            EVC2_MMIStatus.MMI_M_OVERRIDE_EOA = false;
+            EVC2_MMIStatus.Send();
+
+        }
+
+        /// <summary>
+        /// Description: Activate cabin 2
+        /// Used in:
+        ///     Step 12 in TC-ID: 15.1.1 in 20.1.1
+        /// </summary>
+        public static void Deactivate_Cabin(SignalPool pool)
+        {
+            EVC2_MMIStatus.MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.NoCabinActive;
+            EVC2_MMIStatus.Send();
+
         }
 
         /// <summary>
@@ -197,6 +224,76 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 266;     // "#3 MO05 (Ack Train Trip)" 
             EVC8_MMIDriverMessage.Send();
+        }
+
+        /// <summary>
+        /// Description: PT mode sent to be displayed on th DMI
+        /// Used in:
+        ///     Step 8 in TC-ID: 15.1.1 in 20.1.1
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Send_PT_Mode(SignalPool pool)
+        {
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.PostTrip;
+        }
+
+        /// <summary>
+        /// Description: Main Window is Start Button enabled sent to be displayed on th DMI
+        /// Used in:
+        ///     Step 9 in TC-ID: 15.1.1 in 20.1.1
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Display_Main_Window_with_Start_button_enabled(SignalPool pool)
+        {
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = Variables.standardFlags | 
+                EVC30_MMIRequestEnable.EnabledRequests.Start ;
+            EVC30_MMIRequestEnable.Send();
+        }
+
+        /// <summary>
+        /// Description: SH mode sent to be displayed on th DMI
+        /// Used in:
+        ///     Step 10 in TC-ID: 15.1.1 in 20.1.1
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Send_SH_Mode(SignalPool pool)
+        {
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Shunting;
+        }
+
+        /// <summary>
+        /// Description: Main Window is Start Button enabled sent to be displayed on th DMI
+        /// Used in:
+        ///     Step 11 in TC-ID: 15.1.1 in 20.1.1
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Display_Driver_ID_Window(SignalPool pool)
+        {
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 8;            
+            EVC30_MMIRequestEnable.Send();
+        }
+
+        /// <summary>
+        /// Description: SR mode sent to be displayed on th DMI
+        /// Used in:
+        ///     Step 11 in TC-ID: 15.1.1 in 20.1.1
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Send_NL_Mode(SignalPool pool)
+        {
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.NonLeading;
+        }
+
+        /// <summary>
+        /// Description: SF mode sent to be displayed on th DMI
+        /// Used in:
+        ///     Step 12 in TC-ID: 15.1.1 in 20.1.1
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Send_SF_Mode(SignalPool pool)
+        {
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.SystemFailure;
         }
 
         /// <summary>
@@ -1054,18 +1151,6 @@ namespace Testcase.DMITestCases
         ///     Step 20 in TC-ID: 14.3 in 19.3 Toggling function: Additional Configuration ‘TIMER’
         /// </summary>
         public static void Acknowledge_TR_mode_by_press_a_sub_area_C1(SignalPool pool)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Description: Perform the following procedure,Press ‘Main’ button.Press and hold ‘Shunting’ button up to 2 second.Release ‘Shunting’ button
-        /// Used in:
-        ///     Step 22 in TC-ID: 14.1 in 19.1 Toggling function: Additional Configuration ‘OFF’ (Default)
-        ///     Step 22 in TC-ID: 14.2 in 19.2 Toggling function: Additional Configuration ‘ON’
-        /// </summary>
-        public static void
-            Perform_the_following_procedure_Press_Main_button_Press_and_hold_Shunting_button_up_to_2_second_Release_Shunting_button(SignalPool pool)
         {
             throw new NotImplementedException();
         }
