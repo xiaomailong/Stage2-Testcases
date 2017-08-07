@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Collections;
 using CL345;
+using Testcase.Telegrams.EVCtoDMI;
 
 namespace Testcase.Telegrams.DMItoEVC
 {
@@ -15,6 +16,7 @@ namespace Testcase.Telegrams.DMItoEVC
         private static SignalPool _pool;
         private static bool _bResult;
         private static MMI_M_MODE_READBACK _mModeReadBack;
+        private static Variables.MMI_M_ACTIVE_CABIN _mActiveCabin;
 
         /// <summary>
         /// Initialise EVC-102 MMI_Status_Report telegram.
@@ -22,10 +24,42 @@ namespace Testcase.Telegrams.DMItoEVC
         /// <param name="pool"></param>
         public static void Initialise(SignalPool pool)
         {
-            _pool = pool;
+            _pool = pool;            
         }
 
-            private static void CheckModeReadBack(MMI_M_MODE_READBACK mModeReadBack)
+        private static void CheckActiveCabin(Variables.MMI_M_ACTIVE_CABIN mActiveCabin)
+        {
+            //Get EVC102_alias_1_B0
+            byte _evc102alias1B0 = _pool.SITR.CCUO.ETCS1StatusReport.EVC102alias1B0.Value;
+            // Extract bool MMI_M_ACTIVE_CABIN (4th and 5th bits according to VSIS 2.9)
+            byte _mmiMActiveCabin = (byte)((_evc102alias1B0 & 0x30) >> 4); // xxxx xxxx -> 00xx 0000 -> 0000 00xx
+
+            //For each element of enum MMI_M_ACTIV_CABIN
+            foreach (Variables.MMI_M_ACTIVE_CABIN mmiMActiveCabinElement in Enum.GetValues(typeof(Variables.MMI_M_ACTIVE_CABIN)))
+            {
+                //Compare to the value to be checked
+                if (mmiMActiveCabinElement == mActiveCabin)
+                {
+                    // Check MMI_M_MODE_READBACK value
+                    _bResult = _mmiMActiveCabin.Equals(mActiveCabin);
+                    break;
+                }
+            }
+
+            if (_bResult) //if check passes
+            {
+                _pool.TraceReport("DMI->ETCS: EVC-102 [MMI_STATUS_REPORT.MMI_M_ACTIVE_CABIN] = " + mActiveCabin +
+                    " - \"" + mActiveCabin.ToString() + "\" PASSED.");
+            }
+            else // else display the real value extracted from EVC-102 [MMI_STATUS_REPORT.MMI_M_MODE_READBACK] 
+            {
+                _pool.TraceError("DMI->ETCS: Check EVC-102 [MMI_STATUS_REPORT.MMI_M_MODE_READBACK] = " +
+                    _mmiMActiveCabin + " - \"" +
+                    Enum.GetName(typeof(Variables.MMI_M_ACTIVE_CABIN), _mmiMActiveCabin) + "\" FAILED.");
+            }
+        }
+
+        private static void CheckModeReadBack(MMI_M_MODE_READBACK mModeReadBack)
         {
             //For each element of enum MMI_M_MODE_READBACK 
             foreach (MMI_M_MODE_READBACK mmiMModeReadBackElement in Enum.GetValues(typeof(MMI_M_MODE_READBACK)))
@@ -50,6 +84,23 @@ namespace Testcase.Telegrams.DMItoEVC
                     _pool.SITR.CCUO.ETCS1StatusReport.MmiMModeReadback.Value + " - \"" + 
                     Enum.GetName(typeof(MMI_M_MODE_READBACK), _pool.SITR.CCUO.ETCS1StatusReport.MmiMModeReadback.Value ) +
                     "\" FAILED.");
+            }
+        }
+
+        /// <summary>
+        /// Defines the identity of the activated cabin
+        /// Values:
+        /// 0 = "No cabin is active"
+        /// 1 = "Cabin 1 is active"
+        /// 2 = "Cabin 2 is active"
+        /// 3 = "Spare"
+        /// </summary>
+        public static Variables.MMI_M_ACTIVE_CABIN Check_MMI_M_ACTIVE_CABIN
+        {
+            set
+            {
+                _mActiveCabin = value;
+                CheckActiveCabin(_mActiveCabin);
             }
         }
 

@@ -24,7 +24,7 @@ namespace Testcase.Telegrams.EVCtoDMI
     {
         private static SignalPool _pool;
         private static byte _mmiMAdhesion; // Adhesion can only be set by trackside for Crossrail project
-        private static MMI_M_ACTIVE_CABIN _mmiMActiveCabin;
+        private static Variables.MMI_M_ACTIVE_CABIN _mmiMActiveCabin;
         private static bool _mmiMOverrideEOA;
 
         /// <summary>
@@ -79,7 +79,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             }
         }
 
-        public static MMI_M_ACTIVE_CABIN MMI_M_ACTIVE_CABIN
+        public static Variables.MMI_M_ACTIVE_CABIN MMI_M_ACTIVE_CABIN
         {
             set
             {
@@ -123,12 +123,5 @@ namespace Testcase.Telegrams.EVCtoDMI
             _pool.TraceInfo("ETCS->DMI: EVC-2 (MMI_STATUS)");
             _pool.SITR.SMDCtrl.ETCS1.Status.Value = 1;
         }
-    }
-
-    public enum MMI_M_ACTIVE_CABIN : byte
-    {
-        NoCabinActive = 0,
-        Cabin1Active = 1,
-        Cabin2Active = 2
     }
 }

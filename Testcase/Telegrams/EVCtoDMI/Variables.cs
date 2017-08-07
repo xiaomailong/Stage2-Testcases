@@ -355,7 +355,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             EVC30_MMIRequestEnable.EnabledRequests.SystemVersion |
             EVC30_MMIRequestEnable.EnabledRequests.Brightness |
             EVC30_MMIRequestEnable.EnabledRequests.Volume |
-            EVC30_MMIRequestEnable.EnabledRequests.NonLeading |
+            EVC30_MMIRequestEnable.EnabledRequests.NonLeading |        
             EVC30_MMIRequestEnable.EnabledRequests.Shunting |
             EVC30_MMIRequestEnable.EnabledRequests.TrainData |
             EVC30_MMIRequestEnable.EnabledRequests.TrainRunningNumber |
@@ -367,5 +367,12 @@ namespace Testcase.Telegrams.EVCtoDMI
             EVC30_MMIRequestEnable.EnabledRequests.DriverID |
             EVC30_MMIRequestEnable.EnabledRequests.Language |
             EVC30_MMIRequestEnable.EnabledRequests.SRSpeedDistance;
+
+        public enum MMI_M_ACTIVE_CABIN : byte
+        {
+            NoCabinActive = 0,
+            Cabin1Active = 1,
+            Cabin2Active = 2
+        }
     }
 }
