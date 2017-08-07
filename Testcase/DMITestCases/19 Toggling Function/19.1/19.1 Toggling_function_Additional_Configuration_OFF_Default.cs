@@ -330,7 +330,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions
-                .Perform_the_following_procedure_Press_Main_button_Press_and_hold_Shunting_button_up_to_2_second_Release_Shunting_button(this);
+                .Shunting_button_pressed_and_hold(this);
 
 
             /*

@@ -64,7 +64,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press ‘Driver ID’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Driver_ID_window(this);
+            DmiExpectedResults.Driver_ID_window_displayed(this);
 
 
             /*

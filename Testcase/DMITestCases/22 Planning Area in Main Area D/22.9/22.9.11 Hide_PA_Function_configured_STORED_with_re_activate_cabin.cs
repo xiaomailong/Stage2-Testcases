@@ -66,7 +66,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Driver ID window
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Driver_ID_window(this);
+            DmiExpectedResults.Driver_ID_window_displayed(this);
 
 
             /*
@@ -95,7 +95,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.Deactive_and_reacitvate_the_cabin_A(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Driver_ID_window(this);
+            DmiExpectedResults.Driver_ID_window_displayed(this);
 
 
             /*
@@ -145,7 +145,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.Deactive_and_reacitvate_the_cabin_A(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Driver_ID_window(this);
+            DmiExpectedResults.Driver_ID_window_displayed(this);
 
 
             /*
@@ -204,7 +204,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.Deactive_and_reacitvate_the_cabin_A(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Driver_ID_window(this);
+            DmiExpectedResults.Driver_ID_window_displayed(this);
 
 
             /*
