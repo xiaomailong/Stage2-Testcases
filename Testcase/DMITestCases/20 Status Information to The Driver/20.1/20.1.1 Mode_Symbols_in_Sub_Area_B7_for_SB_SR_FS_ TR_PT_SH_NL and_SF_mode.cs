@@ -74,8 +74,8 @@ namespace Testcase.DMITestCases
             EVC0_MMIStartATP.Send();
 
             DmiActions.Activate_Cabin_1(this);
-            DmiActions.Send_SB_Mode(this);
 
+            DmiActions.Send_SB_Mode(this);
             DmiExpectedResults.SB_Mode_displayed(this);
 
             #endregion
@@ -127,11 +127,10 @@ namespace Testcase.DMITestCases
                                (4) MMI_gen 110     (partly: MO09);
             */
 
-            DmiActions.ShowInstruction(this, "Press and hold DMI Sub Area 19");
+            DmiActions.ShowInstruction(this, "Press and hold DMI Sub Area C1");
             DmiExpectedResults.SR_Mode_Ack_pressed_and_hold(this);
 
-            DmiActions.Send_SR_Mode(this);
-            
+            DmiActions.Send_SR_Mode(this);           
             DmiExpectedResults.SR_Mode_displayed(this);
 
             #endregion
@@ -147,8 +146,8 @@ namespace Testcase.DMITestCases
             */
 
             DmiActions.Drive_train_forward_passing_BG1(this);
-            DmiActions.Send_FS_Mode(this);
 
+            DmiActions.Send_FS_Mode(this);
             DmiExpectedResults.DMI_changes_from_SR_to_FS_mode(this);
 
             #endregion
@@ -163,10 +162,10 @@ namespace Testcase.DMITestCases
                                (2) MMI_gen 110 (partly: MO04);
             */
             
-            DmiActions.Force_train_forward_overpassing_EOA(this);
-            DmiActions.Send_TR_Mode(this);
+            DmiActions.Force_train_forward_overpassing_EOA(this);          
             DmiActions.Apply_Brakes(this);
 
+            DmiActions.Send_TR_Mode(this);
             DmiExpectedResults.TR_Mode_displayed(this);
 
             #endregion
@@ -185,7 +184,6 @@ namespace Testcase.DMITestCases
 
             DmiActions.Stop_the_train(this);
             DmiActions.Send_TR_Mode_Ack(this);
-
             DmiExpectedResults.TR_Mode_Ack_requested(this);
             DmiExpectedResults.TR_Mode_displayed(this);
 
@@ -197,106 +195,54 @@ namespace Testcase.DMITestCases
             #region Test Step 8
             /*
             Action: Press the symbol ‘MO05’ in sub-area C1
-            */
-            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
-            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
-            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.TrainTripAck;
-            /*
             Expected Result: Verify the following information,
             Use the log file to confirm that DMI received the EVC-7 with [MMI_ETCS_MISC_OUT_SIGNALS.OBU_TR_M_MODE] = 8 in order to display the Post Trip symbol.
             The Post trip symbol (MO06) is displayed in area B7
             Test Step Comment: (1) MMI_gen 11084 (partly: current ETCS mode);
                                (2) MMI_gen 110 (partly: MO06);
             */
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.PostTrip;
 
-            // VISUAL CHECK - The Post trip symbol (MO06) is displayed in area B7
+            DmiActions.ShowInstruction(this, "Press DMI Sub Area C1");
+            DmiExpectedResults.TR_Mode_Ack_pressed_and_released(this);
 
-            EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.PostTrip;
+            DmiActions.Send_PT_Mode(this);
+            DmiExpectedResults.PT_Mode_displayed(this);
+
             #endregion
 
             #region Test Step 9
             /*
             Action: Force the train into SR mode by the steps below:
-            Press ‘Main’ button.            
-            */           
-            // Main Window is displayed ie. EVC-30 [MMI_ENABLE_REQUEST.MMI_NID_WINDOW] = 1 ("Main Window") is sent to the DMI.
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
-            var standardflags = EVC30_MMIRequestEnable.EnabledRequests.EnableDoppler |
-                                EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter |
-                                EVC30_MMIRequestEnable.EnabledRequests.StartBrakeTest |
-                                EVC30_MMIRequestEnable.EnabledRequests.SetLocalOffset |
-                                EVC30_MMIRequestEnable.EnabledRequests.RemoveVBC |
-                                EVC30_MMIRequestEnable.EnabledRequests.SetVBC |
-                                EVC30_MMIRequestEnable.EnabledRequests.SystemVersion |
-                                EVC30_MMIRequestEnable.EnabledRequests.Brightness |
-                                EVC30_MMIRequestEnable.EnabledRequests.Volume |
-                                EVC30_MMIRequestEnable.EnabledRequests.NonLeading |
-                                EVC30_MMIRequestEnable.EnabledRequests.Shunting |
-                                EVC30_MMIRequestEnable.EnabledRequests.TrainRunningNumber |
-                                EVC30_MMIRequestEnable.EnabledRequests.Level |
-                                EVC30_MMIRequestEnable.EnabledRequests.DriverID |
-                                EVC30_MMIRequestEnable.EnabledRequests.Start;
-            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = standardflags;
-            EVC30_MMIRequestEnable.Send();
-            /* 
+            Press ‘Main’ button.      
             Press ‘Start’ button ie. EVC-152 [MMI_DRIVER_ACTION.MMI_M_DRIVER_ACTION] = 19 ("Start selected") is received.
+            Acknowledge SR mode
             */
-            EVC101_MMIDriverRequest.Initialise(this);
-            EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.Start;
-            EVC152_MMIDriverAction.Initialise(this);
-            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.StartSelected;
 
-            // SR Mode Ack is displayed
-            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
-            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
-            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
-            EVC8_MMIDriverMessage.MMI_Q_TEXT = 263;     // "#3 MO10 (Ack Staff Responsible Mode)"
-            EVC8_MMIDriverMessage.Send();
-            
-            //Acknowledge SR mode
-            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
+            DmiActions.ShowInstruction(this, "Press \"Main\" button");
+            DmiActions.Display_Main_Window_with_Start_button_enabled(this);
+            DmiExpectedResults.Main_Window_displayed_with_Start_button_enabled(this);
 
-            //..then release it
-            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
+            DmiActions.ShowInstruction(this, "Press \"Start\" button");
+            DmiExpectedResults.Start_Button_pressed_and_released(this);
 
-            //Expected Result: DMI displays in SR mode, Level 1
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
+            DmiActions.Send_SR_Mode_Ack(this);
+            DmiExpectedResults.SR_Mode_Ack_requested(this);
 
-            // Call generic Check Results Method
+            DmiActions.ShowInstruction(this, "Acknowledge SR Mode");
+            DmiExpectedResults.SR_Mode_Ack_pressed_and_hold(this);
+
+            DmiActions.Send_SR_Mode(this);
             DmiExpectedResults.SR_Mode_displayed(this);
+
             #endregion
 
+            #region Test Step 10
             /*
             Test Step 10
             Action: Force the train into SH mode by the steps below:
-            */
-            //Press ‘Main’ button.
-
-            // Main Window is displayed ie. EVC-30 [MMI_ENABLE_REQUEST.MMI_NID_WINDOW] = 1 ("Main Window") is sent to the DMI.
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
-            standardflags = EVC30_MMIRequestEnable.EnabledRequests.EnableDoppler |
-                            EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter |
-                            EVC30_MMIRequestEnable.EnabledRequests.StartBrakeTest |
-                            EVC30_MMIRequestEnable.EnabledRequests.SetLocalOffset |
-                            EVC30_MMIRequestEnable.EnabledRequests.RemoveVBC |
-                            EVC30_MMIRequestEnable.EnabledRequests.SetVBC |
-                            EVC30_MMIRequestEnable.EnabledRequests.SystemVersion |
-                            EVC30_MMIRequestEnable.EnabledRequests.Brightness |
-                            EVC30_MMIRequestEnable.EnabledRequests.Volume |
-                            EVC30_MMIRequestEnable.EnabledRequests.NonLeading |
-                            EVC30_MMIRequestEnable.EnabledRequests.Shunting |
-                            EVC30_MMIRequestEnable.EnabledRequests.TrainRunningNumber |
-                            EVC30_MMIRequestEnable.EnabledRequests.Level |
-                            EVC30_MMIRequestEnable.EnabledRequests.DriverID |
-                            EVC30_MMIRequestEnable.EnabledRequests.Start;
-            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = standardflags;
-            EVC30_MMIRequestEnable.Send();
-            /*
+            Press ‘Main’ button.
             Press and hold ‘Shunting’ button for 2 second or upper.
-
             Release the pressed area
-
             Expected Result: Verify the following information,
             Use the log file to confirm that DMI received the EVC-7 with [MMI_ETCS_MISC_OUT_SIGNALS.OBU_TR_M_MODE] = 3 in order to display the Shunting symbol.
             The Shunting symbol (MO01) is displayed in area B7
@@ -304,14 +250,31 @@ namespace Testcase.DMITestCases
                                (2) MMI_gen 110 (partly: MO01);
             */
 
+            DmiActions.ShowInstruction(this, "Press \"Main\" button");
+            DmiActions.Display_Main_Window_with_Start_button_enabled(this);
+            DmiExpectedResults.Main_Window_displayed_with_Start_button_enabled(this);
 
+            DmiActions.ShowInstruction(this, "Press and hold \"Shunting\" button for 2 second or upper");
+            DmiExpectedResults.Shunting_button_pressed_and_hold(this);
+
+            DmiActions.Send_SH_Mode(this);
+            DmiExpectedResults.SH_Mode_displayed(this);
+
+            #endregion
+
+            #region Test Step 11
             /*
             Test Step 11
-            Action: Force the train into NL mode by the steps below:Press ‘Main’ button. 
-            Press and hold ‘Exit Shunting’ button for 2 second or upper.Release the pressed area.
+            Action: Force the train into NL mode by the steps below:
+            Press ‘Main’ button. 
+            Press and hold ‘Exit Shunting’ button for 2 second or upper.
+            Release the pressed area.
             Enter the Driver ID with no performing brake test when Driver ID window is displayed.
-            If the Level window is display, select and confirm Level1. Then, enter the train data and Train running number.
-            Force the simulation to ‘Non-leading’. Press and hold ‘Non-leading’ button for 2 second or upper.Release the pressed area
+            If the Level window is display, select and confirm Level1. 
+            Then, enter the train data and Train running number.
+            Force the simulation to ‘Non-leading’. 
+            Press and hold ‘Non-leading’ button for 2 second or upper.
+            Release the pressed area
             Expected Result: Verify the following information,
             Use the log file to confirm that DMI received the EVC-7 with [MMI_ETCS_MISC_OUT_SIGNALS.OBU_TR_M_MODE] = 11 in order to display the Non-leading.
             The Non-leading symbol (MO12) is displayed in area B7
@@ -319,21 +282,63 @@ namespace Testcase.DMITestCases
                                (2) MMI_gen 110 (partly: MO12);
             */
 
+            DmiActions.ShowInstruction(this, "Press \"Main\" button");
+            DmiActions.Display_Main_Window_with_Start_button_enabled(this);
+            DmiExpectedResults.Main_Window_displayed_with_Start_button_enabled(this);
 
+            DmiActions.ShowInstruction(this, "Press and hold \"Exit Shunting\" button for 2 second or upper");
+            DmiExpectedResults.Shunting_button_pressed_and_hold(this);
+
+            DmiActions.Display_Driver_ID_Window(this);
+            DmiExpectedResults.Driver_ID_window_displayed(this);
+            DmiActions.ShowInstruction(this, "Enter Driver ID");
+            //DmiActions.Set_Driver_ID(this, "1234");
+
+            DmiActions.ShowInstruction(this, "Press and hold \"Non-leading\" button for 2 second or upper");
+            DmiExpectedResults.Non_leading_button_pressed_and_hold(this);
+
+            DmiActions.Send_NL_Mode(this);
+            DmiExpectedResults.NL_Mode_displayed(this);
+
+            #endregion
+
+            #region Test Step 12
             /*
             Test Step 12
-            Action: Force the train into SF mode by the steps below:Unforce the simulation of ‘Non-leading’.De-activate cabin A.Activate cabin B.Activate cabin A
-            Expected Result: Verify the following information,Use the log file to confirm that DMI received the EVC-7 with [MMI_ETCS_MISC_OUT_SIGNALS.OBU_TR_M_MODE] = 9 in order to display the System failure symbol.The System failure symbol (MO18) is displayed in area B7
-            Test Step Comment: (1) MMI_gen 11084 (partly: current ETCS mode);                                (2) MMI_gen 110 (partly: MO18);
+            Action: Force the train into SF mode by the steps below:
+            Unforce the simulation of ‘Non-leading’.
+            De-activate cabin A.
+            Activate cabin B.
+            Activate cabin A
+            Expected Result: Verify the following information,
+            Use the log file to confirm that DMI received the EVC-7 with [MMI_ETCS_MISC_OUT_SIGNALS.OBU_TR_M_MODE] = 9 in order to display the System failure symbol.
+            The System failure symbol (MO18) is displayed in area B7
+            Test Step Comment: (1) MMI_gen 11084 (partly: current ETCS mode);                                
+                               (2) MMI_gen 110 (partly: MO18);
             */
 
+            DmiActions.ShowInstruction(this, "Unforce the simulation of \"Non-leading\".");
 
+            DmiActions.Deactivate_Cabin(this);
+            DmiExpectedResults.Cab_deactivated(this);
+
+            DmiActions.Activate_Cabin_2(this);
+            DmiExpectedResults.Cabin_B_is_activated(this);
+
+            DmiActions.Activate_Cabin_1(this);
+            DmiActions.Send_SF_Mode(this);
+            DmiExpectedResults.SF_Mode_displayed(this);
+
+            #endregion
+
+            #region Test Step 13
             /*
             Test Step 13
             Action: End of test
             Expected Result: 
             */
 
+            #endregion
 
             return GlobalTestResult;
         }
