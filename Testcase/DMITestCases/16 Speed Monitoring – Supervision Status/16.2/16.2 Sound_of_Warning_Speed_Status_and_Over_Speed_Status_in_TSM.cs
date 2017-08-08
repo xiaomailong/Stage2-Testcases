@@ -13,6 +13,8 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.EVCtoDMI;
+
 
 namespace Testcase.DMITestCases
 {
@@ -63,8 +65,14 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in FS mode, Level 1
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_FS_mode_level_1(this);
-
+            //?? what about permitted speed
+            // EVC1_MMIDynamic.MMI_V_PERMITTED = 40;
+            EVC1_MMIDynamic.Initialise(this);
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 40;
+            // Send??
+            DmiActions.Drive_the_train_forward_pass_BG1(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. Is the speed pointer displaying 40 km/h?");
 
             /*
             Test Step 2
@@ -72,7 +80,12 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)     The sound ‘S1’ is played once.(2)     Use the log file to confirm that DMI received packet EVC-1 with variable MMI_M_WARNING = 9 (OvS and IndS, supervision = TSM)
             Test Step Comment: (1) MMI_gen 5839 (partly: play sound S1 once); MMI_gen 4256 (partly: Sound S1 sound);(2) MM MMI_gen 5839 (partly: MMI_M_WARNING);
             */
-
+            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Overspeed_Status_Indication_Status_Target_Speed_Monitoring;
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 41;   //  increase speed    
+            // Send??          
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. Is the speed pointer displaying 41 km/h?" + Environment.NewLine +
+                                "2. Sound S1 is played once.");
 
             /*
             Test Step 3
@@ -80,7 +93,12 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)     The sound ‘S2’ is played continuously.(2)     Use the log file to confirm that DMI received packet EVC-1 with variable MMI_M_WARNING = 5 (WaS and IndS, supervision = TSM)
             Test Step Comment: (1) MMI_gen 5843 (partly: continuously play sound S2); MMI_gen 4256 (partly: Sound S2 sound); MMI_gen 11921 (partly: MMI_M_WARNING = 5);(2) MM MMI_gen 5843 (partly: MMI_M_WARNING);
             */
-
+            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Warning_Status_Indication_Status_Target_Speed_Monitoring;
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 45;   // increase speed  
+            // Send??
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. Is the speed pointer displaying 45 km/h?" + Environment.NewLine +
+                                "2. Sound S2 is played continuously.");
 
             /*
             Test Step 4
@@ -88,7 +106,11 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)     The sound ‘S2’ is muted
             Test Step Comment: (1) MMI_gen 11921 (partly: NEGATIVE, MMI_M_WARNING ≠ 5);
             */
-
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 40;   // decrease speed to 40 kmh  
+            // Send??
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. Is the speed pointer displaying 40 km/h?" + Environment.NewLine +
+                                "2. Sound S2 is muted.");
 
             /*
             Test Step 5

@@ -13,6 +13,8 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.EVCtoDMI;
+
 
 namespace Testcase.DMITestCases
 {
@@ -60,6 +62,10 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
+            EVC7_MMIEtcsMiscOutSignals.Initialise(this);
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
+
+            EVC1_MMIDynamic.Initialise(this);
 
             /*
             Test Step 1
@@ -67,7 +73,15 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Main window in SB mode, Level 1.Verify the following information,(1)    Use the log file to confirm that DMI received packet EVC-7 with variable OBU_TR_M_MODE = 6 (Standby mode).(2)    The CSG is still not displayed on DMI
             Test Step Comment: (1) MMI_gen 972 (partly: OBU_TR_M_MODE, table 33, mode SB); MMI_gen 6310 (partly: mode);(2) MMI_gen 972 (partly: CSG shall not displayed, table 33, mode SB);
             */
+            // EVC7_MMIEtcsMiscOutSignals Send
 
+            DmiActions.Send_SB_Mode(this);
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays Main window in SB mode, Level 1.");
+            WaitForVerification("Press ‘Train data’ button. Enter and validate all train data. Enter the train running number" + Environment.NewLine +
+                                "Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "The CSG is still not displayed on DMI.");
 
             /*
             Test Step 2
@@ -75,7 +89,15 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Default window in SR mode, Level 1.Verify the following information,(1)     Use the log file to confirm that DMI received packet EVC-7 with variable OBU_TR_M_MODE = 2 (Staff Responsible mode)(2)    The CSG is still not displayed on DMI
             Test Step Comment: (1) MMI_gen 972 (partly: OBU_TR_M_MODE, table 33, mode SR); MMI_gen 6310 (partly: mode);(2) MMI_gen 972 (partly: CSG shall not displayed, table 33, mode SR);
             */
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
+            // EVC7_MMIEtcsMiscOutSignals Send
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays Default window in SR mode, Level 1.");
+
+            WaitForVerification("Press ‘Start’ button. Press and hold sub-area C1 up to 2 second. Release the pressed area." + Environment.NewLine +
+                                "Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "The CSG is still not displayed on DMI.");
 
             /*
             Test Step 3
@@ -83,9 +105,22 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in FS mode, Level 1.Verify the following information,(1)    The CSG is displays in sub-area B2.(2)    Use the log file to confirm that DMI received packet EVC-7 with variable OBU_TR_M_MODE = 0 (Full Supervision mode).(3)   Use the log file to confirm that DMI received packet EVC-1 with variable MMI_V_PERMITTED = 4166 (150 km/h)(4)   All section of CSG (0km/h – 150 km/h) is dark-grey colour.(5)   At Permitted speed, The CSG is display a Hook covering the outer border of Speed Dial and The upper limit of Hook is placed at 150 km/h
             Test Step Comment: (1) MMI_gen 2327;(2) MMI_gen 972 (partly: OBU_TR_M_MODE, table 33, mode FS); MMI_gen 6310 (partly: mode);(3) MMI_gen 972 (partly: MMI_V_PERMITTED); MMI_gen 6310 (partly: permitted speed);(4) MMI_gen 972 (partly: FS mode, CSM, 0km/h <= CSG <= Vperm);(5) MMI_gen 1154 (partly: Outer border of the Speed Dial, Placed at Permitted Speed); MMI_gen 1182 (partly: speed dial, Vperm);
             */
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
+            // EVC7_MMIEtcsMiscOutSignals Send
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in FS mode, Level 1." + Environment.NewLine +
+                                "2. The CSG is displays in sub - area B2.");
+
+            EVC1_MMIDynamic.MMI_V_PERMITTED = 4166;
+            // ?? Send
+
             // Call generic Action Method
             DmiActions.Drive_the_train_forward_pass_BG1_with_speed_30kmh(this);
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. All sections of CSG(0km / h – 150 km/h) are dark-grey in colour." + Environment.NewLine +
+                                "2. The CSG displays a Hook covering the outer border of Speed Dial and the upper limit of the Hook is placed at 150 km/h.");
 
             /*
             Test Step 4
@@ -93,7 +128,13 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   Use the log file to confirm that DMI received packet EVC-1 with following variables, MMI_M_WARNING = 8 (Status=OvS, Supervision=CSM).MMI_V_INTERVENTION > 4166 (150 km/h)(2)   The CSG at 0-150 km/h is dark-grey colour.(3)   The CSG at beyond 150km/h is orange colour.(4)   The CSG between the hook (Vperm = 150 km/h) and Vsbi is have a same width with hook
             Test Step Comment: (1) MMI_gen 972 (partly: MMI_M_WARNING, MMI_V_INTERVEN); MMI_gen 6310 (partly: supervision status, intervention speed);(2) MMI_gen 972 (partly: FS mode, CSM, 0km/h <= CSG <= Vperm);(3) MMI_gen 972 (partly: FS mode, CSM, Vperm <= CSG <= Vsbi );(4) MMI_gen 1155 (partly: Over-speed); MMI_gen 1182 (partly: Vsbi);
             */
-
+            EVC1_MMIDynamic.MMI_V_INTERVENTION_KMH = 156;       /// spec says > 150 but test steps 5/6 implies that 155 < intervention
+            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Warning_Status_PreIndication_Monitoring;
+            // ?? Send
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The CSG between 0 and 150 km/h is dark-grey in colour." + Environment.NewLine +
+                                "2. The CSG beyond 150km/h is orange in colour." + Environment.NewLine +
+                                "3. The CSG between the Hook (Vperm = 150 km/h) and Vsbi has a hook of the same width.");
 
             /*
             Test Step 5
@@ -101,7 +142,15 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   Use the log file to confirm that DMI received packet EVC-1 with following variables, MMI_M_WARNING = 4 (Status=WaS, Supervision=CSM).(2)   The CSG at 0-150 km/h is dark-grey colour.(3)   The CSG at beyond 150km/h is orange colour.(4)   The CSG between the hook (Vperm = 150 km/h) and Vsbi is have a same width with hook.(5)   Sound S2 is played continuously while the Warning Status is active
             Test Step Comment: (1) MMI_gen 972 (partly: MMI_M_WARNING, MMI_V_INTERVEN); MMI_gen 6310 (partly: supervision status, intervention speed);(2) MMI_gen 972 (partly: FS mode, CSM, 0km/h <= CSG <= Vperm);(3) MMI_gen 972 (partly: FS mode, CSM, Vperm <= CSG <= Vsbi );(4) MMI_gen 1155 (partly: Warning);(5)   MMI_gen 5774; MMI_gen 11921 (partly: MMI_M_WARNING = 4);
             */
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 155;
+            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Warning_Status_Ceiling_Speed_Monitoring;
+            // ?? Send
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The CSG at 0-150 km/h is dark-grey in colour." + Environment.NewLine +
+                                "2. The CSG beyond 150 km/h is orange in colour." + Environment.NewLine +
+                                "3. The CSG between the hook (Vperm = 150 km/h) and Vsbi has a hook of the same width." + Environment.NewLine +
+                                "4. Sound S2 is played continuously while the Warning Status is active.");
 
             /*
             Test Step 6
@@ -109,14 +158,20 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   Use the log file to confirm that DMI received packet EVC-1 with following variables, MMI_M_WARNING = 12 (Status=IntS, Supervision=CSM).(2)   The CSG at 0-150 km/h is dark-grey colour.(3)   The CSG at beyond 150km/h is red colour.(4)   The CSG between the hook (Vperm = 150 km/h) and Vsbi is have a same width with hook.(5) Sound S2 is muted because of Warning Stauts is deactive
             Test Step Comment: (1) MMI_gen 972 (partly: MMI_M_WARNING, MMI_V_INTERVEN); MMI_gen 6310 (partly: supervision status);(2) MMI_gen 972 (partly: FS mode, CSM, 0km/h <= CSG <= Vperm);(3) MMI_gen 972 (partly: FS mode, CSM, Vperm <= CSG <= Vsbi );(4) MMI_gen 1155 (partly: Intervention);(5) MMI_gen 11921 (partly: NEGATIVE, MMI_M_WARNING = 4);
             */
-
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 157;
+            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Ceiling_Speed_Monitoring;
+            // ?? Send
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                               "1. The CSG at 0-150 km/h is dark-grey in colour." + Environment.NewLine +
+                               "2. The CSG beyond 150 km/h is red in colour." + Environment.NewLine +
+                               "3. The CSG between the hook (Vperm = 150 km/h) and Vsbi has a hook of the same width." + Environment.NewLine +
+                               "4. Sound S2 is muted because Warning Stauts is deactivated.");
 
             /*
             Test Step 7
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }

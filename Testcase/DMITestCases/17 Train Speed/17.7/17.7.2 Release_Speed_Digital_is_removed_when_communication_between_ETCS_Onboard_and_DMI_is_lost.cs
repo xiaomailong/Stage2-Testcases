@@ -13,6 +13,8 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.DMITestCases;
+
 
 namespace Testcase.DMITestCases
 {
@@ -61,7 +63,6 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
             /*
             Test Step 1
             Action: Activate cabin A
@@ -70,27 +71,34 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.Activate_Cabin_1(this);
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. ATP is in SB mode.");
+            DmiExpectedResults.DMI_displays_in_SB_mode_level_1(this);
 
             /*
             Test Step 2
             Action: Driver performs SoM to SR mode, Level 1
             Expected Result: ATP enters SR mode, Level 1.DMI displays in SR mode
             */
-
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. ATP enters SR mode.");
+            DmiExpectedResults.DMI_displays_in_SR_mode_level_1(this);
 
             /*
             Test Step 3
-            Action: Drive the train forward  passing BG1
+            Action: Drive the train forward passing BG1
             Expected Result: DMI changes mode from SR to FS
             */
+            DmiActions.Drive_the_train_forward_passing_BG1(this);
 
+            DmiExpectedResults.DMI_displays_in_FS_mode_Level_1(this);
 
             /*
             Test Step 4
             Action: When the supervision status is RSM
             Expected Result: The Release Speed digital is displayed at sub-area B6
             */
-
+            // ???
 
             /*
             Test Step 5
@@ -98,7 +106,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays the  message “ATP Down Alarm” with sound alarm.Verify that the release speed digital is removed from DMI’s screen. The toggling function is reset to default state
             Test Step Comment: MMI_gen 6588 (partly: Release speed removal);
             */
-
+            DmiActions.Stop_the_train(this);
+            DmiActions.Simulate_the_communication_loss_between_ETCS_Onboard_and_DMI(this);
+            DmiExpectedResults.DMI_displays_Default_window_with_the_message_ATP_Down_Alarm_and_sound_alarm(this);
 
             /*
             Test Step 6
@@ -108,14 +118,17 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Re_establish_the_communication_between_ETCS_onboard_and_DMI(this);
-
+            
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in FS mode." + Environment.NewLine +
+                                "2. Digital release speed is re-displayed" + Environment.NewLine +
+                                "3. Toggling function is applied.");            
 
             /*
             Test Step 7
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }

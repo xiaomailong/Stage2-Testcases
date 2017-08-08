@@ -13,6 +13,7 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.EVCtoDMI;
 
 namespace Testcase.DMITestCases
 {
@@ -57,6 +58,11 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
+            EVC7_MMIEtcsMiscOutSignals.Initialise(this);
+            EVC1_MMIDynamic.Initialise(this);
+
+            /// No intervention speed described here: comment is that it is less than 11, presumably 10...
+            EVC1_MMIDynamic.MMI_V_INTERVENTION_KMH = 10;
 
             /*
             Test Step 1
@@ -68,13 +74,14 @@ namespace Testcase.DMITestCases
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_in_FS_mode_Level_1_with_the_ST06_symbol_at_sub_area_C6(this);
 
-
             /*
             Test Step 2
             Action: Perform the following procedure,Chage the train direction to reverseAcknowledge RV mode by pressing the symbol in sub-area C1
             Expected Result: DMI displays in RV mode, Level 1
             */
-
+            WaitForVerification("Chage the train direction to reverse and acknowledge RV mode by pressing the symbol in sub - area C1." + Environment.NewLine +
+                                "Then check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1.DMI displays in RV mode, Level 1.");
 
             /*
             Test Step 3
@@ -82,9 +89,16 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   Use the log file to confirm that DMI received the packet information EVC-1 and EVC-7 with following variables,(EVC-7) OBU_TR_M_MODE = 14 (Reversing)(EVC-1) MMI_M_WARNING = 0 (Status = NoS, Supervision = CSM)(EVC-1) MMI_V_PERMITTED = 139 (5km/h)(2)   The speed pointer display in grey colour
             Test Step Comment: (1) MMI_gen 6299 (partly: OBU_TR_M_MODE, MMI_M_WARNING, train speed in relation to permitted speed MMI_V_PERMITTED, RV mode in CSM supervision);(2) MMI_gen 6299 (partly: colour of speed pointer, RV mode in CSM supervision);
             */
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Reversing;
+            // ?? Send EVC7_MMIEtcsMiscOutSignals
+
+            EVC1_MMIDynamic.MMI_V_PERMITTED = 139;
+            // ?? Send
+
             // Call generic Action Method
             DmiActions.Drive_the_train_with_speed_5_kmh(this);
-
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. Is the speed pointer grey?");
 
             /*
             Test Step 4
@@ -92,7 +106,11 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   Use the log file to confirm that DMI received the packet information EVC-1 with the following condition,MMI_M_WARNING = 8 (Status = OvS, Supervision = CSM) while the value of MMI_V_TRAIN = 167 (6 km/h) which greater than MMI_V_PERMITTED(2)   The speed pointer display in orange colour
             Test Step Comment: (1) MMI_gen 6299 (partly: MMI_M_WARNING, train speed in relation to permitted speed MMI_V_PERMITTED, RV mode in CSM supervision);(2) MMI_gen 6299 (partly: colour of speed pointer, RV mode in CSM supervision);
             */
-
+            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Overspeed_Status_Ceiling_Speed_Monitoring;
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 6;
+            // ?? Send
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. Is the speed pointer orange?");
 
             /*
             Test Step 5
@@ -100,7 +118,11 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   Use the log file to confirm that DMI received the packet information EVC-1 with the following condition,MMI_M_WARNING = 4 (Status = WaS, Supervision = CSM) while the value of MMI_V_TRAIN = 278 (10 km/h) which greater than MMI_V_PERMITTED but lower than MMI_V_INTERVENTION(2)   The speed pointer display in orange colour
             Test Step Comment: (1) MMI_gen 6299 (partly: MMI_M_WARNING, train speed in relation to permitted speed MMI_V_PERMITTED, RV mode in CSM supervision);(2) MMI_gen 6299 (partly: colour of speed pointer, RV mode in CSM supervision);
             */
-
+            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Warning_Status_Ceiling_Speed_Monitoring;
+            EVC1_MMIDynamic.MMI_V_TRAIN = 278;
+            // ?? Send
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. Is the speed pointer orange?");
 
             /*
             Test Step 6
@@ -108,14 +130,23 @@ namespace Testcase.DMITestCases
             Expected Result: The train speed is force to decrease because of emergency brake is applied by ETCS onboard.Verify the following information,Before train speed is decreased(1)   Use the log file to confirm that DMI received the packet information EVC-1 with the following condition,MMI_M_WARNING = 12 (Status = IntS, Supervision = CSM) while the value of MMI_V_TRAIN = 306 (11 km/h) which greater than MMI_V_INTERVENTION(2)   The speed pointer display in red colourAfter train speed is decreased(3)   Use the log file to confirm that DMI received the packet information EVC-1 with the following condition,MMI_M_WARNING = 12 (Status = IntS, Supervision = CSM) while the value of MMI_V_TRAIN is lower than MMI_V_INTERVENTION(4)   The speed pointer display in grey colour
             Test Step Comment: (1) MMI_gen 6299 (partly: MMI_M_WARNING, train speed in relation to permitted speed MMI_V_PERMITTED, RV mode in CSM supervision);(2) MMI_gen 6299 (partly: colour of speed pointer, RV mode in CSM supervision);(3) MMI_gen 6299 (partly: MMI_M_WARNING, RV mode in CSM supervision);(4) MMI_gen 6299 (partly: colour of speed pointer, RV mode in CSM supervision);
             */
+            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Ceiling_Speed_Monitoring;
+            EVC1_MMIDynamic.MMI_V_TRAIN = 306;
+            // ?? Send
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. Is the speed pointer red?");
 
+            // ETCS will decrease speed
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 9;
+            // ?? Send 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. Is the speed pointer grey?");
 
             /*
             Test Step 7
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }

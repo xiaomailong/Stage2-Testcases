@@ -13,6 +13,8 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.EVCtoDMI;
+
 
 namespace Testcase.DMITestCases
 {
@@ -55,6 +57,10 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
+            EVC7_MMIEtcsMiscOutSignals.Initialise(this);
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
+
+            EVC1_MMIDynamic.Initialise(this);
 
             /*
             Test Step 1
@@ -62,9 +68,18 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in FS mode, Level 1.Verify the following information,(1)    Use the log file to confirm that DMI received packet EVC-7 with variable OBU_TR_M_MODE = 0 (Full Supervision mode).(2)   Use the log file to confirm that DMI received packet EVC-1 with following variables, MMI_M_WARNING = 3 (Status=IndS, Supervision=RSM).MMI_V_RELEASE =  1388 (50 km/h)(3)   All section of CSG is yellow colour
             Test Step Comment: (1) MMI_gen 972 (partly: OBU_TR_M_MODE); MMI_gen 6310 (partly: mode);(2) MMI_gen 972 (partly: MMI_V_RELEASE); MMI_gen 6310 (partly: release speed); MMI_gen 5902 (partly: MMI_M_WARNING = 3);(3) MMI_gen 972 (partly: FS mode, RSM, IndS,  Vtarget <= CSG <= Vperm); MMI_gen 1182 (partly: Vrelease);
             */
+            // EVC7_MMIEtcsMiscOutSignals Send
+
+            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Release_Speed_Monitoring;
+            EVC1_MMIDynamic.MMI_V_RELEASE = 1388;
+            // ?? Send
+
             // Call generic Action Method
             DmiActions.Drive_the_train_forward_pass_BG1_with_speed_30kmh(this);
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in LS mode, level 1." + Environment.NewLine +
+                                "2. All sections of CSG are yellow in colour");
 
             /*
             Test Step 2
@@ -72,14 +87,17 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   Use the log file to confirm that DMI received packet EVC-1 with following variables, MMI_M_WARNING = 15 (Status=IntS and Inds, Supervision=RSM).(2)   All section of CSG is yellow colour
             Test Step Comment: (1) MMI_gen 972 (partly: MMI_V_RELEASE); MMI_gen 6310 (partly: release speed); MMI_gen 5902 (partly: MMI_M_WARNING = 15);(2) MMI_gen 972 (partly: FS mode, RSM, IntS, Vtarget <= CSG <= Vperm); MMI_gen 1182 (partly: Vrelease);
             */
-
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 51;
+            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Indication_Status_Release_Speed_Monitoring;
+            // ?? Send
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. All sections of CSG are yellow in colour");
 
             /*
             Test Step 3
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }

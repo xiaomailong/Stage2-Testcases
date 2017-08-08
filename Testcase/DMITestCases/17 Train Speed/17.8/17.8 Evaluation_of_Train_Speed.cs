@@ -13,6 +13,8 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.EVCtoDMI;
+
 
 namespace Testcase.DMITestCases
 {
@@ -60,6 +62,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
+            EVC1_MMIDynamic.Initialise(this);
 
             /*
             Test Step 1
@@ -67,7 +70,17 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)    Use the log file to confirm that DMI receives packet EVC-1 with variable MMI_V_TRAIN = -1.(2)   The following objects are not displayed on the DMI,Speed PointerSpeed DigitalCSGCSG-ExtensionAll hooksTarget Distance Bar
             Test Step Comment: (1) MMI_gen 1086 (partly: received MMI_V_TRAIN equal -1); MMI_gen 1268 (partly: received MMI_V_TRAIN equal -1); MMI_gen 1275 (partly: received invalid MMI_V_TRAIN);(2) MMI_gen 1086 (partly: when MMI_V_TRAIN equal -1);  MMI_gen 1268 (partly: when MMI_DYNAMIC not elder than 600ms and MMI_V_TRAIN equal -1); MMI_gen 1275 (partly: when MMI_V_TRAIN is invalid); 
             */
+            //?? 
+            DmiActions.Turn_off_power_of_DMI(this);
+            DmiActions.Turn_on_power_of_DMI(this);
 
+            WaitForVerification("Check that the following objects are not displayed on the DMI:" + Environment.NewLine + Environment.NewLine +
+                                "1. Speed Pointer." + Environment.NewLine +
+                                "2. Speed Digital" + Environment.NewLine + 
+                                "3. CSG" + Environment.NewLine + 
+                                "4. CSG - Extension" + Environment.NewLine +
+                                "5. All hooks" + Environment.NewLine +
+                                "6. Target Distance Bar");
 
             /*
             Test Step 2
@@ -75,7 +88,18 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   Use the log file to confirm that DMI receives packet EVC-1 with variable MMI_V_TRAIN = 0.(2)    The Speed pointer, Speed digital, CSG, CSG-Extension, all hooks, Target Distance Bar and Target Distance Digital are diplayed and correspond to the  received packet EVC-1
             Test Step Comment: (1) MMI_gen 1086 (partly: negative case - received MMI_V_TRAIN not equal -1); MMI_gen 1268 (partly: received MMI_V_TRAIN greater than -1); MMI_gen 1275 (partly: negative case - received valid MMI_V_TRAIN);(2) MMI_gen 1086 (partly: negative case - when MMI_V_TRAIN not equal -1); MMI_gen 1268 (partly: when MMI_DYNAMIC not elder than 600ms and MMI_V_TRAIN greater than -1); MMI_gen 1275 (partly: negative case - when MMI_V_TRAIN is valid);
             */
+            DmiActions.Activate_cabin_A_Driver_performs_SoM_to_SR_mode_level_1(this);
 
+            EVC1_MMIDynamic.MMI_V_TRAIN = 0;
+            // ?? Send
+            WaitForVerification("Check that the following objects are displayed on the DMI with speed = 0:" + Environment.NewLine + Environment.NewLine +
+                                "1. The Speed pointer" + Environment.NewLine +
+                                "2. Speed digital" + Environment.NewLine +
+                                "3. CSG" + Environment.NewLine +
+                                "4. CSG-Extension" + Environment.NewLine +
+                                "5. All hooks" + Environment.NewLine +
+                                "6. Target Distance Bar" + Environment.NewLine +
+                                "7. Digital Target Distance");
 
             /*
             Test Step 3
@@ -83,7 +107,14 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   Use the log file to confirm that DMI received packet EVC-1 with variable MMI_V_TRAIN = 694.(2)    The Speed pointer and Speed digital are diplayed consist with received packet EVC-1.(3)   The Speed Pointer and Speed Digital on DMI screen are correspond with the current train speed
             Test Step Comment: (1) MMI_gen 1086 (partly: negative case - received MMI_V_TRAIN not equal -1); MMI_gen 1268 (partly: received MMI_V_TRAIN greater than -1); MMI_gen 1275 (partly: negative case - received valid MMI_V_TRAIN);(2) MMI_gen 1086 (partly: negative case - when MMI_V_TRAIN not equal -1); MMI_gen 1268 (partly: when MMI_DYNAMIC not elder than 600ms and MMI_V_TRAIN greater than -1); MMI_gen 1275 (partly: negative case - when MMI_V_TRAIN is valid);(3) MMI_gen 1277;
             */
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 25;
+            // ?? Send
 
+            DmiActions.Drive_the_train_forward_passing_BG1(this);
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The Speed pointer and Speed digital are displayed with speed = 0." + Environment.NewLine +
+                                "2. The Speed Pointer and Speed Digital on DMI screen with speed = 0.");
 
             /*
             Test Step 4
@@ -91,14 +122,23 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   The following objects are not display on DMI,Speed PointerSpeed DigitalCSGCSG-ExtensionAll hooksTarget Distance BarTarget Distance Digital
             Test Step Comment: (1) MMI_gen 1086 (partly: negative case - when MMI_V_TRAIN not equal -1); MMI_gen 1268 (partly: negative case - when MMI_DYNAMIC not elder than 600ms and MMI_V_TRAIN not greater than and equal -1); MMI_gen 1275;
             */
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = -2;
+            // ?? Send
 
+            WaitForVerification("Check that the following objects are not displayed" + Environment.NewLine + Environment.NewLine +
+                                "1. The Speed pointer" + Environment.NewLine +
+                               "2. Speed digital" + Environment.NewLine +
+                               "3. CSG" + Environment.NewLine +
+                               "4. CSG-Extension" + Environment.NewLine +
+                               "5. Any hooks" + Environment.NewLine +
+                               "6. Target Distance Bar" + Environment.NewLine +
+                               "7. Digital Target Distance");
 
             /*
             Test Step 5
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }

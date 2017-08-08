@@ -13,6 +13,8 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.EVCtoDMI;
+
 
 namespace Testcase.DMITestCases
 {
@@ -57,7 +59,11 @@ namespace Testcase.DMITestCases
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint
+            
+            EVC7_MMIEtcsMiscOutSignals.Initialise(this);
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Trip;
 
+            EVC1_MMIDynamic.Initialise(this);
 
             /*
             Test Step 1
@@ -66,6 +72,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Drive_the_train_forward_pass_BG1(this);
+
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_in_FS_mode_level_1(this);
 
@@ -76,9 +83,15 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in TR mode, level 1.The train is forced to stop, train speed is decreasing to 0 km/h.Verify the following information,(1)   Use the log file to confirm that DMI received the EVC-7 with variable OBU_TR_M_MODE = 7 (Trip)(2)   The speed pointer is always display in red colour
             Test Step Comment: (1) MMI_gen 6299 (partly: OBU_TR_M_MODE = 7);(2) MMI_gen 6299 (partly: colour of speed pointer, TR mode);
             */
-            // Call generic Action Method
-            DmiActions.Force_train_forward_overpassing_EOA(this);
+            // EVC7_MMIEtcsMiscOutSignals Send
 
+            // Call generic Action Method
+            DmiActions.Force_the_train_into_TR_mode_by_moving_the_train_forward_to_position_of_EOA(this);
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                 "1. DMI displays in LS mode, level 1." + Environment.NewLine +
+                                 "2. Train speed drops to 0" + Environment.NewLine + 
+                                 "3. Is the speed pointer red?");
 
             /*
             Test Step 3
@@ -86,15 +99,26 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in PT mode, level 1.Verify the following information,(1)   Use the log file to confirm that DMI received the EVC-7 with variable OBU_TR_M_MODE = 8 (Post trip)(2)   The speed pointer is always display in grey colour.Note: The train will be force to stop due to runaway movement is detect when the train moving back over 200m
             Test Step Comment: (1) MMI_gen 6299 (partly: OBU_TR_M_MODE = 8);(2) MMI_gen 6299 (partly: colour of speed pointer, PT mode);
             */
+            WaitForVerification("Press an acknowledgement in sub - area C1. Change the train direction to ‘Reverse’");
 
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.PostTrip;
+            // EVC7_MMIEtcsMiscOutSignals Send
+
+            DmiActions.Driver_the_train_forward_with_speed_40_kmh(this);
+
+            /// ?? Some ETCS signal surely
+            /// 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                 "1. DMI displays in PT mode, level 1." + Environment.NewLine +
+                                 "2. Train speed drops to 0" + Environment.NewLine +
+                                 "3. Is the speed pointer red?");
 
             /*
             Test Step 4
             Action: End of test
             Expected Result: 
             */
-
-
+            
             return GlobalTestResult;
         }
     }

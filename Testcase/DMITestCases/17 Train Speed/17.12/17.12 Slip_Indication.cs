@@ -13,6 +13,8 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.EVCtoDMI;
+
 
 namespace Testcase.DMITestCases
 {
@@ -56,6 +58,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
+            EVC1_MMIDynamic.Initialise(this);
 
             /*
             Test Step 1
@@ -64,10 +67,10 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Drive_the_train_forward(this);
+
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_changes_from_SR_to_FS_mode(this);
-
-
+            DmiExpectedResults.DMI_changes_from_SR_mode_to_FS_mode(this);
+            
             /*
             Test Step 2
             Action: Drive the train forward with speed = 140 km/h
@@ -77,14 +80,20 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.Drive_the_train_forward_with_speed_140_kmh(this);
 
-
             /*
             Test Step 3
             Action: Use the test script file 12_12_a.xml to send EVC-1 with,MMI_M_SLIP = 1MMI_M_SLIDE = 0
             Expected Result: Verify the following information,The Slip indication is displayed and shown as arrow pointing clockwise.The colour of Slip indication is displayed as same as speed digital colour. The Slip indication is displayed on speed hub of the speed pointer. DMI plays sound Sinfo once
             Test Step Comment: (1) MMI_gen 1079 (partly: slip, presented),   MMI_gen 1694(partly: slip is set), MMI_gen 1695(partly: slide is not set), MMI_gen 1692 (partly: ETC speed, slip);   (2) MMI_gen 7013(partly: slip);(3) MMI_gen 1696 (partly:slip);(4) MMI_gen 7012 (partly: slip); MMI_gen 9516 (partly: slip indication); MMI_gen 12025 (partly: slip indication);
             */
+            EVC1_MMIDynamic.MMI_M_SLIP = 1;
+            // ?? Send
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The Slip indication is displayed and shown as arrow pointing clockwise." + Environment.NewLine +
+                                "2. The colour of Slip indication is displayed the same as speed digital colour." + Environment.NewLine +
+                                "3. The Slip indication is displayed on the speed hub of the speed pointer." + Environment.NewLine +
+                                "4. DMI plays sound Sinfo once.");
 
             /*
             Test Step 4
@@ -92,7 +101,12 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The ‘Slip/Slide’ indication is not displayed on the speed hub
             Test Step Comment: (1) MMI_gen 1079 (partly: slip, presented),   MMI_gen 1694(partly: slip is not set), MMI_gen 1695(partly: slide is set), MMI_gen 1692 (partly: ETC speed);   
             */
+            EVC1_MMIDynamic.MMI_M_SLIP = 0;
+            EVC1_MMIDynamic.MMI_M_SLIDE = 1;
+            // ?? Send
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The ‘Slip / Slide’ indication is not displayed on the speed hub.");
 
             /*
             Test Step 5
@@ -100,8 +114,13 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The ‘Slip’ indication is displayed on the speed hub as a clockwise arrow
             Test Step Comment: (1) MMI_gen 1079 (partly: slip, presented),   MMI_gen 1694(partly: slip is set), MMI_gen 1695(partly: slide is set), MMI_gen 1693, MMI_gen 1692 (partly: ETC speed, slip);
             */
+            EVC1_MMIDynamic.MMI_M_SLIP = 1;
+            EVC1_MMIDynamic.MMI_M_SLIDE = 1;
+            // ?? Send
 
-
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The ‘Slip’ indication is displayed on the speed hub as a clockwise arrow.");
+            
             /*
             Test Step 6
             Action: Stop the train
@@ -110,13 +129,14 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.Stop_the_train(this);
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The speed is indicated as 0");
 
             /*
             Test Step 7
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }
