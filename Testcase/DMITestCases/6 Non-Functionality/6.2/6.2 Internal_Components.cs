@@ -70,7 +70,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays the default window. The Driver ID window is displayed
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_the_default_window_Driver_ID_window_displayed(this);
+            DmiExpectedResults.Driver_ID_window_displayed(this);
 
 
             /*
@@ -115,7 +115,7 @@ namespace Testcase.DMITestCases
             Expected Result: Cabin A is deactivated
             */
             // Call generic Check Results Method
-            DmiExpectedResults.Cabin_A_is_deactivated(this);
+            DmiExpectedResults.Cab_deactivated(this);
 
 
             /*
@@ -124,7 +124,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays the default window. The Driver ID window is displayed
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_the_default_window_Driver_ID_window_displayed(this);
+            DmiExpectedResults.Driver_ID_window_displayed(this);
 
 
             /*

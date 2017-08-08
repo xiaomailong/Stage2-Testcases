@@ -133,7 +133,7 @@ namespace Testcase.DMITestCases
             Expected Result: Cabin A is deactivated
             */
             // Call generic Check Results Method
-            DmiExpectedResults.Cabin_A_is_deactivated(this);
+            DmiExpectedResults.Cab_deactivated(this);
 
 
             /*

@@ -71,6 +71,9 @@ namespace Testcase.DMITestCases
             DmiActions.Activate_Cabin_1(this);
 
             // Call generic Check Results Method
+            DmiExpectedResults.Driver_ID_window_displayed(this);
+
+            // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_in_SB_mode_level_1_The_Driver_ID_window_is_displayed(this);
 
             /*

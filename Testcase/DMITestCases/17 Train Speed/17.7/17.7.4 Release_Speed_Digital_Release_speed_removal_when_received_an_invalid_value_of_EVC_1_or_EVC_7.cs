@@ -60,7 +60,7 @@ namespace Testcase.DMITestCases
             // Testcase entrypoint
 
             EVC7_MMIEtcsMiscOutSignals.Initialise(this);
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Invalid;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Unknown;
 
             EVC1_MMIDynamic.Initialise(this);
 
@@ -87,7 +87,6 @@ namespace Testcase.DMITestCases
                                 "1. The release speed in sub-area B2 and B6 are removed from the DMI.");
 
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Spare;
-            // ?? Send
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The release speed in sub-area B2 and B6 are re-displayed");
