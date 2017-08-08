@@ -111,12 +111,6 @@ namespace Testcase.DMITestCases
             // ?? Send
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. 
-            EVC1_MMIDynamic.MMI_M_SLIP = 1;
-            EVC1_MMIDynamic.MMI_M_SLIDE = 0;
-            // ?? Send
-
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Slip indication is displayed and shown as arrow pointing clockwise.");
 
             /*

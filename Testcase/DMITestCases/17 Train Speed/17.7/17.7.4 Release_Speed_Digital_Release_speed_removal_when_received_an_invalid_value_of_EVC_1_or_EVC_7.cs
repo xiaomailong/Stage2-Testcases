@@ -86,7 +86,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The release speed in sub-area B2 and B6 are removed from the DMI.");
 
-            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Warning_Status_Invalid;
+            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Spare;
             // ?? Send
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +

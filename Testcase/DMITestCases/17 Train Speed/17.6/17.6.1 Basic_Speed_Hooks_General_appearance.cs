@@ -118,7 +118,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   The basic speed hook is removed from the DMI.(2)   After test scipt file is executed, the basic speed hook is re-appear refer to received packet EVC-1 from ETCS Onboard
             Test Step Comment: (1) MMI_gen 6452 (partly: MMI_M_WARNING is invalid);(2) MMI_gen 6452 (partly: toggle function is reset to default state);
             */
-            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Warning_Status_Invalid;
+            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Spare;
             // ?? Send
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +

@@ -468,7 +468,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         Warning_Status_Ceiling_Speed_Monitoring = 4,
         Warning_Status_Indication_Status_Target_Speed_Monitoring = 5,
         Warning_Status_PreIndication_Monitoring = 6,
-        Warning_Status_Invalid = 7,
+        Spare = 7,
         Overspeed_Status_Ceiling_Speed_Monitoring = 8,
         Overspeed_Status_Indication_Status_Target_Speed_Monitoring = 9,
         Overspeed_Status_PreIndication_Monitoring = 10,

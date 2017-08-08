@@ -85,7 +85,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1.The Circular Speed Gauge is removed from sub-area B2.");
 
-            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Warning_Status_Invalid;
+            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Spare;
             // ?? Send
             // Call generic Check Results Method
             DmiExpectedResults.Verify_the_following_information_1_The_Circular_Speed_Gauge_is_removed_from_sub_area_B2_Note_The_circular_speed_guage_is_re_appear_when_DMI_received_packet_EVC_1_from_ETCS_onboard(this);
