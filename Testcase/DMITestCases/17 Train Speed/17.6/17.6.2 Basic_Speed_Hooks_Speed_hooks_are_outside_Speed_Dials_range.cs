@@ -13,6 +13,8 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.EVCtoDMI;
+
 
 namespace Testcase.DMITestCases
 {
@@ -56,6 +58,12 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
+            EVC7_MMIEtcsMiscOutSignals.Initialise(this);
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.OnSight;
+
+            EVC1_MMIDynamic.Initialise(this);
+
+            // Set up from CCU to set range of speed dial ??
 
             /*
             Test Step 1
@@ -64,6 +72,20 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 6331 (partly: outside the Speed Dial’s maximum speed);(2) MMI_gen 6331 (partly: not to be shown);
             */
 
+            // EVC7_MMIEtcsMiscOutSignals Send
+
+            EVC1_MMIDynamic.MMI_V_PERMITTED = 2777;
+            EVC1_MMIDynamic.MMI_V_TARGET = 694;
+            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Target_Speed_Monitoring;        // i.e. not 0, 4, 8, 12
+            // ?? Send
+
+            DmiActions.Drive_the_train_forward_pass_BG1_Then_press_an_acknowledgement_of_OS_mode_in_sub_area_C1(this);
+
+            WaitForVerification("Acknowledgement of LS mode is requested. Press button to accept and then check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. All basic speed hooks are displayed in sub-area B2." + Environment.NewLine +
+                                "2. The first hook is displayed overlapping the outer border of the speed dial in white  at 100 km/h." + Environment.NewLine +
+                                "3. The second hook is displayed overlapping the outer border of the speed dial in medium-grey colour at 25 km/h." + Environment.NewLine +
+                                "4. Sound ‘Sinfo’ is played once.");
 
             /*
             Test Step 2
@@ -71,7 +93,12 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   There is only white basic speed hook displays at 0 km/h
             Test Step Comment: (1) MMI_gen 6331 (partly: Target speed is outside the speed range determined by zero and the Speed Dial's maximum Speed, not to be shown);
             */
+            // This value [65535] is outside the range of short
+            EVC1_MMIDynamic.MMI_V_TARGET = 32767;   // largest +ve integer 
+            // ?? Send
 
+            WaitForVerification("Wait until the basic speed hooks overlap, then check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The Vperm hook (in white) overlays the Vtarget hook (medium-grey).");
 
             /*
             Test Step 3
@@ -79,7 +106,15 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   There is only medium grey basic speed hook displays at 0 km/h
             Test Step Comment: (1) MMI_gen 6331 (partly: Permitted speed is outside the speed range determined by zero and the Speed Dial's maximum Speed, not to be shown);
             */
+            WaitForVerification("Press the 'Main' button. Press and hold 'Shunting' button at least 2 seconds." + Environment.NewLine +
+                                "Release 'Shunting' button then check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SH mode, level 1.");
 
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Shunting;
+            // EVC7_MMIEtcsMiscOutSignals Send
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The first hook is displayed overlapping the outer border of the speed dial in white at 30 km/h.");
 
             /*
             Test Step 4

@@ -13,6 +13,8 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.EVCtoDMI;
+
 
 namespace Testcase.DMITestCases
 {
@@ -57,6 +59,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
+            EVC1_MMIDynamic.Initialise(this);
 
             /*
             Test Step 1
@@ -64,9 +67,17 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Default window.Verify the following information,ETSC-DMI using EVC-1 with variable MMI_V_TRAIN = 0 as the train is standstill.The number of the current train speed is displayed in Sub-Area B1.Number 0 is black.The single integer number is aligned right
             Test Step Comment: (1) MMI_gen 6303;(2) MMI_gen 6304;(3) MMI_gen 6307 (partly: digital number is black)(4) MMI_gen 1279 (partly: right most sub-area, 1 digit, integer)
             */
-            // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
 
+            // Call generic Action Method
+            DmiActions.Perform_SoM_to_L1_SR_mode(this);
+
+            EVC1_MMIDynamic.MMI_V_TRAIN = 0;
+            // ?? Send
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The current train speed is displayed in Sub - Area B1." + Environment.NewLine + 
+                                "2. The speed number is in black." + Environment.NewLine + 
+                                "3. The single integer number (0) is aligned right.");
 
             /*
             Test Step 2
@@ -74,15 +85,28 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The number of the current train speed is coloured white when the speed pointer is red.The 2-digit interger number is aligned right without leading zeroes.The numbers of the current train speed on Speed hub are displayed by no leading with zero
             Test Step Comment: (1) MMI_gen 6307 (partly: Speed pointer has the red colour);      (2) MMI_gen 1279 (partly: right most sub-area, 2 digit, integer, no zeroes)(3) MMI_gen 4244;
             */
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 50;
+            // ?? Send
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The current train speed number is coloured white with the speed pointer in red." + Environment.NewLine + 
+                                "2. The 2-digit speed number is aligned right without leading zeroes." + Environment.NewLine + 
+                                "3. The current train speed numbers on the Speed hub are displayed with no leading zeroes.");
 
             /*
             Test Step 3
-            Action: Drive the train and deaccelarate the speed to 40 km/hr through BG1
+            Action: Drive the train and decelerate to 40 km/hr through BG1
             Expected Result: Verify the following information,The number of the current train speed is coloured black.The 2-digit interger number is aligned right without leading zeroes
             Test Step Comment: (1) MMI_gen 6307 (partly: Speed pointer has no red colour);(2) MMI_gen 1279 (partly: right most sub-area, 2 digit, integer, no zeroes)
             */
+            DmiActions.Drive_the_train_forward_passing_BG1(this);
 
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 40;
+            // ?? Send
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The current train speed number is in black." + Environment.NewLine + 
+                                "2. The 2-digit speed number is aligned right without leading zeroes.");
 
             /*
             Test Step 4
@@ -90,7 +114,11 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,Three of number 1 (“111”) are displayed in Sub-Area B1, as number 1 has the smallest width
             Test Step Comment: (1) MMI_gen 6306 (partly: INITIAL, different widths of digit in the location)
             */
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 111;
+            // ?? Send
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. Three '1' digits are displayed in Sub-Area B1");
 
             /*
             Test Step 5
@@ -98,8 +126,12 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,Even though the numbers are changed (from “111” to “108), the positions of digits remain the same
             Test Step Comment: (1) MMI_gen 6306 (partly: different widths of digit in the location)
             */
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 108;
+            // ?? Send
 
-
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The digits '108'  are displayed in Sub-Area B1 in the same position as the previous speed");
+            
             /*
             Test Step 6
             Action: Stop the train
@@ -108,6 +140,8 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.Stop_the_train(this);
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The speed displayed is 0.");
 
             /*
             Test Step 7
@@ -115,6 +149,11 @@ namespace Testcase.DMITestCases
             Expected Result: The speed digital is changed to 15 km/h
             Test Step Comment: MMI_gen 1279 (partly: decimal rounded up, near integer)
             */
+            EVC1_MMIDynamic.MMI_V_TRAIN = 389;
+            // ?? Send
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The speed displayed is 15 km/h");
 
 
             /*
@@ -123,7 +162,11 @@ namespace Testcase.DMITestCases
             Expected Result: The speed digital is 18 km/h
             Test Step Comment: MMI_gen 1279 (partly: NEGATIVE, decimal rounded up)
             */
+            EVC1_MMIDynamic.MMI_V_TRAIN = 500;
+            // ?? Send
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The speed displayed is 18 km/h");
 
             /*
             Test Step 9
@@ -131,14 +174,17 @@ namespace Testcase.DMITestCases
             Expected Result: The speed digital is 23 km/h
             Test Step Comment: MMI_gen 1279 (partly: decimal rounded up, far from integer)
             */
+            EVC1_MMIDynamic.MMI_V_TRAIN = 625;
+            // ?? Send
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The speed displayed is 23 km/h");
 
             /*
             Test Step 10
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }

@@ -13,6 +13,8 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.EVCtoDMI;
+
 
 namespace Testcase.DMITestCases
 {
@@ -56,6 +58,14 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
+            EVC7_MMIEtcsMiscOutSignals.Initialise(this);
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.LimitedSupervision;
+
+            EVC1_MMIDynamic.Initialise(this);
+
+            DmiActions.Complete_SoM_L1_SR(this);
+
+            // SLIP and SLIDE are configured to 0 !!!!!!!!!!!!!!!!
 
             /*
             Test Step 1
@@ -64,9 +74,11 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Driver_the_train_forward(this);
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_changes_from_SR_to_FS_mode(this);
 
+            // EVC7_MMIEtcsMiscOutSignals Send
+
+            // Call generic Check Results Method
+            DmiExpectedResults.DMI_changes_from_SR_mode_to_FS_mode(this);
 
             /*
             Test Step 2
@@ -75,6 +87,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Drive_the_train_forward_with_speed_140_kmh(this);
+
             // Call generic Check Results Method
             DmiExpectedResults.The_speed_pointer_is_displayed_with_speed_140(this);
 
@@ -85,6 +98,10 @@ namespace Testcase.DMITestCases
             Expected Result: Verify that Slip and Slide indicator are not display on DMI
             Test Step Comment: (1) MMI_gen 1692 (partly: ETC speed, disabled);   
             */
+            EVC1_MMIDynamic.MMI_M_SLIP = 1;
+            EVC1_MMIDynamic.MMI_M_SLIDE = 0;
+            // ?? Send
+
             // Call generic Check Results Method
             DmiExpectedResults.Verify_that_Slip_and_Slide_indicator_are_not_display_on_DMI(this);
 
@@ -95,6 +112,10 @@ namespace Testcase.DMITestCases
             Expected Result: Verify that Slip and Slide indicator are not display on DMI
             Test Step Comment: (1) MMI_gen 1692 (partly: ETC speed, disabled);   
             */
+            EVC1_MMIDynamic.MMI_M_SLIP = 1;
+            EVC1_MMIDynamic.MMI_M_SLIDE = 0;
+            // ?? Send
+
             // Call generic Check Results Method
             DmiExpectedResults.Verify_that_Slip_and_Slide_indicator_are_not_display_on_DMI(this);
 
@@ -105,9 +126,12 @@ namespace Testcase.DMITestCases
             Expected Result: Verify that Slip and Slide indicator are not display on DMI
             Test Step Comment: (1) MMI_gen 1692 (partly: ETC speed, disabled);   
             */
+            EVC1_MMIDynamic.MMI_M_SLIP = 1;
+            EVC1_MMIDynamic.MMI_M_SLIDE = 1;
+            // ?? Send
+
             // Call generic Check Results Method
             DmiExpectedResults.Verify_that_Slip_and_Slide_indicator_are_not_display_on_DMI(this);
-
 
             /*
             Test Step 6

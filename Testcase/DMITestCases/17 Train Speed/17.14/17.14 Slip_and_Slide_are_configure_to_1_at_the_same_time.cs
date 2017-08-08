@@ -13,6 +13,8 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.EVCtoDMI;
+
 
 namespace Testcase.DMITestCases
 {
@@ -56,6 +58,12 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
+            EVC7_MMIEtcsMiscOutSignals.Initialise(this);
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
+
+            EVC1_MMIDynamic.Initialise(this);
+
+            DmiActions.Complete_SoM_L1_SR(this);
 
             /*
             Test Step 1
@@ -64,9 +72,11 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Driver_the_train_forward(this);
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_changes_from_SR_to_FS_mode(this);
 
+            // EVC7_MMIEtcsMiscOutSignals Send
+
+            // Call generic Check Results Method
+            DmiExpectedResults.DMI_changes_from_SR_mode_to_FS_mode(this);
 
             /*
             Test Step 2
@@ -75,23 +85,39 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Drive_the_train_forward_with_speed_140_kmh(this);
+
             // Call generic Check Results Method
             DmiExpectedResults.The_speed_pointer_is_displayed_with_speed_140(this);
-
 
             /*
             Test Step 3
             Action: Use the test script file 12_14_a.xml to send EVC-1 with,MMI_M_SLIP = 1MMI_M_SLIDE = 0
             Expected Result: The Slip indication is displayed and shown as arrow pointing clockwise
             */
+            EVC1_MMIDynamic.MMI_M_SLIP = 1;
+            EVC1_MMIDynamic.MMI_M_SLIDE = 0;
+            // ?? Send
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The Slip indication is displayed and shown as arrow pointing clockwise.");
 
             /*
             Test Step 4
             Action: Use the test script file 12_14_b.xml to send EVC-1 with,MMI_M_SLIP = 0MMI_M_SLIDE = 1
             Expected Result: The Slide indication is displayed and shown as arrow pointing counterclockwise
             */
+            EVC1_MMIDynamic.MMI_M_SLIP = 0;
+            EVC1_MMIDynamic.MMI_M_SLIDE = 1;
+            // ?? Send
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. 
+            EVC1_MMIDynamic.MMI_M_SLIP = 1;
+            EVC1_MMIDynamic.MMI_M_SLIDE = 0;
+            // ?? Send
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The Slip indication is displayed and shown as arrow pointing clockwise.");
 
             /*
             Test Step 5
@@ -99,14 +125,18 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The Slip indication is displayed and shown as arrow pointing clockwise
             Test Step Comment: (1) MMI_gen 1693;
             */
+            EVC1_MMIDynamic.MMI_M_SLIP = 1;
+            EVC1_MMIDynamic.MMI_M_SLIDE = 1;
+            // ?? Send
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. (1)	The Slip indication is displayed and shown as arrow pointing clockwise.");
 
             /*
             Test Step 6
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }

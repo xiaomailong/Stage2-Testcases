@@ -13,6 +13,7 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.EVCtoDMI;
 
 namespace Testcase.DMITestCases
 {
@@ -56,6 +57,9 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
+            // Initialise the messages
+            EVC7_MMIEtcsMiscOutSignals.Initialise(this);
+            EVC1_MMIDynamic.Initialise(this);
 
             /*
             Test Step 1
@@ -64,8 +68,15 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 6299 (partly: OBU_TR_M_MODE, MMI_M_WARNING, train speed in relation to permitted speed MMI_V_PERMITTED, UN mode in CSM supervision);(2) MMI_gen 6299 (partly: colour of speed pointer, UN mode in CSM supervision);
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_with_speed_100_kmh(this);
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Unfitted;
+            // ?? Send
 
+            EVC1_MMIDynamic.MMI_V_PERMITTED = 2778;
+            // ?? Send
+
+            DmiActions.Drive_the_train_forward_with_speed_100_kmh(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. Is the speed pointer grey?");
 
             /*
             Test Step 2
@@ -73,12 +84,13 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   Use the log file to confirm that DMI received the packet information EVC-1 with the following condition,MMI_M_WARNING = 8 (Status = OvS, Supervision = CSM) while the value of MMI_V_TRAIN = 2806 (101 km/h) which greater than MMI_V_PERMITTED(2)   The speed pointer display in orange colour
             Test Step Comment: (1) MMI_gen 6299 (partly: MMI_M_WARNING, train speed in relation to permitted speed MMI_V_PERMITTED, UN mode in CSM supervision);(2) MMI_gen 6299 (partly: colour of speed pointer, UN mode in CSM supervision);
             */
+
             // Call generic Action Method
             DmiActions.Increase_the_train_speed_to_101_kmh(this);
+            //?? EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Overspeed_Status_Ceiling_Speed_Monitoring;
+            // ?? Send
             // Call generic Check Results Method
-            DmiExpectedResults
-                .Verify_the_following_information_1_Use_the_log_file_to_confirm_that_DMI_received_the_packet_information_EVC_1_with_the_following_condition_MMI_M_WARNING_8_Status_OvS_Supervision_CSM_while_the_value_of_MMI_V_TRAIN_2806_101_kmh_which_greater_than_MMI_V_PERMITTED2_The_speed_pointer_display_in_orange_colour(this);
-
+            DmiExpectedResults.Verify_the_following_information_1_Use_the_log_file_to_confirm_that_DMI_received_the_packet_information_EVC_1_with_the_following_condition_MMI_M_WARNING_8_Status_OvS_Supervision_CSM_while_the_value_of_MMI_V_TRAIN_2806_101_kmh_which_greater_than_MMI_V_PERMITTED2_The_speed_pointer_display_in_orange_colour(this);
 
             /*
             Test Step 3
@@ -86,12 +98,12 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   Use the log file to confirm that DMI received the packet information EVC-1 with the following condition,MMI_M_WARNING = 4 (Status = WaS, Supervision = CSM) while the value of MMI_V_TRAIN = 2917 (105 km/h) which greater than MMI_V_PERMITTED but lower than MMI_V_INTERVENTION(2)   The speed pointer display in orange colour
             Test Step Comment: (1) MMI_gen 6299 (partly: MMI_M_WARNING, train speed in relation to permitted speed MMI_V_PERMITTED, UN mode in CSM supervision);(2) MMI_gen 6299 (partly: colour of speed pointer, UN mode in CSM supervision);
             */
+            //?? EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Warning_Status_Ceiling_Speed_Monitoring;
+            // ?? Send
             // Call generic Action Method
             DmiActions.Increase_the_train_speed_to_105_kmh_Note_dV_warning_max_is_defined_in_chapter_3_of_SUBSET_026(this);
             // Call generic Check Results Method
-            DmiExpectedResults
-                .Verify_the_following_information_1_Use_the_log_file_to_confirm_that_DMI_received_the_packet_information_EVC_1_with_the_following_condition_MMI_M_WARNING_4_Status_WaS_Supervision_CSM_while_the_value_of_MMI_V_TRAIN_2917_105_kmh_which_greater_than_MMI_V_PERMITTED_but_lower_than_MMI_V_INTERVENTION2_The_speed_pointer_display_in_orange_colour(this);
-
+            DmiExpectedResults.Verify_the_following_information_1_Use_the_log_file_to_confirm_that_DMI_received_the_packet_information_EVC_1_with_the_following_condition_MMI_M_WARNING_4_Status_WaS_Supervision_CSM_while_the_value_of_MMI_V_TRAIN_2917_105_kmh_which_greater_than_MMI_V_PERMITTED_but_lower_than_MMI_V_INTERVENTION2_The_speed_pointer_display_in_orange_colour(this);
 
             /*
             Test Step 4
@@ -102,9 +114,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.Increase_the_train_speed_to_106_kmh(this);
             // Call generic Check Results Method
-            DmiExpectedResults
-                .The_train_speed_is_force_to_decrease_because_of_emergency_brake_is_applied_by_ETCS_onboard_Verify_the_following_information_Before_train_speed_is_decreased1_Use_the_log_file_to_confirm_that_DMI_received_the_packet_information_EVC_1_with_the_following_condition_MMI_M_WARNING_12_Status_IntS_Supervision_CSM_while_the_value_of_MMI_V_TRAIN_2944_106_kmh_which_greater_than_MMI_V_INTERVENTION2_The_speed_pointer_display_in_red_colourAfter_train_speed_is_decreased3_Use_the_log_file_to_confirm_that_DMI_received_the_packet_information_EVC_1_with_the_following_condition_MMI_M_WARNING_12_Status_IntS_Supervision_CSM_while_the_value_of_MMI_V_TRAIN_is_lower_than_MMI_V_INTERVENTION4_The_speed_pointer_display_in_grey_colour(this);
-
+            DmiExpectedResults.The_train_speed_is_force_to_decrease_because_of_emergency_brake_is_applied_by_ETCS_onboard_Verify_the_following_information_Before_train_speed_is_decreased1_Use_the_log_file_to_confirm_that_DMI_received_the_packet_information_EVC_1_with_the_following_condition_MMI_M_WARNING_12_Status_IntS_Supervision_CSM_while_the_value_of_MMI_V_TRAIN_2944_106_kmh_which_greater_than_MMI_V_INTERVENTION2_The_speed_pointer_display_in_red_colourAfter_train_speed_is_decreased3_Use_the_log_file_to_confirm_that_DMI_received_the_packet_information_EVC_1_with_the_following_condition_MMI_M_WARNING_12_Status_IntS_Supervision_CSM_while_the_value_of_MMI_V_TRAIN_is_lower_than_MMI_V_INTERVENTION4_The_speed_pointer_display_in_grey_colour(this);
 
             /*
             Test Step 5
@@ -112,10 +122,17 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in UN mode, level 0.Verify the following information,(1)   The speed pointer display in grey colour
             Test Step Comment: (1) MMI_gen 6299 (partly: colour of speed pointer, UN mode in PIM supervision);
             */
-            // Call generic Check Results Method
-            DmiExpectedResults
-                .DMI_displays_in_UN_mode_level_0_Verify_the_following_information_1_The_speed_pointer_display_in_grey_colour(this);
+            // Send EVC7_MMIEtcsMiscOutSignals
+            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_PreIndication_Monitoring;
+            EVC1_MMIDynamic.MMI_V_PERMITTED = 1111;
+            EVC1_MMIDynamic.MMI_V_TARGET = 1083;
+            EVC1_MMIDynamic.MMI_V_INTERVENTION = 1250;
+            EVC1_MMIDynamic.MMI_V_TRAIN = 972;
+            // ?? Send
 
+            DmiActions.Stop_the_train(this);
+            // Call generic Check Results Method
+            DmiExpectedResults.DMI_displays_in_UN_mode_level_0_Verify_the_following_information_1_The_speed_pointer_display_in_grey_colour(this);
 
             /*
             Test Step 6
@@ -123,9 +140,12 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in UN mode, level 0.Verify the following information,(1)   The speed pointer display in white colour
             Test Step Comment: (1) MMI_gen 6299 (partly: colour of speed pointer, UN mode in PIM supervision);
             */
+            // Send EVC7_MMIEtcsMiscOutSignals
+
+            EVC1_MMIDynamic.MMI_V_TRAIN = 1111;
+            // ?? Send
             // Call generic Check Results Method
-            DmiExpectedResults
-                .DMI_displays_in_UN_mode_level_0_Verify_the_following_information_1_The_speed_pointer_display_in_white_colour(this);
+            DmiExpectedResults.DMI_displays_in_UN_mode_level_0_Verify_the_following_information_1_The_speed_pointer_display_in_white_colour(this);
 
 
             /*
@@ -134,9 +154,13 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in UN mode, level 0.Verify the following information,(1)   The speed pointer display in orange colour
             Test Step Comment: (1) MMI_gen 6299 (partly: colour of speed pointer, UN mode in PIM supervision);
             */
+            // Send EVC7_MMIEtcsMiscOutSignals
+
+            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Overspeed_Status_PreIndication_Monitoring;
+            EVC1_MMIDynamic.MMI_V_TRAIN = 1139;
+            // ?? Send
             // Call generic Check Results Method
-            DmiExpectedResults
-                .DMI_displays_in_UN_mode_level_0_Verify_the_following_information_1_The_speed_pointer_display_in_orange_colour(this);
+            DmiExpectedResults.DMI_displays_in_UN_mode_level_0_Verify_the_following_information_1_The_speed_pointer_display_in_orange_colour(this);
 
 
             /*
@@ -145,9 +169,13 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in UN mode, level 0.Verify the following information,(1)   The speed pointer display in orange colour
             Test Step Comment: (1) MMI_gen 6299 (partly: colour of speed pointer, UN mode in PIM supervision);
             */
+            // Send EVC7_MMIEtcsMiscOutSignals
+
+            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Warning_Status_PreIndication_Monitoring;
+            EVC1_MMIDynamic.MMI_V_TRAIN = 1250;
+            // ?? Send
             // Call generic Check Results Method
-            DmiExpectedResults
-                .DMI_displays_in_UN_mode_level_0_Verify_the_following_information_1_The_speed_pointer_display_in_orange_colour(this);
+            DmiExpectedResults.DMI_displays_in_UN_mode_level_0_Verify_the_following_information_1_The_speed_pointer_display_in_orange_colour(this);
 
 
             /*
@@ -156,9 +184,13 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in UN mode, level 0.Verify the following information,(1)   The speed pointer display in red colour
             Test Step Comment: (1) MMI_gen 6299 (partly: colour of speed pointer, UN mode in PIM supervision);
             */
+            // Send EVC7_MMIEtcsMiscOutSignals
+
+            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_PreIndication_Monitoring;
+            EVC1_MMIDynamic.MMI_V_TRAIN = 1277;
+            // ?? Send
             // Call generic Check Results Method
-            DmiExpectedResults
-                .DMI_displays_in_UN_mode_level_0_Verify_the_following_information_1_The_speed_pointer_display_in_red_colour(this);
+            DmiExpectedResults.DMI_displays_in_UN_mode_level_0_Verify_the_following_information_1_The_speed_pointer_display_in_red_colour(this);
 
 
             /*
@@ -167,9 +199,12 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in UN mode, level 0.Verify the following information,(1)   The speed pointer display in white colour
             Test Step Comment: (1) MMI_gen 6299 (partly: colour of speed pointer, UN mode in PIM supervision);
             */
+            // Send EVC7_MMIEtcsMiscOutSignals
+
+            EVC1_MMIDynamic.MMI_V_TRAIN = 1111;
+            // ?? Send
             // Call generic Check Results Method
-            DmiExpectedResults
-                .DMI_displays_in_UN_mode_level_0_Verify_the_following_information_1_The_speed_pointer_display_in_white_colour(this);
+            DmiExpectedResults.DMI_displays_in_UN_mode_level_0_Verify_the_following_information_1_The_speed_pointer_display_in_white_colour(this);
 
 
             /*
@@ -178,9 +213,12 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in UN mode, level 0.Verify the following information,(1)   The speed pointer display in grey colour
             Test Step Comment: (1) MMI_gen 6299 (partly: colour of speed pointer, UN mode in PIM supervision);
             */
+            // Send EVC7_MMIEtcsMiscOutSignals
+
+            EVC1_MMIDynamic.MMI_V_TRAIN = 1000;
+            // ?? Send
             // Call generic Check Results Method
-            DmiExpectedResults
-                .DMI_displays_in_UN_mode_level_0_Verify_the_following_information_1_The_speed_pointer_display_in_grey_colour(this);
+            DmiExpectedResults.DMI_displays_in_UN_mode_level_0_Verify_the_following_information_1_The_speed_pointer_display_in_grey_colour(this);
 
 
             /*
@@ -189,9 +227,12 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in UN mode, level 0.Verify the following information,(1)   The speed pointer display in grey colour
             Test Step Comment: (1) MMI_gen 6299 (partly: colour of speed pointer, UN mode in TSM supervision);
             */
+            // Send EVC7_MMIEtcsMiscOutSignals
+
+            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Target_Speed_Monitoring;
+            // ?? Send
             // Call generic Check Results Method
-            DmiExpectedResults
-                .DMI_displays_in_UN_mode_level_0_Verify_the_following_information_1_The_speed_pointer_display_in_grey_colour(this);
+            DmiExpectedResults.DMI_displays_in_UN_mode_level_0_Verify_the_following_information_1_The_speed_pointer_display_in_grey_colour(this);
 
 
             /*
@@ -200,9 +241,12 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in UN mode, level 0.Verify the following information,(1)   The speed pointer display in white colour
             Test Step Comment: (1) MMI_gen 6299 (partly: colour of speed pointer, UN mode in TSM supervision);
             */
+            // Send EVC7_MMIEtcsMiscOutSignals
+
+            EVC1_MMIDynamic.MMI_V_TRAIN = 1111;
+            // ?? Send
             // Call generic Check Results Method
-            DmiExpectedResults
-                .DMI_displays_in_UN_mode_level_0_Verify_the_following_information_1_The_speed_pointer_display_in_white_colour(this);
+            DmiExpectedResults.DMI_displays_in_UN_mode_level_0_Verify_the_following_information_1_The_speed_pointer_display_in_white_colour(this);
 
 
             /*
@@ -211,9 +255,12 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in UN mode, level 0.Verify the following information,(1)   The speed pointer display in yellow colour
             Test Step Comment: (1) MMI_gen 6299 (partly: colour of speed pointer, UN mode in TSM supervision);
             */
+            // Send EVC7_MMIEtcsMiscOutSignals
+
+            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Target_Speed_Monitoring;
+            // ?? Send
             // Call generic Check Results Method
-            DmiExpectedResults
-                .DMI_displays_in_UN_mode_level_0_Verify_the_following_information_1_The_speed_pointer_display_in_yellow_colour(this);
+            DmiExpectedResults.DMI_displays_in_UN_mode_level_0_Verify_the_following_information_1_The_speed_pointer_display_in_yellow_colour(this);
 
 
             /*
@@ -222,9 +269,13 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in UN mode, level 0.Verify the following information,(1)   The speed pointer display in orange colour
             Test Step Comment: (1) MMI_gen 6299 (partly: colour of speed pointer, UN mode in TSM supervision);
             */
+            // Send EVC7_MMIEtcsMiscOutSignals
+
+            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Overspeed_Status_Indication_Status_Target_Speed_Monitoring;
+            EVC1_MMIDynamic.MMI_V_TRAIN = 1139;
+            // ?? Send
             // Call generic Check Results Method
-            DmiExpectedResults
-                .DMI_displays_in_UN_mode_level_0_Verify_the_following_information_1_The_speed_pointer_display_in_orange_colour(this);
+            DmiExpectedResults.DMI_displays_in_UN_mode_level_0_Verify_the_following_information_1_The_speed_pointer_display_in_orange_colour(this);
 
 
             /*
@@ -233,9 +284,12 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in UN mode, level 0.Verify the following information,(1)   The speed pointer display in orange colour
             Test Step Comment: (1) MMI_gen 6299 (partly: colour of speed pointer, UN mode in TSM supervision);
             */
+            // Send EVC7_MMIEtcsMiscOutSignals
+
+            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Warning_Status_Indication_Status_Target_Speed_Monitoring;
+            // ?? Send
             // Call generic Check Results Method
-            DmiExpectedResults
-                .DMI_displays_in_UN_mode_level_0_Verify_the_following_information_1_The_speed_pointer_display_in_orange_colour(this);
+            DmiExpectedResults.DMI_displays_in_UN_mode_level_0_Verify_the_following_information_1_The_speed_pointer_display_in_orange_colour(this);
 
 
             /*
@@ -244,9 +298,13 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in UN mode, level 0.Verify the following information,(1)   The speed pointer display in red colour
             Test Step Comment: (1) MMI_gen 6299 (partly: colour of speed pointer, UN mode in TSM supervision);
             */
+            // Send EVC7_MMIEtcsMiscOutSignals
+
+            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Indication_Status_Target_Speed_Monitoring;
+            EVC1_MMIDynamic.MMI_V_TRAIN = 1139;
+            // ?? Send
             // Call generic Check Results Method
-            DmiExpectedResults
-                .DMI_displays_in_UN_mode_level_0_Verify_the_following_information_1_The_speed_pointer_display_in_red_colour(this);
+            DmiExpectedResults.DMI_displays_in_UN_mode_level_0_Verify_the_following_information_1_The_speed_pointer_display_in_red_colour(this);
 
 
             /*
@@ -255,9 +313,12 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in UN mode, level 0.Verify the following information,(1)   The speed pointer display in yellow colour
             Test Step Comment: (1) MMI_gen 6299 (partly: colour of speed pointer, UN mode in TSM supervision);
             */
+            // Send EVC7_MMIEtcsMiscOutSignals
+
+            EVC1_MMIDynamic.MMI_V_TRAIN = 1111;
+            // ?? Send
             // Call generic Check Results Method
-            DmiExpectedResults
-                .DMI_displays_in_UN_mode_level_0_Verify_the_following_information_1_The_speed_pointer_display_in_yellow_colour(this);
+            DmiExpectedResults.DMI_displays_in_UN_mode_level_0_Verify_the_following_information_1_The_speed_pointer_display_in_yellow_colour(this);
 
 
             /*
@@ -266,17 +327,18 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in UN mode, level 0.Verify the following information,(1)   The speed pointer display in grey colour
             Test Step Comment: (1) MMI_gen 6299 (partly: colour of speed pointer, UN mode in TSM supervision);
             */
-            // Call generic Check Results Method
-            DmiExpectedResults
-                .DMI_displays_in_UN_mode_level_0_Verify_the_following_information_1_The_speed_pointer_display_in_grey_colour(this);
+            // Send EVC7_MMIEtcsMiscOutSignals
 
+            EVC1_MMIDynamic.MMI_V_TRAIN = 1083;
+            // ?? Send
+            // Call generic Check Results Method
+            DmiExpectedResults.DMI_displays_in_UN_mode_level_0_Verify_the_following_information_1_The_speed_pointer_display_in_grey_colour(this);
 
             /*
             Test Step 20
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }

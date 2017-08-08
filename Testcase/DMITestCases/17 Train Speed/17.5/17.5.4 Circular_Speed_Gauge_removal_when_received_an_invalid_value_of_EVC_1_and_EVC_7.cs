@@ -13,6 +13,8 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.EVCtoDMI;
+
 
 namespace Testcase.DMITestCases
 {
@@ -57,6 +59,10 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
+            EVC7_MMIEtcsMiscOutSignals.Initialise(this);
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.LimitedSupervision;
+
+            EVC1_MMIDynamic.Initialise(this);
 
             /*
             Test Step 1
@@ -64,19 +70,25 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in FS mode, Level 1
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_FS_mode_level_1(this);
+            DmiActions.Complete_SoM_L1_FS(this);
 
+            DmiExpectedResults.DMI_displays_in_FS_mode_Level_1(this);
+            DmiActions.Stop_the_train(this);
 
             /*
             Test Step 2
-            Action: Use the test script file 12_5_4_a.xml to send EVC-1 with,MMI_M_WARNING = 7
+            Action: Use the test script file 12_5_4_a.xml to send EVC-1 with MMI_M_WARNING = 7
             Expected Result: Verify the following information,(1)   The Circular Speed Gauge is removed from sub-area B2.Note: The ciruclar speed guage is re-appear when DMI received packet EVC-1 from ETCS onboard
             Test Step Comment: (1) MMI_gen 977 (partly: MMI_M_WARNING);
             */
-            // Call generic Check Results Method
-            DmiExpectedResults
-                .Verify_the_following_information_1_The_Circular_Speed_Gauge_is_removed_from_sub_area_B2_Note_The_ciruclar_speed_guage_is_re_appear_when_DMI_received_packet_EVC_1_from_ETCS_onboard(this);
+            // This should be part of step 1
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1.The Circular Speed Gauge is removed from sub-area B2.");
 
+            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Warning_Status_Invalid;
+            // ?? Send
+            // Call generic Check Results Method
+            DmiExpectedResults.Verify_the_following_information_1_The_Circular_Speed_Gauge_is_removed_from_sub_area_B2_Note_The_circular_speed_guage_is_re_appear_when_DMI_received_packet_EVC_1_from_ETCS_onboard(this);
 
             /*
             Test Step 3
@@ -84,10 +96,14 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   The Circular Speed Gauge is removed from sub-area B2.Note: The ciruclar speed guage is re-appear when DMI received packet EVC-1 from ETCS onboard
             Test Step Comment: (1) MMI_gen 977 (partly: MMI_V_TARGET);
             */
-            // Call generic Check Results Method
-            DmiExpectedResults
-                .Verify_the_following_information_1_The_Circular_Speed_Gauge_is_removed_from_sub_area_B2_Note_The_ciruclar_speed_guage_is_re_appear_when_DMI_received_packet_EVC_1_from_ETCS_onboard(this);
+// CSG needs to be displayed?? 
+//DmiActions.Complete_SoM_L1_FS(this);
 
+            // Call generic Check Results Method
+            EVC1_MMIDynamic.MMI_V_TARGET = 11112;
+            // ?? Send
+
+            DmiExpectedResults.Verify_the_following_information_1_The_Circular_Speed_Gauge_is_removed_from_sub_area_B2_Note_The_circular_speed_guage_is_re_appear_when_DMI_received_packet_EVC_1_from_ETCS_onboard(this);
 
             /*
             Test Step 4
@@ -95,10 +111,14 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   The Circular Speed Gauge is removed from sub-area B2.Note: The ciruclar speed guage is re-appear when DMI received packet EVC-1 from ETCS onboard
             Test Step Comment: (1) MMI_gen 977 (partly: MMI_V_PERMITTED);
             */
-            // Call generic Check Results Method
-            DmiExpectedResults
-                .Verify_the_following_information_1_The_Circular_Speed_Gauge_is_removed_from_sub_area_B2_Note_The_ciruclar_speed_guage_is_re_appear_when_DMI_received_packet_EVC_1_from_ETCS_onboard(this);
+// CSG needs to be displayed?? 
+//DmiActions.Complete_SoM_L1_FS(this);
 
+            EVC1_MMIDynamic.MMI_V_PERMITTED = 11112;
+            // ?? Send
+
+            // Call generic Check Results Method
+            DmiExpectedResults.Verify_the_following_information_1_The_Circular_Speed_Gauge_is_removed_from_sub_area_B2_Note_The_circular_speed_guage_is_re_appear_when_DMI_received_packet_EVC_1_from_ETCS_onboard(this);
 
             /*
             Test Step 5
@@ -106,9 +126,14 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   The Circular Speed Gauge is removed from sub-area B2.Note: The ciruclar speed guage is re-appear when DMI received packet EVC-1 from ETCS onboard
             Test Step Comment: (1) MMI_gen 977 (partly: MMI_V_INTERVENTION);
             */
+// CSG needs to be displayed?? 
+//DmiActions.Complete_SoM_L1_FS(this);
+
             // Call generic Check Results Method
-            DmiExpectedResults
-                .Verify_the_following_information_1_The_Circular_Speed_Gauge_is_removed_from_sub_area_B2_Note_The_ciruclar_speed_guage_is_re_appear_when_DMI_received_packet_EVC_1_from_ETCS_onboard(this);
+            EVC1_MMIDynamic.MMI_V_INTERVENTION = 11112;
+            // ?? Send
+
+            DmiExpectedResults.Verify_the_following_information_1_The_Circular_Speed_Gauge_is_removed_from_sub_area_B2_Note_The_circular_speed_guage_is_re_appear_when_DMI_received_packet_EVC_1_from_ETCS_onboard(this);
 
 
             /*
@@ -117,10 +142,14 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   The Circular Speed Gauge is removed from sub-area B2.Note: The ciruclar speed guage is re-appear when DMI received packet EVC-1 from ETCS onboard
             Test Step Comment: (1) MMI_gen 977 (partly: MMI_V_RELEASE);
             */
-            // Call generic Check Results Method
-            DmiExpectedResults
-                .Verify_the_following_information_1_The_Circular_Speed_Gauge_is_removed_from_sub_area_B2_Note_The_ciruclar_speed_guage_is_re_appear_when_DMI_received_packet_EVC_1_from_ETCS_onboard(this);
+// CSG needs to be displayed?? 
+//DmiActions.Complete_SoM_L1_FS(this);
 
+            EVC1_MMIDynamic.MMI_V_RELEASE = 11112;
+            // ?? Send
+
+            // Call generic Check Results Method
+            DmiExpectedResults.Verify_the_following_information_1_The_Circular_Speed_Gauge_is_removed_from_sub_area_B2_Note_The_circular_speed_guage_is_re_appear_when_DMI_received_packet_EVC_1_from_ETCS_onboard(this);
 
             /*
             Test Step 7
@@ -128,14 +157,19 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   The Circular Speed Gauge is removed from sub-area B2.Note: The ciruclar speed guage is re-appear when DMI received packet EVC-7 from ETCS onboard
             Test Step Comment: (1) MMI_gen 977 (partly: OBU_TR_M_MODE);
             */
+// CSG needs to be displayed?? 
+//DmiActions.Complete_SoM_L1_FS(this);
 
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Invalid;
+            // EVC7_MMIEtcsMiscOutSignals Send
+
+            DmiExpectedResults.Verify_the_following_information_1_The_Circular_Speed_Gauge_is_removed_from_sub_area_B2_Note_The_circular_speed_guage_is_re_appear_when_DMI_received_packet_EVC_1_from_ETCS_onboard(this);
 
             /*
             Test Step 8
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }

@@ -13,6 +13,8 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.EVCtoDMI;
+
 
 namespace Testcase.DMITestCases
 {
@@ -56,6 +58,12 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
+            EVC7_MMIEtcsMiscOutSignals.Initialise(this);
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
+
+            EVC1_MMIDynamic.Initialise(this);
+
+            DmiActions.Complete_SoM_L1_SR(this);
 
             /*
             Test Step 1
@@ -64,9 +72,12 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Driver_the_train_forward(this);
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_changes_from_SR_to_FS_mode(this);
 
+            // ?? Need to tell DMI it's in FS mode
+            // EVC7_MMIEtcsMiscOutSignals Send
+
+            // Call generic Check Results Method
+            DmiExpectedResults.DMI_changes_from_SR_mode_to_FS_mode(this);
 
             /*
             Test Step 2
@@ -77,6 +88,8 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.Drive_the_train_forward_with_speed_140_kmh(this);
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                 "1. The speed pointer is displayed with speed = 140.");
 
             /*
             Test Step 3
@@ -84,7 +97,15 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The Slide indication is displayed and shown as arrow pointing counterclockwise.The colour of Slide indication is black as same as speed digital colour.The Slide indication is displayed on speed hub of the speed pointer.DMI plays sound Sinfo once
             Test Step Comment: (1) MMI_gen 1079 (partly: slide, presented),   MMI_gen 1695(partly: slide is set), MMI_gen 1694(partly: slip is not set), MMI_gen 1692 (partly: ETC speed, slide);   (2) MMI_gen 7013(partly: slide);(3) MMI_gen 1696(partly: slide);(4) MMI_gen 7012(partly: slide); MMI_gen 9516 (partly: slide indication); MMI_gen 12025 (partly: slide indication);
             */
+            EVC1_MMIDynamic.MMI_M_SLIP = 0;
+            EVC1_MMIDynamic.MMI_M_SLIDE = 1;
+            // ?? Send
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The Slide indication is displayed and shown as arrow pointing counterclockwise." + Environment.NewLine +
+                                "2. The Slide digital speed are in black." + Environment.NewLine +
+                                "3. The Slide indication is displayed on the speed hub of the speed pointer." + Environment.NewLine +
+                                "4. DMI plays sound Sinfo once.");
 
             /*
             Test Step 4
@@ -92,9 +113,12 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The ‘Slip/Slide’ indication is not displayed on the speed hub. Sound Sinfo is not played
             Test Step Comment: (1) MMI_gen 1079 (partly: slide, presented),   MMI_gen 1694(partly: slip is set), MMI_gen 1695(partly: slide is not set), MMI_gen 1692 (partly: ETC speed);   (2) MMI_gen 7012(partly: no indication)
             */
+            EVC1_MMIDynamic.MMI_M_SLIP = 1;
+            EVC1_MMIDynamic.MMI_M_SLIDE = 0;
+            // ?? Send
+
             // Call generic Check Results Method
-            DmiExpectedResults
-                .Verify_the_following_information_The_SlipSlide_indication_is_not_displayed_on_the_speed_hub_Sound_Sinfo_is_not_played(this);
+            DmiExpectedResults.Verify_the_following_information_The_SlipSlide_indication_is_not_displayed_on_the_speed_hub_Sound_Sinfo_is_not_played(this);
 
 
             /*
@@ -103,17 +127,18 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The ‘Slip/Slide’ indication is not displayed on the speed hub. Sound Sinfo is not played
             Test Step Comment: (1) MMI_gen 1079 (partly: slide, presented),   MMI_gen 1694(partly: slip is set), MMI_gen 1695(partly: slide is set), MMI_gen 1693 (partly: under configuration), MMI_gen 1692 (partly: ETC speed);(2) MMI_gen 7012(partly: no indication);
             */
+            EVC1_MMIDynamic.MMI_M_SLIP = 1;
+            EVC1_MMIDynamic.MMI_M_SLIDE = 1;
+            // ?? Send
+
             // Call generic Check Results Method
-            DmiExpectedResults
-                .Verify_the_following_information_The_SlipSlide_indication_is_not_displayed_on_the_speed_hub_Sound_Sinfo_is_not_played(this);
-
-
+            DmiExpectedResults.Verify_the_following_information_The_SlipSlide_indication_is_not_displayed_on_the_speed_hub_Sound_Sinfo_is_not_played(this);
+            
             /*
             Test Step 6
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }

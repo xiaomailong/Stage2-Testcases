@@ -348,6 +348,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             Reversing = 14,
             PassiveShunting = 15,
             NoPower = 16,
+            Invalid = 17,
             Unknown = 128
         }
     }
