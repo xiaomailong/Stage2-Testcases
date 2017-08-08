@@ -13,6 +13,8 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.EVCtoDMI;
+
 
 namespace Testcase.DMITestCases
 {
@@ -57,6 +59,10 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
+            EVC7_MMIEtcsMiscOutSignals.Initialise(this);
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Invalid;
+
+            EVC1_MMIDynamic.Initialise(this);
 
             /*
             Test Step 1
@@ -65,9 +71,9 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Drive_the_train_forward_pass_BG1_Then_stop_the_train(this);
+
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_in_FS_mode_level_1(this);
-
 
             /*
             Test Step 2
@@ -76,14 +82,29 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 6587 (partly: MMI_M_WARNING is invalid);(2) MMI_gen 6587 (partly: toggle function is reset to default state);
             */
 
+            //?? Not clear from test spec. why this happens
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The release speed in sub-area B2 and B6 are removed from the DMI.");
 
+            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Warning_Status_Invalid;
+            // ?? Send
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The release speed in sub-area B2 and B6 are re-displayed");
             /*
             Test Step 3
             Action: Use the test script file 12_7_4_b.xml to send EVC-7 with,OBU_TR_M_MODE = 17
             Expected Result: Verify the following information,(1)   The release speed are sub-area B2 and B6 is removed from the DMI.(2)   After test scipt file is executed, the release speed in sub-area B2 and B6 is are re-appear refer to received packet EVC-7 from ETCS Onboard
             Test Step Comment: (1) MMI_gen 6587 (partly: OBU_TR_M_MODE is invalid);(2) MMI_gen 6587 (partly: toggle function is reset to default state);
             */
+            //?? Not clear from test spec. why this happens
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The release speeds in sub-area B2 and B6 are removed from the DMI.");
 
+            // EVC7_MMIEtcsMiscOutSignals Send
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The release speeds in sub-area B2 and B6 are re-displayed.");
 
             /*
             Test Step 4
