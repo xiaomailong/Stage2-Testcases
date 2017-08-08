@@ -238,6 +238,28 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
+        /// Description: RV mode sent to be displayed on th DMI
+        /// Used in:
+        ///     Step 4 in TC-ID: 15.1.2 in 20.1.2
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Send_RV_Mode(SignalPool pool)
+        {
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Reversing;
+        }
+
+        /// <summary>
+        /// Description: SL mode sent to be displayed on th DMI
+        /// Used in:
+        ///     Step 5 in TC-ID: 15.1.2 in 20.1.2
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Send_SL_Mode(SignalPool pool)
+        {
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Sleeping;
+        }
+
+        /// <summary>
         /// Description: Main Window is Start Button enabled sent to be displayed on th DMI
         /// Used in:
         ///     Step 9 in TC-ID: 15.1.1 in 20.1.1
@@ -294,6 +316,35 @@ namespace Testcase.DMITestCases
         public static void Send_SF_Mode(SignalPool pool)
         {
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.SystemFailure;
+        }
+
+        /// <summary>
+        /// Description: RV Permitted_Symbol sent to be displayed on th DMI
+        /// Used in:
+        ///     Step 2 in TC-ID: 15.1.2 in 20.1.2
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Send_RV_Permitted_Symbol(SignalPool pool)
+        {
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 286; // "#3 ST06 (Reversing is possible)"
+            EVC8_MMIDriverMessage.Send();
+        }
+
+        /// <summary>
+        /// Description: RV mode acknowledgement request sent to the driver
+        /// Used in:
+        ///     Step 3 in TC-ID: 15.1.2 in 20.1.2
+        /// </summary>
+        public static void Send_RV_Mode_Ack(SignalPool pool)
+        {
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 262;     // "#3 MO15 (Ack Reversing Mode)"
+            EVC8_MMIDriverMessage.Send();
         }
 
         /// <summary>
@@ -484,6 +535,7 @@ namespace Testcase.DMITestCases
         /// Description: Stop the train
         /// Used in:
         ///     Step 7 in TC-ID: 15.1.1 in 20.1.1
+        ///     Step 2 in TC-ID: 15.1.2 in 20.1.2
         /// </summary>
         public static void Stop_the_train(SignalPool pool)
         {
@@ -945,7 +997,7 @@ namespace Testcase.DMITestCases
         ///     Step 3 in TC-ID: 15.5.2 in 20.5.3 Adhesion factor: Controlled data packet from ETCS Onboard
         ///     Step 4 in TC-ID: 17.1.1 in 22.1.1 Planning Area: General Appearance
         /// </summary>
-        public static void Drive_the_train_forward_passing_BG2(SignalPool pool)
+        public static void Drive_train_forward_passing_BG2(SignalPool pool)
         {
             throw new NotImplementedException();
         }
