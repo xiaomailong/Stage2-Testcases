@@ -29,6 +29,30 @@ namespace Testcase.DMITestCases
     public class DmiActions
     {
         /// <summary>
+        /// Forces DMI into completed SoM, L1, SB Mode. Displays Default window.
+        /// No user input required.
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Complete_SoM_L1_SB(SignalPool pool)
+        {
+            EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.GoToIdle;
+            EVC0_MMIStartATP.Send();
+
+            // Set train running number, cab 1 active, and other defaults
+            Activate_Cabin_1(pool);
+
+            // Set driver ID
+            Set_Driver_ID(pool, "1234");
+
+            // Set to level 1 and SR mode
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
+
+            // Enable standard buttons including Start, and display Default window.
+            FinishedSoM_Default_Window(pool);
+        }
+
+        /// <summary>
         /// Forces DMI into completed SoM, L1, FS Mode. Displays Default window.
         /// No user input required.
         /// </summary>
