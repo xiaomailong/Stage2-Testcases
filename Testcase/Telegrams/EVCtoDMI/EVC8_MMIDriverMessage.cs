@@ -260,11 +260,19 @@ namespace Testcase.Telegrams.EVCtoDMI
             set
             {
                 var charArray = value.ToCharArray();
-                if (charArray.Length > 0)
+
+                if (charArray.Length < 0)
                     throw new NotImplementedException();
+
                 _pool.SITR.ETCS1.DriverMessage.MmiNText.Value = (ushort) charArray.Length;
 
-                // TODO populate the char array
+                for (int i = 0; i < charArray.Length; i++)
+                {
+                    if (i < 10)
+                        _pool.SITR.Client.Write($"ETCS1_DriverMessage_EVC8DriverMessageSub0{i}_MmiXText", charArray[i]);
+                    else
+                        _pool.SITR.Client.Write($"ETCS1_DriverMessage_EVC8DriverMessageSub{i}_MmiXText", charArray[i]);
+                }
             }
         }
     }
