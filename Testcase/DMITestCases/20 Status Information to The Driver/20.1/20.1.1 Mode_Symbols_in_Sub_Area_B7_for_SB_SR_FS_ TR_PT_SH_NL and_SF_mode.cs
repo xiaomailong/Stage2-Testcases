@@ -333,7 +333,6 @@ namespace Testcase.DMITestCases
 
             #region Test Step 13
             /*
-            Test Step 13
             Action: End of test
             Expected Result: 
             */
