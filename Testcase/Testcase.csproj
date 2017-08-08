@@ -398,6 +398,7 @@ if exist "$(TargetPath)" if not exist "$(TargetPath).locked" move "$(TargetPath)
     <Compile Include="TemporaryFunctions\Temporary.SendEVC6.cs" />
     <Compile Include="TestcaseBase.cs" />
     <Compile Include="TestCaseTemplate.cs" />
+    <Compile Include="XML Packets\12\XML_12_3_2_a.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
