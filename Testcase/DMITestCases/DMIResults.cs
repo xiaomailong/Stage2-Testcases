@@ -27,6 +27,25 @@ namespace Testcase.DMITestCases
     public static class DmiExpectedResults
     {
         /// <summary>
+        /// Prompt for verification of symbol displayed on the DMI.
+        /// </summary>
+        /// <param name="pool">Signal Pool</param>
+        /// <param name="SymbolName">Symbol name as described in ERA_ERTMS_015560 v3.4</param>
+        /// <param name="SymbolNumber">Symbol number as described in ERA_ERTMS_015560 v3.4</param>
+        /// <param name="SymbolArea">Area of the DMI where the symbol should be displayed</param>
+        /// <param name="YellowBorder">Boolean of whether the symbol should have a yellow border</param>
+        public static void Driver_symbol_displayed(SignalPool pool, string SymbolName, string SymbolNumber, string SymbolArea,
+                                                    bool YellowBorder)
+        {
+            if (YellowBorder)
+                pool.WaitForAcknowledgement($"Is the {SymbolName} symbol ({SymbolNumber}) " +
+                    $"displayed <b>with</b> a yellow border in area {SymbolArea}?");
+            else
+                pool.WaitForAcknowledgement($"Is the {SymbolName} symbol ({SymbolNumber}) " +
+                    $"displayed <b>without</b> a yellow border in area {SymbolArea}?");
+        }
+
+        /// <summary>
         /// Description: SR Mode acknowledgement is requested on DMI area C1
         /// Used in:
         ///     Step 2 in TC-ID: 15.1.1 in 20.1.1
