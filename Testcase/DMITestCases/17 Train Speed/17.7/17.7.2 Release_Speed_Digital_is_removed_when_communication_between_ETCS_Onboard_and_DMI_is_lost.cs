@@ -89,7 +89,7 @@ namespace Testcase.DMITestCases
             Action: Drive the train forward passing BG1
             Expected Result: DMI changes mode from SR to FS
             */
-            DmiActions.Drive_the_train_forward_passing_BG1(this);
+            DmiActions.Drive_train_forward_passing_BG1(this);
 
             DmiExpectedResults.DMI_displays_in_FS_mode_Level_1(this);
 

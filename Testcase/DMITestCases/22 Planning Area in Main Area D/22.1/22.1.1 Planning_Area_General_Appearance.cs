@@ -95,7 +95,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 3063       (partly: FS mode);MMI_gen 7102       (partly: default  configuration);  (2) MMI_gen 9937;   
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_passing_BG2(this);
+            DmiActions.Drive_train_forward_passing_BG2(this);
 
 
             /*

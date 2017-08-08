@@ -92,7 +92,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI remains displays in FS mode
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_passing_BG2(this);
+            DmiActions.Drive_train_forward_passing_BG2(this);
             // Call generic Check Results Method
             DmiExpectedResults.DMI_remains_displays_in_FS_mode(this);
 

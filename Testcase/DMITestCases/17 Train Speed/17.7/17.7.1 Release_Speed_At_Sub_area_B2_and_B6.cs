@@ -95,7 +95,7 @@ namespace Testcase.DMITestCases
             // EVC7_MMIEtcsMiscOutSignals Send
 
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_passing_BG1(this);
+            DmiActions.Drive_train_forward_passing_BG1(this);
 
             // Call generic Check Results Method
             DmiExpectedResults.DMI_changes_from_SR_to_FS_mode(this);

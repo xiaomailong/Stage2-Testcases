@@ -33,7 +33,7 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void SR_Mode_Ack_requested(SignalPool pool)
         {
-            pool.WaitForAcknowledgement("Is the acknowledgement for Staff Responsible symbol (MO10) displayed in area C1?");
+            pool.WaitForVerification("Is the acknowledgement for Staff Responsible symbol (MO10) displayed in area C1?");
         }
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace Testcase.DMITestCases
         {
             EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
             EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
-            pool.WaitForAcknowledgement("Has the MO10 symbol disappeared from sub-area C1 and re-appeared again?");
+            pool.WaitForVerification("Has the MO10 symbol disappeared from sub-area C1 and re-appeared again?");
         }
 
         /// <summary>
@@ -59,7 +59,7 @@ namespace Testcase.DMITestCases
             pool.Wait_Realtime(2000);
             EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.StaffResponsibleModeAck;
-            pool.WaitForAcknowledgement("Has the MO10 symbol opacity decreased to 50%?");
+            pool.WaitForVerification("Has the MO10 symbol opacity decreased to 50%?");
             
         }
 
@@ -71,7 +71,7 @@ namespace Testcase.DMITestCases
         public static void TR_Mode_displayed(SignalPool pool)
         {
             EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.Trip;
-            pool.WaitForAcknowledgement("Is the Trip mode symbol (MO04) displayed in area B7?");
+            pool.WaitForVerification("Is the Trip mode symbol (MO04) displayed in area B7?");
         }
 
         /// <summary>
@@ -81,7 +81,7 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void TR_Mode_Ack_requested(SignalPool pool)
         {
-            pool.WaitForAcknowledgement("Is the acknowledgement for Train Trip symbol (MO05) displayed in area C1?");
+            pool.WaitForVerification("Is the acknowledgement for Train Trip symbol (MO05) displayed in area C1?");
         }
 
         /// <summary>
@@ -105,7 +105,20 @@ namespace Testcase.DMITestCases
             EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
             EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.TrainTripAck;
-            pool.WaitForAcknowledgement("Has the MO05 symbol disappeared from sub-area C1");
+            pool.WaitForVerification("Has the MO05 symbol disappeared from sub-area C1?");
+        }
+
+        /// <summary>
+        /// Description: RV mode Acknowledgement symbol on DMI area C1 is pressed and released.
+        /// Used in:
+        ///     Step 4 in TC-ID: 15.1.2 in 20.1.2
+        /// </summary>
+        public static void RV_Mode_Ack_pressed_and_released(SignalPool pool)
+        {
+            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
+            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
+            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.ReversingModeAck;
+            pool.WaitForVerification("Has the MO15 symbol disappeared from sub-area C1?");
         }
 
         /// <summary>
@@ -116,7 +129,29 @@ namespace Testcase.DMITestCases
         public static void PT_Mode_displayed(SignalPool pool)
         {
             EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.PostTrip;
-            pool.WaitForAcknowledgement("Is the Post Trip mode symbol (MO06) displayed in area B7?");
+            pool.WaitForVerification("Is the Post Trip mode symbol (MO06) displayed in area B7?");
+        }
+
+        /// <summary>
+        /// Description: DMI displays RV mode
+        /// Used in:
+        ///     Step 4 in TC-ID: 15.1.2 in 20.1.2
+        /// </summary>
+        public static void RV_Mode_displayed(SignalPool pool)
+        {
+            EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.Reversing;
+            pool.WaitForVerification("Is the Reversing mode symbol (MO14) displayed in area B7?");
+        }
+
+        /// <summary>
+        /// Description: DMI does NOT display SL mode despite EVC-7 with [MMI_ETCS_MISC_OUT_SIGNALS.OBU_TR_M_MODE] = 5 received
+        /// Used in:
+        ///     Step 5 in TC-ID: 15.1.2 in 20.1.2
+        /// </summary>
+        public static void SL_Mode_NOT_displayed(SignalPool pool)
+        {
+            EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.Sleeping;
+            pool.WaitForVerification("Confirm that NO symbol is displayed in area B7");
         }
 
         /// <summary>
@@ -128,7 +163,7 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void Main_Window_displayed_with_Start_button_enabled(SignalPool pool)
         {
-            pool.WaitForAcknowledgement("Is the Main Window displayed in the DMI?");
+            pool.WaitForVerification("Is the Main Window displayed in the DMI?");
         }
 
         /// <summary>
@@ -166,7 +201,7 @@ namespace Testcase.DMITestCases
         public static void SH_Mode_displayed(SignalPool pool)
         {
             EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.Shunting;
-            pool.WaitForAcknowledgement("Is the Shunting mode symbol (MO01) displayed in area B7?");
+            pool.WaitForVerification("Is the Shunting mode symbol (MO01) displayed in area B7?");
         }
 
         /// <summary>
@@ -229,7 +264,7 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void Driver_ID_window_displayed(SignalPool pool)
         {
-            pool.WaitForAcknowledgement("Is the Driver ID window displayed on th DMI?");
+            pool.WaitForVerification("Is the Driver ID window displayed on the DMI?");
         }
 
         /// <summary>
@@ -253,7 +288,7 @@ namespace Testcase.DMITestCases
         public static void NL_Mode_displayed(SignalPool pool)
         {
             EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.NonLeading;
-            pool.WaitForAcknowledgement("Is the Non-leading mode symbol (MO012) displayed in area B7?");
+            pool.WaitForVerification("Is the Non-leading mode symbol (MO012) displayed in area B7?");
         }
 
         /// <summary>
@@ -264,7 +299,27 @@ namespace Testcase.DMITestCases
         public static void SF_Mode_displayed(SignalPool pool)
         {
             EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.SystemFailure;
-            pool.WaitForAcknowledgement("Is the System Failure mode symbol (MO18) displayed in area B7?");
+            pool.WaitForVerification("Is the System Failure mode symbol (MO18) displayed in area B7?");
+        }
+
+        /// <summary>
+        /// Description: DMI displays RV permitted symbol
+        /// Used in:
+        ///     Step 2 in TC-ID: 15.1.2 in 20.1.2
+        /// </summary>
+        public static void RV_Permitted_Symbol_displayed(SignalPool pool)
+        {
+            pool.WaitForVerification("Is the RV permitted symbol (ST06) displayed in area C6?");
+        }
+
+        /// <summary>
+        /// Description: DMI displays RV permitted symbol
+        /// Used in:
+        ///     Step 3 in TC-ID: 15.1.2 in 20.1.2
+        /// </summary>
+        public static void RV_Mode_Ack_requested(SignalPool pool)
+        {
+            pool.WaitForVerification("Is the acknowledgement for Reversing mode symbol (MO15) displayed in area C1?");
         }
 
         /// <summary>
@@ -656,7 +711,7 @@ namespace Testcase.DMITestCases
         public static void SR_Mode_displayed(SignalPool pool)
         {
             EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.StaffResponsible;
-            pool.WaitForAcknowledgement("Is the Staff Responsible mode symbol (MO9) displayed in area B7?");
+            pool.WaitForVerification("Is the Staff Responsible mode symbol (MO9) displayed in area B7?");
         }
 
         /// <summary>
@@ -961,7 +1016,7 @@ namespace Testcase.DMITestCases
         public static void SB_Mode_displayed(SignalPool pool)
         {
             EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.StandBy;
-            pool.WaitForAcknowledgement("Is the Stand By mode symbol (MO13) displayed in area B7?");
+            pool.WaitForVerification("Is the Stand By mode symbol (MO13) displayed in area B7?");
         }
 
         /// <summary>
@@ -1429,11 +1484,12 @@ namespace Testcase.DMITestCases
         ///     Step 1 in TC-ID: 12.15 in 17.15 Slip and Slide are configure to 0 at the same time
         ///     Step 2 in TC-ID: 17.3 in 22.3 Planning Area: PA Distance Scale
         ///     Step 5 in TC-ID: 15.1.1 in 20.1.1
+        ///     Step 2 in TC-ID: 15.1.2 in 20.1.2
         /// </summary>
         public static void DMI_changes_from_SR_to_FS_mode(SignalPool pool)
         {
             EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.FullSupervision;
-            pool.WaitForAcknowledgement("Is the SR mode symbol deleted and replaced by FS mode symbol (MO11) on DMI area B7");
+            pool.WaitForVerification("Is the SR mode symbol deleted and replaced by FS mode symbol (MO11) on DMI area B7");
         }
 
         /// <summary>
