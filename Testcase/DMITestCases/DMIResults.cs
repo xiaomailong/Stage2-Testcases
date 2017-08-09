@@ -83,6 +83,17 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
+        /// Description:
+        /// Used in:
+        ///     Step 2 in TC-ID: 12.7.2 in 17.7.2 
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void DMI_displays_in_SR_mode_level_1(SignalPool pool)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
         /// Description: DMI displays TR mode
         /// Used in:
         ///     Step 6 in TC-ID: 15.1.1 in 20.1.1

@@ -91,7 +91,7 @@ namespace Testcase.DMITestCases
             */
             DmiActions.Drive_train_forward_passing_BG1(this);
 
-            DmiExpectedResults.DMI_displays_in_FS_mode_Level_1(this);
+            DmiExpectedResults.DMI_displays_in_FS_mode_level_1(this);
 
             /*
             Test Step 4
