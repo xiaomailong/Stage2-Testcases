@@ -13,6 +13,11 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.DMITestCases;
+using Testcase.Telegrams.DMItoEVC;
+using Testcase.Telegrams.EVCtoDMI;
+using static Testcase.Telegrams.EVCtoDMI.Variables;
+using Testcase.TemporaryFunctions;
 
 namespace Testcase.DMITestCases
 {
@@ -31,7 +36,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 15_1_2.tdg 
     /// </summary>
-    public class Mode_Symbols_in_Sub_Area_B7_for_RV_and_SL_mode : TestcaseBase
+    public class TC_15_1_2_ETCS_Mode_Symbols : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -68,7 +73,6 @@ namespace Testcase.DMITestCases
             DmiActions.Drive_train_forward_passing_BG2(this);
 
             #endregion
-
 
             #region Test Step 2
             /*
@@ -134,7 +138,7 @@ namespace Testcase.DMITestCases
             DmiActions.Send_SL_Mode(this);
 
             DmiExpectedResults.SL_Mode_NOT_displayed(this);
-
+            DmiExpectedResults.Driver_s_cab_not_active_msg_displayed(this);
 
             #endregion
 

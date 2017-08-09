@@ -353,6 +353,17 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
+        /// Description: DMI displays the text "Driver's cab not active" in area E5
+        /// Used in:
+        ///     Step 5 in TC-ID: 15.1.2 in 20.1.2
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Driver_s_cab_not_active_msg_displayed(SignalPool pool)
+        {
+            pool.WaitForVerification("Is the text \"Driver's cab not active\" displayed in DMI area E5?");
+        }
+
+        /// <summary>
         /// Description: DMI displays Settings window
         /// Used in:
         ///     Step 1 in TC-ID: 1.1 in 6.1 Properties of each Display Unit’s Screen
