@@ -31,7 +31,7 @@ namespace Testcase.Telegrams.DMItoEVC
         {
             //Get EVC102_alias_1_B0
             byte _evc102alias1B0 = _pool.SITR.CCUO.ETCS1StatusReport.EVC102alias1B0.Value;
-            // Extract bool MMI_M_ACTIVE_CABIN (4th and 5th bits according to VSIS 2.9)
+            // Extract MMI_M_ACTIVE_CABIN (4th and 5th bits according to VSIS 2.9)
             byte _mmiMActiveCabin = (byte)((_evc102alias1B0 & 0x30) >> 4); // xxxx xxxx -> 00xx 0000 -> 0000 00xx
 
             //For each element of enum MMI_M_ACTIV_CABIN
@@ -40,7 +40,7 @@ namespace Testcase.Telegrams.DMItoEVC
                 //Compare to the value to be checked
                 if (mmiMActiveCabinElement == mActiveCabin)
                 {
-                    // Check MMI_M_MODE_READBACK value
+                    // Check MMI_M_ACTIV_CABIN value
                     _bResult = _mmiMActiveCabin.Equals(mActiveCabin);
                     break;
                 }
