@@ -39,10 +39,10 @@ namespace Testcase.DMITestCases
         {
             if (YellowBorder)
                 pool.WaitForVerification($"Is the {SymbolName} symbol ({SymbolNumber}) " +
-                    $"displayed <b>with</b> a yellow border in area {SymbolArea}?");
+                    $"displayed with a yellow border in area {SymbolArea}?");
             else
                 pool.WaitForVerification($"Is the {SymbolName} symbol ({SymbolNumber}) " +
-                    $"displayed <b>without</b> a yellow border in area {SymbolArea}?");
+                    $"displayed without a yellow border in area {SymbolArea}?");
         }
 
         /// <summary>
