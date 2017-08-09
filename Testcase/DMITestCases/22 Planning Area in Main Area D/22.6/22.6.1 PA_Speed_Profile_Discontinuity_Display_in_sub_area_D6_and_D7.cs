@@ -135,7 +135,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: Note under MMI_gen 6956;
             */
             // Call generic Action Method
-            DmiActions.Re_establish_the_communication_between_ETCS_onboard_and_DMI(this);
+            DmiActions.Re_establish_communication_EVC_DMI(this);
             // Call generic Check Results Method
             DmiExpectedResults.The_PA_Speed_Profile_segments_are_reappeared(this);
 
@@ -164,7 +164,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: Note under MMI_gen 6956;
             */
             // Call generic Action Method
-            DmiActions.Re_establish_the_communication_between_ETCS_onboard_and_DMI(this);
+            DmiActions.Re_establish_communication_EVC_DMI(this);
 
 
             /*

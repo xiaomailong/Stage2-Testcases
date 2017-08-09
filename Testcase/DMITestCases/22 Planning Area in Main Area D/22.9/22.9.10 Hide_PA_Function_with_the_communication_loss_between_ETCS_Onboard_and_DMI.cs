@@ -105,7 +105,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7358;
             */
             // Call generic Action Method
-            DmiActions.Re_establish_the_communication_between_ETCS_onboard_and_DMI(this);
+            DmiActions.Re_establish_communication_EVC_DMI(this);
 
 
             /*
@@ -156,7 +156,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7358 (partly: state of Hide PA);
             */
             // Call generic Action Method
-            DmiActions.Re_establish_the_communication_between_ETCS_onboard_and_DMI(this);
+            DmiActions.Re_establish_communication_EVC_DMI(this);
 
 
             /*

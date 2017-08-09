@@ -79,21 +79,28 @@ namespace Testcase.DMITestCases
 
             /*
             Test Step 2
-            Action: Press ‘Adhesion’ button.Then, press ‘Slippery rail’ button and confirm an entered value by pressing an input field
-            Expected Result: Verify the following information,Use the log file to confirm that DMI receives EVC-2 with variable MMI_M_ADHESION (#0) = 1, bit ‘Low Adhesion by Driver’ is set.DMI displays symbol ST02 in sub-area A4
+            Action: Press ‘Adhesion’ button. Then, press ‘Slippery rail’ button and confirm an by pressing the input field.
+            Expected Result: DMI displays symbol ST02 in sub-area A4
             Test Step Comment: (1) MMI_gen 7088 (partly: EVC-2, ‘Low Adhesion by Driver’)(2) MMI_gen 111;     
             */
+            DmiActions.ShowInstruction(this, "Please perform the following actions" + Environment.NewLine + Environment.NewLine +
+                                            "1. Press \"Adhesion\" button, followed by \"Slippery rail\" button." + Environment.NewLine +
+                                            "2. Confirm \"Slippery rail\" by pressing the input field.");
 
+            EVC2_MMIStatus.MMI_M_ADHESION = 0x1;
+            EVC2_MMIStatus.Send();
+
+            DmiExpectedResults.Driver_symbol_displayed(this, "Adhesion factor slippery rail", "ST02", "A4", false);
 
             /*
             Test Step 3
             Action: Simulate the communication loss between ETCS Onboard and DMI
-            Expected Result: Verify the following information,Adhesion symbol ST02 is removed
-            Test Step Comment: (1) MMI_gen 1688;  
+            Expected Result: Adhesion symbol ST02 is removed
+            Test Step Comment: (1) MMI_gen 1688;
             */
             // Call generic Action Method
             DmiActions.Simulate_communication_loss_EVC_DMI(this);
-
+            this.WaitForVerification("Has the Slippery rail symbol disappeared from the DMI?");
 
             /*
             Test Step 4
@@ -101,8 +108,8 @@ namespace Testcase.DMITestCases
             Expected Result: Verify that the Adhesion symbol ST02 is resumed
             */
             // Call generic Action Method
-            DmiActions.Re_establish_the_communication_between_ETCS_onboard_and_DMI(this);
-
+            DmiActions.Re_establish_communication_EVC_DMI(this);
+            this.WaitForVerification("Has the Slippery rail symbol re-appeard on the DMI?");
 
             /*
             Test Step 5

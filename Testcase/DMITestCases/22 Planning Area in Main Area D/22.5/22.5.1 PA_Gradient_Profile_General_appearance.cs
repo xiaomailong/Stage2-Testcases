@@ -96,7 +96,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: Note under MMI_gen 7271;
             */
             // Call generic Action Method
-            DmiActions.Re_establish_the_communication_between_ETCS_onboard_and_DMI(this);
+            DmiActions.Re_establish_communication_EVC_DMI(this);
 
 
             /*

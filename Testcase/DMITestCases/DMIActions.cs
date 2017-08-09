@@ -934,9 +934,11 @@ namespace Testcase.DMITestCases
         ///     Step 5 in TC-ID: 17.9.10 (Default Configuration) in 22.9.10 Hide PA Function with the communication loss between ETCS Onboard and DMI
         ///     Step 10 in TC-ID: 17.9.10 (Default Configuration) in 22.9.10 Hide PA Function with the communication loss between ETCS Onboard and DMI
         /// </summary>
-        public static void Re_establish_the_communication_between_ETCS_onboard_and_DMI(SignalPool pool)
+        public static void Re_establish_communication_EVC_DMI(SignalPool pool)
         {
-            throw new NotImplementedException();
+            // Commence sending EVC-1 and EVC-7 telegrams
+            pool.SITR.STGCtrl.ETCS1.Dynamic.Value = 1;
+            pool.SITR.STGCtrl.ETCS1.EtcsMiscOutSignals.Value = 1;
         }
 
 
@@ -1385,7 +1387,9 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void Simulate_communication_loss_EVC_DMI(SignalPool pool)
         {
-            throw new NotImplementedException();
+            // Stop sending EVC-1 and EVC-7 telegrams
+            pool.SITR.STGCtrl.ETCS1.Dynamic.Value = 0;
+            pool.SITR.STGCtrl.ETCS1.EtcsMiscOutSignals.Value = 0;
         }
 
         /// <summary>

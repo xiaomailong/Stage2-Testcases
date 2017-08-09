@@ -149,7 +149,7 @@ namespace Testcase.DMITestCases
             Expected Result: The PA Speed Profile segments are reappeared
             */
             // Call generic Action Method
-            DmiActions.Re_establish_the_communication_between_ETCS_onboard_and_DMI(this);
+            DmiActions.Re_establish_communication_EVC_DMI(this);
             // Call generic Check Results Method
             DmiExpectedResults.The_PA_Speed_Profile_segments_are_reappeared(this);
 
