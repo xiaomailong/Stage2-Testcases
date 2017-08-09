@@ -1820,30 +1820,6 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
-        /// Description: No adhesion factor indication is displayed.Verify the following information,Use the log file to confirm that DMI receives EVC-2 with following variable,MMI_M_ADHESION (#1) = 0, bit ‘Low Adhesion from Trackside’ is not set.MMI_M_ADHESION (#0) = 0, bit ‘Low Adhesion by Driver’ is not set
-        /// Used in:
-        ///     Step 5 in TC-ID: 15.5.1 in 20.5.1 Adhesion factor: General appearance
-        ///     Step 7 in TC-ID: 15.5.1 in 20.5.1 Adhesion factor: General appearance
-        /// </summary>
-        public static void
-            No_adhesion_factor_indication_is_displayed_Verify_the_following_information_Use_the_log_file_to_confirm_that_DMI_receives_EVC_2_with_following_variable_MMI_M_ADHESION_1_0_bit_Low_Adhesion_from_Trackside_is_not_set_MMI_M_ADHESION_0_0_bit_Low_Adhesion_by_Driver_is_not_set(SignalPool pool)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Description: Verify the following information,Use the log file to confirm that DMI receives EVC-2 with variable MMI_M_ADHESION (#1) = 1, bit ‘Low Adhesion from Trackside’ is set.DMI displays symbol ST02 in sub-area A4
-        /// Used in:
-        ///     Step 6 in TC-ID: 15.5.1 in 20.5.1 Adhesion factor: General appearance
-        ///     Step 3 in TC-ID: 15.5.2 in 20.5.3 Adhesion factor: Controlled data packet from ETCS Onboard
-        /// </summary>
-        public static void
-            Verify_the_following_information_Use_the_log_file_to_confirm_that_DMI_receives_EVC_2_with_variable_MMI_M_ADHESION_1_1_bit_Low_Adhesion_from_Trackside_is_set_DMI_displays_symbol_ST02_in_sub_area_A4(SignalPool pool)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
         /// Description: DMI shall not display text message “Brake Test in Progress!” in any other languages since the text is replaced with Russian character code language
         /// Used in:
         ///     Step 2 in TC-ID: 15.4.2 in 20.5.2 Building Texts: Brake test in Progress!

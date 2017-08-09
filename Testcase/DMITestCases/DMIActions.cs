@@ -146,7 +146,6 @@ namespace Testcase.DMITestCases
             EVC2_MMIStatus.MMI_M_ADHESION = 0x0;
             EVC2_MMIStatus.MMI_M_OVERRIDE_EOA = false;
             EVC2_MMIStatus.Send();
-           
         }
 
         /// <summary>
@@ -161,7 +160,6 @@ namespace Testcase.DMITestCases
             EVC2_MMIStatus.MMI_M_ADHESION = 0x0;
             EVC2_MMIStatus.MMI_M_OVERRIDE_EOA = false;
             EVC2_MMIStatus.Send();
-
         }
 
         /// <summary>
@@ -173,7 +171,6 @@ namespace Testcase.DMITestCases
         {
             EVC2_MMIStatus.MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.NoCabinActive;
             EVC2_MMIStatus.Send();
-
         }
 
         /// <summary>
