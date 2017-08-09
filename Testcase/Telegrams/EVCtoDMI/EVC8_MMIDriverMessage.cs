@@ -276,11 +276,11 @@ namespace Testcase.Telegrams.EVCtoDMI
                 for (int i = 0; i < charArray.Length; i++)
                 {
                     if (i < 10)
-                        _pool.SITR.Client.Write($"ETCS1_DriverMessage_EVC8DriverMessageSub00{i}_MmiXText", charArray[i]);
+                        _pool.SITR.Client.Write($"ETCS1_DriverMessage_EVC08DriverMessageSub00{i}_MmiXText", charArray[i]);
                     else if (i < 100)
-                        _pool.SITR.Client.Write($"ETCS1_DriverMessage_EVC8DriverMessageSub0{i}_MmiXText", charArray[i]);
+                        _pool.SITR.Client.Write($"ETCS1_DriverMessage_EVC08DriverMessageSub0{i}_MmiXText", charArray[i]);
                     else
-                        _pool.SITR.Client.Write($"ETCS1_DriverMessage_EVC8DriverMessageSub{i}_MmiXText", charArray[i]);
+                        _pool.SITR.Client.Write($"ETCS1_DriverMessage_EVC08DriverMessageSub{i}_MmiXText", charArray[i]);
                 }
             }
         }
