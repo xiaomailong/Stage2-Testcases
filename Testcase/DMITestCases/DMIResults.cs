@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 using BT_Tools;
 using BT_CSB_Tools;
 using BT_CSB_Tools.Logging;
@@ -361,6 +362,36 @@ namespace Testcase.DMITestCases
         public static void Driver_s_cab_not_active_msg_displayed(SignalPool pool)
         {
             pool.WaitForVerification("Is the text \"Driver's cab not active\" displayed in DMI area E5?");
+        }
+
+        /// <summary>
+        /// Description: Driver ID is entered
+        /// Used in:
+        ///     Step 2 in TC-ID: 15.1.3 in 20.1.3
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Driver_ID_entered(SignalPool pool)
+        {
+            string driverIDInput = DmiActions.ShowDialog("Please enter Driver ID", "Driver ID");
+            EVC104_MMINewDriverData.Check_X_DRIVER_ID = driverIDInput;
+        }
+
+        /// <summary>
+        /// Description: 
+        /// Used in:
+        ///     Step 2 in TC-ID: 15.1.3 in 20.1.3
+        /// </summary>
+        /// <param name="pool"></param>
+        /// <param name="order">Indicates if Driver allows Brake Test to be performed</param>
+        public static void Brake_Test_Perform_Order(SignalPool pool, bool order)
+        {
+            string _sOrder;
+            if (order) { _sOrder = "Yes"; } else { _sOrder = "No"; }
+
+            DmiActions.ShowInstruction(pool, "Press \"" + _sOrder + "\" on DMI area E");
+
+            if (order) { EVC111_MMIDriverMessageAck.Check_MMI_Q_ACK = EVC111_MMIDriverMessageAck.MMI_Q_ACK.AcknowledgeYES; }
+            else { EVC111_MMIDriverMessageAck.Check_MMI_Q_ACK = EVC111_MMIDriverMessageAck.MMI_Q_ACK.NotAcknowledgeNO; }
         }
 
         /// <summary>
@@ -2597,10 +2628,11 @@ namespace Testcase.DMITestCases
         ///     Step 1 in TC-ID: 22.5.4  in 27.5.4 Level Selection window: 8 STMs handling
         ///     Step 1 in TC-ID: 35.2 in 38.2 NTC System Status Messages
         ///     Step 7 in TC-ID: 35.2 in 38.2 NTC System Status Messages
+        ///     Step 1 in TC-ID: 17.1.3 in 20.1.3 
         /// </summary>
         public static void DMI_displays_Driver_ID_window_in_SB_mode(SignalPool pool)
         {
-            throw new NotImplementedException();
+            pool.WaitForVerification("Confirm that Driver Id window is diplayed in SB mode?");
         }
 
         /// <summary>
