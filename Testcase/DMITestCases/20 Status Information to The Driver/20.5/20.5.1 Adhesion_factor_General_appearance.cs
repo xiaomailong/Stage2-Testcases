@@ -92,7 +92,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 1688;  
             */
             // Call generic Action Method
-            DmiActions.Simulate_the_communication_loss_between_ETCS_Onboard_and_DMI(this);
+            DmiActions.Simulate_communication_loss_EVC_DMI(this);
 
 
             /*

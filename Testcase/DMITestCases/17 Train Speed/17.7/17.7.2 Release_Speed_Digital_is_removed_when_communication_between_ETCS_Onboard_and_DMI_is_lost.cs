@@ -107,7 +107,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 6588 (partly: Release speed removal);
             */
             DmiActions.Stop_the_train(this);
-            DmiActions.Simulate_the_communication_loss_between_ETCS_Onboard_and_DMI(this);
+            DmiActions.Simulate_communication_loss_EVC_DMI(this);
             DmiExpectedResults.DMI_displays_Default_window_with_the_message_ATP_Down_Alarm_and_sound_alarm(this);
 
             /*

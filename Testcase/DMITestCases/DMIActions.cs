@@ -1383,7 +1383,7 @@ namespace Testcase.DMITestCases
         ///     Step 11 in TC-ID: 17.6.1 in 22.6.1 PA Speed Profile Discontinuity: Display in sub-area D6 and D7
         ///     Step 9 in TC-ID: 17.7.1 in 22.7.1 PA Speed Profile (PASP): Display in sub-area D7 and D8
         /// </summary>
-        public static void Simulate_the_communication_loss_between_ETCS_Onboard_and_DMI(SignalPool pool)
+        public static void Simulate_communication_loss_EVC_DMI(SignalPool pool)
         {
             throw new NotImplementedException();
         }

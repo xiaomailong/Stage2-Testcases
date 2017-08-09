@@ -125,7 +125,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 6956 (partly: MMI_gen 244);
             */
             // Call generic Action Method
-            DmiActions.Simulate_the_communication_loss_between_ETCS_Onboard_and_DMI(this);
+            DmiActions.Simulate_communication_loss_EVC_DMI(this);
 
 
             /*
@@ -154,7 +154,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 6956 (partly: MMI_gen 240);
             */
             // Call generic Action Method
-            DmiActions.Simulate_the_communication_loss_between_ETCS_Onboard_and_DMI(this);
+            DmiActions.Simulate_communication_loss_EVC_DMI(this);
 
 
             /*
