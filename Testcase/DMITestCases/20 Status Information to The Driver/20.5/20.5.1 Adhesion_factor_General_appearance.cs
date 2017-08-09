@@ -13,6 +13,7 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.EVCtoDMI;
 
 namespace Testcase.DMITestCases
 {
@@ -20,13 +21,20 @@ namespace Testcase.DMITestCases
     /// 20.5.1 Adhesion factor: General appearance
     /// TC-ID: 15.5.1
     /// 
-    /// This test case verifies the display of the adhesion factor indication on DMI when the factor is independently activated by driver and Trackside, which the condition is complied with [MMI-ETCS-gen], [MMIIS] and [ERA-ERTMS] standard.
+    /// This test case verifies the display of the adhesion factor indication on DMI when the factor is independently activated by
+    /// driver and Trackside, when the condition complies with [MMI-ETCS-gen], [MMIIS] and [ERA-ERTMS] standard.
     /// 
     /// Tested Requirements:
     /// MMI_gen 7088; MMI_gen 111; MMI_gen 1688;
     /// 
     /// Scenario:
-    /// Drive the train passes BG0 at position 100m: pkt 3 Q_NVDRIVER_ADHES=0 (to reset the value if it has been set)Drive the train passes BG1 at position 250m: pkt 3 Q_NVDRIVER_ADHES=1The adhesion factor indication is verified with the following events: (Simple Case)Activate Slippery button at Adhesion window.Driver simulates the communication loss between ETCS Onboard and DMI. Then re-establishes the communication again.Drive the train passes BG2 at position 600m: pkt 71 D_ADHESION=0, L_ADHESION=200, M_ADHESION=0 (Slippery)Drive the train passes length of recued adhesion at position 800m.
+    /// Drive the train past BG0 at position 100 m: packet 3 Q_NVDRIVER_ADHES = 0 (to reset the value if it has been set)
+    /// Drive the train past BG1 at position 250 m: packet 3 Q_NVDRIVER_ADHES = 1
+    /// The adhesion factor indication is verified with the following events:
+    ///     (Simple Case) Activate Slippery button at Adhesion window.
+    ///     Driver simulates the communication loss between ETCS Onboard and DMI. Then re-establishes the communication.
+    ///     Drive the train past BG2 at position 600 m: packet 71 D_ADHESION = 0, L_ADHESION = 200, M_ADHESION = 0 (Slippery)
+    ///     Drive the train past length of reduced adhesion at position 800 m.
     /// 
     /// Used files:
     /// 15_5_1.tdg
@@ -36,10 +44,11 @@ namespace Testcase.DMITestCases
         public override void PreExecution()
         {
             // Pre-conditions from TestSpec:
-            // Test system is powered on.Activate Cain A.SoM is completed in SR mode, Level 1.
+            // Test system is powered on. Activate Cabin A. SoM is completed in SR mode, Level 1.
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
+            DmiActions.Complete_SoM_L1_SR(this);
         }
 
         public override void PostExecution()
@@ -55,15 +64,18 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
             /*
             Test Step 1
-            Action: Driver drives the train forward passing BG1.Then, press the ‘Special’ button
-            Expected Result: DMI still displays in SR mode.Verify that ‘Adhesion’ button is enabled
+            Action: Driver drives the train forward passing BG1. Then, press the ‘Special’ button.
+            Expected Result: DMI still displays in SR mode. Verify that ‘Adhesion’ button is enabled
             */
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_still_displays_in_SR_mode_Verify_that_Adhesion_button_is_enabled(this);
 
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Adhesion | Variables.standardFlags;
+            DmiActions.ShowInstruction(this, "Please select the Special button");
+
+            // Call generic Check Results Method
+            DmiExpectedResults.DMI_displays_Special_window_with_enabled_Adhesion_button(this);
 
             /*
             Test Step 2

@@ -38,10 +38,10 @@ namespace Testcase.DMITestCases
                                                     bool YellowBorder)
         {
             if (YellowBorder)
-                pool.WaitForAcknowledgement($"Is the {SymbolName} symbol ({SymbolNumber}) " +
+                pool.WaitForVerification($"Is the {SymbolName} symbol ({SymbolNumber}) " +
                     $"displayed <b>with</b> a yellow border in area {SymbolArea}?");
             else
-                pool.WaitForAcknowledgement($"Is the {SymbolName} symbol ({SymbolNumber}) " +
+                pool.WaitForVerification($"Is the {SymbolName} symbol ({SymbolNumber}) " +
                     $"displayed <b>without</b> a yellow border in area {SymbolArea}?");
         }
 
@@ -193,7 +193,7 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void Main_Window_displayed_with_Start_button_enabled(SignalPool pool)
         {
-            pool.WaitForVerification("Is the Main Window displayed in the DMI?");
+            pool.WaitForVerification("Is the Main window displayed on the DMI, with the Start button enabled?");
         }
 
         /// <summary>
@@ -936,7 +936,7 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void DMI_displays_Special_window_with_enabled_Adhesion_button(SignalPool pool)
         {
-            throw new NotImplementedException();
+            pool.WaitForVerification("Is the Special window displayed with the Adhesion button enabled?");
         }
 
         /// <summary>

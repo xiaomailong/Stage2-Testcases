@@ -62,8 +62,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI still displays in SR mode.Verify that ‘Adhesion’ button is enabled
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_still_displays_in_SR_mode_Verify_that_Adhesion_button_is_enabled(this);
-
+            DmiExpectedResults.DMI_displays_Special_window_with_enabled_Adhesion_button(this);
 
             /*
             Test Step 2
