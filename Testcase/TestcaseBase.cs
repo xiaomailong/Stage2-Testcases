@@ -47,6 +47,7 @@ namespace Testcase
 
             EVC101_MMIDriverRequest.Initialise(this);
             EVC102_MMIStatusReport.Initialise(this);
+            EVC104_MMINewDriverData.Initialise(this);
             EVC111_MMIDriverMessageAck.Initialise(this);
             EVC152_MMIDriverAction.Initialise(this);
 
