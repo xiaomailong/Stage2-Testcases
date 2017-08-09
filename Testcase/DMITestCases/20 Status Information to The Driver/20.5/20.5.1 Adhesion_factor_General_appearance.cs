@@ -72,6 +72,7 @@ namespace Testcase.DMITestCases
 
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Adhesion | Variables.standardFlags;
+            EVC30_MMIRequestEnable.Send();
             DmiActions.ShowInstruction(this, "Please select the Special button");
 
             // Call generic Check Results Method
@@ -100,7 +101,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Simulate_communication_loss_EVC_DMI(this);
-            this.WaitForVerification("Has the Slippery rail symbol disappeared from the DMI?");
+            this.WaitForVerification("Has the \"Slippery rail\" symbol disappeared from the DMI?");
 
             /*
             Test Step 4
@@ -109,47 +110,47 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Re_establish_communication_EVC_DMI(this);
-            this.WaitForVerification("Has the Slippery rail symbol re-appeard on the DMI?");
+            DmiExpectedResults.Driver_symbol_displayed(this, "Adhesion factor slippery rail", "ST02", "A4", false);
 
             /*
             Test Step 5
-            Action: Perform the following procedure,Press ‘Special’ button.Press ‘Adhesion’ button.Select and confirm ‘Non slippery rail’ button
-            Expected Result: No adhesion factor indication is displayed.Verify the following information,Use the log file to confirm that DMI receives EVC-2 with following variable,MMI_M_ADHESION (#1) = 0, bit ‘Low Adhesion from Trackside’ is not set.MMI_M_ADHESION (#0) = 0, bit ‘Low Adhesion by Driver’ is not set
+            Action: Press ‘Special’ button. Press ‘Adhesion’ button. Select and confirm ‘Non slippery rail’ button
+            Expected Result: No adhesion factor indication is displayed.
             Test Step Comment: (1) MMI_gen 7088 (partly: No symbol displayed);    
             */
             // Call generic Action Method
-            DmiActions
-                .Perform_the_following_procedure_Press_Special_button_Press_Adhesion_button_Select_and_confirm_Non_slippery_rail_button(this);
-            // Call generic Check Results Method
-            DmiExpectedResults
-                .No_adhesion_factor_indication_is_displayed_Verify_the_following_information_Use_the_log_file_to_confirm_that_DMI_receives_EVC_2_with_following_variable_MMI_M_ADHESION_1_0_bit_Low_Adhesion_from_Trackside_is_not_set_MMI_M_ADHESION_0_0_bit_Low_Adhesion_by_Driver_is_not_set(this);
+            DmiActions.ShowInstruction(this, "Please perform the following actions" + Environment.NewLine + Environment.NewLine +
+                                           "1. Press \"Adhesion\" button, followed by \"Slippery rail\" button." + Environment.NewLine +
+                                           "2. Confirm \"Slippery rail\" by pressing the input field.");
 
+            EVC2_MMIStatus.MMI_M_ADHESION = 0x0;
+            EVC2_MMIStatus.Send();
+
+            this.WaitForVerification("Has the \"Slippery rail\" symbol disappeared from the DMI?");
 
             /*
             Test Step 6
             Action: Drive the train forward passing BG2
-            Expected Result: Verify the following information,Use the log file to confirm that DMI receives EVC-2 with variable MMI_M_ADHESION (#1) = 1, bit ‘Low Adhesion from Trackside’ is set.DMI displays symbol ST02 in sub-area A4
+            Expected Result: DMI displays symbol ST02 in sub-area A4
             Test Step Comment: (1) MMI_gen 7088 (partly: EVC-2, ‘Low Adhesion from Trackside’);(2) MMI_gen 111;
             */
-            // Call generic Action Method
-            DmiActions.Drive_train_forward_passing_BG2(this);
-            // Call generic Check Results Method
-            DmiExpectedResults
-                .Verify_the_following_information_Use_the_log_file_to_confirm_that_DMI_receives_EVC_2_with_variable_MMI_M_ADHESION_1_1_bit_Low_Adhesion_from_Trackside_is_set_DMI_displays_symbol_ST02_in_sub_area_A4(this);
 
+            EVC2_MMIStatus.MMI_M_ADHESION = 0x2;
+            EVC2_MMIStatus.Send();
+
+            // Call generic Check Results Method
+            DmiExpectedResults.Driver_symbol_displayed(this, "Adhesion factor slippery rail", "ST02", "A4", false);
 
             /*
             Test Step 7
             Action: Drive the train forward
-            Expected Result: No adhesion factor indication is displayed.Verify the following information,Use the log file to confirm that DMI receives EVC-2 with following variable,MMI_M_ADHESION (#1) = 0, bit ‘Low Adhesion from Trackside’ is not set.MMI_M_ADHESION (#0) = 0, bit ‘Low Adhesion by Driver’ is not set
+            Expected Result: No adhesion factor indication is displayed.
             Test Step Comment: (1) MMI_gen 7088 (partly: No symbol displayed);    
             */
-            // Call generic Action Method
-            DmiActions.Drive_the_train_forward(this);
-            // Call generic Check Results Method
-            DmiExpectedResults
-                .No_adhesion_factor_indication_is_displayed_Verify_the_following_information_Use_the_log_file_to_confirm_that_DMI_receives_EVC_2_with_following_variable_MMI_M_ADHESION_1_0_bit_Low_Adhesion_from_Trackside_is_not_set_MMI_M_ADHESION_0_0_bit_Low_Adhesion_by_Driver_is_not_set(this);
+            EVC2_MMIStatus.MMI_M_ADHESION = 0x0;
+            EVC2_MMIStatus.Send();
 
+            this.WaitForVerification("Has the \"Slippery rail\" symbol disappeared from the DMI?");
 
             /*
             Test Step 8
@@ -159,13 +160,11 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.Stop_the_train(this);
 
-
             /*
             Test Step 9
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }
