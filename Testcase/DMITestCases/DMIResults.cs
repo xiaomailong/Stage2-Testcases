@@ -39,11 +39,11 @@ namespace Testcase.DMITestCases
                                                     bool YellowBorder)
         {
             if (YellowBorder)
-                pool.WaitForAcknowledgement($"Is the {SymbolName} symbol ({SymbolNumber}) " +
-                    $"displayed <b>with</b> a yellow border in area {SymbolArea}?");
+                pool.WaitForVerification($"Is the {SymbolName} symbol ({SymbolNumber}) " +
+                    $"displayed with a yellow border in area {SymbolArea}?");
             else
-                pool.WaitForAcknowledgement($"Is the {SymbolName} symbol ({SymbolNumber}) " +
-                    $"displayed <b>without</b> a yellow border in area {SymbolArea}?");
+                pool.WaitForVerification($"Is the {SymbolName} symbol ({SymbolNumber}) " +
+                    $"displayed without a yellow border in area {SymbolArea}?");
         }
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void SR_Mode_Ack_requested(SignalPool pool)
         {
-            pool.WaitForVerification("Is the acknowledgement for Staff Responsible symbol (MO10) displayed in area C1?");
+            Driver_symbol_displayed(pool, "Acknowledgement for Staff Responsible", "MO10", "C1", true);
         }
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace Testcase.DMITestCases
         public static void TR_Mode_displayed(SignalPool pool)
         {
             EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.Trip;
-            pool.WaitForVerification("Is the Trip mode symbol (MO04) displayed in area B7?");
+            Driver_symbol_displayed(pool, "Trip mode", "MO04", "B7", false);
         }
 
         /// <summary>
@@ -112,7 +112,7 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void TR_Mode_Ack_requested(SignalPool pool)
         {
-            pool.WaitForVerification("Is the acknowledgement for Train Trip symbol (MO05) displayed in area C1?");
+            Driver_symbol_displayed(pool, "Acknowledgement for Train Trip", "MO05", "C1", true);
         }
 
         /// <summary>
@@ -160,7 +160,7 @@ namespace Testcase.DMITestCases
         public static void PT_Mode_displayed(SignalPool pool)
         {
             EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.PostTrip;
-            pool.WaitForVerification("Is the Post Trip mode symbol (MO06) displayed in area B7?");
+            Driver_symbol_displayed(pool, "Post Trip mode", "MO06", "B7", false);
         }
 
         /// <summary>
@@ -171,7 +171,7 @@ namespace Testcase.DMITestCases
         public static void RV_Mode_displayed(SignalPool pool)
         {
             EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.Reversing;
-            pool.WaitForVerification("Is the Reversing mode symbol (MO14) displayed in area B7?");
+            Driver_symbol_displayed(pool, "Reversing mode", "MO14", "B7", false);
         }
 
         /// <summary>
@@ -194,7 +194,7 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void Main_Window_displayed_with_Start_button_enabled(SignalPool pool)
         {
-            pool.WaitForVerification("Is the Main Window displayed in the DMI?");
+            pool.WaitForVerification("Is the Main window displayed on the DMI, with the Start button enabled?");
         }
 
         /// <summary>
@@ -232,7 +232,7 @@ namespace Testcase.DMITestCases
         public static void SH_Mode_displayed(SignalPool pool)
         {
             EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.Shunting;
-            pool.WaitForVerification("Is the Shunting mode symbol (MO01) displayed in area B7?");
+            Driver_symbol_displayed(pool, "Shunting mode", "MO01", "B7", false);
         }
 
         /// <summary>
@@ -319,7 +319,7 @@ namespace Testcase.DMITestCases
         public static void NL_Mode_displayed(SignalPool pool)
         {
             EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.NonLeading;
-            pool.WaitForVerification("Is the Non-leading mode symbol (MO012) displayed in area B7?");
+            Driver_symbol_displayed(pool, "Non-leadin mode", "MO12", "B7", false);
         }
 
         /// <summary>
@@ -330,7 +330,7 @@ namespace Testcase.DMITestCases
         public static void SF_Mode_displayed(SignalPool pool)
         {
             EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.SystemFailure;
-            pool.WaitForVerification("Is the System Failure mode symbol (MO18) displayed in area B7?");
+            Driver_symbol_displayed(pool, "System failure mode", "MO18", "B7", false);
         }
 
         /// <summary>
@@ -340,7 +340,7 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void RV_Permitted_Symbol_displayed(SignalPool pool)
         {
-            pool.WaitForVerification("Is the RV permitted symbol (ST06) displayed in area C6?");
+            Driver_symbol_displayed(pool, "RV permitted", "ST06", "C6", false);
         }
 
         /// <summary>
@@ -350,7 +350,7 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void RV_Mode_Ack_requested(SignalPool pool)
         {
-            pool.WaitForVerification("Is the acknowledgement for Reversing mode symbol (MO15) displayed in area C1?");
+            Driver_symbol_displayed(pool, "Acknowledgement for Reversing mode", "MO15", "C1", true);
         }
 
         /// <summary>
@@ -967,7 +967,7 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void DMI_displays_Special_window_with_enabled_Adhesion_button(SignalPool pool)
         {
-            throw new NotImplementedException();
+            pool.WaitForVerification("Is the Special window displayed with the Adhesion button enabled?");
         }
 
         /// <summary>
@@ -1846,41 +1846,6 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void
             DMI_displays_the_message_ATP_Down_Alarm_with_sound_alarm_Verify_the_following_information_1_The_non_acknowledgeable_message_list_is_flushed_no_driver_message_display_in_area_E5_E9(SignalPool pool)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Description: DMI still displays in SR mode.Verify that ‘Adhesion’ button is enabled
-        /// Used in:
-        ///     Step 1 in TC-ID: 15.5.1 in 20.5.1 Adhesion factor: General appearance
-        ///     Step 1 in TC-ID: 15.5.2 in 20.5.3 Adhesion factor: Controlled data packet from ETCS Onboard
-        /// </summary>
-        public static void DMI_still_displays_in_SR_mode_Verify_that_Adhesion_button_is_enabled(SignalPool pool)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Description: No adhesion factor indication is displayed.Verify the following information,Use the log file to confirm that DMI receives EVC-2 with following variable,MMI_M_ADHESION (#1) = 0, bit ‘Low Adhesion from Trackside’ is not set.MMI_M_ADHESION (#0) = 0, bit ‘Low Adhesion by Driver’ is not set
-        /// Used in:
-        ///     Step 5 in TC-ID: 15.5.1 in 20.5.1 Adhesion factor: General appearance
-        ///     Step 7 in TC-ID: 15.5.1 in 20.5.1 Adhesion factor: General appearance
-        /// </summary>
-        public static void
-            No_adhesion_factor_indication_is_displayed_Verify_the_following_information_Use_the_log_file_to_confirm_that_DMI_receives_EVC_2_with_following_variable_MMI_M_ADHESION_1_0_bit_Low_Adhesion_from_Trackside_is_not_set_MMI_M_ADHESION_0_0_bit_Low_Adhesion_by_Driver_is_not_set(SignalPool pool)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Description: Verify the following information,Use the log file to confirm that DMI receives EVC-2 with variable MMI_M_ADHESION (#1) = 1, bit ‘Low Adhesion from Trackside’ is set.DMI displays symbol ST02 in sub-area A4
-        /// Used in:
-        ///     Step 6 in TC-ID: 15.5.1 in 20.5.1 Adhesion factor: General appearance
-        ///     Step 3 in TC-ID: 15.5.2 in 20.5.3 Adhesion factor: Controlled data packet from ETCS Onboard
-        /// </summary>
-        public static void
-            Verify_the_following_information_Use_the_log_file_to_confirm_that_DMI_receives_EVC_2_with_variable_MMI_M_ADHESION_1_1_bit_Low_Adhesion_from_Trackside_is_set_DMI_displays_symbol_ST02_in_sub_area_A4(SignalPool pool)
         {
             throw new NotImplementedException();
         }

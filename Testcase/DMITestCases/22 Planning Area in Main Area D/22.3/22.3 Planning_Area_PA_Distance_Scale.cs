@@ -140,7 +140,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays the message “ATP Down Alarm” with sound.The PA is removed from DMI
             */
             // Call generic Action Method
-            DmiActions.Simulate_the_communication_loss_between_ETCS_Onboard_and_DMI(this);
+            DmiActions.Simulate_communication_loss_EVC_DMI(this);
 
 
             /*
@@ -150,7 +150,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 7147 (partly: Communication loss);
             */
             // Call generic Action Method
-            DmiActions.Re_establish_the_communication_between_ETCS_onboard_and_DMI(this);
+            DmiActions.Re_establish_communication_EVC_DMI(this);
 
 
             /*

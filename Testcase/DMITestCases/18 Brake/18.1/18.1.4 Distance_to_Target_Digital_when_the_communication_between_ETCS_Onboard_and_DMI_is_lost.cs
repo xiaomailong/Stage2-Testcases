@@ -112,7 +112,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 6879 (partly: Distance to target Digital re-appeared);
             */
             // Call generic Action Method
-            DmiActions.Re_establish_the_communication_between_ETCS_onboard_and_DMI(this);
+            DmiActions.Re_establish_communication_EVC_DMI(this);
 
 
             /*

@@ -140,7 +140,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7325;
             */
             // Call generic Action Method
-            DmiActions.Simulate_the_communication_loss_between_ETCS_Onboard_and_DMI(this);
+            DmiActions.Simulate_communication_loss_EVC_DMI(this);
 
 
             /*
@@ -149,7 +149,7 @@ namespace Testcase.DMITestCases
             Expected Result: The PA Speed Profile segments are reappeared
             */
             // Call generic Action Method
-            DmiActions.Re_establish_the_communication_between_ETCS_onboard_and_DMI(this);
+            DmiActions.Re_establish_communication_EVC_DMI(this);
             // Call generic Check Results Method
             DmiExpectedResults.The_PA_Speed_Profile_segments_are_reappeared(this);
 

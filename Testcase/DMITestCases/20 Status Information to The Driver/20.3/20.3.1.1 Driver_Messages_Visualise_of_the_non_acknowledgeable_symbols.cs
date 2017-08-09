@@ -20,15 +20,21 @@ namespace Testcase.DMITestCases
     /// 20.3.1.1 Driver Messages: Visualise of the non-acknowledgeable symbols
     /// TC-ID: 15.3.1.1
     /// 
-    /// This test case verifies the display information of each symbol refer to received packet information EVC-8 which the variable is marked with '#3' in [GenVSIS]. The location of symbols are complied with [ERA-ERTMS].
+    /// This test case verifies the display information of each symbol refers to received packet information EVC-8.
+    /// The location of symbols are comply with [ERA-ERTMS].
     /// 
     /// Tested Requirements:
-    /// MMI_gen 7022 (partly: exclude radio connection symbols); MMI_gen 3005 (partly: exclude radio connection symbols); MMI_gen 144 (partly: Symbols); MMI_gen 1699 (partly: non-acknowledgement, symbol);
+    /// MMI_gen 7022 (partly: exclude radio connection symbols);
+    /// MMI_gen 3005 (partly: exclude radio connection symbols);
+    /// MMI_gen 144 (partly: Symbols); MMI_gen 1699 (partly: non-acknowledgement, symbol);
     /// 
     /// Scenario:
-    /// At the default window, use the test script file to send Driver message to DMI. Then, verify the display of normal non-acknowledgement symbol.Use the test script file to send Driver message to DMI. Then, verify the display of normal non-acknowledgement symbol.Note: 
-    /// 1.Each step of test script file in executed continuously, Tester need to confirm expected result within specific time (5 second).
-    /// 2.For the symbol of Radio connection will be verified in another test case instead.
+    /// At the default window, use the test script file to send Driver message to DMI.
+    /// Verify the display of normal non-acknowledgement symbols.
+    /// 
+    /// Notes: 
+    /// 1. Each step of test script file in executed continuously, the tester needs to confirm each expected result.
+    /// 2. The symbol of Radio connection will be verified in another test case.
     /// 
     /// Used files:
     /// 15_3_1_1_a.xml, 15_3_1_1_b.xml, 15_3_1_1_c.xml
@@ -42,6 +48,7 @@ namespace Testcase.DMITestCases
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
+            DmiActions.Complete_SoM_L1_SB(this);
         }
 
         public override void PostExecution()
@@ -57,14 +64,16 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
             /*
             Test Step 1
             Action: Use the test script file 15_3_1_1_a.xml to send EVC-8 with,MMI_Q_TEXT = 260MMI_Q_TEXT_CRITERIA = 3MMI_I_TEXT = 1
-            Expected Result: Verify the following information,(1)    DMI displays ST01 symbol in sub-area C9 without yellow flashing frame
-            Test Step Comment: (1) MMI_gen 7022 (partly: exclude radio connection symbols);  MMI_gen 3005 (partly: exclude radio connection symbols);  MMI_gen 1699 (partly: non-acknowledgement, symbol);
+            Expected Result: DMI displays ST01 symbol in sub-area C9 without yellow flashing frame
+            Test Step Comment: MMI_gen 7022 (partly: exclude radio connection symbols);
+                                MMI_gen 3005 (partly: exclude radio connection symbols);
+                                MMI_gen 1699 (partly: non-acknowledgement, symbol);
             */
 
+            XML.XML_15_3_1_1_a.Send(this);      // Continue to step 20 after this. All interim steps are inside the XML class.
 
             /*
             Test Step 2
@@ -217,6 +226,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7022 (partly: exclude radio connection symbols);  MMI_gen 3005 (partly: exclude radio connection symbols);  MMI_gen 1699 (partly: non-acknowledgement, symbol);
             */
 
+            DmiActions.ShowInstruction(this, "Please press the \"Main\" button on the DMI.");
 
             /*
             Test Step 21

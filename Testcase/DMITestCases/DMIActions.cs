@@ -169,7 +169,6 @@ namespace Testcase.DMITestCases
             EVC2_MMIStatus.MMI_M_ADHESION = 0x0;
             EVC2_MMIStatus.MMI_M_OVERRIDE_EOA = false;
             EVC2_MMIStatus.Send();
-           
         }
 
         /// <summary>
@@ -184,7 +183,6 @@ namespace Testcase.DMITestCases
             EVC2_MMIStatus.MMI_M_ADHESION = 0x0;
             EVC2_MMIStatus.MMI_M_OVERRIDE_EOA = false;
             EVC2_MMIStatus.Send();
-
         }
 
         /// <summary>
@@ -196,7 +194,6 @@ namespace Testcase.DMITestCases
         {
             EVC2_MMIStatus.MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.NoCabinActive;
             EVC2_MMIStatus.Send();
-
         }
 
         /// <summary>
@@ -971,9 +968,11 @@ namespace Testcase.DMITestCases
         ///     Step 5 in TC-ID: 17.9.10 (Default Configuration) in 22.9.10 Hide PA Function with the communication loss between ETCS Onboard and DMI
         ///     Step 10 in TC-ID: 17.9.10 (Default Configuration) in 22.9.10 Hide PA Function with the communication loss between ETCS Onboard and DMI
         /// </summary>
-        public static void Re_establish_the_communication_between_ETCS_onboard_and_DMI(SignalPool pool)
+        public static void Re_establish_communication_EVC_DMI(SignalPool pool)
         {
-            throw new NotImplementedException();
+            // Commence sending EVC-1 and EVC-7 telegrams
+            pool.SITR.STGCtrl.ETCS1.Dynamic.Value = 1;
+            pool.SITR.STGCtrl.ETCS1.EtcsMiscOutSignals.Value = 1;
         }
 
 
@@ -1420,9 +1419,11 @@ namespace Testcase.DMITestCases
         ///     Step 11 in TC-ID: 17.6.1 in 22.6.1 PA Speed Profile Discontinuity: Display in sub-area D6 and D7
         ///     Step 9 in TC-ID: 17.7.1 in 22.7.1 PA Speed Profile (PASP): Display in sub-area D7 and D8
         /// </summary>
-        public static void Simulate_the_communication_loss_between_ETCS_Onboard_and_DMI(SignalPool pool)
+        public static void Simulate_communication_loss_EVC_DMI(SignalPool pool)
         {
-            throw new NotImplementedException();
+            // Stop sending EVC-1 and EVC-7 telegrams
+            pool.SITR.STGCtrl.ETCS1.Dynamic.Value = 0;
+            pool.SITR.STGCtrl.ETCS1.EtcsMiscOutSignals.Value = 0;
         }
 
         /// <summary>
