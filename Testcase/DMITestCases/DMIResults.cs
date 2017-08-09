@@ -83,6 +83,17 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
+        /// Description:
+        /// Used in:
+        ///     Step 2 in TC-ID: 12.7.2 in 17.7.2 
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void DMI_displays_in_SR_mode_level_1(SignalPool pool)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
         /// Description: DMI displays TR mode
         /// Used in:
         ///     Step 6 in TC-ID: 15.1.1 in 20.1.1
@@ -339,6 +350,17 @@ namespace Testcase.DMITestCases
         public static void RV_Mode_Ack_requested(SignalPool pool)
         {
             pool.WaitForVerification("Is the acknowledgement for Reversing mode symbol (MO15) displayed in area C1?");
+        }
+
+        /// <summary>
+        /// Description: DMI displays the text "Driver's cab not active" in area E5
+        /// Used in:
+        ///     Step 5 in TC-ID: 15.1.2 in 20.1.2
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Driver_s_cab_not_active_msg_displayed(SignalPool pool)
+        {
+            pool.WaitForVerification("Is the text \"Driver's cab not active\" displayed in DMI area E5?");
         }
 
         /// <summary>
