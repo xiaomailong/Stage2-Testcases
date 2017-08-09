@@ -52,7 +52,7 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void SR_Mode_Ack_requested(SignalPool pool)
         {
-            pool.WaitForVerification("Is the acknowledgement for Staff Responsible symbol (MO10) displayed in area C1?");
+            Driver_symbol_displayed(pool, "Acknowledgement for Staff Responsible", "MO10", "C1", true);
         }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace Testcase.DMITestCases
         public static void TR_Mode_displayed(SignalPool pool)
         {
             EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.Trip;
-            pool.WaitForVerification("Is the Trip mode symbol (MO04) displayed in area B7?");
+            Driver_symbol_displayed(pool, "Trip mode", "MO04", "B7", false);
         }
 
         /// <summary>
@@ -111,7 +111,7 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void TR_Mode_Ack_requested(SignalPool pool)
         {
-            pool.WaitForVerification("Is the acknowledgement for Train Trip symbol (MO05) displayed in area C1?");
+            Driver_symbol_displayed(pool, "Acknowledgement for Train Trip", "MO05", "C1", true);
         }
 
         /// <summary>
@@ -159,7 +159,7 @@ namespace Testcase.DMITestCases
         public static void PT_Mode_displayed(SignalPool pool)
         {
             EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.PostTrip;
-            pool.WaitForVerification("Is the Post Trip mode symbol (MO06) displayed in area B7?");
+            Driver_symbol_displayed(pool, "Post Trip mode", "MO06", "B7", false);
         }
 
         /// <summary>
@@ -170,7 +170,7 @@ namespace Testcase.DMITestCases
         public static void RV_Mode_displayed(SignalPool pool)
         {
             EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.Reversing;
-            pool.WaitForVerification("Is the Reversing mode symbol (MO14) displayed in area B7?");
+            Driver_symbol_displayed(pool, "Reversing mode", "MO14", "B7", false);
         }
 
         /// <summary>
@@ -231,7 +231,7 @@ namespace Testcase.DMITestCases
         public static void SH_Mode_displayed(SignalPool pool)
         {
             EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.Shunting;
-            pool.WaitForVerification("Is the Shunting mode symbol (MO01) displayed in area B7?");
+            Driver_symbol_displayed(pool, "Shunting mode", "MO01", "B7", false);
         }
 
         /// <summary>
@@ -318,7 +318,7 @@ namespace Testcase.DMITestCases
         public static void NL_Mode_displayed(SignalPool pool)
         {
             EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.NonLeading;
-            pool.WaitForVerification("Is the Non-leading mode symbol (MO012) displayed in area B7?");
+            Driver_symbol_displayed(pool, "Non-leadin mode", "MO12", "B7", false);
         }
 
         /// <summary>
@@ -329,7 +329,7 @@ namespace Testcase.DMITestCases
         public static void SF_Mode_displayed(SignalPool pool)
         {
             EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.SystemFailure;
-            pool.WaitForVerification("Is the System Failure mode symbol (MO18) displayed in area B7?");
+            Driver_symbol_displayed(pool, "System failure mode", "MO18", "B7", false);
         }
 
         /// <summary>
@@ -339,7 +339,7 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void RV_Permitted_Symbol_displayed(SignalPool pool)
         {
-            pool.WaitForVerification("Is the RV permitted symbol (ST06) displayed in area C6?");
+            Driver_symbol_displayed(pool, "RV permitted", "ST06", "C6", false);
         }
 
         /// <summary>
@@ -349,7 +349,7 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void RV_Mode_Ack_requested(SignalPool pool)
         {
-            pool.WaitForVerification("Is the acknowledgement for Reversing mode symbol (MO15) displayed in area C1?");
+            Driver_symbol_displayed(pool, "Acknowledgement for Reversing mode", "MO15", "C1", true);
         }
 
         /// <summary>
@@ -1815,17 +1815,6 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void
             DMI_displays_the_message_ATP_Down_Alarm_with_sound_alarm_Verify_the_following_information_1_The_non_acknowledgeable_message_list_is_flushed_no_driver_message_display_in_area_E5_E9(SignalPool pool)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Description: DMI still displays in SR mode.Verify that ‘Adhesion’ button is enabled
-        /// Used in:
-        ///     Step 1 in TC-ID: 15.5.1 in 20.5.1 Adhesion factor: General appearance
-        ///     Step 1 in TC-ID: 15.5.2 in 20.5.3 Adhesion factor: Controlled data packet from ETCS Onboard
-        /// </summary>
-        public static void DMI_still_displays_in_SR_mode_Verify_that_Adhesion_button_is_enabled(SignalPool pool)
         {
             throw new NotImplementedException();
         }
