@@ -28,6 +28,18 @@ namespace Testcase.DMITestCases
     public static class DmiExpectedResults
     {
         /// <summary>
+        /// Used when TC is not needed since it tests the same interfaces as another test case.
+        /// </summary>
+        /// <param name="pool">Signal pool</param>
+        /// <param name="TestcaseID">Testcase ID as per specification</param>
+        /// <param name="SectionNumber">Section number as per specification</param>
+        public static void Testcase_not_required(SignalPool pool, string TestcaseID, string SectionNumber)
+        {
+            pool.TraceInfo($"This test case is not required since it tests the same interfaces as TC {TestcaseID}" +
+                            $" in section {SectionNumber} of the specification.");
+        }
+        
+        /// <summary>
         /// Prompt for verification of symbol displayed on the DMI.
         /// </summary>
         /// <param name="pool">Signal Pool</param>
@@ -1846,18 +1858,6 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void
             DMI_displays_the_message_ATP_Down_Alarm_with_sound_alarm_Verify_the_following_information_1_The_non_acknowledgeable_message_list_is_flushed_no_driver_message_display_in_area_E5_E9(SignalPool pool)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Description: DMI shall not display text message “Brake Test in Progress!” in any other languages since the text is replaced with Russian character code language
-        /// Used in:
-        ///     Step 2 in TC-ID: 15.4.2 in 20.5.2 Building Texts: Brake test in Progress!
-        ///     Step 4 in TC-ID: 15.4.2 in 20.5.2 Building Texts: Brake test in Progress!
-        /// </summary>
-        public static void
-            DMI_shall_not_display_text_message_Brake_Test_in_Progress_in_any_other_languages_since_the_text_is_replaced_with_Russian_character_code_language(SignalPool pool)
         {
             throw new NotImplementedException();
         }

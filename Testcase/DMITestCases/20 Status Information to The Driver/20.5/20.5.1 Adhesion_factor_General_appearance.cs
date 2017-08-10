@@ -14,6 +14,7 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
 using Testcase.Telegrams.EVCtoDMI;
+using Testcase.Telegrams.DMItoEVC;
 
 namespace Testcase.DMITestCases
 {
@@ -39,7 +40,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 15_5_1.tdg
     /// </summary>
-    public class Adhesion_factor_General_appearance : TestcaseBase
+    public class TC_15_5_1_Adhesion_Factor : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -48,7 +49,7 @@ namespace Testcase.DMITestCases
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
-            DmiActions.Complete_SoM_L1_SR(this);
+            DmiActions.Complete_SoM_L1_FS(this);
         }
 
         public override void PostExecution()
@@ -88,6 +89,8 @@ namespace Testcase.DMITestCases
                                             "1. Press \"Adhesion\" button, followed by \"Slippery rail\" button." + Environment.NewLine +
                                             "2. Confirm \"Slippery rail\" by pressing the input field.");
 
+            EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.SetAdhesionCoefficientToSlipperyRail;
+
             EVC2_MMIStatus.MMI_M_ADHESION = 0x1;
             EVC2_MMIStatus.Send();
 
@@ -121,7 +124,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(this, "Please perform the following actions" + Environment.NewLine + Environment.NewLine +
                                            "1. Press \"Adhesion\" button, followed by \"Slippery rail\" button." + Environment.NewLine +
-                                           "2. Confirm \"Slippery rail\" by pressing the input field.");
+                                           "2. Confirm \"Non slippery rail\" by pressing the input field.");
 
             EVC2_MMIStatus.MMI_M_ADHESION = 0x0;
             EVC2_MMIStatus.Send();
