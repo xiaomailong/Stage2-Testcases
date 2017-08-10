@@ -42,6 +42,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Test system is powered on.Cabin is activated.SoM is performed in SR mode, Level 1.
+            DmiActions.Complete_SoM_L1_SR(this);
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
@@ -51,6 +52,8 @@ namespace Testcase.DMITestCases
         {
             // Post-conditions from TestSpec
             // DMI displays in PT mode, level 1
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in PT mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -60,22 +63,16 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
             
-            EVC7_MMIEtcsMiscOutSignals.Initialise(this);
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Trip;
-
-            EVC1_MMIDynamic.Initialise(this);
-
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
+            
             /*
             Test Step 1
             Action: Drive the train forward pass BG1
             Expected Result: DMI displays in FS mode, level 1
             */
-            // Call generic Action Method
-            DmiActions.Drive_the_train_forward_pass_BG1(this);
-
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_FS_mode_level_1(this);
-
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in FS mode, level 1.");
 
             /*
             Test Step 2
@@ -83,13 +80,12 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in TR mode, level 1.The train is forced to stop, train speed is decreasing to 0 km/h.Verify the following information,(1)   Use the log file to confirm that DMI received the EVC-7 with variable OBU_TR_M_MODE = 7 (Trip)(2)   The speed pointer is always display in red colour
             Test Step Comment: (1) MMI_gen 6299 (partly: OBU_TR_M_MODE = 7);(2) MMI_gen 6299 (partly: colour of speed pointer, TR mode);
             */
-            // EVC7_MMIEtcsMiscOutSignals Send
-
-            // Call generic Action Method
-            DmiActions.Force_train_forward_overpassing_EOA(this);
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Trip;
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
+            // set target distance to 0 to simulate passing EOA??
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                 "1. DMI displays in LS mode, level 1." + Environment.NewLine +
+                                 "1. DMI displays in TR mode, level 1." + Environment.NewLine +
                                  "2. Train speed drops to 0" + Environment.NewLine + 
                                  "3. Is the speed pointer red?");
 
@@ -102,16 +98,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Press an acknowledgement in sub - area C1. Change the train direction to ‘Reverse’");
 
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.PostTrip;
-            // EVC7_MMIEtcsMiscOutSignals Send
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 40;
 
-            DmiActions.Driver_the_train_forward_with_speed_40_kmh(this);
-
-            /// ?? Some ETCS signal surely
-            /// 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                  "1. DMI displays in PT mode, level 1." + Environment.NewLine +
                                  "2. Train speed drops to 0" + Environment.NewLine +
-                                 "3. Is the speed pointer red?");
+                                 "3. Is the speed pointer grey?");
 
             /*
             Test Step 4

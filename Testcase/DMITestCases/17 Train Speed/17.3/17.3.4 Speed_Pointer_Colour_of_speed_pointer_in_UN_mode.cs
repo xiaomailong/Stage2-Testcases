@@ -20,7 +20,7 @@ using Testcase.XML;
 namespace Testcase.DMITestCases
 {
     /// <summary>
-    /// 17.3.3 Speed Pointer: Colour of speed pointer in UN mode
+    /// 17.3.4 Speed Pointer: Colour of speed pointer in UN mode
     /// TC-ID: 12.3.4
     /// 
     /// This test case verifies the colour of speed pointer which display refer to received packet EVC-1 and EVC-7 for UN mode.
@@ -51,7 +51,7 @@ namespace Testcase.DMITestCases
             // Set driver ID
             DmiActions.Set_Driver_ID(this, "1234");
 
-            // Set to level 1 and SR mode
+            // Set to level 1 and UN mode
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L0;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Unfitted;
 
@@ -66,6 +66,8 @@ namespace Testcase.DMITestCases
         {
             // Post-conditions from TestSpec
             // DMI displays in UN mode, level 0
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in UN mode, Level 0.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();

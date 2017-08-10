@@ -14,6 +14,7 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
 using Testcase.Telegrams.EVCtoDMI;
+using Testcase.XML;
 
 
 namespace Testcase.DMITestCases
@@ -41,6 +42,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Test system is powered on.Activate Cabin A.Enter Driver ID and perform brake test.Select and confirm Level 1.SoM in performed in SR mode, Level 1.
+            DmiActions.Complete_SoM_L1_SR(this);
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
@@ -50,6 +52,8 @@ namespace Testcase.DMITestCases
         {
             // Post-conditions from TestSpec
             // DMI displays in FS mode, level 1.
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in FS mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -59,8 +63,6 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            EVC1_MMIDynamic.Initialise(this);
-
             /*
             Test Step 1
             Action: Press ‘Close’ button
@@ -68,16 +70,13 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 6303;(2) MMI_gen 6304;(3) MMI_gen 6307 (partly: digital number is black)(4) MMI_gen 1279 (partly: right most sub-area, 1 digit, integer)
             */
 
-            // Call generic Action Method
-            DmiActions.Perform_SoM_to_L1_SR_mode(this);
-
             EVC1_MMIDynamic.MMI_V_TRAIN = 0;
-            // ?? Send
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The current train speed is displayed in Sub - Area B1." + Environment.NewLine + 
-                                "2. The speed number is in black." + Environment.NewLine + 
-                                "3. The single integer number (0) is aligned right.");
+                                "1. DMI displays Default window." + Environment.NewLine +
+                                "2. The current train speed is displayed in sub-area B1." + Environment.NewLine + 
+                                "3. The speed number (0) is in black." + Environment.NewLine + 
+                                "3. The single integer number is aligned right.");
 
             /*
             Test Step 2
@@ -85,8 +84,8 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The number of the current train speed is coloured white when the speed pointer is red.The 2-digit interger number is aligned right without leading zeroes.The numbers of the current train speed on Speed hub are displayed by no leading with zero
             Test Step Comment: (1) MMI_gen 6307 (partly: Speed pointer has the red colour);      (2) MMI_gen 1279 (partly: right most sub-area, 2 digit, integer, no zeroes)(3) MMI_gen 4244;
             */
+            EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 40;       // Implied but not stated
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 50;
-            // ?? Send
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The current train speed number is coloured white with the speed pointer in red." + Environment.NewLine + 
@@ -102,7 +101,6 @@ namespace Testcase.DMITestCases
             DmiActions.Drive_train_forward_passing_BG1(this);
 
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 40;
-            // ?? Send
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The current train speed number is in black." + Environment.NewLine + 
@@ -115,7 +113,6 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 6306 (partly: INITIAL, different widths of digit in the location)
             */
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 111;
-            // ?? Send
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Three '1' digits are displayed in Sub-Area B1");
@@ -127,18 +124,16 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 6306 (partly: different widths of digit in the location)
             */
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 108;
-            // ?? Send
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The digits '108'  are displayed in Sub-Area B1 in the same position as the previous speed");
-            
+                                "1. The digits '108' are displayed in Sub-Area B1 in the same position as the previous speed");
+
             /*
             Test Step 6
             Action: Stop the train
             Expected Result: DMI displays the train speed as zero km/h
             */
-            // Call generic Action Method
-            DmiActions.Stop_the_train(this);
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The speed displayed is 0.");
@@ -149,12 +144,10 @@ namespace Testcase.DMITestCases
             Expected Result: The speed digital is changed to 15 km/h
             Test Step Comment: MMI_gen 1279 (partly: decimal rounded up, near integer)
             */
-            EVC1_MMIDynamic.MMI_V_TRAIN = 389;
-            // ?? Send
+            XML_12_4_a.Send(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The speed displayed is 15 km/h");
-
 
             /*
             Test Step 8
@@ -162,8 +155,7 @@ namespace Testcase.DMITestCases
             Expected Result: The speed digital is 18 km/h
             Test Step Comment: MMI_gen 1279 (partly: NEGATIVE, decimal rounded up)
             */
-            EVC1_MMIDynamic.MMI_V_TRAIN = 500;
-            // ?? Send
+            XML_12_4_b.Send(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The speed displayed is 18 km/h");
@@ -174,8 +166,7 @@ namespace Testcase.DMITestCases
             Expected Result: The speed digital is 23 km/h
             Test Step Comment: MMI_gen 1279 (partly: decimal rounded up, far from integer)
             */
-            EVC1_MMIDynamic.MMI_V_TRAIN = 625;
-            // ?? Send
+            XML_12_4_c.Send(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The speed displayed is 23 km/h");

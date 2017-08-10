@@ -18,7 +18,7 @@ using Testcase.Telegrams.EVCtoDMI;
 namespace Testcase.DMITestCases
 {
     /// <summary>
-    /// 17.3.5 Speed Pointer: Colour of speed pointer in SH mode
+    /// 17.3.6 Speed Pointer: Colour of speed pointer in SH mode
     /// TC-ID: 12.3.6
     /// 
     /// This test case verifies the colour of speed pointer which display refer to received packet EVC-1 while the train is running in each supervision status and speed monitoring for SH mode.
@@ -49,7 +49,7 @@ namespace Testcase.DMITestCases
             // Set driver ID
             DmiActions.Set_Driver_ID(this, "1234");
 
-            // Set to level 1 and SR mode
+            // Set to level 1 and SH mode
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Shunting;
 
@@ -64,6 +64,8 @@ namespace Testcase.DMITestCases
         {
             // Post-conditions from TestSpec
             // DMI displays in SH mode, level 1
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SH mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();

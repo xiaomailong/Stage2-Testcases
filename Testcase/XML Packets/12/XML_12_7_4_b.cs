@@ -22,9 +22,9 @@ using Testcase.Telegrams.EVCtoDMI;
 namespace Testcase.XML
 {
     /// <summary>
-    /// Values of 12.3.8_r.xml file
+    /// Values of 12.7.4.b.xml file
     /// </summary>
-    static class XML_12_3_8_r
+    static class XML_12_7_4_b
     {
         private static SignalPool _pool;
 
@@ -32,34 +32,23 @@ namespace Testcase.XML
         {
             _pool = pool;
 
-            EVC1_MMIDynamic.MMI_M_SLIDE = 0;
-            EVC1_MMIDynamic.MMI_M_SLIP = 0;
-            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Indication_Status_Release_Speed_Monitoring;   // 15
-            EVC1_MMIDynamic.MMI_A_TRAIN = 0;
-            EVC1_MMIDynamic.MMI_V_TRAIN = 0;
-            EVC1_MMIDynamic.MMI_V_TARGET = 1083;
-            EVC1_MMIDynamic.MMI_V_PERMITTED = 1111;
-            EVC1_MMIDynamic.MMI_V_RELEASE = 1083;
-            EVC1_MMIDynamic.MMI_O_BRAKETARGET = 0;
-            EVC1_MMIDynamic.MMI_O_IML = 0;
-            EVC1_MMIDynamic.MMI_V_INTERVENTION = 1250;
-
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_EBTestInProgress = 0;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_EB_Status = 0;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_RadioStatus = 0;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_STM_HS_ENABLED = 0;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_STM_DA_ENABLED = 0;
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_BrakeTest_Status = 
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_BrakeTest_Status =
                 EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_BRAKETEST_STATUS.BrakeTestNotInProgress;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.OnSight;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Invalid;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_ADHESION = 100; // "Spare"
-            EVC7_MMIEtcsMiscOutSignals.OBU_TR_NID_STM_HS = 255;
-            EVC7_MMIEtcsMiscOutSignals.OBU_TR_NID_STM_DA = 255;
-            EVC7_MMIEtcsMiscOutSignals.BRAKE_TEST_TIMEOUT = 46;
+            EVC7_MMIEtcsMiscOutSignals.OBU_TR_NID_STM_HS = 0;
+            EVC7_MMIEtcsMiscOutSignals.OBU_TR_NID_STM_DA = 0;
+            EVC7_MMIEtcsMiscOutSignals.BRAKE_TEST_TIMEOUT = 0;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 1000000000;
-            //_pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity1.Value = 4415; // All validity bits set
-            //_pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity2.Value = 63;   // All validity bits set
+
+            _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity1.Value = 0x1000;
+            _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity2.Value = 0x1;   // All validity bits set
         }
     }
 }

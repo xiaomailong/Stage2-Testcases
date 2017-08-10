@@ -18,7 +18,7 @@ using Testcase.Telegrams.EVCtoDMI;
 namespace Testcase.DMITestCases
 {
     /// <summary>
-    /// 17.3.4 Speed Pointer: Colour of speed pointer in RV mode
+    /// 17.3.5 Speed Pointer: Colour of speed pointer in RV mode
     /// TC-ID: 12.3.5
     /// 
     /// This test case verifies the colour of speed pointer which display refer to received packet EVC-1 while the train is running in each supervision status and speed monitoring for RV mode.
@@ -52,6 +52,8 @@ namespace Testcase.DMITestCases
         {
             // Post-conditions from TestSpec
             // DMI displays in RV mode, level 1
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in RV mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();

@@ -20,7 +20,7 @@ using Testcase.XML;
 namespace Testcase.DMITestCases
 {
     /// <summary>
-    /// 17.3.2.1 Speed Pointer: Colour of speed pointer in SR mode
+    /// 17.3.3 Speed Pointer: Colour of speed pointer in SR mode
     /// TC-ID: 12.3.3
     /// 
     /// This test case verifies the colour of speed pointer which display refer to received packet EVC-1 and EVC-7 for SR mode.
@@ -51,6 +51,8 @@ namespace Testcase.DMITestCases
         {
             // Post-conditions from TestSpec
             // DMI displays in SR mode, level 1
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SR mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -71,7 +73,8 @@ namespace Testcase.DMITestCases
             //?? Send
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. Is the speed pointer grey?");
+                                "1. DMI displays in SR mode, level 1." + Environment.NewLine + 
+                                "2. Is the speed pointer grey?");
 
             /*
             Test Step 2

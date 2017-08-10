@@ -20,7 +20,7 @@ using Testcase.XML;
 namespace Testcase.DMITestCases
 {
     /// <summary>
-    /// 17.3.6 Speed Pointer: Colour of speed pointer in LS mode
+    /// 17.3.7 Speed Pointer: Colour of speed pointer in LS mode
     /// TC-ID: 12.3.7
     /// 
     /// This test case verifies the colour of speed pointer which display refer to received packet EVC-1 while the train is running in each supervision status and speed monitoring for LS mode.
@@ -51,6 +51,8 @@ namespace Testcase.DMITestCases
         {
             // Post-conditions from TestSpec
             // DMI displays in LS mode, level 1
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in LS mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -358,7 +360,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in LS mode, level 1.Verify the following information,(1)   The speed pointer display in red colour
             Test Step Comment: (1) MMI_gen 6299 (partly: colour of speed pointer, LS mode in RSM supervision);
             */
-            XML_12_3_7_r.Send(this);
+            XML_12_3_7_s.Send(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                  "1. DMI displays in LS mode, level 1." + Environment.NewLine +

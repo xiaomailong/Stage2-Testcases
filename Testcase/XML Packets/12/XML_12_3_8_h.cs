@@ -22,9 +22,9 @@ using Testcase.Telegrams.EVCtoDMI;
 namespace Testcase.XML
 {
     /// <summary>
-    /// Values of 12.3.8_s.xml file
+    /// Values of 12.3.8_h.xml file
     /// </summary>
-    static class XML_12_3_8_s
+    static class XML_12_3_8_h
     {
         private static SignalPool _pool;
 
@@ -34,9 +34,9 @@ namespace Testcase.XML
 
             EVC1_MMIDynamic.MMI_M_SLIDE = 0;
             EVC1_MMIDynamic.MMI_M_SLIP = 0;
-            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_PreIndication_Monitoring;   // 2
+            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Target_Speed_Monitoring;   // 11
             EVC1_MMIDynamic.MMI_A_TRAIN = 0;
-            EVC1_MMIDynamic.MMI_V_TRAIN = 1111;
+            EVC1_MMIDynamic.MMI_V_TRAIN = 1000;
             EVC1_MMIDynamic.MMI_V_TARGET = 1083;
             EVC1_MMIDynamic.MMI_V_PERMITTED = 1111;
             EVC1_MMIDynamic.MMI_V_RELEASE = 1083;
