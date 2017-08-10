@@ -1851,18 +1851,6 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
-        /// Description: DMI shall not display text message “Brake Test in Progress!” in any other languages since the text is replaced with Russian character code language
-        /// Used in:
-        ///     Step 2 in TC-ID: 15.4.2 in 20.5.2 Building Texts: Brake test in Progress!
-        ///     Step 4 in TC-ID: 15.4.2 in 20.5.2 Building Texts: Brake test in Progress!
-        /// </summary>
-        public static void
-            DMI_shall_not_display_text_message_Brake_Test_in_Progress_in_any_other_languages_since_the_text_is_replaced_with_Russian_character_code_language(SignalPool pool)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
         /// Description: Verify the following information,There is no symbol display in sub-area B3-B5
         /// Used in:
         ///     Step 1 in TC-ID: 15.6.2 in 20.6.2 Level Crossing “not protected” Indication: Packet Handling
