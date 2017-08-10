@@ -28,6 +28,18 @@ namespace Testcase.DMITestCases
     public static class DmiExpectedResults
     {
         /// <summary>
+        /// Used when TC is not needed since it tests the same interfaces as another test case.
+        /// </summary>
+        /// <param name="pool">Signal pool</param>
+        /// <param name="TestcaseID">Testcase ID as per specification</param>
+        /// <param name="SectionNumber">Section number as per specification</param>
+        public static void Testcase_not_required(SignalPool pool, string TestcaseID, string SectionNumber)
+        {
+            pool.TraceInfo($"This test case is not required since it tests the same interfaces as TC {TestcaseID}" +
+                            $" in section {SectionNumber} of the specification.");
+        }
+        
+        /// <summary>
         /// Prompt for verification of symbol displayed on the DMI.
         /// </summary>
         /// <param name="pool">Signal Pool</param>
