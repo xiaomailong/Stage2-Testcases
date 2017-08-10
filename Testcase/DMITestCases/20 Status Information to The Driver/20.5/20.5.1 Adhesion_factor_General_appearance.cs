@@ -40,7 +40,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 15_5_1.tdg
     /// </summary>
-    public class TC_15_5_1_Adhesion_factor : TestcaseBase
+    public class TC_15_5_1_Adhesion_Factor : TestcaseBase
     {
         public override void PreExecution()
         {
