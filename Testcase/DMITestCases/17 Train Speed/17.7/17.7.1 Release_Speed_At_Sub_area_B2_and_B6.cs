@@ -56,12 +56,9 @@ namespace Testcase.DMITestCases
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint
-
-            EVC7_MMIEtcsMiscOutSignals.Initialise(this);
+            
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
-
-            EVC1_MMIDynamic.Initialise(this);
-
+            
             /*
             Test Step 1
             Action: Activate cabin A
@@ -82,7 +79,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI is displayed in SR mode, level 1
             */
             // Call generic Action Method
-            DmiActions.Driver_performs_SoM_to_SR_mode(this);
+            DmiActions.Complete_SoM_L1_SR(this);
 
             // Call generic Check Results Method
             DmiExpectedResults.DMI_is_displayed_in_SR_mode_level_1(this);

@@ -18,7 +18,7 @@ using Testcase.Telegrams.EVCtoDMI;
 namespace Testcase.DMITestCases
 {
     /// <summary>
-    /// 17.3.5 Speed Pointer: Colour of speed pointer in RV mode
+    /// 17.3.4 Speed Pointer: Colour of speed pointer in RV mode
     /// TC-ID: 12.3.5
     /// 
     /// This test case verifies the colour of speed pointer which display refer to received packet EVC-1 while the train is running in each supervision status and speed monitoring for RV mode.
@@ -41,6 +41,9 @@ namespace Testcase.DMITestCases
             // Pre-conditions from TestSpec:
             // Test system is power on.Cabin is activated.SoM is performed in SR mode, Level 1.
 
+            // Test spec says that the test is started in FS mode
+            DmiActions.Complete_SoM_L1_FS(this);
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -56,11 +59,6 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
-            // Testcase entrypoint
-
-            EVC7_MMIEtcsMiscOutSignals.Initialise(this);
-            EVC1_MMIDynamic.Initialise(this);
-
             /// No intervention speed described here: comment is that it is less than 11, presumably 10...
             EVC1_MMIDynamic.MMI_V_INTERVENTION_KMH = 10;
 
@@ -69,17 +67,24 @@ namespace Testcase.DMITestCases
             Action: Drive the train forward pass BG1.Then stop the train
             Expected Result: DMI displays in FS mode, Level 1 with the ST06 symbol at sub-area C6
             */
-            // Call generic Action Method
-            DmiActions.Drive_the_train_forward_pass_BG1_Then_stop_the_train(this);
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_FS_mode_Level_1_with_the_ST06_symbol_at_sub_area_C6(this);
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1.DMI displays in FS mode, Level 1 with the ST06 symbol at sub-area C6.");
+
+            EVC1_MMIDynamic.MMI_V_TRAIN = 0;    // Set speed to zero
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. Speed is displayed at 0 km/h.");
 
             /*
             Test Step 2
             Action: Perform the following procedure,Chage the train direction to reverseAcknowledge RV mode by pressing the symbol in sub-area C1
             Expected Result: DMI displays in RV mode, Level 1
             */
-            WaitForVerification("Chage the train direction to reverse and acknowledge RV mode by pressing the symbol in sub - area C1." + Environment.NewLine +
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Reversing;
+
+            WaitForVerification("Change the train direction to reverse and acknowledge RV mode by pressing the symbol in sub - area C1." + Environment.NewLine +
                                 "Then check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1.DMI displays in RV mode, Level 1.");
 
@@ -89,14 +94,9 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   Use the log file to confirm that DMI received the packet information EVC-1 and EVC-7 with following variables,(EVC-7) OBU_TR_M_MODE = 14 (Reversing)(EVC-1) MMI_M_WARNING = 0 (Status = NoS, Supervision = CSM)(EVC-1) MMI_V_PERMITTED = 139 (5km/h)(2)   The speed pointer display in grey colour
             Test Step Comment: (1) MMI_gen 6299 (partly: OBU_TR_M_MODE, MMI_M_WARNING, train speed in relation to permitted speed MMI_V_PERMITTED, RV mode in CSM supervision);(2) MMI_gen 6299 (partly: colour of speed pointer, RV mode in CSM supervision);
             */
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Reversing;
-            // ?? Send EVC7_MMIEtcsMiscOutSignals
-
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
             EVC1_MMIDynamic.MMI_V_PERMITTED = 139;
-            // ?? Send
-
-            // Call generic Action Method
-            DmiActions.Drive_the_train_with_speed_5_kmh(this);
+            
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer grey?");
 
@@ -108,7 +108,7 @@ namespace Testcase.DMITestCases
             */
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Overspeed_Status_Ceiling_Speed_Monitoring;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 6;
-            // ?? Send
+            
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer orange?");
 
@@ -119,8 +119,8 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 6299 (partly: MMI_M_WARNING, train speed in relation to permitted speed MMI_V_PERMITTED, RV mode in CSM supervision);(2) MMI_gen 6299 (partly: colour of speed pointer, RV mode in CSM supervision);
             */
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Warning_Status_Ceiling_Speed_Monitoring;
-            EVC1_MMIDynamic.MMI_V_TRAIN = 278;
-            // ?? Send
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 278;
+            
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer orange?");
 
@@ -132,13 +132,14 @@ namespace Testcase.DMITestCases
             */
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Ceiling_Speed_Monitoring;
             EVC1_MMIDynamic.MMI_V_TRAIN = 306;
-            // ?? Send
+            DmiActions.Apply_Brakes(this);
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer red?");
 
             // ETCS will decrease speed
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 9;
-            // ?? Send 
+            
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer grey?");
 

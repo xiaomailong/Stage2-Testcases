@@ -22,9 +22,9 @@ using Testcase.Telegrams.EVCtoDMI;
 namespace Testcase.XML
 {
     /// <summary>
-    /// Values of 12.3.2_a.xml file
+    /// Values of 12.3.7_n.xml file
     /// </summary>
-    static class XML_12_3_2_a
+    static class XML_12_3_7_n
     {
         private static SignalPool _pool;
 
@@ -34,9 +34,9 @@ namespace Testcase.XML
 
             EVC1_MMIDynamic.MMI_M_SLIDE = 0;
             EVC1_MMIDynamic.MMI_M_SLIP = 0;
-            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_PreIndication_Monitoring;   // 2
+            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Indication_Status_Target_Speed_Monitoring;   // 13
             EVC1_MMIDynamic.MMI_A_TRAIN = 0;
-            EVC1_MMIDynamic.MMI_V_TRAIN = 972;
+            EVC1_MMIDynamic.MMI_V_TRAIN = 1111;
             EVC1_MMIDynamic.MMI_V_TARGET = 1083;
             EVC1_MMIDynamic.MMI_V_PERMITTED = 1111;
             EVC1_MMIDynamic.MMI_V_RELEASE = 0;
@@ -52,7 +52,7 @@ namespace Testcase.XML
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_BrakeTest_Status = 
                 EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_BRAKETEST_STATUS.BrakeTestNotInProgress;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.LimitedSupervision;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_ADHESION = 100; // "Spare"
             EVC7_MMIEtcsMiscOutSignals.OBU_TR_NID_STM_HS = 255;
             EVC7_MMIEtcsMiscOutSignals.OBU_TR_NID_STM_DA = 255;
