@@ -394,6 +394,11 @@ namespace Testcase.DMITestCases
             else { EVC111_MMIDriverMessageAck.Check_MMI_Q_ACK = EVC111_MMIDriverMessageAck.MMI_Q_ACK.NotAcknowledgeNO; }
         }
 
+        public static void Level_0_Selected(SignalPool pool)
+        {
+
+        }
+
         /// <summary>
         /// Description: DMI displays Settings window
         /// Used in:
@@ -1791,9 +1796,9 @@ namespace Testcase.DMITestCases
         ///     Step 2 in TC-ID: 15.1.3 in 20.1.3 Mode Symbols in Sub-Area B7 for OS, UN mode
         ///     Step 3 in TC-ID: 34.1.4 in 37.1.4.1.1 Data entry/validation process when enabling conditions not fullfilled: Level 1
         /// </summary>
-        public static void DMI_displays_Level_window(SignalPool pool)
+        public static void Level_window_displayed(SignalPool pool)
         {
-            throw new NotImplementedException();
+            pool.WaitForVerification("Is the Level window displayed on the DMI?");
         }
 
         /// <summary>
@@ -2598,6 +2603,7 @@ namespace Testcase.DMITestCases
         public static void DMI_displays_Driver_ID_window_in_SB_mode(SignalPool pool)
         {
             pool.WaitForVerification("Confirm that Driver Id window is diplayed in SB mode?");
+            EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.StandBy;
         }
 
         /// <summary>
