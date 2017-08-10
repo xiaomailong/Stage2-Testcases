@@ -18,6 +18,7 @@ using Testcase.Telegrams.EVCtoDMI;
 using Testcase.Telegrams.DMItoEVC;
 using Testcase.TemporaryFunctions;
 using static Testcase.Telegrams.EVCtoDMI.Variables;
+using System.Windows.Forms;
 
 // ReSharper disable UnusedMember.Global
 
@@ -28,6 +29,30 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class DmiActions
     {
+        /// <summary>
+        /// Forces DMI into completed SoM, L1, SB Mode. Displays Default window.
+        /// No user input required.
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Complete_SoM_L1_SB(SignalPool pool)
+        {
+            EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.GoToIdle;
+            EVC0_MMIStartATP.Send();
+
+            // Set train running number, cab 1 active, and other defaults
+            Activate_Cabin_1(pool);
+
+            // Set driver ID
+            Set_Driver_ID(pool, "1234");
+
+            // Set to level 1 and SR mode
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
+
+            // Enable standard buttons including Start, and display Default window.
+            FinishedSoM_Default_Window(pool);
+        }
+
         /// <summary>
         /// Forces DMI into completed SoM, L1, FS Mode. Displays Default window.
         /// No user input required.
@@ -110,6 +135,28 @@ namespace Testcase.DMITestCases
             pool.WaitForAcknowledgement(instruction);
         }
 
+        public static string ShowDialog(string text, string caption)
+        {
+            Form prompt = new Form()
+            {
+                Width = 500,
+                Height = 150,
+                FormBorderStyle = FormBorderStyle.FixedDialog,
+                Text = caption,
+                StartPosition = FormStartPosition.CenterScreen
+            };
+            Label textLabel = new Label() { Left = 50, Top = 20, Text = text };
+            TextBox textBox = new TextBox() { Left = 50, Top = 50, Width = 400 };
+            Button confirmation = new Button() { Text = "Ok", Left = 350, Width = 100, Top = 70, DialogResult = DialogResult.OK };
+            confirmation.Click += (sender, e) => { prompt.Close(); };
+            prompt.Controls.Add(textBox);
+            prompt.Controls.Add(confirmation);
+            prompt.Controls.Add(textLabel);
+            prompt.AcceptButton = confirmation;
+
+            return prompt.ShowDialog() == DialogResult.OK ? textBox.Text : "";
+        }
+
         /// <summary>
         /// Description: Activate cabin 1
         /// Used in:
@@ -122,7 +169,6 @@ namespace Testcase.DMITestCases
             EVC2_MMIStatus.MMI_M_ADHESION = 0x0;
             EVC2_MMIStatus.MMI_M_OVERRIDE_EOA = false;
             EVC2_MMIStatus.Send();
-           
         }
 
         /// <summary>
@@ -137,7 +183,6 @@ namespace Testcase.DMITestCases
             EVC2_MMIStatus.MMI_M_ADHESION = 0x0;
             EVC2_MMIStatus.MMI_M_OVERRIDE_EOA = false;
             EVC2_MMIStatus.Send();
-
         }
 
         /// <summary>
@@ -149,7 +194,20 @@ namespace Testcase.DMITestCases
         {
             EVC2_MMIStatus.MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.NoCabinActive;
             EVC2_MMIStatus.Send();
+        }
 
+        /// <summary>
+        /// Description: ETCS requests driver to allow the brake test
+        /// Used in:
+        ///     Step 2 in TC-ID: 15.1.3 in 20.1.3
+        /// </summary>
+        public static void Request_Brake_Test(SignalPool pool)
+        {
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 2;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 5;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 514;
+            EVC8_MMIDriverMessage.Send();
         }
 
         /// <summary>
@@ -238,6 +296,28 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
+        /// Description: RV mode sent to be displayed on th DMI
+        /// Used in:
+        ///     Step 4 in TC-ID: 15.1.2 in 20.1.2
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Send_RV_Mode(SignalPool pool)
+        {
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Reversing;
+        }
+
+        /// <summary>
+        /// Description: SL mode sent to be displayed on th DMI
+        /// Used in:
+        ///     Step 5 in TC-ID: 15.1.2 in 20.1.2
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Send_SL_Mode(SignalPool pool)
+        {
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Sleeping;
+        }
+
+        /// <summary>
         /// Description: Main Window is Start Button enabled sent to be displayed on th DMI
         /// Used in:
         ///     Step 9 in TC-ID: 15.1.1 in 20.1.1
@@ -294,6 +374,35 @@ namespace Testcase.DMITestCases
         public static void Send_SF_Mode(SignalPool pool)
         {
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.SystemFailure;
+        }
+
+        /// <summary>
+        /// Description: RV Permitted_Symbol sent to be displayed on th DMI
+        /// Used in:
+        ///     Step 2 in TC-ID: 15.1.2 in 20.1.2
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Send_RV_Permitted_Symbol(SignalPool pool)
+        {
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 286; // "#3 ST06 (Reversing is possible)"
+            EVC8_MMIDriverMessage.Send();
+        }
+
+        /// <summary>
+        /// Description: RV mode acknowledgement request sent to the driver
+        /// Used in:
+        ///     Step 3 in TC-ID: 15.1.2 in 20.1.2
+        /// </summary>
+        public static void Send_RV_Mode_Ack(SignalPool pool)
+        {
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 262;     // "#3 MO15 (Ack Reversing Mode)"
+            EVC8_MMIDriverMessage.Send();
         }
 
         /// <summary>
@@ -484,6 +593,7 @@ namespace Testcase.DMITestCases
         /// Description: Stop the train
         /// Used in:
         ///     Step 7 in TC-ID: 15.1.1 in 20.1.1
+        ///     Step 2 in TC-ID: 15.1.2 in 20.1.2
         /// </summary>
         public static void Stop_the_train(SignalPool pool)
         {
@@ -858,9 +968,11 @@ namespace Testcase.DMITestCases
         ///     Step 5 in TC-ID: 17.9.10 (Default Configuration) in 22.9.10 Hide PA Function with the communication loss between ETCS Onboard and DMI
         ///     Step 10 in TC-ID: 17.9.10 (Default Configuration) in 22.9.10 Hide PA Function with the communication loss between ETCS Onboard and DMI
         /// </summary>
-        public static void Re_establish_the_communication_between_ETCS_onboard_and_DMI(SignalPool pool)
+        public static void Re_establish_communication_EVC_DMI(SignalPool pool)
         {
-            throw new NotImplementedException();
+            // Commence sending EVC-1 and EVC-7 telegrams
+            pool.SITR.STGCtrl.ETCS1.Dynamic.Value = 1;
+            pool.SITR.STGCtrl.ETCS1.EtcsMiscOutSignals.Value = 1;
         }
 
 
@@ -945,7 +1057,7 @@ namespace Testcase.DMITestCases
         ///     Step 3 in TC-ID: 15.5.2 in 20.5.3 Adhesion factor: Controlled data packet from ETCS Onboard
         ///     Step 4 in TC-ID: 17.1.1 in 22.1.1 Planning Area: General Appearance
         /// </summary>
-        public static void Drive_the_train_forward_passing_BG2(SignalPool pool)
+        public static void Drive_train_forward_passing_BG2(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -1307,9 +1419,11 @@ namespace Testcase.DMITestCases
         ///     Step 11 in TC-ID: 17.6.1 in 22.6.1 PA Speed Profile Discontinuity: Display in sub-area D6 and D7
         ///     Step 9 in TC-ID: 17.7.1 in 22.7.1 PA Speed Profile (PASP): Display in sub-area D7 and D8
         /// </summary>
-        public static void Simulate_the_communication_loss_between_ETCS_Onboard_and_DMI(SignalPool pool)
+        public static void Simulate_communication_loss_EVC_DMI(SignalPool pool)
         {
-            throw new NotImplementedException();
+            // Stop sending EVC-1 and EVC-7 telegrams
+            pool.SITR.STGCtrl.ETCS1.Dynamic.Value = 0;
+            pool.SITR.STGCtrl.ETCS1.EtcsMiscOutSignals.Value = 0;
         }
 
         /// <summary>

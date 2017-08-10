@@ -99,7 +99,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The number of the current train speed is coloured black.The 2-digit interger number is aligned right without leading zeroes
             Test Step Comment: (1) MMI_gen 6307 (partly: Speed pointer has no red colour);(2) MMI_gen 1279 (partly: right most sub-area, 2 digit, integer, no zeroes)
             */
-            DmiActions.Drive_the_train_forward_passing_BG1(this);
+            DmiActions.Drive_train_forward_passing_BG1(this);
 
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 40;
             // ?? Send

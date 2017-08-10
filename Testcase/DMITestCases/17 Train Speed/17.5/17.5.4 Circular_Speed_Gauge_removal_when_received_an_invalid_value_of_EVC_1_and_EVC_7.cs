@@ -72,7 +72,7 @@ namespace Testcase.DMITestCases
             // Call generic Check Results Method
             DmiActions.Complete_SoM_L1_FS(this);
 
-            DmiExpectedResults.DMI_displays_in_FS_mode_Level_1(this);
+            DmiExpectedResults.DMI_displays_in_FS_mode_level_1(this);
             DmiActions.Stop_the_train(this);
 
             /*
@@ -88,7 +88,7 @@ namespace Testcase.DMITestCases
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Spare;
             // ?? Send
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_1_The_Circular_Speed_Gauge_is_removed_from_sub_area_B2_Note_The_circular_speed_guage_is_re_appear_when_DMI_received_packet_EVC_1_from_ETCS_onboard(this);
+            DmiExpectedResults.Verify_the_following_information_1_The_Circular_Speed_Gauge_is_removed_from_sub_area_B2_Note_The_ciruclar_speed_guage_is_re_appear_when_DMI_received_packet_EVC_1_from_ETCS_onboard(this);
 
             /*
             Test Step 3
@@ -103,7 +103,7 @@ namespace Testcase.DMITestCases
             EVC1_MMIDynamic.MMI_V_TARGET = 11112;
             // ?? Send
 
-            DmiExpectedResults.Verify_the_following_information_1_The_Circular_Speed_Gauge_is_removed_from_sub_area_B2_Note_The_circular_speed_guage_is_re_appear_when_DMI_received_packet_EVC_1_from_ETCS_onboard(this);
+            DmiExpectedResults.Verify_the_following_information_1_The_Circular_Speed_Gauge_is_removed_from_sub_area_B2_Note_The_ciruclar_speed_guage_is_re_appear_when_DMI_received_packet_EVC_1_from_ETCS_onboard(this);
 
             /*
             Test Step 4
@@ -118,7 +118,7 @@ namespace Testcase.DMITestCases
             // ?? Send
 
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_1_The_Circular_Speed_Gauge_is_removed_from_sub_area_B2_Note_The_circular_speed_guage_is_re_appear_when_DMI_received_packet_EVC_1_from_ETCS_onboard(this);
+            DmiExpectedResults.Verify_the_following_information_1_The_Circular_Speed_Gauge_is_removed_from_sub_area_B2_Note_The_ciruclar_speed_guage_is_re_appear_when_DMI_received_packet_EVC_1_from_ETCS_onboard(this);
 
             /*
             Test Step 5
@@ -133,7 +133,7 @@ namespace Testcase.DMITestCases
             EVC1_MMIDynamic.MMI_V_INTERVENTION = 11112;
             // ?? Send
 
-            DmiExpectedResults.Verify_the_following_information_1_The_Circular_Speed_Gauge_is_removed_from_sub_area_B2_Note_The_circular_speed_guage_is_re_appear_when_DMI_received_packet_EVC_1_from_ETCS_onboard(this);
+            DmiExpectedResults.Verify_the_following_information_1_The_Circular_Speed_Gauge_is_removed_from_sub_area_B2_Note_The_ciruclar_speed_guage_is_re_appear_when_DMI_received_packet_EVC_1_from_ETCS_onboard(this);
 
 
             /*
@@ -149,7 +149,7 @@ namespace Testcase.DMITestCases
             // ?? Send
 
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_1_The_Circular_Speed_Gauge_is_removed_from_sub_area_B2_Note_The_circular_speed_guage_is_re_appear_when_DMI_received_packet_EVC_1_from_ETCS_onboard(this);
+            DmiExpectedResults.Verify_the_following_information_1_The_Circular_Speed_Gauge_is_removed_from_sub_area_B2_Note_The_ciruclar_speed_guage_is_re_appear_when_DMI_received_packet_EVC_1_from_ETCS_onboard(this);
 
             /*
             Test Step 7
@@ -163,7 +163,7 @@ namespace Testcase.DMITestCases
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Invalid;
             // EVC7_MMIEtcsMiscOutSignals Send
 
-            DmiExpectedResults.Verify_the_following_information_1_The_Circular_Speed_Gauge_is_removed_from_sub_area_B2_Note_The_circular_speed_guage_is_re_appear_when_DMI_received_packet_EVC_1_from_ETCS_onboard(this);
+            DmiExpectedResults.Verify_the_following_information_1_The_Circular_Speed_Gauge_is_removed_from_sub_area_B2_Note_The_ciruclar_speed_guage_is_re_appear_when_DMI_received_packet_EVC_1_from_ETCS_onboard(this);
 
             /*
             Test Step 8

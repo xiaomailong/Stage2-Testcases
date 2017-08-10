@@ -86,7 +86,7 @@ namespace Testcase.DMITestCases
             // EVC7_MMIEtcsMiscOutSignals Send
 
             // Call generic Action Method
-            DmiActions.Force_the_train_into_TR_mode_by_moving_the_train_forward_to_position_of_EOA(this);
+            DmiActions.Force_train_forward_overpassing_EOA(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                  "1. DMI displays in LS mode, level 1." + Environment.NewLine +

@@ -110,7 +110,7 @@ namespace Testcase.DMITestCases
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 25;
             // ?? Send
 
-            DmiActions.Drive_the_train_forward_passing_BG1(this);
+            DmiActions.Drive_train_forward_passing_BG1(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Speed pointer and Speed digital are displayed with speed = 0." + Environment.NewLine +

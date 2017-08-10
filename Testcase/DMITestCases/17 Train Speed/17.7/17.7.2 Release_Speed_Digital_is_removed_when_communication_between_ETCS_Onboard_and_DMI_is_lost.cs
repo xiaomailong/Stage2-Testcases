@@ -89,9 +89,9 @@ namespace Testcase.DMITestCases
             Action: Drive the train forward passing BG1
             Expected Result: DMI changes mode from SR to FS
             */
-            DmiActions.Drive_the_train_forward_passing_BG1(this);
+            DmiActions.Drive_train_forward_passing_BG1(this);
 
-            DmiExpectedResults.DMI_displays_in_FS_mode_Level_1(this);
+            DmiExpectedResults.DMI_displays_in_FS_mode_level_1(this);
 
             /*
             Test Step 4
@@ -107,7 +107,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 6588 (partly: Release speed removal);
             */
             DmiActions.Stop_the_train(this);
-            DmiActions.Simulate_the_communication_loss_between_ETCS_Onboard_and_DMI(this);
+            DmiActions.Simulate_communication_loss_EVC_DMI(this);
             DmiExpectedResults.DMI_displays_Default_window_with_the_message_ATP_Down_Alarm_and_sound_alarm(this);
 
             /*
@@ -117,7 +117,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 6589 (partly: Release speed re-appeared);    
             */
             // Call generic Action Method
-            DmiActions.Re_establish_the_communication_between_ETCS_onboard_and_DMI(this);
+            DmiActions.Re_establish_communication_EVC_DMI(this);
             
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in FS mode." + Environment.NewLine +

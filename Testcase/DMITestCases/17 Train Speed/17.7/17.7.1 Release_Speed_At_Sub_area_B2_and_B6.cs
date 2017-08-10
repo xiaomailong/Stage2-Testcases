@@ -82,7 +82,7 @@ namespace Testcase.DMITestCases
             DmiActions.Complete_SoM_L1_SR(this);
 
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_is_displayed_in_SR_mode_level_1(this);
+            DmiExpectedResults.DMI_displays_in_SR_mode_level_1(this);
 
             /*
             Test Step 3
@@ -92,7 +92,7 @@ namespace Testcase.DMITestCases
             // EVC7_MMIEtcsMiscOutSignals Send
 
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_passing_BG1(this);
+            DmiActions.Drive_train_forward_passing_BG1(this);
 
             // Call generic Check Results Method
             DmiExpectedResults.DMI_changes_from_SR_to_FS_mode(this);

@@ -253,18 +253,35 @@ namespace Testcase.Telegrams.EVCtoDMI
         }
 
         /// <summary>
-        /// Plain text message
+        /// Set the plain text message of EVC-8 Driver Message. Maximum of 256 characters.
         /// </summary>
         public static string PlainTextMessage
         {
             set
             {
                 var charArray = value.ToCharArray();
-                if (charArray.Length > 0)
+
+                // If PlainTextMessage is empty
+                if (charArray.Length < 0)
                     throw new NotImplementedException();
+
+                // If PlainTextMessage has too many characters
+                if (charArray.Length > 256)
+                    throw new ArgumentOutOfRangeException("PlainTextMessage", "Too many characters in the message!");
+
+                // Number of characters in PlainTextMessage
                 _pool.SITR.ETCS1.DriverMessage.MmiNText.Value = (ushort) charArray.Length;
 
-                // TODO populate the char array
+                // Populate MMI_X_Text signals
+                for (int i = 0; i < charArray.Length; i++)
+                {
+                    if (i < 10)
+                        _pool.SITR.Client.Write($"ETCS1_DriverMessage_EVC08DriverMessageSub00{i}_MmiXText", charArray[i]);
+                    else if (i < 100)
+                        _pool.SITR.Client.Write($"ETCS1_DriverMessage_EVC08DriverMessageSub0{i}_MmiXText", charArray[i]);
+                    else
+                        _pool.SITR.Client.Write($"ETCS1_DriverMessage_EVC08DriverMessageSub{i}_MmiXText", charArray[i]);
+                }
             }
         }
     }

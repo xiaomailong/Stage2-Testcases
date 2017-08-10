@@ -1,8 +1,10 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using BT_CSB_Tools;
+using CL345;
+using Testcase.DMITestCases;
 
 namespace Testcase
 {
@@ -10,7 +12,7 @@ namespace Testcase
     {
         static void Main(string[] args)
         {
-            TestcaseRunner.AddTestcase(typeof(SoM_Level1));
+            TestcaseRunner.AddTestcase(typeof(Adhesion_factor_General_appearance));
             TestcaseRunner.RunTestcases(args);
         }
     }

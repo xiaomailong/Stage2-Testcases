@@ -62,8 +62,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI still displays in SR mode.Verify that ‘Adhesion’ button is enabled
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_still_displays_in_SR_mode_Verify_that_Adhesion_button_is_enabled(this);
-
+            DmiExpectedResults.DMI_displays_Special_window_with_enabled_Adhesion_button(this);
 
             /*
             Test Step 2
@@ -80,10 +79,11 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7088 (partly: EVC-2, ‘Low Adhesion from Trackside’, ‘Low Adhesion by Driver’);(2) MMI_gen 111;
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward_passing_BG2(this);
+            DmiActions.Drive_train_forward_passing_BG2(this);
             // Call generic Check Results Method
-            DmiExpectedResults
-                .Verify_the_following_information_Use_the_log_file_to_confirm_that_DMI_receives_EVC_2_with_variable_MMI_M_ADHESION_1_1_bit_Low_Adhesion_from_Trackside_is_set_DMI_displays_symbol_ST02_in_sub_area_A4(this);
+
+            //DmiExpectedResults
+            //    .Verify_the_following_information_Use_the_log_file_to_confirm_that_DMI_receives_EVC_2_with_variable_MMI_M_ADHESION_1_1_bit_Low_Adhesion_from_Trackside_is_set_DMI_displays_symbol_ST02_in_sub_area_A4(this);
 
 
             /*

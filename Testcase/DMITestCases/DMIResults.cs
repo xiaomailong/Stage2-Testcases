@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 using BT_Tools;
 using BT_CSB_Tools;
 using BT_CSB_Tools.Logging;
@@ -27,13 +28,32 @@ namespace Testcase.DMITestCases
     public static class DmiExpectedResults
     {
         /// <summary>
+        /// Prompt for verification of symbol displayed on the DMI.
+        /// </summary>
+        /// <param name="pool">Signal Pool</param>
+        /// <param name="SymbolName">Symbol name as described in ERA_ERTMS_015560 v3.4</param>
+        /// <param name="SymbolNumber">Symbol number as described in ERA_ERTMS_015560 v3.4</param>
+        /// <param name="SymbolArea">Area of the DMI where the symbol should be displayed</param>
+        /// <param name="YellowBorder">Boolean of whether the symbol should have a yellow border</param>
+        public static void Driver_symbol_displayed(SignalPool pool, string SymbolName, string SymbolNumber, string SymbolArea,
+                                                    bool YellowBorder)
+        {
+            if (YellowBorder)
+                pool.WaitForVerification($"Is the {SymbolName} symbol ({SymbolNumber}) " +
+                    $"displayed with a yellow border in area {SymbolArea}?");
+            else
+                pool.WaitForVerification($"Is the {SymbolName} symbol ({SymbolNumber}) " +
+                    $"displayed without a yellow border in area {SymbolArea}?");
+        }
+
+        /// <summary>
         /// Description: SR Mode acknowledgement is requested on DMI area C1
         /// Used in:
         ///     Step 2 in TC-ID: 15.1.1 in 20.1.1
         /// </summary>
         public static void SR_Mode_Ack_requested(SignalPool pool)
         {
-            pool.WaitForAcknowledgement("Is the acknowledgement for Staff Responsible symbol (MO10) displayed in area C1?");
+            Driver_symbol_displayed(pool, "Acknowledgement for Staff Responsible", "MO10", "C1", true);
         }
 
         /// <summary>
@@ -45,7 +65,7 @@ namespace Testcase.DMITestCases
         {
             EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
             EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
-            pool.WaitForAcknowledgement("Has the MO10 symbol disappeared from sub-area C1 and re-appeared again?");
+            pool.WaitForVerification("Has the MO10 symbol disappeared from sub-area C1 and re-appeared again?");
         }
 
         /// <summary>
@@ -59,8 +79,19 @@ namespace Testcase.DMITestCases
             pool.Wait_Realtime(2000);
             EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.StaffResponsibleModeAck;
-            pool.WaitForAcknowledgement("Has the MO10 symbol opacity decreased to 50%?");
+            pool.WaitForVerification("Has the MO10 symbol opacity decreased to 50%?");
             
+        }
+
+        /// <summary>
+        /// Description:
+        /// Used in:
+        ///     Step 2 in TC-ID: 12.7.2 in 17.7.2 
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void DMI_displays_in_SR_mode_level_1(SignalPool pool)
+        {
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -71,7 +102,7 @@ namespace Testcase.DMITestCases
         public static void TR_Mode_displayed(SignalPool pool)
         {
             EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.Trip;
-            pool.WaitForAcknowledgement("Is the Trip mode symbol (MO04) displayed in area B7?");
+            Driver_symbol_displayed(pool, "Trip mode", "MO04", "B7", false);
         }
 
         /// <summary>
@@ -81,7 +112,7 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void TR_Mode_Ack_requested(SignalPool pool)
         {
-            pool.WaitForAcknowledgement("Is the acknowledgement for Train Trip symbol (MO05) displayed in area C1?");
+            Driver_symbol_displayed(pool, "Acknowledgement for Train Trip", "MO05", "C1", true);
         }
 
         /// <summary>
@@ -105,7 +136,20 @@ namespace Testcase.DMITestCases
             EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
             EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.TrainTripAck;
-            pool.WaitForAcknowledgement("Has the MO05 symbol disappeared from sub-area C1");
+            pool.WaitForVerification("Has the MO05 symbol disappeared from sub-area C1?");
+        }
+
+        /// <summary>
+        /// Description: RV mode Acknowledgement symbol on DMI area C1 is pressed and released.
+        /// Used in:
+        ///     Step 4 in TC-ID: 15.1.2 in 20.1.2
+        /// </summary>
+        public static void RV_Mode_Ack_pressed_and_released(SignalPool pool)
+        {
+            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
+            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
+            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.ReversingModeAck;
+            pool.WaitForVerification("Has the MO15 symbol disappeared from sub-area C1?");
         }
 
         /// <summary>
@@ -116,7 +160,29 @@ namespace Testcase.DMITestCases
         public static void PT_Mode_displayed(SignalPool pool)
         {
             EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.PostTrip;
-            pool.WaitForAcknowledgement("Is the Post Trip mode symbol (MO06) displayed in area B7?");
+            Driver_symbol_displayed(pool, "Post Trip mode", "MO06", "B7", false);
+        }
+
+        /// <summary>
+        /// Description: DMI displays RV mode
+        /// Used in:
+        ///     Step 4 in TC-ID: 15.1.2 in 20.1.2
+        /// </summary>
+        public static void RV_Mode_displayed(SignalPool pool)
+        {
+            EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.Reversing;
+            Driver_symbol_displayed(pool, "Reversing mode", "MO14", "B7", false);
+        }
+
+        /// <summary>
+        /// Description: DMI does NOT display SL mode despite EVC-7 with [MMI_ETCS_MISC_OUT_SIGNALS.OBU_TR_M_MODE] = 5 received
+        /// Used in:
+        ///     Step 5 in TC-ID: 15.1.2 in 20.1.2
+        /// </summary>
+        public static void SL_Mode_NOT_displayed(SignalPool pool)
+        {
+            EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.Sleeping;
+            pool.WaitForVerification("Confirm that NO symbol is displayed in area B7");
         }
 
         /// <summary>
@@ -128,7 +194,7 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void Main_Window_displayed_with_Start_button_enabled(SignalPool pool)
         {
-            pool.WaitForAcknowledgement("Is the Main Window displayed in the DMI?");
+            pool.WaitForVerification("Is the Main window displayed on the DMI, with the Start button enabled?");
         }
 
         /// <summary>
@@ -166,7 +232,7 @@ namespace Testcase.DMITestCases
         public static void SH_Mode_displayed(SignalPool pool)
         {
             EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.Shunting;
-            pool.WaitForAcknowledgement("Is the Shunting mode symbol (MO01) displayed in area B7?");
+            Driver_symbol_displayed(pool, "Shunting mode", "MO01", "B7", false);
         }
 
         /// <summary>
@@ -229,7 +295,7 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void Driver_ID_window_displayed(SignalPool pool)
         {
-            pool.WaitForAcknowledgement("Is the Driver ID window displayed on th DMI?");
+            pool.WaitForVerification("Is the Driver ID window displayed on the DMI?");
         }
 
         /// <summary>
@@ -253,7 +319,7 @@ namespace Testcase.DMITestCases
         public static void NL_Mode_displayed(SignalPool pool)
         {
             EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.NonLeading;
-            pool.WaitForAcknowledgement("Is the Non-leading mode symbol (MO012) displayed in area B7?");
+            Driver_symbol_displayed(pool, "Non-leadin mode", "MO12", "B7", false);
         }
 
         /// <summary>
@@ -264,7 +330,68 @@ namespace Testcase.DMITestCases
         public static void SF_Mode_displayed(SignalPool pool)
         {
             EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.SystemFailure;
-            pool.WaitForAcknowledgement("Is the System Failure mode symbol (MO18) displayed in area B7?");
+            Driver_symbol_displayed(pool, "System failure mode", "MO18", "B7", false);
+        }
+
+        /// <summary>
+        /// Description: DMI displays RV permitted symbol
+        /// Used in:
+        ///     Step 2 in TC-ID: 15.1.2 in 20.1.2
+        /// </summary>
+        public static void RV_Permitted_Symbol_displayed(SignalPool pool)
+        {
+            Driver_symbol_displayed(pool, "RV permitted", "ST06", "C6", false);
+        }
+
+        /// <summary>
+        /// Description: DMI displays RV permitted symbol
+        /// Used in:
+        ///     Step 3 in TC-ID: 15.1.2 in 20.1.2
+        /// </summary>
+        public static void RV_Mode_Ack_requested(SignalPool pool)
+        {
+            Driver_symbol_displayed(pool, "Acknowledgement for Reversing mode", "MO15", "C1", true);
+        }
+
+        /// <summary>
+        /// Description: DMI displays the text "Driver's cab not active" in area E5
+        /// Used in:
+        ///     Step 5 in TC-ID: 15.1.2 in 20.1.2
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Driver_s_cab_not_active_msg_displayed(SignalPool pool)
+        {
+            pool.WaitForVerification("Is the text \"Driver's cab not active\" displayed in DMI area E5?");
+        }
+
+        /// <summary>
+        /// Description: Driver ID is entered
+        /// Used in:
+        ///     Step 2 in TC-ID: 15.1.3 in 20.1.3
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Driver_ID_entered(SignalPool pool)
+        {
+            string driverIDInput = DmiActions.ShowDialog("Please enter Driver ID", "Driver ID");
+            EVC104_MMINewDriverData.Check_X_DRIVER_ID = driverIDInput;
+        }
+
+        /// <summary>
+        /// Description: 
+        /// Used in:
+        ///     Step 2 in TC-ID: 15.1.3 in 20.1.3
+        /// </summary>
+        /// <param name="pool"></param>
+        /// <param name="order">Indicates if Driver allows Brake Test to be performed</param>
+        public static void Brake_Test_Perform_Order(SignalPool pool, bool order)
+        {
+            string _sOrder;
+            if (order) { _sOrder = "Yes"; } else { _sOrder = "No"; }
+
+            DmiActions.ShowInstruction(pool, "Press \"" + _sOrder + "\" on DMI area E");
+
+            if (order) { EVC111_MMIDriverMessageAck.Check_MMI_Q_ACK = EVC111_MMIDriverMessageAck.MMI_Q_ACK.AcknowledgeYES; }
+            else { EVC111_MMIDriverMessageAck.Check_MMI_Q_ACK = EVC111_MMIDriverMessageAck.MMI_Q_ACK.NotAcknowledgeNO; }
         }
 
         /// <summary>
@@ -656,7 +783,7 @@ namespace Testcase.DMITestCases
         public static void SR_Mode_displayed(SignalPool pool)
         {
             EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.StaffResponsible;
-            pool.WaitForAcknowledgement("Is the Staff Responsible mode symbol (MO9) displayed in area B7?");
+            pool.WaitForVerification("Is the Staff Responsible mode symbol (MO9) displayed in area B7?");
         }
 
         /// <summary>
@@ -840,7 +967,7 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void DMI_displays_Special_window_with_enabled_Adhesion_button(SignalPool pool)
         {
-            throw new NotImplementedException();
+            pool.WaitForVerification("Is the Special window displayed with the Adhesion button enabled?");
         }
 
         /// <summary>
@@ -961,7 +1088,7 @@ namespace Testcase.DMITestCases
         public static void SB_Mode_displayed(SignalPool pool)
         {
             EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.StandBy;
-            pool.WaitForAcknowledgement("Is the Stand By mode symbol (MO13) displayed in area B7?");
+            pool.WaitForVerification("Is the Stand By mode symbol (MO13) displayed in area B7?");
         }
 
         /// <summary>
@@ -1429,11 +1556,12 @@ namespace Testcase.DMITestCases
         ///     Step 1 in TC-ID: 12.15 in 17.15 Slip and Slide are configure to 0 at the same time
         ///     Step 2 in TC-ID: 17.3 in 22.3 Planning Area: PA Distance Scale
         ///     Step 5 in TC-ID: 15.1.1 in 20.1.1
+        ///     Step 2 in TC-ID: 15.1.2 in 20.1.2
         /// </summary>
         public static void DMI_changes_from_SR_to_FS_mode(SignalPool pool)
         {
             EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.FullSupervision;
-            pool.WaitForAcknowledgement("Is the SR mode symbol deleted and replaced by FS mode symbol (MO11) on DMI area B7");
+            pool.WaitForVerification("Is the SR mode symbol deleted and replaced by FS mode symbol (MO11) on DMI area B7");
         }
 
         /// <summary>
@@ -1718,41 +1846,6 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void
             DMI_displays_the_message_ATP_Down_Alarm_with_sound_alarm_Verify_the_following_information_1_The_non_acknowledgeable_message_list_is_flushed_no_driver_message_display_in_area_E5_E9(SignalPool pool)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Description: DMI still displays in SR mode.Verify that ‘Adhesion’ button is enabled
-        /// Used in:
-        ///     Step 1 in TC-ID: 15.5.1 in 20.5.1 Adhesion factor: General appearance
-        ///     Step 1 in TC-ID: 15.5.2 in 20.5.3 Adhesion factor: Controlled data packet from ETCS Onboard
-        /// </summary>
-        public static void DMI_still_displays_in_SR_mode_Verify_that_Adhesion_button_is_enabled(SignalPool pool)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Description: No adhesion factor indication is displayed.Verify the following information,Use the log file to confirm that DMI receives EVC-2 with following variable,MMI_M_ADHESION (#1) = 0, bit ‘Low Adhesion from Trackside’ is not set.MMI_M_ADHESION (#0) = 0, bit ‘Low Adhesion by Driver’ is not set
-        /// Used in:
-        ///     Step 5 in TC-ID: 15.5.1 in 20.5.1 Adhesion factor: General appearance
-        ///     Step 7 in TC-ID: 15.5.1 in 20.5.1 Adhesion factor: General appearance
-        /// </summary>
-        public static void
-            No_adhesion_factor_indication_is_displayed_Verify_the_following_information_Use_the_log_file_to_confirm_that_DMI_receives_EVC_2_with_following_variable_MMI_M_ADHESION_1_0_bit_Low_Adhesion_from_Trackside_is_not_set_MMI_M_ADHESION_0_0_bit_Low_Adhesion_by_Driver_is_not_set(SignalPool pool)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Description: Verify the following information,Use the log file to confirm that DMI receives EVC-2 with variable MMI_M_ADHESION (#1) = 1, bit ‘Low Adhesion from Trackside’ is set.DMI displays symbol ST02 in sub-area A4
-        /// Used in:
-        ///     Step 6 in TC-ID: 15.5.1 in 20.5.1 Adhesion factor: General appearance
-        ///     Step 3 in TC-ID: 15.5.2 in 20.5.3 Adhesion factor: Controlled data packet from ETCS Onboard
-        /// </summary>
-        public static void
-            Verify_the_following_information_Use_the_log_file_to_confirm_that_DMI_receives_EVC_2_with_variable_MMI_M_ADHESION_1_1_bit_Low_Adhesion_from_Trackside_is_set_DMI_displays_symbol_ST02_in_sub_area_A4(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2500,10 +2593,11 @@ namespace Testcase.DMITestCases
         ///     Step 1 in TC-ID: 22.5.4  in 27.5.4 Level Selection window: 8 STMs handling
         ///     Step 1 in TC-ID: 35.2 in 38.2 NTC System Status Messages
         ///     Step 7 in TC-ID: 35.2 in 38.2 NTC System Status Messages
+        ///     Step 1 in TC-ID: 17.1.3 in 20.1.3 
         /// </summary>
         public static void DMI_displays_Driver_ID_window_in_SB_mode(SignalPool pool)
         {
-            throw new NotImplementedException();
+            pool.WaitForVerification("Confirm that Driver Id window is diplayed in SB mode?");
         }
 
         /// <summary>

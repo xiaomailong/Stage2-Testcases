@@ -13,6 +13,11 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.DMITestCases;
+using Testcase.Telegrams.DMItoEVC;
+using Testcase.Telegrams.EVCtoDMI;
+using static Testcase.Telegrams.EVCtoDMI.Variables;
+using Testcase.TemporaryFunctions;
 
 namespace Testcase.DMITestCases
 {
@@ -31,7 +36,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 15_1_3.tdg
     /// </summary>
-    public class Mode_Symbols_in_Sub_Area_B7_for_OS_UN_mode : TestcaseBase
+    public class TC_15_1_3_ETCS_Mode_Symbols : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -55,28 +60,41 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
-            /*
-            Test Step 1
+            #region Test Step 1
+            /*           
             Action: Activate cabin A
             Expected Result: DMI displays in SB mode. The Driver ID window is displayed
             */
-            // Call generic Action Method
+
+            EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.GoToIdle;
+            EVC0_MMIStartATP.Send();
+
             DmiActions.Activate_Cabin_1(this);
-            // Call generic Check Results Method
+
+            DmiActions.Display_Driver_ID_Window(this);
+            DmiActions.Send_SB_Mode(this);
+
             DmiExpectedResults.DMI_displays_Driver_ID_window_in_SB_mode(this);
 
+            #endregion
 
-            /*
-            Test Step 2
+            #region Test Step 2
+            /*           
             Action: Enter Driver ID and perform brake test
             Expected Result: DMI displays Level window
             */
-            // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Enter Driver ID and perform brake test");
+            
+            DmiActions.Set_Driver_ID(this, "1234");
+            DmiExpectedResults.Driver_ID_entered(this);
+
+            DmiActions.Request_Brake_Test(this);
+            DmiExpectedResults.Brake_Test_Perform_Order(this, true);
+
+
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Level_window(this);
 
+            #endregion
 
             /*
             Test Step 3

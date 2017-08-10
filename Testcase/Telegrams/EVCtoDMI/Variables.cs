@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using CL345;
+using System.Windows.Forms;
 
 namespace Testcase.Telegrams.EVCtoDMI
 {
@@ -373,6 +374,6 @@ namespace Testcase.Telegrams.EVCtoDMI
             NoCabinActive = 0,
             Cabin1Active = 1,
             Cabin2Active = 2
-        }
+        }       
     }
 }
