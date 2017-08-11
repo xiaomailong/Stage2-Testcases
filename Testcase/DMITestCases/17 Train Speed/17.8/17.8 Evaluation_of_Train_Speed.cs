@@ -14,6 +14,7 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
 using Testcase.Telegrams.EVCtoDMI;
+using Testcase.XML;
 
 
 namespace Testcase.DMITestCases
@@ -44,6 +45,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // -    Test system is powered on.-    ATP is still not start.
+            // ?? Need to switch off/on
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
@@ -53,6 +55,8 @@ namespace Testcase.DMITestCases
         {
             // Post-conditions from TestSpec
             // DMI displays in FS mode, Level 1.
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in FS mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -61,18 +65,16 @@ namespace Testcase.DMITestCases
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint
-
-            EVC1_MMIDynamic.Initialise(this);
-
+            
             /*
             Test Step 1
             Action: Start ATP without cabin activation
             Expected Result: Verify the following information,(1)    Use the log file to confirm that DMI receives packet EVC-1 with variable MMI_V_TRAIN = -1.(2)   The following objects are not displayed on the DMI,Speed PointerSpeed DigitalCSGCSG-ExtensionAll hooksTarget Distance Bar
             Test Step Comment: (1) MMI_gen 1086 (partly: received MMI_V_TRAIN equal -1); MMI_gen 1268 (partly: received MMI_V_TRAIN equal -1); MMI_gen 1275 (partly: received invalid MMI_V_TRAIN);(2) MMI_gen 1086 (partly: when MMI_V_TRAIN equal -1);  MMI_gen 1268 (partly: when MMI_DYNAMIC not elder than 600ms and MMI_V_TRAIN equal -1); MMI_gen 1275 (partly: when MMI_V_TRAIN is invalid); 
             */
-            //?? 
-            DmiActions.Turn_off_power_of_DMI(this);
-            DmiActions.Turn_on_power_of_DMI(this);
+            EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.GoToIdle;
+            EVC0_MMIStartATP.Send();
+            EVC1_MMIDynamic.MMI_V_TRAIN = -1;
 
             WaitForVerification("Check that the following objects are not displayed on the DMI:" + Environment.NewLine + Environment.NewLine +
                                 "1. Speed Pointer." + Environment.NewLine +
@@ -88,10 +90,21 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   Use the log file to confirm that DMI receives packet EVC-1 with variable MMI_V_TRAIN = 0.(2)    The Speed pointer, Speed digital, CSG, CSG-Extension, all hooks, Target Distance Bar and Target Distance Digital are diplayed and correspond to the  received packet EVC-1
             Test Step Comment: (1) MMI_gen 1086 (partly: negative case - received MMI_V_TRAIN not equal -1); MMI_gen 1268 (partly: received MMI_V_TRAIN greater than -1); MMI_gen 1275 (partly: negative case - received valid MMI_V_TRAIN);(2) MMI_gen 1086 (partly: negative case - when MMI_V_TRAIN not equal -1); MMI_gen 1268 (partly: when MMI_DYNAMIC not elder than 600ms and MMI_V_TRAIN greater than -1); MMI_gen 1275 (partly: negative case - when MMI_V_TRAIN is valid);
             */
-            DmiActions.Activate_cabin_A_Driver_performs_SoM_to_SR_mode_level_1(this);
+            // Set train running number, cab 1 active, and other defaults
+            DmiActions.Activate_Cabin_1(this);
+
+            // Set driver ID
+            DmiActions.Set_Driver_ID(this, "1234");
+
+            // Set to level 1 and SR mode
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
+
+            // Enable standard buttons including Start, and display Default window.
+            DmiActions.FinishedSoM_Default_Window(this);
 
             EVC1_MMIDynamic.MMI_V_TRAIN = 0;
-            // ?? Send
+            
             WaitForVerification("Check that the following objects are displayed on the DMI with speed = 0:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Speed pointer" + Environment.NewLine +
                                 "2. Speed digital" + Environment.NewLine +
@@ -107,14 +120,11 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   Use the log file to confirm that DMI received packet EVC-1 with variable MMI_V_TRAIN = 694.(2)    The Speed pointer and Speed digital are diplayed consist with received packet EVC-1.(3)   The Speed Pointer and Speed Digital on DMI screen are correspond with the current train speed
             Test Step Comment: (1) MMI_gen 1086 (partly: negative case - received MMI_V_TRAIN not equal -1); MMI_gen 1268 (partly: received MMI_V_TRAIN greater than -1); MMI_gen 1275 (partly: negative case - received valid MMI_V_TRAIN);(2) MMI_gen 1086 (partly: negative case - when MMI_V_TRAIN not equal -1); MMI_gen 1268 (partly: when MMI_DYNAMIC not elder than 600ms and MMI_V_TRAIN greater than -1); MMI_gen 1275 (partly: negative case - when MMI_V_TRAIN is valid);(3) MMI_gen 1277;
             */
-            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 25;
-            // ?? Send
-
-            DmiActions.Drive_train_forward_passing_BG1(this);
-
+            EVC1_MMIDynamic.MMI_V_TRAIN = 694;
+            
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The Speed pointer and Speed digital are displayed with speed = 0." + Environment.NewLine +
-                                "2. The Speed Pointer and Speed Digital on DMI screen with speed = 0.");
+                                "1. The Speed pointer and Speed digital are displayed." + Environment.NewLine +
+                                "2. The Speed Pointer and Digital Speed on DMI screen show speed at 25 km/h.");
 
             /*
             Test Step 4
@@ -122,17 +132,16 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   The following objects are not display on DMI,Speed PointerSpeed DigitalCSGCSG-ExtensionAll hooksTarget Distance BarTarget Distance Digital
             Test Step Comment: (1) MMI_gen 1086 (partly: negative case - when MMI_V_TRAIN not equal -1); MMI_gen 1268 (partly: negative case - when MMI_DYNAMIC not elder than 600ms and MMI_V_TRAIN not greater than and equal -1); MMI_gen 1275;
             */
-            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = -2;
-            // ?? Send
+            XML_12_8_a.Send(this);
 
             WaitForVerification("Check that the following objects are not displayed" + Environment.NewLine + Environment.NewLine +
                                 "1. The Speed pointer" + Environment.NewLine +
-                               "2. Speed digital" + Environment.NewLine +
-                               "3. CSG" + Environment.NewLine +
-                               "4. CSG-Extension" + Environment.NewLine +
-                               "5. Any hooks" + Environment.NewLine +
-                               "6. Target Distance Bar" + Environment.NewLine +
-                               "7. Digital Target Distance");
+                                "2. Speed digital" + Environment.NewLine +
+                                "3. CSG" + Environment.NewLine +
+                                "4. CSG-Extension" + Environment.NewLine +
+                                "5. Any hooks" + Environment.NewLine +
+                                "6. Target Distance Bar" + Environment.NewLine +
+                                "7. Digital Target Distance");
 
             /*
             Test Step 5

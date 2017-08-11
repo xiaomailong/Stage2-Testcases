@@ -49,8 +49,8 @@ namespace Testcase.DMITestCases
         {
             // Post-conditions from TestSpec
             // DMI displays in FS mode, Level 1.
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in FS mode, Level 1.");
+            // Call generic Check Results Method
+            DmiExpectedResults.DMI_changes_from_SR_to_FS_mode(this);
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();

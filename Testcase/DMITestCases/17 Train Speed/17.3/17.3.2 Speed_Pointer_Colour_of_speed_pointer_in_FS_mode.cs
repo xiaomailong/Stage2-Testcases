@@ -78,12 +78,13 @@ namespace Testcase.DMITestCases
             
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 40;
             EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 40;
-            EVC1_MMIDynamic.MMI_V_INTERVENTION_KMH = 45;        // Step 4        
-            //XML_12_3_2_a.Send(this);
-
+            EVC1_MMIDynamic.MMI_V_INTERVENTION_KMH = 45;     
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
+            
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. Is the speed pointer displaying 40 km/h?" + Environment.NewLine +
-                                "2. Is the speed pointer grey?");
+                                "1. DMI displays in FS mode, Level 1." + Environment.NewLine + 
+                                "2. Is the speed pointer displaying 40 km/h?" + Environment.NewLine +
+                                "3. Is the speed pointer grey?");
 
             /*
             Test Step 2
