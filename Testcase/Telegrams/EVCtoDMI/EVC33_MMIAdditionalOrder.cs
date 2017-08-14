@@ -13,6 +13,7 @@ namespace Testcase.Telegrams.EVCtoDMI
     {
         private static SignalPool _pool;
         private static MMI_Q_TRACKCOND_ACTION _mmiQTrackCondAction;
+        private static Variables.MMI_M_TRACKCOND_TYPE _mmiQTrackCondType;
         private static byte _mmiQTrackCondStep;
 
         public static void Initialise(SignalPool pool)
@@ -89,10 +90,10 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// 16 = "Level Crossing"
         /// 17..63 = "reserved"
         /// </summary>
-        public static byte MMI_M_TRACKCOND_TYPE
+        public static Variables.MMI_M_TRACKCOND_TYPE MMI_M_TRACKCOND_TYPE
         {
-            set => _pool.SITR.ETCS1.AdditionalOrder.MmiMTrackcondType.Value = value;
-            get => _pool.SITR.ETCS1.AdditionalOrder.MmiMTrackcondType.Value;
+            set => _pool.SITR.ETCS1.AdditionalOrder.MmiMTrackcondType.Value = (byte)value;
+            get => (Variables.MMI_M_TRACKCOND_TYPE)_pool.SITR.ETCS1.AdditionalOrder.MmiMTrackcondType.Value;
         }
 
         /// <summary>
