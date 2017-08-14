@@ -13,7 +13,6 @@ namespace Testcase.Telegrams.EVCtoDMI
     {
         private static SignalPool _pool;
         private static MMI_Q_TRACKCOND_ACTION _mmiQTrackCondAction;
-        private static Variables.MMI_M_TRACKCOND_TYPE _mmiQTrackCondType;
         private static byte _mmiQTrackCondStep;
 
         public static void Initialise(SignalPool pool)

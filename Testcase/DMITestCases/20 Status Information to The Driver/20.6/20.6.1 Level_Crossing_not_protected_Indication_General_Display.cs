@@ -80,7 +80,7 @@ namespace Testcase.DMITestCases
             */
             DmiActions.Send_FS_Mode(this);
 
-            EVC33_MMIAdditionalOrder.MMI_M_TRACKCOND_TYPE = 16;
+            EVC33_MMIAdditionalOrder.MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Level_Crossing;
             EVC33_MMIAdditionalOrder.MMI_NID_TRACKCOND = 1;
             EVC33_MMIAdditionalOrder.MMI_Q_TRACKCOND_ACTION = MMI_Q_TRACKCOND_ACTION.WithoutDriverAction;
             EVC33_MMIAdditionalOrder.MMI_Q_TRACKCOND_STEP = 1;
@@ -183,7 +183,7 @@ namespace Testcase.DMITestCases
             Action: Repeat action step 1-3
             Expected Result: The LX01 symbols are displayed in sub-area B3-B5
             */
-            EVC33_MMIAdditionalOrder.MMI_M_TRACKCOND_TYPE = 16;
+            EVC33_MMIAdditionalOrder.MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Level_Crossing;
             EVC33_MMIAdditionalOrder.MMI_NID_TRACKCOND = 1;
             EVC33_MMIAdditionalOrder.MMI_Q_TRACKCOND_ACTION = MMI_Q_TRACKCOND_ACTION.WithoutDriverAction;
             EVC33_MMIAdditionalOrder.MMI_Q_TRACKCOND_STEP = 1;
