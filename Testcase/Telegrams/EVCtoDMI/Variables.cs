@@ -374,6 +374,46 @@ namespace Testcase.Telegrams.EVCtoDMI
             NoCabinActive = 0,
             Cabin1Active = 1,
             Cabin2Active = 2
-        }       
+        }
+
+        /// <summary>
+        /// Qualifier for the variable MMI_M_LEVEL_NTC_ID enum
+        /// Used in EVC packets 20 and 121
+        /// </summary>
+        public enum MMI_Q_LEVEL_NTC_ID : byte
+        {
+            STM_ID = 0,
+            ETCS_Level = 1
+        }
+
+        /// <summary>
+        /// Indicator for marked MMI_M_LEVEL_NTC_ID enum
+        /// Used in EVC packets 20 and 121
+        /// </summary>
+        public enum MMI_M_LEVEL_FLAG : byte
+        {
+            NotMarkedLevel = 0,
+            MarkedLevel = 1
+        }
+
+        /// <summary>
+        /// Inhibit status enum
+        /// Used in EVC packets 20 and 121
+        /// </summary>
+        public enum MMI_M_INHIBITED_LEVEL : byte
+        {
+            NotInhibited = 0,
+            Inhibited = 1
+        }
+
+        /// <summary>
+        /// Inhibit enabled enum
+        /// Used in EVC packets 20 and 121
+        /// </summary>
+        public enum MMI_M_INHIBIT_ENABLE : byte
+        {
+            NotAllowedForInhibiting = 0,
+            AllowedForInhibiting = 1
+        }
     }
 }

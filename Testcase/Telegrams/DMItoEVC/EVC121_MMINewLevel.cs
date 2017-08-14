@@ -9,15 +9,16 @@ using Testcase.Telegrams.EVCtoDMI;
 namespace Testcase.Telegrams.DMItoEVC
 {
     /// <summary>
-    /// This packet shall be sent when the driver requests for an action from the ATP, 
-    /// typically by pressing a button..
+    /// This packet shall be sent when the driver has selected an ETCS or NTC level or has changed the inhibit status of an installed level.
     /// </summary>
     static class EVC121_MMINewLevel
     {
         private static SignalPool _pool;
         private static bool _bResult;
-        private static Variables.MMI_Q_BUTTON _qButton;
-        private static MMI_Q_ACK _qAck;
+        private static Variables.MMI_Q_LEVEL_NTC_ID _qLevelNtcId;
+        private static Variables.MMI_M_LEVEL_FLAG _mLevelFlag;
+        private static Variables.MMI_M_INHIBITED_LEVEL _mInhibitedLevel;
+        private static Variables.MMI_M_INHIBIT_ENABLE _mInhibitEnable;
 
         /// <summary>
         /// Initialise EVC-111 MMI_Driver_Message_Ack telegram.
@@ -28,118 +29,133 @@ namespace Testcase.Telegrams.DMItoEVC
             _pool = pool;
         }
 
-        private static void CheckButtonState(Variables.MMI_Q_BUTTON qButton)
+        /// <summary>
+        /// This function is meant to be used privatly within the EVC-121 class.
+        /// For now, this method shall only be called with MMI_N_LEVELS lesser or equal 1.
+        /// In order not to duplicate the same function for the different variables contained
+        /// into EVC121_alias_1, this method has been scripted so that it automatically detects 
+        /// which variable needs to be extracted then checked.
+        /// </summary>
+        /// <param name="nLevels"></param>
+        /// <param name="varToCheck"></param>
+        private static void CheckEVC121_alias_1(ushort nLevels, object varToCheck)
         {
-            // Convert byte EVC111_alias_1 into an array of bits.
-            BitArray _evc111alias1 = new BitArray(new[] { _pool.SITR.CCUO.ETCS1DriverMessageAck.EVC111alias1.Value });
-            // Extract bool MMI_Q_BUTTON (4th bit according to VSIS 2.9)
-            bool _mmiQButton = _evc111alias1[3];
+            bool _matched = false;
 
-            // Convert byte qButton to bool
-            BitArray _baqButton = new BitArray(new[] { (byte)qButton });
-            bool _bqButton = _baqButton[0];
+            // Convert byte EVC121_alias_1 into an array of bits.
+            BitArray _evc121Alias1 = new BitArray(new[] {
+                (byte) _pool.SITR.Client.Read("CCUO_ETCS1NewLevel_EVC121Subset" + (nLevels - 1) +
+                "_EVC121alias1") });
 
-            //For each element of enum MMI_Q_BUTTON 
-            foreach (Variables.MMI_Q_BUTTON mmiQButtonElement in Enum.GetValues(typeof(Variables.MMI_Q_BUTTON)))
+            // List of the 4 variables contained into EVC121_alias_1 respecting to their position
+            // (spare bits are expelled)
+            List<Type> _evc121Alias1types = new List<Type> {typeof(Variables.MMI_Q_LEVEL_NTC_ID),
+                                                            typeof(Variables.MMI_M_LEVEL_FLAG),
+                                                            typeof(Variables.MMI_M_INHIBITED_LEVEL),
+                                                            typeof(Variables.MMI_M_INHIBIT_ENABLE)};            
+
+            // for each type from EVC121_alias_1
+            foreach (Type _varType in _evc121Alias1types)
             {
-                //Compare to the value to be checked
-                if (mmiQButtonElement == qButton)
+                // find out which type is matching with varToCheck's type
+                if (_varType.Equals(varToCheck.GetType()))
                 {
-                    // Check MMI_Q_BUTTON value
-                    _bResult = _mmiQButton.Equals(_bqButton);
-                    break;
-                }
+                    // the matching type's index will give the corresponding bit within EVC121_alias_1 
+                    int _pos = _evc121Alias1types.IndexOf(_varType);
+                    byte _value = Convert.ToByte(_evc121Alias1[_pos]);
+
+                    // do the check
+                    _bResult = _value.Equals(varToCheck);
+
+                    if (_bResult) // if check passes
+                    {
+                        _pool.TraceReport("DMI->ETCS: EVC-121 [MMI_NEW_LEVEL." + varToCheck.GetType().ToString() + "] = " +
+                            varToCheck + " - \"" + Enum.GetName(varToCheck.GetType(), varToCheck) + "\" PASSED.");
+                    }
+                    else // else display the real value extracted
+                    {
+                        _pool.TraceError("DMI->ETCS: EVC-121 [MMI_NEW_LEVEL." + varToCheck.GetType().ToString() + "] = " +
+                            _value + " - \"" + Enum.GetName(varToCheck.GetType(), _value) + "\" FAILED.");
+                    }
+
+                    // if the varToCheck type matches one of the variable types from EVC121_Alias_1
+                    _matched = true;
+                    break; // exit foreach loop 
+                } 
             }
 
-            if (_bResult) // if check passes
+            if (!_matched) // if none variable type matched    
             {
-                _pool.TraceReport("DMI->ETCS: EVC-111 [MMI_DRIVER_MESSAGE_ACK.MMI_Q_BUTTON] = \"" +
-                    qButton.ToString() + "\" PASSED. TimeStamp = " +
-                    _pool.SITR.CCUO.ETCS1DriverMessageAck.MmiTButtonEvent);
-            }
-            else // else display the real value extracted from EVC-111 [MMI_DRIVER_MESSAGE_ACK] 
-            {
-                _pool.TraceError("DMI->ETCS: Check EVC-111 [MMI_DRIVER_MESSAGE_ACK.MMI_Q_BUTTON] = \"" +
-                    Enum.GetName(typeof(Variables.MMI_Q_BUTTON), _mmiQButton) + "\" FAILED. TimeStamp = " +                    
-                    _pool.SITR.CCUO.ETCS1DriverMessageAck.MmiTButtonEvent);
-            }
-
-
+                _pool.TraceError("Variable Type " + varToCheck.GetType().ToString() + " not found!!");
+            }          
         }
 
-        private static void CheckQAck(MMI_Q_ACK qAck)
-        {
-            // Get EVC111_alias_1
-            byte _evc111alias1 = _pool.SITR.CCUO.ETCS1DriverMessageAck.EVC111alias1.Value;
-            // Extract MMI_Q_ACK (7th -> 4th bits according to VSIS 2.9)
-            byte _mmiQAck = (byte)((_evc111alias1 & 0xF0) >> 4); // xxxx xxxx -> xxxx 0000 -> 0000 xxxx
 
-            // For each element of enum MMI_Q_ACK
-            foreach (MMI_Q_ACK mmiQAckElement in Enum.GetValues(typeof(MMI_Q_ACK)))
-            {
-                // Compare to the value to be checked
-                if (mmiQAckElement == qAck)
-                {
-                    // Check MMI_Q_ACK value
-                    _bResult = _mmiQAck.Equals(qAck);
-                    break;
-                }
-            }
-
-            if (_bResult) // if check passes
-            {
-                _pool.TraceReport("DMI->ETCS: EVC-111 [MMI_DRIVER_MESSAGE_ACK.MMI_Q_ACK] = \"" +
-                    qAck.ToString() + "\" PASSED. TimeStamp = " +
-                    _pool.SITR.CCUO.ETCS1DriverMessageAck.MmiTButtonEvent);
-            }
-            else // else display the real value extracted from EVC-111 [MMI_DRIVER_MESSAGE_ACK] 
-            {
-                _pool.TraceError("DMI->ETCS: Check EVC-111 [MMI_DRIVER_MESSAGE_ACK.MMI_Q_ACK] = \"" +
-                    Enum.GetName(typeof(MMI_Q_ACK), _mmiQAck) + "\" FAILED. TimeStamp = " +
-                    _pool.SITR.CCUO.ETCS1DriverMessageAck.MmiTButtonEvent);
-            }
-        }
 
         /// <summary>
-        /// Button event (pressed or released)
+        /// Qualifier for the variable MMI_M_LEVEL_NTC_ID
         /// Values:
-        /// 0 = "released"
-        /// 1 = "pressed"
+        /// Values:
+        /// 0 = "MMI_M_LEVEL_NTC_ID contains an STM ID (0-255)"
+        /// 1 = "MMI_M_LEVEL_NTC_ID contains a level number (0-3)"
         /// </summary>
-        public static Variables.MMI_Q_BUTTON Check_MMI_Q_BUTTON
+        public static Variables.MMI_Q_LEVEL_NTC_ID Check_MMI_Q_LEVEL_NTC_ID
         {
             set
             {
-                _qButton = value;
-                CheckButtonState(_qButton);
+                _qLevelNtcId = value;
+                CheckEVC121_alias_1(1, _qLevelNtcId);
             }
         }
 
         /// <summary>
-        /// The logical value of the driver’s acknowledgement
+        /// Indicates if MMI_M_LEVEL_NTC_ID is marked or not. 
+        /// The interpretation of the mark needs to be defined by related requirements.
+        /// Basic idea is that 'marked' levels are allowed for edit by the driver
+        /// (see ERA_ERTMS_15560, v.3.4.9, ch. 11.3.2.7, 11.3..2.8)
         /// Values:
-        /// 0 = "Spare"
-        /// 1 = "Acknowledge / YES"
-        /// 2 = "Not Acknowledge / NO"
-        /// 3..15 = "spare"
+        /// 0 = "MMI_M_LEVEL_NTC_ID is 'not marked'"
+        /// 1 = "MMI_M_LEVEL_NTC_ID is 'marked'"
         /// </summary>
-        public static MMI_Q_ACK Check_MMI_Q_ACK
+        public static Variables.MMI_M_LEVEL_FLAG Check_MMI_M_LEVEL_FLAG
         {
             set
             {
-                _qAck = value;
-                CheckQAck(_qAck);
+                _mLevelFlag = value;
+                CheckEVC121_alias_1(1, _mLevelFlag);
             }
         }
-        
+
         /// <summary>
-        /// Ack event enum
+        /// Indicates if MMI_M_LEVEL_NTC_ID is currently inhibited by driver or not 
+        /// Values:
+        /// 0 = "MMI_M_LEVEL_NTC_ID is not inhibited"
+        /// 1 = "MMI_M_LEVEL_NTC_ID is inhibited"
         /// </summary>
-        public enum MMI_Q_ACK : byte
+        public static Variables.MMI_M_INHIBITED_LEVEL Check_MMI_M_INHIBITED_LEVEL
         {
-            AcknowledgeYES = 1,
-            NotAcknowledgeNO = 2,
-            Spare = 0
+            set
+            {
+                _mInhibitedLevel = value;
+                CheckEVC121_alias_1(1, _mInhibitedLevel);
+            }
         }
+
+        /// <summary>
+        /// Indicates if MMI_M_LEVEL_NTC_ID is allowed (configurable) for inhibiting or not
+        /// Values:
+        /// 0 = "MMI_M_LEVEL_NTC_ID is not allowed for inhibiting"
+        /// 1 = "MMI_M_LEVEL_NTC_ID is allowed for inhibiting"
+        /// </summary>
+        public static Variables.MMI_M_INHIBIT_ENABLE Check_MMI_M_INHIBIT_ENABLE
+        {
+            set
+            {
+                _mInhibitEnable = value;
+                CheckEVC121_alias_1(1, _mInhibitEnable);
+            }
+        }
+
+
     }
 }
