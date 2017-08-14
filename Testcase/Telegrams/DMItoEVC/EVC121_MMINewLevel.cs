@@ -19,6 +19,7 @@ namespace Testcase.Telegrams.DMItoEVC
         private static Variables.MMI_M_LEVEL_FLAG _mLevelFlag;
         private static Variables.MMI_M_INHIBITED_LEVEL _mInhibitedLevel;
         private static Variables.MMI_M_INHIBIT_ENABLE _mInhibitEnable;
+        private static Variables.MMI_M_LEVEL_NTC_ID _mLevelNtcId;
 
         /// <summary>
         /// Initialise EVC-111 MMI_Driver_Message_Ack telegram.
@@ -90,7 +91,10 @@ namespace Testcase.Telegrams.DMItoEVC
             }          
         }
 
+        private static void CheckMLevelNtcId(ushort nLevels, Variables.MMI_M_LEVEL_NTC_ID mLevelNtcId)
+        {
 
+        }
 
         /// <summary>
         /// Qualifier for the variable MMI_M_LEVEL_NTC_ID
@@ -156,6 +160,13 @@ namespace Testcase.Telegrams.DMItoEVC
             }
         }
 
-
+        public static Variables.MMI_M_LEVEL_NTC_ID Check_MMI_M_LEVEL_NTC_ID
+        {
+            set
+            {
+                _mLevelNtcId = value;
+                CheckMLevelNtcId(1, _mLevelNtcId);
+            }
+        }
     }
 }
