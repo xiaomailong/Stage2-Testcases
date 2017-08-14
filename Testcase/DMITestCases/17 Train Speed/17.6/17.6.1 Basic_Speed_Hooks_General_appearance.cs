@@ -14,6 +14,8 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
 using Testcase.Telegrams.EVCtoDMI;
+using Testcase.XML;
+
 
 namespace Testcase.DMITestCases
 {
@@ -39,6 +41,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // The DMI default configuration has TOGGLE_FUNCTION = 0 (‘ON’).System is power on.Cabin is activated.SoM is performed in SR mode, Level 1.
+            DmiActions.Complete_SoM_L1_SR(this);
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
@@ -48,6 +51,8 @@ namespace Testcase.DMITestCases
         {
             // Post-conditions from TestSpec
             // DMI displays in SH mode, level 1.
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SH mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -56,11 +61,6 @@ namespace Testcase.DMITestCases
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint
-
-            EVC7_MMIEtcsMiscOutSignals.Initialise(this);
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.OnSight;
-
-            EVC1_MMIDynamic.Initialise(this);
 
             /*
             Test Step 1
@@ -71,7 +71,7 @@ namespace Testcase.DMITestCases
             DmiActions.Drive_the_train_forward_pass_BG1_Then_press_an_acknowledgement_of_OS_mode_in_sub_area_C1(this);
 
             // EVC7_MMIEtcsMiscOutSignals Send
-
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
             EVC1_MMIDynamic.MMI_V_PERMITTED = 2777;
             EVC1_MMIDynamic.MMI_V_TARGET = 694;
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Target_Speed_Monitoring;    // Not 0, 4, 8, 12
@@ -99,18 +99,13 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 6332 (partly: OBU_TR_M_MODE);(2) MMI_gen 6332 (partly: MMI_V_PERMITTED, MMI_M_WARNING);(3) MMI_gen 6322; MMI_gen 6332 (partly: colour and appearance, SH mode, CSM); MMI_gen 6329 (partly: outer border of the speed dial);
             */
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Shunting;
-            // EVC7_MMIEtcsMiscOutSignals Send
+            EVC1_MMIDynamic.MMI_V_PERMITTED = 883;
+            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring;
 
             WaitForVerification("Press the 'Main' button. Press and hold 'Shunting' button at least 2 seconds. Release 'Shunting' button." + Environment.NewLine +
                                 "Check  the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in SH mode, level 1.");
-
-            EVC1_MMIDynamic.MMI_V_PERMITTED = 883;
-            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring;
-            // ?? Send
-
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The first hook is displayed overlapping the outer border of the speed dial coloured in white at 30 km/h.");
+                                "1. DMI displays in SH mode, level 1." + Environment.NewLine +
+                                "2. The first hook is displayed overlapping the outer border of the speed dial coloured in white at 30 km/h.");
 
             /*
             Test Step 4
@@ -119,13 +114,12 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 6452 (partly: MMI_M_WARNING is invalid);(2) MMI_gen 6452 (partly: toggle function is reset to default state);
             */
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Spare;
-            // ?? Send
+            XML_12_6_1_a.Send(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The basic speed hook is removed from the DMI.");
 
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring;
-            // ?? Send
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The basic speed hook is re-displayed.");
@@ -136,14 +130,15 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   The basic speed hook is removed from the DMI.(2)   After test script file is executed, the basic speed hook is re-appear refer to received packet EVC-1 from ETCS Onboard
             Test Step Comment: (1) MMI_gen 6452 (partly: OBU_TR_M_MODE is invalid);(2) MMI_gen 6452 (partly: toggle function is reset to default state);
             */
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Invalid;
-            // EVC7_MMIEtcsMiscOutSignals Send
+            XML_12_6_1_b.Send(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The basic speed hook is removed from the DMI.");
 
-            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring;
-            // ?? Send
+            // Test says EVC-1 restores display but M_MODE is still invalid: should send valid EVC-7 state??
+            //EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring;
+
+            //EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The basic speed hook is re-displayed.");
@@ -153,7 +148,6 @@ namespace Testcase.DMITestCases
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }

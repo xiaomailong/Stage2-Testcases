@@ -15,6 +15,7 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
 using Testcase.Telegrams.EVCtoDMI;
 
+
 namespace Testcase.DMITestCases
 {
     /// <summary>
@@ -40,6 +41,21 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Test system is powered on.Cabin is activated.SoM is performed in SB mode, Level 1.Main window is closed.
+            EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.GoToIdle;
+            EVC0_MMIStartATP.Send();
+
+            // Set train running number, cab 1 active, and other defaults
+            DmiActions.Activate_Cabin_1(this);
+
+            // Set driver ID
+            DmiActions.Set_Driver_ID(this, "1234");
+
+            // Set to level 1 and SR mode
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
+
+            // Do we need to close any open windows?
+            // EVC30_MMIRequestEnable.SendBlank();
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
@@ -49,6 +65,8 @@ namespace Testcase.DMITestCases
         {
             // Post-conditions from TestSpec
             // DMI displays in NL mode, level 1
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in NL mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -58,20 +76,13 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            EVC7_MMIEtcsMiscOutSignals.Initialise(this);
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
-
-            EVC1_MMIDynamic.Initialise(this);
-
             /*
             Test Step 1
             Action: Drive the train forward with speed = 10 km/h
             Expected Result: Verify the following information,(1)   The speed pointer is always display in grey colour even runaway movement is detected.(2)   Use the log file to confirm that DMI received packet EVC-7 with variable OBU_TR_M_MODE = 6 (Standby)
             Test Step Comment: (1) MMI_gen 6299 (partly: colour of speed pointer, SB mode);(2) MMI_gen 6299 (partly: OBU_TR_M_MODE);
             */
-            // Call generic Action Method
-            DmiActions.Send_SB_Mode(this);
-            DmiActions.Drive_the_train_forward_with_speed_10_kmh(this);
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 10;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer grey?");
@@ -81,10 +92,12 @@ namespace Testcase.DMITestCases
             Action: Stop the train.Then, perform the following procedure,Press on sub-area C9.Press ‘Main’ buttonForce the simulation to ‘Non-leading’Press and hold ‘Non-Leading’ button at least 2 second.Release the pressed button
             Expected Result: DMI displays in NL mode, level 1
             */
-            DmiActions.Stop_the_train(this);
-            WaitForVerification("Press on sub - area C9. Press ‘Main’ button. Force the simulation to ‘Non - leading’" + Environment.NewLine +
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 10;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.NonLeading;
+
+            WaitForVerification("Press on sub-area C9. Press ‘Main’ button. Force the simulation to ‘Non - leading’" + Environment.NewLine +
                                 "Press and hold ‘Non - Leading’ button at least 2 second. Release the pressed button and check the following:" + Environment.NewLine + Environment.NewLine +
-                                "DMI displays in NL mode, level 1.");
+                                "1. DMI displays in NL mode, level 1.");
 
             /*
             Test Step 3
@@ -92,11 +105,10 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   The speed pointer is always display in grey colour..(2)   Use the log file to confirm that DMI received packet EVC-7 with variable OBU_TR_M_MODE = 11 (Non-leading)
             Test Step Comment: (1) MMI_gen 6299 (partly: colour of speed pointer, NL mode);(2) MMI_gen 6299 (partly: OBU_TR_M_MODE);
             */
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.NonLeading;
-            // EVC7_MMIEtcsMiscOutSignals Send
+            // check that this should be done here but presumably in Step 2
+            //EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.NonLeading;
 
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 400;
-            // ?? Send
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer grey?");

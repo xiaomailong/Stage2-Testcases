@@ -1,0 +1,10 @@
+1. section 17.2 tests: how to dynamically set the speed ranges.
+2. generally: where tests set state e.g. OS and ask for acknowledgement of relevant button. Does the DMI present the relevant buttons on seeing the state or does a message from 
+   EVC prompt it to display one or more buttons?
+3. section 17.3.9: start up uses SB mode. Main window should be closed. Will EVC30_MMIRequestEnable.SendBlank(); close any window currently open?
+4. section 17.3.10: need to simulate reaching end of EOA: can target distance = 0 be sent; which packet?
+5. Default configuration has TOGGLE_FUNCTION = 0 (On)?
+6. section 17.6.1: says EVC-1 packet restores speed hook when EVC-7 invalid mode removed it: surely a valid EVC-7 mode is required
+7. section 17.7.1: activate cabin... does SB mode, level 1 occur and driver ID window appear?
+8. section 17.8: DMI powered on at start. Is there a way of powering down/up (deprecated DmiActions method)?
+10. section 17.13: step 4 looks incorrect as per RT_ETCS doc. conditions are met for displaying slide... ??

@@ -14,6 +14,7 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
 using Testcase.Telegrams.EVCtoDMI;
+using Testcase.XML;
 
 
 namespace Testcase.DMITestCases
@@ -43,13 +44,15 @@ namespace Testcase.DMITestCases
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
-            DmiActions.Complete_SoM_L1_FS(this);
+            DmiActions.Complete_SoM_L1_SR(this);
         }
 
         public override void PostExecution()
         {
             // Post-conditions from TestSpec
             // DMI displays in SR mode, level 1
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SR mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -58,13 +61,7 @@ namespace Testcase.DMITestCases
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint
-
-            EVC7_MMIEtcsMiscOutSignals.Initialise(this);
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
-            // ?? Send
-
-            EVC1_MMIDynamic.Initialise(this);
-
+                        
             /*
             Test Step 1
             Action: Drive the train forward with speed = 40 km/h
@@ -76,7 +73,8 @@ namespace Testcase.DMITestCases
             //?? Send
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. Is the speed pointer grey?");
+                                "1. DMI displays in SR mode, level 1." + Environment.NewLine + 
+                                "2. Is the speed pointer grey?");
 
             /*
             Test Step 2
@@ -84,7 +82,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   Use the log file to confirm that DMI received the packet information EVC-1 with the following condition,MMI_M_WARNING = 8 (Status = OvS, Supervision = CSM) while the value of MMI_V_TRAIN = 1139 (41 km/h) which greater than MMI_V_PERMITTED(2)   The speed pointer display in orange colour
             Test Step Comment: (1) MMI_gen 6299 (partly: MMI_M_WARNING, train speed in relation to permitted speed MMI_V_PERMITTED, SR mode in CSM supervision);(2) MMI_gen 6299 (partly: colour of speed pointer, SR mode in CSM supervision);
             */
-            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 40;
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 41;
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Overspeed_Status_Ceiling_Speed_Monitoring;
             //?? Send
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -110,27 +108,30 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Ceiling_Speed_Monitoring;
-            DmiActions.Increase_the_train_speed_to_46_kmh(this);
-            // Call generic Check Results Method
-            DmiExpectedResults.The_train_speed_is_force_to_decrease_because_of_emergency_brake_is_applied_by_ETCS_onboard_Verify_the_following_information_Before_train_speed_is_decreased1_Use_the_log_file_to_confirm_that_DMI_received_the_packet_information_EVC_1_with_the_following_condition_MMI_M_WARNING_12_Status_IntS_Supervision_CSM_while_the_value_of_MMI_V_TRAIN_1278_46_kmh_which_greater_than_MMI_V_INTERVENTION2_The_speed_pointer_display_in_red_colourAfter_train_speed_is_decreased3_Use_the_log_file_to_confirm_that_DMI_received_the_packet_information_EVC_1_with_the_following_condition_MMI_M_WARNING_12_Status_IntS_Supervision_CSM_while_the_value_of_MMI_V_TRAIN_is_lower_than_MMI_V_INTERVENTION4_The_speed_pointer_display_in_grey_colour(this);
-            // ?? Verification
+            EVC1_MMIDynamic.MMI_V_INTERVENTION_KMH = 45;
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 46;
+            DmiActions.Apply_Brakes(this);
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. Is the speed pointer red?");
+
+            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Ceiling_Speed_Monitoring;
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 40;
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. Has the speed reduced to 40 km/h?" + Environment.NewLine +
+                                "2. Is the speed pointer grey?");
             /*
             Test Step 5
             Action: Stop the train.Then, use the test script file 12_3_3_a.xml to send the following packets,EVC-1MMI_M_WARNING = 2MMI_V_PERMITTED = 1111MMI_V_TARGET = 1083MMI_V_INTERVENTION = 1250MMI_V_TRAIN = 972EVC-7OBU_TR_M_MODE = 2
             Expected Result: DMI displays in SR mode, level 1.Verify the following information,(1)   The speed pointer display in grey colour
             Test Step Comment: (1) MMI_gen 6299 (partly: colour of speed pointer, SR mode in PIM supervision);
             */
-            // EVC7_MMIEtcsMiscOutSignals Send
-            EVC1_MMIDynamic.MMI_V_PERMITTED = 1111;
-            EVC1_MMIDynamic.MMI_V_TARGET = 1083;
-            EVC1_MMIDynamic.MMI_V_INTERVENTION = 1250;
-            EVC1_MMIDynamic.MMI_V_TRAIN = 972;
-            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_PreIndication_Monitoring;
-            // ?? Send
-            DmiActions.Stop_the_train(this);
+            XML_12_3_3_a.Send(this);
 
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_SR_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_grey_colour(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SR mode, level 1" + Environment.NewLine +
+                                "2. Is the speed pointer grey?");
 
             /*
             Test Step 6
@@ -138,13 +139,11 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SR mode, level 1.Verify the following information,(1)   The speed pointer display in white colour
             Test Step Comment: (1) MMI_gen 6299 (partly: colour of speed pointer, SR mode in PIM supervision);
             */
-            // EVC7_MMIEtcsMiscOutSignals Send
+            XML_12_3_3_b.Send(this);
 
-            EVC1_MMIDynamic.MMI_V_TRAIN = 1111;
-            // ?? Send
-
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_SR_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_white_colour(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SR mode, level 1" + Environment.NewLine +
+                                "2. Is the speed pointer white?");
 
             /*
             Test Step 7
@@ -152,14 +151,11 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SR mode, level 1.Verify the following information,(1)   The speed pointer display in orange colour
             Test Step Comment: (1) MMI_gen 6299 (partly: colour of speed pointer, SR mode in PIM supervision);
             */
-            // EVC7_MMIEtcsMiscOutSignals Send
-            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Overspeed_Status_PreIndication_Monitoring;
-            EVC1_MMIDynamic.MMI_V_TRAIN = 1139;
-            // ?? Send
+            XML_12_3_3_c.Send(this);
 
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_SR_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_orange_colour(this);
-
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SR mode, level 1" + Environment.NewLine +
+                                "2. Is the speed pointer orange?");
 
             /*
             Test Step 8
@@ -167,14 +163,11 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SR mode, level 1.Verify the following information,(1)   The speed pointer display in orange colour
             Test Step Comment: (1) MMI_gen 6299 (partly: colour of speed pointer, SR mode in PIM supervision);
             */
-            // EVC7_MMIEtcsMiscOutSignals Send
+            XML_12_3_3_d.Send(this);
 
-            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Warning_Status_PreIndication_Monitoring;
-            EVC1_MMIDynamic.MMI_V_TRAIN = 1250;
-            // ?? Send
-
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_SR_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_orange_colour(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SR mode, level 1" + Environment.NewLine +
+                                "2. Is the speed pointer orange?");
 
             /*
             Test Step 9
@@ -182,14 +175,12 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SR mode, level 1.Verify the following information,(1)   The speed pointer display in red colour
             Test Step Comment: (1) MMI_gen 6299 (partly: colour of speed pointer, SR mode in PIM supervision);
             */
-            // EVC7_MMIEtcsMiscOutSignals Send
+            XML_12_3_3_e.Send(this);
+            DmiActions.Apply_Brakes(this);
 
-            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_PreIndication_Monitoring;
-            EVC1_MMIDynamic.MMI_V_TRAIN = 1277;
-            // ?? Send
-
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_SR_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_red_colour(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SR mode, level 1" + Environment.NewLine +
+                                "2. Is the speed pointer red?");
 
             /*
             Test Step 10
@@ -197,14 +188,11 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SR mode, level 1.Verify the following information,(1)   The speed pointer display in white colour
             Test Step Comment: (1) MMI_gen 6299 (partly: colour of speed pointer, SR mode in PIM supervision);
             */
-            // EVC7_MMIEtcsMiscOutSignals Send
+            XML_12_3_3_f.Send(this);
 
-            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_PreIndication_Monitoring;
-            EVC1_MMIDynamic.MMI_V_TRAIN = 1111;
-            // ?? Send
-
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_SR_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_white_colour(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SR mode, level 1" + Environment.NewLine +
+                                "2. Is the speed pointer white?");
 
             /*
             Test Step 11
@@ -212,15 +200,11 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SR mode, level 1.Verify the following information,(1)   The speed pointer display in grey colour
             Test Step Comment: (1) MMI_gen 6299 (partly: colour of speed pointer, SR mode in PIM supervision);
             */
-            // EVC7_MMIEtcsMiscOutSignals Send
+            XML_12_3_3_g.Send(this);
 
-            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_PreIndication_Monitoring;
-            EVC1_MMIDynamic.MMI_V_TRAIN = 1000;
-            // ?? Send
-
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_SR_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_grey_colour(this);
-
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SR mode, level 1" + Environment.NewLine +
+                                "2. Is the speed pointer grey?");
 
             /*
             Test Step 12
@@ -228,14 +212,11 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SR mode, level 1.Verify the following information,(1)   The speed pointer display in grey colour
             Test Step Comment: (1) MMI_gen 6299 (partly: colour of speed pointer, SR mode in TSM supervision);
             */
-            // EVC7_MMIEtcsMiscOutSignals Send
+            XML_12_3_3_h.Send(this);
 
-            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Target_Speed_Monitoring;
-            // ?? Send
-
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_SR_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_grey_colour(this);
-
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SR mode, level 1" + Environment.NewLine +
+                                "2. Is the speed pointer grey?");
 
             /*
             Test Step 13
@@ -243,12 +224,11 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SR mode, level 1.Verify the following information,(1)   The speed pointer display in white colour
             Test Step Comment: (1) MMI_gen 6299 (partly: colour of speed pointer, SR mode in TSM supervision);
             */
-            // EVC7_MMIEtcsMiscOutSignals Send
-            EVC1_MMIDynamic.MMI_V_TRAIN = 1111;
-            // ?? Send
+            XML_12_3_3_i.Send(this);
 
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_SR_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_white_colour(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SR mode, level 1" + Environment.NewLine +
+                                "2. Is the speed pointer white?");
 
             /*
             Test Step 14
@@ -256,14 +236,11 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SR mode, level 1.Verify the following information,(1)   The speed pointer display in yellow colour
             Test Step Comment: (1) MMI_gen 6299 (partly: colour of speed pointer, SR mode in TSM supervision);
             */
-            // EVC7_MMIEtcsMiscOutSignals Send
+            XML_12_3_3_j.Send(this);
 
-            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Target_Speed_Monitoring;
-            // ?? Send
-
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_SR_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_yellow_colour(this);
-
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SR mode, level 1" + Environment.NewLine +
+                                "2. Is the speed pointer yellow?");
 
             /*
             Test Step 15
@@ -271,14 +248,11 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SR mode, level 1.Verify the following information,(1)   The speed pointer display in orange colour
             Test Step Comment: (1) MMI_gen 6299 (partly: colour of speed pointer, SR mode in TSM supervision);
             */
-            // EVC7_MMIEtcsMiscOutSignals Send
+            XML_12_3_3_k.Send(this);
 
-            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Overspeed_Status_Indication_Status_Target_Speed_Monitoring;
-            EVC1_MMIDynamic.MMI_V_TRAIN = 1139;
-            // ?? Send
-
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_SR_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_orange_colour(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SR mode, level 1" + Environment.NewLine +
+                                "2. Is the speed pointer orange?");
 
             /*
             Test Step 16
@@ -286,14 +260,11 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SR mode, level 1.Verify the following information,(1)   The speed pointer display in orange colour
             Test Step Comment: (1) MMI_gen 6299 (partly: colour of speed pointer, SR mode in TSM supervision);
             */
-            // EVC7_MMIEtcsMiscOutSignals Send
+            XML_12_3_3_l.Send(this);
 
-            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Warning_Status_Indication_Status_Target_Speed_Monitoring;
-            EVC1_MMIDynamic.MMI_V_TRAIN = 1139;
-            // ?? Send
-
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_SR_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_orange_colour(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SR mode, level 1" + Environment.NewLine +
+                                "2. Is the speed pointer orange?");
 
             /*
             Test Step 17
@@ -301,14 +272,12 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SR mode, level 1.Verify the following information,(1)   The speed pointer display in red colour
             Test Step Comment: (1) MMI_gen 6299 (partly: colour of speed pointer, SR mode in TSM supervision);
             */
-            // EVC7_MMIEtcsMiscOutSignals Send
+            XML_12_3_3_m.Send(this);
+            DmiActions.Apply_Brakes(this);
 
-            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Indication_Status_Target_Speed_Monitoring;
-            EVC1_MMIDynamic.MMI_V_TRAIN = 1177;
-            // ?? Send
-
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_SR_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_red_colour(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SR mode, level 1" + Environment.NewLine +
+                                "2. Is the speed pointer red?");
 
 
             /*
@@ -317,12 +286,11 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SR mode, level 1.Verify the following information,(1)   The speed pointer display in yellow colour
             Test Step Comment: (1) MMI_gen 6299 (partly: colour of speed pointer, SR mode in TSM supervision);
             */
-            // EVC7_MMIEtcsMiscOutSignals Send
-            
-            EVC1_MMIDynamic.MMI_V_TRAIN = 1111;
+            XML_12_3_3_n.Send(this);
 
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_SR_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_yellow_colour(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SR mode, level 1" + Environment.NewLine +
+                                "2. Is the speed pointer yellow?");
 
             /*
             Test Step 19
@@ -330,13 +298,11 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SR mode, level 1.Verify the following information,(1)   The speed pointer display in grey colour
             Test Step Comment: (1) MMI_gen 6299 (partly: colour of speed pointer, SR mode in TSM supervision);
             */
-            // EVC7_MMIEtcsMiscOutSignals Send
+            XML_12_3_3_o.Send(this);
 
-            EVC1_MMIDynamic.MMI_V_TRAIN = 1083;
-
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_SR_mode_level_1_Verify_the_following_information_1_The_speed_pointer_display_in_grey_colour(this);
-
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SR mode, level 1" + Environment.NewLine +
+                                "2. Is the speed pointer grey?");
 
             /*
             Test Step 20

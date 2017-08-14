@@ -48,6 +48,8 @@ namespace Testcase.DMITestCases
         {
             // Post-conditions from TestSpec
             // DMI displays in FS mode, level 1.
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in FS mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -56,12 +58,9 @@ namespace Testcase.DMITestCases
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint
-
-            EVC7_MMIEtcsMiscOutSignals.Initialise(this);
+            
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
-
-            EVC1_MMIDynamic.Initialise(this);
-
+            
             /*
             Test Step 1
             Action: Activate cabin A
@@ -70,35 +69,28 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.Activate_Cabin_1(this);
 
-            // Call generic Check Results Method
-            DmiExpectedResults.Driver_ID_window_displayed(this);
-
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_SB_mode_level_1_The_Driver_ID_window_is_displayed(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SB mode, level 1." + Environment.NewLine +
+                                "2. The Driver ID window is displayed.");
 
             /*
             Test Step 2
             Action: Driver performs SoM to SR mode
             Expected Result: DMI is displayed in SR mode, level 1
             */
-            // Call generic Action Method
-            DmiActions.Driver_performs_SoM_to_SR_mode(this);
-
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_SR_mode_level_1(this);
+            // ?????
+            WaitForVerification("Perform SoM to SR mode, level 1 and check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SR mode, level 1.");
 
             /*
             Test Step 3
             Action: Drive the train forward passing BG1
             Expected Result: The DMI changes from SR to FS mode
             */
-            // EVC7_MMIEtcsMiscOutSignals Send
-
-            // Call generic Action Method
-            DmiActions.Drive_train_forward_passing_BG1(this);
-
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_changes_from_SR_to_FS_mode(this);
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The DMI changes from SR to FS mode.");
+            // ???????
 
             /*
             Test Step 4
@@ -109,27 +101,25 @@ namespace Testcase.DMITestCases
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 45;
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Indication_Status_Release_Speed_Monitoring;
             EVC1_MMIDynamic.MMI_V_RELEASE = 1111;
-            // ?? Send
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The digitalrelease speed  is centred in sub - area B6 without leading zeros." + Environment.NewLine +
-                                "2) The graphical presentation of release speed digital is displayed in area B2." + Environment.NewLine +
-                                "3. Use the log file to confirm that the appearance of the release speed digital is controlled by data packet from ETCS Onboard as follows" + Environment.NewLine +
-                                "4. The Relaese speed is displayed at the outer part of CSG." + Environment.NewLine +
-                                "5. The Release speed is separated from the permitted speed." + Environment.NewLine +
-                                "6. When a Release speed exists, the presentation is displayed on the CSG according to table 33 (Speed monitoring is RSM)" + Environment.NewLine +
-                                "7. When a Release speed exists, the release speed digital is displayed as a number in medium-grey");
+                                "1. The digital release speed  is centred in sub-area B6 without leading zeros." + Environment.NewLine +
+                                "2) The graphical presentation of digital release speed  is displayed in area B2. (Refer to specification)" + Environment.NewLine +
+                                "3. The Release speed is displayed at the outer part of CSG." + Environment.NewLine +
+                                "4. The Release speed is separated from the permitted speed." + Environment.NewLine +
+                                "5. When a Release speed exists, the presentation is displayed on the CSG according to table 33 (Speed monitoring is RSM)" + Environment.NewLine +
+                                "6. When a Release speed exists, the release speed digital is displayed as a number in medium-grey");
 
             /*
             Test Step 5
             Action: Stop the train
             Expected Result: Train is standstill
             */
-            // Call generic Action Method
-            DmiActions.Stop_the_train(this);
-            // Call generic Check Results Method
-            DmiExpectedResults.Train_is_standstill(this);
-            
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "Speed is displayed as 0 km/h");
+
             /*
             Test Step 6
             Action: End of test

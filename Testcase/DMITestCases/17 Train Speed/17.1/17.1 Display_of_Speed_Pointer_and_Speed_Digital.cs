@@ -49,6 +49,8 @@ namespace Testcase.DMITestCases
         {
             // Post-conditions from TestSpec
             // DMI displays in SR mode, Level 1.
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SR mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -65,7 +67,7 @@ namespace Testcase.DMITestCases
             The speed pointer and the speed digital are displayed in area B1 with constantly movement and indicated the train speed at 25 km/h.
             */
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 25;
-            DmiActions.Drive_the_train_forward_pass_BG1(this);
+            EVC1_MMIDynamic.MMI_V_PERMITTED = 30;
 
             WaitForVerification("1. Is the speed pointer showing 25 km/h?" + Environment.NewLine + 
                                 "2. Is the speed digital showing 25?" + Environment.NewLine +
@@ -77,7 +79,7 @@ namespace Testcase.DMITestCases
             */
             
             // Call generic Action Method
-            DmiActions.Stop_the_train(this);
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
             WaitForVerification("Are the speed pointer and speed digital showing 0?");     
 
             /*

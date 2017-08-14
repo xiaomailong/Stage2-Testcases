@@ -14,6 +14,7 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
 using Testcase.DMITestCases;
+using Testcase.Telegrams.EVCtoDMI;
 
 
 namespace Testcase.DMITestCases
@@ -54,6 +55,8 @@ namespace Testcase.DMITestCases
         {
             // Post-conditions from TestSpec
             // DMI displays in FS mode, level 1.
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in FS mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -70,35 +73,41 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Activate_Cabin_1(this);
-
+            // ???? More required?
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. ATP is in SB mode.");
-            DmiExpectedResults.DMI_displays_in_SB_mode_level_1(this);
+                                "1. ATP is in SB mode." + Environment.NewLine +
+                                "2. DMI displays in SB mode.");
 
             /*
             Test Step 2
             Action: Driver performs SoM to SR mode, Level 1
             Expected Result: ATP enters SR mode, Level 1.DMI displays in SR mode
             */
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. ATP enters SR mode.");
-            DmiExpectedResults.DMI_displays_in_SR_mode_level_1(this);
+            //????? More required?
+            WaitForVerification("Perform SoM to SR mode, level 1 and check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. ATP enters SR mode, Level 1." + Environment.NewLine +
+                                "2. DMI displays in SR mode.");
 
             /*
             Test Step 3
             Action: Drive the train forward passing BG1
             Expected Result: DMI changes mode from SR to FS
             */
-            DmiActions.Drive_train_forward_passing_BG1(this);
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
+            //????? More required?
 
-            DmiExpectedResults.DMI_displays_in_FS_mode_level_1(this);
+            WaitForVerification("Perform SoM to SR mode, level 1 and check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI changes mode from SR to FS.");
 
             /*
             Test Step 4
             Action: When the supervision status is RSM
             Expected Result: The Release Speed digital is displayed at sub-area B6
             */
-            // ???
+            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Release_Speed_Monitoring;
+
+            WaitForVerification("Perform SoM to SR mode, level 1 and check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The digital Release Speed is displayed at sub-area B6.");
 
             /*
             Test Step 5
@@ -106,9 +115,12 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays the  message “ATP Down Alarm” with sound alarm.Verify that the release speed digital is removed from DMI’s screen. The toggling function is reset to default state
             Test Step Comment: MMI_gen 6588 (partly: Release speed removal);
             */
-            DmiActions.Stop_the_train(this);
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
             DmiActions.Simulate_communication_loss_EVC_DMI(this);
-            DmiExpectedResults.DMI_displays_Default_window_with_the_message_ATP_Down_Alarm_and_sound_alarm(this);
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the  message “ATP Down Alarm” with sound alarm." + Environment.NewLine +
+                                "2. Digital Release Speed  is not displayed. The toggling function is reset to default state.");
 
             /*
             Test Step 6
@@ -121,7 +133,7 @@ namespace Testcase.DMITestCases
             
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in FS mode." + Environment.NewLine +
-                                "2. Digital release speed is re-displayed" + Environment.NewLine +
+                                "2. Digital Release Speed is re-displayed" + Environment.NewLine +
                                 "3. Toggling function is applied.");            
 
             /*

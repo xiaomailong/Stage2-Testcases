@@ -14,6 +14,7 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
 using Testcase.Telegrams.EVCtoDMI;
+using Testcase.XML;
 
 
 namespace Testcase.DMITestCases
@@ -41,6 +42,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // System is power on.Cabin is activated.SoM is performed in SR mode, level 1.
+            DmiActions.Complete_SoM_L1_SR(this);
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
@@ -50,6 +52,8 @@ namespace Testcase.DMITestCases
         {
             // Post-conditions from TestSpec
             // DMI displays in FS mode, level 1.
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in FS mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -59,18 +63,20 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            EVC7_MMIEtcsMiscOutSignals.Initialise(this);
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Unknown;
-
-            EVC1_MMIDynamic.Initialise(this);
-
             /*
             Test Step 1
             Action: Drive the train forward pass BG1.Then, stop the train
             Expected Result: DMI displays in FS mode, level 1
             */
-            // Call generic Action Method
-            DmiActions.Drive_the_train_forward_pass_BG1_Then_stop_the_train(this);
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
+
+            // Simulate the train moving so the 'stop' should be discernible
+            System.Threading.Thread.Sleep(5000);
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in FS mode, Level 1.");
 
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_in_FS_mode_level_1(this);
@@ -81,12 +87,12 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   The release speed in sub-area B2 and B6 are removed from the DMI.(2)   After test scipt file is executed, the release speed in sub-area B2 and B6 are re-appear refer to received packet EVC-1 from ETCS Onboard
             Test Step Comment: (1) MMI_gen 6587 (partly: MMI_M_WARNING is invalid);(2) MMI_gen 6587 (partly: toggle function is reset to default state);
             */
+            XML_12_7_4_a.Send(this);
 
-            //?? Not clear from test spec. why this happens
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The release speed in sub-area B2 and B6 are removed from the DMI.");
 
-            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Spare;
+            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Release_Speed_Monitoring;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The release speed in sub-area B2 and B6 are re-displayed");
@@ -96,11 +102,12 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   The release speed are sub-area B2 and B6 is removed from the DMI.(2)   After test scipt file is executed, the release speed in sub-area B2 and B6 is are re-appear refer to received packet EVC-7 from ETCS Onboard
             Test Step Comment: (1) MMI_gen 6587 (partly: OBU_TR_M_MODE is invalid);(2) MMI_gen 6587 (partly: toggle function is reset to default state);
             */
-            //?? Not clear from test spec. why this happens
+            XML_12_7_4_b.Send(this);
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The release speeds in sub-area B2 and B6 are removed from the DMI.");
 
-            // EVC7_MMIEtcsMiscOutSignals Send
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The release speeds in sub-area B2 and B6 are re-displayed.");
@@ -110,7 +117,6 @@ namespace Testcase.DMITestCases
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }

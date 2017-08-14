@@ -49,6 +49,8 @@ namespace Testcase.DMITestCases
         {
             // Post-conditions from TestSpec
             // DMI displays in FS mode, Level 1.
+            // Call generic Check Results Method
+            DmiExpectedResults.DMI_changes_from_SR_to_FS_mode(this);
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -58,7 +60,6 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
             /*
             Test Step 1
             Action: Drive the train forward with speed = 40km/h pass BG1 at position 100m
@@ -66,11 +67,9 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             //?? what about permitted speed
-            // EVC1_MMIDynamic.MMI_V_PERMITTED = 40;
-            EVC1_MMIDynamic.Initialise(this);
+            EVC1_MMIDynamic.MMI_V_PERMITTED = 40;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 40;
-            // Send??
-            DmiActions.Drive_the_train_forward_pass_BG1(this);
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer displaying 40 km/h?");
 
@@ -117,7 +116,6 @@ namespace Testcase.DMITestCases
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }

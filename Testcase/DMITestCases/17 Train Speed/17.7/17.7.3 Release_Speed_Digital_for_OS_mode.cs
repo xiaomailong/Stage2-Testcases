@@ -14,6 +14,7 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
 using Testcase.Telegrams.EVCtoDMI;
+using Testcase.XML;
 
 
 namespace Testcase.DMITestCases
@@ -22,7 +23,7 @@ namespace Testcase.DMITestCases
     /// 17.7.3 Release Speed Digital for OS mode
     /// TC-ID: 12.7.3
     /// 
-    /// This test case verifies that the display of release speed digital including the toggling function and provided that the release speed is changed by recieved packet EVC-1.
+    /// This test case verifies that the display of release speed digital including the toggling function and provided that the release speed is changed by received packet EVC-1.
     /// 
     /// Tested Requirements:
     /// MMI_gen 6586; MMI_gen 6468 (partly: OS); MMI_gen 6467; MMI_gen 9516 (partly: toggling function of release speed digital); MMI_gen 12025 (partly: toggling function of release speed digital);
@@ -40,7 +41,8 @@ namespace Testcase.DMITestCases
         public override void PreExecution()
         {
             // Pre-conditions from TestSpec:
-            // System is power on.Cabin is activated.SoM is performed in SR mode, level 1.
+            // System is power on. Cabin is activated. SoM is performed in SR mode, level 1.
+            DmiActions.Complete_SoM_L1_SR(this);
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
@@ -50,6 +52,8 @@ namespace Testcase.DMITestCases
         {
             // Post-conditions from TestSpec
             // DMI displays in OS mode, level 1.
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in OS mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -59,17 +63,17 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            EVC7_MMIEtcsMiscOutSignals.Initialise(this);
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.OnSight;
-
-            EVC1_MMIDynamic.Initialise(this);
-
             /*
             Test Step 1
             Action: Drive the train forward pass BG1.Then, press an acknowledgement of OS mode in sub-area C1
             Expected Result: DMI displays in OS mode, level 1
             */
-            DmiActions.Drive_the_train_forward_pass_BG1_Then_press_an_acknowledgement_of_OS_mode_in_sub_area_C1(this);
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.OnSight;
+
+            WaitForVerification("Acknowledge OS mode in sub-area C1 and check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in OS mode, Level 1.");
+
 
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_in_OS_mode_level_1(this);
@@ -96,8 +100,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   Tthe release speed digital in sub-area B6 is removed
             Test Step Comment: (1) MMI_gen 11112;
             */
-            EVC1_MMIDynamic.MMI_V_RELEASE = 1111;
-            // ?? Send
+            XML_12_7_3_a.Send(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                  "1. The digital release speed in sub-area B6 is removed.");
