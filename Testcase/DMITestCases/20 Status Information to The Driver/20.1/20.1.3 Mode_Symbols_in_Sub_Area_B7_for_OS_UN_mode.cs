@@ -70,10 +70,10 @@ namespace Testcase.DMITestCases
             EVC0_MMIStartATP.Send();
 
             DmiActions.Activate_Cabin_1(this);
+            DmiExpectedResults.Cabin_A_is_activated(this);
 
             DmiActions.Display_Driver_ID_Window(this);
             DmiActions.Send_SB_Mode(this);
-
             DmiExpectedResults.DMI_displays_Driver_ID_window_in_SB_mode(this);
 
             #endregion
@@ -90,21 +90,23 @@ namespace Testcase.DMITestCases
             DmiActions.Request_Brake_Test(this);
             DmiExpectedResults.Brake_Test_Perform_Order(this, true);
 
-
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Level_window(this);
+            DmiActions.Display_Level_Window(this);
+            DmiExpectedResults.Level_window_displayed(this);
 
             #endregion
 
+            #region Test Step 3
             /*
-            Test Step 3
             Action: Select and confirm Level 0
-            Expected Result: DMI displays Main window.(1)   Use the log file to confirm that DMI sends out packet [MMI_DRIVER_ACTION (EVC-152)] with the value of variable MMI_M_DRIVER_ACTION refer to sequence below,a)   MMI_M_DRIVER_ACTION = 34 (Level 0 selected)
+            Expected Result: DMI displays Main window.
+            (1)   Use the log file to confirm that DMI sends out packet [MMI_DRIVER_ACTION (EVC-152)] with the value of variable MMI_M_DRIVER_ACTION refer to sequence below,
+            a)   MMI_M_DRIVER_ACTION = 34 (Level 0 selected)
             Test Step Comment: (1) MMI_gen 11470 (partly: Bit # 34);
             */
-            // Call generic Action Method
+
             DmiActions.Select_and_confirm_Level_0(this);
 
+            #endregion
 
             /*
             Test Step 4

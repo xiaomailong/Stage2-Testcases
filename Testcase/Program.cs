@@ -12,7 +12,7 @@ namespace Testcase
     {
         static void Main(string[] args)
         {
-            TestcaseRunner.AddTestcase(typeof(Adhesion_factor_General_appearance));
+            TestcaseRunner.AddTestcase(typeof(TC_15_5_1_Adhesion_Factor));
             TestcaseRunner.RunTestcases(args);
         }
     }

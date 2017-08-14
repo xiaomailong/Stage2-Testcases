@@ -22,9 +22,9 @@ using Testcase.Telegrams.EVCtoDMI;
 namespace Testcase.XML
 {
     /// <summary>
-    /// Values of 12.6.2.a.xml file
+    /// Values of 12.15.c.xml file
     /// </summary>
-    static class XML_12_6_2_a
+    static class XML_12_15_c
     {
         private static SignalPool _pool;
 
@@ -32,22 +32,20 @@ namespace Testcase.XML
         {
             _pool = pool;
 
-            EVC1_MMIDynamic.MMI_M_SLIDE = 0;
+            EVC1_MMIDynamic.MMI_M_SLIDE = 1;
             EVC1_MMIDynamic.MMI_M_SLIP = 1;
-            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Target_Speed_Monitoring;   // 1
+            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring;   // 0
             EVC1_MMIDynamic.MMI_A_TRAIN = 0;
-            EVC1_MMIDynamic.MMI_V_TRAIN = 100;
-            EVC1_MMIDynamic.MMI_V_TARGET = -1;       // unsigned short value in xml is 65535 => -1 short
+            EVC1_MMIDynamic.MMI_V_TRAIN = 3888;
+            EVC1_MMIDynamic.MMI_V_TARGET = 1111;
             EVC1_MMIDynamic.MMI_V_PERMITTED = 1111;
             EVC1_MMIDynamic.MMI_V_RELEASE = 555;
-            EVC1_MMIDynamic.MMI_O_BRAKETARGET = 10002000;
+            EVC1_MMIDynamic.MMI_O_BRAKETARGET = 0;
             EVC1_MMIDynamic.MMI_O_IML = 0;
             EVC1_MMIDynamic.MMI_V_INTERVENTION = 0;
 
             _pool.SITR.ETCS1.Dynamic.EVC01Validity1.Value = 0x0;
             _pool.SITR.ETCS1.Dynamic.EVC01Validity2.Value = 0x0;
-            //_pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity1.Value = 4415; // All validity bits set
-            //_pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity2.Value = 63;   // All validity bits set
         }
     }
 }
