@@ -67,7 +67,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             //?? what about permitted speed
-            EVC1_MMIDynamic.MMI_V_PERMITTED = 40;
+            EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 40;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 40;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
