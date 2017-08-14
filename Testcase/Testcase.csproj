@@ -504,6 +504,16 @@ if exist "$(TargetPath)" if not exist "$(TargetPath).locked" move "$(TargetPath)
     <Compile Include="XML Packets\12\XML_12_7_4_b.cs" />
     <Compile Include="XML Packets\12\XML_12_8_a.cs" />
     <Compile Include="XML Packets\15\XML_15_3_1_1_a.cs" />
+    <Compile Include="XML Packets\15\XML_15_6_2_a.cs" />
+    <Compile Include="XML Packets\15\XML_15_6_2_b.cs" />
+    <Compile Include="XML Packets\15\XML_15_6_2_c.cs" />
+    <Compile Include="XML Packets\15\XML_15_6_2_d.cs" />
+    <Compile Include="XML Packets\15\XML_15_6_2_e.cs" />
+    <Compile Include="XML Packets\15\XML_15_6_2_f.cs" />
+    <Compile Include="XML Packets\15\XML_15_6_2_g.cs" />
+    <Compile Include="XML Packets\15\XML_15_6_2_h.cs" />
+    <Compile Include="XML Packets\15\XML_15_6_2_i.cs" />
+    <Compile Include="XML Packets\15\XML_15_6_2_j.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
