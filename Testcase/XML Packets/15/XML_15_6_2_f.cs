@@ -34,7 +34,7 @@ namespace Testcase.XML
             _pool = pool;
 
             // Send
-            EVC33_MMIAdditionalOrder.MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Invalid;     // Invalid trackcond type
+            EVC33_MMIAdditionalOrder.MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Level_Crossing;
             EVC33_MMIAdditionalOrder.MMI_NID_TRACKCOND = 0;
             EVC33_MMIAdditionalOrder.MMI_Q_TRACKCOND_ACTION = MMI_Q_TRACKCOND_ACTION.WithDriverAction;
             EVC33_MMIAdditionalOrder.MMI_Q_TRACKCOND_STEP = 1;
