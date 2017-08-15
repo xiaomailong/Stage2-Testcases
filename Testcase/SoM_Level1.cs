@@ -26,6 +26,7 @@ namespace Testcase
         public override void PreExecution()
         {
             // Pre-test configuration.
+            base.PreExecution();
         }
 
         public override void PostExecution()
@@ -36,22 +37,6 @@ namespace Testcase
         public override bool TestcaseEntryPoint()
         {
             // Test case entry point. 
-
-            // TODO move initialisation to base class when there are multiple test cases?
-            TraceInfo("Initialise Default Values");
-            EVC0_MMIStartATP.Initialise(this);
-            EVC1_MMIDynamic.Initialise(this);
-            EVC2_MMIStatus.Initialise(this);
-            EVC3_MMISetTimeATP.Initialise(this);
-            EVC6_MMICurrentTrainData.Initialise(this);
-            EVC8_MMIDriverMessage.Initialise(this);
-            EVC14_MMICurrentDriverID.Initialise(this);
-            EVC16_CurrentTrainNumber.Initialise(this);
-            EVC22_MMICurrentRBC.Initialise(this);
-            EVC30_MMIRequestEnable.Initialise(this);
-
-            // Initialise Dynamic Arrays
-            Initialise_DynamicArrays();
 
             // ETCS->DMI: EVC-0 MMI_START_ATP
             EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.VersionInfo;
@@ -167,20 +152,6 @@ namespace Testcase
 
             return GlobalTestResult;
         }
-
-        /// <summary>
-        /// Initialises all EVC packets that contain dynamic arrays
-        /// </summary>
-        private void Initialise_DynamicArrays()
-        {
-            SITR.SMDCtrl.ETCS1.SelectLevel.Value = 0x8;
-            SITR.SMDCtrl.ETCS1.SetVbc.Value = 0x8;
-            SITR.SMDCtrl.ETCS1.RemoveVbc.Value = 0x8;
-            SITR.SMDCtrl.ETCS1.TrackDescription.Value = 0x8;
-            SITR.SMDCtrl.ETCS1.CurrentRbcData.Value = 0x8;
-            SITR.SMDCtrl.ETCS1.EchoedTrainData.Value = 0x8;
-        }
-
 
         /// <summary>
         /// Bit-reverses a 32-bit number
