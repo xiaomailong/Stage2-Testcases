@@ -97,30 +97,10 @@ namespace Testcase
             // Wait for Perform Brake Test input on DMI
             // Send "NO" back to EVC (EVC-111 MMI_DRIVER_MESSAGE_ACK)
 
-            // Send EVC-30 MMI_REQUEST_ENABLE
-            var standardflags = EVC30_MMIRequestEnable.EnabledRequests.EnableDoppler |
-                                EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter |
-                                EVC30_MMIRequestEnable.EnabledRequests.StartBrakeTest |
-                                EVC30_MMIRequestEnable.EnabledRequests.SetLocalTimeDateAndOffset |
-                                EVC30_MMIRequestEnable.EnabledRequests.RemoveVBC |
-                                EVC30_MMIRequestEnable.EnabledRequests.SetVBC |
-                                EVC30_MMIRequestEnable.EnabledRequests.SystemVersion |
-                                EVC30_MMIRequestEnable.EnabledRequests.Brightness |
-                                EVC30_MMIRequestEnable.EnabledRequests.Volume |
-                                EVC30_MMIRequestEnable.EnabledRequests.NonLeading |
-                                EVC30_MMIRequestEnable.EnabledRequests.Shunting |
-                                EVC30_MMIRequestEnable.EnabledRequests.TrainData |
-                                EVC30_MMIRequestEnable.EnabledRequests.TrainRunningNumber |
-                                EVC30_MMIRequestEnable.EnabledRequests.Level |
-                                EVC30_MMIRequestEnable.EnabledRequests.ContactLastRBC |
-                                EVC30_MMIRequestEnable.EnabledRequests.EnterRBCData |
-                                EVC30_MMIRequestEnable.EnabledRequests.RadioNetworkID |
-                                EVC30_MMIRequestEnable.EnabledRequests.UseShortNumber;
-
             // TODO Have I set the correct flags?
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = 255;
-            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = standardflags;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = Variables.standardFlags;
             EVC30_MMIRequestEnable.Send();
 
             //ETCS->DMI: EVC-20 MMI_SELECT_LEVEL
@@ -153,7 +133,7 @@ namespace Testcase
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = 255;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH =
-                standardflags | EVC30_MMIRequestEnable.EnabledRequests.ContactLastRBC;
+                Variables.standardFlags | EVC30_MMIRequestEnable.EnabledRequests.ContactLastRBC;
             EVC30_MMIRequestEnable.Send();
 
             // Send EVC-16 MMI_CURRENT_TRAIN_NUMBER
@@ -170,7 +150,7 @@ namespace Testcase
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = 255;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH =
-                standardflags | EVC30_MMIRequestEnable.EnabledRequests.ContactLastRBC |
+                Variables.standardFlags | EVC30_MMIRequestEnable.EnabledRequests.ContactLastRBC |
                 EVC30_MMIRequestEnable.EnabledRequests.Start;
             EVC30_MMIRequestEnable.Send();
 
