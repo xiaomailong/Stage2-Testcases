@@ -33,13 +33,9 @@ namespace Testcase.XML
         {
             _pool = pool;
 
-            
-
-            _pool.Wait_Realtime(2000);
-
             // Send
             EVC33_MMIAdditionalOrder.MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Level_Crossing;     // Level crossing
-            EVC33_MMIAdditionalOrder.MMI_NID_TRACKCOND = 0;
+            EVC33_MMIAdditionalOrder.MMI_NID_TRACKCOND = 2;
             EVC33_MMIAdditionalOrder.MMI_Q_TRACKCOND_ACTION = MMI_Q_TRACKCOND_ACTION.WithDriverAction;
             EVC33_MMIAdditionalOrder.MMI_Q_TRACKCOND_STEP = 1;
             EVC33_MMIAdditionalOrder.Send();
