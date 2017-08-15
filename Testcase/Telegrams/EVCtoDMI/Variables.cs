@@ -460,5 +460,20 @@ namespace Testcase.Telegrams.EVCtoDMI
             NotAllowedForInhibiting = 0,
             AllowedForInhibiting = 1
         }
+
+        /// <summary>
+        /// Level ID enum
+        /// Note: In order to set ETCS level, the corresponding MMI_Q_LEVEL_NTC_ID needs to be TRUE.
+        /// Used in EVC packets 20 and 121
+        /// </summary>
+        public enum MMI_M_LEVEL_NTC_ID : byte
+        {
+            L0 = 0,
+            L1 = 1,
+            L2 = 2,
+            L3 = 3,
+            CBTC = 50,
+            AWS_TPWS = 20
+        }
     }
 }
