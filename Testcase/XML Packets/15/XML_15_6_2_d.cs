@@ -33,11 +33,10 @@ namespace Testcase.XML
         {
             _pool = pool;
 
-            // Send
-            EVC33_MMIAdditionalOrder.MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Non_Stopping_Area;  // Non-stopping area
+            EVC33_MMIAdditionalOrder.MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Non_Stopping_Area;
             EVC33_MMIAdditionalOrder.MMI_NID_TRACKCOND = 0;
-            EVC33_MMIAdditionalOrder.MMI_Q_TRACKCOND_ACTION = MMI_Q_TRACKCOND_ACTION.WithDriverAction;
-            EVC33_MMIAdditionalOrder.MMI_Q_TRACKCOND_STEP = 4;      // Remove track condition
+            EVC33_MMIAdditionalOrder.MMI_Q_TRACKCOND_ACTION = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction;
+            EVC33_MMIAdditionalOrder.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.RemoveTC;
             EVC33_MMIAdditionalOrder.Send();
         }
     }

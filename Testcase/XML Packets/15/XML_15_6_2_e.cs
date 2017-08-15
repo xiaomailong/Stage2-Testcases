@@ -41,7 +41,7 @@ namespace Testcase.XML
                                         MMI_O_TRACKCOND_END = 0,
                                         MMI_NID_TRACKCOND = 29,
                                         MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Pantograph,
-                                        MMI_Q_TRACKCOND_STEP = 1,
+                                        MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea,
                                         MMI_Q_TRACKCOND_ACTION_START = 0,
                                         MMI_Q_TRACKCOND_ACTION_END = 0 }
                 }
@@ -52,11 +52,10 @@ namespace Testcase.XML
             // Wait a few seconds
             _pool.Wait_Realtime(3000);
 
-            // Send
             EVC33_MMIAdditionalOrder.MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Level_Crossing;
             EVC33_MMIAdditionalOrder.MMI_NID_TRACKCOND = 0;
-            EVC33_MMIAdditionalOrder.MMI_Q_TRACKCOND_ACTION = MMI_Q_TRACKCOND_ACTION.WithDriverAction;
-            EVC33_MMIAdditionalOrder.MMI_Q_TRACKCOND_STEP = 1;
+            EVC33_MMIAdditionalOrder.MMI_Q_TRACKCOND_ACTION = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction;
+            EVC33_MMIAdditionalOrder.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea;  // Announce area
             EVC33_MMIAdditionalOrder.Send();
         }
     }

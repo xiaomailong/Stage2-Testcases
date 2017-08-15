@@ -32,6 +32,22 @@ namespace Testcase.XML
         public static void Send(SignalPool pool)
         {
             _pool = pool;
+
+            EVC32_MMITrackConditions.MMI_Q_TRACKCOND_UPDATE = 1;
+            EVC32_MMITrackConditions.TrackConditions = new List<TrackCondition>
+            {
+                { new TrackCondition {  MMI_O_TRACKCOND_ANNOUNCE = 0,
+                                        MMI_O_TRACKCOND_START = 0,
+                                        MMI_O_TRACKCOND_END = 0,
+                                        MMI_NID_TRACKCOND = 31,
+                                        MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Pantograph,
+                                        MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.RemoveTC,
+                                        MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction,
+                                        MMI_Q_TRACKCOND_ACTION_END = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction  }
+                }
+            };
+
+            EVC32_MMITrackConditions.Send();
         }
     }
 }
