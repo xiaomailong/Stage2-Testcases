@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Testcase.Telegrams.EVCtoDMI
 {
-    static class Variables
+    public static class Variables
     {
         /// <summary>
         /// This populates the Data Elements of EVC-6, 11, and 22
@@ -404,7 +404,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             Non_Stopping_Area = 0,
             Tunnel_Stopping_Area = 1,
             Sound_Horn = 2,
-            Panto = 3,
+            Pantograph = 3,
             Radio_hole = 4,
             Air_tightness = 5,
             Magnetic_Shoe_Brakes = 6,
