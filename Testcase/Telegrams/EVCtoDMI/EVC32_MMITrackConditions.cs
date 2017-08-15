@@ -200,6 +200,26 @@ namespace Testcase.Telegrams.EVCtoDMI
 
         /// <summary>
         /// Type of track condition.
+        /// 
+        /// Values:
+        /// 0 = "Non Stopping Area"
+        /// 1 = "Tunnel Stopping Area"
+        /// 2 = "Sound Horn"
+        /// 3 = "Pantograph"
+        /// 4 = "Radio hole"
+        /// 5 = "Air tightness"
+        /// 6 = "Magnetic Shoe Brakes"
+        /// 7 = "Eddy Current Brakes"
+        /// 8 = "Regenerative Brakes"
+        /// 9 = "Main power switch/Neutral Section"
+        /// 10 = "Change of traction system, not fitted"
+        /// 11 = "Change of traction system, AC 25 kV 50 Hz"
+        /// 12 = "Change of traction system, AC 15 kV 16.7 Hz"
+        /// 13 = "Change of traction system, DC 3 kV"\
+        /// 14 = "Change of traction system, DC 1.5 kV"
+        /// 15 = "Change of traction system, DC 600/750 V"
+        /// 16 = "Level Crossing"
+        /// 17..63 = "reserved"
         /// </summary>
         public Variables.MMI_M_TRACKCOND_TYPE MMI_M_TRACKCOND_TYPE
         {
@@ -219,42 +239,73 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public byte EVC_32_ALIAS_2
         {
-            get => (byte)_evc32Alias2;
+            get => _evc32Alias2;
             set => _evc32Alias2 = value;
         }
 
         /// <summary>
         /// Variable describing step of the track condition.
+        /// 
+        /// Values:
+        /// 0 = "Approaching area"
+        /// 1 = "Announce area"
+        /// 2 = "Inside area/active"
+        /// 3 = "Leave area"
+        /// 4 = "Remove TC"
+        /// 5..15 = "Spare"
         /// </summary>
-        public byte MMI_Q_TRACKCOND_STEP
+        public Variables.MMI_Q_TRACKCOND_STEP MMI_Q_TRACKCOND_STEP
         {
+            get
+            {
+                return (Variables.MMI_Q_TRACKCOND_STEP)_mmiQTrackcondStep;
+            }
+
             set
             {
-                _mmiQTrackcondStep = value;
+                _mmiQTrackcondStep = (byte)value;
                 SetAlias2();
             }
         }
 
         /// <summary>
         /// Type of action at start location.
+        /// 
+        /// Values:
+        /// 0 = "With driver action (manual)"
+        /// 1 = "Without driver action (automatic)"
         /// </summary>
-        public byte MMI_Q_TRACKCOND_ACTION_START
+        public Variables.MMI_Q_TRACKCOND_ACTION MMI_Q_TRACKCOND_ACTION_START
         {
+            get
+            {
+                return (Variables.MMI_Q_TRACKCOND_ACTION)_mmiQTrackcondActionStart;
+            }
+
             set
             {
-                _mmiQTrackcondActionStart = value;
+                _mmiQTrackcondActionStart = (byte)value;
                 SetAlias2();
             }
         }
 
         /// <summary>
         /// Type of action at end location.
+        /// 
+        /// Values:
+        /// 0 = "With driver action (manual)"
+        /// 1 = "Without driver action (automatic)"
         /// </summary>
-        public byte MMI_Q_TRACKCOND_ACTION_END
+        public Variables.MMI_Q_TRACKCOND_ACTION MMI_Q_TRACKCOND_ACTION_END
         {
+            get
+            {
+                return (Variables.MMI_Q_TRACKCOND_ACTION)_mmiQTrackcondActionEnd;
+            }
+
             set
             {
-                _mmiQTrackcondActionEnd = value;
+                _mmiQTrackcondActionEnd = (byte)value;
                 SetAlias2();
             }
         } 
