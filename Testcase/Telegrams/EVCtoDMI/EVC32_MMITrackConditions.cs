@@ -15,7 +15,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         private static byte _evc32Alias1;
 
         /// <summary>
-        /// Initialise EVC-32 MMI Track Conditions telegram 
+        /// Initialise EVC-32 MMI_Track_Conditions telegram.
         /// </summary>
         /// <param name="pool"></param>
         public static void Initialise(SignalPool pool)
@@ -32,13 +32,13 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static void Send()
         {
-
             ushort numberOfTrackConditions = (ushort)TrackConditions.Count;
 
+            // Only 31 track conditions allowed in telegram
             if (numberOfTrackConditions > 31)
                 throw new ArgumentOutOfRangeException("Too many track conditions.");
 
-            // Number of track conditions
+            // Set number of track conditions
             _pool.SITR.ETCS1.TrackConditions.MmiNTrackconditions.Value = numberOfTrackConditions;
 
             // Initial packet size
@@ -77,8 +77,8 @@ namespace Testcase.Telegrams.EVCtoDMI
             _pool.SITR.ETCS1.TrackConditions.MmiLPacket.Value = totalSizeCounter;
 
             _pool.TraceInfo("ETCS->DMI: EVC-32 (MMI_TRACK_CONDITIONS)");
-            //_pool.TraceInfo("EVC-32: MMI_Q_TRACKCOND_STEP = {0}", _mmiQTrackCondStep);
-            //_pool.TraceInfo("EVC-32: MMI_Q_TRACKCOND_ACTION = {0}", _mmiQTrackCondAction);
+            _pool.TraceInfo($"EVC-32: MMI_Q_TRACKCOND_UPDATE = {MMI_Q_TRACKCOND_UPDATE}");
+            _pool.TraceInfo($"EVC-32: Number of track conditions = {numberOfTrackConditions}");
             _pool.SITR.SMDCtrl.ETCS1.TrackConditions.Value = 0x9;
         }
 
