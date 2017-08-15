@@ -13,7 +13,7 @@ namespace Testcase.Telegrams.EVCtoDMI
     /// It also gives the ETC the ability to control the status/type of the "Yes" button, if specified by functional requirements for ETC and DMI.
     /// Note: Parameter 'MMI_N_DATA_ELEMENTS' distinguishes between use case 1.) and 2.)
     /// </summary>
-    static class EVC6_MMICurrentTrainData
+    public static class EVC6_MMICurrentTrainData
     {
         private static SignalPool _pool;
         private static int _trainsetid = 0;

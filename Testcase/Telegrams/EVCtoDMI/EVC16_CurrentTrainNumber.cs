@@ -5,7 +5,7 @@ namespace Testcase.Telegrams.EVCtoDMI
     /// <summary>
     /// This packet shall be sent when the driver is intended to enter/validate/view train running number.
     /// </summary>
-    static class EVC16_CurrentTrainNumber
+    public static class EVC16_CurrentTrainNumber
     {
         private static SignalPool _pool;
 

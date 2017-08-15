@@ -11,7 +11,7 @@ namespace Testcase.Telegrams.DMItoEVC
     /// <summary>
     /// This packet shall be sent when the driver requests for an action from the ATP, typically by pressing a button.
     /// </summary>
-    static class EVC102_MMIStatusReport
+    public static class EVC102_MMIStatusReport
     {
         private static SignalPool _pool;
         private static bool _bResult;

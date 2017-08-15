@@ -11,7 +11,7 @@ namespace Testcase.Telegrams.DMItoEVC
     /// <summary>
     /// This packet shall be sent when the driver has selected an ETCS or NTC level or has changed the inhibit status of an installed level.
     /// </summary>
-    static class EVC121_MMINewLevel
+    public static class EVC121_MMINewLevel
     {
         private static SignalPool _pool;
         private static bool _bResult;

@@ -10,7 +10,7 @@ namespace Testcase.Telegrams.EVCtoDMI
     /// This packet is routed via dedicated port and thus no header nor length information is contained in the (plain) data set.
     /// It is also protected via SDTv2.
     /// </summary>
-    static class EVC7_MMIEtcsMiscOutSignals
+    public static class EVC7_MMIEtcsMiscOutSignals
     {
         private static SignalPool _pool;
         private static byte _trainEBTestInProgress;

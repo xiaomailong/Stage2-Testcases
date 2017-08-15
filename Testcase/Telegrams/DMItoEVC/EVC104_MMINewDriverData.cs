@@ -14,7 +14,7 @@ namespace Testcase.Telegrams.DMItoEVC
     /// <summary>
     /// This packet shall be sent when the driver has entered or validated driver identity number.
     /// </summary>
-    static class EVC104_MMINewDriverData
+    public static class EVC104_MMINewDriverData
     {
         private static SignalPool _pool;
         private static bool _bResult;

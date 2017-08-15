@@ -20,7 +20,7 @@ namespace Testcase.Telegrams.EVCtoDMI
     /// <summary>
     /// This packet contains status information for the driver and shall be sent to the MMI when­ever any of the status has changed.
     /// </summary>
-    static class EVC2_MMIStatus
+    public static class EVC2_MMIStatus
     {
         private static SignalPool _pool;
         private static byte _mmiMAdhesion; // Adhesion can only be set by trackside for Crossrail project

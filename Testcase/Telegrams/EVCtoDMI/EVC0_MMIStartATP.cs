@@ -5,7 +5,7 @@ namespace Testcase.Telegrams.EVCtoDMI
     /// <summary>
     /// This packet shall be sent when the ETC needs to establish contact and exchange start-up information with the MMI.
     /// </summary>
-    static class EVC0_MMIStartATP
+    public static class EVC0_MMIStartATP
     {
         private static SignalPool _pool;
 

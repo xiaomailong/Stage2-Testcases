@@ -14,7 +14,7 @@ namespace Testcase.Telegrams
     /// 3. Driver completes entering a data block by pressing 'Yes'.
     /// 4. Driver overrules an operational check rule by pressing 'Delay Type Yes'.
     /// </summary>
-    static class EVC107_MMINewTrainData
+    public static class EVC107_MMINewTrainData
     {
         private static SignalPool _pool;
 

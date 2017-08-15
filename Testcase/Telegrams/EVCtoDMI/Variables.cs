@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Testcase.Telegrams.EVCtoDMI
 {
-    static class Variables
+    public static class Variables
     {
         /// <summary>
         /// This populates the Data Elements of EVC-6, 11, and 22

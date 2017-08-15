@@ -9,7 +9,7 @@ namespace Testcase.Telegrams.EVCtoDMI
     /// <summary>
     /// Packet replacing old ATP-3 packet. This packet is the additional order or announcement.
     /// </summary>
-    static class EVC33_MMIAdditionalOrder
+    public static class EVC33_MMIAdditionalOrder
     {
         private static SignalPool _pool;
         private static MMI_Q_TRACKCOND_ACTION _mmiQTrackCondAction;

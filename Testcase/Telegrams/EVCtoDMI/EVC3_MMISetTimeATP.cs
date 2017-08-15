@@ -11,7 +11,7 @@ namespace Testcase.Telegrams.EVCtoDMI
     /// Note that there is a corresponding message from MMI to ETC. The issue of the message depends on which of the units are selected as “clock master”.
     /// This may vary from system to system, but in a specific system, only the clock master is allowed to initiate the message.
     /// </summary>
-    class EVC3_MMISetTimeATP
+    public static class EVC3_MMISetTimeATP
     {
         private static SignalPool _pool;
 

@@ -6,7 +6,7 @@ namespace Testcase.Telegrams.EVCtoDMI
     /// <summary>
     /// This packet shall be sent when the driver is intended to enter/validate /view driver identity number
     /// </summary>
-    static class EVC14_MMICurrentDriverID
+    public static class EVC14_MMICurrentDriverID
     {
         private static SignalPool _pool;
 

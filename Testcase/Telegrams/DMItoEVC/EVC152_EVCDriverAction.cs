@@ -11,7 +11,7 @@ namespace Testcase.Telegrams.DMItoEVC
     /// This packet shall be sent when the corresponding driver action is  performed.
     ///The data is used by ETC to record the driver actions in JRU.
     /// </summary>
-    static class EVC152_MMIDriverAction
+    public static class EVC152_MMIDriverAction
     {
         private static SignalPool _pool;       
         private static MMI_M_DRIVER_ACTION _driverAction;

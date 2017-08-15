@@ -8,7 +8,7 @@ namespace Testcase.Telegrams.EVCtoDMI
     /// Note: The customisable contents of the packet (variables MMI_Q_EVC_PROJECT, MMI_M_CUST_PROC_ID, MMI_Q_CUST_REQUEST_ENABLE) may be
     /// customised by projects. This has to be specified in the project's documentation.
     /// </summary>
-    static class EVC30_MMIRequestEnable
+    public static class EVC30_MMIRequestEnable
     {
         private static SignalPool _pool;
 
