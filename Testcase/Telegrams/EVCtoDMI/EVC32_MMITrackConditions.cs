@@ -45,7 +45,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             ushort totalSizeCounter = 64;
 
             // Base string used by SignalPool
-            var baseString = "ETCS1_TrackConditions_EVC32TrackConditions";
+            var baseString = "ETCS1_TrackConditions_EVC32TrackConditionSub";
 
             // For all track conditions
             for (int k = 0; k < numberOfTrackConditions; k++)
