@@ -93,7 +93,32 @@ namespace Testcase.Telegrams.DMItoEVC
 
         private static void CheckMLevelNtcId(ushort nLevels, Variables.MMI_M_LEVEL_NTC_ID mLevelNtcId)
         {
+            // Read and store MMI_M_LEVEL_NTC_ID value from EVC-121 packet
+            byte _mLevelNtcId = (byte)_pool.SITR.Client.Read("CCUO_ETCS1NewLevel_EVC121Subset" + (nLevels - 1) +
+                "_MmiMLevelNtcID");
 
+            // For each element of enum MMI_M_LEVEL_NTC_ID 
+            foreach (Variables.MMI_M_LEVEL_NTC_ID mmiMLevelNtcIdElement in Enum.GetValues(typeof(Variables.MMI_M_LEVEL_NTC_ID)))
+            {
+                // Compare to the value to be checked
+                if (mmiMLevelNtcIdElement == mLevelNtcId)
+                {
+                    // Check MMI_M_LEVEL_NTC_ID value
+                    _bResult = _mLevelNtcId.Equals(mLevelNtcId);
+                    break;
+                }
+            }
+
+            if (_bResult) // if check passes
+            {
+                _pool.TraceReport("DMI->ETCS: EVC-121 [MMI_NEW_LEVEL.MMI_M_LEVEL_NTC_ID(k)] = " + mLevelNtcId +
+                    " - \"" + Enum.GetName(typeof(Variables.MMI_M_LEVEL_NTC_ID), mLevelNtcId) + "\" PASSED.");
+            }
+            else // else display the real value extracted from EVC-121 [MMI_NEW_LEVEL.MMI_M_LEVEL_NTC_ID(k)] 
+            {
+                _pool.TraceError("DMI->ETCS: Check EVC-121 [MMI_NEW_LEVEL.MMI_M_LEVEL_NTC_ID(k)] = " + _mLevelNtcId + 
+                    " - \"" + Enum.GetName(typeof(Variables.MMI_M_LEVEL_NTC_ID), _mLevelNtcId) + "\" FAILED.");
+            }
         }
 
         /// <summary>
@@ -160,6 +185,17 @@ namespace Testcase.Telegrams.DMItoEVC
             }
         }
 
+        /// <summary>
+        /// Identity of level or NTC
+        /// Value:
+        /// L0 = 0,
+        /// L1 = 1,
+        /// L2 = 2,
+        /// L3 = 3,
+        /// CBTC = 50,
+        /// AWS_TPWS = 20
+        /// Note: In order to set ETCS level, the corresponding MMI_Q_LEVEL_NTC_ID needs to be TRUE.
+        /// </summary>
         public static Variables.MMI_M_LEVEL_NTC_ID Check_MMI_M_LEVEL_NTC_ID
         {
             set
