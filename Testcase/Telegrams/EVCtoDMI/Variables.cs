@@ -422,6 +422,50 @@ namespace Testcase.Telegrams.EVCtoDMI
         }
 
         /// <summary>
+        /// Required driver action
+        /// 
+        /// Values:
+        /// 0 = With driver action (manual)
+        /// 1 = Without driver action (automatic)
+        /// </summary>
+        public enum MMI_Q_TRACKCOND_ACTION : byte
+        {
+            WithDriverAction = 0,       // Manual
+            WithoutDriverAction = 1     // Automatic
+        }
+
+        /// <summary>
+        /// Variable describing step of the track condition.
+        /// 
+        /// Values:
+        /// 0 = "Approaching area"
+        /// 1 = "Announce area"
+        /// 2 = "Inside area/active"
+        /// 3 = "Leave area"
+        /// 4 = "Remove TC"
+        /// 5..15 = "Spare"
+        /// </summary>
+        public enum MMI_Q_TRACKCOND_STEP : byte
+        {
+            ApproachingArea = 0,
+            AnnounceArea = 1,
+            InsideArea_Active = 2,
+            LeaveArea = 3,
+            RemoveTC = 4,
+            Spare5 = 5,
+            Spare6 = 6,
+            Spare7 = 7,
+            Spare8 = 8,
+            Spare9 = 9,
+            Spare10 = 10,
+            Spare11 = 11,
+            Spare12 = 12,
+            Spare13 = 13,
+            Spare14 = 14,
+            Spare15 = 15
+        }
+
+        /// <summary>
         /// Qualifier for the variable MMI_M_LEVEL_NTC_ID enum
         /// Used in EVC packets 20 and 121
         /// </summary>
