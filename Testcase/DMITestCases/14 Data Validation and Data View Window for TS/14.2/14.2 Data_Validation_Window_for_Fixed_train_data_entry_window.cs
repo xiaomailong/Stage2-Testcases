@@ -88,7 +88,7 @@ namespace Testcase.DMITestCases
             DmiActions.Confirm_entered_data_by_pressing_an_input_field(this);
             // Call generic Check Results Method
             DmiExpectedResults
-                .Verify_the_following_information_DMI_displays_Train_data_window_Use_the_log_file_to_confirm_that_DMI_sends_out_the_packet_MMI_DRIVER_REQUEST_EVC_101_with_variable_MMI_DRIVER_REQUEST_EVC_101_MMI_M_REQUEST_4_Exit_Train_data(this);
+                .Train_data_window_displayed(this);
 
 
             /*

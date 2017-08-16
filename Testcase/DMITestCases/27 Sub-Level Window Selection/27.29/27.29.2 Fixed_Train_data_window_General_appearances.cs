@@ -158,7 +158,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Train_data_window(this);
+            DmiExpectedResults.Train_data_window_displayed(this);
 
 
             /*
@@ -228,7 +228,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiExpectedResults
-                .DMI_displays_Train_data_window_Verify_the_following_information_1_The_state_of_Yes_button_below_text_label_Train_data_Entry_is_complete_still_disabled(this);
+                .Train_data_window_displayed(this);
 
 
             /*

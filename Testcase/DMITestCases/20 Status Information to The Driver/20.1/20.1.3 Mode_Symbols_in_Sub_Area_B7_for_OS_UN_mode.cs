@@ -104,20 +104,25 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11470 (partly: Bit # 34);
             */
 
-            DmiActions.Select_and_confirm_Level_0(this);
+            DmiActions.ShowInstruction(this, "Select and enter Level 0");
+            DmiExpectedResults.Level_0_Selected(this);
+
+            DmiActions.Display_Main_Window_with_Start_button_not_enabled(this);
 
             #endregion
 
+            #region Test Step 4
             /*
             Test Step 4
             Action: Press ‘Train data’ button
             Expected Result: DMI displays Train data window
             */
-            // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press ‘Train data’ button");
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Train_data_window(this);
 
+            DmiActions.ShowInstruction(this, @"Press ‘Train data’ button");
+
+            DmiExpectedResults.Train_data_window_displayed(this);
+
+            #endregion
 
             /*
             Test Step 5

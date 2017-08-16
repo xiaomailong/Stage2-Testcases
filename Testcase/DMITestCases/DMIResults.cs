@@ -406,9 +406,20 @@ namespace Testcase.DMITestCases
             else { EVC111_MMIDriverMessageAck.Check_MMI_Q_ACK = EVC111_MMIDriverMessageAck.MMI_Q_ACK.NotAcknowledgeNO; }
         }
 
+        /// <summary>
+        /// Description: Level 0 is selected
+        /// Used in:
+        ///     Step 3 in TC-ID: 15.1.3 in 20.1.3
+        /// </summary>
+        /// <param name="pool"></param>
         public static void Level_0_Selected(SignalPool pool)
         {
-
+            EVC121_MMINewLevel.Check_MMI_M_LEVEL_NTC_ID = MMI_M_LEVEL_NTC_ID.L0;
+            EVC121_MMINewLevel.Check_MMI_Q_LEVEL_NTC_ID = MMI_Q_LEVEL_NTC_ID.ETCS_Level;
+            EVC121_MMINewLevel.Check_MMI_M_LEVEL_FLAG = MMI_M_LEVEL_FLAG.MarkedLevel;
+            EVC121_MMINewLevel.Check_MMI_M_INHIBITED_LEVEL = MMI_M_INHIBITED_LEVEL.NotInhibited;
+            EVC121_MMINewLevel.Check_MMI_M_INHIBIT_ENABLE = MMI_M_INHIBIT_ENABLE.NotAllowedForInhibiting;
+            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.Level0Selected;
         }
 
         /// <summary>
@@ -600,6 +611,12 @@ namespace Testcase.DMITestCases
         ///     Step 7 in TC-ID: 22.1.2 in 27.1.2 ETCS Specfic submenus and SN sub menus
         ///     Step 9 in TC-ID: 22.1.2 in 27.1.2 ETCS Specfic submenus and SN sub menus
         ///     Step 13 in TC-ID: 22.1.2 in 27.1.2 ETCS Specfic submenus and SN sub menus
+        ///     Step 4 in TC-ID: 10.2 in 15.2.1 State 'ST05': General Appearance
+        ///     Step 4 in TC-ID: 15.1.3 in 20.1.3 Mode Symbols in Sub-Area B7 for OS, UN mode
+        ///     Step 31 in TC-ID: 22.29.1 in 27.29.1 Flexible Train data window: General appearances
+        ///     Step 10 in TC-ID: 22.29.2 in 27.29.2 Fixed Train data window: General appearances
+        ///     Step 2 in TC-ID: 34.1.1 in 37.1.1 Fixed Train data entry
+        ///     Step 5 in TC-ID: 34.1.4 in 37.1.4.1.1 Data entry/validation process when enabling conditions not fullfilled: Level 1
         /// </summary>
         public static void DMI_displays_the_default_window(SignalPool pool)
         {
@@ -611,8 +628,12 @@ namespace Testcase.DMITestCases
         /// Used in:
         ///     Step 3 in TC-ID: 5.3 in 10.3 Screen Layout: Frames
         ///     Step 12 in TC-ID: 33.1 in 36.1 The relationship between parent and child windows (1)
+        ///     Step 3 in TC-ID: 9.1 in Data Validation Window for Flexible train data entry window
+        ///     Step 3 in TC-ID: 9.2 in 14.2 Data Validation Window for Fixed train data entry window
+        ///     Step 39 in TC-ID: 22.29.1 in 27.29.1 Flexible Train data window: General appearances
+        ///     Step 18 in TC-ID: 22.29.2 in 27.29.2 Fixed Train data window: General appearances
         /// </summary>
-        public static void The_Train_data_window_is_displayed(SignalPool pool)
+        public static void Train_data_window_displayed(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -855,17 +876,6 @@ namespace Testcase.DMITestCases
             throw new NotImplementedException();
         }
 
-        /// <summary>
-        /// Description: Verify the following information,DMI displays Train data window.Use the log file to confirm that DMI sends out the packet [MMI_DRIVER_REQUEST (EVC-101)] with variable [MMI_DRIVER_REQUEST (EVC-101).MMI_M_REQUEST] = 4 (Exit Train data)
-        /// Used in:
-        ///     Step 3 in TC-ID: 9.1 in Data Validation Window for Flexible train data entry window
-        ///     Step 3 in TC-ID: 9.2 in 14.2 Data Validation Window for Fixed train data entry window
-        /// </summary>
-        public static void
-            Verify_the_following_information_DMI_displays_Train_data_window_Use_the_log_file_to_confirm_that_DMI_sends_out_the_packet_MMI_DRIVER_REQUEST_EVC_101_with_variable_MMI_DRIVER_REQUEST_EVC_101_MMI_M_REQUEST_4_Exit_Train_data(SignalPool pool)
-        {
-            throw new NotImplementedException();
-        }
 
         /// <summary>
         /// Description: DMI displays Train data validation window
@@ -919,21 +929,6 @@ namespace Testcase.DMITestCases
         ///     Step 14 in TC-ID: 10.1 in 15.1 Data Entry/Validation/View process
         /// </summary>
         public static void The_Default_window_is_displayed(SignalPool pool)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Description: DMI displays Train data window
-        /// Used in:
-        ///     Step 4 in TC-ID: 10.2 in 15.2.1 State 'ST05': General Appearance
-        ///     Step 4 in TC-ID: 15.1.3 in 20.1.3 Mode Symbols in Sub-Area B7 for OS, UN mode
-        ///     Step 31 in TC-ID: 22.29.1 in 27.29.1 Flexible Train data window: General appearances
-        ///     Step 10 in TC-ID: 22.29.2 in 27.29.2 Fixed Train data window: General appearances
-        ///     Step 2 in TC-ID: 34.1.1 in 37.1.1 Fixed Train data entry
-        ///     Step 5 in TC-ID: 34.1.4 in 37.1.4.1.1 Data entry/validation process when enabling conditions not fullfilled: Level 1
-        /// </summary>
-        public static void DMI_displays_Train_data_window(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -3661,18 +3656,6 @@ namespace Testcase.DMITestCases
         ///     Step 17 in TC-ID: 22.29.1 in 27.29.1 Flexible Train data window: General appearances
         /// </summary>
         public static void See_the_expected_results_of_Step_11_Step_13(SignalPool pool)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Description: DMI displays Train data window.Verify the following information,(1)     The state of ‘Yes’ button below text label ‘Train data Entry is complete?’ still disabled
-        /// Used in:
-        ///     Step 39 in TC-ID: 22.29.1 in 27.29.1 Flexible Train data window: General appearances
-        ///     Step 18 in TC-ID: 22.29.2 in 27.29.2 Fixed Train data window: General appearances
-        /// </summary>
-        public static void
-            DMI_displays_Train_data_window_Verify_the_following_information_1_The_state_of_Yes_button_below_text_label_Train_data_Entry_is_complete_still_disabled(SignalPool pool)
         {
             throw new NotImplementedException();
         }
