@@ -42,10 +42,11 @@ namespace Testcase.DMITestCases
             // Pre-conditions from TestSpec:
             // Set the following tags name in configuration file (See the instruction in Appendix 1)
             // SLIP_SPEEDMETER = ; SLIDE_SPEEDMETER = 1;
-            DmiActions.Complete_SoM_L1_SR(this);
             
             // Call the TestCaseBase PreExecution
             base.PreExecution();
+
+            DmiActions.Complete_SoM_L1_SR(this);
         }
 
         public override void PostExecution()
@@ -62,14 +63,7 @@ namespace Testcase.DMITestCases
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint
-
-            EVC7_MMIEtcsMiscOutSignals.Initialise(this);
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
-
-            EVC1_MMIDynamic.Initialise(this);
-
-            DmiActions.Complete_SoM_L1_SR(this);
-
+            
             /*
             Test Step 1
             Action: Driver the train forward

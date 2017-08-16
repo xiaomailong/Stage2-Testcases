@@ -41,11 +41,11 @@ namespace Testcase.DMITestCases
             // Pre-conditions from TestSpec:
             // Test system is power on.Cabin is activated.SoM is performed in SR mode, Level 1.
 
-            // Test spec says that the test is started in FS mode
-            DmiActions.Complete_SoM_L1_FS(this);
-
             // Call the TestCaseBase PreExecution
             base.PreExecution();
+
+            // Test spec says that the test is started in FS mode
+            DmiActions.Complete_SoM_L1_FS(this);
         }
 
         public override void PostExecution()

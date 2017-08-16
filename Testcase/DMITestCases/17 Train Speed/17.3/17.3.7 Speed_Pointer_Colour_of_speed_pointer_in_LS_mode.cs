@@ -41,10 +41,11 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Test system is power on.Cabin is activated.SoM is performed in SR mode, level 1.
-            DmiActions.Complete_SoM_L1_SR(this);
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
+
+            DmiActions.Complete_SoM_L1_SR(this);
         }
 
         public override void PostExecution()

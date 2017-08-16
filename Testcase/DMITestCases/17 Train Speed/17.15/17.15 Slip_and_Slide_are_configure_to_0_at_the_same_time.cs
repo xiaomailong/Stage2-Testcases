@@ -42,10 +42,11 @@ namespace Testcase.DMITestCases
             // Pre-conditions from TestSpec:
             // Set the following tags name in configuration file (See the instruction in Appendix 1)
             // SLIP_SPEEDMETER = 0; SLIDE_SPEEDMETER = 0;
-            DmiActions.Complete_SoM_L1_SR(this);
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
+
+            DmiActions.Complete_SoM_L1_SR(this);
         }
 
         public override void PostExecution()
