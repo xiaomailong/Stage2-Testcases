@@ -42,11 +42,10 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Test system is powered on.Activate Cabin A.Enter Driver ID and perform brake test.Select and confirm Level 1.SoM in performed in SR mode, Level 1.
+            DmiActions.Complete_SoM_L1_SR(this);
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
-
-            DmiActions.Complete_SoM_L1_SR(this);
         }
 
         public override void PostExecution()

@@ -41,11 +41,10 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // The speed dial properties below are configured for 140 km/h dial: True, False, 140, 0, 20, 0, 1, 0, 0, 0, -144, 0, 144 respectively: Speed in km/h (otherwise mph)Display speed unitMaximum Speed (upper boundary of the entire Speed Dial)Transition Speed (boundary between the two segments, if 0 – only segment 1 available)Speed interval between subsequent speed labels in segment 1Speed interval between subsequent speed labels in segment 2Number of short scale divisions between long scale divisions in segment 1Number of short scale divisions between long scale divisions in segment 2Number of long scale divisions between labels in segment 1Number of long scale divisions between labels in segment 2Position of Zero point (angle in grad, 0 grad at 12 o’clock, counting clockwise)Position of Transition Speed (angle, see above)Position of Maximum Speed (angle, see above)Test system is powered on.Cabin is activated.SoM is performed in SR mode, Level 1.
-            
+            DmiActions.Complete_SoM_L1_SR(this);
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
-
-            DmiActions.Complete_SoM_L1_SR(this);
         }
 
         public override void PostExecution()

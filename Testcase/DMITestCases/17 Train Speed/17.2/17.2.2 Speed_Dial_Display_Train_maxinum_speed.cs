@@ -13,8 +13,6 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
-using Testcase.Telegrams.EVCtoDMI;
-
 
 namespace Testcase.DMITestCases
 {
@@ -50,6 +48,8 @@ namespace Testcase.DMITestCases
         {
             // Post-conditions from TestSpec
             // DMI displays SR mode.
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SR mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -59,22 +59,17 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
+
             /*
             Test Step 1
             Action: Power on the system and activate the cabin
             Expected Result: DMI displays SB mode
             */
-            EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.GoToIdle;
-            EVC0_MMIStartATP.Send();
+            // Call generic Action Method
+            DmiActions.Power_on_the_system_and_activate_the_cabin(this);
+            // Call generic Check Results Method
+            DmiExpectedResults.SB_Mode_displayed(this);
 
-            // Set train running number, cab 1 active, and other defaults
-            DmiActions.Activate_Cabin_1(this);
-
-            // Set driver ID
-            DmiActions.Set_Driver_ID(this, "1234");
-
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in SB mode, Level 1.");
 
             /*
             Test Step 2
@@ -82,106 +77,16 @@ namespace Testcase.DMITestCases
             Expected Result: Mode changes to SR mode , level 1Verify the following information:The speed dial displays 550 km/h as a mixminum speed
             Test Step Comment: MMI_gen 67 (partly:550 km/h);
             */
-            DmiActions.Complete_SoM_L1_SB(this);
 
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in SR mode, Level 1." + Environment.NewLine +
-                                "2. The speed dial is displayed with maximum speed = 550 k/h");
 
-            // 
             /*
             Test Step 3
             Action: Change the configuration: SPEED_DIAL_V_MAX  to 200, 300 and 400 then retest with step 1 to 2
             Expected Result: Verify the following information:The speed dial displays the maxinum speed accroding to configuration setting
             Test Step Comment: MMI_gen 67 (partly: configure lower values);
             */
-            // ?? Power off the system
-            // Set config...
-            // SPEED_DIAL_V_MAX  = 200;
 
-            EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.GoToIdle;
-            EVC0_MMIStartATP.Send();
 
-            // Set train running number, cab 1 active, and other defaults
-            DmiActions.Activate_Cabin_1(this);
-
-            // Set driver ID
-            DmiActions.Set_Driver_ID(this, "1234");
-
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in SB mode, Level 1.");
-
-            DmiActions.Complete_SoM_L1_SB(this);
-
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in SR mode, Level 1." + Environment.NewLine +
-                                "2. The speed dial is displayed with maximum speed = 200 k/h");
-
-            // ?? Power off the system
-            // Set config...
-            // SPEED_DIAL_V_MAX  = 300;
-
-            EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.GoToIdle;
-            EVC0_MMIStartATP.Send();
-
-            // Set train running number, cab 1 active, and other defaults
-            DmiActions.Activate_Cabin_1(this);
-
-            // Set driver ID
-            DmiActions.Set_Driver_ID(this, "1234");
-
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in SB mode, Level 1.");
-
-            DmiActions.Complete_SoM_L1_SB(this);
-
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in SR mode, Level 1." + Environment.NewLine +
-                                "2. The speed dial is displayed with maximum speed = 300 k/h");
-
-            // ?? Power off the system
-            // Set config...
-            // SPEED_DIAL_V_MAX  = 200;
-
-            EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.GoToIdle;
-            EVC0_MMIStartATP.Send();
-
-            // Set train running number, cab 1 active, and other defaults
-            DmiActions.Activate_Cabin_1(this);
-
-            // Set driver ID
-            DmiActions.Set_Driver_ID(this, "1234");
-
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in SB mode, Level 1.");
-
-            DmiActions.Complete_SoM_L1_SB(this);
-
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in SR mode, Level 1." + Environment.NewLine +
-                                "2. The speed dial is displayed with maximum speed = 200 k/h");
-
-            // ?? Power off the system
-            // Set config...
-            // SPEED_DIAL_V_MAX  = 400;
-
-            EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.GoToIdle;
-            EVC0_MMIStartATP.Send();
-
-            // Set train running number, cab 1 active, and other defaults
-            DmiActions.Activate_Cabin_1(this);
-
-            // Set driver ID
-            DmiActions.Set_Driver_ID(this, "1234");
-
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in SB mode, Level 1.");
-
-            DmiActions.Complete_SoM_L1_SB(this);
-
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in SR mode, Level 1." + Environment.NewLine +
-                                "2. The speed dial is displayed with maximum speed = 400 k/h");
             /*
             Test Step 4
             Action: End of test

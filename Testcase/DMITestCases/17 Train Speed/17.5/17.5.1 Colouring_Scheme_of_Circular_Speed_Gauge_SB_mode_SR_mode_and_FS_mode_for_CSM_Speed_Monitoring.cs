@@ -44,11 +44,10 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // System is power on. Cabin is activated.Perform SoM until Level 1 is selected and confirmed.
+            DmiActions.Complete_SoM_L1_SB(this);
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
-
-            DmiActions.Complete_SoM_L1_SB(this);
         }
 
         public override void PostExecution()
