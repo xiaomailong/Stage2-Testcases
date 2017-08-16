@@ -40,12 +40,16 @@ namespace Testcase.DMITestCases
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
+            DmiActions.Complete_SoM_L1_SB(this);
         }
 
         public override void PostExecution()
         {
             // Post-conditions from TestSpec
             // DMI displays in SB mode, level 1
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SB mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -55,14 +59,14 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
+            // All the following tests are done in XML_15_3_1_2.cs
             /*
             Test Step 1
             Action: Use the test script file 15_3_1_2.xml to send EVC-8 with,MMI_Q_TEXT = 261MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1
             Expected Result: Verifies the display information as follows,The text message ‘’Fixed Text Message 261’ is display in the area E5.No flashing frame display.There is no sound played
             Test Step Comment: MMI_gen 148;         
             */
-
+            XML.XML_15_3_1_2.Send(this);
 
             /*
             Test Step 2
@@ -309,7 +313,6 @@ namespace Testcase.DMITestCases
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }
