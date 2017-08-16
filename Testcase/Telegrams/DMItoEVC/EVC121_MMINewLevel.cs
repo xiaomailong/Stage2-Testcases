@@ -45,7 +45,7 @@ namespace Testcase.Telegrams.DMItoEVC
 
             // Convert byte EVC121_alias_1 into an array of bits.
             BitArray _evc121Alias1 = new BitArray(new[] {
-                (byte) _pool.SITR.Client.Read("CCUO_ETCS1NewLevel_EVC121Subset" + (nLevels - 1) +
+                (byte) _pool.SITR.Client.Read("CCUO_ETCS1NewLevel_EVC121Subset0" + (nLevels - 1) +
                 "_EVC121alias1") });
 
             // List of the 4 variables contained into EVC121_alias_1 respecting to their position
