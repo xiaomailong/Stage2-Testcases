@@ -14,6 +14,7 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
 
+
 namespace Testcase.DMITestCases
 {
     /// <summary>
@@ -227,6 +228,7 @@ namespace Testcase.DMITestCases
             */
 
             DmiActions.ShowInstruction(this, "Please press the \"Main\" button on the DMI.");
+            XML.XML_15_3_1_1_b.Send(this);
 
             /*
             Test Step 21
@@ -234,7 +236,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)    The symbol ST05 is removed from window title area
             Test Step Comment: (1) MMI_gen 144 (partly: Symbols, removed by Q_TEXT_CRITERIA);
             */
-
+            XML.XML_15_3_1_1_c.Send(this);
 
             /*
             Test Step 22
