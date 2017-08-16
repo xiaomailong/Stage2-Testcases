@@ -86,7 +86,7 @@ namespace Testcase.DMITestCases
             Expected Result: The Train data window is displayed
             */
             // Call generic Check Results Method
-            DmiExpectedResults.The_Train_data_window_is_displayed(this);
+            DmiExpectedResults.Train_data_window_displayed(this);
 
 
             /*

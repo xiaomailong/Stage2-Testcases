@@ -169,7 +169,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press ‘Train data’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.The_Train_data_window_is_displayed(this);
+            DmiExpectedResults.Train_data_window_displayed(this);
 
 
             /*
