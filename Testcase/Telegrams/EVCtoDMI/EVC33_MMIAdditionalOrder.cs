@@ -9,12 +9,16 @@ namespace Testcase.Telegrams.EVCtoDMI
     /// <summary>
     /// Packet replacing old ATP-3 packet. This packet is the additional order or announcement.
     /// </summary>
-    static class EVC33_MMIAdditionalOrder
+    public static class EVC33_MMIAdditionalOrder
     {
         private static SignalPool _pool;
-        private static MMI_Q_TRACKCOND_ACTION _mmiQTrackCondAction;
+        private static byte _mmiQTrackCondAction;
         private static byte _mmiQTrackCondStep;
 
+        /// <summary>
+        /// Initialise EVC-33 MMI_Additional_Order telegram.
+        /// </summary>
+        /// <param name="pool"></param>
         public static void Initialise(SignalPool pool)
         {
             _pool = pool;
@@ -46,10 +50,10 @@ namespace Testcase.Telegrams.EVCtoDMI
         public static void Send()
         {
             _pool.TraceInfo("ETCS->DMI: EVC-33 (MMI_ADDITIONAL_ORDER)");
-            _pool.TraceInfo("EVC-33: MMI_NID_TRACKCOND = {0}", MMI_NID_TRACKCOND);
-            _pool.TraceInfo("EVC-33: MMI_M_TRACKCOND_TYPE = {0}", MMI_M_TRACKCOND_TYPE);
-            _pool.TraceInfo("EVC-33: MMI_Q_TRACKCOND_STEP = {0}", _mmiQTrackCondStep);
-            _pool.TraceInfo("EVC-33: MMI_Q_TRACKCOND_ACTION = {0}", _mmiQTrackCondAction);
+            _pool.TraceInfo($"EVC-33: MMI_NID_TRACKCOND = {MMI_NID_TRACKCOND}");
+            _pool.TraceInfo($"EVC-33: MMI_M_TRACKCOND_TYPE = {MMI_M_TRACKCOND_TYPE}");
+            _pool.TraceInfo($"EVC-33: MMI_Q_TRACKCOND_STEP = {_mmiQTrackCondStep}");
+            _pool.TraceInfo($"EVC-33: MMI_Q_TRACKCOND_ACTION = {_mmiQTrackCondAction}");
             _pool.SITR.SMDCtrl.ETCS1.AdditionalOrder.Value = 1;
         }
 
@@ -89,10 +93,10 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// 16 = "Level Crossing"
         /// 17..63 = "reserved"
         /// </summary>
-        public static byte MMI_M_TRACKCOND_TYPE
+        public static Variables.MMI_M_TRACKCOND_TYPE MMI_M_TRACKCOND_TYPE
         {
-            set => _pool.SITR.ETCS1.AdditionalOrder.MmiMTrackcondType.Value = value;
-            get => _pool.SITR.ETCS1.AdditionalOrder.MmiMTrackcondType.Value;
+            get => (Variables.MMI_M_TRACKCOND_TYPE)_pool.SITR.ETCS1.AdditionalOrder.MmiMTrackcondType.Value;
+            set => _pool.SITR.ETCS1.AdditionalOrder.MmiMTrackcondType.Value = (byte)value;
         }
 
         /// <summary>
@@ -106,11 +110,11 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// 4 = "Remove TC"
         /// 5..15 = "Spare"
         /// </summary>
-        public static byte MMI_Q_TRACKCOND_STEP
+        public static Variables.MMI_Q_TRACKCOND_STEP MMI_Q_TRACKCOND_STEP
         {
             set
             {
-                _mmiQTrackCondStep = value;
+                _mmiQTrackCondStep = (byte)value;
                 SetAlias();
             }
         }
@@ -122,26 +126,18 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// 0 = "With driver action (manual)"
         /// 1 = "Without driver action (automatic)"
         /// </summary>
-        public static MMI_Q_TRACKCOND_ACTION MMI_Q_TRACKCOND_ACTION
+        public static Variables.MMI_Q_TRACKCOND_ACTION MMI_Q_TRACKCOND_ACTION
         {
+            get
+            {
+                return (Variables.MMI_Q_TRACKCOND_ACTION)_mmiQTrackCondAction;
+            }
+
             set
             {
-                _mmiQTrackCondAction = value;
+                _mmiQTrackCondAction = (byte)value;
                 SetAlias();
             }
         }
-    }
-
-    /// <summary>
-    /// Required driver action
-    /// 
-    /// Values:
-    /// 0 = With driver action (manual)
-    /// 1 = Without driver action (automatic)
-    /// </summary>
-    public enum MMI_Q_TRACKCOND_ACTION : byte
-    {
-        WithDriverAction = 0, // manual
-        WithoutDriverAction = 1 // automatic
     }
 }

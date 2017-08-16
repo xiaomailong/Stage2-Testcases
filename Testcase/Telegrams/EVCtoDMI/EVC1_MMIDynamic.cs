@@ -10,7 +10,7 @@ namespace Testcase.Telegrams.EVCtoDMI
     /// This packet is routed via dedicated port and thus no header nor length information is contained in the (plain) data set. It is also protected via SDTv2.
     /// Some variables that were formerly contained in EVC-1 are now part of EVC-7, which has to be evaluated by the DMI as well.
     /// </summary>
-    static class EVC1_MMIDynamic
+    public static class EVC1_MMIDynamic
     {
         private static SignalPool _pool;            // Signal pool
         private static byte _mmiMSlip;              // Slip status

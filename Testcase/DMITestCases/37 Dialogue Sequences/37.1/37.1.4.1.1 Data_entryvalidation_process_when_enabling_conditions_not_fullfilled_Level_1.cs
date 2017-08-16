@@ -86,7 +86,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press ‘Level’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Level_window(this);
+            DmiExpectedResults.Level_window_displayed(this);
 
 
             /*

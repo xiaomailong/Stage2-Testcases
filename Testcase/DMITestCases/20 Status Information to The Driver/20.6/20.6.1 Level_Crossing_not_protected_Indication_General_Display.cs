@@ -80,10 +80,10 @@ namespace Testcase.DMITestCases
             */
             DmiActions.Send_FS_Mode(this);
 
-            EVC33_MMIAdditionalOrder.MMI_M_TRACKCOND_TYPE = 16;
+            EVC33_MMIAdditionalOrder.MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Level_Crossing;
             EVC33_MMIAdditionalOrder.MMI_NID_TRACKCOND = 1;
-            EVC33_MMIAdditionalOrder.MMI_Q_TRACKCOND_ACTION = MMI_Q_TRACKCOND_ACTION.WithoutDriverAction;
-            EVC33_MMIAdditionalOrder.MMI_Q_TRACKCOND_STEP = 1;
+            EVC33_MMIAdditionalOrder.MMI_Q_TRACKCOND_ACTION = Variables.MMI_Q_TRACKCOND_ACTION.WithoutDriverAction;
+            EVC33_MMIAdditionalOrder.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea;
             EVC33_MMIAdditionalOrder.Send();
 
             DmiExpectedResults.Driver_symbol_displayed(this, "LX not protected", "LX01", "B3", false);
@@ -145,7 +145,7 @@ namespace Testcase.DMITestCases
                                 (2) MMI_gen 10484 (partly: reception packet EVC-33, NID = MMI_NID_TRACKCOND);
             */
             EVC33_MMIAdditionalOrder.MMI_NID_TRACKCOND = 3;
-            EVC33_MMIAdditionalOrder.MMI_Q_TRACKCOND_STEP = 4;  // Remove track condition
+            EVC33_MMIAdditionalOrder.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.RemoveTC;
             EVC33_MMIAdditionalOrder.Send();
             this.WaitForVerification("Has the LX symbol in area B5 disappeared from the DMI?");
 
@@ -159,7 +159,7 @@ namespace Testcase.DMITestCases
                                 (2) MMI_gen 10484 (partly: reception packet EVC-33, NID = MMI_NID_TRACKCOND);
             */
             EVC33_MMIAdditionalOrder.MMI_NID_TRACKCOND = 2;
-            EVC33_MMIAdditionalOrder.MMI_Q_TRACKCOND_STEP = 4;  // Remove track condition
+            EVC33_MMIAdditionalOrder.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.RemoveTC;
             EVC33_MMIAdditionalOrder.Send();
             this.WaitForVerification("Has the LX symbol in area B4 disappeared from the DMI?");
 
@@ -174,7 +174,7 @@ namespace Testcase.DMITestCases
                                 (2) MMI_gen 10484 (partly: reception packet EVC-33, NID = MMI_NID_TRACKCOND);
             */
             EVC33_MMIAdditionalOrder.MMI_NID_TRACKCOND = 2;
-            EVC33_MMIAdditionalOrder.MMI_Q_TRACKCOND_STEP = 4;  // Remove track condition
+            EVC33_MMIAdditionalOrder.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.RemoveTC;
             EVC33_MMIAdditionalOrder.Send();
             this.WaitForVerification("Has the LX symbol in area B3 disappeared from the DMI?");
 
@@ -183,10 +183,10 @@ namespace Testcase.DMITestCases
             Action: Repeat action step 1-3
             Expected Result: The LX01 symbols are displayed in sub-area B3-B5
             */
-            EVC33_MMIAdditionalOrder.MMI_M_TRACKCOND_TYPE = 16;
+            EVC33_MMIAdditionalOrder.MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Level_Crossing;
             EVC33_MMIAdditionalOrder.MMI_NID_TRACKCOND = 1;
-            EVC33_MMIAdditionalOrder.MMI_Q_TRACKCOND_ACTION = MMI_Q_TRACKCOND_ACTION.WithoutDriverAction;
-            EVC33_MMIAdditionalOrder.MMI_Q_TRACKCOND_STEP = 1;
+            EVC33_MMIAdditionalOrder.MMI_Q_TRACKCOND_ACTION = Variables.MMI_Q_TRACKCOND_ACTION.WithoutDriverAction;
+            EVC33_MMIAdditionalOrder.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea;
             EVC33_MMIAdditionalOrder.Send();
 
             // Delay so that separate telegram can be sent

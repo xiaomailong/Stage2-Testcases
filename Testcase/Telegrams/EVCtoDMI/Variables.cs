@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Testcase.Telegrams.EVCtoDMI
 {
-    static class Variables
+    public static class Variables
     {
         /// <summary>
         /// This populates the Data Elements of EVC-6, 11, and 22
@@ -374,6 +374,150 @@ namespace Testcase.Telegrams.EVCtoDMI
             NoCabinActive = 0,
             Cabin1Active = 1,
             Cabin2Active = 2
-        }       
+        }
+
+        /// <summary>
+        /// Enum of track condition type.
+        /// 
+        /// Values:
+        /// 0 = "Non Stopping Area"
+        /// 1 = "Tunnel Stopping Area"
+        /// 2 = "Sound Horn"
+        /// 3 = "Panto"
+        /// 4 = "Radio hole"
+        /// 5 = "Air tightness"
+        /// 6 = "Magnetic Shoe Brakes"
+        /// 7 = "Eddy Current Brakes"
+        /// 8 = "Regenerative Brakes"
+        /// 9 = "Main power switch/Neutral Section"
+        /// 10 = "Change of traction system, not fitted"
+        /// 11 = "Change of traction system, AC 25 kV 50 Hz"
+        /// 12 = "Change of traction system, AC 15 kV 16.7 Hz"
+        /// 13 = "Change of traction system, DC 3 kV"
+        /// 14 = "Change of traction system, DC 1.5 kV"
+        /// 15 = "Change of traction system, DC 600/750 V"
+        /// 16 = "Level Crossing"
+        /// 17..63 = "reserved"
+        /// </summary>
+        public enum MMI_M_TRACKCOND_TYPE : byte
+        {
+            Non_Stopping_Area = 0,
+            Tunnel_Stopping_Area = 1,
+            Sound_Horn = 2,
+            Pantograph = 3,
+            Radio_hole = 4,
+            Air_tightness = 5,
+            Magnetic_Shoe_Brakes = 6,
+            Eddy_Current_Brakes = 7,
+            Regenerative_Brakes = 8,
+            Main_power_switch_Neutral_Section = 9,
+            Change_traction_not_fitted = 10,
+            Change_traction_AC_25_kV_50_Hz = 11,
+            Change_traction_AC_15_kV_16_7_Hz = 12,
+            Change_traction_DC_3_kV = 13,
+            Change_traction_DC_1_5_kV = 14,
+            Change_traction_DC_600_750 = 15,
+            Level_Crossing = 16,
+            Invalid = 64
+        }
+
+        /// <summary>
+        /// Required driver action
+        /// 
+        /// Values:
+        /// 0 = With driver action (manual)
+        /// 1 = Without driver action (automatic)
+        /// </summary>
+        public enum MMI_Q_TRACKCOND_ACTION : byte
+        {
+            WithDriverAction = 0,       // Manual
+            WithoutDriverAction = 1     // Automatic
+        }
+
+        /// <summary>
+        /// Variable describing step of the track condition.
+        /// 
+        /// Values:
+        /// 0 = "Approaching area"
+        /// 1 = "Announce area"
+        /// 2 = "Inside area/active"
+        /// 3 = "Leave area"
+        /// 4 = "Remove TC"
+        /// 5..15 = "Spare"
+        /// </summary>
+        public enum MMI_Q_TRACKCOND_STEP : byte
+        {
+            ApproachingArea = 0,
+            AnnounceArea = 1,
+            InsideArea_Active = 2,
+            LeaveArea = 3,
+            RemoveTC = 4,
+            Spare5 = 5,
+            Spare6 = 6,
+            Spare7 = 7,
+            Spare8 = 8,
+            Spare9 = 9,
+            Spare10 = 10,
+            Spare11 = 11,
+            Spare12 = 12,
+            Spare13 = 13,
+            Spare14 = 14,
+            Spare15 = 15
+        }
+
+        /// <summary>
+        /// Qualifier for the variable MMI_M_LEVEL_NTC_ID enum
+        /// Used in EVC packets 20 and 121
+        /// </summary>
+        public enum MMI_Q_LEVEL_NTC_ID : byte
+        {
+            STM_ID = 0,
+            ETCS_Level = 1
+        }
+
+        /// <summary>
+        /// Indicator for marked MMI_M_LEVEL_NTC_ID enum
+        /// Used in EVC packets 20 and 121
+        /// </summary>
+        public enum MMI_M_LEVEL_FLAG : byte
+        {
+            NotMarkedLevel = 0,
+            MarkedLevel = 1
+        }
+
+        /// <summary>
+        /// Inhibit status enum
+        /// Used in EVC packets 20 and 121
+        /// </summary>
+        public enum MMI_M_INHIBITED_LEVEL : byte
+        {
+            NotInhibited = 0,
+            Inhibited = 1
+        }
+
+        /// <summary>
+        /// Inhibit enabled enum
+        /// Used in EVC packets 20 and 121
+        /// </summary>
+        public enum MMI_M_INHIBIT_ENABLE : byte
+        {
+            NotAllowedForInhibiting = 0,
+            AllowedForInhibiting = 1
+        }
+
+        /// <summary>
+        /// Level ID enum
+        /// Note: In order to set ETCS level, the corresponding MMI_Q_LEVEL_NTC_ID needs to be TRUE.
+        /// Used in EVC packets 20 and 121
+        /// </summary>
+        public enum MMI_M_LEVEL_NTC_ID : byte
+        {
+            L0 = 0,
+            L1 = 1,
+            L2 = 2,
+            L3 = 3,
+            CBTC = 50,
+            AWS_TPWS = 20
+        }
     }
 }

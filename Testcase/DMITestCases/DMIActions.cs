@@ -343,7 +343,7 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
-        /// Description: Main Window is Start Button enabled sent to be displayed on th DMI
+        /// Description: Driver Id Window sent to be displayed on th DMI
         /// Used in:
         ///     Step 11 in TC-ID: 15.1.1 in 20.1.1
         /// </summary>
@@ -351,6 +351,18 @@ namespace Testcase.DMITestCases
         public static void Display_Driver_ID_Window(SignalPool pool)
         {
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = 8;            
+            EVC30_MMIRequestEnable.Send();
+        }
+
+        /// <summary>
+        /// Description: Level Window sent to be displayed on th DMI
+        /// Used in:
+        ///     Step 2 in TC-ID: 15.1.3 in 20.1.3
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Display_Level_Window(SignalPool pool)
+        {
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 7;
             EVC30_MMIRequestEnable.Send();
         }
 

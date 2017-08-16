@@ -9,7 +9,7 @@ namespace Testcase.Telegrams.EVCtoDMI
     /// <summary>
     /// Packet containing operated system version.
     /// </summary>
-    static class EVC34_MMISystemVersion
+    public static class EVC34_MMISystemVersion
     {
         private static SignalPool _pool;
         private static byte _systemVersionX = 0;

@@ -11,7 +11,7 @@ namespace Testcase.Telegrams.EVCtoDMI
     /// MMI_Q_TEXT also contains special values e.g. for deletion of message groups.
     /// Refer to the description of the Q_TEXT variable regarding the use of the free text carried by X_TEXT.
     /// </summary>
-    static class EVC8_MMIDriverMessage
+    public static class EVC8_MMIDriverMessage
     {
         private static SignalPool _pool;
         private static MMI_Q_TEXT_CLASS _mmiQTextClass;

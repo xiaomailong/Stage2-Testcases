@@ -9,7 +9,7 @@ namespace Testcase.Telegrams.EVCtoDMI
     /// <summary>
     /// This packet contains the geographical position to be presented on request by the driver.
     /// </summary>
-    static class EVC5_MMIGeoPosition
+    public static class EVC5_MMIGeoPosition
     {
         private static SignalPool _pool;
 

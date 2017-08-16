@@ -18,7 +18,7 @@ namespace Testcase.Telegrams.EVCtoDMI
     ///     this also includes control over the allowed driver actions in case some data check has failed.
     /// It also gives the ETC the ability to control the status/type of the "Yes" button, if specified by functional requirements for ETC and DMI.
     /// </summary>
-    static class EVC22_MMICurrentRBC
+    public static class EVC22_MMICurrentRBC
     {
         private static SignalPool _pool;
         private static uint _nidC = NidC;
