@@ -407,6 +407,19 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
+        /// Description:
+        /// Used in:
+        ///     Step 4 in TC-ID: 15.1.3 in 20.1.3     
+        /// </summary>
+        public static void Train_Data_Button_pressed_and_released(SignalPool pool)
+        {
+            EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.StartTrainDataEntry;
+            pool.Wait_Realtime(100);
+            EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.StartTrainDataEntry;
+            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.TrainDataEntryRequested;
+        }
+
+        /// <summary>
         /// Description: Level 0 is selected
         /// Used in:
         ///     Step 3 in TC-ID: 15.1.3 in 20.1.3
@@ -635,7 +648,7 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void Train_data_window_displayed(SignalPool pool)
         {
-            throw new NotImplementedException();
+            pool.WaitForVerification("Is the Level window displayed on the DMI?");
         }
 
         /// <summary>

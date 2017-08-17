@@ -119,19 +119,26 @@ namespace Testcase.DMITestCases
             */
 
             DmiActions.ShowInstruction(this, @"Press ‘Train data’ button");
+            DmiExpectedResults.Train_Data_Button_pressed_and_released(this);
 
+            DmiActions.Display_Train_Data_Window(this);
             DmiExpectedResults.Train_data_window_displayed(this);
 
             #endregion
 
+            #region Test Step 5
             /*
             Test Step 5
             Action: Enter and confirm value in each input field.Then, press ‘Yes’ button
             Expected Result: DMI displays Train data validation window
             */
-            // Call generic Check Results Method
+
+            DmiActions.ShowInstruction(this, @"Enter and confirm train data");
+
+            DmiActions.ShowInstruction(this, @"Press ‘Train data validation’ button");
             DmiExpectedResults.DMI_displays_Train_data_validation_window(this);
 
+            #endregion
 
             /*
             Test Step 6
