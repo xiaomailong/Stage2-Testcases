@@ -14,6 +14,7 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
 
+
 namespace Testcase.DMITestCases
 {
     /// <summary>
@@ -40,12 +41,16 @@ namespace Testcase.DMITestCases
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
+            DmiActions.Complete_SoM_L1_SB(this);
         }
 
         public override void PostExecution()
         {
             // Post-conditions from TestSpec
             // DMI displays in SB mode, level 1
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SB mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -55,7 +60,8 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
+            XML.XML_15_3_1_3.Send(this);
+            // All the following steps are carried out in XML_15_3_1_3.cs
             /*
             Test Step 1
             Action: Use the test script file 15_3_1_3.xml to send EVC-8 with,MMI_Q_TEXT = 322MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1
@@ -469,7 +475,6 @@ namespace Testcase.DMITestCases
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }
