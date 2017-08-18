@@ -126,7 +126,35 @@ namespace Testcase.DMITestCases
             EVC14_MMICurrentDriverID.MMI_Q_CLOSE_ENABLE = true;
             EVC14_MMICurrentDriverID.Send();
         }
-        
+
+        /// <summary>
+        ///     Sends EVC-6 telegram with Fixed Data Entry for up to 9 trainset strings.
+        /// </summary>
+        /// <param name="fixedTrainsetCaptions"> Array of strings for trainset captions</param>
+        /// <param name="mmiMTrainsetId">Index of trainset to be pre-selected on DMI</param>
+        public static void Send_EVC6_MMICurrentTrainData_FixedDataEntry(string[] fixedTrainsetCaptions,
+            ushort mmiMTrainsetId)
+
+        {
+            // Train data enabled
+            EVC6_MMICurrentTrainData.MMI_M_DATA_ENABLE = MMI_M_DATA_ENABLE.TrainSetID; // "Train Set ID" data enabled
+            EVC6_MMICurrentTrainData.MMI_L_TRAIN = 0; // Train length
+            EVC6_MMICurrentTrainData.MMI_V_MAXTRAIN = 0; // Max train speed
+            EVC6_MMICurrentTrainData.MMI_NID_KEY_TRAIN_CAT = MMI_NID_KEY.NoDedicatedKey; // Train category
+            EVC6_MMICurrentTrainData.MMI_M_BRAKE_PERC = 0; // Brake percentage
+            EVC6_MMICurrentTrainData.MMI_NID_KEY_AXLE_LOAD = MMI_NID_KEY.NoDedicatedKey; // Axle load category
+            EVC6_MMICurrentTrainData.MMI_M_AIRTIGHT = 0; // Train equipped with airtight system
+            EVC6_MMICurrentTrainData.MMI_NID_KEY_LOAD_GAUGE = MMI_NID_KEY.NoDedicatedKey; // Loading gauge type of train 
+            EVC6_MMICurrentTrainData.MMI_M_BUTTONS = 0; // No Buttons available
+            EVC6_MMICurrentTrainData.MMI_M_TRAINSET_ID = mmiMTrainsetId; // Preselected Trainset ID
+            // MMI_Alt_Dem = 0: No alternative train data entry method available
+
+            EVC6_MMICurrentTrainData.TrainSetCaptions = new List<string>(fixedTrainsetCaptions);
+            EVC6_MMICurrentTrainData.DataElements = new List<DataElement>(); // no train data elements
+
+            EVC6_MMICurrentTrainData.Send();
+        }
+
         /// <summary>
         /// Description: Prompts the tester with a dialog box
         /// </summary>
@@ -377,6 +405,20 @@ namespace Testcase.DMITestCases
         {
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = 7;
             EVC30_MMIRequestEnable.Send();
+        }
+
+        /// <summary>
+        /// Description: Train Data sent to be displayed on th DMI
+        /// Used in:
+        ///     Step 4 in TC-ID: 15.1.3 in 20.1.3
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Display_Train_Data_Window(SignalPool pool)
+        {
+            Send_EVC6_MMICurrentTrainData_FixedDataEntry(new[] { "FLU", "RLU", "Rescue" }, 2);
+
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 11;
+            EVC30_MMIRequestEnable.Send();            
         }
 
         /// <summary>
