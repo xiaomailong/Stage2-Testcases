@@ -59,6 +59,7 @@ namespace Testcase.DMITestCases
             // Testcase entrypoint
 
             XML.XML_15_3_1_5.Send(this);
+            // All the following steps are carried out in XML_15_3_1_5.cs
             /*
             Test Step 1
             Action: Use the test script file 15_3_1_5.xml to send EVC-8 with,MMI_Q_TEXT = 424MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1

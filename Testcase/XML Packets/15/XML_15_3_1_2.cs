@@ -50,7 +50,6 @@ namespace Testcase.XML
                                      "2. No flashing frame is displayed" + Environment.NewLine +
                                      "3. No sound is played.");
             
-
             // Step 2
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;

@@ -47,9 +47,7 @@ namespace Testcase.XML
             pool.WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                      "1. The text message ‘Fixed Text Message 373’ is displayed in area E5." + Environment.NewLine +
                                      "2. No flashing frame is displayed" + Environment.NewLine +
-                                     "3. No sound is played.");
-
-            DmiExpectedResults.Driver_symbol_displayed(_pool, "Brake Intervention", "ST01", "C9", false);
+                                     "3. No sound is played.");            
 
             // Step 2
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
