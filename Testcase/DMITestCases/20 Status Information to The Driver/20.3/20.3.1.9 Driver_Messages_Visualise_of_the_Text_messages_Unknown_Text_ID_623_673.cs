@@ -36,16 +36,19 @@ namespace Testcase.DMITestCases
         public override void PreExecution()
         {
             // Pre-conditions from TestSpec:
-            // DMI is power on.Cabin A is activated.SoM is perform until Level 1 is selected and confirmed.Main window is closed.
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
+            // DMI is power on.Cabin A is activated.SoM is perform until Level 1 is selected and confirmed.Main window is closed.
+            DmiActions.Complete_SoM_L1_SB(this);
         }
 
         public override void PostExecution()
         {
             // Post-conditions from TestSpec
             // DMI displays in SB mode, level 1
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SB mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -55,7 +58,8 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
+            XML.XML_15_3_1_9.Send(this);
+            // All the following steps are carried out in XML_15_3_1_9.cs
             /*
             Test Step 1
             Action: Use the test script file 15_3_1_9.xml to send EVC-8 with,MMI_Q_TEXT = 623MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1
@@ -341,7 +345,6 @@ namespace Testcase.DMITestCases
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }
