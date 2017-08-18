@@ -40,12 +40,16 @@ namespace Testcase.DMITestCases
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
+            // DMI is power on.Cabin A is activated.SoM is perform until Level 1 is selected and confirmed.Main window is closed.
+            DmiActions.Complete_SoM_L1_SB(this);
         }
 
         public override void PostExecution()
         {
             // Post-conditions from TestSpec
-            // DMI displays in SB mode, Level 1
+            // DMI displays in SB mode, level 1
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SB mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -62,7 +66,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   The following text messages are displays on sub-area E5 respectively with sound Sinfo,Level crossing not protected AcknowledgementBalise read errorCommunication errorRunaway movementEntering FSEntering OSEmergency stopSH refusedSH request failedTrackside not compatibleTrain is rejectedTrain dividedTrain data changedSR Distance exceededSR stop orderRV distance exceededETCS IsolatedPerform Brake Test!Unable to start Brake TestBrake Test in ProgressLZB Partial Block ModeOverride LZB Partial Block ModeBrake Test successfulBrake Test TimeoutBrake Test aborted, perform new Test?BTM Test in ProgressBTM Test FailureBTM Test TimeoutRestart ATP!No Level available OnboardAnnounced levels(s) not supported OnboardReactivate the Cabin!Trackside malfunctionTrackside Level(s) not supported OnboardNo Track DescriptionSH Stop OrderProcedure Brake Percentage Entry terminated by ATPProcedure Wheel Diameter Entry terminated by ATPProcedure Doppler Radar Entry terminated by ATPUnable to start Brake Test, vehicle not readyUnblock EBRoute unsuitable – axle load categoryRoute unsuitable – loading gaugeRoute unsuitable – traction systemNo valid authentication keyNL-input signal is withdrawnWheel data settings were successfully changedDoppler radar settings were successfully changedBrake percentage was successfully changedNote: When the new message is added in sub-area E5, an every older message are moved down 1 line
             Test Step Comment: (1) MMI_gen 135 (partly: 50 entries in total, first group); MMI_gen 138 (partly: first group, sound of the first group);
             */
-
+            XML.XML_15_3_3_a.Send(this);
 
             /*
             Test Step 2

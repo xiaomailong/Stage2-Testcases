@@ -36,16 +36,20 @@ namespace Testcase.DMITestCases
         public override void PreExecution()
         {
             // Pre-conditions from TestSpec:
-            // System is power on.SoM is performed until Level 1 is selected.Main window is closed.
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
+            // DMI is power on.Cabin A is activated.SoM is perform until Level 1 is selected and confirmed.Main window is closed.
+            DmiActions.Complete_SoM_L1_SB(this);
         }
 
         public override void PostExecution()
         {
             // Post-conditions from TestSpec
+
             // DMI displays in SB mode, level 1
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SB mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -55,7 +59,8 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
+            XML.XML_15_3_2_a.Send(this);
+            // Steps 1 to 7 are carried out in XML_15_3_2_a.cs
             /*
             Test Step 1
             Action: Use the test script file 15_3_2_a.xml to send EVC-8 with,MMI_Q_TEXT = 256MMI_Q_TEXT_CRITERIA = 3MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1MMI_N_TEXT = 2MMI_X_TEXT[0] = 42MMI_X_TEXT[1] = 43
@@ -118,9 +123,11 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   The navigation button <Up> is enabled.(2)   DMI displays symbol NA13 at sub-area E10.(3)   The visibility window is moves down to the 1st line of the next lower text message, text message ‘Wheel data settings were successfully changed' is displayed in sub-area E8-E9.E.g.Hidden messages (above): Tachometer error  Unauthorize passing ofShown messages: EOA/LOA  *+  Doppler error  Wheel data settings were successfully changedHidden messages (below): Level crossing not protected
             Test Step Comment: (1) MMI_gen 137 (partly: enabled);(2) MMI_gen 137 (partly: NA13);(3) MMI_gen 11455 (partly: Down button, area E11); MMI_gen 164 (partly: Down, scroll through); MMI_gen 134 (partly: visibility window); MMI_gen 143 (partly: 1st line of the next lower text message is not yet visible);
             */
-            // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press ‘Down’ button at sub-area E11");
-
+            WaitForVerification("Press ‘Down’ button at sub-area E11 and check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The navigation button <Up> is enabled." + Environment.NewLine + 
+                                "2. DMI displays symbol NA13 at sub-area E10." + Environment.NewLine +
+                                "3. The visibility window moves down to the 1st line of the next lower text message" + Environment.NewLine +
+                                "4. Text message ‘Wheel data settings were successfully changed' is displayed in sub-area E8-E9.");
 
             /*
             Test Step 9
@@ -128,9 +135,9 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   The visibility window is moves one line down, text message ‘Level crossing not protected’ is displayed at sub-area E9.(2)   The navigation buttons <Down> at sub-area E11 is disabled, display as symbol NA16
             Test Step Comment: (1) MMI_gen 143 (partly: opposite case, moves one line down); (2) MMI_gen 140 (partly: disabled);
             */
-            // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press ‘Down’ button at sub-area E11");
-
+            WaitForVerification("Press ‘Down’ button at sub-area E11 and check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The visibility window moves down to the 1st line of the next lower text message" + Environment.NewLine +
+                                "2. The navigation button <Down> at sub-area E11 is disabled, displayed as symbol NA16.");
 
             /*
             Test Step 10
@@ -138,12 +145,8 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   The display information in sub-area E5-E9 are not changed
             Test Step Comment: (1) MMI_gen 164 (partly: Down, No wrap around); MMI_gen 11455 (partly: not be circular); MMI_gen 147 (partly:remove text driver message, MMI_I_TEXT = 2);
             */
-            // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press ‘Down’ button at sub-area E11");
-            // Call generic Check Results Method
-            DmiExpectedResults
-                .Verify_the_following_information_1_The_display_information_in_sub_area_E5_E9_are_not_changed(this);
-
+            WaitForVerification("Press ‘Down’ button at sub-area E11 and check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The display information in sub-area E5-E9 are not changed.");
 
             /*
             Test Step 11
@@ -151,7 +154,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The fixed text message ‘Doppler error’ is removed.The text message ‘Wheel data settings were successfully changed’ at the lowest position is move up to close the gap, display in sub-area E9.The navigation buttons <Down> at sub-area E11 is disabled, display as symbol NA16. E.g.Hidden messages (above): Tachometer error  Unauthorize passing ofShown messages: EOA/LOA  *+  Wheel data settings were successfully changed  Level crossing not protected
             Test Step Comment: (1) MMI_gen 144 (partly: MMI_I_TEXT);(2) MMI_gen 144 (partly: move up to close the gap);(3) MMI_gen 140 (partly: disabled);
             */
-
+            XML.XML_15_3_2_b.Send(this);
 
             /*
             Test Step 12
@@ -159,7 +162,9 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   The navigation buttons <Up> at sub-area E10 is disabled, display as symbol NA15.(2)   The visibility window is moved up to the next 1st line of a text message when the button is pressed.E.g.Hidden messages (above):“Shown messages:Tachometer error   Unauthorize passing of EOA/LOA  *+   Wheel data settings were Hidden messages (below): successfully changed  Level crossing not protected
             Test Step Comment: (1) MMI_gen 137 (partly: opposite case);(2) MMI_gen 1314; MMI_gen 11455 (partly: Up button, area E10); MMI_gen 164 (partly: Up, scroll through); MMI_gen 7050 (partly: E10);
             */
-
+            WaitForVerification("Press ‘Up’ button at sub-area E10 3 times and check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The navigation buttons <Up> at sub-area E10 is disabled, display as symbol NA15." + Environment.NewLine +
+                                "2. The visibility window is moved up to the next 1st line of a text message each time the button is pressed.");
 
             /*
             Test Step 13
@@ -167,17 +172,15 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   The display information in sub-area E5-E9 are not changed
             Test Step Comment: (1) MMI_gen 164 (partly: Up, No wrap around); MMI_gen 11455 (partly: not be circular);
             */
-            // Call generic Check Results Method
-            DmiExpectedResults
-                .Verify_the_following_information_1_The_display_information_in_sub_area_E5_E9_are_not_changed(this);
-
+            WaitForVerification("Press ‘Up’ button at sub-area E10 and check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The display information in sub-area E5-E9 is not changed.");
 
             /*
             Test Step 14
             Action: Use the test script file 15_3_2_c.xml to send a multiple packet of EVC-8 to remove a text message,Common variables MMI_Q_TEXT = 0MMI_Q_TEXT_CRITERIA = 4MMI_Q_TEXT_CLASS = 0The order of MMI_I_TEXT value in each packetMMI_I_TEXT = 1MMI_I_TEXT = 3MMI_I_TEXT = 5MMI_I_TEXT = 6
             Expected Result: The text messages of “Tachometer error”, “*+”, “Wheel data settings were successfully changed” and “Level crossing not protected” disappear.E.g.Shown messages: Unauthorize passing of EOA/LOA
             */
-
+            XML.XML_15_3_2_c.Send(this);
 
             /*
             Test Step 15
@@ -185,7 +188,8 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)    The new incoming message “Fixed Text Message 261” is display in sub-area E6.E.g.Shown messages: Unauthorize passing of EOA/LOA  Fixed Text Message 261
             Test Step Comment: (1) MMI_gen 148 (indexing, auxiliary);
             */
-
+            XML.XML_15_3_2_d.Send(this);
+            // Steps 15 to 18 are carried out in XML_15_3_2_d.cs
 
             /*
             Test Step 16
@@ -217,7 +221,12 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)    The new incoming message “Fixed Text Message 261” is removed from sub-area E9.E.g.Shown messages:  Fixed Text Message 271  Fixed Text Message 270  Unauthorize passing of EOA/LOAFixed Text Message 272
             Test Step Comment: (1) MMI_gen 148 (deleting, auxiliary);
             */
+            XML.XML_15_3_2_e.Send(this);
+            // Steps 19 and 20 are carried out in XML_15_3_2_e.cs
+            DmiActions.ShowInstruction(this, @"Press <Down> button");
 
+            WaitForVerification("Press ‘Down’ button at sub-area E10 and check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The new incoming message “Fixed Text Message 261” is removed from sub-area E9.");
 
             /*
             Test Step 20
@@ -232,7 +241,6 @@ namespace Testcase.DMITestCases
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }

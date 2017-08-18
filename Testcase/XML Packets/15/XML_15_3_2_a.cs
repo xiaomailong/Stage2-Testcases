@@ -73,7 +73,7 @@ namespace Testcase.XML
                                      "1. Text message ‘Level crossing not protected’ is displayed in sub-area E6 without a yellow flashing frame." + Environment.NewLine +
                                      "2. The bold text message is still displayed above the regular messages." + Environment.NewLine +
                                      "3. No sound is played." + Environment.NewLine +
-                                     "4. The old text message ‘**’ is moved to sub - area E7.");
+                                     "4. The old text message ‘**’ is moved to sub-area E7.");
 
             // Step 4
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -85,10 +85,10 @@ namespace Testcase.XML
             pool.WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                      "1. Text message ‘Unauthorized passing of EOA/LOA’ is displayed in sub-area E5-E6 without yellow flashing frame." + Environment.NewLine +
                                      "2. Sound Sinfo is played." + Environment.NewLine +
-                                     "3. The old text messages are moved to sub - area E7 - E9 respectively." + Environment.NewLine +
-                                     "4. The navigation buttons < Up > and < Down > at sub - area E10 - E11 are disabled." + Environment.NewLine +
-                                     "5. DMI displays symbol NA15 at sub - area E10." + Environment.NewLine +
-                                     "6. DMI displays symbol NA16 at sub - area E11.");
+                                     "3. The old text messages are moved to sub-areas E7 - E9 respectively." + Environment.NewLine +
+                                     "4. The navigation buttons < Up > and < Down > at sub-areas E10 - E11 are disabled." + Environment.NewLine +
+                                     "5. DMI displays symbol NA15 at sub-area E10." + Environment.NewLine +
+                                     "6. DMI displays symbol NA16 at sub-area E11.");
 
             // Step 5
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -98,11 +98,11 @@ namespace Testcase.XML
             EVC8_MMIDriverMessage.Send();
 
             pool.WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                     "1. Text message ‘Tachometer error’ is displayed in sub - area E5 without yellow flashing frame." + Environment.NewLine +
+                                     "1. Text message ‘Tachometer error’ is displayed in sub-area E5 without yellow flashing frame." + Environment.NewLine +
                                      "2. Sound Sinfo is played." + Environment.NewLine +
-                                     "3. The old text messages are moved to sub - area E6 - E9 respectively." + Environment.NewLine +
-                                     "4. The navigation buttons <Down>is disabled." + Environment.NewLine +
-                                     "5. DMI displays symbol NA14 at sub - area E11.");
+                                     "3. The old text messages are moved to sub-area E6 - E9 respectively." + Environment.NewLine +
+                                     "4. The navigation button <Down> is disabled." + Environment.NewLine +
+                                     "5. DMI displays symbol NA14 at sub-area E11.");
             
             // Step 6
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.AuxiliaryInformation;
