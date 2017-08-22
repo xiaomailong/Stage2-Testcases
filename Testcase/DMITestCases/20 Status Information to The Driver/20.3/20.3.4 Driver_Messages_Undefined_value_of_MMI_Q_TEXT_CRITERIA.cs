@@ -39,16 +39,19 @@ namespace Testcase.DMITestCases
         public override void PreExecution()
         {
             // Pre-conditions from TestSpec:
-            // Test system is power onSoM is perform until Level 1 is selected and confirmed.Main window is closed.
-
             // Call the TestCaseBase PreExecution
             base.PreExecution();
+          
+            // Test system is power onSoM is perform until Level 1 is selected and confirmed.Main window is closed.
+            DmiActions.Complete_SoM_L1_SB(this);
         }
 
         public override void PostExecution()
         {
             // Post-conditions from TestSpec
             // DMI displays in SB mode, level 1
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SB mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -58,14 +61,14 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
+            // These steps are carried out in XML_15_3_4.cs
+            XML.XML_15_3_4.Send(this);
             /*
             Test Step 1
             Action: Use the test script file 15_3_4.xml to send EVC-8 with,MMI_Q_TEXT = 527MMI_Q_TEXT_CRITERIA = 5MMI_Q_TEXT_CLASS = 0MMI_I_TEXT = 1
             Expected Result: Verify the following information,(1)    DMI displays the driver message ‘Brake Test aborted, perform new Test?’ in sub-area E5 without yellow flashing frame
             Test Step Comment: (1) MMI_gen 7040 (partly: text message, decision path is not affected, Note 1 under MMI_gen 7040: CRITERIA = 5));
             */
-
 
             /*
             Test Step 2

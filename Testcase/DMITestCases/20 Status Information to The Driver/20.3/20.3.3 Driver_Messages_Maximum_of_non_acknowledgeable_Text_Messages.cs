@@ -13,6 +13,7 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using 
 
 namespace Testcase.DMITestCases
 {
@@ -74,7 +75,7 @@ namespace Testcase.DMITestCases
             Expected Result: The text messages in area E5-E9 are not change.Verify the following information,(1)   There is no sound ‘Sinfo’
             Test Step Comment: (1) MMI_gen 138 (partly: NEGATIVE, no sound of the second group);
             */
-
+            XML.XML_15_3_3_b.Send(this);
 
             /*
             Test Step 3
@@ -84,7 +85,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press <Down> button until it is disabled");
-
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "Text message ‘Level crossing not protected’ changes to ‘No Country Selection in LZB PB Mode’ in normal style in sub-area E9");
 
             /*
             Test Step 4
@@ -92,16 +94,15 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following points,(1)   The visibility window is not moved.(2)   The text message ‘No Country Selection in LZB PB Mode’ is changed to ‘Emergency Brake Failure’.(3)   There is no sound ‘Sinfo’
             Test Step Comment: (1) MMI_gen 138 (partly: the second group, not necessary moving the visibility window);(2) MMI_gen 138 (partly: remove oldest auxiliary message, new of the second group);(3) MMI_gen 138 (partly: negative, no sound of the second group);
             */
-
-
+            XML.XML_15_3_3_c.Send(this);
+            
             /*
             Test Step 5
             Action: (Continue from step 4) send EVC-8 with, MMI_Q_TEXT = 273MMI_Q_TEXT_CRITERIA = 3MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 53
             Expected Result: Verify the following points,The visibility window is moved on top of the message list, <Up> button is disabled and DMI display text message “Unauthorized passing of EOA / LOA” in sub-area E5
             Test Step Comment: (1)  MMI_gen 138 (partly: move the visibility window on top of the Message List);
             */
-
-
+            
             /*
             Test Step 6
             Action: Press <Down> button until it is disabled
@@ -110,7 +111,9 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press <Down> button until it is disabled");
-
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The text message ‘Emergency Brake Failure’ is removed from sub-area E9." + Environment.NewLine +
+                                "2. DMI displays the text message ‘Acknowledgement’ instead.");
 
             /*
             Test Step 7
@@ -119,9 +122,11 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7048 (partly: MMI_gen 240);
             */
             // Call generic Check Results Method
-            DmiExpectedResults
-                .DMI_displays_the_message_ATP_Down_Alarm_with_sound_alarm_Verify_the_following_information_1_The_non_acknowledgeable_message_list_is_flushed_no_driver_message_display_in_area_E5_E9(this);
-
+            DmiActions.Simulate_communication_loss_EVC_DMI(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the text message ‘ATP Down Alarm’." + Environment.NewLine +
+                                "2. A sound alarm is played." + Environment.NewLine +
+                                "3. The non-acknowledgeable message list is flushed, no driver messages are displayed in areas E5-E9.");
 
             /*
             Test Step 8
@@ -129,7 +134,9 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)  If ETCS Onboard re-transmits the driver messages, the messages re-appear
             Test Step Comment: Note under MMI_gen 7048;
             */
-
+            DmiActions.Re_establish_communication_EVC_DMI(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                              "1. DMI re-displays driver messages in areas E5-E9.");
 
             /*
             Test Step 9
@@ -137,11 +144,14 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays the message “ATP Down Alarm” with sound alarm.Verify the following information,(1)   The non-acknowledgeable message list is flushed, no driver message display in area E5-E9
             Test Step Comment: (1) MMI_gen 7048 (partly: MMI_gen 244);
             */
-            // Call generic Check Results Method
-            DmiExpectedResults
-                .DMI_displays_the_message_ATP_Down_Alarm_with_sound_alarm_Verify_the_following_information_1_The_non_acknowledgeable_message_list_is_flushed_no_driver_message_display_in_area_E5_E9(this);
+            XML.XML_15_3_3_b.Send(this);
+            DmiActions.Deactivate_Cabin(this);
+            DmiActions.Simulate_communication_loss_EVC_DMI(this);
 
-
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the text message ‘ATP Down Alarm’." + Environment.NewLine +
+                                "2. A sound alarm is played." + Environment.NewLine +
+                                "3. The non-acknowledgeable message list is flushed, no driver messages are displayed in areas E5-E9.");
             /*
             Test Step 10
             Action: End of test
