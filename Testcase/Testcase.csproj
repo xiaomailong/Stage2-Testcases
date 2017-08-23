@@ -401,6 +401,11 @@ if exist "$(TargetPath)" if not exist "$(TargetPath).locked" move "$(TargetPath)
     <Compile Include="TemporaryFunctions\Temporary.SendEVC6.cs" />
     <Compile Include="TestcaseBase.cs" />
     <Compile Include="TestCaseTemplate.cs" />
+    <Compile Include="XML Packets\10\XML_10_2_2_a.cs" />
+    <Compile Include="XML Packets\10\XML_10_2_2_b.cs" />
+    <Compile Include="XML Packets\10\XML_10_2_2_c.cs" />
+    <Compile Include="XML Packets\10\XML_10_2_a.cs" />
+    <Compile Include="XML Packets\10\XML_10_2_b.cs" />
     <Compile Include="XML Packets\12\XML_12_12_a.cs" />
     <Compile Include="XML Packets\12\XML_12_12_b.cs" />
     <Compile Include="XML Packets\12\XML_12_12_c.cs" />

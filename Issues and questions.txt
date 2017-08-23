@@ -7,4 +7,6 @@
 6. section 17.6.1: says EVC-1 packet restores speed hook when EVC-7 invalid mode removed it: surely a valid EVC-7 mode is required
 7. section 17.7.1: activate cabin... does SB mode, level 1 occur and driver ID window appear?
 8. section 17.8: DMI powered on at start. Is there a way of powering down/up (deprecated DmiActions method)?
-10. section 17.13: step 4 looks incorrect as per RT_ETCS doc. conditions are met for displaying slide... ??
+9. section 17.13: step 4 looks incorrect as per RT_ETCS doc. conditions are met for displaying slide... ??
+10. section 20.3.3: step 4, re-establish communication between ETCS and DMI, sufficent to start sending ETCS1 messages again?
+11. section 15.2.1: step 1, specifies bit 32 (system info) using the numbering scheme the last is EnableBrakingPercentage
