@@ -37,16 +37,19 @@ namespace Testcase.DMITestCases
         public override void PreExecution()
         {
             // Pre-conditions from TestSpec:
-            // Test system is powered onCabin is activePerform SoM until select and confirm Level 1.
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
+            // Test system is powered onCabin is activePerform SoM until select and confirm Level 1.
+            DmiActions.Complete_SoM_L1_SB(this);
         }
 
         public override void PostExecution()
         {
             // Post-conditions from TestSpec
             // DMI displays in SB mode
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SB mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -56,14 +59,17 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
             /*
             Test Step 1
             Action: Perform the following procedure;Press ‘close’ button (Data view window) Press ‘Data View’ button
             Expected Result: Verify the following information;(1)   Verify DMI still displays Default window until Data View window is displayed.(2)   Verify the close button is always enable
             Test Step Comment: (1) MMI_gen 8859 (partly: Data view window);(2) MMI_gen 5646 (partly: always enable, Data view window)
             */
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button in the Data View window. Press ‘Data View’ button.");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays Default window until Data View window is displayed." + Environment.NewLine +
+                                "2. ‘Close’ button is always enabled.");
 
             /*
             Test Step 2
@@ -72,9 +78,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 12018 (partly: Data view window);(2) MMI_gen 168 (partly: disabled buttons, Data view window); MMI_gen 5646 (partly: State 'ST05' button is disabled, Data view window); MMI_gen 4395 (partly: close button, disabled, Data view window);(3) MMI_gen 4396 (partly: close, NA12, Data view window);(4) MMI_gen 5728(partly: removal, EVC, Data view window);(5) MMI_gen 5728 (partly: restore after ST05, Data view window);(6) MMI_gen 4396 (partly: close, NA11, Data view window);
             */
             // Call generic Check Results Method
-            DmiExpectedResults
-                .Verify_the_following_informationDMI_in_the_entry_state_of_ST051_The_hourglass_symbol_ST05_is_displayed_2_Verify_all_buttons_and_the_close_button_is_disable_3_The_disabled_Close_button_NA12_is_display_in_area_G_10_seconds_laterDMI_in_the_exit_state_of_ST054_The_hourglass_symbol_ST05_is_removed_5_The_state_of_all_buttons_is_restored_according_to_the_last_status_before_script_is_sent_6_The_enabled_Close_button_NA11_is_display_in_area_G(this);
-
+            XML.XML_10_2_4_a.Send(this);
 
             /*
             Test Step 3

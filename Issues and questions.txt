@@ -10,3 +10,5 @@
 9. section 17.13: step 4 looks incorrect as per RT_ETCS doc. conditions are met for displaying slide... ??
 10. section 20.3.3: step 4, re-establish communication between ETCS and DMI, sufficent to start sending ETCS1 messages again?
 11. section 15.2.1: step 1, specifies bit 32 (system info) using the numbering scheme the last is EnableBrakingPercentage
+12. section 15.2.6: set up/configuration??
+13. section 15.2.7: make RBC window display?
