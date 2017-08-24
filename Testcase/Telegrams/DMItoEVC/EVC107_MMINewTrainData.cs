@@ -159,7 +159,7 @@ namespace Testcase.Telegrams.DMItoEVC
         {
             set
             {
-                _nidKeyTrainCat = (byte)value;
+                _mBrakePerc = (byte)value;
                 _varPath = "CCUO_ETCS1NewTrainData_MmiMBrakePerc";
                 _bResult = _pool.SITR.Client.Read(_varPath).Equals(_mBrakePerc);
                 CheckSimpleField(_mBrakePerc, _bResult, _varPath);
