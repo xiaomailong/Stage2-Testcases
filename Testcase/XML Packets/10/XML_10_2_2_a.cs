@@ -38,7 +38,7 @@ namespace Testcase.XML
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
 
-            Send(_pool);
+            EVC8_MMIDriverMessage.Send();
 
             _pool.WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                       "1. DMI is in the entry state of ‘ST05’." + Environment.NewLine + 
@@ -48,18 +48,18 @@ namespace Testcase.XML
                                       "5. All buttons and the ‘Close’ button are disabled." + Environment.NewLine +
                                       "6. ‘Close’ button NA12 is displayed disabled in area G.");
 
-            System.Threading.Thread.Sleep(1000);
+            System.Threading.Thread.Sleep(10000);
 
             // Step 2/2
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
 
-            Send(_pool);
+            EVC8_MMIDriverMessage.Send();
 
             _pool.WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                       "1. DMI is in the exit state of ‘ST05’." + Environment.NewLine +
                                       "2. The hourglass symbol ST05 is removed." + Environment.NewLine +
                                       "3. All buttons are enabled." + Environment.NewLine +
-                                      "6. ‘Close’ button NA11 is displayed enabled in area G.");
+                                      "4. ‘Close’ button NA11 is displayed enabled in area G.");
 
         }
     }

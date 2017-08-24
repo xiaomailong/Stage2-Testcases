@@ -22,29 +22,29 @@ using Testcase.Telegrams.EVCtoDMI;
 namespace Testcase.XML
 {
     /// <summary>
-    /// Values of 10.2.2.b.xml file
+    /// Values of 10.2.2.c.xml file
     /// </summary>
-    static class XML_10_2_2_b
+    static class XML_10_2_2_c
     {
         private static SignalPool _pool;
 
         public static void Send(SignalPool pool)
         {
             _pool = pool;
-            
-            EVC14_MMICurrentDriverID.MMI_Q_CLOSE_ENABLE = false;
-            Send(_pool);
+
+            // EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = 0;
+            // EVC20_MMISelectLevel.Send();
 
             _pool.WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                      "1. ‘Close’ button in Driver ID window is disabled.");
+                                      "1. ‘Close’ button in Level window is disabled.");
 
-            System.Threading.Thread.Sleep(1000);
+            System.Threading.Thread.Sleep(10000);
 
-            EVC14_MMICurrentDriverID.MMI_Q_CLOSE_ENABLE = true;
-            Send(_pool);
+            // EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = 1;
+            //EVC20_MMISelectLevel.Send();
 
             _pool.WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                      "1. ‘Close’ button in Driver ID window is enabled.");
+                                      "1. ‘Close’ button in Level window is enabled.");
 
         }
     }
