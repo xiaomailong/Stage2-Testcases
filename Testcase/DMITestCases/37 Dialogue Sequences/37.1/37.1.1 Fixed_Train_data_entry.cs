@@ -46,6 +46,8 @@ namespace Testcase.DMITestCases
         {
             // Post-conditions from TestSpec
             // DMI displays in SB mode, level 1
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SB mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -61,9 +63,10 @@ namespace Testcase.DMITestCases
             Action: Activate Cabin AEnter Driver ID and perform brake testSelect and confirm Level 1
             Expected Result: DMI displays Main window
             */
+            DmiActions.Complete_SoM_L1_SB(this);
+
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Main_window(this);
-
 
             /*
             Test Step 2
@@ -75,13 +78,14 @@ namespace Testcase.DMITestCases
             // Call generic Check Results Method
             DmiExpectedResults.Train_data_window_displayed(this);
 
-
             /*
             Test Step 3
             Action: Select dedicated keyboard button which have different label from an input field without confirmation
             Expected Result: The value of input field is changed refer to pressed button
             */
-
+            DmiActions.ShowInstruction(this, "Press a dedicated keyboard button with a different label from the Input Field without confirming it");
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The Input Field value changes to refer to the pressed button.");
 
             /*
             Test Step 4
@@ -89,27 +93,28 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Train data window.Verify that the train type is not changed to the pressed button from step 3
             Test Step Comment: MMI_gen 8865 (partly:Negative testing for exception 1);
             */
-
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button, then press Train data button");
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays Train data window." + Environment.NewLine +
+                                "2. Train type does not change to the type of the button pressed in Step 3.");
 
             /*
             Test Step 5
             Action: Select and confirm dedicated keyboard button which have different label from an input field.Then, press ‘Yes’ button
             Expected Result: DMI displays Train data validation window
             */
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Train_data_validation_window(this);
-
+            DmiActions.ShowInstruction(this, @"Press and confirm a dedicated keyboard with a different label from the Input Field then press ‘Yes’ button");
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays Train data validation window.");
 
             /*
             Test Step 6
             Action: Select and confirm ‘No’ button
             Expected Result: DMI displays Main window
             */
-            // Call generic Action Method
-            DmiActions.Select_and_confirm_No_button(this);
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Main_window(this);
-
+            DmiActions.ShowInstruction(this, @"Press and confirm ‘No’ button");
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays Main window.");
 
             /*
             Test Step 7
@@ -117,28 +122,31 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Train data window.Verify that the train type is not changed to the pressed button from step 5
             Test Step Comment: MMI_gen 8865 (partly:Exception 1);
             */
-            // Call generic Action Method
-            DmiActions.Select_Train_data_button(this);
-
+            DmiActions.ShowInstruction(this, @"Press ‘Train data’ button");
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays Train data window." + Environment.NewLine +
+                                "2. Train type does not change to the type of the button pressed in Step 5.");
 
             /*
             Test Step 8
-            Action: Repeat action step 5.Then, select and confirm ‘Yes’ button
-            Expected Result: DMI displays Main window
+            Action: Repeat Step 5.Then, select and confirm ‘Yes’ button.
+            Expected Result: DMI displays Main window.
+            Test Step Comment:
             */
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Main_window(this);
-
+            DmiActions.ShowInstruction(this, @"Press and confirm a dedicated keyboard with a different label from the Input Field then press ‘Yes’ button and confirm acceptance");
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays Main window.");
 
             /*
             Test Step 9
             Action: Select Train data button
-            Expected Result: DMI displays Train data window.Verify that the train type is change to pressed button from step 5
-            Test Step Comment: MMI_gen 8863 (partly:Exception);
+            Expected Result: DMI displays Train data window.Verify that the train type is change to pressed button from step 8.
+            Test Step Comment:MMI_gen 8863 (partly:Exception);
             */
-            // Call generic Action Method
-            DmiActions.Select_Train_data_button(this);
-
+            DmiActions.ShowInstruction(this, @"Press ‘Train data’ button");
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays Train data window." + Environment.NewLine +
+                                "2. Train type changes to the type of the button pressed in Step 8.");
 
             /*
             Test Step 10
@@ -146,8 +154,8 @@ namespace Testcase.DMITestCases
             Expected Result: 
             */
 
-
             return GlobalTestResult;
+
         }
     }
 }
