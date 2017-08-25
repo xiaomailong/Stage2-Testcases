@@ -40,12 +40,15 @@ namespace Testcase.DMITestCases
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
+            DmiActions.Complete_SoM_L1_SB(this);
         }
 
         public override void PostExecution()
         {
             // Post-conditions from TestSpec
             // DMI displays in SB mode
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SB mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -55,24 +58,24 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
             /*
             Test Step 1
             Action: At the Special window, press ‘SR speed/distance’’ button
             Expected Result: DMI displays SR speed/distance window
             */
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_SR_speeddistance_window(this);
-
+            DmiActions.ShowInstruction(this, @"Close the Main window. Press the ‘SR speed/distance’ button in the Special window");
+            
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the SR/speed distance window.");
 
             /*
             Test Step 2
             Action: Use the test script file 10_4_1_3_a.xml to send EVC-8 withMMI_Q_TEXT_CRITERIA = 3 MMI_Q_TEXT = 716
             Expected Result: The hourglass symbol ST05 is displayed at window title area
             */
-            // Call generic Check Results Method
-            DmiExpectedResults.The_hourglass_symbol_ST05_is_displayed_at_window_title_area(this);
-
+            XML.XML_10_4_1_3_a.Send(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The hourglass symbol ST05 is displayed in the window title area.");
 
             /*
             Test Step 3
@@ -80,7 +83,9 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the followin information,(1)     The SR speed/distance window is closed, DMI displays System info window after received packet EVC-24
             Test Step Comment: (1) MMI_gen 5507 (partly: SR speed/distance window, abort an already pending data entry process, received packet of different window from ETCS onboard);
             */
-
+            XML.XML_10_4_1_3_b.Send(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The SR speed/distance window is closed and DMI displays the System info window.");
 
             /*
             Test Step 4
@@ -88,14 +93,21 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the followin information,(1)     The Adhesion window is closed, DMI displays System info window after received packet EVC-24
             Test Step Comment: (1) MMI_gen 5507 (partly: Adhesion window, abort an already pending data entry process, received packet of different window from ETCS onboard);
             */
+            DmiActions.ShowInstruction(this, @" Press the ‘Close’ button in the System info window. Open the Adhesion window");
 
+            XML.XML_10_4_1_3_a.Send(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The hourglass symbol ST05 is displayed in the window title area.");
+
+            XML.XML_10_4_1_3_b.Send(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The Adhesion window is closed and DMI displays the System info window.");
 
             /*
             Test Step 5
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }

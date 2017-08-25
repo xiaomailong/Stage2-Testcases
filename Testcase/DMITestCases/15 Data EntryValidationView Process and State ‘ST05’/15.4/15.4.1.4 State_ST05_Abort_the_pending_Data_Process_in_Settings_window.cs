@@ -46,6 +46,8 @@ namespace Testcase.DMITestCases
         {
             // Post-conditions from TestSpec
             // DMI displays in SB mode
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SB mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -55,15 +57,16 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
+            // The Maintenance password window is supposed to be open at this point...?
 
             /*
             Test Step 1
             Action: At Maintenance password window, use the test script file 10_4_1_4_a.xml to send EVC-8 withMMI_Q_TEXT_CRITERIA = 3 MMI_Q_TEXT = 716
             Expected Result: The hourglass symbol ST05 is displayed at window title area
             */
-            // Call generic Check Results Method
-            DmiExpectedResults.The_hourglass_symbol_ST05_is_displayed_at_window_title_area(this);
-
+            XML.XML_10_4_1_4_a.Send(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The hourglass symbol ST05 is displayed in the window title area.");
 
             /*
             Test Step 2
@@ -71,7 +74,9 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the followin information,(1)     The Maintenance password window is closed, DMI displays System info window after received packet EVC-24
             Test Step Comment: (1) MMI_gen 5507 (partly: Maintenance password window, abort an already pending data entry process, received packet of different window from ETCS onboard);
             */
-
+            XML.XML_10_4_1_4_b.Send(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The Maintenance password window is closed and DMI displays the System info window.");
 
             /*
             Test Step 3
@@ -79,7 +84,15 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the followin information,(1)    The Wheel diameter Number window is closed, DMI displays System info window after received packet EVC-24
             Test Step Comment: (1) MMI_gen 5507 (partly: Wheel diameter window, abort an already pending data entry process, received packet of different window from ETCS onboard);
             */
+            DmiActions.ShowInstruction(this, @"Press the ‘Close’ button in the System info window. Open the Wheel diameter window");
 
+            XML.XML_10_4_1_4_a.Send(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The hourglass symbol ST05 is displayed in the window title area.");
+
+            XML.XML_10_4_1_4_b.Send(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The Wheel diameter window is closed and DMI displays the System info window.");
 
             /*
             Test Step 4
@@ -87,7 +100,15 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the followin information,(1)    The Wheel diameter validation window is closed, DMI displays System info window after received packet EVC-24
             Test Step Comment: (1) MMI_gen 5507 (partly: Wheel diameter validation window, abort an already pending data validation process, received packet of different window from ETCS onboard);
             */
+            DmiActions.ShowInstruction(this, @"Press the ‘Close’ button in the System info window. Open the Wheel diameter validation window");
 
+            XML.XML_10_4_1_4_a.Send(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The hourglass symbol ST05 is displayed in the window title area.");
+
+            XML.XML_10_4_1_4_b.Send(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The Wheel diameter validation window is closed and DMI displays the System info window.");
 
             /*
             Test Step 5
@@ -95,7 +116,15 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the followin information,(1)    The Radar Number window is closed, DMI displays System info window after received packet EVC-24
             Test Step Comment: (1) MMI_gen 5507 (partly: Radar window, abort an already pending data entry process, received packet of different window from ETCS onboard);
             */
+            DmiActions.ShowInstruction(this, @"Press the ‘Close’ button in the System info window. Open the Radar window");
 
+            XML.XML_10_4_1_4_a.Send(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The hourglass symbol ST05 is displayed in the window title area.");
+
+            XML.XML_10_4_1_4_b.Send(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The Radar Number window is closed and DMI displays the System info window.");
 
             /*
             Test Step 6
@@ -103,7 +132,15 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the followin information,(1)    The Radar validation window is closed, DMI displays System info window after received packet EVC-24
             Test Step Comment: (1) MMI_gen 5507 (partly: Radar validation window, abort an already pending data validation process, received packet of different window from ETCS onboard);
             */
+            DmiActions.ShowInstruction(this, @"Press the ‘Close’ button in the System info window. Open the Radar validation window");
 
+            XML.XML_10_4_1_4_a.Send(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The hourglass symbol ST05 is displayed in the window title area.");
+
+            XML.XML_10_4_1_4_b.Send(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The Radar validation window is closed and DMI displays the System info window.");
 
             /*
             Test Step 7
@@ -111,7 +148,15 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the followin information,(1)    The Language window is closed, DMI displays System info window after received packet EVC-24
             Test Step Comment: (1) MMI_gen 5507 (partly: Language window, abort an already pending data entry process, received packet of different window from ETCS onboard);
             */
+            DmiActions.ShowInstruction(this, @"Press the ‘Close’ button in the System info window. Open the Language window");
 
+            XML.XML_10_4_1_4_a.Send(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The hourglass symbol ST05 is displayed in the window title area.");
+
+            XML.XML_10_4_1_4_b.Send(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The Language window is closed and DMI displays the System info window.");
 
             /*
             Test Step 8
@@ -119,7 +164,15 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the followin information,(1)    The Volume window is closed, DMI displays System info window after received packet EVC-24
             Test Step Comment: (1) MMI_gen 5507 (partly: Volume window, abort an already pending data entry process, received packet of different window from ETCS onboard);
             */
+            DmiActions.ShowInstruction(this, @"Press the ‘Close’ button in the System info window. Open the Volume window");
 
+            XML.XML_10_4_1_4_a.Send(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The hourglass symbol ST05 is displayed in the window title area.");
+
+            XML.XML_10_4_1_4_b.Send(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The Volume window is closed and DMI displays the System info window.");
 
             /*
             Test Step 9
@@ -127,7 +180,15 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the followin information,(1)    The Brightness window is closed, DMI displays System info window after received packet EVC-24
             Test Step Comment: (1) MMI_gen 5507 (partly: Brightness window, abort an already pending data entry process, received packet of different window from ETCS onboard);
             */
+            DmiActions.ShowInstruction(this, @"Press the ‘Close’ button in the System info window. Open the Brightness window");
 
+            XML.XML_10_4_1_4_a.Send(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The hourglass symbol ST05 is displayed in the window title area.");
+
+            XML.XML_10_4_1_4_b.Send(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The Brightness window is closed and DMI displays the System info window.");
 
             /*
             Test Step 10
@@ -135,7 +196,15 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the followin information,(1)    The Set VBC window is closed, DMI displays System info window after received packet EVC-24
             Test Step Comment: (1) MMI_gen 5507 (partly: Set VBC window, abort an already pending data entry process, received packet of different window from ETCS onboard);
             */
+            DmiActions.ShowInstruction(this, @"Press the ‘Close’ button in the System info window. Open the Set VBC window");
 
+            XML.XML_10_4_1_4_a.Send(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The hourglass symbol ST05 is displayed in the window title area.");
+
+            XML.XML_10_4_1_4_b.Send(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The Set VBC window is closed and DMI displays the System info window.");
 
             /*
             Test Step 11
@@ -143,7 +212,15 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the followin information,(1)    The Set VBC validation window is closed, DMI displays System info window after received packet EVC-24
             Test Step Comment: (1) MMI_gen 5507 (partly: Set VBC validation window, abort an already pending data validation process, received packet of different window from ETCS onboard);
             */
+            DmiActions.ShowInstruction(this, @"Press the ‘Close’ button in the System info window. Open the Set VBC validation window");
 
+            XML.XML_10_4_1_4_a.Send(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The hourglass symbol ST05 is displayed in the window title area.");
+
+            XML.XML_10_4_1_4_b.Send(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The Set VBC validation window is closed and DMI displays the System info window.");
 
             /*
             Test Step 12
@@ -151,7 +228,15 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the followin information,(1)    The Remove VBC window is closed, DMI displays System info window after received packet EVC-24
             Test Step Comment: (1) MMI_gen 5507 (partly: Remove VBC window, abort an already pending data entry process, received packet of different window from ETCS onboard);
             */
+            DmiActions.ShowInstruction(this, @"Press the ‘Close’ button in the System info window. Open the Remove VBC window");
 
+            XML.XML_10_4_1_4_a.Send(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The hourglass symbol ST05 is displayed in the window title area.");
+
+            XML.XML_10_4_1_4_b.Send(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The Remove VBC window is closed and DMI displays the System info window.");
 
             /*
             Test Step 13
@@ -159,7 +244,15 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the followin information,(1)    The Remove VBC validation window is closed, DMI displays System info window after received packet EVC-24
             Test Step Comment: (1) MMI_gen 5507 (partly: Remove VBC validation window, abort an already pending data validation process, received packet of different window from ETCS onboard);
             */
+            DmiActions.ShowInstruction(this, @"Press the ‘Close’ button in the System info window. Open the Remove VBC validation window");
 
+            XML.XML_10_4_1_4_a.Send(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The hourglass symbol ST05 is displayed in the window title area.");
+
+            XML.XML_10_4_1_4_b.Send(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The Remove VBC validation window is closed and DMI displays the System info window.");
 
             /*
             Test Step 14
@@ -167,7 +260,15 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the followin information,(1)    The Brake Percentage window is closed, DMI displays System info window after received packet EVC-24
             Test Step Comment: (1) MMI_gen 5507 (partly: Brake Percentage window, abort an already pending data entry process, received packet of different window from ETCS onboard);
             */
+            DmiActions.ShowInstruction(this, @"Press the ‘Close’ button in the System info window. Open the Brake Percentage window");
 
+            XML.XML_10_4_1_4_a.Send(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The hourglass symbol ST05 is displayed in the window title area.");
+
+            XML.XML_10_4_1_4_b.Send(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The Brake Percentage window is closed and DMI displays the System info window.");
 
             /*
             Test Step 15
@@ -175,14 +276,21 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the followin information,(1)    The Brake Percentage validation window is closed, DMI displays System info window after received packet EVC-24
             Test Step Comment: (1) MMI_gen 5507 (partly: Brake Percentage validation window, abort an already pending data validation process, received packet of different window from ETCS onboard);
             */
+            DmiActions.ShowInstruction(this, @"Press the ‘Close’ button in the System info window. Open the Brake Percentage validation window");
 
+            XML.XML_10_4_1_4_a.Send(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The hourglass symbol ST05 is displayed in the window title area.");
+
+            XML.XML_10_4_1_4_b.Send(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The Brake Percentage validation window is closed and DMI displays the System info window.");
 
             /*
             Test Step 16
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }

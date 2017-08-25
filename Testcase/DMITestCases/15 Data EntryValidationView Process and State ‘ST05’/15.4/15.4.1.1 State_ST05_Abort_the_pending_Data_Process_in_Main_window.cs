@@ -36,16 +36,19 @@ namespace Testcase.DMITestCases
         public override void PreExecution()
         {
             // Pre-conditions from TestSpec:
-            // Test system is powered onCabin is activeSoM is performed until level 1 is selected and confirmed.
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
+            // Test system is powered onCabin is activeSoM is performed until level 1 is selected and confirmed.
+            DmiActions.Complete_SoM_L1_SB(this);
         }
 
         public override void PostExecution()
         {
             // Post-conditions from TestSpec
             // DMI displays in SB mode
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SB mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -55,24 +58,24 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
             /*
             Test Step 1
             Action: At the Main window, press ‘Driver ID’ button
             Expected Result: DMI displays Driver ID window
             */
+            DmiActions.ShowInstruction(this, @"Press ‘Driver ID’ button");
             // Call generic Check Results Method
             DmiExpectedResults.Driver_ID_window_displayed(this);
-
 
             /*
             Test Step 2
             Action: Use the test script file 10_4_1_1_a.xml to send EVC-8 withMMI_Q_TEXT_CRITERIA = 3 MMI_Q_TEXT = 716
             Expected Result: The hourglass symbol ST05 is displayed at window title area
             */
-            // Call generic Check Results Method
-            DmiExpectedResults.The_hourglass_symbol_ST05_is_displayed_at_window_title_area(this);
+            XML.XML_10_4_1_1_a.Send(this);
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The hourglass symbol ST05 is displayed in the window title area.");
 
             /*
             Test Step 3
@@ -80,7 +83,9 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the followin information,(1)     The Driver ID window is closed, DMI displays System info window after received packet EVC-24
             Test Step Comment: (1) MMI_gen 5507 (partly: Driver ID window, abort an already pending data entry process, received packet of different window from ETCS onboard);
             */
-
+            XML.XML_10_4_1_1_b.Send(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The Driver ID window is closed and DMI displays the System info window.");
 
             /*
             Test Step 4
@@ -88,7 +93,15 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the followin information,(1)    The Train Running Number window is closed, DMI displays System info window after received packet EVC-24
             Test Step Comment: (1) MMI_gen 5507 (partly: Train Running Number window, abort an already pending data entry process, received packet of different window from ETCS onboard);
             */
+            DmiActions.ShowInstruction(this, @"Press the  ‘Close’ button in the System info window. Open the Train Running number window.");
 
+            XML.XML_10_4_1_1_a.Send(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The hourglass symbol ST05 is displayed in the window title area."); 
+
+            XML.XML_10_4_1_1_b.Send(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The Driver ID window is closed and DMI displays the System info window.");
 
             /*
             Test Step 5
@@ -96,7 +109,15 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the followin information,(1)    The Level window is closed, DMI displays System info window after received packet EVC-24
             Test Step Comment: (1) MMI_gen 5507 (partly: Level  window, abort an already pending data entry process, received packet of different window from ETCS onboard);
             */
+            DmiActions.ShowInstruction(this, @"Press the  ‘Close’ button in the System info window. Open the Level window.");
 
+            XML.XML_10_4_1_1_a.Send(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The hourglass symbol ST05 is displayed in the window title area.");
+
+            XML.XML_10_4_1_1_b.Send(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The Level window is closed and DMI displays the System info window.");
 
             /*
             Test Step 6
@@ -104,16 +125,26 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the followin information,(1)    The Train data window is closed, DMI displays System info window after received packet EVC-24
             Test Step Comment: (1) MMI_gen 5507 (partly: Train Data Number window, abort an already pending data validation process, received packet of different window from ETCS onboard);
             */
+            DmiActions.ShowInstruction(this, @"Press the  ‘Close’ button in the System info window. Open the Train data window.");
 
+            XML.XML_10_4_1_1_a.Send(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The hourglass symbol ST05 is displayed in the window title area.");
+
+            XML.XML_10_4_1_1_b.Send(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The Train data window is closed and DMI displays the System info window.");
 
             /*
             Test Step 7
             Action: Perform the following procedure,At System info window, press ‘close’ button.Open Train data windowEnter and confirm all value of an input fieldsPress on enabled ‘Yes’ button
             Expected Result: DMI displays Train data validation window
             */
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Train_data_validation_window(this);
-
+            DmiActions.ShowInstruction(this, @"Press the  ‘Close’ button in the System info window. Open the Train data window." + Environment.NewLine +
+                                             @"Enter and accept the values of all Input Fields. Press on the enabled ‘Yes’ button.");
+            
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the Train validation window.");
 
             /*
             Test Step 8
@@ -121,14 +152,19 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the followin information,(1)    The Train data validation window is closed, DMI displays System info window after received packet EVC-24
             Test Step Comment: (1) MMI_gen 5507 (partly: Train Data Number window, abort an already pending data entry process, received packet of different window from ETCS onboard);
             */
+            XML.XML_10_4_1_1_a.Send(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The hourglass symbol ST05 is displayed in the window title area.");
 
+            XML.XML_10_4_1_1_b.Send(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The Train Data validation window is closed and DMI displays the System info window.");
 
             /*
             Test Step 9
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }

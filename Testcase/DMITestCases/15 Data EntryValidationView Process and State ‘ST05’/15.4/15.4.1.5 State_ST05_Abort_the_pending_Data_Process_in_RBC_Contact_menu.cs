@@ -13,6 +13,8 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.EVCtoDMI;
+
 
 namespace Testcase.DMITestCases
 {
@@ -36,16 +38,34 @@ namespace Testcase.DMITestCases
         public override void PreExecution()
         {
             // Pre-conditions from TestSpec:
-            // Test system is powered onCabin is activeSoM is performed until level 2 is selected and confirmed.
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
+
+            // Test system is powered onCabin is activeSoM is performed until level 2 is selected and confirmed.
+            EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.GoToIdle;
+            EVC0_MMIStartATP.Send();
+
+            // Set train running number, cab 1 active, and other defaults
+            DmiActions.Activate_Cabin_1(this);
+
+            // Set driver ID
+            DmiActions.Set_Driver_ID(this, "1234");
+
+            // Set to level 1 and SR mode
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L2;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
+
+            // Enable standard buttons including Start, and display Default window.
+            DmiActions.FinishedSoM_Default_Window(this);
         }
 
         public override void PostExecution()
         {
             // Post-conditions from TestSpec
             // DMI displays in SB mode
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SB mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -61,18 +81,18 @@ namespace Testcase.DMITestCases
             Action: At the RBC contact window, press ‘RBC Data’ button
             Expected Result: DMI displays RBC Data window
             */
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_RBC_Data_window(this);
-
+            DmiActions.ShowInstruction(this, @"Press the ‘RBC Data’ button in the RBC Contact window");
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the RBC Data window.");
 
             /*
             Test Step 2
             Action: Use the test script file 10_4_1_5_a.xml to send EVC-8 withMMI_Q_TEXT_CRITERIA = 3 MMI_Q_TEXT = 716
             Expected Result: The hourglass symbol ST05 is displayed at window title area
             */
-            // Call generic Check Results Method
-            DmiExpectedResults.The_hourglass_symbol_ST05_is_displayed_at_window_title_area(this);
-
+            XML.XML_10_4_1_5_a.Send(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The hourglass symbol ST05 is displayed in the window title area.");
 
             /*
             Test Step 3
@@ -80,7 +100,9 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the followin information,(1)     The RBC Data window is closed, DMI displays System info window after received packet EVC-24
             Test Step Comment: (1) MMI_gen 5507 (partly: RBC Data window, abort an already pending data entry process, received packet of different window from ETCS onboard);
             */
-
+            XML.XML_10_4_1_5_b.Send(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The RBC Data window is closed and DMI displays the System info window");
 
             /*
             Test Step 4
@@ -88,15 +110,23 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the followin information,(1)    The Radio Network ID window is closed, DMI displays System info window after received packet EVC-24
             Test Step Comment: (1) MMI_gen 5507 (partly: Radio Network ID window, abort an already pending data entry process, received packet of different window from ETCS onboard);
             */
+            DmiActions.ShowInstruction(this, @"Press the ‘Close’ button in the System info window. Press and hold the ‘Radio network ID’ button for at least 2 seconds." + Environment.NewLine +
+                                             @"Release the area pressed");
 
+            XML.XML_10_4_1_5_a.Send(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The hourglass symbol ST05 is displayed in the window title area.");
+
+            XML.XML_10_4_1_5_b.Send(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The Radio Network ID window is closed and DMI displays the System info window");
 
             /*
             Test Step 5
             Action: End of test
             Expected Result: 
             */
-
-
+            
             return GlobalTestResult;
         }
     }
