@@ -13,6 +13,8 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.EVCtoDMI;
+
 
 namespace Testcase.DMITestCases
 {
@@ -40,12 +42,16 @@ namespace Testcase.DMITestCases
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
+
+            DmiActions.Complete_SoM_L1_SB(this);
         }
 
         public override void PostExecution()
         {
             // Post-conditions from TestSpec
             // DMI displays in SB mode, level 2
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SB mode, Level 2.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -55,16 +61,15 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
             /*
             Test Step 1
             Action: Perform the following procedure,Press ‘Level’ button.Enter and confirm Level 2.Press ‘RBC data’ button
             Expected Result: DMI displays RBC data window
             Test Step Comment: (1) MMI_gen 8868 (partly: after the start-up dialogue sequence);
             */
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_RBC_data_window(this);
-
+            DmiActions.ShowInstruction(this, @"Press ‘Level’ button. Enter and confirm Level 2. Press ‘RBC data’ button");
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays RBC data window.");
 
             /*
             Test Step 2
@@ -72,16 +77,27 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,DMI closes the RBC data window and displays RBC Contact window instead.Use the log file to confirm that DMI receives packet information [MMI_ENABLE_REQUEST (EVC-30)] with variable MMI_Q_REQUEST_ENABLE_64 (#21) = 0
             Test Step Comment: (1) MMI_gen 8868 (partly: RBC data entry);(2) MMI_gen 11283 (partly: RBC data entry); MMI_gen 3374 (partly: NEGATIVE, close by ETCS OB);
             */
-            // Call generic Action Method
-            DmiActions
-                .Perform_the_following_procedure_Drive_the_train_forward_until_the_brake_is_appliedStop_driving_the_trainAcknowledge_the_Brake_intervention_symbol_by_pressing_area_E1(this);
+            // ?? More required to get emergency symbol displayed
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI closes the RBC data window and displays the RBC contact window.");
 
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
+
+            // spec says bit 21 = 0 => EnterRBCData
+            // This should be done by int request = EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH;
+            //                        request &= ~(EVC30_MMIRequestEnable.EnabledRequests.EnterRBCData);
+            //                        EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = request;
+            DmiActions.ShowInstruction(this, @"Press area E1 to acknowledge the ‘Brake intervention’ symbol");
 
             /*
             Test Step 3
             Action: Perform the following procedure,Press and hold  ‘Radio network ID’ button at least 2 seconds.Release the pressed area
             Expected Result: DMI displays Radio network ID window
             */
+            DmiActions.ShowInstruction(this, @"Press and hold ‘Radio network ID’ button for at least 2 seconds. Release the pressed area");
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays Radio network ID window.");
 
 
             /*
@@ -90,10 +106,18 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,DMI closes the RBC data window and displays RBC Contact window instead.Use the log file to confirm that DMI receives packet information [MMI_ENABLE_REQUEST (EVC-30)] with variable MMI_Q_REQUEST_ENABLE_64 (#22) = 0
             Test Step Comment: (1) MMI_gen 8868 (partly: Radio network ID);(2) MMI_gen 11283 (partly: Radio network ID);
             */
-            // Call generic Action Method
-            DmiActions
-                .Perform_the_following_procedure_Drive_the_train_forward_until_the_brake_is_appliedStop_driving_the_trainAcknowledge_the_Brake_intervention_symbol_by_pressing_area_E1(this);
+            // ?? More required to get emergency symbol displayed
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI closes the RBC data window and displays the RBC Contact window.");
 
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
+
+            // spec says bit 22 = 0 => RadioNetworkID
+            // This should be done by int request = EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH;
+            //                        request &= ~(EVC30_MMIRequestEnable.EnabledRequests.RadioNetworkID);
+            //                        EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = request;
+            DmiActions.ShowInstruction(this, @"Press area E1 to acknowledge the ‘Brake intervention’ symbol");
 
             /*
             Test Step 5

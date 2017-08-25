@@ -13,6 +13,8 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.EVCtoDMI;
+
 
 namespace Testcase.DMITestCases
 {
@@ -36,16 +38,19 @@ namespace Testcase.DMITestCases
         public override void PreExecution()
         {
             // Pre-conditions from TestSpec:
-            // Test system is powered on Cabin A is activated.Enter Driver ID and perform brake test.Level 1 is entered and confirmed.
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
+            // Test system is powered on Cabin A is activated.Enter Driver ID and perform brake test.Level 1 is entered and confirmed.
+            DmiActions.Complete_SoM_L1_SB(this);
         }
 
         public override void PostExecution()
         {
             // Post-conditions from TestSpec
             // DMI displays in SR mode, level 1
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SR mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -54,8 +59,7 @@ namespace Testcase.DMITestCases
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint
-
-
+            
             /*
             Test Step 1
             Action: Press ‘Driver ID’ button
@@ -66,17 +70,28 @@ namespace Testcase.DMITestCases
             // Call generic Check Results Method
             DmiExpectedResults.Driver_ID_window_displayed(this);
 
-
             /*
             Test Step 2
             Action: Perform the following procedure,Drive the train forward until the brake is appliedStop driving the trainAcknowledge the ‘Brake intervention’ symbol by pressing area E1
             Expected Result: Verify the following information,DMI closes the Drive ID window and displays Main window instead.Use the log file to confirm that DMI receives packet information [MMI_ENABLE_REQUEST (EVC-30)] with variable MMI_Q_REQUEST_ENABLE_64 (#0) = 0
             Test Step Comment: (1) MMI_gen 8868 (partly: Driver ID);(2) MMI_gen 11283 (partly: Driver ID);
             */
-            // Call generic Action Method
-            DmiActions
-                .Perform_the_following_procedure_Drive_the_train_forward_until_the_brake_is_appliedStop_driving_the_trainAcknowledge_the_Brake_intervention_symbol_by_pressing_area_E1(this);
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI closes the Drive ID window and displays the Main window");
 
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
+
+            // ?? Spec says bit 0 value = 0: presumably the left-most bit
+            // This should be done by int request = EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH;
+            //                        request &= ~(EVC30_MMIRequestEnable.EnabledRequests.Start);
+            //                        EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = request;
+            // so types of MMI_Q_REQUEST_ENABLE_HIGH and getter/setter is wrong
+            //EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.None;     // ?? EVC30_MMIRequestEnable.EnabledRequests.Level;
+
+            // Not clear what message would be sent by ETCS ??  MMI_ETCS_MISC_OUT_SIGNALS OBU_TR_EB_STATUS
+            // to display emergency symbol 
+            DmiActions.ShowInstruction(this, @"Press area E1 to acknowledge the ‘Brake intervention’ symbol");
 
             /*
             Test Step 3
@@ -88,17 +103,24 @@ namespace Testcase.DMITestCases
             // Call generic Check Results Method
             DmiExpectedResults.Level_window_displayed(this);
 
-
             /*
             Test Step 4
             Action: Perform the following procedure,Drive the train forward until the brake is appliedStop driving the trainAcknowledge the ‘Brake intervention’ symbol by pressing area E1
             Expected Result: Verify the following information,DMI closes the Level window and displays Main window instead.Use the log file to confirm that DMI receives packet information [MMI_ENABLE_REQUEST (EVC-30)] with variable MMI_Q_REQUEST_ENABLE_64 (#3) = 0
             Test Step Comment: (1) MMI_gen 8868 (partly: Level);(2) MMI_gen 11283 (partly: Level);
             */
-            // Call generic Action Method
-            DmiActions
-                .Perform_the_following_procedure_Drive_the_train_forward_until_the_brake_is_appliedStop_driving_the_trainAcknowledge_the_Brake_intervention_symbol_by_pressing_area_E1(this);
+            // see above discussion...
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI closes the Level window and displays the Main window.");
 
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
+
+            // spec says 
+            // This should be done by int request = EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH;
+            //                        request &= ~(EVC30_MMIRequestEnable.EnabledRequests.Level);
+            //                        EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = request;
+            DmiActions.ShowInstruction(this, @"Press area E1 to acknowledge the ‘Brake intervention’ symbol");
 
             /*
             Test Step 5
@@ -110,26 +132,33 @@ namespace Testcase.DMITestCases
             // Call generic Check Results Method
             DmiExpectedResults.Train_data_window_displayed(this);
 
-
             /*
             Test Step 6
             Action: Perform the following procedure,Drive the train forward until the brake is appliedStop driving the trainAcknowledge the ‘Brake intervention’ symbol by pressing area E1
             Expected Result: Verify the following information,DMI closes the Train data window and displays Main window instead.Use the log file to confirm that DMI receives packet information [MMI_ENABLE_REQUEST (EVC-30)] with variable MMI_Q_REQUEST_ENABLE_64 (#2) = 0
             Test Step Comment: (1) MMI_gen 8868 (partly: Train data); (2) MMI_gen 11283 (partly: train data); MMI_gen 3374 (partly: NEGATIVE, close by ETCS OB);
             */
-            // Call generic Action Method
-            DmiActions
-                .Perform_the_following_procedure_Drive_the_train_forward_until_the_brake_is_appliedStop_driving_the_trainAcknowledge_the_Brake_intervention_symbol_by_pressing_area_E1(this);
+            // see above discussion...
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI closes the Train data window and displays the Main window.");
 
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
+
+            // spec says 
+            // This should be done by int request = EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH;
+            //                        request &= ~(EVC30_MMIRequestEnable.EnabledRequests.TrainData);
+            //                        EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = request;
+            DmiActions.ShowInstruction(this, @"Press area E1 to acknowledge the ‘Brake intervention’ symbol");
 
             /*
             Test Step 7
             Action: Perform the following procedure,Press ‘Train data’ button.Enter and confirm all value of train data window.Press ‘Yes’ button
             Expected Result: DMI displays Train data validation window
             */
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Train_data_validation_window(this);
-
+            DmiActions.ShowInstruction(this, @"Press ‘Train data’ button. Enter and confitrm all values in the train data window. Press ‘Yes’ button");
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays Train data validation window.");
 
             /*
             Test Step 8
@@ -137,19 +166,28 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,DMI closes the Train data validation window and displays Main window instead.Use the log file to confirm that DMI receives packet information [MMI_ENABLE_REQUEST (EVC-30)] with variable MMI_Q_REQUEST_ENABLE_64 (#2) = 0
             Test Step Comment: (1) MMI_gen 8868 (partly: Train data validation);(2) MMI_gen 11283 (partly: train data validation);
             */
-            // Call generic Action Method
-            DmiActions
-                .Perform_the_following_procedure_Drive_the_train_forward_until_the_brake_is_appliedStop_driving_the_trainAcknowledge_the_Brake_intervention_symbol_by_pressing_area_E1(this);
+            // see above discussion...
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI closes the Train data validation window and displays the Main window.");
 
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
+
+            // spec says 
+            // This should be done by int request = EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH;
+            //                        request &= ~(EVC30_MMIRequestEnable.EnabledRequests.TrainData);
+            //                        EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = request;
+            DmiActions.ShowInstruction(this, @"Press area E1 to acknowledge the ‘Brake intervention’ symbol");
 
             /*
             Test Step 9
             Action: Perform the following procedure,Press ‘Train data’ button.Enter and confirm all value of train data window.Press ‘Yes’ button.At the train data validation window, press ‘Yes’ button.Confirm entered data by pressing an input field
             Expected Result: DMI displays Train Running Number window
             */
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Train_Running_Number_window(this);
-
+            DmiActions.ShowInstruction(this, @"Press ‘Train data’ button. Enter and confirm all values in the train data window. Press ‘Yes’ button" + Environment.NewLine +
+                                             @"Press ‘Yes’ button in the train data validation window");
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays Train Runing Number window.");
 
             /*
             Test Step 10
@@ -157,28 +195,36 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,DMI closes the Train Running Number window and displays Main window instead.Use the log file to confirm that DMI receives packet information [MMI_ENABLE_REQUEST (EVC-30)] with variable MMI_Q_REQUEST_ENABLE_64 (#4) = 0
             Test Step Comment: (1) MMI_gen 8868 (partly: Train running number);(2) MMI_gen 11283 (partly: train running number);
             */
-            // Call generic Action Method
-            DmiActions
-                .Perform_the_following_procedure_Drive_the_train_forward_until_the_brake_is_appliedStop_driving_the_trainAcknowledge_the_Brake_intervention_symbol_by_pressing_area_E1(this);
+            // see above discussion...
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI closes the Train Running Number window and displays the Main window.");
 
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
+
+            // spec says 
+            // This should be done by int request = EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH;
+            //                        request &= ~(EVC30_MMIRequestEnable.EnabledRequests.TrainRunningNumber);
+            //                        EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = request;
+            DmiActions.ShowInstruction(this, @"Press area E1 to acknowledge the ‘Brake intervention’ symbol");
 
             /*
             Test Step 11
             Action: Press ‘Train running number’ button. Then, enter and confirm Train running number
             Expected Result: DMI displays Main window
             */
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Main_window(this);
-
+            DmiActions.ShowInstruction(this, @"Press ‘Train Running Number’ button");
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the Main window.");
 
             /*
             Test Step 12
             Action: Perform the following procedure, Press ‘Close’ buttonPress ‘Settings’ buttonPress ‘Language’ button
             Expected Result: DMI displays Language window
             */
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Language_window(this);
-
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button. Press ‘Settings’ button. Press ‘Language’ button");
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the Language window.");
 
             /*
             Test Step 13
@@ -186,10 +232,18 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,DMI closes the Language window and displays Settings window instead.Use the log file to confirm that DMI receives packet information [MMI_ENABLE_REQUEST (EVC-30)] with variable MMI_Q_REQUEST_ENABLE_64 (#13) = 0
             Test Step Comment: (1) MMI_gen 8868 (partly: Language);(2) MMI_gen 11283 (partly: Language);
             */
-            // Call generic Action Method
-            DmiActions
-                .Perform_the_following_procedure_Drive_the_train_forward_until_the_brake_is_appliedStop_driving_the_trainAcknowledge_the_Brake_intervention_symbol_by_pressing_area_E1(this);
+            // see above discussion...
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI closes the Language window and displays the Settings window.");
 
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
+
+            // spec says bit 13 = 0 (Language) but surely should be 16 = 0 (Brightness)
+            // This should be done by int request = EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH;
+            //                        request &= ~(EVC30_MMIRequestEnable.EnabledRequests.Language); // ?? .Brightness
+            //                        EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = request;
+            DmiActions.ShowInstruction(this, @"Press area E1 to acknowledge the ‘Brake intervention’ symbol");
 
             /*
             Test Step 14
@@ -198,7 +252,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press ‘Brightness’ button");
-
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the Brightness window.");
 
             /*
             Test Step 15
@@ -206,11 +261,19 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,DMI closes the Brightness window and displays Settings window instead.Use the log file to confirm that DMI receives packet information [MMI_ENABLE_REQUEST (EVC-30)] with variable MMI_Q_REQUEST_ENABLE_64 (#15) = 0
             Test Step Comment: (1) MMI_gen 8868 (partly: Brightness);(2) MMI_gen 11283 (partly: Brightness);
             */
-            // Call generic Action Method
-            DmiActions
-                .Perform_the_following_procedure_Drive_the_train_forward_until_the_brake_is_appliedStop_driving_the_trainAcknowledge_the_Brake_intervention_symbol_by_pressing_area_E1(this);
+            // see above discussion...
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI closes the Brightness window and displays the Settings window.");
 
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
 
+            // spec says set bit 15 = 0 (Brightness) but expects Volume (bit 14)??
+            // This should be done by int request = EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH;
+            //                        request &= ~(EVC30_MMIRequestEnable.EnabledRequests.Brightness); // ?? .Volume
+            //                        EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = request;
+            DmiActions.ShowInstruction(this, @"Press area E1 to acknowledge the ‘Brake intervention’ symbol");
+            
             /*
             Test Step 16
             Action: Press ‘Volume’ button
@@ -218,9 +281,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press ‘Volume’ button");
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Volume_window(this);
-
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the Volume window.");
 
             /*
             Test Step 17
@@ -228,10 +290,18 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,DMI closes the Volume window and displays Settings window instead.Use the log file to confirm that DMI receives packet information [MMI_ENABLE_REQUEST (EVC-30)] with variable MMI_Q_REQUEST_ENABLE_64 (#14) = 0
             Test Step Comment: (1) MMI_gen 8868 (partly: volume);(2) MMI_gen 11283 (partly: volume);
             */
-            // Call generic Action Method
-            DmiActions
-                .Perform_the_following_procedure_Drive_the_train_forward_until_the_brake_is_appliedStop_driving_the_trainAcknowledge_the_Brake_intervention_symbol_by_pressing_area_E1(this);
+            // see above discussion...
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI closes the Volume window and displays the Settings window.");
 
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
+
+            // spec says set bit 14 = 0 (Volume) but expects Adhesion (bit 10)??
+            // This should be done by int request = EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH;
+            //                        request &= ~(EVC30_MMIRequestEnable.EnabledRequests.Volume); // ?? .Adhesion
+            //                        EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = request;
+            DmiActions.ShowInstruction(this, @"Press area E1 to acknowledge the ‘Brake intervention’ symbol");
 
             /*
             Test Step 18
@@ -239,7 +309,10 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Adhesion window.Verify the Close button on this window is enabling
             Test Step Comment: MMI_gen 9199 (partly: Adhesion);
             */
-
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button. Press ‘Special’ button. Press ‘Adhesion’ button");
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI closes the Adhesion window." + Environment.NewLine +
+                                "2. The ‘Close’ button in the Adhesion window is enabled.");
 
             /*
             Test Step 19
@@ -247,10 +320,18 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,DMI closes the Adhesion window and displays Special window instead.Use the log file to confirm that DMI receives packet information [MMI_ENABLE_REQUEST (EVC-30)] with variable MMI_Q_REQUEST_ENABLE_64 (#10) = 0
             Test Step Comment: (1) MMI_gen 8868 (partly: Adhesion);(2) MMI_gen 11283 (partly: Adhesion);
             */
-            // Call generic Action Method
-            DmiActions
-                .Perform_the_following_procedure_Drive_the_train_forward_until_the_brake_is_appliedStop_driving_the_trainAcknowledge_the_Brake_intervention_symbol_by_pressing_area_E1(this);
+            // see above discussion...
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI closes the Adhesion window and displays the Special window.");
 
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
+
+            // spec says set bit 10 = 0 (Adhesion) ??
+            // This should be done by int request = EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH;
+            //                        request &= ~(EVC30_MMIRequestEnable.EnabledRequests.Adhesion);
+            //                        EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = request;
+            DmiActions.ShowInstruction(this, @"Press area E1 to acknowledge the ‘Brake intervention’ symbol");
 
             /*
             Test Step 20
@@ -258,7 +339,10 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Special window.Verify the Close button on this window is enabling
             Test Step Comment: MMI_gen 9199 (partly: special);
             */
-
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button. Press ‘Main’ button. Press ‘Start’ button.	Acknowledge SR mode. Press ‘Special’ button.");
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the Special window." + Environment.NewLine +
+                                "2. The ‘Close’ button in the Special window is enabled.");
 
             /*
             Test Step 21
@@ -268,7 +352,9 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press ‘SR speed/distance’ button");
-
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the SR speed/distance window." + Environment.NewLine +
+                                "2. The ‘Close’ button in the SR speed/distance window is enabled.");
 
             /*
             Test Step 22
@@ -276,7 +362,17 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,DMI closes the SR speed/distance window and displays Special window instead.Use the log file to confirm that DMI receives packet information [MMI_ENABLE_REQUEST (EVC-30)] with variable MMI_Q_REQUEST_ENABLE_64 (#11) = 0
             Test Step Comment: (1) MMI_gen 8868 (partly: SR speed/distance);(2) MMI_gen 11283 (partly: SR speed/distance);
             */
+            // see above discussion...
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI closes the SR speed/distance window and displays the Special window.");
 
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
+
+            // spec says set bit 11 = 0 (SRSpeedDistance)??
+            // This should be done by int request = EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH;
+            //                        request &= ~(EVC30_MMIRequestEnable.EnabledRequests.SRSpeedDistance);
+            //                        EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = request;
 
             /*
             Test Step 23
@@ -284,14 +380,16 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Override button.Verify the Close button on this window is enabling
             Test Step Comment: MMI_gen 9179;
             */
-
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button. Press ‘Override’ button");
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the Override window." + Environment.NewLine +
+                                "2. The ‘Close’ button in the Override window is enabled.");
 
             /*
             Test Step 24
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }
