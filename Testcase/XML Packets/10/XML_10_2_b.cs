@@ -36,7 +36,7 @@ namespace Testcase.XML
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
 
-            Send(_pool);
+            EVC8_MMIDriverMessage.Send();
         }
     }
 }
