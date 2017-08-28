@@ -13,6 +13,8 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.DMItoEVC;
+
 
 namespace Testcase.DMITestCases
 {
@@ -38,16 +40,19 @@ namespace Testcase.DMITestCases
         public override void PreExecution()
         {
             // Pre-conditions from TestSpec:
-            // System is powered onCabin is activatedSoM is performed until level 1 is selected and confirmedMain window is closed.
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
+            // System is powered onCabin is activatedSoM is performed until level 1 is selected and confirmedMain window is closed.
+            DmiActions.Complete_SoM_L1_SB(this);
         }
 
         public override void PostExecution()
         {
             // Post-conditions from TestSpec
             // DMI displays in SB mode, level 1.
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SB mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -57,14 +62,13 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
             /*
             Test Step 1
             Action: Use the test script file 5_12_3_a.xml  to send multiple packets EVC-8 with the following value,Common variableMMI_Q_TEXT_CLASS = 1MMI_Q_TEXT_CRITERIA =3The order of MMI_Q_TEXT value in each packetMMI_Q_TEXT = 267MMI_Q_TEXT = 560MMI_Q_TEXT = 268MMI_Q_TEXT = 274MMI_Q_TEXT = 275MMI_Q_TEXT = 290MMI_Q_TEXT = 292MMI_Q_TEXT = 296MMI_Q_TEXT = 310MMI_Q_TEXT = 299
             Expected Result: DMI displays the following messages in sub-area E5-E9 are correct refer to following message respectively,Balise read errorTrackside malfunctionCommunication errorEntering FSEntering OSSH refusedSH request failedTrackside not compatibleTrain data changedTrain is rejectedNote: The new text message is displayed in sub-area E5, old text messages are moved down automatically.Verify the following information,(1)   The disabled ‘Up’ button is displayed as NA15 symbol in sub-area E10.(2)   The enabled ‘Down’ button is displayed as NA14 symbol in sub-area E11
             Test Step Comment: (1) MMI_gen 4394 (partly: up, disabled); MMI_gen 4396 (partly: up, NA15);(2) MMI_gen 4394 (partly: down, enabled); MMI_gen 4396 (partly: down, NA14);
             */
-
+            XML.XML_5_12_3_a.Send(this);
 
             /*
             Test Step 2
@@ -72,7 +76,18 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,While press and hold button less than 1.5 sec(1)   Sound ‘Click’ is played once.(2)   The state of button is changed to ‘Pressed’ and immediately back to ‘Enabled’ state.(3)   The visibility of sub-area E5-E9 is moved down.While press and hold button over 1.5 sec(4)    The state ‘pressed’ and ‘released’ are switched repeatly while button is pressed and the visibility of sub-area E5-E9 is moving down repeatly refer to pressed state.(5)   The sound ‘Click’ is played repeatly while button is pressed
             Test Step Comment: (1) MMI_gen 4393 (partly: down, MMI_gen 4384 (partly: sound ‘Click’));(2) MMI_gen 4393 (partly: MMI_gen 4384 (partly: Change to state ‘Pressed’ and immediately back to state ‘Enabled’));(3) MMI_gen 4393 (partly: down, MMI_gen 4384 (partly: ETCS-MMI’s function associated to the button)); MMI_gen 4392 (partly: symbol NA14, scroll down);(4) MMI_gen 4393 (partly: down, MMI_gen 4386 (partly: visual of repeat function));(5) MMI_gen 4393 (partly: down, MMI_gen 4386 (partly: audible of repeat function));
             */
-
+            DmiActions.ShowInstruction(this, @"Press and release the ‘Down’ button within 1.5s");
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                @"1. The ‘click’ sound is played once." + Environment.NewLine +
+                                @"2. The ‘Down’ button is displayed pressed and immediately changed to enabled." + Environment.NewLine +
+                                "3. The messages in sub-areas E5-E9 move down by one line");
+            
+            DmiActions.ShowInstruction(this, @"Press and hold the ‘Down’ button for 2s");
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                @"1. The ‘Down’ button is displayed pressed and immediately changed to enabled repeatedly." + Environment.NewLine +
+                                "2. The text message in sub-areas E5-E9 move down by one line each time the ‘Down’ button becomse enabled again." + Environment.NewLine +
+                                @"3. The ‘click’ sound is played repeatedly while the ‘Down’ button is pressed.");
+            // look at log file for DMI output??
 
             /*
             Test Step 3
@@ -80,7 +95,12 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   The state of pressed button is changed to ‘Disabled’ state.(2)   The disabled ‘Down’ button is displayed as NA16 symbol in sub-area E11.(3)   The enabled ‘Up’ button is displayed as NA13 symbol in sub-area E10.(4)   Use the log file to confirm that DMI sends out packet [MMI_DRIVER_ACTION (EVC-152)] with the value of variable MMI_M_DRIVER_ACTION refer to sequence below,a)   MMI_M_DRIVER_ACTION = 42 (Scroll down button activated)
             Test Step Comment: (1) MMI_gen 4393 (partly: down, MMI_gen 4384 (partly: ETCS-MMI’s function associated to the button));(2) MMI_gen 4394 (partly: down, disabled); MMI_gen 4396 (partly: down, NA16);(3) MMI_gen 4394 (partly: up, enabled); MMI_gen 4396 (partly: up, NA13);(4) MMI_gen 11470 (partly: Bit # 42);
             */
-
+            DmiActions.ShowInstruction(this, @"Press and hold the ‘Down’ button until the message ‘Train is rejected’ is displayed on sub-area E5. Reelase the ‘Down’ button");
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +                  
+                                @"1. The ‘Down’ button is displayed disabled." + Environment.NewLine +
+                                @"2. The ‘Down’ button NA16 symbol is displayed disabled in sub-area E11." + Environment.NewLine +
+                                @"3. The  ‘Up’ button NA13 symbol is displayed as enabled in sub-area E10.");
+            // look at log file??
 
             /*
             Test Step 4
@@ -88,14 +108,24 @@ namespace Testcase.DMITestCases
             Expected Result: See the expected results of Step 2 – Step 3 and the following additional information,(1)    The visibility of sub-area E5-E9 is moved up.(2)   Use the log file to confirm that DMI sends out packet [MMI_DRIVER_ACTION (EVC-152)] with the value of variable MMI_M_DRIVER_ACTION refer to sequence below,a)   MMI_M_DRIVER_ACTION = 41 (Scroll up button activated)
             Test Step Comment: (1) MMI_gen 4393 (partly: up button); MMI_gen 4392 (partly: symbol NA13, scroll up);(2) MMI_gen 11470 (partly: Bit # 41);
             */
+            DmiActions.ShowInstruction(this, @"Press and release the ‘Up’ button within 1.5s");
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                @"1. The ‘click’ sound is played once." + Environment.NewLine +
+                                @"2. The ‘Up’ button is displayed pressed and immediately changed to enabled." + Environment.NewLine +
+                                "3. The messages in sub-areas E5-E9 move up by one line");
 
+            DmiActions.ShowInstruction(this, @"Press and hold the ‘Up’ button for 2s");
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                @"1. The ‘Up’ button is displayed pressed and immediately changed to enabled repeatedly." + Environment.NewLine +
+                                "2. The text message in sub-areas E5-E9 move up by one line each time the ‘Up’ button becomse enabled again." + Environment.NewLine +
+                                @"3. The ‘click’ sound is played repeatedly while the ‘Up’ button is pressed.");
+            // look at log file??
 
             /*
             Test Step 5
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }

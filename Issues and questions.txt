@@ -12,3 +12,5 @@
 11. section 15.2.1: step 1, specifies bit 32 (system info) using the numbering scheme the last is EnableBrakingPercentage
 12. section 15.2.6: set up/configuration??
 13. section 15.2.7: make RBC window display?
+14. section 37.1: config to set train type TR_OBU_TrainType = 2
+15. section 10.4.1.1: EVC24 type to be defined: EVC24MMISystemInfo??
