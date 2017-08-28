@@ -19,8 +19,8 @@ using Testcase.Telegrams.EVCtoDMI;
 namespace Testcase.DMITestCases
 {
     /// <summary>
-    /// 37.4.2.2 SH Symbol in Level 2 and Level 3
-    /// TC-ID: 34.4.2.2
+    /// 37.4.1 SH Symbol in Level 0 and Level 1
+    /// TC-ID: 34.4.1
     /// 
     /// This test case verifies the display of symbol MO01 in ETCS level 2 and 3 when DMI receives message 28 from RBC after driver presses Shunting button.
     /// 
@@ -28,22 +28,21 @@ namespace Testcase.DMITestCases
     /// MMI_gen 11914 (partly: when receive SH symbol); MMI_gen 11084 (partly: SH); MMI_gen 110 (partly: MO10);
     /// 
     /// Scenario:
-    /// 1.Enter SH mode, level 
-    /// 2.Then, verify the display of symbol MO01.2.Restart test system.3.Enter SH mode, level 
-    /// 3.Then, verify the display of symbol MO01.
+    /// 1.Enter SH mode, level 0. Then, verify the display of symbol MO01.
+    /// 2.Restart test system
+    /// 3.Enter SH mode, level 1. Then, verify the display of symbol MO01.
     /// 
     /// Used files:
-    /// 34_4_2_2.utt
+    /// 34_4_1.utt
     /// </summary>
-    public class SH_Symbol_in_Level_2_and_Level_3 : TestcaseBase
+    public class SH_Symbol_in_Level_0_and_Level_1 : TestcaseBase
     {
         public override void PreExecution()
         {
             // Pre-conditions from TestSpec:
-
             // Call the TestCaseBase PreExecution
             base.PreExecution();
-            // Test System is power onCabin is activatedSoM is performed in SR mode, level 2
+            // Test system is power onCabin is activatedDriver ID is enteredLevel 0 is selected and confirmed
             EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.GoToIdle;
             EVC0_MMIStartATP.Send();
 
@@ -53,20 +52,20 @@ namespace Testcase.DMITestCases
             // Set driver ID
             DmiActions.Set_Driver_ID(this, "1234");
 
-            // Set to level 1 and SR mode
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L2;
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
+            // Enable standard buttons including Start, and display Main window.
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Start | Variables.standardFlags;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;      // Main window
+            EVC30_MMIRequestEnable.Send();
 
-            // Enable standard buttons including Start, and display Default window.
-            DmiActions.FinishedSoM_Default_Window(this);
         }
 
         public override void PostExecution()
         {
             // Post-conditions from TestSpec
-            // DMI displays in SH mode, level 3
+            // DMI displays in SH mode, level 1
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in SH mode, Level 3.");
+                                "1. DMI displays in SH mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -76,24 +75,25 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
             /*
             Test Step 1
-            Action: Enter SH mode by performing the procedure below,Press ‘Main’ buttonPress and hold ‘Shunting’ button at least 2 seconds.Release ‘Shunting’ button
-            Expected Result: Verify the following information,Use the log file to confirm that DMI receives EVC-7 with variable OBU_TR_M_MODE = 3 (SH – Shunting).The symbol MO01 is display in area B7.DMI closes Main window and returns to the Default window
-            Test Step Comment: (1) MMI_gen 11914 (partly: receives SH symbol, Level 2/3); MMI_gen 11084 (partly: SH);(2) MMI_gen 11914 (partly: display the symbol when receive SH symbol); MMI_gen 110 (partly: MO10);(3) MMI_gen 11914 (partly: close main window and return to the default window);
-            */
-            // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press ‘Main’ button. Press and hold ‘Shunting’ button at least 2 seconds. Release ‘Shunting’ button");
+            Action: Enter SH mode by performing the procedure below,Press and hold ‘Shunting’ button at least 2 secondsRelease ‘Shunting’ button
 
+            Expected Result: Use the log file to confirm that DMI receives EVC-7 with variable OBU_TR_M_MODE = 3 (SH – Shunting).The symbol MO01 is display in area B7DMI closes Main window and returns to the Default window.
+
+            Test Step Comment: MMI_gen 11914 (partly: receives SH symbol); MMI_gen 11084 (partly: SH);MMI_gen 11914 (partly: display the symbol when receive SH symbol); MMI_gen 110 (partly: MO10);MMI_gen 11914 (partly: close main window and return to the default window);
+            */
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L0;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Shunting;
+
+            DmiActions.ShowInstruction(this, @"Press and hold ‘Shunting’ button for at least 2 seconds. Release ‘Shunting’ button");
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the symbol M001 in area B7." + Environment.NewLine +
                                 "2. DMI closes Main window and displays the Default window.");
 
             /*
             Test Step 2
-            Action: Re-validate the step1 by re-starting OTE Simulator and starting the precondition with ETCS level 3
+            Action: Re-validate the step 1 by re-starting OTE Simulator and starting the precondition with ETCS level 1.
             Expected Result: See the expected results at Step 1
             */
             // ?? Is this sufficient...
@@ -108,10 +108,13 @@ namespace Testcase.DMITestCases
             DmiActions.Set_Driver_ID(this, "1234");
 
             // Set to level 1 and SH mode
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L3;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
+            
+            DmiActions.ShowInstruction(this, @"Press and hold ‘Shunting’ button for at least 2 seconds. Release ‘Shunting’ button");
+
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Shunting;
 
-            DmiActions.ShowInstruction(this, @"Press and hold ‘Shunting’ button for at least 2 seconds. Release ‘Shunting’ button");
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the symbol M001 in area B7." + Environment.NewLine +
                                 "2. DMI closes Main window and displays the Default window.");

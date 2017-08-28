@@ -332,6 +332,7 @@ if exist "$(TargetPath)" if not exist "$(TargetPath).locked" move "$(TargetPath)
     <Compile Include="DMITestCases\37 Dialogue Sequences\37.1\37.1.2 Flexible_Train_data_entry.cs" />
     <Compile Include="DMITestCases\37 Dialogue Sequences\37.1\37.1.4.1.1 Data_entryvalidation_process_when_enabling_conditions_not_fullfilled_Level_1.cs" />
     <Compile Include="DMITestCases\37 Dialogue Sequences\37.1\37.1.4.1.2 Data_entryvalidation_process_when_enabling_conditions_not_fullfilled_Level_2.cs" />
+    <Compile Include="DMITestCases\37 Dialogue Sequences\37.4\37.4.1 SH Symbol in Level 0 and Level 1.cs" />
     <Compile Include="DMITestCases\37 Dialogue Sequences\37.4\37.4.2.1 Text_Message_Shunting_Refused_in_Level_2_and_Level_3.cs" />
     <Compile Include="DMITestCases\37 Dialogue Sequences\37.4\37.4.2.2 SH_Symbol_in_Level_2_and_Level_3.cs" />
     <Compile Include="DMITestCases\37 Dialogue Sequences\37.4\37.4.2.3 Text_Message_Shunting_Request_Failed_in_Level_2_and_Level_3.cs" />
