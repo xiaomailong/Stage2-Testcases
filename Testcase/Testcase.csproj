@@ -548,6 +548,17 @@ if exist "$(TargetPath)" if not exist "$(TargetPath).locked" move "$(TargetPath)
     <Compile Include="XML Packets\15\XML_15_3_3_b.cs" />
     <Compile Include="XML Packets\15\XML_15_3_3_c.cs" />
     <Compile Include="XML Packets\15\XML_15_3_4.cs" />
+    <Compile Include="XML Packets\15\XML_15_4_a.cs" />
+    <Compile Include="XML Packets\15\XML_15_4_b.cs" />
+    <Compile Include="XML Packets\15\XML_15_4_c.cs" />
+    <Compile Include="XML Packets\15\XML_15_4_d.cs" />
+    <Compile Include="XML Packets\15\XML_15_4_e.cs" />
+    <Compile Include="XML Packets\15\XML_15_4_f.cs" />
+    <Compile Include="XML Packets\15\XML_15_4_g.cs" />
+    <Compile Include="XML Packets\15\XML_15_4_h.cs" />
+    <Compile Include="XML Packets\15\XML_15_4_i.cs" />
+    <Compile Include="XML Packets\15\XML_15_4_j.cs" />
+    <Compile Include="XML Packets\15\XML_15_4_k.cs" />
     <Compile Include="XML Packets\15\XML_15_6_2_a.cs" />
     <Compile Include="XML Packets\15\XML_15_6_2_b.cs" />
     <Compile Include="XML Packets\15\XML_15_6_2_c.cs" />
