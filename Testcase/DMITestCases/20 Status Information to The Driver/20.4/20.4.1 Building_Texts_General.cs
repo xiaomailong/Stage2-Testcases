@@ -89,7 +89,7 @@ namespace Testcase.DMITestCases
             Expected Result: Use the log file to confirm that DMI sends out packet [MMI_DRIVER_ACTION (EVC-152)] with the value of variable MMI_M_DRIVER_ACTION refer to sequence below,a)   MMI_M_DRIVER_ACTION = 23 (Ack of Plain Text message)
             Test Step Comment: MMI_gen 11470 (partly: Bit #23);
             */
-            DmiActions.ShowInstruction(this, @"Acknowledge the plain test message and check the log file for packet EVC-152 from DMI with MMI_M_DRIVER_ACTION  = 23");
+            DmiActions.ShowInstruction(this, "Acknowledge the plain test message and check the log file for packet EVC-152 from DMI with MMI_M_DRIVER_ACTION  = 23");
 
             /*
             Test Step 3
@@ -99,8 +99,8 @@ namespace Testcase.DMITestCases
             */
             XML.XML_15_4_a.Send(this);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The plain text message ‘TEST’ does not appear." + Environment.NewLine +
-                                "2. ‘ DMI’ is displayed in sub-area E5.");
+                                @"1. The plain text message ‘TEST’ does not appear." + Environment.NewLine +
+                                @"2. ‘ DMI’ is displayed in sub-area E5.");
 
             /*
             Test Step 4
@@ -110,8 +110,8 @@ namespace Testcase.DMITestCases
             */
             XML.XML_15_4_b.Send(this);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The plain text message ‘TEST’ does not appear." + Environment.NewLine +
-                                "2. ‘TEST DMI’ is displayed in sub-area E5.");
+                                @"1. The plain text message ‘TEST’ does not appear." + Environment.NewLine +
+                                @"2. ‘TEST DMI’ is displayed in sub-area E5.");
 
             /*
             Test Step 5
@@ -121,7 +121,7 @@ namespace Testcase.DMITestCases
             */
             XML.XML_15_4_i.Send(this);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. ‘ DMI’ is displayed in sub-area E5.");
+                                @"1. ‘ DMI’ is displayed in sub-area E5.");
 
             /*
             Test Step 6
@@ -130,9 +130,9 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 2557 (partly: first part, EVC-8.criteria = 5, incomplete sentence);(2) MMI_gen 2557 (partly: EVC-8.criteria = 5, incomplete sentence);(3) MMI_gen 2557 (partly: 9 seconds, the same index, non-ack);           MMI_gen 7046 (partly: concatenate, non-ack);      MMI_gen 7025 (partly: 2nd bullet, #1);(4) MMI_gen 7046 (partly: overwritten);
             */
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The plain text message ‘TEST’ does not appear." + Environment.NewLine +
-                                "2. The plain text message ‘ DMI’ does not appear." + Environment.NewLine +
-                                "2. ‘ DMITEST’ is displayed in sub-area E5.");
+                                @"1. The plain text message ‘TEST’ does not appear." + Environment.NewLine +
+                                @"2. The plain text message ‘ DMI’ does not appear." + Environment.NewLine +
+                                @"2. ‘ DMITEST’ is displayed in sub-area E5.");
 
             /*
             Test Step 7
@@ -142,8 +142,8 @@ namespace Testcase.DMITestCases
             */
             XML.XML_15_4_k.Send(this);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. After 4s DMI displays ‘ DMI’ in area E5 with a yellow flashing frame." + Environment.NewLine +
-                                "2. After a further 4s DMI displays ‘TEST DMI’ in area E5 with a yellow flashing frame.");
+                                @"1. After 4s DMI displays ‘ DMI’ in area E5 with a yellow flashing frame." + Environment.NewLine +
+                                @"2. After a further 4s DMI displays ‘TEST DMI’ in area E5 with a yellow flashing frame.");
 
             /*
             Test Step 8
@@ -159,7 +159,7 @@ namespace Testcase.DMITestCases
 
             XML.XML_15_4_c.Send(this);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays ‘ABCDEFGHIJ BCDEFGHIJ XXXXXXXXX’ in white in sub-areas E5 and E6." + Environment.NewLine +
+                                @"1. DMI displays ‘ABCDEFGHIJ BCDEFGHIJ XXXXXXXXX’ in white in sub-areas E5 and E6." + Environment.NewLine +
                                 "2. The text message is displayed in two lines in both sub-areas E5 and E6.");
 
             /*
