@@ -42,6 +42,14 @@ namespace Testcase.Telegrams.EVCtoDMI
             {
                 throw new Exception("Number of Level does not match!");
             }
+
+            var _nLevels = (ushort) _qLevelNtcId.Length;
+            _pool.SITR.ETCS1.SelectLevel.MmiNLevels.Value = _nLevels;
+
+            for (var k = 0; k < _nLevels; k++)
+            {
+                
+            }
         }
 
         public static void Send()
