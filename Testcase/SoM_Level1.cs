@@ -105,7 +105,7 @@ namespace Testcase
             EVC22_MMICurrentRBC.MMI_NID_WINDOW = 9;
             EVC22_MMICurrentRBC.MMI_M_BUTTONS = EVC22_MMICurrentRBC.EVC22BUTTONS.BTN_YES_DATA_ENTRY_COMPLETE;
             EVC22_MMICurrentRBC.NID_RBC = 1234;
-            EVC22_MMICurrentRBC.MMI_Q_CLOSE_ENABLE = true;
+            EVC22_MMICurrentRBC.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
 
             EVC22_MMICurrentRBC.NetworkCaptions = new List<string> { "RBC1", "RBC2", "RBC3" };
             EVC22_MMICurrentRBC.Send();
