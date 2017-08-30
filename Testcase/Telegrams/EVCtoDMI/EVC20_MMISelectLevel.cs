@@ -14,7 +14,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         private static MMI_M_INHIBITED_LEVEL[] _mInhibitedLevel;
         private static MMI_M_INHIBIT_ENABLE[] _mInhibitEnable;
         private static MMI_M_LEVEL_NTC_ID[] _mLevelNtcId;
-        private static byte _qCloseEnable;
+        private static bool _qCloseEnable;
         private static int _nLevels;
 
         /// <summary>
@@ -176,24 +176,20 @@ namespace Testcase.Telegrams.EVCtoDMI
         ///
         /// Note: Bit0 = 0 -> disable close button, Bit0 = 1 -> enable close button
         /// </summary>
-        public static byte MMI_Q_CLOSE_ENABLE
+        public static bool MMI_Q_CLOSE_ENABLE
         {
             set
             {
                 _qCloseEnable = value;
-                _qCloseEnable <<= 7;
-                _pool.SITR.ETCS1.SelectLevel.MmiQCloseEnable.Value = _qCloseEnable;               
+                // Convert to byte
+                byte _mmiQCloseEnable = Convert.ToByte(_qCloseEnable);
+                // 0000 000x => x000 0000
+                _mmiQCloseEnable <<= 7;
+                // Fill telegram with MMI_Q_CLOSE_ENABLE
+                _pool.SITR.ETCS1.SelectLevel.MmiQCloseEnable.Value = _mmiQCloseEnable;               
             }
         }
     }
 
-    /// <summary>
-    /// Last level used enum
-    /// </summary>
-    public enum MMI_M_CURRENT_LEVEL : byte
-    {
-        NotLatestUsedLevel = 0,
-        LatestUsedLevel = 1
-    }
 }
 
