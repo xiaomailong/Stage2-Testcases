@@ -32,7 +32,7 @@ namespace Testcase.XML
         {
             _pool = pool;
 
-            EVC22_MMICurrentRBC.MMI_Q_CLOSE_ENABLE = true;
+            EVC22_MMICurrentRBC.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
             EVC22_MMICurrentRBC.Send();
 
             _pool.WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -40,7 +40,7 @@ namespace Testcase.XML
 
             System.Threading.Thread.Sleep(10000);
 
-            EVC22_MMICurrentRBC.MMI_Q_CLOSE_ENABLE = false;
+            EVC22_MMICurrentRBC.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Disabled;
             EVC22_MMICurrentRBC.Send();
 
             _pool.WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +

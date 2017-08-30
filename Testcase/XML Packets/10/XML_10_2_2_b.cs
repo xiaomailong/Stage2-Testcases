@@ -32,7 +32,7 @@ namespace Testcase.XML
         {
             _pool = pool;
             
-            EVC14_MMICurrentDriverID.MMI_Q_CLOSE_ENABLE = false;
+            EVC14_MMICurrentDriverID.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Disabled;
             EVC14_MMICurrentDriverID.Send();
 
             _pool.WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -40,7 +40,7 @@ namespace Testcase.XML
 
             System.Threading.Thread.Sleep(1000);
 
-            EVC14_MMICurrentDriverID.MMI_Q_CLOSE_ENABLE = true;
+            EVC14_MMICurrentDriverID.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
             EVC14_MMICurrentDriverID.Send();
 
             _pool.WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +

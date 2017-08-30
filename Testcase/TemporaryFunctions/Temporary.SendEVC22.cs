@@ -12,7 +12,7 @@ namespace Testcase.TemporaryFunctions
         /// </summary>
         public static void Send_EVC22_MMI_Current_Rbc(SoM_Level1 soMLevel1, uint rbcId, ulong mmiNidRadio,
             ushort mmiNidWindow,
-            bool mmiQCloseEnable,
+            Variables.MMI_Q_CLOSE_ENABLE mmiQCloseEnable,
             EVC22_MMICurrentRBC.EVC22BUTTONS mmiMButtons, string[] textDataElements)
         {
             // TODO what is the NID_C?

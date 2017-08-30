@@ -218,11 +218,16 @@ namespace Testcase.Telegrams.EVCtoDMI
 
         /// <summary>
         /// Enabling close button in EVC-14, EVC-20 and EVC-22.
-        /// True = enabled
+        /// 
+        /// Bits:
+        /// 0 = "disable/enable close button"
+        /// 1..7 = "Spare"
+        /// 
+        /// Note: Bit0 = 0 -> disable close button, Bit0 = 1 -> enable close button
         /// </summary>
-        public static bool MMI_Q_CLOSE_ENABLE
+        public static MMI_Q_CLOSE_ENABLE MMI_Q_CLOSE_ENABLE
         {
-            set => _pool.SITR.ETCS1.CurrentDriverId.MmiQCloseEnable.Value = (byte)(value ? 0x80 : 0x00);
+            set => _pool.SITR.ETCS1.CurrentRbcData.MmiQCloseEnable.Value = (byte)value;
         }
 
         /// <summary>

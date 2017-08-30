@@ -13,6 +13,9 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.EVCtoDMI;
+using Testcase.Telegrams.DMItoEVC;
+
 
 namespace Testcase.DMITestCases
 {
@@ -37,16 +40,21 @@ namespace Testcase.DMITestCases
         public override void PreExecution()
         {
             // Pre-conditions from TestSpec:
-            // Test system is powered onCabin is active
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
+            // Test system is powered on    -> Cabin is active: not in spec
+            EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.GoToIdle;
+            EVC0_MMIStartATP.Send();
+
         }
 
         public override void PostExecution()
         {
             // Post-conditions from TestSpec
             // DMI displays in SB mode
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the Default window in SB mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -62,17 +70,40 @@ namespace Testcase.DMITestCases
             Action: Perform SoM until train running number is entered
             Expected Result: DMI displays Main window with enabled ‘Start’ button
             */
+            // Set train running number, cab 1 active, and other defaults
+            DmiActions.Activate_Cabin_1(this);
+
+            // Set driver ID
+            DmiActions.Set_Driver_ID(this, "1234");
+
+            // Set to level 1 and SR mode
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
+
+            EVC30_MMIRequestEnable.SendBlank();
+
+            // Spec says Start button enabled
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.TrainRunningNumber;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 0;      // Start window
+            EVC30_MMIRequestEnable.Send();
+
+            DmiActions.ShowInstruction(this, "Enter Train running number");
+
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Start | Variables.standardFlags;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;      // Main window
+            EVC30_MMIRequestEnable.Send();
+
             // Call generic Check Results Method
             DmiExpectedResults.Main_Window_displayed_with_Start_button_enabled(this);
 
-
+            // Steps 2 to 22 are in XML_5_10_a.cs
             /*
             Test Step 2
             Action: Send the test script file 5_10_a.xml to send EVC-30 with,MMI_Q_REQUEST_ENABLE           (#0) = 0           (#1) = 0           (#2) = 0           (#3) = 0           (#4) = 0           (#5) = 0           (#6) = 0           (#7) = 0           (#8) = 0
             Expected Result: The following buttons are shown with a border and its text is coloured Dark-Grey:The ‘Start’ buttonThe ‘Driver ID’ buttonThe ‘Train data’ buttonThe ‘Level’ buttonThe ‘Train running number’ buttonThe ‘Shunting’ buttonThe ‘Non-Leading’ buttonThe ‘Maintain Shunting’ button
             Test Step Comment: MMI_gen 4377 (partly: Main window);
             */
-
+            XML.XML_5_10_a.Send(this);
 
             /*
             Test Step 3
@@ -103,11 +134,6 @@ namespace Testcase.DMITestCases
             Action: Deativate and activate the cabin
             Expected Result: DMI disiplays in SB mode
             */
-            // Call generic Action Method
-            DmiActions.Deativate_and_activate_the_cabin(this);
-            // Call generic Check Results Method
-            DmiExpectedResults.SB_Mode_displayed(this);
-
 
             /*
             Test Step 7
@@ -122,10 +148,6 @@ namespace Testcase.DMITestCases
             Action: Deativate and activate the cabin
             Expected Result: DMI disiplays in SB mode
             */
-            // Call generic Action Method
-            DmiActions.Deativate_and_activate_the_cabin(this);
-            // Call generic Check Results Method
-            DmiExpectedResults.SB_Mode_displayed(this);
 
 
             /*
@@ -148,18 +170,14 @@ namespace Testcase.DMITestCases
             Action: Deativate and activate the cabin
             Expected Result: DMI disiplays in SB mode
             */
-            // Call generic Action Method
-            DmiActions.Deativate_and_activate_the_cabin(this);
-            // Call generic Check Results Method
-            DmiExpectedResults.SB_Mode_displayed(this);
+            // De-activate and activate cabin
 
 
             /*
             Test Step 12
             Action: Perform Start of Mission to SR mode , Level 1
             Expected Result: DMI disiplays in SR mode
-            */
-
+            */  
 
             /*
             Test Step 13
@@ -168,14 +186,11 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 4377 (partly: Setting window);
             */
 
-
             /*
             Test Step 14
             Action: Pass BG1 with Pkt 12,21 and 27
             Expected Result: DMI disiplays in FS mode
             */
-            // Call generic Action Method
-            DmiActions.Pass_BG1_with_Pkt_12_21_and_27(this);
 
 
             /*
@@ -192,7 +207,6 @@ namespace Testcase.DMITestCases
             Expected Result: Train is at standstill
             */
             // Call generic Action Method
-            DmiActions.Stop_the_train(this);
 
 
             /*
@@ -200,11 +214,6 @@ namespace Testcase.DMITestCases
             Action: Deactivate and activate cabin
             Expected Result: DMI disiplays in SB mode
             */
-            // Call generic Action Method
-            DmiActions.Deactivate_and_activate_cabin(this);
-            // Call generic Check Results Method
-            DmiExpectedResults.SB_Mode_displayed(this);
-
 
             /*
             Test Step 18
@@ -219,11 +228,6 @@ namespace Testcase.DMITestCases
             Action: Deactivate and activate cabin
             Expected Result: DMI disiplays in SB mode
             */
-            // Call generic Action Method
-            DmiActions.Deactivate_and_activate_cabin(this);
-            // Call generic Check Results Method
-            DmiExpectedResults.SB_Mode_displayed(this);
-
 
             /*
             Test Step 20
@@ -237,8 +241,6 @@ namespace Testcase.DMITestCases
             Action: Deactivate and activate cabin cabin
             Expected Result: DMI displays in SB mode
             */
-            // Call generic Check Results Method
-            DmiExpectedResults.SB_Mode_displayed(this);
 
 
             /*
@@ -254,7 +256,6 @@ namespace Testcase.DMITestCases
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }

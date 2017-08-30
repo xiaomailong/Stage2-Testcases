@@ -67,7 +67,6 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
             /*
             Test Step 1
             Action: Press ‘Wheel diameter’ button
