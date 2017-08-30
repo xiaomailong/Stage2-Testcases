@@ -216,7 +216,7 @@ namespace Testcase.DMITestCases
         /// <summary>
         /// Sends EVC-20 telegram to cancel previous MMI_Select_Level presentation
         /// </summary>
-        public static void SendEVC20_MMISelectLevel_Cancel()
+        public static void Send_EVC20_MMISelectLevel_Cancel()
         {
             EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = null;
             EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = null;
@@ -478,6 +478,7 @@ namespace Testcase.DMITestCases
         {
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = 7;
             EVC30_MMIRequestEnable.Send();
+            Send_EVC20_MMISelectLevel_AllLevels();
         }
 
         /// <summary>
