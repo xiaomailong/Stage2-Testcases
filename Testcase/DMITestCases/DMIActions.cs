@@ -121,9 +121,9 @@ namespace Testcase.DMITestCases
         public static void Set_Driver_ID(SignalPool pool, string driverID)
         {
             EVC14_MMICurrentDriverID.MMI_X_DRIVER_ID = driverID;
-            EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE = EVC14_MMICurrentDriverID.MMIQADDENABLEBUTTONS.Settings |
-                                                        EVC14_MMICurrentDriverID.MMIQADDENABLEBUTTONS.TRN;
-            EVC14_MMICurrentDriverID.MMI_Q_CLOSE_ENABLE = true;
+            EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE = EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE_BUTTONS.Settings |
+                                                        EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE_BUTTONS.TRN;
+            EVC14_MMICurrentDriverID.MMI_Q_CLOSE_ENABLE = MMI_Q_CLOSE_ENABLE.Enabled;
             EVC14_MMICurrentDriverID.Send();
         }
 
