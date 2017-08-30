@@ -355,7 +355,7 @@ if exist "$(TargetPath)" if not exist "$(TargetPath).locked" move "$(TargetPath)
     <Compile Include="DMITestCases\6 Non-Functionality\6.9\6.9 Performance_of_ETCS_DMI_Data_handling.cs" />
     <Compile Include="DMITestCases\7 Requirements on Safety Procedures\7.3\7.3 Frozen_Displays.cs" />
     <Compile Include="DMITestCases\7 Requirements on Safety Procedures\7.5\7.5.1 DMI_Failure_Reaction_Reboot_function_SIL0_DMI.cs" />
-    <Compile Include="DMITestCases\7 Requirements on Safety Procedures\7.6\7.6 Safety_related_Data_Entry.cs" />
+    <Compile Include="DMITestCases\7 Requirements on Safety Procedures\7.6 Safety_related_Data_Entry.cs" />
     <Compile Include="DMITestCases\8 Essential Configurability\8.1\8.1 DMI_language_selection_Configurable_at_least_eight_langauges.cs" />
     <Compile Include="DMITestCases\DMIActions.cs" />
     <Compile Include="DMITestCases\DMIResults.cs" />
@@ -548,6 +548,17 @@ if exist "$(TargetPath)" if not exist "$(TargetPath).locked" move "$(TargetPath)
     <Compile Include="XML Packets\15\XML_15_3_3_b.cs" />
     <Compile Include="XML Packets\15\XML_15_3_3_c.cs" />
     <Compile Include="XML Packets\15\XML_15_3_4.cs" />
+    <Compile Include="XML Packets\15\XML_15_4_a.cs" />
+    <Compile Include="XML Packets\15\XML_15_4_b.cs" />
+    <Compile Include="XML Packets\15\XML_15_4_c.cs" />
+    <Compile Include="XML Packets\15\XML_15_4_d.cs" />
+    <Compile Include="XML Packets\15\XML_15_4_e.cs" />
+    <Compile Include="XML Packets\15\XML_15_4_f.cs" />
+    <Compile Include="XML Packets\15\XML_15_4_g.cs" />
+    <Compile Include="XML Packets\15\XML_15_4_h.cs" />
+    <Compile Include="XML Packets\15\XML_15_4_i.cs" />
+    <Compile Include="XML Packets\15\XML_15_4_j.cs" />
+    <Compile Include="XML Packets\15\XML_15_4_k.cs" />
     <Compile Include="XML Packets\15\XML_15_6_2_a.cs" />
     <Compile Include="XML Packets\15\XML_15_6_2_b.cs" />
     <Compile Include="XML Packets\15\XML_15_6_2_c.cs" />
@@ -558,6 +569,8 @@ if exist "$(TargetPath)" if not exist "$(TargetPath).locked" move "$(TargetPath)
     <Compile Include="XML Packets\15\XML_15_6_2_h.cs" />
     <Compile Include="XML Packets\15\XML_15_6_2_i.cs" />
     <Compile Include="XML Packets\15\XML_15_6_2_j.cs" />
+    <Compile Include="XML Packets\2\XML_2_5_1_a.cs" />
+    <Compile Include="XML Packets\2\XML_2_6_a.cs" />
     <Compile Include="XML Packets\5\XML_5_12_3_a.cs" />
   </ItemGroup>
   <ItemGroup>

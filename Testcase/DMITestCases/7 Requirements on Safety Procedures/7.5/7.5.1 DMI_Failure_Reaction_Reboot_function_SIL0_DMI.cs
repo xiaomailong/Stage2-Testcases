@@ -37,10 +37,11 @@ namespace Testcase.DMITestCases
         public override void PreExecution()
         {
             // Pre-conditions from TestSpec:
-            // -   System is power on.-   Cabin is activated.-   SoM is perform until level 1 is selected and confirmed.
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
+            // -   System is power on.-   Cabin is activated.-   SoM is perform until level 1 is selected and confirmed.
+            DmiActions.Complete_SoM_L1_SB(this);
         }
 
         public override void PostExecution()
@@ -63,14 +64,16 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   DMI is rebooted
             Test Step Comment: (1) MMI_gen 11439;
             */
+            XML.XML_2_5_1_a.Send(this);
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                               "1. DMI is rebooted.");
 
             /*
             Test Step 2
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }
