@@ -14,3 +14,5 @@
 13. section 15.2.7: make RBC window display?
 14. section 37.1: config to set train type TR_OBU_TrainType = 2
 15. section 10.4.1.1: EVC24 type to be defined: EVC24MMISystemInfo??
+16. section 7.5: EVC0 needs a start up signal: value 10 on MMI_START_REQ according to XML, does setting idle start re-boot?
+17. section 7.7: need EVC40 EVC140  EVC41 EVC141 EVC18 EVC118 EVC28 EVC128 EVC19 EVC119 EVC29 EVC129 EVC10 EVC110 EVC50 EVC150 EVC51 EVC151

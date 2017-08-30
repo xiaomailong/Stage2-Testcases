@@ -47,6 +47,8 @@ namespace Testcase.DMITestCases
         {
             // Post-conditions from TestSpec
             // DMI displays in SR mode, level 1.
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                               "1. DMI displays the Default window in SR mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -55,7 +57,6 @@ namespace Testcase.DMITestCases
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint
-
 
             /*
             Test Step 1
@@ -66,13 +67,21 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.Perform_SoM_in_SR_mode_Level_1(this);
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                               "1. DMI displays the Default window in SR mode, Level 1." + Environment.NewLine +
+                               "2. The view presented on the screen has three layers: 0 (most raised) 1 (less raised than 0) and 2 (less raised than 1)." + Environment.NewLine +
+                               "3. Layer 0 comprises screen areas drawn without borders." + Environment.NewLine +
+                               "4. The following screen areas are in Layer 0: E10, E11, F, G1, G2, G3, G4, G5, G6, G7, G8, G9, G10, Z and Y." + Environment.NewLine +
+                               "5. Layer 1 comprises screen areas drawn with borders, except where shown in (), inside Layer 0." + Environment.NewLine +
+                               "6. The following screen areas are in Layer 1: A1, (A2 + A3), A4, (B), D, C1, (C2 + C3 + C4), C5, C6, C7, C8, C9, E1, E2, E3, E4, (E5-E9)." + Environment.NewLine +
+                               "7. Layer 2 comprises screen areas drawn with borders, inside Layer 1." + Environment.NewLine +
+                               "8. The following screen areas are in Layer 2: B3, B4, B5, B6, B7");
 
             /*
             Test Step 2
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }
