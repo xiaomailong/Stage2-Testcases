@@ -476,6 +476,15 @@ namespace Testcase.Telegrams.EVCtoDMI
         }
 
         /// <summary>
+        /// Last level used enum
+        /// </summary>
+        public enum MMI_M_CURRENT_LEVEL : byte
+        {
+            NotLatestUsedLevel = 0,
+            LatestUsedLevel = 1
+        }
+
+        /// <summary>
         /// Indicator for marked MMI_M_LEVEL_NTC_ID enum
         /// Used in EVC packets 20 and 121
         /// </summary>

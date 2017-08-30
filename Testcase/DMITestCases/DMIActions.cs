@@ -156,6 +156,79 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
+        /// Send standard EVC-20 telegram with Levels 0-3, CBTC, and AWS/TPWS selectable. Level 1 is preselected.
+        /// </summary>
+        public static void Send_EVC20_MMISelectLevel_AllLevels()
+        {
+            Variables.MMI_Q_LEVEL_NTC_ID[] paramEvc20MmiQLevelNtcId = 
+                { MMI_Q_LEVEL_NTC_ID.ETCS_Level,
+                MMI_Q_LEVEL_NTC_ID.ETCS_Level,
+                MMI_Q_LEVEL_NTC_ID.ETCS_Level,
+                MMI_Q_LEVEL_NTC_ID.ETCS_Level,
+                MMI_Q_LEVEL_NTC_ID.STM_ID,
+                MMI_Q_LEVEL_NTC_ID.STM_ID };
+            Variables.MMI_M_CURRENT_LEVEL[] paramEvc20MmiMCurrentLevel =
+                { MMI_M_CURRENT_LEVEL.NotLatestUsedLevel,
+                MMI_M_CURRENT_LEVEL.NotLatestUsedLevel,
+                MMI_M_CURRENT_LEVEL.NotLatestUsedLevel,
+                MMI_M_CURRENT_LEVEL.NotLatestUsedLevel,
+                MMI_M_CURRENT_LEVEL.NotLatestUsedLevel,
+                MMI_M_CURRENT_LEVEL.NotLatestUsedLevel };
+            Variables.MMI_M_LEVEL_FLAG[] paramEvc20MmiMLevelFlag =
+                { MMI_M_LEVEL_FLAG.MarkedLevel,
+                MMI_M_LEVEL_FLAG.MarkedLevel,
+                MMI_M_LEVEL_FLAG.MarkedLevel,
+                MMI_M_LEVEL_FLAG.MarkedLevel,
+                MMI_M_LEVEL_FLAG.MarkedLevel,
+                MMI_M_LEVEL_FLAG.MarkedLevel };
+            Variables.MMI_M_INHIBITED_LEVEL[] paramEvc20MmiMInhibitedLevel =
+                { MMI_M_INHIBITED_LEVEL.NotInhibited,
+                MMI_M_INHIBITED_LEVEL.NotInhibited,
+                MMI_M_INHIBITED_LEVEL.NotInhibited,
+                MMI_M_INHIBITED_LEVEL.NotInhibited,
+                MMI_M_INHIBITED_LEVEL.NotInhibited,
+                MMI_M_INHIBITED_LEVEL.NotInhibited };
+            Variables.MMI_M_INHIBIT_ENABLE[] paramEvc20MmiMInhibitEnable =
+                { MMI_M_INHIBIT_ENABLE.AllowedForInhibiting,
+                MMI_M_INHIBIT_ENABLE.AllowedForInhibiting,
+                MMI_M_INHIBIT_ENABLE.AllowedForInhibiting,
+                MMI_M_INHIBIT_ENABLE.AllowedForInhibiting,
+                MMI_M_INHIBIT_ENABLE.AllowedForInhibiting,
+                MMI_M_INHIBIT_ENABLE.AllowedForInhibiting };
+            Variables.MMI_M_LEVEL_NTC_ID[] paramEvc20MmiMLevelNtcId =
+                { MMI_M_LEVEL_NTC_ID.L0,
+                MMI_M_LEVEL_NTC_ID.L1,
+                MMI_M_LEVEL_NTC_ID.L2,
+                MMI_M_LEVEL_NTC_ID.L3,
+                MMI_M_LEVEL_NTC_ID.CBTC,
+                MMI_M_LEVEL_NTC_ID.AWS_TPWS };
+
+            EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = paramEvc20MmiQLevelNtcId;
+            EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = paramEvc20MmiMCurrentLevel;
+            EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = paramEvc20MmiMLevelFlag;
+            EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = paramEvc20MmiMInhibitedLevel;
+            EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = paramEvc20MmiMInhibitEnable;
+            EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = paramEvc20MmiMLevelNtcId;
+            EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = true;
+            EVC20_MMISelectLevel.Send();
+        }
+
+        /// <summary>
+        /// Sends EVC-20 telegram to cancel previous MMI_Select_Level presentation
+        /// </summary>
+        public static void SendEVC20_MMISelectLevel_Cancel()
+        {
+            EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = null;
+            EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = null;
+            EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = null;
+            EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = null;
+            EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = null;
+            EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = null;
+            EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = true;
+            EVC20_MMISelectLevel.Send();
+        }
+
+        /// <summary>
         /// Description: Prompts the tester with a dialog box
         /// </summary>
         public static void ShowInstruction(SignalPool pool, string instruction)
@@ -791,7 +864,7 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void Drive_train_forward_passing_BG1(SignalPool pool)
         {
-            throw new NotImplementedException();
+            
         }
 
         /// <summary>
