@@ -13,6 +13,9 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.EVCtoDMI;
+using Testcase.Telegrams.DMItoEVC;
+
 
 namespace Testcase.DMITestCases
 {
@@ -52,6 +55,8 @@ namespace Testcase.DMITestCases
         {
             // Post-conditions from TestSpec
             // DMI displays in SR mode, level 1
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the Default window in SR mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -60,8 +65,7 @@ namespace Testcase.DMITestCases
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint
-
-
+            
             /*
             Test Step 1
             Action: Activate cabin A
@@ -69,39 +73,59 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Activate_Cabin_1(this);
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the Default window.");
+
             // Call generic Check Results Method
             DmiExpectedResults.Driver_ID_window_displayed(this);
-
-
+            
             /*
             Test Step 2
             Action: Enter the Driver ID. Perform brake test and then select Level 0
             Expected Result: ATP enters level 0.DMI displays the symbol of Level 0 in sub-area C8
-            */
+            */            
+            DmiActions.ShowInstruction(this, "Enter the Driver ID");
 
+            // Can you tell this?
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. ATP enters level 0.");
+
+            DmiActions.ShowInstruction(this, "Perform brake test");
+
+            // Can you tell this?
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the Level 0 symbol in sub-area C8.");
 
             /*
             Test Step 3
             Action: Select ‘Train data’ button
             Expected Result: The Train data window is displayed
             */
+            DmiActions.ShowInstruction(this, @"Press the ‘Train data’ button");
+            
             // Call generic Check Results Method
             DmiExpectedResults.Train_data_window_displayed(this);
-
 
             /*
             Test Step 4
             Action: Enter and confirm the train data
             Expected Result: The Train data validation window is displayed
             */
+            DmiActions.ShowInstruction(this, "Enter and accept the Train data");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the Train data validation window.");
 
             /*
             Test Step 5
             Action: Driver validates the train data
             Expected Result: DMI displays the Train running window
             */
+            DmiActions.ShowInstruction(this, "Accept validation of the Train data");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the Train running window.");
 
             /*
             Test Step 6
@@ -109,17 +133,21 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays the Main window
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Enter and confirm the Train running number");
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_the_Main_window(this);
+            DmiActions.ShowInstruction(this, "Enter and accept the Train running number");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the Main window.");
 
             /*
             Test Step 7
             Action: Press ‘Start’ button and confirm UN mode
             Expected Result: DMI displays in UN mode, level 0
             */
+            DmiActions.ShowInstruction(this, @"Press the ‘Start’ button and confirm UN mode");
 
+            EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.Unfitted;
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. Is the Unfitted mode symbol (MO16) displayed in area B7?");
 
             /*
             Test Step 8
@@ -127,7 +155,11 @@ namespace Testcase.DMITestCases
             Expected Result: Verify that when DMI displays in UN mode, the supervision status is not presented to the driver and there is no release speed on DMI
             Test Step Comment: MMI_gen 6468 (partly: UN mode, supervision status and the release speed are not displayed);   
             */
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
 
+            WaitForVerification("Observe all the objects on the DMI screen and check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. Supervision status is not presented to the driver." + Environment.NewLine +
+                                "2. DMI does not display a release speed");
 
             /*
             Test Step 9
@@ -135,7 +167,14 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays the symbol of level 1 in sub-area C8 instead of level 0.DMI displays in level 1 with train trip announcement symbol which requires the driver’s action. The train trip symbol is displayed with yellow flashing frame
             Test Step Comment: MMI_gen 4222 (partly: frame is displayed with yellow flashing);
             */
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
 
+            DmiActions.ShowInstruction(this, @"Accept level 1");
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI removes the level 0 symbol from sub-area C8 and displays the level 1 symbol." + Environment.NewLine +
+                                "2. DMI displays the train trip announcement symbol requiring driver action." + Environment.NewLine +
+                                "3. The train trip symbol is displayed with a yellow flashing frame.");
 
             /*
             Test Step 10
@@ -143,23 +182,29 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in PT mode.Use the log file to confirm that DMI sends out packet [MMI_DRIVER_ACTION (EVC-152)] with the value of variable MMI_M_DRIVER_ACTION refer to sequence below,a)   MMI_M_DRIVER_ACTION = 2 (Ack of Train Trip)
             Test Step Comment: MMI_gen 11470 (partly: Bit #2);   
             */
+            DmiActions.ShowInstruction(this, @"Acknowledge train trip and check the log file for packet EVC-152 from DMI with MMI_M_DRIVER_ACTION = 2");
 
+            EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.PostTrip;
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. Is the Post trip mode symbol (MO6) displayed in area B7?" + Environment.NewLine +
+                                "2. DMI displays the train trip announcement symbol requiring driver action." + Environment.NewLine +
+                                "3. The train trip symbol is displayed with a yellow flashing frame.");
 
             /*
             Test Step 11
             Action: Press ‘Start’ button and confirm SR mode
             Expected Result: DMI displays in SR mode, level 1
             */
+            DmiActions.ShowInstruction(this, @"Press ‘Start’ button and confirm SR mode.");
+
             // Call generic Check Results Method
             DmiExpectedResults.SR_Mode_displayed(this);
-
 
             /*
             Test Step 12
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }
