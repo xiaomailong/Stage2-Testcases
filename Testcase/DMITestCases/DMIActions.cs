@@ -209,7 +209,7 @@ namespace Testcase.DMITestCases
             EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = paramEvc20MmiMInhibitedLevel;
             EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = paramEvc20MmiMInhibitEnable;
             EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = paramEvc20MmiMLevelNtcId;
-            EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = true;
+            EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = MMI_Q_CLOSE_ENABLE.Enabled;
             EVC20_MMISelectLevel.Send();
         }
 
@@ -224,7 +224,7 @@ namespace Testcase.DMITestCases
             EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = null;
             EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = null;
             EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = null;
-            EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = true;
+            EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = MMI_Q_CLOSE_ENABLE.Enabled;
             EVC20_MMISelectLevel.Send();
         }
 

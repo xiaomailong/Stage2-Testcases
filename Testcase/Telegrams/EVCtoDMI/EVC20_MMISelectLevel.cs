@@ -1,7 +1,11 @@
-﻿using System;
+﻿#region usings
+
+using System;
 using System.Collections.Generic;
 using CL345;
 using static Testcase.Telegrams.EVCtoDMI.Variables;
+
+#endregion
 
 namespace Testcase.Telegrams.EVCtoDMI
 {
@@ -22,7 +26,6 @@ namespace Testcase.Telegrams.EVCtoDMI
         private static MMI_M_INHIBITED_LEVEL[] _mInhibitedLevel;
         private static MMI_M_INHIBIT_ENABLE[] _mInhibitEnable;
         private static MMI_M_LEVEL_NTC_ID[] _mLevelNtcId;
-        private static bool _qCloseEnable;
         private static ushort _nLevels;
 
         /// <summary>
@@ -195,21 +198,9 @@ namespace Testcase.Telegrams.EVCtoDMI
         ///
         /// Note: Bit0 = 0 -> disable close button, Bit0 = 1 -> enable close button
         /// </summary>
-        public static bool MMI_Q_CLOSE_ENABLE
+        public static MMI_Q_CLOSE_ENABLE MMI_Q_CLOSE_ENABLE
         {
-            set
-            {
-                _qCloseEnable = value;
-                
-                // Convert to byte
-                byte _mmiQCloseEnable = Convert.ToByte(_qCloseEnable);
-               
-                // 0000 000x => x000 0000
-                _mmiQCloseEnable <<= 7;
-               
-                // Fill telegram with MMI_Q_CLOSE_ENABLE
-                _pool.SITR.ETCS1.SelectLevel.MmiQCloseEnable.Value = _mmiQCloseEnable;               
-            }
+            set => _pool.SITR.ETCS1.SelectLevel.MmiQCloseEnable.Value = (byte) value;               
         }
     }
 
