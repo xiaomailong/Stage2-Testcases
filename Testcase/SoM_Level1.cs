@@ -89,7 +89,8 @@ namespace Testcase
             EVC30_MMIRequestEnable.Send();
 
             //ETCS->DMI: EVC-20 MMI_SELECT_LEVEL
-            Temporary.SendEVC20_MMISelectLevel_AllLevels(this);
+            //Temporary.SendEVC20_MMISelectLevel_AllLevels(this);
+            DMITestCases.DmiActions.Send_EVC20_MMISelectLevel_AllLevels();
 
             //ETCS->DMI: Send EVC-6 MMI_CURRENT TRAIN_DATA
             //Temporary.SendEVC6_MMICurrentTrainData_FixedDataEntry(new[] {"FLU", "RLU", "Rescue"}, 2);
