@@ -35,6 +35,7 @@ namespace Testcase
             EVC1_MMIDynamic.Initialise(this);
             EVC2_MMIStatus.Initialise(this);
             EVC3_MMISetTimeATP.Initialise(this);
+            EVC4_MMITrackDescription.Initialise(this);
             EVC5_MMIGeoPosition.Initialise(this);
             EVC6_MMICurrentTrainData.Initialise(this);
             EVC7_MMIEtcsMiscOutSignals.Initialise(this);
