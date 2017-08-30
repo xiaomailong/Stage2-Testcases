@@ -121,9 +121,9 @@ namespace Testcase.DMITestCases
         public static void Set_Driver_ID(SignalPool pool, string driverID)
         {
             EVC14_MMICurrentDriverID.MMI_X_DRIVER_ID = driverID;
-            EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE = EVC14_MMICurrentDriverID.MMIQADDENABLEBUTTONS.Settings |
-                                                        EVC14_MMICurrentDriverID.MMIQADDENABLEBUTTONS.TRN;
-            EVC14_MMICurrentDriverID.MMI_Q_CLOSE_ENABLE = true;
+            EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE = EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE_BUTTONS.Settings |
+                                                        EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE_BUTTONS.TRN;
+            EVC14_MMICurrentDriverID.MMI_Q_CLOSE_ENABLE = MMI_Q_CLOSE_ENABLE.Enabled;
             EVC14_MMICurrentDriverID.Send();
         }
 
@@ -168,12 +168,12 @@ namespace Testcase.DMITestCases
                 MMI_Q_LEVEL_NTC_ID.STM_ID,
                 MMI_Q_LEVEL_NTC_ID.STM_ID };
             Variables.MMI_M_CURRENT_LEVEL[] paramEvc20MmiMCurrentLevel =
-                { MMI_M_CURRENT_LEVEL.NotLatestUsedLevel,
-                MMI_M_CURRENT_LEVEL.NotLatestUsedLevel,
-                MMI_M_CURRENT_LEVEL.NotLatestUsedLevel,
-                MMI_M_CURRENT_LEVEL.NotLatestUsedLevel,
-                MMI_M_CURRENT_LEVEL.NotLatestUsedLevel,
-                MMI_M_CURRENT_LEVEL.NotLatestUsedLevel };
+                { MMI_M_CURRENT_LEVEL.NotLastUsedLevel,
+                MMI_M_CURRENT_LEVEL.NotLastUsedLevel,
+                MMI_M_CURRENT_LEVEL.NotLastUsedLevel,
+                MMI_M_CURRENT_LEVEL.NotLastUsedLevel,
+                MMI_M_CURRENT_LEVEL.NotLastUsedLevel,
+                MMI_M_CURRENT_LEVEL.NotLastUsedLevel };
             Variables.MMI_M_LEVEL_FLAG[] paramEvc20MmiMLevelFlag =
                 { MMI_M_LEVEL_FLAG.MarkedLevel,
                 MMI_M_LEVEL_FLAG.MarkedLevel,
@@ -209,14 +209,14 @@ namespace Testcase.DMITestCases
             EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = paramEvc20MmiMInhibitedLevel;
             EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = paramEvc20MmiMInhibitEnable;
             EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = paramEvc20MmiMLevelNtcId;
-            EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = true;
+            EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = MMI_Q_CLOSE_ENABLE.Enabled;
             EVC20_MMISelectLevel.Send();
         }
 
         /// <summary>
         /// Sends EVC-20 telegram to cancel previous MMI_Select_Level presentation
         /// </summary>
-        public static void SendEVC20_MMISelectLevel_Cancel()
+        public static void Send_EVC20_MMISelectLevel_Cancel()
         {
             EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = null;
             EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = null;
@@ -224,18 +224,24 @@ namespace Testcase.DMITestCases
             EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = null;
             EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = null;
             EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = null;
-            EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = true;
+            EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = MMI_Q_CLOSE_ENABLE.Enabled;
             EVC20_MMISelectLevel.Send();
         }
 
         /// <summary>
-        /// Description: Prompts the tester with a dialog box
+        /// Prompts the tester with a dialog box showing a set of instructions.
         /// </summary>
         public static void ShowInstruction(SignalPool pool, string instruction)
         {
             pool.WaitForAcknowledgement(instruction);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="caption"></param>
+        /// <returns></returns>
         public static string ShowDialog(string text, string caption)
         {
             Form prompt = new Form()
@@ -246,9 +252,11 @@ namespace Testcase.DMITestCases
                 Text = caption,
                 StartPosition = FormStartPosition.CenterScreen
             };
+
             Label textLabel = new Label() { Left = 50, Top = 20, Text = text };
             TextBox textBox = new TextBox() { Left = 50, Top = 50, Width = 400 };
             Button confirmation = new Button() { Text = "Ok", Left = 350, Width = 100, Top = 70, DialogResult = DialogResult.OK };
+
             confirmation.Click += (sender, e) => { prompt.Close(); };
             prompt.Controls.Add(textBox);
             prompt.Controls.Add(confirmation);
@@ -478,6 +486,7 @@ namespace Testcase.DMITestCases
         {
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = 7;
             EVC30_MMIRequestEnable.Send();
+            Send_EVC20_MMISelectLevel_AllLevels();
         }
 
         /// <summary>

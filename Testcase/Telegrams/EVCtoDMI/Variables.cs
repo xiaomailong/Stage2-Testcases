@@ -307,14 +307,14 @@ namespace Testcase.Telegrams.EVCtoDMI
             StartProcedureTrainIntegrity = 38,
             ExitRBCcontact = 39,
             LevelEntered = 40,
-            startNTC1DataEntry = 41,
-            startNTC2DataEntry = 42,
-            startNTC3DataEntry = 43,
-            startNTC4DataEntry = 44,
-            startNTC5DataEntry = 45,
-            startNTC6DataEntry = 46,
-            startNTC7DataEntry = 47,
-            startNTC8DataEntry = 48,
+            StartNTC1DataEntry = 41,
+            StartNTC2DataEntry = 42,
+            StartNTC3DataEntry = 43,
+            StartNTC4DataEntry = 44,
+            StartNTC5DataEntry = 45,
+            StartNTC6DataEntry = 46,
+            StartNTC7DataEntry = 47,
+            StartNTC8DataEntry = 48,
             ExitNTCDataEntry = 49,
             ExitNTCDataEntrySelection = 50,
             ChangeBrakePercentage = 51,
@@ -341,6 +341,21 @@ namespace Testcase.Telegrams.EVCtoDMI
         {
             Released = 0,
             Pressed = 1
+        }
+
+        /// <summary>
+        /// Enabling close button in EVC-14, EVC-20 and EVC-22.
+        /// 
+        /// Bits:
+        /// 0 = "disable/enable close button"
+        /// 1..7 = "Spare"
+        /// 
+        /// Note: Bit0 = 0 -> disable close button, Bit0 = 1 -> enable close button
+        /// </summary>
+        public enum MMI_Q_CLOSE_ENABLE : byte
+        {
+            Disabled = 0x00,
+            Enabled = 0x80
         }
 
         /// <summary>
@@ -480,8 +495,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public enum MMI_M_CURRENT_LEVEL : byte
         {
-            NotLatestUsedLevel = 0,
-            LatestUsedLevel = 1
+            NotLastUsedLevel = 0,
+            LastUsedLevel = 1
         }
 
         /// <summary>
@@ -525,8 +540,8 @@ namespace Testcase.Telegrams.EVCtoDMI
             L1 = 1,
             L2 = 2,
             L3 = 3,
-            CBTC = 50,
-            AWS_TPWS = 20
+            AWS_TPWS = 20,
+            CBTC = 50
         }
 
         [Flags]
@@ -585,8 +600,8 @@ namespace Testcase.Telegrams.EVCtoDMI
             GB = 36,
             GC = 37,
             OutofGC = 38,
-            Nonslipperyrail = 39,
-            Slipperyrail = 40,
+            NonSlipperyRail = 39,
+            SlipperyRail = 40,
             Level1 = 41,
             Level2 = 42,
             Level3 = 43,
