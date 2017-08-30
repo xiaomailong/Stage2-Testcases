@@ -222,7 +222,10 @@ namespace Testcase.XML
             // De-activate and activate cabin
             // More to do??
             EVC2_MMIStatus.MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.NoCabinActive;
-            EVC2_MMIStatus.MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.Cabin1Active;
+            EVC2_MMIStatus.Send();
+
+             EVC2_MMIStatus.MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.Cabin1Active;
+            EVC2_MMIStatus.Send();
 
             DMITestCases.DmiExpectedResults.SB_Mode_displayed(_pool);
 
@@ -270,9 +273,12 @@ namespace Testcase.XML
 
             // Step 8
             // De-activate and activate cabin
-            // More to do??
+            // More to do????
             EVC2_MMIStatus.MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.NoCabinActive;
+            EVC2_MMIStatus.Send();
+
             EVC2_MMIStatus.MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.Cabin1Active;
+            EVC2_MMIStatus.Send();
 
             DMITestCases.DmiExpectedResults.SB_Mode_displayed(_pool);
 
@@ -320,9 +326,12 @@ namespace Testcase.XML
                                       @"1. The ‘Exit Shunting’ button.");
 
             // Step 11
-            // More to do??
+            // More to do????
             EVC2_MMIStatus.MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.NoCabinActive;
+            EVC2_MMIStatus.Send();
+
             EVC2_MMIStatus.MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.Cabin1Active;
+            EVC2_MMIStatus.Send();
 
             DMITestCases.DmiExpectedResults.SB_Mode_displayed(_pool);
 
@@ -401,9 +410,12 @@ namespace Testcase.XML
 
 
             // Step 17
-            // More to do??
+            // More to do????
             EVC2_MMIStatus.MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.NoCabinActive;
+            EVC2_MMIStatus.Send();
+
             EVC2_MMIStatus.MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.Cabin1Active;
+            EVC2_MMIStatus.Send();
 
             DMITestCases.DmiExpectedResults.SB_Mode_displayed(_pool);
 
@@ -451,9 +463,12 @@ namespace Testcase.XML
                                       @"4. The ‘Radio Network ID’ button.");
 
             // Step 19
-            // More to do??
+            // More to do????
             EVC2_MMIStatus.MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.NoCabinActive;
+            EVC2_MMIStatus.Send();
+
             EVC2_MMIStatus.MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.Cabin1Active;
+            EVC2_MMIStatus.Send();
 
             DMITestCases.DmiExpectedResults.SB_Mode_displayed(_pool);
 
@@ -499,9 +514,12 @@ namespace Testcase.XML
                                       @"1. The ‘End of data entry’ button.");
 
             // Step 21
-            // More to do??
+            // More to do????
             EVC2_MMIStatus.MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.NoCabinActive;
+            EVC2_MMIStatus.Send();
+
             EVC2_MMIStatus.MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.Cabin1Active;
+            EVC2_MMIStatus.Send();
 
             DMITestCases.DmiExpectedResults.SB_Mode_displayed(_pool);
 
