@@ -34,6 +34,7 @@ namespace Testcase.Telegrams.EVCtoDMI
 
         private static void SetLevelInfoK()
         {
+            // Check that every array has the same length
             if (!(Equals(_qLevelNtcId.Length, _mCurrentLevel.Length) &&
                   Equals(_mCurrentLevel.Length, _mLevelFlag.Length) &&
                   Equals(_mLevelFlag.Length, _mInhibitedLevel.Length) &&
@@ -44,30 +45,35 @@ namespace Testcase.Telegrams.EVCtoDMI
                 throw new Exception("Number of Level does not match!");
             }
 
+            // determine how many level will be sent
             _nLevels = (ushort) _qLevelNtcId.Length;
+            // fill telegram with MMI_N_LEVELS
             _pool.SITR.ETCS1.SelectLevel.MmiNLevels.Value = (ushort) _nLevels;
 
             for (var k = 0; k < _nLevels; k++)
             {
+                // xxxx xxxx => x000 0000
                 uint uintMmiQLevelNtcId = Convert.ToUInt32(_qLevelNtcId[k]);
                 uintMmiQLevelNtcId <<= 7;
-
+                // xxxx xxxx => 0x00 0000
                 uint uintMmiMCurrentLevel = Convert.ToUInt32(_mCurrentLevel[k]);
                 uintMmiMCurrentLevel <<= 6;
-
+                // xxxx xxxx => 00x0 0000
                 uint uintMmiMLevelFlag = Convert.ToUInt32(_mLevelFlag[k]);
                 uintMmiMLevelFlag <<= 5;
-
+                // xxxx xxxx => 000x 0000
                 uint uintMmiMInhibitedLevel = Convert.ToUInt32(_mInhibitedLevel[k]);
                 uintMmiMInhibitedLevel <<= 4;
-
+                // xxxx xxxx => 0000 x000
                 uint uintMmiMInhibitEnable = Convert.ToUInt32(_mInhibitEnable[k]);
                 uintMmiMInhibitEnable <<= 3;
 
+                // build EVC20_alias_1 
                 byte evc20Alias1 = Convert.ToByte(uintMmiQLevelNtcId | uintMmiMCurrentLevel |
                                                   uintMmiMLevelFlag | uintMmiMInhibitedLevel |
                                                   uintMmiMInhibitEnable);
 
+                // fill telegram with dynamic fields
                 if (k < 10)
                 {
                     _pool.SITR.Client.Write("ETCS1_SelectLevel_EVC20SelectLevelSub0" + k + "_EVC20alias1",
