@@ -181,7 +181,7 @@ namespace Testcase.DMITestCases
 
             /// Test spec says Radar validation window but message means that Set RBC Validation window would be displayed...
             // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Enter and confirm the value ‘65536’ in an Input Field. Then, press ‘Yes’ button and check the log file for packet EVC-118 from DMI with MMI_Q_MD_DATASET = 1"););
+            DmiActions.ShowInstruction(this, @"Enter and confirm the value ‘65536’ in an Input Field. Then, press ‘Yes’ button and check the log file for packet EVC-118 from DMI with MMI_Q_MD_DATASET = 1");
 
             // EVC28.MMIEchoedSetVBCData.Send(this);
 
