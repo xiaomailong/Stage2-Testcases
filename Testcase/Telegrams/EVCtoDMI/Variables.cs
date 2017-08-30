@@ -480,8 +480,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public enum MMI_M_CURRENT_LEVEL : byte
         {
-            NotLatestUsedLevel = 0,
-            LatestUsedLevel = 1
+            NotLastUsedLevel = 0,
+            LastUsedLevel = 1
         }
 
         /// <summary>
@@ -525,8 +525,8 @@ namespace Testcase.Telegrams.EVCtoDMI
             L1 = 1,
             L2 = 2,
             L3 = 3,
-            CBTC = 50,
-            AWS_TPWS = 20
+            AWS_TPWS = 20,
+            CBTC = 50
         }
 
         [Flags]
@@ -585,8 +585,8 @@ namespace Testcase.Telegrams.EVCtoDMI
             GB = 36,
             GC = 37,
             OutofGC = 38,
-            Nonslipperyrail = 39,
-            Slipperyrail = 40,
+            NonSlipperyRail = 39,
+            SlipperyRail = 40,
             Level1 = 41,
             Level2 = 42,
             Level3 = 43,
