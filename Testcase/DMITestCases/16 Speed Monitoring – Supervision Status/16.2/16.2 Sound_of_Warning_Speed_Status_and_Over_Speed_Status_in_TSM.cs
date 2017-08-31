@@ -50,7 +50,7 @@ namespace Testcase.DMITestCases
             // Post-conditions from TestSpec
             // DMI displays in FS mode, Level 1.
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_changes_from_SR_to_FS_mode(this);
+            DmiExpectedResults.FS_mode_displayed(this);
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();

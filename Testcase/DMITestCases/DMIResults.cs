@@ -1583,10 +1583,10 @@ namespace Testcase.DMITestCases
         ///     Step 5 in TC-ID: 15.1.1 in 20.1.1
         ///     Step 2 in TC-ID: 15.1.2 in 20.1.2
         /// </summary>
-        public static void DMI_changes_from_SR_to_FS_mode(SignalPool pool)
+        public static void FS_mode_displayed(SignalPool pool)
         {
             EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.FullSupervision;
-            pool.WaitForVerification("Is the SR mode symbol deleted and replaced by FS mode symbol (MO11) on DMI area B7");
+            pool.WaitForVerification("Is the FS mode symbol (MO11) displayed on DMI area B7");
         }
 
         /// <summary>

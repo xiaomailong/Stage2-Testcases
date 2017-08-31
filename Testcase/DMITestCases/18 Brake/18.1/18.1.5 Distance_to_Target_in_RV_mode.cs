@@ -82,7 +82,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI changes from SR to FS mode
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_changes_from_SR_to_FS_mode(this);
+            DmiExpectedResults.FS_mode_displayed(this);
 
 
             /*
