@@ -13,6 +13,11 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.DMITestCases;
+using Testcase.Telegrams.DMItoEVC;
+using Testcase.Telegrams.EVCtoDMI;
+using static Testcase.Telegrams.EVCtoDMI.Variables;
+using Testcase.TemporaryFunctions;
 
 namespace Testcase.DMITestCases
 {
@@ -55,17 +60,19 @@ namespace Testcase.DMITestCases
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint
-
+            TraceInfo("This test case requires a DMI configuration change; See Precondition requirements. If this is not done manually, the test may fail!");
 
             /*
             Test Step 1
             Action: Activate cabin A
             Expected Result: DMI displays Driver ID window
             */
-            // Call generic Action Method
+            // Call Generic Action Method
             DmiActions.Activate_Cabin_1(this);
-            // Call generic Check Results Method
-            DmiExpectedResults.Driver_ID_window_displayed(this);
+            DmiActions.Set_Driver_ID(this, "1234");
+            // Check Results
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                     "1. Is drivers DMI and Id activated.");
 
 
             /*
@@ -74,9 +81,12 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SR mode, level 1.Verify that the Planning Area is displayed in area D.The Hide PA button is displayed on the planning area with ‘Scale up’ and ‘Scale Down’ buttons
             Test Step Comment: (1) MMI_gen 3063 (SR);   (1) MMI_gen 7101;   (2) MMI_gen 7104;
             */
-            // Call generic Action Method
-            DmiActions.Driver_performs_SoM_to_SR_mode_level_1(this);
-
+            // Call Start of Mission Method
+            DmiActions.Complete_SoM_L1_SR(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                 "1. Planning Area is displayed in Main Area D." + Environment.NewLine +
+                                 "2. The Hide PA button is displyed in sub area D14 (Top right)" + Environment.NewLine +
+                                 "3. The scale Up & Down buttons are displyed in sub area B (Left Top/ Buttom)");
 
             /*
             Test Step 3
@@ -84,7 +94,14 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in OS mode, level 1.Verify that the Planning Area is displayed the planning information in area D.The Hide PA button is displayed on the planning area with ‘Scale up’ and ‘Scale Down’ buttons
             Test Step Comment: (1) MMI_gen 3063 (OS);   (1) MMI_gen 7101;   (2) MMI_gen 7104;
             */
-
+            // Change to on sight Mode to emulate pasing BG1
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.OnSight;
+            // Check Result
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. Planning Area is displayed in Main Area D." + Environment.NewLine +
+                                "2. On Sight Mode is displayed." + Environment.NewLine +
+                                "3. The Hide PA button is displyed in sub area D14 (Top right)" + Environment.NewLine +
+                                "4. The scale Up & Down buttons are displyed in sub area B (Left Top/ Buttom)");
 
             /*
             Test Step 4
