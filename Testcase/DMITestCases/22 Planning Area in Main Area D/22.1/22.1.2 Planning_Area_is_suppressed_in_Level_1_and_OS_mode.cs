@@ -13,11 +13,9 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
-using Testcase.DMITestCases;
 using Testcase.Telegrams.DMItoEVC;
 using Testcase.Telegrams.EVCtoDMI;
 using static Testcase.Telegrams.EVCtoDMI.Variables;
-using Testcase.TemporaryFunctions;
 
 namespace Testcase.DMITestCases
 {
@@ -72,7 +70,7 @@ namespace Testcase.DMITestCases
             DmiActions.Set_Driver_ID(this, "1234");
             // Call generic Check Results Method
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                     "1. Is drivers DMI and Id activated.");
+                     "1. Is the Driver ID window displayed.");
 
             /*
             Test Step 2
@@ -91,7 +89,8 @@ namespace Testcase.DMITestCases
             // Call Generic Method and Confirm result
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                     "1. Does the DMI show Full Supervision Mode." + Environment.NewLine + "2. Planning Area is displayed");
+                     "1. Does the DMI show Full Supervision Mode." + Environment.NewLine +
+                     "2. Planning Area is displayed");
 
 
             // Test Step 4
@@ -109,7 +108,6 @@ namespace Testcase.DMITestCases
             */
 
             // Call Method to replace planning area on DMI
-
             DmiActions.Activate_Cabin_1(this);
             // Change mode to On Sight
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.OnSight;
@@ -121,16 +119,13 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 7101 (partly: disable OS);
             */
             // Call generic Check Results Method
-            //WaitForVerification("Touch sub area D14 and please confirm:" + Environment.NewLine + Environment.NewLine +
-            //"1. Planning area is no longer displayed.");
             WaitForVerification("Touch main area D and please confirm:" + Environment.NewLine + Environment.NewLine +
-                        "1. Mode has changed to On Sight." + Environment.NewLine + "2. Planning Area is NOT displayed");
-
+                        "1. Mode has changed to On Sight." + Environment.NewLine +
+                        "2. Planning Area is NOT displayed");
 
             // Test Step 7
             // Action: End of test
             // Expected Result:
-
 
             return GlobalTestResult;
         }
