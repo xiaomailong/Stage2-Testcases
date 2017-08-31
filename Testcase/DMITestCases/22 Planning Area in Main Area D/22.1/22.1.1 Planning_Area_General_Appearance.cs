@@ -13,6 +13,11 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.DMITestCases;
+using Testcase.Telegrams.DMItoEVC;
+using Testcase.Telegrams.EVCtoDMI;
+using static Testcase.Telegrams.EVCtoDMI.Variables;
+using Testcase.TemporaryFunctions;
 
 namespace Testcase.DMITestCases
 {
@@ -40,6 +45,7 @@ namespace Testcase.DMITestCases
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
+
         }
 
         public override void PostExecution()
@@ -49,6 +55,7 @@ namespace Testcase.DMITestCases
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
+
         }
 
         public override bool TestcaseEntryPoint()
@@ -62,9 +69,16 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Driver ID window
             */
             // Call generic Action Method
+            EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.GoToIdle;
+            EVC0_MMIStartATP.Send();
             DmiActions.Activate_Cabin_1(this);
+            DmiActions.Set_Driver_ID(this, "1234");
             // Call generic Check Results Method
-            DmiExpectedResults.Driver_ID_window_displayed(this);
+            // DmiExpectedResults.Driver_ID_window_displayed(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                     "1. Is drivers DMI and Id activated.");
+
+
 
 
             /*
@@ -73,9 +87,11 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SR mode, level 1
             */
             // Call generic Action Method
-            DmiActions.Perform_SoM_to_SR_mode_level_1(this);
+            DmiActions.Complete_SoM_L1_SR(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                     "1. Does the DMI show Staff Responsible Mode.");
             // Call generic Check Results Method
-            DmiExpectedResults.SR_Mode_displayed(this);
+            // DmiExpectedResults.SR_Mode_displayed(this);
 
 
             /*
@@ -85,8 +101,9 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 7101 (partly: default  configuration);              
             */
             // Call generic Action Method
-            DmiActions.Drive_train_forward_passing_BG1(this);
-
+            // DmiActions.Drive_train_forward_passing_BG1(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                     "1. Does the DMI show Staff Responsible Mode." + Environment.NewLine + "2. Confirm that the planning area IS NOT displayed.");
 
             /*
             Test Step 4
@@ -94,9 +111,10 @@ namespace Testcase.DMITestCases
             Expected Result: DMI changes from SR mode to FS mode.The Planning area is displayed the planning information in main area D.The planning area is displayed the information following:Distance scaleOrder and announcement of track conditionGradient profileSpeed profile discontinuitiesPASPIndication markerHide and show planning informationZoom function(see the example in ‘Comment’ column)
             Test Step Comment: (1) MMI_gen 3063       (partly: FS mode);MMI_gen 7102       (partly: default  configuration);  (2) MMI_gen 9937;   
             */
-            // Call generic Action Method
-            DmiActions.Drive_train_forward_passing_BG2(this);
-
+            // Force train into Full Supervision Mode
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                     "1. Does the DMI show Full Supervision Mode." + Environment.NewLine + "2. Confirm that the planning area IS displayed.");
 
             /*
             Test Step 5
