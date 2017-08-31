@@ -148,7 +148,7 @@ namespace Testcase.DMITestCases
             DmiActions.Drive_train_forward_passing_BG1(this);
 
             DmiActions.Send_FS_Mode(this);
-            DmiExpectedResults.DMI_changes_from_SR_to_FS_mode(this);
+            DmiExpectedResults.FS_mode_displayed(this);
 
             #endregion
 

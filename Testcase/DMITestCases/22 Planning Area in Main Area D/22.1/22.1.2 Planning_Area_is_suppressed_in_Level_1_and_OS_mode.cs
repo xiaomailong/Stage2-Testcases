@@ -13,6 +13,9 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.DMItoEVC;
+using Testcase.Telegrams.EVCtoDMI;
+using static Testcase.Telegrams.EVCtoDMI.Variables;
 
 namespace Testcase.DMITestCases
 {
@@ -31,7 +34,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 17_1_2.tdg
     /// </summary>
-    public class Planning_Area_is_suppressed_in_Level_1_and_OS_mode : TestcaseBase
+    public class TC_17_1_2_Planning_Area : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -55,6 +58,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
+            TraceInfo("This test case requires a DMI configuration change; See Precondition requirements. If this is not done manually, the test may fail!");
 
             /*
             Test Step 1
@@ -63,9 +67,10 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Activate_Cabin_1(this);
+            DmiActions.Set_Driver_ID(this, "1234");
             // Call generic Check Results Method
-            DmiExpectedResults.Driver_ID_window_displayed(this);
-
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                     "1. Is the Driver ID window displayed.");
 
             /*
             Test Step 2
@@ -73,29 +78,28 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SR mode, level 1
             */
             // Call generic Action Method
-            DmiActions.Driver_performs_SoM_to_SR_mode_level_1(this);
+            DmiActions.Complete_SoM_L1_SR(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                     "1. Does the DMI show Staff Responsible Mode.");
+
+
+            // Test Step 3
+            // Action: Drive train forward pass BG1
+            // Expected Result: DMI change from SR mode to FS mode
+            // Call Generic Method and Confirm result
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                     "1. Does the DMI show Full Supervision Mode." + Environment.NewLine +
+                     "2. Planning Area is displayed");
+
+
+            // Test Step 4
+            // Action: Touch main area D
+            // Expected Result: Verify that the Planning Area is not displayed on DMI
+            // Test Step Comment: MMI_gen 7102;
             // Call generic Check Results Method
-            DmiExpectedResults.SR_Mode_displayed(this);
-
-
-            /*
-            Test Step 3
-            Action: Drive train forward pass BG1
-            Expected Result: DMI change from SR mode to FS mode
-            */
-
-
-            /*
-            Test Step 4
-            Action: Touch main area D
-            Expected Result: Verify that the Planning Area is not displayed on DMI
-            Test Step Comment: MMI_gen 7102;
-            */
-            // Call generic Action Method
-            DmiActions.Touch_main_area_D(this);
-            // Call generic Check Results Method
-            DmiExpectedResults.Verify_that_the_Planning_Area_is_not_displayed_on_DMI(this);
-
+            WaitForVerification("Touch main area D and please confirm:" + Environment.NewLine + Environment.NewLine +
+                    "1. Planning area is NOT displayed.");
 
             /*
             Test Step 5
@@ -103,6 +107,10 @@ namespace Testcase.DMITestCases
             Expected Result: DMI change from FS mode to OS mode
             */
 
+            // Call Method to replace planning area on DMI
+            DmiActions.Activate_Cabin_1(this);
+            // Change mode to On Sight
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.OnSight;
 
             /*
             Test Step 6
@@ -110,18 +118,14 @@ namespace Testcase.DMITestCases
             Expected Result: Verify that the Planning Area is not displayed on DMI
             Test Step Comment: MMI_gen 7101 (partly: disable OS);
             */
-            // Call generic Action Method
-            DmiActions.Touch_main_area_D(this);
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_that_the_Planning_Area_is_not_displayed_on_DMI(this);
+            WaitForVerification("Touch main area D and please confirm:" + Environment.NewLine + Environment.NewLine +
+                        "1. Mode has changed to On Sight." + Environment.NewLine +
+                        "2. Planning Area is NOT displayed");
 
-
-            /*
-            Test Step 7
-            Action: End of test
-            Expected Result: 
-            */
-
+            // Test Step 7
+            // Action: End of test
+            // Expected Result:
 
             return GlobalTestResult;
         }
