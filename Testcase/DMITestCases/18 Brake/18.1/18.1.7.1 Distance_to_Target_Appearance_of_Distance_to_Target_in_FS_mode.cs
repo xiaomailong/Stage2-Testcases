@@ -13,6 +13,8 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.EVCtoDMI;
+
 
 namespace Testcase.DMITestCases
 {
@@ -41,25 +43,27 @@ namespace Testcase.DMITestCases
         public override void PreExecution()
         {
             // Pre-conditions from TestSpec:
-            // System is powered on.Cabin is activated.SoM is performed in SR mode, level 1.
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
+            // System is powered on.Cabin is activated.SoM is performed in SR mode, level 1.
+            DmiActions.Complete_SoM_L1_SR(this);
         }
 
         public override void PostExecution()
         {
             // Post-conditions from TestSpec
-            // DMI displays in FS mode, Level 1
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
+            // DMI displays in FS mode, Level 1
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in FS mode, Level 1.");
         }
 
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint
-
 
             /*
             Test Step 1
@@ -67,9 +71,20 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in FS mode, level 1Verify the following information(1)    Use the log file to confirm that DMI receives the following packets information with a specific value,  EVC-1: MMI_M_WARNING = 0 (Status = NoS, Supervision = CSM)MMI_O_BRAKETARGET = -1 (Default) EVC-7: OBU_TR_M_MODE = 0 (FS mode) (2)   The distance to target bar is not display in sub-area A3. (3)   The distance to target digital is not display in sub-area A2
             Test Step Comment: (1) MMI_gen 107 (partly: MMI_M_WARNING, OBU_TR_M_MODE, FS mode CSM); MMI_gen 6658 (partly: MMI_O_BRAKETARGET is less than zero); MMI_gen 2567 (partly: MMI_M_WARNING, OBU_TR_M_MODE, FS mode CSM); MMI_gen 6774 (partly: MMI_O_BRAKETARGET is less than zero);(2) MMI_gen 6658 (partly: not be shown); MMI_gen 107 (partly: Table 37, FS mode, CSM);(3) MMI_gen 2567 (partly: Table 38, FS mode CSM); MMI_gen 6774 (partly: not be shown);
             */
-            // Call generic Action Method
-            DmiActions.Drive_the_train_forward_pass_BG1(this);
+            EVC1_MMIDynamic.MMI_O_BRAKETARGET = -1;
+            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 0;       // just starting off
 
+            // Set the permitted speed so the current speed is allowed
+            EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 10;
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
+
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 10000;   // 100m
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in FS mode, Level 1." + Environment.NewLine +
+                                "2. The distance to target bar is not displayed in sub-area A3." + Environment.NewLine +
+                                "3. The digital distance to target is not displayed in sub-area A2.");
 
             /*
             Test Step 2
@@ -77,9 +92,15 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)    Use the log file to confirm that DMI receives the packet information EVC-1 with following variables,MMI_M_WARNING = 2 (Status = NoS, Supervision = PIM)MMI_O_BRAKETARGET > -1(2)    The distance to target bar is display in sub-area A3.(3)   The sound 'Sinfo' is played once.(4)    The distance to target digital is display in sub-area A2
             Test Step Comment: (1) MMI_gen 107 (partly: MMI_M_WARNING, FS mode PIM); MMI_gen 6658 (partly: NEGATIVE, MMI_O_BRAKETARGET is more than zero); MMI_gen 2567 (partly: MMI_M_WARNING, FS mode PIM);(2) MMI_gen 6658 (partly: NEGATIVE, shown); MMI_gen 107 (partly: Table 37, FS mode, PIM); MMI_gen 5817 (partly: MMI_M_WARNING = 2);(3) MMI_gen 5817 (partly: sound Sinfo); MMI_gen 9516 (partly: PIM supervision); MMI_gen 12025 (partly: PIM supervision);(4) MMI_gen 2567 (partly: Table 38, FS mode PIM);
             */
-            // Call generic Action Method
-            DmiActions.Continue_to_drive_the_train_forward_Then_stop_the_train(this);
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 61000;   // 610m
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
+            EVC1_MMIDynamic.MMI_O_BRAKETARGET = 100000;
+            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_PreIndication_Monitoring;
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The distance to target bar is displayed in sub-area A3." + Environment.NewLine +
+                                @"2. The sound 'Sinfo' is played once." + Environment.NewLine +
+                                "3. The digital distance to target is displayed in sub-area A2.");
 
             /*
             Test Step 3
@@ -87,9 +108,15 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)    Use the log file to confirm that DMI receives the packet information EVC-1 with following variables,MMI_M_WARNING = 11 (Status = NoS, Supervision = TSM)MMI_O_BRAKETARGET > -1(2)    The distance to target bar is display in sub-area A3.(3)    The distance to target digital is display in sub-area A2
             Test Step Comment: (1) MMI_gen 107 (partly: MMI_M_WARNING, FS mode TSM); MMI_gen 6658 (partly: NEGATIVE, MMI_O_BRAKETARGET is more than zero); MMI_gen 2567 (partly: MMI_M_WARNING, FS mode TSM);(2) MMI_gen 6658 (partly: NEGATIVE, shown); MMI_gen 107 (partly: Table 37, FS mode, TSM);(3) MMI_gen 2567 (partly: Table 38, FS mode TSM);
             */
-            // Call generic Action Method
-            DmiActions.Continue_to_drive_the_train_forward_Then_stop_the_train(this);
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 90000;   // 910m
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 91000;   // 910m
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
+            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Target_Speed_Monitoring;
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The distance to target bar is displayed in sub-area A3." + Environment.NewLine +
+                                "2. The digital distance to target is displayed in sub-area A2.");
 
             /*
             Test Step 4
@@ -97,10 +124,18 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   The distance to target bar and digital is removed from the DMI.Note: After test scipt file is executed, the distance to target bar and digital is re-appear refer to received packet EVC-1 from ETCS Onboard
             Test Step Comment: (1) MMI_gen 6758 (partly: MMI_M_WARNING is invalid);
             */
-            // Call generic Check Results Method
-            DmiExpectedResults
-                .Verify_the_following_information_1_The_distance_to_target_bar_and_digital_is_removed_from_the_DMI_Note_After_test_scipt_file_is_executed_the_distance_to_target_bar_and_digital_is_re_appear_refer_to_received_packet_EVC_1_from_ETCS_Onboard(this);
+            XML.XML_13_1_7_a.Send(this);
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The distance to target bar is removed from sub-area A3." + Environment.NewLine +
+                                "2. The digital distance to target is removed from sub-area A2.");
+
+            System.Threading.Thread.Sleep(2000);
+            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Target_Speed_Monitoring;
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The distance to target bar is re-displayed in sub-area A3 after 2s." + Environment.NewLine +
+                                "2. The digital distance to target is re-displayed in sub-area A2 after 2s.");
 
             /*
             Test Step 5
@@ -108,10 +143,20 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   The distance to target bar and digital is removed from the DMI.Note: After test scipt file is executed, the distance to target bar and digital is re-appear refer to received packet EVC-1 from ETCS Onboard
             Test Step Comment: (1) MMI_gen 6758 (partly: OBU_TR_M_MODE is invalid);
             */
-            // Call generic Check Results Method
-            DmiExpectedResults
-                .Verify_the_following_information_1_The_distance_to_target_bar_and_digital_is_removed_from_the_DMI_Note_After_test_scipt_file_is_executed_the_distance_to_target_bar_and_digital_is_re_appear_refer_to_received_packet_EVC_1_from_ETCS_Onboard(this);
+            XML.XML_13_1_7_b.Send(this);
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The distance to target bar is removed from sub-area A3." + Environment.NewLine +
+                                "2. The digital distance to target is removed from sub-area A2.");
+
+            System.Threading.Thread.Sleep(2000);
+
+            // Test spec says EVC1 signal would re-establish display but OBU_TR_M_MODE would still be invalid
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The distance to target bar is re-displayed in sub-area A3 after 2s." + Environment.NewLine +
+                                "2. The digital distance to target is re-displayed in sub-area A2 after 2s.");
 
             /*
             Test Step 6
@@ -119,16 +164,19 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)    Use the log file to confirm that DMI receives the packet information EVC-1 with following variables,MMI_M_WARNING = 3 (Status = Inds, Supervision = RSM)(2)    The distance to target bar is display in sub-area A3.(3)    The distance to target digital is display in sub-area A2
             Test Step Comment: (1) MMI_gen 107 (partly: MMI_M_WARNING, OBU_TR_M_MODE, FS mode RSM); MMI_gen 6658 (partly: NEGATIVE, MMI_O_BRAKETARGET is more than zero); MMI_gen 2567 (partly: MMI_M_WARNING, OBU_TR_M_MODE, FS mode RSM);(2) MMI_gen 6658 (partly: NEGATIVE, shown); MMI_gen 107 (partly: Table 37, FS mode, RSM);(3) MMI_gen 2567 (partly: Table 38, FS mode RSM);
             */
-            // Call generic Action Method
-            DmiActions.Continue_to_drive_the_train_forward_Then_stop_the_train(this);
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 410000;   // 4.1 km
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
+            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Release_Speed_Monitoring;
 
-
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The distance to target bar is displayed in sub-area A3." + Environment.NewLine +
+                                "2. The digital distance to target is displayed in sub-area A2.");
             /*
             Test Step 7
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }
