@@ -34,7 +34,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 17_1_2.tdg
     /// </summary>
-    public class Planning_Area_is_suppressed_in_Level_1_and_OS_mode : TestcaseBase
+    public class TC_17_1_2_Planning_Area : TestcaseBase
     {
         public override void PreExecution()
         {
