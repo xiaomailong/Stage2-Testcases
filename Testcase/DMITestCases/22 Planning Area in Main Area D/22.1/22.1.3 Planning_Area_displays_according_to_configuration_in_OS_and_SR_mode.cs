@@ -13,11 +13,9 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
-using Testcase.DMITestCases;
 using Testcase.Telegrams.DMItoEVC;
 using Testcase.Telegrams.EVCtoDMI;
 using static Testcase.Telegrams.EVCtoDMI.Variables;
-using Testcase.TemporaryFunctions;
 
 namespace Testcase.DMITestCases
 {
@@ -37,7 +35,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 17_1_3.tdg
     /// </summary>
-    public class Planning_Area_displays_according_to_configuration_in_OS_and_SR_mode : TestcaseBase
+    public class TC_17_1_1_Planning_Area : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -60,7 +58,8 @@ namespace Testcase.DMITestCases
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint
-            TraceInfo("This test case requires a DMI configuration change; See Precondition requirements. If this is not done manually, the test may fail!");
+            TraceInfo("This test case requires a DMI configuration change - " +
+                        "See Precondition requirements. If this is not done manually, the test may fail!");
 
             /*
             Test Step 1
@@ -72,8 +71,7 @@ namespace Testcase.DMITestCases
             DmiActions.Set_Driver_ID(this, "1234");
             // Check Results
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                     "1. Is drivers DMI and Id activated.");
-
+                                "1. Is the Driver ID window displayed.");
 
             /*
             Test Step 2
@@ -84,9 +82,9 @@ namespace Testcase.DMITestCases
             // Call Start of Mission Method
             DmiActions.Complete_SoM_L1_SR(this);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                 "1. Planning Area is displayed in Main Area D." + Environment.NewLine +
-                                 "2. The Hide PA button is displyed in sub area D14 (Top right)" + Environment.NewLine +
-                                 "3. The scale Up & Down buttons are displyed in sub area B (Left Top/ Buttom)");
+                                "1. Planning Area is displayed in Main Area D." + Environment.NewLine +
+                                "2. The Hide PA button is displyed in sub area D14." + Environment.NewLine +
+                                "3. The scale Up & Down buttons are displayed in sub area B.");
 
             /*
             Test Step 3
@@ -100,15 +98,14 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Planning Area is displayed in Main Area D." + Environment.NewLine +
                                 "2. On Sight Mode is displayed." + Environment.NewLine +
-                                "3. The Hide PA button is displyed in sub area D14 (Top right)" + Environment.NewLine +
-                                "4. The scale Up & Down buttons are displyed in sub area B (Left Top/ Buttom)");
+                                "3. The Hide PA button is displyed in sub area D14." + Environment.NewLine +
+                                "4. The scale Up & Down buttons are displayed in sub area B.");
 
             /*
             Test Step 4
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }
