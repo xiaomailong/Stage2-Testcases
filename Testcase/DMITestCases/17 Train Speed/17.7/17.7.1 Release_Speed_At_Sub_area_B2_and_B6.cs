@@ -88,9 +88,9 @@ namespace Testcase.DMITestCases
             Expected Result: The DMI changes from SR to FS mode
             */
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The DMI changes from SR to FS mode.");
-            // ???????
 
             /*
             Test Step 4

@@ -90,7 +90,7 @@ namespace Testcase.DMITestCases
             Action: Drive the train forward pass BG1
             Expected Result: DMI changes from SR to FS mode
             */
-            // more signals??
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
             
             // Call generic Check Results Method
