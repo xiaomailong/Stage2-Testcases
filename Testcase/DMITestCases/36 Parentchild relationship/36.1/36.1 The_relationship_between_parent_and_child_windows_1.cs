@@ -13,6 +13,8 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.EVCtoDMI;
+
 
 namespace Testcase.DMITestCases
 {
@@ -36,16 +38,20 @@ namespace Testcase.DMITestCases
         public override void PreExecution()
         {
             // Pre-conditions from TestSpec:
-            // System is power on.
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
+            // System is powered on.
+            EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.GoToIdle;
+            EVC0_MMIStartATP.Send();
         }
 
         public override void PostExecution()
         {
             // Post-conditions from TestSpec
             // DMI displays  in SB mode, Level 1
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SB mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -54,8 +60,7 @@ namespace Testcase.DMITestCases
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint
-
-
+            
             /*
             Test Step 1
             Action: Activate cabin A
@@ -63,9 +68,9 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Activate_Cabin_1(this);
+
             // Call generic Check Results Method
             DmiExpectedResults.Driver_ID_window_displayed(this);
-
 
             /*
             Test Step 2
@@ -73,10 +78,10 @@ namespace Testcase.DMITestCases
             Expected Result: The Settings window is displayed
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press ‘Settings’ button");
-            // Call generic Check Results Method
-            DmiExpectedResults.The_Settings_window_is_displayed(this);
+            DmiActions.ShowInstruction(this, @"Press the ‘Settings’ button");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the Settings window.");
 
             /*
             Test Step 3
@@ -85,17 +90,19 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 8787 (partly: Close the Settings window);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Press the ‘Close’ button");
 
-
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI close the Settings window and displays the Driver ID window.");
             /*
             Test Step 4
             Action: Press ‘TRN’ button
             Expected Result: The Train Running Number window is displayed
             */
-            // Call generic Check Results Method
-            DmiExpectedResults.The_Train_Running_Number_window_is_displayed(this);
+            DmiActions.ShowInstruction(this, @"Press ‘TRN’ button");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the Train Running Number window.");
 
             /*
             Test Step 5
@@ -104,8 +111,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 8787 (partly: Close the Train Running Number window);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Press the ‘Close’ button");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI close the Train Running Number window and displays the Driver ID window.");
 
             /*
             Test Step 6
@@ -115,15 +124,18 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Enter Driver ID and perform brake test");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the Level window.");
 
             /*
             Test Step 7
             Action: Select and confirm Level 1
             Expected Result: The Main window is displayed
             */
-            // Call generic Check Results Method
-            DmiExpectedResults.The_Main_window_is_displayed(this);
+            DmiActions.ShowInstruction(this, @"Select and confirm Level 1");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the Main window.");
 
             /*
             Test Step 8
@@ -131,8 +143,11 @@ namespace Testcase.DMITestCases
             Expected Result: The Driver ID window is displayed. The ‘Close’ button is presented as enabled state
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press ‘Driver ID’ button");
+            DmiActions.ShowInstruction(this, @"Press the ‘Driver ID’ button");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the Driver ID window." + Environment.NewLine +
+                                "2. The ‘Close’ button is displayed enabled.");
 
             /*
             Test Step 9
@@ -140,9 +155,10 @@ namespace Testcase.DMITestCases
             Expected Result: Verify that the Driver ID window is closed. The Main window is displayed
             Test Step Comment: MMI_gen 8785 (partly: Close the Driver ID window);
             */
-            // Call generic Action Method
-            DmiActions.Close_the_Driver_ID_window(this);
+            DmiActions.ShowInstruction(this, @"Press the ‘Close’ button in the Driver ID window");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI closes the Driver ID window and displays the Main window.");
 
             /*
             Test Step 10
@@ -150,8 +166,11 @@ namespace Testcase.DMITestCases
             Expected Result: The Train data window is displayed. The ‘Close’ button is presented as enabled state
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press ‘Train data’ button");
+            DmiActions.ShowInstruction(this, @"Press the ‘Train data’ button");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the Train data window." + Environment.NewLine +
+                                "2. The ‘Close’ button is displayed enabled.");
 
             /*
             Test Step 11
@@ -159,7 +178,10 @@ namespace Testcase.DMITestCases
             Expected Result: Verify that the Train data window is closed. The Main window is displayed
             Test Step Comment: MMI_gen 8785 (partly: Close the Train data window);
             */
+            DmiActions.ShowInstruction(this, @"Press the ‘Close’ button in the Train data window");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI closes the Train data window and displays the Main window.");
 
             /*
             Test Step 12
@@ -171,13 +193,17 @@ namespace Testcase.DMITestCases
             // Call generic Check Results Method
             DmiExpectedResults.Train_data_window_displayed(this);
 
-
             /*
             Test Step 13
             Action: If the train data is fixed, re-select the train type and then press ‘Yes’ button.If the train data is flexible, re-entry all train data and then press ‘Yes’ button
             Expected Result: The Train data validation window is displayed.The ‘Close’ button is presented as enabled state
             */
-
+            DmiActions.ShowInstruction(this, "If the train data area fixed, re-select the train type and press the ‘Yes’ button" + Environment.NewLine +
+                                             "If the train data are flexible, enter all the train data and press the ‘Yes’ button");
+            
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the Train data validation window." + Environment.NewLine +
+                                "2. The ‘Close’ button is displayed enabled.");
 
             /*
             Test Step 14
@@ -186,8 +212,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 8785 (partly: Close the Train data validation window);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Press the ‘Close’ button in the Train data validation window");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI closes the Train data validation window and displays the Main window.");
 
             /*
             Test Step 15
@@ -195,8 +223,11 @@ namespace Testcase.DMITestCases
             Expected Result: The Level window is displayed. The ‘Close’ button is presented as enabled state
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press ‘Level’ button");
+            DmiActions.ShowInstruction(this, @"Press the ‘Level’ button");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the Level window." + Environment.NewLine +
+                                "2. The ‘Close’ button is displayed enabled.");
 
             /*
             Test Step 16
@@ -204,14 +235,21 @@ namespace Testcase.DMITestCases
             Expected Result: Verify that the Level window is closed. The Main window is displayed
             Test Step Comment: MMI_gen 8785 (partly: Close the Level window);
             */
+            DmiActions.ShowInstruction(this, @"Press the ‘Close’ button in the Level window");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI closes the Level window and displays the Main window.");
 
             /*
             Test Step 17
             Action: Press ‘Train running number’ button
             Expected Result: The Train Running Number window is displayed. The ‘Close’ button is presented as enabled state
             */
+            DmiActions.ShowInstruction(this, @"Press the ‘Train Running Number’ button");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the Train Running Number window." + Environment.NewLine +
+                                "2. The ‘Close’ button is displayed enabled.");
 
             /*
             Test Step 18
@@ -219,10 +257,11 @@ namespace Testcase.DMITestCases
             Expected Result: Verify that the Train Running Number window is closed. The Main window is displayed
             Test Step Comment: MMI_gen 8785 (partly: Close the Train Running Number window);
             */
-            // Call generic Action Method
-            DmiActions.Close_the_Train_Running_Number_window(this);
+            DmiActions.ShowInstruction(this, @"Press the ‘Close’ button in the  Train Running Number window");
 
-
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI closes the  Train Running Number window and displays the Main window.");
+            
             /*
             Test Step 19
             Action: Press ‘Close’ button
@@ -231,14 +270,14 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
-
-
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI closes the  Main window and displays the Default window.");
+            
             /*
             Test Step 20
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }

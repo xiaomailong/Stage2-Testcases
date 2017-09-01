@@ -46,12 +46,16 @@ namespace Testcase.DMITestCases
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
+
+            DmiActions.Complete_SoM_L1_SR(this);
         }
 
         public override void PostExecution()
         {
             // Post-conditions from TestSpec
             // DMI displays in SR mode, Level 1
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SR mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -61,7 +65,6 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
             /*
             Test Step 1
             Action: Press ‘Spec’ button
@@ -69,8 +72,11 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 9199;(partly: Special);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press ‘Spec’ button");
+            DmiActions.ShowInstruction(this, @"Press the ‘Spec’ button");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the Special window." + Environment.NewLine +
+                                "2. The ‘Close’ button is enabled");
 
             /*
             Test Step 2
@@ -79,15 +85,21 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 9199;(partly: Special); MMI_gen 8785 (partly: Special);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Press the ‘Close’ button in the Special Window");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI closes the Special window and displays the Default window.");
 
             /*
             Test Step 3
             Action: Press ‘Spec’ button again
             Expected Result: The Special window is displayed
             */
+            DmiActions.ShowInstruction(this, @"Press the ‘Spec’ button");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the Special window." + Environment.NewLine +
+                                "2. The ‘Close’ button is enabled");
 
             /*
             Test Step 4
@@ -96,8 +108,11 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 9199 (partly: Adhesion);   
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press ‘Adhesion’ button");
+            DmiActions.ShowInstruction(this, @"Press the ‘Adhesion’ button");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the Adhesion window." + Environment.NewLine +
+                                "2. The ‘Close’ button is enabled");
 
             /*
             Test Step 5
@@ -105,10 +120,11 @@ namespace Testcase.DMITestCases
             Expected Result: Verify that the Special window is displayed
             Test Step Comment: MMI_gen 9199 (partly: Adhesion); MMI_gen 8785 (partly: Adhesion);
             */
-            // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
+            DmiActions.ShowInstruction(this, @"Press the ‘Close’ button in the Adhesion Window");
 
-
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI closes the Adhesion window and displays the Special window.");
+            
             /*
             Test Step 6
             Action: Press ‘SR speed/distance’ button
@@ -116,8 +132,11 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 9199 (partly: SR speed/distance);   
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press ‘SR speed/distance’ button");
+            DmiActions.ShowInstruction(this, @"Press the ‘SR speed/distance’ button");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the SR speed/distance window." + Environment.NewLine +
+                                "2. The ‘Close’ button is enabled");
 
             /*
             Test Step 7
@@ -125,18 +144,16 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Special window
             Test Step Comment: MMI_gen 9199 (partly: SR speed/distance); MMI_gen 8785 (partly: SR speed/distance);
             */
-            // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Special_window(this);
+            DmiActions.ShowInstruction(this, @"Press the ‘Close’ button in the SR speed/distance Window");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI closes the SR speed/distance window and displays the Special window.");
 
             /*
             Test Step 8
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }
