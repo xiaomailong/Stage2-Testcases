@@ -831,7 +831,7 @@ namespace Testcase.DMITestCases
         public static void SR_Mode_displayed(SignalPool pool)
         {
             EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.StaffResponsible;
-            Driver_symbol_displayed(pool, "Staff Responsible", "MO9", "B7?", false);
+            Driver_symbol_displayed(pool, "Staff Responsible mode", "MO9", "B7", false);
         }
 
         /// <summary>
