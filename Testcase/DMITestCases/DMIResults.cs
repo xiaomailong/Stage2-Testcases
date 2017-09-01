@@ -55,7 +55,7 @@ namespace Testcase.DMITestCases
                     $"displayed with a yellow border in area {SymbolArea}?");
             else
                 pool.WaitForVerification($"Is the {SymbolName} symbol ({SymbolNumber}) " +
-                    $"displayed without a yellow border in area {SymbolArea}?");
+                    $"displayed in area {SymbolArea}?");
         }
 
         /// <summary>
@@ -194,7 +194,7 @@ namespace Testcase.DMITestCases
         public static void SL_Mode_NOT_displayed(SignalPool pool)
         {
             EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.Sleeping;
-            pool.WaitForVerification("Confirm that NO symbol is displayed in area B7");
+            pool.WaitForVerification("Is there NO symbol displayed in area B7?");
         }
 
         /// <summary>
@@ -307,7 +307,7 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void Driver_ID_window_displayed(SignalPool pool)
         {
-            pool.WaitForVerification("Is the Driver ID window displayed on the DMI?");
+            pool.WaitForVerification("Is the Driver ID window displayed?");
         }
 
         /// <summary>
@@ -331,7 +331,7 @@ namespace Testcase.DMITestCases
         public static void NL_Mode_displayed(SignalPool pool)
         {
             EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.NonLeading;
-            Driver_symbol_displayed(pool, "Non-leadin mode", "MO12", "B7", false);
+            Driver_symbol_displayed(pool, "Non-leading mode", "MO12", "B7", false);
         }
 
         /// <summary>
@@ -373,7 +373,7 @@ namespace Testcase.DMITestCases
         /// <param name="pool"></param>
         public static void Driver_s_cab_not_active_msg_displayed(SignalPool pool)
         {
-            pool.WaitForVerification("Is the text \"Driver's cab not active\" displayed in DMI area E5?");
+            pool.WaitForVerification("Is the text \"Driver's cab not active\" displayed in area E5?");
         }
 
         /// <summary>
@@ -400,7 +400,7 @@ namespace Testcase.DMITestCases
             string _sOrder;
             if (order) { _sOrder = "Yes"; } else { _sOrder = "No"; }
 
-            DmiActions.ShowInstruction(pool, "Press \"" + _sOrder + "\" on DMI area E");
+            DmiActions.ShowInstruction(pool, "Press \"" + _sOrder + "\" on DMI in area E.");
 
             if (order) { EVC111_MMIDriverMessageAck.Check_MMI_Q_ACK = EVC111_MMIDriverMessageAck.MMI_Q_ACK.AcknowledgeYES; }
             else { EVC111_MMIDriverMessageAck.Check_MMI_Q_ACK = EVC111_MMIDriverMessageAck.MMI_Q_ACK.NotAcknowledgeNO; }
@@ -530,8 +530,7 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void Cabin_A_is_activated(SignalPool pool)
         {
-            EVC102_MMIStatusReport.Check_MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.Cabin1Active;
-            
+            EVC102_MMIStatusReport.Check_MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.Cabin1Active;           
         }
 
         /// <summary>
@@ -542,7 +541,6 @@ namespace Testcase.DMITestCases
         public static void Cabin_B_is_activated(SignalPool pool)
         {
             EVC102_MMIStatusReport.Check_MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.Cabin2Active;
-
         }
 
         /// <summary>
@@ -553,7 +551,6 @@ namespace Testcase.DMITestCases
         public static void Cab_deactivated(SignalPool pool)
         {
             EVC102_MMIStatusReport.Check_MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.NoCabinActive;
-
         }
 
         /// <summary>
@@ -648,7 +645,7 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void Train_data_window_displayed(SignalPool pool)
         {
-            pool.WaitForVerification("Is the Level window displayed on the DMI?");
+            pool.WaitForVerification("Is the Train Data window displayed?");
         }
 
         /// <summary>
@@ -834,7 +831,7 @@ namespace Testcase.DMITestCases
         public static void SR_Mode_displayed(SignalPool pool)
         {
             EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.StaffResponsible;
-            pool.WaitForVerification("Is the Staff Responsible mode symbol (MO9) displayed in area B7?");
+            Driver_symbol_displayed(pool, "Staff Responsible", "MO9", "B7?", false);
         }
 
         /// <summary>
@@ -1113,7 +1110,7 @@ namespace Testcase.DMITestCases
         public static void SB_Mode_displayed(SignalPool pool)
         {
             EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.StandBy;
-            pool.WaitForVerification("Is the Stand By mode symbol (MO13) displayed in area B7?");
+            Driver_symbol_displayed(pool, "Stand By mode", "MO13", "B7", false);
         }
 
         /// <summary>
@@ -1586,7 +1583,7 @@ namespace Testcase.DMITestCases
         public static void FS_mode_displayed(SignalPool pool)
         {
             EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.FullSupervision;
-            pool.WaitForVerification("Is the FS mode symbol (MO11) displayed on DMI area B7");
+            Driver_symbol_displayed(pool, "FS mode", "MO11", "B7", false);
         }
 
         /// <summary>
@@ -1818,7 +1815,7 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void Level_window_displayed(SignalPool pool)
         {
-            pool.WaitForVerification("Is the Level window displayed on the DMI?");
+            pool.WaitForVerification("Is the Level window displayed?");
         }
 
         /// <summary>
@@ -2610,7 +2607,7 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void DMI_displays_Driver_ID_window_in_SB_mode(SignalPool pool)
         {
-            pool.WaitForVerification("Confirm that Driver Id window is diplayed in SB mode?");
+            pool.WaitForVerification("Is the Driver Id window displayed in SB mode?");
             EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.StandBy;
         }
 
