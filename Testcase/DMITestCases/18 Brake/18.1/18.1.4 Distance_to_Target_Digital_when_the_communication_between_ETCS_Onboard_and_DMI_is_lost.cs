@@ -88,7 +88,6 @@ namespace Testcase.DMITestCases
             Action: Drive the train forward passing BG1Then drive the train forward with speed = 60 km/h in FS mode
             Expected Result: DMI changes from SR to FS mode.Verify that the distance to target bar is displayed in sub-area A2.The distance to target digital is displayed as numeric in Metric units
             */
-
             // ?? Set an EOA so the DMI can display a target
             EVC1_MMIDynamic.MMI_O_BRAKETARGET = 300000;              // 3 km: will cause the target display to show a white arrow on top
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 0;       // just starting off
@@ -98,6 +97,7 @@ namespace Testcase.DMITestCases
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
 
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 25000;   // 250m
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
 
             DmiExpectedResults.FS_mode_displayed(this);
 
@@ -105,8 +105,8 @@ namespace Testcase.DMITestCases
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 60;
             
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The distance to target bar is displayed in sub-area A2." + Environment.NewLine +
-                                "2. The digital distance to target is displayed as a number in metric units.");
+                                "2. The distance to target bar is displayed in sub-area A2." + Environment.NewLine +
+                                "3. The digital distance to target is displayed as a number in metric units.");
 
             /*
             Test Step 4

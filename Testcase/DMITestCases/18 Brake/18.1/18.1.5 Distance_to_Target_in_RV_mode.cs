@@ -100,6 +100,7 @@ namespace Testcase.DMITestCases
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 40;
 
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 5000;   // 50m
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
 
             // Call generic Check Results Method
             DmiExpectedResults.FS_mode_displayed(this);
