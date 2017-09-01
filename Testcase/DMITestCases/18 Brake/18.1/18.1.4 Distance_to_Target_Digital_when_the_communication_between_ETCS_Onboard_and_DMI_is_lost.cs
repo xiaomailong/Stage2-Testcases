@@ -99,7 +99,7 @@ namespace Testcase.DMITestCases
 
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 25000;   // 250m
 
-            DmiExpectedResults.DMI_changes_from_SR_to_FS_mode(this);
+            DmiExpectedResults.FS_mode_displayed(this);
 
             EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 70;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 60;

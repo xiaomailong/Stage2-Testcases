@@ -13,11 +13,9 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
-using Testcase.DMITestCases;
 using Testcase.Telegrams.DMItoEVC;
 using Testcase.Telegrams.EVCtoDMI;
 using static Testcase.Telegrams.EVCtoDMI.Variables;
-using Testcase.TemporaryFunctions;
 
 namespace Testcase.DMITestCases
 {
