@@ -320,11 +320,12 @@ if exist "$(TargetPath)" if not exist "$(TargetPath).locked" move "$(TargetPath)
     <Compile Include="DMITestCases\27 Sub-Level Window Selection\27.9\27.9.1 SR_SpeedDistance_window_General_appearance.cs" />
     <Compile Include="DMITestCases\27 Sub-Level Window Selection\27.9\27.9.10 SR_speed_distance_Data_Checks_Technical_Range_Checks_by_Variable_Range.cs" />
     <Compile Include="DMITestCases\27 Sub-Level Window Selection\27.9\27.9.9 SR_speed_distance_Data_Checks_Technical_Range_Checks_by_Data_Validity.cs" />
-    <Compile Include="DMITestCases\29\29.1\29.1 UTC_time_and_offset_timeby_driver.cs" />
-    <Compile Include="DMITestCases\29\29.2\29.2 UTC_time_and_offset_timeby_using_EVC_3.cs" />
-    <Compile Include="DMITestCases\29\29.3\29.3 UTC_time_and_offset_timeBy_VAP_acting_as_NTP_server.cs" />
+    <Compile Include="DMITestCases\29 UTC Distribution\29.1\29.1 UTC_time_and_offset_timeby_driver.cs" />
+    <Compile Include="DMITestCases\29 UTC Distribution\29.2\29.2 UTC_time_and_offset_timeby_using_EVC_3.cs" />
+    <Compile Include="DMITestCases\29 UTC Distribution\29.3\29.3 UTC_time_and_offset_timeBy_VAP_acting_as_NTP_server.cs" />
     <Compile Include="DMITestCases\30 Start-Up and Restart Synchronisation\30.1\30.1 Start_Up_with_MMI_M_START_REQ_0_and_1.cs" />
     <Compile Include="DMITestCases\30 Start-Up and Restart Synchronisation\30.2\30.2 Start_up_error_with_MMI_M_START_REQ_2_3_and_4.cs" />
+    <Compile Include="DMITestCases\31 MMI Error Handling\31.1 MMI Error Handling.cs" />
     <Compile Include="DMITestCases\35 Lock Screen %28only TS%29\35.1\35.1 Lock_Screen.cs" />
     <Compile Include="DMITestCases\36 Parentchild relationship\36.1\36.1 The_relationship_between_parent_and_child_windows_1.cs" />
     <Compile Include="DMITestCases\36 Parentchild relationship\36.2\36.2 The_relationship_between_parent_and_child_windows_2.cs" />
@@ -530,6 +531,11 @@ if exist "$(TargetPath)" if not exist "$(TargetPath).locked" move "$(TargetPath)
     <Compile Include="XML Packets\12\XML_12_7_4_a.cs" />
     <Compile Include="XML Packets\12\XML_12_7_4_b.cs" />
     <Compile Include="XML Packets\12\XML_12_8_a.cs" />
+    <Compile Include="XML Packets\13\XML_13_1_7_a.cs" />
+    <Compile Include="XML Packets\13\XML_13_1_7_b.cs" />
+    <Compile Include="XML Packets\13\XML_13_1_8_a.cs" />
+    <Compile Include="XML Packets\13\XML_13_1_8_b.cs" />
+    <Compile Include="XML Packets\13\XML_13_1_8_c.cs" />
     <Compile Include="XML Packets\15\XML_15_3_1_10.cs" />
     <Compile Include="XML Packets\15\XML_15_3_1_1_a.cs" />
     <Compile Include="XML Packets\15\XML_15_3_1_1_b.cs" />

@@ -17,8 +17,6 @@ namespace Testcase.Telegrams.EVCtoDMI
     public static class EVC4_MMITrackDescription
     {
         private static SignalPool _pool;
-        private static short _mmiVMrspCurr;
-        private static short _mmiGGradientCurr;
 
         /// <summary>
         /// Initialise EVC-4 MMI_Track_Descriptions telegram.

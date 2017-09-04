@@ -68,7 +68,7 @@ namespace Testcase.DMITestCases
 
             DmiActions.Complete_SoM_L1_SR(this);
             DmiActions.Send_FS_Mode(this);
-            DmiExpectedResults.DMI_changes_from_SR_to_FS_mode(this);
+            DmiExpectedResults.FS_mode_displayed(this);
 
             DmiActions.Drive_train_forward_passing_BG2(this);
 

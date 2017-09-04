@@ -13,6 +13,8 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.EVCtoDMI;
+
 
 namespace Testcase.DMITestCases
 {
@@ -37,15 +39,21 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Set the following tags name in configuration file (See the instruction in Appendix 1)   SPEED_UNIT_TYPE = 0 (meter)System is power on.
+         
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
+
+            EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.GoToIdle;
+            EVC0_MMIStartATP.Send();
         }
 
         public override void PostExecution()
         {
             // Post-conditions from TestSpec
             // DMI displays in FS mode, level 1.
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in FS mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -54,8 +62,7 @@ namespace Testcase.DMITestCases
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint
-
-
+            
             /*
             Test Step 1
             Action: Activate cabin A
@@ -63,31 +70,31 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Activate_Cabin_1(this);
+
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Driver_ID_window_in_SB_mode(this);
-
 
             /*
             Test Step 2
             Action: Driver performs SoM to SR mode
             Expected Result: DMI displays in SR mode, level 1
             */
-            // Call generic Action Method
-            DmiActions.Driver_performs_SoM_to_SR_mode(this);
-            // Call generic Check Results Method
-            DmiExpectedResults.SR_Mode_displayed(this);
+            DmiActions.ShowInstruction(this, "Perform SoM to SR mode");
 
+            // Call generic Check Results Method
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. Does the DMI delete the SB mode symbol (MO13) and replace it with the SR mode symbol (MO09) in area B7");
 
             /*
             Test Step 3
             Action: Drive the train forward pass BG1
             Expected Result: DMI changes from SR to FS mode
             */
-            // Call generic Action Method
-            DmiActions.Drive_the_train_forward_pass_BG1(this);
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
+            
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_changes_from_SR_to_FS_mode(this);
-
+            DmiExpectedResults.FS_mode_displayed(this);
 
             /*
             Test Step 4
@@ -96,8 +103,29 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 986;             (2) MMI_gen 6613 (partly: left column);                            (3) MMI_gen 1261 (partly: display distances);                          (4) MMI_gen 1261 (partly: Limitation);                  (5) MMI_gen 6659;                        (6) MMI_gen 987 (partly: vertical rectangular, right column of sub-area A3, left aligned);                  (7) MMI_gen 1261 (partly: calculation); MMI_gen 6616 (meter); MMI_gen 6773 (meter); MMI_gen 105 (partly: result of calculation);     
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_follow_the_permitted_speed(this);
+            // Set the permitted speed so the current speed is allowed
+            EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 10;
 
+            // ?? Set an EOA so the DMI can display a target
+            EVC1_MMIDynamic.MMI_O_BRAKETARGET = 200000;             // 2 km
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 5000;   // 50m
+
+            // Check log for 7.
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The distance to target bar is displayed in sub-area A3." + Environment.NewLine +
+                                "2. The distance scale is displayed in left column of sub-area A3." + Environment.NewLine +
+                                "3. The distance to target bar is displayed distance from zero to a maximum of 1000m according to the distance scale. " + Environment.NewLine +
+                                    "Distances above 1000m is limited to the distance scale’s upper boundary." + Environment.NewLine +
+                                "4. The distance to target bar has a white arrow on top. (see the Spec.)." + Environment.NewLine +
+                                "5. The distance to target bar and distance scale are displayed in grey." + Environment.NewLine +
+                                "6. The distance to target is indicated by a vertical rectangular bar left aligned in the right-hand column of sub-area A3." + Environment.NewLine +
+                                "7. The digital distance to target displayed in sub-area A2 = 1950m (2000 - 50)");
+
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 250000;   // 2.5 km
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The distance to target bar is not displayed in sub-area A3.");
+            // Check log
 
             /*
             Test Step 5
@@ -105,16 +133,17 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,Use the log file to check the different of the following received packets is less than zero(EVC-1) MMI_O_BRAKETARGET – (EVC-7) OBU_TR_O_TRAIN < 0If the result of calculation data is less than 0, The distance to target bar is not display in sub-area A3
             Test Step Comment: (1) MMI_gen 1261 (partly: If not positive distance, distance to target bar not be displayed);
             */
-            // Call generic Action Method
-            DmiActions.Stop_the_train(this);
+            EVC1_MMIDynamic.MMI_V_TRAIN = 0;    // Set speed to zero
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 250000;   // 2.5 km
 
-
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The distance to target bar is not displayed in sub-area A3.");
+            
             /*
             Test Step 6
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }

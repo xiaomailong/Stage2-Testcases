@@ -13,6 +13,8 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.EVCtoDMI;
+
 
 namespace Testcase.DMITestCases
 {
@@ -38,26 +40,30 @@ namespace Testcase.DMITestCases
     {
         public override void PreExecution()
         {
-            // Pre-conditions from TestSpec:
-            // System is powered on.Cabin is activated.SoM is performed in SR mode, level 1.
+            // Pre-conditions from TestSpec:           
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
+
+            // System is powered on.Cabin is activated.SoM is performed in SR mode, level 1.
+            DmiActions.Complete_SoM_L1_SR(this);
         }
 
         public override void PostExecution()
         {
             // Post-conditions from TestSpec
-            // DMI displays in FS mode, Level 1
 
+            // DMI displays in FS mode, Level 1
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in FS mode, Level 1.");
             // Call the TestCaseBase PostExecution
             base.PostExecution();
+
         }
 
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint
-
 
             /*
             Test Step 1
@@ -65,9 +71,18 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in FS mode, level 1.Verify the following information,(1)   Use the log file to confirm that the distance to target (bar and digital) is calculated from the received packet information EVC-7 and EVC -1 as follows,(EVC-1) MMI_O_BRAKETARGET  – (EVC-7) OBU_TR_O_TRAIN Example: The observation point of the distance target is 4480. [EVC-1.MMI_O_BRAKETARGET = 1000498078] – [EVC-7.OBU_TR_O_TRAIN = 1000050121] = 447,957 cm (4479.57m)(2)   The first digit of distance to target digital in sub-area A2 is not zero. (3)   The distane to target digital is right aligned
             Test Step Comment: (1) MMI_gen 105 (partly: equation, MMI_O_BRAKETARGET – OBU_TR_O_TRAIN); MMI_gen 104 (partly: able to show); MMI_gen 6771;(2) MMI_gen 104 (partly: no leading zero);(3) MMI_gen 104 (partly: right aligned);
             */
-            // Call generic Action Method
-            DmiActions.Drive_the_train_forward_pass_BG1_Then_stop_the_train(this);
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 10;
+            EVC1_MMIDynamic.MMI_O_BRAKETARGET = 30000;                  // EOA 300m
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 10000;      // at 100,
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
 
+            System.Threading.Thread.Sleep(2000);
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. Does the DMI display the SR mode symbol (MO09) and then replace it with the FS mode symbol (MO11) in area B7 after 2s?" + Environment.NewLine +
+                                "2. The first digit of digital distance to target in sub-area A2 is non-zero (should be 200)." + Environment.NewLine +
+                                "3. The digital distance to target  is right aligned.");
 
             /*
             Test Step 2
@@ -75,7 +90,9 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   DMI display the distance to target digital as ‘99999’
             Test Step Comment: (1) MMI_gen 6776 (partly: Greater distance); MMI_gen 104 (partly: able to show up to 5 digits);
             */
-
+            XML.XML_13_1_8_a.Send(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the digital distance to target  as ‘99999’.");
 
             /*
             Test Step 3
@@ -83,10 +100,18 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   The distance to target bar and digital is removed from the DMI.        After test scipt file is executed, the distance to target bar and digital is re-appear refer to received packet EVC-1 from ETCS Onboard
             Test Step Comment: (1) MMI_gen 6877 (partly: MMI_M_WARNING is invalid); 
             */
-            // Call generic Check Results Method
-            DmiExpectedResults
-                .Verify_the_following_information_1_The_distance_to_target_bar_and_digital_is_removed_from_the_DMI_After_test_scipt_file_is_executed_the_distance_to_target_bar_and_digital_is_re_appear_refer_to_received_packet_EVC_1_from_ETCS_Onboard(this);
+            XML.XML_13_1_8_b.Send(this);
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI stops displaying the distance to target bar and digital distance to target.");
+
+            // Simulate the effect of the ETCS sending another 'valid' packet. Leave a gap so the DMI screen can be seen changing
+            System.Threading.Thread.Sleep(2000);
+
+            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring;
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI re-displays the distance to target bar and digital distance to target after 2s.");
 
             /*
             Test Step 4
@@ -94,17 +119,23 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   The distance to target bar and digital is removed from the DMI.        After test scipt file is executed, the distance to target bar and digital is re-appear refer to received packet EVC-1 from ETCS Onboard
             Test Step Comment: (1) MMI_gen 6877 (partly: OBU_TR_M_MODE is invalid); 
             */
-            // Call generic Check Results Method
-            DmiExpectedResults
-                .Verify_the_following_information_1_The_distance_to_target_bar_and_digital_is_removed_from_the_DMI_After_test_scipt_file_is_executed_the_distance_to_target_bar_and_digital_is_re_appear_refer_to_received_packet_EVC_1_from_ETCS_Onboard(this);
+            XML.XML_13_1_8_c.Send(this);
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI stops displaying the distance to target bar and digital distance to target.");
+
+            // Simulate the effect of the ETCS sending another 'valid' packet. Leave a gap so the DMI screen can be seen changing
+            System.Threading.Thread.Sleep(2000);
+
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI re-displays the distance to target bar and digital distance to target after 2s.");
 
             /*
             Test Step 5
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }

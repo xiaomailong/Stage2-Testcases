@@ -13,6 +13,8 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.EVCtoDMI;
+
 
 namespace Testcase.DMITestCases
 {
@@ -36,16 +38,21 @@ namespace Testcase.DMITestCases
         public override void PreExecution()
         {
             // Pre-conditions from TestSpec:
-            // System is power on.
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
+
+            // System is power on.
+            EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.GoToIdle;
+            EVC0_MMIStartATP.Send();
         }
 
         public override void PostExecution()
         {
             // Post-conditions from TestSpec
             // DMI displays  in SR mode, Level 1
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SR mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -55,21 +62,32 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
             /*
             Test Step 1
             Action: Perform the following procedure,Activate Cabin A.Enter Driver ID and perform brake test.Select and confirm Level 1.Press ‘Train data button.Enter and confirm all data. Then, press ‘Yes’ button.Press ‘Yes’ button and Confirm entered data by pressing an input field.Enter and confirm Train running numberPress ‘Close’ button
             Expected Result: DMI displays Default window in SB mode and Level 1
             */
+            DmiActions.ShowInstruction(this, "Perform the following: " + Environment.NewLine +
+                                             "Activate Cabin A. Enter Driver ID and perform brake test. Select and confirm Level 1.	Press the ‘Train data’ button. Enter and confirm all data" + Environment.NewLine +
+                                             "Press the ‘Yes’ button. Press the ‘Yes’ button and press an input field to confirm entered data. Enter and confirm Train running number. Press  the ‘Close’ button.");
 
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SB mode, Level 1.");
+            
             /*
             Test Step 2
             Action: The train is at standstill. Press ’Settings’ button
             Expected Result: The speed pointer is indicated to position 0 km/h.The Settings menu is displayed with enabled ’Lock Screen’ button
             Test Step Comment: MMI_gen 2520;
             */
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
+            DmiActions.ShowInstruction(this, "Press the ‘Settings’ button");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays speed = 0 km/h." + Environment.NewLine +
+                                "2. DMI displays the Settings menu with the ‘Lock Screen’ button enabled.");
 
             /*
             Test Step 3
@@ -77,30 +95,43 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The ‘Lock Screen’ function is activated.The activation of this function is clearly visualised and displayed as countdown. This function has a maximum duration of 10s, The countdown is start from 10 to 0.Note: Text “Screen locked for X” disappears when X=0.DMI plays Sinfo sound when the countdown text is “Screen locked for 1”.DMI displays Settings window when the Lock Screen function is deactivated
             Test Step Comment: (1) MMI_gen 2520 (partly: train is at standstill);                                               (2) MMI_gen 2521 (partly: clrealy visualize);                        (3) MMI_gen 2521 (partly: maximum duration);                                     (4) MMI_gen 2522;                  MMI_gen 1097; MMI_gen 9516 (partly: deactivation of lock screen function); MMI_gen 12025 (partly: deactivation of lock screen function);                                    (5) MMI_gen2523;
             */
+            DmiActions.ShowInstruction(this, "Press the ‘Lock Screen’ button");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The ‘Lock Screen’ function is activated and displays ‘Screen locked for 10’." + Environment.NewLine +
+                                "2. After each second the number displayed in ‘Screen locked for ..’ decreases by 1." + Environment.NewLine +
+                                "3. When the screen displays ‘Screen locked for 1’ DMI plays the Sinfo sound." + Environment.NewLine +
+                                "4. After 10s the Lock Screen function is deactivated and DMI displays the Settings window");
 
             /*
             Test Step 4
             Action: Press ‘Close’ button on Settings window
             Expected Result: DMI displays Default window
             */
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Default_window(this);
+            DmiActions.ShowInstruction(this, "Press the ‘Close’ button");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                               "1. DMI displays the Default window");
 
             /*
             Test Step 5
             Action: Press ‘Main’ button and select ‘Start’ button. Then, acknowledge SR mode
             Expected Result: DMI displays in SR mode and Level 1
             */
+            DmiActions.ShowInstruction(this, "Press the ‘Close’ button. Select the ‘Start’ button and acknowledge SR mode");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SR mode and Level 1.");
 
             /*
             Test Step 6
             Action: Press ‘Settings menu’ button and select ‘Lock Screen’ button
             Expected Result: The ‘Lock Screen’ is activated
             */
+            DmiActions.ShowInstruction(this, "Press the ‘Settings menu’ button. Press the ‘Lock Screen’ button");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The ‘Lock Screen’ function is activated.");
 
             /*
             Test Step 7
@@ -108,14 +139,17 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,Verify that DMI displays the default window after 1 second from the speed digital increased.The sound ‘Sinfo’ is played
             Test Step Comment: (1) MMI_gen 2520 (partly: train starts moving);     (2) MMI_gen 2520 (partly: sound Sinfo); MMI_gen 4256 (partly: Sinfo sound); MMI_gen 9516 (partly: activation of lock screen function); MMI_gen 12025 (partly: activation of lock screen function);    
             */
-
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 40;
+            
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. Note that the speed registered = 40 km'h and after 1s DMI displays the Default window." + Environment.NewLine +
+                                "2. DMI plays the Sinfo sound.");
 
             /*
             Test Step 8
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }

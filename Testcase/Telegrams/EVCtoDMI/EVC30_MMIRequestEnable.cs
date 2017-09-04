@@ -16,16 +16,21 @@ namespace Testcase.Telegrams.EVCtoDMI
         {
             _pool = pool;
 
-            // set default values
+            // Set default values
             _pool.SITR.ETCS1.EnableRequest.MmiMPacket.Value = 30;
             _pool.SITR.ETCS1.EnableRequest.MmiLPacket.Value = 128;
         }
 
+        // Send instance of EVC-30 MMI Request Enable telegram
         public static void Send()
         {
             _pool.SITR.SMDCtrl.ETCS1.EnableRequest.Value = 1;
         }
 
+        /// <summary>
+        /// Send instance of EVC-30 MMI Request Enable telegram with ALL flags set to 0.
+        /// This is used in between repeated EVC-30 telegram sendings.
+        /// </summary>
         public static void SendBlank()
         {
             _pool.SITR.ETCS1.EnableRequest.MmiNidWindow.Value = 255;
