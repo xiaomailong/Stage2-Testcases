@@ -70,7 +70,7 @@ namespace Testcase.DMITestCases
             XML.XML_6_2_a.Send(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the message ‘Emergency stop in sub-area with a yellow flashing frame.");
+                                "1. DMI displays the message ‘Emergency stop’ in sub-area E5 with a yellow flashing frame.");
 
             /*
             Test Step 2
@@ -85,7 +85,7 @@ namespace Testcase.DMITestCases
 
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the message ‘Emergency stop in sub-area with a yellow flashing frame.");
+                                "1. DMI displays the message ‘Acknowledgement’ in sub-area E5 with a yellow flashing frame.");
 
             /*
             Test Step 3
@@ -93,21 +93,33 @@ namespace Testcase.DMITestCases
             Expected Result: The acknowledgement is remove, no message display on sub-area E5.(1)    Use the log file to confirm that DMI sends out packet [MMI_DRIVER_ACTION (EVC-152)] with the value of variable MMI_M_DRIVER_ACTION refer to sequence below,a)   MMI_M_DRIVER_ACTION = 24 (Ack of Fixed Text information)
             Test Step Comment: (1) MMI_gen 11470 (partly: Bit # 24);
             */
+            DmiActions.ShowInstruction(this, "Acknowledge by pressing in sub-area E5 and check the log file for packet EVC-152 from DMI with MMI_M_DRIVER_ACTION = 24");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The message in area sub-area E5 is removed.");
 
             /*
             Test Step 4
             Action: Use the test script file 6_2_b.xml to send EVC-8 with,MMI_Q_TEXT = 1MMI_Q_TEXT_CRITERIA = 1MMI_I_TEXT = 1
             Expected Result: DMI displays the text message 'Acknowledgement' in sub-area E5 with yellow flashing frame
             */
+            XML.XML_6_2_b.Send(this);
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the message ‘Acknowledgement’ in sub-area E5 with a yellow flashing frame.");
 
             /*
             Test Step 5
             Action: (Continue from step 4)Send EVC-8 with,MMI_Q_TEXT = 260MMI_Q_TEXT_CRITERIA = 0MMI_I_TEXT = 2
             Expected Result: The acknowledgement in sub-area E5 is disappeared, DMI displays ST01 symbol with yellow flashing frame in sub-area C9 instead
             */
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 2;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 260;
+            EVC8_MMIDriverMessage.Send();
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI stops displays the message ‘Acknowledgement’ in sub-area E5 and displays symbol ST01 with a yellow flashing frame in sub-area C9.");
 
             /*
             Test Step 6
@@ -115,7 +127,10 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)    DMI still displays ST01 symbol in sub-area C9
             Test Step Comment: (1) MMI_gen 7036 (partly: focus shall not move);
             */
+            XML.XML_6_2_c.Send(this);
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI still displays symbol ST01 in sub-area C9.");
 
             /*
             Test Step 7
@@ -123,14 +138,16 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)  There is only the yellow flashing frame around ST01 symbol is removed.(2)  DMI displays text message ‘Runaway movement’ with yellow flashing frame in sub-area E5
             Test Step Comment: (1) MMI_gen 4499 (partly: symbol step back as non-acknowledgementable);(2) MMI_gen 7036 (partly: NEGATIVE, replaced in the background);
             */
+            DmiActions.ShowInstruction(this, "Acknowledge by pressing in sub-area C9");
 
-
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI still displays symbol ST01 but removes the yellow flashing frame" + Environment.NewLine +
+                                "2. DMI displays the message ‘Runaway movement’ with a yellow flashing frame in sub-area E5");
             /*
             Test Step 8
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }
