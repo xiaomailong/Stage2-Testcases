@@ -133,10 +133,13 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Train data validation window
             */
 
-            DmiActions.ShowInstruction(this, @"Enter and confirm train data");
+            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
+                                "1. DMI is displaying Staff Responsible Mode." + Environment.NewLine +
+                                "2. DMI shows that the ATP is in Level 2.");
 
-            DmiActions.ShowInstruction(this, @"Press ‘Train data validation’ button");
             DmiExpectedResults.DMI_displays_Train_data_validation_window(this);
+
+
 
             #endregion
 

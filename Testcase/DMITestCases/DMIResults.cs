@@ -649,6 +649,17 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
+        /// Description: Fixed Train data are entered
+        /// Used in:
+        ///     Step 4 in 15.1.3
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Fixed_Train_Data_entered(SignalPool pool)
+        {
+
+        }
+
+        /// <summary>
         /// Description: DMI displays the Main window
         /// Used in:
         ///     Step 6 in TC-ID: 5.3 in 10.3 Screen Layout: Frames
