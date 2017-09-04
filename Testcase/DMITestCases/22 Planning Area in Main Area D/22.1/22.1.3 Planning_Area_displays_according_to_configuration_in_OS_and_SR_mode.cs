@@ -98,7 +98,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Planning Area is displayed in Main Area D." + Environment.NewLine +
                                 "2. On Sight Mode is displayed." + Environment.NewLine +
-                                "3. The Hide PA button is displyed in sub area D14." + Environment.NewLine +
+                                "3. The Hide PA button is displayed in sub area D14." + Environment.NewLine +
                                 "4. The scale Up & Down buttons are displayed in sub area B.");
 
             /*
