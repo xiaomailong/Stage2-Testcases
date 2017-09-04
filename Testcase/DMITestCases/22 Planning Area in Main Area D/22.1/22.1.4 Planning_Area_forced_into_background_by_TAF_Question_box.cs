@@ -13,6 +13,9 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.EVCtoDMI;
+using Testcase.Telegrams.DMItoEVC;
+using static Testcase.Telegrams.EVCtoDMI.Variables;
 
 namespace Testcase.DMITestCases
 {
@@ -31,7 +34,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 17_1_4.tdg, 17_1_4.utt
     /// </summary>
-    public class Planning_Area_forced_into_background_by_TAF_Question_box : TestcaseBase
+    public class TC_17_1_4_Planning_Area : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -54,7 +57,8 @@ namespace Testcase.DMITestCases
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint
-
+            TraceInfo("This test case requires a DMI configuration change - " +
+                        "See Precondition requirements. If this is not done manually, the test may fail!");
 
             /*
             Test Step 1
@@ -62,8 +66,10 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SR mode, level 2
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_SR_mode_level_2(this);
-
+               DmiActions.Complete_SoM_L1_SR(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI is displaying Staff Responsible Mode." + Environment.NewLine +
+                                "2. DMI shows that the ATP is in Level 2.");
 
             /*
             Test Step 2
@@ -71,8 +77,10 @@ namespace Testcase.DMITestCases
             Expected Result: DMI changes from SR mode to FS mode, level 2
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_changes_from_SR_mode_to_FS_mode_level_2(this);
-
+               EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI is displying Full Supervision Mode." + Environment.NewLine +
+                                "2. DMI shows that the ATP is in Level 2.");
 
             /*
             Test Step 3
@@ -80,7 +88,10 @@ namespace Testcase.DMITestCases
             Expected Result: DMI changes from FS mode to OS mode, level 2
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_changes_from_FS_mode_to_OS_mode_level_2(this);
+               EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.OnSight;
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI is displying On Sight Mode." + Environment.NewLine +
+                                "2. DMI shows that the ATP is in Level 2.");
 
 
             /*
@@ -90,7 +101,15 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7097 (partly: force into the background);
             */
             // Call generic Action Method
-            DmiActions.Received_information_from_RBC(this);
+
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 298;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.Send();
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. Planning Area has been forced into the background." + Environment.NewLine +
+                                "2. The Track Ahead Free Symbol (DR02) has been displayed." + Environment.NewLine +
+                                "3. An acknowledgement is requested");
 
 
             /*
@@ -99,7 +118,7 @@ namespace Testcase.DMITestCases
             Expected Result: The symbol DR02 is still displayed in Main area D
             */
             // Call generic Action Method
-            DmiActions.Drive_the_train_forward(this);
+            WaitForVerification("Please press the DMI button to acknowledge that the track ahead is free.");
 
 
             /*
@@ -108,7 +127,17 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays PA in Main area D again.Verify that the following object is moving down to the bottom of area D.PASPUse the log file to confirm that DMI sends out packet [MMI_DRIVER_ACTION (EVC-152)] with the value of variable MMI_M_DRIVER_ACTION refer to sequence below,a)   MMI_M_DRIVER_ACTION = 22 (Confirmation of Track Ahead Free)
             Test Step Comment: (1) MMI_gen 7097 (partly: Update information in background);(2) MMI_gen 11470 (partly: Bit # 22);
             */
-
+            // Check DMI --> EVC telegrams 
+            //Check MMI_DRIVER_ACTION (EVC 152)
+            // Check Results
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI is displaying Planning Area."); 
+            
+            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.TrackAheadFreeConfirmation;
+                         
+            //{TraceInfo("The DMI driver action to confirm TAF is CORRECT");}
+            
+            //{TraceInfo("The DMI driver action to confirm TAF is INCORRECT");}
 
             /*
             Test Step 7

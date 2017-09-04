@@ -138,7 +138,7 @@ namespace Testcase.Telegrams.DMItoEVC
             StartSelected = 19,
             TrainDataEntryRequested = 20,
             TrainDataValidation = 21,
-            TrackAkeadFreeConfirmation = 22,
+            TrackAheadFreeConfirmation = 22,
             PlainTextInformationAck = 23,
             FixedTextInformationAck = 24,
             RequestToHideSupervisionLimits = 25,
