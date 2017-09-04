@@ -13,6 +13,8 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.EVCtoDMI;
+
 
 namespace Testcase.DMITestCases
 {
@@ -37,24 +39,27 @@ namespace Testcase.DMITestCases
         public override void PreExecution()
         {
             // Pre-conditions from TestSpec:
-            // System is powered onCabin is activatedPerform SoM until level 1 is selected and confirmedMain window is closed.
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
+
+            // System is powered onCabin is activatedPerform SoM until level 1 is selected and confirmedMain window is closed.
+            DmiActions.Complete_SoM_L1_SB(this);
         }
 
         public override void PostExecution()
         {
             // Post-conditions from TestSpec
             // DMI displays in SB mode, level 1
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SB mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
         }
 
         public override bool TestcaseEntryPoint()
-        {
-            // Testcase entrypoint
+        {            // Testcase entrypoint
 
 
             /*
@@ -62,7 +67,10 @@ namespace Testcase.DMITestCases
             Action: Use the test script file 6_2_a.xml to send EVC-8 with,MMI_Q_TEXT = 280MMI_Q_TEXT_CRITERIA = 1MMI_I_TEXT = 1
             Expected Result: DMI displays the text message ‘Emergency stop’ in sub-area E5 with yellow flashing frame
             */
+            XML.XML_6_2_a.Send(this);
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the message ‘Emergency stop in sub-area with a yellow flashing frame.");
 
             /*
             Test Step 2
@@ -70,7 +78,14 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   DMI displays the text message 'Acknowledgement' in sub-area E5 with yellow flashing frame
             Test Step Comment: (1) MMI_gen 7036 (partly: immediately replaced in the foreground);
             */
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 1;
+            EVC8_MMIDriverMessage.Send();
 
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the message ‘Emergency stop in sub-area with a yellow flashing frame.");
 
             /*
             Test Step 3
