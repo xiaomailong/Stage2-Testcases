@@ -63,6 +63,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
             
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
             
             /*
             Test Step 1
@@ -70,10 +71,6 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in FS mode, level 1
             */
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 5000;
-            EVC1_MMIDynamic.MMI_O_BRAKETARGET = 40000;
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
-
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in FS mode, level 1.");
 
@@ -83,7 +80,6 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in TR mode, level 1.The train is forced to stop, train speed is decreasing to 0 km/h.Verify the following information,(1)   Use the log file to confirm that DMI received the EVC-7 with variable OBU_TR_M_MODE = 7 (Trip)(2)   The speed pointer is always display in red colour
             Test Step Comment: (1) MMI_gen 6299 (partly: OBU_TR_M_MODE = 7);(2) MMI_gen 6299 (partly: colour of speed pointer, TR mode);
             */
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 40000;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Trip;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
             // set target distance to 0 to simulate passing EOA??
