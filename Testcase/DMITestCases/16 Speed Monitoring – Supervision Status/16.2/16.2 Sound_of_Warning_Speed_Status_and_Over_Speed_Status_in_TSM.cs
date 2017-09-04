@@ -69,6 +69,9 @@ namespace Testcase.DMITestCases
             //?? what about permitted speed
             EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 40;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 40;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 10000;      // at 100m
+            EVC1_MMIDynamic.MMI_O_BRAKETARGET = 20000;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer displaying 40 km/h?");
@@ -81,7 +84,8 @@ namespace Testcase.DMITestCases
             */
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Overspeed_Status_Indication_Status_Target_Speed_Monitoring;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 41;   //  increase speed    
-            // Send??          
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 10250;
+                      
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer displaying 41 km/h?" + Environment.NewLine +
                                 "2. Sound S1 is played once.");
@@ -94,6 +98,7 @@ namespace Testcase.DMITestCases
             */
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Warning_Status_Indication_Status_Target_Speed_Monitoring;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 45;   // increase speed  
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 10500;
             // Send??
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer displaying 45 km/h?" + Environment.NewLine +
@@ -105,6 +110,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)     The sound ‘S2’ is muted
             Test Step Comment: (1) MMI_gen 11921 (partly: NEGATIVE, MMI_M_WARNING ≠ 5);
             */
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 100;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 40;   // decrease speed to 40 kmh  
             // Send??
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +

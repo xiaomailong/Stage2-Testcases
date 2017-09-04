@@ -69,7 +69,8 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Default window.Verify the following information,ETSC-DMI using EVC-1 with variable MMI_V_TRAIN = 0 as the train is standstill.The number of the current train speed is displayed in Sub-Area B1.Number 0 is black.The single integer number is aligned right
             Test Step Comment: (1) MMI_gen 6303;(2) MMI_gen 6304;(3) MMI_gen 6307 (partly: digital number is black)(4) MMI_gen 1279 (partly: right most sub-area, 1 digit, integer)
             */
-
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 0;
+            EVC1_MMIDynamic.MMI_O_BRAKETARGET = 50000;
             EVC1_MMIDynamic.MMI_V_TRAIN = 0;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -98,8 +99,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The number of the current train speed is coloured black.The 2-digit interger number is aligned right without leading zeroes
             Test Step Comment: (1) MMI_gen 6307 (partly: Speed pointer has no red colour);(2) MMI_gen 1279 (partly: right most sub-area, 2 digit, integer, no zeroes)
             */
-            DmiActions.Drive_train_forward_passing_BG1(this);
-
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 35000;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 40;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -112,6 +112,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,Three of number 1 (“111”) are displayed in Sub-Area B1, as number 1 has the smallest width
             Test Step Comment: (1) MMI_gen 6306 (partly: INITIAL, different widths of digit in the location)
             */
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 26000;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 111;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -123,6 +124,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,Even though the numbers are changed (from “111” to “108), the positions of digits remain the same
             Test Step Comment: (1) MMI_gen 6306 (partly: different widths of digit in the location)
             */
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 27000;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 108;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -133,6 +135,7 @@ namespace Testcase.DMITestCases
             Action: Stop the train
             Expected Result: DMI displays the train speed as zero km/h
             */
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 28000;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +

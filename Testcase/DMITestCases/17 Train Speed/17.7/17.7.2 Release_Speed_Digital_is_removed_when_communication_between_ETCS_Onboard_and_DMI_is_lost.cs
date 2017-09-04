@@ -45,10 +45,12 @@ namespace Testcase.DMITestCases
         public override void PreExecution()
         {
             // Pre-conditions from TestSpec:
-            // System is power on.
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
+            // System is power on.
+            EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.GoToIdle;
+            EVC0_MMIStartATP.Send();
         }
 
         public override void PostExecution()
@@ -73,7 +75,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Activate_Cabin_1(this);
-            // ???? More required?
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. ATP is in SB mode." + Environment.NewLine +
                                 "2. DMI displays in SB mode.");
@@ -94,9 +97,11 @@ namespace Testcase.DMITestCases
             Expected Result: DMI changes mode from SR to FS
             */
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
-            //????? More required?
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 25000;      // at 250m
+            EVC1_MMIDynamic.MMI_O_BRAKETARGET = 100000;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
 
-            WaitForVerification("Perform SoM to SR mode, level 1 and check the following:" + Environment.NewLine + Environment.NewLine +
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI changes mode from SR to FS.");
 
             /*
@@ -104,9 +109,10 @@ namespace Testcase.DMITestCases
             Action: When the supervision status is RSM
             Expected Result: The Release Speed digital is displayed at sub-area B6
             */
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 61000;
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Release_Speed_Monitoring;
 
-            WaitForVerification("Perform SoM to SR mode, level 1 and check the following:" + Environment.NewLine + Environment.NewLine +
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The digital Release Speed is displayed at sub-area B6.");
 
             /*
@@ -115,6 +121,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays the  message “ATP Down Alarm” with sound alarm.Verify that the release speed digital is removed from DMI’s screen. The toggling function is reset to default state
             Test Step Comment: MMI_gen 6588 (partly: Release speed removal);
             */
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 71000;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
             DmiActions.Simulate_communication_loss_EVC_DMI(this);
 

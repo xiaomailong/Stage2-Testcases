@@ -70,6 +70,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in FS mode, Level 1 with the ST06 symbol at sub-area C6
             */
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 50000;
+            EVC1_MMIDynamic.MMI_O_BRAKETARGET = 100000;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1.DMI displays in FS mode, Level 1 with the ST06 symbol at sub-area C6.");
@@ -84,6 +87,7 @@ namespace Testcase.DMITestCases
             Action: Perform the following procedure,Chage the train direction to reverseAcknowledge RV mode by pressing the symbol in sub-area C1
             Expected Result: DMI displays in RV mode, Level 1
             */
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 51000;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Reversing;
 
             WaitForVerification("Change the train direction to reverse and acknowledge RV mode by pressing the symbol in sub - area C1." + Environment.NewLine +
@@ -98,7 +102,8 @@ namespace Testcase.DMITestCases
             */
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
             EVC1_MMIDynamic.MMI_V_PERMITTED = 139;
-            
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 52000;
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer grey?");
 
@@ -110,7 +115,8 @@ namespace Testcase.DMITestCases
             */
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Overspeed_Status_Ceiling_Speed_Monitoring;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 6;
-            
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 49000;
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer orange?");
 
@@ -122,7 +128,8 @@ namespace Testcase.DMITestCases
             */
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Warning_Status_Ceiling_Speed_Monitoring;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 278;
-            
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 47000;
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer orange?");
 
@@ -141,7 +148,8 @@ namespace Testcase.DMITestCases
 
             // ETCS will decrease speed
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 9;
-            
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 44000;
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer grey?");
 

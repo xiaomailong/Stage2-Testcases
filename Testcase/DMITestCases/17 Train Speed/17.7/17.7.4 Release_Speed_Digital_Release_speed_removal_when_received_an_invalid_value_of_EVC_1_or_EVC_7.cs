@@ -69,6 +69,8 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in FS mode, level 1
             */
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 10000;  // at 100m
+            EVC1_MMIDynamic.MMI_O_BRAKETARGET = 20000;
 
             // Simulate the train moving so the 'stop' should be discernible
             System.Threading.Thread.Sleep(5000);
@@ -78,15 +80,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in FS mode, Level 1.");
 
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_FS_mode_level_1(this);
-
             /*
             Test Step 2
             Action: Use the test script file 12_7_4_a.xml to send EVC-1 with,MMI_M_WARNING = 7
             Expected Result: Verify the following information,(1)   The release speed in sub-area B2 and B6 are removed from the DMI.(2)   After test scipt file is executed, the release speed in sub-area B2 and B6 are re-appear refer to received packet EVC-1 from ETCS Onboard
             Test Step Comment: (1) MMI_gen 6587 (partly: MMI_M_WARNING is invalid);(2) MMI_gen 6587 (partly: toggle function is reset to default state);
             */
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 11000;
             XML_12_7_4_a.Send(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -102,6 +102,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   The release speed are sub-area B2 and B6 is removed from the DMI.(2)   After test scipt file is executed, the release speed in sub-area B2 and B6 is are re-appear refer to received packet EVC-7 from ETCS Onboard
             Test Step Comment: (1) MMI_gen 6587 (partly: OBU_TR_M_MODE is invalid);(2) MMI_gen 6587 (partly: toggle function is reset to default state);
             */
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 12000;
             XML_12_7_4_b.Send(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +

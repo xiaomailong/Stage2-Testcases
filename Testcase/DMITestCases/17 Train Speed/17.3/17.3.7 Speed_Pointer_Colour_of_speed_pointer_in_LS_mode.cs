@@ -63,15 +63,15 @@ namespace Testcase.DMITestCases
             // Testcase entrypoint
             
 
-            EVC1_MMIDynamic.Initialise(this);
-
             /*
             Test Step 1
             Action: Drive the train forward pass BG1. Then, press an acknowledgement of LS mode in sub-area C1
             Expected Result: DMI displays in LS mode, level 1
             */
             EVC1_MMIDynamic.MMI_V_PERMITTED = 2778;
-            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;            
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 10000;
+            EVC1_MMIDynamic.MMI_O_BRAKETARGET = 250000;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.LimitedSupervision;
 
             WaitForVerification("Acknowledgement of LS mode is requested. Press button to accept and then check the following:" + Environment.NewLine + Environment.NewLine +
@@ -85,6 +85,7 @@ namespace Testcase.DMITestCases
             */
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 100;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 12000;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                  "1. DMI displays in LS mode, level 1." + Environment.NewLine + 
@@ -98,6 +99,7 @@ namespace Testcase.DMITestCases
             */
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Overspeed_Status_Ceiling_Speed_Monitoring;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 101;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 14000;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                  "1. Is the speed pointer orange?");
@@ -110,6 +112,7 @@ namespace Testcase.DMITestCases
             */
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Warning_Status_Ceiling_Speed_Monitoring;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 105;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 17000;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                  "1. Is the speed pointer orange?");
@@ -122,6 +125,7 @@ namespace Testcase.DMITestCases
             */
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Ceiling_Speed_Monitoring;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 106;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 195000;
             DmiActions.Apply_Brakes(this);
              
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +

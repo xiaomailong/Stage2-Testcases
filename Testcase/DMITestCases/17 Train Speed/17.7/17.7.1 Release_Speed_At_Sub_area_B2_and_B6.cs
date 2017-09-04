@@ -58,9 +58,7 @@ namespace Testcase.DMITestCases
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint
-            
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
-            
+                        
             /*
             Test Step 1
             Action: Activate cabin A
@@ -87,6 +85,8 @@ namespace Testcase.DMITestCases
             Action: Drive the train forward passing BG1
             Expected Result: The DMI changes from SR to FS mode
             */
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 25000;      // at 100m
+            EVC1_MMIDynamic.MMI_O_BRAKETARGET = 300000;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -98,6 +98,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,Verify that the release speed digital is displayed centred in sub-area B6 without leading zeros. The graphical presentation of release speed digital is displayed in area B2. (see the figure 1 and figure 2 in ‘Comment’ column)Use the log file to confirm that the appearance of the release speed digital is controlled by data packet from ETCS Onboard as follows,EVC-7: OBU_TR_M_MODE = 0 (FS Mode)EVC-1: MMI_M_WARNING = 15 (Supervision = Release speed monitoring)EVC-1: MMI_V_RELEASE = 1111 (~40 km/h)The Relaese speed is displayed at the outer part of CSG. (see the figure 2 in ‘Comment’ column)The Relaese speed is separated from the permitted speed. (see the figure 2 in ‘Comment’ column)When a Release speed exists, the presentation is displayed on the CSG according to table 33 (Speed monitoring is RSM)When a Release speed exists, the release speed digital is displayed as a numeric in medium grey colour
             Test Step Comment: (1) MMI_gen 6460;                 (2) MMI_gen 9967;          (3) MMI_gen 6468 (FS);           (4) MMI_gen 9970 (partly: outer part of CSG);                           (5) MMI_gen 9970 (partly: separated from permitted speed);                                      (6) MMI_gen 9969;                          (7) MMI_gen 6465;                                  Figure 1Figure 2
             */
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 281000;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 45;
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Indication_Status_Release_Speed_Monitoring;
             EVC1_MMIDynamic.MMI_V_RELEASE = 1111;
@@ -116,6 +117,7 @@ namespace Testcase.DMITestCases
             Expected Result: Train is standstill
             */
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 284000;      
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "Speed is displayed as 0 km/h");

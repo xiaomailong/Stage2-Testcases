@@ -63,16 +63,13 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            EVC7_MMIEtcsMiscOutSignals.Initialise(this);
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.LimitedSupervision;
-
-            EVC1_MMIDynamic.Initialise(this);
-
             /*
             Test Step 1
             Action: Drive the train forward pass BG1 with speed = 30km/h.Then, stop the train
             Expected Result: DMI displays in FS mode, Level 1
             */
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 10000;
+            EVC1_MMIDynamic.MMI_O_BRAKETARGET = 20000;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 30;
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +

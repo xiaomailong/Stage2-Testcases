@@ -68,15 +68,13 @@ namespace Testcase.DMITestCases
             Action: Drive the train forward pass BG1.Then, press an acknowledgement of OS mode in sub-area C1
             Expected Result: DMI displays in OS mode, level 1
             */
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 10000;      // at 100m
+            EVC1_MMIDynamic.MMI_O_BRAKETARGET = 100000;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.OnSight;
 
             WaitForVerification("Acknowledge OS mode in sub-area C1 and check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in OS mode, Level 1.");
-
-
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_OS_mode_level_1(this);
 
             /*
             Test Step 2
@@ -84,7 +82,7 @@ namespace Testcase.DMITestCases
             Expected Result: When a Release speed exists, verify the following information,(1)   DMI displays the release speed digital in sub-area B6.(2)   Sound 'Sinfo' is played once.(3)   Use the log file to confirm that the appearance of the release speed digital is controlled by data packet from ETCS Onboard as follows,EVC-7: OBU_TR_M_MODE = 1 (OS Mode) EVC-1: MMI_V_RELEASE = 1111 (~40 km/h) EVC-1: MMI_M_WARNING != 0, 4, 8, 12 (Not CSM)
             Test Step Comment: (1) MMI_gen 6586 (partly: toggle on);(2) MMI_gen 6586 (partly: sound Sinfo); MMI_gen 9516 (partly: toggling function of release speed digital); MMI_gen 12025 (partly: toggling function of release speed digital);(3) MMI_gen 6586 (partly: Release speed changes); MMI_gen 6468 (partly: OS);
             */
-            // EVC7_MMIEtcsMiscOutSignals Send
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 61000;
             EVC1_MMIDynamic.MMI_V_RELEASE = 1111;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 30;
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Target_Speed_Monitoring;    // not 0, 4, 8, 12(Not CSM)
@@ -100,6 +98,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   Tthe release speed digital in sub-area B6 is removed
             Test Step Comment: (1) MMI_gen 11112;
             */
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 63000;
             XML_12_7_3_a.Send(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +

@@ -70,17 +70,21 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in OS mode, Level 1.Verify the following information,(1)   Use the log file to confirm that DMI received packet information EVC-1 with following variables,MMI_V_PERMITTED = 4166 (150km/h)MMI_V_TARGET = 4027 (145km/h)(2)   All basic speed hooks are not displays in sub-area B2
             Test Step Comment: (1) MMI_gen 6331 (partly: outside the Speed Dial’s maximum speed);(2) MMI_gen 6331 (partly: not to be shown);
             */
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.OnSight;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 10000;      // at 100m
+            EVC1_MMIDynamic.MMI_O_BRAKETARGET = 100000;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.OnSight;
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in OS mode, Level 1.");
+            
+            DmiActions.ShowInstruction(this, "Acknowledge OS by pressing in area C1");
+
             EVC1_MMIDynamic.MMI_V_PERMITTED = 4166;
-            EVC1_MMIDynamic.MMI_V_TARGET = 4027;
-
-            // Insert a wait so speed can be reset to 0
-            System.Threading.Thread.Sleep(5000);
-
+            EVC1_MMIDynamic.MMI_V_TARGET = 4027;            
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
 
-            WaitForVerification("Acknowledgement of OS mode is requested. Press button to accept and then check the following:" + Environment.NewLine + Environment.NewLine +
+            WaitForVerification("Check the following::" + Environment.NewLine + Environment.NewLine +
                                 "1. No basic speed hooks are displayed in sub-area B2.");
 
             /*
@@ -90,6 +94,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 6331 (partly: Target speed is outside the speed range determined by zero and the Speed Dial's maximum Speed, not to be shown);
             */
             // These tests use speed values [65535] outside the range of short
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 20000;      // at 100m
             XML_12_6_2_a.Send(this);
 
             WaitForVerification("Acknowledgement of OS mode is requested. Press button to accept and then check the following:" + Environment.NewLine + Environment.NewLine +
@@ -101,6 +106,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   There is only medium grey basic speed hook displays at 0 km/h
             Test Step Comment: (1) MMI_gen 6331 (partly: Permitted speed is outside the speed range determined by zero and the Speed Dial's maximum Speed, not to be shown);
             */
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 30000;
             XML_12_6_2_b.Send(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
