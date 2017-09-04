@@ -497,10 +497,9 @@ namespace Testcase.DMITestCases
         /// <param name="pool"></param>
         public static void Display_Train_Data_Window(SignalPool pool)
         {
-            Send_EVC6_MMICurrentTrainData_FixedDataEntry(new[] { "FLU", "RLU", "Rescue" }, 2);
-
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = 11;
-            EVC30_MMIRequestEnable.Send();            
+            EVC30_MMIRequestEnable.Send();
+            Send_EVC6_MMICurrentTrainData_FixedDataEntry(new[] { "FLU", "RLU", "Rescue" }, 2);
         }
 
         /// <summary>
