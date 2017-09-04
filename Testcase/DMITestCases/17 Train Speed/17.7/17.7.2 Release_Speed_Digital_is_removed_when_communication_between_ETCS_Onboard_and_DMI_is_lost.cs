@@ -73,7 +73,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Activate_Cabin_1(this);
-            // ???? More required?
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. ATP is in SB mode." + Environment.NewLine +
                                 "2. DMI displays in SB mode.");
@@ -93,6 +94,7 @@ namespace Testcase.DMITestCases
             Action: Drive the train forward passing BG1
             Expected Result: DMI changes mode from SR to FS
             */
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
             //????? More required?
 

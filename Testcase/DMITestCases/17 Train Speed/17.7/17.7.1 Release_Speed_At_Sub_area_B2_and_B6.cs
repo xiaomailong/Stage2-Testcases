@@ -59,7 +59,6 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
             
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
             
             /*
             Test Step 1
@@ -68,6 +67,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Activate_Cabin_1(this);
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SB mode, level 1." + Environment.NewLine +

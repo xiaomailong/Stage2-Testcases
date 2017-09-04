@@ -61,15 +61,14 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
-            // Testcase entrypoint
-            
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
+            // Testcase entrypoint            
             
             /*
             Test Step 1
             Action: Drive the train forward pass BG1
             Expected Result: DMI displays in FS mode, level 1
             */
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in FS mode, level 1.");

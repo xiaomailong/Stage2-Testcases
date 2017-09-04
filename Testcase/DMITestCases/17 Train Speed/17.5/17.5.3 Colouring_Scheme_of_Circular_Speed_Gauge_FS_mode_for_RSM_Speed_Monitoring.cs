@@ -71,12 +71,9 @@ namespace Testcase.DMITestCases
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Release_Speed_Monitoring;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 30;
             EVC1_MMIDynamic.MMI_V_RELEASE = 1388;
-
-            // Call generic Action Method
-            DmiActions.Drive_the_train_forward_pass_BG1_with_speed_30kmh(this);
-
+            
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in LS mode, level 1." + Environment.NewLine +
+                                "1. DMI displays in FS mode, level 1." + Environment.NewLine +
                                 "2. All sections of CSG are in yellow");
 
             /*
