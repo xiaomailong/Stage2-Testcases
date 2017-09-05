@@ -55,13 +55,13 @@ namespace Testcase.Telegrams.DMItoEVC
             {
                 _pool.TraceReport("DMI->ETCS: EVC-111 [MMI_DRIVER_MESSAGE_ACK.MMI_Q_BUTTON] = \"" +
                     qButton.ToString() + "\" PASSED. TimeStamp = " +
-                    _pool.SITR.CCUO.ETCS1DriverMessageAck.MmiTButtonEvent);
+                    _pool.SITR.CCUO.ETCS1DriverMessageAck.MmiTButtonEvent.Value);
             }
             else // else display the real value extracted from EVC-111 [MMI_DRIVER_MESSAGE_ACK] 
             {
-                _pool.TraceError("DMI->ETCS: Check EVC-111 [MMI_DRIVER_MESSAGE_ACK.MMI_Q_BUTTON] = \"" +
+                _pool.TraceError("DMI->ETCS: EVC-111 [MMI_DRIVER_MESSAGE_ACK.MMI_Q_BUTTON] = \"" +
                     Enum.GetName(typeof(Variables.MMI_Q_BUTTON), _mmiQButton) + "\" FAILED. TimeStamp = " +                    
-                    _pool.SITR.CCUO.ETCS1DriverMessageAck.MmiTButtonEvent);
+                    _pool.SITR.CCUO.ETCS1DriverMessageAck.MmiTButtonEvent.Value);
             }
 
 
@@ -90,13 +90,13 @@ namespace Testcase.Telegrams.DMItoEVC
             {
                 _pool.TraceReport("DMI->ETCS: EVC-111 [MMI_DRIVER_MESSAGE_ACK.MMI_Q_ACK] = \"" +
                     qAck.ToString() + "\" PASSED. TimeStamp = " +
-                    _pool.SITR.CCUO.ETCS1DriverMessageAck.MmiTButtonEvent);
+                    _pool.SITR.CCUO.ETCS1DriverMessageAck.MmiTButtonEvent.Value);
             }
             else // else display the real value extracted from EVC-111 [MMI_DRIVER_MESSAGE_ACK] 
             {
-                _pool.TraceError("DMI->ETCS: Check EVC-111 [MMI_DRIVER_MESSAGE_ACK.MMI_Q_ACK] = \"" +
+                _pool.TraceError("DMI->ETCS: EVC-111 [MMI_DRIVER_MESSAGE_ACK.MMI_Q_ACK] = \"" +
                     Enum.GetName(typeof(MMI_Q_ACK), _mmiQAck) + "\" FAILED. TimeStamp = " +
-                    _pool.SITR.CCUO.ETCS1DriverMessageAck.MmiTButtonEvent);
+                    _pool.SITR.CCUO.ETCS1DriverMessageAck.MmiTButtonEvent.Value);
             }
         }
 
