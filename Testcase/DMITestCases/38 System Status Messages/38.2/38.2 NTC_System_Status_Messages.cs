@@ -90,7 +90,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays train running number window
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_train_running_number_window(this);
+            DmiExpectedResults.TRN_window_displayed(this);
 
 
             /*
@@ -131,7 +131,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays train running number window
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_train_running_number_window(this);
+            DmiExpectedResults.TRN_window_displayed(this);
 
 
             /*

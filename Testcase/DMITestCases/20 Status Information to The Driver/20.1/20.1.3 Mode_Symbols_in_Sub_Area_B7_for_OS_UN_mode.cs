@@ -138,7 +138,7 @@ namespace Testcase.DMITestCases
                                 "2. Press ‘Yes’ button.");
             DmiExpectedResults.Fixed_Train_Data_entered(this);
 
-            DmiActions.Display_Train_data_validation_window(this);
+            DmiActions.Display_Train_data_validation_Window(this);
             DmiExpectedResults.Train_data_validation_window_displayed(this);
 
             #endregion
@@ -156,7 +156,7 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.Fixed_Train_Data_validated(this);
 
             DmiActions.Display_TRN_Window(this);
-
+            DmiExpectedResults.TRN_window_displayed(this);
 
             /*
             Test Step 7
