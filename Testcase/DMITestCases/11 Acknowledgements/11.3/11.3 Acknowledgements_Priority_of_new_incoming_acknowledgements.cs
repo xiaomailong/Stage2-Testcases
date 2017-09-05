@@ -28,10 +28,8 @@ namespace Testcase.DMITestCases
     /// MMI_gen 4484; MMI_gen 4482; MMI_gen 4486; MMI_gen 4498; MMI_gen 4485 (partly: ETCS Onboard); MMI_gen 6923;
     /// 
     /// Scenario:
-    /// 1.Use the test script file to send a packet information EVC-
-    /// 8.Then, verify the display of acknowledgement on DMI.
-    /// 2.Use the test script file to send a packet information EVC-
-    /// 8.Then, press an acknowledgement in specify area and verify the display of acknowledgement on DMI.
+    /// 1.Use the test script file to send a packet information EVC-8.Then, verify the display of acknowledgement on DMI.
+    /// 2.Use the test script file to send a packet information EVC-8.Then, press an acknowledgement in specify area and verify the display of acknowledgement on DMI.
     /// 
     /// Used files:
     /// 6_3_a.xml, 6_3_b.xml, 6_3_c.xml, 6_3_d.xml
@@ -123,7 +121,6 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI stops displaying symbol MO08 in sub-area C1 and displays symbol DR02 in area D.");
-
 
             /*
             Test Step 6

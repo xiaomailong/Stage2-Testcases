@@ -91,6 +91,7 @@ if exist "$(TargetPath)" if not exist "$(TargetPath).locked" move "$(TargetPath)
     <Compile Include="DMITestCases\11 Acknowledgements\11.1\11.1 Acknowledgements_General.cs" />
     <Compile Include="DMITestCases\11 Acknowledgements\11.2\11.2 Acknowledgements_Replacement_of_new_acknowledgements.cs" />
     <Compile Include="DMITestCases\11 Acknowledgements\11.3\11.3 Acknowledgements_Priority_of_new_incoming_acknowledgements.cs" />
+    <Compile Include="DMITestCases\11 Acknowledgements\11.4\11.4 Acknowledgements_NACK_ACK_Buttons.cs" />
     <Compile Include="DMITestCases\11 Acknowledgements\11.6\11.6 Acknowledgements_Negative_acknowledgement_option_ignoring.cs" />
     <Compile Include="DMITestCases\11 Acknowledgements\11.7\11.7 Acknowledgements_Shared_Area_with_NTC_Acknowledgement.cs" />
     <Compile Include="DMITestCases\14 Data Validation and Data View Window for TS\14.2\14.2 Data_Validation_Window_for_Fixed_train_data_entry_window.cs" />
@@ -593,6 +594,8 @@ if exist "$(TargetPath)" if not exist "$(TargetPath).locked" move "$(TargetPath)
     <Compile Include="XML Packets\6\XML_6_3_b.cs" />
     <Compile Include="XML Packets\6\XML_6_3_c.cs" />
     <Compile Include="XML Packets\6\XML_6_3_d.cs" />
+    <Compile Include="XML Packets\6\XML_6_4_a.cs" />
+    <Compile Include="XML Packets\6\XML_6_4_b.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
