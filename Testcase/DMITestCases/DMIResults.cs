@@ -384,8 +384,27 @@ namespace Testcase.DMITestCases
         /// <param name="pool"></param>
         public static void Driver_ID_entered(SignalPool pool)
         {
-            string driverIDInput = DmiActions.ShowDialog("Please enter Driver ID", "Driver ID");
-            EVC104_MMINewDriverData.Check_X_DRIVER_ID = driverIDInput;
+            string driverIDInput = DmiActions.ShowDialog(@"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
+                                "1. Type any Driver ID on THIS WINDOW." + Environment.NewLine +
+                                "2. Type the same Driver ID on the DMI." + Environment.NewLine +
+                                "3. Confirmed the entered value by pressing the input field.", "Driver ID");
+            EVC104_MMINewDriverData.Check_X_DRIVER_ID = driverIDInput;           
+        }
+
+        /// <summary>
+        /// Description: Train running Number is entered
+        /// Used in:
+        ///     Step 7 in TC-ID: 15.1.3 in 20.1.3
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void TRN_entered(SignalPool pool)
+        {
+            string trnInput = DmiActions.ShowDialog(@"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
+                                "1. Type any Train Running Number on THIS WINDOW." + Environment.NewLine +
+                                "2. Type the same TRN on the DMI." + Environment.NewLine +
+                                "3. Confirmed the entered value by pressing the input field.", "Driver ID");
+
+            //EVC116_MMINewTrainNumber.Check_NID_OPERATION = trnInput;
         }
 
         /// <summary>

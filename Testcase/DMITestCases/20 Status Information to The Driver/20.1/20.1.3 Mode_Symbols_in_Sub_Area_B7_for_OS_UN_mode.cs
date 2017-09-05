@@ -163,8 +163,8 @@ namespace Testcase.DMITestCases
             Action: Enter and confirm Train running number
             Expected Result: DMI displays Main window
             */
-            // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Enter and confirm Train running number");
+
+            DmiExpectedResults.Driver_ID_entered(this);
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Main_window(this);
 
