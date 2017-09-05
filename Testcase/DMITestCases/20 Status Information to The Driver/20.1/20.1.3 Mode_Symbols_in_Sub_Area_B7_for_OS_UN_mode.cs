@@ -134,9 +134,11 @@ namespace Testcase.DMITestCases
             */
 
             DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
-                                "1. DMI is displaying Staff Responsible Mode." + Environment.NewLine +
-                                "2. DMI shows that the ATP is in Level 2.");
+                                "1. Enter and confirm value in each input field." + Environment.NewLine +
+                                "2. Press ‘Yes’ button.");
+            DmiExpectedResults.Fixed_Train_Data_entered(this);
 
+            DmiActions.Display_Train_data_validation_window(this);
             DmiExpectedResults.DMI_displays_Train_data_validation_window(this);
 
 
