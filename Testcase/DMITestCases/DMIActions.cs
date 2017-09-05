@@ -661,6 +661,18 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
+        /// Description: Send packets needed to display Train Data Validation window on DMI
+        /// Used in: Step 5 in TC-ID: 15.1.3
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Display_Train_data_validation_window(SignalPool pool)
+        {
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 16;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = standardFlags;
+            EVC30_MMIRequestEnable.Send();
+        }
+
+        /// <summary>
         /// Description: Complete start of mission
         /// Used in:
         ///     Step 5 in TC-ID: 1.3.1 in 6.3.1 Performance of the new selection language
