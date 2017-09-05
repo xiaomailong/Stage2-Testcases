@@ -912,7 +912,7 @@ namespace Testcase.DMITestCases
         ///     Step 7 in TC-ID: 34.1.2 in 37.1.2 Flexible Train data entry
         ///     Step 7 in TC-ID: 34.1.4 in 37.1.4.1.1 Data entry/validation process when enabling conditions not fullfilled: Level 1
         /// </summary>
-        public static void DMI_displays_Train_data_validation_window(SignalPool pool)
+        public static void Train_data_validation_window_displayed(SignalPool pool)
         {
             throw new NotImplementedException();
         }

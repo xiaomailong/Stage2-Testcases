@@ -139,7 +139,7 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.Fixed_Train_Data_entered(this);
 
             DmiActions.Display_Train_data_validation_window(this);
-            DmiExpectedResults.DMI_displays_Train_data_validation_window(this);
+            DmiExpectedResults.Train_data_validation_window_displayed(this);
 
 
 

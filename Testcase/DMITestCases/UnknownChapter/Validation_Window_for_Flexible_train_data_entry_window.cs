@@ -100,7 +100,7 @@ namespace Testcase.DMITestCases
             DmiActions
                 .Perform_the_following_procedure_Enter_and_confirm_all_data_in_Train_data_window_Press_Yes_button(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Train_data_validation_window(this);
+            DmiExpectedResults.Train_data_validation_window_displayed(this);
 
 
             /*
@@ -125,7 +125,7 @@ namespace Testcase.DMITestCases
             DmiActions
                 .Perform_the_following_procedure_Press_Train_data_button_Enter_and_confirm_all_data_in_Train_data_window_Press_Yes_button(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Train_data_validation_window(this);
+            DmiExpectedResults.Train_data_validation_window_displayed(this);
 
 
             /*
