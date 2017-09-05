@@ -2338,19 +2338,6 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
-        /// Description: The symbol ‘DR03’ displays in sub-area G12
-        /// Used in:
-        ///     Step 13 in TC-ID: 18.4.1 in 23.4.1 Geographical Position: General presentation
-        ///     Step 1 in TC-ID: 18.4.3 in 23.4.3 Geographical Position: Additional requirements
-        ///     Step 4 in TC-ID: 18.4.3 in 23.4.3 Geographical Position: Additional requirements
-        ///     Step 9 in TC-ID: 18.4.3 in 23.4.3 Geographical Position: Additional requirements
-        /// </summary>
-        public static void The_symbol_DR03_displays_in_sub_area_G12(SignalPool pool)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
         /// Description: The Train Running Number window is displayed
         /// Used in:
         ///     Step 1 in TC-ID: 18.5 in 23.5 Train Running Number
