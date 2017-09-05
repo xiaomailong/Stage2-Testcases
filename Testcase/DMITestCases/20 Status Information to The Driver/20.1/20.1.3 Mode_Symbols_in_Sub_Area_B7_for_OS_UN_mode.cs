@@ -150,8 +150,12 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
 
+            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
+                                "1. Press ‘Yes’ button." + Environment.NewLine +
+                                "2. Confirmed the selected value by pressing the input field.");
+            DmiExpectedResults.Fixed_Train_Data_validated(this);
 
-            DmiExpectedResults.DMI_displays_Train_Running_Number_window(this);
+            DmiActions.Display_TRN_Window(this);
 
 
             /*

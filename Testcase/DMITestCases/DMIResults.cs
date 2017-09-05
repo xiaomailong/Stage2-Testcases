@@ -668,14 +668,25 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
-        /// Description: Fixed Train data are entered
+        /// Description: Driver enters and confirms Fixed Train Data
         /// Used in:
-        ///     Step 4 in 15.1.3
+        ///     Step 5 in 15.1.3
         /// </summary>
         /// <param name="pool"></param>
         public static void Fixed_Train_Data_entered(SignalPool pool)
         {
             //to be updated (packet 107 to be checked)
+        }
+
+        /// <summary>
+        /// Description: Driver validates Fixed Train Data
+        /// Used in:
+        ///     Step 6 in 15.1.3
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Fixed_Train_Data_validated(SignalPool pool)
+        {
+            //to be updated (packet 110 to be checked)
         }
 
         /// <summary>
