@@ -150,7 +150,7 @@ namespace Testcase.DMITestCases
             DmiActions.Confirm_entered_data_by_pressing_an_input_field(this);
             // Call generic Check Results Method
             DmiExpectedResults
-                .DMI_displays_Train_Running_Number_window_Verify_the_following_information_The_Train_data_validation_is_closed_Use_the_log_file_to_confirm_that_DMI_sends_out_the_packet_MMI_CONFIRMED_TRAIN_DATA_EVC_110_with_variable_based_on_confirmed_data(this);
+                .TRN_window_displayed(this);
 
 
             /*
