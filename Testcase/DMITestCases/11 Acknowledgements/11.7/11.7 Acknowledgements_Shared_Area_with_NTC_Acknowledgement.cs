@@ -13,6 +13,8 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.EVCtoDMI;
+
 
 namespace Testcase.DMITestCases
 {
@@ -41,10 +43,12 @@ namespace Testcase.DMITestCases
         public override void PreExecution()
         {
             // Pre-conditions from TestSpec:
-            // 1. System is power on.2. Configuration with Level STM-ATB (STM ID = 1).3. Set language to English.
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
+
+            // 1. System is power on.2. Configuration with Level STM-ATB (STM ID = 1).3. Set language to English.
+            // ?? Set config file?? Language??            
         }
 
         public override void PostExecution()
@@ -60,13 +64,18 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
             /*
             Test Step 1
             Action: Perform SoM to Level STM-ATB in SN mode
             Expected Result: ETCS OB enters Level STM-ATB, SN mode
             */
+            DmiActions.ShowInstruction(this, "Perform SoM to Level STM-ATB in SN mode.");
 
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.LNTC;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.NationalSystem;
+
+            // ????
+            WaitForVerification("ETCS OB enters Level STM-ATB, SN mode.");
 
             /*
             Test Step 2
@@ -74,7 +83,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information:After DMI receives test script- Text message ‘2 - Brakes are not operated’ is displayed in sub-area E5 with yellow flashing frame surrounded area (E5+E6+E7+E8+E9).- Sound Sinfo is not played.5 seconds later- Text message ‘Communication error’ is displayed in sub-area E5 with yellow flashing frame surrounded area (E5+E6+E7+E8+E9).- Sound Sinfo is played once.5 seconds later- Text message ‘4 - Brake feedback fault’ is displayed in sub-area E5 with yellow flashing frame surrounded area (E5+E6+E7+E8+E9).- Sound Sinfo is not played.5 seconds later- Text message ‘Train divided’ is displayed in sub-area E5 with yellow flashing frame surrounded area (E5+E6+E7+E8+E9).- Sound Sinfo is played once
             Test Step Comment: MMI_gen 4483 (partly: NTC);
             */
-
+            XML.XML_6_7.Send(this);
 
             /*
             Test Step 3
@@ -83,8 +92,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 4483 (partly: NTC);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press sub-area (E5+E6+E7+E8+E9) for acknowledgement");
+            DmiActions.ShowInstruction(this, @"Acknowledge by pressing in sub-area (E5+E6+E7+E8+E9)");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI stops displaying the message ‘Train divided’ and displays the message ‘4 - Brake feedback fault’ in sub-area E5 with a yellow flashing frame surrounding sub-areas (E5+E6+E7+E8+E9).");
 
             /*
             Test Step 4
@@ -92,9 +103,10 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information:- Text message ‘4 - Brake feedback fault’ is disappeared.- Text message ‘Communication error’ is reappeared in sub-area E5 with yellow flashing frame surrounded area (E5+E6+E7+E8+E9)
             Test Step Comment: MMI_gen 4483 (partly: NTC);
             */
-            // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press sub-area (E5+E6+E7+E8+E9) for acknowledgement");
+            DmiActions.ShowInstruction(this, @"Acknowledge by pressing in sub-area (E5+E6+E7+E8+E9)");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI stops displaying the message ‘4 - Brake feedback fault’ and displays the message ‘Communication error’ in sub-area E5 with a yellow flashing frame surrounding sub-areas (E5+E6+E7+E8+E9).");
 
             /*
             Test Step 5
@@ -102,9 +114,10 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information:- Text message ‘Communication error’ is disappeared.- Text message ‘2 - Brakes are not operated’ is reappeared in sub-area E5 with yellow flashing frame surrounded area (E5+E6+E7+E8+E9)
             Test Step Comment: MMI_gen 4483 (partly: NTC);
             */
-            // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press sub-area (E5+E6+E7+E8+E9) for acknowledgement");
+            DmiActions.ShowInstruction(this, @"Acknowledge by pressing in sub-area (E5+E6+E7+E8+E9)");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI stops displaying the message ‘Communication error’ and displays the message ‘2 - Brakes are not operated’ in sub-area E5 with a yellow flashing frame surrounding sub-areas (E5+E6+E7+E8+E9).");
 
             /*
             Test Step 6
@@ -112,16 +125,16 @@ namespace Testcase.DMITestCases
             Expected Result: - Text message ‘2 - Brakes are not operated’ is disappeared
             Test Step Comment: This test step is to clear expected result of the previous test step.
             */
-            // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press sub-area (E5+E6+E7+E8+E9) for acknowledgement");
+            DmiActions.ShowInstruction(this, @"Acknowledge by pressing in sub-area (E5+E6+E7+E8+E9)");
 
-
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI stops displaying the message ‘2 - Brakes are not operated’ in sub-area E5 with a yellow flashing frame surrounding sub-areas (E5+E6+E7+E8+E9).");
+            
             /*
             Test Step 7
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }
