@@ -656,7 +656,7 @@ namespace Testcase.DMITestCases
         /// <param name="pool"></param>
         public static void Fixed_Train_Data_entered(SignalPool pool)
         {
-
+            //to be updated (packet 107 to be checked)
         }
 
         /// <summary>
