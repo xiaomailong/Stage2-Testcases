@@ -133,10 +133,13 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Train data validation window
             */
 
-            DmiActions.ShowInstruction(this, @"Enter and confirm train data");
+            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
+                                "1. Enter and confirm value in each input field." + Environment.NewLine +
+                                "2. Press ‘Yes’ button.");
+            DmiExpectedResults.Fixed_Train_Data_entered(this);
 
-            DmiActions.ShowInstruction(this, @"Press ‘Train data validation’ button");
-            DmiExpectedResults.DMI_displays_Train_data_validation_window(this);
+            DmiActions.Display_Train_data_validation_window(this);
+            DmiExpectedResults.Train_data_validation_window_displayed(this);
 
             #endregion
 
@@ -146,6 +149,8 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Train Running Number window
             */
             // Call generic Check Results Method
+
+
             DmiExpectedResults.DMI_displays_Train_Running_Number_window(this);
 
 

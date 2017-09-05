@@ -70,6 +70,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Activate_Cabin_1(this);
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
+
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Driver_ID_window_in_SB_mode(this);
 

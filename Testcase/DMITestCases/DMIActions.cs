@@ -497,10 +497,9 @@ namespace Testcase.DMITestCases
         /// <param name="pool"></param>
         public static void Display_Train_Data_Window(SignalPool pool)
         {
-            Send_EVC6_MMICurrentTrainData_FixedDataEntry(new[] { "FLU", "RLU", "Rescue" }, 2);
-
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = 11;
-            EVC30_MMIRequestEnable.Send();            
+            EVC30_MMIRequestEnable.Send();
+            Send_EVC6_MMICurrentTrainData_FixedDataEntry(new[] { "FLU", "RLU", "Rescue" }, 2);
         }
 
         /// <summary>
@@ -659,6 +658,18 @@ namespace Testcase.DMITestCases
             // Stop sending EVC-1 and EVC-7 telegrams
             pool.SITR.STGCtrl.ETCS1.Dynamic.Value = 0;
             pool.SITR.STGCtrl.ETCS1.EtcsMiscOutSignals.Value = 0;
+        }
+
+        /// <summary>
+        /// Description: Send packets needed to display Train Data Validation window on DMI
+        /// Used in: Step 5 in TC-ID: 15.1.3
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Display_Train_data_validation_window(SignalPool pool)
+        {
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 16;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = standardFlags;
+            EVC30_MMIRequestEnable.Send();
         }
 
         /// <summary>

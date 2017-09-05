@@ -69,6 +69,7 @@ namespace Testcase.DMITestCases
             //?? what about permitted speed
             EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 40;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 40;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer displaying 40 km/h?");

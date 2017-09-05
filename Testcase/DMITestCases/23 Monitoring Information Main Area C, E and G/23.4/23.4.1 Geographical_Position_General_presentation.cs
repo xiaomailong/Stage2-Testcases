@@ -267,7 +267,7 @@ namespace Testcase.DMITestCases
             Test Step 12
             Action: Perform the following procedure:
                     Press ‘Main’ button.
-                    Press and hold ‘Exit Shunting’ button for 2 second or upper.
+                    Press and hold ‘Exit Shunting’ button for at least 2 seconds.
                     Release the pressed area.
                     Perform SoM in SR mode, Level 1.
                     Drive the train forward
