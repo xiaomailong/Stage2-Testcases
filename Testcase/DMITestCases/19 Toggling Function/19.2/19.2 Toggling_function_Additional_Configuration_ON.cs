@@ -13,6 +13,8 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.EVCtoDMI;
+
 
 namespace Testcase.DMITestCases
 {
@@ -41,12 +43,17 @@ namespace Testcase.DMITestCases
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
+
+            DmiActions.Complete_SoM_L1_SR(this);
         }
 
         public override void PostExecution()
         {
             // Post-conditions from TestSpec
             // DMI displays in PT mode, Level 1.
+            // Surely SH??
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in PT mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -56,17 +63,16 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
             /*
             Test Step 1
             Action: Drive the train forward pass BG1.Then stop the train
             Expected Result: DMI displays in FS mode, Level 1 with the ST06 symbol at sub-area C6
             */
-            // Call generic Action Method
-            DmiActions.Drive_the_train_forward_pass_BG1_Then_stop_the_train(this);
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_FS_mode_Level_1_with_the_ST06_symbol_at_sub_area_C6(this);
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
+            DmiActions.Send_RV_Permitted_Symbol(this);
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays symbol ST06 in sub-area C6 in FS mode, Level 1.");
 
             /*
             Test Step 2
@@ -74,13 +80,15 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in RV mode, Level 1.Verify the following information,The objects below are displayed on DMI,White Basic speed HookDistance to target (digital)The objects below are not displayed on DMI,Medium-grey basic speed hookRelease Speed Digital
             Test Step Comment: (1) MMI_gen 6892 (partly: RV mode, Table 34 (CSM), Table 38 (CSM)); MMI_gen 6320 (partly: RV mode, Table 34 (CSM));(2) MMI_gen 6890 (partly: RV mode, unidentified mode, un-concerned object), Table 34 (CSM), Table 35 (CSM)
             */
-            // Call generic Action Method
-            DmiActions
-                .Perform_the_following_procedure_Chage_the_train_direction_to_reversePress_the_symbol_in_sub_area_C1(this);
-            // Call generic Check Results Method
-            DmiExpectedResults
-                .DMI_displays_in_RV_mode_Level_1_Verify_the_following_information_The_objects_below_are_displayed_on_DMI_White_Basic_speed_HookDistance_to_target_digitalThe_objects_below_are_not_displayed_on_DMI_Medium_grey_basic_speed_hookRelease_Speed_Digital(this);
+            DmiActions.ShowInstruction(this, "Change the train direction to reverse and press the symbol in sub-area C1");
+            //EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Reversing;
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in RV mode, Level 1." + Environment.NewLine +
+                                "2. DMI displays the White basic speed hook." + Environment.NewLine +
+                                "3.	DMI displays the Digital distance to target." + Environment.NewLine +
+                                "4. DMI does not display the Medium-grey basic speed hook." + Environment.NewLine +
+                                "5. DMI does not display the Digital release speed.");
 
             /*
             Test Step 3
@@ -88,23 +96,24 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The objects below are not toggled visible/invisible, (always remain the same as the previous step)White Basic speed HookMedium-grey basic speed hookDistance to target (digital)Release Speed Digital
             Test Step Comment: (1) MMI_gen 6892 (partly: Area A and B, RV mode) MMI_gen 6890 (partly: RV mode, unidentified mode, un-concerned object);
             */
-            // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press, at least twice, on area A1-A4, and area B respectively");
-            // Call generic Check Results Method
-            DmiExpectedResults
-                .Verify_the_following_information_The_objects_below_are_not_toggled_visibleinvisible_always_remain_the_same_as_the_previous_stepWhite_Basic_speed_HookMedium_grey_basic_speed_hookDistance_to_target_digitalRelease_Speed_Digital(this);
+            DmiActions.ShowInstruction(this, "Press on area A1-A4, and area B, respectively, at least twice");
 
+            WaitForVerification("Check that the following objects do not toggle (visible/invisible) and remain the same as in the previous step:" + Environment.NewLine + Environment.NewLine +
+                                "1. White basic speed hook." + Environment.NewLine +
+                                "2.	Medium-grey basic speed hook." + Environment.NewLine +
+                                "3. Digital distance to target." + Environment.NewLine +
+                                "4. Digital	release speed.");
 
             /*
             Test Step 4
             Action: Perform the following procedure,De-activate Cabin AActivate Cabin A
             Expected Result: DMI displays in SB mode, Level 1
             */
-            // Call generic Action Method
-            DmiActions.Perform_the_following_procedure_De_activate_Cabin_AActivate_Cabin_A(this);
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_SB_mode_Level_1(this);
+            DmiActions.ShowInstruction(this, "De-activate Cabin A then activate Cabin A");
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SB mode, Level 1.");
 
             /*
             Test Step 5
@@ -115,6 +124,12 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.Perform_SoM_in_SR_mode_Level_1(this);
 
+            // Omission in test spec: the medium-grey basic speed hook should be displayed ??
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the White Basic speed hook." + Environment.NewLine +
+                                "2.	DMI displays the Medium-grey basic speed hook." + Environment.NewLine +
+                                "3.	DMI displays the Digital distance to target." + Environment.NewLine +
+                                "4. DMI does not display the Digital release speed.");
 
             /*
             Test Step 6
@@ -122,10 +137,13 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The objects below are still displayed on DMI, (toggle on)White basic speed hookMedium-grey basic speed hookDistance to target (digital)The release speed digital is not displayed
             Test Step Comment: (1) MMI_gen 11868 (partly: SR mode);                    MMI_gen 6450 (partly: 2nd bullet, SR mode), Table 34 (not CSM), Table 38 (not CSM), MMI_gen 6898 (partly: configuration ‘ON’); MMI_gen 6320 (partly: SR mode, Table 34 (Not CSM));(2) MMI_gen 6890 (partly: SR mode, un-concerned object), Table 35 (not CSM)
             */
-            // Call generic Action Method
-            DmiActions
-                .Perform_the_following_procedure_Press_Spec_button_Press_SR_speeddisาtance_button_Enter_and_confirm_the_following_data_SR_speed_40_kmhSR_distance_300_m(this);
+            DmiActions.ShowInstruction(this, "Press ‘Spec’ button. Press ‘SR speed/disาtance’ button. Enter and confirm the following data, SR speed = 40 km/h, SR distance = 300m");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI still displays the White Basic speed hook." + Environment.NewLine +
+                                "2.	DMI still displays the Medium-grey basic speed hook." + Environment.NewLine +
+                                "3. DMI still displays the Digital distance to target." + Environment.NewLine +
+                                "4. DMI does not display the Digital release speed.");
 
             /*
             Test Step 7
@@ -133,9 +151,13 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The objects below are not displayed on DMI, (toggled off)White basic speed hookMedium-grey basic speed hookDistance to target (digital)The release speed digital is still displayed
             Test Step Comment: (1) MMI_gen 6890 (partly: Areas A, SR mode, toggle off), MMI_gen 6896 (partly: configuration ‘ON’, SR mode, toggle invisible), MMI_gen 6894 (partly: SR mode);    (2) MMI_gen 6890 (partly: SR mode, un-concerned object, toggle on) , Table 35 (not CSM)
             */
-            // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press the speedometer once");
 
+            WaitForVerification("Check that the following objects are toggled:" + Environment.NewLine + Environment.NewLine +
+                                "1. White Basic speed hook (invisible)." + Environment.NewLine +
+                                "2.	Medium-grey basic speed hook (invisible)." + Environment.NewLine +
+                                "3. Digital distance to target (invisible)." + Environment.NewLine +
+                                "4. Digital release speed (visible).");
 
             /*
             Test Step 8
@@ -143,10 +165,13 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The objects below are toggled visible (the same as the visible step)/invisible,White basic speed hookMedium-grey basic speed hookDistance to target (digital)The release speed digital remains the same
             Test Step Comment: (1) MMI_gen 6890 (partly: Areas A, Area B, SR mode);                                  MMI_gen 6896 (partly: configuration ‘ON’, SR mode); MMI_gen 6894 (partly: SR mode); (2) MMI_gen 6890 (partly: SR mode, un-concerned object, toggle on) , Table 35 (not CSM) 
             */
-            // Call generic Action Method
-            DmiActions.ShowInstruction(this,
-                @"Press, at least twice, on area A1-A4, and area B respectively.Then, continue to drive the train forward after expected result verified");
+            DmiActions.ShowInstruction(this, @"Press on area A1-A4, and area B respectively, at least twice");
 
+            WaitForVerification("Check that the following objects toggle off (invisible) and on (visible) as the respective area is pressed:" + Environment.NewLine + Environment.NewLine +
+                                "1. White Basic speed hook." + Environment.NewLine +
+                                "2.	Medium-grey basic speed hook." + Environment.NewLine +
+                                "3. Digital distance to target." + Environment.NewLine +
+                                "4. Digital release speed does not change (stays visible).");
 
             /*
             Test Step 9
@@ -154,10 +179,19 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in UN mode, Level 0.Verifty the following information,The objects below are not displayed on DMI,White Basic speed HookMedium-grey basic speed hookDistance to target (digital)Release Speed Digital
             Test Step Comment: (1) MMI_gen 6892 (partly: UN mode, Table 34, Table 38, Table 35), MMI_gen 6890 (partly: FS mode, unidentified mode, un-concerned object)
             */
-            // Call generic Action Method
-            DmiActions
-                .Drive_the_train_forward_pass_BG2_with_speed_20kmh_or_below_permitted_speed_Then_press_an_area_C1_for_acknowledgement(this);
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 20;
 
+            DmiActions.ShowInstruction(this, @"Acknowledge by pressing on area C1");
+
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L0;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Unfitted;
+
+            WaitForVerification("Check the following :" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in UN mode, Level 1." + Environment.NewLine +
+                                "2. DMI does not display the White basic speed hook." + Environment.NewLine +
+                                "3. DMI does not display the Medium-grey basic speed hook." + Environment.NewLine +
+                                "4. DMI does not display the Digital distance to target." + Environment.NewLine +
+                                "5. DMI does not display the Digital release speed.");
 
             /*
             Test Step 10
@@ -165,13 +199,15 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The objects below are not toggled visible/invisible, (always remain the same as the previous step)White basic speed hookMedium-grey basic speed hookDistance to target (digital)Release Speed Digital
             Test Step Comment: (1) MMI_gen 6892 (partly: Areas A and B for UN mode), MMI_gen 6890 (partly: UN mode, unidentified mode, un-concerned object);
             */
-            // Call generic Action Method
-            DmiActions
-                .Stop_the_train_Press_at_least_twice_on_area_A1_A4_and_area_B_respectively_Then_continue_to_drive_the_train_forward_after_expected_result_verified(this);
-            // Call generic Check Results Method
-            DmiExpectedResults
-                .Verify_the_following_information_The_objects_below_are_not_toggled_visibleinvisible_always_remain_the_same_as_the_previous_stepWhite_basic_speed_hookMedium_grey_basic_speed_hookDistance_to_target_digitalRelease_Speed_Digital(this);
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
 
+            DmiActions.ShowInstruction(this, "Press on area A1-A4, and area B, respectively, at least twice");
+
+            WaitForVerification("Check that the following objects do not toggle off (invisible) or on (visible) as the respective area is pressed:" + Environment.NewLine + Environment.NewLine +
+                                "1. White Basic speed hook." + Environment.NewLine +
+                                "2.	Medium-grey basic speed hook." + Environment.NewLine +
+                                "3. Digital distance to target." + Environment.NewLine +
+                                "4. Digital release speed does not change (stays visible).");
 
             /*
             Test Step 11
@@ -179,10 +215,16 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in FS mode, Level 1.Verify the following information,The objects below are displayed on DMI,Distance to target (digital)Release Speed DigitalThe objects below are not displayed on DMI,White Basic speed HookMedium-grey basic speed hook
             Test Step Comment: (1) MMI_gen 6892 (partly: FS mode, Table 38 (not CSM), Table 35 (not CSM))(2) MMI_gen 6890 (partly: FS mode, unidentified mode, un-concerned object), Table 34 (not CSM)
             */
-            // Call generic Check Results Method
-            DmiExpectedResults
-                .DMI_displays_in_FS_mode_Level_1_Verify_the_following_information_The_objects_below_are_displayed_on_DMI_Distance_to_target_digitalRelease_Speed_DigitalThe_objects_below_are_not_displayed_on_DMI_White_Basic_speed_HookMedium_grey_basic_speed_hook(this);
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 20;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
 
+            WaitForVerification("Check the following :" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in FS mode, Level 1." + Environment.NewLine +
+                                "2.	DMI displays the Digital distance to target." + Environment.NewLine +
+                                "3. DMI displays the Digital release speed." + Environment.NewLine +
+                                "4. DMI does not display the White basic speed hook." + Environment.NewLine +
+                                "5. DMI does not display the Medium-grey basic speed hook.");
 
             /*
             Test Step 12
@@ -190,13 +232,17 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The objects below are not toggled visible/invisible, (always remain the same as the previous step)White Basic speed HookMedium-grey basic speed hookDistance to target (digital)Release Speed Digital
             Test Step Comment: (1) MMI_gen 6892 (partly: Areas A and B for FS mode) MMI_gen 6890 (partly: FS mode, unidentified mode, un-concerned object); 
             */
-            // Call generic Action Method
-            DmiActions
-                .Stop_the_train_Then_press_at_least_twice_on_area_A1_A4_and_area_B_respectively_Then_continue_to_drive_the_train_forward_after_expected_result_verified(this);
-            // Call generic Check Results Method
-            DmiExpectedResults
-                .Verify_the_following_information_The_objects_below_are_not_toggled_visibleinvisible_always_remain_the_same_as_the_previous_stepWhite_Basic_speed_HookMedium_grey_basic_speed_hookDistance_to_target_digitalRelease_Speed_Digital(this);
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
 
+            DmiActions.ShowInstruction(this, "Press on area A1-A4, and area B, respectively, at least twice");
+
+            WaitForVerification("Check that the following objects do not toggle off (invisible) / on (visible) as the respective area is pressed:" + Environment.NewLine + Environment.NewLine +
+                                "1. White Basic speed hook (stays invisible)." + Environment.NewLine +
+                                "2.	Medium-grey basic speed hook (stays invisible)." + Environment.NewLine +
+                                "3. Digital distance to target (stays visible)." + Environment.NewLine +
+                                "4. Digital release speed does not change (stays visible).");
+
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 20;
 
             /*
             Test Step 13
@@ -204,9 +250,22 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in OS mode, Level 1.Verify the following information,The objects below are displayed on DMI, (toggle on)Basic speed Hook(s)Distance to target (digital)Release speed digital
             Test Step Comment: (1) MMI_gen 11868 (partly: OS mode), Table 34 (not CSM), Table 35 (not CSM), Table 38 (not CSM), MMI_gen 6450 (partly: 2nd bullet, OS mode), MMI_gen 6898 (configuration ‘ON’, OS mode); MMI_gen 6320 (partly: OS mode, Table 34 (Not CSM));
             */
-            // Call generic Action Method
-            DmiActions.Drive_the_train_forward_pass_BG4_Then_acknowledge_OS_mode_by_press_a_sub_area_C1(this);
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.OnSight;
 
+            // Need to send EVC8 with MO08 to get an acknowledgement symbol displayed??
+            //EVC8_MMIDriverMessage.MMI_I_TEXT = 4;
+            //EVC8_MMIDriverMessage.MMI_I_TEXT_CRITERIA = 3;
+            //EVC8_MMIDriverMessage.MMI_Q_TEXT = 259;
+            //EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            //EVC8_MMIDriverMessage.Send();
+
+            DmiActions.ShowInstruction(this, "Acknowledge OS mode by pressing in sub-area C1");
+
+            WaitForVerification("Check that the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in OS mode, Level 1." + Environment.NewLine +
+                                "2. DMI displays (both) Basic speed hooks." + Environment.NewLine +
+                                "3.	DMI displays the Digital distance to target." + Environment.NewLine +
+                                "4. DMI displays the Digital release speed.");
 
             /*
             Test Step 14
@@ -214,9 +273,15 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The objects below are not displayed on DMI, (toggle off)White Basic speed HookMedium-grey basic speed hookDistance to target (digital)Release Speed Digital
             Test Step Comment: (1) MMI_gen 6890 (partly: OS mode, toggle on), MMI_gen 6896 (partly: configuration ‘ON’, OS mode, toggle visible), MMI_gen 6894 (partly: OS mode); 
             */
-            // Call generic Action Method
-            DmiActions.Stop_the_train_Press_the_speedometer_once(this);
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
 
+            DmiActions.ShowInstruction(this, "Press the speedometer once");
+
+            WaitForVerification("Check the following :" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI does not display the White basic speed hook." + Environment.NewLine +
+                                "2. DMI does not display the Medium-grey basic speed hook." + Environment.NewLine +
+                                "3.	DMI does not display the Digital distance to target." + Environment.NewLine +
+                                "4. DMI does not display the Digital release speed.");
 
             /*
             Test Step 15
@@ -224,13 +289,15 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The objects below are toggled visible (the same as the previous step)/invisible,White basic speed hookMedium-grey basic speed hookDistance to target (digital)Release Speed Digital
             Test Step Comment: (1) MMI_gen 6890 (partly: Areas A, Area B, OS mode);                                  MMI_gen 6896 (partly: configuration ‘ON’, OS mode);                                      MMI_gen 6894 (partly: OS mode);
             */
-            // Call generic Action Method
-            DmiActions.ShowInstruction(this,
-                @"Press, at least twice, on area A1-A4, and area B respectively.Then, continue to drive the train forward after expected result verified");
-            // Call generic Check Results Method
-            DmiExpectedResults
-                .Verify_the_following_information_The_objects_below_are_toggled_visible_the_same_as_the_previous_stepinvisible_White_basic_speed_hookMedium_grey_basic_speed_hookDistance_to_target_digitalRelease_Speed_Digital(this);
+            DmiActions.ShowInstruction(this, "Press on area A1-A4, and area B, respectively, at least twice");
 
+            WaitForVerification("Check that the following objects toggle on (visible) and off (invisible) as the respective area is pressed:" + Environment.NewLine + Environment.NewLine +
+                                "1. White Basic speed hook." + Environment.NewLine +
+                                "2.	Medium-grey basic speed hook." + Environment.NewLine +
+                                "3. Digital distance to target." + Environment.NewLine +
+                                "4. Digital release speed does not change (stays visible).");
+
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 20;
 
             /*
             Test Step 16
@@ -238,9 +305,23 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The objects below are displayed on DMI,Distance to target (digital)Release Speed DigitalThe objects below are not displayed on DMI,White Basic speed HookMedium-grey basic speed hook
             Test Step Comment: (1) MMI_gen 6892 (partly: LS mode, Table 35 (not CSM), Table 38 (not CSM))(2) MMI_gen 6890 (partly: LS mode, unidentified mode, un-concerned object), Table 34 (not CSM)
             */
-            // Call generic Action Method
-            DmiActions.Drive_the_train_forward_pass_BG5_Then_acknowledge_LS_mode_by_press_a_sub_area_C1(this);
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.LimitedSupervision;
 
+            // Need to send EVC8 with MO22 to get an acknowledgement symbol displayed??
+            //EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            //EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
+            //EVC8_MMIDriverMessage.MMI_I_TEXT = 4;
+            //EVC8_MMIDriverMessage.MMI_Q_TEXT = 709;
+            //EVC8_MMIDriverMessage.Send();
+
+            DmiActions.ShowInstruction(this, "Acknowledge by pressing in sub-area C1");
+
+            WaitForVerification("Check the following :" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in LS modes, Level 1." + Environment.NewLine +
+                                "2.	DMI displays the Digital distance to target." + Environment.NewLine +
+                                "3. DMI displays the Digital release speed." + Environment.NewLine +
+                                "4. DMI does not display the White basic speed hook." + Environment.NewLine +
+                                "5. DMI does not display the Medium-grey basic speed hook.");
 
             /*
             Test Step 17
@@ -248,13 +329,14 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The objects below are not toggled visible/invisible, (always remain the same as the previous step)White Basic speed HookMedium-grey basic speed hookDistance to target (digital)Release Speed Digital
             Test Step Comment: (1) MMI_gen 6892 (partly: Area A and B, LS mode) MMI_gen 6890 (partly: LS mode, unidentified mode, un-concerned object);
             */
-            // Call generic Action Method
-            DmiActions
-                .Stop_the_train_Press_at_least_twice_on_area_A1_A4_and_area_B_respectively_Then_continue_to_drive_the_train_forward_after_expected_result_verified(this);
-            // Call generic Check Results Method
-            DmiExpectedResults
-                .Verify_the_following_information_The_objects_below_are_not_toggled_visibleinvisible_always_remain_the_same_as_the_previous_stepWhite_Basic_speed_HookMedium_grey_basic_speed_hookDistance_to_target_digitalRelease_Speed_Digital(this);
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
+            DmiActions.ShowInstruction(this, "Press on area A1-A4, and area B, respectively, at least twice");
 
+            WaitForVerification("Check that the following objects do not toggle as the respective area is pressed:" + Environment.NewLine + Environment.NewLine +
+                                "1. White Basic speed hook (stays invisible)." + Environment.NewLine +
+                                "2.	Medium-grey basic speed hook (stays invisible)." + Environment.NewLine +
+                                "3. Digital distance to target (stays visible)." + Environment.NewLine +
+                                "4. Digital release speed does not change (stays visible).");
 
             /*
             Test Step 18
@@ -262,9 +344,17 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in TR mode, Level 1. Verify the following information,The objects below are not displayed on DMI,White Basic speed HookMedium-grey basic speed hookDistance to target (digital)Release Speed Digital
             Test Step Comment: (1) MMI_gen 6892 (partly: TR mode, Table 34, Table 38, Table 35), MMI_gen 6890 (partly: TR mode, unidentified mode, un-concerned object)
             */
-            // Call generic Action Method
-            DmiActions.Drive_the_train_pass_through_EOA(this);
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 20;
+            EVC1_MMIDynamic.MMI_O_BRAKETARGET = 150000;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 151000;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Trip;
 
+            WaitForVerification("Check the following :" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in TR mode, Level 1." + Environment.NewLine +
+                                "2. DMI does not display the White basic speed hook." + Environment.NewLine +
+                                "3. DMI does not display the Medium-grey basic speed hook." + Environment.NewLine +
+                                "4.	DMI does not display the Digital distance to target." + Environment.NewLine +
+                                "5. DMI does not display the Digital release speed.");
 
             /*
             Test Step 19
@@ -272,13 +362,15 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The objects below are not toggled visible/invisible, (always remain the same as the previous step)White basic speed hookMedium-grey basic speed hookDistance to target (digital)Release Speed Digital
             Test Step Comment: (1) MMI_gen 6892 (partly: Areas A and B for TR mode), MMI_gen 6890 (partly: TR mode, unidentified mode, un-concerned object);
             */
-            // Call generic Action Method
-            DmiActions
-                .Stop_the_train_Press_at_least_twice_on_area_A1_A4_and_area_B_respectively_Then_continue_to_drive_the_train_forward_after_expected_result_verified(this);
-            // Call generic Check Results Method
-            DmiExpectedResults
-                .Verify_the_following_information_The_objects_below_are_not_toggled_visibleinvisible_always_remain_the_same_as_the_previous_stepWhite_basic_speed_hookMedium_grey_basic_speed_hookDistance_to_target_digitalRelease_Speed_Digital(this);
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
 
+            DmiActions.ShowInstruction(this, "Press on area A1-A4, and area B, respectively, at least twice");
+
+            WaitForVerification("Check that the following objects do not toggle on (invisible) or off (visible) as the respective area is pressed:" + Environment.NewLine + Environment.NewLine +
+                                "1. White Basic speed hook (stays invisible)." + Environment.NewLine +
+                                "2.	Medium-grey basic speed hook (stays invisible)." + Environment.NewLine +
+                                "3. Digital distance to target (stays invisible)." + Environment.NewLine +
+                                "4. Digital release speed does not change (stays invisible).");
 
             /*
             Test Step 20
@@ -286,12 +378,17 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in PT mode, Level 1. Verify the following information,The objects below are not displayed on DMI,White Basic speed HookMedium-grey basic speed hookDistance to target (digital)Release Speed Digital
             Test Step Comment: (1) MMI_gen 6892 (partly: PT mode, Table 34, Table 38, Table 35), MMI_gen 6890 (partly: PT mode, unidentified mode, un-concerned object)
             */
-            // Call generic Action Method
-            DmiActions.Acknowledge_TR_mode_by_press_a_sub_area_C1(this);
-            // Call generic Check Results Method
-            DmiExpectedResults
-                .DMI_displays_in_PT_mode_Level_1_Verify_the_following_information_The_objects_below_are_not_displayed_on_DMI_White_Basic_speed_HookMedium_grey_basic_speed_hookDistance_to_target_digitalRelease_Speed_Digital(this);
+            DmiActions.ShowInstruction(this, "Acknowledge PT mode by pressing in sub-area C1");
 
+            // ?? Spec is inconsistent: either TR or PT mode
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.PostTrip;
+
+            WaitForVerification("Check the following :" + Environment.NewLine + Environment.NewLine +
+                                "1.	DMI displays in PT mode, Level 1." + Environment.NewLine +
+                                "2.	DMI does not display the Digital distance to target." + Environment.NewLine +
+                                "3. DMI does not display the Digital release speed." + Environment.NewLine +
+                                "4. DMI does not display the White basic speed hook." + Environment.NewLine +
+                                "5. DMI does not display the Medium-grey basic speed hook.");
 
             /*
             Test Step 21
@@ -299,13 +396,17 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The objects below are not toggled visible/invisible, (always remain the same as the previous step)White basic speed hookMedium-grey basic speed hookDistance to target (digital)Release Speed Digital
             Test Step Comment: (1) MMI_gen 6892 (partly: Areas A and B for PT mode), MMI_gen 6890 (partly: PT mode, unidentified mode, un-concerned object);
             */
-            // Call generic Action Method
-            DmiActions
-                .Stop_the_train_Press_at_least_twice_on_area_A1_A4_and_area_B_respectively_Then_continue_to_drive_the_train_forward_after_expected_result_verified(this);
-            // Call generic Check Results Method
-            DmiExpectedResults
-                .Verify_the_following_information_The_objects_below_are_not_toggled_visibleinvisible_always_remain_the_same_as_the_previous_stepWhite_basic_speed_hookMedium_grey_basic_speed_hookDistance_to_target_digitalRelease_Speed_Digital(this);
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
 
+            DmiActions.ShowInstruction(this, "Press on area A1-A4, and area B, respectively, at least twice");
+
+            WaitForVerification("Check that the following objects do not toggle on (visible) or on (invisible) as the respective area is pressed:" + Environment.NewLine + Environment.NewLine +
+                                "1. White Basic speed hook (stays invisible)." + Environment.NewLine +
+                                "2.	Medium-grey basic speed hook (stays invisible)." + Environment.NewLine +
+                                "3. Digital distance to target (stays invisible)." + Environment.NewLine +
+                                "4. Digital release speed does not change (stays invisible).");
+
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 20;
 
             /*
             Test Step 22
@@ -313,9 +414,17 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SH mode, Level 1.Verify the following information,The white basic speed hook is displayed on sub-area B2 (toggle on).The objects below are not displayed on DMI,Medium-grey basic speed hookDistance to target (digital)Release Speed Digital
             Test Step Comment: (1) MMI_gen 11868 (partly: SH mode);                    MMI_gen 6450 (partly: 2nd bullet, SH mode) , Table 34 (CSM), MMI_gen 6898 (partly: configuration ‘ON’); MMI_gen 6320 (partly: SH mode, Table 34 (CSM));(2) MMI_gen 6890 (partly: SH mode, un-concerned object), Table 34 (CSM), Table 38 (CSM), Table 35 (CSM)
             */
-            // 
-            DmiExpectedResults.Shunting_button_pressed_and_hold(this);
+            DmiActions.ShowInstruction(this, "Press the ‘Main’ button. Press and hold ‘Shunting’ button for up to 2s then release the ‘Shunting’ button");
 
+            // surely irrelevant here??
+            //DmiExpectedResults.Shunting_button_pressed_and_hold(this);
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SH mode, Level 1." + Environment.NewLine +
+                                "2. DMI does not display the White basic speed hook (toggled off)." + Environment.NewLine +
+                                "3. DMI does not display the Medium-grey basic speed hook." + Environment.NewLine +
+                                "4. DMI does not display the Digital distance to target." + Environment.NewLine +
+                                "5. DMI does not display the Digital release speed.");
 
             /*
             Test Step 23
@@ -326,6 +435,11 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press the speedometer once");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the White basic speed hook (toggled on)." + Environment.NewLine +
+                                "2. DMI does not display the Medium-grey basic speed hook." + Environment.NewLine +
+                                "3. DMI does not display the Digital distance to target." + Environment.NewLine +
+                                "4. DMI does not display the Digital release speed.");
 
             /*
             Test Step 24
@@ -333,20 +447,33 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The white basic speed hook is toggled visible (the same as the visible step)/invisibleThe objects below are not toggled visible/invisible, (always remain the same as the previous step),Medium-grey basic speed hookDistance to target (digital)Release Speed Digital
             Test Step Comment: (1) MMI_gen 6890 (partly: Areas A, Area B, SH mode);                                  MMI_gen 6896 (partly: configuration ‘ON’, SH mode);                                      MMI_gen 6894 (partly: SH mode); (2) MMI_gen 6890 (partly: SH mode, un-concerned object), Table 34 (CSM), Table 38 (CSM), Table 35 (CSM)
             */
-            // Call generic Action Method
-            DmiActions.ShowInstruction(this,
-                @"Press, at least twice, on area A1-A4, and area B respectively.Then, continue to drive the train forward after expected result verified");
-            // Call generic Check Results Method
-            DmiExpectedResults
-                .Verify_the_following_information_The_white_basic_speed_hook_is_toggled_visible_the_same_as_the_visible_stepinvisibleThe_objects_below_are_not_toggled_visibleinvisible_always_remain_the_same_as_the_previous_step_Medium_grey_basic_speed_hookDistance_to_target_digitalRelease_Speed_Digital(this);
+            DmiActions.ShowInstruction(this, "Press on area A1-A4, and area B, respectively, at least twice");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The White basic speed hook is toggled off (invisible) and on (visible) as it is pressed." + Environment.NewLine +
+                                "2. DMI does not display and remove the Medium-grey basic speed hook." + Environment.NewLine +
+                                "3. DMI does not display and remove the Digital distance to target." + Environment.NewLine +
+                                "4. DMI does not display and remove the Digital release speed");
 
             /*
             Test Step 25
+            Action: Press the speedometer once
+            Expected Result: Verify the following information,(1)	The objects below is displayed on DMI, (toggle on)	White Basic speed Hook(2)	The objects below are still not displayed on DMI,	Medium-grey basic speed hook	Distance to target (digital)	Release Speed Digital
+            Test Step Comment:(1) MMI_gen 6890 (partly: Areas A, SH mode, toggle on), MMI_gen 6896 (partly: configuration ‘OFF’, SH mode, toggle visible), MMI_gen 6894 (partly: SH mode), Information (paragraph 2) under MMI_gen 6898 (re-establish, operable);(2) MMI_gen 6890 (partly: SH mode, un-concerned object), Table 34 (CSM), Table 38 (CSM), Table 35 (CSM)
+            */
+            DmiActions.ShowInstruction(this, @"Press the speedometer once");
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the White basic speed hook (toggled on)." + Environment.NewLine +
+                                "2. DMI does not display the Medium-grey basic speed hook." + Environment.NewLine +
+                                "3. DMI does not display the Digital distance to target." + Environment.NewLine +
+                                "4. DMI does not display the Digital release speed.");
+
+            /*
+            Test Step 26
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }
