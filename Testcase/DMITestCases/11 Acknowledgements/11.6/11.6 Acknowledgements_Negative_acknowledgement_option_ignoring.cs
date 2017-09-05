@@ -37,16 +37,19 @@ namespace Testcase.DMITestCases
         public override void PreExecution()
         {
             // Pre-conditions from TestSpec:
-            // System is power on.Cabin is activated.SoM is performed until Level 1 is selected and confirmed.Main window is closed.
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
+            DmiActions.Complete_SoM_L1_SB(this);
+            // System is power on.Cabin is activated.SoM is performed until Level 1 is selected and confirmed.Main window is closed.
         }
 
         public override void PostExecution()
         {
             // Post-conditions from TestSpec
             // DMI displays in SB mode, Level 1
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SB mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -56,14 +59,16 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
             /*
             Test Step 1
             Action: Use the test script file 6_6_a.xml to send EVC-8 with,MMI_Q_TEXT = 260MMI_Q_TEXT_CRITERIA = 2MMI_I_TEXT = 1
             Expected Result: Verify the following information,(1)    DMI displays ST01 symbol with yellow flashing frame in sub-area C9
             Test Step Comment: (1) MMI_gen 4504 (partly: symbols);
             */
+            XML.XML_6_6_a.Send(this);
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the ST01 symbol with a yellow flashing frame in sub-area C9.");
 
             /*
             Test Step 2
@@ -71,7 +76,12 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)    DMI displays DR02 symbol with yes button in area D
             Test Step Comment: (1) MMI_gen 4504 (partly: TAF);
             */
+            DmiActions.ShowInstruction(this, "Acknowledge by pressing in sub-area C9");
 
+            XML.XML_6_6_b.Send(this);
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the DR02 symbol and a ‘Yes’ button (to the right) in area D.");
 
             /*
             Test Step 3
@@ -79,14 +89,18 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)    DMI displays MO10 symbol with yellow flashing frame in sub-area C1
             Test Step Comment: (1) MMI_gen 4504 (partly: symbols);
             */
+            DmiActions.ShowInstruction(this, "Press the ‘Yes’ button (to the right) in area D.");
 
+            XML.XML_6_6_c.Send(this);
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the MO10 symbol with a yellow flashing frame in sub-area C1.");
 
             /*
             Test Step 4
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }
