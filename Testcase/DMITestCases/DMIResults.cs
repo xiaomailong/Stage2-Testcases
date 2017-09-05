@@ -645,7 +645,26 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void Train_data_window_displayed(SignalPool pool)
         {
-            pool.WaitForVerification("Is the Train Data window displayed?");
+            pool.WaitForVerification("Is the Train Data window displayed on the DMI?");
+        }
+
+        /// <summary>
+        /// Description: DMI displays Train data validation window
+        /// Used in:
+        ///     Step 4 in TC-ID: 9.1 in Data Validation Window for Flexible train data entry window
+        ///     Step 6 in TC-ID: 9.1 in Data Validation Window for Flexible train data entry window
+        ///     Step 4 in TC-ID: 9.2 in 14.2 Data Validation Window for Fixed train data entry window
+        ///     Step 6 in TC-ID: 9.2 in 14.2 Data Validation Window for Fixed train data entry window
+        ///     Step 7 in TC-ID: 10.4.1.1 in 15.4.1.1 State ‘ST05’: Abort the pending Data Process in Main window
+        ///     Step 5 in TC-ID: 15.1.3 in 20.1.3 Mode Symbols in Sub-Area B7 for OS, UN mode
+        ///     Step 5 in TC-ID: 34.1.1 in 37.1.1 Fixed Train data entry
+        ///     Step 5 in TC-ID: 34.1.2 in 37.1.2 Flexible Train data entry
+        ///     Step 7 in TC-ID: 34.1.2 in 37.1.2 Flexible Train data entry
+        ///     Step 7 in TC-ID: 34.1.4 in 37.1.4.1.1 Data entry/validation process when enabling conditions not fullfilled: Level 1
+        /// </summary>
+        public static void Train_data_validation_window_displayed(SignalPool pool)
+        {
+            pool.WaitForVerification("Is the Train Data Validation window displayed on the DMI?");
         }
 
         /// <summary>
@@ -893,26 +912,6 @@ namespace Testcase.DMITestCases
         ///     Step 7 in TC-ID: 22.28.2 in 27.28.2 ‘Remove VBC’ Validation Window
         /// </summary>
         public static void The_value_of_input_field_is_changed_refer_to_selected_button(SignalPool pool)
-        {
-            throw new NotImplementedException();
-        }
-
-
-        /// <summary>
-        /// Description: DMI displays Train data validation window
-        /// Used in:
-        ///     Step 4 in TC-ID: 9.1 in Data Validation Window for Flexible train data entry window
-        ///     Step 6 in TC-ID: 9.1 in Data Validation Window for Flexible train data entry window
-        ///     Step 4 in TC-ID: 9.2 in 14.2 Data Validation Window for Fixed train data entry window
-        ///     Step 6 in TC-ID: 9.2 in 14.2 Data Validation Window for Fixed train data entry window
-        ///     Step 7 in TC-ID: 10.4.1.1 in 15.4.1.1 State ‘ST05’: Abort the pending Data Process in Main window
-        ///     Step 5 in TC-ID: 15.1.3 in 20.1.3 Mode Symbols in Sub-Area B7 for OS, UN mode
-        ///     Step 5 in TC-ID: 34.1.1 in 37.1.1 Fixed Train data entry
-        ///     Step 5 in TC-ID: 34.1.2 in 37.1.2 Flexible Train data entry
-        ///     Step 7 in TC-ID: 34.1.2 in 37.1.2 Flexible Train data entry
-        ///     Step 7 in TC-ID: 34.1.4 in 37.1.4.1.1 Data entry/validation process when enabling conditions not fullfilled: Level 1
-        /// </summary>
-        public static void Train_data_validation_window_displayed(SignalPool pool)
         {
             throw new NotImplementedException();
         }
