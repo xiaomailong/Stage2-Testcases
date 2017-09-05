@@ -54,6 +54,7 @@ namespace Testcase
             EVC104_MMINewDriverData.Initialise(this);
             EVC107_MMINewTrainData.Initialise(this);
             EVC111_MMIDriverMessageAck.Initialise(this);
+            EVC116_MMINewTrainNumber.Initialise(this);
             EVC121_MMINewLevel.Initialise(this);
             EVC152_MMIDriverAction.Initialise(this);
 

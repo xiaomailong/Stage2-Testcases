@@ -384,8 +384,27 @@ namespace Testcase.DMITestCases
         /// <param name="pool"></param>
         public static void Driver_ID_entered(SignalPool pool)
         {
-            string driverIDInput = DmiActions.ShowDialog("Please enter Driver ID", "Driver ID");
-            EVC104_MMINewDriverData.Check_X_DRIVER_ID = driverIDInput;
+            string driverIDInput = DmiActions.ShowDialog(@"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
+                                "1. Type any Driver ID on THIS WINDOW." + Environment.NewLine +
+                                "2. Type the same Driver ID on the DMI." + Environment.NewLine +
+                                "3. Confirmed the entered value by pressing the input field.", "Driver ID");
+            EVC104_MMINewDriverData.Check_X_DRIVER_ID = driverIDInput;           
+        }
+
+        /// <summary>
+        /// Description: Train running Number is entered
+        /// Used in:
+        ///     Step 7 in TC-ID: 15.1.3 in 20.1.3
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void TRN_entered(SignalPool pool)
+        {
+            string trnInput = DmiActions.ShowDialog(@"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
+                                "1. Type any Train Running Number on THIS WINDOW." + Environment.NewLine +
+                                "2. Type the same TRN on the DMI." + Environment.NewLine +
+                                "3. Confirmed the entered value by pressing the input field.", "Driver ID");
+
+            //EVC116_MMINewTrainNumber.Check_NID_OPERATION = trnInput;
         }
 
         /// <summary>
@@ -668,14 +687,44 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
-        /// Description: Fixed Train data are entered
+        /// Description: DMI displays Train Running Number window.Verify the following information,The Train data validation is closed.Use the log file to confirm that DMI sends out the packet [MMI_CONFIRMED_TRAIN DATA (EVC-110)] with variable based on confirmed data
         /// Used in:
-        ///     Step 4 in 15.1.3
+        ///     Step 8 in TC-ID: 9.1 in Data Validation Window for Flexible train data entry window
+        ///     Step 8 in TC-ID: 9.2 in 14.2 Data Validation Window for Fixed train data entry window
+        ///     Step 11 in TC-ID: 10.2 in 15.2.1 State 'ST05': General Appearance
+        ///     Step 6 in TC-ID: 15.1.3 in 20.1.3 Mode Symbols in Sub-Area B7 for OS, UN mode
+        ///     Step 9 in TC-ID: 34.1.4 in 37.1.4.1.1 Data entry/validation process when enabling conditions not fullfilled: Level 1
+        ///     Step 1 in TC-ID: 18.5 in 23.5 Train Running Number
+        ///     Step 17 in TC-ID: 22.18 in Train Running Number window
+        ///     Step 4 in TC-ID: 33.1 in 36.1 The relationship between parent and child windows (1)
+        ///     Step 4 in TC-ID: 35.2 in 38.2 NTC System Status Messages
+        ///     Step 9 in TC-ID: 35.2 in 38.2 NTC System Status Messages
+        /// </summary>
+        public static void TRN_window_displayed(SignalPool pool)
+        {
+            pool.WaitForVerification("Is the Train Running Number window displayed on the DMI?");
+        }
+
+        /// <summary>
+        /// Description: Driver enters and confirms Fixed Train Data
+        /// Used in:
+        ///     Step 5 in 15.1.3
         /// </summary>
         /// <param name="pool"></param>
         public static void Fixed_Train_Data_entered(SignalPool pool)
         {
             //to be updated (packet 107 to be checked)
+        }
+
+        /// <summary>
+        /// Description: Driver validates Fixed Train Data
+        /// Used in:
+        ///     Step 6 in 15.1.3
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Fixed_Train_Data_validated(SignalPool pool)
+        {
+            //to be updated (packet 110 to be checked)
         }
 
         /// <summary>
@@ -926,19 +975,7 @@ namespace Testcase.DMITestCases
             Verify_the_following_information_DMI_displays_Main_window_Use_the_log_file_to_confirm_that_DMI_sends_out_the_packet_MMI_DRIVER_REQUEST_EVC_101_with_variable_MMI_DRIVER_REQUEST_EVC_101_MMI_M_REQUEST_4_Exit_Train_data(SignalPool pool)
         {
             throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Description: DMI displays Train Running Number window.Verify the following information,The Train data validation is closed.Use the log file to confirm that DMI sends out the packet [MMI_CONFIRMED_TRAIN DATA (EVC-110)] with variable based on confirmed data
-        /// Used in:
-        ///     Step 8 in TC-ID: 9.1 in Data Validation Window for Flexible train data entry window
-        ///     Step 8 in TC-ID: 9.2 in 14.2 Data Validation Window for Fixed train data entry window
-        /// </summary>
-        public static void
-            DMI_displays_Train_Running_Number_window_Verify_the_following_information_The_Train_data_validation_is_closed_Use_the_log_file_to_confirm_that_DMI_sends_out_the_packet_MMI_CONFIRMED_TRAIN_DATA_EVC_110_with_variable_based_on_confirmed_data(SignalPool pool)
-        {
-            throw new NotImplementedException();
-        }
+        }        
 
         /// <summary>
         /// Description: (1)   The Default window is displayed
@@ -949,18 +986,6 @@ namespace Testcase.DMITestCases
         ///     Step 14 in TC-ID: 10.1 in 15.1 Data Entry/Validation/View process
         /// </summary>
         public static void The_Default_window_is_displayed(SignalPool pool)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Description: DMI displays Train Running Number window
-        /// Used in:
-        ///     Step 11 in TC-ID: 10.2 in 15.2.1 State 'ST05': General Appearance
-        ///     Step 6 in TC-ID: 15.1.3 in 20.1.3 Mode Symbols in Sub-Area B7 for OS, UN mode
-        ///     Step 9 in TC-ID: 34.1.4 in 37.1.4.1.1 Data entry/validation process when enabling conditions not fullfilled: Level 1
-        /// </summary>
-        public static void DMI_displays_Train_Running_Number_window(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2338,13 +2363,14 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
-        /// Description: The Train Running Number window is displayed
+        /// Description: The symbol ‘DR03’ displays in sub-area G12
         /// Used in:
-        ///     Step 1 in TC-ID: 18.5 in 23.5 Train Running Number
-        ///     Step 17 in TC-ID: 22.18 in Train Running Number window
-        ///     Step 4 in TC-ID: 33.1 in 36.1 The relationship between parent and child windows (1)
+        ///     Step 13 in TC-ID: 18.4.1 in 23.4.1 Geographical Position: General presentation
+        ///     Step 1 in TC-ID: 18.4.3 in 23.4.3 Geographical Position: Additional requirements
+        ///     Step 4 in TC-ID: 18.4.3 in 23.4.3 Geographical Position: Additional requirements
+        ///     Step 9 in TC-ID: 18.4.3 in 23.4.3 Geographical Position: Additional requirements
         /// </summary>
-        public static void The_Train_Running_Number_window_is_displayed(SignalPool pool)
+        public static void The_symbol_DR03_displays_in_sub_area_G12(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -3733,17 +3759,6 @@ namespace Testcase.DMITestCases
         ///     Step 7 in TC-ID: 34.7 in 37.7 Dialogue Sequence of Settings window
         /// </summary>
         public static void DMI_displays_Settings_window_Verify_the_following_information_The_Close_button_is_enabled(SignalPool pool)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Description: DMI displays train running number window
-        /// Used in:
-        ///     Step 4 in TC-ID: 35.2 in 38.2 NTC System Status Messages
-        ///     Step 9 in TC-ID: 35.2 in 38.2 NTC System Status Messages
-        /// </summary>
-        public static void DMI_displays_train_running_number_window(SignalPool pool)
         {
             throw new NotImplementedException();
         }

@@ -62,7 +62,7 @@ namespace Testcase.DMITestCases
             Expected Result: The Train Running Number window is displayed
             */
             // Call generic Check Results Method
-            DmiExpectedResults.The_Train_Running_Number_window_is_displayed(this);
+            DmiExpectedResults.TRN_window_displayed(this);
 
 
             /*

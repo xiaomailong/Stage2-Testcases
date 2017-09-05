@@ -503,6 +503,20 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
+        /// Description: Train Data sent to be displayed on th DMI
+        /// Used in:
+        ///     Step 6 in TC-ID: 15.1.3 in 20.1.3
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Display_TRN_Window(SignalPool pool)
+        {
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 6;
+            EVC30_MMIRequestEnable.Send();
+            EVC16_CurrentTrainNumber.TrainRunningNumber = 0xffffffff;
+            EVC16_CurrentTrainNumber.Send(); ;
+        }
+
+        /// <summary>
         /// Description: SR mode sent to be displayed on th DMI
         /// Used in:
         ///     Step 11 in TC-ID: 15.1.1 in 20.1.1
@@ -665,7 +679,7 @@ namespace Testcase.DMITestCases
         /// Used in: Step 5 in TC-ID: 15.1.3
         /// </summary>
         /// <param name="pool"></param>
-        public static void Display_Train_data_validation_window(SignalPool pool)
+        public static void Display_Train_data_validation_Window(SignalPool pool)
         {
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = 16;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = standardFlags;
