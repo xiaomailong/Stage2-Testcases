@@ -599,6 +599,7 @@ if exist "$(TargetPath)" if not exist "$(TargetPath).locked" move "$(TargetPath)
     <Compile Include="XML Packets\6\XML_6_6_a.cs" />
     <Compile Include="XML Packets\6\XML_6_6_b.cs" />
     <Compile Include="XML Packets\6\XML_6_6_c.cs" />
+    <Compile Include="XML Packets\6\XML_6_7.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
