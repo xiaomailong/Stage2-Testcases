@@ -141,8 +141,6 @@ namespace Testcase.DMITestCases
             DmiActions.Display_Train_data_validation_window(this);
             DmiExpectedResults.Train_data_validation_window_displayed(this);
 
-
-
             #endregion
 
             /*
@@ -151,6 +149,8 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Train Running Number window
             */
             // Call generic Check Results Method
+
+
             DmiExpectedResults.DMI_displays_Train_Running_Number_window(this);
 
 
