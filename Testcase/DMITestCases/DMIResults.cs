@@ -77,7 +77,7 @@ namespace Testcase.DMITestCases
         {
             EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
             EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
-            pool.WaitForVerification("Has the MO10 symbol disappeared from sub-area C1 and re-appeared again?");
+            pool.WaitForVerification("Is the MO10 symbol frame flashing?");
         }
 
         /// <summary>
