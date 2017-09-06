@@ -656,6 +656,7 @@ namespace Testcase.DMITestCases
         public static void Stop_the_train(SignalPool pool)
         {
             EVC1_MMIDynamic.MMI_V_TRAIN = 0;    // Set speed to zero
+            EVC1_MMIDynamic.MMI_A_TRAIN = 0;
         }
 
         /// <summary>
