@@ -346,7 +346,7 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
-        /// Description: SR mode sent to be displayed on th DMI
+        /// Description: SR mode sent to be displayed on the DMI
         /// Used in:
         ///     Step 1 in TC-ID: 15.1.1 in 20.1.1
         /// </summary>
@@ -354,6 +354,32 @@ namespace Testcase.DMITestCases
         public static void Send_SR_Mode(SignalPool pool)
         {
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
+        }
+
+        /// <summary>
+        /// Description: UN mode sent to be displayed on the DMI
+        /// Used in:
+        ///     Step 9 in TC-ID: 15.1.3 in 20.1.3
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Send_UN_Mode(SignalPool pool)
+        {
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Unfitted;
+        }
+
+        /// <summary>
+        /// Description: UN mode acknowledgement request sent to the driver
+        /// Used in:
+        ///     Step 8 in TC-ID: 15.1.3 in 20.1.3
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Send_UN_Mode_Ack(SignalPool pool)
+        {
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 264;     // "#3 MO17 (Ack Unfitted Mode)"
+            EVC8_MMIDriverMessage.Send();
         }
 
         /// <summary>
@@ -618,11 +644,7 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void Apply_Brakes(SignalPool pool)
         {
-            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
-            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 0;
-            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
-            EVC8_MMIDriverMessage.MMI_Q_TEXT = 260; // "#3 ST01 (Brake intervention)"
-            EVC8_MMIDriverMessage.Send();
+            EVC1_MMIDynamic.MMI_A_TRAIN = -50;
         }
 
         /// <summary>
@@ -634,6 +656,7 @@ namespace Testcase.DMITestCases
         public static void Stop_the_train(SignalPool pool)
         {
             EVC1_MMIDynamic.MMI_V_TRAIN = 0;    // Set speed to zero
+            EVC1_MMIDynamic.MMI_A_TRAIN = 0;
         }
 
         /// <summary>

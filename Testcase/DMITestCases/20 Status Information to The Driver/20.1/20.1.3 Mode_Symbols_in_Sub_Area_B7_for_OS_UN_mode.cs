@@ -164,28 +164,46 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Main window
             */
 
-            DmiExpectedResults.Driver_ID_entered(this);
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Main_window(this);
+            DmiExpectedResults.TRN_entered(this);
 
+            DmiExpectedResults.Main_Window_displayed_with_Start_button_enabled(this);
 
             /*
             Test Step 8
             Action: Press ‘Start’ button
-            Expected Result: Verify the following information,The symbol MO17 is displayed for Unfitted mode acknowledegement in sub-area C1. Use the log file to confirm that DMI receives packet information EVC-8 with the following value,MMI_Q_TEXT = 264MMI_Q_TEXT_CRITERIA = 1
-            Test Step Comment: (1) MMI_gen 1227 (partly: MO17);                                          (2) MMI_gen 11233 (partly: MO17);
+            Expected Result: Verify the following information,
+            The symbol MO17 is displayed for Unfitted mode acknowledegement in sub-area C1. 
+            Use the log file to confirm that DMI receives packet information EVC-8 with the following value,
+            MMI_Q_TEXT = 264
+            MMI_Q_TEXT_CRITERIA = 1
+            Test Step Comment: (1) MMI_gen 1227 (partly: MO17);                                          
+                               (2) MMI_gen 11233 (partly: MO17);
             */
-            // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press ‘Start’ button");
 
+            DmiActions.ShowInstruction(this, @"Press ‘Start’ button");
+            DmiExpectedResults.Start_Button_pressed_and_released(this);
+
+            DmiActions.Send_UN_Mode_Ack(this);
+            DmiExpectedResults.UN_Mode_Ack_requested(this);
 
             /*
             Test Step 9
             Action: Acknowledge UN mode
-            Expected Result: Verify the following information,(1)    The symbol MO16 is displayed in sub-area B7. (2)     Use the log file to confirm that DMI received the EVC-7 with [MMI_ETCS_MISC_OUT_SIGNALS.OBU_TR_M_MODE] = 4 in order to display the Unfitted symbol.(3)     Use the log file to confirm that DMI sends out packet [MMI_DRIVER_ACTION (EVC-152)] with the value of variable MMI_M_DRIVER_ACTION refer to sequence below,          a)   MMI_M_DRIVER_ACTION = 4 (Ack of Unfitted mode)
-            Test Step Comment: (1) MMI_gen 110 (partly: MO16);  (2) MMI_gen 11084 (partly: ETCS mode UN); (3) MMI_gen 11470 (partly: Bit # 4);                                               
+            Expected Result: Verify the following information,
+            (1)    The symbol MO16 is displayed in sub-area B7. 
+            (2)    Use the log file to confirm that DMI received the EVC-7 
+            with [MMI_ETCS_MISC_OUT_SIGNALS.OBU_TR_M_MODE] = 4 in order to display the Unfitted symbol.
+            (3)    Use the log file to confirm that DMI sends out packet [MMI_DRIVER_ACTION (EVC-152)] 
+            with the value of variable MMI_M_DRIVER_ACTION refer to sequence below,          
+            a)   MMI_M_DRIVER_ACTION = 4 (Ack of Unfitted mode)
+            Test Step Comment: (1) MMI_gen 110 (partly: MO16);  
+                               (2) MMI_gen 11084 (partly: ETCS mode UN); 
+                               (3) MMI_gen 11470 (partly: Bit # 4);                                               
             */
 
+            DmiExpectedResults.UN_Mode_Ack_pressed_and_released(this);
+            DmiActions.Send_UN_Mode(this);
+            DmiExpectedResults.UN_Mode_displayed(this);
 
             /*
             Test Step 10

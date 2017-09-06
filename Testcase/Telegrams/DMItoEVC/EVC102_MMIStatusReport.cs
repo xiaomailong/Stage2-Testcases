@@ -51,9 +51,9 @@ namespace Testcase.Telegrams.DMItoEVC
                 _pool.TraceReport("DMI->ETCS: EVC-102 [MMI_STATUS_REPORT.MMI_M_ACTIVE_CABIN] = " + mActiveCabin +
                     " - \"" + mActiveCabin.ToString() + "\" PASSED.");
             }
-            else // else display the real value extracted from EVC-102 [MMI_STATUS_REPORT.MMI_M_MODE_READBACK] 
+            else // else display the real value extracted from EVC-102 [MMI_STATUS_REPORT.MMI_M_ACTIVE_CABIN] 
             {
-                _pool.TraceError("DMI->ETCS: Check EVC-102 [MMI_STATUS_REPORT.MMI_M_MODE_READBACK] = " +
+                _pool.TraceError("DMI->ETCS: Check EVC-102 [MMI_STATUS_REPORT.MMI_M_ACTIVE_CABIN] = " +
                     _mmiMActiveCabin + " - \"" +
                     Enum.GetName(typeof(Variables.MMI_M_ACTIVE_CABIN), _mmiMActiveCabin) + "\" FAILED.");
             }
@@ -68,6 +68,8 @@ namespace Testcase.Telegrams.DMItoEVC
                 if (mmiMModeReadBackElement == mModeReadBack)
                 {
                     // Check MMI_M_MODE_READBACK value
+                    _pool.TraceInfo("Test - Expected: " + mModeReadBack + " , Measured: "
+                        + _pool.SITR.CCUO.ETCS1StatusReport.MmiMModeReadback.Value);
                     _bResult = _pool.SITR.CCUO.ETCS1StatusReport.MmiMModeReadback.Value.Equals(mModeReadBack);
                     break;
                 }
