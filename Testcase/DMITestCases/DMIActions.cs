@@ -644,11 +644,7 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void Apply_Brakes(SignalPool pool)
         {
-            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
-            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 0;
-            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
-            EVC8_MMIDriverMessage.MMI_Q_TEXT = 260; // "#3 ST01 (Brake intervention)"
-            EVC8_MMIDriverMessage.Send();
+            EVC1_MMIDynamic.MMI_A_TRAIN = -50;
         }
 
         /// <summary>
