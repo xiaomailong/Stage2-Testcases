@@ -298,6 +298,7 @@ namespace Testcase.DMITestCases
         /// Description: Activate cabin 2
         /// Used in:
         ///     Step 12 in TC-ID: 15.1.1 in 20.1.1
+        ///     Step 10 in TC-ID: 15.1.3 in 20.1.3
         /// </summary>
         public static void Deactivate_Cabin(SignalPool pool)
         {
@@ -460,6 +461,7 @@ namespace Testcase.DMITestCases
         /// <param name="pool"></param>
         public static void Display_Main_Window_with_Start_button_enabled(SignalPool pool)
         {
+            EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = Variables.standardFlags | 
                 EVC30_MMIRequestEnable.EnabledRequests.Start ;
@@ -474,6 +476,7 @@ namespace Testcase.DMITestCases
         /// <param name="pool"></param>
         public static void Display_Main_Window_with_Start_button_not_enabled(SignalPool pool)
         {
+            EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = Variables.standardFlags;
             EVC30_MMIRequestEnable.Send();
@@ -498,6 +501,7 @@ namespace Testcase.DMITestCases
         /// <param name="pool"></param>
         public static void Display_Driver_ID_Window(SignalPool pool)
         {
+            EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = 8;            
             EVC30_MMIRequestEnable.Send();
         }
@@ -510,6 +514,7 @@ namespace Testcase.DMITestCases
         /// <param name="pool"></param>
         public static void Display_Level_Window(SignalPool pool)
         {
+            EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = 7;
             EVC30_MMIRequestEnable.Send();
             Send_EVC20_MMISelectLevel_AllLevels();
@@ -523,6 +528,7 @@ namespace Testcase.DMITestCases
         /// <param name="pool"></param>
         public static void Display_Train_Data_Window(SignalPool pool)
         {
+            EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = 11;
             EVC30_MMIRequestEnable.Send();
             Send_EVC6_MMICurrentTrainData_FixedDataEntry(new[] { "FLU", "RLU", "Rescue" }, 2);
@@ -536,6 +542,7 @@ namespace Testcase.DMITestCases
         /// <param name="pool"></param>
         public static void Display_TRN_Window(SignalPool pool)
         {
+            EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = 6;
             EVC30_MMIRequestEnable.Send();
             EVC16_CurrentTrainNumber.TrainRunningNumber = 0xffffffff;
@@ -704,6 +711,7 @@ namespace Testcase.DMITestCases
         /// <param name="pool"></param>
         public static void Display_Train_data_validation_Window(SignalPool pool)
         {
+            EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = 16;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = standardFlags;
             EVC30_MMIRequestEnable.Send();
