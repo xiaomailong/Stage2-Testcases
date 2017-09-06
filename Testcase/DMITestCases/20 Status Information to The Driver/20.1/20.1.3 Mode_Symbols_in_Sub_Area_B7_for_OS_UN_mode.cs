@@ -202,7 +202,9 @@ namespace Testcase.DMITestCases
                                (3) MMI_gen 11470 (partly: Bit # 4);                                               
             */
 
+            DmiActions.ShowInstruction(this, "Press and hold DMI Sub Area C1");
             DmiExpectedResults.UN_Mode_Ack_pressed_and_released(this);
+
             DmiActions.Send_UN_Mode(this);
             DmiExpectedResults.UN_Mode_displayed(this);
 
@@ -257,9 +259,11 @@ namespace Testcase.DMITestCases
 
             DmiActions.Send_SR_Mode_Ack(this);
             DmiActions.ShowInstruction(this, "Press and hold DMI Sub Area C1");
+            DmiExpectedResults.SR_Mode_Ack_pressed_and_hold(this);
 
             DmiActions.Send_SR_Mode(this);
             DmiActions.FinishedSoM_Default_Window(this);
+            DmiExpectedResults.SR_Mode_displayed(this);
 
             /*
             Test Step 11
@@ -279,16 +283,25 @@ namespace Testcase.DMITestCases
 
             DmiActions.Drive_train_forward_passing_BG1(this);
 
+            DmiActions.Send_OS_Mode_Ack(this);
+            DmiExpectedResults.OS_Mode_Ack_Requested(this);
 
             /*
             Test Step 12
             Action: Acknowledge OS mode
-            Expected Result: Verify the following information,(1)    The symbol MO07 is displayed in sub-area B7. (2)    Use the log file to confirm that DMI received the EVC-7 with [MMI_ETCS_MISC_OUT_SIGNALS.OBU_TR_M_MODE] = 1 in order to display the On-sight symbol
-            Test Step Comment: (1) MMI_gen 110 (partly:MO07);  (2) MMI_gen 11084 (partly: ETCS mode OS);                           
+            Expected Result: Verify the following information,
+            (1)    The symbol MO07 is displayed in sub-area B7. 
+            (2)    Use the log file to confirm that DMI received the EVC-7 
+            with [MMI_ETCS_MISC_OUT_SIGNALS.OBU_TR_M_MODE] = 1 in order to display the On-sight symbol
+            Test Step Comment: (1) MMI_gen 110 (partly:MO07);  
+                               (2) MMI_gen 11084 (partly: ETCS mode OS);                           
             */
-            // Call generic Action Method
-            DmiActions.Acknowledge_OS_mode(this);
 
+            DmiActions.ShowInstruction(this, "Press DMI Sub Area C1");
+            DmiExpectedResults.OS_Mode_Ack_pressed_and_released(this);
+
+            DmiActions.Send_OS_Mode(this);
+            DmiExpectedResults.OS_Mode_displayed(this);
 
             /*
             Test Step 13
