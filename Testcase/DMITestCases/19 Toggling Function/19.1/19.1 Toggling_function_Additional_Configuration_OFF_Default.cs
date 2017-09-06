@@ -97,6 +97,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in RV mode, Level 1.Verify the following information,The objects below are displayed on DMI,White Basic speed HookDistance to target (digital)The objects below are not displayed on DMI,Medium-grey basic speed hookRelease Speed Digital
             Test Step Comment: (1) MMI_gen 6892 (partly: RV mode, Table 34 (CSM), Table 38 (CSM))(2) MMI_gen 6890 (partly: RV mode, unidentified mode, un-concerned object), Table 34 (CSM), Table 35 (CSM)
             */
+            // Doesn't the symbol appear in C6??
             DmiActions.ShowInstruction(this, "Change the train direction to reverse and press the symbol in sub-area C1");
             //EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Reversing;
 
@@ -116,11 +117,11 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(this, "Press on area A1-A4, and area B, respectively, at least twice");
 
-            WaitForVerification("Check that the following objects do not toggle (visible/invisible) and remain the same as in the previous step:" + Environment.NewLine + Environment.NewLine +
-                                "1. White basic speed hook." + Environment.NewLine +
-                                "2.	Medium-grey basic speed hook." + Environment.NewLine +
-                                "3. Digital distance to target." + Environment.NewLine +
-                                "4. Digital	release speed.");
+            WaitForVerification("Check that the following objects do not toggle  and remain the same as in the previous step:" + Environment.NewLine + Environment.NewLine +
+                                "1. White basic speed hook (remains visible)." + Environment.NewLine +
+                                "2.	Medium-grey basic speed hook (remains invisible)." + Environment.NewLine +
+                                "3. Digital distance to target (remains visible)." + Environment.NewLine +
+                                "4. Digital	release speed (remains invisible).");
 
             /*
             Test Step 4
@@ -142,7 +143,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.Perform_SoM_in_SR_mode_Level_1(this);
 
-            WaitForVerification("Check that the following objects are toggled off (invisible):" + Environment.NewLine + Environment.NewLine +
+            WaitForVerification("Check the mode and that the following objects are not displayed:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SR mode, Level 1." + Environment.NewLine +
                                 "2. White Basic speed hook." + Environment.NewLine +
                                 "3.	Medium-grey basic speed hook." + Environment.NewLine +
@@ -154,9 +155,9 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The objects below still not displayed on DMI, (toggle off)White basic speed hookMedium-grey basic speed hookDistance to target (digital)The release speed digital is not displayed
             Test Step Comment: (1) MMI_gen 11868 (partly: SR mode);                    MMI_gen 6450 (partly: 2nd bullet, SR mode), Table 34 (not CSM), Table 38 (not CSM), MMI_gen 6898 (partly: configuration ‘OFF’);(2) MMI_gen 6890 (partly: SR mode, un-concerned object), Table 35 (not CSM)
             */
-            DmiActions.ShowInstruction(this, "Press ‘Spec’ button. Press ‘SR speed/disาtance’ button. Enter and confirm the following data, SR speed = 40 km/h, SR distance = 300m");
+            DmiActions.ShowInstruction(this, "Press ‘Spec’ button. Press ‘SR speed/distance’ button. Enter and confirm the following data, SR speed = 40 km/h, SR distance = 300m");
 
-            WaitForVerification("Check that the following objects are still toggled off (invisible):" + Environment.NewLine + Environment.NewLine +
+            WaitForVerification("Check that the following objects are still not displayed:" + Environment.NewLine + Environment.NewLine +
                                 "1. White Basic speed hook." + Environment.NewLine +
                                 "2.	Medium-grey basic speed hook." + Environment.NewLine +
                                 "3. Digital distance to target." + Environment.NewLine +
@@ -171,7 +172,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press the speedometer once");
 
-            WaitForVerification("Check that the following objects are toggled on (visible):" + Environment.NewLine + Environment.NewLine +
+            WaitForVerification("Check that the following objects are displayed (toggled on):" + Environment.NewLine + Environment.NewLine +
                                 "1. White Basic speed hook." + Environment.NewLine +
                                 "2.	Medium-grey basic speed hook." + Environment.NewLine +
                                 "3. Digital distance to target." + Environment.NewLine +
@@ -186,11 +187,11 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press on area A1-A4, and area B respectively, at least twice");
 
-            WaitForVerification("Check that the following objects toggle off (invisible) and on (visible) as the respective area is pressed:" + Environment.NewLine + Environment.NewLine +
+            WaitForVerification("Check that the following objects toggle off (invisible) or on (visible) as the respective area is pressed:" + Environment.NewLine + Environment.NewLine +
                                 "1. White Basic speed hook." + Environment.NewLine +
                                 "2.	Medium-grey basic speed hook." + Environment.NewLine +
                                 "3. Digital distance to target." + Environment.NewLine +
-                                "4. Digital release speed does not change (stays visible).");
+                                "4. Digital release speed does not change (remains visible).");
 
             /*
             Test Step 9
@@ -222,11 +223,11 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, "Press on area A1-A4, and area B, respectively, at least twice");
 
-            WaitForVerification("Check that the following objects do not toggle off (invisible) or on (visible) as the respective area is pressed:" + Environment.NewLine + Environment.NewLine +
+            WaitForVerification("Check that the following objects do not toggle on (visible) or off (invisible) as the respective area is pressed:" + Environment.NewLine + Environment.NewLine +
                                 "1. White Basic speed hook." + Environment.NewLine +
                                 "2.	Medium-grey basic speed hook." + Environment.NewLine +
                                 "3. Digital distance to target." + Environment.NewLine +
-                                "4. Digital release speed does not change (stays visible).");
+                                "4. Digital release speed.");
 
             /*
             Test Step 11
@@ -256,10 +257,10 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press on area A1-A4, and area B, respectively, at least twice");
 
             WaitForVerification("Check that the following objects do not toggle off (invisible) / on (visible) as the respective area is pressed:" + Environment.NewLine + Environment.NewLine +
-                                "1. White Basic speed hook (stays invisible)." + Environment.NewLine +
-                                "2.	Medium-grey basic speed hook (stays invisible)." + Environment.NewLine +
-                                "3. Digital distance to target (stays visible)." + Environment.NewLine +
-                                "4. Digital release speed does not change (stays visible).");
+                                "1. White Basic speed hook (remains invisible)." + Environment.NewLine +
+                                "2.	Medium-grey basic speed hook (remains invisible)." + Environment.NewLine +
+                                "3. Digital distance to target (remains visible)." + Environment.NewLine +
+                                "4. Digital release speed does not change (remains visible).");
 
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 20;
 
@@ -314,7 +315,7 @@ namespace Testcase.DMITestCases
                                 "1. White Basic speed hook." + Environment.NewLine +
                                 "2.	Medium-grey basic speed hook." + Environment.NewLine +
                                 "3. Digital distance to target." + Environment.NewLine +
-                                "4. Digital release speed does not change (stays visible).");
+                                "4. Digital release speed.");
 
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 20;
 
@@ -336,7 +337,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Acknowledge by pressing in sub-area C1");
 
             WaitForVerification("Check the following :" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in LS modes, Level 1." + Environment.NewLine +
+                                "1. DMI displays in LS mode, Level 1." + Environment.NewLine +
                                 "2.	DMI displays the Digital distance to target." + Environment.NewLine +
                                 "3. DMI displays the Digital release speed." + Environment.NewLine +                                
                                 "4. DMI does not display the White basic speed hook." + Environment.NewLine +
@@ -350,11 +351,11 @@ namespace Testcase.DMITestCases
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
             DmiActions.ShowInstruction(this, "Press on area A1-A4, and area B, respectively, at least twice");
 
-            WaitForVerification("Check that the following objects toggle as the respective area is pressed:" + Environment.NewLine + Environment.NewLine +
-                                "1. White Basic speed hook (stays invisible)." + Environment.NewLine +
-                                "2.	Medium-grey basic speed hook (stays invisible)." + Environment.NewLine +
-                                "3. Digital distance to target (stays visible)." + Environment.NewLine +
-                                "4. Digital release speed does not change (stays visible).");
+            WaitForVerification("Check that the following objects do not toggle as the respective area is pressed:" + Environment.NewLine + Environment.NewLine +
+                                "1. White Basic speed hook (remains invisible)." + Environment.NewLine +
+                                "2.	Medium-grey basic speed hook (remains invisible)." + Environment.NewLine +
+                                "3. Digital distance to target (remains visible)." + Environment.NewLine +
+                                "4. Digital release speed does not change (remains visible).");
 
             /*
             Test Step 18
@@ -385,10 +386,10 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press on area A1-A4, and area B, respectively, at least twice");
 
             WaitForVerification("Check that the following objects do not toggle on (visible) or off (invisible) as the respective area is pressed:" + Environment.NewLine + Environment.NewLine +
-                                "1. White Basic speed hook (stays invisible)." + Environment.NewLine +
-                                "2.	Medium-grey basic speed hook (stays invisible)." + Environment.NewLine +
-                                "3. Digital distance to target (stays invisible)." + Environment.NewLine +
-                                "4. Digital release speed does not change (stays invisible).");
+                                "1. White Basic speed hook (remains invisible)." + Environment.NewLine +
+                                "2.	Medium-grey basic speed hook (remains invisible)." + Environment.NewLine +
+                                "3. Digital distance to target (remains invisible)." + Environment.NewLine +
+                                "4. Digital release speed (remains invisible).");
 
             /*
             Test Step 20
@@ -419,10 +420,10 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press on area A1-A4, and area B, respectively, at least twice");
 
             WaitForVerification("Check that the following objects do not toggle on (visible) or on (invisible) as the respective area is pressed:" + Environment.NewLine + Environment.NewLine +
-                                "1. White Basic speed hook (stays invisible)." + Environment.NewLine +
-                                "2.	Medium-grey basic speed hook (stays invisible)." + Environment.NewLine +
-                                "3. Digital distance to target (stays invisible)." + Environment.NewLine +
-                                "4. Digital release speed does not change (stays invisible).");
+                                "1. White Basic speed hook (remains invisible)." + Environment.NewLine +
+                                "2.	Medium-grey basic speed hook (remains invisible)." + Environment.NewLine +
+                                "3. Digital distance to target (remains invisible)." + Environment.NewLine +
+                                "4. Digital release speed does not change (remains invisible).");
 
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 20;
 
