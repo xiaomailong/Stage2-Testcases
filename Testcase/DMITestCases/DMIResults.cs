@@ -96,6 +96,30 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
+        /// Description: UN Mode acknowledgement is requested on DMI area C1
+        /// Used in:
+        ///     Step 8 in TC-ID: 15.1.3 in 20.1.3
+        /// </summary>
+        public static void UN_Mode_Ack_requested(SignalPool pool)
+        {
+            Driver_symbol_displayed(pool, "Acknowledgement for Unfitted Mode", "MO17", "C1", true);
+        }
+
+        /// <summary>
+        /// Description: UN mode Acknowledgement symbol on DMI area C1 is pressed and released.
+        /// Used in:
+        ///     Step 9 in TC-ID: 15.1.3 in 20.1.3
+        /// </summary>
+        public static void UN_Mode_Ack_pressed_and_released(SignalPool pool)
+        {
+            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
+            pool.Wait_Realtime(100);
+            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
+            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.UnfittedModeAck;
+            pool.WaitForVerification("Has the MO17 symbol disappeared from sub-area C1?");
+        }
+
+        /// <summary>
         /// Description:
         /// Used in:
         ///     Step 2 in TC-ID: 12.7.2 in 17.7.2 
@@ -187,6 +211,17 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
+        /// Description: DMI displays RV mode
+        /// Used in:
+        ///     Step 9 in TC-ID: 15.1.3 in 20.1.3
+        /// </summary>
+        public static void UN_Mode_displayed(SignalPool pool)
+        {
+            EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.Unfitted;
+            Driver_symbol_displayed(pool, "Unfitted mode", "MO16", "B7", false);
+        }
+
+        /// <summary>
         /// Description: DMI does NOT display SL mode despite EVC-7 with [MMI_ETCS_MISC_OUT_SIGNALS.OBU_TR_M_MODE] = 5 received
         /// Used in:
         ///     Step 5 in TC-ID: 15.1.2 in 20.1.2
@@ -215,6 +250,7 @@ namespace Testcase.DMITestCases
         ///     Step 1 in TC-ID: 5.10 in 10.10 Screen Layout: Button States
         ///     Step 3 in TC-ID: 22.20.2 in 27.20.2 Override window in SB mode
         ///     Step 9 in TC-ID: 15.1.1 in 20.1.1
+        ///     Step 8 in TC-ID: 15.1.3 in 20.1.3
         /// </summary>
         public static void Start_Button_pressed_and_released(SignalPool pool)
         {
