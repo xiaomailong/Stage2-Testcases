@@ -89,7 +89,7 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void SR_Mode_Ack_requested(SignalPool pool)
         {
-            Driver_symbol_displayed(pool, "Acknowledgement for Staff Responsible", "MO10", "C1", true);
+            Driver_symbol_displayed(pool, "Acknowledgement for Staff Responsible mode", "MO10", "C1", true);
         }
 
         /// <summary>
@@ -368,6 +368,20 @@ namespace Testcase.DMITestCases
         public static void Driver_ID_window_displayed(SignalPool pool)
         {
             pool.WaitForVerification("Is the Driver ID window displayed?");
+        }
+
+        /// <summary>
+        /// Description: DMI displays Driver ID window in SB mode
+        /// Used in:
+        ///     Step 1 in TC-ID: 22.5.4  in 27.5.4 Level Selection window: 8 STMs handling
+        ///     Step 1 in TC-ID: 35.2 in 38.2 NTC System Status Messages
+        ///     Step 7 in TC-ID: 35.2 in 38.2 NTC System Status Messages
+        ///     Step 1 in TC-ID: 17.1.3 in 20.1.3 
+        /// </summary>
+        public static void Driver_ID_window_displayed_in_SB_mode(SignalPool pool)
+        {
+            pool.WaitForVerification("Is the Driver Id window displayed in SB mode?");
+            EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.StandBy;
         }
 
         /// <summary>
@@ -2689,20 +2703,6 @@ namespace Testcase.DMITestCases
         public static void DMI_still_displays_Level_window_No_sound_Click_is_played(SignalPool pool)
         {
             throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Description: DMI displays Driver ID window in SB mode
-        /// Used in:
-        ///     Step 1 in TC-ID: 22.5.4  in 27.5.4 Level Selection window: 8 STMs handling
-        ///     Step 1 in TC-ID: 35.2 in 38.2 NTC System Status Messages
-        ///     Step 7 in TC-ID: 35.2 in 38.2 NTC System Status Messages
-        ///     Step 1 in TC-ID: 17.1.3 in 20.1.3 
-        /// </summary>
-        public static void DMI_displays_Driver_ID_window_in_SB_mode(SignalPool pool)
-        {
-            pool.WaitForVerification("Is the Driver Id window displayed in SB mode?");
-            EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.StandBy;
         }
 
         /// <summary>
