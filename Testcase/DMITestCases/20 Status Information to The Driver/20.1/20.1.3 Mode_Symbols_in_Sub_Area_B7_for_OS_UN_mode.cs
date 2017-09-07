@@ -313,7 +313,9 @@ namespace Testcase.DMITestCases
 
             Wait_Realtime(5000);
 
-            //DmiActions.
+            DmiActions.ShowInstruction(this, "Press the \"Override\" Button on Default Window Area F2 ");
+            DmiActions.Display_Override_Window(this);
+            DmiExpectedResults.Override_window_displayed(this);
 
             /*
             Test Step 14

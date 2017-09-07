@@ -780,6 +780,17 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
+        /// Description: DMI displays Train Running Number window.Verify the following information,The Train data validation is closed.Use the log file to confirm that DMI sends out the packet [MMI_CONFIRMED_TRAIN DATA (EVC-110)] with variable based on confirmed data
+        /// Used in:
+        ///     Step 13 in TC-ID: 15.1.3 in 20.1.3
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Override_window_displayed(SignalPool pool)
+        {
+            pool.WaitForVerification("Is the Override window displayed on the DMI?");
+        }
+
+        /// <summary>
         /// Description: Driver enters and confirms Fixed Train Data
         /// Used in:
         ///     Step 5 in 15.1.3
