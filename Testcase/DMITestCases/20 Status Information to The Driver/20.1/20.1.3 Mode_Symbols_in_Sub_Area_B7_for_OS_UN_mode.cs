@@ -309,6 +309,13 @@ namespace Testcase.DMITestCases
             Expected Result: When the train is stopped, EOA button is enabled
             */
 
+            DmiActions.Stop_the_train(this);
+
+            Wait_Realtime(5000);
+
+            DmiActions.ShowInstruction(this, "Press the \"Override\" Button on Default Window Area F2 ");
+            DmiActions.Display_Override_Window(this);
+            DmiExpectedResults.Override_window_displayed(this);
 
             /*
             Test Step 14

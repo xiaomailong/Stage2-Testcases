@@ -245,7 +245,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// <summary>
         /// EVC-22 Button type to be shown in RBC Data window
         /// </summary>
-        public enum EVC22BUTTONS : ushort
+        public enum EVC22BUTTONS : byte
         {
             BTN_YES_DATA_ENTRY_COMPLETE = 36,
             BTN_YES_DATA_ENTRY_COMPLETE_DELAY_TYPE = 37,

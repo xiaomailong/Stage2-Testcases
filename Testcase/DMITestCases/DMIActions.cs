@@ -576,6 +576,21 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
+        /// Description: Override Window sent to be displayed on th DMI
+        /// Used in:
+        ///     Step 13 in TC-ID: 15.1.3 in 20.1.3
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Display_Override_Window(SignalPool pool)
+        {
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 2;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = Variables.standardFlags |
+                EVC30_MMIRequestEnable.EnabledRequests.EOA;               
+            EVC30_MMIRequestEnable.Send();
+        }
+
+        /// <summary>
         /// Description: SR mode sent to be displayed on th DMI
         /// Used in:
         ///     Step 11 in TC-ID: 15.1.1 in 20.1.1
