@@ -75,7 +75,7 @@ namespace Testcase.DMITestCases
             DmiActions.Display_Driver_ID_Window(this);
             DmiActions.Set_Driver_ID(this, "1234");
             DmiActions.Send_SB_Mode(this);
-            DmiExpectedResults.DMI_displays_Driver_ID_window_in_SB_mode(this);
+            DmiExpectedResults.Driver_ID_window_displayed_in_SB_mode(this);
 
             #endregion
 
