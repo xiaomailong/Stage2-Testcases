@@ -227,6 +227,7 @@ namespace Testcase.XML
              EVC2_MMIStatus.MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.Cabin1Active;
             EVC2_MMIStatus.Send();
 
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
             DMITestCases.DmiExpectedResults.SB_Mode_displayed(_pool);
 
 
@@ -280,11 +281,14 @@ namespace Testcase.XML
             EVC2_MMIStatus.MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.Cabin1Active;
             EVC2_MMIStatus.Send();
 
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
+
             DMITestCases.DmiExpectedResults.SB_Mode_displayed(_pool);
 
             // Step 9
             DMITestCases.DmiActions.ShowInstruction(_pool, "Enter Driver ID. Skip the brake test. Select Level 1 then shunting mode");
 
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Shunting;
             DMITestCases.DmiExpectedResults.SH_Mode_displayed(_pool);
 
             // Step 10
@@ -333,10 +337,16 @@ namespace Testcase.XML
             EVC2_MMIStatus.MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.Cabin1Active;
             EVC2_MMIStatus.Send();
 
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
             DMITestCases.DmiExpectedResults.SB_Mode_displayed(_pool);
 
+
             // Step 12
-            DMITestCases.DmiActions.Complete_SoM_L1_SR(_pool);
+            /// Should this be a driver action??
+            /// DMITestCases.DmiActions.ShowInstruction(_pool, "Perform Start of Mission to SR mode , Level 1"); 
+   /*---->*/         DMITestCases.DmiActions.Complete_SoM_L1_SR(_pool);   /*<----*/
+
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
             DMITestCases.DmiExpectedResults.SR_Mode_displayed(_pool);
 
 
@@ -355,6 +365,7 @@ namespace Testcase.XML
             // Don't know what to do here...
             //DMITestCases.DmiActions.Pass_BG1_with_Pkt_12_21_and_27(this);
 
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
             EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.FullSupervision;
             DMITestCases.DmiExpectedResults.Driver_symbol_displayed(_pool, "Full Supervision mode", "MO11", "B7", false);
 
@@ -417,6 +428,7 @@ namespace Testcase.XML
             EVC2_MMIStatus.MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.Cabin1Active;
             EVC2_MMIStatus.Send();
 
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
             DMITestCases.DmiExpectedResults.SB_Mode_displayed(_pool);
 
             // Step 18
@@ -458,7 +470,7 @@ namespace Testcase.XML
 
             _pool.WaitForVerification("Check that the following buttons are displayed with a border with Dark-Grey text:" + Environment.NewLine + Environment.NewLine +
                                       @"1. The ‘Contract last window’ button." + Environment.NewLine +
-                                      @"2. The ‘‘Use short number’ button." + Environment.NewLine +
+                                      @"2. The ‘Use short number’ button." + Environment.NewLine +
                                       @"3. The ‘Enter RBC data’ button." + Environment.NewLine +
                                       @"4. The ‘Radio Network ID’ button.");
 
@@ -470,6 +482,7 @@ namespace Testcase.XML
             EVC2_MMIStatus.MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.Cabin1Active;
             EVC2_MMIStatus.Send();
 
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
             DMITestCases.DmiExpectedResults.SB_Mode_displayed(_pool);
 
 
@@ -521,6 +534,7 @@ namespace Testcase.XML
             EVC2_MMIStatus.MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.Cabin1Active;
             EVC2_MMIStatus.Send();
 
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
             DMITestCases.DmiExpectedResults.SB_Mode_displayed(_pool);
 
             // Step 22
