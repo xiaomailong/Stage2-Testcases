@@ -71,8 +71,12 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Activate_Cabin_1(this);
+            EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE = EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE_BUTTONS.Settings;
+            EVC14_MMICurrentDriverID.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
+            EVC14_MMICurrentDriverID.Send();
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the Drive ID window." + Environment.NewLine +
+                                "1. DMI displays the Driver ID window." + Environment.NewLine +
                                 @"2. The ‘Delete’ button NA21 is displayed enabled in area G." + Environment.NewLine +
                                 @"3. The ‘Close’ button NA12 is displayed disabled in area G.");
 
@@ -122,7 +126,7 @@ namespace Testcase.DMITestCases
             Action: Perform the following procedure,Enter and confirm Driver IDPerform brake testSelect and confirm Level 1
             Expected Result: DMI displays the Main window
             */
-            DmiActions.ShowInstruction(this, "Enter and accept Driver ID. Perform brake test. Select and accept Level 1");
+            DmiActions.ShowInstruction(this, "Enter and accept Driver ID. Select and accept Level 1");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Main window.");
