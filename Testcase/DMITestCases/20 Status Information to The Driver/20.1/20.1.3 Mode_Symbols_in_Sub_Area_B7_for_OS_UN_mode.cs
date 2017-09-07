@@ -309,6 +309,11 @@ namespace Testcase.DMITestCases
             Expected Result: When the train is stopped, EOA button is enabled
             */
 
+            DmiActions.Stop_the_train(this);
+
+            Wait_Realtime(5000);
+
+            //DmiActions.
 
             /*
             Test Step 14
