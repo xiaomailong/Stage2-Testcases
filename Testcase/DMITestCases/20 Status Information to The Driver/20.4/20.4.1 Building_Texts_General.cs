@@ -157,6 +157,8 @@ namespace Testcase.DMITestCases
             EVC2_MMIStatus.MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.Cabin1Active;
             EVC2_MMIStatus.Send();
 
+            DmiActions.Set_Driver_ID(this, "1234");
+
             XML.XML_15_4_c.Send(this);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. DMI displays ‘ABCDEFGHIJ BCDEFGHIJ XXXXXXXXX’ in white in sub-areas E5 and E6." + Environment.NewLine +

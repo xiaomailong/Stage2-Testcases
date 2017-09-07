@@ -60,7 +60,7 @@ namespace Testcase.DMITestCases
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint
-            
+
             /*
             Test Step 1
             Action: Activate cabin A
@@ -68,6 +68,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Activate_Cabin_1(this);
+            DmiActions.Set_Driver_ID(this, "1234");
 
             // Call generic Check Results Method
             DmiExpectedResults.Driver_ID_window_displayed(this);
