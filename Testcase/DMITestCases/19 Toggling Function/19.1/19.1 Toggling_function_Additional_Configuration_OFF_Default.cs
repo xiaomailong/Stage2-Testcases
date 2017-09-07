@@ -128,11 +128,17 @@ namespace Testcase.DMITestCases
             Action: Perform the following procedure,De-activate Cabin AActivate Cabin A
             Expected Result: DMI displays in SB mode, Level 1
             */
-            DmiActions.ShowInstruction(this, "De-activate Cabin A then activate Cabin A");
+            EVC2_MMIStatus.MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.NoCabinActive;
+            EVC2_MMIStatus.Send();
+
+            EVC2_MMIStatus.MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.Cabin1Active;
+            EVC2_MMIStatus.Send();
+
+            DMITestCases.DmiActions.Set_Driver_ID(this, "1234");
+
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
 
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in SB mode, Level 1.");
+            DMITestCases.DmiExpectedResults.SB_Mode_displayed(this);
 
             /*
             Test Step 5
