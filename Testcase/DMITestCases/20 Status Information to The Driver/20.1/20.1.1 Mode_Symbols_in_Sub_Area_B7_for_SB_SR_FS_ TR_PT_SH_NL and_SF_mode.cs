@@ -133,6 +133,8 @@ namespace Testcase.DMITestCases
             DmiActions.Send_SR_Mode(this);           
             DmiExpectedResults.SR_Mode_displayed(this);
 
+            DmiActions.FinishedSoM_Default_Window(this);
+
             #endregion
 
             #region Test Step 5

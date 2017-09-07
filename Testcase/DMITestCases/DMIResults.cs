@@ -59,13 +59,37 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
+        /// Description: OS Mode acknowledgement is requested on DMI area C1
+        /// Used in:
+        ///     Step 11 in TC-ID: 15.1.3 in 20.1.3
+        /// </summary>
+        public static void OS_Mode_Ack_Requested(SignalPool pool)
+        {
+            Driver_symbol_displayed(pool, "Acknowledgement for On Sight mode", "MO08", "C1", true);
+        }
+
+        /// <summary>
+        /// Description: OS mode Acknowledgement symbol on DMI area C1 is pressed and released.
+        /// Used in:
+        ///     Step 12 in TC-ID: 15.1.3 in 20.1.3
+        /// </summary>
+        public static void OS_Mode_Ack_pressed_and_released(SignalPool pool)
+        {
+            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
+            pool.Wait_Realtime(100);
+            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
+            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.OnSightModeAck;
+            pool.WaitForVerification("Has the MO08 symbol disappeared from sub-area C1?");
+        }
+
+        /// <summary>
         /// Description: SR Mode acknowledgement is requested on DMI area C1
         /// Used in:
         ///     Step 2 in TC-ID: 15.1.1 in 20.1.1
         /// </summary>
         public static void SR_Mode_Ack_requested(SignalPool pool)
         {
-            Driver_symbol_displayed(pool, "Acknowledgement for Staff Responsible", "MO10", "C1", true);
+            Driver_symbol_displayed(pool, "Acknowledgement for Staff Responsible mode", "MO10", "C1", true);
         }
 
         /// <summary>
@@ -344,6 +368,20 @@ namespace Testcase.DMITestCases
         public static void Driver_ID_window_displayed(SignalPool pool)
         {
             pool.WaitForVerification("Is the Driver ID window displayed?");
+        }
+
+        /// <summary>
+        /// Description: DMI displays Driver ID window in SB mode
+        /// Used in:
+        ///     Step 1 in TC-ID: 22.5.4  in 27.5.4 Level Selection window: 8 STMs handling
+        ///     Step 1 in TC-ID: 35.2 in 38.2 NTC System Status Messages
+        ///     Step 7 in TC-ID: 35.2 in 38.2 NTC System Status Messages
+        ///     Step 1 in TC-ID: 17.1.3 in 20.1.3 
+        /// </summary>
+        public static void Driver_ID_window_displayed_in_SB_mode(SignalPool pool)
+        {
+            pool.WaitForVerification("Is the Driver Id window displayed in SB mode?");
+            EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.StandBy;
         }
 
         /// <summary>
@@ -1639,7 +1677,7 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
-        /// Description: DMI changes from SR to FS mode
+        /// Description: FS mode is displayed
         /// Used in:
         ///     Step 3 in TC-ID: 13.1.1 in 18.1.1 Distance to Target  Bar: General Appearance
         ///     Step 3 in TC-ID: 13.1.5 in 18.1.5 Distance to Target in RV mode
@@ -1655,6 +1693,17 @@ namespace Testcase.DMITestCases
         {
             EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.FullSupervision;
             Driver_symbol_displayed(pool, "FS mode", "MO11", "B7", false);
+        }
+
+        /// <summary>
+        /// Description: Os mode is displayed
+        /// Used in:
+        ///     Step 12 in TC-ID: 15.1.3 in 20.1.3
+        /// </summary>
+        public static void OS_Mode_displayed(SignalPool pool)
+        {
+            EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.OnSight;
+            Driver_symbol_displayed(pool, "OS mode", "MO07", "B7", false);
         }
 
         /// <summary>
@@ -2654,20 +2703,6 @@ namespace Testcase.DMITestCases
         public static void DMI_still_displays_Level_window_No_sound_Click_is_played(SignalPool pool)
         {
             throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Description: DMI displays Driver ID window in SB mode
-        /// Used in:
-        ///     Step 1 in TC-ID: 22.5.4  in 27.5.4 Level Selection window: 8 STMs handling
-        ///     Step 1 in TC-ID: 35.2 in 38.2 NTC System Status Messages
-        ///     Step 7 in TC-ID: 35.2 in 38.2 NTC System Status Messages
-        ///     Step 1 in TC-ID: 17.1.3 in 20.1.3 
-        /// </summary>
-        public static void DMI_displays_Driver_ID_window_in_SB_mode(SignalPool pool)
-        {
-            pool.WaitForVerification("Is the Driver Id window displayed in SB mode?");
-            EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.StandBy;
         }
 
         /// <summary>

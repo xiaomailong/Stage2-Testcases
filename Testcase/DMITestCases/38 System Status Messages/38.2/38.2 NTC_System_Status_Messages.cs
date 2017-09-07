@@ -64,7 +64,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.Power_on_the_system_and_activate_the_cabin(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Driver_ID_window_in_SB_mode(this);
+            DmiExpectedResults.Driver_ID_window_displayed_in_SB_mode(this);
 
 
             /*
@@ -114,7 +114,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Driver ID window in SB mode
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Driver_ID_window_in_SB_mode(this);
+            DmiExpectedResults.Driver_ID_window_displayed_in_SB_mode(this);
 
 
             /*

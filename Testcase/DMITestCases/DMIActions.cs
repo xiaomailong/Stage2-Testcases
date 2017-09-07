@@ -298,6 +298,7 @@ namespace Testcase.DMITestCases
         /// Description: Activate cabin 2
         /// Used in:
         ///     Step 12 in TC-ID: 15.1.1 in 20.1.1
+        ///     Step 10 in TC-ID: 15.1.3 in 20.1.3
         /// </summary>
         public static void Deactivate_Cabin(SignalPool pool)
         {
@@ -383,7 +384,7 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
-        /// Description: FS mode sent to be displayed on th DMI
+        /// Description: FS mode sent to be displayed on the DMI
         /// Used in:
         ///     Step 5 in TC-ID: 15.1.1 in 20.1.1
         /// </summary>
@@ -391,6 +392,32 @@ namespace Testcase.DMITestCases
         public static void Send_FS_Mode(SignalPool pool)
         {
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
+        }
+
+        /// <summary>
+        /// Description: OS mode sent to be displayed on the DMI
+        /// Used in:
+        ///     Step 12 in TC-ID: 15.1.3 in 20.1.3
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Send_OS_Mode(SignalPool pool)
+        {
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.OnSight;
+        }
+
+        /// <summary>
+        /// Description: OS mode acknowledgement request sent to the driver
+        /// Used in:
+        ///     Step 11 in TC-ID: 15.1.3 in 20.1.3
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Send_OS_Mode_Ack(SignalPool pool)
+        {
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 259;     // "#3 MO08 (Ack On Sight Mode)"
+            EVC8_MMIDriverMessage.Send();
         }
 
         /// <summary>
@@ -460,6 +487,7 @@ namespace Testcase.DMITestCases
         /// <param name="pool"></param>
         public static void Display_Main_Window_with_Start_button_enabled(SignalPool pool)
         {
+            EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = Variables.standardFlags | 
                 EVC30_MMIRequestEnable.EnabledRequests.Start ;
@@ -474,6 +502,7 @@ namespace Testcase.DMITestCases
         /// <param name="pool"></param>
         public static void Display_Main_Window_with_Start_button_not_enabled(SignalPool pool)
         {
+            EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = Variables.standardFlags;
             EVC30_MMIRequestEnable.Send();
@@ -498,6 +527,7 @@ namespace Testcase.DMITestCases
         /// <param name="pool"></param>
         public static void Display_Driver_ID_Window(SignalPool pool)
         {
+            EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = 8;            
             EVC30_MMIRequestEnable.Send();
         }
@@ -510,6 +540,7 @@ namespace Testcase.DMITestCases
         /// <param name="pool"></param>
         public static void Display_Level_Window(SignalPool pool)
         {
+            EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = 7;
             EVC30_MMIRequestEnable.Send();
             Send_EVC20_MMISelectLevel_AllLevels();
@@ -523,6 +554,7 @@ namespace Testcase.DMITestCases
         /// <param name="pool"></param>
         public static void Display_Train_Data_Window(SignalPool pool)
         {
+            EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = 11;
             EVC30_MMIRequestEnable.Send();
             Send_EVC6_MMICurrentTrainData_FixedDataEntry(new[] { "FLU", "RLU", "Rescue" }, 2);
@@ -536,6 +568,7 @@ namespace Testcase.DMITestCases
         /// <param name="pool"></param>
         public static void Display_TRN_Window(SignalPool pool)
         {
+            EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = 6;
             EVC30_MMIRequestEnable.Send();
             EVC16_CurrentTrainNumber.TrainRunningNumber = 0xffffffff;
@@ -704,6 +737,7 @@ namespace Testcase.DMITestCases
         /// <param name="pool"></param>
         public static void Display_Train_data_validation_Window(SignalPool pool)
         {
+            EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = 16;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = standardFlags;
             EVC30_MMIRequestEnable.Send();
@@ -806,10 +840,45 @@ namespace Testcase.DMITestCases
         ///     Step 2 in TC-ID: 15.2.4 in 20.2.4 ETCS Level: ETCS Level Transitions by receiving data packet from ETCS Onboard (L1->L0, L0->L1)
         ///     Step 2 in TC-ID: 17.2.1 in 22.2.1 Planning Area-Layering: PASP and PA Distance scale
         ///     Step 2 in TC-ID: 17.2.2 in 22.2.2 Planning Area-Layering: Display information when PA data is empty
+        ///     Step 10 in TC-ID: 15.1.3 in 20.1.3
         /// </summary>
         public static void Perform_SoM_in_SR_mode_Level_1(SignalPool pool)
         {
-            throw new NotImplementedException();
+            DmiActions.Display_Driver_ID_Window(pool);
+            DmiActions.Set_Driver_ID(pool, "1234");
+            DmiActions.Send_SB_Mode(pool);
+            DmiActions.ShowInstruction(pool, "Enter and confirm Driver ID");
+
+            DmiActions.Request_Brake_Test(pool);
+            DmiActions.ShowInstruction(pool, "Perform Brake Test");
+
+            DmiActions.Display_Level_Window(pool);
+            DmiActions.ShowInstruction(pool, "Select and enter Level 1");
+
+            DmiActions.Display_Main_Window_with_Start_button_not_enabled(pool);
+            DmiActions.ShowInstruction(pool, @"Press ‘Train data’ button");
+
+            DmiActions.Display_Train_Data_Window(pool);
+            DmiActions.ShowInstruction(pool, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
+                                "1. Enter and confirm value in each input field." + Environment.NewLine +
+                                "2. Press ‘Yes’ button.");
+
+            DmiActions.Display_Train_data_validation_Window(pool);
+            DmiActions.ShowInstruction(pool, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
+                                "1. Press ‘Yes’ button." + Environment.NewLine +
+                                "2. Confirmed the selected value by pressing the input field.");
+
+            DmiActions.Display_TRN_Window(pool);
+            DmiActions.ShowInstruction(pool, "Enter and confirm Train Running Number");
+
+            DmiExpectedResults.Main_Window_displayed_with_Start_button_enabled(pool);
+            DmiActions.ShowInstruction(pool, @"Press ‘Start’ button");
+
+            DmiActions.Send_SR_Mode_Ack(pool);
+            DmiActions.ShowInstruction(pool, "Press and hold DMI Sub Area C1");
+
+            DmiActions.Send_SR_Mode(pool);
+            DmiActions.FinishedSoM_Default_Window(pool);
         }
 
         /// <summary>

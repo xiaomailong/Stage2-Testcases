@@ -258,7 +258,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the White basic speed hook for 10s then removes it." + Environment.NewLine +
                                 "2. DMI displays the Medium-grey basic speed hook for 10s then removes it." + Environment.NewLine +
-                                "3. DMI displays the Digital distance to target for 10s then removes it." + Environment.NewLine + 
+                                "3. DMI displays the Digital distance to target for 10s then removes it." + Environment.NewLine +
                                 "4. DMI does not display the Digital release speed");
                         
             /*
