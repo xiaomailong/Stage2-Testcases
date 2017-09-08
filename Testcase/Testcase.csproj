@@ -540,6 +540,7 @@ if exist "$(TargetPath)" if not exist "$(TargetPath).locked" move "$(TargetPath)
     <Compile Include="XML Packets\13\XML_13_1_8_b.cs" />
     <Compile Include="XML Packets\13\XML_13_1_8_c.cs" />
     <Compile Include="XML Packets\13\XML_13_2_1_a.cs" />
+    <Compile Include="XML Packets\13\XML_13_2_1_b.cs" />
     <Compile Include="XML Packets\15\XML_15_3_1_10.cs" />
     <Compile Include="XML Packets\15\XML_15_3_1_1_a.cs" />
     <Compile Include="XML Packets\15\XML_15_3_1_1_b.cs" />
