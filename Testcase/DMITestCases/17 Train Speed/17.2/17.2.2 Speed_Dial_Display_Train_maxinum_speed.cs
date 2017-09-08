@@ -36,7 +36,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// N/A
     /// </summary>
-    public class Speed_Dial_Display_Train_maxinum_speed : TestcaseBase
+    public class TC_ID_12_2_2_Train_Speed : TestcaseBase
     {
         public override void PreExecution()
         {

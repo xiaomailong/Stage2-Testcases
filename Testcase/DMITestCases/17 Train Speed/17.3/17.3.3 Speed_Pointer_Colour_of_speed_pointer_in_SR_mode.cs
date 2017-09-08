@@ -35,7 +35,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 12_3_3_a.xml, 12_3_3_b.xml, 12_3_3_c.xml, 12_3_3_d.xml, 12_3_3_e.xml, 12_3_3_f.xml, 12_3_3_g.xml, 12_3_3_h.xml, 12_3_3_i.xml, 12_3_3_j.xml, 12_3_3_k.xml, 12_3_3_l.xml, 12_3_3_m.xml, 12_3_3_n.xml, 12_3_3_o.xml
     /// </summary>
-    public class Speed_Pointer_Colour_of_speed_pointer_in_SR_mode : TestcaseBase
+    public class TC_12_3_3_Train_Speed : TestcaseBase
     {
         public override void PreExecution()
         {

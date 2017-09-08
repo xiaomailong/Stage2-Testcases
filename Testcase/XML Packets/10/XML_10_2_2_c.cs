@@ -38,7 +38,7 @@ namespace Testcase.XML
             _pool.WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                       "1. ‘Close’ button in Level window is disabled.");
 
-            System.Threading.Thread.Sleep(10000);
+            _pool.Wait_Realtime(10000);
 
             // EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = 1;
             //EVC20_MMISelectLevel.Send();

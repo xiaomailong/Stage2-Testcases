@@ -38,7 +38,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 6_7.xml
     /// </summary>
-    public class Acknowledgements_Shared_Area_with_NTC_Acknowledgement : TestcaseBase
+    public class TC_ID_6_7_Acknowledgements : TestcaseBase
     {
         public override void PreExecution()
         {

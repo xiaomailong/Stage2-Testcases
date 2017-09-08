@@ -33,7 +33,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 12_5_2.tdg
     /// </summary>
-    public class Colour_Scheme_of_Circular_Speed_Gauge_TSM_of_Speed_Monitoring : TestcaseBase
+    public class TC_12_5_2_Train_Speed : TestcaseBase
     {
         public override void PreExecution()
         {

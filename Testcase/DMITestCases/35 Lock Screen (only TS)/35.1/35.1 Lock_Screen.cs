@@ -33,7 +33,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// N/A
     /// </summary>
-    public class Lock_Screen : TestcaseBase
+    public class TC_ID_32_1_Lock_Screen : TestcaseBase
     {
         public override void PreExecution()
         {

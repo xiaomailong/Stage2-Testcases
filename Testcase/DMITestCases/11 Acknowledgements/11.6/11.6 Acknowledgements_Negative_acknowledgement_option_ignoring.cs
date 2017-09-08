@@ -32,7 +32,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 6_6_a.xml, 6_6_b.xml, 6_6_c.xml
     /// </summary>
-    public class Acknowledgements_Negative_acknowledgement_option_ignoring : TestcaseBase
+    public class TC_ID_6_6_Acknowledgements : TestcaseBase
     {
         public override void PreExecution()
         {

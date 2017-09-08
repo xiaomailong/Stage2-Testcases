@@ -31,7 +31,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 15_3_2_a.xml, 15_3_2_b.xml, 15_3_2_c.xml, 15_3_2_d.xml, 15_3_2_e.xml
     /// </summary>
-    public class Driver_Messages_Processing_of_incoming_Driver_Messages : TestcaseBase
+    public class TC_15_3_2_Driver_Messages : TestcaseBase
     {
         public override void PreExecution()
         {

@@ -33,7 +33,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 33_3.utt
     /// </summary>
-    public class The_relationship_between_parent_and_child_windows_2 : TestcaseBase
+    public class TC_ID_33_3_Parent_Child_Relationship : TestcaseBase
     {
         public override void PreExecution()
         {

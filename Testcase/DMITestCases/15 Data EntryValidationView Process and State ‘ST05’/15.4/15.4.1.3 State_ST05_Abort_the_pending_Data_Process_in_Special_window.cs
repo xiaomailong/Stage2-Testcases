@@ -31,7 +31,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 10_4_1_3_a.xml, 10_4_1_3_b.xml
     /// </summary>
-    public class State_ST05_Abort_the_pending_Data_Process_in_Special_window : TestcaseBase
+    public class TC_ID_10_4_1_3_State_ST05 : TestcaseBase
     {
         public override void PreExecution()
         {

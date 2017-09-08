@@ -22,9 +22,9 @@ using Testcase.Telegrams.EVCtoDMI;
 namespace Testcase.XML
 {
     /// <summary>
-    /// Values of 10.2.7.b.xml file
+    /// Values of 13.2.1.a.xml file
     /// </summary>
-    static class XML_10_2_7_b
+    static class XML_13_2_1_a
     {
         private static SignalPool _pool;
 
@@ -32,20 +32,14 @@ namespace Testcase.XML
         {
             _pool = pool;
 
-            EVC22_MMICurrentRBC.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
-            EVC22_MMICurrentRBC.Send();
+            // Step 2/1
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 260;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 0;
 
-            _pool.WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                      "1. ‘Close’ button in RBC contact window is enabled.");
-
-            _pool.Wait_Realtime(10000);
-
-            EVC22_MMICurrentRBC.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Disabled;
-            EVC22_MMICurrentRBC.Send();
-
-            _pool.WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                      "1. ‘Close’ button in RBC contact window is disabled.");
-
+            EVC8_MMIDriverMessage.Send();
+            
         }
     }
 }

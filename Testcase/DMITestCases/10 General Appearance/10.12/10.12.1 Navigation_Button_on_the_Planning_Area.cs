@@ -34,7 +34,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 5_12_1.tdg
     /// </summary>
-    public class Navigation_Button_on_the_Planning_Area : TestcaseBase
+    public class TC_ID_5_12_1_Navigation_Buttons : TestcaseBase
     {
         public override void PreExecution()
         {

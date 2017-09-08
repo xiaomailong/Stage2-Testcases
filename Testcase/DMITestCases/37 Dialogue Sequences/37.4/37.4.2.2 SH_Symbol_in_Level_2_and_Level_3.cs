@@ -35,7 +35,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 34_4_2_2.utt
     /// </summary>
-    public class SH_Symbol_in_Level_2_and_Level_3 : TestcaseBase
+    public class TC_34_4_2_2_Dialogue_Sequences : TestcaseBase
     {
         public override void PreExecution()
         {

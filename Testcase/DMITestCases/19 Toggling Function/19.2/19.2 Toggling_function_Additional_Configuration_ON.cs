@@ -34,7 +34,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 14_2.tdg
     /// </summary>
-    public class Toggling_function_Additional_Configuration_ON : TestcaseBase
+    public class TC_14_2_Toggling_Function : TestcaseBase
     {
         public override void PreExecution()
         {

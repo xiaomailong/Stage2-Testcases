@@ -33,7 +33,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 34_1_4.2.utt
     /// </summary>
-    public class Data_entryvalidation_process_when_enabling_conditions_not_fullfilled_Level_2 : TestcaseBase
+    public class TC_34_1_4_2_Dialogue_Sequences : TestcaseBase
     {
         public override void PreExecution()
         {

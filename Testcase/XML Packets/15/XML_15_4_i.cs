@@ -40,9 +40,9 @@ namespace Testcase.XML
             EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 256;
             EVC8_MMIDriverMessage.PlainTextMessage = "TEST";
-            EVC8_MMIDriverMessage.Send();            
+            EVC8_MMIDriverMessage.Send();
 
-            System.Threading.Thread.Sleep(11000);
+            _pool.Wait_Realtime(11000);
 
             // Step 5/2            
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;

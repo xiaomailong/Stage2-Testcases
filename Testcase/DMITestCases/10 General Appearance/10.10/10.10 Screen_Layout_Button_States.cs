@@ -35,7 +35,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 5_10_a.xml, 5_10.tdg, 5_10.utt
     /// </summary>
-    public class Screen_Layout_Button_States : TestcaseBase
+    public class TC_ID_5_10_Screen_Layout_Button_States : TestcaseBase
     {
         public override void PreExecution()
         {

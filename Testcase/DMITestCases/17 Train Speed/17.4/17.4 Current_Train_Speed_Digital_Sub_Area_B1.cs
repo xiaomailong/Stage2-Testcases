@@ -36,7 +36,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 12_4.tdg,12_4_a.xml, 12_4_b.xml, 12_4_c.xml
     /// </summary>
-    public class Current_Train_Speed_Digital_Sub_Area_B1 : TestcaseBase
+    public class TC_12_4_Train_Speed : TestcaseBase
     {
         public override void PreExecution()
         {

@@ -35,7 +35,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 13_1_4.tdg
     /// </summary>
-    public class Distance_to_Target_Digital_when_the_communication_between_ETCS_Onboard_and_DMI_is_lost : TestcaseBase
+    public class TC_13_1_4_Brake : TestcaseBase
     {
         public override void PreExecution()
         {

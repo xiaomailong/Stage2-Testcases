@@ -36,7 +36,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 34_4_2_3.utt
     /// </summary>
-    public class Text_Message_Shunting_Request_Failed_in_Level_2_and_Level_3 : TestcaseBase
+    public class TC_34_4_2_3_Dialogue_Sequences : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -101,7 +101,7 @@ namespace Testcase.DMITestCases
                                 "5. All buttons and the ‘Close’ button are disabled." + Environment.NewLine +
                                 "6. ‘Close’ button NA12 is displayed disabled in area G.");
 
-            System.Threading.Thread.Sleep(10000);
+            this.Wait_Realtime(10000);
 
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 292;
             EVC8_MMIDriverMessage.Send();
@@ -147,7 +147,7 @@ namespace Testcase.DMITestCases
                                 "5. All buttons and the ‘Close’ button are disabled." + Environment.NewLine +
                                 "6. ‘Close’ button NA12 is displayed disabled in area G.");
 
-            System.Threading.Thread.Sleep(10000);
+            this.Wait_Realtime(10000);
 
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 292;
             EVC8_MMIDriverMessage.Send();

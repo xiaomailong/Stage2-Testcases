@@ -34,7 +34,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 15_4.tdg, 15_4_a.xml, 15_4_b.xml, 15_4_c.xml, 15_4_d.xml, 15_4_e.xml, 15_4_f.xml, 15_4_g.xml, 15_4_h.xml, 15_4_i.xml, 15_4_j.xml
     /// </summary>
-    public class Building_Texts_General : TestcaseBase
+    public class TC_15_4_Building_Texts : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -89,7 +89,9 @@ namespace Testcase.DMITestCases
             Expected Result: Use the log file to confirm that DMI sends out packet [MMI_DRIVER_ACTION (EVC-152)] with the value of variable MMI_M_DRIVER_ACTION refer to sequence below,a)   MMI_M_DRIVER_ACTION = 23 (Ack of Plain Text message)
             Test Step Comment: MMI_gen 11470 (partly: Bit #23);
             */
-            DmiActions.ShowInstruction(this, "Acknowledge the plain test message and check the log file for packet EVC-152 from DMI with MMI_M_DRIVER_ACTION  = 23");
+            DmiActions.ShowInstruction(this, "Acknowledge the plain test message");
+
+            Telegrams.DMItoEVC.EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = Telegrams.DMItoEVC.EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.PlainTextInformationAck;
 
             /*
             Test Step 3

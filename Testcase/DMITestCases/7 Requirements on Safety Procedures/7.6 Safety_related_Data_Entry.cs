@@ -36,7 +36,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 2_6_a.xml
     /// </summary>
-    public class Safety_related_Data_Entry : TestcaseBase
+    public class TC_ID_2_6_Safety_related_Data_Entry : TestcaseBase
     {
         public override void PreExecution()
         {

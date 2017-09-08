@@ -34,7 +34,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// N/A
     /// </summary>
-    public class Close_Next_Previous_and_Yes_Buttons : TestcaseBase
+    public class TC_ID_5_12_2_Navigation_Buttons : TestcaseBase
     {
         public override void PreExecution()
         {
