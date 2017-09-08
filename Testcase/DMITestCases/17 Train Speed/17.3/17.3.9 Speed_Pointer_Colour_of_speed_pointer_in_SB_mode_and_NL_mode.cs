@@ -35,7 +35,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// N/A
     /// </summary>
-    public class Speed_Pointer_Colour_of_speed_pointer_in_SB_mode_and_NL_mode : TestcaseBase
+    public class TC_12_3_9_Train_Speed : TestcaseBase
     {
         public override void PreExecution()
         {

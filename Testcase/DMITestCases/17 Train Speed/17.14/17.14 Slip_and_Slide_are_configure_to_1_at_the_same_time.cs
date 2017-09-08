@@ -35,7 +35,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 12_14.tdg, 12_14_a.xml, 12_14_b.xml, 12_14_c.xml
     /// </summary>
-    public class Slip_and_Slide_are_configure_to_1_at_the_same_time : TestcaseBase
+    public class TC_ID_12_14_Train_Speed : TestcaseBase
     {
         public override void PreExecution()
         {

@@ -36,7 +36,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 12_7_3.tdg, 12_7_3_a.xml
     /// </summary>
-    public class Release_Speed_Digital_for_OS_mode : TestcaseBase
+    public class TC_12_7_3_Train_Speed : TestcaseBase
     {
         public override void PreExecution()
         {

@@ -39,7 +39,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 12_8.tdg, 12_8_a.xml
     /// </summary>
-    public class Evaluation_of_Train_Speed : TestcaseBase
+    public class TC_12_8_Train_Speed : TestcaseBase
     {
         public override void PreExecution()
         {

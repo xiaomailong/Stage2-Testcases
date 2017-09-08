@@ -35,8 +35,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 12_7_4.tdg, 12_7_4_a.xml, 12_7_4_b.xml
     /// </summary>
-    public class
-        Release_Speed_Digital_Release_speed_removal_when_received_an_invalid_value_of_EVC_1_or_EVC_7 : TestcaseBase
+    public class TC_12_7_4_Train_Speed : TestcaseBase
     {
         public override void PreExecution()
         {

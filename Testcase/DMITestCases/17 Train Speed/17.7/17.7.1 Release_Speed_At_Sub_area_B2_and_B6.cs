@@ -33,7 +33,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 12_7_1.tdg
     /// </summary>
-    public class Release_Speed_At_Sub_area_B2_and_B6 : TestcaseBase
+    public class TC_12_7_1_Train_Speed : TestcaseBase
     {
         public override void PreExecution()
         {

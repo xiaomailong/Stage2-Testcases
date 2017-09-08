@@ -35,7 +35,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 12_6_1.tdg, 12_6_1_a.xml, 12_6_1_b.xml
     /// </summary>
-    public class Basic_Speed_Hooks_General_appearance : TestcaseBase
+    public class TC_12_6_1_Train_Speed : TestcaseBase
     {
         public override void PreExecution()
         {

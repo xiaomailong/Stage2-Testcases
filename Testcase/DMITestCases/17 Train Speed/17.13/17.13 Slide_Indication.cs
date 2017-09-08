@@ -35,7 +35,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 12_13.tdg, 12_3_a.xml, 12_3_b.xml, 12_3_c.xml
     /// </summary>
-    public class Slide_Indication : TestcaseBase
+    public class TC_ID_12_13_Train_Speed : TestcaseBase
     {
         public override void PreExecution()
         {

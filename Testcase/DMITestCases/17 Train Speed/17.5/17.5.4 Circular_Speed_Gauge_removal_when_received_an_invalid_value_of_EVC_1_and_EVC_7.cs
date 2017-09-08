@@ -36,7 +36,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 12_5_4.tdg, 12_5_4_a.xml, 12_5_4_b.xml, 12_5_4_c.xml, 12_5_4_d.xml, 12_5_4_e.xml, 12_5_4_f.xml
     /// </summary>
-    public class Circular_Speed_Gauge_removal_when_received_an_invalid_value_of_EVC_1_and_EVC_7 : TestcaseBase
+    public class TC_12_5_4_Train_Speed : TestcaseBase
     {
         public override void PreExecution()
         {

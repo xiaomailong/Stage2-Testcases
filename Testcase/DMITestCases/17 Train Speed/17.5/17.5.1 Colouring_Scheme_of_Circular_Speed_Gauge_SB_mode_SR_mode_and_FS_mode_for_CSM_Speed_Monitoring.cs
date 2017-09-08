@@ -37,8 +37,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 12_5_1.tdg
     /// </summary>
-    public class
-        Colouring_Scheme_of_Circular_Speed_Gauge_SB_mode_SR_mode_and_FS_mode_for_CSM_Speed_Monitoring : TestcaseBase
+    public class TC_12_5_1_Train_Speed : TestcaseBase
     {
         public override void PreExecution()
         {
