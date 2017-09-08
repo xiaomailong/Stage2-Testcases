@@ -13,6 +13,7 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.DMItoEVC;
 
 
 namespace Testcase.DMITestCases
@@ -93,13 +94,14 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   The state of pressed button is changed to ‘Disabled’ state.(2)   The disabled ‘Down’ button is displayed as NA16 symbol in sub-area E11.(3)   The enabled ‘Up’ button is displayed as NA13 symbol in sub-area E10.(4)   Use the log file to confirm that DMI sends out packet [MMI_DRIVER_ACTION (EVC-152)] with the value of variable MMI_M_DRIVER_ACTION refer to sequence below,a)   MMI_M_DRIVER_ACTION = 42 (Scroll down button activated)
             Test Step Comment: (1) MMI_gen 4393 (partly: down, MMI_gen 4384 (partly: ETCS-MMI’s function associated to the button));(2) MMI_gen 4394 (partly: down, disabled); MMI_gen 4396 (partly: down, NA16);(3) MMI_gen 4394 (partly: up, enabled); MMI_gen 4396 (partly: up, NA13);(4) MMI_gen 11470 (partly: Bit # 42);
             */
-            DmiActions.ShowInstruction(this, @"Press and hold the ‘Down’ button until the message ‘Train is rejected’ is displayed on sub-area E5. Release the ‘Down’ button" + Environment.NewLine +
-                                            "Check the log file for packet EVC-152 from DMI with MMI_M_DRIVER_ACTION = 42");
+            DmiActions.ShowInstruction(this, @"Press and hold the ‘Down’ button until the message ‘Train is rejected’ is displayed on sub-area E5. Release the ‘Down’ button");
+
+            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.ScrollDownButtonActivated;
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +                  
                                 @"1. The ‘Down’ button is displayed disabled." + Environment.NewLine +
                                 @"2. The ‘Down’ button NA16 symbol is displayed disabled in sub-area E11." + Environment.NewLine +
                                 @"3. The  ‘Up’ button NA13 symbol is displayed as enabled in sub-area E10.");
-
 
             /*
             Test Step 4
@@ -107,8 +109,10 @@ namespace Testcase.DMITestCases
             Expected Result: See the expected results of Step 2 – Step 3 and the following additional information,(1)    The visibility of sub-area E5-E9 is moved up.(2)   Use the log file to confirm that DMI sends out packet [MMI_DRIVER_ACTION (EVC-152)] with the value of variable MMI_M_DRIVER_ACTION refer to sequence below,a)   MMI_M_DRIVER_ACTION = 41 (Scroll up button activated)
             Test Step Comment: (1) MMI_gen 4393 (partly: up button); MMI_gen 4392 (partly: symbol NA13, scroll up);(2) MMI_gen 11470 (partly: Bit # 41);
             */
-            DmiActions.ShowInstruction(this, @"Press and release the ‘Up’ button within 1.5s" + Environment.NewLine +
-                                             "Check the log file for packet EVC-152 from DMI with MMI_M_DRIVER_ACTION = 41");
+            DmiActions.ShowInstruction(this, @"Press and release the ‘Up’ button within 1.5s");
+
+            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.ScrollUpButtonActivated;
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The ‘click’ sound is played once." + Environment.NewLine +
                                 @"2. The ‘Up’ button is displayed pressed and immediately changed to enabled." + Environment.NewLine +

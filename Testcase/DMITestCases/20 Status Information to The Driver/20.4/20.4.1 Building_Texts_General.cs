@@ -89,7 +89,9 @@ namespace Testcase.DMITestCases
             Expected Result: Use the log file to confirm that DMI sends out packet [MMI_DRIVER_ACTION (EVC-152)] with the value of variable MMI_M_DRIVER_ACTION refer to sequence below,a)   MMI_M_DRIVER_ACTION = 23 (Ack of Plain Text message)
             Test Step Comment: MMI_gen 11470 (partly: Bit #23);
             */
-            DmiActions.ShowInstruction(this, "Acknowledge the plain test message and check the log file for packet EVC-152 from DMI with MMI_M_DRIVER_ACTION  = 23");
+            DmiActions.ShowInstruction(this, "Acknowledge the plain test message");
+
+            Telegrams.DMItoEVC.EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = Telegrams.DMItoEVC.EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.PlainTextInformationAck;
 
             /*
             Test Step 3
