@@ -99,7 +99,7 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the symbol ST01 in sub-area C1 in a yellow flashing frame." + Environment.NewLine +
+                                "1. DMI displays the symbol ST01 in sub-area C9 in a yellow flashing frame." + Environment.NewLine +
                                 "2. The ‘Sinfo’ sound is played once.");
 
             /*
@@ -115,7 +115,7 @@ namespace Testcase.DMITestCases
             EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
             
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the symbol ST01 pressed in sub-area C1 without the yellow flashing frame." + Environment.NewLine +
+                                "1. DMI displays the symbol ST01 pressed without the yellow flashing frame." + Environment.NewLine +
                                 "2. The ‘Click’ sound is played once.");
 
             /*
