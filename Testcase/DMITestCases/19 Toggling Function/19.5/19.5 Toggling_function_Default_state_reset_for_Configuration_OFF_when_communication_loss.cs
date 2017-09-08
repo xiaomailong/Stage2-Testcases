@@ -33,7 +33,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 14_5.tdg
     /// </summary>
-    public class Toggling_function_Default_state_reset_for_Configuration_OFF_when_communication_loss : TestcaseBase
+    public class TC_14_5_Toggling_Function : TestcaseBase
     {
         public override void PreExecution()
         {

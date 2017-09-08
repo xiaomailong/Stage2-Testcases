@@ -36,7 +36,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// N/A
     /// </summary>
-    public class Distance_to_Target_Appearance_of_Distance_to_Target_in_SB_SR_and_SH_mode : TestcaseBase
+    public class TC_13_1_7_3_Brake : TestcaseBase
     {
         public override void PreExecution()
         {

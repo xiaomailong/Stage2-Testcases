@@ -38,7 +38,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 13_1_7_1.tdg, 13_1_7_1_a.xml, 13_1_7_1_b.xml
     /// </summary>
-    public class Distance_to_Target_Appearance_of_Distance_to_Target_in_FS_mode : TestcaseBase
+    public class TC_13_1_7_1_Brake : TestcaseBase
     {
         public override void PreExecution()
         {

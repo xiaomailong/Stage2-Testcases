@@ -36,7 +36,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 13_1_8.tdg, 13_1_8_a.xml, 13_1_8_b.xml, 13_1_8_c.xml
     /// </summary>
-    public class Distance_to_Target_Bar_Maximum_digit_of_Distance_to_Target_Digital : TestcaseBase
+    public class TC_13_1_8_Brake : TestcaseBase
     {
         public override void PreExecution()
         {
