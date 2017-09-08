@@ -144,6 +144,7 @@ namespace Testcase.DMITestCases
 
             #endregion
 
+            #region Test Step 6
             /*
             Test Step 6
             Action: Press ‘Yes’ button.Then, confirmed selected value by pressing an input field
@@ -159,6 +160,9 @@ namespace Testcase.DMITestCases
             DmiActions.Display_TRN_Window(this);
             DmiExpectedResults.TRN_window_displayed(this);
 
+            #endregion
+
+            #region Test Step 7
             /*
             Test Step 7
             Action: Enter and confirm Train running number
@@ -169,6 +173,9 @@ namespace Testcase.DMITestCases
 
             DmiExpectedResults.Main_Window_displayed_with_Start_button_enabled(this);
 
+            #endregion
+
+            #region Test Step 8
             /*
             Test Step 8
             Action: Press ‘Start’ button
@@ -187,6 +194,9 @@ namespace Testcase.DMITestCases
             DmiActions.Send_UN_Mode_Ack(this);
             DmiExpectedResults.UN_Mode_Ack_requested(this);
 
+            #endregion
+
+            #region Test Step 9
             /*
             Test Step 9
             Action: Acknowledge UN mode
@@ -208,6 +218,9 @@ namespace Testcase.DMITestCases
             DmiActions.Send_UN_Mode(this);
             DmiExpectedResults.UN_Mode_displayed(this);
 
+            #endregion
+
+            #region Test Step 10
             /*
             Test Step 10
             Action: Perform the following procedure:
@@ -281,6 +294,9 @@ namespace Testcase.DMITestCases
             DmiActions.FinishedSoM_Default_Window(this);
             DmiExpectedResults.SR_Mode_displayed(this);
 
+            #endregion
+
+            #region Test Step 11
             /*
             Test Step 11
             Action: Drive the train forward passing BG1
@@ -302,6 +318,9 @@ namespace Testcase.DMITestCases
             DmiActions.Send_OS_Mode_Ack(this);
             DmiExpectedResults.OS_Mode_Ack_Requested(this);
 
+            #endregion
+
+            #region Test Step 12
             /*
             Test Step 12
             Action: Acknowledge OS mode
@@ -321,6 +340,9 @@ namespace Testcase.DMITestCases
             DmiActions.Send_OS_Mode(this);
             DmiExpectedResults.OS_Mode_displayed(this);
 
+            #endregion
+
+            #region Test Step 13
             /*
             Test Step 13
             Action: Stop the train.Then, press ‘Over-ride’ button
@@ -337,6 +359,9 @@ namespace Testcase.DMITestCases
             DmiActions.Display_Override_Window(this);
             DmiExpectedResults.Override_window_displayed(this);
 
+            #endregion
+
+            #region Test Step 14
             /*
             Test Step 14
             Action: Press ‘EOA’ button
@@ -356,12 +381,15 @@ namespace Testcase.DMITestCases
             DmiActions.Set_Override(this);
             DmiExpectedResults.Default_Window_with_Override_Symbol(this);
 
+            #endregion
+
+            #region Test Step 15
             /*
             Test Step 15
             Action: End of test
             Expected Result: 
             */
-
+            #endregion
 
             return GlobalTestResult;
         }
