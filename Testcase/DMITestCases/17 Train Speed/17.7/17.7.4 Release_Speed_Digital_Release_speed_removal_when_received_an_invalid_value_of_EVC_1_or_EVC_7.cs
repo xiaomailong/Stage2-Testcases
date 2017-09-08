@@ -70,7 +70,7 @@ namespace Testcase.DMITestCases
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
 
             // Simulate the train moving so the 'stop' should be discernible
-            System.Threading.Thread.Sleep(5000);
+            this.Wait_Realtime(5000);
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
 

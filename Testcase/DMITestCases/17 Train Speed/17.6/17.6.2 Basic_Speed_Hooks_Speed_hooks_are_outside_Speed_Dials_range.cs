@@ -76,7 +76,7 @@ namespace Testcase.DMITestCases
             EVC1_MMIDynamic.MMI_V_TARGET = 4027;
 
             // Insert a wait so speed can be reset to 0
-            System.Threading.Thread.Sleep(5000);
+            this.Wait_Realtime(5000);
 
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
 

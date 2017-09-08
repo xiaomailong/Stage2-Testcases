@@ -76,7 +76,7 @@ namespace Testcase.DMITestCases
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 10000;      // at 100,
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
 
-            System.Threading.Thread.Sleep(2000);
+            this.Wait_Realtime(2000);
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -106,7 +106,7 @@ namespace Testcase.DMITestCases
                                 "1. DMI stops displaying the distance to target bar and digital distance to target.");
 
             // Simulate the effect of the ETCS sending another 'valid' packet. Leave a gap so the DMI screen can be seen changing
-            System.Threading.Thread.Sleep(2000);
+            this.Wait_Realtime(2000);
 
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring;
 
@@ -125,7 +125,7 @@ namespace Testcase.DMITestCases
                                 "1. DMI stops displaying the distance to target bar and digital distance to target.");
 
             // Simulate the effect of the ETCS sending another 'valid' packet. Leave a gap so the DMI screen can be seen changing
-            System.Threading.Thread.Sleep(2000);
+            this.Wait_Realtime(2000);
 
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +

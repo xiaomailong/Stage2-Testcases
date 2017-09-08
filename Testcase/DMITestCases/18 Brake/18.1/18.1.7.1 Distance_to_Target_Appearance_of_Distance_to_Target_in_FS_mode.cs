@@ -131,7 +131,7 @@ namespace Testcase.DMITestCases
                                 "1. The distance to target bar is removed from sub-area A3." + Environment.NewLine +
                                 "2. The digital distance to target is removed from sub-area A2.");
 
-            System.Threading.Thread.Sleep(2000);
+            this.Wait_Realtime(2000);
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Target_Speed_Monitoring;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -150,7 +150,7 @@ namespace Testcase.DMITestCases
                                 "1. The distance to target bar is removed from sub-area A3." + Environment.NewLine +
                                 "2. The digital distance to target is removed from sub-area A2.");
 
-            System.Threading.Thread.Sleep(2000);
+            this.Wait_Realtime(2000);
 
             // Test spec says EVC1 signal would re-establish display but OBU_TR_M_MODE would still be invalid
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;

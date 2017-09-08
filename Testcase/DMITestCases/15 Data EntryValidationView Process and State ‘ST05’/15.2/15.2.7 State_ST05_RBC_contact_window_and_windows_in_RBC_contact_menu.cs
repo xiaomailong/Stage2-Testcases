@@ -134,7 +134,7 @@ namespace Testcase.DMITestCases
                                 "4. ‘Close’ button NA12 is displayed disabled in area G." + Environment.NewLine +
                                 "5. The Input Field is not selected.");
 
-            System.Threading.Thread.Sleep(10000);
+            this.Wait_Realtime(10000);
 
             // Step 2/2
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
@@ -175,7 +175,7 @@ namespace Testcase.DMITestCases
                                 "4. ‘Close’ button NA12 is displayed disabled in area G." + Environment.NewLine +
                                 "5. All Input Fields are not selected.");
 
-            System.Threading.Thread.Sleep(10000);
+            this.Wait_Realtime(10000);
 
             // Step 2/2
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;

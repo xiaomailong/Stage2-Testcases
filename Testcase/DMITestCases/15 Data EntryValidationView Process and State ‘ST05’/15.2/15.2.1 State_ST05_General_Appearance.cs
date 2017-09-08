@@ -364,7 +364,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The hourglass symbol ST05 is removed.The ‘Data view’ window is closed and DMI returns to the default window.The state of all buttons is restored according to the last received EVC-30, see Step 12
             Test Step Comment: (1) MMI_gen 5728 (partly: removal);(2) MMI_gen 5731 (partly: close the ‘Data view’ window, switch back the default window);(3) MMI_gen 5728 (partly: restore (after ST05), default window);
             */
-            System.Threading.Thread.Sleep(46000);
+            this.Wait_Realtime(46000);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The hourglass symbol ST05 is removed." + Environment.NewLine +

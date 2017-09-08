@@ -467,7 +467,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(this, "Press in a sensitivity area (areas A1-A4 or B) to make a Basic Speed Hook appear");
 
-            System.Threading.Thread.Sleep(1000);
+            this.Wait_Realtime(1000);
             DmiActions.Simulate_communication_loss_EVC_DMI(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -483,7 +483,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   The white basic speed hook displays for 10 seconds (toggled off). Then, disappears.(2)   The objects below are still not displayed on DMI,Medium-grey basic speed hookDistance to target (digital)Release Speed Digital
             Test Step Comment: (1) MMI_gen 6890 (partly: SH mode, toggle off), MMI_gen 6896 (partly: configuration ‘TIMER’, SH mode, toggle invisible), MMI_gen 6894 (partly: SH mode);(2) MMI_gen 6890 (partly: SH mode, un-concerned object), Table 34 (CSM), Table 38 (CSM), Table 35 (CSM)
             */
-            System.Threading.Thread.Sleep(1000);
+            this.Wait_Realtime(1000);
             DmiActions.Re_establish_communication_EVC_DMI(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +

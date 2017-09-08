@@ -46,7 +46,7 @@ namespace Testcase.XML
                                       "3. All buttons and the ‘Close’ button are disabled." + Environment.NewLine +
                                       "4. ‘Close’ button NA12 is displayed disabled in area G.");
 
-            System.Threading.Thread.Sleep(10000);
+            _pool.Wait_Realtime(10000);
 
             // Step 2/2
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;

@@ -156,7 +156,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI stops displaying the symbol ST01 with a yellow flashing frame in sub-area C1.");
 
-            System.Threading.Thread.Sleep(1000);
+            this.Wait_Realtime(1000);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI re-displays the symbol ST01 in sub-area C1 with a yellow flashing frame after 1s.");

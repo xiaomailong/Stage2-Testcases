@@ -101,7 +101,7 @@ namespace Testcase.DMITestCases
                                 "5. All buttons and the ‘Close’ button are disabled." + Environment.NewLine +
                                 "6. ‘Close’ button NA12 is displayed disabled in area G.");
 
-            System.Threading.Thread.Sleep(10000);
+            this.Wait_Realtime(10000);
 
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 292;
             EVC8_MMIDriverMessage.Send();
@@ -147,7 +147,7 @@ namespace Testcase.DMITestCases
                                 "5. All buttons and the ‘Close’ button are disabled." + Environment.NewLine +
                                 "6. ‘Close’ button NA12 is displayed disabled in area G.");
 
-            System.Threading.Thread.Sleep(10000);
+            this.Wait_Realtime(10000);
 
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 292;
             EVC8_MMIDriverMessage.Send();
