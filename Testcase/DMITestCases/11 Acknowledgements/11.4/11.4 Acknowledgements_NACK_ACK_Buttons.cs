@@ -198,9 +198,7 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, "Press and hold sub-area E5");
 
-            // which of these??
-            //Telegrams.DMItoEVC.EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
-            // ??Telegrams.DMItoEVC.EVC101_MMIDriverRequest.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
+            Telegrams.DMItoEVC.EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Click’ sound is played once." + Environment.NewLine +
@@ -241,9 +239,7 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, "Release sub-area E5");
 
-            // which of these??
-            //Telegrams.DMItoEVC.EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
-            // ??Telegrams.DMItoEVC.EVC101_MMIDriverRequest.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
+            Telegrams.DMItoEVC.EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI still displays the message ‘Brake test aborted. Perform new Test?’" + Environment.NewLine +
