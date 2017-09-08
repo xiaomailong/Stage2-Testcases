@@ -38,7 +38,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 10_2_5_a.xml, 10_2_5.tdg
     /// </summary>
-    public class State_ST05_Special_window_and_windows_in_the_special_menu : TestcaseBase
+    public class TC_ID_10_2_5_State_ST05 : TestcaseBase
     {
         public override void PreExecution()
         {

@@ -40,7 +40,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// N/A
     /// </summary>
-    public class Screen_Layout_Frames : TestcaseBase
+    public class TC_ID_5_3_Screen_Layout_Frames : TestcaseBase
     {
         public override void PreExecution()
         {

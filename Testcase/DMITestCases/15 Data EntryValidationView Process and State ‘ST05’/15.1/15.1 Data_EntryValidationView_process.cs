@@ -41,7 +41,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 10_1_a.xml, 10_1_b.xml, 10_1.utt
     /// </summary>
-    public class Data_EntryValidationView_process : TestcaseBase
+    public class TC_ID_10_1_Data_EntryValidationView_process : TestcaseBase
     {
         public override void PreExecution()
         {

@@ -34,7 +34,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 6_2_a.xml, 6_2_b.xml, 6_2_c.xml
     /// </summary>
-    public class Acknowledgements_Replacement_of_new_acknowledgements : TestcaseBase
+    public class TC_ID_6_2_Acknowledgements : TestcaseBase
     {
         public override void PreExecution()
         {

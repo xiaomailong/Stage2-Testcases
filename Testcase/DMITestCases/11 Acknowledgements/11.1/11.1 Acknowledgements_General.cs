@@ -39,7 +39,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 6_1_a.xml, 6_1_b.xml, 6_1_c.xml
     /// </summary>
-    public class Acknowledgements_General : TestcaseBase
+    public class TC_ID_6_1_Acknowledgements : TestcaseBase
     {
         public override void PreExecution()
         {

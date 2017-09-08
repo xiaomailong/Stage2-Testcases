@@ -35,7 +35,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 5_12_3_a.xml
     /// </summary>
-    public class Navigation_button_Up_and_Down_buttons : TestcaseBase
+    public class TC_ID_5_12_3_Navigation_Buttons : TestcaseBase
     {
         public override void PreExecution()
         {

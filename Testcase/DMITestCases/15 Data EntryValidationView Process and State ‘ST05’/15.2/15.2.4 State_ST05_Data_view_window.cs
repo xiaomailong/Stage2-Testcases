@@ -32,7 +32,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 10_2_4_a.xml
     /// </summary>
-    public class State_ST05_Data_view_window : TestcaseBase
+    public class TC_ID_10_2_4_State : TestcaseBase
     {
         public override void PreExecution()
         {

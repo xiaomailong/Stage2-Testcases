@@ -37,7 +37,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 6_4_a.xml, 6_4_b.xml
     /// </summary>
-    public class Acknowledgements_NACK_ACK_Buttons : TestcaseBase
+    public class TC_ID_6_4_Acknowledgements : TestcaseBase
     {
         public override void PreExecution()
         {
