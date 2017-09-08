@@ -34,7 +34,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 15_4.tdg, 15_4_a.xml, 15_4_b.xml, 15_4_c.xml, 15_4_d.xml, 15_4_e.xml, 15_4_f.xml, 15_4_g.xml, 15_4_h.xml, 15_4_i.xml, 15_4_j.xml
     /// </summary>
-    public class Building_Texts_General : TestcaseBase
+    public class TC_15_4_Building_Texts : TestcaseBase
     {
         public override void PreExecution()
         {

@@ -31,7 +31,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// N/A
     /// </summary>
-    public class Fixed_Train_data_entry : TestcaseBase
+    public class TC_ID_34_1_1_Dialogue_Sequences : TestcaseBase
     {
         public override void PreExecution()
         {

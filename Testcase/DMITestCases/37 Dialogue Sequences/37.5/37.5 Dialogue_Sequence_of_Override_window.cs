@@ -34,7 +34,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// N/A
     /// </summary>
-    public class Dialogue_Sequence_of_Override_window : TestcaseBase
+    public class TC_34_5_Dialogue_Sequences : TestcaseBase
     {
         public override void PreExecution()
         {

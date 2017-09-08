@@ -31,7 +31,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 15_3_1_5.xml
     /// </summary>
-    public class Driver_Messages_Visualise_of_the_Text_messages_Unknown_Text_ID_424_474 : TestcaseBase
+    public class TC_15_3_1_5_Driver_Messages : TestcaseBase
     {
         public override void PreExecution()
         {

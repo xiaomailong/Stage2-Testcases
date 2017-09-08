@@ -44,7 +44,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 26_1.tdg
     /// </summary>
-    public class MMI_Error_Handling : TestcaseBase
+    public class TC_26_1_MMI_Error_Handling : TestcaseBase
     {
         public override void PreExecution()
         {

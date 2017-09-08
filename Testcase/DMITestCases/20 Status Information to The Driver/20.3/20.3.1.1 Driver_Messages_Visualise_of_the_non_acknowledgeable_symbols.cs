@@ -40,7 +40,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 15_3_1_1_a.xml, 15_3_1_1_b.xml, 15_3_1_1_c.xml
     /// </summary>
-    public class Driver_Messages_Visualise_of_the_non_acknowledgeable_symbols : TestcaseBase
+    public class TC_15_3_1_1_Driver_Messages : TestcaseBase
     {
         public override void PreExecution()
         {
