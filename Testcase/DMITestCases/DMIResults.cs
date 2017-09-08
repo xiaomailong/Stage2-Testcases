@@ -385,6 +385,18 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
+        /// Description: Default Window is displayed with Override Symbol in area C7.
+        /// Used in:
+        ///     Step 14 in TC-ID: 17.1.3 in 20.1.3
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Default_Window_with_Override_Symbol(SignalPool pool)
+        {
+            pool.WaitForVerification("Is the Default window displayed?");
+            Driver_symbol_displayed(pool, "Override", "MO03", "C7", false);
+        }
+
+        /// <summary>
         /// Description: Non-leading button is pressed and hold
         /// Used in:
         ///     Step 11 in TC-ID: 15.1.1 in 20.1.1     
@@ -526,6 +538,18 @@ namespace Testcase.DMITestCases
             EVC121_MMINewLevel.Check_MMI_M_INHIBITED_LEVEL = MMI_M_INHIBITED_LEVEL.NotInhibited;
             EVC121_MMINewLevel.Check_MMI_M_INHIBIT_ENABLE = MMI_M_INHIBIT_ENABLE.NotAllowedForInhibiting;
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.Level0Selected;
+        }
+
+        /// <summary>
+        /// Description: EOA button is pressed in Override window on DMI
+        /// Used in:
+        ///     Step 14 in TC-ID: 15.1.3 in 20.1.3
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void EOA_Button_pressed(SignalPool pool)
+        {
+            EVC101_MMIDriverRequest.CheckMRequestPressed = MMI_M_REQUEST.StartOverrideEOA;
+            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.OverrideSelected;
         }
 
         /// <summary>

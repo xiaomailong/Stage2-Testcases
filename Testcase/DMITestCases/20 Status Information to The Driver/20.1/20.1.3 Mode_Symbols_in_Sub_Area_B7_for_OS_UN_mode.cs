@@ -230,35 +230,51 @@ namespace Testcase.DMITestCases
             DmiActions.Display_Driver_ID_Window(this);
             DmiActions.Set_Driver_ID(this, "1234");
             DmiActions.Send_SB_Mode(this);
-            DmiActions.ShowInstruction(this, "Enter and confirm Driver ID");
+            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
+                                "1. Enter and confirm Driver ID." + Environment.NewLine +
+                                "2. Press OK on THIS window within 3 seconds.");
 
             DmiActions.Request_Brake_Test(this);
-            DmiActions.ShowInstruction(this, "Perform Brake Test");
+            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
+                                "1. Perform Brake Test" + Environment.NewLine +
+                                "2. Press OK on THIS window within 3 seconds.");
 
             DmiActions.Display_Level_Window(this);
-            DmiActions.ShowInstruction(this, "Select and enter Level 1");
+            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
+                                "1. Select and enter Level 1" + Environment.NewLine +
+                                "2. Press OK on THIS window within 3 seconds.");
 
             DmiActions.Display_Main_Window_with_Start_button_not_enabled(this);
-            DmiActions.ShowInstruction(this, @"Press ‘Train data’ button");
+            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
+                                "1. Press ‘Train data’ button." + Environment.NewLine +
+                                "2. Press OK on THIS window within 3 seconds.");
 
             DmiActions.Display_Train_Data_Window(this);
             DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
                                 "1. Enter and confirm value in each input field." + Environment.NewLine +
-                                "2. Press ‘Yes’ button.");
+                                "2. Press ‘Yes’ button." + Environment.NewLine +
+                                "3. Press OK on THIS window within 3 seconds.");
 
             DmiActions.Display_Train_data_validation_Window(this);
             DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
                                 "1. Press ‘Yes’ button." + Environment.NewLine +
-                                "2. Confirmed the selected value by pressing the input field.");
+                                "2. Confirmed the selected value by pressing the input field." + Environment.NewLine +
+                                "3. Press OK on THIS window within 3 seconds.");
 
             DmiActions.Display_TRN_Window(this);
-            DmiActions.ShowInstruction(this, "Enter and confirm Train Running Number");
+            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
+                                "1. Enter and confirm Train Running Number." + Environment.NewLine +
+                                "2. Press OK on THIS window within 3 seconds.");
 
             DmiExpectedResults.Main_Window_displayed_with_Start_button_enabled(this);
-            DmiActions.ShowInstruction(this, @"Press ‘Start’ button");
+            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
+                                "1. Press ‘Start’ button." + Environment.NewLine +
+                                "2. Press OK on THIS window within 3 seconds.");
 
             DmiActions.Send_SR_Mode_Ack(this);
-            DmiActions.ShowInstruction(this, "Press and hold DMI Sub Area C1");
+            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
+                                "1. Press and hold DMI Sub Area C1." + Environment.NewLine +
+                                "2. Press OK on THIS window within 3 seconds.");
             DmiExpectedResults.SR_Mode_Ack_pressed_and_hold(this);
 
             DmiActions.Send_SR_Mode(this);
@@ -297,7 +313,9 @@ namespace Testcase.DMITestCases
                                (2) MMI_gen 11084 (partly: ETCS mode OS);                           
             */
 
-            DmiActions.ShowInstruction(this, "Press DMI Sub Area C1");
+            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
+                                "1. Press DMI Sub Area C1." + Environment.NewLine +
+                                "2. Press OK on THIS window within 3 seconds.");
             DmiExpectedResults.OS_Mode_Ack_pressed_and_released(this);
 
             DmiActions.Send_OS_Mode(this);
@@ -313,17 +331,30 @@ namespace Testcase.DMITestCases
 
             Wait_Realtime(5000);
 
-            DmiActions.ShowInstruction(this, "Press the \"Override\" Button on Default Window Area F2 ");
+            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
+                                "1. Press the \"Override\" Button on Default Window Area F2." + Environment.NewLine +
+                                "2. Press OK on THIS window within 3 seconds.");
             DmiActions.Display_Override_Window(this);
             DmiExpectedResults.Override_window_displayed(this);
 
             /*
             Test Step 14
             Action: Press ‘EOA’ button
-            Expected Result: Verify the following information, (1)   The symbol MO03 is displayed for Override EOA symbol in sub-area C7.(2) Use the log DMI received packet information EVC-2 with variable MMI_M_OVERRIDE_EOA = 1
-            Test Step Comment: (1) MMI_gen 11231 (partly: MO03);(2) MMI_gen 11231 (partly: EVC-2);
+            Expected Result: Verify the following information, 
+            (1)   The symbol MO03 is displayed for Override EOA symbol in sub-area C7.
+            (2) Use the log DMI received packet information EVC-2 with variable MMI_M_OVERRIDE_EOA = 1
+            Test Step Comment: (1) MMI_gen 11231 (partly: MO03);
+                               (2) MMI_gen 11231 (partly: EVC-2);
             */
 
+            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
+                                "1. Press ‘EOA’ button." + Environment.NewLine +
+                                "2. Press OK on THIS window within 3 seconds.");
+
+            DmiExpectedResults.EOA_Button_pressed(this);
+
+            DmiActions.Set_Override(this);
+            DmiExpectedResults.Default_Window_with_Override_Symbol(this);
 
             /*
             Test Step 15

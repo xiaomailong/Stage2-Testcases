@@ -128,6 +128,22 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
+        /// Description: Set Override Mode. *
+        /// This function shall be called after driveraction StartEOA has been performed
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Set_Override(SignalPool pool)
+        {
+            EVC2_MMIStatus.MMI_M_OVERRIDE_EOA = true;
+            EVC2_MMIStatus.Send();
+
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Start | standardFlags;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 0;
+            EVC30_MMIRequestEnable.Send();
+        }
+
+        /// <summary>
         ///     Sends EVC-6 telegram with Fixed Data Entry for up to 9 trainset strings.
         /// </summary>
         /// <param name="fixedTrainsetCaptions"> Array of strings for trainset captions</param>
