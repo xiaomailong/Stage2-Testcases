@@ -68,9 +68,10 @@ namespace Testcase.Telegrams.DMItoEVC
                 if (mmiMModeReadBackElement == mModeReadBack)
                 {
                     // Check MMI_M_MODE_READBACK value
-                    _pool.TraceInfo("Test - Expected: " + mModeReadBack + " , Measured: "
+                    
+                    _pool.TraceInfo("Test - Expected: " + (byte)mModeReadBack + " -> " + (~(byte)mModeReadBack) + " , Measured: "
                         + _pool.SITR.CCUO.ETCS1StatusReport.MmiMModeReadback.Value);
-                    _bResult = _pool.SITR.CCUO.ETCS1StatusReport.MmiMModeReadback.Value.Equals(mModeReadBack);
+                    _bResult = _pool.SITR.CCUO.ETCS1StatusReport.MmiMModeReadback.Value.Equals(~(byte)mModeReadBack);
                     break;
                 }
             }
