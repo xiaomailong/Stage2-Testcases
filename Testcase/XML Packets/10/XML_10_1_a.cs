@@ -32,7 +32,8 @@ namespace Testcase.XML
         public static void Send(SignalPool pool, string windowName, bool showLock = true)
         {
             _pool = pool;
-            
+
+            EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = 0xff;   // Enable all windows
             
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.None;
