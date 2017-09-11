@@ -555,7 +555,7 @@ namespace Testcase.DMITestCases
             EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE = EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE_BUTTONS.Settings |
                                                         EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE_BUTTONS.TRN;
             EVC14_MMICurrentDriverID.MMI_Q_CLOSE_ENABLE = MMI_Q_CLOSE_ENABLE.Enabled;
-            EVC14_MMICurrentDriverID.MMI_X_DRIVER_ID = "0";
+            EVC14_MMICurrentDriverID.MMI_X_DRIVER_ID = null;
             EVC14_MMICurrentDriverID.Send();
         }
 
@@ -567,9 +567,6 @@ namespace Testcase.DMITestCases
         /// <param name="pool"></param>
         public static void Display_Level_Window(SignalPool pool)
         {
-            EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 7;
-            EVC30_MMIRequestEnable.Send();
             Send_EVC20_MMISelectLevel_AllLevels();
         }
 
@@ -581,9 +578,6 @@ namespace Testcase.DMITestCases
         /// <param name="pool"></param>
         public static void Display_Train_Data_Window(SignalPool pool)
         {
-            EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 11;
-            EVC30_MMIRequestEnable.Send();
             Send_EVC6_MMICurrentTrainData_FixedDataEntry(new[] { "FLU", "RLU", "Rescue" }, 2);
         }
 
