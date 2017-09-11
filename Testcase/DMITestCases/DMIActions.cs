@@ -343,6 +343,11 @@ namespace Testcase.DMITestCases
         public static void Send_EB_Intervention(SignalPool pool)
         {
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_EB_Status = 1;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 255;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 260;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+            EVC8_MMIDriverMessage.Send();
         }
 
         /// <summary>
@@ -555,7 +560,7 @@ namespace Testcase.DMITestCases
             EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE = EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE_BUTTONS.Settings |
                                                         EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE_BUTTONS.TRN;
             EVC14_MMICurrentDriverID.MMI_Q_CLOSE_ENABLE = MMI_Q_CLOSE_ENABLE.Enabled;
-            EVC14_MMICurrentDriverID.MMI_X_DRIVER_ID = null;
+            EVC14_MMICurrentDriverID.MMI_X_DRIVER_ID = "";
             EVC14_MMICurrentDriverID.Send();
         }
 
