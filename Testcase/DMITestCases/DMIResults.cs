@@ -101,7 +101,7 @@ namespace Testcase.DMITestCases
         {
             EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
             EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
-            pool.WaitForVerification("Is the MO10 symbol frame flashing?");
+            pool.WaitForVerification("Is the MO10 (Acknowledgement for Staff Responsible mode) symbol frame flashing?");
         }
 
         /// <summary>
@@ -115,7 +115,7 @@ namespace Testcase.DMITestCases
             pool.Wait_Realtime(2000);
             EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.StaffResponsibleModeAck;
-            pool.WaitForVerification("Has the MO10 symbol opacity decreased to 50%?");
+            pool.WaitForVerification("Has the MO10 (Acknowledgement for Staff Responsible mode) symbol opacity decreased to 50%?");
             
         }
 
@@ -126,7 +126,7 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void UN_Mode_Ack_requested(SignalPool pool)
         {
-            Driver_symbol_displayed(pool, "Acknowledgement for Unfitted Mode", "MO17", "C1", true);
+            Driver_symbol_displayed(pool, "Acknowledgement for Unfitted mode", "MO17", "C1", true);
         }
 
         /// <summary>
@@ -140,7 +140,7 @@ namespace Testcase.DMITestCases
             pool.Wait_Realtime(100);
             EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.UnfittedModeAck;
-            pool.WaitForVerification("Has the MO17 symbol disappeared from sub-area C1?");
+            pool.WaitForVerification("Has the MO17 (Acknowledgement for Unfitted mode) symbol disappeared from sub-area C1?");
         }
 
         /// <summary>
@@ -184,6 +184,7 @@ namespace Testcase.DMITestCases
         {
             EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
             EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_EB_Status = 0;
         }
 
         /// <summary>
@@ -196,7 +197,7 @@ namespace Testcase.DMITestCases
             EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
             EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.TrainTripAck;
-            pool.WaitForVerification("Has the MO05 symbol disappeared from sub-area C1?");
+            pool.WaitForVerification("Has the MO05 (Acknowledgement for Trip) symbol disappeared from sub-area C1?");
         }
 
         /// <summary>
@@ -209,7 +210,7 @@ namespace Testcase.DMITestCases
             EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
             EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.ReversingModeAck;
-            pool.WaitForVerification("Has the MO15 symbol disappeared from sub-area C1?");
+            pool.WaitForVerification("Has the MO15 (Acknowledgement for Reversing) symbol disappeared from sub-area C1?");
         }
 
         /// <summary>
@@ -393,7 +394,7 @@ namespace Testcase.DMITestCases
         public static void Default_Window_with_Override_Symbol(SignalPool pool)
         {
             pool.WaitForVerification("Is the Default window displayed?");
-            Driver_symbol_displayed(pool, "Override", "MO03", "C7", false);
+            Driver_symbol_displayed(pool, "Override EOA", "MO03", "C7", false);
         }
 
         /// <summary>
