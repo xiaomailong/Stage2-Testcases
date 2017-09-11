@@ -296,7 +296,7 @@ namespace Testcase.DMITestCases
 
             DmiActions.Display_Driver_ID_Window(this);
             DmiExpectedResults.Driver_ID_window_displayed(this);
-            DmiActions.ShowInstruction(this, "Enter Driver ID");
+            DmiActions.ShowInstruction(this, "Enter and confirm Driver ID of 1234");
             //DmiActions.Set_Driver_ID(this, "1234");
 
             DmiActions.ShowInstruction(this, "Press and hold \"Non-leading\" button for at least 2 seconds.");
