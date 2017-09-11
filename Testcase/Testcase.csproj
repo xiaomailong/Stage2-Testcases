@@ -383,10 +383,12 @@ if exist "$(TargetPath)" if not exist "$(TargetPath).locked" move "$(TargetPath)
     <Compile Include="Telegrams\DMItoEVC\EVC107_MMINewTrainData.cs" />
     <Compile Include="Telegrams\DMItoEVC\EVC152_EVCDriverAction.cs" />
     <Compile Include="Telegrams\DMItoEVC\EVC101_MMIDriverRequest.cs" />
+    <Compile Include="Telegrams\EVCtoDMI\EVC23_MMILssmay.cs" />
     <Compile Include="Telegrams\EVCtoDMI\EVC18_MMISetVBC.cs" />
     <Compile Include="Telegrams\EVCtoDMI\EVC20_MMISelectLevel.cs" />
     <Compile Include="Telegrams\EVCtoDMI\EVC32_MMITrackConditions.cs" />
     <Compile Include="Telegrams\EVCtoDMI\EVC4_MMITrackDescription.cs" />
+    <Compile Include="Telegrams\EVCtoDMI\EVC11_MMICurrentSRRules.cs" />
     <Compile Include="Telegrams\EVCtoDMI\EVC7_MMIEtcsMiscOutSignals.cs" />
     <Compile Include="Telegrams\EVCtoDMI\EVC0_MMIStartATP.cs" />
     <Compile Include="Telegrams\EVCtoDMI\EVC14_MMICurrentDriverID.cs" />

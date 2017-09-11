@@ -337,6 +337,20 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
+        /// EB intervention symbol sent to be displayed on the DMI in area C9
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Send_EB_Intervention(SignalPool pool)
+        {
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_EB_Status = 1;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 255;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 260;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+            EVC8_MMIDriverMessage.Send();
+        }
+
+        /// <summary>
         /// Description: SB mode sent to be displayed on th DMI
         /// Used in:
         ///     Step 1 in TC-ID: 15.1.1 in 20.1.1
@@ -506,7 +520,7 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = Variables.standardFlags | 
-                EVC30_MMIRequestEnable.EnabledRequests.Start ;
+                EVC30_MMIRequestEnable.EnabledRequests.Start;
             EVC30_MMIRequestEnable.Send();
         }
 
@@ -543,9 +557,11 @@ namespace Testcase.DMITestCases
         /// <param name="pool"></param>
         public static void Display_Driver_ID_Window(SignalPool pool)
         {
-            EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 8;            
-            EVC30_MMIRequestEnable.Send();
+            EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE = EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE_BUTTONS.Settings |
+                                                        EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE_BUTTONS.TRN;
+            EVC14_MMICurrentDriverID.MMI_Q_CLOSE_ENABLE = MMI_Q_CLOSE_ENABLE.Enabled;
+            EVC14_MMICurrentDriverID.MMI_X_DRIVER_ID = "";
+            EVC14_MMICurrentDriverID.Send();
         }
 
         /// <summary>
@@ -556,9 +572,6 @@ namespace Testcase.DMITestCases
         /// <param name="pool"></param>
         public static void Display_Level_Window(SignalPool pool)
         {
-            EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 7;
-            EVC30_MMIRequestEnable.Send();
             Send_EVC20_MMISelectLevel_AllLevels();
         }
 
@@ -570,9 +583,6 @@ namespace Testcase.DMITestCases
         /// <param name="pool"></param>
         public static void Display_Train_Data_Window(SignalPool pool)
         {
-            EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 11;
-            EVC30_MMIRequestEnable.Send();
             Send_EVC6_MMICurrentTrainData_FixedDataEntry(new[] { "FLU", "RLU", "Rescue" }, 2);
         }
 
