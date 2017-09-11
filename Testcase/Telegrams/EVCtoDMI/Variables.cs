@@ -359,9 +359,32 @@ namespace Testcase.Telegrams.EVCtoDMI
         }
 
         /// <summary>
-        /// Collection of flags used to enable standard buttons on DMI.
+        /// This universal data check result variable provides control information
+        /// how to display the related train data element in Echo Text/Data Entry Fields.
+        /// Affected Echo Text/Data Entry Fields are indicated by MMI_NID_DATA
+        /// 
+        /// Values:
+        /// 0 = "All checks have passed"
+        /// 1 = "Technical Range Check failed"
+        /// 2 = "Technical Resolution Check failed"
+        /// 3 = "Technical Cross Check failed"
+        /// 4 = "Operational Range Check failed"
+        /// 5 = "Operational Cross Check failed"
         /// </summary>
-        public static EVC30_MMIRequestEnable.EnabledRequests standardFlags = 
+        public enum Q_DATA_CHECK : byte
+        {
+            All_checks_passed = 0,
+            Technical_Range_Check_failed = 1,
+            Technical_Resolution_Check_failed = 2,
+            Technical_Cross_Check_failed = 3,
+            Operational_Range_Check_failed = 4,
+            Operational_Cross_Check_failed = 5
+        }
+
+    /// <summary>
+    /// Collection of flags used to enable standard buttons on DMI.
+    /// </summary>
+    public static EVC30_MMIRequestEnable.EnabledRequests standardFlags = 
             EVC30_MMIRequestEnable.EnabledRequests.EnableDoppler |
             EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter |
             EVC30_MMIRequestEnable.EnabledRequests.StartBrakeTest |
@@ -606,6 +629,6 @@ namespace Testcase.Telegrams.EVCtoDMI
             Level2 = 42,
             Level3 = 43,
             Level0 = 44
-        }
+        }      
     }
 }
