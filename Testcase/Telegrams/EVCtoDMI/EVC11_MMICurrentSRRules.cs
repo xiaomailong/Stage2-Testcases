@@ -47,8 +47,8 @@ namespace Testcase.Telegrams.EVCtoDMI
             totalSizeCounter = PopulateDataElements($"ETCS1_CurrentSrRules_EVC11CurrentSrRulesSub1",
                 totalSizeCounter, DataElements, _pool);
 
-            // Set the total length of the packet
-            _pool.SITR.ETCS1.CurrentSrRules.MmiLPacket.Value = totalSizeCounter;
+            // Set the total length of the packet (adding MMI_M_BUTTONS length)
+            _pool.SITR.ETCS1.CurrentSrRules.MmiLPacket.Value = Convert.ToUInt16((int)totalSizeCounter + 8);
 
             _pool.SITR.SMDCtrl.ETCS1.CurrentSrRules.Value = 0x09;
         }
@@ -135,7 +135,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// 255 = "no button"
         /// Note: the definition is according to preliminary SubSet-121 'M_BUTTONS' definition.
         /// </summary>
-        public static ushort MMI_M_BUTTONS
+        public static Variables.MMI_M_BUTTONS MMI_M_BUTTONS
         {
             set => _pool.SITR.ETCS1.CurrentSrRules.MmiMButtons.Value = (byte) value;
         }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Collections;
+using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
 using Testcase.Telegrams.EVCtoDMI;
 
@@ -41,21 +42,21 @@ namespace Testcase.Telegrams.DMItoEVC
                 if (mmiMActiveCabinElement == mActiveCabin)
                 {
                     // Check MMI_M_ACTIV_CABIN value
-                    _bResult = _mmiMActiveCabin.Equals(mActiveCabin);
+                    _bResult = _mmiMActiveCabin.Equals((byte)mActiveCabin);
                     break;
                 }
             }
 
             if (_bResult) //if check passes
             {
-                _pool.TraceReport("DMI->ETCS: EVC-102 [MMI_STATUS_REPORT.MMI_M_ACTIVE_CABIN] = " + mActiveCabin +
+                _pool.TraceReport("DMI->ETCS: EVC-102 [MMI_STATUS_REPORT.MMI_M_ACTIVE_CABIN] = " + (byte)mActiveCabin +
                     " - \"" + mActiveCabin.ToString() + "\" PASSED.");
             }
             else // else display the real value extracted from EVC-102 [MMI_STATUS_REPORT.MMI_M_ACTIVE_CABIN] 
             {
                 _pool.TraceError("DMI->ETCS: Check EVC-102 [MMI_STATUS_REPORT.MMI_M_ACTIVE_CABIN] = " +
                     _mmiMActiveCabin + " - \"" +
-                    Enum.GetName(typeof(Variables.MMI_M_ACTIVE_CABIN), _mmiMActiveCabin) + "\" FAILED.");
+                    Enum.GetName(typeof(Variables.MMI_M_ACTIVE_CABIN), (byte)_mmiMActiveCabin) + "\" FAILED.");
             }
         }
 
@@ -68,24 +69,25 @@ namespace Testcase.Telegrams.DMItoEVC
                 if (mmiMModeReadBackElement == mModeReadBack)
                 {
                     // Check MMI_M_MODE_READBACK value
-                    
-                    _pool.TraceInfo("Test - Expected: " + (byte)mModeReadBack + " , Measured: "
+                    _pool.TraceInfo("Atomic.WairForContition test: ");
+                    _pool.SITR.CCUO.ETCS1StatusReport.MmiMModeReadback.Atomic.WaitForCondition(Is.Equal, (byte)_mModeReadBack, 5000);
+                    _pool.TraceInfo("_bResult test -> Expected: " + (byte)mModeReadBack + " , Measured: "
                         + _pool.SITR.CCUO.ETCS1StatusReport.MmiMModeReadback.Value);
-                    _bResult = _pool.SITR.CCUO.ETCS1StatusReport.MmiMModeReadback.Value.Equals((byte)mModeReadBack);
+                    _bResult = _pool.SITR.CCUO.ETCS1StatusReport.MmiMModeReadback.Value.Equals((byte)mModeReadBack);                    
                     break;
                 }
             }
             
             if (_bResult) //if check passes
             {
-                _pool.TraceReport("DMI->ETCS: EVC-102 [MMI_STATUS_REPORT.MMI_M_MODE_READBACK] = " + mModeReadBack +
+                _pool.TraceReport("DMI->ETCS: EVC-102 [MMI_STATUS_REPORT.MMI_M_MODE_READBACK] = " + (byte)mModeReadBack +
                     " - \"" + mModeReadBack.ToString() + "\" PASSED.");
             }
             else // else display the real value extracted from EVC-102 [MMI_STATUS_REPORT.MMI_M_MODE_READBACK] 
             {
                 _pool.TraceError("DMI->ETCS: Check EVC-102 [MMI_STATUS_REPORT.MMI_M_MODE_READBACK] = " + 
                     _pool.SITR.CCUO.ETCS1StatusReport.MmiMModeReadback.Value + " - \"" + 
-                    Enum.GetName(typeof(MMI_M_MODE_READBACK), _pool.SITR.CCUO.ETCS1StatusReport.MmiMModeReadback.Value ) +
+                    Enum.GetName(typeof(MMI_M_MODE_READBACK), (byte)_pool.SITR.CCUO.ETCS1StatusReport.MmiMModeReadback.Value ) +
                     "\" FAILED.");
             }
         }
