@@ -51,7 +51,7 @@ namespace Testcase.DMITestCases
             // Post-conditions from TestSpec
             // DMI displays in OS mode, Level 1.
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in PT mode, Level 1.");
+                                "1. DMI displays in OS mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
