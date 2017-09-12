@@ -351,6 +351,32 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
+        /// Description: L0 acknowledgement request sent to the driver
+        /// Used in:
+        ///     Step 1 in TC-ID: 15.1.4 in 20.1.4
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Send_L0(SignalPool pool)
+        {
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L0;
+        }
+
+        /// <summary>
+        /// Description: Level 0 announcement ack request sent to the driver
+        /// Used in:
+        ///     Step 1 in TC-ID: 15.1.4 in 20.1.4
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Send_L0_Announcement_Ack(SignalPool pool)
+        {
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 257;     // "#3 LE07/LE11/LE13/LE15 (Ack Transition to Level #4)"
+            EVC8_MMIDriverMessage.Send();
+        }
+
+        /// <summary>
         /// Description: SB mode sent to be displayed on th DMI
         /// Used in:
         ///     Step 1 in TC-ID: 15.1.1 in 20.1.1
@@ -447,6 +473,30 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
             EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 259;     // "#3 MO08 (Ack On Sight Mode)"
+            EVC8_MMIDriverMessage.Send();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Send_LS_Mode(SignalPool pool)
+        {
+
+        }
+
+        /// <summary>
+        /// Description: Limited Supervision mode acknowledgement request sent to the driver
+        /// Used in:
+        ///     Step 1 in TC-ID: 15.1.6 in 20.1.6
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Send_LS_Mode_Ack(SignalPool pool)
+        {
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 709;     // "#3 MO22 (Ack for Limited Supervision)"
             EVC8_MMIDriverMessage.Send();
         }
 
@@ -1382,7 +1432,7 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void Drive_train_forward_passing_BG2(SignalPool pool)
         {
-            throw new NotImplementedException();
+            
         }
 
         /// <summary>

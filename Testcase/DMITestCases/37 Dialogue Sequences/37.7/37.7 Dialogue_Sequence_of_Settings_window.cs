@@ -588,9 +588,6 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press the ‘Settings’ button");
 
-            //EVC101_MMIDriverRequest. ?? empty packet
-            //EVC122  ?? empty packet
-            
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window." + Environment.NewLine +
                                 "2. The ‘Language’ button is enabled." + Environment.NewLine +
