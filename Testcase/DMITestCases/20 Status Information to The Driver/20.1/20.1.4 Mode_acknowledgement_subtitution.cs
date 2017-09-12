@@ -33,7 +33,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 15_1_4.tdg
     /// </summary>
-    public class Mode_acknowledgement_subtitution : TestcaseBase
+    public class TC_15_1_4_ETCS_Mode_Symbols : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -41,6 +41,7 @@ namespace Testcase.DMITestCases
             // System is power ON.SoM is perform in SR mode, Level 1.
 
             // Call the TestCaseBase PreExecution
+            DmiActions.Complete_SoM_L1_SR(this);
             base.PreExecution();
         }
 
@@ -57,38 +58,65 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
+            #region Test Step 1
             /*
             Test Step 1
-            Action: Drive the train forward passing BG1.Then, press an area C1 for acknowledgement
+            Action: Drive the train forward passing BG1.
+            Then, press an area C1 for acknowledgement
             Expected Result: DMI displays LE07 symbol in sub-area C1
             */
 
+            DmiActions.Send_L0_Announcement_Ack(this);
+            DmiExpectedResults.L0_Announcement_Ack_Requested(this);
 
+            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
+                                "1. Press DMI Sub Area C1." + Environment.NewLine +
+                                "2. Press OK on THIS window within 3 seconds.");
+            DmiExpectedResults.L0_Announcement_Ack_pressed_and_released(this);
+
+            #endregion
+
+            #region Test Step 2
             /*
             Test Step 2
             Action: Continue to drive the train forward pass BG2.Then, stop the train
-            Expected Result: DMI displays in FS mode, Level 1.Verify the following information,(1)   The symbol MO08 is displayed for On sight acknowledegement in sub-area C1
+            Expected Result: DMI displays in FS mode, Level 1.
+            Verify the following information,
+            (1)   The symbol MO08 is displayed for On sight acknowledegement in sub-area C1
             Test Step Comment: (1) MMI_gen 11234 (partly: subtituted);
             */
 
+            DmiActions.Send_OS_Mode_Ack(this);
+            DmiExpectedResults.OS_Mode_Ack_Requested(this);
+            WaitForVerification("Has the LE06 symbol disappeared and been replaced with MO08 symbol in sub-area C1?");
 
+            #endregion
+
+            #region Test Step 3
             /*
             Test Step 3
             Action: Press an area C1 for acknowledgement
-            Expected Result: Verify the following information,(1)   The symbol MO08 is disappear and DMI displays LE07 symbol instead
+            Expected Result: Verify the following information,
+            (1)   The symbol MO08 is disappear and DMI displays LE07 symbol instead
             Test Step Comment: (1) MMI_gen 11234 (partly: driver acknowledge);
             */
-            // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press an area C1 for acknowledgement");
 
+            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
+                                "1. Press DMI Sub Area C1." + Environment.NewLine +
+                                "2. Press OK on THIS window within 3 seconds.");
+            DmiExpectedResults.OS_Mode_Ack_pressed_and_released(this);
+            WaitForVerification("Is the LE06 symbol displayed in sub-area C1?");
 
+            #endregion
+
+            #region Test Step 4
             /*
             Test Step 4
             Action: End of test
             Expected Result: 
             */
 
+            #endregion
 
             return GlobalTestResult;
         }

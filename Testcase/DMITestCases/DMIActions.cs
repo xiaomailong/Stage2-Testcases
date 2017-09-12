@@ -351,6 +351,32 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
+        /// Description: L0 acknowledgement request sent to the driver
+        /// Used in:
+        ///     Step 1 in TC-ID: 15.1.4 in 20.1.4
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Send_L0(SignalPool pool)
+        {
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L0;
+        }
+
+        /// <summary>
+        /// Description: Level 0 announcement ack request sent to the driver
+        /// Used in:
+        ///     Step 1 in TC-ID: 15.1.4 in 20.1.4
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Send_L0_Announcement_Ack(SignalPool pool)
+        {
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 257;     // "#3 LE07/LE11/LE13/LE15 (Ack Transition to Level #4)"
+            EVC8_MMIDriverMessage.Send();
+        }
+
+        /// <summary>
         /// Description: SB mode sent to be displayed on th DMI
         /// Used in:
         ///     Step 1 in TC-ID: 15.1.1 in 20.1.1
