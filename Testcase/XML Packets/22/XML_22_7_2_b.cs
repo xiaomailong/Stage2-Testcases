@@ -22,9 +22,9 @@ using Testcase.Telegrams.EVCtoDMI;
 namespace Testcase.XML
 {
     /// <summary>
-    /// Values of 22.7.1.b.xml file
+    /// Values of 22.7.2.b.xml file
     /// </summary>
-    static class XML_22_7_1_b
+    static class XML_22_7_2_b
     {
         private static SignalPool _pool;
 
@@ -38,8 +38,8 @@ namespace Testcase.XML
             //EVC13.MMI_X_DRIVER_ID[2] = 825373492;
             //EVC13.MMI_X_DRIVER_ID[3] = 909588537;
 
-            //EVC13.MMI_M_DATA_ENABLE = 0x7f00;               // 32512
-            //EVC13.MMI_N_CAPTION_TRAINSET = "ABCDEFGHIJKL";         
+            //EVC13.MMI_M_DATA_ENABLE = 0xff00;               // 65280
+            //EVC13.MMI_N_CAPTION_TRAINSET = "ABCDEFGHIJKL";  
             //EVC13.MMI_X_CAPTION_NETWORK = "ABCDEFGHIJKLMNOP";
 
             //EVC13.MMI_NID_RADIO[0] = 0x99999999;          // 2576980377

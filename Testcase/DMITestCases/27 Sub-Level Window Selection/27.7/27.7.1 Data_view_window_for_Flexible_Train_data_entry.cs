@@ -34,7 +34,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 22_7_1_a.xml, 22_7_1_b.xml
     /// </summary>
-    public class TC_ID_27_7_1_Data_View_Window : TestcaseBase
+    public class TC_ID_27_7_1_Sub_Level_Window : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -93,13 +93,13 @@ namespace Testcase.DMITestCases
                                 "6. Text in the data view has a Label Part, right-aligned, and a Data Part, left-aligned." + Environment.NewLine +
                                 "7. Data View text is grey" + Environment.NewLine +
                                 "8. Different topics such as Train running number and Train data entry are separated by an empty line." + Environment.NewLine +
-                                "9. The Data Part only displays only valid values." +
+                                "9. Data Parts only display valid values." +
                                 "10. The window title is labelled with text ‘Data view(1/2)’." + Environment.NewLine +
                                 "11. DMI displays the information about the following: DriverID, Train running number, Train category, Length(m), Brake percentage, " + Environment.NewLine +
                                 "12. Maximum speed(km/h), Axle load category, Airtight" + Environment.NewLine +
                                 "13. DMI displays the ‘Enabled Close’ button (symbol NA11), the ‘Disabled Previous’ button (symbol NA19) and the ‘Enabled Next’ button (symbol NA17)." + Environment.NewLine +
-                                "14. Objects, text messages and buttons can be displayed in several levels. Within a level they are allocated to levels." + Environment.NewLine +
-                                "15. objects, text messages and buttons in a layer form a window." + Environment.NewLine +
+                                "14. Objects, text messages and buttons can be displayed in several levels. Within a level they are allocated to areas." + Environment.NewLine +
+                                "15. Objects, text messages and buttons in a layer form a window." + Environment.NewLine +
                                 "16. The Default window does not cover the current window." + Environment.NewLine +
                                 "17. A sub-level window can partially cover another window, depending on its size. Another window cannot be displayed and activated at the same time.");
             
@@ -149,9 +149,10 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Release the ‘Next’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the next page of the Train data." + Environment.NewLine +
-                                "2. The data view items ‘RBC ID’, ‘RBC phone number’, ‘VBC set code’ (if any) are displayed correctly." + Environment.NewLine +
-                                @"3. The ‘Next’ button is disabled (DMI displays symbol NA18.2)." + Environment.NewLine +
+                                @"1. DMI displays the next page of the Train data with the window title being displayed with the text ‘Data view (2/2)’." + Environment.NewLine +
+                                @"2. The data view items ‘RBC ID’, ‘RBC phone number’, ‘VBC set code’ (if any) are displayed correctly." + Environment.NewLine +
+                                @"3. The data part of the RBC phone number is displayed on two lines." + Environment.NewLine +
+                                @"5. The ‘Next’ button is disabled (DMI displays symbol NA18.2)." + Environment.NewLine +
                                 @"4. The ‘Previous’ button is enabled (DMI displays symbol NA18).");
 
             /*
@@ -190,7 +191,7 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following (scrolling the window to see both pages):" + Environment.NewLine + Environment.NewLine +
                                 "1. On page 1, DMI displays information on Driver ID and Train running number with blank values." + Environment.NewLine +
-                                "2. On page 2, DMI displays information on Driver ID and Train running number with blank values.");
+                                "2. On page 2, DMI displays information on Radio Network ID and RBC Phone Number with blank values.");
             /*
             Test Step 8
             Action: Use the test script file 22_7_1_b.xml to send EVC-13 with,MMI_X_DRIVER_ID = 0x31323334363738393132333436373839MMI_M_DATA_ENABLE = 254MMI_N_CAPTION_NETWORK = 16MMI_X_CAPTION_TRAINSET[0] = 65MMI_X_CAPTION_TRAINSET[1] = 66MMI_X_CAPTION_TRAINSET[2] = 67MMI_X_CAPTION_TRAINSET[3] = 68MMI_X_CAPTION_TRAINSET[4] = 69MMI_X_CAPTION_TRAINSET[5] = 70MMI_X_CAPTION_TRAINSET[6] = 71MMI_X_CAPTION_TRAINSET[7] = 72MMI_X_CAPTION_TRAINSET[8] = 73MMI_X_CAPTION_TRAINSET[9] = 74MMI_X_CAPTION_TRAINSET[10] = 75MMI_X_CAPTION_TRAINSET[11] = 76MMI_X_CAPTION_TRAINSET[12] =77MMI_X_CAPTION_TRAINSET[13] = 78MMI_X_CAPTION_TRAINSET[14] = 79MMI_X_CAPTION_TRAINSET[15] = 80MMI_NID_RADIO = 0x9999999999999999

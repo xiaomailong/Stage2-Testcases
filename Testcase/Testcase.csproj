@@ -587,6 +587,8 @@ if exist "$(TargetPath)" if not exist "$(TargetPath).locked" move "$(TargetPath)
     <Compile Include="XML Packets\15\XML_15_6_2_j.cs" />
     <Compile Include="XML Packets\22\XML_22_7_1_a.cs" />
     <Compile Include="XML Packets\22\XML_22_7_1_b.cs" />
+    <Compile Include="XML Packets\22\XML_22_7_2_a.cs" />
+    <Compile Include="XML Packets\22\XML_22_7_2_b.cs" />
     <Compile Include="XML Packets\2\XML_2_5_1_a.cs" />
     <Compile Include="XML Packets\2\XML_2_6_a.cs" />
     <Compile Include="XML Packets\5\XML_5_10_a.cs" />
