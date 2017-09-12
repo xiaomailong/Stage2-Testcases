@@ -165,8 +165,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press ‘Set VBC’ button");
-
-            // EVC18MMI_SetVBC.Send(this);         // ??
+            
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                "1. DMI displays the Set VBC window." + Environment.NewLine +
                                "2. The Set VBC window displays its contents as Input Fields.");
