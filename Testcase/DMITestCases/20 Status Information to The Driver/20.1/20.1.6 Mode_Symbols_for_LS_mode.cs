@@ -25,7 +25,7 @@ namespace Testcase.DMITestCases
     /// Tested Requirements:
     /// MMI_gen 11084 (partly: current ETCS mode); MMI_gen 110 (partly: MO21); MMI_gen 9436; MMI_gen 10489 (partly: LS mode, nevertheless evaluated, FS mode, OS mode); MMI_gen 9971; MMI_gen 9440; MMI_gen 9441; MMI_gen 9442; MMI_gen 1227 (partly: MO22); MMI_gen 11233 (partly: MO22); MMI_gen 11470 (partly: Bit # 13);
     /// 
-    /// Scenario:
+    /// Scenario: 
     /// Drive the train forward pass BG1 at position 100m.Then, verify the display information of MO22 symbol, MO21 symbol, LS01 symbol and the LSSMA.BG1: Packet 12, 21, 27 and 80 (Entering LS)Drive the train forward pass position 250m. After entered FS mode, verify that there is no LSSMA display on DMI.Drive the train forward pass BG2 at position 400m. Then, verify that  DMI updates LSSMA refer to the last received packet EVC-23 for OS mode.BG2: Packet 12, 21, 27 and 80 (Entering OS)
     /// 
     /// Used files:
@@ -39,7 +39,9 @@ namespace Testcase.DMITestCases
             // Test system is powered onSoM is performed in SR mode, Level 1.
 
             // Call the TestCaseBase PreExecution
+            
             base.PreExecution();
+            DmiActions.Complete_SoM_L1_SR(this);
         }
 
         public override void PostExecution()
@@ -55,16 +57,19 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
+            #region Test Step 1
             /*
             Test Step 1
             Action: Drive the train forward passing BG1
             Expected Result: Verify the following information,The symbol MO22 is displayed for Limited Supervision acknowledegement in sub-area C1.Use the log file to confirm that DMI receives packet information EVC-8 with the following value,MMI_Q_TEXT = 709MMI_Q_TEXT_CRITERIA = 1
             Test Step Comment: (1) MMI_gen 1227 (partly: MO22);                                          (2) MMI_gen 11233 (partly: MO22);
             */
-            // Call generic Action Method
+
             DmiActions.Drive_train_forward_passing_BG1(this);
 
+            DmiActions.Send_LS_Mode_Ack(this);
+
+            #endregion
 
             /*
             Test Step 2
