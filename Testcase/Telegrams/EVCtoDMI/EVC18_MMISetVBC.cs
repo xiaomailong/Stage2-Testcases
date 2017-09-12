@@ -11,10 +11,10 @@ using CL345;
 namespace Testcase.Telegrams.EVCtoDMI
 {
     /// <summary>
-    /// This packet is sent sporadically from ETC when the 'Set VBC' procedure is ongoing
-    /// and is intended to support the following use cases:
+    /// This packet is sent sporadically from ETC when the 'Set VBC' procedure
+    /// is ongoing and is intended to support the following use cases:
     /// 1. Prompt the driver to enter a VBC code
-    /// 2. Display/change echo text after data checks have been performed by ETC;
+    /// 2. Display/change echo text after data checks have been performed by EVC;
     ///     this also includes control over the allowed driver actions in case some data check has failed
     /// It also gives the ETC the ability to control the status/type of the "Yes" button,
     ///     if specified by functional requirements for ETC and DMI.
@@ -24,10 +24,15 @@ namespace Testcase.Telegrams.EVCtoDMI
     public static class EVC18_MMISetVBC
     {
         private static SignalPool _pool;
+        private static uint _nidVbcmk;
+        private static uint _tVbc;
+        private static string _echoText;
+
+        private static string Basestring = "ETCS1_SetVbc_EVC18SetVbcSub10";
 
         /// <summary>
         /// Initialise EVC-18 MMI_Set_VBC telegram
-        /// VBC = Virtual Balise Cover
+        /// (VBC = Virtual Balise Cover)
         /// </summary>
         /// <param name="pool"></param>
         public static void Initialise(SignalPool pool)
@@ -36,7 +41,7 @@ namespace Testcase.Telegrams.EVCtoDMI
 
             // Set default values
             _pool.SITR.ETCS1.SetVbc.MmiMPacket.Value = 18; // Packet ID
-            VBCList = new List<VBCElement>();
+            MMI_N_VBC = 0;
         }
 
         /// <summary>
@@ -44,10 +49,60 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static void Send()
         {
-            ushort numberOfVbc = (ushort)VBCList.Count;
+            if (MMI_N_VBC == 0)
+            {
+                // Set fixed packet size
+                _pool.SITR.ETCS1.SetVbc.MmiLPacket.Value = 64;
 
-            // Initial packet size
-            ushort totalSizeCounter = 64;
+                // Send non-dynamic packet to display Set VBC screen
+                _pool.SITR.SMDCtrl.ETCS1.SetVbc.Value = 1;
+            }
+
+            else
+            {
+                // Set packet size
+                ushort totalSizeCounter = 128;
+
+                // Echo Text array
+                var echoText = _echoText.ToCharArray();
+                int numberOfEchoTextCharacters = echoText.Length;
+
+                // Set number of characters as per Echo Text
+                _pool.SITR.Client.Write(Basestring + "_MmiNText", numberOfEchoTextCharacters);
+
+                for (int k = 0; k < numberOfEchoTextCharacters; k++)
+                {
+                    // Write individual Echo Text characters to signal pool
+                    _pool.SITR.Client.Write($"{Basestring}_EVC18SetVbcSub11{k}", echoText[k]);
+
+                    // Increase packet size for each character in Echo Text
+                    totalSizeCounter += 8;
+                }
+
+                // Set final packet size
+                _pool.SITR.ETCS1.SetVbc.MmiLPacket.Value = totalSizeCounter;
+
+                // Send dynamic packet.
+                _pool.SITR.SMDCtrl.ETCS1.SetVbc.Value = 0x09;
+            }
+            
+        }
+
+        /// <summary>
+        /// VBC Identifier Code
+        /// 
+        /// Values:
+        /// Bits:
+        /// 0..9 = "NID_C"
+        /// 10..15 = "NID_VBCMK"
+        /// 16..23 = "T_VBC"
+        /// 24..31 = "spare"
+        /// </summary>
+        public static void SetVBCCode()
+        {
+            var vbcCoverCode = _tVbc << 15 | _nidVbcmk << 9 | Variables.NidC;
+
+            _pool.SITR.Client.Write(Basestring + "_MmiVbcCode", vbcCoverCode);
         }
 
         /// <summary>
@@ -55,7 +110,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// 
         /// Values:
         /// 0 = Prompt driver to enter VBC code
-        /// 1 = Display/change echo text after data checks have been performed by ETC
+        /// 1 = Display/change echo text after data checks have been performed by EVC
         /// </summary>
         public static ushort MMI_N_VBC
         {
@@ -63,6 +118,86 @@ namespace Testcase.Telegrams.EVCtoDMI
 
             set => _pool.SITR.ETCS1.SetVbc.MmiNVbc.Value = value;
         }
+
+        /// <summary>
+        /// Set the VBC marker number
+        /// 
+        /// Valid values:
+        /// 0..63
+        /// </summary>
+        public static byte NID_VBCMK
+        {
+            set
+            {
+                if (value > 63)
+                {
+                    throw new ArgumentOutOfRangeException("NID_VBCMK", "Virtual Balise Cover marker must be less than 64.");
+                }
+
+                else
+                {
+                    _nidVbcmk = value;
+                    SetVBCCode();
+                }            
+            }
+        }
+
+        /// <summary>
+        /// Set the Q_Data_Check parameter of the VBC.
+        /// 
+        /// Values:
+        /// 0 = "All checks have passed"
+        /// 1 = "Technical Range Check failed"
+        /// 2 = "Technical Resolution Check failed"
+        /// 3 = "Technical Cross Check failed"
+        /// 4 = "Operational Range Check failed"
+        /// 5 = "Operational Cross Check failed"
+        /// </summary>
+        public static Variables.Q_DATA_CHECK MMI_Q_DATA_CHECK
+        {
+            set
+            {
+                _pool.SITR.Client.Write(Basestring + "_MmiQDataCheck", (byte)value);
+            }
+        }
+
+        /// <summary>
+        /// Set the VBC Echo text
+        /// 
+        /// Note: Maximum of 10 characters only.
+        /// </summary>
+        public static string ECHO_TEXT
+        {
+            get => _echoText;
+
+            set
+            {
+                if (value.Length > 10)
+                {
+                    throw new ArgumentException("VBC Echo text must be 10 characters or less.");
+                }
+
+                else
+                {
+                    _echoText = value;
+                }         
+            }
+        }
+
+        /// <summary>
+        /// Set the VBC validity time
+        /// 
+        /// Values:
+        /// 0..255 days
+        /// </summary>
+        public static byte T_VBC
+        {
+            set
+            {
+                _tVbc = value;
+                SetVBCCode();
+            }
+        }     
 
         /// <summary>
         /// Intended to be used to distinguish between:
@@ -78,24 +213,14 @@ namespace Testcase.Telegrams.EVCtoDMI
             set => _pool.SITR.ETCS1.SetVbc.MmiMButtons.Value = (byte)value;
         }
 
-        /// <summary>
-        /// List of VBCs
-        /// </summary>
-        public static List<VBCElement> VBCList { get; set; }
     }
 
     /// <summary>
-    /// VBC data to be displayed or verified by the EVC.
+    /// MMI_M_Buttons for EVC-18 enum
     /// </summary>
-    public class VBCElement
-    {
-        public static int Identifier { get; set; }      // VBC Identifier
-        public static byte QDataCheck { get; set; }     // Result of data check
-        public static string EchoText { get; set; }     // Echo text of data
-    }
-
     public enum EVC18BUTTONS : byte
     {
+        BTN_SETTINGS = 4,
         BTN_YES_DATA_ENTRY_COMPLETE = 36,
         BTN_YES_DATA_ENTRY_COMPLETE_DELAY_TYPE = 37,
         NoButton = 255

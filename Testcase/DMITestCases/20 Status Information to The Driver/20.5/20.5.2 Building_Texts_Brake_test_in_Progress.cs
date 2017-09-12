@@ -13,6 +13,8 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.EVCtoDMI;
+
 
 // TODO This test case requires config file changes and other languages. Suggest to leave until later.
 
@@ -56,6 +58,8 @@ namespace Testcase.DMITestCases
         {
             // Post-conditions from TestSpec
             // DMI displays in SN mode, Level STM-ATB.
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SN mode, Level STM-ATB.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -70,8 +74,18 @@ namespace Testcase.DMITestCases
             Action: Power on the system and activate cabin
             Expected Result: DMI displays the Driver ID window
             */
-            // Call generic Action Method
-            
+            EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.GoToIdle;
+            EVC0_MMIStartATP.Send();
+
+            // Set train running number, cab 1 active, and other defaults
+            DmiActions.Activate_Cabin_1(this);
+
+            // In SoM, ERA_ERTMS says the driver ID button is pressed to display the window 
+            DmiActions.ShowInstruction(this, "Press the ‘Driver ID’ button");
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the Driver ID window.");
+
             /*
             Test Step 2
             Action: Enter and confirm Driver ID. Then perform brake test
@@ -79,12 +93,19 @@ namespace Testcase.DMITestCases
                             since the text is replaced with Russian character code language
             Test Step Comment: MMI_gen 3722 (partly:ETCS)
             */
+            DmiActions.ShowInstruction(this, "Enter and confirm the Driver ID. Perform brake test");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI does not display the message ‘Brake Test in Progress’ because the display text is Russian and English is the current language.");
             /*
             Test Step 3
             Action: Select ATB STM and complete Start of Mission
             Expected Result: DMI displays in SN mode, Level STM-ATB
             */
+            DmiActions.ShowInstruction(this, "Select level ATB STM and complete Start of Mission");
+
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.LNTC;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.NationalSystem;
 
             /*
             Test Step 4
@@ -93,7 +114,11 @@ namespace Testcase.DMITestCases
                             since the text is replaced with Russian character code language
             Test Step Comment: MMI_gen 3722 (partly:NTC)
             */
+            DmiActions.ShowInstruction(this, "Press settings menu then press the ‘Test’ button in the Brake window to start the brake test");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI does not display the message ‘Brake Test in Progress’ because the display text is Russian and English is the current language.");
+            
             /*
             Test Step 5
             Action: End of test
