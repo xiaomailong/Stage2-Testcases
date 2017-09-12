@@ -5,7 +5,7 @@ using System.Text;
 using System.Collections;
 using CL345;
 using Testcase.Telegrams.EVCtoDMI;
-
+using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 
 namespace Testcase.Telegrams.DMItoEVC
 {
@@ -52,8 +52,12 @@ namespace Testcase.Telegrams.DMItoEVC
                         if (mmiQButtonElement == qButton)
                         {
                             // Double check: MMI_M_REQUEST & MMI_Q_BUTTON values
-                            _bResult = (_pool.SITR.CCUO.ETCS1DriverRequest.MmiMRequest.Value.Equals(mRequest)) &&
-                                (_mmiQButton.Equals(_bqButton));
+                            //_bResult = (_pool.SITR.CCUO.ETCS1DriverRequest.MmiMRequest.Value.Equals(mRequest)) &&
+                               // (_mmiQButton.Equals(_bqButton));
+                            var list = new List<Atomic>();
+                            list.Add(_pool.SITR.CCUO.ETCS1DriverRequest.MmiMRequest.Atomic.WaitForCondition(Is.Equal, (byte)mRequest));
+                            list.Add(_pool.SITR.CCUO.ETCS1DriverRequest.EVC101alias1.Atomic.WaitForCondition(Is.Equal, Convert.ToByte((byte)qButton * 128)));
+                            _bResult = _pool.WaitForConditionAtomic(list, 5000, 20);
                             break;
                         }
                     }
