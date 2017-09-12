@@ -59,6 +59,31 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
+        /// Description: Level 0 acknowledgement is requested on DMI area C1
+        /// Used in:
+        ///     Step 1 in TC-ID: 15.1.4 in 20.1.4
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void L0_Announcement_Ack_Requested(SignalPool pool)
+        {
+            Driver_symbol_displayed(pool, "Acknowledgement for Level 0", "LE07", "C1", true);
+        }
+
+        /// <summary>
+        /// Description: Level 0 Acknowledgement symbol on DMI area C1 is pressed and released.
+        /// Used in:
+        ///     Step 1 in TC-ID: 15.1.4 in 20.1.4
+        /// </summary>
+        public static void L0_Announcement_Ack_pressed_and_released(SignalPool pool)
+        {
+            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
+            //pool.Wait_Realtime(100);
+            //EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
+            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.Level0Ack;
+            pool.WaitForVerification("Has the LE07 symbol disappeared and been replaced with LE06 symbol in sub-area C1?");
+        }
+
+        /// <summary>
         /// Description: OS Mode acknowledgement is requested on DMI area C1
         /// Used in:
         ///     Step 11 in TC-ID: 15.1.3 in 20.1.3
@@ -76,8 +101,8 @@ namespace Testcase.DMITestCases
         public static void OS_Mode_Ack_pressed_and_released(SignalPool pool)
         {
             EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
-            pool.Wait_Realtime(100);
-            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
+            //pool.Wait_Realtime(100);
+            //EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.OnSightModeAck;
             pool.WaitForVerification("Has the MO08 symbol disappeared from sub-area C1?");
         }
