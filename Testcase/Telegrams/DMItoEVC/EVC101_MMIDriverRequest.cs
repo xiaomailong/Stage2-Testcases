@@ -16,7 +16,7 @@ namespace Testcase.Telegrams.DMItoEVC
     public static class EVC101_MMIDriverRequest
     {
         private static SignalPool _pool;
-        private static bool _bResult;
+        private static bool _checkResult;
         private static Variables.MMI_M_REQUEST _mRequest;
 
         /// <summary>
@@ -54,10 +54,11 @@ namespace Testcase.Telegrams.DMItoEVC
                             // Double check: MMI_M_REQUEST & MMI_Q_BUTTON values
                             //_bResult = (_pool.SITR.CCUO.ETCS1DriverRequest.MmiMRequest.Value.Equals(mRequest)) &&
                                // (_mmiQButton.Equals(_bqButton));
+
                             var list = new List<Atomic>();
                             list.Add(_pool.SITR.CCUO.ETCS1DriverRequest.MmiMRequest.Atomic.WaitForCondition(Is.Equal, (byte)mRequest));
                             list.Add(_pool.SITR.CCUO.ETCS1DriverRequest.EVC101alias1.Atomic.WaitForCondition(Is.Equal, Convert.ToByte((byte)qButton * 128)));
-                            _bResult = _pool.WaitForConditionAtomic(list, 5000, 20);
+                            _checkResult = _pool.WaitForConditionAtomic(list, 5000, 20);
                             break;
                         }
                     }
@@ -66,7 +67,7 @@ namespace Testcase.Telegrams.DMItoEVC
                 }
             }
            
-            if (_bResult) // if check passes
+            if (_checkResult) // if check passes
             {
                 _pool.TraceReport("DMI->ETCS: EVC-101 [MMI_DRIVER_REQUEST] => " + mRequest +
                     " - \"" + mRequest.ToString() + "\" -> " + qButton.ToString() + " PASSED. TimeStamp = " + 
