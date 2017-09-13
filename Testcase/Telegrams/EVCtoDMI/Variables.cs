@@ -629,6 +629,43 @@ namespace Testcase.Telegrams.EVCtoDMI
             Level2 = 42,
             Level3 = 43,
             Level0 = 44
-        }      
+        }    
+        
+        public enum MMI_M_PULSE_PER_KM : uint
+        {
+            NoRadarOnBoard = 0,
+            TechnicalRangeCheckFailed = 4294967290,
+            TechnicalResolutionCheckFailed = 4294967291,
+            TechnicalCrossCheckFailed = 4294967292,
+            OperationalRangeCheckFailed = 4294967293,
+            OperationalCrossCheckFailed = 4294967294,
+            Reserved = 4294967295
+        }
+
+        public enum MMI_M_SDU_WHEEL_SIZE : ushort
+        {
+            TechnicalRangeCheckFailed = 65530,
+            TechnicalResolutionCheckFailed = 65531,
+            TechnicalCrossCheckFailed = 65532,
+            OperationalRangeCheckFailed = 65533,
+            OperationalCrossCheckFailed = 65534,
+            Reserved = 65535
+        }
+
+        public enum MMI_M_WHEEL_SIZE_ERR : byte
+        {
+            TechnicalRangeCheckFailed = 250,
+            TechnicalResolutionCheckFailed = 251,
+            TechnicalCrossCheckFailed = 252,
+            OperationalRangeCheckFailed = 253,
+            OperationalCrossCheckFailed = 254,
+            Reserved = 255
+        }
+
+        public enum MMI_Q_MD_DATASET : byte
+        {
+            WheelDiameter = 0,
+            Doppler = 1
+        }
     }
 }

@@ -41,8 +41,9 @@ namespace Testcase.DMITestCases
             // System is power ON.SoM is perform in SR mode, Level 1.
 
             // Call the TestCaseBase PreExecution
-            DmiActions.Complete_SoM_L1_SR(this);
+            
             base.PreExecution();
+            DmiActions.Complete_SoM_L1_SR(this);
         }
 
         public override void PostExecution()
@@ -66,6 +67,8 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays LE07 symbol in sub-area C1
             */
 
+            DmiActions.Drive_train_forward_passing_BG1(this);
+
             DmiActions.Send_L0_Announcement_Ack(this);
             DmiExpectedResults.L0_Announcement_Ack_Requested(this);
 
@@ -85,6 +88,8 @@ namespace Testcase.DMITestCases
             (1)   The symbol MO08 is displayed for On sight acknowledegement in sub-area C1
             Test Step Comment: (1) MMI_gen 11234 (partly: subtituted);
             */
+
+            DmiActions.Drive_train_forward_passing_BG2(this);
 
             DmiActions.Send_OS_Mode_Ack(this);
             DmiExpectedResults.OS_Mode_Ack_Requested(this);

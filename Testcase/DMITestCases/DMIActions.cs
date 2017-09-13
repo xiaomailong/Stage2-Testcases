@@ -477,6 +477,30 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Send_LS_Mode(SignalPool pool)
+        {
+
+        }
+
+        /// <summary>
+        /// Description: Limited Supervision mode acknowledgement request sent to the driver
+        /// Used in:
+        ///     Step 1 in TC-ID: 15.1.6 in 20.1.6
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Send_LS_Mode_Ack(SignalPool pool)
+        {
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 709;     // "#3 MO22 (Ack for Limited Supervision)"
+            EVC8_MMIDriverMessage.Send();
+        }
+
+        /// <summary>
         /// Description: TR mode sent to be displayed on th DMI
         /// Used in:
         ///     Step 6 in TC-ID: 15.1.1 in 20.1.1
@@ -1408,7 +1432,7 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void Drive_train_forward_passing_BG2(SignalPool pool)
         {
-            throw new NotImplementedException();
+            
         }
 
         /// <summary>
