@@ -77,8 +77,8 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press ‘Wheel diameter’ button");
 
-            //EVC40_MMICurrentMaintenanceData.MMI_Q_MD_DATASET = 0;
-            //EVC40_MMICurrentMaintenanceData.Send(this);
+            EVC40_MMICurrentMaintenanceData.MMI_Q_MD_DATASET = Variables.MMI_Q_MD_DATASET.WheelDiameter;
+            EVC40_MMICurrentMaintenanceData.Send(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                "1. DMI displays the Wheel Diameter window." + Environment.NewLine +
@@ -122,8 +122,8 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press ‘Radar’ button");
 
-            //EVC40_MMICurrentMaintenanceData.MMI_Q_MD_DATASET = 0;
-            //EVC40_MMICurrentMaintenanceData.Send(this);
+            EVC40_MMICurrentMaintenanceData.MMI_Q_MD_DATASET = Variables.MMI_Q_MD_DATASET.WheelDiameter;
+            EVC40_MMICurrentMaintenanceData.Send(this);
             
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                "1. DMI displays the Radar window." + Environment.NewLine +
