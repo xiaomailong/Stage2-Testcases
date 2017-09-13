@@ -156,7 +156,7 @@ namespace Testcase.DMITestCases
             
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                "1. DMI displays the Settings window.");
-            
+
             /*
             Test Step 7
             Action: Press ‘Set VBC’ button
@@ -164,6 +164,9 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 3226 (partly: Set VBC Data Entry);(2)  MMI_gen 3390 (partly: Set VBC Data entry);
             */
             // Call generic Action Method
+            EVC18_MMISetVBC.MMI_N_VBC = 0;
+            EVC18_MMISetVBC.Send();
+
             DmiActions.ShowInstruction(this, @"Press ‘Set VBC’ button");
             
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -209,7 +212,8 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Press ‘Remove VBC’ window");
 
-            //EVC19_MMIRemoveVBC.Send(this);   // ??
+            EVC19_MMIRemoveVBC.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_VBC.BTN_SETTINGS;
+            EVC19_MMIRemoveVBC.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                "1. DMI displays the Remove VBC window." + Environment.NewLine +
