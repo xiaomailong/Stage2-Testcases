@@ -256,11 +256,11 @@ namespace Testcase.DMITestCases
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.OnSight;
 
             // Need to send EVC8 with MO08 to get an acknowledgement symbol displayed??
-            //EVC8_MMIDriverMessage.MMI_I_TEXT = 4;
-            //EVC8_MMIDriverMessage.MMI_I_TEXT_CRITERIA = 3;
-            //EVC8_MMIDriverMessage.MMI_Q_TEXT = 259;
-            //EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
-            //EVC8_MMIDriverMessage.Send();
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 4;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 259;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.Send();
 
             DmiActions.ShowInstruction(this, "Acknowledge OS mode by pressing in sub-area C1");
 
@@ -311,11 +311,11 @@ namespace Testcase.DMITestCases
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.LimitedSupervision;
 
             // Need to send EVC8 with MO22 to get an acknowledgement symbol displayed??
-            //EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
-            //EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
-            //EVC8_MMIDriverMessage.MMI_I_TEXT = 4;
-            //EVC8_MMIDriverMessage.MMI_Q_TEXT = 709;
-            //EVC8_MMIDriverMessage.Send();
+           EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+           EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
+           EVC8_MMIDriverMessage.MMI_I_TEXT = 4;
+           EVC8_MMIDriverMessage.MMI_Q_TEXT = 709;
+           EVC8_MMIDriverMessage.Send();
 
             DmiActions.ShowInstruction(this, "Acknowledge by pressing in sub-area C1");
 
