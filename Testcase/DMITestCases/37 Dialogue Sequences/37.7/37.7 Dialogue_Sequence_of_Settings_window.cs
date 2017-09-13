@@ -602,10 +602,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press the ‘Language’ button");
-
-            //EVC101_MMIDriverRequest. ?? empty packet
-            //EVC122  ?? empty packet
-
+            
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Language window." + Environment.NewLine +
                                 "2. The ‘Close’ button is enabled.");
@@ -628,10 +625,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press ‘Brightness’ button");
-
-            //EVC101_MMIDriverRequest. ?? empty packet
-            //EVC122  ?? empty packet
-
+            
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Brightness window." + Environment.NewLine +
                                 "2. The ‘Close’ button is enabled.");
@@ -654,10 +648,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press ‘Volume’ button");
-
-            //EVC101_MMIDriverRequest. ?? empty packet
-            //EVC122  ?? empty packet
-
+            
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Volume window." + Environment.NewLine +
                                 "2. The ‘Close’ button is enabled.");
