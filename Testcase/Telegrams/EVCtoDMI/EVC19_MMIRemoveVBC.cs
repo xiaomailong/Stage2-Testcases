@@ -11,7 +11,7 @@ using CL345;
 namespace Testcase.Telegrams.EVCtoDMI
 {
     /// <summary>
-    /// This packet is sent sporadically from ETC when the 'Set VBC' procedure
+    /// This packet is sent sporadically from ETC when the 'Remove VBC' procedure
     /// is ongoing and is intended to support the following use cases:
     /// 1. Prompt the driver to enter a VBC code
     /// 2. Display/change echo text after data checks have been performed by EVC;
@@ -21,14 +21,14 @@ namespace Testcase.Telegrams.EVCtoDMI
     /// 
     /// Note: Parameter 'MMI_N_VBC' distinguishes between use case 1 and 2
     /// </summary>
-    public static class EVC18_MMISetVBC
+    public static class EVC19_MMIRemoveVBC
     {
         private static SignalPool _pool;
         private static uint _nidVbcmk;
         private static uint _tVbc;
         private static string _echoText;
 
-        private static string Basestring = "ETCS1_SetVbc_EVC18SetVbcSub10";
+        private static string Basestring = "ETCS1_RemoveVbc_EVC19RemoveVbcSub10";
 
         /// <summary>
         /// Initialise EVC-18 MMI_Set_VBC telegram
@@ -40,7 +40,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             _pool = pool;
 
             // Set default values
-            _pool.SITR.ETCS1.SetVbc.MmiMPacket.Value = 18; // Packet ID
+            _pool.SITR.ETCS1.RemoveVbc.MmiMPacket.Value = 19; // Packet ID
             MMI_N_VBC = 0;
         }
 
@@ -52,10 +52,10 @@ namespace Testcase.Telegrams.EVCtoDMI
             if (MMI_N_VBC == 0)
             {
                 // Set fixed packet size
-                _pool.SITR.ETCS1.SetVbc.MmiLPacket.Value = 64;
+                _pool.SITR.ETCS1.RemoveVbc.MmiLPacket.Value = 64;
 
                 // Send non-dynamic packet to display Set VBC screen
-                _pool.SITR.SMDCtrl.ETCS1.SetVbc.Value = 1;
+                _pool.SITR.SMDCtrl.ETCS1.RemoveVbc.Value = 1;
             }
 
             else
@@ -73,19 +73,19 @@ namespace Testcase.Telegrams.EVCtoDMI
                 for (int k = 0; k < numberOfEchoTextCharacters; k++)
                 {
                     // Write individual Echo Text characters to signal pool
-                    _pool.SITR.Client.Write($"{Basestring}_EVC18SetVbcSub11{k}", echoText[k]);
+                    _pool.SITR.Client.Write($"{Basestring}_EVC19RemoveVbcSub11{k}", echoText[k]);
 
                     // Increase packet size for each character in Echo Text
                     totalSizeCounter += 8;
                 }
 
                 // Set final packet size
-                _pool.SITR.ETCS1.SetVbc.MmiLPacket.Value = totalSizeCounter;
+                _pool.SITR.ETCS1.RemoveVbc.MmiLPacket.Value = totalSizeCounter;
 
                 // Send dynamic packet.
-                _pool.SITR.SMDCtrl.ETCS1.SetVbc.Value = 0x09;
+                _pool.SITR.SMDCtrl.ETCS1.RemoveVbc.Value = 0x09;
             }
-            
+
         }
 
         /// <summary>
@@ -138,7 +138,7 @@ namespace Testcase.Telegrams.EVCtoDMI
                 {
                     _nidVbcmk = value;
                     SetVBCCode();
-                }            
+                }
             }
         }
 
@@ -180,7 +180,7 @@ namespace Testcase.Telegrams.EVCtoDMI
                 else
                 {
                     _echoText = value;
-                }         
+                }
             }
         }
 
@@ -197,7 +197,7 @@ namespace Testcase.Telegrams.EVCtoDMI
                 _tVbc = value;
                 SetVBCCode();
             }
-        }     
+        }
 
         /// <summary>
         /// Intended to be used to distinguish between:
@@ -206,7 +206,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         ///     'no button' (here this shall be interpreted as 'Yes button disabled').
         /// The 'BTN_SETTINGS' shall be used as special value to indicate that DMI shall
         /// close the 'Set VBC' window and return to the parent 'settings' window.
-        /// Other buttons are not in scope of packet EVC-18
+        /// Other buttons are not in scope of packet EVC-19
         /// </summary>
         public static Variables.MMI_M_BUTTONS_VBC MMI_M_BUTTONS
         {
