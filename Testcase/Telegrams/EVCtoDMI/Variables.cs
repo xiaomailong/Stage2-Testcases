@@ -183,6 +183,17 @@ namespace Testcase.Telegrams.EVCtoDMI
         }
 
         /// <summary>
+        /// MMI_M_Buttons for EVC-18 and EVC-19 enum
+        /// </summary>
+        public enum MMI_M_BUTTONS_VBC : byte
+        {
+            BTN_SETTINGS = 4,
+            BTN_YES_DATA_ENTRY_COMPLETE = 36,
+            BTN_YES_DATA_ENTRY_COMPLETE_DELAY_TYPE = 37,
+            NoButton = 255
+        }
+
+        /// <summary>
         /// MMI_NID_RBC value specifying to contact last known RBC
         /// </summary>
         public const uint ContactLastRBC = 16383;

@@ -208,21 +208,9 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// close the 'Set VBC' window and return to the parent 'settings' window.
         /// Other buttons are not in scope of packet EVC-18
         /// </summary>
-        public static EVC18BUTTONS MMI_M_BUTTONS
+        public static Variables.MMI_M_BUTTONS_VBC MMI_M_BUTTONS
         {
             set => _pool.SITR.ETCS1.SetVbc.MmiMButtons.Value = (byte)value;
         }
-
-    }
-
-    /// <summary>
-    /// MMI_M_Buttons for EVC-18 enum
-    /// </summary>
-    public enum EVC18BUTTONS : byte
-    {
-        BTN_SETTINGS = 4,
-        BTN_YES_DATA_ENTRY_COMPLETE = 36,
-        BTN_YES_DATA_ENTRY_COMPLETE_DELAY_TYPE = 37,
-        NoButton = 255
     }
 }
