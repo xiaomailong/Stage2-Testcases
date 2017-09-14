@@ -286,6 +286,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public enum MMI_M_REQUEST : byte
         {
+            Spare = 0,
             StartShunting = 1,
             ExitShunting = 2,
             StartTrainDataEntry = 3,

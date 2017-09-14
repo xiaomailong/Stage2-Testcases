@@ -31,7 +31,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 18_6_1.xml
     /// </summary>
-    public class Visualise_of_the_Track_Conditions_Symbols : TestcaseBase
+    public class TC_ID_18_6_1_Track_Conditions : TestcaseBase
     {
         public override void PreExecution()
         {

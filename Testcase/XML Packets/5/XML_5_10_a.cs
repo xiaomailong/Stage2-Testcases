@@ -33,11 +33,11 @@ namespace Testcase.XML
         {
             _pool = pool;
             
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
 
             // Step 2
             // Assume flags are initially on and setting them disabled changes the state on the DMI
-            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.SendBlank(); 
+
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = (EVC30_MMIRequestEnable.EnabledRequests.ExitShunting |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.EOA |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.Adhesion |

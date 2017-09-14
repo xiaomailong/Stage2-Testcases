@@ -33,7 +33,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 18_6_2_a.xml, 18_6_2_b.xml, 18_6_2_c.xml
     /// </summary>
-    public class Maximum_of_Track_Conditions_in_internal_memory : TestcaseBase
+    public class TC_ID_18_6_2_Track_Conditions : TestcaseBase
     {
         public override void PreExecution()
         {

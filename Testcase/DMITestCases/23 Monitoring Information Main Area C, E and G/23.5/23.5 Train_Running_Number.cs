@@ -33,7 +33,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 18_5.xml
     /// </summary>
-    public class Train_Running_Number : TestcaseBase
+    public class TC_ID_18_5_Train_Running_Number : TestcaseBase
     {
         public override void PreExecution()
         {
