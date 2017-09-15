@@ -24,7 +24,7 @@ namespace Testcase.XML
     /// <summary>
     /// Values of 15.1.7.a.xml file
     /// </summary>
-    static class XML_15_1_7_a
+    static class XML_15_1_7_d
     {
         private static SignalPool _pool;
 
