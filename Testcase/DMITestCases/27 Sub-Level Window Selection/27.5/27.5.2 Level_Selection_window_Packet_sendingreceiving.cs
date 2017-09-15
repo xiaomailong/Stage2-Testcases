@@ -34,7 +34,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 22_5_2_a.xml, 22_5_2_b.xml, 22_5_2_c.xml
     /// </summary>
-    public class Level_Selection_window_Packet_sendingreceiving : TestcaseBase
+    public class TC_22_5_2_Level_Window : TestcaseBase
     {
         public override void PreExecution()
         {

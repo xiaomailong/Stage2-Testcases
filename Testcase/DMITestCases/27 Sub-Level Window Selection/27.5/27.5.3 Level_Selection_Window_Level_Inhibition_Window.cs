@@ -38,7 +38,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 22_5_3_a.xml, 22_5_3_b.xml
     /// </summary>
-    public class Level_Selection_Window_Level_Inhibition_Window : TestcaseBase
+    public class TC_22_5_3_Level_Windoww : TestcaseBase
     {
         public override void PreExecution()
         {
