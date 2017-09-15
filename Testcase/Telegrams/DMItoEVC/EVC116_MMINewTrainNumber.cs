@@ -27,6 +27,7 @@ namespace Testcase.Telegrams.DMItoEVC
         public static void Initialise(SignalPool pool)
         {
             _pool = pool;
+            _pool.SITR.SMDCtrl.CCUO.ETCS1NewTrainNumber.Value = 1;
         }
 
         private static void CheckNidOperation(uint nidOperation)

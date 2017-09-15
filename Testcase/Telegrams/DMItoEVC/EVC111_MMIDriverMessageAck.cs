@@ -26,6 +26,7 @@ namespace Testcase.Telegrams.DMItoEVC
         public static void Initialise(SignalPool pool)
         {
             _pool = pool;
+            _pool.SITR.SMDCtrl.CCUO.ETCS1DriverMessageAck.Value = 1;
         }
 
         private static void CheckButtonState(Variables.MMI_Q_BUTTON qButton)
