@@ -174,7 +174,7 @@ namespace Testcase.DMITestCases
         /// <summary>
         /// Send standard EVC-20 telegram with Levels 0-3, CBTC, and AWS/TPWS selectable. Level 1 is preselected.
         /// </summary>
-        public static void Send_EVC20_MMISelectLevel_AllLevels()
+        public static void Send_EVC20_MMISelectLevel_AllLevels(bool closeEnable = true)
         {
             Variables.MMI_Q_LEVEL_NTC_ID[] paramEvc20MmiQLevelNtcId = 
                 { MMI_Q_LEVEL_NTC_ID.ETCS_Level,
@@ -225,7 +225,7 @@ namespace Testcase.DMITestCases
             EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = paramEvc20MmiMInhibitedLevel;
             EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = paramEvc20MmiMInhibitEnable;
             EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = paramEvc20MmiMLevelNtcId;
-            EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = MMI_Q_CLOSE_ENABLE.Enabled;
+            EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = closeEnable ? MMI_Q_CLOSE_ENABLE.Enabled : MMI_Q_CLOSE_ENABLE.Disabled;
             EVC20_MMISelectLevel.Send();
         }
 
