@@ -41,6 +41,7 @@ namespace Testcase.Telegrams.DMItoEVC
         public static void Initialise(SignalPool pool)
         {
             _pool = pool;
+            _pool.SITR.SMDCtrl.CCUO.ETCS1NewTrainData.Value = 1;
             _trainData = new List<byte>();
              
         }

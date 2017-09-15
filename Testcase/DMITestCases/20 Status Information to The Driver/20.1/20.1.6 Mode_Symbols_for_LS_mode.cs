@@ -31,7 +31,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 15_1_6.tdg
     /// </summary>
-    public class Mode_Symbols_for_LS_mode : TestcaseBase
+    public class TC_15_1_6_ETCS_Mode_Symbols : TestcaseBase
     {
         public override void PreExecution()
         {
