@@ -26,6 +26,7 @@ namespace Testcase.Telegrams.DMItoEVC
         public static void Initialise(SignalPool pool)
         {
             _pool = pool;
+            _pool.SITR.SMDCtrl.CCUO.ETCS1DriverRequest.Value = 1;
         }
 
         private static void CheckMRequestState(Variables.MMI_M_REQUEST mRequest, Variables.MMI_Q_BUTTON qButton)
@@ -45,25 +46,36 @@ namespace Testcase.Telegrams.DMItoEVC
                 // Compare to the value to be checked
                 if (mmiMRequestElement == mRequest)
                 {
-                    // For each element of enum MMI_Q_BUTTON
-                    foreach (Variables.MMI_Q_BUTTON mmiQButtonElement in Enum.GetValues(typeof(Variables.MMI_Q_BUTTON)))
-                    {
-                        // Compare to the value to be checked
-                        if (mmiQButtonElement == qButton)
-                        {
-                            // Double check: MMI_M_REQUEST & MMI_Q_BUTTON values
-                            //_bResult = (_pool.SITR.CCUO.ETCS1DriverRequest.MmiMRequest.Value.Equals(mRequest)) &&
-                               // (_mmiQButton.Equals(_bqButton));
+                    // Section commented out to make WFC test work. 
 
-                            var list = new List<Atomic>();
-                            list.Add(_pool.SITR.CCUO.ETCS1DriverRequest.MmiMRequest.Atomic.WaitForCondition(Is.Equal, (byte)mRequest));
-                            list.Add(_pool.SITR.CCUO.ETCS1DriverRequest.EVC101alias1.Atomic.WaitForCondition(Is.Equal, Convert.ToByte((byte)qButton * 128)));
-                            _checkResult = _pool.WaitForConditionAtomic(list, 5000, 20);
-                            break;
-                        }
-                    }
+                    //// For each element of enum MMI_Q_BUTTON
+                    //foreach (Variables.MMI_Q_BUTTON mmiQButtonElement in Enum.GetValues(typeof(Variables.MMI_Q_BUTTON)))
+                    //{
+                    //    // Compare to the value to be checked
+                    //    if (mmiQButtonElement == qButton)
+                    //    {
+                    //        // Double check: MMI_M_REQUEST & MMI_Q_BUTTON values
+                    //        //_bResult = (_pool.SITR.CCUO.ETCS1DriverRequest.MmiMRequest.Value.Equals(mRequest)) &&
+                    //           // (_mmiQButton.Equals(_bqButton));
 
-                    break;
+                    //        var list = new List<Atomic>();
+                    //        list.Add(_pool.SITR.CCUO.ETCS1DriverRequest.MmiMRequest.Atomic.WaitForCondition(Is.Equal, (byte)mRequest));
+                    //        list.Add(_pool.SITR.CCUO.ETCS1DriverRequest.EVC101alias1.Atomic.WaitForCondition(Is.Equal, Convert.ToByte((byte)qButton * 128)));
+                    //        _checkResult = _pool.WaitForConditionAtomic(list, 5000, 20);
+                    //        break;
+                    //    }
+                    //}
+
+                    //break;
+
+                    // End of commented out section
+
+                    // Robert code that works:
+                    // Note 1: Using Johan's suggestion, i don't think we need to use Atomic for anything, just the standard WFC.
+                    // Note 2: I don't believe your Convert.ToByte((byte)qButton * 128 of the above code will work. I only had a quick think about the maths but
+                    //          I believe you'll need to check for less than 128 for Released, or equal/greater than for Pressed.
+                    // Note 3: Can you add the SMDCtrl bits to your other packets?
+                    _checkResult = _pool.SITR.CCUO.ETCS1DriverRequest.MmiMRequest.WaitForCondition(Is.Equal, (byte)mRequest, 5000, 20);
                 }
             }
            
