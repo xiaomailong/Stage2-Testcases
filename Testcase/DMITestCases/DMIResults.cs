@@ -2051,23 +2051,6 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
-        /// Description: Verify the following information,(1)   There is no symbol displayed on sub-area B7
-        /// Used in:
-        ///     Step 1 in TC-ID: 15.1.7 in 20.1.7 Mode Symbols for unused value of variable OBU_TR_M_MODE
-        ///     Step 2 in TC-ID: 15.1.7 in 20.1.7 Mode Symbols for unused value of variable OBU_TR_M_MODE
-        ///     Step 3 in TC-ID: 15.1.7 in 20.1.7 Mode Symbols for unused value of variable OBU_TR_M_MODE
-        ///     Step 4 in TC-ID: 15.1.7 in 20.1.7 Mode Symbols for unused value of variable OBU_TR_M_MODE
-        ///     Step 5 in TC-ID: 15.1.7 in 20.1.7 Mode Symbols for unused value of variable OBU_TR_M_MODE
-        ///     Step 6 in TC-ID: 15.1.7 in 20.1.7 Mode Symbols for unused value of variable OBU_TR_M_MODE
-        ///     Step 7 in TC-ID: 15.1.7 in 20.1.7 Mode Symbols for unused value of variable OBU_TR_M_MODE
-        ///     Step 8 in TC-ID: 15.1.7 in 20.1.7 Mode Symbols for unused value of variable OBU_TR_M_MODE
-        /// </summary>
-        public static void Verify_the_following_information_1_There_is_no_symbol_displayed_on_sub_area_B7(SignalPool pool)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
         /// Description: DMI displays in ATB STM mode, Level NTC
         /// Used in:
         ///     Step 4 in TC-ID: 15.2.9 in 20.2.9 NTC Level :Announcement symbol in Sub-Area C1.
