@@ -14,6 +14,7 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
 using Testcase.Telegrams.EVCtoDMI;
+using Testcase.Telegrams.DMItoEVC;
 
 
 namespace Testcase.DMITestCases
@@ -34,7 +35,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// N/A
     /// </summary>
-    public class Dialogue_Sequence_of_Settings_window : TestcaseBase
+    public class TC_34_7_Dialogue_Sequences : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -585,7 +586,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11995 (partly: enable language, brightnesss and volume);(2) MMI_gen 11995 (partly: no request send to ETC, settings button is pressed);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press the ‘Settings’ button and check in the log file that the DMI does not send out packet EVC-101 or EVC-122");
+            DmiActions.ShowInstruction(this, @"Press the ‘Settings’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window." + Environment.NewLine +
@@ -601,7 +602,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press the ‘Language’ button");
-
+            
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Language window." + Environment.NewLine +
                                 "2. The ‘Close’ button is enabled.");
@@ -623,8 +624,8 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11993;(2) MMI_gen 9231 (partly: Brightness window);   (3) MMI_gen 11995 (partly: no request send to ETC, Brightness button is pressed);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press ‘Brightness’ button  and check in the log file that the DMI does not send out packet EVC-101 or EVC-122");
-
+            DmiActions.ShowInstruction(this, @"Press ‘Brightness’ button");
+            
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Brightness window." + Environment.NewLine +
                                 "2. The ‘Close’ button is enabled.");
@@ -646,8 +647,8 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11994;(2) MMI_gen 9231 (partly: Volume window);   (3) MMI_gen 11995 (partly: no request send to ETC, Volume button is pressed);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press ‘Volume’ button  and check in the log file that the DMI does not send out packet EVC-101 or EVC-122");
-
+            DmiActions.ShowInstruction(this, @"Press ‘Volume’ button");
+            
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Volume window." + Environment.NewLine +
                                 "2. The ‘Close’ button is enabled.");

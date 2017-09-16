@@ -31,7 +31,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// N/A
     /// </summary>
-    public class Speed_Dial_Sub_Area_B0 : TestcaseBase
+    public class TC_ID_12_2_Train_Speed : TestcaseBase
     {
         public override void PreExecution()
         {

@@ -32,16 +32,16 @@ namespace Testcase.XML
         {
             _pool = pool;
 
-            // EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = 0;
-            // EVC20_MMISelectLevel.Send();
+            EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Disabled;
+            EVC20_MMISelectLevel.Send();
 
             _pool.WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                       "1. ‘Close’ button in Level window is disabled.");
 
-            System.Threading.Thread.Sleep(10000);
+            _pool.Wait_Realtime(10000);
 
-            // EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = 1;
-            //EVC20_MMISelectLevel.Send();
+            EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
+            EVC20_MMISelectLevel.Send();
 
             _pool.WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                       "1. ‘Close’ button in Level window is enabled.");

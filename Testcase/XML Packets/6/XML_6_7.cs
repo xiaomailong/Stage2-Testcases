@@ -49,7 +49,7 @@ namespace Testcase.XML
                                       "1. DMI displays the message ‘2 - Brakes are not operated’ in sub-area E5 with a yellow flashing frame surrounding sub-areas (E5+E6+E7+E8+E9)." + Environment.NewLine +
                                       "2. ‘Sinfo’ sound is not played.");
 
-            System.Threading.Thread.Sleep(5000);
+            _pool.Wait_Realtime(5000);
                 
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.AuxiliaryInformation;
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 268;
@@ -62,7 +62,7 @@ namespace Testcase.XML
                                       "1. After 5s, DMI displays the message ‘Communication error’ in sub-area E5 with a yellow flashing frame surrounding sub-areas (E5+E6+E7+E8+E9)." + Environment.NewLine +
                                       "2. ‘Sinfo’ sound is played once.");
 
-            System.Threading.Thread.Sleep(5000);
+            _pool.Wait_Realtime(5000);
 
             /*              
             MMI_STM_NID_PACKET = 38;
@@ -78,8 +78,8 @@ namespace Testcase.XML
             _pool.WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                       "1. After 5s, DMI displays the message ‘4 - Brake feedback fault’ in sub-area E5 with a yellow flashing frame surrounding sub-areas (E5+E6+E7+E8+E9)." + Environment.NewLine +
                                       "2. ‘Sinfo’ sound is not played.");
-            
-            System.Threading.Thread.Sleep(5000);
+
+            _pool.Wait_Realtime(5000);
 
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 305;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;

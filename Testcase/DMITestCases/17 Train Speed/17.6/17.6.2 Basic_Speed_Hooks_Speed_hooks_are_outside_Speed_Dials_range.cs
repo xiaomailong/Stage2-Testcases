@@ -35,7 +35,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 12_6_2.tdg, 12_6_2_a.xml, 12_6_2_b.xml
     /// </summary>
-    public class Basic_Speed_Hooks_Speed_hooks_are_outside_Speed_Dials_range : TestcaseBase
+    public class TC_12_6_2_Train_Speed : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -76,7 +76,7 @@ namespace Testcase.DMITestCases
             EVC1_MMIDynamic.MMI_V_TARGET = 4027;
 
             // Insert a wait so speed can be reset to 0
-            System.Threading.Thread.Sleep(5000);
+            this.Wait_Realtime(5000);
 
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
 

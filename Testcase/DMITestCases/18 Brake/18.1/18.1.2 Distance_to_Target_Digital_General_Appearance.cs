@@ -33,7 +33,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 13_1_2.tdg
     /// </summary>
-    public class Distance_to_Target_Digital_General_Appearance : TestcaseBase
+    public class TC_13_1_2_Brake : TestcaseBase
     {
         public override void PreExecution()
         {

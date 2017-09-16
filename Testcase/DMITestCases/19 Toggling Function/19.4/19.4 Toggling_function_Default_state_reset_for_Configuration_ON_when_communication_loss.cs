@@ -13,6 +13,8 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.EVCtoDMI;
+
 
 namespace Testcase.DMITestCases
 {
@@ -31,7 +33,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 14_4.tdg
     /// </summary>
-    public class Toggling_function_Default_state_reset_for_Configuration_ON_when_communication_loss : TestcaseBase
+    public class TC_14_4_Toggling_Function : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -40,12 +42,16 @@ namespace Testcase.DMITestCases
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
+
+            DmiActions.Complete_SoM_L1_SR(this);
         }
 
         public override void PostExecution()
         {
             // Post-conditions from TestSpec
             // DMI displays in OS mode, Level 1.
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in OS mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -55,28 +61,25 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
             /*
             Test Step 1
             Action: Drive the train forward pass BG1
             Expected Result: DMI displays in FS mode, Level 1
             */
-            // Call generic Action Method
-            DmiActions.Drive_the_train_forward_pass_BG1(this);
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_FS_mode_level_1(this);
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in FS mode, Level 1.");
 
             /*
             Test Step 2
             Action: Drive the train forward pass BG2.Then, stop the train
             Expected Result: DMI displays in OS mode, Level 1
             */
-            // Call generic Action Method
-            DmiActions.Drive_the_train_forward_pass_BG2_Then_stop_the_train(this);
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_OS_mode_Level_1(this);
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.OnSight;
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in OS mode, Level 1.");
 
             /*
             Test Step 3
@@ -84,10 +87,17 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays the  message “ATP Down Alarm” with sound alarm.Verify the following information,The objects below are not displayed on DMI,White Basic speed HookMedium-grey basic speed hookDistance to target (digital)Release Speed Digital
             Test Step Comment: (1) Information (paragraph 1) under, MMI_gen 6898 (inoperable); MMI_gen 6588 (partly: configuration “ON”, mode OS); MMI_gen 6878 (partly: configuration “ON”, mode OS); MMI_gen 6453;
             */
-            // Call generic Check Results Method
-            DmiExpectedResults
-                .DMI_displays_the_message_ATP_Down_Alarm_with_sound_alarm_Verify_the_following_information_The_objects_below_are_not_displayed_on_DMI_White_Basic_speed_HookMedium_grey_basic_speed_hookDistance_to_target_digitalRelease_Speed_Digital(this);
+            DmiActions.ShowInstruction(this, "Press in a sensitivity area (areas A1-A4 or B) to remove the Basic speed hook");
+            
+            this.Wait_Realtime(1000);
+            DmiActions.Simulate_communication_loss_EVC_DMI(this);
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the message ‘ATP Down Alarm’ and plays a sound alarm." + Environment.NewLine +
+                                "2. DMI does not display the White basic speed hook." + Environment.NewLine +
+                                "3. DMI does not display the Medium-grey basic speed hook." + Environment.NewLine +
+                                "4. DMI does not display the Digital distance to target." + Environment.NewLine +
+                                "5. DMI does not display the Digital release speed.");
 
             /*
             Test Step 4
@@ -95,17 +105,21 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in OS mode, Level 1.Verify the following information,The objects below are displayed on DMI,White Basic speed HookMedium-grey basic speed hookDistance to target (digital)Release Speed Digital
             Test Step Comment: (1) MMI_gen 6898 (partly: configuration ‘ON”, mode OS), Information (paragraph 2) under MMI_gen 6898 (re-establish); MMI_gen 6589 (partly: configuration “ON”, mode OS); MMI_gen 6879 (partly: configuration “ON”, mode OS); Information under MMI_gen 6453; MMI_gen 6879 (partly: The Toggling Function's Default state shall be applied); MMI_gen 6589 (partly: The Toggling Function's Default state shall be applied); MMI_gen 6588 (partly: The Toggling Function's Default state shall be applied); MMI_gen 6878 (partly: The Toggling Function's Default state shall be applied);
             */
-            // Call generic Action Method
-            DmiActions
-                .Re_establish_communication_between_ETCS_onboard_and_DMI_in_1_second_Note_Stopwatch_is_required_for_accuracy_of_test_result(this);
+            this.Wait_Realtime(1000);
+            DmiActions.Re_establish_communication_EVC_DMI(this);
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in OS mode, Level 1." + Environment.NewLine +
+                                "2. DMI displays the White basic speed hook." + Environment.NewLine +
+                                "3. DMI displays the Medium-grey basic speed hook." + Environment.NewLine +
+                                "4. DMI displays the Digital distance to target." + Environment.NewLine +
+                                "5. DMI displays the Digital release speed.");
 
             /*
             Test Step 5
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }

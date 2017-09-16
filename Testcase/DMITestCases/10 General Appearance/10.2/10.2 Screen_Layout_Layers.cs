@@ -32,7 +32,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// N/A
     /// </summary>
-    public class Screen_Layout_Layers : TestcaseBase
+    public class TC_ID_5_2_Screen_Layout_Layers : TestcaseBase
     {
         public override void PreExecution()
         {

@@ -66,7 +66,7 @@ namespace Testcase.DMITestCases
             Action: Verify mode symbol in sub-area B7
             Expected Result: Verify the following information,Use the log file to verify that DMI received the EVC-7 with [MMI_ETCS_MISC_OUT_SIGNALS.OBU_TR_M_MODE] = 6 
             in order to display the Stand By symbol.The Stand By symbol (MO13) is displayed in area B7
-            Test Step Comment: (1) MMI_gen 11084 (partly: current ETCS mode);
+            Test Step Comment: (1) MMI_gen 11084 (par tly: current ETCS mode);
                                (2) MMI_gen 110 (partly: MO13);
             */
 
@@ -106,7 +106,7 @@ namespace Testcase.DMITestCases
                                (2) MMI_gen 9474; MMI_gen 3375;
             */
 
-            DmiActions.ShowInstruction(this, "Press DMI Sub Area C1");
+            DmiActions.ShowInstruction(this, "Press DMI sub area C1.");
             DmiExpectedResults.SR_Mode_Ack_pressed_and_released(this);        
             
             DmiExpectedResults.SR_Mode_Ack_requested(this);
@@ -127,11 +127,13 @@ namespace Testcase.DMITestCases
                                (4) MMI_gen 110     (partly: MO09);
             */
 
-            DmiActions.ShowInstruction(this, "Press and hold DMI Sub Area C1");
+            DmiActions.ShowInstruction(this, "Press and hold DMI sub area C1.");
             DmiExpectedResults.SR_Mode_Ack_pressed_and_hold(this);
 
             DmiActions.Send_SR_Mode(this);           
             DmiExpectedResults.SR_Mode_displayed(this);
+
+            DmiActions.FinishedSoM_Default_Window(this);
 
             #endregion
 
@@ -164,6 +166,7 @@ namespace Testcase.DMITestCases
             
             DmiActions.Force_train_forward_overpassing_EOA(this);          
             DmiActions.Apply_Brakes(this);
+            DmiActions.Send_EB_Intervention(this);
 
             DmiActions.Send_TR_Mode(this);
             DmiExpectedResults.TR_Mode_displayed(this);
@@ -173,7 +176,7 @@ namespace Testcase.DMITestCases
             #region Test Step 7
             /*
             Action: Perform the following procedure,
-            Wait until the train is stopped. Stop the train (set speed to 0 and set direction to nuetral)
+            Wait until the train is stopped. Stop the train (set speed to 0 and set direction to neutral)
             Press at sub-area C9
             Expected Result: Verify the following information,
             Use the log file to confirm that DMI received the EVC-8 with [MMI_DRIVER_MESSAGE (EVC-8).MMI_Q_TEXT] = 266 in order to display the acknowledgement for Trip symbol.
@@ -187,7 +190,7 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.TR_Mode_Ack_requested(this);
             DmiExpectedResults.TR_Mode_displayed(this);
 
-            DmiActions.ShowInstruction(this,"Press DMI Sub Area C9");
+            DmiActions.ShowInstruction(this, "Press DMI sub area C9 to acknowledge the Emergency Brake.");
             DmiExpectedResults.Brake_Intervention_symbol_pressed_and_released(this);
 
             #endregion
@@ -202,7 +205,7 @@ namespace Testcase.DMITestCases
                                (2) MMI_gen 110 (partly: MO06);
             */
 
-            DmiActions.ShowInstruction(this, "Press DMI Sub Area C1");
+            DmiActions.ShowInstruction(this, "Press DMI sub area C1.");
             DmiExpectedResults.TR_Mode_Ack_pressed_and_released(this);
 
             DmiActions.Send_PT_Mode(this);
@@ -218,17 +221,17 @@ namespace Testcase.DMITestCases
             Acknowledge SR mode
             */
 
-            DmiActions.ShowInstruction(this, "Press \"Main\" button");
+            DmiActions.ShowInstruction(this, "Press \"Main\" button.");
             DmiActions.Display_Main_Window_with_Start_button_enabled(this);
             DmiExpectedResults.Main_Window_displayed_with_Start_button_enabled(this);
 
-            DmiActions.ShowInstruction(this, "Press \"Start\" button");
+            DmiActions.ShowInstruction(this, "Press \"Start\" button.");
             DmiExpectedResults.Start_Button_pressed_and_released(this);
 
             DmiActions.Send_SR_Mode_Ack(this);
             DmiExpectedResults.SR_Mode_Ack_requested(this);
 
-            DmiActions.ShowInstruction(this, "Acknowledge SR Mode");
+            DmiActions.ShowInstruction(this, "Acknowledge SR Mode.");
             DmiExpectedResults.SR_Mode_Ack_pressed_and_hold(this);
 
             DmiActions.Send_SR_Mode(this);
@@ -254,7 +257,7 @@ namespace Testcase.DMITestCases
             DmiActions.Display_Main_Window_with_Start_button_enabled(this);
             DmiExpectedResults.Main_Window_displayed_with_Start_button_enabled(this);
 
-            DmiActions.ShowInstruction(this, "Press and hold \"Shunting\" button for 2 second or upper");
+            DmiActions.ShowInstruction(this, "Press and hold \"Shunting\" button for at least 2 seconds.");
             DmiExpectedResults.Shunting_button_pressed_and_hold(this);
 
             DmiActions.Send_SH_Mode(this);
@@ -283,18 +286,20 @@ namespace Testcase.DMITestCases
             */
 
             DmiActions.ShowInstruction(this, "Press \"Main\" button");
-            DmiActions.Display_Main_Window_with_Start_button_enabled(this);
-            DmiExpectedResults.Main_Window_displayed_with_Start_button_enabled(this);
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = Variables.standardFlags |
+                EVC30_MMIRequestEnable.EnabledRequests.Start | EVC30_MMIRequestEnable.EnabledRequests.ExitShunting;
+            EVC30_MMIRequestEnable.Send();
+            WaitForVerification("Is the Main windows displayed, with \"Exit Shunting\" button available?");
 
-            DmiActions.ShowInstruction(this, "Press and hold \"Exit Shunting\" button for 2 second or upper");
+            DmiActions.ShowInstruction(this, "Press and hold \"Exit Shunting\" button for at least 2 seconds.");
             DmiExpectedResults.Shunting_button_pressed_and_hold(this);
 
             DmiActions.Display_Driver_ID_Window(this);
             DmiExpectedResults.Driver_ID_window_displayed(this);
-            DmiActions.ShowInstruction(this, "Enter Driver ID");
+            DmiActions.ShowInstruction(this, "Enter and confirm Driver ID of 1234");
             //DmiActions.Set_Driver_ID(this, "1234");
 
-            DmiActions.ShowInstruction(this, "Press and hold \"Non-leading\" button for 2 second or upper");
+            DmiActions.ShowInstruction(this, "Press and hold \"Non-leading\" button for at least 2 seconds.");
             DmiExpectedResults.Non_leading_button_pressed_and_hold(this);
 
             DmiActions.Send_NL_Mode(this);

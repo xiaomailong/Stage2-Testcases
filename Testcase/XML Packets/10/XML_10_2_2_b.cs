@@ -38,7 +38,7 @@ namespace Testcase.XML
             _pool.WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                       "1. ‘Close’ button in Driver ID window is disabled.");
 
-            System.Threading.Thread.Sleep(1000);
+            _pool.Wait_Realtime(1000);
 
             EVC14_MMICurrentDriverID.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
             EVC14_MMICurrentDriverID.Send();

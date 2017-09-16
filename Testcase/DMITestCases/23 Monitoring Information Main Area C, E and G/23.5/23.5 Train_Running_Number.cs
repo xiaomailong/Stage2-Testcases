@@ -13,6 +13,8 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.EVCtoDMI;
+
 
 namespace Testcase.DMITestCases
 {
@@ -31,7 +33,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 18_5.xml
     /// </summary>
-    public class Train_Running_Number : TestcaseBase
+    public class TC_ID_18_5_Train_Running_Number : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -49,21 +51,26 @@ namespace Testcase.DMITestCases
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
+
+            EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.GoToIdle;
+            EVC0_MMIStartATP.Send();
+            
+            DmiActions.Activate_Cabin_1(this);
         }
 
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint
 
-
             /*
             Test Step 1
             Action: Perform the following procedure, Enter Driver ID and perform brake test.Select and confirm Level 1.Press ‘Train data’ button.Enter an confirm the train data.Validate the Train data
             Expected Result: The Train Running Number window is displayed
             */
-            // Call generic Check Results Method
-            DmiExpectedResults.TRN_window_displayed(this);
+            DmiActions.ShowInstruction(this, "Enter the Driver ID and perform the brake test. Select and confirm Level 1." + Environment.NewLine +
+                                             "Press the ‘Train data’ button. Enter, confirm and validate the train data.");
 
+            DmiExpectedResults.TRN_window_displayed(this);
 
             /*
             Test Step 2
@@ -71,7 +78,14 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Default window.Verify the following information,DMI displays the train running number in sub-area G11.The displayed train running number is taken from [MMI_STATUS (EVC-2).MMI_NID_OPERATION].Note: The hexadecimal value ‘F’ is mean ‘No digit’.(i.e. ‘123456’ = 0x123456FF).The text of displayed train running number is coloured grey
             Test Step Comment: (1) MMI_gen 1043 (partly: valid, G11);   (2) MMI_gen 1044;  (3)MMI_gen 11905 (partly: text is grey);
             */
+            DmiActions.ShowInstruction(this, "Enter and confirm the train running number. Then, press the ‘Close’ button in the Main window");
 
+            EVC2_MMIStatus.TrainRunningNumber = 0x234FFFFF;
+            EVC2_MMIStatus.Send();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the Default window." + Environment.NewLine +
+                                "2. DMI displays the Train Running number as ‘234’ in grey in sub-area G11.");
 
             /*
             Test Step 3
@@ -79,14 +93,16 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,Verify that the train running number is disappear from sub-area G11.Note: The result will be appear only short time because it’s interrupted by ATP-CU packet information
             Test Step Comment: (1) MMI_gen 1043 (partly: invalid, G11);
             */
+            XML.XML_18_5.Send(this);
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI removes the train running number.");
 
             /*
             Test Step 4
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }

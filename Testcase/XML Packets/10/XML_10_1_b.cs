@@ -32,7 +32,8 @@ namespace Testcase.XML
         public static void Send(SignalPool pool)
         {
             _pool = pool;
-            
+
+            EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = 0x01;   // Enable Main window
             
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.None;
@@ -41,7 +42,7 @@ namespace Testcase.XML
             _pool.WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                       "1. All the buttons in the Main menu window are disabled (displayed with a border with Dark-Grey text)");
 
-            System.Threading.Thread.Sleep(10000);
+            _pool.Wait_Realtime(10000);
 
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Start |
                                                                EVC30_MMIRequestEnable.EnabledRequests.DriverID |

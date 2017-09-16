@@ -31,15 +31,16 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 18_6_1.xml
     /// </summary>
-    public class Visualise_of_the_Track_Conditions_Symbols : TestcaseBase
+    public class TC_ID_18_6_1_Track_Conditions : TestcaseBase
     {
         public override void PreExecution()
         {
-            // Pre-conditions from TestSpec:
-            // Test system is powered on.Activate Cabin A.SoM is performed until Level 1 is selected and confirmed.Main window is closed.
-
+            // Pre-conditions from TestSpec:;
             // Call the TestCaseBase PreExecution
             base.PreExecution();
+
+            // Test system is powered on.Activate Cabin A.SoM is performed until Level 1 is selected and confirmed.Main window is closed.
+            DmiActions.Complete_SoM_L1_SB(this);
         }
 
         public override void PostExecution()
@@ -55,16 +56,14 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
             /*
             Test Step 1
             Action: Use the test script file 18_6_1.xml to send EVC-32 with,MMI_Q_TRACKCOND_UPDATE = 0MMI_N_TRACKCONDITIONS = 1MMI_NID_TRACKCOND = 0 MMI_Q_TRACKCOND_STEP = 1MMI_M_TRACKCOND_TYPE = 64MMI_Q_TRACKCOND_ACTION_START = 1MMI_Q_TRACKCOND_ACTION_END = 0
             Expected Result: Verify the following information,(1)   There is no symbol display in sub-area B3-B5
             Test Step Comment: (1) MMI_gen 7082 (partly: MMI_M_TRACKCOND_TYPE is invalid);
             */
-            // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_1_There_is_no_symbol_display_in_sub_area_B3_B5(this);
-
+            // Steps 1-9 are carried out in XML_18_6_1.cs
+            XML.XML_18_6_1.Send(this);
 
             /*
             Test Step 2
@@ -72,9 +71,6 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   There is no symbol display in sub-area B3-B5
             Test Step Comment: (1) MMI_gen 7082 (partly: MMI_Q_TRACKCOND_STEP is invalid);
             */
-            // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_1_There_is_no_symbol_display_in_sub_area_B3_B5(this);
-
 
             /*
             Test Step 3
@@ -83,14 +79,12 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 10488 (partly: left to right filling B3);(2) MMI_gen 664 (partly: ACTION = 1);
             */
 
-
             /*
             Test Step 4
             Action: Send EVC-32 with,MMI_Q_TRACKCOND_UPDATE = 1MMI_N_TRACKCONDITIONS = 1MMI_NID_TRACKCOND = 3 MMI_Q_TRACKCOND_STEP = 1MMI_M_TRACKCOND_TYPE = 3MMI_Q_TRACKCOND_ACTION_START = 0MMI_Q_TRACKCOND_ACTION_END = 0
             Expected Result: Verify the following information,(1)    DMI displays symbol TC03 in sub-area B4.(2)   Sound Sinfo is played.(3)   The yellow flashing frame is displayed surrond TC03 symbol
             Test Step Comment: (1) MMI_gen 10469 (partly: MMI_Q_TRACKCOND_UPDATE = 1, MMI_gen 662); MMI_gen 10488 (partly: Next area shall be used, left to right filling B4);(2) MMI_gen 663; MMI_gen 9516 (partly: symbol requires driver's action, non-acknowledgable); MMI_gen 12025 (partly: symbol requires driver's action, non-acknowledgable);(3) MMI_gen 664 (partly: ACTION = 0);
             */
-
 
             /*
             Test Step 5
@@ -99,17 +93,12 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 10488 (partly: Next area shall be used, left to right filling B5);
             */
 
-
             /*
             Test Step 6
             Action: Send EVC-32 with,MMI_Q_TRACKCOND_UPDATE = 1MMI_N_TRACKCONDITIONS = 1MMI_NID_TRACKCOND = 5MMI_Q_TRACKCOND_STEP = 3MMI_M_TRACKCOND_TYPE = 3MMI_Q_TRACKCOND_ACTION_START = 0MMI_Q_TRACKCOND_ACTION_END = 1
             Expected Result: Verify the following information,(1)    The display in sub-area B3-B5 still not change because of all areas are already displaying symbols
             Test Step Comment: (1) MMI_gen 10488 (partly: wait that B3, B4 or B5 is free);
             */
-            // Call generic Check Results Method
-            DmiExpectedResults
-                .Verify_the_following_information_1_The_display_in_sub_area_B3_B5_still_not_change_because_of_all_areas_are_already_displaying_symbols(this);
-
 
             /*
             Test Step 7
@@ -117,10 +106,6 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   The symbol TC03 in sub-area B4 is removed.(2)   The symbol TC01 in sub-area B5 is moved to sub-area B4.(3)   The symbol TC04 is display in sub-area B5
             Test Step Comment: (1) MMI_gen 10471;(2) MMI_gen 667;(3) MMI_gen 10488 (partly: next area is used);
             */
-            // Call generic Action Method
-            DmiActions
-                .Send_EVC_32_with_MMI_Q_TRACKCOND_UPDATE_1MMI_N_TRACKCONDITIONS_1MMI_NID_TRACKCOND_3MMI_Q_TRACKCOND_STEP_4(this);
-
 
             /*
             Test Step 8
@@ -128,10 +113,6 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)    The display in sub-area B3-B5 still not change because of all areas are already displaying symbols
             Test Step Comment: (1) MMI_gen 10488 (partly: wait that B3, B4 or B5 is free);
             */
-            // Call generic Check Results Method
-            DmiExpectedResults
-                .Verify_the_following_information_1_The_display_in_sub_area_B3_B5_still_not_change_because_of_all_areas_are_already_displaying_symbols(this);
-
 
             /*
             Test Step 9
@@ -140,21 +121,22 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 10469 (partly: MMI_Q_TRACKCOND_UPDATE = 0, delete all stored track conditions);(2) MMI_gen 10469 (partly: use new track conditions received);  (3) MMI_gen 10469 (partly: Delete all stored track conditions);
             */
 
-
             /*
             Test Step 10
             Action: Perform SoM until 'Start' button is pressed
             Expected Result: DMI is display only MO10 symbol in sub-area C1
             Test Step Comment: MMI_gen 7085;
             */
+            DmiActions.ShowInstruction(this, "Perform SoM until after pressing the ‘Start’ button.");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI (only) displays symbol MO10 in sub-area C1");
 
             /*
             Test Step 11
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }

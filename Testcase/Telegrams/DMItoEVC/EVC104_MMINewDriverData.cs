@@ -27,6 +27,7 @@ namespace Testcase.Telegrams.DMItoEVC
         public static void Initialise(SignalPool pool)
         {
             _pool = pool;
+            _pool.SITR.SMDCtrl.CCUO.ETCS1NewDriverData.Value = 1;
         }
 
         private static void CheckXDriverID(string xDriverID)

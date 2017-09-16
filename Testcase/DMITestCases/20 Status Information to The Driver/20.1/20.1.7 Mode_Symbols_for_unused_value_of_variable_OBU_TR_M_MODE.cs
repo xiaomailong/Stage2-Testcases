@@ -31,7 +31,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 15_1_7_a.xml, 15_1_7_b.xml, 15_1_7_c.xml, 15_1_7_d.xml, 15_1_7_e.xml, 15_1_7_f.xml, 15_1_7_g.xml, 15_1_7_h.xml
     /// </summary>
-    public class Mode_Symbols_for_unused_value_of_variable_OBU_TR_M_MODE : TestcaseBase
+    public class TC_15_1_7_ETCS_Mode_Symbols : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -40,6 +40,7 @@ namespace Testcase.DMITestCases
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
+            DmiActions.Complete_SoM_L1_SB(this);
         }
 
         public override void PostExecution()
@@ -59,11 +60,11 @@ namespace Testcase.DMITestCases
             /*
             Test Step 1
             Action: Use the test script file 15_1_7_a.xml to send EVC-7 with, MMI_OBU_TR_M_MODE = 17 (“Not used”)
-            Expected Result: Verify the following information,(1)   There is no symbol displayed on sub-area B7
+            Expected Result: Verify the following information,
+            (1)   There is no symbol displayed on sub-area B7
             Test Step Comment: (1) MMI_gen 580;
-            */
-            // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_1_There_is_no_symbol_displayed_on_sub_area_B7(this);
+
+            
 
 
             /*
@@ -73,7 +74,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 580;
             */
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_1_There_is_no_symbol_displayed_on_sub_area_B7(this);
+           
 
 
             /*
@@ -83,7 +84,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 580;
             */
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_1_There_is_no_symbol_displayed_on_sub_area_B7(this);
+           
 
 
             /*
@@ -93,7 +94,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 580;
             */
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_1_There_is_no_symbol_displayed_on_sub_area_B7(this);
+            
 
 
             /*
@@ -103,7 +104,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 580;
             */
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_1_There_is_no_symbol_displayed_on_sub_area_B7(this);
+            
 
 
             /*
@@ -113,7 +114,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 580;
             */
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_1_There_is_no_symbol_displayed_on_sub_area_B7(this);
+            
 
 
             /*
@@ -123,7 +124,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 580;
             */
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_1_There_is_no_symbol_displayed_on_sub_area_B7(this);
+            
 
 
             /*
@@ -133,7 +134,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 580;
             */
             // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_1_There_is_no_symbol_displayed_on_sub_area_B7(this);
+            
 
 
             /*

@@ -37,7 +37,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 13_1_6.tdg
     /// </summary>
-    public class Distance_to_Target_Digital_in_RV_mode_with_special_value : TestcaseBase
+    public class TC_13_1_6_Brake : TestcaseBase
     {
         public override void PreExecution()
         {

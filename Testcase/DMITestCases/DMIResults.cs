@@ -59,13 +59,111 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
+        /// Description: Level 0 acknowledgement is requested on DMI area C1
+        /// Used in:
+        ///     Step 1 in TC-ID: 15.1.4 in 20.1.4
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void L0_Announcement_Ack_Requested(SignalPool pool)
+        {
+            Driver_symbol_displayed(pool, "Acknowledgement for Level 0", "LE07", "C1", true);
+        }
+
+        /// <summary>
+        /// Description: Level 0 Acknowledgement symbol on DMI area C1 is pressed and released.
+        /// Used in:
+        ///     Step 1 in TC-ID: 15.1.4 in 20.1.4
+        /// </summary>
+        public static void L0_Announcement_Ack_pressed_and_released(SignalPool pool)
+        {
+            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
+            //pool.Wait_Realtime(100);
+            //EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
+            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.Level0Ack;
+            pool.WaitForVerification("Has the LE07 symbol disappeared and been replaced with LE06 symbol in sub-area C1?");
+        }
+
+        /// <summary>
+        /// Description: LS Mode acknowledgement is requested on DMI area C1
+        /// Used in:
+        ///     Step 1 in TC-ID: 15.1.6 in 20.1.6
+        /// </summary>
+        public static void LS_Mode_Ack_Requested(SignalPool pool)
+        {
+            Driver_symbol_displayed(pool, "Acknowledgement for Limited Supervion mode", "MO22", "C1", true);
+        }
+
+        /// <summary>
+        /// Description: LS mode Acknowledgement symbol on DMI area C1 is pressed and released.
+        /// Used in:
+        ///     Step 2 in TC-ID: 15.1.6 in 20.1.6
+        /// </summary>
+        public static void LS_Mode_Ack_pressed_and_released(SignalPool pool)
+        {
+            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
+            //pool.Wait_Realtime(100);
+            //EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
+            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.LimitedSupervisionModeAck;
+            pool.WaitForVerification("Has the MO22 symbol disappeared from sub-area C1?");
+        }
+
+        /// <summary>
+        /// Description: DMI displays LS mode
+        /// Used in:
+        ///     Step 2 in TC-ID: 15.1.6 in 20.1.6
+        /// </summary>
+        public static void LS_Mode_displayed(SignalPool pool)
+        {
+            EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.LimitedSupervision;
+            Driver_symbol_displayed(pool, "Limited Supervision mode", "MO21", "B7", false);
+        }
+
+        /// <summary>
+        /// Description: DMI displays LSSMA in sub-area A1
+        /// Used in:
+        ///     Step 2 in TC-ID: 15.1.6 in 20.1.6
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void LSSMA_displayed(SignalPool pool)
+        {
+            Driver_symbol_displayed(pool, "LSSMA", "LS01", "A1", false);
+            pool.WaitForVerification("Is the the number of LSSMA displayed vertically and horizontally centered in sub-area A1?");
+            pool.WaitForVerification("Does the number of LSSMA overlays the LS01 symbol?");
+            pool.WaitForVerification("Is the colour of LSSMA grey?");
+        }
+
+        /// <summary>
+        /// Description: OS Mode acknowledgement is requested on DMI area C1
+        /// Used in:
+        ///     Step 11 in TC-ID: 15.1.3 in 20.1.3
+        /// </summary>
+        public static void OS_Mode_Ack_Requested(SignalPool pool)
+        {
+            Driver_symbol_displayed(pool, "Acknowledgement for On Sight mode", "MO08", "C1", true);
+        }
+
+        /// <summary>
+        /// Description: OS mode Acknowledgement symbol on DMI area C1 is pressed and released.
+        /// Used in:
+        ///     Step 12 in TC-ID: 15.1.3 in 20.1.3
+        /// </summary>
+        public static void OS_Mode_Ack_pressed_and_released(SignalPool pool)
+        {
+            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
+            //pool.Wait_Realtime(100);
+            //EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
+            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.OnSightModeAck;
+            pool.WaitForVerification("Has the MO08 symbol disappeared from sub-area C1?");
+        }
+
+        /// <summary>
         /// Description: SR Mode acknowledgement is requested on DMI area C1
         /// Used in:
         ///     Step 2 in TC-ID: 15.1.1 in 20.1.1
         /// </summary>
         public static void SR_Mode_Ack_requested(SignalPool pool)
         {
-            Driver_symbol_displayed(pool, "Acknowledgement for Staff Responsible", "MO10", "C1", true);
+            Driver_symbol_displayed(pool, "Acknowledgement for Staff Responsible mode", "MO10", "C1", true);
         }
 
         /// <summary>
@@ -77,7 +175,7 @@ namespace Testcase.DMITestCases
         {
             EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
             EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
-            pool.WaitForVerification("Is the MO10 symbol frame flashing?");
+            pool.WaitForVerification("Is the MO10 (Acknowledgement for Staff Responsible mode) symbol frame flashing?");
         }
 
         /// <summary>
@@ -91,8 +189,32 @@ namespace Testcase.DMITestCases
             pool.Wait_Realtime(2000);
             EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.StaffResponsibleModeAck;
-            pool.WaitForVerification("Has the MO10 symbol opacity decreased to 50%?");
+            pool.WaitForVerification("Has the MO10 (Acknowledgement for Staff Responsible mode) symbol opacity decreased to 50%?");
             
+        }
+
+        /// <summary>
+        /// Description: UN Mode acknowledgement is requested on DMI area C1
+        /// Used in:
+        ///     Step 8 in TC-ID: 15.1.3 in 20.1.3
+        /// </summary>
+        public static void UN_Mode_Ack_requested(SignalPool pool)
+        {
+            Driver_symbol_displayed(pool, "Acknowledgement for Unfitted mode", "MO17", "C1", true);
+        }
+
+        /// <summary>
+        /// Description: UN mode Acknowledgement symbol on DMI area C1 is pressed and released.
+        /// Used in:
+        ///     Step 9 in TC-ID: 15.1.3 in 20.1.3
+        /// </summary>
+        public static void UN_Mode_Ack_pressed_and_released(SignalPool pool)
+        {
+            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
+            pool.Wait_Realtime(100);
+            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
+            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.UnfittedModeAck;
+            pool.WaitForVerification("Has the MO17 (Acknowledgement for Unfitted mode) symbol disappeared from sub-area C1?");
         }
 
         /// <summary>
@@ -136,6 +258,7 @@ namespace Testcase.DMITestCases
         {
             EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
             EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_EB_Status = 0;
         }
 
         /// <summary>
@@ -148,7 +271,7 @@ namespace Testcase.DMITestCases
             EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
             EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.TrainTripAck;
-            pool.WaitForVerification("Has the MO05 symbol disappeared from sub-area C1?");
+            pool.WaitForVerification("Has the MO05 (Acknowledgement for Trip) symbol disappeared from sub-area C1?");
         }
 
         /// <summary>
@@ -161,7 +284,7 @@ namespace Testcase.DMITestCases
             EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
             EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.ReversingModeAck;
-            pool.WaitForVerification("Has the MO15 symbol disappeared from sub-area C1?");
+            pool.WaitForVerification("Has the MO15 (Acknowledgement for Reversing) symbol disappeared from sub-area C1?");
         }
 
         /// <summary>
@@ -184,6 +307,17 @@ namespace Testcase.DMITestCases
         {
             EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.Reversing;
             Driver_symbol_displayed(pool, "Reversing mode", "MO14", "B7", false);
+        }
+
+        /// <summary>
+        /// Description: DMI displays RV mode
+        /// Used in:
+        ///     Step 9 in TC-ID: 15.1.3 in 20.1.3
+        /// </summary>
+        public static void UN_Mode_displayed(SignalPool pool)
+        {
+            EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.Unfitted;
+            Driver_symbol_displayed(pool, "Unfitted mode", "MO16", "B7", false);
         }
 
         /// <summary>
@@ -215,6 +349,7 @@ namespace Testcase.DMITestCases
         ///     Step 1 in TC-ID: 5.10 in 10.10 Screen Layout: Button States
         ///     Step 3 in TC-ID: 22.20.2 in 27.20.2 Override window in SB mode
         ///     Step 9 in TC-ID: 15.1.1 in 20.1.1
+        ///     Step 8 in TC-ID: 15.1.3 in 20.1.3
         /// </summary>
         public static void Start_Button_pressed_and_released(SignalPool pool)
         {
@@ -308,6 +443,33 @@ namespace Testcase.DMITestCases
         public static void Driver_ID_window_displayed(SignalPool pool)
         {
             pool.WaitForVerification("Is the Driver ID window displayed?");
+        }
+
+        /// <summary>
+        /// Description: DMI displays Driver ID window in SB mode
+        /// Used in:
+        ///     Step 1 in TC-ID: 22.5.4  in 27.5.4 Level Selection window: 8 STMs handling
+        ///     Step 1 in TC-ID: 35.2 in 38.2 NTC System Status Messages
+        ///     Step 7 in TC-ID: 35.2 in 38.2 NTC System Status Messages
+        ///     Step 1 in TC-ID: 17.1.3 in 20.1.3 
+        /// </summary>
+        public static void Driver_ID_window_displayed_in_SB_mode(SignalPool pool)
+        {
+            pool.WaitForVerification("Is the Driver Id window displayed?");
+            Driver_symbol_displayed(pool, "Stand By Mode", "MO13", "B7", false);
+            EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.StandBy;
+        }
+
+        /// <summary>
+        /// Description: Default Window is displayed with Override Symbol in area C7.
+        /// Used in:
+        ///     Step 14 in TC-ID: 17.1.3 in 20.1.3
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Default_Window_with_Override_Symbol(SignalPool pool)
+        {
+            pool.WaitForVerification("Is the Default window displayed?");
+            Driver_symbol_displayed(pool, "Override EOA", "MO03", "C7", false);
         }
 
         /// <summary>
@@ -455,6 +617,267 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
+        /// Description: EOA button is pressed in Override window on DMI
+        /// Used in:
+        ///     Step 14 in TC-ID: 15.1.3 in 20.1.3
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void EOA_Button_pressed(SignalPool pool)
+        {
+            EVC101_MMIDriverRequest.CheckMRequestPressed = MMI_M_REQUEST.StartOverrideEOA;
+            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.OverrideSelected;
+        }
+
+        /// <summary>
+        /// Description: Cabin A is deactivated
+        /// Used in:
+        ///     Step 6 in TC-ID: 1.2 in 6.2 Internal Components
+        ///     Step 8 in TC-ID: 1.6 in 6.6 Adjustment of Sound Volume
+        ///     Step 12 in TC-ID: 15.1.1 in 20.1.1
+        /// </summary>
+        public static void Cabin_A_is_activated(SignalPool pool)
+        {
+            EVC102_MMIStatusReport.Check_MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.Cabin1Active;
+        }
+
+        /// <summary>
+        /// Description: Cabin B is deactivated
+        /// Used in:     
+        ///     Step 12 in TC-ID: 15.1.1 in 20.1.1
+        /// </summary>
+        public static void Cabin_B_is_activated(SignalPool pool)
+        {
+            EVC102_MMIStatusReport.Check_MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.Cabin2Active;
+        }
+
+        /// <summary>
+        /// Description: Cabin B is deactivated
+        /// Used in:     
+        ///     Step 12 in TC-ID: 15.1.1 in 20.1.1
+        /// </summary>
+        public static void Cab_deactivated(SignalPool pool)
+        {
+            EVC102_MMIStatusReport.Check_MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.NoCabinActive;
+        }
+
+        /// <summary>
+        /// Description: The Train data window is displayed
+        /// Used in:
+        ///     Step 3 in TC-ID: 5.3 in 10.3 Screen Layout: Frames
+        ///     Step 12 in TC-ID: 33.1 in 36.1 The relationship between parent and child windows (1)
+        ///     Step 3 in TC-ID: 9.1 in Data Validation Window for Flexible train data entry window
+        ///     Step 3 in TC-ID: 9.2 in 14.2 Data Validation Window for Fixed train data entry window
+        ///     Step 39 in TC-ID: 22.29.1 in 27.29.1 Flexible Train data window: General appearances
+        ///     Step 18 in TC-ID: 22.29.2 in 27.29.2 Fixed Train data window: General appearances
+        /// </summary>
+        public static void Train_data_window_displayed(SignalPool pool)
+        {
+            pool.WaitForVerification("Is the Train Data window displayed on the DMI?");
+        }
+
+        /// <summary>
+        /// Description: DMI displays Train data validation window
+        /// Used in:
+        ///     Step 4 in TC-ID: 9.1 in Data Validation Window for Flexible train data entry window
+        ///     Step 6 in TC-ID: 9.1 in Data Validation Window for Flexible train data entry window
+        ///     Step 4 in TC-ID: 9.2 in 14.2 Data Validation Window for Fixed train data entry window
+        ///     Step 6 in TC-ID: 9.2 in 14.2 Data Validation Window for Fixed train data entry window
+        ///     Step 7 in TC-ID: 10.4.1.1 in 15.4.1.1 State ‘ST05’: Abort the pending Data Process in Main window
+        ///     Step 5 in TC-ID: 15.1.3 in 20.1.3 Mode Symbols in Sub-Area B7 for OS, UN mode
+        ///     Step 5 in TC-ID: 34.1.1 in 37.1.1 Fixed Train data entry
+        ///     Step 5 in TC-ID: 34.1.2 in 37.1.2 Flexible Train data entry
+        ///     Step 7 in TC-ID: 34.1.2 in 37.1.2 Flexible Train data entry
+        ///     Step 7 in TC-ID: 34.1.4 in 37.1.4.1.1 Data entry/validation process when enabling conditions not fullfilled: Level 1
+        /// </summary>
+        public static void Train_data_validation_window_displayed(SignalPool pool)
+        {
+            pool.WaitForVerification("Is the Train Data Validation window displayed on the DMI?");
+        }
+
+        /// <summary>
+        /// Description: DMI displays Train Running Number window.Verify the following information,The Train data validation is closed.Use the log file to confirm that DMI sends out the packet [MMI_CONFIRMED_TRAIN DATA (EVC-110)] with variable based on confirmed data
+        /// Used in:
+        ///     Step 8 in TC-ID: 9.1 in Data Validation Window for Flexible train data entry window
+        ///     Step 8 in TC-ID: 9.2 in 14.2 Data Validation Window for Fixed train data entry window
+        ///     Step 11 in TC-ID: 10.2 in 15.2.1 State 'ST05': General Appearance
+        ///     Step 6 in TC-ID: 15.1.3 in 20.1.3 Mode Symbols in Sub-Area B7 for OS, UN mode
+        ///     Step 9 in TC-ID: 34.1.4 in 37.1.4.1.1 Data entry/validation process when enabling conditions not fullfilled: Level 1
+        ///     Step 1 in TC-ID: 18.5 in 23.5 Train Running Number
+        ///     Step 17 in TC-ID: 22.18 in Train Running Number window
+        ///     Step 4 in TC-ID: 33.1 in 36.1 The relationship between parent and child windows (1)
+        ///     Step 4 in TC-ID: 35.2 in 38.2 NTC System Status Messages
+        ///     Step 9 in TC-ID: 35.2 in 38.2 NTC System Status Messages
+        /// </summary>
+        public static void TRN_window_displayed(SignalPool pool)
+        {
+            pool.WaitForVerification("Is the Train Running Number window displayed on the DMI?");
+        }
+
+        /// <summary>
+        /// Description: DMI displays Train Running Number window.Verify the following information,The Train data validation is closed.Use the log file to confirm that DMI sends out the packet [MMI_CONFIRMED_TRAIN DATA (EVC-110)] with variable based on confirmed data
+        /// Used in:
+        ///     Step 13 in TC-ID: 15.1.3 in 20.1.3
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Override_window_displayed(SignalPool pool)
+        {
+            pool.WaitForVerification("Is the Override window displayed on the DMI?");
+        }
+
+        /// <summary>
+        /// Description: DMI displays SR mode
+        /// Used in:
+        ///     Step 9 in TC-ID: 6.1 in 11.1 Acknowledgements: General
+        ///     Step 4 in TC-ID: 15.1.1 in 20.1.1 Mode Symbols in Sub-Area B7 for SB, SR, FS, TR, PT, SH, NL and SF mode
+        ///     Step 9 in TC-ID: 15.1.1 in 20.1.1 Mode Symbols in Sub-Area B7 for SB, SR, FS, TR, PT, SH, NL and SF mode
+        ///     Step 6 in TC-ID: 17.9.8 in 22.9.8 Hide PA Function is configured ‘STORED’ with reactivated Cabin A
+        ///     Step 12 in TC-ID: 18.4.1 in 23.4.1 Geographical Position: General presentation
+        ///     Step 3 in TC-ID: 18.4.3 in 23.4.3 Geographical Position: Additional requirements
+        ///     Step 3 in TC-ID: 20.1 in 25.1 Driver’s Action: Main window
+        ///     Step 1 in TC-ID: 26.1 in 1 Introduction
+        ///     Step 11 in TC-ID: 5.3 in 10.3 Screen Layout: Frames
+        ///     Step 13 in TC-ID: 10.2.6 in 15.2.6 State 'ST05': Settings window and windows in setting menu
+        ///     Step 2 in TC-ID: 13.1.1 in 18.1.1 Distance to Target  Bar: General Appearance
+        ///     Step 2 in TC-ID: 13.1.4 in 18.1.4 Distance to Target Digital when the communication between ETCS  Onboard and DMI is lost
+        ///     Step 2 in TC-ID: 13.1.5 in 18.1.5 Distance to Target in RV mode
+        ///     Step 2 in TC-ID: 17.1.1 in 22.1.1 Planning Area: General Appearance
+        ///     Step 2 in TC-ID: 17.1.2 in 22.1.2 Planning Area is suppressed in Level 1 and OS mode
+        ///     Step 2 in TC-ID: 17.2.1 in 22.2.1 Planning Area-Layering: PASP and PA Distance scale
+        ///     Step 1 in TC-ID: 17.3 in 22.3 Planning Area: PA Distance Scale
+        ///     Step 1 in TC-ID: 17.5.1 in 22.5.1 PA Gradient Profile:  General appearance
+        ///     Step 1 in TC-ID: 17.7.2 in 22.7.2 PA Speed Profile (PASP): Information updating
+        ///     Step 2 in TC-ID: 17.9.1 in 22.9.1 Hide PA Function: General appearance
+        ///     Step 1 in TC-ID: 17.9.2 in 22.9.2 Hide PA Function is configured ‘ON’ with reboot DMI
+        ///     Step 2 in TC-ID: 17.9.5 in 22.9.6 Hide PA Function is configured ‘TIMER’ with reboot DMI
+        ///     Step 1 in TC-ID: 17.9.10 (Default Configuration) in 22.9.10 Hide PA Function with the communication loss between ETCS Onboard and DMI
+        ///     Step 2 in TC-ID: 17.10.2 in 22.10.2 Zoom PA Function with Scale Up
+        ///     Step 2 in TC-ID: 17.10.3 in 22.10.3 Zoom PA Function with Scale Down
+        ///     Step 2 in TC-ID: 17.10.4 in 22.10.4 Zoom PA Function with the communication loss between ETCS Onboard and DMI
+        ///     Step 1 in TC-ID: 18.4.1 in 23.4.1 Geographical Position: General presentation
+        ///     Step 2 in TC-ID: 12.7.1 in 17.7.1 Release Speed: At Sub-area B2 and B6
+        ///     Step 2 in TC-ID: 17.11 in 22.11 Handle at least 31 PA Speed Profile Segments
+        ///     Step 2 in TC-ID: 17.12 in Handle at least 31 PA Gradient Profile Segments
+        ///     Step 2 in TC-ID: 17.4.17 in 22.4.17 PA Track Condition: First symbol prevails over the next coming symbol
+        ///     Step 2 in TC-ID: 29.1 in 29.1 UTC time and offset time(by driver)
+        ///     Step 2 in TC-ID: 29.2 in 29.2 UTC time and offset time(by using EVC-3)
+        ///     Step 1 in TC-ID: 17.5.2 in 22.5.2 PA Gradient Profile:  Display of many PA Gradient Profile
+        ///     Step 1 in TC-ID: 17.5.3 in 22.5.3 PA Gradient Profile:  Information updating
+        ///     Step 1 in TC-ID: 17.5.4 in 22.5.4 PA Gradient Profile:  Invalid Information Ignoring
+        ///     Step 2 in TC-ID: 17.9.3 in 22.9.3 Hide PA Function is configured ‘OFF’ with reboot DMI
+        ///     Step 2 in TC-ID: 17.9.4 in 22.9.4 Hide PA Function is configured ‘STORED’ with reboot DMI
+        ///     Step 2 in TC-ID: 17.9.6 in 22.9.5 Hide PA Function is configured ‘ON’ with reactivated Cabin A
+        ///     Step 2 in TC-ID: 17.9.7 in 22.9.7 Hide PA Function is configured ‘OFF’ with reactivated Cabin A
+        ///     Step 6 in TC-ID: 17.9.7 in 22.9.7 Hide PA Function is configured ‘OFF’ with reactivated Cabin A
+        ///     Step 2 in TC-ID: 17.9.9 in 22.9.9 Hide PA Function is configured ‘TIMER’ with reactivated Cabin A
+        ///     Step 6 in TC-ID: 17.9.9 in 22.9.9 Hide PA Function is configured ‘TIMER’ with reactivated Cabin A
+        ///     Step 10 in TC-ID: 17.9.11 in 22.9.11 Hide PA Function configured ‘STORED’ with re-activate cabin
+        ///     Step 16 in TC-ID: 17.9.11 in 22.9.11 Hide PA Function configured ‘STORED’ with re-activate cabin
+        /// </summary>
+        public static void SR_Mode_displayed(SignalPool pool)
+        {
+            EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.StaffResponsible;
+            Driver_symbol_displayed(pool, "Staff Responsible mode", "MO9", "B7", false);
+        }
+
+        /// <summary>
+        /// Description: FS mode is displayed
+        /// Used in:
+        ///     Step 3 in TC-ID: 13.1.1 in 18.1.1 Distance to Target  Bar: General Appearance
+        ///     Step 3 in TC-ID: 13.1.5 in 18.1.5 Distance to Target in RV mode
+        ///     Step 1 in TC-ID: 12.12 in 17.12 Slip Indication
+        ///     Step 1 in TC-ID: 12.13 in 17.13 Slide Indication
+        ///     Step 1 in TC-ID: 12.14 in 17.14 Slip and Slide are configure to 1 at the same time
+        ///     Step 1 in TC-ID: 12.15 in 17.15 Slip and Slide are configure to 0 at the same time
+        ///     Step 2 in TC-ID: 17.3 in 22.3 Planning Area: PA Distance Scale
+        ///     Step 5 in TC-ID: 15.1.1 in 20.1.1
+        ///     Step 2 in TC-ID: 15.1.2 in 20.1.2
+        /// </summary>
+        public static void FS_mode_displayed(SignalPool pool)
+        {
+            EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.FullSupervision;
+            Driver_symbol_displayed(pool, "FS mode", "MO11", "B7", false);
+        }
+
+        /// <summary>
+        /// Description: Os mode is displayed
+        /// Used in:
+        ///     Step 12 in TC-ID: 15.1.3 in 20.1.3
+        /// </summary>
+        public static void OS_Mode_displayed(SignalPool pool)
+        {
+            EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.OnSight;
+            Driver_symbol_displayed(pool, "OS mode", "MO07", "B7", false);
+        }
+
+        /// <summary>
+        /// Description: Driver enters and confirms Fixed Train Data
+        /// Used in:
+        ///     Step 5 in 15.1.3
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Fixed_Train_Data_entered(SignalPool pool)
+        {
+            //to be updated (packet 107 to be checked)
+        }
+
+        /// <summary>
+        /// Description: Driver validates Fixed Train Data
+        /// Used in:
+        ///     Step 6 in 15.1.3
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Fixed_Train_Data_validated(SignalPool pool)
+        {
+            //to be updated (packet 110 to be checked)
+        }
+
+        /// <summary>
+        /// Description: DMI displays Special window with enabled Adhesion button
+        /// Used in:
+        ///     Step 8 in TC-ID: 10.2.5 in 15.2.5 State 'ST05': Special window and windows in the special menu
+        ///     Step 3 in TC-ID: 20.3 in 25.3 Driver’s Action: Special window
+        /// </summary>
+        public static void DMI_displays_Special_window_with_enabled_Adhesion_button(SignalPool pool)
+        {
+            pool.WaitForVerification("Is the Special window displayed with the Adhesion button enabled?");
+        }
+
+        /// <summary>
+        /// Description: DMI displays SB mode
+        /// Used in:
+        ///     Step 1 in TC-ID: 12.2.2 in 17.2.2 Speed Dial: Display Train maxinum speed
+        ///     Step 1 in TC-ID: 15.1.1
+        ///     Step 1 in TC-ID: 29.1 in 29.1 UTC time and offset time(by driver)
+        ///     Step 1 in TC-ID: 29.2 in 29.2 UTC time and offset time(by using EVC-3)
+        ///     Step 1 in TC-ID: 29.3 in 29.3 UTC time and offset time(By VAP acting as NTP server)
+        ///     Step 6 in TC-ID: 5.10 in 10.10 Screen Layout: Button States
+        ///     Step 8 in TC-ID: 5.10 in 10.10 Screen Layout: Button States
+        ///     Step 11 in TC-ID: 5.10 in 10.10 Screen Layout: Button States
+        ///     Step 17 in TC-ID: 5.10 in 10.10 Screen Layout: Button States
+        ///     Step 19 in TC-ID: 5.10 in 10.10 Screen Layout: Button States
+        ///     Step 1 in TC-ID: 1.8 in 6.8 Accleration/Decleration interval -4.0m/s2 to +4.0 m/s2
+        ///     Step 21 in TC-ID: 5.10 in 10.10 Screen Layout: Button States
+        ///     Step 1 in TC-ID: 17.4.17 in 22.4.17 PA Track Condition: First symbol prevails over the next coming symbol
+        /// </summary>
+        public static void SB_Mode_displayed(SignalPool pool)
+        {
+            EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.StandBy;
+            Driver_symbol_displayed(pool, "Stand By mode", "MO13", "B7", false);
+        }
+
+
+        /// <summary>
+        /// Description: DMI displays Level window
+        /// Used in:
+        ///     Step 2 in TC-ID: 15.1.3 in 20.1.3 Mode Symbols in Sub-Area B7 for OS, UN mode
+        ///     Step 3 in TC-ID: 34.1.4 in 37.1.4.1.1 Data entry/validation process when enabling conditions not fullfilled: Level 1
+        /// </summary>
+        public static void Level_window_displayed(SignalPool pool)
+        {
+            pool.WaitForVerification("Is the Level window displayed?");
+        }
+
+        /// <summary>
         /// Description: DMI displays Settings window
         /// Used in:
         ///     Step 1 in TC-ID: 1.1 in 6.1 Properties of each Display Unit’s Screen
@@ -541,38 +964,6 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
-        /// Description: Cabin A is deactivated
-        /// Used in:
-        ///     Step 6 in TC-ID: 1.2 in 6.2 Internal Components
-        ///     Step 8 in TC-ID: 1.6 in 6.6 Adjustment of Sound Volume
-        ///     Step 12 in TC-ID: 15.1.1 in 20.1.1
-        /// </summary>
-        public static void Cabin_A_is_activated(SignalPool pool)
-        {
-            EVC102_MMIStatusReport.Check_MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.Cabin1Active;           
-        }
-
-        /// <summary>
-        /// Description: Cabin B is deactivated
-        /// Used in:     
-        ///     Step 12 in TC-ID: 15.1.1 in 20.1.1
-        /// </summary>
-        public static void Cabin_B_is_activated(SignalPool pool)
-        {
-            EVC102_MMIStatusReport.Check_MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.Cabin2Active;
-        }
-
-        /// <summary>
-        /// Description: Cabin B is deactivated
-        /// Used in:     
-        ///     Step 12 in TC-ID: 15.1.1 in 20.1.1
-        /// </summary>
-        public static void Cab_deactivated(SignalPool pool)
-        {
-            EVC102_MMIStatusReport.Check_MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.NoCabinActive;
-        }
-
-        /// <summary>
         /// Description: RCI logs the concerned activities as specified in the precondition
         /// Used in:
         ///     Step 1 in TC-ID: 1.9 in 6.9 Performance of ETCS-DMI: Data handling
@@ -650,81 +1041,6 @@ namespace Testcase.DMITestCases
         public static void DMI_displays_the_default_window(SignalPool pool)
         {
             throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Description: The Train data window is displayed
-        /// Used in:
-        ///     Step 3 in TC-ID: 5.3 in 10.3 Screen Layout: Frames
-        ///     Step 12 in TC-ID: 33.1 in 36.1 The relationship between parent and child windows (1)
-        ///     Step 3 in TC-ID: 9.1 in Data Validation Window for Flexible train data entry window
-        ///     Step 3 in TC-ID: 9.2 in 14.2 Data Validation Window for Fixed train data entry window
-        ///     Step 39 in TC-ID: 22.29.1 in 27.29.1 Flexible Train data window: General appearances
-        ///     Step 18 in TC-ID: 22.29.2 in 27.29.2 Fixed Train data window: General appearances
-        /// </summary>
-        public static void Train_data_window_displayed(SignalPool pool)
-        {
-            pool.WaitForVerification("Is the Train Data window displayed on the DMI?");
-        }
-
-        /// <summary>
-        /// Description: DMI displays Train data validation window
-        /// Used in:
-        ///     Step 4 in TC-ID: 9.1 in Data Validation Window for Flexible train data entry window
-        ///     Step 6 in TC-ID: 9.1 in Data Validation Window for Flexible train data entry window
-        ///     Step 4 in TC-ID: 9.2 in 14.2 Data Validation Window for Fixed train data entry window
-        ///     Step 6 in TC-ID: 9.2 in 14.2 Data Validation Window for Fixed train data entry window
-        ///     Step 7 in TC-ID: 10.4.1.1 in 15.4.1.1 State ‘ST05’: Abort the pending Data Process in Main window
-        ///     Step 5 in TC-ID: 15.1.3 in 20.1.3 Mode Symbols in Sub-Area B7 for OS, UN mode
-        ///     Step 5 in TC-ID: 34.1.1 in 37.1.1 Fixed Train data entry
-        ///     Step 5 in TC-ID: 34.1.2 in 37.1.2 Flexible Train data entry
-        ///     Step 7 in TC-ID: 34.1.2 in 37.1.2 Flexible Train data entry
-        ///     Step 7 in TC-ID: 34.1.4 in 37.1.4.1.1 Data entry/validation process when enabling conditions not fullfilled: Level 1
-        /// </summary>
-        public static void Train_data_validation_window_displayed(SignalPool pool)
-        {
-            pool.WaitForVerification("Is the Train Data Validation window displayed on the DMI?");
-        }
-
-        /// <summary>
-        /// Description: DMI displays Train Running Number window.Verify the following information,The Train data validation is closed.Use the log file to confirm that DMI sends out the packet [MMI_CONFIRMED_TRAIN DATA (EVC-110)] with variable based on confirmed data
-        /// Used in:
-        ///     Step 8 in TC-ID: 9.1 in Data Validation Window for Flexible train data entry window
-        ///     Step 8 in TC-ID: 9.2 in 14.2 Data Validation Window for Fixed train data entry window
-        ///     Step 11 in TC-ID: 10.2 in 15.2.1 State 'ST05': General Appearance
-        ///     Step 6 in TC-ID: 15.1.3 in 20.1.3 Mode Symbols in Sub-Area B7 for OS, UN mode
-        ///     Step 9 in TC-ID: 34.1.4 in 37.1.4.1.1 Data entry/validation process when enabling conditions not fullfilled: Level 1
-        ///     Step 1 in TC-ID: 18.5 in 23.5 Train Running Number
-        ///     Step 17 in TC-ID: 22.18 in Train Running Number window
-        ///     Step 4 in TC-ID: 33.1 in 36.1 The relationship between parent and child windows (1)
-        ///     Step 4 in TC-ID: 35.2 in 38.2 NTC System Status Messages
-        ///     Step 9 in TC-ID: 35.2 in 38.2 NTC System Status Messages
-        /// </summary>
-        public static void TRN_window_displayed(SignalPool pool)
-        {
-            pool.WaitForVerification("Is the Train Running Number window displayed on the DMI?");
-        }
-
-        /// <summary>
-        /// Description: Driver enters and confirms Fixed Train Data
-        /// Used in:
-        ///     Step 5 in 15.1.3
-        /// </summary>
-        /// <param name="pool"></param>
-        public static void Fixed_Train_Data_entered(SignalPool pool)
-        {
-            //to be updated (packet 107 to be checked)
-        }
-
-        /// <summary>
-        /// Description: Driver validates Fixed Train Data
-        /// Used in:
-        ///     Step 6 in 15.1.3
-        /// </summary>
-        /// <param name="pool"></param>
-        public static void Fixed_Train_Data_validated(SignalPool pool)
-        {
-            //to be updated (packet 110 to be checked)
         }
 
         /// <summary>
@@ -859,61 +1175,6 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
-        /// Description: DMI displays SR mode
-        /// Used in:
-        ///     Step 9 in TC-ID: 6.1 in 11.1 Acknowledgements: General
-        ///     Step 4 in TC-ID: 15.1.1 in 20.1.1 Mode Symbols in Sub-Area B7 for SB, SR, FS, TR, PT, SH, NL and SF mode
-        ///     Step 9 in TC-ID: 15.1.1 in 20.1.1 Mode Symbols in Sub-Area B7 for SB, SR, FS, TR, PT, SH, NL and SF mode
-        ///     Step 6 in TC-ID: 17.9.8 in 22.9.8 Hide PA Function is configured ‘STORED’ with reactivated Cabin A
-        ///     Step 12 in TC-ID: 18.4.1 in 23.4.1 Geographical Position: General presentation
-        ///     Step 3 in TC-ID: 18.4.3 in 23.4.3 Geographical Position: Additional requirements
-        ///     Step 3 in TC-ID: 20.1 in 25.1 Driver’s Action: Main window
-        ///     Step 1 in TC-ID: 26.1 in 1 Introduction
-        ///     Step 11 in TC-ID: 5.3 in 10.3 Screen Layout: Frames
-        ///     Step 13 in TC-ID: 10.2.6 in 15.2.6 State 'ST05': Settings window and windows in setting menu
-        ///     Step 2 in TC-ID: 13.1.1 in 18.1.1 Distance to Target  Bar: General Appearance
-        ///     Step 2 in TC-ID: 13.1.4 in 18.1.4 Distance to Target Digital when the communication between ETCS  Onboard and DMI is lost
-        ///     Step 2 in TC-ID: 13.1.5 in 18.1.5 Distance to Target in RV mode
-        ///     Step 2 in TC-ID: 17.1.1 in 22.1.1 Planning Area: General Appearance
-        ///     Step 2 in TC-ID: 17.1.2 in 22.1.2 Planning Area is suppressed in Level 1 and OS mode
-        ///     Step 2 in TC-ID: 17.2.1 in 22.2.1 Planning Area-Layering: PASP and PA Distance scale
-        ///     Step 1 in TC-ID: 17.3 in 22.3 Planning Area: PA Distance Scale
-        ///     Step 1 in TC-ID: 17.5.1 in 22.5.1 PA Gradient Profile:  General appearance
-        ///     Step 1 in TC-ID: 17.7.2 in 22.7.2 PA Speed Profile (PASP): Information updating
-        ///     Step 2 in TC-ID: 17.9.1 in 22.9.1 Hide PA Function: General appearance
-        ///     Step 1 in TC-ID: 17.9.2 in 22.9.2 Hide PA Function is configured ‘ON’ with reboot DMI
-        ///     Step 2 in TC-ID: 17.9.5 in 22.9.6 Hide PA Function is configured ‘TIMER’ with reboot DMI
-        ///     Step 1 in TC-ID: 17.9.10 (Default Configuration) in 22.9.10 Hide PA Function with the communication loss between ETCS Onboard and DMI
-        ///     Step 2 in TC-ID: 17.10.2 in 22.10.2 Zoom PA Function with Scale Up
-        ///     Step 2 in TC-ID: 17.10.3 in 22.10.3 Zoom PA Function with Scale Down
-        ///     Step 2 in TC-ID: 17.10.4 in 22.10.4 Zoom PA Function with the communication loss between ETCS Onboard and DMI
-        ///     Step 1 in TC-ID: 18.4.1 in 23.4.1 Geographical Position: General presentation
-        ///     Step 2 in TC-ID: 12.7.1 in 17.7.1 Release Speed: At Sub-area B2 and B6
-        ///     Step 2 in TC-ID: 17.11 in 22.11 Handle at least 31 PA Speed Profile Segments
-        ///     Step 2 in TC-ID: 17.12 in Handle at least 31 PA Gradient Profile Segments
-        ///     Step 2 in TC-ID: 17.4.17 in 22.4.17 PA Track Condition: First symbol prevails over the next coming symbol
-        ///     Step 2 in TC-ID: 29.1 in 29.1 UTC time and offset time(by driver)
-        ///     Step 2 in TC-ID: 29.2 in 29.2 UTC time and offset time(by using EVC-3)
-        ///     Step 1 in TC-ID: 17.5.2 in 22.5.2 PA Gradient Profile:  Display of many PA Gradient Profile
-        ///     Step 1 in TC-ID: 17.5.3 in 22.5.3 PA Gradient Profile:  Information updating
-        ///     Step 1 in TC-ID: 17.5.4 in 22.5.4 PA Gradient Profile:  Invalid Information Ignoring
-        ///     Step 2 in TC-ID: 17.9.3 in 22.9.3 Hide PA Function is configured ‘OFF’ with reboot DMI
-        ///     Step 2 in TC-ID: 17.9.4 in 22.9.4 Hide PA Function is configured ‘STORED’ with reboot DMI
-        ///     Step 2 in TC-ID: 17.9.6 in 22.9.5 Hide PA Function is configured ‘ON’ with reactivated Cabin A
-        ///     Step 2 in TC-ID: 17.9.7 in 22.9.7 Hide PA Function is configured ‘OFF’ with reactivated Cabin A
-        ///     Step 6 in TC-ID: 17.9.7 in 22.9.7 Hide PA Function is configured ‘OFF’ with reactivated Cabin A
-        ///     Step 2 in TC-ID: 17.9.9 in 22.9.9 Hide PA Function is configured ‘TIMER’ with reactivated Cabin A
-        ///     Step 6 in TC-ID: 17.9.9 in 22.9.9 Hide PA Function is configured ‘TIMER’ with reactivated Cabin A
-        ///     Step 10 in TC-ID: 17.9.11 in 22.9.11 Hide PA Function configured ‘STORED’ with re-activate cabin
-        ///     Step 16 in TC-ID: 17.9.11 in 22.9.11 Hide PA Function configured ‘STORED’ with re-activate cabin
-        /// </summary>
-        public static void SR_Mode_displayed(SignalPool pool)
-        {
-            EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.StaffResponsible;
-            Driver_symbol_displayed(pool, "Staff Responsible mode", "MO9", "B7", false);
-        }
-
-        /// <summary>
         /// Description: The display information on DMI still not change, ST01 symbol is displayed on sub-area C9
         /// Used in:
         ///     Step 8 in TC-ID: 6.3 in 11.3 Acknowledgements: Priority of new incoming acknowledgements
@@ -1017,17 +1278,6 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
-        /// Description: DMI displays Special window with enabled Adhesion button
-        /// Used in:
-        ///     Step 8 in TC-ID: 10.2.5 in 15.2.5 State 'ST05': Special window and windows in the special menu
-        ///     Step 3 in TC-ID: 20.3 in 25.3 Driver’s Action: Special window
-        /// </summary>
-        public static void DMI_displays_Special_window_with_enabled_Adhesion_button(SignalPool pool)
-        {
-            pool.WaitForVerification("Is the Special window displayed with the Adhesion button enabled?");
-        }
-
-        /// <summary>
         /// Description: Verify the following information;DMI in the entry state of ‘ST05’(1)   The hourglass symbol ST05 is displayed.(2)   Verify all buttons and the close button is disable.(3)   The disabled Close button NA12 is display in area G.(4)   The Input Field is deselected.10 seconds laterDMI in the exit state of ‘ST05’(5)   The hourglass symbol ST05 is removed.(6)   The state of all buttons is restored according to the last status before script is sent.(7)   The enabled Close button NA11 is display in area G.(8)   The input field is in the ‘Selected’ state
         /// Used in:
         ///     Step 2 in TC-ID: 10.2.6 in 15.2.6 State 'ST05': Settings window and windows in setting menu
@@ -1123,29 +1373,6 @@ namespace Testcase.DMITestCases
         public static void The_train_is_at_standstill(SignalPool pool)
         {
             throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Description: DMI displays SB mode
-        /// Used in:
-        ///     Step 1 in TC-ID: 12.2.2 in 17.2.2 Speed Dial: Display Train maxinum speed
-        ///     Step 1 in TC-ID: 15.1.1
-        ///     Step 1 in TC-ID: 29.1 in 29.1 UTC time and offset time(by driver)
-        ///     Step 1 in TC-ID: 29.2 in 29.2 UTC time and offset time(by using EVC-3)
-        ///     Step 1 in TC-ID: 29.3 in 29.3 UTC time and offset time(By VAP acting as NTP server)
-        ///     Step 6 in TC-ID: 5.10 in 10.10 Screen Layout: Button States
-        ///     Step 8 in TC-ID: 5.10 in 10.10 Screen Layout: Button States
-        ///     Step 11 in TC-ID: 5.10 in 10.10 Screen Layout: Button States
-        ///     Step 17 in TC-ID: 5.10 in 10.10 Screen Layout: Button States
-        ///     Step 19 in TC-ID: 5.10 in 10.10 Screen Layout: Button States
-        ///     Step 1 in TC-ID: 1.8 in 6.8 Accleration/Decleration interval -4.0m/s2 to +4.0 m/s2
-        ///     Step 21 in TC-ID: 5.10 in 10.10 Screen Layout: Button States
-        ///     Step 1 in TC-ID: 17.4.17 in 22.4.17 PA Track Condition: First symbol prevails over the next coming symbol
-        /// </summary>
-        public static void SB_Mode_displayed(SignalPool pool)
-        {
-            EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.StandBy;
-            Driver_symbol_displayed(pool, "Stand By mode", "MO13", "B7", false);
         }
 
         /// <summary>
@@ -1603,25 +1830,6 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
-        /// Description: DMI changes from SR to FS mode
-        /// Used in:
-        ///     Step 3 in TC-ID: 13.1.1 in 18.1.1 Distance to Target  Bar: General Appearance
-        ///     Step 3 in TC-ID: 13.1.5 in 18.1.5 Distance to Target in RV mode
-        ///     Step 1 in TC-ID: 12.12 in 17.12 Slip Indication
-        ///     Step 1 in TC-ID: 12.13 in 17.13 Slide Indication
-        ///     Step 1 in TC-ID: 12.14 in 17.14 Slip and Slide are configure to 1 at the same time
-        ///     Step 1 in TC-ID: 12.15 in 17.15 Slip and Slide are configure to 0 at the same time
-        ///     Step 2 in TC-ID: 17.3 in 22.3 Planning Area: PA Distance Scale
-        ///     Step 5 in TC-ID: 15.1.1 in 20.1.1
-        ///     Step 2 in TC-ID: 15.1.2 in 20.1.2
-        /// </summary>
-        public static void FS_mode_displayed(SignalPool pool)
-        {
-            EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.FullSupervision;
-            Driver_symbol_displayed(pool, "FS mode", "MO11", "B7", false);
-        }
-
-        /// <summary>
         /// Description: DMI displays in SB mode. The Driver ID window is displayed
         /// Used in:
         ///     Step 1 in TC-ID: 13.1.4 in 18.1.4 Distance to Target Digital when the communication between ETCS  Onboard and DMI is lost
@@ -1838,34 +2046,6 @@ namespace Testcase.DMITestCases
         ///     Step 7 in TC-ID: 34.6 in 37.6 Dialogue Sequence of Special window
         /// </summary>
         public static void DMI_displays_Special_window(SignalPool pool)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Description: DMI displays Level window
-        /// Used in:
-        ///     Step 2 in TC-ID: 15.1.3 in 20.1.3 Mode Symbols in Sub-Area B7 for OS, UN mode
-        ///     Step 3 in TC-ID: 34.1.4 in 37.1.4.1.1 Data entry/validation process when enabling conditions not fullfilled: Level 1
-        /// </summary>
-        public static void Level_window_displayed(SignalPool pool)
-        {
-            pool.WaitForVerification("Is the Level window displayed?");
-        }
-
-        /// <summary>
-        /// Description: Verify the following information,(1)   There is no symbol displayed on sub-area B7
-        /// Used in:
-        ///     Step 1 in TC-ID: 15.1.7 in 20.1.7 Mode Symbols for unused value of variable OBU_TR_M_MODE
-        ///     Step 2 in TC-ID: 15.1.7 in 20.1.7 Mode Symbols for unused value of variable OBU_TR_M_MODE
-        ///     Step 3 in TC-ID: 15.1.7 in 20.1.7 Mode Symbols for unused value of variable OBU_TR_M_MODE
-        ///     Step 4 in TC-ID: 15.1.7 in 20.1.7 Mode Symbols for unused value of variable OBU_TR_M_MODE
-        ///     Step 5 in TC-ID: 15.1.7 in 20.1.7 Mode Symbols for unused value of variable OBU_TR_M_MODE
-        ///     Step 6 in TC-ID: 15.1.7 in 20.1.7 Mode Symbols for unused value of variable OBU_TR_M_MODE
-        ///     Step 7 in TC-ID: 15.1.7 in 20.1.7 Mode Symbols for unused value of variable OBU_TR_M_MODE
-        ///     Step 8 in TC-ID: 15.1.7 in 20.1.7 Mode Symbols for unused value of variable OBU_TR_M_MODE
-        /// </summary>
-        public static void Verify_the_following_information_1_There_is_no_symbol_displayed_on_sub_area_B7(SignalPool pool)
         {
             throw new NotImplementedException();
         }
@@ -2618,20 +2798,6 @@ namespace Testcase.DMITestCases
         public static void DMI_still_displays_Level_window_No_sound_Click_is_played(SignalPool pool)
         {
             throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Description: DMI displays Driver ID window in SB mode
-        /// Used in:
-        ///     Step 1 in TC-ID: 22.5.4  in 27.5.4 Level Selection window: 8 STMs handling
-        ///     Step 1 in TC-ID: 35.2 in 38.2 NTC System Status Messages
-        ///     Step 7 in TC-ID: 35.2 in 38.2 NTC System Status Messages
-        ///     Step 1 in TC-ID: 17.1.3 in 20.1.3 
-        /// </summary>
-        public static void DMI_displays_Driver_ID_window_in_SB_mode(SignalPool pool)
-        {
-            pool.WaitForVerification("Is the Driver Id window displayed in SB mode?");
-            EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.StandBy;
         }
 
         /// <summary>

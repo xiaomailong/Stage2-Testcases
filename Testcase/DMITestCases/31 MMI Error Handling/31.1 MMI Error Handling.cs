@@ -14,6 +14,7 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
 using Testcase.Telegrams.EVCtoDMI;
+using Testcase.Telegrams.DMItoEVC;
 
 
 namespace Testcase.DMITestCases
@@ -43,7 +44,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 26_1.tdg
     /// </summary>
-    public class MMI_Error_Handling : TestcaseBase
+    public class TC_26_1_MMI_Error_Handling : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -77,9 +78,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SR mode, Level 1
             Test Step Comment: 
             */
-            DmiActions.Activate_Cabin_1(this);
-
-            DmiActions.ShowInstruction(this, "Perform SoM to SR mode, Level 1.");
+            DmiActions.Perform_SoM_in_SR_mode_Level_1(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SR mode, Level 1.");
@@ -123,8 +122,8 @@ namespace Testcase.DMITestCases
             */
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 40000;      // at 400m
             DmiActions.Simulate_communication_loss_EVC_DMI(this);
-
-            DmiActions.ShowInstruction(this, "Check in the log file that one packet EVC-102 MMI_M_MMI_STATUS = 5 is sent from DMI");
+            
+            // EVC102 check?? MMI_M_MMI_STATUS = 5
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI enters ‘ATP-down’ state, displaying the message ‘ATP Down Alarm’ in a yellow flashing frame." + Environment.NewLine +
@@ -137,7 +136,10 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,	The ATP down alarm is removed.The yellow flashing frame is removed but the message ‘ATP Down Alarm’ is still displayed.Use log file to confirm that DMI sends out [MMI_STATUS_REPORT (EVC-102).MMI_M_MMI_STATUS] = 6 only once.
             Test Step Comment:MMI_gen 245 (partly: 1st bullet, sound);MMI_gen 245 (partly: 1st bullet, confirm button);MMI_gen 245 (partly: 2nd bullet);
             */
-            DmiActions.ShowInstruction(this, "Acknowledge the ‘ATP Down Alarm’ message and check in the log file that one packet EVC-102 MMI_M_MMI_STATUS = 6 is sent from DMI");
+            DmiActions.ShowInstruction(this, "Acknowledge the ‘ATP Down Alarm’ message");
+
+            // EVC102 check?? MMI_M_MMI_STATUS = 6
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI stops playing the 1000Hz sound." + Environment.NewLine +
                                 "2. DMI still displays the message ‘ATP Down Alarm’, but without a yellow flashing frame.");
@@ -150,7 +152,9 @@ namespace Testcase.DMITestCases
             */
             DmiActions.Re_establish_communication_EVC_DMI(this);
 
-            WaitForVerification("Check the following and in the log file to confirm that the DMI sends out packet EVC-102 MMI_M_MMI_STATUS = 3 every 250ms" + Environment.NewLine + Environment.NewLine +
+            // EVC102 check??  MMI_M_MMI_STATUS = 3
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI stops displaying the message ‘ATP Down Alarm’." + Environment.NewLine +
                                 "2. DMI displays as before in FS mode.");
 

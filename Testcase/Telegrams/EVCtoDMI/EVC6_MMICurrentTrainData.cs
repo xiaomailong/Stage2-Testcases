@@ -48,7 +48,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             if (DataElements.Count > 9)
                 throw new ArgumentOutOfRangeException();
             if (TrainSetCaptions.Count != DataElements.Count)
-                throw new Exception("Number of RBC elements and number of captions do not match!");
+                throw new Exception("Number of Train Data elements and number of captions do not match!");
 
             ushort totalSizeCounter = 160;
 

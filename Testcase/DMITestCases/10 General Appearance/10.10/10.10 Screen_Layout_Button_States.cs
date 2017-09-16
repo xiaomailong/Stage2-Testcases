@@ -35,7 +35,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 5_10_a.xml, 5_10.tdg, 5_10.utt
     /// </summary>
-    public class Screen_Layout_Button_States : TestcaseBase
+    public class TC_ID_5_10_Screen_Layout_Button_States : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -89,6 +89,7 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, "Enter Train running number");
 
+            EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Start | Variables.standardFlags;
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;      // Main window
             EVC30_MMIRequestEnable.Send();

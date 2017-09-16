@@ -31,7 +31,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// N/A
     /// </summary>
-    public class Flexible_Train_data_entry : TestcaseBase
+    public class TC_34_1_2_Dialogue_Sequences : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -57,7 +57,6 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
             /*
             Test Step 1
             Action: Perform the following procedure,Activate Cabin AEnter Driver ID and perform brake testSelect and confirm Level 1
@@ -65,9 +64,11 @@ namespace Testcase.DMITestCases
             */
             DmiActions.Complete_SoM_L1_SB(this);
 
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Main_window(this);
-            
+            DmiActions.ShowInstruction(this, "Press the ‘Main’ button");
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the Main window.");
+
             /*
             Test Step 2
             Action: Press ‘Train data’ button

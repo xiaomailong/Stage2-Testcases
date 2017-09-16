@@ -33,7 +33,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 13_1_5.tdg
     /// </summary>
-    public class Distance_to_Target_in_RV_mode : TestcaseBase
+    public class TC_13_1_5_Brake : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -69,8 +69,14 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Activate_Cabin_1(this);
+
+            EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE = EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE_BUTTONS.Settings |
+                                                        EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE_BUTTONS.TRN;
+            EVC14_MMICurrentDriverID.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
+            EVC14_MMICurrentDriverID.Send();
+
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Driver_ID_window_in_SB_mode(this);
+            DmiExpectedResults.Driver_ID_window_displayed_in_SB_mode(this);
 
             /*
             Test Step 2

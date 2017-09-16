@@ -36,7 +36,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 12_4.tdg,12_4_a.xml, 12_4_b.xml, 12_4_c.xml
     /// </summary>
-    public class Current_Train_Speed_Digital_Sub_Area_B1 : TestcaseBase
+    public class TC_12_4_Train_Speed : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -69,8 +69,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Default window.Verify the following information,ETSC-DMI using EVC-1 with variable MMI_V_TRAIN = 0 as the train is standstill.The number of the current train speed is displayed in Sub-Area B1.Number 0 is black.The single integer number is aligned right
             Test Step Comment: (1) MMI_gen 6303;(2) MMI_gen 6304;(3) MMI_gen 6307 (partly: digital number is black)(4) MMI_gen 1279 (partly: right most sub-area, 1 digit, integer)
             */
-
             EVC1_MMIDynamic.MMI_V_TRAIN = 0;
+
+            DmiActions.ShowInstruction(this, "Press the ‘Close’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Default window." + Environment.NewLine +

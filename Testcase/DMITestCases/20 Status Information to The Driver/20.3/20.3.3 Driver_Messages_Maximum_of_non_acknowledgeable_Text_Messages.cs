@@ -32,7 +32,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 15_3_3_a.xml, 15_3_3_b.xml, 15_3_3_c.xml
     /// </summary>
-    public class Driver_Messages_Maximum_of_non_acknowledgeable_Text_Messages : TestcaseBase
+    public class TC_15_3_3_Driver_Messages : TestcaseBase
     {
         public override void PreExecution()
         {

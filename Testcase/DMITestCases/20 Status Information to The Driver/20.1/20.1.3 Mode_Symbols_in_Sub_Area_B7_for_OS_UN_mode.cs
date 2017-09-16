@@ -73,8 +73,9 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.Cabin_A_is_activated(this);
 
             DmiActions.Display_Driver_ID_Window(this);
+            DmiActions.Set_Driver_ID(this, "1234");
             DmiActions.Send_SB_Mode(this);
-            DmiExpectedResults.DMI_displays_Driver_ID_window_in_SB_mode(this);
+            DmiExpectedResults.Driver_ID_window_displayed_in_SB_mode(this);
 
             #endregion
 
@@ -143,6 +144,7 @@ namespace Testcase.DMITestCases
 
             #endregion
 
+            #region Test Step 6
             /*
             Test Step 6
             Action: Press ‘Yes’ button.Then, confirmed selected value by pressing an input field
@@ -158,84 +160,236 @@ namespace Testcase.DMITestCases
             DmiActions.Display_TRN_Window(this);
             DmiExpectedResults.TRN_window_displayed(this);
 
+            #endregion
+
+            #region Test Step 7
             /*
             Test Step 7
             Action: Enter and confirm Train running number
             Expected Result: DMI displays Main window
             */
 
-            DmiExpectedResults.Driver_ID_entered(this);
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Main_window(this);
+            DmiExpectedResults.TRN_entered(this);
 
+            DmiExpectedResults.Main_Window_displayed_with_Start_button_enabled(this);
 
+            #endregion
+
+            #region Test Step 8
             /*
             Test Step 8
             Action: Press ‘Start’ button
-            Expected Result: Verify the following information,The symbol MO17 is displayed for Unfitted mode acknowledegement in sub-area C1. Use the log file to confirm that DMI receives packet information EVC-8 with the following value,MMI_Q_TEXT = 264MMI_Q_TEXT_CRITERIA = 1
-            Test Step Comment: (1) MMI_gen 1227 (partly: MO17);                                          (2) MMI_gen 11233 (partly: MO17);
+            Expected Result: Verify the following information,
+            The symbol MO17 is displayed for Unfitted mode acknowledegement in sub-area C1. 
+            Use the log file to confirm that DMI receives packet information EVC-8 with the following value,
+            MMI_Q_TEXT = 264
+            MMI_Q_TEXT_CRITERIA = 1
+            Test Step Comment: (1) MMI_gen 1227 (partly: MO17);                                          
+                               (2) MMI_gen 11233 (partly: MO17);
             */
-            // Call generic Action Method
+
             DmiActions.ShowInstruction(this, @"Press ‘Start’ button");
+            DmiExpectedResults.Start_Button_pressed_and_released(this);
 
+            DmiActions.Send_UN_Mode_Ack(this);
+            DmiExpectedResults.UN_Mode_Ack_requested(this);
 
+            #endregion
+
+            #region Test Step 9
             /*
             Test Step 9
             Action: Acknowledge UN mode
-            Expected Result: Verify the following information,(1)    The symbol MO16 is displayed in sub-area B7. (2)     Use the log file to confirm that DMI received the EVC-7 with [MMI_ETCS_MISC_OUT_SIGNALS.OBU_TR_M_MODE] = 4 in order to display the Unfitted symbol.(3)     Use the log file to confirm that DMI sends out packet [MMI_DRIVER_ACTION (EVC-152)] with the value of variable MMI_M_DRIVER_ACTION refer to sequence below,          a)   MMI_M_DRIVER_ACTION = 4 (Ack of Unfitted mode)
-            Test Step Comment: (1) MMI_gen 110 (partly: MO16);  (2) MMI_gen 11084 (partly: ETCS mode UN); (3) MMI_gen 11470 (partly: Bit # 4);                                               
+            Expected Result: Verify the following information,
+            (1)    The symbol MO16 is displayed in sub-area B7. 
+            (2)    Use the log file to confirm that DMI received the EVC-7 
+            with [MMI_ETCS_MISC_OUT_SIGNALS.OBU_TR_M_MODE] = 4 in order to display the Unfitted symbol.
+            (3)    Use the log file to confirm that DMI sends out packet [MMI_DRIVER_ACTION (EVC-152)] 
+            with the value of variable MMI_M_DRIVER_ACTION refer to sequence below,          
+            a)   MMI_M_DRIVER_ACTION = 4 (Ack of Unfitted mode)
+            Test Step Comment: (1) MMI_gen 110 (partly: MO16);  
+                               (2) MMI_gen 11084 (partly: ETCS mode UN); 
+                               (3) MMI_gen 11470 (partly: Bit # 4);                                               
             */
 
+            DmiActions.ShowInstruction(this, "Press and hold DMI Sub Area C1");
+            DmiExpectedResults.UN_Mode_Ack_pressed_and_released(this);
 
+            DmiActions.Send_UN_Mode(this);
+            DmiExpectedResults.UN_Mode_displayed(this);
+
+            #endregion
+
+            #region Test Step 10
             /*
             Test Step 10
-            Action: Perform the following procedure,De-activate Cabin A.Activate Cabin A.Perform SoM in SR mode, Level 1
-            Expected Result: DMI displays Default window in SR mode, Level 1.(1)   Use the log file to confirm that DMI sends out packet [MMI_DRIVER_ACTION (EVC-152)] with the value of variable MMI_M_DRIVER_ACTION refer to sequence below,      a)    MMI_M_DRIVER_ACTION = 3 (Ack of Staff Responsible mode)
+            Action: Perform the following procedure:
+            De-activate Cabin A.
+            Activate Cabin A.
+            Perform SoM in SR mode, Level 1
+            Expected Result: DMI displays Default window in SR mode, Level 1.
+            (1)   Use the log file to confirm that DMI sends out packet [MMI_DRIVER_ACTION (EVC-152)] 
+            with the value of variable MMI_M_DRIVER_ACTION refer to sequence below,      
+            a)    MMI_M_DRIVER_ACTION = 3 (Ack of Staff Responsible mode)
             Test Step Comment: (1) MMI_gen 11470 (partly: Bit #3);                     
             */
 
+            DmiActions.Deactivate_Cabin(this);
 
+            Wait_Realtime(5000);
+
+            DmiActions.Activate_Cabin_1(this);
+
+            DmiActions.Display_Driver_ID_Window(this);
+            DmiActions.Set_Driver_ID(this, "1234");
+            DmiActions.Send_SB_Mode(this);
+            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
+                                "1. Enter and confirm Driver ID." + Environment.NewLine +
+                                "2. Press OK on THIS window within 3 seconds.");
+
+            DmiActions.Request_Brake_Test(this);
+            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
+                                "1. Perform Brake Test" + Environment.NewLine +
+                                "2. Press OK on THIS window within 3 seconds.");
+
+            DmiActions.Display_Level_Window(this);
+            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
+                                "1. Select and enter Level 1" + Environment.NewLine +
+                                "2. Press OK on THIS window within 3 seconds.");
+
+            DmiActions.Display_Main_Window_with_Start_button_not_enabled(this);
+            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
+                                "1. Press ‘Train data’ button." + Environment.NewLine +
+                                "2. Press OK on THIS window within 3 seconds.");
+
+            DmiActions.Display_Train_Data_Window(this);
+            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
+                                "1. Enter and confirm value in each input field." + Environment.NewLine +
+                                "2. Press ‘Yes’ button." + Environment.NewLine +
+                                "3. Press OK on THIS window within 3 seconds.");
+
+            DmiActions.Display_Train_data_validation_Window(this);
+            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
+                                "1. Press ‘Yes’ button." + Environment.NewLine +
+                                "2. Confirmed the selected value by pressing the input field." + Environment.NewLine +
+                                "3. Press OK on THIS window within 3 seconds.");
+
+            DmiActions.Display_TRN_Window(this);
+            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
+                                "1. Enter and confirm Train Running Number." + Environment.NewLine +
+                                "2. Press OK on THIS window within 3 seconds.");
+
+            DmiExpectedResults.Main_Window_displayed_with_Start_button_enabled(this);
+            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
+                                "1. Press ‘Start’ button." + Environment.NewLine +
+                                "2. Press OK on THIS window within 3 seconds.");
+
+            DmiActions.Send_SR_Mode_Ack(this);
+            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
+                                "1. Press and hold DMI Sub Area C1." + Environment.NewLine +
+                                "2. Press OK on THIS window within 3 seconds.");
+            DmiExpectedResults.SR_Mode_Ack_pressed_and_hold(this);
+
+            DmiActions.Send_SR_Mode(this);
+            DmiActions.FinishedSoM_Default_Window(this);
+            DmiExpectedResults.SR_Mode_displayed(this);
+
+            #endregion
+
+            #region Test Step 11
             /*
             Test Step 11
             Action: Drive the train forward passing BG1
-            Expected Result: Verify the following information,The symbol MO08 is displayed for On sight acknowledegement in sub-area C1. Use the log file to confirm that DMI is receive packet information EVC-8 with the following value,MMI_Q_TEXT = 259MMI_Q_TEXT_CRITERIA = 1(3)    Use the log file to confirm that DMI sends out packet [MMI_DRIVER_ACTION (EVC-152)] with the value of variable MMI_M_DRIVER_ACTION refer to sequence below,a)   MMI_M_DRIVER_ACTION = 0 (Ack of On sight mode)
-            Test Step Comment: (1) MMI_gen 1227 (partly: MO08);        (2) MMI_gen 11233 (partly: MO17ไ);(3) MMI_gen 11470 (partly: Bit # 0);                     
+            Expected Result: Verify the following information,
+            The symbol MO08 is displayed for On sight acknowledegement in sub-area C1. 
+            Use the log file to confirm that DMI is receive packet information EVC-8 with the following value,
+            MMI_Q_TEXT = 259
+            MMI_Q_TEXT_CRITERIA = 1
+            (3)    Use the log file to confirm that DMI sends out packet [MMI_DRIVER_ACTION (EVC-152)] 
+            with the value of variable MMI_M_DRIVER_ACTION refer to sequence below,
+            a)   MMI_M_DRIVER_ACTION = 0 (Ack of On sight mode)
+            Test Step Comment: (1) MMI_gen 1227 (partly: MO08);        
+                               (2) MMI_gen 11233 (partly: MO17ไ);
+                               (3) MMI_gen 11470 (partly: Bit # 0);                     
             */
-            // Call generic Action Method
+
             DmiActions.Drive_train_forward_passing_BG1(this);
 
+            DmiActions.Send_OS_Mode_Ack(this);
+            DmiExpectedResults.OS_Mode_Ack_Requested(this);
 
+            #endregion
+
+            #region Test Step 12
             /*
             Test Step 12
             Action: Acknowledge OS mode
-            Expected Result: Verify the following information,(1)    The symbol MO07 is displayed in sub-area B7. (2)    Use the log file to confirm that DMI received the EVC-7 with [MMI_ETCS_MISC_OUT_SIGNALS.OBU_TR_M_MODE] = 1 in order to display the On-sight symbol
-            Test Step Comment: (1) MMI_gen 110 (partly:MO07);  (2) MMI_gen 11084 (partly: ETCS mode OS);                           
+            Expected Result: Verify the following information,
+            (1)    The symbol MO07 is displayed in sub-area B7. 
+            (2)    Use the log file to confirm that DMI received the EVC-7 
+            with [MMI_ETCS_MISC_OUT_SIGNALS.OBU_TR_M_MODE] = 1 in order to display the On-sight symbol
+            Test Step Comment: (1) MMI_gen 110 (partly:MO07);  
+                               (2) MMI_gen 11084 (partly: ETCS mode OS);                           
             */
-            // Call generic Action Method
-            DmiActions.Acknowledge_OS_mode(this);
 
+            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
+                                "1. Press DMI Sub Area C1." + Environment.NewLine +
+                                "2. Press OK on THIS window within 3 seconds.");
+            DmiExpectedResults.OS_Mode_Ack_pressed_and_released(this);
 
+            DmiActions.Send_OS_Mode(this);
+            DmiExpectedResults.OS_Mode_displayed(this);
+
+            #endregion
+
+            #region Test Step 13
             /*
             Test Step 13
             Action: Stop the train.Then, press ‘Over-ride’ button
             Expected Result: When the train is stopped, EOA button is enabled
             */
 
+            DmiActions.Stop_the_train(this);
 
+            Wait_Realtime(5000);
+
+            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
+                                "1. Press the \"Override\" Button on Default Window Area F2." + Environment.NewLine +
+                                "2. Press OK on THIS window within 3 seconds.");
+            DmiActions.Display_Override_Window(this);
+            DmiExpectedResults.Override_window_displayed(this);
+
+            #endregion
+
+            #region Test Step 14
             /*
             Test Step 14
             Action: Press ‘EOA’ button
-            Expected Result: Verify the following information, (1)   The symbol MO03 is displayed for Override EOA symbol in sub-area C7.(2) Use the log DMI received packet information EVC-2 with variable MMI_M_OVERRIDE_EOA = 1
-            Test Step Comment: (1) MMI_gen 11231 (partly: MO03);(2) MMI_gen 11231 (partly: EVC-2);
+            Expected Result: Verify the following information, 
+            (1)   The symbol MO03 is displayed for Override EOA symbol in sub-area C7.
+            (2) Use the log DMI received packet information EVC-2 with variable MMI_M_OVERRIDE_EOA = 1
+            Test Step Comment: (1) MMI_gen 11231 (partly: MO03);
+                               (2) MMI_gen 11231 (partly: EVC-2);
             */
 
+            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
+                                "1. Press ‘EOA’ button." + Environment.NewLine +
+                                "2. Press OK on THIS window within 3 seconds.");
 
+            DmiExpectedResults.EOA_Button_pressed(this);
+
+            DmiActions.Set_Override(this);
+            DmiExpectedResults.Default_Window_with_Override_Symbol(this);
+
+            #endregion
+
+            #region Test Step 15
             /*
             Test Step 15
             Action: End of test
             Expected Result: 
             */
-
+            #endregion
 
             return GlobalTestResult;
         }

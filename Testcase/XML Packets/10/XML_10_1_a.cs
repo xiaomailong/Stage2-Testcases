@@ -32,7 +32,8 @@ namespace Testcase.XML
         public static void Send(SignalPool pool, string windowName, bool showLock = true)
         {
             _pool = pool;
-            
+
+            EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = 0xff;   // Enable all windows
             
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.None;
@@ -49,7 +50,7 @@ namespace Testcase.XML
                                           $"All the buttons in the {windowName} menu window are disabled (displayed with a border with Dark-Grey text");
             }
 
-            System.Threading.Thread.Sleep(10000);
+            _pool.Wait_Realtime(10000);
 
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Start |
                                                                EVC30_MMIRequestEnable.EnabledRequests.DriverID |

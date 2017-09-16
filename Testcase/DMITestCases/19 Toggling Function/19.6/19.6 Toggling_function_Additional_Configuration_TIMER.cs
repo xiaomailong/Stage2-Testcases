@@ -13,6 +13,8 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.EVCtoDMI;
+
 
 namespace Testcase.DMITestCases
 {
@@ -36,7 +38,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 14_6.tdg
     /// </summary>
-    public class Toggling_function_Additional_Configuration_TIMER2 : TestcaseBase
+    public class TC_14_6_Toggling_Function : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -45,12 +47,20 @@ namespace Testcase.DMITestCases
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
+
+            EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.GoToIdle;
+            EVC0_MMIStartATP.Send();
+
+            // Set train running number, cab 1 active, and other defaults
+            DmiActions.Activate_Cabin_1(this);
         }
 
         public override void PostExecution()
         {
             // Post-conditions from TestSpec
             // DMI displays in SH mode, Level 1.
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SH mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -60,22 +70,26 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
             /*
             Test Step 1
             Action: Perform SoM in SR mode, level 1
             Expected Result: DMI displays Default window in SR mode, level 1.Note: The basic speed hook is appear for 10 seconds
             */
+            DmiActions.ShowInstruction(this, "Perform SoM in SR mode, level 1.");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays Default window in SR mode, level 1." + Environment.NewLine +
+                                "2. The Basic speed hook is displayed for 10s.");
 
             /*
             Test Step 2
             Action: Perform the following procedure, Press ‘Spec’ buttonPress ‘SR speed/distance’ buttonEnter and confirm the following data,SR speed = 40 km/hSR distance = 300 m
             Expected Result: DMI displays Special window
             */
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Special_window(this);
+            DmiActions.ShowInstruction(this, "Press the ‘Spec’ button. Press the ‘SR speed/distance’ button. Enter and confirm the following data, SR speed = 40 km/hSR distance = 300 m");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the Special window.");
 
             /*
             Test Step 3
@@ -83,14 +97,45 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   The following objects are displays for 10 seconds before disappear.White basic speed hookMedium-grey basic speed hookDistance to target (digital)
             Test Step Comment: (1) MMI_gen 6897 (partly: switch on the affected ETCS-objects for the configured duration);
             */
+            DmiActions.ShowInstruction(this, "Press the ‘Close’ button. Press in sub-area A1");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the White basic speed hook for 10s then removes it." + Environment.NewLine +
+                                "2. DMI displays the Medium-grey basic speed hook for 10s then removes it." + Environment.NewLine +
+                                "3. DMI displays the Digital distance to target for 10s then removes it.");
 
             /*
             Test Step 4
             Action: Repeat action step 3 for sub-area A2-A4 and area B respectively
             Expected Result: See expected result of step 3
             */
+            DmiActions.ShowInstruction(this, "Press the ‘Close’ button. Press in sub-area A2");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the White basic speed hook for 10s then removes it." + Environment.NewLine +
+                                "2. DMI displays the Medium-grey basic speed hook for 10s then removes it." + Environment.NewLine +
+                                "3. DMI displays the Digital distance to target for 10s then removes it.");
+
+            DmiActions.ShowInstruction(this, "Press the ‘Close’ button. Press in sub-area A3");
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the White basic speed hook for 10s then removes it." + Environment.NewLine +
+                                "2. DMI displays the Medium-grey basic speed hook for 10s then removes it." + Environment.NewLine +
+                                "3. DMI displays the Digital distance to target for 10s then removes it.");
+
+            DmiActions.ShowInstruction(this, "Press the ‘Close’ button. Press in sub-area A4");
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the White basic speed hook for 10s then removes it." + Environment.NewLine +
+                                "2. DMI displays the Medium-grey basic speed hook for 10s then removes it." + Environment.NewLine +
+                                "3. DMI displays the Digital distance to target for 10s then removes it.");
+
+            DmiActions.ShowInstruction(this, "Press the ‘Close’ button. Press in area B");
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the White basic speed hook for 10s then removes it." + Environment.NewLine +
+                                "2. DMI displays the Medium-grey basic speed hook for 10s then removes it." + Environment.NewLine +
+                                "3. DMI displays the Digital distance to target for 10s then removes it.");
 
             /*
             Test Step 5
@@ -98,32 +143,67 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)    The following objects are displays for 10 seconds before disappear.White basic speed hookMedium-grey basic speed hookDistance to target (digital)
             Test Step Comment: (1) MMI_gen 6897 (partly: retriggerable);
             */
+            DmiActions.ShowInstruction(this, "Press in sub-area A1. Wait 5s, then press in sub-area A1 again");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the White basic speed hook for 10s then removes it." + Environment.NewLine +
+                                "2. DMI displays the Medium-grey basic speed hook for 10s then removes it." + Environment.NewLine +
+                                "3. DMI displays the Digital distance to target for 10s then removes it.");
 
             /*
             Test Step 6
             Action: Repeat action step 5 for sub-area A2-A4 and area B respectively
             Expected Result: See expected result of step 5
             */
+            DmiActions.ShowInstruction(this, "Press in sub-area A2. Wait 5s, then press in sub-area A2 again");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the White basic speed hook for 10s then removes it." + Environment.NewLine +
+                                "2. DMI displays the Medium-grey basic speed hook for 10s then removes it." + Environment.NewLine +
+                                "3. DMI displays the Digital distance to target for 10s then removes it.");
+
+            DmiActions.ShowInstruction(this, "Press in sub-area A3. Wait 5s, then press in sub-area A3 again");
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the White basic speed hook for 10s then removes it." + Environment.NewLine +
+                                "2. DMI displays the Medium-grey basic speed hook for 10s then removes it." + Environment.NewLine +
+                                "3. DMI displays the Digital distance to target for 10s then removes it.");
+
+            DmiActions.ShowInstruction(this, "Press in sub-area A4. Wait 5s, then press in sub-area A4 again");
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the White basic speed hook for 10s then removes it." + Environment.NewLine +
+                                "2. DMI displays the Medium-grey basic speed hook for 10s then removes it." + Environment.NewLine +
+                                "3. DMI displays the Digital distance to target for 10s then removes it.");
+
+            DmiActions.ShowInstruction(this, "Press in area B. Wait 5s, then press in area B again");
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the White basic speed hook for 10s then removes it." + Environment.NewLine +
+                                "2. DMI displays the Medium-grey basic speed hook for 10s then removes it." + Environment.NewLine +
+                                "3. DMI displays the Digital distance to target for 10s then removes it.");
 
             /*
             Test Step 7
             Action: Drive the train forward with speed = 10 km/h
             Expected Result: Train is moving forward
             */
-            // Call generic Action Method
-            DmiActions.Drive_the_train_forward_with_speed_10_kmh(this);
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 10;
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays speed = 10 km/h.");
 
             /*
             Test Step 8
             Action: Drive the train forward pass BG1. Then, press an acknowledgement of OS mode in sub-area C1
             Expected Result: DMI displays in OS mode, level 1.Note: The basic speed hook is appear for 10 seconds
             */
-            // Call generic Action Method
-            DmiActions.Drive_the_train_forward_pass_BG1_Then_press_an_acknowledgement_of_OS_mode_in_sub_area_C1(this);
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.OnSight;
 
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in OS mode, level 1." + Environment.NewLine +
+                                "2. DMI displays the White basic speed hook for 10s then removes it.");
 
             /*
             Test Step 9
@@ -131,14 +211,68 @@ namespace Testcase.DMITestCases
             Expected Result: See expected result of step 3-5 for the following objects,White basic speed hookMedium-grey basic speed hookDistance to target (digital)Release speed digital
             Test Step Comment: (1) MMI_gen 6897;
             */
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
 
+            DmiActions.ShowInstruction(this, "Press the ‘Close’ button. Press in sub-area A1");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the White basic speed hook for 10s then removes it." + Environment.NewLine +
+                                "2. DMI displays the Medium-grey basic speed hook for 10s then removes it." + Environment.NewLine +
+                                "3. DMI displays the Digital distance to target for 10s then removes it." + Environment.NewLine +
+                                "4. DMI does not display the Digital release speed");
+
+            DmiActions.ShowInstruction(this, "Press the ‘Close’ button. Press in sub-area A2");
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the White basic speed hook for 10s then removes it." + Environment.NewLine +
+                                "2. DMI displays the Medium-grey basic speed hook for 10s then removes it." + Environment.NewLine +
+                                "3. DMI displays the Digital distance to target for 10s then removes it." + Environment.NewLine +
+                                "4. DMI does not display the Digital release speed");
+
+            DmiActions.ShowInstruction(this, "Press the ‘Close’ button. Press in sub-area A3");
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the White basic speed hook for 10s then removes it." + Environment.NewLine +
+                                "2. DMI displays the Medium-grey basic speed hook for 10s then removes it." + Environment.NewLine +
+                                "3. DMI displays the Digital distance to target for 10s then removes it." + Environment.NewLine +
+                                "4. DMI does not display the Digital release speed");
+
+            DmiActions.ShowInstruction(this, "Press the ‘Close’ button. Press in sub-area A4");
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the White basic speed hook for 10s then removes it." + Environment.NewLine +
+                                "2. DMI displays the Medium-grey basic speed hook for 10s then removes it." + Environment.NewLine +
+                                "3. DMI displays the Digital distance to target for 10s then removes it." + Environment.NewLine +
+                                "4. DMI does not display the Digital release speed");
+
+            DmiActions.ShowInstruction(this, "Press the ‘Close’ button. Press in area B");
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the White basic speed hook for 10s then removes it." + Environment.NewLine +
+                                "2. DMI displays the Medium-grey basic speed hook for 10s then removes it." + Environment.NewLine +
+                                "3. DMI displays the Digital distance to target for 10s then removes it." + Environment.NewLine +
+                                "4. DMI does not display the Digital release speed");
+
+            DmiActions.ShowInstruction(this, "Press in sub-area A1. Wait 5s, then press in sub-area A1 again");
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the White basic speed hook for 10s then removes it." + Environment.NewLine +
+                                "2. DMI displays the Medium-grey basic speed hook for 10s then removes it." + Environment.NewLine +
+                                "3. DMI displays the Digital distance to target for 10s then removes it." + Environment.NewLine +
+                                "4. DMI does not display the Digital release speed");
+                        
             /*
             Test Step 10
             Action: Perform the following procedure,Press ‘Main’ button.Press and hold ‘Shunting’ button at least 2 seconds.Release the pressed button
             Expected Result: DMI displays in SH mode, level 1.Note: The basic speed hook is appear for 10 seconds
             */
+            DmiActions.ShowInstruction(this, "Press ‘Main’ button.Press and hold ‘Shunting’ button at least 2 seconds. Release the ‘Shunting’ button");
 
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Shunting;
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SH mode, level 1" + Environment.NewLine +
+                                "2. DMI displays the Basic speed hook for 10s then removes it.");
 
             /*
             Test Step 11
@@ -146,14 +280,47 @@ namespace Testcase.DMITestCases
             Expected Result: See expected result of step 3-5 for the following objects,White basic speed hookMedium-grey basic speed hook (if any)
             Test Step Comment: (1) MMI_gen 6897;
             */
+            DmiActions.ShowInstruction(this, "Press the ‘Close’ button. Press in sub-area A1");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the White basic speed hook for 10s then removes it." + Environment.NewLine +
+                                "2. DMI displays the Medium-grey basic speed hook for 10s then removes it.");
+
+            DmiActions.ShowInstruction(this, "Press the ‘Close’ button. Press in sub-area A2");
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the White basic speed hook for 10s then removes it." + Environment.NewLine +
+                                "2. DMI displays the Medium-grey basic speed hook for 10s then removes it.");
+
+            DmiActions.ShowInstruction(this, "Press the ‘Close’ button. Press in sub-area A3");
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the White basic speed hook for 10s then removes it." + Environment.NewLine +
+                                "2. DMI displays the Medium-grey basic speed hook for 10s then removes it.");
+
+            DmiActions.ShowInstruction(this, "Press the ‘Close’ button. Press in sub-area A4");
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the White basic speed hook for 10s then removes it." + Environment.NewLine +
+                                "2. DMI displays the Medium-grey basic speed hook for 10s then removes it.");
+
+            DmiActions.ShowInstruction(this, "Press the ‘Close’ button. Press in area B");
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the White basic speed hook for 10s then removes it." + Environment.NewLine +
+                                "2. DMI displays the Medium-grey basic speed hook for 10s then removes it.");
+
+            DmiActions.ShowInstruction(this, "Press in sub-area A1. Wait 5s, then press in sub-area A1 again");
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the White basic speed hook for 10s then removes it." + Environment.NewLine +
+                                "2. DMI displays the Medium-grey basic speed hook for 10s then removes it.");            
 
             /*
             Test Step 12
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }
