@@ -33,7 +33,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// N/A
     /// </summary>
-    public class Data_entryvalidation_process_when_enabling_conditions_not_fullfilled_Level_1 : TestcaseBase
+    public class TC_34_1_4_Dialogue_Sequences : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -77,21 +77,23 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8868 (partly: Driver ID);(2) MMI_gen 11283 (partly: Driver ID);
             */
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
+
+            // Spec says set bit 0 to 0 which would disable the Start button ???
+            // Enable Level was presumbably meant
+            EVC30_MMIRequestEnable.SendBlank();           
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Level;
+            EVC30_MMIRequestEnable.Send();
+
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 260;
+            EVC8_MMIDriverMessage.Send();
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
+            
+            DmiActions.ShowInstruction(this, @"Press area E1 to acknowledge the ‘Brake intervention’ symbol");
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Drive ID window and displays the Main window");
-
-            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
-
-            // ?? Spec says bit 0 value = 0: presumably the left-most bit
-            // This should be done by int request = EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH;
-            //                        request &= ~(EVC30_MMIRequestEnable.EnabledRequests.Start);
-            //                        EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = request;
-            // so types of MMI_Q_REQUEST_ENABLE_HIGH and getter/setter is wrong
-            //EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.None;     // ?? EVC30_MMIRequestEnable.EnabledRequests.Level;
-
-            // Not clear what message would be sent by ETCS ??  MMI_ETCS_MISC_OUT_SIGNALS OBU_TR_EB_STATUS
-            // to display emergency symbol 
-            DmiActions.ShowInstruction(this, @"Press area E1 to acknowledge the ‘Brake intervention’ symbol");
 
             /*
             Test Step 3
@@ -109,18 +111,20 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,DMI closes the Level window and displays Main window instead.Use the log file to confirm that DMI receives packet information [MMI_ENABLE_REQUEST (EVC-30)] with variable MMI_Q_REQUEST_ENABLE_64 (#3) = 0
             Test Step Comment: (1) MMI_gen 8868 (partly: Level);(2) MMI_gen 11283 (partly: Level);
             */
-            // see above discussion...
+            // Spec says set bit 3 to 0 which would disable the Level button ??? Enable TrainData was presumbably meant
+            EVC30_MMIRequestEnable.SendBlank();           
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.TrainData;
+            //?? EVC30_MMIRequestEnable.Send();
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI closes the Level window and displays the Main window.");
 
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
 
-            // spec says 
-            // This should be done by int request = EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH;
-            //                        request &= ~(EVC30_MMIRequestEnable.EnabledRequests.Level);
-            //                        EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = request;
+            EVC8_MMIDriverMessage.Send();           // send out brake intervention symbol
+
             DmiActions.ShowInstruction(this, @"Press area E1 to acknowledge the ‘Brake intervention’ symbol");
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI closes the Level window and displays the Main window.");
 
             /*
             Test Step 5
@@ -140,23 +144,27 @@ namespace Testcase.DMITestCases
             */
             // see above discussion...
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI closes the Train data window and displays the Main window.");
+
+            EVC8_MMIDriverMessage.Send();
+            // Spec says set bit 2 to 0 which would disable the TrainData button ???
+            // Enable was presumbably meant
+            EVC30_MMIRequestEnable.SendBlank();           
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.TrainData;
+            EVC30_MMIRequestEnable.Send();
 
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
-
-            // spec says 
-            // This should be done by int request = EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH;
-            //                        request &= ~(EVC30_MMIRequestEnable.EnabledRequests.TrainData);
-            //                        EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = request;
+            
             DmiActions.ShowInstruction(this, @"Press area E1 to acknowledge the ‘Brake intervention’ symbol");
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI closes the Train data window and displays the Main window.");
 
             /*
             Test Step 7
             Action: Perform the following procedure,Press ‘Train data’ button.Enter and confirm all value of train data window.Press ‘Yes’ button
             Expected Result: DMI displays Train data validation window
             */
-            DmiActions.ShowInstruction(this, @"Press ‘Train data’ button. Enter and confitrm all values in the train data window. Press ‘Yes’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Train data’ button. Enter and confirm all values in the train data window. Press ‘Yes’ button");
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Train data validation window.");
 
@@ -168,17 +176,20 @@ namespace Testcase.DMITestCases
             */
             // see above discussion...
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
+            EVC8_MMIDriverMessage.Send();
+            // Spec says set bit 2 to 0 which would disable the TrainData button ???
+            // Enable was presumbably meant
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.TrainData;
+            EVC30_MMIRequestEnable.Send();
+
+            DmiActions.ShowInstruction(this, @"Press area E1 to acknowledge the ‘Brake intervention’ symbol");
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Train data validation window and displays the Main window.");
 
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
-
-            // spec says 
-            // This should be done by int request = EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH;
-            //                        request &= ~(EVC30_MMIRequestEnable.EnabledRequests.TrainData);
-            //                        EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = request;
-            DmiActions.ShowInstruction(this, @"Press area E1 to acknowledge the ‘Brake intervention’ symbol");
-
+            
             /*
             Test Step 9
             Action: Perform the following procedure,Press ‘Train data’ button.Enter and confirm all value of train data window.Press ‘Yes’ button.At the train data validation window, press ‘Yes’ button.Confirm entered data by pressing an input field
@@ -186,6 +197,7 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Press ‘Train data’ button. Enter and confirm all values in the train data window. Press ‘Yes’ button" + Environment.NewLine +
                                              @"Press ‘Yes’ button in the train data validation window");
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Train Runing Number window.");
 
@@ -195,25 +207,25 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,DMI closes the Train Running Number window and displays Main window instead.Use the log file to confirm that DMI receives packet information [MMI_ENABLE_REQUEST (EVC-30)] with variable MMI_Q_REQUEST_ENABLE_64 (#4) = 0
             Test Step Comment: (1) MMI_gen 8868 (partly: Train running number);(2) MMI_gen 11283 (partly: train running number);
             */
-            // see above discussion...
-            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI closes the Train Running Number window and displays the Main window.");
+            EVC8_MMIDriverMessage.Send();
+            // Spec says set bit 4 to 0 which would disable the TrainRunningNumber button ???
+            // Enable was presumbably meant
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.TrainRunningNumber;
+            EVC30_MMIRequestEnable.Send();
 
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
-
-            // spec says 
-            // This should be done by int request = EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH;
-            //                        request &= ~(EVC30_MMIRequestEnable.EnabledRequests.TrainRunningNumber);
-            //                        EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = request;
+            
             DmiActions.ShowInstruction(this, @"Press area E1 to acknowledge the ‘Brake intervention’ symbol");
-
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI closes the Train Running Number window and displays the Main window.");
+            
             /*
             Test Step 11
             Action: Press ‘Train running number’ button. Then, enter and confirm Train running number
             Expected Result: DMI displays Main window
             */
-            DmiActions.ShowInstruction(this, @"Press ‘Train Running Number’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Train Running Number’ button. Enter and confirm Train running number");
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Main window.");
 
@@ -234,17 +246,20 @@ namespace Testcase.DMITestCases
             */
             // see above discussion...
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI closes the Language window and displays the Settings window.");
+            EVC8_MMIDriverMessage.Send();
+
+            // Spec says set bit 13 to 0 which would disable the Language button - Brightness (#15) in next test???
+            // Enable was presumbably meant
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Brightness;
+            EVC30_MMIRequestEnable.Send();
 
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
 
-            // spec says bit 13 = 0 (Language) but surely should be 16 = 0 (Brightness)
-            // This should be done by int request = EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH;
-            //                        request &= ~(EVC30_MMIRequestEnable.EnabledRequests.Language); // ?? .Brightness
-            //                        EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = request;
             DmiActions.ShowInstruction(this, @"Press area E1 to acknowledge the ‘Brake intervention’ symbol");
-
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI closes the Language window and displays the Settings window.");
+            
             /*
             Test Step 14
             Action: Press ‘Brightness’ button
@@ -263,17 +278,19 @@ namespace Testcase.DMITestCases
             */
             // see above discussion...
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI closes the Brightness window and displays the Settings window.");
+
+            // Spec says set bit 15 to 0 which would disable the Brightness button - Volume (#14) in next test???
+            // Enable was presumbably meant
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Brightness;
+            EVC30_MMIRequestEnable.Send();
 
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
 
-            // spec says set bit 15 = 0 (Brightness) but expects Volume (bit 14)??
-            // This should be done by int request = EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH;
-            //                        request &= ~(EVC30_MMIRequestEnable.EnabledRequests.Brightness); // ?? .Volume
-            //                        EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = request;
             DmiActions.ShowInstruction(this, @"Press area E1 to acknowledge the ‘Brake intervention’ symbol");
             
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI closes the Brightness window and displays the Settings window.");
             /*
             Test Step 16
             Action: Press ‘Volume’ button
@@ -292,16 +309,20 @@ namespace Testcase.DMITestCases
             */
             // see above discussion...
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI closes the Volume window and displays the Settings window.");
+
+            // Spec says set bit 14 to 0 which would disable the Volume button - Adhesion (#10) in next test???
+            // Enable was presumbably meant
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Adhesion;
+            EVC30_MMIRequestEnable.Send();
+            EVC8_MMIDriverMessage.Send();
 
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
-
-            // spec says set bit 14 = 0 (Volume) but expects Adhesion (bit 10)??
-            // This should be done by int request = EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH;
-            //                        request &= ~(EVC30_MMIRequestEnable.EnabledRequests.Volume); // ?? .Adhesion
-            //                        EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = request;
+            
             DmiActions.ShowInstruction(this, @"Press area E1 to acknowledge the ‘Brake intervention’ symbol");
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI closes the Volume window and displays the Settings window.");
 
             /*
             Test Step 18
@@ -322,16 +343,20 @@ namespace Testcase.DMITestCases
             */
             // see above discussion...
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI closes the Adhesion window and displays the Special window.");
 
+            // Spec says set bit 10 to 0 which would disable the Adhesion button - Start is enabled (#0) in next test???
+            // Enable was presumbably meant
+            // In step 
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Start;
+            EVC30_MMIRequestEnable.Send();
+            EVC8_MMIDriverMessage.Send();
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
 
-            // spec says set bit 10 = 0 (Adhesion) ??
-            // This should be done by int request = EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH;
-            //                        request &= ~(EVC30_MMIRequestEnable.EnabledRequests.Adhesion);
-            //                        EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = request;
             DmiActions.ShowInstruction(this, @"Press area E1 to acknowledge the ‘Brake intervention’ symbol");
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI closes the Adhesion window and displays the Special window.");           
 
             /*
             Test Step 20
@@ -340,6 +365,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 9199 (partly: special);
             */
             DmiActions.ShowInstruction(this, @"Press ‘Close’ button. Press ‘Main’ button. Press ‘Start’ button.	Acknowledge SR mode. Press ‘Special’ button.");
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Special window." + Environment.NewLine +
                                 "2. The ‘Close’ button in the Special window is enabled.");
@@ -350,8 +376,13 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays SR speed/distance window.Verify the Close button on this window is enabling
             Test Step Comment: MMI_gen 9199 (partly: SR speed/distance);
             */
+            // Spec says nothing about enabling the button...
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.SRSpeedDistance;
+            EVC30_MMIRequestEnable.Send();
+
             // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press ‘SR speed/distance’ button");
+            DmiActions.ShowInstruction(this, @"Press the ‘SR speed/distance’ button");
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the SR speed/distance window." + Environment.NewLine +
                                 "2. The ‘Close’ button in the SR speed/distance window is enabled.");
@@ -362,17 +393,12 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,DMI closes the SR speed/distance window and displays Special window instead.Use the log file to confirm that DMI receives packet information [MMI_ENABLE_REQUEST (EVC-30)] with variable MMI_Q_REQUEST_ENABLE_64 (#11) = 0
             Test Step Comment: (1) MMI_gen 8868 (partly: SR speed/distance);(2) MMI_gen 11283 (partly: SR speed/distance);
             */
-            // see above discussion...
-            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
+
+            // DMI needs to have the last window closed
+            DmiActions.ShowInstruction(this, @"Press the ‘Close’ button");
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the SR speed/distance window and displays the Special window.");
-
-            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
-
-            // spec says set bit 11 = 0 (SRSpeedDistance)??
-            // This should be done by int request = EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH;
-            //                        request &= ~(EVC30_MMIRequestEnable.EnabledRequests.SRSpeedDistance);
-            //                        EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = request;
 
             /*
             Test Step 23

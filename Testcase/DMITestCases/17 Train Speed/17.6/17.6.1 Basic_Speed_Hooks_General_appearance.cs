@@ -35,7 +35,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 12_6_1.tdg, 12_6_1_a.xml, 12_6_1_b.xml
     /// </summary>
-    public class Basic_Speed_Hooks_General_appearance : TestcaseBase
+    public class TC_12_6_1_Train_Speed : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -134,9 +134,8 @@ namespace Testcase.DMITestCases
                                 "1. The basic speed hook is removed from the DMI.");
 
             // Test says EVC-1 restores display but M_MODE is still invalid: should send valid EVC-7 state??
-            //EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring;
-
-            //EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
+            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The basic speed hook is re-displayed.");

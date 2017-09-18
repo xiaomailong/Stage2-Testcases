@@ -33,7 +33,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 10_2_a.xml, 10_2_b.xml
     /// </summary>
-    public class State_ST05_General_Appearance : TestcaseBase
+    public class TC_ID_10_2_State_ST05 : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -70,19 +70,19 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays Main Window.");
 
             // The spec says the least significant bit #32 is on (EnableBrakePercentage) ???
+            // Can't at present set System info...
+            EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = (EVC30_MMIRequestEnable.EnabledRequests.DriverID |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.TrainData |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.Level |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.TrainRunningNumber |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.Shunting |
-
-                                                                // these three are off
-                                                                //EVC30_MMIRequestEnable.EnabledRequests.NonLeading |
-                                                                //EVC30_MMIRequestEnable.EnabledRequests.MaintainShunting |
-                                                                //EVC30_MMIRequestEnable.EnabledRequests.EOA |
-
-                                                                EVC30_MMIRequestEnable.EnabledRequests.StartBrakeTest |
-                                                                EVC30_MMIRequestEnable.EnabledRequests.EnableBrakePercentage);
+                                                                EVC30_MMIRequestEnable.EnabledRequests.StartBrakeTest) &
+                                                               ~(EVC30_MMIRequestEnable.EnabledRequests.Start |
+                                                                EVC30_MMIRequestEnable.EnabledRequests.NonLeading |
+                                                                EVC30_MMIRequestEnable.EnabledRequests.MaintainShunting |
+                                                                EVC30_MMIRequestEnable.EnabledRequests.EOA);
+            
             EVC30_MMIRequestEnable.Send();
 
             WaitForVerification("Check that DMI displays the following buttons in the state specified:" + Environment.NewLine + Environment.NewLine +
@@ -250,15 +250,15 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Main window");
 
+            EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = (EVC30_MMIRequestEnable.EnabledRequests.Start |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.DriverID |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.TrainData |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.Level |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.TrainRunningNumber |
-                                                                EVC30_MMIRequestEnable.EnabledRequests.Shunting);
-                                                                // these two are off:
-                                                                // EVC30_MMIRequestEnable.EnabledRequests.NonLeading |
-                                                                //EVC30_MMIRequestEnable.EnabledRequests.MaintainShunting |
+                                                                EVC30_MMIRequestEnable.EnabledRequests.Shunting) &
+                                                               (EVC30_MMIRequestEnable.EnabledRequests.NonLeading |
+                                                                EVC30_MMIRequestEnable.EnabledRequests.MaintainShunting);
                                                                 
             EVC30_MMIRequestEnable.Send();
 
@@ -295,6 +295,7 @@ namespace Testcase.DMITestCases
             DmiActions.Simulate_communication_loss_EVC_DMI(this);
             DmiActions.Re_establish_communication_EVC_DMI(this);
 
+            // Is the previous state restored?
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The hourglass symbol ST05 is removed." + Environment.NewLine +
                                 "2. The ‘Main’ window is closed and DMI returns to the default window." + Environment.NewLine +
@@ -363,7 +364,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The hourglass symbol ST05 is removed.The ‘Data view’ window is closed and DMI returns to the default window.The state of all buttons is restored according to the last received EVC-30, see Step 12
             Test Step Comment: (1) MMI_gen 5728 (partly: removal);(2) MMI_gen 5731 (partly: close the ‘Data view’ window, switch back the default window);(3) MMI_gen 5728 (partly: restore (after ST05), default window);
             */
-            System.Threading.Thread.Sleep(46000);
+            this.Wait_Realtime(46000);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The hourglass symbol ST05 is removed." + Environment.NewLine +
@@ -382,7 +383,6 @@ namespace Testcase.DMITestCases
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }

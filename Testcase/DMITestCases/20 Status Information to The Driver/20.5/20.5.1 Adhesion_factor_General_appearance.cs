@@ -49,7 +49,7 @@ namespace Testcase.DMITestCases
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
-            DmiActions.Complete_SoM_L1_FS(this);
+            DmiActions.Complete_SoM_L1_SR(this);
         }
 
         public override void PostExecution()

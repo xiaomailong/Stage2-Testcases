@@ -34,7 +34,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 11_2.tdg
     /// </summary>
-    public class Sound_of_Warning_Speed_Status_and_Over_Speed_Status_in_TSM : TestcaseBase
+    public class TC_ID_11_2_Speed_Monitoring : TestcaseBase
     {
         public override void PreExecution()
         {

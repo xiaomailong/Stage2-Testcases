@@ -36,7 +36,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 34_4_2_1.utt
     /// </summary>
-    public class Text_Message_Shunting_Refused_in_Level_2_and_Level_3 : TestcaseBase
+    public class TC_34_4_2_1_Dialogue_Sequences : TestcaseBase
     {
         public override void PreExecution()
         {

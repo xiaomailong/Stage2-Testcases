@@ -34,7 +34,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 6_3_a.xml, 6_3_b.xml, 6_3_c.xml, 6_3_d.xml
     /// </summary>
-    public class Acknowledgements_Priority_of_new_incoming_acknowledgements : TestcaseBase
+    public class TC_ID_6_3_Acknowledgements : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -196,7 +196,10 @@ namespace Testcase.DMITestCases
             */
             XML.XML_6_3_d.Send(this);
 
-            DmiActions.ShowInstruction(this, "Press in sub-area C9 and check in the log file that DMI does not send packet EVC-111");
+            DmiActions.ShowInstruction(this, "Press in sub-area C9");
+
+            // ?? Check for an 'empty' packet
+            //Telegrams.DMItoEVC.EVC111_MMIDriverMessageAck.Check_MMI_Q_ACK = Telegrams.DMItoEVC.EVC111_MMIDriverMessageAck.MMI_Q_ACK.Spare;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI stops displaying symbol ST01 in sub-area C9." + Environment.NewLine +
@@ -204,11 +207,11 @@ namespace Testcase.DMITestCases
 
             /*
             Test Step 13
-            Action: Confirm an acknowledgement of TAF by pressing at area D
+            Action: Confirm an acknow.ledgement of TAF by pressing at area D
             Expected Result: Verify the following information,(1)    The symbols are removed refer to pressed area. DMI displays the symbol MO08 in sub-area C1. (The oldest entry of the highest priority in the list)
             Test Step Comment: (1) MMI_gen 4486 (partly: mode acknowledgement); MMI_gen 4482 (moveable focus);
             */
-            DmiActions.ShowInstruction(this, "Acknowledge TAF by pressing in area D and check in the log file that DMI does not send packet EVC-111");
+            DmiActions.ShowInstruction(this, "Acknowledge TAF by pressing in area D");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI stops displaying symbol DR02 in area D and displays symbol MO08 in area C1.");

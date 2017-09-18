@@ -40,7 +40,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 12_7_2.tdg
     /// </summary>
-    public class Release_Speed_Digital_is_removed_when_communication_between_ETCS_Onboard_and_DMI_is_lost : TestcaseBase
+    public class TC_12_7_2_Train_Speed : TestcaseBase
     {
         public override void PreExecution()
         {

@@ -22,12 +22,13 @@ namespace Testcase.Telegrams.DMItoEVC
         private static Variables.MMI_M_LEVEL_NTC_ID _mLevelNtcId;
 
         /// <summary>
-        /// Initialise EVC-111 MMI_Driver_Message_Ack telegram.
+        /// Initialise EVC-121 MMI_New_Level telegram.
         /// </summary>
         /// <param name="pool"></param>
         public static void Initialise(SignalPool pool)
         {
             _pool = pool;
+            _pool.SITR.SMDCtrl.CCUO.ETCS1NewLevel.Value = 1;
         }
 
         /// <summary>

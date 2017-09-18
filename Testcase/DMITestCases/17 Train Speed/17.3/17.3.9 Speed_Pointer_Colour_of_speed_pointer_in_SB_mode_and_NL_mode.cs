@@ -35,7 +35,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// N/A
     /// </summary>
-    public class Speed_Pointer_Colour_of_speed_pointer_in_SB_mode_and_NL_mode : TestcaseBase
+    public class TC_12_3_9_Train_Speed : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -105,8 +105,6 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   The speed pointer is always display in grey colour..(2)   Use the log file to confirm that DMI received packet EVC-7 with variable OBU_TR_M_MODE = 11 (Non-leading)
             Test Step Comment: (1) MMI_gen 6299 (partly: colour of speed pointer, NL mode);(2) MMI_gen 6299 (partly: OBU_TR_M_MODE);
             */
-            // check that this should be done here but presumably in Step 2
-            //EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.NonLeading;
 
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 400;
 

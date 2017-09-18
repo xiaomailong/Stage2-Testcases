@@ -34,7 +34,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// N/A
     /// </summary>
-    public class Frozen_Displays : TestcaseBase
+    public class TC_ID_2_3_Frozen_Displays : TestcaseBase
     {
         public override void PreExecution()
         {

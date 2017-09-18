@@ -38,7 +38,7 @@ namespace Testcase.XML
             _pool.WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                       "1. ‘Close’ button in RBC contact window is enabled.");
 
-            System.Threading.Thread.Sleep(10000);
+            _pool.Wait_Realtime(10000);
 
             EVC22_MMICurrentRBC.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Disabled;
             EVC22_MMICurrentRBC.Send();

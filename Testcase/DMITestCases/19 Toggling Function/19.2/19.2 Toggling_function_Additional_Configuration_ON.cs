@@ -34,7 +34,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 14_2.tdg
     /// </summary>
-    public class Toggling_function_Additional_Configuration_ON : TestcaseBase
+    public class TC_14_2_Toggling_Function : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -110,7 +110,10 @@ namespace Testcase.DMITestCases
             Action: Perform the following procedure,De-activate Cabin AActivate Cabin A
             Expected Result: DMI displays in SB mode, Level 1
             */
-            DmiActions.ShowInstruction(this, "De-activate Cabin A then activate Cabin A");
+            DmiActions.Deactivate_Cabin(this);
+            DmiActions.Activate_Cabin_1(this);
+            DmiActions.Set_Driver_ID(this, "1234");
+
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -253,11 +256,11 @@ namespace Testcase.DMITestCases
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.OnSight;
 
             // Need to send EVC8 with MO08 to get an acknowledgement symbol displayed??
-            //EVC8_MMIDriverMessage.MMI_I_TEXT = 4;
-            //EVC8_MMIDriverMessage.MMI_I_TEXT_CRITERIA = 3;
-            //EVC8_MMIDriverMessage.MMI_Q_TEXT = 259;
-            //EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
-            //EVC8_MMIDriverMessage.Send();
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 4;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 259;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.Send();
 
             DmiActions.ShowInstruction(this, "Acknowledge OS mode by pressing in sub-area C1");
 
@@ -308,11 +311,11 @@ namespace Testcase.DMITestCases
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.LimitedSupervision;
 
             // Need to send EVC8 with MO22 to get an acknowledgement symbol displayed??
-            //EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
-            //EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
-            //EVC8_MMIDriverMessage.MMI_I_TEXT = 4;
-            //EVC8_MMIDriverMessage.MMI_Q_TEXT = 709;
-            //EVC8_MMIDriverMessage.Send();
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 4;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 709;
+            EVC8_MMIDriverMessage.Send();
 
             DmiActions.ShowInstruction(this, "Acknowledge by pressing in sub-area C1");
 

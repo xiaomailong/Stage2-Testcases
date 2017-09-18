@@ -34,7 +34,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 14_3.tdg
     /// </summary>
-    public class Toggling_function_Additional_Configuration_TIMER1 : TestcaseBase
+    public class TC_14_3_Toggling_Function : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -111,7 +111,10 @@ namespace Testcase.DMITestCases
             Action: Perform the following procedure,De-activate Cabin AActivate Cabin A
             Expected Result: DMI displays in SB mode, Level 1
             */
-            DmiActions.ShowInstruction(this, "De-activate Cabin A then activate Cabin A");
+            DmiActions.Deactivate_Cabin(this);
+            DmiActions.Activate_Cabin_1(this);
+            DmiActions.Set_Driver_ID(this, "1234");
+
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -253,11 +256,11 @@ namespace Testcase.DMITestCases
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.OnSight;
 
             // Need to send EVC8 with MO08 to get an acknowledgement symbol displayed??
-            //EVC8_MMIDriverMessage.MMI_I_TEXT = 4;
-            //EVC8_MMIDriverMessage.MMI_I_TEXT_CRITERIA = 3;
-            //EVC8_MMIDriverMessage.MMI_Q_TEXT = 259;
-            //EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
-            //EVC8_MMIDriverMessage.Send();
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 4;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 259;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.Send();
 
             DmiActions.ShowInstruction(this, "Acknowledge OS mode by pressing in sub-area C1");
 
@@ -308,11 +311,11 @@ namespace Testcase.DMITestCases
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.LimitedSupervision;
 
             // Need to send EVC8 with MO22 to get an acknowledgement symbol displayed??
-            //EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
-            //EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
-            //EVC8_MMIDriverMessage.MMI_I_TEXT = 4;
-            //EVC8_MMIDriverMessage.MMI_Q_TEXT = 709;
-            //EVC8_MMIDriverMessage.Send();
+           EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+           EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
+           EVC8_MMIDriverMessage.MMI_I_TEXT = 4;
+           EVC8_MMIDriverMessage.MMI_Q_TEXT = 709;
+           EVC8_MMIDriverMessage.Send();
 
             DmiActions.ShowInstruction(this, "Acknowledge by pressing in sub-area C1");
 
@@ -464,7 +467,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(this, "Press in a sensitivity area (areas A1-A4 or B) to make a Basic Speed Hook appear");
 
-            System.Threading.Thread.Sleep(1000);
+            this.Wait_Realtime(1000);
             DmiActions.Simulate_communication_loss_EVC_DMI(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -480,7 +483,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   The white basic speed hook displays for 10 seconds (toggled off). Then, disappears.(2)   The objects below are still not displayed on DMI,Medium-grey basic speed hookDistance to target (digital)Release Speed Digital
             Test Step Comment: (1) MMI_gen 6890 (partly: SH mode, toggle off), MMI_gen 6896 (partly: configuration ‘TIMER’, SH mode, toggle invisible), MMI_gen 6894 (partly: SH mode);(2) MMI_gen 6890 (partly: SH mode, un-concerned object), Table 34 (CSM), Table 38 (CSM), Table 35 (CSM)
             */
-            System.Threading.Thread.Sleep(1000);
+            this.Wait_Realtime(1000);
             DmiActions.Re_establish_communication_EVC_DMI(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +

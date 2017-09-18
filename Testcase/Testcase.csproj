@@ -357,7 +357,7 @@ if exist "$(TargetPath)" if not exist "$(TargetPath).locked" move "$(TargetPath)
     <Compile Include="DMITestCases\6 Non-Functionality\6.9\6.9 Performance_of_ETCS_DMI_Data_handling.cs" />
     <Compile Include="DMITestCases\7 Requirements on Safety Procedures\7.3\7.3 Frozen_Displays.cs" />
     <Compile Include="DMITestCases\7 Requirements on Safety Procedures\7.5\7.5.1 DMI_Failure_Reaction_Reboot_function_SIL0_DMI.cs" />
-    <Compile Include="DMITestCases\7 Requirements on Safety Procedures\7.6 Safety_related_Data_Entry.cs" />
+    <Compile Include="DMITestCases\7 Requirements on Safety Procedures\7.6\7.6 Safety_related_Data_Entry.cs" />
     <Compile Include="DMITestCases\8 Essential Configurability\8.1\8.1 DMI_language_selection_Configurable_at_least_eight_langauges.cs" />
     <Compile Include="DMITestCases\DMIActions.cs" />
     <Compile Include="DMITestCases\DMIResults.cs" />
@@ -383,9 +383,16 @@ if exist "$(TargetPath)" if not exist "$(TargetPath).locked" move "$(TargetPath)
     <Compile Include="Telegrams\DMItoEVC\EVC107_MMINewTrainData.cs" />
     <Compile Include="Telegrams\DMItoEVC\EVC152_EVCDriverAction.cs" />
     <Compile Include="Telegrams\DMItoEVC\EVC101_MMIDriverRequest.cs" />
+    <Compile Include="Telegrams\EVCtoDMI\EVC19_MMIRemoveVBC.cs" />
+    <Compile Include="Telegrams\EVCtoDMI\EVC31_MMINTCDeSelect.cs" />
+    <Compile Include="Telegrams\EVCtoDMI\EVC23_MMILssmay.cs" />
+    <Compile Include="Telegrams\EVCtoDMI\EVC18_MMISetVBC.cs" />
     <Compile Include="Telegrams\EVCtoDMI\EVC20_MMISelectLevel.cs" />
     <Compile Include="Telegrams\EVCtoDMI\EVC32_MMITrackConditions.cs" />
+    <Compile Include="Telegrams\EVCtoDMI\EVC50_MMICurrentBrakePercentage.cs" />
+    <Compile Include="Telegrams\EVCtoDMI\EVC40_MMICurrentMaintenanceData.cs" />
     <Compile Include="Telegrams\EVCtoDMI\EVC4_MMITrackDescription.cs" />
+    <Compile Include="Telegrams\EVCtoDMI\EVC11_MMICurrentSRRules.cs" />
     <Compile Include="Telegrams\EVCtoDMI\EVC7_MMIEtcsMiscOutSignals.cs" />
     <Compile Include="Telegrams\EVCtoDMI\EVC0_MMIStartATP.cs" />
     <Compile Include="Telegrams\EVCtoDMI\EVC14_MMICurrentDriverID.cs" />
@@ -538,6 +545,15 @@ if exist "$(TargetPath)" if not exist "$(TargetPath).locked" move "$(TargetPath)
     <Compile Include="XML Packets\13\XML_13_1_8_a.cs" />
     <Compile Include="XML Packets\13\XML_13_1_8_b.cs" />
     <Compile Include="XML Packets\13\XML_13_1_8_c.cs" />
+    <Compile Include="XML Packets\13\XML_13_2_1_a.cs" />
+    <Compile Include="XML Packets\13\XML_13_2_1_b.cs" />
+    <Compile Include="XML Packets\15\XML_15_1_7_b.cs" />
+    <Compile Include="XML Packets\15\XML_15_1_7_c.cs" />
+    <Compile Include="XML Packets\15\XML_15_1_7_d.cs" />
+    <Compile Include="XML Packets\15\XML_15_1_7_e.cs" />
+    <Compile Include="XML Packets\15\XML_15_1_7_f.cs" />
+    <Compile Include="XML Packets\15\XML_15_1_7_g.cs" />
+    <Compile Include="XML Packets\15\XML_15_1_7_h.cs" />
     <Compile Include="XML Packets\15\XML_15_3_1_10.cs" />
     <Compile Include="XML Packets\15\XML_15_3_1_1_a.cs" />
     <Compile Include="XML Packets\15\XML_15_3_1_1_b.cs" />
@@ -580,6 +596,24 @@ if exist "$(TargetPath)" if not exist "$(TargetPath).locked" move "$(TargetPath)
     <Compile Include="XML Packets\15\XML_15_6_2_h.cs" />
     <Compile Include="XML Packets\15\XML_15_6_2_i.cs" />
     <Compile Include="XML Packets\15\XML_15_6_2_j.cs" />
+    <Compile Include="XML Packets\15\XML_15_1_7_a.cs" />
+    <Compile Include="XML Packets\16\XML_16_1.cs" />
+    <Compile Include="XML Packets\18\XML_18_5.cs" />
+    <Compile Include="XML Packets\18\XML_18_6_1.cs" />
+    <Compile Include="XML Packets\18\XML_18_6_2_a.cs" />
+    <Compile Include="XML Packets\18\XML_18_6_2_b.cs" />
+    <Compile Include="XML Packets\18\XML_18_6_2_c.cs" />
+    <Compile Include="XML Packets\22\XML_22_5_1_a.cs" />
+    <Compile Include="XML Packets\22\XML_22_5_1_b.cs" />
+    <Compile Include="XML Packets\22\XML_22_5_2_a.cs" />
+    <Compile Include="XML Packets\22\XML_22_5_2_b.cs" />
+    <Compile Include="XML Packets\22\XML_22_5_2_c.cs" />
+    <Compile Include="XML Packets\22\XML_22_5_3_a.cs" />
+    <Compile Include="XML Packets\22\XML_22_5_3_b.cs" />
+    <Compile Include="XML Packets\22\XML_22_7_1_a.cs" />
+    <Compile Include="XML Packets\22\XML_22_7_1_b.cs" />
+    <Compile Include="XML Packets\22\XML_22_7_2_a.cs" />
+    <Compile Include="XML Packets\22\XML_22_7_2_b.cs" />
     <Compile Include="XML Packets\2\XML_2_5_1_a.cs" />
     <Compile Include="XML Packets\2\XML_2_6_a.cs" />
     <Compile Include="XML Packets\5\XML_5_10_a.cs" />
@@ -601,6 +635,8 @@ if exist "$(TargetPath)" if not exist "$(TargetPath).locked" move "$(TargetPath)
     <Compile Include="XML Packets\6\XML_6_6_b.cs" />
     <Compile Include="XML Packets\6\XML_6_6_c.cs" />
     <Compile Include="XML Packets\6\XML_6_7.cs" />
+    <Compile Include="XML Packets\7\XML_7_1_a.cs" />
+    <Compile Include="XML Packets\7\XML_7_1_b.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

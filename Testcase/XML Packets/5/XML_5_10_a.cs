@@ -33,10 +33,11 @@ namespace Testcase.XML
         {
             _pool = pool;
             
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
 
             // Step 2
             // Assume flags are initially on and setting them disabled changes the state on the DMI
+            EVC30_MMIRequestEnable.SendBlank(); 
+
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = (EVC30_MMIRequestEnable.EnabledRequests.ExitShunting |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.EOA |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.Adhesion |
@@ -83,6 +84,9 @@ namespace Testcase.XML
 
 
             // Step 3
+            DMITestCases.DmiActions.ShowInstruction(_pool, "Press ‘Exit’ button then select Override menu");
+
+            EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = (EVC30_MMIRequestEnable.EnabledRequests.Start |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.DriverID |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.TrainData |
@@ -124,6 +128,7 @@ namespace Testcase.XML
             // Step 4
             DMITestCases.DmiActions.ShowInstruction(_pool, "Press the ‘Exit’ button and select the Special menu");
 
+            EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = (EVC30_MMIRequestEnable.EnabledRequests.Start |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.DriverID |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.TrainData |
@@ -169,6 +174,7 @@ namespace Testcase.XML
             // The spec indicates 9 bits to set but only tests 8 buttons: assume the first 6 are correct and Set Clock (#25) is SetLocalTimeDateAndOffset
             // Bit #32 would be in the next word so if MMI_Q_REQUEST_ENABLE_LOW is available and the only button to be set it could be a bool as suggested
             // but not implemented
+            EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = (EVC30_MMIRequestEnable.EnabledRequests.Start |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.DriverID |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.TrainData |
@@ -227,6 +233,8 @@ namespace Testcase.XML
              EVC2_MMIStatus.MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.Cabin1Active;
             EVC2_MMIStatus.Send();
 
+            DMITestCases.DmiActions.Set_Driver_ID(_pool, "1234");
+
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
             DMITestCases.DmiExpectedResults.SB_Mode_displayed(_pool);
 
@@ -234,6 +242,7 @@ namespace Testcase.XML
             // Step 7
             DMITestCases.DmiActions.ShowInstruction(_pool, "Press Setting menu and select Maintenance button and password");
 
+            EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = (EVC30_MMIRequestEnable.EnabledRequests.Start |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.DriverID |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.TrainData |
@@ -281,6 +290,8 @@ namespace Testcase.XML
             EVC2_MMIStatus.MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.Cabin1Active;
             EVC2_MMIStatus.Send();
 
+            DMITestCases.DmiActions.Set_Driver_ID(_pool, "1234");
+
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
 
             DMITestCases.DmiExpectedResults.SB_Mode_displayed(_pool);
@@ -292,6 +303,7 @@ namespace Testcase.XML
             DMITestCases.DmiExpectedResults.SH_Mode_displayed(_pool);
 
             // Step 10
+            EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = (EVC30_MMIRequestEnable.EnabledRequests.Start |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.DriverID |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.TrainData |
@@ -337,14 +349,14 @@ namespace Testcase.XML
             EVC2_MMIStatus.MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.Cabin1Active;
             EVC2_MMIStatus.Send();
 
+            DMITestCases.DmiActions.Set_Driver_ID(_pool, "1234");
+
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
             DMITestCases.DmiExpectedResults.SB_Mode_displayed(_pool);
 
 
             // Step 12
-            /// Should this be a driver action??
-            /// DMITestCases.DmiActions.ShowInstruction(_pool, "Perform Start of Mission to SR mode , Level 1"); 
-   /*---->*/         DMITestCases.DmiActions.Complete_SoM_L1_SR(_pool);   /*<----*/
+            DMITestCases.DmiActions.Complete_SoM_L1_SR(_pool); 
 
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
             DMITestCases.DmiExpectedResults.SR_Mode_displayed(_pool);
@@ -354,6 +366,8 @@ namespace Testcase.XML
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 40;
 
             DMITestCases.DmiActions.ShowInstruction(_pool, "Select Settings menu");
+
+            // this relies on ETCS data so packet required...
 
             _pool.WaitForVerification("Check that the following buttons are displayed with a border with Dark-Grey text:" + Environment.NewLine + Environment.NewLine +
                                       @"1. The ‘Lock screen for cleaning’ button." + Environment.NewLine +
@@ -372,7 +386,8 @@ namespace Testcase.XML
 
             // Step 15
             // Pass BG2 with pkt 79 Geographical position  ???
-
+            // rob's telegram
+            EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = (EVC30_MMIRequestEnable.EnabledRequests.Start |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.DriverID |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.TrainData |
@@ -428,12 +443,15 @@ namespace Testcase.XML
             EVC2_MMIStatus.MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.Cabin1Active;
             EVC2_MMIStatus.Send();
 
+            DMITestCases.DmiActions.Set_Driver_ID(_pool, "1234");
+
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
             DMITestCases.DmiExpectedResults.SB_Mode_displayed(_pool);
 
             // Step 18
-            DMITestCases.DmiActions.ShowInstruction(_pool, "Activate Cabin A. Enter Driver ID and perform brake test. Select and confirm Level 2");
+            DMITestCases.DmiActions.ShowInstruction(_pool, "Enter Driver ID and perform brake test. Select and confirm Level 2");
 
+            EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = (EVC30_MMIRequestEnable.EnabledRequests.Start |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.DriverID |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.TrainData |
@@ -482,6 +500,8 @@ namespace Testcase.XML
             EVC2_MMIStatus.MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.Cabin1Active;
             EVC2_MMIStatus.Send();
 
+            DMITestCases.DmiActions.Set_Driver_ID(_pool, "1234");
+
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
             DMITestCases.DmiExpectedResults.SB_Mode_displayed(_pool);
 
@@ -489,6 +509,7 @@ namespace Testcase.XML
             // Step 20
             DMITestCases.DmiActions.ShowInstruction(_pool, "Activate Cabin A. Enter Driver ID and perform brake test. Select and confirm Level STM PLZB. Enter train data and confirm entry");
 
+            EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = (EVC30_MMIRequestEnable.EnabledRequests.Start |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.DriverID |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.TrainData |
@@ -534,14 +555,16 @@ namespace Testcase.XML
             EVC2_MMIStatus.MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.Cabin1Active;
             EVC2_MMIStatus.Send();
 
+            DMITestCases.DmiActions.Set_Driver_ID(_pool, "1234");
+
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
             DMITestCases.DmiExpectedResults.SB_Mode_displayed(_pool);
 
             // Step 22
-            DMITestCases.DmiActions.ShowInstruction(_pool, @"Activate Cabin A. Enter Driver ID and perform brake test. Press the ‘Close’ button in the Main window. " + Environment.NewLine +
+            DMITestCases.DmiActions.ShowInstruction(_pool, @"Press the ‘Close’ button in the Main window. " + Environment.NewLine +
                                                            @"Press the ‘Settings’ button. Press the ‘Brake’ button");
 
-
+            EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = (EVC30_MMIRequestEnable.EnabledRequests.Start |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.DriverID |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.TrainData |

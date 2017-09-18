@@ -13,6 +13,9 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.EVCtoDMI;
+using Testcase.Telegrams.DMItoEVC;
+
 
 namespace Testcase.DMITestCases
 {
@@ -32,7 +35,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 16_2.tdg, 16_2.utt
     /// </summary>
-    public class TAF_Question_Box_Display_of_TAF_Question_box_instead_of_the_planning_area_information : TestcaseBase
+    public class TC_ID_16_2_TAF_Question_Box : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -41,6 +44,11 @@ namespace Testcase.DMITestCases
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
+
+            EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.GoToIdle;
+            EVC0_MMIStartATP.Send();
+
+            DmiActions.Activate_Cabin_1(this);
         }
 
         public override void PostExecution()
@@ -56,39 +64,47 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
             /*
             Test Step 1
             Action: Perform SoM to SR mode, level 2.Then, drive the train forward with speed = 30km/h
             Expected Result: DMI displays in SR mode, level 2
             */
-            // Call generic Action Method
-            DmiActions.Perform_SoM_to_SR_mode_level_2_Then_drive_the_train_forward_with_speed_30kmh(this);
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_SR_mode_level_2(this);
+            // The above steps are done in 21.1 so not repeating set in SoM level 2
+            DmiActions.Set_Driver_ID(this, "1234");
 
+            // Set to level 1 and SR mode
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L2;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
+
+            // Enable standard buttons including Start, and display Default window.
+            DmiActions.FinishedSoM_Default_Window(this);
 
             /*
             Test Step 2
             Action: Received information from RBC
             Expected Result: DMI changes from SR mode to FS mode, level 2
             */
-            // Call generic Action Method
-            DmiActions.Received_information_from_RBC(this);
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_changes_from_SR_mode_to_FS_mode_level_2(this);
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in FS mode, Level 2.");
 
             /*
             Test Step 3
             Action: Acknowledge OS mode by press at area C1
             Expected Result: DMI changes from FS mode to OS mode, level 2
             */
-            // Call generic Action Method
-            DmiActions.Acknowledge_OS_mode_by_press_at_area_C1(this);
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_changes_from_FS_mode_to_OS_mode_level_2(this);
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.OnSight;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 259;
+            EVC8_MMIDriverMessage.Send();
 
+            DmiActions.ShowInstruction(this, "Acknowledge OS mode by pressing in area C1");
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in OS mode, Level 2.");
 
             /*
             Test Step 4
@@ -96,9 +112,16 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,TAF Question box is displayed in area D and force PA information into background.The area D is displayed only TAF Question box.The following buttons are removed from area D,Scale Up button (sub-area D9)Scale Down button (sub-area D12).Hide button (sub-area D14)
             Test Step Comment: (1) MMI_gen 7096 (partly: Placed in Main-Area D);(2) MMI_gen 7096 (partly: 1st bullet);(3) MMI_gen 7096 (partly: 3rd bullet, 4th bullet);
             */
-            // Call generic Action Method
-            DmiActions.Received_information_from_RBC_Then_stop_the_train(this);
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 298;
+            EVC8_MMIDriverMessage.Send();
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the TAF Question box in area D, with PA information in the background." + Environment.NewLine +
+                                "2. DMI displays only the TAF Question box in Area D." + Environment.NewLine +
+                                "3. DMI does not display the ‘Scale Up’ button in sub-area D9." + Environment.NewLine +
+                                "4. DMI does not display the ‘Scale Down’ button in sub-area D12." + Environment.NewLine +
+                                "5. DMI does not display the ‘Hide’ button in sub-area D14.");
 
             /*
             Test Step 5
@@ -106,14 +129,15 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,PA information is not displayed even pressed in any point of area D
             Test Step Comment: (1) MMI_gen 7096 (partly: 2nd bullet);
             */
+            DmiActions.ShowInstruction(this, "Press in area D outside the ‘Yes’ button in the TAF Question box");
 
-
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI does not display PA information whatever part of area D is pressed.");
             /*
             Test Step 6
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }

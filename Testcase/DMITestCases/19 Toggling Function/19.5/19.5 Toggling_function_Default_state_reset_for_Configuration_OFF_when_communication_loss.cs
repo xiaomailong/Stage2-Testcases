@@ -33,7 +33,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 14_5.tdg
     /// </summary>
-    public class Toggling_function_Default_state_reset_for_Configuration_OFF_when_communication_loss : TestcaseBase
+    public class TC_14_5_Toggling_Function : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -51,7 +51,7 @@ namespace Testcase.DMITestCases
             // Post-conditions from TestSpec
             // DMI displays in OS mode, Level 1.
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in PT mode, Level 1.");
+                                "1. DMI displays in OS mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -89,7 +89,7 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, "Press in a sensitivity area (areas A1-A4 or B) to remove the Basic speed hook");
 
-            System.Threading.Thread.Sleep(1000);
+            this.Wait_Realtime(1000);
             DmiActions.Simulate_communication_loss_EVC_DMI(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -105,7 +105,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in OS mode, Level 1.Verify the following information,The objects below are not displayed on DMI,White Basic speed HookMedium-grey basic speed hookDistance to target (digital)Release Speed Digital
             Test Step Comment: (1) MMI_gen 6898 (partly: configuration “OFF”, mode OS), Information (paragraph 2) under MMI_gen 6898 (re-establish); MMI_gen 6589 (partly: configuration “OFF”, mode OS); MMI_gen 6879 (partly: configuration “OFF”, mode OS); MMI_gen 6453;
             */
-            System.Threading.Thread.Sleep(1000);
+            this.Wait_Realtime(1000);
             DmiActions.Re_establish_communication_EVC_DMI(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +

@@ -128,6 +128,22 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
+        /// Description: Set Override Mode. *
+        /// This function shall be called after driveraction StartEOA has been performed
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Set_Override(SignalPool pool)
+        {
+            EVC2_MMIStatus.MMI_M_OVERRIDE_EOA = true;
+            EVC2_MMIStatus.Send();
+
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Start | standardFlags;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 0;
+            EVC30_MMIRequestEnable.Send();
+        }
+
+        /// <summary>
         ///     Sends EVC-6 telegram with Fixed Data Entry for up to 9 trainset strings.
         /// </summary>
         /// <param name="fixedTrainsetCaptions"> Array of strings for trainset captions</param>
@@ -158,7 +174,7 @@ namespace Testcase.DMITestCases
         /// <summary>
         /// Send standard EVC-20 telegram with Levels 0-3, CBTC, and AWS/TPWS selectable. Level 1 is preselected.
         /// </summary>
-        public static void Send_EVC20_MMISelectLevel_AllLevels()
+        public static void Send_EVC20_MMISelectLevel_AllLevels(bool closeEnable = true)
         {
             Variables.MMI_Q_LEVEL_NTC_ID[] paramEvc20MmiQLevelNtcId = 
                 { MMI_Q_LEVEL_NTC_ID.ETCS_Level,
@@ -209,7 +225,7 @@ namespace Testcase.DMITestCases
             EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = paramEvc20MmiMInhibitedLevel;
             EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = paramEvc20MmiMInhibitEnable;
             EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = paramEvc20MmiMLevelNtcId;
-            EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = MMI_Q_CLOSE_ENABLE.Enabled;
+            EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = closeEnable ? MMI_Q_CLOSE_ENABLE.Enabled : MMI_Q_CLOSE_ENABLE.Disabled;
             EVC20_MMISelectLevel.Send();
         }
 
@@ -321,6 +337,46 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
+        /// EB intervention symbol sent to be displayed on the DMI in area C9
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Send_EB_Intervention(SignalPool pool)
+        {
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_EB_Status = 1;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 255;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 260;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+            EVC8_MMIDriverMessage.Send();
+        }
+
+        /// <summary>
+        /// Description: L0 acknowledgement request sent to the driver
+        /// Used in:
+        ///     Step 1 in TC-ID: 15.1.4 in 20.1.4
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Send_L0(SignalPool pool)
+        {
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L0;
+        }
+
+        /// <summary>
+        /// Description: Level 0 announcement ack request sent to the driver
+        /// Used in:
+        ///     Step 1 in TC-ID: 15.1.4 in 20.1.4
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Send_L0_Announcement_Ack(SignalPool pool)
+        {
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 257;     // "#3 LE07/LE11/LE13/LE15 (Ack Transition to Level #4)"
+            EVC8_MMIDriverMessage.Send();
+        }
+
+        /// <summary>
         /// Description: SB mode sent to be displayed on th DMI
         /// Used in:
         ///     Step 1 in TC-ID: 15.1.1 in 20.1.1
@@ -421,6 +477,30 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
+        /// Description: LS mode sent to be displayed on the DMI
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Send_LS_Mode(SignalPool pool)
+        {
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.LimitedSupervision;
+        }
+
+        /// <summary>
+        /// Description: Limited Supervision mode acknowledgement request sent to the driver
+        /// Used in:
+        ///     Step 1 in TC-ID: 15.1.6 in 20.1.6
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Send_LS_Mode_Ack(SignalPool pool)
+        {
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 709;     // "#3 MO22 (Ack for Limited Supervision)"
+            EVC8_MMIDriverMessage.Send();
+        }
+
+        /// <summary>
         /// Description: TR mode sent to be displayed on th DMI
         /// Used in:
         ///     Step 6 in TC-ID: 15.1.1 in 20.1.1
@@ -490,7 +570,7 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = Variables.standardFlags | 
-                EVC30_MMIRequestEnable.EnabledRequests.Start ;
+                EVC30_MMIRequestEnable.EnabledRequests.Start;
             EVC30_MMIRequestEnable.Send();
         }
 
@@ -527,9 +607,11 @@ namespace Testcase.DMITestCases
         /// <param name="pool"></param>
         public static void Display_Driver_ID_Window(SignalPool pool)
         {
-            EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 8;            
-            EVC30_MMIRequestEnable.Send();
+            EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE = EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE_BUTTONS.Settings |
+                                                        EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE_BUTTONS.TRN;
+            EVC14_MMICurrentDriverID.MMI_Q_CLOSE_ENABLE = MMI_Q_CLOSE_ENABLE.Enabled;
+            EVC14_MMICurrentDriverID.MMI_X_DRIVER_ID = "";
+            EVC14_MMICurrentDriverID.Send();
         }
 
         /// <summary>
@@ -540,9 +622,6 @@ namespace Testcase.DMITestCases
         /// <param name="pool"></param>
         public static void Display_Level_Window(SignalPool pool)
         {
-            EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 7;
-            EVC30_MMIRequestEnable.Send();
             Send_EVC20_MMISelectLevel_AllLevels();
         }
 
@@ -554,9 +633,6 @@ namespace Testcase.DMITestCases
         /// <param name="pool"></param>
         public static void Display_Train_Data_Window(SignalPool pool)
         {
-            EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 11;
-            EVC30_MMIRequestEnable.Send();
             Send_EVC6_MMICurrentTrainData_FixedDataEntry(new[] { "FLU", "RLU", "Rescue" }, 2);
         }
 
@@ -574,6 +650,55 @@ namespace Testcase.DMITestCases
             EVC16_CurrentTrainNumber.TrainRunningNumber = 0xffffffff;
             EVC16_CurrentTrainNumber.Send(); ;
         }
+
+        /// <summary>
+        /// Description: Override Window sent to be displayed on th DMI
+        /// Used in:
+        ///     Step 13 in TC-ID: 15.1.3 in 20.1.3
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Display_Override_Window(SignalPool pool)
+        {
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 2;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = Variables.standardFlags |
+                EVC30_MMIRequestEnable.EnabledRequests.EOA;               
+            EVC30_MMIRequestEnable.Send();
+        }
+
+        /// <summary>
+        /// Description: Asks the Tester to enter a LSSMA to be send to the DMI
+        /// Used in:
+        ///     Step 2 in TC-ID: 15.1.6 in 20.1.6
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Send_LSSMA(SignalPool pool)
+        {
+            // Tester enters LSSMA
+            string lssma_string = DmiActions.ShowDialog(@"Perform the following actions: " + Environment.NewLine + Environment.NewLine +
+                                "1. Enter a LSSMA value (integer lower than 601)." + Environment.NewLine, "LSSMA entering");
+
+            ushort lssma_ushort;
+
+            // Convert the entered value into a ushort
+            try
+            {
+                lssma_ushort = UInt16.Parse(lssma_string);
+            }
+            catch (FormatException e)
+            {
+                throw e;
+            }
+
+            // Check the range value
+            if (lssma_ushort > 600)
+                throw new ArgumentOutOfRangeException();
+
+            // Implement and send EVC-23
+            EVC23_MMILssma.MMI_V_LSSMA = lssma_ushort;
+            EVC23_MMILssma.Send();
+        }
+
 
         /// <summary>
         /// Description: SR mode sent to be displayed on th DMI
@@ -744,6 +869,56 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
+        /// Description: Perform SoM in SR mode, Level 1
+        /// Used in:
+        ///     Step 1 in TC-ID: 5.2 in 10.2 Screen Layout: Layers
+        ///     Step 5 in TC-ID: 14.1 in 19.1 Toggling function: Additional Configuration ‘OFF’ (Default)
+        ///     Step 5 in TC-ID: 14.2 in 19.2 Toggling function: Additional Configuration ‘ON’
+        ///     Step 2 in TC-ID: 15.2.4 in 20.2.4 ETCS Level: ETCS Level Transitions by receiving data packet from ETCS Onboard (L1->L0, L0->L1)
+        ///     Step 2 in TC-ID: 17.2.1 in 22.2.1 Planning Area-Layering: PASP and PA Distance scale
+        ///     Step 2 in TC-ID: 17.2.2 in 22.2.2 Planning Area-Layering: Display information when PA data is empty
+        ///     Step 10 in TC-ID: 15.1.3 in 20.1.3
+        /// </summary>
+        public static void Perform_SoM_in_SR_mode_Level_1(SignalPool pool)
+        {
+            DmiActions.Display_Driver_ID_Window(pool);
+            DmiActions.Set_Driver_ID(pool, "1234");
+            DmiActions.Send_SB_Mode(pool);
+            DmiActions.ShowInstruction(pool, "Enter and confirm Driver ID");
+
+            DmiActions.Request_Brake_Test(pool);
+            DmiActions.ShowInstruction(pool, "Perform Brake Test");
+
+            DmiActions.Display_Level_Window(pool);
+            DmiActions.ShowInstruction(pool, "Select and enter Level 1");
+
+            DmiActions.Display_Main_Window_with_Start_button_not_enabled(pool);
+            DmiActions.ShowInstruction(pool, @"Press ‘Train data’ button");
+
+            DmiActions.Display_Train_Data_Window(pool);
+            DmiActions.ShowInstruction(pool, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
+                                "1. Enter and confirm value in each input field." + Environment.NewLine +
+                                "2. Press ‘Yes’ button.");
+
+            DmiActions.Display_Train_data_validation_Window(pool);
+            DmiActions.ShowInstruction(pool, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
+                                "1. Press ‘Yes’ button." + Environment.NewLine +
+                                "2. Confirmed the selected value by pressing the input field.");
+
+            DmiActions.Display_TRN_Window(pool);
+            DmiActions.ShowInstruction(pool, "Enter and confirm Train Running Number");
+
+            DmiExpectedResults.Main_Window_displayed_with_Start_button_enabled(pool);
+            DmiActions.ShowInstruction(pool, @"Press ‘Start’ button");
+
+            DmiActions.Send_SR_Mode_Ack(pool);
+            DmiActions.ShowInstruction(pool, "Press and hold DMI Sub Area C1");
+
+            DmiActions.Send_SR_Mode(pool);
+            DmiActions.FinishedSoM_Default_Window(pool);
+        }
+
+        /// <summary>
         /// Description: Complete start of mission
         /// Used in:
         ///     Step 5 in TC-ID: 1.3.1 in 6.3.1 Performance of the new selection language
@@ -829,56 +1004,6 @@ namespace Testcase.DMITestCases
         public static void Confirm_all_value_of_each_input_field_Then_press_Yes_button(SignalPool pool)
         {
             throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Description: Perform SoM in SR mode, Level 1
-        /// Used in:
-        ///     Step 1 in TC-ID: 5.2 in 10.2 Screen Layout: Layers
-        ///     Step 5 in TC-ID: 14.1 in 19.1 Toggling function: Additional Configuration ‘OFF’ (Default)
-        ///     Step 5 in TC-ID: 14.2 in 19.2 Toggling function: Additional Configuration ‘ON’
-        ///     Step 2 in TC-ID: 15.2.4 in 20.2.4 ETCS Level: ETCS Level Transitions by receiving data packet from ETCS Onboard (L1->L0, L0->L1)
-        ///     Step 2 in TC-ID: 17.2.1 in 22.2.1 Planning Area-Layering: PASP and PA Distance scale
-        ///     Step 2 in TC-ID: 17.2.2 in 22.2.2 Planning Area-Layering: Display information when PA data is empty
-        ///     Step 10 in TC-ID: 15.1.3 in 20.1.3
-        /// </summary>
-        public static void Perform_SoM_in_SR_mode_Level_1(SignalPool pool)
-        {
-            DmiActions.Display_Driver_ID_Window(pool);
-            DmiActions.Set_Driver_ID(pool, "1234");
-            DmiActions.Send_SB_Mode(pool);
-            DmiActions.ShowInstruction(pool, "Enter and confirm Driver ID");
-
-            DmiActions.Request_Brake_Test(pool);
-            DmiActions.ShowInstruction(pool, "Perform Brake Test");
-
-            DmiActions.Display_Level_Window(pool);
-            DmiActions.ShowInstruction(pool, "Select and enter Level 1");
-
-            DmiActions.Display_Main_Window_with_Start_button_not_enabled(pool);
-            DmiActions.ShowInstruction(pool, @"Press ‘Train data’ button");
-
-            DmiActions.Display_Train_Data_Window(pool);
-            DmiActions.ShowInstruction(pool, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
-                                "1. Enter and confirm value in each input field." + Environment.NewLine +
-                                "2. Press ‘Yes’ button.");
-
-            DmiActions.Display_Train_data_validation_Window(pool);
-            DmiActions.ShowInstruction(pool, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
-                                "1. Press ‘Yes’ button." + Environment.NewLine +
-                                "2. Confirmed the selected value by pressing the input field.");
-
-            DmiActions.Display_TRN_Window(pool);
-            DmiActions.ShowInstruction(pool, "Enter and confirm Train Running Number");
-
-            DmiExpectedResults.Main_Window_displayed_with_Start_button_enabled(pool);
-            DmiActions.ShowInstruction(pool, @"Press ‘Start’ button");
-
-            DmiActions.Send_SR_Mode_Ack(pool);
-            DmiActions.ShowInstruction(pool, "Press and hold DMI Sub Area C1");
-
-            DmiActions.Send_SR_Mode(pool);
-            DmiActions.FinishedSoM_Default_Window(pool);
         }
 
         /// <summary>
@@ -1270,10 +1395,11 @@ namespace Testcase.DMITestCases
         ///     Step 6 in TC-ID: 17.10.1 in 22.10.1 Zoom PA Function: General appearance
         ///     Step 17 in TC-ID: 22.10 in 27.10 Special window
         ///     Step 3 in TC-ID: 35.2 in 38.2 NTC System Status Messages
+        ///     Step 3 in TC-ID: 15.1.3 in 20.1.3
         /// </summary>
         public static void Drive_the_train_forward(SignalPool pool)
         {
-            throw new NotImplementedException();
+
         }
 
         /// <summary>
@@ -1338,10 +1464,11 @@ namespace Testcase.DMITestCases
         ///     Step 6 in TC-ID: 15.5.1 in 20.5.1 Adhesion factor: General appearance
         ///     Step 3 in TC-ID: 15.5.2 in 20.5.3 Adhesion factor: Controlled data packet from ETCS Onboard
         ///     Step 4 in TC-ID: 17.1.1 in 22.1.1 Planning Area: General Appearance
+        ///     Step 4 in TC-ID: 15.1.6 in 20.1.6
         /// </summary>
         public static void Drive_train_forward_passing_BG2(SignalPool pool)
         {
-            throw new NotImplementedException();
+            
         }
 
         /// <summary>

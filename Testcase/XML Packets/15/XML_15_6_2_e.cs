@@ -49,6 +49,9 @@ namespace Testcase.XML
 
             EVC32_MMITrackConditions.Send();
 
+            _pool.WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                      "1. DMI displays symbol TC03 in sub-area B3 with a yellow flashing frame.");
+
             // Wait a few seconds
             _pool.Wait_Realtime(3000);
 
@@ -57,6 +60,9 @@ namespace Testcase.XML
             EVC33_MMIAdditionalOrder.MMI_Q_TRACKCOND_ACTION = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction;
             EVC33_MMIAdditionalOrder.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea;  // Announce area
             EVC33_MMIAdditionalOrder.Send();
+
+            _pool.WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                      "1. After 3s, DMI displays symbol LX01 in sub-area B4.");
         }
     }
 }

@@ -183,6 +183,17 @@ namespace Testcase.Telegrams.EVCtoDMI
         }
 
         /// <summary>
+        /// MMI_M_Buttons for EVC-18 and EVC-19 enum
+        /// </summary>
+        public enum MMI_M_BUTTONS_VBC : byte
+        {
+            BTN_SETTINGS = 4,
+            BTN_YES_DATA_ENTRY_COMPLETE = 36,
+            BTN_YES_DATA_ENTRY_COMPLETE_DELAY_TYPE = 37,
+            NoButton = 255
+        }
+
+        /// <summary>
         /// MMI_NID_RBC value specifying to contact last known RBC
         /// </summary>
         public const uint ContactLastRBC = 16383;
@@ -275,6 +286,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public enum MMI_M_REQUEST : byte
         {
+            Spare = 0,
             StartShunting = 1,
             ExitShunting = 2,
             StartTrainDataEntry = 3,
@@ -359,9 +371,32 @@ namespace Testcase.Telegrams.EVCtoDMI
         }
 
         /// <summary>
-        /// Collection of flags used to enable standard buttons on DMI.
+        /// This universal data check result variable provides control information
+        /// how to display the related train data element in Echo Text/Data Entry Fields.
+        /// Affected Echo Text/Data Entry Fields are indicated by MMI_NID_DATA
+        /// 
+        /// Values:
+        /// 0 = "All checks have passed"
+        /// 1 = "Technical Range Check failed"
+        /// 2 = "Technical Resolution Check failed"
+        /// 3 = "Technical Cross Check failed"
+        /// 4 = "Operational Range Check failed"
+        /// 5 = "Operational Cross Check failed"
         /// </summary>
-        public static EVC30_MMIRequestEnable.EnabledRequests standardFlags = 
+        public enum Q_DATA_CHECK : byte
+        {
+            All_checks_passed = 0,
+            Technical_Range_Check_failed = 1,
+            Technical_Resolution_Check_failed = 2,
+            Technical_Cross_Check_failed = 3,
+            Operational_Range_Check_failed = 4,
+            Operational_Cross_Check_failed = 5
+        }
+
+    /// <summary>
+    /// Collection of flags used to enable standard buttons on DMI.
+    /// </summary>
+    public static EVC30_MMIRequestEnable.EnabledRequests standardFlags = 
             EVC30_MMIRequestEnable.EnabledRequests.EnableDoppler |
             EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter |
             EVC30_MMIRequestEnable.EnabledRequests.StartBrakeTest |
@@ -606,6 +641,43 @@ namespace Testcase.Telegrams.EVCtoDMI
             Level2 = 42,
             Level3 = 43,
             Level0 = 44
+        }    
+        
+        public enum MMI_M_PULSE_PER_KM : uint
+        {
+            NoRadarOnBoard = 0,
+            TechnicalRangeCheckFailed = 4294967290,
+            TechnicalResolutionCheckFailed = 4294967291,
+            TechnicalCrossCheckFailed = 4294967292,
+            OperationalRangeCheckFailed = 4294967293,
+            OperationalCrossCheckFailed = 4294967294,
+            Reserved = 4294967295
+        }
+
+        public enum MMI_M_SDU_WHEEL_SIZE : ushort
+        {
+            TechnicalRangeCheckFailed = 65530,
+            TechnicalResolutionCheckFailed = 65531,
+            TechnicalCrossCheckFailed = 65532,
+            OperationalRangeCheckFailed = 65533,
+            OperationalCrossCheckFailed = 65534,
+            Reserved = 65535
+        }
+
+        public enum MMI_M_WHEEL_SIZE_ERR : byte
+        {
+            TechnicalRangeCheckFailed = 250,
+            TechnicalResolutionCheckFailed = 251,
+            TechnicalCrossCheckFailed = 252,
+            OperationalRangeCheckFailed = 253,
+            OperationalCrossCheckFailed = 254,
+            Reserved = 255
+        }
+
+        public enum MMI_Q_MD_DATASET : byte
+        {
+            WheelDiameter = 0,
+            Doppler = 1
         }
     }
 }

@@ -40,7 +40,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// N/A
     /// </summary>
-    public class Screen_Layout_Frames : TestcaseBase
+    public class TC_ID_5_3_Screen_Layout_Frames : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -182,9 +182,10 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in PT mode.Use the log file to confirm that DMI sends out packet [MMI_DRIVER_ACTION (EVC-152)] with the value of variable MMI_M_DRIVER_ACTION refer to sequence below,a)   MMI_M_DRIVER_ACTION = 2 (Ack of Train Trip)
             Test Step Comment: MMI_gen 11470 (partly: Bit #2);   
             */
-            DmiActions.ShowInstruction(this, @"Acknowledge train trip and check the log file for packet EVC-152 from DMI with MMI_M_DRIVER_ACTION = 2");
+            DmiActions.ShowInstruction(this, @"Acknowledge train trip");
 
-            EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.PostTrip;
+            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.TrainTripAck;
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the Post trip mode symbol (MO6) displayed in area B7?" + Environment.NewLine +
                                 "2. DMI displays the train trip announcement symbol requiring driver action." + Environment.NewLine +

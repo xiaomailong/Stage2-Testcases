@@ -13,6 +13,8 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.DMItoEVC;
+
 
 namespace Testcase.DMITestCases
 {
@@ -31,7 +33,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 22_7_2_a.xml, 22_7_2_b.xml
     /// </summary>
-    public class Data_view_window_for_Fixed_Train_data_entry : TestcaseBase
+    public class TC_ID_27_7_2_Sub_Level_Window : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -40,12 +42,16 @@ namespace Testcase.DMITestCases
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
+
+            DmiActions.Complete_SoM_L1_SR(this);
         }
 
         public override void PostExecution()
         {
             // Post-conditions from TestSpec
             // DMI displays in SR mode, level 1.
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SR mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -54,8 +60,7 @@ namespace Testcase.DMITestCases
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint
-
-
+            
             /*
             Test Step 1
             Action: Press ‘Data view’ button
@@ -63,9 +68,43 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 2482;(2) MMI_gen 230 (partly: open);(3) MMI_gen 8582 (partly: MMI_gen 5338);  (4) MMI_gen 8582 (partly: MMI_gen 5383 (partly: MMI_gen 5944 (partly: touchscreen)));(5) MMI_gen 8582 (partly: MMI_gen 5335);  (6) MMI_gen 8582 (partly: MMI_gen 5340 (partly: right aligned));  (7) MMI_gen 8582 (partly: MMI_gen 5342 (partly: left aligned));  (8) MMI_gen 8582 (partly: MMI_gen 5337);   (9) MMI_gen 8582 (partly: MMI_gen 5339);  (10) MMI_gen 8582 (partly: MMI_gen 5336 (partly: valid));         (11) MMI_gen 8583; (12) MMI_gen 8584 (partly: ETCS); MMI_gen 8585 (partly:Fixed train data, window #1); MMI_gen 8586 (partly: modify by the driver); MMI_gen 9428; MMI_gen 230 (partly: EVC-13);(13) MMI_gen 8582 (partly: MMI_gen 5306 (partly: Close button, Previous button, Next button, Window title)); MMI_gen 4392 (partly: [Previous : NA19], [Next: NA17], [Close] NA11); MMI_gen 4396 (partly: Previous, NA19, Next, NA17); MMI_gen 4394 (partly: disabled [previous]);(14) MMI_gen 4350;(15) MMI_gen 4351;(16) MMI_gen 4353;(17) MMI_gen 4354;
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press ‘Data view’ button");
+            DmiActions.ShowInstruction(this, @"Press the ‘Data view’ button");
 
+            EVC101_MMIDriverRequest.CheckMRequestPressed = Telegrams.EVCtoDMI.Variables.MMI_M_REQUEST.StartTrainDataView;
+            Wait_Realtime(2000);
+            EVC101_MMIDriverRequest.CheckMRequestReleased = Telegrams.EVCtoDMI.Variables.MMI_M_REQUEST.StartTrainDataView;
 
+            //?? EVC13.MMI_MRequest = MMI_M_DATA_ENABLE.TrainSetID |
+            //                        MMI_M_DATA_ENABLE.TrainCategory |
+            //                        MMI_M_DATA_ENABLE.TrainLength |
+            //                        MMI_M_DATA_ENABLE.BrakePercentage |
+            //                        MMI_M_DATA_ENABLE.MaxTrainSpeed |
+            //                        MMI_M_DATA_ENABLE.AxleLoadCategory |
+            //                        MMI_M_DATA_ENABLE.AirTightness |
+            //                        MMI_M_DATA_ENABLE.LoadGauge;
+            //   EVC13.Send();
+
+            // Spec says display Train Running number which is in EVC6...
+            //
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the Data view window." + Environment.NewLine +
+                                "2. The Data view window covers (Main) areas D, F and G." + Environment.NewLine +
+                                "3. Layer 0 comprises Areas D, F, G, E10, E11, Z, Y." + Environment.NewLine +
+                                "4. Layer 1 comprises Areas A1 (A2+A3)*, A4, B, C1, (C2+C3+C4)*, C5-C9, E1-E4, (E5-E9*)." + Environment.NewLine +
+                                "5. Layer 2 comprises Areas B3-B7." + Environment.NewLine +
+                                "6. Data view texts have a label, right-aligned, and a data part, left-aligned." + Environment.NewLine +
+                                "7. Data view text is in grey." + Environment.NewLine +
+                                "8. Different topics such as Train running number and Train data entry are separated by an empty line" + Environment.NewLine +
+                                "9. Data parts only display valid values" + Environment.NewLine +
+                                "10. The window title is labelled with text ‘Data view(1/2)’." + Environment.NewLine +
+                                "11. DMI displays information about Driver ID, Train running number, Train type, Train category, Length (m), Brake percentage, " + Environment.NewLine +
+                                "                                   Maximum speed (km/h), Axle load category, Airtightness, Loading gauge." + Environment.NewLine +
+                                "12. DMI displays the ‘Enabled Close button’ (symbol NA11), the ‘Disabled Previous’ button (symbol NA19), the ‘Enabled Next’ button" + Environment.NewLine +
+                                "13. Objects, text messages and buttons can be displayed in several levels. Within a level they are allocated to areas." + Environment.NewLine +
+                                "14. objects, text messages and buttons in a layer form a window." + Environment.NewLine +
+                                "15. The Default window does not cover the current window." + Environment.NewLine +
+                                "16. A sub-level window can partially cover another window, depending on its size. Another window cannot be displayed and activated at the same time.");
+           
             /*
             Test Step 2
             Action: Press and hold ‘Next’ button
@@ -74,23 +113,21 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press and hold ‘Next’ button");
-            // Call generic Check Results Method
-            DmiExpectedResults
-                .Verify_the_following_information_1_The_state_of_button_is_changed_to_Pressed_the_border_of_button_is_removed_2_The_sound_Click_is_played_once(this);
 
-
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the ‘Next’ button pressed with no border." + Environment.NewLine +
+                                "2. The ‘Click’ sound is played once.");
             /*
             Test Step 3
             Action: Slide out the ‘Next’ button
             Expected Result: Verify the following information,(1)   The border of the button is shown (state ‘Enabled’) without a sound
             Test Step Comment: (1) MMI_gen 9391 (partly: [Next], MMI_gen 4382 (partly: state ‘Enabled’ when slide out with force applied, no sound));
             */
-            // Call generic Action Method
-            DmiActions.Slide_out_the_Next_button(this);
-            // Call generic Check Results Method
-            DmiExpectedResults
-                .Verify_the_following_information_1_The_border_of_the_button_is_shown_state_Enabled_without_a_sound(this);
+            DmiActions.ShowInstruction(this, @"Whilst keeping the ‘Next’ button pressed, drag outside its area");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                @"1. The ‘Next’ button is displayed enabled." + Environment.NewLine +
+                                "2. No sound is played.");
 
             /*
             Test Step 4
@@ -98,11 +135,11 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   The button is back to state ‘Pressed’ without a sound
             Test Step Comment: (1) MMI_gen 9391 (partly: [Next], Train category, MMI_gen 4382 (partly: state ‘Pressed’ when slide back, no sound));
             */
-            // Call generic Action Method
-            DmiActions.Slide_back_into_the_Next_button(this);
-            // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_1_The_button_is_back_to_state_Pressed_without_a_sound(this);
+            DmiActions.ShowInstruction(this, @"Whilst keeping the ‘Next’ button pressed, drag it back inside its area");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The ‘Next’ button is displayed pressed." + Environment.NewLine +
+                                "2. No sound is played.");
 
             /*
             Test Step 5
@@ -110,25 +147,52 @@ namespace Testcase.DMITestCases
             Expected Result: Verify that the Data view is displayed the next page of the train data.The window title of the next page is displayed with text ‘Data view (2/2)’. Data View ItemsThe data view items are displayed correctly refer to following items,RBC IDRBC phone numberVBC set code (if any)The data part of RBC phone number is displayed as 2 lines.Navigation buttonsThe state of ‘Previous’ and ‘Next’ button are displayed as follows,  ‘Next’ button is disabled, displays as symbol NA18.2  ‘Previous’ button is enabled, displays as symbol NA18
             Test Step Comment: (1) MMI_gen 8584 (partly: ETCS), MMI_gen 8585 (partly: Fixed train, window #2);       (2) MMI_gen 8585 (partly: Fixed train, window #2); MMI_gen 8582 (partly: MMI_gen 5336 (partly: valid));(3) MMI_gen 8582 (partly: MMI_gen 7510);(4) MMI_gen 4394 (partly: enabled [previous], disabled [next]); MMI_gen 4396 (partly: Next, NA18.2, Previous, NA18); MMI_gen 4358;          
             */
-            // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Release ‘Next’ button");
-            // Call generic Check Results Method
-            DmiExpectedResults
-                .Verify_that_the_Data_view_is_displayed_the_next_page_of_the_train_data_The_window_title_of_the_next_page_is_displayed_with_text_Data_view_22_Data_View_ItemsThe_data_view_items_are_displayed_correctly_refer_to_following_items_RBC_IDRBC_phone_numberVBC_set_code_if_anyThe_data_part_of_RBC_phone_number_is_displayed_as_2_lines_Navigation_buttonsThe_state_of_Previous_and_Next_button_are_displayed_as_follows_Next_button_is_disabled_displays_as_symbol_NA18_2_Previous_button_is_enabled_displays_as_symbol_NA18(this);
+            DmiActions.ShowInstruction(this, @"Release the ‘Next’ button");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                @"1. DMI displays the next page of the Train data, with the window title being displayed with the text ‘Data view (2/2)’." + Environment.NewLine +
+                                @"2. The data view items ‘RBC ID’, ‘RBC phone number’, ‘VBC set code’ (if any) are displayed correctly." + Environment.NewLine +
+                                @"3. The data part of the RBC phone number is displayed on two lines." + Environment.NewLine +
+                                @"3. The ‘Next’ button is disabled (DMI displays symbol NA18.2)." + Environment.NewLine +
+                                @"4. The ‘Previous’ button is enabled (DMI displays symbol NA18).");
 
             /*
             Test Step 6
             Action: Perform action step 2-5 for ‘Previous’ button
             Expected Result: See the expected result of step 2-5 and the following points,(1)   The state of ‘Previous’ and ‘Next’ button are displayed as follows,‘Next’ button is enabled, displays as symbol NA17  ‘Previous’ button is enabled, displays as symbol NA19
             Test Step Comment: (1) MMI_gen 4394 (partly: enabled [next], disabled [previous]); MMI_gen 4396 (partly: Next, NA17, Previous, NA19); MMI_gen 4358; 
-            */
-            // Call generic Action Method
-            DmiActions.Perform_action_step_2_5_for_Previous_button(this);
-            // Call generic Check Results Method
-            DmiExpectedResults
-                .See_the_expected_result_of_step_2_5_and_the_following_points_1_The_state_of_Previous_and_Next_button_are_displayed_as_follows_Next_button_is_enabled_displays_as_symbol_NA17_Previous_button_is_enabled_displays_as_symbol_NA19(this);
+            */   
+            // Repeat Step 2          
+            DmiActions.ShowInstruction(this, @"Press and hold ‘Previous’ button");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the ‘Previous’ button pressed with no border." + Environment.NewLine +
+                                "2. The ‘Click’ sound is played once.");
+
+            // Repeat Step 3
+            DmiActions.ShowInstruction(this, @"Whilst keeping the ‘Previous’ button pressed, drag outside its area");
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                @"1. The ‘Previous’ button is displayed enabled." + Environment.NewLine +
+                                "2. No sound is played.");
+
+            // Repeat Step 4
+            DmiActions.ShowInstruction(this, @"Whilst keeping the ‘Previous’ button pressed, drag it back inside its area");
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The ‘Previous’ button is displayed pressed." + Environment.NewLine +
+                                "2. No sound is played.");
+
+            // Repeat Step 5            
+            DmiActions.ShowInstruction(this, @"Release the ‘Previous’ button");
+
+            // Spec is incorrect: NA19 is disabled previous button (not enabled)
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                @"1. DMI displays the previous page of the Train data, with the window title being displayed with the text ‘Data view (2/2)’." + Environment.NewLine +
+                                @"2. The data view items ‘RBC ID’, ‘RBC phone number’, ‘VBC set code’ (if any) are displayed correctly." + Environment.NewLine +
+                                @"3. The data part of the RBC phone number is displayed on two lines." + Environment.NewLine +
+                                @"3. The ‘Next’ button is enabled (DMI displays symbol NA17)." + Environment.NewLine +
+                                @"4. The ‘Previous’ button is disabled (DMI displays symbol NA19).");
 
             /*
             Test Step 7
@@ -136,7 +200,13 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,DMI displays the following information respectively with blank value:Page 1:Driver IDTrain running numberPage 2:Radio Network IDRBC IDRBC Phone Number
             Test Step Comment: (1) MMI_gen 8586 (partly: modify by other ETCS external source); MMI_gen 8582 (partly: MMI_gen 5336 (partly: NEGATIVE, display only Driver ID/Train running number/ Radio Network ID/ RBC ID/ RBC Phone number));
             */
+            XML.XML_22_7_2_a.Send(this);
 
+            WaitForVerification("Check the following (scrolling the window to see both pages):" + Environment.NewLine + Environment.NewLine +
+                                "1. On page 1, DMI displays information on Driver ID and Train running number with blank values." + Environment.NewLine +
+                                "2. On page 2, DMI displays information on Radio Network ID, RBC ID and Train running number with blank values.");
+
+            /*
 
             /*
             Test Step 8
@@ -144,17 +214,18 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   The data part of following information are automatically insert a line brake at the end of first line, represented as 2 lines.Page 1:Driver IDPage 2:Radio Network IDRBC Phone Number
             Test Step Comment: (1) MMI_gen 7514;
             */
-            // Call generic Check Results Method
-            DmiExpectedResults
-                .Verify_the_following_information_1_The_data_part_of_following_information_are_automatically_insert_a_line_brake_at_the_end_of_first_line_represented_as_2_lines_Page_1Driver_IDPage_2Radio_Network_IDRBC_Phone_Number(this);
+            XML.XML_22_7_2_b.Send(this);
 
+            WaitForVerification("Check the following information is displayed with a line break inserted after the first line so that the data" + Environment.NewLine +
+                                "are displayed over two lines (scrolling the window to see both pages):" + Environment.NewLine + Environment.NewLine +
+                                "1. On page 1, DMI displays information on Driver ID." + Environment.NewLine +
+                                "2. On page 2, DMI displays information on Radio Network ID and RBC Phone Number.");
 
             /*
             Test Step 9
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }

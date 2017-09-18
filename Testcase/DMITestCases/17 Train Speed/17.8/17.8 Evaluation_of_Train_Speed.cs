@@ -39,13 +39,15 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 12_8.tdg, 12_8_a.xml
     /// </summary>
-    public class Evaluation_of_Train_Speed : TestcaseBase
+    public class TC_12_8_Train_Speed : TestcaseBase
     {
         public override void PreExecution()
         {
             // Pre-conditions from TestSpec:
             // -    Test system is powered on.-    ATP is still not start.
             // ?? Need to switch off/on
+            EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.GoToIdle;
+            EVC0_MMIStartATP.Send();
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
@@ -72,8 +74,6 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)    Use the log file to confirm that DMI receives packet EVC-1 with variable MMI_V_TRAIN = -1.(2)   The following objects are not displayed on the DMI,Speed PointerSpeed DigitalCSGCSG-ExtensionAll hooksTarget Distance Bar
             Test Step Comment: (1) MMI_gen 1086 (partly: received MMI_V_TRAIN equal -1); MMI_gen 1268 (partly: received MMI_V_TRAIN equal -1); MMI_gen 1275 (partly: received invalid MMI_V_TRAIN);(2) MMI_gen 1086 (partly: when MMI_V_TRAIN equal -1);  MMI_gen 1268 (partly: when MMI_DYNAMIC not elder than 600ms and MMI_V_TRAIN equal -1); MMI_gen 1275 (partly: when MMI_V_TRAIN is invalid); 
             */
-            EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.GoToIdle;
-            EVC0_MMIStartATP.Send();
             EVC1_MMIDynamic.MMI_V_TRAIN = -1;
 
             WaitForVerification("Check that the following objects are not displayed on the DMI:" + Environment.NewLine + Environment.NewLine +

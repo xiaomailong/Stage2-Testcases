@@ -33,7 +33,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// N/A
     /// </summary>
-    public class TC_12_1_Display_of_Speed_Pointer_and_Speed_Digital : TestcaseBase
+    public class TC_12_1_Train_Speed : TestcaseBase
     {
         public override void PreExecution()
         {

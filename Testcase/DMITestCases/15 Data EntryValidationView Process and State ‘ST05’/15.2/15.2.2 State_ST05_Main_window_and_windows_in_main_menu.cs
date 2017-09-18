@@ -43,7 +43,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 10_2_2_a.xml, 10_2_2_b.xml, 10_2_2_c.xml
     /// </summary>
-    public class State_ST05_Main_window_and_windows_in_main_menu : TestcaseBase
+    public class TC_ID_10_2_2_State_ST05 : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -119,7 +119,7 @@ namespace Testcase.DMITestCases
                                       "4. ‘Close’ button NA12 is displayed disabled in area G." + Environment.NewLine +
                                       "5. The Input Field is not selected.");
 
-            System.Threading.Thread.Sleep(10000);
+            this.Wait_Realtime(10000);
             
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
 
@@ -168,7 +168,7 @@ namespace Testcase.DMITestCases
                                       "3. All buttons and the ‘Close’ button are disabled." + Environment.NewLine +
                                       "4. ‘Close’ button NA12 is displayed disabled in area G.");
 
-            System.Threading.Thread.Sleep(10000);
+            this.Wait_Realtime(10000);
 
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
 
@@ -217,7 +217,7 @@ namespace Testcase.DMITestCases
                                 "4. ‘Close’ button NA12 is displayed disabled in area G." + Environment.NewLine +
                                 "5. The input field is not selected.");
 
-            System.Threading.Thread.Sleep(10000);
+            this.Wait_Realtime(10000);
 
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
 
@@ -265,7 +265,7 @@ namespace Testcase.DMITestCases
                                       "4. ‘Close’ button NA12 is displayed disabled in area G." + Environment.NewLine +
                                       "5. All Input Fields are not selected");
 
-            System.Threading.Thread.Sleep(10000);
+            this.Wait_Realtime(10000);
 
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
 
@@ -309,7 +309,7 @@ namespace Testcase.DMITestCases
                                 "3. All buttons and the ‘Close’ button are disabled." + Environment.NewLine +
                                 "4. ‘Close’ button NA12 is displayed disabled in area G.");
 
-            System.Threading.Thread.Sleep(10000);
+            this.Wait_Realtime(10000);
 
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
 
@@ -354,7 +354,7 @@ namespace Testcase.DMITestCases
                                       "4. ‘Close’ button NA12 is displayed disabled in area G." + Environment.NewLine +
                                       "5. The Input Field is not selected.");
 
-            System.Threading.Thread.Sleep(10000);
+            this.Wait_Realtime(10000);
 
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
 
@@ -405,7 +405,7 @@ namespace Testcase.DMITestCases
                                       "4. ‘Close’ button NA12 is displayed disabled in area G." + Environment.NewLine +
                                       "5. The Input Field is not selected.");
 
-            System.Threading.Thread.Sleep(10000);
+            this.Wait_Realtime(10000);
 
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
 
@@ -457,7 +457,7 @@ namespace Testcase.DMITestCases
                                       "4. ‘Close’ button NA12 is displayed disabled in area G." + Environment.NewLine +
                                       "5. The Input Field is not selected.");
 
-            System.Threading.Thread.Sleep(10000);
+            this.Wait_Realtime(10000);
 
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
 

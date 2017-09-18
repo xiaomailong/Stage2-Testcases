@@ -111,7 +111,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         public static void Send()
         {
             SetLevelInfoK();
-            _pool.SITR.ETCS1.SelectLevel.MmiLPacket.Value = (ushort) (56 * _nLevels * 16);
+            _pool.SITR.ETCS1.SelectLevel.MmiLPacket.Value = (ushort) (56 + (_nLevels * 16));
             _pool.SITR.SMDCtrl.ETCS1.SelectLevel.Value = 0x09;
         }
 

@@ -32,7 +32,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 2_5_1_a.xml
     /// </summary>
-    public class DMI_Failure_Reaction_Reboot_function_SIL0_DMI : TestcaseBase
+    public class TC_ID_2_5_1_Failure_Reaction : TestcaseBase
     {
         public override void PreExecution()
         {

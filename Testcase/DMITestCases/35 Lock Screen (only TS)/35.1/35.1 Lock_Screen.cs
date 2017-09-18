@@ -33,7 +33,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// N/A
     /// </summary>
-    public class Lock_Screen : TestcaseBase
+    public class TC_ID_32_1_Lock_Screen : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -67,12 +67,34 @@ namespace Testcase.DMITestCases
             Action: Perform the following procedure,Activate Cabin A.Enter Driver ID and perform brake test.Select and confirm Level 1.Press ‘Train data button.Enter and confirm all data. Then, press ‘Yes’ button.Press ‘Yes’ button and Confirm entered data by pressing an input field.Enter and confirm Train running numberPress ‘Close’ button
             Expected Result: DMI displays Default window in SB mode and Level 1
             */
-            DmiActions.ShowInstruction(this, "Perform the following: " + Environment.NewLine +
-                                             "Activate Cabin A. Enter Driver ID and perform brake test. Select and confirm Level 1.	Press the ‘Train data’ button. Enter and confirm all data" + Environment.NewLine +
-                                             "Press the ‘Yes’ button. Press the ‘Yes’ button and press an input field to confirm entered data. Enter and confirm Train running number. Press  the ‘Close’ button.");
+            DmiActions.Activate_Cabin_1(this);
+            DmiActions.Set_Driver_ID(this, "1234");
 
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
+            DmiActions.Send_SB_Mode(this);
+            DmiActions.ShowInstruction(this, "Enter and confirm Driver ID");
 
+            DmiActions.Request_Brake_Test(this);
+            DmiActions.ShowInstruction(this, "Perform Brake Test");
+
+            DmiActions.Display_Level_Window(this);
+            DmiActions.ShowInstruction(this, "Select and enter Level 1");
+
+            DmiActions.Display_Main_Window_with_Start_button_not_enabled(this);
+            DmiActions.ShowInstruction(this, @"Press ‘Train data’ button");
+
+            DmiActions.Display_Train_Data_Window(this);
+            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
+                                "1. Enter and confirm value in each input field." + Environment.NewLine +
+                                "2. Press ‘Yes’ button.");
+
+            DmiActions.Display_Train_data_validation_Window(this);
+            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
+                                "1. Press ‘Yes’ button." + Environment.NewLine +
+                                "2. Confirmed the selected value by pressing the input field.");
+
+            DmiActions.Display_TRN_Window(this);
+            DmiActions.ShowInstruction(this, "Enter and confirm Train Running Number and press the ‘Close’ button");
+            
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SB mode, Level 1.");
             

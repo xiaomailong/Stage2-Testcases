@@ -34,7 +34,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 15_3_4.xml
     /// </summary>
-    public class Driver_Messages_Undefined_value_of_MMI_Q_TEXT_CRITERIA : TestcaseBase
+    public class TC_15_3_4_Driver_Messages : TestcaseBase
     {
         public override void PreExecution()
         {

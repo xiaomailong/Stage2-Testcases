@@ -31,7 +31,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// N/A
     /// </summary>
-    public class Data_view_window_for_the_text_which_longer_than_maximum_width : TestcaseBase
+    public class TC_ID_27_7_3_Sub_Level_Window : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -40,12 +40,16 @@ namespace Testcase.DMITestCases
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
+
+            DmiActions.Complete_SoM_L1_SR(this);
         }
 
         public override void PostExecution()
         {
             // Post-conditions from TestSpec
             // DMI displays in SR mode, level 1.
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SR mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -55,7 +59,6 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
             /*
             Test Step 1
             Action: Press ‘Data view’ button
@@ -63,15 +66,18 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7512;(2) MMI_gen 7514;
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press ‘Data view’ button");
+            DmiActions.ShowInstruction(this, @"Press the ‘Data view’ button");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The label of Data view item #3 is ‘For Test Data View truncated by long text’, truncated at the maximum width of the label part." + Environment.NewLine +
+                                "2. The data part of Data view item #3 is ‘For Test Data View truncated by long text’, displayed on two lines" + Environment.NewLine +
+                                "   with the second line truncated at the maximum width of the data part.");
 
             /*
             Test Step 2
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }

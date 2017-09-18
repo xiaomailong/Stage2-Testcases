@@ -37,7 +37,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 10_2_7_a.xml, 10_2_7_b.xml,10_2_7.utt
     /// </summary>
-    public class State_ST05_RBC_contact_window_and_windows_in_RBC_contact_menu : TestcaseBase
+    public class TC_ID_10_2_7_State_ST05 : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -134,7 +134,7 @@ namespace Testcase.DMITestCases
                                 "4. ‘Close’ button NA12 is displayed disabled in area G." + Environment.NewLine +
                                 "5. The Input Field is not selected.");
 
-            System.Threading.Thread.Sleep(10000);
+            this.Wait_Realtime(10000);
 
             // Step 2/2
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
@@ -175,7 +175,7 @@ namespace Testcase.DMITestCases
                                 "4. ‘Close’ button NA12 is displayed disabled in area G." + Environment.NewLine +
                                 "5. All Input Fields are not selected.");
 
-            System.Threading.Thread.Sleep(10000);
+            this.Wait_Realtime(10000);
 
             // Step 2/2
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;

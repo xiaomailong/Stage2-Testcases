@@ -34,7 +34,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 6_2_a.xml, 6_2_b.xml, 6_2_c.xml
     /// </summary>
-    public class Acknowledgements_Replacement_of_new_acknowledgements : TestcaseBase
+    public class TC_ID_6_2_Acknowledgements : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -93,7 +93,9 @@ namespace Testcase.DMITestCases
             Expected Result: The acknowledgement is remove, no message display on sub-area E5.(1)    Use the log file to confirm that DMI sends out packet [MMI_DRIVER_ACTION (EVC-152)] with the value of variable MMI_M_DRIVER_ACTION refer to sequence below,a)   MMI_M_DRIVER_ACTION = 24 (Ack of Fixed Text information)
             Test Step Comment: (1) MMI_gen 11470 (partly: Bit # 24);
             */
-            DmiActions.ShowInstruction(this, "Acknowledge by pressing in sub-area E5 and check the log file for packet EVC-152 from DMI with MMI_M_DRIVER_ACTION = 24");
+            DmiActions.ShowInstruction(this, "Acknowledge by pressing in sub-area E5");
+
+            Telegrams.DMItoEVC.EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = Telegrams.DMItoEVC.EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.FixedTextInformationAck;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The message in area sub-area E5 is removed.");
