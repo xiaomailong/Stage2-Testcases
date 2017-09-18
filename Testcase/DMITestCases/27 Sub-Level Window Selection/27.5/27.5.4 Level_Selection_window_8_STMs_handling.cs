@@ -67,8 +67,7 @@ namespace Testcase.DMITestCases
             Action: Power on the system and activate the cabin
             Expected Result: DMI displays Driver ID window in SB mode
             */
-            EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.GoToIdle;
-            EVC0_MMIStartATP.Send();
+            DmiActions.Start_ATP();
             DmiActions.Activate_Cabin_1(this);
 
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;

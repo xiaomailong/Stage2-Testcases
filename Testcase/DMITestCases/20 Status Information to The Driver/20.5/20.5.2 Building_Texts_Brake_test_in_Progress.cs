@@ -74,8 +74,7 @@ namespace Testcase.DMITestCases
             Action: Power on the system and activate cabin
             Expected Result: DMI displays the Driver ID window
             */
-            EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.GoToIdle;
-            EVC0_MMIStartATP.Send();
+            DmiActions.Start_ATP();
 
             // Set train running number, cab 1 active, and other defaults
             DmiActions.Activate_Cabin_1(this);

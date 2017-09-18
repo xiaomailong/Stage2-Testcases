@@ -41,13 +41,13 @@ namespace Testcase.XML
 
             if (showLock)
             {
-                _pool.WaitForVerification($"Check that all but one of the buttons in the {windowName} menu window are disabled (displayed with a border with Dark-Grey text) and the following:" + Environment.NewLine + Environment.NewLine +
+                _pool.WaitForVerification($"Check that all but one of the buttons in the {windowName} window are disabled (displayed with a border with Dark-Grey text) and the following:" + Environment.NewLine + Environment.NewLine +
                                           @"1. The ‘Lock screen for cleaning’ button is not disabled.");
             }
             else
             {
                 _pool.WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                          $"All the buttons in the {windowName} menu window are disabled (displayed with a border with Dark-Grey text");
+                                          $"All the buttons in the {windowName} window are disabled (displayed with a border with Dark-Grey text).");
             }
 
             _pool.Wait_Realtime(10000);

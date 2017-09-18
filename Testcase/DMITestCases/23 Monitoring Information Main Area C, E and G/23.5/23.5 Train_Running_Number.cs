@@ -52,9 +52,8 @@ namespace Testcase.DMITestCases
             // Call the TestCaseBase PostExecution
             base.PostExecution();
 
-            EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.GoToIdle;
-            EVC0_MMIStartATP.Send();
-            
+            DmiActions.Start_ATP();
+
             DmiActions.Activate_Cabin_1(this);
         }
 

@@ -35,7 +35,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 5_10_a.xml, 5_10.tdg, 5_10.utt
     /// </summary>
-    public class TC_ID_5_10_Screen_Layout_Button_States : TestcaseBase
+    public class Screen_Layout_Button_States : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -43,9 +43,9 @@ namespace Testcase.DMITestCases
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
+
             // Test system is powered on    -> Cabin is active: not in spec
-            EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.GoToIdle;
-            EVC0_MMIStartATP.Send();
+            DmiActions.Start_ATP();
 
         }
 

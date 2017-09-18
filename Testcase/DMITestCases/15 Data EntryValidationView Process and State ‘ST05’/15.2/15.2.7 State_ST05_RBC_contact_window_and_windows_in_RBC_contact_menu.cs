@@ -70,8 +70,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information;(1)   Verify DMI still displays Level window until RBC contact window is displayed
             Test Step Comment: (1) MMI_gen 8859 (partly: RBC contact window);
             */
-            EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.GoToIdle;
-            EVC0_MMIStartATP.Send();
+            DmiActions.Start_ATP();
 
             // Set train running number, cab 1 active, and other defaults
             DmiActions.Activate_Cabin_1(this);
