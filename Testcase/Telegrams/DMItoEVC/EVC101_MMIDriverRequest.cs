@@ -18,6 +18,7 @@ namespace Testcase.Telegrams.DMItoEVC
         private static SignalPool _pool;
         private static bool _checkResult;
         private static Variables.MMI_M_REQUEST _mRequest;
+        private static byte _qbutton;
 
         /// <summary>
         /// Initialise EVC-101 MMI_Driver_Request telegram.
@@ -31,38 +32,24 @@ namespace Testcase.Telegrams.DMItoEVC
 
         private static void CheckMRequestState(Variables.MMI_M_REQUEST mRequest, Variables.MMI_Q_BUTTON qButton)
         {
-            //ORIGINAL VERSION OF CODE   
-            ///*
-            // Convert byte EVC101_alias_1 into an array of bits.
-            BitArray _evc101alias1 = new BitArray(new[] { _pool.SITR.CCUO.ETCS1DriverRequest.EVC101alias1.Value });
-            // Extract bool MMI_Q_BUTTON (7th bit according to VSIS 2.9)
-            bool _mmiQButton = _evc101alias1[7];
-
-            // Convert byte qButton to bool
-            BitArray _baqButton = new BitArray(new[] { (byte)qButton });
-            bool _bqButton = _baqButton[0];
-
+            // Convert qButton to a Byte value.
+            // All alignment bits in evc101alias1 should be set to 0 automatically hence bit-shifting should be no problem
+            _qbutton = Convert.ToByte((byte)qButton << 7);
+            
             // For each element of enum MMI_M_REQUEST
             foreach (Variables.MMI_M_REQUEST mmiMRequestElement in Enum.GetValues(typeof(Variables.MMI_M_REQUEST)))
             {
                 // Compare to the value to be checked
                 if (mmiMRequestElement == mRequest)
                 {
-                    // Section commented out to make WFC test work. 
-
-                    // For each element of enum MMI_Q_BUTTON
-                    foreach (Variables.MMI_Q_BUTTON mmiQButtonElement in Enum.GetValues(typeof(Variables.MMI_Q_BUTTON)))
+                    var list = new List<Atomic>
                     {
-                        // Compare to the value to be checked
-                        if (mmiQButtonElement == qButton)
-                        {
-                            //Double check: MMI_M_REQUEST & MMI_Q_BUTTON values
-                            _checkResult = (_pool.SITR.CCUO.ETCS1DriverRequest.MmiMRequest.Value.Equals(mRequest)) &&
-                                (_mmiQButton.Equals(_bqButton));
-                            break;
-                        }
-                        break;
-                    }
+                        _pool.SITR.CCUO.ETCS1DriverRequest.MmiMRequest.Atomic.WaitForCondition(Is.Equal, (byte)mRequest),
+                        _pool.SITR.CCUO.ETCS1DriverRequest.EVC101alias1.Atomic.WaitForCondition(Is.Equal, _qbutton)
+                    };
+
+                    _checkResult = _pool.WaitForConditionAtomic(list, 10000, 20);
+                    break;
                 }
             }
             //*/
@@ -92,9 +79,9 @@ namespace Testcase.Telegrams.DMItoEVC
 
             if (_checkResult) // if check passes
             {
-                _pool.TraceReport("DMI->ETCS: EVC-101 [MMI_DRIVER_REQUEST] => " + mRequest +
-                    " - \"" + mRequest.ToString() + "\" -> " + qButton.ToString() + " PASSED. TimeStamp = " + 
-                    _pool.SITR.CCUO.ETCS1DriverRequest.MmiTButtonevent);
+                _pool.TraceReport("DMI->ETCS: EVC-101 [MMI_DRIVER_REQUEST] => " + mRequest + " - \"" + mRequest.ToString() +
+                                    "\" -> " + qButton.ToString() + " PASSED." + Environment.NewLine +
+                                    "Timestamp = " + _pool.SITR.CCUO.ETCS1DriverRequest.MmiTButtonevent);
             }
 
             // ORIGINAL VERSION OF CODE
@@ -102,9 +89,8 @@ namespace Testcase.Telegrams.DMItoEVC
             else // else display the real values extracted from EVC-101 [MMI_DRIVER_REQUEST] 
             {
                 _pool.TraceError("DMI->ETCS: Check EVC-101 [MMI_DRIVER_REQUEST] => MMI_M_REQUEST = " + 
-                    Enum.GetName(typeof(Variables.MMI_M_REQUEST), _pool.SITR.CCUO.ETCS1DriverRequest.MmiMRequest.Value) + 
-                    ", MMI_Q_BUTTON = " + Enum.GetName(typeof(Variables.MMI_Q_BUTTON), _mmiQButton) + " FAILED. TimeStamp = " +
-                    _pool.SITR.CCUO.ETCS1DriverRequest.MmiTButtonevent);
+                                    Enum.GetName(typeof(Variables.MMI_M_REQUEST), mRequest) + ", MMI_Q_BUTTON = " +
+                                    Enum.GetName(typeof(Variables.MMI_Q_BUTTON), qButton) + " Result: FAILED!");
             }
             //*/
         }
