@@ -63,9 +63,9 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,
             (1)   There is no symbol displayed on sub-area B7
             Test Step Comment: (1) MMI_gen 580;
+            */
 
-            
-
+            XML.XML_15_1_7_a.Send(this);
 
             /*
             Test Step 2
@@ -73,9 +73,8 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   There is no symbol displayed on sub-area B7
             Test Step Comment: (1) MMI_gen 580;
             */
-            // Call generic Check Results Method
-           
 
+            XML.XML_15_1_7_b.Send(this);
 
             /*
             Test Step 3
@@ -83,9 +82,8 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   There is no symbol displayed on sub-area B7
             Test Step Comment: (1) MMI_gen 580;
             */
-            // Call generic Check Results Method
-           
 
+            XML.XML_15_1_7_c.Send(this);
 
             /*
             Test Step 4
@@ -93,9 +91,8 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   There is no symbol displayed on sub-area B7
             Test Step Comment: (1) MMI_gen 580;
             */
-            // Call generic Check Results Method
-            
 
+            XML.XML_15_1_7_d.Send(this);
 
             /*
             Test Step 5
@@ -103,9 +100,8 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   There is no symbol displayed on sub-area B7
             Test Step Comment: (1) MMI_gen 580;
             */
-            // Call generic Check Results Method
-            
 
+            XML.XML_15_1_7_e.Send(this);
 
             /*
             Test Step 6
@@ -113,9 +109,8 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   There is no symbol displayed on sub-area B7
             Test Step Comment: (1) MMI_gen 580;
             */
-            // Call generic Check Results Method
-            
 
+            XML.XML_15_1_7_f.Send(this);
 
             /*
             Test Step 7
@@ -123,9 +118,8 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   There is no symbol displayed on sub-area B7
             Test Step Comment: (1) MMI_gen 580;
             */
-            // Call generic Check Results Method
-            
 
+            XML.XML_15_1_7_g.Send(this);
 
             /*
             Test Step 8
@@ -133,9 +127,8 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   There is no symbol displayed on sub-area B7
             Test Step Comment: (1) MMI_gen 580;
             */
-            // Call generic Check Results Method
-            
 
+            XML.XML_15_1_7_h.Send(this);
 
             /*
             Test Step 9
