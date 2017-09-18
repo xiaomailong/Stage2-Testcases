@@ -14,6 +14,7 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
 using Testcase.Telegrams.EVCtoDMI;
+using static Testcase.Telegrams.EVCtoDMI.Variables;
 
 
 namespace Testcase.DMITestCases
@@ -92,7 +93,7 @@ namespace Testcase.DMITestCases
             Action: Perform the following procedure,Close the Setting windowCabin A is activated.Perform SoM until select and confirm Level 1
             Expected Result: Main menu window is displayed
             */
-            DmiActions.ShowInstruction(this, "Close the Setting window. Activate Cabin A. Perform SoM until select and confirm Level 1.");
+            DmiActions.ShowInstruction(this, "Close the Setting window.");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Main menu window.");
@@ -211,7 +212,21 @@ namespace Testcase.DMITestCases
             Expected Result: RBC contact window is displayedVerify the following information,(1)   All buttons in RBC contact window are disabled.10 seconds later(2)   All buttons in RBC contact window are enabled
             Test Step Comment: (1) MMI_gen 1316 (partly: disabled state in Table 23, Active state);(2) MMI_gen 1316 (partly: enable state in Table 23, Active state); 
             */
+            EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = MMI_Q_CLOSE_ENABLE.Disabled;
+
+            EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new MMI_Q_LEVEL_NTC_ID[] { MMI_Q_LEVEL_NTC_ID.ETCS_Level };
+            EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new MMI_M_CURRENT_LEVEL[] { MMI_M_CURRENT_LEVEL.LastUsedLevel };
+            EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = new MMI_M_LEVEL_FLAG[] { MMI_M_LEVEL_FLAG.MarkedLevel };
+            EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = new MMI_M_INHIBITED_LEVEL[] { MMI_M_INHIBITED_LEVEL.NotInhibited };
+            EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = new MMI_M_INHIBIT_ENABLE[] { MMI_M_INHIBIT_ENABLE.AllowedForInhibiting };
+            EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new MMI_M_LEVEL_NTC_ID[] { MMI_M_LEVEL_NTC_ID.L2 };
+            EVC20_MMISelectLevel.Send();
+
             DmiActions.ShowInstruction(this, "Press the Main button. Press the Level button. Select and confirm Level 2");
+
+            EVC22_MMICurrentRBC.MMI_Q_CLOSE_ENABLE = MMI_Q_CLOSE_ENABLE.Enabled;
+            EVC22_MMICurrentRBC.MMI_NID_WINDOW = 5;
+            EVC22_MMICurrentRBC.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the RBC contact window.");
