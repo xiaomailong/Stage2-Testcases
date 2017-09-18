@@ -262,8 +262,8 @@ namespace Testcase.DMITestCases
         {
             Form prompt = new Form()
             {
-                Width = 500,
-                Height = 150,
+                Width = 700,
+                Height = 500,
                 FormBorderStyle = FormBorderStyle.FixedDialog,
                 Text = caption,
                 StartPosition = FormStartPosition.CenterScreen
