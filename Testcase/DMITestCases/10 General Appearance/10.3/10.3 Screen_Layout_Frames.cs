@@ -89,7 +89,7 @@ namespace Testcase.DMITestCases
             Action: Enter the Driver ID. Perform brake test and then select Level 0
             Expected Result: ATP enters level 0.DMI displays the symbol of Level 0 in sub-area C8
             */            
-            DmiActions.ShowInstruction(this, "Enter the Driver ID");
+            DmiActions.ShowInstruction(this, "Enter the Driver ID and select Level 0");
 
             // Can you tell this?
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
