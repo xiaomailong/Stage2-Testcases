@@ -50,9 +50,7 @@ namespace Testcase.DMITestCases
             // Call the TestCaseBase PreExecution
             base.PreExecution();
             // Test system is powered onCabin is inactive
-            DmiActions.Start_ATP();
-            EVC2_MMIStatus.MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.NoCabinActive;
-            EVC2_MMIStatus.Send();
+            DmiActions.Complete_SoM_L1_SB(this);
         }
 
         public override void PostExecution()
@@ -69,8 +67,7 @@ namespace Testcase.DMITestCases
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint
-
-
+            
             /*
             Test Step 1
             Action: Press ‘Settings menu’ button
