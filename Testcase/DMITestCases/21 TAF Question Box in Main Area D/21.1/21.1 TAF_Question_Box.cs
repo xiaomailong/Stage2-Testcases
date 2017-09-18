@@ -46,9 +46,8 @@ namespace Testcase.DMITestCases
             base.PreExecution();
 
             // System is power on.Cabin is activate.
-            EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.GoToIdle;
-            EVC0_MMIStartATP.Send();
-            
+            DmiActions.Start_ATP();
+
             DmiActions.Activate_Cabin_1(this);
         }
 

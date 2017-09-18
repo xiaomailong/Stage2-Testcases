@@ -45,8 +45,7 @@ namespace Testcase.DMITestCases
             // Call the TestCaseBase PreExecution
             base.PreExecution();
             // System is power on.Cabin is activated.Settings window is opened.Maintenance password window is opened.The correct password is entered, the Maintenance window is opened.
-            EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.GoToIdle;
-            EVC0_MMIStartATP.Send();
+            DmiActions.Start_ATP();
 
             // Set train running number, cab 1 active, and other defaults
             DmiActions.Activate_Cabin_1(this);

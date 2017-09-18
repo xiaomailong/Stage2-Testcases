@@ -49,8 +49,7 @@ namespace Testcase.DMITestCases
             base.PreExecution();
 
             // Test system is powered onCabin is activatedPerform SoM until train running number is entered
-            EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.GoToIdle;
-            EVC0_MMIStartATP.Send();
+            DmiActions.Start_ATP();
             DmiActions.Activate_Cabin_1(this);
         }
 

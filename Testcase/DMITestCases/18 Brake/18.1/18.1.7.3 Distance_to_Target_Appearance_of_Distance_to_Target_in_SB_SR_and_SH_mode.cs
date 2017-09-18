@@ -45,8 +45,7 @@ namespace Testcase.DMITestCases
             // Call the TestCaseBase PreExecution
             base.PreExecution();
             // System is powered on.Cabin is activated.
-            EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.GoToIdle;
-            EVC0_MMIStartATP.Send();
+            DmiActions.Start_ATP();
 
             // Set train running number, cab 1 active, and other defaults
             DmiActions.Activate_Cabin_1(this);

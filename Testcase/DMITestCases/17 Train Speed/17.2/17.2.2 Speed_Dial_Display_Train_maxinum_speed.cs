@@ -68,8 +68,7 @@ namespace Testcase.DMITestCases
             Action: Power on the system and activate the cabin
             Expected Result: DMI displays SB mode
             */
-            EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.GoToIdle;
-            EVC0_MMIStartATP.Send();
+            DmiActions.Start_ATP();
 
             // Set train running number, cab 1 active, and other defaults
             DmiActions.Activate_Cabin_1(this);
@@ -96,7 +95,7 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SR mode, level 1." + Environment.NewLine + 
-                                "2. The speed dial displays 550 km/h maximum speed"); 
+                                "2. The speed dial displays 550 km/h maximum speed");
 
             /*
             Test Step 3
@@ -108,8 +107,7 @@ namespace Testcase.DMITestCases
             // Load config file...
             // SPEED_DIAL_V_MAX = 200
 
-            EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.GoToIdle;
-            EVC0_MMIStartATP.Send();
+            DmiActions.Start_ATP();
 
             // Set train running number, cab 1 active, and other defaults
             DmiActions.Activate_Cabin_1(this);
@@ -136,8 +134,7 @@ namespace Testcase.DMITestCases
             // Load config file...
             // SPEED_DIAL_V_MAX = 300
 
-            EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.GoToIdle;
-            EVC0_MMIStartATP.Send();
+            DmiActions.Start_ATP();
 
             // Set train running number, cab 1 active, and other defaults
             DmiActions.Activate_Cabin_1(this);
@@ -164,8 +161,7 @@ namespace Testcase.DMITestCases
             // Load config file...
             // SPEED_DIAL_V_MAX = 400
 
-            EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.GoToIdle;
-            EVC0_MMIStartATP.Send();
+            DmiActions.Start_ATP();
 
             // Set train running number, cab 1 active, and other defaults
             DmiActions.Activate_Cabin_1(this);

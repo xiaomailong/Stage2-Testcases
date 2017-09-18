@@ -50,8 +50,7 @@ namespace Testcase.DMITestCases
             // Call the TestCaseBase PreExecution
             base.PreExecution();
             // Test system is powered onCabin is inactive
-            EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.GoToIdle;
-            EVC0_MMIStartATP.Send();
+            DmiActions.Start_ATP();
             EVC2_MMIStatus.MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.NoCabinActive;
             EVC2_MMIStatus.Send();
         }

@@ -46,8 +46,7 @@ namespace Testcase.DMITestCases
             // Pre-conditions from TestSpec:
             // -    Test system is powered on.-    ATP is still not start.
             // ?? Need to switch off/on
-            EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.GoToIdle;
-            EVC0_MMIStartATP.Send();
+            DmiActions.Start_ATP();
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();

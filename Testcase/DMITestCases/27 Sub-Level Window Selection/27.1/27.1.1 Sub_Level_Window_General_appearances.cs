@@ -77,8 +77,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The ‘Main’, ‘Override’, Data View’ and ‘Special’ buttons are invisible.The ‘Settings’ button is visible
             Test Step Comment: (1) MMI_gen 2959       (partly: state inactive, ‘Main’, ‘Override’, ‘Data View’ and ‘Special’);(2) MMI_gen 2959       (partly: enabled ‘Settings’, state inactive);
             */
-            EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.GoToIdle;
-            EVC0_MMIStartATP.Send();
+            DmiActions.Start_ATP(); 
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI does not display the ‘Main’ button." + Environment.NewLine +
