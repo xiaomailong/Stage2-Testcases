@@ -31,6 +31,8 @@ namespace Testcase.Telegrams.DMItoEVC
 
         private static void CheckMRequestState(Variables.MMI_M_REQUEST mRequest, Variables.MMI_Q_BUTTON qButton)
         {
+            //ORIGINAL VERSION OF CODE   
+            ///*
             // Convert byte EVC101_alias_1 into an array of bits.
             BitArray _evc101alias1 = new BitArray(new[] { _pool.SITR.CCUO.ETCS1DriverRequest.EVC101alias1.Value });
             // Extract bool MMI_Q_BUTTON (7th bit according to VSIS 2.9)
@@ -48,43 +50,55 @@ namespace Testcase.Telegrams.DMItoEVC
                 {
                     // Section commented out to make WFC test work. 
 
-                    //// For each element of enum MMI_Q_BUTTON
-                    //foreach (Variables.MMI_Q_BUTTON mmiQButtonElement in Enum.GetValues(typeof(Variables.MMI_Q_BUTTON)))
-                    //{
-                    //    // Compare to the value to be checked
-                    //    if (mmiQButtonElement == qButton)
-                    //    {
-                    //        // Double check: MMI_M_REQUEST & MMI_Q_BUTTON values
-                    //        //_bResult = (_pool.SITR.CCUO.ETCS1DriverRequest.MmiMRequest.Value.Equals(mRequest)) &&
-                    //           // (_mmiQButton.Equals(_bqButton));
-
-                    //        var list = new List<Atomic>();
-                    //        list.Add(_pool.SITR.CCUO.ETCS1DriverRequest.MmiMRequest.Atomic.WaitForCondition(Is.Equal, (byte)mRequest));
-                    //        list.Add(_pool.SITR.CCUO.ETCS1DriverRequest.EVC101alias1.Atomic.WaitForCondition(Is.Equal, Convert.ToByte((byte)qButton * 128)));
-                    //        _checkResult = _pool.WaitForConditionAtomic(list, 5000, 20);
-                    //        break;
-                    //    }
-                    //}
-
-                    //break;
-
-                    // End of commented out section
-
-                    // Robert code that works:
-                    // Note 1: Using Johan's suggestion, i don't think we need to use Atomic for anything, just the standard WFC.
-                    // Note 2: I don't believe your Convert.ToByte((byte)qButton * 128 of the above code will work. I only had a quick think about the maths but
-                    //          I believe you'll need to check for less than 128 for Released, or equal/greater than for Pressed.
-                    // Note 3: Can you add the SMDCtrl bits to your other packets?
-                    _checkResult = _pool.SITR.CCUO.ETCS1DriverRequest.MmiMRequest.WaitForCondition(Is.Equal, (byte)mRequest, 5000, 20);
+                    // For each element of enum MMI_Q_BUTTON
+                    foreach (Variables.MMI_Q_BUTTON mmiQButtonElement in Enum.GetValues(typeof(Variables.MMI_Q_BUTTON)))
+                    {
+                        // Compare to the value to be checked
+                        if (mmiQButtonElement == qButton)
+                        {
+                            //Double check: MMI_M_REQUEST & MMI_Q_BUTTON values
+                            _checkResult = (_pool.SITR.CCUO.ETCS1DriverRequest.MmiMRequest.Value.Equals(mRequest)) &&
+                                (_mmiQButton.Equals(_bqButton));
+                            break;
+                        }
+                        break;
+                    }
                 }
             }
+            //*/
+
+            // FIRST TRY - Robert and Johan suggestion
+            // Robert code that works:
+            // Note 1: Using Johan's suggestion, i don't think we need to use Atomic for anything, just the standard WFC.
+            // Note 2: I don't believe your Convert.ToByte((byte)qButton * 128 of the above code will work. I only had a quick think about the maths but
+            //         I believe you'll need to check for less than 128 for Released, or equal/greater than for Pressed.
+            /*
+            // var list = new List<Atomic>();
+            // list.Add(_pool.SITR.CCUO.ETCS1DriverRequest.MmiMRequest.Atomic.WaitForCondition(Is.Equal, (byte)mRequest));
+            // list.Add(_pool.SITR.CCUO.ETCS1DriverRequest.EVC101alias1.Atomic.WaitForCondition(Is.Equal, Convert.ToByte((byte)qButton * 128)));
+            // _checkResult = _pool.WaitForConditionAtomic(list, 5000, 20);
+
+            _checkResult = _pool.SITR.CCUO.ETCS1DriverRequest.MmiMRequest.WaitForCondition(Is.Equal, (byte)mRequest, 5000, 20);
+            //*/
+
+            // SECOND TRY - Samson suggestion
+            // - We obviously need to get the values of multiple fields from the same telegram ( MMI_M_REQUEST and MMI_Q_BUTTON (through EVC101alias1) in this case)
+            // - Use of Atomic might be needed, because we want to get MMI_M_REQUEST and EVC101alias1 values SIMULTANIOUSLY (Is that another way than using Atomic?)
+            // - Not only we need to check these value, we need to get them as they are going to be used for the "TraceError"
+            ///*
+
            
+            //*/
+
             if (_checkResult) // if check passes
             {
                 _pool.TraceReport("DMI->ETCS: EVC-101 [MMI_DRIVER_REQUEST] => " + mRequest +
                     " - \"" + mRequest.ToString() + "\" -> " + qButton.ToString() + " PASSED. TimeStamp = " + 
                     _pool.SITR.CCUO.ETCS1DriverRequest.MmiTButtonevent);
             }
+
+            // ORIGINAL VERSION OF CODE
+            ///*
             else // else display the real values extracted from EVC-101 [MMI_DRIVER_REQUEST] 
             {
                 _pool.TraceError("DMI->ETCS: Check EVC-101 [MMI_DRIVER_REQUEST] => MMI_M_REQUEST = " + 
@@ -92,6 +106,7 @@ namespace Testcase.Telegrams.DMItoEVC
                     ", MMI_Q_BUTTON = " + Enum.GetName(typeof(Variables.MMI_Q_BUTTON), _mmiQButton) + " FAILED. TimeStamp = " +
                     _pool.SITR.CCUO.ETCS1DriverRequest.MmiTButtonevent);
             }
+            //*/
         }
 
         /// <summary>
