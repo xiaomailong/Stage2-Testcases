@@ -94,9 +94,19 @@ namespace Testcase.Telegrams.DMItoEVC
 
         private static void CheckMLevelNtcId(ushort nLevels, Variables.MMI_M_LEVEL_NTC_ID mLevelNtcId)
         {
+            byte _mLevelNtcId;
+
             // Read and store MMI_M_LEVEL_NTC_ID value from EVC-121 packet
-            byte _mLevelNtcId = (byte)_pool.SITR.Client.Read("CCUO_ETCS1NewLevel_EVC121Subset" + (nLevels - 1) +
+            if (nLevels <= 10)
+            {
+                _mLevelNtcId = (byte)_pool.SITR.Client.Read("CCUO_ETCS1NewLevel_EVC121Subset0" + (nLevels - 1) +
                 "_MmiMLevelNtcID");
+            }
+            else
+            {
+                 _mLevelNtcId = (byte)_pool.SITR.Client.Read("CCUO_ETCS1NewLevel_EVC121Subset" + (nLevels - 1) +
+                "_MmiMLevelNtcID");
+            }
 
             // For each element of enum MMI_M_LEVEL_NTC_ID 
             foreach (Variables.MMI_M_LEVEL_NTC_ID mmiMLevelNtcIdElement in Enum.GetValues(typeof(Variables.MMI_M_LEVEL_NTC_ID)))
