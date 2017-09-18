@@ -19,7 +19,7 @@ namespace Testcase.Telegrams.EVCtoDMI
     /// It also gives the ETC the ability to control the status/type of the "Yes" button,
     ///     if specified by functional requirements for ETC and DMI.
     /// 
-    /// Note: Parameter 'MMI_N_VBC' distinguishes between use case 1 and 2
+    /// Note: Parameter 'MMI_N_VBC' distinguishes between use case 1 and 2.
     /// </summary>
     public static class EVC19_MMIRemoveVBC
     {
@@ -31,7 +31,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         private static string Basestring = "ETCS1_RemoveVbc_EVC19RemoveVbcSub10";
 
         /// <summary>
-        /// Initialise EVC-18 MMI_Set_VBC telegram
+        /// Initialise EVC-19 MMI_Remove_VBC telegram
         /// (VBC = Virtual Balise Cover)
         /// </summary>
         /// <param name="pool"></param>
@@ -45,7 +45,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         }
 
         /// <summary>
-        /// Send EVC-18 MMI_Set_VBC telegram
+        /// Send EVC-19 MMI_Remove_VBC telegram
         /// </summary>
         public static void Send()
         {
