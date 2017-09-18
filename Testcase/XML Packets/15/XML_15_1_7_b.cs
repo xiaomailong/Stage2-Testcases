@@ -45,7 +45,7 @@ namespace Testcase.XML
                 EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L0;
 
             // Value to check -	MMI_OBU_TR_M_MODE = 17 (“Not used”)
-            _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrMMode.Value = 17;
+            _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrMMode.Value = 127;
 
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_ADHESION = 0;
             EVC7_MMIEtcsMiscOutSignals.OBU_TR_NID_STM_HS = 0;
