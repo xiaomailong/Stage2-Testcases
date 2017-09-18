@@ -65,13 +65,18 @@ namespace Testcase.DMITestCases
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint
-            
+
             /*
             Test Step 1
             Action: Activate cabin A
             Expected Result: DMI displays the default window. The Driver ID window is displayed
             */
             // Call generic Action Method
+            EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.VersionInfo;
+            EVC0_MMIStartATP.Send();
+            EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.GoToIdle;
+            EVC0_MMIStartATP.Send();
+
             DmiActions.Activate_Cabin_1(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
