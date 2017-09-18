@@ -12,7 +12,7 @@ namespace Testcase
     {
         static void Main(string[] args)
         {
-            TestcaseRunner.AddTestcase(typeof(TC_15_5_1_Adhesion_Factor));
+            TestcaseRunner.AddTestcase(typeof(TC_15_1_3_ETCS_Mode_Symbols));
             TestcaseRunner.RunTestcases(args);
         }
     }
