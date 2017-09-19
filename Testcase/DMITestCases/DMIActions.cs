@@ -351,7 +351,7 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
-        /// Description: L0 acknowledgement request sent to the driver
+        /// Description: L0 sent to the DMI
         /// Used in:
         ///     Step 1 in TC-ID: 15.1.4 in 20.1.4
         /// </summary>
@@ -359,6 +359,17 @@ namespace Testcase.DMITestCases
         public static void Send_L0(SignalPool pool)
         {
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L0;
+        }
+
+        /// <summary>
+        /// Description: L1 sent to the DMI
+        /// Used in:
+        ///     Step 2 in TC-ID: 15.2.1 in 20.2.1
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Send_L1(SignalPool pool)
+        {
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
         }
 
         /// <summary>
@@ -578,6 +589,7 @@ namespace Testcase.DMITestCases
         /// Description: Main Window is Start Button enabled sent to be displayed on th DMI
         /// Used in:
         ///     Step 3 in TC-ID: 15.1.3 in 20.1.3
+        ///     Step 1 in TC-ID: 15.2.1 in 20.2.1
         /// </summary>
         /// <param name="pool"></param>
         public static void Display_Main_Window_with_Start_button_not_enabled(SignalPool pool)
@@ -908,7 +920,7 @@ namespace Testcase.DMITestCases
             DmiActions.Display_TRN_Window(pool);
             DmiActions.ShowInstruction(pool, "Enter and confirm Train Running Number");
 
-            DmiExpectedResults.Main_Window_displayed_with_Start_button_enabled(pool);
+            DmiActions.Display_Main_Window_with_Start_button_enabled(pool);
             DmiActions.ShowInstruction(pool, @"Press ‘Start’ button");
 
             DmiActions.Send_SR_Mode_Ack(pool);

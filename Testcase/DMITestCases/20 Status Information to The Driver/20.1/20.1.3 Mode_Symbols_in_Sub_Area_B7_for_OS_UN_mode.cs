@@ -105,7 +105,8 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11470 (partly: Bit # 34);
             */
 
-            DmiActions.ShowInstruction(this, "Select and enter Level 0");
+            DmiActions.ShowInstruction(this, @"Perform the following action within 3 seconds after pressing OK : " + Environment.NewLine + Environment.NewLine +
+                                "1. Select and enter Level 0");
             DmiExpectedResults.Level_0_Selected(this);
 
             DmiActions.Display_Main_Window_with_Start_button_not_enabled(this);
@@ -171,7 +172,7 @@ namespace Testcase.DMITestCases
 
             DmiExpectedResults.TRN_entered(this);
 
-            DmiExpectedResults.Main_Window_displayed_with_Start_button_enabled(this);
+            DmiExpectedResults.Main_Window_displayed(this,true);
 
             #endregion
 
@@ -279,7 +280,7 @@ namespace Testcase.DMITestCases
                                 "1. Enter and confirm Train Running Number." + Environment.NewLine +
                                 "2. Press OK on THIS window within 3 seconds.");
 
-            DmiExpectedResults.Main_Window_displayed_with_Start_button_enabled(this);
+            DmiActions.Display_Main_Window_with_Start_button_enabled(this);
             DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
                                 "1. Press ‘Start’ button." + Environment.NewLine +
                                 "2. Press OK on THIS window within 3 seconds.");

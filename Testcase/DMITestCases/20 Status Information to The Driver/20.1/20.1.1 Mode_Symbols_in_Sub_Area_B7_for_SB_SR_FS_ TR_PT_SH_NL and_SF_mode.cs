@@ -223,7 +223,7 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, "Press \"Main\" button.");
             DmiActions.Display_Main_Window_with_Start_button_enabled(this);
-            DmiExpectedResults.Main_Window_displayed_with_Start_button_enabled(this);
+            DmiExpectedResults.Main_Window_displayed(this,true);
 
             DmiActions.ShowInstruction(this, "Press \"Start\" button.");
             DmiExpectedResults.Start_Button_pressed_and_released(this);
@@ -255,7 +255,7 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, "Press \"Main\" button");
             DmiActions.Display_Main_Window_with_Start_button_enabled(this);
-            DmiExpectedResults.Main_Window_displayed_with_Start_button_enabled(this);
+            DmiExpectedResults.Main_Window_displayed(this,true);
 
             DmiActions.ShowInstruction(this, "Press and hold \"Shunting\" button for at least 2 seconds.");
             DmiExpectedResults.Shunting_button_pressed_and_hold(this);
