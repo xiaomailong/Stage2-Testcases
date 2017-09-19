@@ -13,6 +13,8 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.EVCtoDMI;
+
 
 namespace Testcase.DMITestCases
 {
@@ -31,7 +33,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// N/A
     /// </summary>
-    public class Password_window : TestcaseBase
+    public class TC_22_6_1_Password_window : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -63,9 +65,25 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following points,LayersThe layers of window on half-grid array is displayed as followsLayer 0: Main-Area D, F, G, Y and Z.Layer -1: A1, A2+A3*, A4, B*, C1, C2+C3+C4*, C5, C6, C7, C8, C9, E1, E2, E3, E4, E5-E9*Layer -2: B3, B4, B5, B6, B7Note: ‘*’ symbol is mean that specified areas are drawn as one area.Data Entry windowThe window title is displayed with text “Maintenance password”.Verify that the Maintenance password window is displayed in main area D, F and G as half-grid array.A data entry window is containing only one input field covers the Main area D, F and GThe following objects are displayed in Maintenance password window. Enabled Close button (NA11)Window TitleInput FieldInput fieldThe input field is located in main area D and F.For a single input field, the window title is clearly explaining the topic of the input field. The Maintenance password window is displayed as a single input field with only the data part.KeyboardThe keyboard associated to the Maintenance password window is displayed as numeric keyboard.The keyboard is presented below the area of input field.The keyboard contains enabled button for the number <1> to <9>, <Delete>(NA21) , <0> and disabled <Decimal_Separator>. NA21, Delete button.DMI displays Maintenance password window.General property of windowThe Maintenance password window is presented with objects and buttons which is the one of several levels and allocated to areas of DMI. All objects, text messages and buttons are presented within the same layer.The Default window is not displayed and covered the current window
             Test Step Comment: (1) MMI_gen 11719 (partly: MMI_gen 5189 (partly: touch screen), MMI_gen 5944 (partly: touch screen));(2) MMI_gen 11718;(3) MMI_gen 11719 (partly: half grid array)(4) MMI_gen 11719 (partly: MMI_gen 4640 (partly: only data area), MMI_gen 4720, MMI_gen 4889 (partly: merge label and data))(5) MMI_gen 11719 (partly: MMI_gen 4722 (partly: Close button, Window Title, Input field)); MMI_gen 4392 (partly: [Close] NA11);(6) MMI_gen 11719 (partly: MMI_gen 4637 (partly: Main-areas D and F))(7) MMI_gen 11719 (partly: note under the MMI_gen 9412)(8) MMI_gen 11719 (partly: single input field, only data part);(9) MMI_gen 11719 (partly: MMI_gen 4912); MMI_gen 11721;(10) MMI_gen 11719 (partly: MMI_gen 4678)(11) MMI_gen 11719 (partly: MMI_gen 5003); MMI_gen 4392 (partly: [Delete] NA21);(12) MMI_gen 11737;(13) MMI_gen 4350;(14) MMI_gen 4351;(15) MMI_gen 4353;
             */
-            // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press ‘Maintenance’ button");
+            DmiActions.Complete_SoM_L1_SB(this);
 
+            // Call generic Action Method
+            DmiActions.ShowInstruction(this, @"Press the ‘Settings’ button and then the ‘Maintenance’ button in the Settings window.");
+
+            WaitForVerification("Check the following (* indicates sub-areas drawn as one area):" + Environment.NewLine + Environment.NewLine +
+                                "1. The window is displayed as a half-grid array in areas D, F and G, with the title ‘Maintenance password’." + Environment.NewLine +
+                                "2. The following screen areas are in Layer 0: D, F, G, Z and Y." + Environment.NewLine +
+                                "3. The following screen areas are in Layer 1: A1, (A2 + A3)*, A4, C1, (C2 + C3 + C4)*, C5, C6, C7, C8, C9, E1, E2, E3, E4, (E5-E9)*." + Environment.NewLine +
+                                "4. The following screen areas are in Layer 2: B3, B4, B5, B6, B7" + Environment.NewLine +
+                                "5. A data entry window with one data input field is covers areas D, F and G." + Environment.NewLine +
+                                "6. DMI displays the ‘Close’ button NA11 enabled (symbol NA11) in the Maintenance password window." + Environment.NewLine +
+                                "7. A data input field is displayed in areas D and F." + Environment.NewLine +
+                                "8. The Maintenance password window has one data input field with no label." + Environment.NewLine +
+                                "9. DMI displays a numeric keypad for the Maintenance password window." + Environment.NewLine +
+                                "10. The keypad contains (enabled) buttons for the numbers <1> to <9>, <0>, <Delete> (symbol NA21) and disabled <decimal-separator> button." + Environment.NewLine +
+                                "11 Objects, text messages and buttons can be displayed in several levels. Within a level they are allocated to areas." + Environment.NewLine +
+                                "12. Objects, text messages and buttons in a layer form a window." + Environment.NewLine +
+                                "13. The Default window is not displayed covering the current window.");
 
             /*
             Test Step 2
@@ -73,7 +91,27 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,On next activation of a data key of the associated keyboard, the character or value corresponding to this data key shall be added into the Data Area.Sound ‘Click’ is played once.The state of button is changed to ‘Pressed’ and immediately back to ‘Enabled’ state.The Input Field displays the number associated to the data key according to the pressings in state ‘Pressed’.An input field is used to enter the Maintenance password.The data value is displayed as black colour and the background of the data area is displayed as medium-grey colour.The data value of the input field is aligned to the left of the data area.The flashing horizontal-line cursor is always in the next position of the echoed entered-data key in the ‘Selected IF/value of pressed key(s)’ data input field when selected the next character it will be inserted cursor position
             Test Step Comment: (1) MMI_gen 11719 (partly: MMI_gen 4679, MMI_gen 4642);(2) MMI_gen 11719 (partly: MMI_gen 4913 (partly: MMI_gen 4384 (partly: sound ‘Click’)));(3) MMI_gen 11719 (partly: MMI_gen 4913 (partly: MMI_gen 4384 (partly: Change to state ‘Pressed’ and immediately back to state ‘Enabled’)));   (4) MMI_gen 11719 (partly: MMI_gen 4913);(5) MMI_gen 11720; MMI_gen 11719 (partly: MMI_gen 4634);(6) MMI_gen 11719 (partly: MMI_gen 4651);(7) MMI_gen 11719 (partly: MMI_gen 4647 (partly: left aligned));(8) MMI_gen 11719 (partly: MMI_gen 4689, MMI_gen 4690, MMI_gen 4691 (partly: flashing), MMI_gen 4692);
             */
+            DmiActions.ShowInstruction(this, @"Press and hold the ‘1’ button on the keypad");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. On pressing the button, the corresponding value is added to the data input field" + Environment.NewLine +
+                                "2. The ‘Click’ sound is played once." + Environment.NewLine +
+                                "3. The button is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                "4. The data input field value is black with a Medium-grey background." + Environment.NewLine +
+                                "5. The value in the input field is displayed left-aligned." + Environment.NewLine +
+                                "6. A flashing underscore cursor is displayed to the right of the number appearing after the button is pressed.");
+
+            DmiActions.ShowInstruction(this, @"Repeat the previous step with each numeric button on the keypad (‘2’ to ‘0’) individually");
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. On pressing the button, the corresponding value is added to the data input field" + Environment.NewLine +
+                                "2. The ‘Click’ sound is played once." + Environment.NewLine +
+                                "3. The button is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                "4. The data input field value is black with a Medium-grey background." + Environment.NewLine +
+                                "5. The value in the input field is displayed left-aligned." + Environment.NewLine +
+                                "6. A flashing underscore cursor is displayed to the right of the number appearing after the button is pressed");
+
+            DmiActions.ShowInstruction(this, @"Press the ‘Delete’ button to remove the number from the data input field");
 
             /*
             Test Step 3
@@ -84,6 +122,8 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Released the pressed button");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The pressed button is displayed enabled.");
 
             /*
             Test Step 4
@@ -92,11 +132,15 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11719 (partly: MMI_gen 4913 (partly: MMI_gen 4384 (partly: sound ‘Click’)));(2) MMI_gen 11719 (partly: MMI_gen 4913 (partly: MMI_gen 4384 (partly: Change to state ‘Pressed’ and immediately back to state ‘Enabled’)));(3) MMI_gen 11719 (partly: MMI_gen 4913 (partly: MMI_gen 4384 (partly: ETCS-MMI’s function associated to the button))); MMI_gen 4393 (partly: [Delete]);(4) MMI_gen 11719 (partly: MMI_gen 4913 (partly: MMI_gen 4386 (partly: visual of repeat function)));(5) MMI_gen 11719  (partly: MMI_gen 4913 (partly: MMI_gen 4386 (partly: audible of repeat function)));
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press and hold ‘Del’ button.Note: Stopwatch is required");
-            // Call generic Check Results Method
-            DmiExpectedResults
-                .Verify_the_following_information_While_press_and_hold_button_less_than_1_5_secSound_Click_is_played_once_The_state_of_button_is_changed_to_Pressed_and_immediately_back_to_Enabled_state_The_last_character_is_removed_from_an_input_field_after_pressing_the_button_While_press_and_hold_button_over_1_5_secThe_state_pressed_and_released_are_switched_repeatly_while_button_is_pressed_and_the_characters_are_removed_from_an_input_field_repeatly_refer_to_pressed_state_The_sound_Click_is_played_repeatly_while_button_is_pressed(this);
+            DmiActions.ShowInstruction(this, @"Press and hold the ‘Delete’ button for more than 1.5s");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. Whilst the button has been pressed for less than 1.5s, the ‘Click’ sound is played once." + Environment.NewLine +
+                                "2. Whilst the button has been pressed for less than 1.5s, the button is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                "3. Whilst the button has been pressed for less than 1.5s, the last character in the data input field is removed." + Environment.NewLine +
+                                "4. After the button has been pressed for more than 1.5s it is repeately displayed pressed and enabled." + Environment.NewLine +
+                                "5. After the button has been pressed for more than 1.5s, the ‘Click’ sound is played repeatedly." + Environment.NewLine +
+                                "6. After the button has been pressed for more than 1.5s, characters are removed from the end of the data input field repeatedly.");
 
             /*
             Test Step 5
@@ -105,10 +149,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11719 (partly: MMI_gen 4913 (partly: MMI_gen 4384 (partly: ETCS-MMI’s function associated to the button)));
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Release ‘Del’ button");
-            // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_The_character_is_stop_removing(this);
+            DmiActions.ShowInstruction(this, @"Release the ‘Delete’ button");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. No more characters are removed from the data input field");
 
             /*
             Test Step 6
@@ -116,9 +160,7 @@ namespace Testcase.DMITestCases
             Expected Result: No character is displayed on the Input Field
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(this,
-                @"Press ‘Del’ button on the numeric keyboard until no number is displayed on the Input Field");
-
+            DmiActions.ShowInstruction(this, @"Press ‘Del’ button on the numeric keyboard until the data input field is blank");
 
             /*
             Test Step 7
@@ -126,7 +168,10 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The 5 characters are added on an input field as one group. (e.g. ‘*****').Single input field is show on asterisk (*) symbol for each entered number
             Test Step Comment: (1) MMI_gen 11719 (partly: MMI_gen 4694 (partly: NEGATIVE, 6th character));(2) MMI_gen 11693;
             */
+            DmiActions.ShowInstruction(this, @"Press and release buttons ‘1’, ‘2’, ‘3’, ‘4’, ‘5’ in order");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The data input field is displayed with the value ‘*****’.");
 
             /*
             Test Step 8
@@ -134,9 +179,10 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The fifth character is shown after a gap of fourth character, separated as 2 groups (e.g. **** **)
             Test Step Comment: (1) MMI_gen 11719 (partly: MMI_gen 4694 (partly: MMI_gen 4246));
             */
-            // Call generic Action Method
-            DmiActions.Continue_to_enter_the_6th_character(this);
+            DmiActions.ShowInstruction(this, @"Press and release button ‘6’");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The data input field is displayed with the value ‘**** **’ (with a space between the fourth and fifth ‘*’.");
 
             /*
             Test Step 9
@@ -144,7 +190,10 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The data value is displayed only 8 characters (e.g. **** ****)
             Test Step Comment: (1) MMI_gen 11722     (partly: password is configurable at most eight digits);
             */
+            DmiActions.ShowInstruction(this, @"Delete the value entered in the data input field, then press and release nine numeric buttons");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The data input field is displayed with the value ‘**** ****’.");
 
             /*
             Test Step 10
@@ -153,11 +202,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9390 (partly: Password window);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press and hold an input field");
-            // Call generic Check Results Method
-            DmiExpectedResults
-                .Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Pressed_the_border_of_button_is_removed(this);
+            DmiActions.ShowInstruction(this, @"Press and hold the data input field");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The data input field is displayed pressed, without a border.");
 
             /*
             Test Step 11
@@ -165,24 +213,23 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)    The state of an input field is changed to ‘Enabled, the border of button is shown without a sound
             Test Step Comment: (1) MMI_gen 9390 (partly: Password window);
             */
-            // Call generic Action Method
-            DmiActions.Slide_out_an_input_field(this);
-            // Call generic Check Results Method
-            DmiExpectedResults
-                .Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Enabled_the_border_of_button_is_shown_without_a_sound(this);
+            DmiActions.ShowInstruction(this, @"Whilst keeping the data input field pressed, drag outside its area");
 
-
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the data input field enabled, with a border." + Environment.NewLine +
+                                "2. No sound is played.");
+            
             /*
             Test Step 12
             Action: Slide back into an input field
             Expected Result: Verify the following information,(1)    The state of an input field is changed to ‘Pressed’, the border of button is removed
             Test Step Comment: (1) MMI_gen 9390 (partly: Password window);
             */
-            // Call generic Action Method
-            DmiActions.Slide_back_into_an_input_field(this);
-            // Call generic Check Results Method
-            DmiExpectedResults
-                .Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Pressed_the_border_of_button_is_removed(this);
+            DmiActions.ShowInstruction(this, @"Whilst keeping the data input field pressed, drag it back inside its area");
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the data input field pressed with no border." + Environment.NewLine +
+                                "2. No sound is played.");
 
 
             /*
@@ -191,9 +238,10 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the followings information,Data entry process is terminated, DMI displays the Settings window
             Test Step Comment: (1) MMI_gen 11732; MMI_gen 11719 (partly: MMI_gen 4682, MMI_ gen 4684 (partly: terminate), MMI_gen 4634)); MMI_gen 4392 (partly: [Enter], touch screen); MMI_gen 9390 (partly: Password window);
             */
-            // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Release the pressed area");
-
+            DmiActions.ShowInstruction(this, @"Release the data input field");
+            
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays closes the data input window and displays the Settings window.");
 
             /*
             Test Step 14
@@ -201,9 +249,10 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays the Maintenance window
             Test Step Comment: MMI_gen 11731 (partly: touch screen); MMI_gen 11722 (partly: password is configurable at most eight digits);
             */
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_the_Maintenance_window(this);
+            DmiActions.ShowInstruction(this, @"Press the ‘Maintenance’ button. Enter the password from the configuration setting and confirm");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the Maintenance window.");
 
             /*
             Test Step 15
@@ -211,9 +260,16 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays the Maintenance window
             Test Step Comment: MMI_gen 11722     (partly: password is configurable at least four digits);
             */
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_the_Maintenance_window(this);
+            DmiActions.ShowInstruction(this, @"Power off the system and reset the configuration of the Maintenance password to ‘4444’");
 
+            DmiActions.Start_ATP();
+            DmiActions.Activate_Cabin_1(this);
+            DmiActions.Set_Driver_ID(this, "1234");
+
+            DmiActions.ShowInstruction(this, @"Press the ‘Maintenance’ button and enter ‘4444’ for the password, then confirm by pressing the data input field");
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the Maintenance window.");
 
             /*
             Test Step 16
@@ -221,9 +277,16 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays the Settings window
             Test Step Comment: MMI_gen 11722     (partly: NEGATIVE, password is configurable at least four digits);
             */
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_the_Settings_window(this);
+            DmiActions.ShowInstruction(this, @"Power off the system and reset the configuration of the Maintenance password to ‘333’");
 
+            DmiActions.Start_ATP();
+            DmiActions.Activate_Cabin_1(this);
+            DmiActions.Set_Driver_ID(this, "1234");
+
+            DmiActions.ShowInstruction(this, @"Press the ‘Settings’ button");
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the Settings window.");
 
             /*
             Test Step 17
@@ -231,9 +294,16 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays the Settings window
             Test Step Comment: MMI_gen 11722     (partly: NEGATIVE, password is configurable at most eight digits);
             */
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_the_Settings_window(this);
+            DmiActions.ShowInstruction(this, @"Power off the system and reset the configuration of the Maintenance password to ‘999999999’");
 
+            DmiActions.Start_ATP();
+            DmiActions.Activate_Cabin_1(this);
+            DmiActions.Set_Driver_ID(this, "1234");
+
+            DmiActions.ShowInstruction(this, @"Press the ‘Settings’ button, then the Maintenance button. Enter ‘999999999’ for the password, then confirm by pressing the data input field");
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the Settings window.");
 
             /*
             Test Step 18
@@ -241,14 +311,16 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following informaiton,(1) DMI displays the Settings window
             Test Step Comment: (1) MMI_gen 4392 (partly: returning to the parent window);
             */
+            DmiActions.ShowInstruction(this, @"Press the ‘Maintenance’ button then the ‘Close’ button");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the Settings window.");
 
             /*
             Test Step 19
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }
