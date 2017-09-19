@@ -61,7 +61,8 @@ namespace Testcase.DMITestCases
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint
-
+            TraceInfo("This test case requires an ATP configuration change - " +
+                        "See Precondition requirements. If this is not done manually, the test may fail!");
 
             /*
             Test Step 1
@@ -92,6 +93,7 @@ namespace Testcase.DMITestCases
             DmiActions.Complete_SoM_L1_SR(this);
 
             EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.StaffResponsible;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
 
             WaitForVerification("Check the following" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SR mode, level 1." + Environment.NewLine + 
@@ -103,9 +105,8 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information:The speed dial displays the maxinum speed accroding to configuration setting
             Test Step Comment: MMI_gen 67 (partly: configure lower values);
             */
-            // ?? Power down the system
-            // Load config file...
-            // SPEED_DIAL_V_MAX = 200
+            DmiActions.ShowInstruction(this, "Power down the system and reconfigure speed dial properties, then power up:" + Environment.NewLine +
+                                             "SPEED_DIAL_V_MAX = 200");
 
             DmiActions.Start_ATP();
 
@@ -115,7 +116,7 @@ namespace Testcase.DMITestCases
             // Set driver ID
             DmiActions.Set_Driver_ID(this, "1234");
 
-            // Set to level 1 and SR mode
+            // Set to level 1 and SB mode
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
 
@@ -124,15 +125,14 @@ namespace Testcase.DMITestCases
 
             DmiActions.Complete_SoM_L1_SR(this);
 
-            EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.StandBy;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
 
             WaitForVerification("Check the following" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SR mode, level 1." + Environment.NewLine +
                                 "2. The speed dial displays 200 km/h maximum speed");
 
-            // ?? Power down the system
-            // Load config file...
-            // SPEED_DIAL_V_MAX = 300
+            DmiActions.ShowInstruction(this, "Power down the system and reconfigure speed dial properties, then power up:" + Environment.NewLine +
+                                             "SPEED_DIAL_V_MAX = 300");
 
             DmiActions.Start_ATP();
 
@@ -151,15 +151,14 @@ namespace Testcase.DMITestCases
 
             DmiActions.Complete_SoM_L1_SR(this);
 
-            EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.StaffResponsible;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
 
             WaitForVerification("Check the following" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SR mode, level 1." + Environment.NewLine +
                                 "2. The speed dial displays 300 km/h maximum speed");
-
-            // ?? Power down the system
-            // Load config file...
-            // SPEED_DIAL_V_MAX = 400
+            
+            DmiActions.ShowInstruction(this, "Power down the system and reconfigure speed dial properties, then power up:" + Environment.NewLine +
+                                             "SPEED_DIAL_V_MAX = 400");
 
             DmiActions.Start_ATP();
 
@@ -178,7 +177,7 @@ namespace Testcase.DMITestCases
 
             DmiActions.Complete_SoM_L1_SR(this);
 
-            EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.StaffResponsible;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
 
             WaitForVerification("Check the following" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SR mode, level 1." + Environment.NewLine +
@@ -188,7 +187,6 @@ namespace Testcase.DMITestCases
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }
