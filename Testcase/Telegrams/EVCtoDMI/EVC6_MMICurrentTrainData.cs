@@ -47,8 +47,10 @@ namespace Testcase.Telegrams.EVCtoDMI
                 throw new ArgumentOutOfRangeException();
             if (DataElements.Count > 9)
                 throw new ArgumentOutOfRangeException();
-            if (TrainSetCaptions.Count != DataElements.Count)
-                throw new Exception("Number of Train Data elements and number of captions do not match!");
+            // Samson: These two following lines have been commented because TrainSetCaptions represents the set of FIXED TRAIN DATA
+            // wheareas DataElements carries FLEXIBLE TRAIN DATA, hence they should not be compared
+            //if (TrainSetCaptions.Count != DataElements.Count)
+            //    throw new Exception("Number of Train Data elements and number of captions do not match!");
 
             ushort totalSizeCounter = 160;
 
