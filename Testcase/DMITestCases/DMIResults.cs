@@ -595,7 +595,7 @@ namespace Testcase.DMITestCases
         public static void Train_Data_Button_pressed_and_released(SignalPool pool)
         {
             EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.StartTrainDataEntry;
-            pool.Wait_Realtime(100);
+            //pool.Wait_Realtime(100);
             EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.StartTrainDataEntry;
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.TrainDataEntryRequested;
         }

@@ -52,14 +52,14 @@ namespace Testcase.Telegrams.DMItoEVC
             if (_checkResult)
             {
                 _pool.TraceReport("DMI->ETCS: Check EVC-102 [MMI_STATUS_REPORT.MMI_M_ACTIVE_CABIN] = " +
-                                (byte)mActiveCabin + " - \"" + mActiveCabin.ToString() + "\"" + "Result: PASSED.");
+                                (byte)mActiveCabin + " - \"" + mActiveCabin + "\"" + "Result: PASSED.");
             }
 
             // Display the real value extracted from EVC-102 [MMI_STATUS_REPORT.MMI_M_ACTIVE_CABIN]
             else
             {
                 _pool.TraceError("DMI->ETCS: Check EVC-102 [MMI_STATUS_REPORT.MMI_M_ACTIVE_CABIN] = " +
-                                    (byte)mActiveCabin + " - \"" + mActiveCabin.ToString() + "\"" + "Result: FAILED!" +
+                                    (byte)mActiveCabin + " - \"" + mActiveCabin + "\"" + "Result: FAILED!" +
                                     Environment.NewLine +
                                     "Current active cab = " + mmiMActiveCabin + " - \"" +
                                     Enum.GetName(typeof(Variables.MMI_M_ACTIVE_CABIN), mmiMActiveCabin));
@@ -78,7 +78,8 @@ namespace Testcase.Telegrams.DMItoEVC
                 if (mmiMModeReadBackElement == mModeReadBack)
                 {
                     // Check MMI_M_MODE_READBACK value
-                    _checkResult = currentMode.Equals((byte)mModeReadBack);                    
+                    //_checkResult = currentMode.Equals((byte)mModeReadBack);
+                    _checkResult = _pool.SITR.CCUO.ETCS1StatusReport.MmiMModeReadback.WaitForCondition(Is.Equal, (byte)mModeReadBack, 5000, 20);                
                     break;
                 }
             }
@@ -87,14 +88,14 @@ namespace Testcase.Telegrams.DMItoEVC
             if (_checkResult)
             {
                 _pool.TraceReport("DMI->ETCS: Check EVC-102 [MMI_STATUS_REPORT.MMI_M_MODE_READBACK] = " +
-                                (byte)mModeReadBack + " - \"" + mModeReadBack.ToString() + "\"" + "Result: PASSED.");
+                                (byte)mModeReadBack + " - \"" + mModeReadBack + "\"" + "Result: PASSED.");
             }
 
             // Display the real value extracted from EVC-102 [MMI_STATUS_REPORT.MMI_M_MODE_READBACK]
             else
             {
                 _pool.TraceError("DMI->ETCS: Check EVC-102 [MMI_STATUS_REPORT.MMI_M_MODE_READBACK] = " + 
-                                    (byte)mModeReadBack + " - \"" + mModeReadBack.ToString() + "\"" + "Result: FAILED!" + 
+                                    (byte)mModeReadBack + " - \"" + mModeReadBack + "\"" + "Result: FAILED!" + 
                                     Environment.NewLine +
                                     "Current active mode = " + currentMode + " - \"" +
                                     Enum.GetName(typeof(MMI_M_MODE_READBACK), currentMode));
