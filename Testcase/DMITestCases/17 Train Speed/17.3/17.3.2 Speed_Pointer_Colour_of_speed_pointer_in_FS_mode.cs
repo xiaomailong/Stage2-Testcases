@@ -124,10 +124,6 @@ namespace Testcase.DMITestCases
                                 "1. Is the speed pointer red?");
 
             DmiActions.Apply_Brakes(this);
-            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 45;
-
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. Is the speed pointer orange?");
 
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Ceiling_Speed_Monitoring;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 40;
@@ -176,7 +172,10 @@ namespace Testcase.DMITestCases
                                 "1. Is the speed pointer orange?");
 
             DmiActions.Apply_Brakes(this);
+
+            EVC1_MMIDynamic.MMI_V_INTERVENTION_KMH = 20;
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Indication_Status_Target_Speed_Monitoring;
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer red?");
 
@@ -187,7 +186,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 6299 (partly: MMI_M_WARNING, train speed in relation to release speed MMI_V_RELEASE, FS mode in RSM supervision);(2) MMI_gen 6299 (partly: colour of speed pointer, FS mode in RSM supervision);
             */
             // Call generic Action Method
-            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 4;
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Release_Speed_Monitoring;
             EVC1_MMIDynamic.MMI_V_RELEASE = 5;
             
@@ -212,8 +211,8 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in FS mode, level 1.Verify the following information,(1)   The speed pointer display in grey colour
             Test Step Comment: (1) MMI_gen 6299 (partly: colour of speed pointer, FS mode in PIM supervision);
             */
-            XML_12_3_2_a.Send(this);
-            
+            XML_12_3_2_a.Send(this);            
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in FS mode" + Environment.NewLine +
                                 "2. Is the speed pointer grey?");

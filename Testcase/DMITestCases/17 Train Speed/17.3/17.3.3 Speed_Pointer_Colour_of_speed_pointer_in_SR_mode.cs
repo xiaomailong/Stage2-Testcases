@@ -70,7 +70,7 @@ namespace Testcase.DMITestCases
             */
             EVC1_MMIDynamic.MMI_V_PERMITTED = 1111;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 40;
-            //?? Send
+            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SR mode, level 1." + Environment.NewLine + 
@@ -110,12 +110,13 @@ namespace Testcase.DMITestCases
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Ceiling_Speed_Monitoring;
             EVC1_MMIDynamic.MMI_V_INTERVENTION_KMH = 45;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 46;
-            DmiActions.Apply_Brakes(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer red?");
 
+            DmiActions.Apply_Brakes(this);
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Ceiling_Speed_Monitoring;
+            EVC1_MMIDynamic.MMI_V_INTERVENTION_KMH = 45;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 40;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +

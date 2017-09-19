@@ -38,8 +38,11 @@ namespace Testcase.DMITestCases
         public override void PreExecution()
         {
             // Pre-conditions from TestSpec:
-            // Test system is power on.Cabin is activated.Drive ID is entered and brake test in performed.Level 1 is selected and confirmed.
 
+            // Call the TestCaseBase PreExecution
+            base.PreExecution();
+
+            // Test system is power on.Cabin is activated.Drive ID is entered and brake test in performed.Level 1 is selected and confirmed.
             DmiActions.Start_ATP();
 
             // Set train running number, cab 1 active, and other defaults
@@ -55,8 +58,6 @@ namespace Testcase.DMITestCases
             // Enable standard buttons including Start, and display Default window.
             DmiActions.FinishedSoM_Default_Window(this);
 
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
         }
 
         public override void PostExecution()

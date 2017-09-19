@@ -70,11 +70,16 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in FS mode, Level 1 with the ST06 symbol at sub-area C6
             */
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 286;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 0;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1.DMI displays in FS mode, Level 1 with the ST06 symbol at sub-area C6.");
 
             EVC1_MMIDynamic.MMI_V_TRAIN = 0;    // Set speed to zero
+
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Speed is displayed at 0 km/h.");
@@ -134,14 +139,15 @@ namespace Testcase.DMITestCases
             */
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Ceiling_Speed_Monitoring;
             EVC1_MMIDynamic.MMI_V_TRAIN = 306;
-            DmiActions.Apply_Brakes(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer red?");
 
             // ETCS will decrease speed
+            DmiActions.Apply_Brakes(this);
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 9;
-            
+            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Ceiling_Speed_Monitoring;
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer grey?");
 
