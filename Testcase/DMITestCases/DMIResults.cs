@@ -337,10 +337,18 @@ namespace Testcase.DMITestCases
         ///     Step 1 in TC-ID: 5.10 in 10.10 Screen Layout: Button States
         ///     Step 3 in TC-ID: 22.20.2 in 27.20.2 Override window in SB mode
         ///     Step 9 in TC-ID: 15.1.1 in 20.1.1
+        ///     Step 1 in TC-ID: 15.2.1 in 20.2.1
         /// </summary>
-        public static void Main_Window_displayed_with_Start_button_enabled(SignalPool pool)
+        public static void Main_Window_displayed(SignalPool pool, bool startButtonEnabled)
         {
-            pool.WaitForVerification("Is the Main window displayed on the DMI, with the Start button enabled?");
+            if (startButtonEnabled)
+            {
+                pool.WaitForVerification("Is the Main window displayed on the DMI, with the Start button enabled?");
+            }
+            else
+            {
+                pool.WaitForVerification("Is the Main window displayed on the DMI?");
+            }
         }
 
         /// <summary>
@@ -604,6 +612,7 @@ namespace Testcase.DMITestCases
         /// Description: Level 0 is selected
         /// Used in:
         ///     Step 3 in TC-ID: 15.1.3 in 20.1.3
+        ///     Step 1 in TC-ID: 15.2.1 in 20.2.1
         /// </summary>
         /// <param name="pool"></param>
         public static void Level_0_Selected(SignalPool pool)
@@ -614,6 +623,22 @@ namespace Testcase.DMITestCases
             EVC121_MMINewLevel.Check_MMI_M_INHIBITED_LEVEL = MMI_M_INHIBITED_LEVEL.NotInhibited;
             EVC121_MMINewLevel.Check_MMI_M_INHIBIT_ENABLE = MMI_M_INHIBIT_ENABLE.NotAllowedForInhibiting;
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.Level0Selected;
+        }
+
+        /// <summary>
+        /// Description: Level 0 is selected
+        /// Used in:
+        ///     Step 2 in TC-ID: 15.2.1 in 20.2.1
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Level_1_Selected(SignalPool pool)
+        {
+            EVC121_MMINewLevel.Check_MMI_M_LEVEL_NTC_ID = MMI_M_LEVEL_NTC_ID.L1;
+            EVC121_MMINewLevel.Check_MMI_Q_LEVEL_NTC_ID = MMI_Q_LEVEL_NTC_ID.ETCS_Level;
+            EVC121_MMINewLevel.Check_MMI_M_LEVEL_FLAG = MMI_M_LEVEL_FLAG.MarkedLevel;
+            EVC121_MMINewLevel.Check_MMI_M_INHIBITED_LEVEL = MMI_M_INHIBITED_LEVEL.NotInhibited;
+            EVC121_MMINewLevel.Check_MMI_M_INHIBIT_ENABLE = MMI_M_INHIBIT_ENABLE.NotAllowedForInhibiting;
+            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.Level1Selected;
         }
 
         /// <summary>
