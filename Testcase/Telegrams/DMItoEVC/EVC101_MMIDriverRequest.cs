@@ -37,11 +37,11 @@ namespace Testcase.Telegrams.DMItoEVC
             _qbutton = Convert.ToByte((byte)qButton << 7);
             
             // For each element of enum MMI_M_REQUEST
-            foreach (Variables.MMI_M_REQUEST mmiMRequestElement in Enum.GetValues(typeof(Variables.MMI_M_REQUEST)))
-            {
+            //foreach (Variables.MMI_M_REQUEST mmiMRequestElement in Enum.GetValues(typeof(Variables.MMI_M_REQUEST)))
+            //{
                 // Compare to the value to be checked
-                if (mmiMRequestElement == mRequest)
-                {
+                //if (mmiMRequestElement == mRequest)
+                //{
                     var list = new List<Atomic>
                     {
                         _pool.SITR.CCUO.ETCS1DriverRequest.MmiMRequest.Atomic.WaitForCondition(Is.Equal, (byte)mRequest),
@@ -49,9 +49,9 @@ namespace Testcase.Telegrams.DMItoEVC
                     };
 
                     _checkResult = _pool.WaitForConditionAtomic(list, 10000, 20);
-                    break;
-                }
-            }
+                    //break;
+                //}
+            //}
             //*/
 
             // FIRST TRY - Robert and Johan suggestion
