@@ -42,6 +42,9 @@ namespace Testcase.DMITestCases
             // Pre-conditions from TestSpec:
             // Test system is powered on.Cabin is activated.SoM is performed in UN mode, Level 0.
 
+            // Call the TestCaseBase PreExecution
+            base.PreExecution();
+
             DmiActions.Start_ATP();
 
             // Set train running number, cab 1 active, and other defaults
@@ -56,9 +59,6 @@ namespace Testcase.DMITestCases
 
             // Enable standard buttons including Start, and display Default window.
             DmiActions.FinishedSoM_Default_Window(this);
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
         }
 
         public override void PostExecution()
