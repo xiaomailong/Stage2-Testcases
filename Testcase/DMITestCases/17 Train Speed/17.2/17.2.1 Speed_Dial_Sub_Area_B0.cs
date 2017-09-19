@@ -53,9 +53,9 @@ namespace Testcase.DMITestCases
             // SPEED_DIAL_ANGLE_V_TRANS = -29
             // SPEED_DIAL_ANGLE_V_MAX = 144
 
+            base.PreExecution();
             DmiActions.Complete_SoM_L1_SB(this);
             // Call the TestCaseBase PreExecution
-            base.PreExecution();
         }
 
         public override void PostExecution()
