@@ -79,8 +79,8 @@ namespace Testcase.Telegrams.DMItoEVC
 
             if (_checkResult) // if check passes
             {
-                _pool.TraceReport("DMI->ETCS: EVC-101 [MMI_DRIVER_REQUEST] => " + mRequest + " - \"" + mRequest.ToString() +
-                                    "\" -> " + qButton.ToString() + " PASSED." + Environment.NewLine +
+                _pool.TraceReport("DMI->ETCS: EVC-101 [MMI_DRIVER_REQUEST] => " + (byte)mRequest + " - \"" + mRequest +
+                                    "\" -> " + qButton + " PASSED." + Environment.NewLine +
                                     "Timestamp = " + _pool.SITR.CCUO.ETCS1DriverRequest.MmiTButtonevent);
             }
 
