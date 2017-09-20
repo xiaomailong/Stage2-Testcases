@@ -81,6 +81,8 @@ namespace Testcase.DMITestCases
             */
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Trip;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
+
+            EVC1_MMIDynamic.MMI_O_BRAKETARGET = 0;
             // set target distance to 0 to simulate passing EOA??
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -94,7 +96,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in PT mode, level 1.Verify the following information,(1)   Use the log file to confirm that DMI received the EVC-7 with variable OBU_TR_M_MODE = 8 (Post trip)(2)   The speed pointer is always display in grey colour.Note: The train will be force to stop due to runaway movement is detect when the train moving back over 200m
             Test Step Comment: (1) MMI_gen 6299 (partly: OBU_TR_M_MODE = 8);(2) MMI_gen 6299 (partly: colour of speed pointer, PT mode);
             */
-            WaitForVerification("Press an acknowledgement in sub - area C1. Change the train direction to ‘Reverse’");
+            WaitForVerification("Press an acknowledgement in sub-area C1. Change the train direction to ‘Reverse’");
 
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.PostTrip;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 40;

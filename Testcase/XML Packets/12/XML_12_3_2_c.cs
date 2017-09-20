@@ -34,7 +34,9 @@ namespace Testcase.XML
 
             EVC1_MMIDynamic.MMI_M_SLIDE = 0;
             EVC1_MMIDynamic.MMI_M_SLIP = 0;
-            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_PreIndication_Monitoring;   // 2
+
+            // Spec says 10: Overspeed_Status_PreIndication_Monitoring, xml 2: Normal_Status_PreIndication_Monitoring: spec preferred
+            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Overspeed_Status_PreIndication_Monitoring;   // 10
             EVC1_MMIDynamic.MMI_A_TRAIN = 0;
             EVC1_MMIDynamic.MMI_V_TRAIN = 1139;
             EVC1_MMIDynamic.MMI_V_TARGET = 1083;

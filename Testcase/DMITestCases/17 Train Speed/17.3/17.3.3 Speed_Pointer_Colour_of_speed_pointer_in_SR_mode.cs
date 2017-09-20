@@ -177,7 +177,6 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 6299 (partly: colour of speed pointer, SR mode in PIM supervision);
             */
             XML_12_3_3_e.Send(this);
-            DmiActions.Apply_Brakes(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SR mode, level 1" + Environment.NewLine +
@@ -274,7 +273,6 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 6299 (partly: colour of speed pointer, SR mode in TSM supervision);
             */
             XML_12_3_3_m.Send(this);
-            DmiActions.Apply_Brakes(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SR mode, level 1" + Environment.NewLine +

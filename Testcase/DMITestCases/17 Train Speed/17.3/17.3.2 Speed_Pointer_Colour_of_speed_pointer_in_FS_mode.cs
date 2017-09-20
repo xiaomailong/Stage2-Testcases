@@ -136,6 +136,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,While the train is moving(1)   Use the log file to confirm that DMI received the packet information EVC-1 with the following condition,MMI_M_WARNING = 11 (Status = NoS, Supervision = TSM) while the value of MMI_V_TRAIN is greater than MMI_V_TARGET(2)    The speed pointer display in white colourWhen the train is stopped(3)    Use the log file to confirm that DMI received the packet information EVC-1 with the following condition,MMI_M_WARNING = 11 (Status = NoS, Supervision = TSM) while the value of MMI_V_TRAIN is lower than or same as MMI_V_TARGET(4)   The speed pointer display in grey colour
             Test Step Comment: (1) MMI_gen 6299 (partly: MMI_M_WARNING, train speed in relation to target speed MMI_V_TARGET, FS mode in TSM supervision);(2) MMI_gen 6299 (partly: colour of speed pointer, FS mode in TSM supervision);(3) MMI_gen 6299 (partly: MMI_M_WARNING, train speed in relation to target speed MMI_V_TARGET, FS mode in TSM supervision);(4) MMI_gen 6299 (partly: colour of speed pointer, FS mode in TSM supervision);
             */
+            EVC1_MMIDynamic.MMI_V_TARGET_KMH = 25;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 30;
             
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -173,6 +174,7 @@ namespace Testcase.DMITestCases
 
             DmiActions.Apply_Brakes(this);
 
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 30;
             EVC1_MMIDynamic.MMI_V_INTERVENTION_KMH = 20;
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Indication_Status_Target_Speed_Monitoring;
 
@@ -186,7 +188,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 6299 (partly: MMI_M_WARNING, train speed in relation to release speed MMI_V_RELEASE, FS mode in RSM supervision);(2) MMI_gen 6299 (partly: colour of speed pointer, FS mode in RSM supervision);
             */
             // Call generic Action Method
-            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 4;
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Release_Speed_Monitoring;
             EVC1_MMIDynamic.MMI_V_RELEASE = 5;
             
@@ -201,7 +203,8 @@ namespace Testcase.DMITestCases
             */
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Indication_Status_Release_Speed_Monitoring;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 6;
-            
+            EVC1_MMIDynamic.MMI_V_INTERVENTION_KMH = 20;
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer yellow?");
 
@@ -234,7 +237,6 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in FS mode, level 1.Verify the following information,(1)   The speed pointer display in orange colour
             Test Step Comment: (1) MMI_gen 6299 (partly: colour of speed pointer, FS mode in PIM supervision);
             */
-            
             XML_12_3_2_c.Send(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -268,7 +270,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in FS mode, level 1.Verify the following information,(1)   The speed pointer display in grey colour
             Test Step Comment: (1) MMI_gen 6299 (partly: colour of speed pointer, FS mode in TSM supervision);
             */
-            XML_12_3_2_d.Send(this);
+            XML_12_3_2_f.Send(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in FS mode, level 1." + Environment.NewLine +

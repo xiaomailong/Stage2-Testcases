@@ -71,10 +71,18 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in LS mode, level 1
             */
             EVC1_MMIDynamic.MMI_V_PERMITTED = 2778;
-            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;            
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.LimitedSupervision;
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
 
-            WaitForVerification("Acknowledgement of LS mode is requested. Press button to accept and then check the following:" + Environment.NewLine + Environment.NewLine +
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 709;
+            EVC8_MMIDriverMessage.Send();
+
+            DmiActions.ShowInstruction(this, "Acknowledgement of LS mode is requested. Press button to accept");
+
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.LimitedSupervision;
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in LS mode, level 1.");
 
             /*

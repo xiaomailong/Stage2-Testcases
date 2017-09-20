@@ -37,7 +37,7 @@ namespace Testcase.XML
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Indication_Status_Target_Speed_Monitoring;   // 13
             EVC1_MMIDynamic.MMI_A_TRAIN = 0;
             EVC1_MMIDynamic.MMI_V_TRAIN = 0;
-            EVC1_MMIDynamic.MMI_V_TARGET = 1083;
+            EVC1_MMIDynamic.MMI_V_TARGET = 0;
             EVC1_MMIDynamic.MMI_V_PERMITTED = 1111;
             EVC1_MMIDynamic.MMI_V_RELEASE = 0;
             EVC1_MMIDynamic.MMI_O_BRAKETARGET = 0;

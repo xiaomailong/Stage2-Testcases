@@ -124,12 +124,12 @@ namespace Testcase.DMITestCases
             */
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Ceiling_Speed_Monitoring;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 106;
-            DmiActions.Apply_Brakes(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer red?");
 
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 100;
+            EVC1_MMIDynamic.MMI_V_INTERVENTION_KMH = 105;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer grey?");
@@ -187,7 +187,6 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 6299 (partly: colour of speed pointer, UN mode in PIM supervision);
             */
             XML_12_3_4_e.Send(this);
-            DmiActions.Apply_Brakes(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in UN mode, level 0." + Environment.NewLine +
@@ -283,7 +282,6 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 6299 (partly: colour of speed pointer, UN mode in TSM supervision);
             */
             XML_12_3_4_m.Send(this);
-            DmiActions.Apply_Brakes(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in UN mode, level 0." + Environment.NewLine +

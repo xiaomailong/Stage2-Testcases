@@ -40,6 +40,10 @@ namespace Testcase.DMITestCases
         public override void PreExecution()
         {
             // Pre-conditions from TestSpec:
+
+            // Call the TestCaseBase PreExecution
+            base.PreExecution();
+
             // Test system is powered on.Cabin is activated.SoM is performed in SB mode, Level 1.Main window is closed.
             DmiActions.Start_ATP();
 
@@ -55,15 +59,13 @@ namespace Testcase.DMITestCases
 
             // Do we need to close any open windows?
             // EVC30_MMIRequestEnable.SendBlank();
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
         }
 
         public override void PostExecution()
         {
             // Post-conditions from TestSpec
             // DMI displays in NL mode, level 1
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in NL mode, Level 1.");
 
@@ -92,10 +94,17 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in NL mode, level 1
             */
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 10;
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.NonLeading;
 
-            WaitForVerification("Press on sub-area C9. Press ‘Main’ button. Force the simulation to ‘Non - leading’" + Environment.NewLine +
-                                "Press and hold ‘Non - Leading’ button at least 2 second. Release the pressed button and check the following:" + Environment.NewLine + Environment.NewLine +
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.NonLeading;
+            EVC30_MMIRequestEnable.Send();
+
+            DmiActions.ShowInstruction(this, "Press on sub-area B7. Press ‘Main’ button. Force the simulation to ‘Non-leading’" + Environment.NewLine +
+                                             "Press and hold ‘Non - Leading’ button at least 2 second. Release the pressed button");
+
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.NonLeading;
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in NL mode, level 1.");
 
             /*

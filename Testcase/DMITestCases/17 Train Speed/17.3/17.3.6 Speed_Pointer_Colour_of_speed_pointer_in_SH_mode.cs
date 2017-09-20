@@ -51,12 +51,22 @@ namespace Testcase.DMITestCases
             // Set driver ID
             DmiActions.Set_Driver_ID(this, "1234");
 
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Start |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.DriverID |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.TrainData |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.Level |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.TrainRunningNumber |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.Shunting |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.MaintainShunting |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.NonLeading;
+            EVC30_MMIRequestEnable.Send();
+
             // Set to level 1 and SH mode
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Shunting;
-
-            // Enable standard buttons including Start, and display Default window.
-            DmiActions.FinishedSoM_Default_Window(this);
+            
 
         }
 
@@ -87,8 +97,11 @@ namespace Testcase.DMITestCases
             Action: Perform the following procedure,Press and hold ‘Shunting’ button at least 2 seconds.Release the pressed button
             Expected Result: DMI displays in SH mode, level 1
             */
-            WaitForVerification("Press and hold the ‘Shunting’ button for at least 2 seconds. Release the pressed button." + Environment.NewLine +
-                                "Then check the following:" + Environment.NewLine + Environment.NewLine +
+            DmiActions.ShowInstruction(this, "Press and hold the ‘Shunting’ button for at least 2 seconds. Release the pressed button.");
+
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Shunting;
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SH mode, level 1.");
 
             /*
@@ -134,7 +147,6 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 6299 (partly: MMI_M_WARNING, train speed in relation to permitted speed MMI_V_PERMITTED, SH mode in CSM supervision);(2) MMI_gen 6299 (partly: colour of speed pointer, SH mode in CSM supervision);(3) MMI_gen 6299 (partly: MMI_M_WARNING, SH mode in CSM supervision);(4) MMI_gen 6299 (partly: colour of speed pointer, SH mode in CSM supervision);
             */
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 36;
-            DmiActions.Apply_Brakes(this);
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Ceiling_Speed_Monitoring;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +

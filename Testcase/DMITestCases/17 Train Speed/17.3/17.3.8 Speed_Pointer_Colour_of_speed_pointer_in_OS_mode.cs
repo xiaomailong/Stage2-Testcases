@@ -71,8 +71,15 @@ namespace Testcase.DMITestCases
             */
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.OnSight;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 259;
+            EVC8_MMIDriverMessage.Send();
 
-            WaitForVerification("Acknowledgement of OS mode is requested. Press button to accept and then check the following:" + Environment.NewLine + Environment.NewLine +
+            DmiActions.ShowInstruction(this, "Acknowledgement of OS mode is requested. Press button to accept");
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in OS mode, level 1.");
             
             /*
@@ -120,11 +127,11 @@ namespace Testcase.DMITestCases
             */
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Ceiling_Speed_Monitoring;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 36;
-            DmiActions.Apply_Brakes(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer red?");
 
+            DmiActions.Apply_Brakes(this);
             /*
             Test Step 6
             Action: Stop the train.Then, use the test script file 12_3_8_a.xml to send the following packets,EVC-1MMI_M_WARNING = 2MMI_V_PERMITTED = 1111MMI_V_TARGET = 1083MMI_V_INTERVENTION = 1250MMI_V_TRAIN = 972EVC-7OBU_TR_M_MODE = 1
