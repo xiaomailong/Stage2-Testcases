@@ -131,7 +131,7 @@ namespace Testcase.DMITestCases
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 99;  
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                 "1. Has the speed decreased to 100 km/h?" + Environment.NewLine +
+                                 "1. Has the speed decreased to 99 km/h?" + Environment.NewLine +
                                  "2. Is the speed pointer grey?");
             /*
             Test Step 6 indicated also as 5
