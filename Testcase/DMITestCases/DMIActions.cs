@@ -148,7 +148,7 @@ namespace Testcase.DMITestCases
         /// </summary>
         /// <param name="fixedTrainsetCaptions"> Array of strings for trainset captions</param>
         /// <param name="mmiMTrainsetId">Index of trainset to be pre-selected on DMI</param>
-        public static void Send_EVC6_MMICurrentTrainData_FixedDataEntry(string[] fixedTrainsetCaptions,
+        public static void Send_EVC6_MMICurrentTrainData_FixedDataEntry(SignalPool pool, string[] fixedTrainsetCaptions,
             ushort mmiMTrainsetId)
 
         {
@@ -174,7 +174,7 @@ namespace Testcase.DMITestCases
         /// <summary>
         /// Send standard EVC-20 telegram with Levels 0-3, CBTC, and AWS/TPWS selectable. Level 1 is preselected.
         /// </summary>
-        public static void Send_EVC20_MMISelectLevel_AllLevels(bool closeEnable = true)
+        public static void Send_EVC20_MMISelectLevel_AllLevels(SignalPool pool, bool closeEnable = true)
         {
             Variables.MMI_Q_LEVEL_NTC_ID[] paramEvc20MmiQLevelNtcId = 
                 { MMI_Q_LEVEL_NTC_ID.ETCS_Level,
@@ -232,7 +232,7 @@ namespace Testcase.DMITestCases
         /// <summary>
         /// Sends EVC-20 telegram to cancel previous MMI_Select_Level presentation
         /// </summary>
-        public static void Send_EVC20_MMISelectLevel_Cancel()
+        public static void Send_EVC20_MMISelectLevel_Cancel(SignalPool pool)
         {
             EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = null;
             EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = null;
@@ -242,6 +242,28 @@ namespace Testcase.DMITestCases
             EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = null;
             EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = MMI_Q_CLOSE_ENABLE.Enabled;
             EVC20_MMISelectLevel.Send();
+        }
+
+        /// <summary>
+        /// Send_EVC22_MMI_Current_Rbc_Data sends RBC Data to the DMI
+        /// </summary>
+        public static void Send_EVC22_MMI_Current_Rbc(SignalPool pool, uint rbcId, ulong mmiNidRadio,
+            ushort mmiNidWindow,
+            bool closeEnable,
+            EVC22_MMICurrentRBC.EVC22BUTTONS mmiMButtons, string[] textDataElements)
+        {
+            // TODO what is the NID_C?
+            EVC22_MMICurrentRBC.NID_C = 0;
+            EVC22_MMICurrentRBC.NID_RBC = rbcId;
+            EVC22_MMICurrentRBC.MMI_NID_RADIO = mmiNidRadio; // RBC phone number
+            EVC22_MMICurrentRBC.MMI_NID_WINDOW = mmiNidWindow; // ETCS Window Id
+            EVC22_MMICurrentRBC.MMI_Q_CLOSE_ENABLE = closeEnable ? MMI_Q_CLOSE_ENABLE.Enabled : MMI_Q_CLOSE_ENABLE.Disabled; // Close button enable?
+            EVC22_MMICurrentRBC.MMI_M_BUTTONS = mmiMButtons; // Buttons available
+
+            EVC22_MMICurrentRBC.NetworkCaptions = new List<string>(textDataElements);
+            EVC22_MMICurrentRBC.DataElements = new List<Variables.DataElement>();
+
+            EVC22_MMICurrentRBC.Send();
         }
 
         /// <summary>
@@ -370,6 +392,17 @@ namespace Testcase.DMITestCases
         public static void Send_L1(SignalPool pool)
         {
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
+        }
+
+        /// <summary>
+        /// Description: L2 sent to the DMI
+        /// Used in:
+        ///     Step 1 in TC-ID: 15.2.2 in 20.2.2
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Send_L2(SignalPool pool)
+        {
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L2;
         }
 
         /// <summary>
@@ -634,7 +667,7 @@ namespace Testcase.DMITestCases
         /// <param name="pool"></param>
         public static void Display_Level_Window(SignalPool pool)
         {
-            Send_EVC20_MMISelectLevel_AllLevels();
+            Send_EVC20_MMISelectLevel_AllLevels(pool);
         }
 
         /// <summary>
@@ -645,7 +678,19 @@ namespace Testcase.DMITestCases
         /// <param name="pool"></param>
         public static void Display_Train_Data_Window(SignalPool pool)
         {
-            Send_EVC6_MMICurrentTrainData_FixedDataEntry(new[] { "FLU", "RLU", "Rescue" }, 2);
+            Send_EVC6_MMICurrentTrainData_FixedDataEntry(pool, new[] { "FLU", "RLU", "Rescue" }, 2);
+        }
+
+        /// <summary>
+        /// Description: Train Data sent to be displayed on th DMI
+        /// Used in:
+        ///     Step 1 in TC-ID: 15.2.2 in 20.2.2
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Display_RBC_Contact_Window_Data_Unknown(SignalPool pool)
+        {
+            Send_EVC22_MMI_Current_Rbc
+                (pool, 0, 0, 5, true, EVC22_MMICurrentRBC.EVC22BUTTONS.NoButton, null);
         }
 
         /// <summary>
@@ -656,9 +701,9 @@ namespace Testcase.DMITestCases
         /// <param name="pool"></param>
         public static void Display_TRN_Window(SignalPool pool)
         {
-            EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 6;
-            EVC30_MMIRequestEnable.Send();
+            //EVC30_MMIRequestEnable.SendBlank();
+            //EVC30_MMIRequestEnable.MMI_NID_WINDOW = 6;
+            //EVC30_MMIRequestEnable.Send();
             EVC16_CurrentTrainNumber.TrainRunningNumber = 0xffffffff;
             EVC16_CurrentTrainNumber.Send(); ;
         }

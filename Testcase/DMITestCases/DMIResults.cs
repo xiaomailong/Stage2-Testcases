@@ -647,6 +647,22 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
+        /// Description: Level 2 is selected
+        /// Used in:
+        ///     Step 1 in TC-ID: 15.2.2 in 20.2.2
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Level_2_Selected(SignalPool pool)
+        {
+            EVC121_MMINewLevel.Check_MMI_M_LEVEL_NTC_ID = MMI_M_LEVEL_NTC_ID.L2;
+            EVC121_MMINewLevel.Check_MMI_Q_LEVEL_NTC_ID = MMI_Q_LEVEL_NTC_ID.ETCS_Level;
+            EVC121_MMINewLevel.Check_MMI_M_LEVEL_FLAG = MMI_M_LEVEL_FLAG.MarkedLevel;
+            EVC121_MMINewLevel.Check_MMI_M_INHIBITED_LEVEL = MMI_M_INHIBITED_LEVEL.NotInhibited;
+            EVC121_MMINewLevel.Check_MMI_M_INHIBIT_ENABLE = MMI_M_INHIBIT_ENABLE.NotAllowedForInhibiting;
+            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.Level2Selected;
+        }
+
+        /// <summary>
         /// Description: EOA button is pressed in Override window on DMI
         /// Used in:
         ///     Step 14 in TC-ID: 15.1.3 in 20.1.3
@@ -722,6 +738,24 @@ namespace Testcase.DMITestCases
         public static void Train_data_validation_window_displayed(SignalPool pool)
         {
             pool.WaitForVerification("Is the Train Data Validation window displayed on the DMI?");
+        }
+
+        /// <summary>
+        /// Description: DMI displays RBC contact window
+        /// Used in:
+        ///     Step 16 in TC-ID: 22.8.2.1 in 27.8.2.1 Radio Network ID window: General appearance
+        ///     Step 14 in TC-ID: 22.8.3.1 in 27.8.3.1 RBC Contact window: General appearance
+        ///     Step 2 in TC-ID: 33.3 in 36.2 The relationship between parent and child windows (2)
+        ///     Step 4 in TC-ID: 33.3 in 36.2 The relationship between parent and child windows (2)
+        ///     Step 6 in TC-ID: 33.3 in 36.2 The relationship between parent and child windows (2)
+        ///     Step 19 in TC-ID: 22.8.3.1 in 27.8.3.1 RBC Contact window: General appearance
+        ///     Step 21 in TC-ID: 22.8.3.1 in 27.8.3.1 RBC Contact window: General appearance
+        ///     Step 2 in TC-ID: 15.2.2 in 20.2.2
+        ///     Step 3 in TC-ID: 15.2.2 in 20.2.2
+        /// </summary>
+        public static void RBC_Contact_Window_displayed(SignalPool pool)
+        {
+            pool.WaitForVerification("Is the RBC Contact window displayed on the DMI?");
         }
 
         /// <summary>
@@ -3357,31 +3391,6 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void
             Verify_the_following_information_DMI_closes_the_Radio_Network_ID_window_Use_the_log_file_to_confirm_that_DMI_sends_EVC_112_with_the_following_variables_MMI_M_BUTTONS_254MMI_N_DATA_ELEMENTS_1MMI_M_NID_DATA_3MMI_NID_MN_index_of_selected_network_ID_refer_to_EVC_22_from_previous_step_the_1st_index_is_start_with_0(SignalPool pool)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Description: DMI displays RBC contact window
-        /// Used in:
-        ///     Step 16 in TC-ID: 22.8.2.1 in 27.8.2.1 Radio Network ID window: General appearance
-        ///     Step 14 in TC-ID: 22.8.3.1 in 27.8.3.1 RBC Contact window: General appearance
-        ///     Step 2 in TC-ID: 33.3 in 36.2 The relationship between parent and child windows (2)
-        ///     Step 4 in TC-ID: 33.3 in 36.2 The relationship between parent and child windows (2)
-        ///     Step 6 in TC-ID: 33.3 in 36.2 The relationship between parent and child windows (2)
-        /// </summary>
-        public static void DMI_displays_RBC_contact_window(SignalPool pool)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Description: DMI displays RBC Contact window
-        /// Used in:
-        ///     Step 19 in TC-ID: 22.8.3.1 in 27.8.3.1 RBC Contact window: General appearance
-        ///     Step 21 in TC-ID: 22.8.3.1 in 27.8.3.1 RBC Contact window: General appearance
-        /// </summary>
-        public static void DMI_displays_RBC_Contact_window(SignalPool pool)
         {
             throw new NotImplementedException();
         }
