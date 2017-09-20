@@ -218,7 +218,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_RBC_contact_window(this);
+            DmiExpectedResults.RBC_Contact_Window_displayed(this);
 
 
             /*
