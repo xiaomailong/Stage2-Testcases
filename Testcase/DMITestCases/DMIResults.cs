@@ -554,11 +554,15 @@ namespace Testcase.DMITestCases
         /// <param name="pool"></param>
         public static void Driver_ID_entered(SignalPool pool)
         {
+            /*
             string driverIDInput = DmiActions.ShowDialog(@"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
                                 "1. Type any Driver ID on THIS WINDOW." + Environment.NewLine +
                                 "2. Type the same Driver ID on the DMI." + Environment.NewLine +
                                 "3. Confirmed the entered value by pressing the input field.", "Driver ID");
-            EVC104_MMINewDriverData.Check_X_DRIVER_ID = driverIDInput;           
+            */
+            string driverIDInput = EVC104_MMINewDriverData.Get_X_DRIVER_ID;
+            pool.WaitForVerification($"Is \"{driverIDInput}\" the Driver Id entered?");
+
         }
 
         /// <summary>
