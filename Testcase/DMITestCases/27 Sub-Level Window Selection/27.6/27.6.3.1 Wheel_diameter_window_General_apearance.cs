@@ -77,8 +77,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press the Settings button then press the ‘Wheel diameter’ button in the Settings window");
 
             EVC40_MMICurrentMaintenanceData.MMI_Q_MD_DATASET = Variables.MMI_Q_MD_DATASET.WheelDiameter;
-
-            // EVC40 values required?
+            EVC40_MMICurrentMaintenanceData.Send();
+            
             WaitForVerification("Check the following (* indicates sub-areas drawn as one area):" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Wheel diameter window." + Environment.NewLine +
                                 "2. The window title is ‘Wheel diameter’, right-aligned." + Environment.NewLine +
