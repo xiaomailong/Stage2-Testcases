@@ -90,8 +90,14 @@ namespace Testcase.DMITestCases
             Action: Perform the following procedure,Chage the train direction to reverseAcknowledge RV mode by pressing the symbol in sub-area C1
             Expected Result: DMI displays in RV mode, Level 1
             */
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 262;
+            EVC8_MMIDriverMessage.Send();
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Reversing;
 
-            WaitForVerification("Change the train direction to reverse and acknowledge RV mode by pressing the symbol in sub - area C1." + Environment.NewLine +
+            WaitForVerification("Change the train direction to reverse and acknowledge RV mode by pressing the symbol in sub-area C1." + Environment.NewLine +
                                 "Then check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1.DMI displays in RV mode, Level 1.");
 
