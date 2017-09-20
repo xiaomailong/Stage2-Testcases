@@ -63,5 +63,22 @@ namespace Testcase.Telegrams.DMItoEVC
                 CheckXDriverID(_xDriverID);
             }
         }
+
+        /// <summary>
+        /// This is the driver’s identity (max 16 character long).
+        /// Values:
+        /// 0 = "Empty string (null character)"
+        /// Note: 16 alphanumeric characters(ISO 8859-1, also known as Latin Alphabet #1).
+        /// Note 1: If the value is unknown the table will be filled with null characters (0, not '0').
+        /// Note 2: If Driver ID is shorter than 16 characters the free charcters will be filled with null characters.
+        /// Note 3: If Driver ID is 16 characters there will be no null character in the string.
+        /// </summary>
+        public static string Get_X_DRIVER_ID
+        {
+            get
+            {
+                return _pool.SITR.CCUO.ETCS1NewDriverData.MmiXDriverId.Value;
+            }
+        }
     }
 }
