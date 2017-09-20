@@ -573,12 +573,13 @@ namespace Testcase.DMITestCases
         /// <param name="pool"></param>
         public static void TRN_entered(SignalPool pool)
         {
-            string trnInput = DmiActions.ShowDialog(@"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
+            /*string trnInput = DmiActions.ShowDialog(@"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
                                 "1. Type any Train Running Number on THIS WINDOW." + Environment.NewLine +
                                 "2. Type the same TRN on the DMI." + Environment.NewLine +
                                 "3. Confirmed the entered value by pressing the input field.", "Driver ID");
-
-            //EVC116_MMINewTrainNumber.Check_NID_OPERATION = trnInput;
+            */
+            uint trnInput = EVC116_MMINewTrainNumber.Get_NID_OPERATION;
+            pool.WaitForVerification($"Is \"{trnInput}\" the Train running number entered?");
         }
 
         /// <summary>
