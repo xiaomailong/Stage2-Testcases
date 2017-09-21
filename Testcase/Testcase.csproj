@@ -308,10 +308,11 @@ if exist "$(TargetPath)" if not exist "$(TargetPath).locked" move "$(TargetPath)
     <Compile Include="DMITestCases\27 Sub-Level Window Selection\27.6\27.6.3.1 Wheel_diameter_window_General_apearance.cs" />
     <Compile Include="DMITestCases\27 Sub-Level Window Selection\27.6\27.6.3.2.3.2 Wheel_diameter_Data_Checks_Technical_Range_Checks_by_Variable_Range.cs" />
     <Compile Include="DMITestCases\27 Sub-Level Window Selection\27.6\27.6.3.2.5 Wheel_diameter_Data_Checks_Technical_Range_Checks_by_Variable_Range.cs" />
-    <Compile Include="DMITestCases\27 Sub-Level Window Selection\27.6\27.6.4.1 TitleUnknown1.cs" />
+    <Compile Include="DMITestCases\27 Sub-Level Window Selection\27.6\27.6.4.1 Wheel_Diameter_validation_window_General_appearance.cs" />
     <Compile Include="DMITestCases\27 Sub-Level Window Selection\27.6\27.6.5.1 Radar_window_General_appearance.cs" />
+    <Compile Include="DMITestCases\27 Sub-Level Window Selection\27.6\27.6.5.2.3.2 Radar_Data_Checks_Technical_Range_Checks_by_Data_Validity.cs" />
     <Compile Include="DMITestCases\27 Sub-Level Window Selection\27.6\27.6.5.2.5 Radar_Data_Checks_Technical_Range_Checks_by_Variable_Range.cs" />
-    <Compile Include="DMITestCases\27 Sub-Level Window Selection\27.6\27.6.6.1 TitleUnknown2.cs" />
+    <Compile Include="DMITestCases\27 Sub-Level Window Selection\27.6\27.6.6.1 Radar_validation_window_General appearance.cs" />
     <Compile Include="DMITestCases\27 Sub-Level Window Selection\27.7\27.7.1 Data_view_window_for_Flexible_Train_data_entry.cs" />
     <Compile Include="DMITestCases\27 Sub-Level Window Selection\27.7\27.7.2 Data_view_window_for_Fixed_Train_data_entry.cs" />
     <Compile Include="DMITestCases\27 Sub-Level Window Selection\27.7\27.7.3 Data_view_window_for_the_text_which_longer_than_maximum_width.cs" />
@@ -616,6 +617,7 @@ if exist "$(TargetPath)" if not exist "$(TargetPath).locked" move "$(TargetPath)
     <Compile Include="XML Packets\22\XML_22_6_2_c.cs" />
     <Compile Include="XML Packets\22\XML_22_6_2_d.cs" />
     <Compile Include="XML Packets\22\XML_22_6_3_2_3_2_a.cs" />
+    <Compile Include="XML Packets\22\XML_22_6_5_2_3_2_a.cs" />
     <Compile Include="XML Packets\22\XML_22_7_1_a.cs" />
     <Compile Include="XML Packets\22\XML_22_7_1_b.cs" />
     <Compile Include="XML Packets\22\XML_22_7_2_a.cs" />
