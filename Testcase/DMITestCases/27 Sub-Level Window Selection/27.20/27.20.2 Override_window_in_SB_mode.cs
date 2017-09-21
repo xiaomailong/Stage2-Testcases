@@ -80,7 +80,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Main window with enabled ‘Start’ button
             */
             // Call generic Check Results Method
-            DmiExpectedResults.Main_Window_displayed_with_Start_button_enabled(this);
+            DmiExpectedResults.Main_Window_displayed(this,true);
 
 
             /*

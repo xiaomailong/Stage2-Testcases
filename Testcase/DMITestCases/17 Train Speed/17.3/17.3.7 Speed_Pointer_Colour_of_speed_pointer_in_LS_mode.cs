@@ -71,10 +71,18 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in LS mode, level 1
             */
             EVC1_MMIDynamic.MMI_V_PERMITTED = 2778;
-            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;            
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.LimitedSupervision;
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
 
-            WaitForVerification("Acknowledgement of LS mode is requested. Press button to accept and then check the following:" + Environment.NewLine + Environment.NewLine +
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 709;
+            EVC8_MMIDriverMessage.Send();
+
+            DmiActions.ShowInstruction(this, "Acknowledgement of LS mode is requested. Press button to accept");
+
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.LimitedSupervision;
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in LS mode, level 1.");
 
             /*
@@ -122,16 +130,17 @@ namespace Testcase.DMITestCases
             */
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Ceiling_Speed_Monitoring;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 106;
-            DmiActions.Apply_Brakes(this);
+            EVC1_MMIDynamic.MMI_V_INTERVENTION_KMH = 105;
              
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                  "1. Is the speed pointer red?");
 
-            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 100;
+            DmiActions.Apply_Brakes(this);
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 99;  
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                 "1. Has the speed decreased to 100 km/h?" + Environment.NewLine +
-                                 "2. Is the speed pointer red?");
+                                 "1. Has the speed decreased to 99 km/h?" + Environment.NewLine +
+                                 "2. Is the speed pointer grey?");
             /*
             Test Step 6 indicated also as 5
             Action: Stop the train.Then, use the test script file 12_3_7_a.xml to send the following packets,EVC-1MMI_M_WARNING = 2MMI_V_PERMITTED = 1111MMI_V_TARGET = 1083MMI_V_INTERVENTION = 1250MMI_V_TRAIN = 972EVC-7OBU_TR_M_MODE = 12

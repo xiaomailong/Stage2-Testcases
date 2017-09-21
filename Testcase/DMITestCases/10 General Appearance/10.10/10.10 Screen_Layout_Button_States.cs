@@ -95,7 +95,7 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.Send();
 
             // Call generic Check Results Method
-            DmiExpectedResults.Main_Window_displayed_with_Start_button_enabled(this);
+            DmiExpectedResults.Main_Window_displayed(this, true);
 
             // Steps 2 to 22 are in XML_5_10_a.cs
             /*

@@ -177,7 +177,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press Close button");
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_RBC_contact_window(this);
+            DmiExpectedResults.RBC_Contact_Window_displayed(this);
 
 
             /*
@@ -223,7 +223,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.Restart_OTE_and_RBC_simulator_Then_perform_SoM_until_Level_2_is_selected_and_confirmed(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_RBC_Contact_window(this);
+            DmiExpectedResults.RBC_Contact_Window_displayed(this);
 
 
             /*
@@ -242,7 +242,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.Restart_OTE_and_RBC_simulator_Then_perform_SoM_until_Level_2_is_selected_and_confirmed(this);
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_RBC_Contact_window(this);
+            DmiExpectedResults.RBC_Contact_Window_displayed(this);
 
 
             /*

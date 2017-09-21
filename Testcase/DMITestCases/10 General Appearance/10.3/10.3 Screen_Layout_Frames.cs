@@ -83,23 +83,39 @@ namespace Testcase.DMITestCases
 
             // Call generic Check Results Method
             DmiExpectedResults.Driver_ID_window_displayed(this);
-            
+
             /*
             Test Step 2
             Action: Enter the Driver ID. Perform brake test and then select Level 0
             Expected Result: ATP enters level 0.DMI displays the symbol of Level 0 in sub-area C8
-            */            
+            */
             DmiActions.ShowInstruction(this, "Enter the Driver ID and select Level 0");
 
-            // Can you tell this?
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. ATP enters level 0.");
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 3;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Level;
+            EVC30_MMIRequestEnable.Send();
 
-            DmiActions.ShowInstruction(this, "Perform brake test");
+            EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Disabled;
 
-            // Can you tell this?
+            EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new Variables.MMI_Q_LEVEL_NTC_ID[] { Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level };
+            EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new Variables.MMI_M_CURRENT_LEVEL[] { Variables.MMI_M_CURRENT_LEVEL.NotLastUsedLevel };
+            EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = new Variables.MMI_M_LEVEL_FLAG[] { Variables.MMI_M_LEVEL_FLAG.MarkedLevel };
+            EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = new Variables.MMI_M_INHIBITED_LEVEL[] { Variables.MMI_M_INHIBITED_LEVEL.NotInhibited };
+            EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = new Variables.MMI_M_INHIBIT_ENABLE[] { Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting };
+            EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new Variables.MMI_M_LEVEL_NTC_ID[] { Variables.MMI_M_LEVEL_NTC_ID.L0 };
+            EVC20_MMISelectLevel.Send();
+
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L0;
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the Level 0 symbol in sub-area C8.");
+                                "1. ATP enters level 0." + Environment.NewLine + 
+                                "2. DMI displays the Level 0 symbol in sub-area C8.");
+
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.TrainData;
+            EVC30_MMIRequestEnable.Send();
 
             /*
             Test Step 3
@@ -107,7 +123,13 @@ namespace Testcase.DMITestCases
             Expected Result: The Train data window is displayed
             */
             DmiActions.ShowInstruction(this, @"Press the ‘Train data’ button");
-            
+
+            EVC6_MMICurrentTrainData.Send();
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 11;
+            EVC30_MMIRequestEnable.Send();
+
+
             // Call generic Check Results Method
             DmiExpectedResults.Train_data_window_displayed(this);
 

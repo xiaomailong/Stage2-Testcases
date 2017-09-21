@@ -42,6 +42,9 @@ namespace Testcase.DMITestCases
             // Pre-conditions from TestSpec:
             // Test system is powered on.Cabin is activated.SoM is performed in UN mode, Level 0.
 
+            // Call the TestCaseBase PreExecution
+            base.PreExecution();
+
             DmiActions.Start_ATP();
 
             // Set train running number, cab 1 active, and other defaults
@@ -56,9 +59,6 @@ namespace Testcase.DMITestCases
 
             // Enable standard buttons including Start, and display Default window.
             DmiActions.FinishedSoM_Default_Window(this);
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
         }
 
         public override void PostExecution()
@@ -124,12 +124,12 @@ namespace Testcase.DMITestCases
             */
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Ceiling_Speed_Monitoring;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 106;
-            DmiActions.Apply_Brakes(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer red?");
 
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 100;
+            EVC1_MMIDynamic.MMI_V_INTERVENTION_KMH = 105;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer grey?");
@@ -187,7 +187,6 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 6299 (partly: colour of speed pointer, UN mode in PIM supervision);
             */
             XML_12_3_4_e.Send(this);
-            DmiActions.Apply_Brakes(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in UN mode, level 0." + Environment.NewLine +
@@ -283,7 +282,6 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 6299 (partly: colour of speed pointer, UN mode in TSM supervision);
             */
             XML_12_3_4_m.Send(this);
-            DmiActions.Apply_Brakes(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in UN mode, level 0." + Environment.NewLine +
