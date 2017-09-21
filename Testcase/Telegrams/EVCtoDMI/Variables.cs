@@ -343,7 +343,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         }
 
         /// <summary>
-        /// Button Event enum
+        /// Button Event (pressed or released)
         /// 
         /// Values:
         /// 0 = "released"
@@ -393,10 +393,10 @@ namespace Testcase.Telegrams.EVCtoDMI
             Operational_Cross_Check_failed = 5
         }
 
-    /// <summary>
-    /// Collection of flags used to enable standard buttons on DMI.
-    /// </summary>
-    public static EVC30_MMIRequestEnable.EnabledRequests standardFlags = 
+        /// <summary>
+        /// Collection of flags used to enable standard buttons on DMI.
+        /// </summary>
+        public static EVC30_MMIRequestEnable.EnabledRequests standardFlags = 
             EVC30_MMIRequestEnable.EnabledRequests.EnableDoppler |
             EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter |
             EVC30_MMIRequestEnable.EnabledRequests.StartBrakeTest |
@@ -419,6 +419,14 @@ namespace Testcase.Telegrams.EVCtoDMI
             EVC30_MMIRequestEnable.EnabledRequests.Language |
             EVC30_MMIRequestEnable.EnabledRequests.SRSpeedDistance;
 
+        /// <summary>
+        /// Defines the identity of the activated cabin
+        /// 
+        /// Values:
+        /// 0 = No active cabin
+        /// 1 = Cabin 1 active
+        /// 2 = Cabin 2 active
+        /// </summary>
         public enum MMI_M_ACTIVE_CABIN : byte
         {
             NoCabinActive = 0,
@@ -427,7 +435,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         }
 
         /// <summary>
-        /// Enum of track condition type.
+        /// Track condition type.
         /// 
         /// Values:
         /// 0 = "Non Stopping Area"
@@ -516,8 +524,12 @@ namespace Testcase.Telegrams.EVCtoDMI
         }
 
         /// <summary>
-        /// Qualifier for the variable MMI_M_LEVEL_NTC_ID enum
+        /// Qualifier for the variable MMI_M_LEVEL_NTC_ID
         /// Used in EVC packets 20 and 121
+        /// 
+        /// Values:
+        /// 0 = "MMI_M_LEVEL_NTC_ID contains an STM ID (0-255)"
+        /// 1 = "MMI_M_LEVEL_NTC_ID contains a level number (0-3)"
         /// </summary>
         public enum MMI_Q_LEVEL_NTC_ID : byte
         {
@@ -527,6 +539,10 @@ namespace Testcase.Telegrams.EVCtoDMI
 
         /// <summary>
         /// Last level used enum
+        /// 
+        /// Values:
+        /// 0 = "MMI_M_LEVEL_STM_ID is not the latest used level"
+        /// 1 ="MMI_M_LEVEL_STM_ID is the latest used level"
         /// </summary>
         public enum MMI_M_CURRENT_LEVEL : byte
         {
@@ -537,6 +553,10 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// <summary>
         /// Indicator for marked MMI_M_LEVEL_NTC_ID enum
         /// Used in EVC packets 20 and 121
+        /// 
+        /// Values:
+        /// 0 = "MMI_M_LEVEL_NTC_ID is 'not marked'"
+        /// 1 = "MMI_M_LEVEL_NTC_ID is 'marked'"
         /// </summary>
         public enum MMI_M_LEVEL_FLAG : byte
         {
@@ -547,6 +567,10 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// <summary>
         /// Inhibit status enum
         /// Used in EVC packets 20 and 121
+        /// 
+        /// Values:
+        /// 0 = "MMI_M_LEVEL_NTC_ID is not inhibited"
+        /// 1 = "MMI_M_LEVEL_NTC_ID is inhibited"
         /// </summary>
         public enum MMI_M_INHIBITED_LEVEL : byte
         {
@@ -555,8 +579,12 @@ namespace Testcase.Telegrams.EVCtoDMI
         }
 
         /// <summary>
-        /// Inhibit enabled enum
+        /// Inhibit enabled enum.
         /// Used in EVC packets 20 and 121
+        /// 
+        /// Values:
+        /// 0 = "MMI_M_LEVEL_NTC_ID is not allowed for inhibiting"
+        /// 1 = "MMI_M_LEVEL_NTC_ID is allowed for inhibiting"
         /// </summary>
         public enum MMI_M_INHIBIT_ENABLE : byte
         {
@@ -579,6 +607,16 @@ namespace Testcase.Telegrams.EVCtoDMI
             CBTC = 50
         }
 
+        /// <summary>
+        /// A bit mask that, for each variable, tells if a data value is enabled (e.g. for 'edit' in EVC-6). 1== 'enabled'.
+        /// 
+        /// The variable supports the following use cases:
+        /// 1.) Controls edit ability of related data object during TDE procedure(EVC-6, no data view).
+        /// 2.) In case of a Train Data View procedure this variable controls visibility of data items
+        ///     (ERA_ERTMS_015560, v3.4.0, chapter 11.5.1.5).
+        /// 3.) In packet EVC-10 this variable controls highlighting of changed data items
+        ///     (ERA_ERTMS_015560, v3.4.0, chapter 11.4.1.4, 10.3.3.5).
+        /// </summary>
         [Flags]
         public enum MMI_M_DATA_ENABLE : ushort
         {
@@ -593,6 +631,59 @@ namespace Testcase.Telegrams.EVCtoDMI
             LoadingGauge = 0x100
         }
 
+        /// <summary>
+        /// Identifier of an MMI keyboard key name.
+        /// 
+        /// Values:
+        /// 0 = "No dedicated key"
+        /// 1 = "No"
+        /// 2 = "Yes"
+        /// 3 = "PASS1"
+        /// 4 = "PASS2"
+        /// 5 = "PASS3"
+        /// 6 = "TILT1"
+        /// 7 = "TILT2"
+        /// 8 = "TILT3"
+        /// 9 = "TILT4"
+        /// 10 = "TILT5"
+        /// 11 = "TILT6"
+        /// 12 = "TILT7"
+        /// 13 = "FP1"
+        /// 14 = "FP2"
+        /// 15 = "FP3"
+        /// 16 = "FP4"
+        /// 17 = "FG1"
+        /// 18 = "FG2"
+        /// 19 = "FG3"
+        /// 20 = "FG4"
+        /// 21 = "CAT A"
+        /// 22 = "CAT HS17"
+        /// 23 = "CAT B1"
+        /// 24 = "CAT B2"
+        /// 25 = "CAT C2"
+        /// 26 = "CAT C3"
+        /// 27 = "CAT C4"
+        /// 28 = "CAT D2"
+        /// 29 = "CAT D3"
+        /// 30 = "CAT D4"
+        /// 31 = "CAT D4XL"
+        /// 32 = "CAT E4"
+        /// 33 = "CAT E5"
+        /// 34 = "G1"
+        /// 35 = "GA"
+        /// 36 = "GB"
+        /// 37 = "GC"
+        /// 38 = "Out of GC"
+        /// 39 = "Non slippery rail"
+        /// 40 = "Slippery rail"
+        /// 41 = "Level 1"
+        /// 42 = "Level 2"
+        /// 43 = "Level 3"
+        /// 44 = "Level 0"
+        /// 45..255 = "Spare"
+        /// 
+        /// Note: the definition is according to preliminary SubSet-121 'NID_KEY' definition.
+        /// </summary>
         public enum MMI_NID_KEY : byte
         {
             NoDedicatedKey = 0,
@@ -641,8 +732,24 @@ namespace Testcase.Telegrams.EVCtoDMI
             Level2 = 42,
             Level3 = 43,
             Level0 = 44
-        }    
-        
+        }
+
+        /// <summary>
+        /// This is a maintenance parameter for Doppler radars 1 and 2. It gives the number of pulses per km-travelled distance.
+        /// 
+        /// Values:
+        /// 0 = "No Radar 1 on board"
+        /// 1..20000 = "Reserved"
+        /// 85535..4294967289 = "Reserved"
+        /// 4294967290 = "Technical Range Check failed"
+        /// 4294967291 = "Technical Resolution Check failed"
+        /// 4294967292 = "Technical Cross Check failed"
+        /// 4294967293 = "Operational Range Check failed"
+        /// 4294967294 = "Operational Cross Check failed"
+        /// 4294967295 = "Reserved"
+        /// 
+        /// Note: All special values concerning cross/range checks are only used in packets EVC-40 and EVC-41.
+        /// </summary>
         public enum MMI_M_PULSE_PER_KM : uint
         {
             NoRadarOnBoard = 0,
@@ -654,6 +761,21 @@ namespace Testcase.Telegrams.EVCtoDMI
             Reserved = 4294967295
         }
 
+        /// <summary>
+        /// Wheel diameter for tachos 1 and 2
+        /// 
+        /// Values:
+        /// 0..499 = "Reserved"
+        /// 1501..65529 = "Reserved"
+        /// 65530 = "Technical Range Check failed"
+        /// 65531 = "Technical Resolution Check failed"
+        /// 65532 = "Technical Cross Check failed"
+        /// 65533 = "Operational Range Check failed"
+        /// 65534 = "Operational Cross Check failed"
+        /// 65535 = "Reserved"
+        /// 
+        /// Note: All special values concerning cross/range checks are only used in packets EVC-40 and EVC-41.
+        /// </summary>
         public enum MMI_M_SDU_WHEEL_SIZE : ushort
         {
             TechnicalRangeCheckFailed = 65530,
@@ -664,6 +786,20 @@ namespace Testcase.Telegrams.EVCtoDMI
             Reserved = 65535
         }
 
+        /// <summary>
+        /// Accuracy of wheel diameter
+        /// 
+        /// Values:
+        /// 33..249 = "Reserved"
+        /// 250 = "Technical Range Check failed"
+        /// 251 = "Technical Resolution Check failed"
+        /// 252 = "Technical Cross Check failed"
+        /// 253 = "Operational Range Check failed"
+        /// 254 = "Operational Cross Check failed"
+        /// 255 = "Reserved"
+        /// 
+        /// Note: All special values concerning cross/range checks are only used in packets EVC-40 and EVC-41.
+        /// </summary>
         public enum MMI_M_WHEEL_SIZE_ERR : byte
         {
             TechnicalRangeCheckFailed = 250,
@@ -674,6 +810,13 @@ namespace Testcase.Telegrams.EVCtoDMI
             Reserved = 255
         }
 
+        /// <summary>
+        /// Indicates the content of the maintenance telegram
+        /// 
+        /// Values:
+        /// 0 = "Wheel diameter"
+        /// 1 = "Doppler"
+        /// </summary>
         public enum MMI_Q_MD_DATASET : byte
         {
             WheelDiameter = 0,
