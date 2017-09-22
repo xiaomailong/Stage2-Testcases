@@ -199,7 +199,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         public const uint ContactLastRBC = 16383;
 
         /// <summary>
-        /// NID_C as allocated by ERA for Crossrail Central Section
+        /// NID_C as allocated by ERA for Great Western line
         /// </summary>
         public const uint NidC = 3;
 
