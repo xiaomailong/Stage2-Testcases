@@ -691,6 +691,13 @@ namespace Testcase.DMITestCases
         {
             Send_EVC22_MMI_Current_Rbc
                 (pool, 0, 0, 5, true, EVC22_MMICurrentRBC.EVC22BUTTONS.NoButton, null);
+
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = 
+                EVC30_MMIRequestEnable.EnabledRequests.ContactLastRBC | 
+                EVC30_MMIRequestEnable.EnabledRequests.EnterRBCData | 
+                EVC30_MMIRequestEnable.EnabledRequests.RadioNetworkID;
+            EVC30_MMIRequestEnable.Send();
         }
 
         /// <summary>
