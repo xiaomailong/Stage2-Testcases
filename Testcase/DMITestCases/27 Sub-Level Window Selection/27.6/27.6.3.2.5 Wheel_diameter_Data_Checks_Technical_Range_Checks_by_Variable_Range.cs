@@ -39,7 +39,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// N/A
     /// </summary>
-    public class Wheel_diameter_Data_Checks_Technical_Range_Checks_by_Variable_Range : TestcaseBase
+    public class TC_ID_22_6_2_5_Wheel_diameter : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -77,10 +77,14 @@ namespace Testcase.DMITestCases
             Action: Open the ‘Wheel diameter’ data entry window from the Settings menu
             Expected Result: The ‘Wheel diameter’ data entry window appears on ETCS-DMI screen instead of the ‘Settings’ menu window
             */
-            DmiActions.ShowInstruction(this, "Press the ‘Wheel Diameter’ button");
+            DmiActions.ShowInstruction(this, "Press the ‘Maintenance’ button and enter the password ‘26728290’ in the Password Maintenance window, then press the ‘Wheel Diameter’ button");
+
+            EVC40_MMICurrentMaintenanceData.MMI_Q_MD_DATASET = Variables.MMI_Q_MD_DATASET.WheelDiameter;
+            EVC40_MMICurrentMaintenanceData.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Wheel Diameter window.");
+      
 
             /*
             Test Step 2
