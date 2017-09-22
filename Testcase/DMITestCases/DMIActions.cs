@@ -247,13 +247,11 @@ namespace Testcase.DMITestCases
         /// <summary>
         /// Send_EVC22_MMI_Current_Rbc_Data sends RBC Data to the DMI
         /// </summary>
-        public static void Send_EVC22_MMI_Current_Rbc(SignalPool pool, uint rbcId, ulong mmiNidRadio,
-            ushort mmiNidWindow,
+        public static void Send_EVC22_MMI_Current_RBC(SignalPool pool, uint rbcId, ulong mmiNidRadio, ushort mmiNidWindow,
             bool closeEnable,
             EVC22_MMICurrentRBC.EVC22BUTTONS mmiMButtons, string[] textDataElements)
         {
-            // TODO what is the NID_C?
-            EVC22_MMICurrentRBC.NID_C = 0;
+            EVC22_MMICurrentRBC.NID_C = Variables.NidC;
             EVC22_MMICurrentRBC.NID_RBC = rbcId;
             EVC22_MMICurrentRBC.MMI_NID_RADIO = mmiNidRadio; // RBC phone number
             EVC22_MMICurrentRBC.MMI_NID_WINDOW = mmiNidWindow; // ETCS Window Id
@@ -689,7 +687,7 @@ namespace Testcase.DMITestCases
         /// <param name="pool"></param>
         public static void Display_RBC_Contact_Window_Data_Unknown(SignalPool pool)
         {
-            Send_EVC22_MMI_Current_Rbc
+            Send_EVC22_MMI_Current_RBC
                 (pool, 0, 0, 5, true, EVC22_MMICurrentRBC.EVC22BUTTONS.NoButton, null);
 
             EVC30_MMIRequestEnable.SendBlank();
