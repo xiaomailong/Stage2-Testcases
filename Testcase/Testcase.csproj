@@ -316,7 +316,7 @@ if exist "$(TargetPath)" if not exist "$(TargetPath).locked" move "$(TargetPath)
     <Compile Include="DMITestCases\27 Sub-Level Window Selection\27.7\27.7.1 Data_view_window_for_Flexible_Train_data_entry.cs" />
     <Compile Include="DMITestCases\27 Sub-Level Window Selection\27.7\27.7.2 Data_view_window_for_Fixed_Train_data_entry.cs" />
     <Compile Include="DMITestCases\27 Sub-Level Window Selection\27.7\27.7.3 Data_view_window_for_the_text_which_longer_than_maximum_width.cs" />
-    <Compile Include="DMITestCases\27 Sub-Level Window Selection\27.8\27.8.1.1 TitleUnknown3.cs" />
+    <Compile Include="DMITestCases\27 Sub-Level Window Selection\27.8\27.8.1.1 RBC Data_window_General_appearance.cs" />
     <Compile Include="DMITestCases\27 Sub-Level Window Selection\27.8\27.8.1.4 RBC_data_Data_Checks_Technical_Range_Checks_by_Data_Validity.cs" />
     <Compile Include="DMITestCases\27 Sub-Level Window Selection\27.8\27.8.2.1 Radio_Network_ID_window_General_appearance.cs" />
     <Compile Include="DMITestCases\27 Sub-Level Window Selection\27.8\27.8.3.1 RBC_Contact_window_General_appearance.cs" />
@@ -622,6 +622,15 @@ if exist "$(TargetPath)" if not exist "$(TargetPath).locked" move "$(TargetPath)
     <Compile Include="XML Packets\22\XML_22_7_1_b.cs" />
     <Compile Include="XML Packets\22\XML_22_7_2_a.cs" />
     <Compile Include="XML Packets\22\XML_22_7_2_b.cs" />
+    <Compile Include="XML Packets\22\XML_22_8_1_1_a.cs" />
+    <Compile Include="XML Packets\22\XML_22_8_1_1_b.cs" />
+    <Compile Include="XML Packets\22\XML_22_8_1_1_c.cs" />
+    <Compile Include="XML Packets\22\XML_22_8_1_1_d.cs" />
+    <Compile Include="XML Packets\22\XML_22_8_1_4_a.cs" />
+    <Compile Include="XML Packets\22\XML_22_8_2_1_a.cs" />
+    <Compile Include="XML Packets\22\XML_22_8_2_1_b.cs" />
+    <Compile Include="XML Packets\22\XML_22_8_3_1_a.cs" />
+    <Compile Include="XML Packets\22\XML_22_8_3_1_b.cs" />
     <Compile Include="XML Packets\2\XML_2_5_1_a.cs" />
     <Compile Include="XML Packets\2\XML_2_6_a.cs" />
     <Compile Include="XML Packets\5\XML_5_10_a.cs" />

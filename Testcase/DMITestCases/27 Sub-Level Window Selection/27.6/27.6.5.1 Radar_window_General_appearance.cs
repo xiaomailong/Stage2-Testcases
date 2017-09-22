@@ -577,7 +577,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Whilst keeping the ‘Yes’ button pressed, drag it back inside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘Yes’ button is displayed pressed" + Environment.NewLine +
+                                "1. The ‘Yes’ button is displayed pressed." + Environment.NewLine +
                                 "2. No sound is played.");
             
             /*
