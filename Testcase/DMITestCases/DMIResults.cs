@@ -560,6 +560,10 @@ namespace Testcase.DMITestCases
                                 "2. Type the same Driver ID on the DMI." + Environment.NewLine +
                                 "3. Confirmed the entered value by pressing the input field.", "Driver ID");
             */
+
+            DmiActions.ShowInstruction(pool, @"Perform the following action within 5 seconds after pressing OK : " + Environment.NewLine + Environment.NewLine +
+                                "1. Enter and validate Driver ID");
+            pool.Wait_Realtime(5000);
             string driverIDInput = EVC104_MMINewDriverData.Get_X_DRIVER_ID;
             pool.WaitForVerification($"Is \"{driverIDInput}\" the Driver Id entered?");
 
@@ -578,6 +582,10 @@ namespace Testcase.DMITestCases
                                 "2. Type the same TRN on the DMI." + Environment.NewLine +
                                 "3. Confirmed the entered value by pressing the input field.", "Driver ID");
             */
+
+            DmiActions.ShowInstruction(pool, @"Perform the following action within 5 seconds after pressing OK : " + Environment.NewLine + Environment.NewLine +
+                                "1. Enter and validate Train Running Number");
+            pool.Wait_Realtime(5000);
             uint trnInput = EVC116_MMINewTrainNumber.Get_NID_OPERATION;
             pool.WaitForVerification($"Is \"{trnInput}\" the Train running number entered?");
         }
@@ -607,8 +615,8 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void Train_Data_Button_pressed_and_released(SignalPool pool)
         {
-            EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.StartTrainDataEntry;
-            //pool.Wait_Realtime(100);
+            DmiActions.ShowInstruction(pool, @"Perform the following action within 3 seconds after pressing OK : " + Environment.NewLine + Environment.NewLine +
+                                "1. Press \"Train Data\".");
             EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.StartTrainDataEntry;
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.TrainDataEntryRequested;
         }
@@ -622,6 +630,10 @@ namespace Testcase.DMITestCases
         /// <param name="pool"></param>
         public static void Level_0_Selected(SignalPool pool)
         {
+            DmiActions.ShowInstruction(pool, @"Perform the following action within 3 seconds after pressing OK : " + Environment.NewLine + Environment.NewLine +
+                                "1. Select and enter Level 0");
+            pool.Wait_Realtime(5000);
+
             EVC121_MMINewLevel.Check_MMI_M_LEVEL_NTC_ID = MMI_M_LEVEL_NTC_ID.L0;
             EVC121_MMINewLevel.Check_MMI_Q_LEVEL_NTC_ID = MMI_Q_LEVEL_NTC_ID.ETCS_Level;
             EVC121_MMINewLevel.Check_MMI_M_LEVEL_FLAG = MMI_M_LEVEL_FLAG.MarkedLevel;
@@ -638,6 +650,9 @@ namespace Testcase.DMITestCases
         /// <param name="pool"></param>
         public static void Level_1_Selected(SignalPool pool)
         {
+            DmiActions.ShowInstruction(pool, @"Perform the following action within 3 seconds after pressing OK : " + Environment.NewLine + Environment.NewLine +
+                                "1. Select and enter Level 1");
+            pool.Wait_Realtime(5000);
             EVC121_MMINewLevel.Check_MMI_M_LEVEL_NTC_ID = MMI_M_LEVEL_NTC_ID.L1;
             EVC121_MMINewLevel.Check_MMI_Q_LEVEL_NTC_ID = MMI_Q_LEVEL_NTC_ID.ETCS_Level;
             EVC121_MMINewLevel.Check_MMI_M_LEVEL_FLAG = MMI_M_LEVEL_FLAG.MarkedLevel;
@@ -654,6 +669,9 @@ namespace Testcase.DMITestCases
         /// <param name="pool"></param>
         public static void Level_2_Selected(SignalPool pool)
         {
+            DmiActions.ShowInstruction(pool, @"Perform the following action within 3 seconds after pressing OK : " + Environment.NewLine + Environment.NewLine +
+                                "1. Select and enter Level 2");
+            pool.Wait_Realtime(5000);
             EVC121_MMINewLevel.Check_MMI_M_LEVEL_NTC_ID = MMI_M_LEVEL_NTC_ID.L2;
             EVC121_MMINewLevel.Check_MMI_Q_LEVEL_NTC_ID = MMI_Q_LEVEL_NTC_ID.ETCS_Level;
             EVC121_MMINewLevel.Check_MMI_M_LEVEL_FLAG = MMI_M_LEVEL_FLAG.MarkedLevel;
