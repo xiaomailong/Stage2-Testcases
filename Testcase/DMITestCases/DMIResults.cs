@@ -76,9 +76,6 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void L0_Announcement_Ack_pressed_and_released(SignalPool pool)
         {
-            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
-            //pool.Wait_Realtime(100);
-            //EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.Level0Ack;
             pool.WaitForVerification("Has the LE07 symbol disappeared and been replaced with LE06 symbol in sub-area C1?");
         }
@@ -100,9 +97,6 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void LS_Mode_Ack_pressed_and_released(SignalPool pool)
         {
-            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
-            //pool.Wait_Realtime(100);
-            //EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.LimitedSupervisionModeAck;
             pool.WaitForVerification("Has the MO22 symbol disappeared from sub-area C1?");
         }
@@ -149,9 +143,6 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void OS_Mode_Ack_pressed_and_released(SignalPool pool)
         {
-            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
-            //pool.Wait_Realtime(100);
-            //EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.OnSightModeAck;
             pool.WaitForVerification("Has the MO08 symbol disappeared from sub-area C1?");
         }
@@ -173,8 +164,6 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void SR_Mode_Ack_pressed_and_released(SignalPool pool)
         {
-            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
-            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
             pool.WaitForVerification("Is the MO10 (Acknowledgement for Staff Responsible mode) symbol frame flashing?");
         }
 
@@ -185,9 +174,6 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void SR_Mode_Ack_pressed_and_hold(SignalPool pool)
         {
-            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
-            pool.Wait_Realtime(2000);
-            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.StaffResponsibleModeAck;
             pool.WaitForVerification("Has the MO10 (Acknowledgement for Staff Responsible mode) symbol opacity decreased to 50%?");
             
@@ -210,9 +196,6 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void UN_Mode_Ack_pressed_and_released(SignalPool pool)
         {
-            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
-            pool.Wait_Realtime(100);
-            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.UnfittedModeAck;
             pool.WaitForVerification("Has the MO17 (Acknowledgement for Unfitted mode) symbol disappeared from sub-area C1?");
         }
@@ -256,8 +239,6 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void Brake_Intervention_symbol_pressed_and_released(SignalPool pool)
         {
-            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
-            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_EB_Status = 0;
         }
 
@@ -268,8 +249,6 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void TR_Mode_Ack_pressed_and_released(SignalPool pool)
         {
-            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
-            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.TrainTripAck;
             pool.WaitForVerification("Has the MO05 (Acknowledgement for Trip) symbol disappeared from sub-area C1?");
         }
@@ -281,8 +260,6 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void RV_Mode_Ack_pressed_and_released(SignalPool pool)
         {
-            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
-            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.ReversingModeAck;
             pool.WaitForVerification("Has the MO15 (Acknowledgement for Reversing) symbol disappeared from sub-area C1?");
         }
@@ -560,6 +537,10 @@ namespace Testcase.DMITestCases
                                 "2. Type the same Driver ID on the DMI." + Environment.NewLine +
                                 "3. Confirmed the entered value by pressing the input field.", "Driver ID");
             */
+
+            DmiActions.ShowInstruction(pool, @"Perform the following action within 5 seconds after pressing OK : " + Environment.NewLine + Environment.NewLine +
+                                "1. Enter and validate Driver ID");
+            pool.Wait_Realtime(5000);
             string driverIDInput = EVC104_MMINewDriverData.Get_X_DRIVER_ID;
             pool.WaitForVerification($"Is \"{driverIDInput}\" the Driver Id entered?");
 
@@ -578,6 +559,10 @@ namespace Testcase.DMITestCases
                                 "2. Type the same TRN on the DMI." + Environment.NewLine +
                                 "3. Confirmed the entered value by pressing the input field.", "Driver ID");
             */
+
+            DmiActions.ShowInstruction(pool, @"Perform the following action within 5 seconds after pressing OK : " + Environment.NewLine + Environment.NewLine +
+                                "1. Enter and validate Train Running Number");
+            pool.Wait_Realtime(5000);
             uint trnInput = EVC116_MMINewTrainNumber.Get_NID_OPERATION;
             pool.WaitForVerification($"Is \"{trnInput}\" the Train running number entered?");
         }
@@ -596,8 +581,10 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(pool, "Press \"" + _sOrder + "\" on DMI in area E.");
 
-            if (order) { EVC111_MMIDriverMessageAck.Check_MMI_Q_ACK = EVC111_MMIDriverMessageAck.MMI_Q_ACK.AcknowledgeYES; }
-            else { EVC111_MMIDriverMessageAck.Check_MMI_Q_ACK = EVC111_MMIDriverMessageAck.MMI_Q_ACK.NotAcknowledgeNO; }
+            EVC111_MMIDriverMessageAck.MMI_I_TEXT = 1;
+
+            if (order) { EVC111_MMIDriverMessageAck.CHECK_MMI_Q_ACK = EVC111_MMIDriverMessageAck.MMI_Q_ACK.AcknowledgeYES; }
+            else { EVC111_MMIDriverMessageAck.CHECK_MMI_Q_ACK = EVC111_MMIDriverMessageAck.MMI_Q_ACK.NotAcknowledgeNO; }
         }
 
         /// <summary>
@@ -607,8 +594,8 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void Train_Data_Button_pressed_and_released(SignalPool pool)
         {
-            EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.StartTrainDataEntry;
-            //pool.Wait_Realtime(100);
+            DmiActions.ShowInstruction(pool, @"Perform the following action within 3 seconds after pressing OK : " + Environment.NewLine + Environment.NewLine +
+                                "1. Press \"Train Data\".");
             EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.StartTrainDataEntry;
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.TrainDataEntryRequested;
         }
@@ -622,6 +609,10 @@ namespace Testcase.DMITestCases
         /// <param name="pool"></param>
         public static void Level_0_Selected(SignalPool pool)
         {
+            DmiActions.ShowInstruction(pool, @"Perform the following action within 3 seconds after pressing OK : " + Environment.NewLine + Environment.NewLine +
+                                "1. Select and enter Level 0");
+            pool.Wait_Realtime(5000);
+
             EVC121_MMINewLevel.Check_MMI_M_LEVEL_NTC_ID = MMI_M_LEVEL_NTC_ID.L0;
             EVC121_MMINewLevel.Check_MMI_Q_LEVEL_NTC_ID = MMI_Q_LEVEL_NTC_ID.ETCS_Level;
             EVC121_MMINewLevel.Check_MMI_M_LEVEL_FLAG = MMI_M_LEVEL_FLAG.MarkedLevel;
@@ -638,6 +629,9 @@ namespace Testcase.DMITestCases
         /// <param name="pool"></param>
         public static void Level_1_Selected(SignalPool pool)
         {
+            DmiActions.ShowInstruction(pool, @"Perform the following action within 3 seconds after pressing OK : " + Environment.NewLine + Environment.NewLine +
+                                "1. Select and enter Level 1");
+            pool.Wait_Realtime(5000);
             EVC121_MMINewLevel.Check_MMI_M_LEVEL_NTC_ID = MMI_M_LEVEL_NTC_ID.L1;
             EVC121_MMINewLevel.Check_MMI_Q_LEVEL_NTC_ID = MMI_Q_LEVEL_NTC_ID.ETCS_Level;
             EVC121_MMINewLevel.Check_MMI_M_LEVEL_FLAG = MMI_M_LEVEL_FLAG.MarkedLevel;
@@ -654,6 +648,9 @@ namespace Testcase.DMITestCases
         /// <param name="pool"></param>
         public static void Level_2_Selected(SignalPool pool)
         {
+            DmiActions.ShowInstruction(pool, @"Perform the following action within 3 seconds after pressing OK : " + Environment.NewLine + Environment.NewLine +
+                                "1. Select and enter Level 2");
+            pool.Wait_Realtime(5000);
             EVC121_MMINewLevel.Check_MMI_M_LEVEL_NTC_ID = MMI_M_LEVEL_NTC_ID.L2;
             EVC121_MMINewLevel.Check_MMI_Q_LEVEL_NTC_ID = MMI_Q_LEVEL_NTC_ID.ETCS_Level;
             EVC121_MMINewLevel.Check_MMI_M_LEVEL_FLAG = MMI_M_LEVEL_FLAG.MarkedLevel;

@@ -25,7 +25,7 @@ namespace Testcase.Telegrams.DMItoEVC
         /// <param name="pool"></param>
         public static void Initialise(SignalPool pool)
         {
-            _pool = pool;            
+            _pool = pool;
         }
 
         private static void CheckActiveCabin(Variables.MMI_M_ACTIVE_CABIN mActiveCabin)
@@ -35,24 +35,15 @@ namespace Testcase.Telegrams.DMItoEVC
             
             // Extract MMI_M_ACTIVE_CABIN (4th and 5th bits according to VSIS 2.9)
             byte mmiMActiveCabin = (byte)((evc102Alias1B0 & 0x30) >> 4); // xxxx xxxx -> 00xx 0000 -> 0000 00xx
-
-            // For each element of enum MMI_M_ACTIV_CABIN
-            foreach (Variables.MMI_M_ACTIVE_CABIN mmiMActiveCabinElement in Enum.GetValues(typeof(Variables.MMI_M_ACTIVE_CABIN)))
-            {
-                // Compare to the value to be checked
-                if (mmiMActiveCabinElement == mActiveCabin)
-                {
-                    // Check MMI_M_ACTIV_CABIN value
-                    _checkResult = mmiMActiveCabin.Equals((byte)mActiveCabin);
-                    break;
-                }
-            }
+            
+            // Check MMI_M_ACTIV_CABIN value
+            _checkResult = mmiMActiveCabin.Equals((byte)mActiveCabin);
 
             // If passed
             if (_checkResult)
             {
                 _pool.TraceReport("DMI->ETCS: Check EVC-102 [MMI_STATUS_REPORT.MMI_M_ACTIVE_CABIN] = " +
-                                (byte)mActiveCabin + " - \"" + mActiveCabin + "\"" + "Result: PASSED.");
+                                    (byte)mActiveCabin + " - \"" + mActiveCabin + "\"" + "Result: PASSED.");
             }
 
             // Display the real value extracted from EVC-102 [MMI_STATUS_REPORT.MMI_M_ACTIVE_CABIN]
@@ -68,22 +59,9 @@ namespace Testcase.Telegrams.DMItoEVC
 
         private static void CheckModeReadBack(MMI_M_MODE_READBACK mModeReadBack)
         {
-            // Get current mode
-            byte currentMode = _pool.SITR.CCUO.ETCS1StatusReport.MmiMModeReadback.Value;
-
-            // For each element of enum MMI_M_MODE_READBACK 
-            foreach (MMI_M_MODE_READBACK mmiMModeReadBackElement in Enum.GetValues(typeof(MMI_M_MODE_READBACK)))
-            {
-                // Compare to the value to be checked
-                if (mmiMModeReadBackElement == mModeReadBack)
-                {
-                    // Check MMI_M_MODE_READBACK value
-                    //_checkResult = currentMode.Equals((byte)mModeReadBack);
-                    _checkResult = _pool.SITR.CCUO.ETCS1StatusReport.MmiMModeReadback.WaitForCondition(Is.Equal, (byte)mModeReadBack, 5000, 20);                
-                    break;
-                }
-            }
-            
+            // Check MMI_M_MODE_READBACK value
+            _checkResult = _pool.SITR.CCUO.ETCS1StatusReport.MmiMModeReadback.WaitForCondition(Is.Equal, (byte)mModeReadBack, 5000, 20);
+                        
             // If passed
             if (_checkResult)
             {
@@ -94,8 +72,11 @@ namespace Testcase.Telegrams.DMItoEVC
             // Display the real value extracted from EVC-102 [MMI_STATUS_REPORT.MMI_M_MODE_READBACK]
             else
             {
-                _pool.TraceError("DMI->ETCS: Check EVC-102 [MMI_STATUS_REPORT.MMI_M_MODE_READBACK] = " + 
-                                    (byte)mModeReadBack + " - \"" + mModeReadBack + "\"" + "Result: FAILED!" + 
+                // Get current mode
+                byte currentMode = _pool.SITR.CCUO.ETCS1StatusReport.MmiMModeReadback.Value;
+
+                _pool.TraceError("DMI->ETCS: Check EVC-102 [MMI_STATUS_REPORT.MMI_M_MODE_READBACK] = " +
+                                    (byte)mModeReadBack + " - \"" + mModeReadBack + "\"" + "Result: FAILED!" +
                                     Environment.NewLine +
                                     "Current active mode = " + currentMode + " - \"" +
                                     Enum.GetName(typeof(MMI_M_MODE_READBACK), currentMode));
@@ -104,6 +85,7 @@ namespace Testcase.Telegrams.DMItoEVC
 
         /// <summary>
         /// Defines the identity of the activated cabin
+        /// 
         /// Values:
         /// 0 = "No cabin is active"
         /// 1 = "Cabin 1 is active"
@@ -125,24 +107,25 @@ namespace Testcase.Telegrams.DMItoEVC
         /// Values:
         /// 0 = "Shown Mode Invalid"
         /// 1 = "No Mode displayed"
-        /// 255 = "FS - Full Supervision"
-        /// 254 = "OS - On-sight"
-        /// 253 = "SR - Staff Responsible"
-        /// 252 = "SH - Shunting"
-        /// 251 = "UN - Unfitted"
-        /// 250 = "SL - Sleeping"
-        /// 249 = "SB - Standby"
-        /// 248 = "TR - Trip"
-        /// 247 = "PT - Post trip"
-        /// 246 = "SF - System failure"
-        /// 245 = "IS - Isolation"
-        /// 244 = "NL - Non-leading"
-        /// 243 = "LS - Limited Supervision"
-        /// 242 = "SN - National System"
-        /// 241 = "RV - Reversing"
-        /// 240 = "PS - Passive Shunting"
-        /// 239 = "NP - No Power"
         /// 2..238 = "Not used"
+        /// 239 = "NP - No Power"
+        /// 240 = "PS - Passive Shunting"
+        /// 241 = "RV - Reversing"
+        /// 242 = "SN - National System"
+        /// 243 = "LS - Limited Supervision"
+        /// 244 = "NL - Non-leading"
+        /// 245 = "IS - Isolation"
+        /// 246 = "SF - System failure"
+        /// 247 = "PT - Post trip"
+        /// 248 = "TR - Trip"
+        /// 249 = "SB - Standby"
+        /// 250 = "SL - Sleeping"
+        /// 251 = "UN - Unfitted"
+        /// 252 = "SH - Shunting"
+        /// 253 = "SR - Staff Responsible"
+        /// 254 = "OS - On-sight"
+        /// 255 = "FS - Full Supervision"
+        /// 
         /// Note: The Read-Back values of the mode shall be bit-inverted compared to the sent mode.
         /// </summary>
         public static MMI_M_MODE_READBACK Check_MMI_M_MODE_READBACK
@@ -155,7 +138,31 @@ namespace Testcase.Telegrams.DMItoEVC
         }
 
         /// <summary>
-        /// Enum used for Check_MMI_M_MODE_READBACK
+        /// Check_MMI_M_MODE_READBACK enum
+        /// 
+        /// Values:
+        /// 0 = "Shown Mode Invalid"
+        /// 1 = "No Mode displayed"
+        /// 2..238 = "Not used"
+        /// 239 = "NP - No Power"
+        /// 240 = "PS - Passive Shunting"
+        /// 241 = "RV - Reversing"
+        /// 242 = "SN - National System"
+        /// 243 = "LS - Limited Supervision"
+        /// 244 = "NL - Non-leading"
+        /// 245 = "IS - Isolation"
+        /// 246 = "SF - System failure"
+        /// 247 = "PT - Post trip"
+        /// 248 = "TR - Trip"
+        /// 249 = "SB - Standby"
+        /// 250 = "SL - Sleeping"
+        /// 251 = "UN - Unfitted"
+        /// 252 = "SH - Shunting"
+        /// 253 = "SR - Staff Responsible"
+        /// 254 = "OS - On-sight"
+        /// 255 = "FS - Full Supervision"
+        /// 
+        /// Note: The Read-Back values of the mode shall be bit-inverted compared to the sent mode.
         /// </summary>
         public enum MMI_M_MODE_READBACK : ushort
         {

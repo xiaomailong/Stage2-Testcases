@@ -90,8 +90,6 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 4470 (partly: 'NACK', MMI_gen 4381 (partly: the sound for Up-Type button)); MMI_gen 4256 (partly: Click sound);(2) MMI_gen 4470 (partly: 'NACK', MMI_gen 4381 (partly: change to state ‘Pressed’ as long as remain actuated));(3) MMI_gen 4470 (partly: MMI_gen 11387 (partly: send events of Pressed independently to ETCS), MMI_gen 11907 (partly: EVC-111, timestamp)); MMI_gen 3375; MMI_gen 3200 (partly: NACK button, pressed);
             */
             DmiActions.ShowInstruction(this, "Press and hold the ‘NACK’ button");
-
-            Telegrams.DMItoEVC.EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
             
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Click’ sound is played once." + Environment.NewLine +
@@ -132,8 +130,6 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, "Release the ‘NACK’ button");
 
-            Telegrams.DMItoEVC.EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
-
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI stops displaying the acknowledgement buttons.");
 
@@ -148,8 +144,6 @@ namespace Testcase.DMITestCases
             
             // Repeat Step 2
             DmiActions.ShowInstruction(this, "Press and hold the ‘ACK’ button");
-
-            Telegrams.DMItoEVC.EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Click’ sound is played once." + Environment.NewLine +
@@ -171,8 +165,6 @@ namespace Testcase.DMITestCases
 
             // Repeat Step 5
             DmiActions.ShowInstruction(this, "Release the ‘NACK’ button");
-
-            Telegrams.DMItoEVC.EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI stops displaying the acknowledgement buttons.");
@@ -197,8 +189,6 @@ namespace Testcase.DMITestCases
             Test Step Comment: (2) MMI_gen 3200 (partly: Text acknowledgement, MMI_gen 4381 (partly: change to state ‘Pressed’ as long as remain actuated));(3) MMI_gen 3200 (partly: Text acknowledgement, pressed, MMI_gen 11387 (partly: send events of Pressed independently to ETCS), MMI_gen 11907 (partly: EVC-101, timestamp)); (Continue from step 7)Send EVC-8 with, MMI_Q_TEXT = 269MMI_Q_TEXT_CRITERIA = 1MMI_I_TEXT = 8The display information on DMI still not change, ST01 symbol is displayed on sub-area C9
             */
             DmiActions.ShowInstruction(this, "Press and hold sub-area E5");
-
-            Telegrams.DMItoEVC.EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Click’ sound is played once." + Environment.NewLine +
@@ -238,8 +228,6 @@ namespace Testcase.DMITestCases
             Test Step Comment: (2) MMI_gen 3200 (partly: Text acknowledgement, released, MMI_gen 11387 (partly: send events of Released independently to ETCS), MMI_gen 11907 (partly: EVC-101, timestamp));        
             */
             DmiActions.ShowInstruction(this, "Release sub-area E5");
-
-            Telegrams.DMItoEVC.EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI still displays the message ‘Brake test aborted. Perform new Test?’" + Environment.NewLine +
