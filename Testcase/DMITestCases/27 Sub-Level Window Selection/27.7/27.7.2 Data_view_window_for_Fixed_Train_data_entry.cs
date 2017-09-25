@@ -86,7 +86,7 @@ namespace Testcase.DMITestCases
 
             // Spec says display Train Running number which is in EVC6...
             //
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+            WaitForVerification("Check the following (* indicates sub-areas drawn as one area):" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Data view window." + Environment.NewLine +
                                 "2. The Data view window covers (Main) areas D, F and G." + Environment.NewLine +
                                 "3. Layer 0 comprises Areas D, F, G, E10, E11, Z, Y." + Environment.NewLine +
