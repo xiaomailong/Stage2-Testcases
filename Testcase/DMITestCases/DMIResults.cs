@@ -583,8 +583,17 @@ namespace Testcase.DMITestCases
 
             EVC111_MMIDriverMessageAck.MMI_I_TEXT = 1;
 
-            if (order) { EVC111_MMIDriverMessageAck.CHECK_MMI_Q_ACK = EVC111_MMIDriverMessageAck.MMI_Q_ACK.AcknowledgeYES; }
-            else { EVC111_MMIDriverMessageAck.CHECK_MMI_Q_ACK = EVC111_MMIDriverMessageAck.MMI_Q_ACK.NotAcknowledgeNO; }
+            if (order)
+            {
+                EVC111_MMIDriverMessageAck.MMI_Q_ACK = MMI_Q_ACK.AcknowledgeYES;
+                EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
+            }
+
+            else
+            {
+                EVC111_MMIDriverMessageAck.MMI_Q_ACK = MMI_Q_ACK.NotAcknowledgeNO;
+                EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
+            }
         }
 
         /// <summary>
