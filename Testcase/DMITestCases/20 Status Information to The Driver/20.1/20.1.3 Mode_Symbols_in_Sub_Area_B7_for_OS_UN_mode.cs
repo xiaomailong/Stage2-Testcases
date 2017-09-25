@@ -72,7 +72,6 @@ namespace Testcase.DMITestCases
             DmiActions.Activate_Cabin_1(this);
             DmiExpectedResults.Cabin_A_is_activated(this);
 
-            DmiActions.Display_Driver_ID_Window(this);
             DmiActions.Set_Driver_ID(this, "1234");
             DmiActions.Send_SB_Mode(this);
             DmiExpectedResults.Driver_ID_window_displayed_in_SB_mode(this);
@@ -84,8 +83,7 @@ namespace Testcase.DMITestCases
             Action: Enter Driver ID and perform brake test
             Expected Result: DMI displays Level window
             */
-            
-            DmiActions.Set_Driver_ID(this, "1234");
+
             DmiExpectedResults.Driver_ID_entered(this);
 
             DmiActions.Request_Brake_Test(this);
@@ -104,9 +102,7 @@ namespace Testcase.DMITestCases
             a)   MMI_M_DRIVER_ACTION = 34 (Level 0 selected)
             Test Step Comment: (1) MMI_gen 11470 (partly: Bit # 34);
             */
-
-            DmiActions.ShowInstruction(this, @"Perform the following action within 3 seconds after pressing OK : " + Environment.NewLine + Environment.NewLine +
-                                "1. Select and enter Level 0");
+            
             DmiExpectedResults.Level_0_Selected(this);
 
             DmiActions.Display_Main_Window_with_Start_button_not_enabled(this);
@@ -119,14 +115,15 @@ namespace Testcase.DMITestCases
             Action: Press ‘Train data’ button
             Expected Result: DMI displays Train data window
             */
-
-            DmiActions.ShowInstruction(this, @"Press ‘Train data’ button");
+            
             DmiExpectedResults.Train_Data_Button_pressed_and_released(this);
 
             DmiActions.Display_Train_Data_Window(this);
             DmiExpectedResults.Train_data_window_displayed(this);
 
             #endregion
+
+            return GlobalTestResult;
 
             #region Test Step 5
             /*
@@ -392,7 +389,6 @@ namespace Testcase.DMITestCases
             */
             #endregion
 
-            return GlobalTestResult;
         }
     }
 }
