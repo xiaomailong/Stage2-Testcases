@@ -76,6 +76,9 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void L0_Announcement_Ack_pressed_and_released(SignalPool pool)
         {
+            EVC111_MMIDriverMessageAck.MMI_Q_ACK = MMI_Q_ACK.AcknowledgeYES;
+            EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = MMI_Q_BUTTON.Pressed;
+            EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = MMI_Q_BUTTON.Released;
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.Level0Ack;
             pool.WaitForVerification("Has the LE07 symbol disappeared and been replaced with LE06 symbol in sub-area C1?");
         }
@@ -97,6 +100,9 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void LS_Mode_Ack_pressed_and_released(SignalPool pool)
         {
+            EVC111_MMIDriverMessageAck.MMI_Q_ACK = MMI_Q_ACK.AcknowledgeYES;
+            EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = MMI_Q_BUTTON.Pressed;
+            EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = MMI_Q_BUTTON.Released;
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.LimitedSupervisionModeAck;
             pool.WaitForVerification("Has the MO22 symbol disappeared from sub-area C1?");
         }
@@ -143,6 +149,9 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void OS_Mode_Ack_pressed_and_released(SignalPool pool)
         {
+            EVC111_MMIDriverMessageAck.MMI_Q_ACK = MMI_Q_ACK.AcknowledgeYES;
+            EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = MMI_Q_BUTTON.Pressed;
+            EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = MMI_Q_BUTTON.Released;
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.OnSightModeAck;
             pool.WaitForVerification("Has the MO08 symbol disappeared from sub-area C1?");
         }
@@ -196,6 +205,9 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void UN_Mode_Ack_pressed_and_released(SignalPool pool)
         {
+            EVC111_MMIDriverMessageAck.MMI_Q_ACK = MMI_Q_ACK.AcknowledgeYES;
+            EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = MMI_Q_BUTTON.Pressed;
+            EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = MMI_Q_BUTTON.Released;
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.UnfittedModeAck;
             pool.WaitForVerification("Has the MO17 (Acknowledgement for Unfitted mode) symbol disappeared from sub-area C1?");
         }
@@ -249,6 +261,9 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void TR_Mode_Ack_pressed_and_released(SignalPool pool)
         {
+            EVC111_MMIDriverMessageAck.MMI_Q_ACK = MMI_Q_ACK.AcknowledgeYES;
+            EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = MMI_Q_BUTTON.Pressed;
+            EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = MMI_Q_BUTTON.Released;
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.TrainTripAck;
             pool.WaitForVerification("Has the MO05 (Acknowledgement for Trip) symbol disappeared from sub-area C1?");
         }
@@ -260,6 +275,9 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void RV_Mode_Ack_pressed_and_released(SignalPool pool)
         {
+            EVC111_MMIDriverMessageAck.MMI_Q_ACK = MMI_Q_ACK.AcknowledgeYES;
+            EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = MMI_Q_BUTTON.Pressed;
+            EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = MMI_Q_BUTTON.Released;
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.ReversingModeAck;
             pool.WaitForVerification("Has the MO15 (Acknowledgement for Reversing) symbol disappeared from sub-area C1?");
         }
