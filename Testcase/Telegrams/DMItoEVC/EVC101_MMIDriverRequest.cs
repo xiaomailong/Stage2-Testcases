@@ -10,8 +10,7 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 namespace Testcase.Telegrams.DMItoEVC
 {
     /// <summary>
-    /// This packet shall be sent when the driver requests for an action from the ATP, 
-    /// typically by pressing a button..
+    /// This packet shall be sent when the driver requests for an action from the ATP, typically by pressing a button.
     /// </summary>
     public static class EVC101_MMIDriverRequest
     {
@@ -32,72 +31,39 @@ namespace Testcase.Telegrams.DMItoEVC
 
         private static void CheckMRequestState(Variables.MMI_M_REQUEST mRequest, Variables.MMI_Q_BUTTON qButton)
         {
-            // Convert qButton to a Byte value.
-            // All alignment bits in evc101alias1 should be set to 0 automatically hence bit-shifting should be no problem
+            // Convert qButton to a Byte value. All alignment bits in evc101alias1 should be set to 0
+            //  automatically hence bit-shifting should be no problem.
             _qbutton = Convert.ToByte((byte)qButton << 7);
             
-            // For each element of enum MMI_M_REQUEST
-            //foreach (Variables.MMI_M_REQUEST mmiMRequestElement in Enum.GetValues(typeof(Variables.MMI_M_REQUEST)))
-            //{
-                // Compare to the value to be checked
-                //if (mmiMRequestElement == mRequest)
-                //{
-                    var list = new List<Atomic>
-                    {
-                        _pool.SITR.CCUO.ETCS1DriverRequest.MmiMRequest.Atomic.WaitForCondition(Is.Equal, (byte)mRequest),
-                        _pool.SITR.CCUO.ETCS1DriverRequest.EVC101alias1.Atomic.WaitForCondition(Is.Equal, _qbutton)
-                    };
+            // List containing button type and pressed/released state
+            var list = new List<Atomic>
+            {
+                _pool.SITR.CCUO.ETCS1DriverRequest.MmiMRequest.Atomic.WaitForCondition(Is.Equal, (byte)mRequest),
+                _pool.SITR.CCUO.ETCS1DriverRequest.EVC101alias1.Atomic.WaitForCondition(Is.Equal, _qbutton)
+            };
 
-                    _checkResult = _pool.WaitForConditionAtomic(list, 10000, 20);
-                    //break;
-                //}
-            //}
-            //*/
-
-            // FIRST TRY - Robert and Johan suggestion
-            // Robert code that works:
-            // Note 1: Using Johan's suggestion, i don't think we need to use Atomic for anything, just the standard WFC.
-            // Note 2: I don't believe your Convert.ToByte((byte)qButton * 128 of the above code will work. I only had a quick think about the maths but
-            //         I believe you'll need to check for less than 128 for Released, or equal/greater than for Pressed.
-            /*
-            // var list = new List<Atomic>();
-            // list.Add(_pool.SITR.CCUO.ETCS1DriverRequest.MmiMRequest.Atomic.WaitForCondition(Is.Equal, (byte)mRequest));
-            // list.Add(_pool.SITR.CCUO.ETCS1DriverRequest.EVC101alias1.Atomic.WaitForCondition(Is.Equal, Convert.ToByte((byte)qButton * 128)));
-            // _checkResult = _pool.WaitForConditionAtomic(list, 5000, 20);
-
-            _checkResult = _pool.SITR.CCUO.ETCS1DriverRequest.MmiMRequest.WaitForCondition(Is.Equal, (byte)mRequest, 5000, 20);
-            //*/
-
-            // SECOND TRY - Samson suggestion
-            // - We obviously need to get the values of multiple fields from the same telegram ( MMI_M_REQUEST and MMI_Q_BUTTON (through EVC101alias1) in this case)
-            // - Use of Atomic might be needed, because we want to get MMI_M_REQUEST and EVC101alias1 values SIMULTANIOUSLY (Is that another way than using Atomic?)
-            // - Not only we need to check these value, we need to get them as they are going to be used for the "TraceError"
-            ///*
-
-           
-            //*/
-
-            if (_checkResult) // if check passes
+            _checkResult = _pool.WaitForConditionAtomic(list, 10000, 20);
+            
+            // If check passes
+            if (_checkResult) 
             {
                 _pool.TraceReport("DMI->ETCS: EVC-101 [MMI_DRIVER_REQUEST] => " + (byte)mRequest + " - \"" + mRequest +
                                     "\" -> " + qButton + " PASSED." + Environment.NewLine +
                                     "Timestamp = " + _pool.SITR.CCUO.ETCS1DriverRequest.MmiTButtonevent);
             }
 
-            // ORIGINAL VERSION OF CODE
-            ///*
-            else // else display the real values extracted from EVC-101 [MMI_DRIVER_REQUEST] 
+            // Else display the real values extracted from EVC-101 [MMI_DRIVER_REQUEST]
+            else
             {
-                _pool.TraceError("DMI->ETCS: Check EVC-101 [MMI_DRIVER_REQUEST] => MMI_M_REQUEST = " + 
+                _pool.TraceError("DMI->ETCS: Check EVC-101 [MMI_DRIVER_REQUEST] => MMI_M_REQUEST = " +
                                     Enum.GetName(typeof(Variables.MMI_M_REQUEST), mRequest) + ", MMI_Q_BUTTON = " +
                                     Enum.GetName(typeof(Variables.MMI_Q_BUTTON), qButton) + " Result: FAILED!");
             }
-            //*/
         }
 
         /// <summary>
         /// Driver Request enum
-        /// Values:
+        /// 
         /// Values:
         /// 0 = "Spare"
         /// 1 = "Start Shunting"
@@ -163,8 +129,9 @@ namespace Testcase.Telegrams.DMItoEVC
         /// 61 = "Exit RBC Network ID"
         /// 62..255 = "Spare"
         /// 
-        /// Note1: Values 3 and 4 also apply on customised Train Data Entry(packets EVC-60, EVC-61, EVC-160, EVC-161).
-        /// Note 2: The number of the NTC x in 'start NTC x data entry' will match the sequence number of the related NTC in the list provided with EVC-31.
+        /// Note 1: Values 3 and 4 also apply on customised Train Data Entry(packets EVC-60, EVC-61, EVC-160, EVC-161).
+        /// Note 2: The number of the NTC x in 'start NTC x data entry' will match the sequence number of the related
+        ///         NTC in the list provided with EVC-31.
         /// </summary>
         public static Variables.MMI_M_REQUEST CheckMRequestPressed
         {
@@ -177,7 +144,7 @@ namespace Testcase.Telegrams.DMItoEVC
 
         /// <summary>
         /// Driver Request enum
-        /// Values:
+        /// 
         /// Values:
         /// 0 = "Spare"
         /// 1 = "Start Shunting"
@@ -243,8 +210,9 @@ namespace Testcase.Telegrams.DMItoEVC
         /// 61 = "Exit RBC Network ID"
         /// 62..255 = "Spare"
         /// 
-        /// Note1: Values 3 and 4 also apply on customised Train Data Entry(packets EVC-60, EVC-61, EVC-160, EVC-161).
-        /// Note 2: The number of the NTC x in 'start NTC x data entry' will match the sequence number of the related NTC in the list provided with EVC-31.
+        /// Note 1: Values 3 and 4 also apply on customised Train Data Entry(packets EVC-60, EVC-61, EVC-160, EVC-161).
+        /// Note 2: The number of the NTC x in 'start NTC x data entry' will match the sequence number of the related
+        ///         NTC in the list provided with EVC-31.
         /// </summary>
         public static Variables.MMI_M_REQUEST CheckMRequestReleased
         {
