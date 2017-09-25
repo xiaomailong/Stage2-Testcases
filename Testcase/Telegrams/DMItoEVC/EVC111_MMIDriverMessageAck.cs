@@ -5,6 +5,7 @@ using System.Text;
 using System.Collections;
 using CL345;
 using Testcase.Telegrams.EVCtoDMI;
+using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 
 namespace Testcase.Telegrams.DMItoEVC
 {
@@ -14,9 +15,13 @@ namespace Testcase.Telegrams.DMItoEVC
     public static class EVC111_MMIDriverMessageAck
     {
         private static SignalPool _pool;
-        private static bool _bResult;
-        private static Variables.MMI_Q_BUTTON _qButton;
-        private static MMI_Q_ACK _qAck;
+        private static uint _timeStamp;
+        private static byte _mmiIText;
+        private static MMI_Q_ACK _mmiQAck;
+        private static Variables.MMI_Q_BUTTON _mmiQButton;
+        private static bool _checkResult;
+
+        static string baseString = "DMI->ETCS: EVC-111 [MMI_DRIVER_MESSAGE_ACK] MMI_I_TEXT = ";
 
         /// <summary>
         /// Initialise EVC-111 MMI_Driver_Message_Ack telegram.
@@ -28,100 +33,13 @@ namespace Testcase.Telegrams.DMItoEVC
             _pool.SITR.SMDCtrl.CCUO.ETCS1DriverMessageAck.Value = 1;
         }
 
-        private static void CheckButtonState(Variables.MMI_Q_BUTTON qButton)
-        {
-            // Convert byte EVC111_alias_1 into an array of bits.
-            BitArray _evc111alias1 = new BitArray(new[] { _pool.SITR.CCUO.ETCS1DriverMessageAck.EVC111alias1.Value });
-            
-            // Extract bool MMI_Q_BUTTON (4th bit according to VSIS 2.9)
-            bool _mmiQButton = _evc111alias1[3];
-
-            // Convert byte qButton to bool
-            BitArray _baqButton = new BitArray(new[] { (byte)qButton });
-            bool _bqButton = _baqButton[0];
-
-            // For each element of enum MMI_Q_BUTTON 
-            foreach (Variables.MMI_Q_BUTTON mmiQButtonElement in Enum.GetValues(typeof(Variables.MMI_Q_BUTTON)))
-            {
-                // Compare to the value to be checked
-                if (mmiQButtonElement == qButton)
-                {
-                    // Check MMI_Q_BUTTON value
-                    _bResult = _mmiQButton.Equals(_bqButton);
-                    break;
-                }
-            }
-
-            // If check passes
-            if (_bResult)
-            {
-                _pool.TraceReport("DMI->ETCS: EVC-111 [MMI_DRIVER_MESSAGE_ACK.MMI_Q_BUTTON] = \"" +
-                    qButton.ToString() + "\" PASSED. TimeStamp = " +
-                    _pool.SITR.CCUO.ETCS1DriverMessageAck.MmiTButtonEvent.Value);
-            }
-
-            // Else display the real value extracted from EVC-111 [MMI_DRIVER_MESSAGE_ACK]
-            else
-            {
-                _pool.TraceError("DMI->ETCS: EVC-111 [MMI_DRIVER_MESSAGE_ACK.MMI_Q_BUTTON] = \"" +
-                    Enum.GetName(typeof(Variables.MMI_Q_BUTTON), _mmiQButton) + "\" FAILED. TimeStamp = " +                    
-                    _pool.SITR.CCUO.ETCS1DriverMessageAck.MmiTButtonEvent.Value);
-            }
-
-
-        }
-
-        private static void CheckQAck(MMI_Q_ACK qAck)
-        {
-            // Get EVC111_alias_1
-            byte _evc111alias1 = _pool.SITR.CCUO.ETCS1DriverMessageAck.EVC111alias1.Value;
-            
-            // Extract MMI_Q_ACK (7th -> 4th bits according to VSIS 2.9)
-            byte _mmiQAck = (byte)((_evc111alias1 & 0xF0) >> 4); // xxxx xxxx -> xxxx 0000 -> 0000 xxxx
-
-            // For each element of enum MMI_Q_ACK
-            foreach (MMI_Q_ACK mmiQAckElement in Enum.GetValues(typeof(MMI_Q_ACK)))
-            {
-                // Compare to the value to be checked
-                if (mmiQAckElement == qAck)
-                {
-                    // Check MMI_Q_ACK value
-                    _bResult = _mmiQAck.Equals(qAck);
-                    break;
-                }
-            }
-
-            // If check passes
-            if (_bResult) 
-            {
-                _pool.TraceReport("DMI->ETCS: EVC-111 [MMI_DRIVER_MESSAGE_ACK.MMI_Q_ACK] = \"" +
-                    qAck.ToString() + "\" PASSED. TimeStamp = " +
-                    _pool.SITR.CCUO.ETCS1DriverMessageAck.MmiTButtonEvent.Value);
-            }
-
-            // Else display the real value extracted from EVC-111 [MMI_DRIVER_MESSAGE_ACK] 
-            else
-            {
-                _pool.TraceError("DMI->ETCS: EVC-111 [MMI_DRIVER_MESSAGE_ACK.MMI_Q_ACK] = \"" +
-                    Enum.GetName(typeof(MMI_Q_ACK), _mmiQAck) + "\" FAILED. TimeStamp = " +
-                    _pool.SITR.CCUO.ETCS1DriverMessageAck.MmiTButtonEvent.Value);
-            }
-        }
-
         /// <summary>
-        /// Button event (pressed or released)
-        /// 
-        /// Values:
-        /// 0 = "released"
-        /// 1 = "pressed"
+        /// Identifier of the acknowledged text to be checked
         /// </summary>
-        public static Variables.MMI_Q_BUTTON Check_MMI_Q_BUTTON
+        public static byte MMI_I_TEXT
         {
-            set
-            {
-                _qButton = value;
-                CheckButtonState(_qButton);
-            }
+            get => _mmiIText;
+            set => _mmiIText = value;
         }
 
         /// <summary>
@@ -133,23 +51,209 @@ namespace Testcase.Telegrams.DMItoEVC
         /// 2 = "Not Acknowledge / NO"
         /// 3..15 = "spare"
         /// </summary>
-        public static MMI_Q_ACK Check_MMI_Q_ACK
+        public static MMI_Q_ACK MMI_Q_ACK
+        {
+            get => _mmiQAck;
+            set => _mmiQAck = value;
+        }
+
+        public static Variables.MMI_Q_BUTTON MMI_Q_BUTTON
         {
             set
             {
-                _qAck = value;
-                CheckQAck(_qAck);
+                _mmiQButton = value;
+
+                if (_mmiQButton == Variables.MMI_Q_BUTTON.Pressed)
+                {
+                    if (_mmiQAck == MMI_Q_ACK.AcknowledgeYES)
+                    {
+                        Check_Driver_Message_Ack_Pressed();
+                    }
+
+                    else if (_mmiQAck == MMI_Q_ACK.NotAcknowledgeNO)
+                    {
+                        Check_Driver_Message_Not_Ack_Pressed();
+                    }
+
+                    else _pool.TraceError("MMI_Q_ACK is not valid.");
+                }
+
+                else if (_mmiQButton == Variables.MMI_Q_BUTTON.Released)
+                {
+                    if (_mmiQAck == MMI_Q_ACK.AcknowledgeYES)
+                    {
+                        Check_Driver_Message_Ack_Released();
+                    }
+
+                    else if (_mmiQAck == MMI_Q_ACK.NotAcknowledgeNO)
+                    {
+                        Check_Driver_Message_Not_Ack_Released();
+                    }
+
+                    else _pool.TraceError("MMI_Q_ACK is not valid.");
+                }
+
+                else _pool.TraceError("EVC-111 error. Make sure MMI_I_TEXT, MMI_Q_BUTTON, and MMI_Q_ACK are set to valid values.");
             }
         }
-        
+
         /// <summary>
-        /// Ack event enum
+        /// Check that a particular MMI_I_TEXT Acknowledged is Pressed.
         /// </summary>
-        public enum MMI_Q_ACK : byte
+        /// <param name="mmiIText">Identifier of the acknowledged text</param>
+        private static void Check_Driver_Message_Ack_Pressed()
         {
-            Spare = 0,
-            AcknowledgeYES = 1,
-            NotAcknowledgeNO = 2
+            var list = new List<Atomic>
+            {
+                _pool.SITR.CCUO.ETCS1DriverMessageAck.MmiIText.Atomic.WaitForCondition(Is.Equal, _mmiIText),
+                // EVC111_alias_1: MMI_Q_ACK bits = 00xx 0000
+                // EVC111_alias_1: MMI_Q_BUTTON bit = 0000 x000
+                _pool.SITR.CCUO.ETCS1DriverMessageAck.EVC111alias1.Atomic.WaitForCondition(Is.Equal, 0x18)
+            };
+
+            _checkResult = _pool.WaitForConditionAtomic(list, 10000, 20);
+
+            // Get time stamp of received packet
+            _timeStamp = _pool.SITR.CCUO.ETCS1DriverMessageAck.MmiTButtonEvent.Value;
+
+            // If check passes
+            if (_checkResult)
+            {
+                _pool.TraceReport(baseString + _mmiIText + Environment.NewLine +
+                                    "Time stamp = " + _timeStamp + Environment.NewLine +
+                                    "Result: Acknowledge Pressed PASSED.");
+            }
+
+            // Else display failure
+            else
+            {
+                _pool.TraceError(baseString + _mmiIText + Environment.NewLine +
+                                    "Time stamp = " + _timeStamp + Environment.NewLine +
+                                    "Result: Acknowledge Pressed FAILED.");
+            }
         }
+
+        /// <summary>
+        /// Check that a particular MMI_I_TEXT Acknowledged is Released
+        /// </summary>
+        /// <param name="mmiIText">Identifier of the acknowledged text</param>
+        private static void Check_Driver_Message_Ack_Released()
+        {
+            var list = new List<Atomic>
+            {
+                _pool.SITR.CCUO.ETCS1DriverMessageAck.MmiIText.Atomic.WaitForCondition(Is.Equal, _mmiIText),
+                // EVC111_alias_1: MMI_Q_ACK bits = 00xx 0000
+                // EVC111_alias_1: MMI_Q_BUTTON bit = 0000 x000
+                _pool.SITR.CCUO.ETCS1DriverMessageAck.EVC111alias1.Atomic.WaitForCondition(Is.Equal, 0x10)
+            };
+
+            _checkResult = _pool.WaitForConditionAtomic(list, 10000, 20);
+
+            // Get time stamp of received packet
+            _timeStamp = _pool.SITR.CCUO.ETCS1DriverMessageAck.MmiTButtonEvent.Value;
+
+            // If check passes
+            if (_checkResult)
+            {
+                _pool.TraceReport(baseString + _mmiIText + Environment.NewLine +
+                                    "Time stamp = " + _timeStamp + Environment.NewLine +
+                                    "Result: Acknowledge Released PASSED.");
+            }
+
+            // Else display failure
+            else
+            {
+                _pool.TraceError(baseString + _mmiIText + Environment.NewLine +
+                                    "Time stamp = " + _timeStamp + Environment.NewLine + 
+                                    "Result: Acknowledge Released FAILED.");
+            }
+        }
+
+        /// <summary>
+        /// Check that a particular MMI_I_TEXT NOT Acknowledged is Pressed
+        /// </summary>
+        /// <param name="mmiIText">Identifier of the acknowledged text</param>
+        private static void Check_Driver_Message_Not_Ack_Pressed()
+        {
+            var list = new List<Atomic>
+            {
+                _pool.SITR.CCUO.ETCS1DriverMessageAck.MmiIText.Atomic.WaitForCondition(Is.Equal, _mmiIText),
+                // EVC111_alias_1: MMI_Q_ACK bits = 00xx 0000
+                // EVC111_alias_1: MMI_Q_BUTTON bit = 0000 x000
+                _pool.SITR.CCUO.ETCS1DriverMessageAck.EVC111alias1.Atomic.WaitForCondition(Is.Equal, 0x28)
+            };
+
+            _checkResult = _pool.WaitForConditionAtomic(list, 10000, 20);
+
+            // Get time stamp of received packet
+            _timeStamp = _pool.SITR.CCUO.ETCS1DriverMessageAck.MmiTButtonEvent.Value;
+
+            // If check passes
+            if (_checkResult)
+            {
+                _pool.TraceReport(baseString + _mmiIText + Environment.NewLine +
+                                    "Time stamp = " + _timeStamp + Environment.NewLine +
+                                    "Result: NOT Acknowledge Pressed PASSED.");
+            }
+
+            // Else display failure
+            else
+            {
+                _pool.TraceError(baseString + _mmiIText + Environment.NewLine +
+                                    "Time stamp = " + _timeStamp + Environment.NewLine +
+                                    "Result: NOT Acknowledge Pressed FAILED.");
+            }
+        }
+
+        /// <summary>
+        /// Check that a particular MMI_I_TEXT NOT Acknowledged is Released
+        /// </summary>
+        /// <param name="mmiIText">Identifier of the acknowledged text</param>
+        private static void Check_Driver_Message_Not_Ack_Released()
+        {
+            var list = new List<Atomic>
+            {
+                _pool.SITR.CCUO.ETCS1DriverMessageAck.MmiIText.Atomic.WaitForCondition(Is.Equal, _mmiIText),
+                // EVC111_alias_1: MMI_Q_ACK bits = 00xx 0000
+                // EVC111_alias_1: MMI_Q_BUTTON bit = 0000 x000
+                _pool.SITR.CCUO.ETCS1DriverMessageAck.EVC111alias1.Atomic.WaitForCondition(Is.Equal, 0x20)
+            };
+
+            _checkResult = _pool.WaitForConditionAtomic(list, 10000, 20);
+
+            // Get time stamp of received packet
+            _timeStamp = _pool.SITR.CCUO.ETCS1DriverMessageAck.MmiTButtonEvent.Value;
+
+            // If check passes
+            if (_checkResult)
+            {
+                _pool.TraceReport(baseString + _mmiIText + Environment.NewLine +
+                                    "Time stamp = " + _timeStamp + Environment.NewLine +
+                                    "Result: NOT Acknowledge Released PASSED.");
+            }
+
+            // Else display failure
+            else
+            {
+                _pool.TraceError(baseString + _mmiIText + Environment.NewLine +
+                                    "Time stamp = " + _timeStamp + Environment.NewLine +
+                                    "Result: NOT Acknowledge Released FAILED.");
+            }
+        }
+    }
+
+    /// <summary>
+    /// MMI_Q_ACK enum
+    /// 
+    /// Values:
+    /// "Spare" = 0
+    /// "AcknowledgeYES" = 1
+    /// "NotAcknowledgeNO" = 2
+    /// </summary>
+    public enum MMI_Q_ACK : byte
+    {
+        Spare = 0,
+        AcknowledgeYES = 1,
+        NotAcknowledgeNO = 2
     }
 }

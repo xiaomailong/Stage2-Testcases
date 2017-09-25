@@ -76,9 +76,9 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void L0_Announcement_Ack_pressed_and_released(SignalPool pool)
         {
-            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
-            //pool.Wait_Realtime(100);
-            //EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
+            EVC111_MMIDriverMessageAck.MMI_Q_ACK = MMI_Q_ACK.AcknowledgeYES;
+            EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = MMI_Q_BUTTON.Pressed;
+            EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = MMI_Q_BUTTON.Released;
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.Level0Ack;
             pool.WaitForVerification("Has the LE07 symbol disappeared and been replaced with LE06 symbol in sub-area C1?");
         }
@@ -100,9 +100,9 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void LS_Mode_Ack_pressed_and_released(SignalPool pool)
         {
-            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
-            //pool.Wait_Realtime(100);
-            //EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
+            EVC111_MMIDriverMessageAck.MMI_Q_ACK = MMI_Q_ACK.AcknowledgeYES;
+            EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = MMI_Q_BUTTON.Pressed;
+            EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = MMI_Q_BUTTON.Released;
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.LimitedSupervisionModeAck;
             pool.WaitForVerification("Has the MO22 symbol disappeared from sub-area C1?");
         }
@@ -149,9 +149,9 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void OS_Mode_Ack_pressed_and_released(SignalPool pool)
         {
-            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
-            //pool.Wait_Realtime(100);
-            //EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
+            EVC111_MMIDriverMessageAck.MMI_Q_ACK = MMI_Q_ACK.AcknowledgeYES;
+            EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = MMI_Q_BUTTON.Pressed;
+            EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = MMI_Q_BUTTON.Released;
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.OnSightModeAck;
             pool.WaitForVerification("Has the MO08 symbol disappeared from sub-area C1?");
         }
@@ -173,8 +173,6 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void SR_Mode_Ack_pressed_and_released(SignalPool pool)
         {
-            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
-            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
             pool.WaitForVerification("Is the MO10 (Acknowledgement for Staff Responsible mode) symbol frame flashing?");
         }
 
@@ -185,9 +183,6 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void SR_Mode_Ack_pressed_and_hold(SignalPool pool)
         {
-            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
-            pool.Wait_Realtime(2000);
-            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.StaffResponsibleModeAck;
             pool.WaitForVerification("Has the MO10 (Acknowledgement for Staff Responsible mode) symbol opacity decreased to 50%?");
             
@@ -210,9 +205,9 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void UN_Mode_Ack_pressed_and_released(SignalPool pool)
         {
-            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
-            pool.Wait_Realtime(100);
-            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
+            EVC111_MMIDriverMessageAck.MMI_Q_ACK = MMI_Q_ACK.AcknowledgeYES;
+            EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = MMI_Q_BUTTON.Pressed;
+            EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = MMI_Q_BUTTON.Released;
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.UnfittedModeAck;
             pool.WaitForVerification("Has the MO17 (Acknowledgement for Unfitted mode) symbol disappeared from sub-area C1?");
         }
@@ -256,8 +251,6 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void Brake_Intervention_symbol_pressed_and_released(SignalPool pool)
         {
-            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
-            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_EB_Status = 0;
         }
 
@@ -268,8 +261,9 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void TR_Mode_Ack_pressed_and_released(SignalPool pool)
         {
-            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
-            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
+            EVC111_MMIDriverMessageAck.MMI_Q_ACK = MMI_Q_ACK.AcknowledgeYES;
+            EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = MMI_Q_BUTTON.Pressed;
+            EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = MMI_Q_BUTTON.Released;
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.TrainTripAck;
             pool.WaitForVerification("Has the MO05 (Acknowledgement for Trip) symbol disappeared from sub-area C1?");
         }
@@ -281,8 +275,9 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void RV_Mode_Ack_pressed_and_released(SignalPool pool)
         {
-            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
-            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
+            EVC111_MMIDriverMessageAck.MMI_Q_ACK = MMI_Q_ACK.AcknowledgeYES;
+            EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = MMI_Q_BUTTON.Pressed;
+            EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = MMI_Q_BUTTON.Released;
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.ReversingModeAck;
             pool.WaitForVerification("Has the MO15 (Acknowledgement for Reversing) symbol disappeared from sub-area C1?");
         }
@@ -602,11 +597,21 @@ namespace Testcase.DMITestCases
             string _sOrder;
             if (order) { _sOrder = "Yes"; } else { _sOrder = "No"; }
 
-            DmiActions.ShowInstruction(pool, @"Perform the following action within 3 seconds after pressing OK : " + Environment.NewLine + Environment.NewLine + 
-                                "1. Press \"" + _sOrder + "\" on DMI in area E.");
-            pool.Wait_Realtime(3000);
-            if (order) { EVC111_MMIDriverMessageAck.Check_MMI_Q_ACK = EVC111_MMIDriverMessageAck.MMI_Q_ACK.AcknowledgeYES; }
-            else { EVC111_MMIDriverMessageAck.Check_MMI_Q_ACK = EVC111_MMIDriverMessageAck.MMI_Q_ACK.NotAcknowledgeNO; }
+            DmiActions.ShowInstruction(pool, "Press \"" + _sOrder + "\" on DMI in area E.");
+
+            EVC111_MMIDriverMessageAck.MMI_I_TEXT = 1;
+
+            if (order)
+            {
+                EVC111_MMIDriverMessageAck.MMI_Q_ACK = MMI_Q_ACK.AcknowledgeYES;
+                EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
+            }
+
+            else
+            {
+                EVC111_MMIDriverMessageAck.MMI_Q_ACK = MMI_Q_ACK.NotAcknowledgeNO;
+                EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
+            }
         }
 
         /// <summary>
@@ -633,8 +638,13 @@ namespace Testcase.DMITestCases
         {
             DmiActions.ShowInstruction(pool, @"Perform the following action within 3 seconds after pressing OK : " + Environment.NewLine + Environment.NewLine +
                                 "1. Select and enter Level 0");
+            pool.Wait_Realtime(5000);
 
-            EVC121_MMINewLevel.CheckTmp(pool);
+            EVC121_MMINewLevel.Check_MMI_M_LEVEL_NTC_ID = MMI_M_LEVEL_NTC_ID.L0;
+            EVC121_MMINewLevel.Check_MMI_Q_LEVEL_NTC_ID = MMI_Q_LEVEL_NTC_ID.ETCS_Level;
+            EVC121_MMINewLevel.Check_MMI_M_LEVEL_FLAG = MMI_M_LEVEL_FLAG.MarkedLevel;
+            EVC121_MMINewLevel.Check_MMI_M_INHIBITED_LEVEL = MMI_M_INHIBITED_LEVEL.NotInhibited;
+            EVC121_MMINewLevel.Check_MMI_M_INHIBIT_ENABLE = MMI_M_INHIBIT_ENABLE.NotAllowedForInhibiting;
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.Level0Selected;
         }
 

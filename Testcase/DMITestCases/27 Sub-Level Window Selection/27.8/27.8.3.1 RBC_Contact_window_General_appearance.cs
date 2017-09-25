@@ -122,7 +122,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Whilst keeping the ‘Enter RBC data’ button pressed, drag it out of its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘Enter RBC data’ button field is displayed enabled, with a border." + Environment.NewLine +
+                                @"1. The ‘Enter RBC data’ button field is displayed enabled." + Environment.NewLine +
                                 "2. No sound is played.");
 
             /*
@@ -131,10 +131,10 @@ namespace Testcase.DMITestCases
             Expected Result: The button is back to state ‘Pressed’ without a sound
             Test Step Comment: MMI_gen 8516 (partly: MMI_gen 4557 (partly: button ‘Enter RBC data’, MMI_gen 4382 (partly: state ‘Pressed’ when slide back, no sound))); MMI_gen 4375;
             */
-            DmiActions.ShowInstruction(this, @"Whilst keeping the ‘Enter RBC data’ button, drag it back inside its area");
+            DmiActions.ShowInstruction(this, @"Whilst keeping the ‘Enter RBC data’ button pressed, drag it back inside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘Enter RBC data’ button is displayed pressed, without a border." + Environment.NewLine +
+                                @"1. The ‘Enter RBC data’ button is displayed pressed." + Environment.NewLine +
                                 "2. No sound is played.");
 
             /*
@@ -321,7 +321,7 @@ namespace Testcase.DMITestCases
                                 @"1. The ‘Contact last RBC’ button field is displayed enabled, with a border." + Environment.NewLine +
                                 "2. No sound is played.");
 
-            DmiActions.ShowInstruction(this, @"Whilst keeping the ‘Contact last RBC’ button, drag it back inside its area");
+            DmiActions.ShowInstruction(this, @"Whilst keeping the ‘Contact last RBC’ button pressed, drag it back inside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The ‘Contact last RBC’ button is displayed pressed, without a border." + Environment.NewLine +
@@ -428,7 +428,7 @@ namespace Testcase.DMITestCases
                                 @"1. The ‘Close’ button field is displayed enabled, with a border." + Environment.NewLine +
                                 "2. No sound is played.");
 
-            DmiActions.ShowInstruction(this, @"Whilst keeping the ‘Close’ button, drag it back inside its area");
+            DmiActions.ShowInstruction(this, @"Whilst keeping the ‘Close’ button pressed, drag it back inside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The ‘Close’ button is displayed pressed, without a border." + Environment.NewLine +

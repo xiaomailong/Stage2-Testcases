@@ -155,13 +155,15 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(this, "Press in sub-area E1 (below ST01 symbol)");
 
-            EVC111_MMIDriverMessageAck.Check_MMI_Q_ACK = EVC111_MMIDriverMessageAck.MMI_Q_ACK.AcknowledgeYES;
-            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
+            EVC111_MMIDriverMessageAck.MMI_I_TEXT = 1;
+            EVC111_MMIDriverMessageAck.MMI_Q_ACK = MMI_Q_ACK.AcknowledgeYES;
+            EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
 
             this.Wait_Realtime(2000);
 
-            EVC111_MMIDriverMessageAck.Check_MMI_Q_ACK = EVC111_MMIDriverMessageAck.MMI_Q_ACK.AcknowledgeYES;
-            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
+            EVC111_MMIDriverMessageAck.MMI_I_TEXT = 1;
+            EVC111_MMIDriverMessageAck.MMI_Q_ACK = MMI_Q_ACK.AcknowledgeYES;
+            EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Sub-area E1 can be acknowledged as sensitive area." + Environment.NewLine +
@@ -177,13 +179,15 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press on sub-area E1 (below ST01 symbol)");
 
-            EVC111_MMIDriverMessageAck.Check_MMI_Q_ACK = EVC111_MMIDriverMessageAck.MMI_Q_ACK.AcknowledgeYES;
-            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
+            EVC111_MMIDriverMessageAck.MMI_I_TEXT = 1;
+            EVC111_MMIDriverMessageAck.MMI_Q_ACK = MMI_Q_ACK.AcknowledgeYES;
+            EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
 
             this.Wait_Realtime(2000);
 
-            EVC111_MMIDriverMessageAck.Check_MMI_Q_ACK = EVC111_MMIDriverMessageAck.MMI_Q_ACK.AcknowledgeYES;
-            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
+            EVC111_MMIDriverMessageAck.MMI_I_TEXT = 1;
+            EVC111_MMIDriverMessageAck.MMI_Q_ACK = MMI_Q_ACK.AcknowledgeYES;
+            EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The touch-sensitive area in sub-area E1 is removed.");
@@ -210,13 +214,15 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, "Press in sub-area C8 (below ST01 symbol)");
 
-            EVC111_MMIDriverMessageAck.Check_MMI_Q_ACK = EVC111_MMIDriverMessageAck.MMI_Q_ACK.AcknowledgeYES;
-            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
+            EVC111_MMIDriverMessageAck.MMI_I_TEXT = 1;
+            EVC111_MMIDriverMessageAck.MMI_Q_ACK = MMI_Q_ACK.AcknowledgeYES;
+            EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
 
             this.Wait_Realtime(2000);
 
-            EVC111_MMIDriverMessageAck.Check_MMI_Q_ACK = EVC111_MMIDriverMessageAck.MMI_Q_ACK.AcknowledgeYES;
-            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
+            EVC111_MMIDriverMessageAck.MMI_I_TEXT = 1;
+            EVC111_MMIDriverMessageAck.MMI_Q_ACK = MMI_Q_ACK.AcknowledgeYES;
+            EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Sub-area C8 can be acknowledged as sensitive area." + Environment.NewLine +
@@ -240,13 +246,15 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, "Press in sub-area C9 (below ST01 symbol)");
 
-            EVC111_MMIDriverMessageAck.Check_MMI_Q_ACK = EVC111_MMIDriverMessageAck.MMI_Q_ACK.AcknowledgeYES;
-            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
+            EVC111_MMIDriverMessageAck.MMI_I_TEXT = 1;
+            EVC111_MMIDriverMessageAck.MMI_Q_ACK = MMI_Q_ACK.AcknowledgeYES;
+            EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
 
             this.Wait_Realtime(2000);
 
-            EVC111_MMIDriverMessageAck.Check_MMI_Q_ACK = EVC111_MMIDriverMessageAck.MMI_Q_ACK.AcknowledgeYES;
-            EVC111_MMIDriverMessageAck.Check_MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
+            EVC111_MMIDriverMessageAck.MMI_I_TEXT = 1;
+            EVC111_MMIDriverMessageAck.MMI_Q_ACK = MMI_Q_ACK.AcknowledgeYES;
+            EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Sub-area C9 can be acknowledged as sensitive area." + Environment.NewLine +
