@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Collections;
 using CL345;
+using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 
 namespace Testcase.Telegrams.DMItoEVC
 {
@@ -15,7 +16,7 @@ namespace Testcase.Telegrams.DMItoEVC
     {
         private static SignalPool _pool;       
         private static MMI_M_DRIVER_ACTION _driverAction;
-        private static bool _bResult;
+        private static bool _checkResult;
 
         /// <summary>
         /// Initialise EVC-152 MMI_Driver_Action telegram.
@@ -29,22 +30,17 @@ namespace Testcase.Telegrams.DMItoEVC
 
         private static void CheckDriverAction(MMI_M_DRIVER_ACTION driverAction)
         {
-            // For each element of enum MMI_M_DRIVER_ACTION
-            foreach (MMI_M_DRIVER_ACTION mmiMDriverActionElement in Enum.GetValues(typeof(MMI_M_DRIVER_ACTION)))
-            {
-                // Compare to the value to be checked
-                if (mmiMDriverActionElement == driverAction)
-                {
-                    // Check MMI_M_DRIVER_ACTION value
-                    _bResult = _pool.SITR.CCUO.ETCS1DriverAction.MmiMDriverAction.Value.Equals(driverAction);
-                    break;
-                }
-            }
+            var list = new List<Atomic>
+                    {
+                        _pool.SITR.CCUO.ETCS1DriverAction.MmiMDriverAction.Atomic.WaitForCondition(Is.Equal, (byte)driverAction),
+                    };
 
-            if (_bResult) // if check passes
+            _checkResult = _pool.WaitForConditionAtomic(list, 10000, 20);
+
+            if (_checkResult) // if check passes
             {
-                _pool.TraceReport("DMI->ETCS: EVC-152 [MMI_DRIVER_ACTION.MMI_M_DRIVER_ACTION] = " + driverAction +
-                    " - \"" + driverAction.ToString() + "\" PASSED.");
+                _pool.TraceReport("DMI->ETCS: EVC-152 [MMI_DRIVER_ACTION.MMI_M_DRIVER_ACTION] = " + (byte)driverAction +
+                    " - \"" + driverAction + "\" PASSED.");
             }
             else // else display the real value extracted from EVC-152 [MMI_DRIVER_ACTION] 
             {
