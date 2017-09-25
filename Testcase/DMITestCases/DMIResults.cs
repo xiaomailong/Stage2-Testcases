@@ -602,8 +602,9 @@ namespace Testcase.DMITestCases
             string _sOrder;
             if (order) { _sOrder = "Yes"; } else { _sOrder = "No"; }
 
-            DmiActions.ShowInstruction(pool, "Press \"" + _sOrder + "\" on DMI in area E.");
-
+            DmiActions.ShowInstruction(pool, @"Perform the following action within 3 seconds after pressing OK : " + Environment.NewLine + Environment.NewLine + 
+                                "1. Press \"" + _sOrder + "\" on DMI in area E.");
+            pool.Wait_Realtime(3000);
             if (order) { EVC111_MMIDriverMessageAck.Check_MMI_Q_ACK = EVC111_MMIDriverMessageAck.MMI_Q_ACK.AcknowledgeYES; }
             else { EVC111_MMIDriverMessageAck.Check_MMI_Q_ACK = EVC111_MMIDriverMessageAck.MMI_Q_ACK.NotAcknowledgeNO; }
         }
@@ -632,13 +633,8 @@ namespace Testcase.DMITestCases
         {
             DmiActions.ShowInstruction(pool, @"Perform the following action within 3 seconds after pressing OK : " + Environment.NewLine + Environment.NewLine +
                                 "1. Select and enter Level 0");
-            pool.Wait_Realtime(5000);
 
-            EVC121_MMINewLevel.Check_MMI_M_LEVEL_NTC_ID = MMI_M_LEVEL_NTC_ID.L0;
-            EVC121_MMINewLevel.Check_MMI_Q_LEVEL_NTC_ID = MMI_Q_LEVEL_NTC_ID.ETCS_Level;
-            EVC121_MMINewLevel.Check_MMI_M_LEVEL_FLAG = MMI_M_LEVEL_FLAG.MarkedLevel;
-            EVC121_MMINewLevel.Check_MMI_M_INHIBITED_LEVEL = MMI_M_INHIBITED_LEVEL.NotInhibited;
-            EVC121_MMINewLevel.Check_MMI_M_INHIBIT_ENABLE = MMI_M_INHIBIT_ENABLE.NotAllowedForInhibiting;
+            EVC121_MMINewLevel.CheckTmp(pool);
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.Level0Selected;
         }
 
