@@ -27,6 +27,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         private static MMI_M_INHIBIT_ENABLE[] _mInhibitEnable;
         private static MMI_M_LEVEL_NTC_ID[] _mLevelNtcId;
         private static ushort _nLevels;
+        private static string _baseString = "ETCS1_SelectLevel_EVC20SelectLevelSub";
 
         /// <summary>
         /// Initialise an instance of EVC-20 MMI Select Level telegram.
@@ -92,15 +93,13 @@ namespace Testcase.Telegrams.EVCtoDMI
                 // Populate telegram with dynamic fields
                 if (k < 10)
                 {
-                    _pool.SITR.Client.Write("ETCS1_SelectLevel_EVC20SelectLevelSub0" + k + "_EVC20alias1", evc20Alias1);
-                    _pool.SITR.Client.Write("ETCS1_SelectLevel_EVC20SelectLevelSub0" + k + "_MmiMLevelNtcId",
-                        Convert.ToByte(_mLevelNtcId[k]));
+                    _pool.SITR.Client.Write(_baseString + $"0{k}_EVC20alias1", evc20Alias1);
+                    _pool.SITR.Client.Write(_baseString + $"0{k}_MmiMLevelNtcId", Convert.ToByte(_mLevelNtcId[k]));
                 }
                 else
                 {
-                    _pool.SITR.Client.Write("ETCS1_SelectLevel_EVC20SelectLevelSub" + k + "_EVC20alias1", evc20Alias1);
-                    _pool.SITR.Client.Write("ETCS1_SelectLevel_EVC20SelectLevelSub" + k + "_MmiMLevelNtcId",
-                        Convert.ToByte(_mLevelNtcId[k]));
+                    _pool.SITR.Client.Write(_baseString + $"{k}_EVC20alias1", evc20Alias1);
+                    _pool.SITR.Client.Write(_baseString + $"{k}_MmiMLevelNtcId", Convert.ToByte(_mLevelNtcId[k]));
                 }
             }
         }
@@ -203,6 +202,4 @@ namespace Testcase.Telegrams.EVCtoDMI
             set => _pool.SITR.ETCS1.SelectLevel.MmiQCloseEnable.Value = (byte) value;               
         }
     }
-
 }
-
