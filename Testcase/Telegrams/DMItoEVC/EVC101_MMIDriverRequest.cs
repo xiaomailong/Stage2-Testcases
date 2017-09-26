@@ -18,8 +18,8 @@ namespace Testcase.Telegrams.DMItoEVC
         private static SignalPool _pool;
         private static bool _checkResult;
         private static Variables.MMI_M_REQUEST _mRequest;
-        private static byte _qbutton;
-        private static string basestring = "DMI->ETCS: EVC-101 [MMI_DRIVER_REQUEST]";
+        private static byte _qButton;
+        private static string _baseString = "DMI->ETCS: EVC-101 [MMI_DRIVER_REQUEST]";
 
         /// <summary>
         /// Initialise EVC-101 MMI_Driver_Request telegram.
@@ -44,13 +44,13 @@ namespace Testcase.Telegrams.DMItoEVC
             {
                 // Convert qButton to a Byte value. All alignment bits in evc101alias1 should
                 // be set to 0 automatically hence bit-shifting is no problem.
-                _qbutton = Convert.ToByte((byte)qButton << 7);
+                _qButton = Convert.ToByte((byte)qButton << 7);
 
                 // List containing button type and pressed/released state
                 var list = new List<Atomic>
                 {
                     _pool.SITR.CCUO.ETCS1DriverRequest.MmiMRequest.Atomic.WaitForCondition(Is.Equal, (byte)mRequest),
-                    _pool.SITR.CCUO.ETCS1DriverRequest.EVC101alias1.Atomic.WaitForCondition(Is.Equal, _qbutton)
+                    _pool.SITR.CCUO.ETCS1DriverRequest.EVC101alias1.Atomic.WaitForCondition(Is.Equal, _qButton)
                 };
 
                 _checkResult = _pool.WaitForConditionAtomic(list, 10000, 20);
@@ -58,7 +58,7 @@ namespace Testcase.Telegrams.DMItoEVC
                 // If check passes
                 if (_checkResult)
                 {
-                    _pool.TraceReport(basestring + Environment.NewLine + 
+                    _pool.TraceReport(_baseString + Environment.NewLine + 
                                         "MMI_M_REQUEST = \"" + mRequest + "\"" + Environment.NewLine +
                                         "MMI_Q_BUTTON = \"" + qButton + "\"" + Environment.NewLine +
                                         "Time stamp = " + _pool.SITR.CCUO.ETCS1DriverRequest.MmiTButtonevent + Environment.NewLine +
@@ -68,7 +68,7 @@ namespace Testcase.Telegrams.DMItoEVC
                 // Else display the real values extracted from EVC-101 [MMI_DRIVER_REQUEST]
                 else
                 {
-                    _pool.TraceError(basestring + Environment.NewLine +
+                    _pool.TraceError(_baseString + Environment.NewLine +
                                     "MMI_M_REQUEST = \"" + Enum.GetName(typeof(Variables.MMI_M_REQUEST), mRequest) + "\"" + Environment.NewLine +
                                     "MMI_Q_BUTTON = \"" + Enum.GetName(typeof(Variables.MMI_Q_BUTTON), qButton) + "\"" + Environment.NewLine +
                                     "Time stamp = " + _pool.SITR.CCUO.ETCS1DriverRequest.MmiTButtonevent + Environment.NewLine +
@@ -79,7 +79,7 @@ namespace Testcase.Telegrams.DMItoEVC
             // Show generic DMI -> EVC telegram failure
             else
             {
-                DmiExpectedResults.DMItoEVC_Telegram_Not_Received(_pool, basestring);
+                DmiExpectedResults.DMItoEVC_Telegram_Not_Received(_pool, _baseString);
             }
 
             // Reset telegram received flag in RTSim
