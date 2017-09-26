@@ -393,6 +393,56 @@ namespace Testcase.Telegrams.EVCtoDMI
             Operational_Cross_Check_failed = 5
         }
 
+        #region EVC20 and EVC121 parameters
+        public static MMI_Q_LEVEL_NTC_ID[] paramEvc20MmiQLevelNtcId =
+                { MMI_Q_LEVEL_NTC_ID.ETCS_Level,
+                MMI_Q_LEVEL_NTC_ID.ETCS_Level,
+                MMI_Q_LEVEL_NTC_ID.ETCS_Level,
+                MMI_Q_LEVEL_NTC_ID.ETCS_Level,
+                MMI_Q_LEVEL_NTC_ID.STM_ID,
+                MMI_Q_LEVEL_NTC_ID.STM_ID };
+
+        public static MMI_M_CURRENT_LEVEL[] paramEvc20MmiMCurrentLevel =
+                { MMI_M_CURRENT_LEVEL.NotLastUsedLevel,
+                MMI_M_CURRENT_LEVEL.NotLastUsedLevel,
+                MMI_M_CURRENT_LEVEL.NotLastUsedLevel,
+                MMI_M_CURRENT_LEVEL.NotLastUsedLevel,
+                MMI_M_CURRENT_LEVEL.NotLastUsedLevel,
+                MMI_M_CURRENT_LEVEL.NotLastUsedLevel };
+
+        public static MMI_M_LEVEL_FLAG[] paramEvc20MmiMLevelFlag =
+                { MMI_M_LEVEL_FLAG.NotMarkedLevel,
+                MMI_M_LEVEL_FLAG.NotMarkedLevel,
+                MMI_M_LEVEL_FLAG.NotMarkedLevel,
+                MMI_M_LEVEL_FLAG.NotMarkedLevel,
+                MMI_M_LEVEL_FLAG.NotMarkedLevel,
+                MMI_M_LEVEL_FLAG.NotMarkedLevel };
+
+        public static MMI_M_INHIBITED_LEVEL[] paramEvc20MmiMInhibitedLevel =
+                { MMI_M_INHIBITED_LEVEL.NotInhibited,
+                MMI_M_INHIBITED_LEVEL.NotInhibited,
+                MMI_M_INHIBITED_LEVEL.NotInhibited,
+                MMI_M_INHIBITED_LEVEL.NotInhibited,
+                MMI_M_INHIBITED_LEVEL.NotInhibited,
+                MMI_M_INHIBITED_LEVEL.NotInhibited };
+
+        public static MMI_M_INHIBIT_ENABLE[] paramEvc20MmiMInhibitEnable =
+                { MMI_M_INHIBIT_ENABLE.AllowedForInhibiting,
+                MMI_M_INHIBIT_ENABLE.AllowedForInhibiting,
+                MMI_M_INHIBIT_ENABLE.AllowedForInhibiting,
+                MMI_M_INHIBIT_ENABLE.AllowedForInhibiting,
+                MMI_M_INHIBIT_ENABLE.AllowedForInhibiting,
+                MMI_M_INHIBIT_ENABLE.AllowedForInhibiting };
+
+        public static MMI_M_LEVEL_NTC_ID[] paramEvc20MmiMLevelNtcId =
+                { MMI_M_LEVEL_NTC_ID.L0,
+                MMI_M_LEVEL_NTC_ID.L1,
+                MMI_M_LEVEL_NTC_ID.L2,
+                MMI_M_LEVEL_NTC_ID.L3,
+                MMI_M_LEVEL_NTC_ID.CBTC,
+                MMI_M_LEVEL_NTC_ID.AWS_TPWS };
+        #endregion
+
         /// <summary>
         /// Collection of flags used to enable standard buttons on DMI.
         /// </summary>
