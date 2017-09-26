@@ -20,7 +20,8 @@ namespace Testcase.Telegrams.DMItoEVC
         private static ushort _nLevels;
         private static byte _mLevelNtcId;
         private static byte _evc121Alias1;
-        private static byte _mLevelFlag;        
+        private static byte _mLevelFlag;
+        private static MMI_M_LEVEL_NTC_ID _levelSelected;
         static string baseString = "DMI->ETCS: EVC-121 [MMI_NEW_LEVEL]";
 
         /// <summary>
@@ -158,7 +159,6 @@ namespace Testcase.Telegrams.DMItoEVC
         /// L3 = 3,
         /// CBTC = 50,
         /// AWS_TPWS = 20
-        /// Note: In order to set ETCS level, the corresponding MMI_Q_LEVEL_NTC_ID needs to be TRUE.
         /// </summary>
         public static Variables.MMI_M_LEVEL_NTC_ID LevelSelected
         {
