@@ -51,16 +51,16 @@ namespace Testcase.Telegrams.DMItoEVC
                 _pool.TraceReport(basestring + " - MMI_M_REQUEST = \"" + mRequest + "\"" + Environment.NewLine +
                                     " - MMI_Q_BUTTON = \"" + qButton + "\"" + Environment.NewLine +
                                     "Result: PASSED." + Environment.NewLine +
-                                    "Timestamp = " + _pool.SITR.CCUO.ETCS1DriverRequest.MmiTButtonevent);
+                                    "Time stamp = " + _pool.SITR.CCUO.ETCS1DriverRequest.MmiTButtonevent);
             }
 
             // Else display the real values extracted from EVC-101 [MMI_DRIVER_REQUEST]
             else
             {
                 _pool.TraceError(basestring + " - MMI_M_REQUEST = \"" + Enum.GetName(typeof(Variables.MMI_M_REQUEST), mRequest) + "\"" +
-                                    Environment.NewLine + "MMI_Q_BUTTON = \"" + Enum.GetName(typeof(Variables.MMI_Q_BUTTON), qButton) +
+                                    Environment.NewLine + "MMI_Q_BUTTON = \"" + Enum.GetName(typeof(Variables.MMI_Q_BUTTON), qButton) + "\"" +
                                     Environment.NewLine + "Result: FAILED!" + Environment.NewLine +
-                                    "Timestamp = " + _pool.SITR.CCUO.ETCS1DriverRequest.MmiTButtonevent);
+                                    "Time stamp = " + _pool.SITR.CCUO.ETCS1DriverRequest.MmiTButtonevent);
             }
         }
 
