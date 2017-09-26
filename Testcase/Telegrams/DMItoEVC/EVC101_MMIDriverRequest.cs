@@ -18,6 +18,7 @@ namespace Testcase.Telegrams.DMItoEVC
         private static bool _checkResult;
         private static Variables.MMI_M_REQUEST _mRequest;
         private static byte _qbutton;
+        private static string basestring = "DMI->ETCS: EVC-101 [MMI_DRIVER_REQUEST]";
 
         /// <summary>
         /// Initialise EVC-101 MMI_Driver_Request telegram.
@@ -47,17 +48,19 @@ namespace Testcase.Telegrams.DMItoEVC
             // If check passes
             if (_checkResult) 
             {
-                _pool.TraceReport("DMI->ETCS: EVC-101 [MMI_DRIVER_REQUEST] => " + (byte)mRequest + " - \"" + mRequest +
-                                    "\" -> " + qButton + " PASSED." + Environment.NewLine +
+                _pool.TraceReport(basestring + " - MMI_M_REQUEST = \"" + mRequest + "\"" + Environment.NewLine +
+                                    " - MMI_Q_BUTTON = \"" + qButton + "\"" + Environment.NewLine +
+                                    "Result: PASSED." + Environment.NewLine +
                                     "Timestamp = " + _pool.SITR.CCUO.ETCS1DriverRequest.MmiTButtonevent);
             }
 
             // Else display the real values extracted from EVC-101 [MMI_DRIVER_REQUEST]
             else
             {
-                _pool.TraceError("DMI->ETCS: Check EVC-101 [MMI_DRIVER_REQUEST] => MMI_M_REQUEST = " +
-                                    Enum.GetName(typeof(Variables.MMI_M_REQUEST), mRequest) + ", MMI_Q_BUTTON = " +
-                                    Enum.GetName(typeof(Variables.MMI_Q_BUTTON), qButton) + " Result: FAILED!");
+                _pool.TraceError(basestring + " - MMI_M_REQUEST = \"" + Enum.GetName(typeof(Variables.MMI_M_REQUEST), mRequest) + "\"" +
+                                    Environment.NewLine + "MMI_Q_BUTTON = \"" + Enum.GetName(typeof(Variables.MMI_Q_BUTTON), qButton) +
+                                    Environment.NewLine + "Result: FAILED!" + Environment.NewLine +
+                                    "Timestamp = " + _pool.SITR.CCUO.ETCS1DriverRequest.MmiTButtonevent);
             }
         }
 
