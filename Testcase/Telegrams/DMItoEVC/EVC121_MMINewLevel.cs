@@ -68,7 +68,7 @@ namespace Testcase.Telegrams.DMItoEVC
             _nLevels = _pool.SITR.ETCS1.SelectLevel.MmiNLevels.Value;
 
             // Wait 10 second that SMDStat is set to 1
-            if (_pool.WaitForCondition(_pool.SITR.SMDStat.CCUO.ETCS1NewLevel, Is.Equal, 1, 10000, 20))
+            if (_pool.WaitForCondition(_pool.SITR.SMDStat.CCUO.ETCS1NewLevel,Is.Equal, 0x01, 10000, 20))
             {
                 // Check MMI_N_LEVELS from EVC-121 packet
                 _checkResult = _pool.SITR.CCUO.ETCS1NewLevel.MmiNLevels.Value.Equals(_nLevels);
