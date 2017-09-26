@@ -649,6 +649,7 @@ namespace Testcase.DMITestCases
         {
             DmiActions.ShowInstruction(pool, @"Perform the following action after pressing OK : " + Environment.NewLine + Environment.NewLine +
                                 "1. Select and enter Level 0");
+            EVC121_MMINewLevel.LevelSelected = MMI_M_LEVEL_NTC_ID.L0;
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.Level0Selected;
         }
 
@@ -660,14 +661,9 @@ namespace Testcase.DMITestCases
         /// <param name="pool"></param>
         public static void Level_1_Selected(SignalPool pool)
         {
-            DmiActions.ShowInstruction(pool, @"Perform the following action within 3 seconds after pressing OK : " + Environment.NewLine + Environment.NewLine +
+            DmiActions.ShowInstruction(pool, @"Perform the following action after pressing OK : " + Environment.NewLine + Environment.NewLine +
                                 "1. Select and enter Level 1");
-            pool.Wait_Realtime(5000);
-            EVC121_MMINewLevel.Check_MMI_M_LEVEL_NTC_ID = MMI_M_LEVEL_NTC_ID.L1;
-            EVC121_MMINewLevel.Check_MMI_Q_LEVEL_NTC_ID = MMI_Q_LEVEL_NTC_ID.ETCS_Level;
-            EVC121_MMINewLevel.Check_MMI_M_LEVEL_FLAG = MMI_M_LEVEL_FLAG.MarkedLevel;
-            EVC121_MMINewLevel.Check_MMI_M_INHIBITED_LEVEL = MMI_M_INHIBITED_LEVEL.NotInhibited;
-            EVC121_MMINewLevel.Check_MMI_M_INHIBIT_ENABLE = MMI_M_INHIBIT_ENABLE.NotAllowedForInhibiting;
+            EVC121_MMINewLevel.LevelSelected = MMI_M_LEVEL_NTC_ID.L1;
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.Level1Selected;
         }
 
@@ -679,14 +675,10 @@ namespace Testcase.DMITestCases
         /// <param name="pool"></param>
         public static void Level_2_Selected(SignalPool pool)
         {
-            DmiActions.ShowInstruction(pool, @"Perform the following action within 3 seconds after pressing OK : " + Environment.NewLine + Environment.NewLine +
+            DmiActions.ShowInstruction(pool, @"Perform the following action after pressing OK : " + Environment.NewLine + Environment.NewLine +
                                 "1. Select and enter Level 2");
-            pool.Wait_Realtime(5000);
-            EVC121_MMINewLevel.Check_MMI_M_LEVEL_NTC_ID = MMI_M_LEVEL_NTC_ID.L2;
-            EVC121_MMINewLevel.Check_MMI_Q_LEVEL_NTC_ID = MMI_Q_LEVEL_NTC_ID.ETCS_Level;
-            EVC121_MMINewLevel.Check_MMI_M_LEVEL_FLAG = MMI_M_LEVEL_FLAG.MarkedLevel;
-            EVC121_MMINewLevel.Check_MMI_M_INHIBITED_LEVEL = MMI_M_INHIBITED_LEVEL.NotInhibited;
-            EVC121_MMINewLevel.Check_MMI_M_INHIBIT_ENABLE = MMI_M_INHIBIT_ENABLE.NotAllowedForInhibiting;
+
+            EVC121_MMINewLevel.LevelSelected = MMI_M_LEVEL_NTC_ID.L2;
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.Level2Selected;
         }
 

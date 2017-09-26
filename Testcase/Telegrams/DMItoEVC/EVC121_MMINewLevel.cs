@@ -5,6 +5,8 @@ using System.Text;
 using System.Collections;
 using CL345;
 using Testcase.Telegrams.EVCtoDMI;
+using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
+using static Testcase.Telegrams.EVCtoDMI.Variables;
 
 namespace Testcase.Telegrams.DMItoEVC
 {
@@ -14,12 +16,14 @@ namespace Testcase.Telegrams.DMItoEVC
     public static class EVC121_MMINewLevel
     {
         private static SignalPool _pool;
-        private static bool _bResult;
-        private static Variables.MMI_Q_LEVEL_NTC_ID _qLevelNtcId;
-        private static Variables.MMI_M_LEVEL_FLAG _mLevelFlag;
-        private static Variables.MMI_M_INHIBITED_LEVEL _mInhibitedLevel;
-        private static Variables.MMI_M_INHIBIT_ENABLE _mInhibitEnable;
-        private static Variables.MMI_M_LEVEL_NTC_ID _mLevelNtcId;
+        private static bool _checkResult;
+        private static ushort _nLevels;
+        private static byte _mLevelNtcId;
+        private static byte _evc121Alias1;
+        private static byte _mLevelFlag;
+        private static MMI_M_LEVEL_NTC_ID _levelSelected;
+
+        static string baseString = "DMI->ETCS: EVC-121 [MMI_NEW_LEVEL]";
 
         /// <summary>
         /// Initialise EVC-121 MMI_New_Level telegram.
@@ -28,176 +32,127 @@ namespace Testcase.Telegrams.DMItoEVC
         public static void Initialise(SignalPool pool)
         {
             _pool = pool;
-            _pool.SITR.SMDCtrl.CCUO.ETCS1NewLevel.Value = 1;
+            _pool.SITR.SMDCtrl.CCUO.ETCS1NewLevel.Value = 0x09;
+            _pool.SITR.SMDStat.CCUO.ETCS1NewLevel.Value = 0;
         }
 
-        /// <summary>
-        /// This function is meant to be used privatly within the EVC-121 class.
-        /// For now, this method shall only be called with MMI_N_LEVELS lesser or equal 1.
-        /// In order not to duplicate the same function for the different variables contained
-        /// into EVC121_alias_1, this method has been scripted so that it automatically detects 
-        /// which variable needs to be extracted then checked.
-        /// </summary>
-        /// <param name="nLevels"></param>
-        /// <param name="varToCheck"></param>
-        private static void CheckEVC121_alias_1(ushort nLevels, object varToCheck)
+        /*public static void GetPacketContent()
         {
-            bool _matched = false;
+            _nLevels = _pool.SITR.ETCS1.SelectLevel.MmiNLevels.Value;
 
-            // Convert byte EVC121_alias_1 into an array of bits.
-            BitArray _evc121Alias1 = new BitArray(new[] {
-                (byte) _pool.SITR.Client.Read("CCUO_ETCS1NewLevel_EVC121Subset0" + (nLevels - 1) +
-                "_EVC121alias1") });
-
-            // List of the 4 variables contained into EVC121_alias_1 respecting to their position
-            // (spare bits are expelled)
-            List<Type> _evc121Alias1types = new List<Type> {typeof(Variables.MMI_Q_LEVEL_NTC_ID),
-                                                            typeof(Variables.MMI_M_LEVEL_FLAG),
-                                                            typeof(Variables.MMI_M_INHIBITED_LEVEL),
-                                                            typeof(Variables.MMI_M_INHIBIT_ENABLE)};            
-
-            // for each type from EVC121_alias_1
-            foreach (Type _varType in _evc121Alias1types)
+            if (_pool.WaitForCondition(_pool.SITR.SMDStat.CCUO.ETCS1NewLevel, Is.Equal, 1, 10000, 20))
             {
-                // find out which type is matching with varToCheck's type
-                if (_varType.Equals(varToCheck.GetType()))
+                // Check MMI_N_LEVELS from EVC-121 packet
+                _checkResult = _pool.SITR.CCUO.ETCS1NewLevel.MmiNLevels.Value.Equals(_nLevels);
+                if (_checkResult) // if check passes
                 {
-                    // the matching type's index will give the corresponding bit within EVC121_alias_1 
-                    int _pos = _evc121Alias1types.IndexOf(_varType);
-                    byte _value = Convert.ToByte(_evc121Alias1[_pos]);
-
-                    // do the check
-                    _bResult = _value.Equals(varToCheck);
-
-                    if (_bResult) // if check passes
-                    {
-                        _pool.TraceReport("DMI->ETCS: EVC-121 [MMI_NEW_LEVEL." + varToCheck.GetType().ToString() + "] = " +
-                            varToCheck + " - \"" + Enum.GetName(varToCheck.GetType(), varToCheck) + "\" PASSED.");
-                    }
-                    else // else display the real value extracted
-                    {
-                        _pool.TraceError("DMI->ETCS: EVC-121 [MMI_NEW_LEVEL." + varToCheck.GetType().ToString() + "] = " +
-                            _value + " - \"" + Enum.GetName(varToCheck.GetType(), _value) + "\" FAILED.");
-                    }
-
-                    // if the varToCheck type matches one of the variable types from EVC121_Alias_1
-                    _matched = true;
-                    break; // exit foreach loop 
-                } 
-            }
-
-            if (!_matched) // if none variable type matched    
-            {
-                _pool.TraceError("Variable Type " + varToCheck.GetType().ToString() + " not found!!");
-            }          
-        }
-
-        private static void CheckMLevelNtcId(ushort nLevels, Variables.MMI_M_LEVEL_NTC_ID mLevelNtcId)
-        {
-            byte _mLevelNtcId;
-
-            // Read and store MMI_M_LEVEL_NTC_ID value from EVC-121 packet
-            if (nLevels <= 10)
-            {
-                _mLevelNtcId = (byte)_pool.SITR.Client.Read("CCUO_ETCS1NewLevel_EVC121Subset0" + (nLevels - 1) +
-                "_MmiMLevelNtcID");
+                    _pool.TraceReport($"{baseString}.MMI_N_LEVELS = {_nLevels}, PASSED.");
+                }
+                else // else display the real value extracted
+                {
+                    _pool.TraceError($"{baseString}.MMI_N_LEVELS = {_pool.SITR.CCUO.ETCS1NewLevel.MmiNLevels.Value}, FAILED.");
+                }
             }
             else
             {
-                 _mLevelNtcId = (byte)_pool.SITR.Client.Read("CCUO_ETCS1NewLevel_EVC121Subset" + (nLevels - 1) +
-                "_MmiMLevelNtcID");
+                _pool.TraceError(baseString + " : is not received!!!");
             }
 
-            // For each element of enum MMI_M_LEVEL_NTC_ID 
-            foreach (Variables.MMI_M_LEVEL_NTC_ID mmiMLevelNtcIdElement in Enum.GetValues(typeof(Variables.MMI_M_LEVEL_NTC_ID)))
+            _pool.SITR.SMDStat.CCUO.ETCS1NewLevel.Value = 0;
+
+        }*/
+
+        private static void CheckLevelSelected(MMI_M_LEVEL_NTC_ID mLevelNtcId)
+        {
+            //Get MMI_N_LEVELS info sent by EVC to the DMI via EVC-20
+            _nLevels = _pool.SITR.ETCS1.SelectLevel.MmiNLevels.Value;
+
+            // Wait 10 second that SMDStat is set to 1
+            if (_pool.WaitForCondition(_pool.SITR.SMDStat.CCUO.ETCS1NewLevel,Is.Equal, 0x01, 10000, 20))
             {
-                // Compare to the value to be checked
-                if (mmiMLevelNtcIdElement == mLevelNtcId)
+                // Check MMI_N_LEVELS from EVC-121 packet
+                _checkResult = _pool.SITR.CCUO.ETCS1NewLevel.MmiNLevels.Value.Equals(_nLevels);
+                if (_checkResult) // if check passes
                 {
-                    // Check MMI_M_LEVEL_NTC_ID value
-                    _bResult = _mLevelNtcId.Equals(mLevelNtcId);
-                    break;
+                    _pool.TraceReport($"{baseString}.MMI_N_LEVELS = {_nLevels}, PASSED.");
+                }
+                else // else display the real value extracted
+                {
+                    _pool.TraceError($"{baseString}.MMI_N_LEVELS = {_pool.SITR.CCUO.ETCS1NewLevel.MmiNLevels.Value}, FAILED.");
+                }
+
+                //_nLevels = _pool.SITR.CCUO.ETCS1NewLevel.MmiNLevels.Value;
+
+                for (int k = 0; k < _nLevels; k++)
+                {
+                    // For each level, read and store MMI_M_LEVEL_NTC_ID and EVC121_alias_1 values from EVC-121 packet
+                    if (_nLevels <= 10)
+                    {
+                        _evc121Alias1 = (byte)_pool.SITR.Client.Read("CCUO_ETCS1NewLevel_EVC121Subset0" + k + "_EVC121alias1");
+                        _mLevelNtcId = (byte)_pool.SITR.Client.Read("CCUO_ETCS1NewLevel_EVC121Subset0" + k + "_MmiMLevelNtcID");                        
+                    }
+                    else
+                    {
+                        _evc121Alias1 = (byte)_pool.SITR.Client.Read("CCUO_ETCS1NewLevel_EVC121Subset" + k + "_EVC121alias1");
+                        _mLevelNtcId = (byte)_pool.SITR.Client.Read("CCUO_ETCS1NewLevel_EVC121Subset" + k + "_MmiMLevelNtcID");
+                    }
+
+                    // Extract MMI_M_LEVEL_FLAG from EVC121_alias_1
+                    _mLevelFlag = (byte)((_evc121Alias1 & 0x40) >> 6); // xxxx xxxx -> 0x0 0000 -> 0000 000x
+
+                    // If MMI_M_LEVEL_NTC_ID matches with the selected level Id, ...
+                    if (_mLevelNtcId.Equals((byte)mLevelNtcId))
+                    {
+                        // Check that that level is indicated as SELECTED
+                        _checkResult = _mLevelFlag.Equals((byte)MMI_M_LEVEL_FLAG.MarkedLevel);
+                        if (_checkResult) // if check passes
+                        {
+                            _pool.TraceReport(baseString + ".MMI_M_LEVEL_NTC_ID[" + k + "]  = " + 
+                                _mLevelNtcId + " - " + mLevelNtcId + " is SELECTED." + Environment.NewLine +
+                                              baseString + ".MMI_M_LEVEL_FLAG[" + k + "]  = " + 
+                                _mLevelFlag + " - " + Enum.GetName(typeof(MMI_M_LEVEL_FLAG), _mLevelFlag) + ", PASSED.");
+                        }
+                        else // else display the real value extracted
+                        {
+                            _pool.TraceError(baseString + ".MMI_M_LEVEL_NTC_ID[" + k + "]  = " +
+                                _mLevelNtcId + " - " + mLevelNtcId + " is NOT indicated as SELECTED." + Environment.NewLine +
+                                              baseString + ".MMI_M_LEVEL_FLAG[" + k + "]  = " +
+                                _mLevelFlag + " - " + Enum.GetName(typeof(MMI_M_LEVEL_FLAG), _mLevelFlag) + ", FAILED.");
+                        }
+                    }
+                    else
+                    {
+                        // Check that that level is indicated as NOT SELECTED
+                        _checkResult = _mLevelFlag.Equals((byte)MMI_M_LEVEL_FLAG.NotMarkedLevel);
+                        if (_checkResult) // if check passes
+                        {
+                            _pool.TraceReport(baseString + ".MMI_M_LEVEL_NTC_ID[" + k + "]  = " +
+                                _mLevelNtcId + " - " + mLevelNtcId + " is NOT SELECTED." + Environment.NewLine +
+                                              baseString + ".MMI_M_LEVEL_FLAG[" + k + "]  = " +
+                                _mLevelFlag + " - " + Enum.GetName(typeof(MMI_M_LEVEL_FLAG), _mLevelFlag) + ", PASSED.");
+                        }
+                        else // else display the real value extracted
+                        {
+                            _pool.TraceError(baseString + ".MMI_M_LEVEL_NTC_ID[" + k + "]  = " +
+                                _mLevelNtcId + " - " + mLevelNtcId + " is NOT indicated as NOT SELECTED." + Environment.NewLine +
+                                              baseString + ".MMI_M_LEVEL_FLAG[" + k + "]  = " +
+                                _mLevelFlag + " - " + Enum.GetName(typeof(MMI_M_LEVEL_FLAG), _mLevelFlag) + ", FAILED.");
+                        }
+                    }
                 }
             }
+            else // EVC-121 could not be received 
+            {
+                _pool.TraceError(baseString + " : is not received!!!");
+            }
 
-            if (_bResult) // if check passes
-            {
-                _pool.TraceReport("DMI->ETCS: EVC-121 [MMI_NEW_LEVEL.MMI_M_LEVEL_NTC_ID(k)] = " + mLevelNtcId +
-                    " - \"" + Enum.GetName(typeof(Variables.MMI_M_LEVEL_NTC_ID), mLevelNtcId) + "\" PASSED.");
-            }
-            else // else display the real value extracted from EVC-121 [MMI_NEW_LEVEL.MMI_M_LEVEL_NTC_ID(k)] 
-            {
-                _pool.TraceError("DMI->ETCS: Check EVC-121 [MMI_NEW_LEVEL.MMI_M_LEVEL_NTC_ID(k)] = " + _mLevelNtcId + 
-                    " - \"" + Enum.GetName(typeof(Variables.MMI_M_LEVEL_NTC_ID), _mLevelNtcId) + "\" FAILED.");
-            }
+            // Reset SMDStat to 0.
+            _pool.SITR.SMDStat.CCUO.ETCS1NewLevel.Value = 0;
+            
         }
 
         /// <summary>
-        /// Qualifier for the variable MMI_M_LEVEL_NTC_ID
-        /// Values:
-        /// Values:
-        /// 0 = "MMI_M_LEVEL_NTC_ID contains an STM ID (0-255)"
-        /// 1 = "MMI_M_LEVEL_NTC_ID contains a level number (0-3)"
-        /// </summary>
-        public static Variables.MMI_Q_LEVEL_NTC_ID Check_MMI_Q_LEVEL_NTC_ID
-        {
-            set
-            {
-                _qLevelNtcId = value;
-                CheckEVC121_alias_1(1, _qLevelNtcId);
-            }
-        }
-
-        /// <summary>
-        /// Indicates if MMI_M_LEVEL_NTC_ID is marked or not. 
-        /// The interpretation of the mark needs to be defined by related requirements.
-        /// Basic idea is that 'marked' levels are allowed for edit by the driver
-        /// (see ERA_ERTMS_15560, v.3.4.9, ch. 11.3.2.7, 11.3..2.8)
-        /// Values:
-        /// 0 = "MMI_M_LEVEL_NTC_ID is 'not marked'"
-        /// 1 = "MMI_M_LEVEL_NTC_ID is 'marked'"
-        /// </summary>
-        public static Variables.MMI_M_LEVEL_FLAG Check_MMI_M_LEVEL_FLAG
-        {
-            set
-            {
-                _mLevelFlag = value;
-                CheckEVC121_alias_1(1, _mLevelFlag);
-            }
-        }
-
-        /// <summary>
-        /// Indicates if MMI_M_LEVEL_NTC_ID is currently inhibited by driver or not 
-        /// Values:
-        /// 0 = "MMI_M_LEVEL_NTC_ID is not inhibited"
-        /// 1 = "MMI_M_LEVEL_NTC_ID is inhibited"
-        /// </summary>
-        public static Variables.MMI_M_INHIBITED_LEVEL Check_MMI_M_INHIBITED_LEVEL
-        {
-            set
-            {
-                _mInhibitedLevel = value;
-                CheckEVC121_alias_1(1, _mInhibitedLevel);
-            }
-        }
-
-        /// <summary>
-        /// Indicates if MMI_M_LEVEL_NTC_ID is allowed (configurable) for inhibiting or not
-        /// Values:
-        /// 0 = "MMI_M_LEVEL_NTC_ID is not allowed for inhibiting"
-        /// 1 = "MMI_M_LEVEL_NTC_ID is allowed for inhibiting"
-        /// </summary>
-        public static Variables.MMI_M_INHIBIT_ENABLE Check_MMI_M_INHIBIT_ENABLE
-        {
-            set
-            {
-                _mInhibitEnable = value;
-                CheckEVC121_alias_1(1, _mInhibitEnable);
-            }
-        }
-
-        /// <summary>
-        /// Identity of level or NTC
+        /// Identity of level selected
         /// Value:
         /// L0 = 0,
         /// L1 = 1,
@@ -205,14 +160,13 @@ namespace Testcase.Telegrams.DMItoEVC
         /// L3 = 3,
         /// CBTC = 50,
         /// AWS_TPWS = 20
-        /// Note: In order to set ETCS level, the corresponding MMI_Q_LEVEL_NTC_ID needs to be TRUE.
         /// </summary>
-        public static Variables.MMI_M_LEVEL_NTC_ID Check_MMI_M_LEVEL_NTC_ID
+        public static Variables.MMI_M_LEVEL_NTC_ID LevelSelected
         {
             set
             {
-                _mLevelNtcId = value;
-                CheckMLevelNtcId(1, _mLevelNtcId);
+                _levelSelected = value;
+                CheckLevelSelected(_levelSelected);
             }
         }
     }
