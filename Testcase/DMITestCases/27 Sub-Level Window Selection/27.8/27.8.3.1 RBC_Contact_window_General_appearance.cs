@@ -233,7 +233,7 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. While the button has been pressed for less than 2s it repeatedly changes between being displayed pressed and enabled;" +
-                                "2. The  ‘Click’ sound is not played." + Environment.NewLine +
+                                "2. The ‘Click’ sound is not played." + Environment.NewLine +
                                 "3. When the button has been pressed for more than 2s it is displayed pressed and does not change further.");
 
             /*
