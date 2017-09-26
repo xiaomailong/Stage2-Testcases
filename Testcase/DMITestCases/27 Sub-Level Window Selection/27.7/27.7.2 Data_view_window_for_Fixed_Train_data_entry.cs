@@ -101,7 +101,7 @@ namespace Testcase.DMITestCases
                                 "                                   Maximum speed (km/h), Axle load category, Airtightness, Loading gauge." + Environment.NewLine +
                                 "12. DMI displays the ‘Enabled Close button’ (symbol NA11), the ‘Disabled Previous’ button (symbol NA19), the ‘Enabled Next’ button" + Environment.NewLine +
                                 "13. Objects, text messages and buttons can be displayed in several levels. Within a level they are allocated to areas." + Environment.NewLine +
-                                "14. objects, text messages and buttons in a layer form a window." + Environment.NewLine +
+                                "14. Objects, text messages and buttons in a layer form a window." + Environment.NewLine +
                                 "15. The Default window does not cover the current window." + Environment.NewLine +
                                 "16. A sub-level window can partially cover another window, depending on its size. Another window cannot be displayed and activated at the same time.");
            
