@@ -24,6 +24,7 @@ namespace Testcase.Telegrams.EVCtoDMI
 
             // Set default values
             _pool.SITR.ETCS1.TrackConditions.MmiMPacket.Value = 32; // Packet ID
+            _pool.SITR.SMDCtrl.ETCS1.TrackConditions.Value = 0x8;
             TrackConditions = new List<TrackCondition>();
         }
 
