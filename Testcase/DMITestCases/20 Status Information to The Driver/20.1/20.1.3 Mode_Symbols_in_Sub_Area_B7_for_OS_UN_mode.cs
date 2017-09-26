@@ -123,8 +123,6 @@ namespace Testcase.DMITestCases
 
             #endregion
 
-            return GlobalTestResult;
-
             #region Test Step 5
             /*
             Test Step 5
@@ -388,6 +386,8 @@ namespace Testcase.DMITestCases
             Expected Result: 
             */
             #endregion
+
+            return GlobalTestResult;
 
         }
     }
