@@ -61,14 +61,7 @@ namespace Testcase
             EVC152_MMIDriverAction.Initialise(this);
 
             // Initialises all EVC packets that contain dynamic arrays
-            SITR.SMDCtrl.ETCS1.SelectLevel.Value = 0x8;
-            SITR.SMDCtrl.ETCS1.DriverMessage.Value = 0x8;
-            SITR.SMDCtrl.ETCS1.SetVbc.Value = 0x8;
-            SITR.SMDCtrl.ETCS1.RemoveVbc.Value = 0x8;
-            SITR.SMDCtrl.ETCS1.TrackDescription.Value = 0x8;
-            SITR.SMDCtrl.ETCS1.CurrentRbcData.Value = 0x8;
             SITR.SMDCtrl.ETCS1.EchoedTrainData.Value = 0x8;
-            SITR.SMDCtrl.ETCS1.TrackConditions.Value = 0x8;
         }
 
         public override void PostExecution()

@@ -28,6 +28,8 @@ namespace Testcase.Telegrams.EVCtoDMI
 
             // Set default values
             _pool.SITR.ETCS1.TrackDescription.MmiMPacket.Value = 4; // Packet ID
+            _pool.SITR.SMDCtrl.ETCS1.TrackDescription.Value = 0x8;
+
             TrackDescriptions = new List<TrackDescription>();
         }
 
