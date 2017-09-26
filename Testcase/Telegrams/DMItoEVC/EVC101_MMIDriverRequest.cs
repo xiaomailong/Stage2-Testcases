@@ -6,6 +6,7 @@ using System.Collections;
 using CL345;
 using Testcase.Telegrams.EVCtoDMI;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
+using Testcase.DMITestCases;
 
 namespace Testcase.Telegrams.DMItoEVC
 {
@@ -27,41 +28,62 @@ namespace Testcase.Telegrams.DMItoEVC
         public static void Initialise(SignalPool pool)
         {
             _pool = pool;
+            _pool.SITR.SMDStat.CCUO.ETCS1DriverRequest.Value = 0;
             _pool.SITR.SMDCtrl.CCUO.ETCS1DriverRequest.Value = 1;
         }
 
+        /// <summary>
+        /// Process the received EVC-101 telegram content
+        /// </summary>
+        /// <param name="mRequest">Driver request type</param>
+        /// <param name="qButton">Button event pressed or released</param>
         private static void CheckMRequestState(Variables.MMI_M_REQUEST mRequest, Variables.MMI_Q_BUTTON qButton)
         {
-            // Convert qButton to a Byte value. All alignment bits in evc101alias1 should be set to 0
-            //  automatically hence bit-shifting should be no problem.
-            _qbutton = Convert.ToByte((byte)qButton << 7);
-            
-            // List containing button type and pressed/released state
-            var list = new List<Atomic>
+            // Check if telegram received flag has been set
+            if (_pool.SITR.SMDStat.CCUO.ETCS1DriverRequest.WaitForCondition(Is.Equal, 1, 10000, 20))
             {
-                _pool.SITR.CCUO.ETCS1DriverRequest.MmiMRequest.Atomic.WaitForCondition(Is.Equal, (byte)mRequest),
-                _pool.SITR.CCUO.ETCS1DriverRequest.EVC101alias1.Atomic.WaitForCondition(Is.Equal, _qbutton)
-            };
+                // Convert qButton to a Byte value. All alignment bits in evc101alias1 should
+                // be set to 0 automatically hence bit-shifting is no problem.
+                _qbutton = Convert.ToByte((byte)qButton << 7);
 
-            _checkResult = _pool.WaitForConditionAtomic(list, 10000, 20);
-            
-            // If check passes
-            if (_checkResult) 
-            {
-                _pool.TraceReport(basestring + " - MMI_M_REQUEST = \"" + mRequest + "\"" + Environment.NewLine +
-                                    " - MMI_Q_BUTTON = \"" + qButton + "\"" + Environment.NewLine +
-                                    "Result: PASSED." + Environment.NewLine +
-                                    "Time stamp = " + _pool.SITR.CCUO.ETCS1DriverRequest.MmiTButtonevent);
+                // List containing button type and pressed/released state
+                var list = new List<Atomic>
+                {
+                    _pool.SITR.CCUO.ETCS1DriverRequest.MmiMRequest.Atomic.WaitForCondition(Is.Equal, (byte)mRequest),
+                    _pool.SITR.CCUO.ETCS1DriverRequest.EVC101alias1.Atomic.WaitForCondition(Is.Equal, _qbutton)
+                };
+
+                _checkResult = _pool.WaitForConditionAtomic(list, 10000, 20);
+
+                // If check passes
+                if (_checkResult)
+                {
+                    _pool.TraceReport(basestring + Environment.NewLine + 
+                                        "MMI_M_REQUEST = \"" + mRequest + "\"" + Environment.NewLine +
+                                        "MMI_Q_BUTTON = \"" + qButton + "\"" + Environment.NewLine +
+                                        "Time stamp = " + _pool.SITR.CCUO.ETCS1DriverRequest.MmiTButtonevent + Environment.NewLine +
+                                        "Result: PASSED.");
+                }
+
+                // Else display the real values extracted from EVC-101 [MMI_DRIVER_REQUEST]
+                else
+                {
+                    _pool.TraceError(basestring + Environment.NewLine +
+                                    "MMI_M_REQUEST = \"" + Enum.GetName(typeof(Variables.MMI_M_REQUEST), mRequest) + "\"" + Environment.NewLine +
+                                    "MMI_Q_BUTTON = \"" + Enum.GetName(typeof(Variables.MMI_Q_BUTTON), qButton) + "\"" + Environment.NewLine +
+                                    "Time stamp = " + _pool.SITR.CCUO.ETCS1DriverRequest.MmiTButtonevent + Environment.NewLine +
+                                    "Result: FAILED!");
+                }
             }
 
-            // Else display the real values extracted from EVC-101 [MMI_DRIVER_REQUEST]
+            // Show generic DMI -> EVC telegram failure
             else
             {
-                _pool.TraceError(basestring + " - MMI_M_REQUEST = \"" + Enum.GetName(typeof(Variables.MMI_M_REQUEST), mRequest) + "\"" +
-                                    Environment.NewLine + "MMI_Q_BUTTON = \"" + Enum.GetName(typeof(Variables.MMI_Q_BUTTON), qButton) + "\"" +
-                                    Environment.NewLine + "Result: FAILED!" + Environment.NewLine +
-                                    "Time stamp = " + _pool.SITR.CCUO.ETCS1DriverRequest.MmiTButtonevent);
+                DmiExpectedResults.DMItoEVC_Telegram_Not_Received(_pool, basestring);
             }
+
+            // Reset telegram received flag in RTSim
+            _pool.SITR.SMDStat.CCUO.ETCS1DriverRequest.Value = 0;
         }
 
         /// <summary>
