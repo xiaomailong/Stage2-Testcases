@@ -50,7 +50,15 @@ namespace Testcase.DMITestCases
             // Set train running number, cab 1 active, and other defaults
             DmiActions.Activate_Cabin_1(this);
 
-            /// ?? need to open Settings window, then Maintenance password window, then set password and open  Maintenance window ??
+            // force the window
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.None;
+            EVC30_MMIRequestEnable.Send();      // make sure that no window buttons are enabled
+
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;      // main window
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter;
+            EVC30_MMIRequestEnable.Send();
+            
         }
 
         public override void PostExecution()
@@ -73,7 +81,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 3226 (partly: Maintenance Data Entry);(2)  MMI_gen 3390 (partly: Maintenance Data entry);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press ‘Wheel diameter’ button");
+            DmiActions.ShowInstruction(this, @"Press the ‘Maintenance’ button, the press the ‘Wheel diameter’ button in the Maintenance window");
 
             EVC40_MMICurrentMaintenanceData.MMI_Q_MD_DATASET = Variables.MMI_Q_MD_DATASET.WheelDiameter;
             EVC40_MMICurrentMaintenanceData.Send();
