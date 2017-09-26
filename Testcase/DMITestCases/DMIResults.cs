@@ -28,6 +28,16 @@ namespace Testcase.DMITestCases
     public static class DmiExpectedResults
     {
         /// <summary>
+        /// Use when a DMI-EVC telegram is not received by RTSim due to the SMDStat flag not being set
+        /// </summary>
+        /// <param name="pool">Signal pool</param>
+        /// <param name="basestring"></param>
+        public static void DMItoEVC_Telegram_Not_Received(SignalPool pool, string TelegramString)
+        {
+            pool.TraceError($"{TelegramString} telegram was NOT received by RTSim.");
+        }
+        
+        /// <summary>
         /// Used when TC is not needed since it tests the same interfaces as another test case.
         /// </summary>
         /// <param name="pool">Signal pool</param>
