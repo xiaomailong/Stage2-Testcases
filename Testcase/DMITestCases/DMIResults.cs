@@ -597,7 +597,8 @@ namespace Testcase.DMITestCases
             string _sOrder;
             if (order) { _sOrder = "Yes"; } else { _sOrder = "No"; }
 
-            DmiActions.ShowInstruction(pool, "Press \"" + _sOrder + "\" on DMI in area E.");
+            DmiActions.ShowInstruction(pool, @"Perform the following action after pressing OK : " + Environment.NewLine + Environment.NewLine + 
+                                "1. Press \"" + _sOrder + "\" on DMI in area E.");
 
             EVC111_MMIDriverMessageAck.MMI_I_TEXT = 1;
 
@@ -621,7 +622,7 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void Train_Data_Button_pressed_and_released(SignalPool pool)
         {
-            DmiActions.ShowInstruction(pool, @"Perform the following action within 3 seconds after pressing OK : " + Environment.NewLine + Environment.NewLine +
+            DmiActions.ShowInstruction(pool, @"Perform the following action after pressing OK : " + Environment.NewLine + Environment.NewLine +
                                 "1. Press \"Train Data\".");
             EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.StartTrainDataEntry;
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.TrainDataEntryRequested;
@@ -636,15 +637,8 @@ namespace Testcase.DMITestCases
         /// <param name="pool"></param>
         public static void Level_0_Selected(SignalPool pool)
         {
-            DmiActions.ShowInstruction(pool, @"Perform the following action within 3 seconds after pressing OK : " + Environment.NewLine + Environment.NewLine +
+            DmiActions.ShowInstruction(pool, @"Perform the following action after pressing OK : " + Environment.NewLine + Environment.NewLine +
                                 "1. Select and enter Level 0");
-            pool.Wait_Realtime(5000);
-
-            EVC121_MMINewLevel.Check_MMI_M_LEVEL_NTC_ID = MMI_M_LEVEL_NTC_ID.L0;
-            EVC121_MMINewLevel.Check_MMI_Q_LEVEL_NTC_ID = MMI_Q_LEVEL_NTC_ID.ETCS_Level;
-            EVC121_MMINewLevel.Check_MMI_M_LEVEL_FLAG = MMI_M_LEVEL_FLAG.MarkedLevel;
-            EVC121_MMINewLevel.Check_MMI_M_INHIBITED_LEVEL = MMI_M_INHIBITED_LEVEL.NotInhibited;
-            EVC121_MMINewLevel.Check_MMI_M_INHIBIT_ENABLE = MMI_M_INHIBIT_ENABLE.NotAllowedForInhibiting;
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.Level0Selected;
         }
 
