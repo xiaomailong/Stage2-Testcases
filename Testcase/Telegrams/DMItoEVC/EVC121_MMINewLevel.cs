@@ -127,14 +127,14 @@ namespace Testcase.Telegrams.DMItoEVC
                         if (_checkResult) // if check passes
                         {
                             _pool.TraceReport(baseString + ".MMI_M_LEVEL_NTC_ID[" + k + "]  = " +
-                                _mLevelNtcId + " - " + mLevelNtcId + " is NOT SELECTED." + Environment.NewLine +
+                                _mLevelNtcId + " - " + Enum.GetName(typeof(MMI_M_LEVEL_NTC_ID), _mLevelNtcId) + " is NOT SELECTED." + Environment.NewLine +
                                               baseString + ".MMI_M_LEVEL_FLAG[" + k + "]  = " +
                                 _mLevelFlag + " - " + Enum.GetName(typeof(MMI_M_LEVEL_FLAG), _mLevelFlag) + ", PASSED.");
                         }
                         else // else display the real value extracted
                         {
                             _pool.TraceError(baseString + ".MMI_M_LEVEL_NTC_ID[" + k + "]  = " +
-                                _mLevelNtcId + " - " + mLevelNtcId + " is NOT indicated as NOT SELECTED." + Environment.NewLine +
+                                _mLevelNtcId + " - " + Enum.GetName(typeof(MMI_M_LEVEL_NTC_ID), _mLevelNtcId) + " is NOT indicated as NOT SELECTED." + Environment.NewLine +
                                               baseString + ".MMI_M_LEVEL_FLAG[" + k + "]  = " +
                                 _mLevelFlag + " - " + Enum.GetName(typeof(MMI_M_LEVEL_FLAG), _mLevelFlag) + ", FAILED.");
                         }

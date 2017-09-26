@@ -411,12 +411,12 @@ namespace Testcase.Telegrams.EVCtoDMI
                 MMI_M_CURRENT_LEVEL.NotLastUsedLevel };
 
         public static MMI_M_LEVEL_FLAG[] paramEvc20MmiMLevelFlag =
-                { MMI_M_LEVEL_FLAG.NotMarkedLevel,
-                MMI_M_LEVEL_FLAG.NotMarkedLevel,
-                MMI_M_LEVEL_FLAG.NotMarkedLevel,
-                MMI_M_LEVEL_FLAG.NotMarkedLevel,
-                MMI_M_LEVEL_FLAG.NotMarkedLevel,
-                MMI_M_LEVEL_FLAG.NotMarkedLevel };
+                { MMI_M_LEVEL_FLAG.MarkedLevel,
+                MMI_M_LEVEL_FLAG.MarkedLevel,
+                MMI_M_LEVEL_FLAG.MarkedLevel,
+                MMI_M_LEVEL_FLAG.MarkedLevel,
+                MMI_M_LEVEL_FLAG.MarkedLevel,
+                MMI_M_LEVEL_FLAG.MarkedLevel };
 
         public static MMI_M_INHIBITED_LEVEL[] paramEvc20MmiMInhibitedLevel =
                 { MMI_M_INHIBITED_LEVEL.NotInhibited,

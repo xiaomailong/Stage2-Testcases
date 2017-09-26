@@ -27,6 +27,8 @@ namespace Testcase.Telegrams.DMItoEVC
         public static void Initialise(SignalPool pool)
         {
             _pool = pool;
+            _pool.SITR.SMDCtrl.ETCS1.Status.Value = 0x0001;
+
         }
 
         private static void CheckActiveCabin(Variables.MMI_M_ACTIVE_CABIN mActiveCabin)
