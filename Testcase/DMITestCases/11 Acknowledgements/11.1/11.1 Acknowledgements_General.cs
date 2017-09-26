@@ -111,7 +111,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press and hold sub-area C9");
 
             EVC111_MMIDriverMessageAck.MMI_I_TEXT = 1;
-            EVC111_MMIDriverMessageAck.CHECK_MMI_Q_ACK = EVC111_MMIDriverMessageAck.MMI_Q_ACK.AcknowledgeYES;
+            EVC111_MMIDriverMessageAck.MMI_Q_ACK = MMI_Q_ACK.AcknowledgeYES;
+            EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
             
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the symbol ST01 pressed without the yellow flashing frame." + Environment.NewLine +
@@ -149,7 +150,8 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, "Release the pressed area");
 
-            EVC111_MMIDriverMessageAck.CHECK_MMI_Q_ACK = EVC111_MMIDriverMessageAck.MMI_Q_ACK.AcknowledgeYES;
+            EVC111_MMIDriverMessageAck.MMI_Q_ACK = MMI_Q_ACK.AcknowledgeYES;
+            EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI stops displaying the symbol ST01 with a yellow flashing frame in sub-area C1.");
@@ -230,13 +232,15 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press and hold the ‘No’ button");
 
             EVC111_MMIDriverMessageAck.MMI_I_TEXT = 1;
-            EVC111_MMIDriverMessageAck.CHECK_MMI_Q_ACK = EVC111_MMIDriverMessageAck.MMI_Q_ACK.NotAcknowledgeNO;
+            EVC111_MMIDriverMessageAck.MMI_Q_ACK = MMI_Q_ACK.NotAcknowledgeNO;
+            EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
             this.Wait_Realtime(100);
 
             DmiActions.ShowInstruction(this, "Release the ‘No’ button and check the log file for packet EVC111 from DMI with MMI_I_TEXT = 1, MMI_Q_ACK = 2, MMI_Q_BUTTON = 0");
 
             EVC111_MMIDriverMessageAck.MMI_I_TEXT = 1;
-            EVC111_MMIDriverMessageAck.CHECK_MMI_Q_ACK = EVC111_MMIDriverMessageAck.MMI_Q_ACK.NotAcknowledgeNO;
+            EVC111_MMIDriverMessageAck.MMI_Q_ACK = MMI_Q_ACK.NotAcknowledgeNO;
+            EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The message and ‘Yes’ and ‘No’ buttons in sub-areas E5-E9 are removed." + Environment.NewLine +
