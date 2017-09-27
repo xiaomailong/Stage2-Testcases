@@ -559,11 +559,11 @@ namespace Testcase.DMITestCases
         /// <param name="pool"></param>
         public static void Driver_ID_entered(SignalPool pool)
         {
-            DmiActions.ShowInstruction(pool, @"Perform the following action after pressing OK : " + Environment.NewLine + Environment.NewLine +
+            DmiActions.ShowInstruction(pool, @"Perform the following action after pressing OK:" + Environment.NewLine + Environment.NewLine +
                                 "1. Enter and validate Driver ID");
 
             string driverIDInput = EVC104_MMINewDriverData.Get_X_DRIVER_ID;
-            pool.WaitForVerification($"Is \"{driverIDInput}\" the Driver Id entered?");
+            pool.WaitForVerification($"Is \"{driverIDInput}\" the Driver ID you entered?");
         }
 
         /// <summary>
@@ -574,7 +574,7 @@ namespace Testcase.DMITestCases
         /// <param name="pool"></param>
         public static void TRN_entered(SignalPool pool)
         {
-            DmiActions.ShowInstruction(pool, @"Perform the following action within 5 seconds after pressing OK : " + Environment.NewLine + Environment.NewLine +
+            DmiActions.ShowInstruction(pool, @"Perform the following action after pressing OK:" + Environment.NewLine + Environment.NewLine +
                                 "1. Enter and validate Train Running Number");
             uint trnInput = EVC116_MMINewTrainNumber.Get_NID_OPERATION;
             pool.WaitForVerification($"Is \"{trnInput}\" the Train running number entered?");
@@ -592,7 +592,7 @@ namespace Testcase.DMITestCases
             string _sOrder;
             if (order) { _sOrder = "Yes"; } else { _sOrder = "No"; }
 
-            DmiActions.ShowInstruction(pool, @"Perform the following action after pressing OK : " + Environment.NewLine + Environment.NewLine + 
+            DmiActions.ShowInstruction(pool, @"Perform the following action after pressing OK:" + Environment.NewLine + Environment.NewLine + 
                                 "1. Press \"" + _sOrder + "\" on DMI in area E.");
 
             EVC111_MMIDriverMessageAck.MMI_I_TEXT = 1;
@@ -617,7 +617,7 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void Train_Data_Button_pressed_and_released(SignalPool pool)
         {
-            DmiActions.ShowInstruction(pool, @"Perform the following action after pressing OK : " + Environment.NewLine + Environment.NewLine +
+            DmiActions.ShowInstruction(pool, @"Perform the following action after pressing OK:" + Environment.NewLine + Environment.NewLine +
                                 "1. Press \"Train Data\".");
             EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.StartTrainDataEntry;
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.TrainDataEntryRequested;
@@ -632,7 +632,7 @@ namespace Testcase.DMITestCases
         /// <param name="pool"></param>
         public static void Level_0_Selected(SignalPool pool)
         {
-            DmiActions.ShowInstruction(pool, @"Perform the following action after pressing OK : " + Environment.NewLine + Environment.NewLine +
+            DmiActions.ShowInstruction(pool, @"Perform the following action after pressing OK:" + Environment.NewLine + Environment.NewLine +
                                 "1. Select and enter Level 0");
             EVC121_MMINewLevel.LevelSelected = MMI_M_LEVEL_NTC_ID.L0;
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.Level0Selected;
@@ -646,7 +646,7 @@ namespace Testcase.DMITestCases
         /// <param name="pool"></param>
         public static void Level_1_Selected(SignalPool pool)
         {
-            DmiActions.ShowInstruction(pool, @"Perform the following action after pressing OK : " + Environment.NewLine + Environment.NewLine +
+            DmiActions.ShowInstruction(pool, @"Perform the following action after pressing OK:" + Environment.NewLine + Environment.NewLine +
                                 "1. Select and enter Level 1");
             EVC121_MMINewLevel.LevelSelected = MMI_M_LEVEL_NTC_ID.L1;
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.Level1Selected;
@@ -660,7 +660,7 @@ namespace Testcase.DMITestCases
         /// <param name="pool"></param>
         public static void Level_2_Selected(SignalPool pool)
         {
-            DmiActions.ShowInstruction(pool, @"Perform the following action after pressing OK : " + Environment.NewLine + Environment.NewLine +
+            DmiActions.ShowInstruction(pool, @"Perform the following action after pressing OK:" + Environment.NewLine + Environment.NewLine +
                                 "1. Select and enter Level 2");
 
             EVC121_MMINewLevel.LevelSelected = MMI_M_LEVEL_NTC_ID.L2;

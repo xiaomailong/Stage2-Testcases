@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Collections;
 using CL345;
-using Testcase.Telegrams.EVCtoDMI;
 using Testcase.DMITestCases;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 
@@ -28,14 +27,17 @@ namespace Testcase.Telegrams.DMItoEVC
         public static void Initialise(SignalPool pool)
         {
             _pool = pool;
-            _pool.SITR.SMDStat.CCUO.ETCS1NewDriverData.Value = 0;
-            _pool.SITR.SMDCtrl.CCUO.ETCS1NewDriverData.Value = 1;
+            _pool.SITR.SMDStat.CCUO.ETCS1NewDriverData.Value = 0x00;
+            _pool.SITR.SMDCtrl.CCUO.ETCS1NewDriverData.Value = 0x0001;
         }
 
         private static void CheckXDriverID(string xDriverID)
         {
-            // Check if telegram received flag has been set. Allows 15 seconds to enter driver ID.
-            if (_pool.SITR.SMDStat.CCUO.ETCS1NewDriverData.WaitForCondition(Is.Equal, 1, 20000, 20))
+            // Reset telegram received flag in RTSim
+            _pool.SITR.SMDStat.CCUO.ETCS1NewDriverData.Value = 0x00;
+
+            // Check if telegram received flag has been set. Allows 20 seconds to enter driver ID.
+            if (_pool.SITR.SMDStat.CCUO.ETCS1NewDriverData.WaitForCondition(Is.Equal, 1, 20000, 100))
             {
                 // Check if Driver ID matches
                 _checkResult = _pool.SITR.CCUO.ETCS1NewDriverData.MmiXDriverId.Value.Equals(xDriverID);
@@ -57,19 +59,18 @@ namespace Testcase.Telegrams.DMItoEVC
             else
             {
                 DmiExpectedResults.DMItoEVC_Telegram_Not_Received(_pool, baseString);
-            }
-
-            // Reset telegram received flag in RTSim
-            _pool.SITR.SMDStat.CCUO.ETCS1NewDriverData.Value = 0;
+            }           
         }
 
         /// <summary>
         /// This is the driver’s identity (max 16 character long).
+        /// 
         /// Values:
         /// 0 = "Empty string (null character)"
-        /// Note: 16 alphanumeric characters(ISO 8859-1, also known as Latin Alphabet #1).
+        /// 
+        /// Note: 16 alphanumeric characters (ISO 8859-1, also known as Latin Alphabet #1).
         /// Note 1: If the value is unknown the table will be filled with null characters (0, not '0').
-        /// Note 2: If Driver ID is shorter than 16 characters the free charcters will be filled with null characters.
+        /// Note 2: If Driver ID is shorter than 16 characters the free characters will be filled with null characters.
         /// Note 3: If Driver ID is 16 characters there will be no null character in the string.
         /// </summary>
         public static string Check_X_DRIVER_ID
@@ -86,26 +87,27 @@ namespace Testcase.Telegrams.DMItoEVC
         /// 
         /// Values:
         /// 0 = "Empty string (null character)"
-        /// Note: 16 alphanumeric characters(ISO 8859-1, also known as Latin Alphabet #1).
+        /// 
+        /// Note: 16 alphanumeric characters (ISO 8859-1, also known as Latin Alphabet #1).
         /// Note 1: If the value is unknown the table will be filled with null characters (0, not '0').
-        /// Note 2: If Driver ID is shorter than 16 characters the free charcters will be filled with null characters.
+        /// Note 2: If Driver ID is shorter than 16 characters the free characters will be filled with null characters.
         /// Note 3: If Driver ID is 16 characters there will be no null character in the string.
         /// </summary>
         public static string Get_X_DRIVER_ID
         {
             get
             {
-                if (_pool.SITR.SMDStat.CCUO.ETCS1NewDriverData.WaitForCondition(Is.Equal, 1, 20000, 20))
+                // Reset telegram received flag in RTSim
+                _pool.SITR.SMDStat.CCUO.ETCS1NewDriverData.Value = 0x00;
+
+                if (_pool.SITR.SMDStat.CCUO.ETCS1NewDriverData.WaitForCondition(Is.Equal, 1, 20000, 100))
                 {             
-                    _xDriverID = _pool.SITR.CCUO.ETCS1NewDriverData.MmiXDriverId.Value;
-                    _pool.SITR.SMDStat.CCUO.ETCS1NewDriverData.Value = 0;
-                    return _xDriverID;
-                    
+                    _xDriverID = _pool.SITR.CCUO.ETCS1NewDriverData.MmiXDriverId.Value;                   
+                    return _xDriverID;                   
                 }
                 else
                 {
                     DmiExpectedResults.DMItoEVC_Telegram_Not_Received(_pool, baseString);
-                    _pool.SITR.SMDStat.CCUO.ETCS1NewDriverData.Value = 0;
                     return null;
                 }                              
             }

@@ -18,7 +18,7 @@ namespace Testcase.Telegrams.DMItoEVC
         private static bool _checkResult;
         private static MMI_M_MODE_READBACK _mModeReadBack;
         private static Variables.MMI_M_ACTIVE_CABIN _mActiveCabin;
-        static string baseString = "DMI->ETCS: Check EVC-102 [MMI_STATUS_REPORT]";
+        const string baseString = "DMI->ETCS: Check EVC-102 [MMI_STATUS_REPORT]";
 
         /// <summary>
         /// Initialise EVC-102 MMI_Status_Report telegram.
@@ -67,7 +67,7 @@ namespace Testcase.Telegrams.DMItoEVC
                 _pool.TraceReport($"{baseString} - MMI_M_MODE_READBACK = \"{mModeReadBack}\"" + Environment.NewLine +
                                     "Result: PASSED.");
             }
-            // Display the real value extracted from EVC-102 [MMI_STATUS_REPORT.MMI_M_MODE_READBACK]
+            // Display the real value extracted from EVC-102
             else
             {
                 // Get current mode
