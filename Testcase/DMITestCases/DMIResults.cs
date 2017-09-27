@@ -559,19 +559,11 @@ namespace Testcase.DMITestCases
         /// <param name="pool"></param>
         public static void Driver_ID_entered(SignalPool pool)
         {
-            /*
-            string driverIDInput = DmiActions.ShowDialog(@"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
-                                "1. Type any Driver ID on THIS WINDOW." + Environment.NewLine +
-                                "2. Type the same Driver ID on the DMI." + Environment.NewLine +
-                                "3. Confirmed the entered value by pressing the input field.", "Driver ID");
-            */
-
-            DmiActions.ShowInstruction(pool, @"Perform the following action within 5 seconds after pressing OK : " + Environment.NewLine + Environment.NewLine +
+            DmiActions.ShowInstruction(pool, @"Perform the following action after pressing OK : " + Environment.NewLine + Environment.NewLine +
                                 "1. Enter and validate Driver ID");
-            pool.Wait_Realtime(5000);
+
             string driverIDInput = EVC104_MMINewDriverData.Get_X_DRIVER_ID;
             pool.WaitForVerification($"Is \"{driverIDInput}\" the Driver Id entered?");
-
         }
 
         /// <summary>
@@ -582,15 +574,8 @@ namespace Testcase.DMITestCases
         /// <param name="pool"></param>
         public static void TRN_entered(SignalPool pool)
         {
-            /*string trnInput = DmiActions.ShowDialog(@"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
-                                "1. Type any Train Running Number on THIS WINDOW." + Environment.NewLine +
-                                "2. Type the same TRN on the DMI." + Environment.NewLine +
-                                "3. Confirmed the entered value by pressing the input field.", "Driver ID");
-            */
-
             DmiActions.ShowInstruction(pool, @"Perform the following action within 5 seconds after pressing OK : " + Environment.NewLine + Environment.NewLine +
                                 "1. Enter and validate Train Running Number");
-            pool.Wait_Realtime(5000);
             uint trnInput = EVC116_MMINewTrainNumber.Get_NID_OPERATION;
             pool.WaitForVerification($"Is \"{trnInput}\" the Train running number entered?");
         }
