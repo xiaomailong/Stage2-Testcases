@@ -70,8 +70,8 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press the ‘Data view’ button");
 
-            EVC101_MMIDriverRequest.CheckMRequestPressed = Telegrams.EVCtoDMI.Variables.MMI_M_REQUEST.StartTrainDataView;
-            Wait_Realtime(2000);
+            //EVC101_MMIDriverRequest.CheckMRequestPressed = Telegrams.EVCtoDMI.Variables.MMI_M_REQUEST.StartTrainDataView;
+            
             EVC101_MMIDriverRequest.CheckMRequestReleased = Telegrams.EVCtoDMI.Variables.MMI_M_REQUEST.StartTrainDataView;
 
             //?? EVC13.MMI_MRequest = MMI_M_DATA_ENABLE.TrainSetID |

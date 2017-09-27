@@ -852,7 +852,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press the ‘Close’ button");
 
-            EVC101_MMIDriverRequest.CheckMRequestPressed = MMI_M_REQUEST.ExitChangeSRrules;
+            EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.ExitChangeSRrules;
 
             // Spec says DMI receives EVC30 ??
             //EVC30_MMIRequestEnable.SendBlank();

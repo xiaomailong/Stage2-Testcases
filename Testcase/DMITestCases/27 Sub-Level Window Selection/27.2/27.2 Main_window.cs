@@ -308,9 +308,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8354-1 (THR) (partly: button ‘Shunting’, MMI_gen 11450-1 (THR) (partly: Delay-Type button, MMI_gen 4388 (partly: less than the 2 seconds, return to state ‘Enabled’)));(2) MMI_gen 8354-1 (THR) (partly: button ‘Shunting’, MMI_gen 11450-1 (THR) (partly: Delay-Type button, MMI_gen 4388 (partly: less than the 2 seconds, no valid button activation considered by onboard)));(3) MMI_gen 8354-1 (THR) (partly: button ‘Shunting’, MMI_gen 11450-1 (THR) (partly: Delay-Type button, MMI_gen 4388 (partly: the sound for button Delay-Type))); MMI_gen 9512, MMI_gen 968;(4) MMI_gen 8354-1 (THR) (partly: button ‘Shunting’, MMI_gen 11450-1 (THR) (partly: send events of Pressed and Released independently to ETCS), MMI_gen 11907 (partly: EVC-101, timestamp)); MMI_gen 3375;
             */
             DmiActions.ShowInstruction(this, @"Press and immediately release the ‘Shunting’ button");
-
-            EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.StartShunting;
-            this.Wait_Realtime(300);
+            
+            // This will not now: DMI only sends the packet when the button has been released
+            //EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.StartShunting;
+            
             EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.StartShunting;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -326,7 +327,8 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Press and hold the ‘Shunting’ button.");
 
-            EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.StartShunting;
+            // This will not now: DMI only sends the packet when the button has been released
+            //EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.StartShunting;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Shunting’ button is displayed pressed and then re-displayed enabled, repeatedly, while the button is held." + Environment.NewLine +
@@ -380,6 +382,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Release the ‘Shunting’ button");
 
             EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.StartShunting;
+
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Shunting;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -432,9 +435,10 @@ namespace Testcase.DMITestCases
             */
             // Repeat Step 8
             DmiActions.ShowInstruction(this, @"Press and immediately release the ‘Maintain shunting’ button");
+            
+            // This will not now: DMI only sends the packet when the button has been released
+            //EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.ContinueShuntingOnDeskClosure;
 
-            EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.ContinueShuntingOnDeskClosure;
-            this.Wait_Realtime(300);
             EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.ContinueShuntingOnDeskClosure;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -445,7 +449,8 @@ namespace Testcase.DMITestCases
             // Repeat Step 9
             DmiActions.ShowInstruction(this, @"Press and hold the ‘Maintain shunting’ button.");
 
-            EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.ContinueShuntingOnDeskClosure;
+            // This will not now: DMI only sends the packet when the button has been released
+            //EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.ContinueShuntingOnDeskClosure;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Maintain shunting’ button is displayed pressed and then re-displayed enabled, repeatedly, while the button is held." + Environment.NewLine +
@@ -510,9 +515,10 @@ namespace Testcase.DMITestCases
             */
             // Repeat Step 8
             DmiActions.ShowInstruction(this, @"Press and immediately release the ‘Exit shunting’ button");
-
-            EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.ExitShunting;
-            this.Wait_Realtime(300);
+            
+            // This will not work: DMI only sends the packet when the button has been released
+            //EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.ExitShunting;
+            
             EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.ExitShunting;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -523,7 +529,8 @@ namespace Testcase.DMITestCases
             // Repeat Step 9
             DmiActions.ShowInstruction(this, @"Press and hold the ‘Exit shunting’ button.");
 
-            EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.ExitShunting;
+            // This will not work: DMI only sends the packet when the button has been released
+            //EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.ExitShunting;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Exit shunting’ button is displayed pressed and then re-displayed enabled, repeatedly, while the button is held." + Environment.NewLine +
@@ -619,8 +626,9 @@ namespace Testcase.DMITestCases
             // Repeat Step 8
             DmiActions.ShowInstruction(this, @"Press and immediately release the ‘Non-leading’ button");
 
-            EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.StartNonLeading;
-            this.Wait_Realtime(300);
+            // This will not work: DMI only sends the packet when the button has been released
+            //EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.StartNonLeading;
+            
             EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.StartNonLeading;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +

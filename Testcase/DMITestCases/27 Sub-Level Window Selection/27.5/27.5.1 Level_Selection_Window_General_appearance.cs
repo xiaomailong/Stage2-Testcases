@@ -198,7 +198,7 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, "Press the ‘Level 1’ button, then press and hold the input field");
 
-            EVC101_MMIDriverRequest.CheckMRequestPressed = MMI_M_REQUEST.LevelEntered;
+            EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.LevelEntered;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Click’ sound is played once.");
@@ -279,7 +279,7 @@ namespace Testcase.DMITestCases
             // Repeat Steps 4-9 for Level 2 button
             DmiActions.ShowInstruction(this, "Press the ‘Level 2’ button, then press and hold the input field");
 
-            EVC101_MMIDriverRequest.CheckMRequestPressed = MMI_M_REQUEST.LevelEntered;
+            EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.LevelEntered;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Click’ sound is played once.");
@@ -324,7 +324,7 @@ namespace Testcase.DMITestCases
             // Repeat Steps 4-9 for Level 3 button
             DmiActions.ShowInstruction(this, "Press the ‘Level 3’ button, then press and hold the input field");
 
-            EVC101_MMIDriverRequest.CheckMRequestPressed = MMI_M_REQUEST.LevelEntered;
+            EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.LevelEntered;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Click’ sound is played once.");
@@ -368,7 +368,7 @@ namespace Testcase.DMITestCases
             // Repeat Steps 4-9 for Level 0 button
             DmiActions.ShowInstruction(this, "Press the ‘Level 0’ button, then press and hold the input field");
 
-            EVC101_MMIDriverRequest.CheckMRequestPressed = MMI_M_REQUEST.LevelEntered;
+            EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.LevelEntered;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Click’ sound is played once.");
@@ -412,7 +412,7 @@ namespace Testcase.DMITestCases
             // Repeat Steps 4-9 for CBTC button
             DmiActions.ShowInstruction(this, "Press the ‘CBTC’ button, then press and hold the input field");
 
-            EVC101_MMIDriverRequest.CheckMRequestPressed = MMI_M_REQUEST.LevelEntered;
+            EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.LevelEntered;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Click’ sound is played once.");
@@ -456,7 +456,7 @@ namespace Testcase.DMITestCases
             // Repeat Steps 4-9 for AWS_TPWS button
             DmiActions.ShowInstruction(this, "Press the ‘AWS_TPWS’ button, then press and hold the input field");
 
-            EVC101_MMIDriverRequest.CheckMRequestPressed = MMI_M_REQUEST.LevelEntered;
+            EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.LevelEntered;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Click’ sound is played once.");

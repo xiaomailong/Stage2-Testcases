@@ -308,7 +308,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
 
-            EVC101_MMIDriverRequest.CheckMRequestPressed = MMI_M_REQUEST.ExitRBCNetworkID;
+            EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.ExitRBCNetworkID;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the RBC contact window.");

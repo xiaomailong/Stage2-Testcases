@@ -71,7 +71,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press ‘Data view’ button");
 
-            EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.StartTrainDataView;
+            EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.StartTrainDataView;
 
             //?? EVC13.MMI_MRequest = (MMI_M_DATA_ENABLE.TrainCategory |
             //                         MMI_M_DATA_ENABLE.TrainLength |

@@ -143,7 +143,7 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Select the ‘Slippery rail’ key and confirm the value");
 
-            EVC101_MMIDriverRequest.CheckMRequestPressed = MMI_M_REQUEST.SetAdhesionCoefficientToSlipperyRail;
+            EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.SetAdhesionCoefficientToSlipperyRail;
             
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Adhesion window and displays the Special window." + Environment.NewLine +
@@ -173,7 +173,7 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Select the ‘Non Slippery rail’ key and confirm the value");
 
-            EVC101_MMIDriverRequest.CheckMRequestPressed = MMI_M_REQUEST.RestoreAdhesionCoefficientToNonSlipperyRail;
+            EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.RestoreAdhesionCoefficientToNonSlipperyRail;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Adhesion window and displays the Special window." + Environment.NewLine +
@@ -203,7 +203,8 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Select the ‘Non Slippery rail’ key, then press and hold the data input field");
 
-            EVC101_MMIDriverRequest.CheckMRequestPressed = MMI_M_REQUEST.RestoreAdhesionCoefficientToNonSlipperyRail;
+            // This will not work: DMI only sends the packet when the button has been released
+            //EVC101_MMIDriverRequest.CheckMRequestPressed = MMI_M_REQUEST.RestoreAdhesionCoefficientToNonSlipperyRail;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Click’ sound is played once.");
