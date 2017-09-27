@@ -41,6 +41,8 @@ namespace Testcase.Telegrams.EVCtoDMI
 
             // Set default values
             _pool.SITR.ETCS1.SetVbc.MmiMPacket.Value = 18; // Packet ID
+            _pool.SITR.SMDCtrl.ETCS1.SetVbc.Value = 0x8;
+
             MMI_N_VBC = 0;
         }
 

@@ -30,6 +30,7 @@ namespace Testcase.Telegrams.DMItoEVC
         public static void Initialise(SignalPool pool)
         {
             _pool = pool;
+            _pool.SITR.SMDStat.CCUO.ETCS1DriverMessageAck.Value = 0;
             _pool.SITR.SMDCtrl.CCUO.ETCS1DriverMessageAck.Value = 1;
         }
 
@@ -93,7 +94,12 @@ namespace Testcase.Telegrams.DMItoEVC
                     else _pool.TraceError("MMI_Q_ACK is not valid.");
                 }
 
-                else _pool.TraceError("EVC-111 error. Make sure MMI_I_TEXT, MMI_Q_BUTTON, and MMI_Q_ACK are set to valid values.");
+                else
+                {
+                    _pool.TraceError("EVC-111 error. Make sure MMI_I_TEXT, MMI_Q_BUTTON, and MMI_Q_ACK are set to valid values.");
+                }
+
+                _pool.SITR.SMDStat.CCUO.ETCS1DriverMessageAck.Value = 0;
             }
         }
 
@@ -105,7 +111,9 @@ namespace Testcase.Telegrams.DMItoEVC
         {
             var list = new List<Atomic>
             {
+                _pool.SITR.SMDStat.CCUO.ETCS1DriverMessageAck.Atomic.WaitForCondition(Is.Equal, 1),
                 _pool.SITR.CCUO.ETCS1DriverMessageAck.MmiIText.Atomic.WaitForCondition(Is.Equal, _mmiIText),
+                
                 // EVC111_alias_1: MMI_Q_ACK bits = 00xx 0000
                 // EVC111_alias_1: MMI_Q_BUTTON bit = 0000 x000
                 _pool.SITR.CCUO.ETCS1DriverMessageAck.EVC111alias1.Atomic.WaitForCondition(Is.Equal, 0x18)
@@ -141,7 +149,9 @@ namespace Testcase.Telegrams.DMItoEVC
         {
             var list = new List<Atomic>
             {
+                _pool.SITR.SMDStat.CCUO.ETCS1DriverMessageAck.Atomic.WaitForCondition(Is.Equal, 1),
                 _pool.SITR.CCUO.ETCS1DriverMessageAck.MmiIText.Atomic.WaitForCondition(Is.Equal, _mmiIText),
+                
                 // EVC111_alias_1: MMI_Q_ACK bits = 00xx 0000
                 // EVC111_alias_1: MMI_Q_BUTTON bit = 0000 x000
                 _pool.SITR.CCUO.ETCS1DriverMessageAck.EVC111alias1.Atomic.WaitForCondition(Is.Equal, 0x10)
@@ -177,7 +187,9 @@ namespace Testcase.Telegrams.DMItoEVC
         {
             var list = new List<Atomic>
             {
+                _pool.SITR.SMDStat.CCUO.ETCS1DriverMessageAck.Atomic.WaitForCondition(Is.Equal, 1),
                 _pool.SITR.CCUO.ETCS1DriverMessageAck.MmiIText.Atomic.WaitForCondition(Is.Equal, _mmiIText),
+                
                 // EVC111_alias_1: MMI_Q_ACK bits = 00xx 0000
                 // EVC111_alias_1: MMI_Q_BUTTON bit = 0000 x000
                 _pool.SITR.CCUO.ETCS1DriverMessageAck.EVC111alias1.Atomic.WaitForCondition(Is.Equal, 0x28)
@@ -213,7 +225,9 @@ namespace Testcase.Telegrams.DMItoEVC
         {
             var list = new List<Atomic>
             {
+                _pool.SITR.SMDStat.CCUO.ETCS1DriverMessageAck.Atomic.WaitForCondition(Is.Equal, 1),
                 _pool.SITR.CCUO.ETCS1DriverMessageAck.MmiIText.Atomic.WaitForCondition(Is.Equal, _mmiIText),
+                
                 // EVC111_alias_1: MMI_Q_ACK bits = 00xx 0000
                 // EVC111_alias_1: MMI_Q_BUTTON bit = 0000 x000
                 _pool.SITR.CCUO.ETCS1DriverMessageAck.EVC111alias1.Atomic.WaitForCondition(Is.Equal, 0x20)
