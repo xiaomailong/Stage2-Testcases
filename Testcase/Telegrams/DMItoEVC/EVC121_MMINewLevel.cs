@@ -40,11 +40,15 @@ namespace Testcase.Telegrams.DMItoEVC
 
         private static void CheckLevelSelected(MMI_M_LEVEL_NTC_ID mLevelNtcId)
         {
+            
             // Get MMI_N_LEVELS info sent by EVC to the DMI via EVC-20
             _nLevels = _pool.SITR.ETCS1.SelectLevel.MmiNLevels.Value;
 
+            // Reset telegram received flag in RTSim
+            _pool.SITR.SMDStat.CCUO.ETCS1NewLevel.Value = 0x00;
+
             // Wait 10 seconds for SMDStat to become set
-            if (_pool.WaitForCondition(_pool.SITR.SMDStat.CCUO.ETCS1NewLevel,Is.Equal, 0x01, 10000, 20))
+            if (_pool.WaitForCondition(_pool.SITR.SMDStat.CCUO.ETCS1NewLevel,Is.Equal, 0x01, 10000, 100))
             {
                 // Check MMI_N_LEVELS from EVC-121 packet
                 _checkResult = _pool.SITR.CCUO.ETCS1NewLevel.MmiNLevels.Value.Equals(_nLevels);
@@ -127,20 +131,18 @@ namespace Testcase.Telegrams.DMItoEVC
             {
                 DmiExpectedResults.DMItoEVC_Telegram_Not_Received(_pool, baseString1);
             }
-
-            // Reset SMDStat to 0
-            _pool.SITR.SMDStat.CCUO.ETCS1NewLevel.Value = 0;
         }
 
         /// <summary>
         /// Identity of level selected
-        /// Value:
-        /// L0 = 0,
-        /// L1 = 1,
-        /// L2 = 2,
-        /// L3 = 3,
-        /// CBTC = 50,
+        /// 
+        /// Values:
+        /// L0 = 0
+        /// L1 = 1
+        /// L2 = 2
+        /// L3 = 3
         /// AWS_TPWS = 20
+        /// CBTC = 50
         /// </summary>
         public static MMI_M_LEVEL_NTC_ID LevelSelected
         {

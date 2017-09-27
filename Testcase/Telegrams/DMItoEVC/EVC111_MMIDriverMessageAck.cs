@@ -21,7 +21,7 @@ namespace Testcase.Telegrams.DMItoEVC
         private static Variables.MMI_Q_BUTTON _mmiQButton;
         private static bool _checkResult;
 
-        static string baseString = "DMI->ETCS: EVC-111 [MMI_DRIVER_MESSAGE_ACK] MMI_I_TEXT = ";
+        const string baseString = "DMI->ETCS: EVC-111 [MMI_DRIVER_MESSAGE_ACK] MMI_I_TEXT = ";
 
         /// <summary>
         /// Initialise EVC-111 MMI_Driver_Message_Ack telegram.
@@ -58,6 +58,10 @@ namespace Testcase.Telegrams.DMItoEVC
             set => _mmiQAck = value;
         }
 
+        /// <summary>
+        /// Check whether a specific Driver Message Acknowledge Pressed or Released telegram has been received,
+        /// based on the MMI_I_Text set previously.
+        /// </summary>
         public static Variables.MMI_Q_BUTTON MMI_Q_BUTTON
         {
             set
@@ -70,36 +74,28 @@ namespace Testcase.Telegrams.DMItoEVC
                     {
                         Check_Driver_Message_Ack_Pressed();
                     }
-
                     else if (_mmiQAck == MMI_Q_ACK.NotAcknowledgeNO)
                     {
                         Check_Driver_Message_Not_Ack_Pressed();
                     }
-
                     else _pool.TraceError("MMI_Q_ACK is not valid.");
                 }
-
                 else if (_mmiQButton == Variables.MMI_Q_BUTTON.Released)
                 {
                     if (_mmiQAck == MMI_Q_ACK.AcknowledgeYES)
                     {
                         Check_Driver_Message_Ack_Released();
                     }
-
                     else if (_mmiQAck == MMI_Q_ACK.NotAcknowledgeNO)
                     {
                         Check_Driver_Message_Not_Ack_Released();
                     }
-
                     else _pool.TraceError("MMI_Q_ACK is not valid.");
                 }
-
                 else
                 {
                     _pool.TraceError("EVC-111 error. Make sure MMI_I_TEXT, MMI_Q_BUTTON, and MMI_Q_ACK are set to valid values.");
                 }
-
-                _pool.SITR.SMDStat.CCUO.ETCS1DriverMessageAck.Value = 0;
             }
         }
 
@@ -109,6 +105,9 @@ namespace Testcase.Telegrams.DMItoEVC
         /// <param name="mmiIText">Identifier of the acknowledged text</param>
         private static void Check_Driver_Message_Ack_Pressed()
         {
+            // Reset telegram received flag in RTSim
+            _pool.SITR.SMDStat.CCUO.ETCS1DriverMessageAck.Value = 0x00;
+
             var list = new List<Atomic>
             {
                 _pool.SITR.SMDStat.CCUO.ETCS1DriverMessageAck.Atomic.WaitForCondition(Is.Equal, 1),
@@ -119,7 +118,7 @@ namespace Testcase.Telegrams.DMItoEVC
                 _pool.SITR.CCUO.ETCS1DriverMessageAck.EVC111alias1.Atomic.WaitForCondition(Is.Equal, 0x18)
             };
 
-            _checkResult = _pool.WaitForConditionAtomic(list, 10000, 20);
+            _checkResult = _pool.WaitForConditionAtomic(list, 10000, 100);
 
             // Get time stamp of received packet
             _timeStamp = _pool.SITR.CCUO.ETCS1DriverMessageAck.MmiTButtonEvent.Value;
@@ -147,6 +146,9 @@ namespace Testcase.Telegrams.DMItoEVC
         /// <param name="mmiIText">Identifier of the acknowledged text</param>
         private static void Check_Driver_Message_Ack_Released()
         {
+            // Reset telegram received flag in RTSim
+            _pool.SITR.SMDStat.CCUO.ETCS1DriverMessageAck.Value = 0x00;
+
             var list = new List<Atomic>
             {
                 _pool.SITR.SMDStat.CCUO.ETCS1DriverMessageAck.Atomic.WaitForCondition(Is.Equal, 1),
@@ -157,7 +159,7 @@ namespace Testcase.Telegrams.DMItoEVC
                 _pool.SITR.CCUO.ETCS1DriverMessageAck.EVC111alias1.Atomic.WaitForCondition(Is.Equal, 0x10)
             };
 
-            _checkResult = _pool.WaitForConditionAtomic(list, 10000, 20);
+            _checkResult = _pool.WaitForConditionAtomic(list, 10000, 100);
 
             // Get time stamp of received packet
             _timeStamp = _pool.SITR.CCUO.ETCS1DriverMessageAck.MmiTButtonEvent.Value;
@@ -185,6 +187,9 @@ namespace Testcase.Telegrams.DMItoEVC
         /// <param name="mmiIText">Identifier of the acknowledged text</param>
         private static void Check_Driver_Message_Not_Ack_Pressed()
         {
+            // Reset telegram received flag in RTSim
+            _pool.SITR.SMDStat.CCUO.ETCS1DriverMessageAck.Value = 0x00;
+
             var list = new List<Atomic>
             {
                 _pool.SITR.SMDStat.CCUO.ETCS1DriverMessageAck.Atomic.WaitForCondition(Is.Equal, 1),
@@ -195,7 +200,7 @@ namespace Testcase.Telegrams.DMItoEVC
                 _pool.SITR.CCUO.ETCS1DriverMessageAck.EVC111alias1.Atomic.WaitForCondition(Is.Equal, 0x28)
             };
 
-            _checkResult = _pool.WaitForConditionAtomic(list, 10000, 20);
+            _checkResult = _pool.WaitForConditionAtomic(list, 10000, 100);
 
             // Get time stamp of received packet
             _timeStamp = _pool.SITR.CCUO.ETCS1DriverMessageAck.MmiTButtonEvent.Value;
@@ -223,6 +228,9 @@ namespace Testcase.Telegrams.DMItoEVC
         /// <param name="mmiIText">Identifier of the acknowledged text</param>
         private static void Check_Driver_Message_Not_Ack_Released()
         {
+            // Reset telegram received flag in RTSim
+            _pool.SITR.SMDStat.CCUO.ETCS1DriverMessageAck.Value = 0x00;
+
             var list = new List<Atomic>
             {
                 _pool.SITR.SMDStat.CCUO.ETCS1DriverMessageAck.Atomic.WaitForCondition(Is.Equal, 1),
@@ -233,7 +241,7 @@ namespace Testcase.Telegrams.DMItoEVC
                 _pool.SITR.CCUO.ETCS1DriverMessageAck.EVC111alias1.Atomic.WaitForCondition(Is.Equal, 0x20)
             };
 
-            _checkResult = _pool.WaitForConditionAtomic(list, 10000, 20);
+            _checkResult = _pool.WaitForConditionAtomic(list, 10000, 100);
 
             // Get time stamp of received packet
             _timeStamp = _pool.SITR.CCUO.ETCS1DriverMessageAck.MmiTButtonEvent.Value;

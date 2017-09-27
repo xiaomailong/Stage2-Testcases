@@ -19,7 +19,7 @@ namespace Testcase.Telegrams.DMItoEVC
         private static bool _checkResult;
         private static Variables.MMI_M_REQUEST _mRequest;
         private static byte _qButton;
-        private static string _baseString = "DMI->ETCS: EVC-101 [MMI_DRIVER_REQUEST]";
+        const string baseString = "DMI->ETCS: EVC-101 [MMI_DRIVER_REQUEST]";
 
         /// <summary>
         /// Initialise EVC-101 MMI_Driver_Request telegram.
@@ -28,8 +28,8 @@ namespace Testcase.Telegrams.DMItoEVC
         public static void Initialise(SignalPool pool)
         {
             _pool = pool;
-            _pool.SITR.SMDStat.CCUO.ETCS1DriverRequest.Value = 0;
-            _pool.SITR.SMDCtrl.CCUO.ETCS1DriverRequest.Value = 1;
+            _pool.SITR.SMDStat.CCUO.ETCS1DriverRequest.Value = 0x00;
+            _pool.SITR.SMDCtrl.CCUO.ETCS1DriverRequest.Value = 0x0001;
         }
 
         /// <summary>
@@ -39,8 +39,11 @@ namespace Testcase.Telegrams.DMItoEVC
         /// <param name="qButton">Button event pressed or released</param>
         private static void CheckMRequestState(Variables.MMI_M_REQUEST mRequest, Variables.MMI_Q_BUTTON qButton)
         {
+            // Reset telegram received flag in RTSim
+            _pool.SITR.SMDStat.CCUO.ETCS1DriverRequest.Value = 0x00;
+
             // Check if telegram received flag has been set
-            if (_pool.SITR.SMDStat.CCUO.ETCS1DriverRequest.WaitForCondition(Is.Equal, 1, 10000, 20))
+            if (_pool.SITR.SMDStat.CCUO.ETCS1DriverRequest.WaitForCondition(Is.Equal, 1, 10000, 100))
             {
                 // Convert qButton to a Byte value. All alignment bits in evc101alias1 should
                 // be set to 0 automatically hence bit-shifting is no problem.
@@ -58,32 +61,27 @@ namespace Testcase.Telegrams.DMItoEVC
                 // If check passes
                 if (_checkResult)
                 {
-                    _pool.TraceReport(_baseString + Environment.NewLine + 
+                    _pool.TraceReport(baseString + Environment.NewLine + 
                                         "MMI_M_REQUEST = \"" + mRequest + "\"" + Environment.NewLine +
                                         "MMI_Q_BUTTON = \"" + qButton + "\"" + Environment.NewLine +
                                         "Time stamp = " + _pool.SITR.CCUO.ETCS1DriverRequest.MmiTButtonevent + Environment.NewLine +
                                         "Result: PASSED.");
                 }
-
-                // Else display the real values extracted from EVC-101 [MMI_DRIVER_REQUEST]
+                // Else display the real values extracted from EVC-101
                 else
                 {
-                    _pool.TraceError(_baseString + Environment.NewLine +
-                                    "MMI_M_REQUEST = \"" + Enum.GetName(typeof(Variables.MMI_M_REQUEST), mRequest) + "\"" + Environment.NewLine +
-                                    "MMI_Q_BUTTON = \"" + Enum.GetName(typeof(Variables.MMI_Q_BUTTON), qButton) + "\"" + Environment.NewLine +
-                                    "Time stamp = " + _pool.SITR.CCUO.ETCS1DriverRequest.MmiTButtonevent + Environment.NewLine +
-                                    "Result: FAILED!");
+                    _pool.TraceError(baseString + Environment.NewLine +
+                                        "MMI_M_REQUEST = \"" + Enum.GetName(typeof(Variables.MMI_M_REQUEST), mRequest) + "\"" + Environment.NewLine +
+                                        "MMI_Q_BUTTON = \"" + Enum.GetName(typeof(Variables.MMI_Q_BUTTON), qButton) + "\"" + Environment.NewLine +
+                                        "Time stamp = " + _pool.SITR.CCUO.ETCS1DriverRequest.MmiTButtonevent + Environment.NewLine +
+                                        "Result: FAILED!");
                 }
             }
-
             // Show generic DMI -> EVC telegram failure
             else
             {
-                DmiExpectedResults.DMItoEVC_Telegram_Not_Received(_pool, _baseString);
+                DmiExpectedResults.DMItoEVC_Telegram_Not_Received(_pool, baseString);
             }
-
-            // Reset telegram received flag in RTSim
-            _pool.SITR.SMDStat.CCUO.ETCS1DriverRequest.Value = 0;
         }
 
         /// <summary>

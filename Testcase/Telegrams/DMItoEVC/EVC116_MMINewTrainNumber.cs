@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Collections;
 using CL345;
-using Testcase.Telegrams.DMItoEVC;
 using Testcase.Telegrams.EVCtoDMI;
-using static Testcase.Telegrams.EVCtoDMI.Variables;
+using Testcase.DMITestCases;
+using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 
 
 namespace Testcase.Telegrams.DMItoEVC
@@ -17,8 +17,9 @@ namespace Testcase.Telegrams.DMItoEVC
     public static class EVC116_MMINewTrainNumber
     {
         private static SignalPool _pool;
-        private static bool _bResult;
+        private static bool _checkResult;
         private static uint _nidOperation;
+        const string baseString = "DMI->ETCS: EVC-116 [MMI_NEW_TRAIN_NUMBER]";
 
         /// <summary>
         /// Initialise EVC-116 MMI_New_Train_Number.
@@ -27,36 +28,55 @@ namespace Testcase.Telegrams.DMItoEVC
         public static void Initialise(SignalPool pool)
         {
             _pool = pool;
-            _pool.SITR.SMDCtrl.CCUO.ETCS1NewTrainNumber.Value = 1;
+            _pool.SITR.SMDStat.CCUO.ETCS1NewTrainNumber.Value = 0x00;
+            _pool.SITR.SMDCtrl.CCUO.ETCS1NewTrainNumber.Value = 0x0001;
         }
 
         private static void CheckNidOperation(uint nidOperation)
         {
-            _bResult = _pool.SITR.CCUO.ETCS1NewTrainNumber.MmiNidOperation.Value.Equals(nidOperation);            
-           
-            if (_bResult) // if check passes
+            // Reset telegram received flag in RTSim
+            _pool.SITR.SMDStat.CCUO.ETCS1NewTrainNumber.Value = 0x00;
+
+            // Check if telegram received flag has been set. Allows 20 seconds to enter Train Running Number.
+            if (_pool.SITR.SMDStat.CCUO.ETCS1NewTrainNumber.WaitForCondition(Is.Equal, 1, 20000, 100))
             {
-                _pool.TraceReport("DMI->ETCS: EVC-116 [MMI_NEW_TRAIN_NUMBER.MMI_NID_OPERATION] => " +
-                    nidOperation + " PASSED.");
+                _checkResult = _pool.SITR.CCUO.ETCS1NewTrainNumber.MmiNidOperation.Value.Equals(nidOperation);
+
+                // If check passes
+                if (_checkResult)
+                {
+                    _pool.TraceReport($"{baseString} - [MMI_NID_OPERATION] = {nidOperation}" + Environment.NewLine +
+                                        "Result: PASSED.");
+                }
+                // Else display the real value extracted from EVC-104
+                else
+                {
+                    _pool.TraceError($"{baseString} - [MMI_NID_OPERATION] = " + _pool.SITR.CCUO.ETCS1NewTrainNumber.MmiNidOperation.Value +
+                                    Environment.NewLine + "Result: FAILED");
+                }
             }
-            else // else display the real value extracted from EVC-104 [MMI_NEW_DRIVER_DATA.MMI_X_DRIVER_ID]
+            // Show generic DMI -> EVC telegram failure
+            else
             {
-                _pool.TraceError("DMI->ETCS: Check EVC-116 [MMI_NEW_TRAIN_NUMBER.MMI_NID_OPERATION] => " +
-                    _pool.SITR.CCUO.ETCS1NewTrainNumber.MmiNidOperation.Value + " FAILED");
+                DmiExpectedResults.DMItoEVC_Telegram_Not_Received(_pool, baseString);
             }
         }
 
         /// <summary>
         /// This is the operational train running number.
+        /// 
         /// Note: Definition according to Subset-026, 7.5.1.92.
         /// Binary Coded Decimal
+        /// 
         /// For each digit: 
-        /// Values 0-9	Digit value
-        /// Values A-E Not used, spare
-        /// Value F No digit(used for shorter numbers or when not applicable) or special value(see below)
+        /// 0-9: Digit value
+        /// A-E: Not used, spare
+        /// F: No digit (used for shorter numbers or when not applicable) or special value (see below)
+        /// 
         /// E.g. “1234567” is coded as 0x1234567F 
+        /// 
         /// Special values:
-        /// 0xFFFFFFFF	'Unknown Train Running Number'
+        /// 0xFFFFFFFF = 'Unknown Train Running Number'
         /// </summary>
         public static uint Check_NID_OPERATION
         {
@@ -69,15 +89,19 @@ namespace Testcase.Telegrams.DMItoEVC
 
         /// <summary>
         /// This is the operational train running number.
+        /// 
         /// Note: Definition according to Subset-026, 7.5.1.92.
         /// Binary Coded Decimal
+        /// 
         /// For each digit: 
-        /// Values 0-9	Digit value
-        /// Values A-E Not used, spare
-        /// Value F No digit(used for shorter numbers or when not applicable) or special value(see below)
+        /// 0-9: Digit value
+        /// A-E: Not used, spare
+        /// F: No digit (used for shorter numbers or when not applicable) or special value (see below)
+        /// 
         /// E.g. “1234567” is coded as 0x1234567F 
+        /// 
         /// Special values:
-        /// 0xFFFFFFFF	'Unknown Train Running Number'
+        /// 0xFFFFFFFF = 'Unknown Train Running Number'
         /// </summary>
         public static uint Get_NID_OPERATION
         {

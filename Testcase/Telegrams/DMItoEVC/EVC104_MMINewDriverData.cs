@@ -4,9 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Collections;
 using CL345;
-using Testcase.Telegrams.DMItoEVC;
-using Testcase.Telegrams.EVCtoDMI;
-using static Testcase.Telegrams.EVCtoDMI.Variables;
+using Testcase.DMITestCases;
+using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 
 
 namespace Testcase.Telegrams.DMItoEVC
@@ -17,8 +16,9 @@ namespace Testcase.Telegrams.DMItoEVC
     public static class EVC104_MMINewDriverData
     {
         private static SignalPool _pool;
-        private static bool _bResult;
+        private static bool _checkResult;
         private static string _xDriverID;
+        const string baseString = "DMI->ETCS: EVC-104 [MMI_NEW_DRIVER_DATA]";
 
         /// <summary>
         /// Initialise EVC-104 MMI_New_Driver_Data.
@@ -27,32 +27,50 @@ namespace Testcase.Telegrams.DMItoEVC
         public static void Initialise(SignalPool pool)
         {
             _pool = pool;
-            _pool.SITR.SMDCtrl.CCUO.ETCS1NewDriverData.Value = 1;
+            _pool.SITR.SMDStat.CCUO.ETCS1NewDriverData.Value = 0x00;
+            _pool.SITR.SMDCtrl.CCUO.ETCS1NewDriverData.Value = 0x0001;
         }
 
         private static void CheckXDriverID(string xDriverID)
         {
-            _bResult = _pool.SITR.CCUO.ETCS1NewDriverData.MmiXDriverId.Value.Equals(xDriverID);            
-           
-            if (_bResult) // if check passes
+            // Reset telegram received flag in RTSim
+            _pool.SITR.SMDStat.CCUO.ETCS1NewDriverData.Value = 0x00;
+
+            // Check if telegram received flag has been set. Allows 20 seconds to enter driver ID.
+            if (_pool.SITR.SMDStat.CCUO.ETCS1NewDriverData.WaitForCondition(Is.Equal, 1, 20000, 100))
             {
-                _pool.TraceReport("DMI->ETCS: EVC-104 [MMI_NEW_DRIVER_DATA.MMI_X_DRIVER_ID] => " + 
-                    xDriverID + " PASSED.");
+                // Check if Driver ID matches
+                _checkResult = _pool.SITR.CCUO.ETCS1NewDriverData.MmiXDriverId.Value.Equals(xDriverID);
+
+                // If check passes
+                if (_checkResult)
+                {
+                    _pool.TraceReport($"{baseString} - MMI_X_DRIVER_ID = {xDriverID}" + Environment.NewLine +
+                                        "Result = PASSED.");
+                }
+                // Else display the real value extracted from EVC-104
+                else
+                {
+                    _pool.TraceError($"{baseString} - MMI_X_DRIVER_ID = " + _pool.SITR.CCUO.ETCS1NewDriverData.MmiXDriverId.Value +
+                                        Environment.NewLine + "Result: FAILED");
+                }
             }
-            else // else display the real value extracted from EVC-104 [MMI_NEW_DRIVER_DATA.MMI_X_DRIVER_ID]
+            // Show generic DMI -> EVC telegram failure
+            else
             {
-                _pool.TraceError("DMI->ETCS: Check EVC-104 [MMI_NEW_DRIVER_DATA.MMI_X_DRIVER_ID] => " +
-                    _pool.SITR.CCUO.ETCS1NewDriverData.MmiXDriverId.Value + " FAILED");
-            }
+                DmiExpectedResults.DMItoEVC_Telegram_Not_Received(_pool, baseString);
+            }           
         }
 
         /// <summary>
         /// This is the driver’s identity (max 16 character long).
+        /// 
         /// Values:
         /// 0 = "Empty string (null character)"
-        /// Note: 16 alphanumeric characters(ISO 8859-1, also known as Latin Alphabet #1).
+        /// 
+        /// Note: 16 alphanumeric characters (ISO 8859-1, also known as Latin Alphabet #1).
         /// Note 1: If the value is unknown the table will be filled with null characters (0, not '0').
-        /// Note 2: If Driver ID is shorter than 16 characters the free charcters will be filled with null characters.
+        /// Note 2: If Driver ID is shorter than 16 characters the free characters will be filled with null characters.
         /// Note 3: If Driver ID is 16 characters there will be no null character in the string.
         /// </summary>
         public static string Check_X_DRIVER_ID
@@ -66,18 +84,32 @@ namespace Testcase.Telegrams.DMItoEVC
 
         /// <summary>
         /// This is the driver’s identity (max 16 character long).
+        /// 
         /// Values:
         /// 0 = "Empty string (null character)"
-        /// Note: 16 alphanumeric characters(ISO 8859-1, also known as Latin Alphabet #1).
+        /// 
+        /// Note: 16 alphanumeric characters (ISO 8859-1, also known as Latin Alphabet #1).
         /// Note 1: If the value is unknown the table will be filled with null characters (0, not '0').
-        /// Note 2: If Driver ID is shorter than 16 characters the free charcters will be filled with null characters.
+        /// Note 2: If Driver ID is shorter than 16 characters the free characters will be filled with null characters.
         /// Note 3: If Driver ID is 16 characters there will be no null character in the string.
         /// </summary>
         public static string Get_X_DRIVER_ID
         {
             get
             {
-                return _pool.SITR.CCUO.ETCS1NewDriverData.MmiXDriverId.Value;
+                // Reset telegram received flag in RTSim
+                _pool.SITR.SMDStat.CCUO.ETCS1NewDriverData.Value = 0x00;
+
+                if (_pool.SITR.SMDStat.CCUO.ETCS1NewDriverData.WaitForCondition(Is.Equal, 1, 20000, 100))
+                {             
+                    _xDriverID = _pool.SITR.CCUO.ETCS1NewDriverData.MmiXDriverId.Value;                   
+                    return _xDriverID;                   
+                }
+                else
+                {
+                    DmiExpectedResults.DMItoEVC_Telegram_Not_Received(_pool, baseString);
+                    return null;
+                }                              
             }
         }
     }
