@@ -95,7 +95,19 @@ namespace Testcase.Telegrams.DMItoEVC
         {
             get
             {
-                return _pool.SITR.CCUO.ETCS1NewDriverData.MmiXDriverId.Value;
+                if (_pool.SITR.SMDStat.CCUO.ETCS1NewDriverData.WaitForCondition(Is.Equal, 1, 20000, 20))
+                {             
+                    _xDriverID = _pool.SITR.CCUO.ETCS1NewDriverData.MmiXDriverId.Value;
+                    _pool.SITR.SMDStat.CCUO.ETCS1NewDriverData.Value = 0;
+                    return _xDriverID;
+                    
+                }
+                else
+                {
+                    DmiExpectedResults.DMItoEVC_Telegram_Not_Received(_pool, baseString);
+                    _pool.SITR.SMDStat.CCUO.ETCS1NewDriverData.Value = 0;
+                    return null;
+                }                              
             }
         }
     }
