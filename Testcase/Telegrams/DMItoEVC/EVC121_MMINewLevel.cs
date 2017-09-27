@@ -40,8 +40,12 @@ namespace Testcase.Telegrams.DMItoEVC
 
         private static void CheckLevelSelected(MMI_M_LEVEL_NTC_ID mLevelNtcId)
         {
+            
             // Get MMI_N_LEVELS info sent by EVC to the DMI via EVC-20
             _nLevels = _pool.SITR.ETCS1.SelectLevel.MmiNLevels.Value;
+
+            // Reset SMDStat to 0
+            _pool.SITR.SMDStat.CCUO.ETCS1NewLevel.Value = 0x00;
 
             // Wait 10 seconds for SMDStat to become set
             if (_pool.WaitForCondition(_pool.SITR.SMDStat.CCUO.ETCS1NewLevel,Is.Equal, 0x01, 10000, 20))
@@ -127,9 +131,6 @@ namespace Testcase.Telegrams.DMItoEVC
             {
                 DmiExpectedResults.DMItoEVC_Telegram_Not_Received(_pool, baseString1);
             }
-
-            // Reset SMDStat to 0
-            _pool.SITR.SMDStat.CCUO.ETCS1NewLevel.Value = 0;
         }
 
         /// <summary>
