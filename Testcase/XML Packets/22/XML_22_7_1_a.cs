@@ -32,29 +32,16 @@ namespace Testcase.XML
         {
             _pool = pool;
 
-            //some values taken from xml file not spec where different
-            //EVC13.MMI_X_DRIVER_ID[0] = 0;
-            //EVC13.MMI_X_DRIVER_ID[1] = 0;
-            //EVC13.MMI_X_DRIVER_ID[2] = 0;
-            //EVC13.MMI_X_DRIVER_ID[3] = 0;
+            EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Disabled;
 
-            //EVC13.MMI_NID_OPERATION = 0xffffffff;         // 4294967295
-            //EVC13.MMI_M_DATA_ENABLE = 0x80;               // 128
+            EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new Variables.MMI_Q_LEVEL_NTC_ID[] { Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level };
+            EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new Variables.MMI_M_CURRENT_LEVEL[] { Variables.MMI_M_CURRENT_LEVEL.LastUsedLevel };
+            EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = new Variables.MMI_M_LEVEL_FLAG[] { Variables.MMI_M_LEVEL_FLAG.MarkedLevel };
+            EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = new Variables.MMI_M_INHIBITED_LEVEL[] { Variables.MMI_M_INHIBITED_LEVEL.NotInhibited };
+            EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = new Variables.MMI_M_INHIBIT_ENABLE[] { Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting };
+            EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new Variables.MMI_M_LEVEL_NTC_ID[] { Variables.MMI_M_LEVEL_NTC_ID.L3 };            
 
-            //EVC13.MMI_L_TRAIN = 0x1000;                   // 4096
-            //EVC13.MMI_V_MAXTRAIN = 601;
-            //EVC13.MMI_M_BRAKE_PERC = 9;
-            //EVC13.MMI_NID_KEY_AXLE_LOAD = 20;
-            //EVC13.MMI_NID_RADIO[0] = 0xffffffff;          // 4294967295
-            //EVC13.MMI_NID_RADIO[1] = 0xffffffff;          // 4294967295
-            //EVC13.MMI_N_RBC = 0;                        
-            //EVC13.MMI_NID_RBC = 0x800000;                 // 8388608 in xml
-            //EVC13.MMI_M_AIRTIGHT = 3;     
-            //EVC13.MMI_NID_KEY_LOAD_GAUGE = 33;
-            //EVC13.MMI_X_CAPTION_TRAINSET = "\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0";
-            //EVC13.MMI_X_CAPTION_NETWORK = "\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0";
-
-            //EVC13.Send();
+            EVC20_MMISelectLevel.Send();            
 
         }
     }
