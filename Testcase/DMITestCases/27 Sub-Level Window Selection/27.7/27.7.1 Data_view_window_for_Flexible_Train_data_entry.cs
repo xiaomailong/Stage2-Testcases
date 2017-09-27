@@ -69,7 +69,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 2482;(2) MMI_gen 230 (partly: open);          (3) MMI_gen 8586 (partly: modify by the driver); MMI_gen 9428; MMI_gen 230 (partly: EVC-13);(4) MMI_gen 8582 (partly: MMI_gen 5338);  (5) MMI_gen 8582 (partly: MMI_gen 5383 (partly: MMI_gen 5944 (partly: touchscreen)));(6) MMI_gen 8582 (partly: MMI_gen 5335);  (7) MMI_gen 8582 (partly: MMI_gen 5340 (partly: right aligned));  (8) MMI_gen 8582 (partly: MMI_gen 5342 (partly: left aligned));  (9) MMI_gen 8582 (partly: MMI_gen 5337);   (10) MMI_gen 8582 (partly: MMI_gen 5339);  (11) MMI_gen 8582 (partly: MMI_gen 5336 (partly: valid));         (12) MMI_gen 8583;    (13) MMI_gen 8584 (partly: ETCS); MMI_gen 8585 (partly: Flexible train, window #1);    (14) MMI_gen 8582 (partly: MMI_gen 5306 (partly: Close button, Previous button, Next button, Window title)); MMI_gen 4392 (partly: [Previous : NA19], [Next: NA17], [Close] NA11); MMI_gen 4396 (partly: Previous, NA19, Next, NA17); MMI_gen 4394 (partly: disabled [previous]);(15) MMI_gen 4350;(16) MMI_gen 4351;(17) MMI_gen 4353;(18) MMI_gen 4354;
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press ‘Data view’ button");
+            DmiActions.ShowInstruction(this, @"Press the ‘Data view’ button");
 
             EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.StartTrainDataView;
 
@@ -84,11 +84,11 @@ namespace Testcase.DMITestCases
             //   EVC13.Send();
 
             // The window title is displayed with text ‘Data view(1 / 2)’
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+            WaitForVerification("Check the following (* indicates sub-areas drawn as one area):" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Data View window." + Environment.NewLine +
-                                "2. The Data View window covers main areas D, F and G." + Environment.NewLine +
+                                "2. The Data View window covers areas D, F and G." + Environment.NewLine +
                                 "3. Layer 0 comprises areas D, F, G, E10, E11, Z and Y." + Environment.NewLine +
-                                "4. Layer 1 comprises areas A1, (A2+A3)*, A4, B, C1, (C2+C3+c4)*, C5, C6, C7, C8, C9, E1, E2, E3, E4, (E5-E9)*." + Environment.NewLine +
+                                "4. Layer 1 comprises areas A1, (A2+A3)*, A4, B, C1, (C2+C3+C4)*, C5, C6, C7, C8, C9, E1, E2, E3, E4, (E5-E9)*." + Environment.NewLine +
                                 "5. Layer 2 comprises areas B3, B4, B5, B6 and B7." + Environment.NewLine +
                                 "6. Text in the data view has a Label Part, right-aligned, and a Data Part, left-aligned." + Environment.NewLine +
                                 "7. Data View text is grey" + Environment.NewLine +

@@ -13,6 +13,8 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.EVCtoDMI;
+
 
 namespace Testcase.DMITestCases
 {
@@ -36,10 +38,19 @@ namespace Testcase.DMITestCases
         public override void PreExecution()
         {
             // Pre-conditions from TestSpec:
-            // Test system is powered onCabin is activeSettings window is opened.
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
+
+            // Test system is powered onCabin is activeSettings window is opened.
+            DmiActions.Start_ATP();
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.None;
+            EVC30_MMIRequestEnable.Send();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 4;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Language;
+            EVC30_MMIRequestEnable.Send();
         }
 
         public override void PostExecution()
@@ -55,16 +66,24 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
             /*
             Test Step 1
             Action: Press ‘Language’ button
             Expected Result: DMI displays the Language window on the right half part of the window as shown in figure belowLayersThe layers of window on half-grid array is displayed as followsLayer 0: Main-Area D, F, G, Y and Z.Layer -1: A1, A2+A3*, A4, B*, C1, C2+C3+C4*, C5, C6, C7, C8, C9, E1, E2, E3, E4, E5-E9*Layer -2: B3, B4, B5, B6, B7Note: ‘*’ symbol is mean that specified areas are drawn as one area.Data Entry windowThe window title is displayed with text “Language”.Verify that the Language window is displayed in main area D, F and G as half-grid array.A data entry window is containing only one input field covers the Main area D, F and G.The following objects are displayed in Language window. Enabled Close button (NA11)Window TitleInput FieldInput fieldThe input field is located in main area D and F.For a single input field, the window title is clearly explaining the topic of the input field. The Language window is displayed as a single input field with only the data part.KeyboardThe keyboard associated to the Language window is displayed as dedicated keyboard and displayed with the possible language(s) in its (their) own language for driver selection.The keyboard is presented below the area of input field.General property of windowThe Language window is presented with objects and buttons which is the one of several levels and allocated to areas of DMIAll objects, text messages and buttons are presented within the same layer.The Default window is not displayed and covered the current window
             Test Step Comment: (1) MMI_gen 8064 (partly: MMI_gen 5189 (partly: touch screen), MMI_gen 5944 (partly: touch screen));(2) MMI_gen 8065;(3) MMI_gen 8064 (partly: half grid array);(4) MMI_gen 8064 (partly: MMI_gen 4640 (partly: only data area), MMI_gen 4720, MMI_gen 4889 (partly: merge label and data));(5) MMI_gen 8064 (party: MMI_gen 4722 (partly: Table 12 <Close> button, Window title, Input field)); MMI_gen 4392 (partly: [Close] NA11);(6) MMI_gen 8064 (partly: MMI_gen 4637 (partly: Main-areas D and F));(7) MMI_gen 8064 (partly: note under the MMI_gen 9412);(8) MMI_gen 8064 (partly: single input field, only data part);(9) MMI_gen 8067; MMI_gen 8064 (partly: MMI_gen 4912);(10) MMI_gen 8064 (partly: MMI_gen 4678);(11) MMI_gen 4350;(12) MMI_gen 4351;(13) MMI_gen 4353;
             */
-            // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press ‘Language’ button");
+            DmiActions.ShowInstruction(this, @"Press the ‘Language’ button");
 
+            WaitForVerification("Check the following (* indicates sub-areas drawn as one area):" + Environment.NewLine + Environment.NewLine +
+                                @"1. DMI displays the Language window with 3 layers in a half-grid array with the title ‘Language’." + Environment.NewLine +
+                                "2. The Language window is displayed in areas D, F and G with a data entry window with one data input field covering these areas." + Environment.NewLine +
+                                "3. Layer 0 comprises areas D, F, G, Z and Y." + Environment.NewLine +
+                                "4. Layer 1 comprises areas A1, (A2+A3)*, A4, B, C1, (C2+C3+c4)*, C5, C6, C7, C8, C9, E1, E2, E3, E4, (E5-E9)*." + Environment.NewLine +
+                                "5. Layer 2 comprises areas B3, B4, B5, B6 and B7." + Environment.NewLine +
+                                @"6. The Language window displayes a data input field, with only a Data part, in areas D and F and an ‘Enabled Close’ button (symbol NA11)." + Environment.NewLine +
+                                "7. A keypad is displayed below the data input field containing enabled keys for the various languages available for selection." + Environment.NewLine +
+                                "8. All objects, text messages and buttons are in the same layer." + Environment.NewLine +
+                                "9. The Default window does not cover the current window.");
 
             /*
             Test Step 2
@@ -72,21 +91,24 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The value of input field is replaced by the pressed button.Sound ‘Click’ is played once.The state of button is changed to ‘Pressed’ and immediately back to ‘Enabled’ state.The Input Field displays the language associated to the data key according to the pressings in state ‘Pressed’.An input field is used to enter the Language.The data value is displayed as black colour and the background of the data area is displayed as medium-grey colour.The data value of the input field is aligned to the left of the data area
             Test Step Comment: (1) MMI_gen 8064 (partly: MMI_gen 4679); (2) MMI_gen 8064 (partly: MMI_gen 4913 (partly: MMI_gen 4384 (partly: sound ‘Click’)));(3) MMI_gen 8064 (partly: MMI_gen 4913 (partly: MMI_gen 4384 (partly: Change to state ‘Pressed’ and immediately back to state ‘Enabled’)));   (4) MMI_gen 8064 (partly: MMI_gen 4913);                      (5) MMI_gen 8066 (partly: entry); MMI_gen 8064 (partly: MMI_gen 4634);(6) MMI_gen 8064 (partly: MMI_gen 4651);(7) MMI_gen 8064 (partly: MMI_gen 4647 (partly: left aligned));
             */
-            // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press and hold every buttons on the dedicate keyboard respectively");
+            DmiActions.ShowInstruction(this, @"Press and hold each language key in turn");
 
-
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                "2. The ‘Click’ sound is played once." + Environment.NewLine +
+                                "3. The data input field displays the language label text in black on a Medium-grey background, left-aligned in the Data part." + Environment.NewLine +
+                                "4. The data input field accepts the value according to the key pressed.");
+                        
             /*
             Test Step 3
             Action: Released the pressed button
             Expected Result: Verify the following information, The state of button is changed to ‘Enabled’
             Test Step Comment: (1) MMI_gen 8064 (partly: MMI_gen 4913 (partly: MMI_gen 4384 (partly: ETCS-MMI’s function associated to the button)));
             */
-            // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Released the pressed button");
-            // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_The_state_of_button_is_changed_to_Enabled(this);
+            DmiActions.ShowInstruction(this, @"Released the pressed key");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The key is displayed enabled.");
 
             /*
             Test Step 4
@@ -94,10 +116,10 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)    The state of an input field is changed to ‘Pressed’, the border of button is removed
             Test Step Comment: (1) MMI_gen 9390 (partly: Language window);
             */
-            // Call generic Check Results Method
-            DmiExpectedResults
-                .Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Pressed_the_border_of_button_is_removed(this);
+            DmiActions.ShowInstruction(this, @"Press the <Deutsch> key, then press in and hold the data input field");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The data input field is displayed pressed, without a border.");
 
             /*
             Test Step 5
@@ -105,12 +127,11 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)    The state of an input field is changed to ‘Enabled, the border of button is shown without a sound
             Test Step Comment: (1) MMI_gen 9390 (partly: Language window);
             */
-            // Call generic Action Method
-            DmiActions.Slide_out_an_input_field(this);
-            // Call generic Check Results Method
-            DmiExpectedResults
-                .Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Enabled_the_border_of_button_is_shown_without_a_sound(this);
+            DmiActions.ShowInstruction(this, @"Whilst keeping the data input field pressed, drag it out of its area");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                @"1. The data input field is displayed enabled, with a border." + Environment.NewLine +
+                                "2. No sound is played.");
 
             /*
             Test Step 6
@@ -118,22 +139,21 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)    The state of an input field is changed to ‘Pressed’, the border of button is removed
             Test Step Comment: (1) MMI_gen 9390 (partly: Language window);
             */
-            // Call generic Action Method
-            DmiActions.Slide_back_into_an_input_field(this);
-            // Call generic Check Results Method
-            DmiExpectedResults
-                .Verify_the_following_information_1_The_state_of_an_input_field_is_changed_to_Pressed_the_border_of_button_is_removed(this);
+            DmiActions.ShowInstruction(this, @"Whilst keeping the data input field pressed, drag it back inside its area");
 
-
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                @"1. The data input field is displayed pressed, without a border.");
+            
             /*
             Test Step 7
             Action: Release the pressed area
             Expected Result: Verify the following information,Use the log file to confirm that DMI sends out the packet [MMI_NEW_LANGUAGE (EVC-122)] with variable [MMI_NEW_LANGUAGE (EVC-122).MMI_NID_LANGUAGE].Note: The correctness of value cannot verify because it’s not specify in the [GenVSIS].The language is updated, DMI displays all texts and button labeled as Deustch language.(2)   An input field is used to enter the Language
             Test Step Comment: (1) MMI_gen 11286;              MMI_gen 8064 (partly: MMI_gen 4682, MMI_gen 4684 (partly: terminated)); MMI_gen 9390 (partly: Language window);                         (2) MMI_gen 8064 (partly: MMI_gen 4681);                    
             */
-            // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Release the pressed area");
+            DmiActions.ShowInstruction(this, @"Release the data input field");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. All texts and buttons are displayed in German.");
 
             /*
             Test Step 8
@@ -141,7 +161,10 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,Use the log file to confirm that DMI sends out the packet [MMI_NEW_LANGUAGE (EVC-122)] with variable [MMI_NEW_LANGUAGE (EVC-122).MMI_NID_LANGUAGE].Note: The correctness of value cannot verify because it’s not specify in the [GenVSIS].The language is updated, DMI displays all texts and button labeled as English language
             Test Step Comment: (1) MMI_gen 11286;              MMI_gen 8064 (partly: MMI_gen 4682); MMI_gen 4392 (partly: [Enter], touch screen);                           (2) MMI_gen 8064 (partly: MMI_gen 4681);
             */
+            DmiActions.ShowInstruction(this, @"Press the ‘Language’ button, then press the <English> key and confirm the selection");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. All texts and buttons are displayed in English.");
 
             /*
             Test Step 9
@@ -149,7 +172,10 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,Use the log file to confirm that DMI sends out the packet [MMI_NEW_LANGUAGE (EVC-122)] with the value of variable  [MMI_NEW_LANGUAGE (EVC-122).MMI_NID_LANGUAGE] is same as action step 8.Note: The correctness of value cannot verify because it’s not specify in the [GenVSIS].The language is still same, DMI displays all texts and button labeled as English language
             Test Step Comment: (1) MMI_gen 11286;              MMI_gen 8064 (partly: MMI_gen 4682);                     MMI_gen 8066 (partly: revalidation);                         (2) MMI_gen 8064 (partly: MMI_gen 4681 (partly: accept the entered value));
             */
+            DmiActions.ShowInstruction(this, @"Press the ‘Language’ button, then confirm without selecting a language");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. All texts and buttons are displayed in English.");
 
             /*
             Test Step 10
@@ -157,16 +183,16 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   DMI displays Settings window
             Test Step Comment: (1) MMI_gen 4392 (partly: returning to the parent window);
             */
-            // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_1_DMI_displays_Settings_window(this);
+            DmiActions.ShowInstruction(this, @"Press the ‘Language’ button, then press the ‘Close’ button");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                @"1. DMI displays the Settings window");
 
             /*
             Test Step 11
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }

@@ -270,6 +270,7 @@ if exist "$(TargetPath)" if not exist "$(TargetPath).locked" move "$(TargetPath)
     <Compile Include="DMITestCases\27 Sub-Level Window Selection\27.17\27.17.1 Driver_ID_window_General_Display.cs" />
     <Compile Include="DMITestCases\27 Sub-Level Window Selection\27.17\27.17.2 Layers.cs" />
     <Compile Include="DMITestCases\27 Sub-Level Window Selection\27.17\27.17.3 Entering_Characters.cs" />
+    <Compile Include="DMITestCases\27 Sub-Level Window Selection\27.18\27.18 Train_Running_Number_window.cs" />
     <Compile Include="DMITestCases\27 Sub-Level Window Selection\27.19\27.19 Language_Window.cs" />
     <Compile Include="DMITestCases\27 Sub-Level Window Selection\27.1\27.1.1 Sub_Level_Window_General_appearances.cs" />
     <Compile Include="DMITestCases\27 Sub-Level Window Selection\27.1\27.1.2 ETCS_Specfic_submenus_and_SN_sub_menus.cs" />
@@ -605,6 +606,17 @@ if exist "$(TargetPath)" if not exist "$(TargetPath).locked" move "$(TargetPath)
     <Compile Include="XML Packets\18\XML_18_6_2_a.cs" />
     <Compile Include="XML Packets\18\XML_18_6_2_b.cs" />
     <Compile Include="XML Packets\18\XML_18_6_2_c.cs" />
+    <Compile Include="XML Packets\22\XML_22_13_1_a.cs" />
+    <Compile Include="XML Packets\22\XML_22_13_1_b.cs" />
+    <Compile Include="XML Packets\22\XML_22_13_1_c.cs" />
+    <Compile Include="XML Packets\22\XML_22_13_1_d.cs" />
+    <Compile Include="XML Packets\22\XML_22_14.cs" />
+    <Compile Include="XML Packets\22\XML_22_17_a.cs" />
+    <Compile Include="XML Packets\22\XML_22_17_b.cs" />
+    <Compile Include="XML Packets\22\XML_22_17_c.cs" />
+    <Compile Include="XML Packets\22\XML_22_17_d.cs" />
+    <Compile Include="XML Packets\22\XML_22_17_e.cs" />
+    <Compile Include="XML Packets\22\XML_22_18.cs" />
     <Compile Include="XML Packets\22\XML_22_5_1_a.cs" />
     <Compile Include="XML Packets\22\XML_22_5_1_b.cs" />
     <Compile Include="XML Packets\22\XML_22_5_2_a.cs" />

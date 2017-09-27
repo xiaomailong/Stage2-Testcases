@@ -13,6 +13,8 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.EVCtoDMI;
+
 
 namespace Testcase.DMITestCases
 {
@@ -36,10 +38,20 @@ namespace Testcase.DMITestCases
         public override void PreExecution()
         {
             // Pre-conditions from TestSpec:
-            // Test system is powered ON.Cabin is activated.Settings window is opened.
-
             // Call the TestCaseBase PreExecution
             base.PreExecution();
+
+            // Test system is powered ON.Cabin is activated.Settings window is opened.
+            DmiActions.Start_ATP();
+            DmiActions.Activate_Cabin_1(this);
+
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.None;
+            EVC30_MMIRequestEnable.Send();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 4;      // Settings
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.SystemVersion;
+            EVC30_MMIRequestEnable.Send();
+
         }
 
         public override void PostExecution()
@@ -63,8 +75,24 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11987 (partly: open);     (2) MMI_gen 11987 (partly: EVC-34);(3) MMI_gen 8766 (partly: MMI_gen 5338);  (4) MMI_gen 8766 (partly: MMI_gen 5383 (partly: MMI_gen 5944 (partly: touchscreen)));(5) MMI_gen 8766 (partly: MMI_gen 5335);  (6) MMI_gen 8766 (partly: MMI_gen 5340 (partly: right aligned));  (7) MMI_gen 8766 (partly: MMI_gen 5342 (partly: left aligned));  (8) MMI_gen 8766 (partly: MMI_gen 5337);  (9) MMI_gen 8767; (10) MMI_gen 8768;(11) MMI_gen 8766 (partly: MMI_gen 5306 (partly: Close button, Window title)); MMI_gen 4392 (partly: [Close] NA11);(12) MMI_gen 4350;(13) MMI_gen 4351;(14) MMI_gen 4353;
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press ‘System version’ button");
+            DmiActions.ShowInstruction(this, @"Press the ‘System version’ button");
 
+            EVC34_MMISystemVersion.SYSTEM_VERSION_X = 1;        // No idea
+            EVC34_MMISystemVersion.SYSTEM_VERSION_Y = 1;
+            EVC34_MMISystemVersion.Send();
+
+            WaitForVerification("Check the following (* indicates sub-areas drawn as one area):" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the System version window with 3 layers, ." + Environment.NewLine +
+                                "2. Layer 0 is displayed in areas D, F, G, E10, E11, Y and Z." + Environment.NewLine +
+                                "3. Layer 1 is displayed in areas A1, (A2 + A3)*, A4, B*, C1, (C2 + C3 + C4)*, C5, C6, C7, C8, C9, E1, E2, E3, E4, (E5 - E9)*." + Environment.NewLine +
+                                "4. Layer 2 is displayed in areas B3, B4, B5, B6, B7." + Environment.NewLine +
+                                "5. A data view window covers areas D, F and G." + Environment.NewLine +
+                                "6. An enabled Close button (symbol NA11) is displayed." + Environment.NewLine +
+                                "7. The data view text has a Label part and a Data part." + Environment.NewLine +
+                                "8. The window displays the Operating system version." + Environment.NewLine +
+                                "9. Objects, text messages and buttons can be displayed in several levels. Within a level they are allocated to areas." + Environment.NewLine +
+                                "10. All objects, text messages and buttons are displayed in the same layer." + Environment.NewLine +
+                                "11. The Default window not displayed covering the current window.");
 
             /*
             Test Step 2
@@ -72,7 +100,10 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,InformationThe data view is display a following information correctly refer to received packet informationOperated system version = 255.255
             Test Step Comment: (1) MMI_gen 11988; MMI_gen 8766 (partly: MMI_gen 5336 (partly: valid));  
             */
+            XML.XML_22_14.Send(this);
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The data view displays ‘255.255’ for the Operating system version.");
 
             /*
             Test Step 3
@@ -80,7 +111,12 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,InformationThe data view is displayed a following information correctly refer to received packet informationOperated system version = 0.0
             Test Step Comment: (1) MMI_gen 11988; MMI_gen 8766 (partly: MMI_gen 5336 (partly: valid));  
             */
+            EVC34_MMISystemVersion.SYSTEM_VERSION_X = EVC34_MMISystemVersion.SYSTEM_VERSION_Y = 0;
+            EVC34_MMISystemVersion.Send();
 
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The data view displays ‘0.0’ for the Operating system version.");
 
             /*
             Test Step 4
@@ -88,26 +124,29 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,InformationThe data view is display a following information correctly refer to received packet informationOperated system version = 111.222
             Test Step Comment: (1) MMI_gen 11988; MMI_gen 8766 (partly: MMI_gen 5336 (partly: valid));  
             */
+            EVC34_MMISystemVersion.SYSTEM_VERSION_X = 0x6f;
+            EVC34_MMISystemVersion.SYSTEM_VERSION_Y = 0xde;
+            EVC34_MMISystemVersion.Send();
 
-
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The data view displays ‘111.222’ for the Operating system version.");
+            
             /*
             Test Step 5
             Action: Press the ‘Close’ button
             Expected Result: Verify the following information, (1)   DMI displays Setting window
             Test Step Comment: (1) MMI_gen 4392 (partly: returning to the parent window);
             */
-            // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press the ‘Close’ button");
-            // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_1_DMI_displays_Setting_window(this);
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the Settings window");
 
             /*
             Test Step 6
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }

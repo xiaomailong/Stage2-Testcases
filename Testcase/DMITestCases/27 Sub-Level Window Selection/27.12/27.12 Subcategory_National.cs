@@ -13,6 +13,8 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.EVCtoDMI;
+
 
 namespace Testcase.DMITestCases
 {
@@ -63,9 +65,10 @@ namespace Testcase.DMITestCases
             Action: Activate cabin A. Driver performs SoM in SB mode, level 1
             Expected Result: DMI displays in SB mode, Level 1
             */
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_SB_mode_Level_1(this);
+            DmiActions.Complete_SoM_L1_SB(this);
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SB mode, level 1.");
 
             /*
             Test Step 2
@@ -76,13 +79,15 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press ‘Settings’ button");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the Settings window with all sub-menus." + Environment.NewLine +
+                                "2. The ‘National’ button is displayed disabled.");
 
             /*
             Test Step 3
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }
