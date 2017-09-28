@@ -938,6 +938,19 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
+        /// Description: Initialise power in DMI
+        /// Used in:
+        ///     Anywhere where DMI is re-started
+        /// </summary>
+        public static void Start_ATP()
+        {
+            EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.VersionInfo;
+            EVC0_MMIStartATP.Send();
+            EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.GoToIdle;
+            EVC0_MMIStartATP.Send();
+        }
+
+        /// <summary>
         /// Description: Complete start of mission
         /// Used in:
         ///     Step 5 in TC-ID: 1.3.1 in 6.3.1 Performance of the new selection language
@@ -3179,19 +3192,6 @@ namespace Testcase.DMITestCases
         public static void Train_runs_pass_BG2(SignalPool pool)
         {
             throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Description: Initialise power in DMI
-        /// Used in:
-        ///     Anywhere where DMI is re-started
-        /// </summary>
-        public static void Start_ATP()
-        {
-            EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.VersionInfo;
-            EVC0_MMIStartATP.Send();
-            EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.GoToIdle;
-            EVC0_MMIStartATP.Send();
-        }
+        }        
     }
 }
