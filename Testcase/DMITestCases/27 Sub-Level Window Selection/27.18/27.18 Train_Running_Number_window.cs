@@ -102,7 +102,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following (* indicates sub-areas drawn as one area):" + Environment.NewLine + Environment.NewLine +
                                 @"1. DMI displays the Train running number window with 3 layers in a half-grid array with the title ‘Train running number’." + Environment.NewLine +
                                 "2. The Train running number window is displayed in areas D, F and G with a data entry window with one data input field covering these areas." + Environment.NewLine +
-                                "3. Layer 0 comprises areas D, F, G, Z and Y." + Environment.NewLine +
+                                "3. Layer 0 comprises areas D, F, G, Y and Z." + Environment.NewLine +
                                 "4. Layer 1 comprises areas A1, (A2+A3)*, A4, B, C1, (C2+C3+c4)*, C5, C6, C7, C8, C9, E1, E2, E3, E4, (E5-E9)*." + Environment.NewLine +
                                 "5. Layer 2 comprises areas B3, B4, B5, B6 and B7." + Environment.NewLine +
                                 @"6. The Train running number window displays a data input field, with only a Data part, in areas D and F and an ‘Enabled Close’ button (symbol NA11)." + Environment.NewLine +
