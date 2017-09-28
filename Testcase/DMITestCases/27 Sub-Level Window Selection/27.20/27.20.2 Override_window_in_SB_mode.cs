@@ -13,6 +13,8 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.EVCtoDMI;
+
 
 namespace Testcase.DMITestCases
 {
@@ -31,15 +33,18 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 22_20_2.utt
     /// </summary>
-    public class Override_window_in_SB_mode : TestcaseBase
+    public class TC_22_20_2_Override_window : TestcaseBase
     {
         public override void PreExecution()
         {
             // Pre-conditions from TestSpec:
-            // Test system is powered on.The cabin is activatedDriver ID is enteredLevel 2 is selected and confirmed
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
+
+            // Test system is powered on.The cabin is activatedDriver ID is enteredLevel 2 is selected and confirmed
+            DmiActions.Start_ATP();
+            DmiActions.Activate_Cabin_1(this);           
         }
 
         public override void PostExecution()
@@ -55,44 +60,66 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
             /*
             Test Step 1
             Action: Press ‘Enter RBC Data’ button
             Expected Result: DMI displays RBC Data window
             */
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_RBC_Data_window(this);
+            DmiActions.Set_Driver_ID(this, "1234");
+            DmiActions.ShowInstruction(this, "Confirm the Driver ID");
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L2;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
 
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;      // Main window
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.ContactLastRBC |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.TrainData;
+            EVC30_MMIRequestEnable.Send();
+
+            DmiActions.ShowInstruction(this, "Press the ‘Enter RBC Data’ button");
+
+            EVC22_MMICurrentRBC.MMI_NID_WINDOW = 10;    // RBC data
+            EVC22_MMICurrentRBC.MMI_M_BUTTONS = EVC22_MMICurrentRBC.EVC22BUTTONS.BTN_YES_DATA_ENTRY_COMPLETE;
+            EVC22_MMICurrentRBC.Send();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the RBC Data window");
 
             /*
             Test Step 2
             Action: Enter and confirm the following values, RBC ID= 6996969RBC Phone number = 0031840880100Then, press ‘Yes’ button
             Expected Result: DMI displays Main window
             */
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Main_window(this);
+            DmiActions.ShowInstruction(this, "Enter and confirm the following values: RBC ID = 6996969, RBC Phone number = 0031840880100, then, press the ‘Yes’ button");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the Main window.");
 
             /*
             Test Step 3
             Action: Perform the following procedure,Press ‘Train data’ button.Enter and validate train data
             Expected Result: DMI displays Main window with enabled ‘Start’ button
             */
-            // Call generic Check Results Method
-            DmiExpectedResults.Main_Window_displayed(this,true);
+            DmiActions.ShowInstruction(this, "Press the ‘Train data’ button, then enter and validate the train data");
 
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Start |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.EOA;
+            EVC30_MMIRequestEnable.Send();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the Main window with an enabled ‘Start’ button.");
 
             /*
             Test Step 4
             Action: Press ‘Close’ button
             Expected Result: DMI displays Default window
             */
-            // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Default_window(this);
+            DmiActions.ShowInstruction(this, @"Press the ‘Close’ button");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the Default window.");
 
             /*
             Test Step 5
@@ -101,8 +128,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8415 (partly: touch screen, label “EOA”);              MMI_gen 11225 (partly: EVC-30, enabled);(2) MMI_gen 11225 (partly: enabled);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press ‘Override’ button");
+            DmiActions.ShowInstruction(this, @"Press the ‘Override’ button");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the Override window with an enabled ‘EOA’ button.");
 
             /*
             Test Step 6
@@ -110,17 +139,29 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The ‘EOA’ button is in disable state.Use the log file to confirm that DMI receives EVC-30 with with bit No.9 of variable MMI_Q_REQUEST_ENABLE_64 = 0 (Disable Start Override EOA)
             Test Step Comment: (1) MMI_gen 8415 (partly: touch screen, label “EOA”);              MMI_gen 11225 (partly: EVC-30, disabled);(2) MMI_gen 11225 (partly: disabled);
             */
-            // Call generic Check Results Method
-            DmiExpectedResults
-                .Verify_the_following_information_The_EOA_button_is_in_disable_state_Use_the_log_file_to_confirm_that_DMI_receives_EVC_30_with_with_bit_No_9_of_variable_MMI_Q_REQUEST_ENABLE_64_0_Disable_Start_Override_EOA(this);
+            DmiActions.ShowInstruction(this, @"Press the ‘Close’ button, then the ‘Main’ button, then the ‘Level’ button.");
+            
+            EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
+            EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new Variables.MMI_Q_LEVEL_NTC_ID[] { Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level };
+            EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new Variables.MMI_M_CURRENT_LEVEL[] { Variables.MMI_M_CURRENT_LEVEL.NotLastUsedLevel };
+            EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = new Variables.MMI_M_LEVEL_FLAG[] { Variables.MMI_M_LEVEL_FLAG.MarkedLevel };
+            EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = new Variables.MMI_M_INHIBITED_LEVEL[] { Variables.MMI_M_INHIBITED_LEVEL.NotInhibited };
+            EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = new Variables.MMI_M_INHIBIT_ENABLE[] { Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting };
+            EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new Variables.MMI_M_LEVEL_NTC_ID[] { Variables.MMI_M_LEVEL_NTC_ID.L1 };
+            EVC20_MMISelectLevel.Send();
 
+            EVC30_MMIRequestEnable.SendBlank();
+
+            DmiActions.ShowInstruction(this, @"Select and confirm Level 1. Press the ‘Close’ button then the ‘Override’ button");
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the Override window with a disabled ‘EOA’ button.");
 
             /*
             Test Step 7
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }

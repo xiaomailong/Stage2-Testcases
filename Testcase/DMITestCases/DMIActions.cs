@@ -645,14 +645,16 @@ namespace Testcase.DMITestCases
         public static void Display_RBC_Contact_Window_Data_Unknown(SignalPool pool)
         {
             Send_EVC22_MMI_Current_RBC
-                (pool, 0, 0, 5, true, EVC22_MMICurrentRBC.EVC22BUTTONS.NoButton, null);
+                (pool, 0, 0, 9 , true, EVC22_MMICurrentRBC.EVC22BUTTONS.NoButton, new string[]{ "Network1","Network2","Network3"});
 
+            /*
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = 
                 EVC30_MMIRequestEnable.EnabledRequests.ContactLastRBC | 
                 EVC30_MMIRequestEnable.EnabledRequests.EnterRBCData | 
                 EVC30_MMIRequestEnable.EnabledRequests.RadioNetworkID;
             EVC30_MMIRequestEnable.Send();
+            */
         }
 
         /// <summary>
