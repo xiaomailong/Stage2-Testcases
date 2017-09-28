@@ -107,9 +107,9 @@ namespace Testcase.DMITestCases
                                 "5. Layer 2 comprises areas B3, B4, B5, B6 and B7." + Environment.NewLine +
                                 @"6. The Train running number window displays a data input field, with only a Data part, in areas D and F and an ‘Enabled Close’ button (symbol NA11)." + Environment.NewLine +
                                 "7. A keypad is displayed below the data input field, containing enabled keys for the numbers <1> to <9>, <Del> (symbol NA21), <0> and (disabled) <Decimal_Separator>." + Environment.NewLine +
-                                "14. Objects, text messages and buttons can be displayed in several levels. Within a level they are allocated to areas." + Environment.NewLine +
-                                "15. Objects, text messages and buttons in a layer form a window." + Environment.NewLine +
-                                "16. The Default window does not cover the current window.");
+                                "8. Objects, text messages and buttons can be displayed in several levels. Within a level they are allocated to areas." + Environment.NewLine +
+                                "9. Objects, text messages and buttons in a layer form a window." + Environment.NewLine +
+                                "10. The Default window does not cover the current window.");
 
             /*
             Test Step 3
