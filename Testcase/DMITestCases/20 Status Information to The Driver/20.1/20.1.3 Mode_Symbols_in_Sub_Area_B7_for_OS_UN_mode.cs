@@ -287,7 +287,7 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.SR_Mode_Ack_pressed_and_hold(this);
 
             DmiActions.Send_SR_Mode(this);
-            DmiActions.FinishedSoM_Default_Window(this);
+            DmiActions.Finished_SoM_Default_Window(this);
             DmiExpectedResults.SR_Mode_displayed(this);
 
             #endregion

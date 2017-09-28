@@ -70,7 +70,7 @@ namespace Testcase.DMITestCases
             DmiActions.Set_Driver_ID(this, "1234");            
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.LNTC;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.NationalSystem;
-            DmiActions.FinishedSoM_Default_Window(this);
+            DmiActions.Finished_SoM_Default_Window(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in PLZB_STM_mode");

@@ -83,7 +83,7 @@ namespace Testcase.DMITestCases
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
 
             // Enable standard buttons including Start, and display Default window.
-            DmiActions.FinishedSoM_Default_Window(this);
+            DmiActions.Finished_SoM_Default_Window(this);
 
             // Is RBC window displayed?
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
