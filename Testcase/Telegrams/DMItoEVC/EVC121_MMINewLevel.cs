@@ -24,6 +24,7 @@ namespace Testcase.Telegrams.DMItoEVC
         private static byte _mLevelFlag;
         private static MMI_M_LEVEL_NTC_ID _levelSelected;
 
+        static string baseString0 = "DMI->ETCS: EVC-101 [MMI_DRIVER_REQUEST]";
         static string baseString1 = "DMI->ETCS: EVC-121 [MMI_NEW_LEVEL]";
         static string baseString2 = "CCUO_ETCS1NewLevel_EVC121Subset";
 
@@ -47,11 +48,59 @@ namespace Testcase.Telegrams.DMItoEVC
             // Reset telegram received flag in RTSim
             _pool.SITR.SMDStat.CCUO.ETCS1NewLevel.Value = 0x00;
 
-            // Wait 10 seconds for SMDStat to become set
-            if (_pool.WaitForCondition(_pool.SITR.SMDStat.CCUO.ETCS1NewLevel,Is.Equal, 0x01, 10000, 100))
+
+            #region TRIAL CODE TO INTRODUCED PACKET EVC-101 CHECKING
+            ///* Comment this line to activate this code
+
+            _pool.SITR.SMDStat.CCUO.ETCS1DriverRequest.Value = 0x00;
+
+            var list = new List<Atomic>
             {
-                // Check MMI_N_LEVELS from EVC-121 packet
-                _checkResult = _pool.SITR.CCUO.ETCS1NewLevel.MmiNLevels.Value.Equals(_nLevels);
+                _pool.SITR.SMDStat.CCUO.ETCS1NewLevel.Atomic.WaitForCondition(Is.Equal, 0x01),
+                _pool.SITR.SMDStat.CCUO.ETCS1DriverRequest.Atomic.WaitForCondition(Is.Equal, 0x01)
+            };
+
+            if (_pool.WaitForConditionAtomic(list, 10000, 100))
+            {
+                // Check these following value:
+                //      MMI_N_LEVELS from EVC-121 packet
+                //      MMI_REQUEST from EVC-101 packet (= 40 - LevelEntered)
+                //      MMI_Q_BUTTON from EVC-101 packet (= 0 - Released)
+                _checkResult = _pool.SITR.CCUO.ETCS1NewLevel.MmiNLevels.Value.Equals(_nLevels) &
+                    _pool.SITR.CCUO.ETCS1DriverRequest.MmiMRequest.Value.Equals((byte)MMI_M_REQUEST.LevelEntered) &
+                    _pool.SITR.CCUO.ETCS1DriverRequest.EVC101alias1.Value.Equals((byte)MMI_Q_BUTTON.Released << 7);
+
+                // If check passes
+                if (_checkResult)
+                {
+                    _pool.TraceReport(baseString1+".MMI_N_LEVELS = " +_nLevels + Environment.NewLine +
+                                      baseString0 + Environment.NewLine +
+                                      "MMI_M_REQUEST = \"" + MMI_M_REQUEST.LevelEntered + "\"" + Environment.NewLine +
+                                      "MMI_Q_BUTTON = \"" + MMI_Q_BUTTON.Released + "\"" + Environment.NewLine +
+                                      "Time stamp = " + _pool.SITR.CCUO.ETCS1DriverRequest.MmiTButtonevent + Environment.NewLine +
+                                      "Result: PASSED.");
+                }
+                // Else display the real value extracted
+                else
+                {
+                    _pool.TraceError(baseString1 + ".MMI_N_LEVELS = " + _pool.SITR.CCUO.ETCS1NewLevel.MmiNLevels.Value + Environment.NewLine +
+                                     baseString0 + Environment.NewLine +
+                                     "MMI_M_REQUEST = \"" + Enum.GetName(typeof(Variables.MMI_M_REQUEST), _pool.SITR.CCUO.ETCS1DriverRequest.MmiMRequest.Value) + "\"" + Environment.NewLine +
+                                     "MMI_Q_BUTTON = \"" + Enum.GetName(typeof(Variables.MMI_Q_BUTTON), _pool.SITR.CCUO.ETCS1DriverRequest.EVC101alias1.Value >> 7) + "\"" + Environment.NewLine +
+                                     "Time stamp = " + _pool.SITR.CCUO.ETCS1DriverRequest.MmiTButtonevent + Environment.NewLine +
+                                     "Result: FAILED!");
+                }
+                //*/
+            #endregion
+
+            #region EXISTING CODE WITHOUT PACKET EVC-101 CHECKING
+            /* Comment this line to activate this code
+
+            // Wait 10 seconds for SMDStat to become set
+            if (_pool.WaitForCondition(_pool.SITR.SMDStat.CCUO.ETCS1NewLevel,Is.Equal, 0x01, 10000, 100)) 
+            {
+            // Check MMI_N_LEVELS from EVC-121 packet
+            _checkResult = _pool.SITR.CCUO.ETCS1NewLevel.MmiNLevels.Value.Equals(_nLevels);
 
                 // If check passes
                 if (_checkResult)
@@ -63,6 +112,8 @@ namespace Testcase.Telegrams.DMItoEVC
                 {
                     _pool.TraceError($"{baseString1}.MMI_N_LEVELS = {_pool.SITR.CCUO.ETCS1NewLevel.MmiNLevels.Value}, FAILED.");
                 }
+            //*/
+            #endregion
 
                 for (int k = 0; k < _nLevels; k++)
                 {

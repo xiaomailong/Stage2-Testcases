@@ -645,14 +645,16 @@ namespace Testcase.DMITestCases
         public static void Display_RBC_Contact_Window_Data_Unknown(SignalPool pool)
         {
             Send_EVC22_MMI_Current_RBC
-                (pool, 0, 0, 5, true, EVC22_MMICurrentRBC.EVC22BUTTONS.NoButton, null);
+                (pool, 0, 0, 9 , true, EVC22_MMICurrentRBC.EVC22BUTTONS.NoButton, new string[]{ "Network1","Network2","Network3"});
 
+            /*
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = 
                 EVC30_MMIRequestEnable.EnabledRequests.ContactLastRBC | 
                 EVC30_MMIRequestEnable.EnabledRequests.EnterRBCData | 
                 EVC30_MMIRequestEnable.EnabledRequests.RadioNetworkID;
             EVC30_MMIRequestEnable.Send();
+            */
         }
 
         /// <summary>
@@ -935,6 +937,19 @@ namespace Testcase.DMITestCases
 
             DmiActions.Send_SR_Mode(pool);
             DmiActions.FinishedSoM_Default_Window(pool);
+        }
+
+        /// <summary>
+        /// Description: Initialise power in DMI
+        /// Used in:
+        ///     Anywhere where DMI is re-started
+        /// </summary>
+        public static void Start_ATP()
+        {
+            EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.VersionInfo;
+            EVC0_MMIStartATP.Send();
+            EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.GoToIdle;
+            EVC0_MMIStartATP.Send();
         }
 
         /// <summary>
@@ -3179,19 +3194,6 @@ namespace Testcase.DMITestCases
         public static void Train_runs_pass_BG2(SignalPool pool)
         {
             throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Description: Initialise power in DMI
-        /// Used in:
-        ///     Anywhere where DMI is re-started
-        /// </summary>
-        public static void Start_ATP()
-        {
-            EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.VersionInfo;
-            EVC0_MMIStartATP.Send();
-            EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.GoToIdle;
-            EVC0_MMIStartATP.Send();
-        }
+        }        
     }
 }
