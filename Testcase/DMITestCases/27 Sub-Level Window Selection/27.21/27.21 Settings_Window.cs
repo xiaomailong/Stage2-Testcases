@@ -34,7 +34,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 22_21_a.xml, 22_21_b.xml, 22_21_c.xml, 22_21_d.xml
     /// </summary>
-    public class Settings_Window : TestcaseBase
+    public class TC_ID_22_21_Settings_Window : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -448,7 +448,7 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, @"Enter ‘65536’ for the VBC code and confirm the value, then press the ‘Yes’ button");
 
-            //EVC28_MMIEchoedSetVBCData.MMI_M_VBC_CODE_ = 0xffffffffffff0000;     // 65536 bit-inverted
+            //EVC28_MMIEchoedSetVBCData.MMI_M_VBC_CODE_ = 0xfffffffffffeffff;     // 65536 bit-inverted
             //EVC28_MMIEchoedSetVBCData.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
