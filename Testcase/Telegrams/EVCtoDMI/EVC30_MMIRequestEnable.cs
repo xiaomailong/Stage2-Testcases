@@ -19,6 +19,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             // Set default values
             _pool.SITR.ETCS1.EnableRequest.MmiMPacket.Value = 30;
             _pool.SITR.ETCS1.EnableRequest.MmiLPacket.Value = 128;
+            MMI_NID_WINDOW = 255;
         }
 
         // Send instance of EVC-30 MMI Request Enable telegram

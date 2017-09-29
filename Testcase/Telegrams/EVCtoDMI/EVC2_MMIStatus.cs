@@ -25,7 +25,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         private static SignalPool _pool;
         private static byte _mmiMAdhesion; // Adhesion can only be set by trackside for Crossrail project
         private static Variables.MMI_M_ACTIVE_CABIN _mmiMActiveCabin;
-        private static bool _mmiMOverrideEOA;
+        private static bool _mmiMOverrideEoa;
 
         /// <summary>
         /// Initialise EVC-2 MMI_STATUS telegram
@@ -64,9 +64,9 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// Adhesion status
         /// 
         /// Values:
-        /// 0x0 = "No low adhesion"
-        /// 0x1 = "Low Adhesion by Driver"
-        /// 0x2 = "Low Adhesion from Trackside"
+        /// 0x00 = "No low adhesion"
+        /// 0x01 = "Low Adhesion by Driver"
+        /// 0x02 = "Low Adhesion from Trackside"
         /// </summary>
         public static byte MMI_M_ADHESION
         {
@@ -97,11 +97,11 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static bool MMI_M_OVERRIDE_EOA
         {
-            get => _mmiMOverrideEOA;
+            get => _mmiMOverrideEoa;
 
             set
             {
-                _mmiMOverrideEOA = value;
+                _mmiMOverrideEoa = value;
                 SetAlias();
             }
         }
@@ -109,10 +109,10 @@ namespace Testcase.Telegrams.EVCtoDMI
         private static void SetAlias()
         {
             var mmiMActiveCabin = (byte) _mmiMActiveCabin;
-            var mmiMOverrideEOA = Convert.ToByte(_mmiMOverrideEOA);
+            var mmiMOverrideEoa = Convert.ToByte(_mmiMOverrideEoa);
 
             _pool.SITR.ETCS1.Status.EVC2alias1.Value =
-                (byte) (_mmiMAdhesion << 6 | mmiMActiveCabin << 4 | mmiMOverrideEOA << 3);
+                (byte) (_mmiMAdhesion << 6 | mmiMActiveCabin << 4 | mmiMOverrideEoa << 3);
         }
 
         /// <summary>
@@ -121,7 +121,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         public static void Send()
         {
             _pool.TraceInfo("ETCS->DMI: EVC-2 (MMI_STATUS)");
-            _pool.SITR.SMDCtrl.ETCS1.Status.Value = 1;
+            _pool.SITR.SMDCtrl.ETCS1.Status.Value = 0x0001;
         }
     }
 }

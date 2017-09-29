@@ -54,7 +54,7 @@ namespace Testcase.DMITestCases
             // Set to level 1 and SB mode
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L2;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
-            DmiActions.FinishedSoM_Default_Window(this);
+            DmiActions.Finished_SoM_Default_Window(this);
         }
 
         public override void PostExecution()
