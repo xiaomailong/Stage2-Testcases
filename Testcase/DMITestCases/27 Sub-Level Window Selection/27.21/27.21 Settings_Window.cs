@@ -34,7 +34,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 22_21_a.xml, 22_21_b.xml, 22_21_c.xml, 22_21_d.xml
     /// </summary>
-    public class Settings_Window : TestcaseBase
+    public class TC_ID_22_21_Settings_Window : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -69,9 +69,10 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Settings window.Verify the following points,Menu windowsThe Settings window is displayed in main area D/F/G.The window title is ‘Settings’.The following objects are displayed Main window, Enabled Close button (NA11)Window TitleButton 1 with Symbol SE03 for Language Button 2 with Symbol SE02 for VolumeButton 3 with SE01 for BrightnessButton 4 with label ‘System version’Button 5 with label ‘Set VBC’Button 6 with label ‘Remove VBC’Note: See the position of buttons in picture below,The state of each button in Special window are displayed correctly as follows,Language = EnableVolume = EnableBrightness = EnableSystem version = EnableSet VBC = EnableRemove VBC = DisableSet clock = EnableThe other additional buttons from list above also display in this window (e.g. Maintenance, Brake, System Info, etc.).LayersThe level of layers in each area of window as follows,Layer 0: Area D, F, G, E10, E11, Y, and ZLayer -1: Area A1, (A2+A3)*, A4, B*, C1, (C2+C3+C4)*, C5, C6, C7, C8, C9, E1, E2, E3, E4, (E5-E9)*.Layer -2: Area B3, B4, B5, B6 and B7.Note: ‘*’ symbol is mean that specified area are drawn as one area.Packet transmissionUse the log file to confirm that DMI receives EVC-30 with following value in each bit of variable MMI_Q__REQUEST_ENABLE_64,Bit #13 = 1 (Language)Bit #14 = 1 (Volume)Bit #15 = 1 (Brightness)Bit #16 = 1 (System version)Bit #17 = 1 (Set VBC)Bit #18 = 0 (Remove VBC)Bit #25 or Bit #26 = 1 (Set Clock)And the buttons are enabled according to bit value = 1. General property of windowThe Settings window is presented with objects and buttons which is the one of several levels and allocated to areas of DMI..All objects, text messages and buttons are presented within the same layer.The Default window is not displayed and covered the current window.Sub-level window covers partially depending on the size of the Sub-Level window. There is no other window is displayed and activated at the same time
             Test Step Comment: (1) MMI_gen 8465 (partly: MMI_gen 7909);(2) MMI_gen 8466; MMI_gen 4360 (partly: window title);(3) MMI_gen 8645 (partly: MMI_gen 4556 (partly: Close button, Window Title));    MMI_gen 8467 (partly: touch screen, button with label, Language, Volume, Brightness, System version, Set VBC, Remove VBC); MMI_gen 4392 (partly: [Close] NA11);                   (4) MMI_gen 11545 (partly: EVC-30, enabling #13, #14, #15, #16, #17, #25 or #26, disabling #18); (5) MMI_gen 8469; (6) MMI_gen 8645 (partly: MMI_gen 4630, MMI gen 5944 (partly: touch screen));(7) MMI_gen11545 (partly: enabling buttons, disabling ‘remove vbc’ button, EVC-30); MMI_gen 1088 (Partly, Bit #13 to #18 and #25 to #26)            (8) MMI_gen 4350;(9) MMI_gen 4351;(10) MMI_gen 4353;(11) MMI_gen 4354;
             */
+/* This may be required
             DmiActions.Set_Driver_ID(this, "1234");
             DmiActions.ShowInstruction(this, "Confirm the Driver ID");
-
+*/
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
             EVC30_MMIRequestEnable.SendBlank();
@@ -447,7 +448,7 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, @"Enter ‘65536’ for the VBC code and confirm the value, then press the ‘Yes’ button");
 
-            //EVC28_MMIEchoedSetVBCData.MMI_M_VBC_CODE_ = 0xffffffffffff0000;     // 65536 bit-inverted
+            //EVC28_MMIEchoedSetVBCData.MMI_M_VBC_CODE_ = 0xfffffffffffeffff;     // 65536 bit-inverted
             //EVC28_MMIEchoedSetVBCData.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +

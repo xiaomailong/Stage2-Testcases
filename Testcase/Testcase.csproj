@@ -617,10 +617,17 @@ if exist "$(TargetPath)" if not exist "$(TargetPath).locked" move "$(TargetPath)
     <Compile Include="XML Packets\22\XML_22_17_d.cs" />
     <Compile Include="XML Packets\22\XML_22_17_e.cs" />
     <Compile Include="XML Packets\22\XML_22_18.cs" />
+    <Compile Include="XML Packets\22\XML_22_21_1_a.cs" />
+    <Compile Include="XML Packets\22\XML_22_21_1_b.cs" />
+    <Compile Include="XML Packets\22\XML_22_21_1_c.cs" />
+    <Compile Include="XML Packets\22\XML_22_21_1_d.cs" />
     <Compile Include="XML Packets\22\XML_22_21_a.cs" />
     <Compile Include="XML Packets\22\XML_22_21_b.cs" />
     <Compile Include="XML Packets\22\XML_22_21_c.cs" />
     <Compile Include="XML Packets\22\XML_22_21_d.cs" />
+    <Compile Include="XML Packets\22\XML_22_22_3_a.cs" />
+    <Compile Include="XML Packets\22\XML_22_22_3_b.cs" />
+    <Compile Include="XML Packets\22\XML_22_22_5_a.cs" />
     <Compile Include="XML Packets\22\XML_22_5_1_a.cs" />
     <Compile Include="XML Packets\22\XML_22_5_1_b.cs" />
     <Compile Include="XML Packets\22\XML_22_5_2_a.cs" />
