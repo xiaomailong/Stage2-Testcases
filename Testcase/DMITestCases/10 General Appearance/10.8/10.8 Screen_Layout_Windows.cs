@@ -14,6 +14,7 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
 using Testcase.Telegrams.EVCtoDMI;
+using static Testcase.Telegrams.EVCtoDMI.Variables;
 
 
 namespace Testcase.DMITestCases
@@ -80,7 +81,18 @@ namespace Testcase.DMITestCases
             Expected Result: The Level window is displayed.Verify the following:The Sub-level window covers partially on the screen.When this window is active, driver cannot select anything on the default window underneath e.g. ‘Main menu’ or ‘Settings menu’.All objects, text messages and buttons are presented within the same layer
             Test Step Comment: MMI_gen 4354;MMI_gen 4351;
             */
-            DmiActions.ShowInstruction(this, "Enter the Driver ID. Perform brake test. Select level 1");
+            // Brake test checks are done in section 27.22: irrelevant here
+            DmiActions.ShowInstruction(this, "Enter the Driver ID (and confirm).");
+            
+            EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = MMI_Q_CLOSE_ENABLE.Disabled;
+            EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new MMI_Q_LEVEL_NTC_ID[] { MMI_Q_LEVEL_NTC_ID.ETCS_Level };
+            EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new MMI_M_CURRENT_LEVEL[] { MMI_M_CURRENT_LEVEL.NotLastUsedLevel };
+            EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = new MMI_M_LEVEL_FLAG[] { MMI_M_LEVEL_FLAG.MarkedLevel };
+            EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = new MMI_M_INHIBITED_LEVEL[] { MMI_M_INHIBITED_LEVEL.NotInhibited };
+            EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = new MMI_M_INHIBIT_ENABLE[] { MMI_M_INHIBIT_ENABLE.AllowedForInhibiting };
+            EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new MMI_M_LEVEL_NTC_ID[] { MMI_M_LEVEL_NTC_ID.L1 };
+            EVC20_MMISelectLevel.Send();
+            DmiActions.ShowInstruction(this, "Select level 1");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Level window." + Environment.NewLine +
@@ -94,7 +106,16 @@ namespace Testcase.DMITestCases
             Expected Result: The Train data window is displayed.Verify the following:(1)   All objects, text messages and buttons are presented within the same layer.(2)   At the top of the window, it displays title with text ‘Train data’, background is black and text label is displayed as grey colour.(3)   For the title, when the number of DMI objects cannot fit within a window is displayed as (1/2) i.e. in this case it displays Train data (1/2) and Train data (2/2).(4)   The Data entry window contains a maximum of 4 or 3 input field. (5)   A close button is displayed as enabled.(6)   Sub-level window covers totally depending on the size of the Sub-Level window.(7)   ‘Next’ and/or ‘Previous’ button is enabled. The scrolling between various windows is not displayed as circular
             Test Step Comment: MMI_gen 4351;MMI_gen 4354;MMI_gen 4355;MMI_gen 4358;MMI_gen 4360;
             */
-            DmiActions.ShowInstruction(this, "Accept level 1 and press the ‘Train data’ button");
+            DmiActions.ShowInstruction(this, "Accept level 1");
+
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;      // Main window
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.TrainData;
+            EVC30_MMIRequestEnable.Send();
+
+            DmiActions.ShowInstruction(this, "Press the ‘Train data’ button");
+
+            DmiActions.Send_EVC6_MMICurrentTrainData_FixedDataEntry(this, new[] { "FLU", "RLU", "Rescue" }, 2);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Train data window." + Environment.NewLine +
@@ -111,7 +132,11 @@ namespace Testcase.DMITestCases
             Expected Result: The Train Running Number window is displayed.All objects, text messages and buttons are presented within the same layer
             Test Step Comment: MMI_gen 4351;
             */
+            DmiActions.Send_EVC10_MMIEchoedTrainData_FixedDataEntry(this, new[] { "FLU", "RLU", "Rescue" }, 2);
             DmiActions.ShowInstruction(this, "Confirm and validate the Train data");
+
+            EVC16_CurrentTrainNumber.TrainRunningNumber = 1;
+            EVC16_CurrentTrainNumber.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Train Running Number window." + Environment.NewLine +
@@ -124,8 +149,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 4350;MMI_gen 4352;MMI_gen 4353;MMI_gen 4361;Check more information about ‘Total image’ in [MMI-ETCS-gen]
             */
             DmiActions.ShowInstruction(this, "Enter and confirm the train running number. Close the Main window");
-
-            // Not sure what result (1) means....
+            
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Default window." + Environment.NewLine +
                                 "2. All objects, text messages and buttons are displayed in the same layer." + Environment.NewLine +
@@ -177,6 +201,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 4381;   MMI_gen 4382;
             */
             DmiActions.ShowInstruction(this, "Release the ‘Main menu’ button");
+
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
+            EVC30_MMIRequestEnable.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the sub-menu of the Main window.");
@@ -239,6 +267,10 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, "Release the ‘Special’ button");
 
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 3;      // Special
+            EVC30_MMIRequestEnable.Send();
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the sub-menu of the Special window.");
 
@@ -299,6 +331,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 4381;   MMI_gen 4382;
             */
             DmiActions.ShowInstruction(this, "Release the ‘Settings menu’ button");
+
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 4;      // Settings
+            EVC30_MMIRequestEnable.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays all the sub-menus of the Settings window.");
