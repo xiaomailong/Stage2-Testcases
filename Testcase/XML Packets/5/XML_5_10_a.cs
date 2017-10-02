@@ -297,9 +297,13 @@ namespace Testcase.XML
             DMITestCases.DmiExpectedResults.SB_Mode_displayed(_pool);
 
             // Step 9
-            DMITestCases.DmiActions.ShowInstruction(_pool, "Enter Driver ID. Skip the brake test. Select Level 1 then shunting mode");
+            // Test says this: but level entry and shunting is tested elsewhere
+            //DMITestCases.DmiActions.ShowInstruction(_pool, "Enter Driver ID. Skip the brake test. Select Level 1 then shunting mode");
+            DMITestCases.DmiActions.ShowInstruction(_pool, "Enter Driver ID.");
 
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Shunting;
+
             DMITestCases.DmiExpectedResults.SH_Mode_displayed(_pool);
 
             // Step 10
@@ -351,9 +355,9 @@ namespace Testcase.XML
 
             DMITestCases.DmiActions.Set_Driver_ID(_pool, "1234");
 
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
             DMITestCases.DmiExpectedResults.SB_Mode_displayed(_pool);
-
 
             // Step 12
             DMITestCases.DmiActions.Complete_SoM_L1_SR(_pool); 
@@ -368,6 +372,10 @@ namespace Testcase.XML
             DMITestCases.DmiActions.ShowInstruction(_pool, "Select Settings menu");
 
             // this relies on ETCS data so packet required...
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 4;  // Settings
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.None;
+            EVC30_MMIRequestEnable.Send();
 
             _pool.WaitForVerification("Check that the following buttons are displayed with a border with Dark-Grey text:" + Environment.NewLine + Environment.NewLine +
                                       @"1. The ‘Lock screen for cleaning’ button." + Environment.NewLine +
@@ -376,17 +384,12 @@ namespace Testcase.XML
                                       @"4. The ‘Maintenance’ button.");
 
             // Step 14
-            // Don't know what to do here...
-            //DMITestCases.DmiActions.Pass_BG1_with_Pkt_12_21_and_27(this);
-
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
-            EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.FullSupervision;
+
             DMITestCases.DmiExpectedResults.Driver_symbol_displayed(_pool, "Full Supervision mode", "MO11", "B7", false);
 
 
             // Step 15
-            // Pass BG2 with pkt 79 Geographical position  ???
-            // rob's telegram
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = (EVC30_MMIRequestEnable.EnabledRequests.Start |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.DriverID |
@@ -436,7 +439,6 @@ namespace Testcase.XML
 
 
             // Step 17
-            // More to do????
             EVC2_MMIStatus.MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.NoCabinActive;
             EVC2_MMIStatus.Send();
 
@@ -444,12 +446,14 @@ namespace Testcase.XML
             EVC2_MMIStatus.Send();
 
             DMITestCases.DmiActions.Set_Driver_ID(_pool, "1234");
-
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
+
             DMITestCases.DmiExpectedResults.SB_Mode_displayed(_pool);
 
             // Step 18
-            DMITestCases.DmiActions.ShowInstruction(_pool, "Enter Driver ID and perform brake test. Select and confirm Level 2");
+            // Test case says brake test, level set: tested elsewhere
+            //DMITestCases.DmiActions.ShowInstruction(_pool, "Enter Driver ID and perform brake test. Select and confirm Level 2");
+            DMITestCases.DmiActions.ShowInstruction(_pool, "Enter Driver ID");
 
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = (EVC30_MMIRequestEnable.EnabledRequests.Start |
@@ -501,13 +505,16 @@ namespace Testcase.XML
             EVC2_MMIStatus.Send();
 
             DMITestCases.DmiActions.Set_Driver_ID(_pool, "1234");
-
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
+
             DMITestCases.DmiExpectedResults.SB_Mode_displayed(_pool);
 
 
             // Step 20
+            // Test says do all this: but tested elsewhere (activating cabin cannot be done by driver)
             DMITestCases.DmiActions.ShowInstruction(_pool, "Activate Cabin A. Enter Driver ID and perform brake test. Select and confirm Level STM PLZB. Enter train data and confirm entry");
+
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.LNTC;
 
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = (EVC30_MMIRequestEnable.EnabledRequests.Start |
@@ -548,10 +555,8 @@ namespace Testcase.XML
                                       @"1. The ‘End of data entry’ button.");
 
             // Step 21
-            // More to do????
             EVC2_MMIStatus.MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.NoCabinActive;
             EVC2_MMIStatus.Send();
-
             EVC2_MMIStatus.MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.Cabin1Active;
             EVC2_MMIStatus.Send();
 
@@ -561,6 +566,7 @@ namespace Testcase.XML
             DMITestCases.DmiExpectedResults.SB_Mode_displayed(_pool);
 
             // Step 22
+            // Test says active cabin (It is) and do brake test: as before ignore
             DMITestCases.DmiActions.ShowInstruction(_pool, @"Press the ‘Close’ button in the Main window. " + Environment.NewLine +
                                                            @"Press the ‘Settings’ button. Press the ‘Brake’ button");
 
