@@ -67,8 +67,8 @@ namespace Testcase.Telegrams.DMItoEVC
                 //      MMI_REQUEST from EVC-101 packet (= 40 - LevelEntered)
                 //      MMI_Q_BUTTON from EVC-101 packet (= 0 - Released)
                 _checkResult = _pool.SITR.CCUO.ETCS1NewLevel.MmiNLevels.Value.Equals(_nLevels) &
-                    _pool.SITR.CCUO.ETCS1DriverRequest.MmiMRequest.Value.Equals((byte)MMI_M_REQUEST.LevelEntered) &
-                    _pool.SITR.CCUO.ETCS1DriverRequest.EVC101alias1.Value.Equals((byte)MMI_Q_BUTTON.Released << 7);
+                    _pool.SITR.CCUO.ETCS1DriverRequest.MmiMRequest.Value.Equals((byte)MMI_M_REQUEST.LevelEntered) & 
+                    _pool.SITR.CCUO.ETCS1DriverRequest.EVC101alias1.Value.Equals((byte)MMI_Q_BUTTON.Pressed << 7);
 
                 // If check passes
                 if (_checkResult)
@@ -76,7 +76,7 @@ namespace Testcase.Telegrams.DMItoEVC
                     _pool.TraceReport(baseString1+".MMI_N_LEVELS = " +_nLevels + Environment.NewLine +
                                       baseString0 + Environment.NewLine +
                                       "MMI_M_REQUEST = \"" + MMI_M_REQUEST.LevelEntered + "\"" + Environment.NewLine +
-                                      "MMI_Q_BUTTON = \"" + MMI_Q_BUTTON.Released + "\"" + Environment.NewLine +
+                                      "MMI_Q_BUTTON = \"" + MMI_Q_BUTTON.Pressed + "\"" + Environment.NewLine +
                                       "Time stamp = " + _pool.SITR.CCUO.ETCS1DriverRequest.MmiTButtonevent + Environment.NewLine +
                                       "Result: PASSED.");
                 }
