@@ -13,6 +13,8 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.EVCtoDMI;
+
 
 namespace Testcase.DMITestCases
 {
@@ -78,6 +80,10 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, "Acknowledge by pressing in sub-area C9");
 
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
+            EVC8_MMIDriverMessage.Send();
+
             XML.XML_6_6_b.Send(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -90,6 +96,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 4504 (partly: symbols);
             */
             DmiActions.ShowInstruction(this, "Press the ‘Yes’ button (to the right) in area D.");
+
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
+            EVC8_MMIDriverMessage.Send();
 
             XML.XML_6_6_c.Send(this);
 
