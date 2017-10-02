@@ -35,7 +35,7 @@ namespace Testcase.XML
             // XML indicates MMI_M_START_REQ property with value of 10
             //EVC0_MMIStartATP.MMI_M_START_REQ = 10;
             //EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.GoToIdle;
-            EVC0_MMIStartATP.Send();
+            Testcase.DMITestCases.DmiActions.Start_ATP();
         }
     }
 }

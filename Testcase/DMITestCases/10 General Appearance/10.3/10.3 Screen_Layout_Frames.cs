@@ -89,13 +89,8 @@ namespace Testcase.DMITestCases
             Action: Enter the Driver ID. Perform brake test and then select Level 0
             Expected Result: ATP enters level 0.DMI displays the symbol of Level 0 in sub-area C8
             */
-            DmiActions.ShowInstruction(this, "Enter the Driver ID and select Level 0");
-
-            EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 3;
-            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Level;
-            EVC30_MMIRequestEnable.Send();
-
+            DmiActions.ShowInstruction(this, "Confirm the Driver ID");
+            
             EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Disabled;
 
             EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new Variables.MMI_Q_LEVEL_NTC_ID[] { Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level };
@@ -106,6 +101,8 @@ namespace Testcase.DMITestCases
             EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new Variables.MMI_M_LEVEL_NTC_ID[] { Variables.MMI_M_LEVEL_NTC_ID.L0 };
             EVC20_MMISelectLevel.Send();
 
+            DmiActions.ShowInstruction(this, "Select Level 0");
+
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L0;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -114,7 +111,8 @@ namespace Testcase.DMITestCases
 
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
-            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.TrainData;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.TrainData |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.Start;
             EVC30_MMIRequestEnable.Send();
 
             /*
@@ -124,11 +122,7 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Press the ‘Train data’ button");
 
-            EVC6_MMICurrentTrainData.Send();
-            EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 11;
-            EVC30_MMIRequestEnable.Send();
-
+            DmiActions.Send_EVC6_MMICurrentTrainData_FixedDataEntry(this, new[] { "FLU", "RLU", "Rescue" }, 2);
 
             // Call generic Check Results Method
             DmiExpectedResults.Train_data_window_displayed(this);
@@ -140,6 +134,8 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, "Enter and accept the Train data");
 
+            DmiActions.Send_EVC10_MMIEchoedTrainData_FixedDataEntry(this, new[] { "FLU", "RLU", "Rescue" }, 2);
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Train data validation window.");
 
@@ -149,9 +145,12 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays the Train running window
             */
             DmiActions.ShowInstruction(this, "Accept validation of the Train data");
+            
+            EVC16_CurrentTrainNumber.TrainRunningNumber = 1;
+            EVC16_CurrentTrainNumber.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the Train running window.");
+                                "1. DMI displays the Train running number window.");
 
             /*
             Test Step 6
@@ -169,9 +168,18 @@ namespace Testcase.DMITestCases
             Action: Press ‘Start’ button and confirm UN mode
             Expected Result: DMI displays in UN mode, level 0
             */
-            DmiActions.ShowInstruction(this, @"Press the ‘Start’ button and confirm UN mode");
+            DmiActions.ShowInstruction(this, @"Press the ‘Start’ button");
 
-            EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.Unfitted;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 264;
+            EVC8_MMIDriverMessage.Send();
+
+            DmiActions.ShowInstruction(this, "Confirm UN mode");
+
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Unfitted;
+            
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the Unfitted mode symbol (MO16) displayed in area B7?");
 
@@ -195,7 +203,14 @@ namespace Testcase.DMITestCases
             */
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
 
-            DmiActions.ShowInstruction(this, @"Accept level 1");
+            //DmiActions.ShowInstruction(this, @"Accept level 1");
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
+
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 266;
+            EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI removes the level 0 symbol from sub-area C8 and displays the level 1 symbol." + Environment.NewLine +
@@ -208,20 +223,21 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in PT mode.Use the log file to confirm that DMI sends out packet [MMI_DRIVER_ACTION (EVC-152)] with the value of variable MMI_M_DRIVER_ACTION refer to sequence below,a)   MMI_M_DRIVER_ACTION = 2 (Ack of Train Trip)
             Test Step Comment: MMI_gen 11470 (partly: Bit #2);   
             */
+
             DmiActions.ShowInstruction(this, @"Acknowledge train trip");
 
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.TrainTripAck;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. Is the Post trip mode symbol (MO6) displayed in area B7?" + Environment.NewLine +
-                                "2. DMI displays the train trip announcement symbol requiring driver action." + Environment.NewLine +
-                                "3. The train trip symbol is displayed with a yellow flashing frame.");
+                                "1. Is the Post trip mode symbol (MO6) displayed in area B7?");
 
             /*
             Test Step 11
             Action: Press ‘Start’ button and confirm SR mode
             Expected Result: DMI displays in SR mode, level 1
             */
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
+
             DmiActions.ShowInstruction(this, @"Press ‘Start’ button and confirm SR mode.");
 
             // Call generic Check Results Method
