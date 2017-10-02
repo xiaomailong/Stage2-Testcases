@@ -35,7 +35,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 5_10_a.xml, 5_10.tdg, 5_10.utt
     /// </summary>
-    public class Screen_Layout_Button_States : TestcaseBase
+    public class TC_ID_5_10_Screen_Layout_Button_States : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -80,20 +80,19 @@ namespace Testcase.DMITestCases
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
 
+            EVC16_CurrentTrainNumber.TrainRunningNumber = 1;
+            EVC16_CurrentTrainNumber.Send();
+
+            DmiActions.ShowInstruction(this, "Enter and confirm the train running number");
+
             EVC30_MMIRequestEnable.SendBlank();
 
             // Spec says Start button enabled
-            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.TrainRunningNumber;
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 0;      // Start window
-            EVC30_MMIRequestEnable.Send();
-
-            DmiActions.ShowInstruction(this, "Enter Train running number");
-
-            EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Start | Variables.standardFlags;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.TrainRunningNumber |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.Start;
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;      // Main window
             EVC30_MMIRequestEnable.Send();
-
+            
             // Call generic Check Results Method
             DmiExpectedResults.Main_Window_displayed(this, true);
 
