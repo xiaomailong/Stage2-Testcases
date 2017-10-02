@@ -52,10 +52,7 @@ namespace Testcase.DMITestCases
 
             // force the window
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.None;
-            EVC30_MMIRequestEnable.Send();      // make sure that no window buttons are enabled
-
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;      // main window
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 4;      // Settings window
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter;
             EVC30_MMIRequestEnable.Send();
             
@@ -81,8 +78,9 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 3226 (partly: Maintenance Data Entry);(2)  MMI_gen 3390 (partly: Maintenance Data entry);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press the ‘Maintenance’ button, the press the ‘Wheel diameter’ button in the Maintenance window");
-
+            DmiActions.ShowInstruction(this, @"Press the ‘Maintenance’ button, enter and confirm the maintenance password (as in the configuration file)," + Environment.NewLine +
+                                             @"then press the ‘Wheel diameter’ button in the Maintenance window");
+                                          
             EVC40_MMICurrentMaintenanceData.MMI_Q_MD_DATASET = Variables.MMI_Q_MD_DATASET.WheelDiameter;
             EVC40_MMICurrentMaintenanceData.Send();
 
