@@ -36,8 +36,7 @@ namespace Testcase.DMITestCases
         /// <param name="pool">Signal pool</param>
         public static void Complete_SoM_L1_SB(SignalPool pool)
         {
-            EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.GoToIdle;
-            EVC0_MMIStartATP.Send();
+            Start_ATP();
 
             // Set train running number, cab 1 active, and other defaults
             Activate_Cabin_1(pool);
@@ -60,8 +59,7 @@ namespace Testcase.DMITestCases
         /// <param name="pool">Signal pool</param>
         public static void Complete_SoM_L1_FS(SignalPool pool)
         {
-            EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.GoToIdle;
-            EVC0_MMIStartATP.Send();
+            Start_ATP();
 
             // Set train running number, cab 1 active, and other defaults
             Activate_Cabin_1(pool);
@@ -84,8 +82,7 @@ namespace Testcase.DMITestCases
         /// <param name="pool">Signal pool</param>
         public static void Complete_SoM_L1_SR(SignalPool pool)
         {
-            EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.GoToIdle;
-            EVC0_MMIStartATP.Send();
+            Start_ATP();
 
             // Set train running number, cab 1 active, and other defaults
             Activate_Cabin_1(pool);
