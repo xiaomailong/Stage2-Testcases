@@ -193,8 +193,7 @@ namespace Testcase.XML
                                                                 EVC30_MMIRequestEnable.EnabledRequests.EnterRBCData |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.RadioNetworkID |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.GeographicalPosition |
-                                                                EVC30_MMIRequestEnable.EnabledRequests.EndOfDataEntryNTC |                                                                
-                                                                EVC30_MMIRequestEnable.EnabledRequests.SetLocalOffset |
+                                                                EVC30_MMIRequestEnable.EnabledRequests.EndOfDataEntryNTC | 
                                                                 EVC30_MMIRequestEnable.EnabledRequests.Reserved |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.StartBrakeTest |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter |
@@ -205,7 +204,8 @@ namespace Testcase.XML
                                                                  EVC30_MMIRequestEnable.EnabledRequests.Brightness |
                                                                  EVC30_MMIRequestEnable.EnabledRequests.SystemVersion |
                                                                  EVC30_MMIRequestEnable.EnabledRequests.SetVBC |
-                                                                 EVC30_MMIRequestEnable.EnabledRequests.RemoveVBC |
+                                                                 EVC30_MMIRequestEnable.EnabledRequests.RemoveVBC |                                                               
+                                                                EVC30_MMIRequestEnable.EnabledRequests.SetLocalOffset |
                                                                  EVC30_MMIRequestEnable.EnabledRequests.SetLocalTimeDateAndOffset);
 
             // Other signals need setting 
