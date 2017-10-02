@@ -75,9 +75,15 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 4483 (partly: received incoming acknowledgements); MMI_gen 11232 (partly: MMI_gen 4483 (partly: received incoming acknowledgement));(2) MMI_gen 4495; MMI_gen 4483 (partly: by default); MMI_gen 11232 (partly: MMI_gen 4483 (partly: by default), MMI_gen 4495));(3) MMI_gen 9393 (partly: flashing frame surround the object); MMI_gen 4471 (partly: symbol is surrounded by flashing yellow frame); MMI_gen 4466 (partly: offer an acknowledgement located on total image); MMI_gen 11232 (partly: MMI_gen 9393 (partly: flashing frame surround the object), MMI_gen 4471 (partly: symbol is surrounded by flashing yellow frame), MMI_gen 4466 (partly: offer an acknowledgement located on total image));(4) MMI_gen 9393 (partly: sound ‘Sinfo’); MMI_gen 4483 (partly: sound ‘Sinfo’); MMI_gen 11232 (partly: MMI_gen 9393 (partly: sound ‘Sinfo’), MMI_gen 4483 (partly: sound ‘Sinfo’)); MMI_gen 9516 (partly: acknowledgable information); MMI_gen 12025 (partly: acknowledgable information);
             */
             // Call generic Action Method
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;      // Main window
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Start;
+            EVC30_MMIRequestEnable.Send();
+
             DmiActions.ShowInstruction(this, @"Press ‘Start’ button");
 
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 263;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
             EVC8_MMIDriverMessage.Send();
@@ -93,8 +99,11 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 4483 (partly: sorted in descending priority order); MMI_gen 4471 (partly: symbol is surrounded by flashing yellow frame); MMI_gen 4466 (partly: offer an acknowledgement located on total image); MMI_gen 3374 (partly: Brake Intervention, button is visible, not faulty);(2) MMI_gen 4469; MMI_gen 11232 (partly: MMI_gen 4469);(3) MMI_gen 9393 (partly: sound ‘Sinfo’); MMI_gen 4483 (partly: sound ‘Sinfo’); MMI_gen 9516 (partly: acknowledgable information); MMI_gen 12025 (partly: acknowledgable information);(4) MMI_gen 4483 (partly: received incoming acknowledgements); MMI_gen 3374 (partly: Brake Intervention, enabled by ETCS);
             */
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
+
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 260;
-            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 2;
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -110,10 +119,6 @@ namespace Testcase.DMITestCases
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
             DmiActions.ShowInstruction(this, "Press and hold sub-area C9");
 
-            EVC111_MMIDriverMessageAck.MMI_I_TEXT = 1;
-            EVC111_MMIDriverMessageAck.MMI_Q_ACK = MMI_Q_ACK.AcknowledgeYES;
-            EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
-            
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the symbol ST01 pressed without the yellow flashing frame." + Environment.NewLine +
                                 "2. The ‘Click’ sound is played once.");
@@ -150,6 +155,10 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, "Release the pressed area");
 
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 2;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
+            EVC8_MMIDriverMessage.Send();
+
             EVC111_MMIDriverMessageAck.MMI_Q_ACK = MMI_Q_ACK.AcknowledgeYES;
             EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
 
@@ -167,7 +176,8 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   Touch sensitive areas of the acknowledgement is removed.Note: DMI will not send the packet [MMI_DRIVER_MESSAGE_ACK (EVC-111)] when there is no detection of acknowledgement
             Test Step Comment: (1) MMI_gen4499 (partly: sensitive area); MMI_gen 11232 (partly: MMI_gen4499 (partly: sensitive area));
             */
-            DmiActions.ShowInstruction(this, "Press in sub-area C9");
+            // Test says area C9: C9 would be sensitive: C1 is where the removed symbol was so this should not respond
+            DmiActions.ShowInstruction(this, "Press in sub-area C1");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Sub-area C1 is not touch sensitive.");
@@ -189,9 +199,8 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SR mode, Level 1
             */
             DmiActions.ShowInstruction(this, "Acknowledge by pressing on sub-area C1. Press and hold sub-area C1 for at least 2s, then release the pressed area.");
-
-            // ?? Would be in UN mode
-            // EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
+            
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
 
             // Call generic Check Results Method
             DmiExpectedResults.SR_Mode_displayed(this);
@@ -231,14 +240,15 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, "Press and hold the ‘No’ button");
 
-            EVC111_MMIDriverMessageAck.MMI_I_TEXT = 1;
+            // This was failing: No button is index 2?
+            EVC111_MMIDriverMessageAck.MMI_I_TEXT = 2;
             EVC111_MMIDriverMessageAck.MMI_Q_ACK = MMI_Q_ACK.NotAcknowledgeNO;
             EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
             this.Wait_Realtime(100);
 
             DmiActions.ShowInstruction(this, "Release the ‘No’ button and check the log file for packet EVC111 from DMI with MMI_I_TEXT = 1, MMI_Q_ACK = 2, MMI_Q_BUTTON = 0");
 
-            EVC111_MMIDriverMessageAck.MMI_I_TEXT = 1;
+            EVC111_MMIDriverMessageAck.MMI_I_TEXT = 2;
             EVC111_MMIDriverMessageAck.MMI_Q_ACK = MMI_Q_ACK.NotAcknowledgeNO;
             EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
 
@@ -390,6 +400,11 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Release the pressed area");
+
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 264;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
+            EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI stops displaying symbol MO17 in sub-area C1.");
