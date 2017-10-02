@@ -115,13 +115,18 @@ namespace Testcase.DMITestCases
             Action: (Continue from step 4)Send EVC-8 with,MMI_Q_TEXT = 260MMI_Q_TEXT_CRITERIA = 0MMI_I_TEXT = 2
             Expected Result: The acknowledgement in sub-area E5 is disappeared, DMI displays ST01 symbol with yellow flashing frame in sub-area C9 instead
             */
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.Send();
+
             EVC8_MMIDriverMessage.MMI_I_TEXT = 2;
-            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 0;
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 260;
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI stops displays the message ‘Acknowledgement’ in sub-area E5 and displays symbol ST01 with a yellow flashing frame in sub-area C9.");
+                                "1. DMI stops displaying the message ‘Acknowledgement’ in sub-area E5 and displays symbol ST01 with a yellow flashing frame in sub-area C9.");
 
             /*
             Test Step 6
