@@ -16,8 +16,9 @@ namespace Testcase.Telegrams.EVCtoDMI
     public static class EVC6_MMICurrentTrainData
     {
         private static SignalPool _pool;
-        private static int _trainsetid = 0;
-        private static int _maltdem = 0;
+        private static int _trainsetid;
+        private static int _maltdem;
+        const string BaseString = "ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub";
 
         /// <summary>
         /// Initialise an instance of EVC-6 MMI Current Train Data telegram.
@@ -65,9 +66,7 @@ namespace Testcase.Telegrams.EVCtoDMI
                     throw new ArgumentOutOfRangeException();
 
                 // Set length of char array
-                _pool.SITR.Client.Write(
-                    $"ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub1{trainsetIndex}_MmiNCaptionTrainset",
-                    charArray.Length);
+                _pool.SITR.Client.Write($"{BaseString}{trainsetIndex}_MmiNCaptionTrainset", charArray.Length);
 
                 totalSizeCounter += 16;
 
@@ -78,16 +77,13 @@ namespace Testcase.Telegrams.EVCtoDMI
                     // Trainset caption text character
                     if (charIndex < 10)
                     {
-                        _pool.SITR.Client.Write(
-                            $"ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub1{trainsetIndex}_EVC06CurrentTrainDataSub110{charIndex}_MmiXCaptionTrainset",
-                            character);
+                        _pool.SITR.Client.Write($"{BaseString}1{trainsetIndex}_EVC06CurrentTrainDataSub110{charIndex}_MmiXCaptionTrainset", character);
                     }
                     else
                     {
-                        _pool.SITR.Client.Write(
-                            $"ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub1{trainsetIndex}_EVC06CurrentTrainDataSub11{charIndex}_MmiXCaptionTrainset",
-                            character);
+                        _pool.SITR.Client.Write($"{BaseString}1{trainsetIndex}_EVC06CurrentTrainDataSub11{charIndex}_MmiXCaptionTrainset", character);
                     }
+
                     totalSizeCounter += 8;
                 }
             }
@@ -95,8 +91,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             // Set number of train data elements
             _pool.SITR.ETCS1.CurrentTrainData.MmiNDataElements.Value = (ushort) DataElements.Count;
 
-            totalSizeCounter = PopulateDataElements($"ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub2",
-                totalSizeCounter, DataElements, _pool);
+            totalSizeCounter = PopulateDataElements($"{BaseString}2", totalSizeCounter, DataElements, _pool);
 
             // Set the total length of the packet
             _pool.SITR.ETCS1.CurrentTrainData.MmiLPacket.Value = totalSizeCounter;
@@ -237,7 +232,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static MMI_NID_KEY MMI_NID_KEY_LOAD_GAUGE
         {
-            set { _pool.SITR.ETCS1.CurrentTrainData.MmiNidKeyLoadGauge.Value = (byte) value; }
+            set => _pool.SITR.ETCS1.CurrentTrainData.MmiNidKeyLoadGauge.Value = (byte) value;
         }
 
         /// <summary>
