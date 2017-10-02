@@ -69,6 +69,9 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
+            TraceInfo("This test case requires a DMI configuration change - " +
+                      "See Precondition requirements. If this is not done manually, the test may fail!");
+
             /*
             Test Step 1
             Action: Power on the system and activate cabin
@@ -95,13 +98,14 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Enter and confirm the Driver ID. Perform brake test");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI does not display the message ‘Brake Test in Progress’ because the display text is Russian and English is the current language.");
+                                "1. DMI does not display the message ‘Brake Test in Progress’ because " +
+                                "the display text is Russian and English is the current language.");
             /*
             Test Step 3
             Action: Select ATB STM and complete Start of Mission
             Expected Result: DMI displays in SN mode, Level STM-ATB
             */
-            DmiActions.ShowInstruction(this, "Select level ATB STM and complete Start of Mission");
+            DmiActions.ShowInstruction(this, "Select level AWS/TPWS STM and complete Start of Mission");
 
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.LNTC;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.NationalSystem;
@@ -113,10 +117,12 @@ namespace Testcase.DMITestCases
                             since the text is replaced with Russian character code language
             Test Step Comment: MMI_gen 3722 (partly:NTC)
             */
-            DmiActions.ShowInstruction(this, "Press settings menu then press the ‘Test’ button in the Brake window to start the brake test");
+            DmiActions.ShowInstruction(this, "Press settings menu then press the ‘Test’ button in the Brake " +
+                                             "window to start the brake test.");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI does not display the message ‘Brake Test in Progress’ because the display text is Russian and English is the current language.");
+                                "1. DMI does not display the message ‘Brake Test in Progress’ because " +
+                                "the display text is Russian and English is the current language.");
             
             /*
             Test Step 5
