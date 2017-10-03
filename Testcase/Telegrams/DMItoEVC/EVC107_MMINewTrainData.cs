@@ -30,58 +30,64 @@ namespace Testcase.Telegrams.DMItoEVC
         private static byte _mButtons;
         private static ushort _mTrainsetId;
         private static ushort _mAltDem;
-        private static byte _evc107alias1;
+        private static byte _evc107Alias1;
         private static List<byte> _trainData;
 
+        private const string BaseString1 = "DMI->ETCS: EVC-107 [MMI_NEW_TRAIN_DATA]";
+        private const string BaseString2 = "CCUO_ETCS1NewTrainData";
 
         /// <summary>
         /// Initialise EVC107 MMI_New_Train_Data telegram.
         /// </summary>
-        /// <param name="pool"></param>
+        /// <param name="pool">Signal pool</param>
         public static void Initialise(SignalPool pool)
         {
             _pool = pool;
             _pool.SITR.SMDCtrl.CCUO.ETCS1NewTrainData.Value = 1;
-            _trainData = new List<byte>();
-             
+            _trainData = new List<byte>();             
         }
 
         private static void CheckSimpleField(ushort varToCheck, bool bResult, string varPath)
         {
-            // get field name
-            string _varName = (varPath.Split('_'))[2];
+            // Get field name
+            string varName = varPath.Split('_')[2];
 
-            if (bResult) // if check passes
+            // If check passes
+            if (bResult)
             {
-                _pool.TraceReport("DMI->ETCS: EVC-107 [MMI_NEW_TRAIN_DATA." + _varName + "] => " +
-                    varToCheck + " PASSED.");
+                _pool.TraceReport($"{BaseString1} {varName} => {varToCheck}" + Environment.NewLine +
+                                    "Result: PASSED.");
             }
-            else // else display the real value extracted from EVC-107 [MMI_NEW_TRAIN_DATA]
+            // Else display the real value extracted from EVC-107
+            else
             {
-                _pool.TraceError("DMI->ETCS: Check EVC-107 [MMI_NEW_TRAIN_DATA." + _varName + "] => " +
-                    _pool.SITR.Client.Read(varPath).ToString() + " FAILED.");
+                _pool.TraceError($"{BaseString1} {varName} => " + _pool.SITR.Client.Read(varPath) + Environment.NewLine +
+                                "Result: FAILED.");
             }
         }
 
-        private static void CheckEVC107_alias_1(ushort varToCheck, ushort varExtracted, string varName)
+        private static void CheckEVC107_Alias_1(ushort varToCheck, ushort varExtracted, string varName)
         {
-            // compare the value measured with the expected one
+            // Compare the value measured with the expected one
             _bResult = varExtracted.Equals(varToCheck);
 
-            if (_bResult) // if check passes
+            // If check passes
+            if (_bResult)
             {
-                _pool.TraceReport("DMI->ETCS: EVC-107 [MMI_NEW_TRAIN_DATA." + varName + "] => " +
-                    varToCheck + " PASSED.");
+                _pool.TraceReport($"{BaseString1} {varName} => {varToCheck}" + Environment.NewLine +
+                                  "Result: PASSED.");
             }
-            else // else display the real value extracted from EVC-107 [MMI_NEW_TRAIN_DATA]
+            // Else display the real value extracted from EVC-107
+            else
             {
-                _pool.TraceError("DMI->ETCS: Check EVC-107 [MMI_NEW_TRAIN_DATA." + varName + "] => " +
-                    varExtracted + " FAILED.");
+                _pool.TraceError($"{BaseString1} {varName} => " + varExtracted + Environment.NewLine +
+                                "Result: FAILED.");
             }
         }
 
         /// <summary>
         /// Total length of the current train.
+        /// 
         /// Values:
         /// 0 = "'No default value' => Data field shall remain empty"
         /// 1..4095 = "total train length"
@@ -92,64 +98,70 @@ namespace Testcase.Telegrams.DMItoEVC
             set
             {
                 _lTrain = value; 
-                _varPath = "CCUO_ETCS1NewTrainData_MmiLPacket";
+                _varPath = $"{BaseString2}_MmiLPacket";
                 _bResult = _pool.SITR.Client.Read(_varPath).Equals(_lTrain);
+
                 CheckSimpleField(_lTrain, _bResult, _varPath);
             }
         }
 
         /// <summary>
         /// Estimated train speed at the actual time, without tolerance added
-        ///     Values:
-        ///     1 = "Speed unknown"
+        /// 
+        /// Values:
+        /// 1 = "Speed unknown"
         /// </summary>
         public static ushort Check_MMI_V_MAXTRAIN
         {
             set
             {
                 _vMaxtrain = value;
-                _varPath = "CCUO_ETCS1NewTrainData_MmiVMaxtrain";
+                _varPath = $"{BaseString2}_MmiVMaxtrain";
                 _bResult = _pool.SITR.Client.Read(_varPath).Equals(_vMaxtrain);
+
                 CheckSimpleField(_vMaxtrain, _bResult, _varPath);
             }
         }
 
         /// <summary>
         /// Identifies the train category related subset of MMI_NID_KEY.
+        /// 
         /// Value range 3-20
-        ///     Values:
-        ///     3 = "PASS 1"
-        ///     4 = "PASS 2"
-        ///     5 = "PASS 3"
-        ///     6 = "TILT 1"
-        ///     7 = "TILT 2"
-        ///     8 = "TILT 3"
-        ///     9 = "TILT 4"
-        ///     10 = "TILT 5"
-        ///     11 = "TILT 6"
-        ///     12 = "TILT 7"
-        ///     13 = "FP 1"
-        ///     14 = "FP 2"
-        ///     15 = "FP 3"
-        ///     16 = "FP 4"
-        ///     17 = "FG 1"
-        ///     18 = "FG 2"
-        ///     19 = "FG 3"
-        ///     20 = "FG 4"
+        /// Values:
+        /// 3 = "PASS 1"
+        /// 4 = "PASS 2"
+        /// 5 = "PASS 3"
+        /// 6 = "TILT 1"
+        /// 7 = "TILT 2"
+        /// 8 = "TILT 3"
+        /// 9 = "TILT 4"
+        /// 10 = "TILT 5"
+        /// 11 = "TILT 6"
+        /// 12 = "TILT 7"
+        /// 13 = "FP 1"
+        /// 14 = "FP 2"
+        /// 15 = "FP 3"
+        /// 16 = "FP 4"
+        /// 17 = "FG 1"
+        /// 18 = "FG 2"
+        /// 19 = "FG 3"
+        /// 20 = "FG 4"
         /// </summary>
         public static MMI_NID_KEY Check_MMI_NID_KEY_TRAIN_CAT
         {
             set
             {
                 _nidKeyTrainCat = (byte) value;
-                _varPath = "CCUO_ETCS1NewTrainData_MmiNidKeyTrainCat";
+                _varPath = $"{BaseString2}_MmiNidKeyTrainCat";
                 _bResult = _pool.SITR.Client.Read(_varPath).Equals(_nidKeyTrainCat);
+
                 CheckSimpleField(_nidKeyTrainCat, _bResult, _varPath);
             }
         }
 
         /// <summary>
         /// Brake percentage as input for calculation of braking characteristics.
+        /// 
         /// Values:
         /// 0 = "No default value' =&gt; Data field shall remain empty"
         /// 1..9 = "Reserved"
@@ -161,83 +173,91 @@ namespace Testcase.Telegrams.DMItoEVC
             set
             {
                 _mBrakePerc = (byte)value;
-                _varPath = "CCUO_ETCS1NewTrainData_MmiMBrakePerc";
+                _varPath = $"{BaseString2}_MmiMBrakePerc";
                 _bResult = _pool.SITR.Client.Read(_varPath).Equals(_mBrakePerc);
+
                 CheckSimpleField(_mBrakePerc, _bResult, _varPath);
             }
         }
 
         /// <summary>
         /// Identifies the axle load category related subset of MMI_NID_KEY. 
+        /// 
         /// Value range 21-33
-        ///     Values:
-        ///     21 = "A"
-        ///     22 = "HS17"
-        ///     23 = "B1"
-        ///     24 = "B2"
-        ///     25 = "C2"
-        ///     26 = "C3"
-        ///     27 = "C4"
-        ///     28 = "D2"
-        ///     29 = "D3"
-        ///     30 = "D4"
-        ///     31 = "D4XL"
-        ///     32 = "E4"
-        ///     33 = "E5"
+        /// Values:
+        /// 21 = "A"
+        /// 22 = "HS17"
+        /// 23 = "B1"
+        /// 24 = "B2"
+        /// 25 = "C2"
+        /// 26 = "C3"
+        /// 27 = "C4"
+        /// 28 = "D2"
+        /// 29 = "D3"
+        /// 30 = "D4"
+        /// 31 = "D4XL"
+        /// 32 = "E4"
+        /// 33 = "E5"
         /// </summary>
         public static MMI_NID_KEY Check_MMI_NID_KEY_AXLE_LOAD
         {
             set
             {
                 _nidKeyAxleLoad = (byte)value;
-                _varPath = "CCUO_ETCS1NewTrainData_MmiNidKeyAxleLoad";
+                _varPath = $"{BaseString2}_MmiNidKeyAxleLoad";
                 _bResult = _pool.SITR.Client.Read(_varPath).Equals(_nidKeyAxleLoad);
+
                 CheckSimpleField(_nidKeyAxleLoad, _bResult, _varPath);
             }
         }
 
         /// <summary>
         /// Train equipped with airtight system.
-        ///     Values:
-        ///     0 = "Not equipped"
-        ///     1 = "Equipped"
-        ///     2 = "'No default value' =&gt; TD entry field shall remain empty"
-        ///     3..255 = "Spare"
+        /// 
+        /// Values:
+        /// 0 = "Not equipped"
+        /// 1 = "Equipped"
+        /// 2 = "'No default value' =&gt; TD entry field shall remain empty"
+        /// 3..255 = "Spare"
         /// </summary>
         public static byte Check_MMI_M_AIRTIGHT
         {
             set
             {
-                _mAirtight = (byte)value;
-                _varPath = "CCUO_ETCS1NewTrainData_MmiMAirtight";
+                _mAirtight = value;
+                _varPath = $"{BaseString2}_MmiMAirtight";
                 _bResult = _pool.SITR.Client.Read(_varPath).Equals(_mAirtight);
+
                 CheckSimpleField(_mAirtight, _bResult, _varPath);
             }
         }
 
         /// <summary>
         /// Identifies the loading gauge category related subset of MMI_NID_KEY.
+        /// 
         /// Value range 34-38
-        ///     Values:
-        ///     34 = "G1"
-        ///     35 = "GA"
-        ///     36 = "GB"
-        ///     37 = "GC"
-        ///     38 = "Out of GC"
+        /// Values:
+        /// 34 = "G1"
+        /// 35 = "GA"
+        /// 36 = "GB"
+        /// 37 = "GC"
+        /// 38 = "Out of GC"
         /// </summary>
         public static MMI_NID_KEY Check_MMI_NID_KEY_LOAD_GAUGE
         {
             set
             {
                 _nidKeyLoadGauge = (byte)value;
-                _varPath = "CCUO_ETCS1NewTrainData_MmiNidKeyLoadGauge";
+                _varPath = $"{BaseString2}_MmiNidKeyLoadGauge";
                 _bResult = _pool.SITR.Client.Read(_varPath).Equals(_nidKeyLoadGauge);
+
                 CheckSimpleField(_nidKeyLoadGauge, _bResult, _varPath);
             }
         }
 
         /// <summary>
-        /// ID of selected pre-configured train data set. 
+        /// ID of selected pre-configured train data set.
+        /// 
         /// Values:
         /// 0 = "Train data entry method by train data set is not selected --&gt; use 'flexible TDE'"
         /// 1..9 = "Train data set ID 1..9"
@@ -249,41 +269,45 @@ namespace Testcase.Telegrams.DMItoEVC
             set
             {
                 _mTrainsetId = value;
-                _evc107alias1 = _pool.SITR.CCUO.ETCS1NewTrainData.EVC107alias1.Value;
+                _evc107Alias1 = _pool.SITR.CCUO.ETCS1NewTrainData.EVC107alias1.Value;
                 // Extract MMI_M_TRAINSET_ID (Bits 8 -> 5 according to VSIS 2.9)
-                byte _mmiMTransetId = (byte)((_evc107alias1 & 0xF0) >> 4); //xxxx xxxx -> xxxx 0000-> 0000 xxxx
-                CheckEVC107_alias_1(_mTrainsetId, _mmiMTransetId, "MMI_M_TRAINSET_ID");
+                byte mmiMTrainsetId = (byte)((_evc107Alias1 & 0xF0) >> 4); //xxxx xxxx -> xxxx 0000-> 0000 xxxx
+
+                CheckEVC107_Alias_1(_mTrainsetId, mmiMTrainsetId, "MMI_M_TRAINSET_ID");
             }
         }
 
         /// <summary>
-        /// Control information for alternative train data entry method. 
+        /// Control information for alternative train data entry method.
+        /// 
         /// Values:
-        /// 0 = "No alternative train data entry method enabled (covers 'fixed train data entry' and 'flexible
-        /// train data entry' according to ERA_ERTMS_15560, v3.4.0, ch. 11.3.9.6.a+b)"
-        /// 1 = "Flexible train data entry &lt;-&gt; train data entry for Train Sets (covers 'switchable train data
-        /// entry' according to ERA_ERTMS_15560, v3.4.0, ch. 11.3.9.6.c)"
+        /// 0 = "No alternative train data entry method enabled (covers 'fixed train data entry' and 'flexible train data entry'
+        ///     according to ERA_ERTMS_15560, v3.4.0, ch. 11.3.9.6.a+b)"
+        /// 1 = "Flexible train data entry &lt;-&gt; train data entry for Train Sets (covers 'switchable train data entry'
+        ///     according to ERA_ERTMS_15560, v3.4.0, ch. 11.3.9.6.c)"
         /// 2 = "Reserved"
         /// 3 = "Reserved"
         /// 
-        /// Note: In case no alternative TDE method is enabled, the variable "MMI_M_TRAINSET_ID"
-        /// determines between "flexible TDE" (MMI_M_TRAINSET_ID = 0) or "train set TDE"
-        /// (MMI_M_TRAINSET_ID != 0). This approach is chosen to deviate not too much between BL2 and BL3 interface.
+        /// Note: In case no alternative TDE method is enabled, the variable "MMI_M_TRAINSET_ID" determines between
+        ///     "flexible TDE" (MMI_M_TRAINSET_ID = 0) or "train set TDE" (MMI_M_TRAINSET_ID != 0). 
+        ///     This approach is chosen to deviate not too much between BL2 and BL3 interface.
         /// </summary>
         public static ushort Check_MMI_M_ALT_DEM
         {
             set
             {
                 _mAltDem = value;
-                _evc107alias1 = _pool.SITR.CCUO.ETCS1NewTrainData.EVC107alias1.Value;
+                _evc107Alias1 = _pool.SITR.CCUO.ETCS1NewTrainData.EVC107alias1.Value;
                 // Extract MMI_M_TRAINSET_ID (Bits 4 & 3 according to VSIS 2.9)
-                byte _mmiMAltDem = (byte)((_evc107alias1 & 0x0C) >> 2); //xxxx xxxx -> 0000 xx00-> 0000 00xx
-                CheckEVC107_alias_1(_mAltDem, _mmiMAltDem, "MMI_M_ALT_DEM");
+                byte mmiMAltDem = (byte)((_evc107Alias1 & 0x0C) >> 2); //xxxx xxxx -> 0000 xx00-> 0000 00xx
+
+                CheckEVC107_Alias_1(_mAltDem, mmiMAltDem, "MMI_M_ALT_DEM");
             }
         }
 
         /// <summary>
         /// The identity of an data entry element
+        /// 
         /// Values:
         /// 0 = "Train running number"
         /// 1 = "ERTMS/ETCS Level"
@@ -307,6 +331,7 @@ namespace Testcase.Telegrams.DMItoEVC
         /// 19 = "Remove VBC code"
         /// 20..254 = "spare"
         /// 255 = "no specific data element defined" 
+        /// 
         /// Note: the definition is according to preliminary SubSet-121 'NID_DATA' definition.
         /// </summary>
         private static List<byte> Check_MMI_NID_DATA
@@ -315,44 +340,49 @@ namespace Testcase.Telegrams.DMItoEVC
             {
                 _trainData = value;
 
-                // get the "static part" of the variable name
-                string varPath = "CCUO_ETCS1NewTrainData_EVC107NewTrainDataSub";
-                byte _dataElement;
+                // Get the "static part" of the variable name
+                string varPath = $"{BaseString2}_EVC107NewTrainDataSub";
+                byte dataElement;
 
-                if (_trainData.Count > 19) //if too many data elements were entered 
+                // If too many data elements were entered
+                if (_trainData.Count > 19) 
                     throw new ArgumentOutOfRangeException();
-                // if the number of data element entred does not match with what is received from the DMI
+
+                // If the number of data elements entered does not match with what is received from the DMI
                 if (_trainData.Count != _pool.SITR.CCUO.ETCS1NewTrainData.MmiNDataElements.Value)
                     throw new Exception("Number of Train data elements and number of captions do not match!");
 
-                // for every data element entered for verification
+                // For every data element entered for verification
                 for (int trainDataIndex = 0; trainDataIndex < _trainData.Count; trainDataIndex++)
                 {
-                    // get the matching element from EVC-107 telegran
+                    // Get the matching element from EVC-107 telegram
                     if (trainDataIndex < 10)
-                        _dataElement = (byte)_pool.SITR.Client.Read(varPath + "0" + trainDataIndex + "_MmiNidData");
+                        dataElement = (byte)_pool.SITR.Client.Read($"{varPath}0{trainDataIndex}_MmiNidData");
                     else
-                        _dataElement = (byte)_pool.SITR.Client.Read(varPath + trainDataIndex + "_MmiNidData");
+                        dataElement = (byte)_pool.SITR.Client.Read($"{varPath}{trainDataIndex}_MmiNidData");
 
-                    // compare the value measured with the expected one
-                    _bResult = _dataElement.Equals(_trainData[trainDataIndex]);
+                    // Compare the value measured with the expected one
+                    _bResult = dataElement.Equals(_trainData[trainDataIndex]);
 
-                    if (_bResult) // if check passes
+                    // If check passes
+                    if (_bResult)
                     {
-                        _pool.TraceReport("DMI->ETCS: EVC-107 [MMI_NEW_TRAIN_DATA.MMI_NID_DATA[" + trainDataIndex + "]] => " +
-                            _trainData[trainDataIndex] + " PASSED.");
+                        _pool.TraceReport($"{BaseString1}.MMI_NID_DATA[{trainDataIndex}] => " + _trainData[trainDataIndex] +
+                                            Environment.NewLine + "Result: PASSED.");
                     }
-                    else // else display the real value extracted from EVC-107 [MMI_NEW_TRAIN_DATA]
+                    // Else display the real value extracted from EVC-107
+                    else
                     {
-                        _pool.TraceError("DMI->ETCS: Check EVC-107 [MMI_NEW_TRAIN_DATA.MMI_NID_DATA[" + trainDataIndex + "]] => " +
-                            _dataElement + " FAILED.");
+                        _pool.TraceError($"{BaseString1}.MMI_NID_DATA[{trainDataIndex}] => " + dataElement + Environment.NewLine +
+                                        "Result: FAILED.");
                     }
                 }
             }
         }
 
         /// <summary>
-        /// Identifier of MMI Buttons. 
+        /// Identifier of MMI Buttons
+        /// 
         /// Values:
         /// 0 = "BTN_MAIN"
         /// 1 = "BTN_OVERRIDE"
@@ -405,6 +435,7 @@ namespace Testcase.Telegrams.DMItoEVC
         /// 253 = "BTN_ENTER_DELAY_TYPE"
         /// 254 = "BTN_ENTER"
         /// 255 = "no button"
+        /// 
         /// Note: the definition is according to preliminary SubSet-121 'M_BUTTONS' definition.
         /// </summary>
         public static MMI_M_BUTTONS Check_MMI_M_BUTTONS
@@ -412,8 +443,9 @@ namespace Testcase.Telegrams.DMItoEVC
             set
             {
                 _mButtons = (byte)value;
-                _varPath = "CCUO_ETCS1NewTrainData_MmiMButtons";
+                _varPath = $"{BaseString2}_MmiMButtons";
                 _bResult = _pool.SITR.Client.Read(_varPath).Equals(_mButtons);
+
                 CheckSimpleField(_mButtons, _bResult, _varPath);
             }
         }
