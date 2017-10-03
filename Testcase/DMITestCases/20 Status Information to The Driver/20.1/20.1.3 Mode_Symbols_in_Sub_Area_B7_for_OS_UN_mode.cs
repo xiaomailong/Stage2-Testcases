@@ -120,8 +120,15 @@ namespace Testcase.DMITestCases
 
             DmiActions.Display_Train_Data_Window(this);
             DmiExpectedResults.Train_data_window_displayed(this);
+            Wait_Realtime(5000);
+            DmiExpectedResults.Train_data_window_displayed(this);
+            Wait_Realtime(5000);
+            DmiExpectedResults.Train_data_window_displayed(this);
+            Wait_Realtime(5000);
 
             #endregion
+
+            return GlobalTestResult;
 
             #region Test Step 5
             /*
@@ -130,9 +137,6 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Train data validation window
             */
 
-            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
-                                "1. Enter and confirm value in each input field." + Environment.NewLine +
-                                "2. Press ‘Yes’ button.");
             DmiExpectedResults.Fixed_Train_Data_entered(this);
 
             DmiActions.Display_Train_data_validation_Window(this);

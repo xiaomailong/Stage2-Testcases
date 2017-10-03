@@ -151,16 +151,16 @@ namespace Testcase.DMITestCases
 
         {
             // Train data enabled
-            EVC6_MMICurrentTrainData.MMI_M_DATA_ENABLE = MMI_M_DATA_ENABLE.TrainSetID; // "Train Set ID" data enabled
-            EVC6_MMICurrentTrainData.MMI_L_TRAIN = 0; // Train length
-            EVC6_MMICurrentTrainData.MMI_V_MAXTRAIN = 0; // Max train speed
-            EVC6_MMICurrentTrainData.MMI_NID_KEY_TRAIN_CAT = MMI_NID_KEY.NoDedicatedKey; // Train category
-            EVC6_MMICurrentTrainData.MMI_M_BRAKE_PERC = 0; // Brake percentage
-            EVC6_MMICurrentTrainData.MMI_NID_KEY_AXLE_LOAD = MMI_NID_KEY.NoDedicatedKey; // Axle load category
-            EVC6_MMICurrentTrainData.MMI_M_AIRTIGHT = 0; // Train equipped with airtight system
+            EVC6_MMICurrentTrainData.MMI_M_DATA_ENABLE = MMI_M_DATA_ENABLE.TrainSetID;    // "Train Set ID" data enabled
+            EVC6_MMICurrentTrainData.MMI_L_TRAIN = 0;                                     // Train length
+            EVC6_MMICurrentTrainData.MMI_V_MAXTRAIN = 0;                                  // Max train speed
+            EVC6_MMICurrentTrainData.MMI_NID_KEY_TRAIN_CAT = MMI_NID_KEY.NoDedicatedKey;  // Train category
+            EVC6_MMICurrentTrainData.MMI_M_BRAKE_PERC = 0;                                // Brake percentage
+            EVC6_MMICurrentTrainData.MMI_NID_KEY_AXLE_LOAD = MMI_NID_KEY.NoDedicatedKey;  // Axle load category
+            EVC6_MMICurrentTrainData.MMI_M_AIRTIGHT = 0;                                  // Train equipped with airtight system
             EVC6_MMICurrentTrainData.MMI_NID_KEY_LOAD_GAUGE = MMI_NID_KEY.NoDedicatedKey; // Loading gauge type of train 
-            EVC6_MMICurrentTrainData.MMI_M_BUTTONS = 0; // No Buttons available
-            EVC6_MMICurrentTrainData.MMI_M_TRAINSET_ID = mmiMTrainsetId; // Preselected Trainset ID
+            EVC6_MMICurrentTrainData.MMI_M_BUTTONS = 0;                                   // No Buttons available
+            EVC6_MMICurrentTrainData.MMI_M_TRAINSET_ID = mmiMTrainsetId;                  // Preselected Trainset ID
             // MMI_Alt_Dem = 0: No alternative train data entry method available
 
             EVC6_MMICurrentTrainData.TrainSetCaptions = new List<string>(fixedTrainsetCaptions);
@@ -661,7 +661,7 @@ namespace Testcase.DMITestCases
         /// <param name="pool">Signal pool</param>
         public static void Display_Train_Data_Window(SignalPool pool)
         {
-            Send_EVC6_MMICurrentTrainData_FixedDataEntry(pool, new[] { "FLU", "RLU", "Rescue" }, 2);
+            Send_EVC6_MMICurrentTrainData_FixedDataEntry(pool, paramEvc6FixedTrainsetCaptions, 15);
         }
 
         /// <summary>
@@ -693,9 +693,6 @@ namespace Testcase.DMITestCases
         /// <param name="pool">Signal pool</param>
         public static void Display_TRN_Window(SignalPool pool)
         {
-            //EVC30_MMIRequestEnable.SendBlank();
-            //EVC30_MMIRequestEnable.MMI_NID_WINDOW = 6;
-            //EVC30_MMIRequestEnable.Send();
             EVC16_CurrentTrainNumber.TrainRunningNumber = 0xffffffff;
             EVC16_CurrentTrainNumber.Send(); ;
         }

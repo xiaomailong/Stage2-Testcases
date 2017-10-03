@@ -393,7 +393,12 @@ namespace Testcase.Telegrams.EVCtoDMI
             Operational_Cross_Check_failed = 5
         }
 
+        /// <summary>
+        /// EVC20 and EVC121 parameters. This configuration will display all levels used for 
+        /// Crossrail project (+ Level3)
+        /// </summary>
         #region EVC20 and EVC121 parameters
+
         public static MMI_Q_LEVEL_NTC_ID[] paramEvc20MmiQLevelNtcId =
                 { MMI_Q_LEVEL_NTC_ID.ETCS_Level,
                 MMI_Q_LEVEL_NTC_ID.ETCS_Level,
@@ -441,6 +446,13 @@ namespace Testcase.Telegrams.EVCtoDMI
                 MMI_M_LEVEL_NTC_ID.L3,
                 MMI_M_LEVEL_NTC_ID.CBTC,
                 MMI_M_LEVEL_NTC_ID.AWS_TPWS };
+        #endregion
+
+
+        #region EVC6 parameters
+
+        public static string[] paramEvc6FixedTrainsetCaptions = new[] { "FLU", "RLU", "Rescue" };  
+        
         #endregion
 
         /// <summary>
