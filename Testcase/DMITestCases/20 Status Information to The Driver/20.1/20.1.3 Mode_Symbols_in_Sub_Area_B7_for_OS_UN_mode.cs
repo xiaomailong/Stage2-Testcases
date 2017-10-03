@@ -120,10 +120,18 @@ namespace Testcase.DMITestCases
 
             DmiActions.Display_Train_Data_Window(this);
             DmiExpectedResults.Train_data_window_displayed(this);
+            DmiActions.ShowInstruction(this, @"Perform the following action after pressing OK:" + Environment.NewLine + Environment.NewLine +
+                                "1. Press \"FLU\".");
             Wait_Realtime(5000);
+            DmiActions.Display_Train_Data_Window(this);
             DmiExpectedResults.Train_data_window_displayed(this);
+            DmiActions.ShowInstruction(this, @"Perform the following action after pressing OK:" + Environment.NewLine + Environment.NewLine +
+                                "1. Press \"RLU\".");
             Wait_Realtime(5000);
+            DmiActions.Display_Train_Data_Window(this);
             DmiExpectedResults.Train_data_window_displayed(this);
+            DmiActions.ShowInstruction(this, @"Perform the following action after pressing OK:" + Environment.NewLine + Environment.NewLine +
+                                "1. Press \"Rescue\".");
             Wait_Realtime(5000);
 
             #endregion
