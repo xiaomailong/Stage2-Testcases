@@ -66,7 +66,8 @@ namespace Testcase.DMITestCases
             Expected Result: 
             */
 
-            DmiActions.Complete_SoM_L1_SR(this);
+            DmiActions.Complete_SoM_L1_SR
+                (this);
             DmiActions.Send_FS_Mode(this);
             DmiExpectedResults.FS_mode_displayed(this);
 
