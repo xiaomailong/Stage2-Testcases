@@ -52,8 +52,6 @@ namespace Testcase.DMITestCases
         {
             // Post-conditions from TestSpec
             // DMI displays in FS mode, Level 1.
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in FS mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -62,12 +60,7 @@ namespace Testcase.DMITestCases
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint
-
-            EVC7_MMIEtcsMiscOutSignals.Initialise(this);
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.LimitedSupervision;
-
-            EVC1_MMIDynamic.Initialise(this);
-
+            
             /*
             Test Step 1
             Action: Drive the train forward pass BG1 with speed = 30km/h.Then, stop the train
@@ -88,10 +81,14 @@ namespace Testcase.DMITestCases
             */
             XML_12_5_4_a.Send(this);
 
+            Wait_Realtime(500);     // this was not working each time
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1.The Circular Speed Gauge is removed from sub-area B2.");
 
-            EVC1_MMIDynamic.Initialise(this);       // sends a 'standard' EVC-1 packet so CSG should re-appear
+            // correct the invalid item:
+            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Overspeed_Status_Ceiling_Speed_Monitoring;    
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1.The Circular Speed Gauge re-appears in sub-area B2.");
             /*
@@ -105,7 +102,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1.The Circular Speed Gauge is removed from sub-area B2.");
 
-            EVC1_MMIDynamic.Initialise(this);       // sends a 'standard' EVC-1 packet so CSG should re-appear
+            // correct the invalid item:
+            EVC1_MMIDynamic.MMI_V_TARGET = 1111;
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1.The Circular Speed Gauge re-appears in sub-area B2.");
 
@@ -119,9 +117,10 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1.The Circular Speed Gauge is removed from sub-area B2.");
+            
+            // correct the invalid item:
+            EVC1_MMIDynamic.MMI_V_PERMITTED = 1111;
 
-
-            EVC1_MMIDynamic.Initialise(this);       // sends a 'standard' EVC-1 packet so CSG should re-appear
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1.The Circular Speed Gauge re-appears in sub-area B2.");
 
@@ -136,8 +135,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1.The Circular Speed Gauge is removed from sub-area B2.");
 
+            // correct the invalid item:
+            EVC1_MMIDynamic.MMI_V_INTERVENTION = 4500;
 
-            EVC1_MMIDynamic.Initialise(this);       // sends a 'standard' EVC-1 packet so CSG should re-appear
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1.The Circular Speed Gauge re-appears in sub-area B2.");
 
@@ -153,7 +153,9 @@ namespace Testcase.DMITestCases
                                 "1.The Circular Speed Gauge is removed from sub-area B2.");
 
 
-            EVC1_MMIDynamic.Initialise(this);       // sends a 'standard' EVC-1 packet so CSG should re-appear
+            // correct the invalid item:
+            EVC1_MMIDynamic.MMI_V_RELEASE = 1111; 
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1.The Circular Speed Gauge re-appears in sub-area B2.");
 
