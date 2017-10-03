@@ -58,8 +58,6 @@ namespace Testcase.DMITestCases
         {
             // Post-conditions from TestSpec
             // DMI displays in SB mode
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in SB mode.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -74,11 +72,11 @@ namespace Testcase.DMITestCases
             Action: Press ‘Settings menu’ button
             Expected Result: Settings menu window is displayed
             */
-            DmiActions.ShowInstruction(this, "Press the ‘Settings menu’ button");
+            DmiActions.ShowInstruction(this, "Press the ‘Settings’ button");
 
             // Can you tell this?
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the Settings menu window.");
+                                "1. DMI displays the Settings window.");
 
             /*
             Test Step 2
@@ -86,7 +84,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   All buttons in Settings menu window are disabled, except ‘Lock screen for cleaning’.10 seconds later(2)   All buttons in Settings menu window are enabled, except ‘Lock screen for cleaning’.Note: Button ‘Lock screen for cleaning’ is not controlled by ETCS onboard
             Test Step Comment: (1) MMI_gen 1316 (partly: disabled state in Table 23, Idle state);(2) MMI_gen 1316 (partly: enable state in Table 23, Idle state); 
             */
-            XML.XML_10_1_a.Send(this, "Settings menu");
+            XML.XML_10_1_a.Send(this, "Settings");
 
             /*
             Test Step 3
