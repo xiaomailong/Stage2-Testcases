@@ -90,9 +90,9 @@ namespace Testcase.DMITestCases
 
             EVC2_MMIStatus.Send();
             DmiActions.ShowInstruction(this, "Enter the train running number");
-                
-            "Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "The CSG is still not displayed on DMI.");
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1, The CSG is still not displayed on DMI.");
 
             /*
             Test Step 2
