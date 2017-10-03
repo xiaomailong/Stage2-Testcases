@@ -18,7 +18,7 @@ namespace Testcase.Telegrams.DMItoEVC
         private static bool _checkResult;
         private static MMI_M_MODE_READBACK _mModeReadBack;
         private static Variables.MMI_M_ACTIVE_CABIN _mActiveCabin;
-        const string baseString = "DMI->ETCS: Check EVC-102 [MMI_STATUS_REPORT]";
+        private const string BaseString = "DMI->ETCS: Check EVC-102 [MMI_STATUS_REPORT]";
 
         /// <summary>
         /// Initialise EVC-102 MMI_Status_Report telegram.
@@ -44,13 +44,13 @@ namespace Testcase.Telegrams.DMItoEVC
             // If passed
             if (_checkResult)
             {
-                _pool.TraceReport($"{baseString} - MMI_M_ACTIVE_CABIN = \"{mActiveCabin}\"" + Environment.NewLine +
+                _pool.TraceReport($"{BaseString} - MMI_M_ACTIVE_CABIN = \"{mActiveCabin}\"" + Environment.NewLine +
                                   "Result: PASSED.");
             }
             // Display the real value extracted from EVC-102 [MMI_STATUS_REPORT.MMI_M_ACTIVE_CABIN]
             else
             {
-                _pool.TraceError($"{baseString} - MMI_M_ACTIVE_CABIN = \"{mActiveCabin}\"" + Environment.NewLine +
+                _pool.TraceError($"{BaseString} - MMI_M_ACTIVE_CABIN = \"{mActiveCabin}\"" + Environment.NewLine +
                                  "Result: FAILED!" + Environment.NewLine +
                                  $"Current active cab = {mmiMActiveCabin} - " + Enum.GetName(typeof(Variables.MMI_M_ACTIVE_CABIN), mmiMActiveCabin));
             }
@@ -64,7 +64,7 @@ namespace Testcase.Telegrams.DMItoEVC
             // If passed
             if (_checkResult)
             {
-                _pool.TraceReport($"{baseString} - MMI_M_MODE_READBACK = \"{mModeReadBack}\"" + Environment.NewLine +
+                _pool.TraceReport($"{BaseString} - MMI_M_MODE_READBACK = \"{mModeReadBack}\"" + Environment.NewLine +
                                     "Result: PASSED.");
             }
             // Display the real value extracted from EVC-102
@@ -73,7 +73,7 @@ namespace Testcase.Telegrams.DMItoEVC
                 // Get current mode
                 byte currentMode = _pool.SITR.CCUO.ETCS1StatusReport.MmiMModeReadback.Value;
 
-                _pool.TraceError($"{baseString} - MMI_M_MODE_READBACK = \"{mModeReadBack}\"" + Environment.NewLine +
+                _pool.TraceError($"{BaseString} - MMI_M_MODE_READBACK = \"{mModeReadBack}\"" + Environment.NewLine +
                                  "Result: FAILED!" + Environment.NewLine +
                                  $"Current active mode = {currentMode} - " + Enum.GetName(typeof(MMI_M_MODE_READBACK), currentMode));
             }
