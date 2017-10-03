@@ -56,8 +56,6 @@ namespace Testcase.DMITestCases
         {
             // Post-conditions from TestSpec
             // DMI displays in SB mode, level 1
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in SB mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -105,7 +103,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Whilst keeping the ‘NACK’ button pressed, drag outside the area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The button border is displayed enabled." + Environment.NewLine +
+                                "1. The button is displayed enabled." + Environment.NewLine +
                                 "2. No sound is played.");
 
             /*
@@ -153,7 +151,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Whilst keeping the ‘ACK’ button pressed, drag outside the area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The button border is displayed enabled." + Environment.NewLine +
+                                "1. The button is displayed enabled." + Environment.NewLine +
                                 "2. No sound is played.");
 
             // Repeat Step 4

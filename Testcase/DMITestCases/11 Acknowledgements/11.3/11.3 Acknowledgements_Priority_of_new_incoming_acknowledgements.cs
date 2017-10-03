@@ -78,6 +78,11 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   The text message in sub-area E5 is disappeared and DMI displays LE07 symbol with yellow flashing frame in sub-area C1 instead
             Test Step Comment: (1) MMI_gen 4484;
             */
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 280;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
             EVC8_MMIDriverMessage.MMI_I_TEXT = 2;
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 257;
             EVC8_MMIDriverMessage.PlainTextMessage = "\0x0";        // MMI_N_TEXT (length) 1
@@ -91,6 +96,7 @@ namespace Testcase.DMITestCases
             Action: (Continue from step 2)Send EVC-8 with, MMI_Q_TEXT = 257MMI_Q_TEXT_CRITERIA = 1MMI_I_TEXT = 3MMI_N_TEXT = 1MMI_X_TEXT = 1
             Expected Result: DMI displays LE11 symbol with yellow flashing frame in sub-area C1
             */
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
             EVC8_MMIDriverMessage.MMI_I_TEXT = 3;
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 257;
             EVC8_MMIDriverMessage.PlainTextMessage = "\0x1";        // MMI_N_TEXT (length) 1
@@ -104,8 +110,11 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   DMI displays MO08 symbol with yellow flashing frame in sub-area C1 instead of LE11 symbol
             Test Step Comment: (1) MMI_gen 4484;
             */
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
             EVC8_MMIDriverMessage.MMI_I_TEXT = 4;
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 259;
+            EVC8_MMIDriverMessage.PlainTextMessage = "";
+            EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays symbol MO08 in sub-area C1 with a flashing yellow frame.");
@@ -116,6 +125,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   The symbol in sub-area C1 is disappeared and DMI displays the symbol DR02 in area D instead
             Test Step Comment: (1) MMI_gen 4484;
             */
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
             EVC8_MMIDriverMessage.MMI_I_TEXT = 5;
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 298;
 
@@ -128,6 +138,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   The symbol in area D is disappeared and DMI displays the ST01 symbol on sub-area C9 instead
             Test Step Comment: (1) MMI_gen 4484;
             */
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
             EVC8_MMIDriverMessage.MMI_I_TEXT = 6;
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 260;
 
@@ -150,6 +161,7 @@ namespace Testcase.DMITestCases
             Action: (Continue from step 7)Send EVC-8 with, MMI_Q_TEXT = 269MMI_Q_TEXT_CRITERIA = 1MMI_I_TEXT = 8
             Expected Result: The display information on DMI still not change, ST01 symbol is displayed on sub-area C9
             */
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
             EVC8_MMIDriverMessage.MMI_I_TEXT = 8;
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 269;
 
@@ -161,6 +173,7 @@ namespace Testcase.DMITestCases
             Action: (Continue from step 8)Send EVC-8 with, MMI_Q_TEXT = 268MMI_Q_TEXT_CRITERIA = 1MMI_I_TEXT = 9
             Expected Result: The display information on DMI still not change, ST01 symbol is displayed on sub-area C9
             */
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
             EVC8_MMIDriverMessage.MMI_I_TEXT = 9;
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 268;
 
@@ -172,6 +185,7 @@ namespace Testcase.DMITestCases
             Action: (Continue from step 9)Send EVC-8 with, MMI_Q_TEXT = 267MMI_Q_TEXT_CRITERIA = 1MMI_I_TEXT = 10
             Expected Result: The display information on DMI still not change, ST01 symbol is displayed on sub-area C9
             */
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
             EVC8_MMIDriverMessage.MMI_I_TEXT = 10;
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 267;
 
