@@ -66,7 +66,7 @@ namespace Testcase.Telegrams.EVCtoDMI
                     throw new ArgumentOutOfRangeException();
 
                 // Set length of char array
-                _pool.SITR.Client.Write($"{BaseString}{trainsetIndex}_MmiNCaptionTrainset", charArray.Length);
+                _pool.SITR.Client.Write($"{BaseString}1{trainsetIndex}_MmiNCaptionTrainset", charArray.Length);
 
                 totalSizeCounter += 16;
 
