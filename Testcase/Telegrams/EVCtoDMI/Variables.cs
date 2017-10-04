@@ -194,6 +194,18 @@ namespace Testcase.Telegrams.EVCtoDMI
         }
 
         /// <summary>
+        /// MMI_M_Buttons for EVC-6 and EVC-107 enum
+        /// </summary>
+        public enum MMI_M_BUTTONS_TRAIN_DATA : byte
+        {
+            BTN_YES_DATA_ENTRY_COMPLETE = 36,
+            BTN_YES_DATA_ENTRY_COMPLETE_DELAY_TYPE = 37,
+            BTN_ENTER_DELAY_TYPE = 253,
+            BTN_ENTER = 254,
+            NoButton = 255
+        }
+
+        /// <summary>
         /// MMI_NID_RBC value specifying to contact last known RBC
         /// </summary>
         public const uint ContactLastRBC = 16383;
@@ -451,7 +463,9 @@ namespace Testcase.Telegrams.EVCtoDMI
 
         #region EVC6 parameters
 
-        public static string[] paramEvc6FixedTrainsetCaptions = new[] { "FLU", "RLU", "Rescue" };  
+        public static string[] paramEvc6FixedTrainsetCaptions = new string[] { Enum.GetName(typeof(Fixed_Trainset_Captions), 1),
+                                                                               Enum.GetName(typeof(Fixed_Trainset_Captions), 2),
+                                                                               Enum.GetName(typeof(Fixed_Trainset_Captions), 3)};  
         
         #endregion
 
@@ -883,6 +897,13 @@ namespace Testcase.Telegrams.EVCtoDMI
         {
             WheelDiameter = 0,
             Doppler = 1
+        }
+
+        public enum Fixed_Trainset_Captions : byte
+        {
+            FLU = 1,
+            RLU = 2,
+            Rescue = 3           
         }
     }
 }

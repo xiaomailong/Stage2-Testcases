@@ -661,7 +661,10 @@ namespace Testcase.DMITestCases
         /// <param name="pool">Signal pool</param>
         public static void Display_Train_Data_Window(SignalPool pool)
         {
-            Send_EVC6_MMICurrentTrainData_FixedDataEntry(pool, paramEvc6FixedTrainsetCaptions, 15);
+            Send_EVC6_MMICurrentTrainData_FixedDataEntry(pool, new string[] { "FLU", "RLU", "Rescue" }, 15);
+            
+            // Keep this line below please. Work in progress..
+            //Send_EVC6_MMICurrentTrainData_FixedDataEntry(pool, paramEvc6FixedTrainsetCaptions, 15);
         }
 
         /// <summary>

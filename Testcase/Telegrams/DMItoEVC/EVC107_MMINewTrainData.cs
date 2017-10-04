@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Collections;
 using CL345;
+using Testcase.Telegrams.EVCtoDMI;
+using Testcase.DMITestCases;
+using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using static Testcase.Telegrams.EVCtoDMI.Variables;
 
 namespace Testcase.Telegrams.DMItoEVC
@@ -18,7 +21,13 @@ namespace Testcase.Telegrams.DMItoEVC
     public static class EVC107_MMINewTrainData
     {
         private static SignalPool _pool;
-        private static bool _bResult;
+        private static bool _checkResult;
+        private static Fixed_Trainset_Captions _trainsetSelected;
+        private static ushort _nDataElements;
+        private static MMI_M_BUTTONS_TRAIN_DATA _mButtons;
+        private static byte _nidData;
+
+        /*
         private static string _varPath;
         private static ushort _lTrain;
         private static ushort _vMaxtrain;
@@ -27,12 +36,14 @@ namespace Testcase.Telegrams.DMItoEVC
         private static byte _nidKeyAxleLoad;
         private static byte _mAirtight;
         private static byte _nidKeyLoadGauge;
-        private static byte _mButtons;
+        
         private static ushort _mTrainsetId;
         private static ushort _mAltDem;
         private static byte _evc107alias1;
-        private static List<byte> _trainData;
+        */
 
+        static string baseString0 = "DMI->ETCS: EVC-107 [MMI_NEW_TRAIN_DATA]";
+        static string baseString1 = "CCUO_ETCS1NewTrainData_EVC107NewTrainDataSub";
 
         /// <summary>
         /// Initialise EVC107 MMI_New_Train_Data telegram.
@@ -41,45 +52,140 @@ namespace Testcase.Telegrams.DMItoEVC
         public static void Initialise(SignalPool pool)
         {
             _pool = pool;
-            _pool.SITR.SMDCtrl.CCUO.ETCS1NewTrainData.Value = 1;
-            _trainData = new List<byte>();
-             
+            _pool.SITR.SMDCtrl.CCUO.ETCS1NewTrainData.Value = 0x0009;
+            _pool.SITR.SMDStat.CCUO.ETCS1NewTrainData.Value = 0x00;            
         }
 
-        private static void CheckSimpleField(ushort varToCheck, bool bResult, string varPath)
+        private static void CheckFixedTrainDataEntered(Fixed_Trainset_Captions mmiMTrainsetId)
         {
-            // get field name
-            string _varName = (varPath.Split('_'))[2];
+            // Reset telegram received flag in RTSim
+            _pool.SITR.SMDStat.CCUO.ETCS1NewTrainData.Value = 0x00;
 
-            if (bResult) // if check passes
+            // Check if telegram received flag has been set. Allows 20 seconds to enter train data.
+            if (_pool.SITR.SMDStat.CCUO.ETCS1NewTrainData.WaitForCondition(Is.Equal, 1, 20000, 100))
             {
-                _pool.TraceReport("DMI->ETCS: EVC-107 [MMI_NEW_TRAIN_DATA." + _varName + "] => " +
-                    varToCheck + " PASSED.");
+                // Check all static fields
+                _checkResult = _pool.SITR.CCUO.ETCS1NewTrainData.MmiLTrain.Value.Equals(0) &
+                               _pool.SITR.CCUO.ETCS1NewTrainData.MmiVMaxtrain.Value.Equals(0) &
+                               _pool.SITR.CCUO.ETCS1NewTrainData.MmiNidKeyTrainCat.Value.Equals((byte)MMI_NID_KEY.NoDedicatedKey) &
+                               _pool.SITR.CCUO.ETCS1NewTrainData.MmiMBrakePerc.Value.Equals(0) &
+                               _pool.SITR.CCUO.ETCS1NewTrainData.MmiNidKeyAxleLoad.Value.Equals((byte)MMI_NID_KEY.NoDedicatedKey) &
+                               _pool.SITR.CCUO.ETCS1NewTrainData.MmiMAirtight.Value.Equals(0) &
+                               _pool.SITR.CCUO.ETCS1NewTrainData.MmiNidKeyLoadGauge.Value.Equals((byte)MMI_NID_KEY.NoDedicatedKey) &
+                               _pool.SITR.CCUO.ETCS1NewTrainData.EVC107alias1.Value.Equals((byte)mmiMTrainsetId << 4) &
+                               _pool.SITR.CCUO.ETCS1NewTrainData.MmiMButtons.Value.Equals((byte)_mButtons);
+                            
+                // If check passes
+                if (_checkResult)
+                {
+                    _pool.TraceReport(baseString0 + Environment.NewLine +
+                        "MMI_L_TRAIN = " + 0 + Environment.NewLine +
+                        "MMI_V_MAXTRAIN = " + 0 + Environment.NewLine +
+                        "MMI_NID_KEY_TRAIN_CAT = \"" + MMI_NID_KEY.NoDedicatedKey + "\"" + Environment.NewLine +
+                        "MMI_M_BRAKE_PERC = " + 0 + Environment.NewLine +
+                        "MMI_NID_KEY_AXLE_LOAD = \"" + MMI_NID_KEY.NoDedicatedKey + "\"" + Environment.NewLine +
+                        "MMI_M_AIRTIGHT = " + 0 + Environment.NewLine +
+                        "MMI_NID_KEY_LOAD_GAUGE = \"" + MMI_NID_KEY.NoDedicatedKey + "\"" + Environment.NewLine +
+                        "MMI_M_TRAINSET_ID = \"" + mmiMTrainsetId + "\"" + Environment.NewLine +
+                        "MMI_M_ALT_DEM = " + 0 + Environment.NewLine +
+                        "MMI_M_BUTTONS = \"" + _mButtons + Environment.NewLine +
+                        "Result = PASSED.");
+                }
+                // Else display the real value extracted from EVC-107
+                else
+                {
+                    _pool.TraceError(baseString0 + Environment.NewLine +
+                        "MMI_L_TRAIN = \"" + _pool.SITR.CCUO.ETCS1NewTrainData.MmiLTrain.Value + "\"" + Environment.NewLine +
+                        "MMI_V_MAXTRAIN = \"" + _pool.SITR.CCUO.ETCS1NewTrainData.MmiLTrain.Value + "\"" + Environment.NewLine +
+                        "MMI_NID_KEY_TRAIN_CAT = \"" + Enum.GetName(typeof(MMI_NID_KEY), _pool.SITR.CCUO.ETCS1NewTrainData.MmiNidKeyTrainCat.Value) + "\"" + Environment.NewLine +
+                        "MMI_M_BRAKE_PERC = \"" + _pool.SITR.CCUO.ETCS1NewTrainData.MmiLTrain.Value + "\"" + Environment.NewLine +
+                        "MMI_NID_KEY_AXLE_LOAD = \"" + Enum.GetName(typeof(MMI_NID_KEY), _pool.SITR.CCUO.ETCS1NewTrainData.MmiNidKeyAxleLoad.Value) + "\"" + Environment.NewLine +
+                        "MMI_M_AIRTIGHT = \"" + _pool.SITR.CCUO.ETCS1NewTrainData.MmiLTrain.Value + "\"" + Environment.NewLine +
+                        "MMI_NID_KEY_LOAD_GAUGE = \"" + Enum.GetName(typeof(MMI_NID_KEY), _pool.SITR.CCUO.ETCS1NewTrainData.MmiNidKeyLoadGauge.Value) + "\"" + Environment.NewLine +
+                        "MMI_M_TRAINSET_ID = \"" + Enum.GetName(typeof(Fixed_Trainset_Captions), ((_pool.SITR.CCUO.ETCS1NewTrainData.EVC107alias1.Value & 0xF0) >> 4)) + "\"" + Environment.NewLine +
+                        "MMI_M_ALT_DEM = \"" + Enum.GetName(typeof(Fixed_Trainset_Captions), ((_pool.SITR.CCUO.ETCS1NewTrainData.EVC107alias1.Value & 0x0C) >> 2)) + "\"" + Environment.NewLine +
+                        "MMI_M_BUTTONS = \"" + Enum.GetName(typeof(MMI_M_BUTTONS), _pool.SITR.CCUO.ETCS1NewTrainData.MmiMButtons.Value) + Environment.NewLine +
+                        "Result: FAILED!");
+                }
+
+                // Get number of data element (for FixedTrainDataEntered, this value should be equal to 1)
+                _nDataElements = _pool.SITR.CCUO.ETCS1NewTrainData.MmiNDataElements.Value;
+
+                if (_nDataElements.Equals(1))
+                {
+                    _nidData = (byte)_pool.SITR.Client.Read($"{baseString1}0_MmiNidData"); //to be changed once the EVC107 rtsim configuration is updated
+
+                    // Get MMI_NID_DATA (For Trainset selection, this value should be equal to 6)
+                    _checkResult = _nidData.Equals(6); // (= Train Type)
+                    
+                    // If check passes
+                    if (_checkResult)
+                    {
+                        _pool.TraceReport("MMI_N_DATA_ELEMENTS = " + 1 + Environment.NewLine +
+                        "MMI_NID_DATA[0] = " + 6  + Environment.NewLine +
+                        "Result = PASSED.");
+                    }
+                    // Else display the real value extracted
+                    else
+                    {
+                        _pool.TraceError("MMI_N_DATA_ELEMENTS = " + 1 + Environment.NewLine +
+                        "MMI_NID_DATA[0] = " + _nidData + Environment.NewLine +
+                        "Result = FAILED!");
+                    }
+                }
+                else
+                {
+                    // Display the real value extracted
+                    _pool.TraceError("MMI_N_DATA_ELEMENTS = " + _nDataElements);
+                    for (int k = 0; k < _nDataElements; k++)
+                    {
+                        _nidData = (byte)_pool.SITR.Client.Read($"{baseString1}0{k}_MmiNidData");
+                        _pool.TraceError($"MMI_NID_DATA[{k}] = " + _nidData + ". Result = FAILED!");
+                    }
+                }               
             }
-            else // else display the real value extracted from EVC-107 [MMI_NEW_TRAIN_DATA]
+            // Show generic DMI -> EVC telegram failure
+            else
             {
-                _pool.TraceError("DMI->ETCS: Check EVC-107 [MMI_NEW_TRAIN_DATA." + _varName + "] => " +
-                    _pool.SITR.Client.Read(varPath).ToString() + " FAILED.");
+                DmiExpectedResults.DMItoEVC_Telegram_Not_Received(_pool, baseString0);
             }
         }
 
-        private static void CheckEVC107_alias_1(ushort varToCheck, ushort varExtracted, string varName)
+        /// <summary>
+        /// Identity of the fixed trainset selected.
+        /// 
+        /// Values:
+        /// FLU = 1
+        /// RLU = 2
+        /// Rescue = 3
+        /// </summary>
+        public static Fixed_Trainset_Captions TrainsetSelected
         {
-            // compare the value measured with the expected one
-            _bResult = varExtracted.Equals(varToCheck);
-
-            if (_bResult) // if check passes
+            set
             {
-                _pool.TraceReport("DMI->ETCS: EVC-107 [MMI_NEW_TRAIN_DATA." + varName + "] => " +
-                    varToCheck + " PASSED.");
-            }
-            else // else display the real value extracted from EVC-107 [MMI_NEW_TRAIN_DATA]
-            {
-                _pool.TraceError("DMI->ETCS: Check EVC-107 [MMI_NEW_TRAIN_DATA." + varName + "] => " +
-                    varExtracted + " FAILED.");
+                _trainsetSelected = value;
+                CheckFixedTrainDataEntered(_trainsetSelected);
             }
         }
 
+        /// <summary>
+        /// Only MMI Buttons used in EVC-6 and EVC-107. 
+        /// 
+        /// Values:        
+        /// 36 = "BTN_YES_DATA_ENTRY_COMPLETE"
+        /// 37 = "BTN_YES_DATA_ENTRY_COMPLETE_DELAY_TYPE"       
+        /// 253 = "BTN_ENTER_DELAY_TYPE"
+        /// 254 = "BTN_ENTER"
+        /// 255 = "no button"
+        /// Note: the definition is according to preliminary SubSet-121 'M_BUTTONS' definition.
+        /// </summary>
+        public static MMI_M_BUTTONS_TRAIN_DATA MMI_M_BUTTONS
+        {
+            set => _mButtons = value;
+        }
+
+        #region to be deleted?
+        /*
         /// <summary>
         /// Total length of the current train.
         /// Values:
@@ -350,73 +456,8 @@ namespace Testcase.Telegrams.DMItoEVC
                 }
             }
         }
-
-        /// <summary>
-        /// Identifier of MMI Buttons. 
-        /// Values:
-        /// 0 = "BTN_MAIN"
-        /// 1 = "BTN_OVERRIDE"
-        /// 2 = "BTN_DATA_VIEW"
-        /// 3 = "BTN_SPECIAL"
-        /// 4 = "BTN_SETTINGS"
-        /// 5 = "BTN_START"
-        /// 6 = "BTN_DRIVER_ID"
-        /// 7 = "BTN_TRAIN_DATA"
-        /// 8 = "BTN_LEVEL"
-        /// 9 = "BTN_TRAIN_RUNNING_NUMBER"
-        /// 10 = "BTN_SHUNTING"
-        /// 11 = "BTN_EXIT_SHUNTING"
-        /// 12 = "BTN_NON_LEADING"
-        /// 13 = "BTN_MAINTAIN_SHUNTING"
-        /// 14 = "BTN_OVERRIDE_EOA"
-        /// 15 = "BTN_ADHESION"
-        /// 16 = "BTN_SR_SPEED_DISTANCE"
-        /// 17 = "BTN_TRAIN_INTEGRITY"
-        /// 18 = "BTN_SYSTEM_VERSION"
-        /// 19 = "BTN_SET_VBC"
-        /// 20 = "BTN_REMOVE_VBC"
-        /// 21 = "BTN_CONTACT_LAST_RBC"
-        /// 22 = "BTN_USE_SHORT_NUMBER"
-        /// 23 = "BTN_ENTER_RBC_DATA"
-        /// 24 = "BTN_RADIO_NETWORK_ID"
-        /// 25 = "BTN_DRIVERID_TRAIN_RUNNING_NUMBER "
-        /// 26 = "BTN_DRIVERID_SETTINGS"
-        /// 27 = "BTN_SWITCH_FIXED_TRAIN_DATA_ENTRY"
-        /// 28 = "BTN_SWITCH_FLEXIBLE_TRAIN_DATA_ENTRY"
-        /// 29 = "BTN_TOGGLE_TUNNELSTOP_AREA"
-        /// 30 = "BTN_TOGGLE_SPEED_DISTANCE_INFO"
-        /// 31 = "BTN_YES_TRACK_AHEAD_FREE"
-        /// 32 = "BTN_TOGGLE_GEOPOS"
-        /// 33 = "BTN_CLOSE"
-        /// 34 = "BTN_SCROLL_UP"
-        /// 35 = "BTN_SCROLL_DOWN"
-        /// 36 = "BTN_YES_DATA_ENTRY_COMPLETE"
-        /// 37 = "BTN_YES_DATA_ENTRY_COMPLETE_DELAY_TYPE"
-        /// 38 = "BTN_STM_DATA_ENTRY_SELECTION_POS1"
-        /// 39 = "BTN_STM_DATA_ENTRY_SELECTION_POS2"
-        /// 40 = "BTN_STM_DATA_ENTRY_SELECTION_POS3"
-        /// 41 = "BTN_STM_DATA_ENTRY_SELECTION_POS4"
-        /// 42 = "BTN_STM_DATA_ENTRY_SELECTION_POS5"
-        /// 43 = "BTN_STM_DATA_ENTRY_SELECTION_POS6"
-        /// 44 = "BTN_STM_DATA_ENTRY_SELECTION_POS7"
-        /// 45 = "BTN_STM_DATA_ENTRY_SELECTION_POS8"
-        /// 46 = "BTN_STM_END_OF_DATA_ENTRY"
-        /// 47..252 = "Spare"
-        /// 253 = "BTN_ENTER_DELAY_TYPE"
-        /// 254 = "BTN_ENTER"
-        /// 255 = "no button"
-        /// Note: the definition is according to preliminary SubSet-121 'M_BUTTONS' definition.
-        /// </summary>
-        public static MMI_M_BUTTONS Check_MMI_M_BUTTONS
-        {
-            set
-            {
-                _mButtons = (byte)value;
-                _varPath = "CCUO_ETCS1NewTrainData_MmiMButtons";
-                _bResult = _pool.SITR.Client.Read(_varPath).Equals(_mButtons);
-                CheckSimpleField(_mButtons, _bResult, _varPath);
-            }
-        }
-
+      
+        */
+        #endregion
     }
 }

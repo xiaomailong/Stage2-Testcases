@@ -884,12 +884,13 @@ namespace Testcase.DMITestCases
         ///     Step 5 in 15.1.3
         /// </summary>
         /// <param name="pool"></param>
-        public static void Fixed_Train_Data_entered(SignalPool pool)
+        public static void Fixed_Train_Data_entered(SignalPool pool, Fixed_Trainset_Captions trainsetSelected, MMI_M_BUTTONS_TRAIN_DATA pressedButton)
         {
-            DmiActions.ShowInstruction(pool, @"Perform the following actions after pressing OK: " + Environment.NewLine + Environment.NewLine +
-                                "1. Enter and confirm value in each input field." + Environment.NewLine +
-                                "2. Press ‘Yes’ button.");
-            //to be updated (packet 107 to be checked)
+            DmiActions.ShowInstruction(pool, @"Perform the following action after pressing OK:" + Environment.NewLine + Environment.NewLine +
+                                "1. Select and enter \""+ trainsetSelected +"\"." + Environment.NewLine +
+                                "2. Press \"Yes\".");
+            EVC107_MMINewTrainData.MMI_M_BUTTONS = pressedButton;
+            EVC107_MMINewTrainData.TrainsetSelected = trainsetSelected;
         }
 
         /// <summary>
