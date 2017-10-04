@@ -49,7 +49,7 @@ namespace Testcase.Telegrams.DMItoEVC
             _pool.SITR.SMDStat.CCUO.ETCS1NewLevel.Value = 0x00;
 
 
-            #region TRIAL CODE TO INTRODUCED PACKET EVC-101 CHECKING
+            #region CODE TO INTRODUCING PACKET EVC-101 CHECKING
             ///* Comment this line to activate this code
 
             _pool.SITR.SMDStat.CCUO.ETCS1DriverRequest.Value = 0x00;
@@ -93,7 +93,7 @@ namespace Testcase.Telegrams.DMItoEVC
                 //*/
             #endregion
 
-            #region EXISTING CODE WITHOUT PACKET EVC-101 CHECKING
+            #region CODE WITHOUT PACKET EVC-101 CHECKING
             /* Comment this line to activate this code
 
             // Wait 10 seconds for SMDStat to become set
