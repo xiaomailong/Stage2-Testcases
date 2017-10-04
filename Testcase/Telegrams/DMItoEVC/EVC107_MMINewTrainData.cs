@@ -108,43 +108,82 @@ namespace Testcase.Telegrams.DMItoEVC
                         "Result: FAILED!");
                 }
 
-                // Get number of data element.
-                // MMI_gen 9460: "[..] In case of [Enter] | [Enter_Delay_Type] the [MMI_NEW_TRAIN_DATA (EVC-107)].MMI_N_DATA_ELEMENTS shall be set to '1', 
-                // as the driver is only allowed to accept one data at a time. "
+                // Get number of data element.                
                 _nDataElements = _pool.SITR.CCUO.ETCS1NewTrainData.MmiNDataElements.Value;
 
-                if (_nDataElements.Equals(1))
-                {
-                    _nidData = (byte)_pool.SITR.Client.Read($"{baseString1}0_MmiNidData"); //to be changed once the EVC107 rtsim configuration is updated
+                // MMI_gen 9460: "[..] In case of [Enter] | [Enter_Delay_Type] the [MMI_NEW_TRAIN_DATA (EVC-107)].MMI_N_DATA_ELEMENTS shall be set to '1', 
+                // as the driver is only allowed to accept one data at a time. "
+                if (_pool.SITR.CCUO.ETCS1NewTrainData.MmiMButtons.Value.Equals((byte)MMI_M_BUTTONS_TRAIN_DATA.BTN_ENTER))
+                {                
+                    if (_nDataElements.Equals(1))
+                    {
+                        // Get MMI_NID_DATA
+                        _nidData = (byte)_pool.SITR.Client.Read($"{baseString1}0_MmiNidData"); //to be changed once the EVC107 rtsim configuration is updated
 
-                    // Get MMI_NID_DATA (For Trainset selection, this value should be equal to 6)
-                    _checkResult = _nidData.Equals(6); // (= Train Type)
-                    
+                        // For Trainset selection, MMI_NID_DATA should be equal to 6 (= Train Type)
+                        _checkResult = _nidData.Equals(6); 
+                        
+                        // If check passes
+                        if (_checkResult)
+                        {
+                            _pool.TraceReport("MMI_N_DATA_ELEMENTS = " + 1 + Environment.NewLine +
+                            "MMI_NID_DATA[0] = " + 6  + Environment.NewLine +
+                            "Result = PASSED.");
+                        }
+                        // Else display the real value extracted
+                        else
+                        {
+                            _pool.TraceError("MMI_N_DATA_ELEMENTS = " + 1 + Environment.NewLine +
+                            "MMI_NID_DATA[0] = " + _nidData + Environment.NewLine +
+                            "Result = FAILED!");
+                        }
+                    }
+                    else
+                    {
+                        // Display the real value extracted
+                        _pool.TraceError("MMI_N_DATA_ELEMENTS = " + _nDataElements);
+                        for (int k = 0; k < _nDataElements; k++)
+                        {
+                            _nidData = (byte)_pool.SITR.Client.Read($"{baseString1}0{k}_MmiNidData");
+                            _pool.TraceError($"MMI_NID_DATA[{k}] = " + _nidData + ". Result = FAILED!");
+                        }
+                    }
+                }
+
+                // MMI_gen 9460 "[...] In case of [Yes] | [Yes_Delay_Type] the [MMI_NEW_TRAIN_DATA (EVC-107)].MMI_N_DATA_ELEMENTS shall be set to '0', 
+                // as the [MMI_NEW_TRAIN_DATA (EVC-107)].MMI_M_BUTTONS clearly indicates that all data are affected. 
+                else if (_pool.SITR.CCUO.ETCS1NewTrainData.MmiMButtons.Value.Equals((byte)MMI_M_BUTTONS_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE))
+                {
+                    _checkResult = _nDataElements.Equals(0);
+
                     // If check passes
                     if (_checkResult)
                     {
-                        _pool.TraceReport("MMI_N_DATA_ELEMENTS = " + 1 + Environment.NewLine +
-                        "MMI_NID_DATA[0] = " + 6  + Environment.NewLine +
+                        _pool.TraceReport("MMI_N_DATA_ELEMENTS = " + 0 + Environment.NewLine +
                         "Result = PASSED.");
                     }
                     // Else display the real value extracted
                     else
                     {
-                        _pool.TraceError("MMI_N_DATA_ELEMENTS = " + 1 + Environment.NewLine +
-                        "MMI_NID_DATA[0] = " + _nidData + Environment.NewLine +
-                        "Result = FAILED!");
+                        // Display the real value extracted
+                        _pool.TraceError("MMI_N_DATA_ELEMENTS = " + _nDataElements);
+                        for (int k = 0; k < _nDataElements; k++)
+                        {
+                            _nidData = (byte)_pool.SITR.Client.Read($"{baseString1}0{k}_MmiNidData");
+                            _pool.TraceError($"MMI_NID_DATA[{k}] = " + _nidData + ". Result = FAILED!");
+                        }
                     }
                 }
+
                 else
                 {
-                    // Display the real value extracted
-                    _pool.TraceError("MMI_N_DATA_ELEMENTS = " + _nDataElements);
+                    _pool.TraceReport("MMI_N_DATA_ELEMENTS = " + _nDataElements);
                     for (int k = 0; k < _nDataElements; k++)
                     {
                         _nidData = (byte)_pool.SITR.Client.Read($"{baseString1}0{k}_MmiNidData");
-                        _pool.TraceError($"MMI_NID_DATA[{k}] = " + _nidData + ". Result = FAILED!");
+                        _pool.TraceError($"MMI_NID_DATA[{k}] = " + _nidData + ".");
                     }
-                }               
+                }
             }
             // Show generic DMI -> EVC telegram failure
             else

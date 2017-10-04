@@ -884,17 +884,37 @@ namespace Testcase.DMITestCases
         ///     Step 5 in 15.1.3
         /// </summary>
         /// <param name="pool"></param>
-        public static void Fixed_Train_Data_entered(SignalPool pool, Fixed_Trainset_Captions trainsetSelected, MMI_M_BUTTONS_TRAIN_DATA pressedButton)
+        public static void Fixed_Train_Data_entered(SignalPool pool, Fixed_Trainset_Captions trainsetSelected)
         {
             DmiActions.ShowInstruction(pool, @"Perform the following action after pressing OK:" + Environment.NewLine + Environment.NewLine +
                                 "1. Select and enter \""+ trainsetSelected +"\"." + Environment.NewLine +
                                 "2. Press \"Yes\".");
-            EVC107_MMINewTrainData.MMI_M_BUTTONS = pressedButton;
+
+            EVC107_MMINewTrainData.MMI_M_BUTTONS = MMI_M_BUTTONS_TRAIN_DATA.BTN_ENTER;
+            EVC107_MMINewTrainData.TrainsetSelected = trainsetSelected;
+
+            DataElement[] dataElements = new DataElement[8];
+
+            dataElements[0].Identifier = 6; dataElements[0].QDataCheck = 0; dataElements[0].EchoText = "FLU";
+            dataElements[1].Identifier = 6; dataElements[1].QDataCheck = 0; dataElements[1].EchoText = "RLU";
+            dataElements[2].Identifier = 6; dataElements[2].QDataCheck = 0; dataElements[2].EchoText = "Rescue";
+            dataElements[3].Identifier = 0; dataElements[3].QDataCheck = 0; dataElements[3].EchoText = "";
+            dataElements[4].Identifier = 0; dataElements[4].QDataCheck = 0; dataElements[4].EchoText = "";
+            dataElements[5].Identifier = 0; dataElements[5].QDataCheck = 0; dataElements[5].EchoText = "";
+            dataElements[6].Identifier = 0; dataElements[6].QDataCheck = 0; dataElements[6].EchoText = "";
+            dataElements[7].Identifier = 0; dataElements[7].QDataCheck = 0; dataElements[7].EchoText = "";
+
+            DmiActions.Send_EVC6_MMICurrentTrainData(MMI_M_DATA_ENABLE.TrainSetID, 0, 0, MMI_NID_KEY.NoDedicatedKey, 0,
+                MMI_NID_KEY.NoDedicatedKey, 0, MMI_NID_KEY.NoDedicatedKey, (byte)MMI_M_BUTTONS.BTN_YES_DATA_ENTRY_COMPLETE,
+                Convert.ToUInt16((byte)(trainsetSelected)), 0, paramEvc6FixedTrainsetCaptions, dataElements);
+
+            EVC107_MMINewTrainData.MMI_M_BUTTONS = MMI_M_BUTTONS_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE;
             EVC107_MMINewTrainData.TrainsetSelected = trainsetSelected;
         }
 
         /// <summary>
         /// Description: Driver validates Fixed Train Data
+        /// 
         /// Used in:
         ///     Step 6 in 15.1.3
         /// </summary>
