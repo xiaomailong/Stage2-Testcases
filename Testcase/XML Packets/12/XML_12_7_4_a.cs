@@ -36,7 +36,7 @@ namespace Testcase.XML
             EVC1_MMIDynamic.MMI_M_SLIP = 1;
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Spare;   // 7
             EVC1_MMIDynamic.MMI_A_TRAIN = 0;
-            EVC1_MMIDynamic.MMI_V_TRAIN = 1111;
+            EVC1_MMIDynamic.MMI_V_TRAIN = 100;
             EVC1_MMIDynamic.MMI_V_TARGET = 1111;
             EVC1_MMIDynamic.MMI_V_PERMITTED = 833;
             EVC1_MMIDynamic.MMI_V_RELEASE = 555;
