@@ -32,13 +32,13 @@ namespace Testcase.Telegrams.EVCtoDMI
                     throw new ArgumentOutOfRangeException("Too many chars in the caption string!");
 
                 // Set identifier
-                _pool.SITR.Client.Write(varNamestring + "MmiNidData", trainDataElement.Identifier);
+                _pool.SITR.Client.Write(varNamestring + "MmiNidData", (byte)trainDataElement.Identifier);
 
                 // Set data check result
-                _pool.SITR.Client.Write(varNamestring + "MmiQDataCheck", trainDataElement.QDataCheck);
+                _pool.SITR.Client.Write(varNamestring + "MmiQDataCheck", (byte)trainDataElement.QDataCheck);
 
                 // Set number of chars
-                _pool.SITR.Client.Write(varNamestring + "MmiNText", charArray.Length);
+                _pool.SITR.Client.Write(varNamestring + "MmiNText", (ushort) charArray.Length);
 
                 totalSizeCounter += 32;
 

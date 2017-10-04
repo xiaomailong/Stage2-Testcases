@@ -119,24 +119,9 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.Train_Data_Button_pressed_and_released(this);
 
             DmiActions.Display_Train_Data_Window(this);
-            DmiExpectedResults.Train_data_window_displayed(this);
-            DmiActions.ShowInstruction(this, @"Perform the following action after pressing OK:" + Environment.NewLine + Environment.NewLine +
-                                "1. Press \"FLU\".");
-            Wait_Realtime(5000);
-            DmiActions.Display_Train_Data_Window(this);
-            DmiExpectedResults.Train_data_window_displayed(this);
-            DmiActions.ShowInstruction(this, @"Perform the following action after pressing OK:" + Environment.NewLine + Environment.NewLine +
-                                "1. Press \"RLU\".");
-            Wait_Realtime(5000);
-            DmiActions.Display_Train_Data_Window(this);
-            DmiExpectedResults.Train_data_window_displayed(this);
-            DmiActions.ShowInstruction(this, @"Perform the following action after pressing OK:" + Environment.NewLine + Environment.NewLine +
-                                "1. Press \"Rescue\".");
-            Wait_Realtime(5000);
+            DmiExpectedResults.Train_data_window_displayed(this);                        
 
             #endregion
-
-            return GlobalTestResult;
 
             #region Test Step 5
             /*
@@ -145,7 +130,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Train data validation window
             */
 
-            DmiExpectedResults.Fixed_Train_Data_entered(this);
+            DmiExpectedResults.Fixed_Train_Data_entered(this, Fixed_Trainset_Captions.FLU);
+
+            return GlobalTestResult;
 
             DmiActions.Display_Train_data_validation_Window(this);
             DmiExpectedResults.Train_data_validation_window_displayed(this);

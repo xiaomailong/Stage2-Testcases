@@ -108,7 +108,9 @@ namespace Testcase.Telegrams.DMItoEVC
                         "Result: FAILED!");
                 }
 
-                // Get number of data element (for FixedTrainDataEntered, this value should be equal to 1)
+                // Get number of data element.
+                // MMI_gen 9460: "[..] In case of [Enter] | [Enter_Delay_Type] the [MMI_NEW_TRAIN_DATA (EVC-107)].MMI_N_DATA_ELEMENTS shall be set to '1', 
+                // as the driver is only allowed to accept one data at a time. "
                 _nDataElements = _pool.SITR.CCUO.ETCS1NewTrainData.MmiNDataElements.Value;
 
                 if (_nDataElements.Equals(1))
