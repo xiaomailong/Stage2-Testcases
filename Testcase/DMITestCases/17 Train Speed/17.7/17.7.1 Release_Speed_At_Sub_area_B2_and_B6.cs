@@ -48,8 +48,6 @@ namespace Testcase.DMITestCases
         {
             // Post-conditions from TestSpec
             // DMI displays in FS mode, level 1.
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in FS mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -66,13 +64,8 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SB mode, level 1. The Driver ID window is displayed
             */
             // Call generic Action Method
-            DmiActions.Activate_Cabin_1(this);
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
-
-            EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE = EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE_BUTTONS.Settings |
-                                                        EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE_BUTTONS.TRN;
-            EVC14_MMICurrentDriverID.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
-            EVC14_MMICurrentDriverID.Send();
+            DmiActions.Activate_Cabin_1(this); 
+            DmiActions.Set_Driver_ID(this, "1234");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SB mode, level 1." + Environment.NewLine +
@@ -83,9 +76,12 @@ namespace Testcase.DMITestCases
             Action: Driver performs SoM to SR mode
             Expected Result: DMI is displayed in SR mode, level 1
             */
-            // ?????
-            WaitForVerification("Perform SoM to SR mode, level 1 and check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in SR mode, level 1.");
+            // Driver can't do this properly so force   
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
+            DmiActions.Finished_SoM_Default_Window(this);
+
+            WaitForVerification("1. DMI displays in SR mode, level 1.");
 
             /*
             Test Step 3
@@ -104,6 +100,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 6460;                 (2) MMI_gen 9967;          (3) MMI_gen 6468 (FS);           (4) MMI_gen 9970 (partly: outer part of CSG);                           (5) MMI_gen 9970 (partly: separated from permitted speed);                                      (6) MMI_gen 9969;                          (7) MMI_gen 6465;                                  Figure 1Figure 2
             */
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 45;
+            EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 49;
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Indication_Status_Release_Speed_Monitoring;
             EVC1_MMIDynamic.MMI_V_RELEASE = 1111;
 
