@@ -48,7 +48,10 @@ namespace Testcase.DMITestCases
             base.PreExecution();
 
             // 1. System is power on.2. Configuration with Level STM-ATB (STM ID = 1).3. Set language to English.
-            // ?? Set config file?? Language??            
+            // ?? Set config file?? Language??     
+            DmiActions.Start_ATP();
+            DmiActions.Activate_Cabin_1(this);
+            DmiActions.Set_Driver_ID(this, "1234");
         }
 
         public override void PostExecution()

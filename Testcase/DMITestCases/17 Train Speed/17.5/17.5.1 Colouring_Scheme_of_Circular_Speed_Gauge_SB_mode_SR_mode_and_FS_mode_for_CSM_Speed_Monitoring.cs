@@ -53,8 +53,6 @@ namespace Testcase.DMITestCases
         {
             // Post-conditions from TestSpec
             // DMI displays in FS mode, Level 1.
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in FS mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -70,16 +68,31 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Main window in SB mode, Level 1.Verify the following information,(1)    Use the log file to confirm that DMI received packet EVC-7 with variable OBU_TR_M_MODE = 6 (Standby mode).(2)    The CSG is still not displayed on DMI
             Test Step Comment: (1) MMI_gen 972 (partly: OBU_TR_M_MODE, table 33, mode SB); MMI_gen 6310 (partly: mode);(2) MMI_gen 972 (partly: CSG shall not displayed, table 33, mode SB);
             */
-            // EVC7_MMIEtcsMiscOutSignals Send
-
-            DmiActions.Send_SB_Mode(this);
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.TrainData |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.TrainRunningNumber |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.Start;
+            EVC30_MMIRequestEnable.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Main window in SB mode, Level 1.");
 
-            WaitForVerification("Press ‘Train data’ button. Enter and validate all train data. Enter the train running number" + Environment.NewLine +
-                                "Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "The CSG is still not displayed on DMI.");
+            DmiActions.ShowInstruction(this, @"Press the ‘Train data’ button");
+
+            DmiActions.Send_EVC6_MMICurrentTrainData_FixedDataEntry(this, new[] { "FLU", "RLU", "Rescue" }, 2);
+
+            DmiActions.ShowInstruction(this, "Enter and validate all train data");
+
+            DmiActions.Send_EVC10_MMIEchoedTrainData_FixedDataEntry(this, new[] { "FLU", "RLU", "Rescue" }, 2);
+
+            DmiActions.ShowInstruction(this, @"Press the ‘Train running number’ button");
+
+            EVC2_MMIStatus.Send();
+            DmiActions.ShowInstruction(this, "Enter the train running number");
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1, The CSG is still not displayed on DMI.");
 
             /*
             Test Step 2
@@ -87,13 +100,16 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Default window in SR mode, Level 1.Verify the following information,(1)     Use the log file to confirm that DMI received packet EVC-7 with variable OBU_TR_M_MODE = 2 (Staff Responsible mode)(2)    The CSG is still not displayed on DMI
             Test Step Comment: (1) MMI_gen 972 (partly: OBU_TR_M_MODE, table 33, mode SR); MMI_gen 6310 (partly: mode);(2) MMI_gen 972 (partly: CSG shall not displayed, table 33, mode SR);
             */
+            DmiActions.ShowInstruction(this, @"Press the ‘Start’ button.");
+
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Default window in SR mode, Level 1.");
 
-            WaitForVerification("Press ‘Start’ button. Press and hold sub-area C1 up to 2 second. Release the pressed area." + Environment.NewLine +
-                                "Check the following:" + Environment.NewLine + Environment.NewLine +
+            DmiActions.ShowInstruction(this, "Press and hold sub-area C1 for up to 2s, then release the pressed area.");
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "The CSG is still not displayed on DMI.");
 
             /*
@@ -108,18 +124,19 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in FS mode, Level 1." + Environment.NewLine +
-                                "2. The CSG is displayed in sub - area B2." + Environment.NewLine + 
-                                "3. All sections of CSG(0km / h – 150 km/h) are dark-grey in colour." + Environment.NewLine +
+                                "2. The CSG is displayed in sub-area B2." + Environment.NewLine + 
+                                "3. All sections of CSG(0 km/h – 150 km/h) are dark-grey in colour." + Environment.NewLine +
                                 "4. The CSG displays a Hook covering the outer border of Speed Dial and the upper limit of the Hook is placed at 150 km/h.");
-            
+
             /*
             Test Step 4
             Action: Continue to drive the train forward with speed = 151 km/h
             Expected Result: Verify the following information,(1)   Use the log file to confirm that DMI received packet EVC-1 with following variables, MMI_M_WARNING = 8 (Status=OvS, Supervision=CSM).MMI_V_INTERVENTION > 4166 (150 km/h)(2)   The CSG at 0-150 km/h is dark-grey colour.(3)   The CSG at beyond 150km/h is orange colour.(4)   The CSG between the hook (Vperm = 150 km/h) and Vsbi is have a same width with hook
             Test Step Comment: (1) MMI_gen 972 (partly: MMI_M_WARNING, MMI_V_INTERVEN); MMI_gen 6310 (partly: supervision status, intervention speed);(2) MMI_gen 972 (partly: FS mode, CSM, 0km/h <= CSG <= Vperm);(3) MMI_gen 972 (partly: FS mode, CSM, Vperm <= CSG <= Vsbi );(4) MMI_gen 1155 (partly: Over-speed); MMI_gen 1182 (partly: Vsbi);
             */
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 151;
             EVC1_MMIDynamic.MMI_V_INTERVENTION_KMH = 150;
-            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Warning_Status_PreIndication_Monitoring;
+            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Overspeed_Status_Ceiling_Speed_Monitoring;
             // ?? Send
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The CSG between 0 and 150 km/h is dark-grey in colour." + Environment.NewLine +

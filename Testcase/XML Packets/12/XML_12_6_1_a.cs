@@ -39,7 +39,7 @@ namespace Testcase.XML
             EVC1_MMIDynamic.MMI_A_TRAIN = 0;
             EVC1_MMIDynamic.MMI_V_TRAIN = 100;
             EVC1_MMIDynamic.MMI_V_TARGET = 1111;
-            EVC1_MMIDynamic.MMI_V_PERMITTED = 1111;
+            EVC1_MMIDynamic.MMI_V_PERMITTED = 833;
             EVC1_MMIDynamic.MMI_V_RELEASE = 555;
             EVC1_MMIDynamic.MMI_O_BRAKETARGET = 10002000;
             EVC1_MMIDynamic.MMI_O_IML = 0;

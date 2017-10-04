@@ -19,7 +19,7 @@ namespace Testcase.Telegrams.DMItoEVC
         private static bool _checkResult;
         private static Variables.MMI_M_REQUEST _mRequest;
         private static byte _qButton;
-        const string baseString = "DMI->ETCS: EVC-101 [MMI_DRIVER_REQUEST]";
+        private const string BaseString = "DMI->ETCS: EVC-101 [MMI_DRIVER_REQUEST]";
 
         /// <summary>
         /// Initialise EVC-101 MMI_Driver_Request telegram.
@@ -61,7 +61,7 @@ namespace Testcase.Telegrams.DMItoEVC
                 // If check passes
                 if (_checkResult)
                 {
-                    _pool.TraceReport(baseString + Environment.NewLine + 
+                    _pool.TraceReport(BaseString + Environment.NewLine + 
                                         "MMI_M_REQUEST = \"" + mRequest + "\"" + Environment.NewLine +
                                         "MMI_Q_BUTTON = \"" + qButton + "\"" + Environment.NewLine +
                                         "Time stamp = " + _pool.SITR.CCUO.ETCS1DriverRequest.MmiTButtonevent + Environment.NewLine +
@@ -70,7 +70,7 @@ namespace Testcase.Telegrams.DMItoEVC
                 // Else display the real values extracted from EVC-101
                 else
                 {
-                    _pool.TraceError(baseString + Environment.NewLine +
+                    _pool.TraceError(BaseString + Environment.NewLine +
                                         "MMI_M_REQUEST = \"" + Enum.GetName(typeof(Variables.MMI_M_REQUEST), mRequest) + "\"" + Environment.NewLine +
                                         "MMI_Q_BUTTON = \"" + Enum.GetName(typeof(Variables.MMI_Q_BUTTON), qButton) + "\"" + Environment.NewLine +
                                         "Time stamp = " + _pool.SITR.CCUO.ETCS1DriverRequest.MmiTButtonevent + Environment.NewLine +
@@ -80,7 +80,7 @@ namespace Testcase.Telegrams.DMItoEVC
             // Show generic DMI -> EVC telegram failure
             else
             {
-                DmiExpectedResults.DMItoEVC_Telegram_Not_Received(_pool, baseString);
+                DmiExpectedResults.DMItoEVC_Telegram_Not_Received(_pool, BaseString);
             }
         }
 

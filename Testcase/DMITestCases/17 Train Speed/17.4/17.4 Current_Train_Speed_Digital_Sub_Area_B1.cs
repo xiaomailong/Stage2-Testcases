@@ -52,8 +52,6 @@ namespace Testcase.DMITestCases
         {
             // Post-conditions from TestSpec
             // DMI displays in FS mode, level 1.
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in FS mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -71,7 +69,8 @@ namespace Testcase.DMITestCases
             */
             EVC1_MMIDynamic.MMI_V_TRAIN = 0;
 
-            DmiActions.ShowInstruction(this, "Press the ‘Close’ button");
+            // The default window is already displayed
+            //DmiActions.ShowInstruction(this, "Press the ‘Close’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Default window." + Environment.NewLine +
@@ -85,6 +84,8 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The number of the current train speed is coloured white when the speed pointer is red.The 2-digit interger number is aligned right without leading zeroes.The numbers of the current train speed on Speed hub are displayed by no leading with zero
             Test Step Comment: (1) MMI_gen 6307 (partly: Speed pointer has the red colour);      (2) MMI_gen 1279 (partly: right most sub-area, 2 digit, integer, no zeroes)(3) MMI_gen 4244;
             */
+            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Ceiling_Speed_Monitoring;
+            //EVC1_MMIDynamic.MMI_V_INTERVENTION_KMH = 45;
             EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 40;       // Implied but not stated
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 50;
 
@@ -147,6 +148,15 @@ namespace Testcase.DMITestCases
             */
             XML_12_4_a.Send(this);
 
+            // Spec says this may need repeating 
+            this.Wait_Realtime(200);
+            XML_12_4_a.Send(this);
+            this.Wait_Realtime(200);
+            XML_12_4_a.Send(this);
+            this.Wait_Realtime(200);
+            XML_12_4_a.Send(this);
+
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The speed displayed is 15 km/h");
 
@@ -158,6 +168,14 @@ namespace Testcase.DMITestCases
             */
             XML_12_4_b.Send(this);
 
+            // Spec says this may need repeating 
+            this.Wait_Realtime(200);
+            XML_12_4_b.Send(this);
+            this.Wait_Realtime(200);
+            XML_12_4_b.Send(this);
+            this.Wait_Realtime(200);
+            XML_12_4_b.Send(this);
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The speed displayed is 18 km/h");
 
@@ -167,6 +185,14 @@ namespace Testcase.DMITestCases
             Expected Result: The speed digital is 23 km/h
             Test Step Comment: MMI_gen 1279 (partly: decimal rounded up, far from integer)
             */
+            XML_12_4_c.Send(this);
+
+            // Spec says this may need repeating 
+            this.Wait_Realtime(200);
+            XML_12_4_c.Send(this);
+            this.Wait_Realtime(200);
+            XML_12_4_c.Send(this);
+            this.Wait_Realtime(200);
             XML_12_4_c.Send(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +

@@ -49,8 +49,6 @@ namespace Testcase.DMITestCases
         {
             // Post-conditions from TestSpec
             // DMI displays in FS mode, Level 1.
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in FS mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -69,6 +67,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 972 (partly: OBU_TR_M_MODE); MMI_gen 6310 (partly: mode);(2) MMI_gen 972 (partly: MMI_V_RELEASE); MMI_gen 6310 (partly: release speed); MMI_gen 5902 (partly: MMI_M_WARNING = 3);(3) MMI_gen 972 (partly: FS mode, RSM, IndS,  Vtarget <= CSG <= Vperm); MMI_gen 1182 (partly: Vrelease);
             */
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Release_Speed_Monitoring;
+            EVC1_MMIDynamic.MMI_V_TARGET_KMH = 20;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 30;
             EVC1_MMIDynamic.MMI_V_RELEASE = 1388;
             
