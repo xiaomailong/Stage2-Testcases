@@ -55,8 +55,6 @@ namespace Testcase.DMITestCases
         {
             // Post-conditions from TestSpec
             // DMI displays in FS mode, level 1.
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in FS mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -84,8 +82,14 @@ namespace Testcase.DMITestCases
             Action: Driver performs SoM to SR mode, Level 1
             Expected Result: ATP enters SR mode, Level 1.DMI displays in SR mode
             */
-            //????? More required?
-            WaitForVerification("Perform SoM to SR mode, level 1 and check the following:" + Environment.NewLine + Environment.NewLine +
+            // Steps tested elsewhere: force SoM
+
+            DmiActions.Set_Driver_ID(this, "1234");
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
+            DmiActions.Finished_SoM_Default_Window(this);
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. ATP enters SR mode, Level 1." + Environment.NewLine +
                                 "2. DMI displays in SR mode.");
 
@@ -96,9 +100,8 @@ namespace Testcase.DMITestCases
             */
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
-            //????? More required?
 
-            WaitForVerification("Perform SoM to SR mode, level 1 and check the following:" + Environment.NewLine + Environment.NewLine +
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI changes mode from SR to FS.");
 
             /*
@@ -107,8 +110,9 @@ namespace Testcase.DMITestCases
             Expected Result: The Release Speed digital is displayed at sub-area B6
             */
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Release_Speed_Monitoring;
+            EVC1_MMIDynamic.MMI_V_RELEASE_KMH = 20;
 
-            WaitForVerification("Perform SoM to SR mode, level 1 and check the following:" + Environment.NewLine + Environment.NewLine +
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The digital Release Speed is displayed at sub-area B6.");
 
             /*
@@ -122,7 +126,8 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the  message “ATP Down Alarm” with sound alarm." + Environment.NewLine +
-                                "2. Digital Release Speed  is not displayed. The toggling function is reset to default state.");
+                                "2. Digital Release Speed is not displayed. " +
+                                "3. The toggling function is inactive (symbol DR01 is not displayed in area F7.");
 
             /*
             Test Step 6
@@ -136,7 +141,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in FS mode." + Environment.NewLine +
                                 "2. Digital Release Speed is re-displayed" + Environment.NewLine +
-                                "3. Toggling function is applied.");            
+                                "3. Toggling function is active (symbol DR01 is displayed in area F7.");
+
+            DmiActions.ShowInstruction(this, "Press in area F7 to activate the toggling function");
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. Digital Release Speed is not displayed.");
 
             /*
             Test Step 7

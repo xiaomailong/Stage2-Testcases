@@ -51,8 +51,6 @@ namespace Testcase.DMITestCases
         {
             // Post-conditions from TestSpec
             // DMI displays in FS mode, level 1.
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in FS mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -72,13 +70,11 @@ namespace Testcase.DMITestCases
             // Simulate the train moving so the 'stop' should be discernible
             this.Wait_Realtime(5000);
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
+            EVC1_MMIDynamic.MMI_V_RELEASE_KMH = 20;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in FS mode, Level 1.");
-
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_FS_mode_level_1(this);
 
             /*
             Test Step 2

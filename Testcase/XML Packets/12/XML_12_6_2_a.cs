@@ -33,12 +33,12 @@ namespace Testcase.XML
             _pool = pool;
 
             EVC1_MMIDynamic.MMI_M_SLIDE = 0;
-            EVC1_MMIDynamic.MMI_M_SLIP = 1;
+            EVC1_MMIDynamic.MMI_M_SLIP = 0;
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Target_Speed_Monitoring;   // 1
             EVC1_MMIDynamic.MMI_A_TRAIN = 0;
             EVC1_MMIDynamic.MMI_V_TRAIN = 100;
-            EVC1_MMIDynamic.MMI_V_TARGET = -1;       // unsigned short value in xml is 65535 => -1 short
-            EVC1_MMIDynamic.MMI_V_PERMITTED = 1111;
+            EVC1_MMIDynamic.MMI_V_TARGET = 11111;       // unsigned short value in xml is 65535 => -1 short : breaks in EVC1..Send(); using high value instead 
+            EVC1_MMIDynamic.MMI_V_PERMITTED = 0;
             EVC1_MMIDynamic.MMI_V_RELEASE = 555;
             EVC1_MMIDynamic.MMI_O_BRAKETARGET = 10002000;
             EVC1_MMIDynamic.MMI_O_IML = 0;
