@@ -41,7 +41,21 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // The speed dial properties below are configured for 140 km/h dial: True, False, 140, 0, 20, 0, 1, 0, 0, 0, -144, 0, 144 respectively: Speed in km/h (otherwise mph)Display speed unitMaximum Speed (upper boundary of the entire Speed Dial)Transition Speed (boundary between the two segments, if 0 – only segment 1 available)Speed interval between subsequent speed labels in segment 1Speed interval between subsequent speed labels in segment 2Number of short scale divisions between long scale divisions in segment 1Number of short scale divisions between long scale divisions in segment 2Number of long scale divisions between labels in segment 1Number of long scale divisions between labels in segment 2Position of Zero point (angle in grad, 0 grad at 12 o’clock, counting clockwise)Position of Transition Speed (angle, see above)Position of Maximum Speed (angle, see above)Test system is powered on.Cabin is activated.SoM is performed in SR mode, Level 1.
-            
+            // load config settings: TODO Check these
+            // SPEED_UNIT_TYPE = 1
+            // SPEED_UNIT_DISPLAY = 0
+            // SPEED_DIAL_V_MAX = 140
+            // SPEED_DIAL_V_TRANS = 0
+            // SPEED_DIAL_V_NUMBER1 = 20
+            // SPEED_DIAL_V_NUMBER2 = 0
+            // SPEED_DIAL_N_SHORT_LINES1 = 1
+            // SPEED_DIAL_N_SHORT_LINES2 = 0
+            // SPEED_DIAL_N_LONG_LINES1 = 0
+            // SPEED_DIAL_N_LONG_LINES2 = 0
+            // SPEED_DIAL_ANGLE_V_0 = -144
+            // SPEED_DIAL_ANGLE_V_TRANS = 0
+            // SPEED_DIAL_ANGLE_V_MAX = 144
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
             DmiActions.Complete_SoM_L1_SR(this);
@@ -51,8 +65,6 @@ namespace Testcase.DMITestCases
         {
             // Post-conditions from TestSpec
             // DMI displays in OS mode, level 1.
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in OS mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -70,18 +82,23 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in OS mode, Level 1.Verify the following information,(1)   Use the log file to confirm that DMI received packet information EVC-1 with following variables,MMI_V_PERMITTED = 4166 (150km/h)MMI_V_TARGET = 4027 (145km/h)(2)   All basic speed hooks are not displays in sub-area B2
             Test Step Comment: (1) MMI_gen 6331 (partly: outside the Speed Dial’s maximum speed);(2) MMI_gen 6331 (partly: not to be shown);
             */
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.OnSight;
-            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
+
             EVC1_MMIDynamic.MMI_V_PERMITTED = 4166;
-            EVC1_MMIDynamic.MMI_V_TARGET = 4027;
-
-            // Insert a wait so speed can be reset to 0
-            this.Wait_Realtime(5000);
-
+            EVC1_MMIDynamic.MMI_V_TARGET = 4027;            
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
 
-            WaitForVerification("Acknowledgement of OS mode is requested. Press button to accept and then check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. No basic speed hooks are displayed in sub-area B2.");
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 259;
+
+            DmiActions.ShowInstruction(this, "Acknowledge OS mode by pressing in area C1");
+
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.OnSight;
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in OS mode, Level 1." + Environment.NewLine +
+                                "2. No basic speed hooks are displayed in sub-area B2.");
 
             /*
             Test Step 2
