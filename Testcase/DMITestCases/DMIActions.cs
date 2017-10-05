@@ -262,7 +262,7 @@ namespace Testcase.DMITestCases
         ///     <param name="mmiMTrainsetId">ID of preconfigured train data set</param>
         ///     <param name="mmiMAltDem">Control variable for alternative train data entry method</param>
         /// </summary>
-        public static void Send_EVC10_MMIMMIEchoedTrainData(MMI_M_DATA_ENABLE mmiMDataEnable, ushort mmiLTrain,
+        public static void Send_EVC10_MMIEchoedTrainData(MMI_M_DATA_ENABLE mmiMDataEnable, ushort mmiLTrain,
             ushort mmiVMaxTrain, MMI_NID_KEY mmiNidKeyTrainCat, byte mmiMBrakePerc, MMI_NID_KEY mmiNidKeyAxleLoad,
             byte mmiMAirtight, MMI_NID_KEY mmiNidKeyLoadGauge, byte mmiMButtons, ushort mmiMTrainsetId,
             ushort mmiMAltDem, string[] trainSetCaptions, DataElement[] dataElements)
