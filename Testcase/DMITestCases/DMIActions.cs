@@ -215,7 +215,7 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
-        ///     Sends EVC-6 telegram with Fixed Data Entry for up to 9 trainset strings.
+        ///     Sends EVC-10 telegram with Fixed Data Entry for up to 9 trainset strings.
         /// </summary>
         /// <param name="pool">Signal pool</param>
         /// <param name="fixedTrainsetCaptions"> Array of strings for trainset captions</param>
