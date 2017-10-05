@@ -244,6 +244,52 @@ namespace Testcase.DMITestCases
             EVC10_MMIEchoedTrainData.Send();
 */
         }
+
+
+        /// <summary>
+        ///     Send EVC10_MMIEchoedTrainData
+        ///     Sends existing Train Data values to the DMI for validation
+        ///     <param name="mmiVMaxTrain">Max train speed</param>
+        ///     <param name="mmiNidKeyTrainCat">Train category (range 3-20)</param>
+        ///     <param name="mmiMBrakePerc">Brake percentage</param>
+        ///     <param name="mmiNidKeyAxleLoad">Axle load category (range 21-33) </param>
+        ///     <param name="mmiMAirtight">Train equipped with airtight system</param>
+        ///     <param name="mmiNidKeyLoadGauge">Axle load category (range 34-38)</param>
+        ///     <param name="mmiMButtons">
+        ///         Intended to be used to dstinguish between 'BTN_YES_DATA_ENTRY_COMPLETE',
+        ///         'BTN_YES_DATA_ENTRY_COMPLETE_DELAY_TYPE','no button'
+        ///     </param>
+        ///     <param name="mmiMTrainsetId">ID of preconfigured train data set</param>
+        ///     <param name="mmiMAltDem">Control variable for alternative train data entry method</param>
+        /// </summary>
+        public static void Send_EVC10_MMIMMIEchoedTrainData(MMI_M_DATA_ENABLE mmiMDataEnable, ushort mmiLTrain,
+            ushort mmiVMaxTrain, MMI_NID_KEY mmiNidKeyTrainCat, byte mmiMBrakePerc, MMI_NID_KEY mmiNidKeyAxleLoad,
+            byte mmiMAirtight, MMI_NID_KEY mmiNidKeyLoadGauge, byte mmiMButtons, ushort mmiMTrainsetId,
+            ushort mmiMAltDem, string[] trainSetCaptions, DataElement[] dataElements)
+        {
+            // Train data enabled
+
+            //EVC10_MMIEchoedTrainData.MMI_M_DATA_ENABLE = mmiMDataEnable;
+
+            //EVC10_MMIEchoedTrainData.MMI_L_TRAIN = mmiLTrain; // Train length
+
+            //EVC10_MMIEchoedTrainData.MMI_V_MAXTRAIN = mmiVMaxTrain; // Max train speed
+            //EVC10_MMIEchoedTrainData.MMI_NID_KEY_TRAIN_CAT = mmiNidKeyTrainCat; // Train category
+            //EVC10_MMIEchoedTrainData.MMI_M_BRAKE_PERC = mmiMBrakePerc; // Brake percentage
+            //EVC10_MMIEchoedTrainData.MMI_NID_KEY_AXLE_LOAD = mmiNidKeyAxleLoad; // Axle load category
+            //EVC10_MMIEchoedTrainData.MMI_M_AIRTIGHT = mmiMAirtight; // Train equipped with airtight system
+            //EVC10_MMIEchoedTrainData.MMI_NID_KEY_LOAD_GAUGE = mmiNidKeyLoadGauge; // Loading gauge type of train 
+            //EVC10_MMIEchoedTrainData.MMI_M_BUTTONS = mmiMButtons; // Button available
+
+            //EVC10_MMIEchoedTrainData.MMI_M_TRAINSET_ID = mmiMTrainsetId;
+            //EVC10_MMIEchoedTrainData.MMI_M_ALT_DEM = mmiMAltDem;
+
+            //EVC10_MMIEchoedTrainData.TrainSetCaptions = new List<string>(trainSetCaptions);
+            //EVC10_MMIEchoedTrainData.DataElements = new List<DataElement>(dataElements);
+
+            //EVC10_MMIEchoedTrainData.Send();
+        }
+
         /// <summary>
         /// Send standard EVC-20 telegram with Levels 0-3, CBTC, and AWS/TPWS selectable. Level 1 is preselected.
         /// </summary>
