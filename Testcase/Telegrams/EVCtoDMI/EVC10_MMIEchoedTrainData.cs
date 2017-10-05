@@ -13,7 +13,7 @@ namespace Testcase.Telegrams.EVCtoDMI
     /// It also gives the ETC the ability to control the status/type of the "Yes" button, if specified by functional requirements for ETC and DMI.
     /// Note: Parameter 'MMI_N_DATA_ELEMENTS' distinguishes between use case 1.) and 2.)
     /// </summary>
-    public static class EVC6_MMICurrentTrainData
+    public static class EVC10_MMIEchoedTrainData
     {
         private static SignalPool _pool;
         private static int _trainsetid;
@@ -45,18 +45,12 @@ namespace Testcase.Telegrams.EVCtoDMI
         public static void Send()
         {
             if (TrainSetCaptions.Count > 9)
-                throw new ArgumentOutOfRangeException();
-            if (DataElements.Count > 9)
-                throw new ArgumentOutOfRangeException();
-            // Samson: These two following lines have been commented because TrainSetCaptions represents the set of FIXED TRAIN DATA
-            // wheareas DataElements carries FLEXIBLE TRAIN DATA, hence they should not be compared
-            //if (TrainSetCaptions.Count != DataElements.Count)
-            //    throw new Exception("Number of Train Data elements and number of captions do not match!");
+                throw new ArgumentOutOfRangeException();            
 
-            ushort totalSizeCounter = 160;
+            ushort totalSizeCounter = 144;
 
             // Set number of trainset captions
-            _pool.SITR.ETCS1.CurrentTrainData.MmiNTrainset.Value = (ushort) TrainSetCaptions.Count;
+            _pool.SITR.ETCS1.EchoedTrainData.MmiNTrainsetsR.Value = (ushort) TrainSetCaptions.Count;
 
             // Populate the array of trainset captions
             for (var trainsetIndex = 0; trainsetIndex < TrainSetCaptions.Count; trainsetIndex++)
@@ -100,6 +94,19 @@ namespace Testcase.Telegrams.EVCtoDMI
         }
 
         /// <summary>
+        /// Quantifier, number of trainsets to be shown for fixed TDE.
+        /// 
+        /// Values:
+        /// 0 = "No trainset available, flexible TDE may apply"
+        /// 1..9 = "applicable number of trainsets"
+        /// </summary>
+        public static ushort MMI_N_TRAINSETS_R
+        {
+            get => _pool.SITR.ETCS1.EchoedTrainData.MmiNTrainsetsR.Value;
+            set => _pool.SITR.ETCS1.EchoedTrainData.MmiNTrainsetsR.Value = value;
+        }
+        
+        /// <summary>
         /// A bit mask that, for each variable, tells if a data value is enabled (e.g. for 'edit' in EVC-6).
         /// 1 == 'enabled'.
         /// The variable supports the following use cases:
@@ -107,10 +114,10 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// 2.) In case of a Train Data View procedure this variable controls visibility of data items (ERA_ERTMS_015560, v3.4.0, chapter 11.5.1.5).
         /// 3.) In packet EVC-10 this variable controls highlighting of changed data items (ERA_ERTMS_015560, v3.4.0, chapter 11.4.1.4, 10.3.3.5).
         /// </summary>
-        public static MMI_M_DATA_ENABLE MMI_M_DATA_ENABLE
+        public static ushort MMI_M_DATA_ENABLE_R
         {
-            get => (MMI_M_DATA_ENABLE)(_pool.SITR.ETCS1.CurrentTrainData.MmiMDataEnable.Value);
-            set => _pool.SITR.ETCS1.CurrentTrainData.MmiMDataEnable.Value = (ushort) value;
+            get => _pool.SITR.ETCS1.CurrentTrainData.MmiMDataEnable.Value;
+            set => _pool.SITR.ETCS1.EchoedTrainData.MmiMDataEnableR.Value = value;
         }
 
         /// <summary>
@@ -121,10 +128,10 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// 1..4095 = "total train length"
         /// 4096..65535 = "Reserved"
         /// </summary>
-        public static ushort MMI_L_TRAIN
+        public static ushort MMI_L_TRAIN_R
         {
-            get => _pool.SITR.ETCS1.CurrentTrainData.MmiLTrain.Value;
-            set => _pool.SITR.ETCS1.CurrentTrainData.MmiLTrain.Value = value;
+            get => _pool.SITR.ETCS1.EchoedTrainData.MmiLTrainR.Value;
+            set => _pool.SITR.ETCS1.EchoedTrainData.MmiLTrainR.Value = value;
         }
 
         /// <summary>
@@ -135,10 +142,10 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// 1..600 = "max train speed"
         /// 601..65535 = "Reserved"
         /// </summary>
-        public static ushort MMI_V_MAXTRAIN
+        public static ushort MMI_V_MAXTRAIN_R
         {
-            get => _pool.SITR.ETCS1.CurrentTrainData.MmiVMaxtrain.Value;
-            set => _pool.SITR.ETCS1.CurrentTrainData.MmiVMaxtrain.Value = value;
+            get => _pool.SITR.ETCS1.EchoedTrainData.MmiVMaxtrainR.Value;
+            set => _pool.SITR.ETCS1.EchoedTrainData.MmiVMaxtrainR.Value = value;
         }
 
         /// <summary>
@@ -165,10 +172,10 @@ namespace Testcase.Telegrams.EVCtoDMI
         ///     19 = "FG 3"
         ///     20 = "FG 4"
         /// </summary>
-        public static MMI_NID_KEY MMI_NID_KEY_TRAIN_CAT
+        public static byte MMI_NID_KEY_TRAIN_CAT_R
         {
-            get => (MMI_NID_KEY)(_pool.SITR.ETCS1.CurrentTrainData.MmiNidKeyTrainCat.Value);
-            set => _pool.SITR.ETCS1.CurrentTrainData.MmiNidKeyTrainCat.Value = (byte) value;
+            get => _pool.SITR.ETCS1.EchoedTrainData.MmiNidKeyTrainCatR.Value;
+            set => _pool.SITR.ETCS1.EchoedTrainData.MmiNidKeyTrainCatR.Value = value;
         }
 
         /// <summary>
@@ -180,10 +187,10 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// 10..250 = "Brake Percentage given in '%'"
         /// 251..255 = "Reserved"
         /// </summary>
-        public static ushort MMI_M_BRAKE_PERC
+        public static byte MMI_M_BRAKE_PERC_R
         {
-            get => _pool.SITR.ETCS1.CurrentTrainData.MmiMBrakePerc.Value;
-            set => _pool.SITR.ETCS1.CurrentTrainData.MmiMBrakePerc.Value = (byte) value;
+            get => _pool.SITR.ETCS1.EchoedTrainData.MmiMBrakePercR.Value;
+            set => _pool.SITR.ETCS1.EchoedTrainData.MmiMBrakePercR.Value = value;
         }
 
         /// <summary>
@@ -205,10 +212,10 @@ namespace Testcase.Telegrams.EVCtoDMI
         ///     32 = "E4"
         ///     33 = "E5"
         /// </summary>
-        public static MMI_NID_KEY MMI_NID_KEY_AXLE_LOAD
+        public static byte MMI_NID_KEY_AXLE_LOAD_R
         {
-            get => (MMI_NID_KEY)(_pool.SITR.ETCS1.CurrentTrainData.MmiNidKeyAxleLoad.Value);
-            set => _pool.SITR.ETCS1.CurrentTrainData.MmiNidKeyAxleLoad.Value = (byte) value;
+            get => _pool.SITR.ETCS1.EchoedTrainData.MmiNidKeyAxleLoadR.Value;
+            set => _pool.SITR.ETCS1.EchoedTrainData.MmiNidKeyAxleLoadR.Value = value;
         }
 
         /// <summary>
@@ -220,10 +227,10 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// 2 = "'No default value' =&gt; TD entry field shall remain empty"
         /// 3..255 = "Spare"
         /// </summary>
-        public static ushort MMI_M_AIRTIGHT
+        public static byte MMI_M_AIRTIGHT_R
         {
-            get => _pool.SITR.ETCS1.CurrentTrainData.MmiMAirtight.Value;
-            set => _pool.SITR.ETCS1.CurrentTrainData.MmiMAirtight.Value = (byte) value;
+            get => _pool.SITR.ETCS1.EchoedTrainData.MmiMAirtightR.Value;
+            set => _pool.SITR.ETCS1.EchoedTrainData.MmiMAirtightR.Value = value;
         }
 
         /// <summary>
@@ -237,73 +244,12 @@ namespace Testcase.Telegrams.EVCtoDMI
         ///     37 = "GC"
         ///     38 = "Out of GC"
         /// </summary>
-        public static MMI_NID_KEY MMI_NID_KEY_LOAD_GAUGE
+        public static byte MMI_NID_KEY_LOAD_GAUGE
         {
-            get => (MMI_NID_KEY)(_pool.SITR.ETCS1.CurrentTrainData.MmiNidKeyLoadGauge.Value);
-            set => _pool.SITR.ETCS1.CurrentTrainData.MmiNidKeyLoadGauge.Value = (byte) value;
+            get => _pool.SITR.ETCS1.EchoedTrainData.MmiNidKeyLoadGaugeR.Value;
+            set => _pool.SITR.ETCS1.EchoedTrainData.MmiNidKeyLoadGaugeR.Value = value;
         }
-
-        /// <summary>
-        /// Identifier of MMI Buttons.
-        /// 
-        /// Values:
-        /// 0 = "BTN_MAIN"
-        /// 1 = "BTN_OVERRIDE"
-        /// 2 = "BTN_DATA_VIEW"
-        /// 3 = "BTN_SPECIAL"
-        /// 4 = "BTN_SETTINGS"
-        /// 5 = "BTN_START"
-        /// 6 = "BTN_DRIVER_ID"
-        /// 7 = "BTN_TRAIN_DATA"
-        /// 8 = "BTN_LEVEL"
-        /// 9 = "BTN_TRAIN_RUNNING_NUMBER"
-        /// 10 = "BTN_SHUNTING"
-        /// 11 = "BTN_EXIT_SHUNTING"
-        /// 12 = "BTN_NON_LEADING"
-        /// 13 = "BTN_MAINTAIN_SHUNTING"
-        /// 14 = "BTN_OVERRIDE_EOA"
-        /// 15 = "BTN_ADHESION"
-        /// 16 = "BTN_SR_SPEED_DISTANCE"
-        /// 17 = "BTN_TRAIN_INTEGRITY"
-        /// 18 = "BTN_SYSTEM_VERSION"
-        /// 19 = "BTN_SET_VBC"
-        /// 20 = "BTN_REMOVE_VBC"
-        /// 21 = "BTN_CONTACT_LAST_RBC"
-        /// 22 = "BTN_USE_SHORT_NUMBER"
-        /// 23 = "BTN_ENTER_RBC_DATA"
-        /// 24 = "BTN_RADIO_NETWORK_ID"
-        /// 25 = "BTN_DRIVERID_TRAIN_RUNNING_NUMBER "
-        /// 26 = "BTN_DRIVERID_SETTINGS"
-        /// 27 = "BTN_SWITCH_FIXED_TRAIN_DATA_ENTRY"
-        /// 28 = "BTN_SWITCH_FLEXIBLE_TRAIN_DATA_ENTRY"
-        /// 29 = "BTN_TOGGLE_TUNNELSTOP_AREA"
-        /// 30 = "BTN_TOGGLE_SPEED_DISTANCE_INFO"
-        /// 31 = "BTN_YES_TRACK_AHEAD_FREE"
-        /// 32 = "BTN_TOGGLE_GEOPOS"
-        /// 33 = "BTN_CLOSE"
-        /// 34 = "BTN_SCROLL_UP"
-        /// 35 = "BTN_SCROLL_DOWN"
-        /// 36 = "BTN_YES_DATA_ENTRY_COMPLETE"
-        /// 37 = "BTN_YES_DATA_ENTRY_COMPLETE_DELAY_TYPE"
-        /// 38 = "BTN_STM_DATA_ENTRY_SELECTION_POS1"
-        /// 39 = "BTN_STM_DATA_ENTRY_SELECTION_POS2"
-        /// 40 = "BTN_STM_DATA_ENTRY_SELECTION_POS3"
-        /// 41 = "BTN_STM_DATA_ENTRY_SELECTION_POS4"
-        /// 42 = "BTN_STM_DATA_ENTRY_SELECTION_POS5"
-        /// 43 = "BTN_STM_DATA_ENTRY_SELECTION_POS6"
-        /// 44 = "BTN_STM_DATA_ENTRY_SELECTION_POS7"
-        /// 45 = "BTN_STM_DATA_ENTRY_SELECTION_POS8"
-        /// 46 = "BTN_STM_END_OF_DATA_ENTRY"
-        /// 47..252 = "Spare"
-        /// 253 = "BTN_ENTER_DELAY_TYPE"
-        /// 254 = "BTN_ENTER"
-        /// 255 = "no button"
-        /// Note: the definition is according to preliminary SubSet-121 'M_BUTTONS' definition.
-        /// </summary>
-        public static ushort MMI_M_BUTTONS
-        {
-            set => _pool.SITR.ETCS1.CurrentTrainData.MmiMButtons.Value = (byte) value;
-        }
+        
 
         /// <summary>
         /// ID of selected pre-configured train data set.
@@ -314,13 +260,10 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// 10..14 = "Spare"
         /// 15 = "no Train data set specified"
         /// </summary>
-        public static ushort MMI_M_TRAINSET_ID
+        public static byte EVC10_alias_1
         {
-            set
-            {
-                _trainsetid = value;
-                SetAlias();
-            }
+            get => _pool.SITR.ETCS1.EchoedTrainData.EVC10alias1.Value;
+            set => _pool.SITR.ETCS1.EchoedTrainData.EVC10alias1.Value = value;
         }
 
         /// <summary>
