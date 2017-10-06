@@ -15,6 +15,7 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
 using Testcase.Telegrams.EVCtoDMI;
 using Testcase.Telegrams.DMItoEVC;
+using static Testcase.Telegrams.EVCtoDMI.Variables;
 
 
 namespace Testcase.DMITestCases
@@ -58,8 +59,6 @@ namespace Testcase.DMITestCases
         {
             // Post-conditions from TestSpec
             // DMI displays in SB mode, Level 1
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in SB mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -77,6 +76,18 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press the ‘Settings’ button");
+
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 4;      // Settings;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.SystemVersion |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.Language |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.Volume |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.Brightness |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.SetVBC |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.EnableBrakePercentage |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.SetLocalTimeDateAndOffset;
+            EVC30_MMIRequestEnable.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window." + Environment.NewLine +
@@ -115,8 +126,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press the ‘Maintenance’ button. Enter the value from the configuration file PASS_CDE_MTN tag and confirm the password");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the Maintenance window." + Environment.NewLine +
-                                "2. The ‘Close’ button is enabled");
+                                "1. The ‘Close’ button is enabled");
 
             /*
             Test Step 5
@@ -135,7 +145,22 @@ namespace Testcase.DMITestCases
             Action: Perform the following procedure, Press ‘Close’ button.Enter Driver ID and perform brake test.Select and confirm Level 1.Press ‘Close’ button
             Expected Result: DMI displays Default window
             */
-            DmiActions.ShowInstruction(this, @"Press the ‘Close’ button. Enter the Driver ID and perform a brake test. Select and confirm Level 1.	Press the ‘Close’ button.");
+            // Ignore brake test
+            DmiActions.ShowInstruction(this, @"Press the ‘Close’ button");
+
+            DmiActions.Set_Driver_ID(this, "1234");
+            DmiActions.ShowInstruction(this, @"Confirm driver ID");
+
+            EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = MMI_Q_CLOSE_ENABLE.Disabled;
+            EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new MMI_Q_LEVEL_NTC_ID[] { MMI_Q_LEVEL_NTC_ID.ETCS_Level };
+            EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new MMI_M_CURRENT_LEVEL[] { MMI_M_CURRENT_LEVEL.NotLastUsedLevel };
+            EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = new MMI_M_LEVEL_FLAG[] { MMI_M_LEVEL_FLAG.MarkedLevel };
+            EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = new MMI_M_INHIBITED_LEVEL[] { MMI_M_INHIBITED_LEVEL.NotInhibited };
+            EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = new MMI_M_INHIBIT_ENABLE[] { MMI_M_INHIBIT_ENABLE.AllowedForInhibiting };
+            EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new MMI_M_LEVEL_NTC_ID[] { MMI_M_LEVEL_NTC_ID.L1 };
+            EVC20_MMISelectLevel.Send();
+
+            DmiActions.ShowInstruction(this, "Select and confirm Level 1, then press the ‘Close’ button.");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Default window.");
@@ -235,7 +260,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Settings window
             Test Step Comment: Table 71 (Partly: step S2 (Language window));
             */
-            DmiActions.ShowInstruction(this, @"Press the Input Field to accept the data");
+            DmiActions.ShowInstruction(this, @"Press the data input field to accept the data");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window.");
@@ -281,7 +306,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Settings window
             Test Step Comment: Table 71 (Partly: step S3 (Volume window));
             */
-            DmiActions.ShowInstruction(this, @"Press the Input Field to accept the data");
+            DmiActions.ShowInstruction(this, @"Press the data input field to accept the data");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window.");
@@ -325,7 +350,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Settings window
             Test Step Comment: Table 71 (Partly: step S4 (Brightness window));
             */
-            DmiActions.ShowInstruction(this, @"Press the Input Field to accept the data");
+            DmiActions.ShowInstruction(this, @"Press the data input field to accept the data");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window.");
@@ -385,7 +410,16 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Validate Set VBC window. Verify the following information,The ‘Close’ button is enabled
             Test Step Comment: (1) MMI_gen 9231 (partly: Validate Set VBC window);    Table 71 (Partly: step S6-1 (Set VBC window));
             */
-            DmiActions.ShowInstruction(this, @"Press the ‘Set VBC’ button. Enter the value 65536 and press an input field to confirm. Press the ‘Yes’ button");
+            DmiActions.ShowInstruction(this, @"Press the ‘Set VBC’ button");
+
+            EVC18_MMISetVBC.MMI_M_BUTTONS = MMI_M_BUTTONS_VBC.BTN_YES_DATA_ENTRY_COMPLETE;
+            EVC18_MMISetVBC.MMI_N_VBC = 0;
+            EVC18_MMISetVBC.Send();
+
+            DmiActions.ShowInstruction(this, @"Enter the value 65536 and press a data input field to confirm. Press the ‘Yes’ button");
+
+            //EVC28_MMIEchoedVBCSetData.MMI_M_VBC_CODE_ = 0xfeff;     // 65536 (0x100) bit-inverted
+            //EVC28_MMIEchoedVBCSetData.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Set VBC validation window." + Environment.NewLine +
@@ -408,6 +442,10 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Set VBC window
             Test Step Comment: Table 71 (Partly: step S6-2 (Set VBC validation window));
             */
+            EVC18_MMISetVBC.MMI_M_BUTTONS = MMI_M_BUTTONS_VBC.BTN_YES_DATA_ENTRY_COMPLETE;
+            EVC18_MMISetVBC.MMI_N_VBC = 0;
+            EVC18_MMISetVBC.Send();
+
             DmiActions.ShowInstruction(this, @"Press the ‘Set VBC’ button. Enter the value 65536. Press the ‘No’ button in the Set VBC validation window and press an input field");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -419,7 +457,25 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Settings window.The ‘Remove VBC’ button is enabled
             Test Step Comment: Table 71 (Partly: step S6-2 (Set VBC validation window));
             */
-            DmiActions.ShowInstruction(this, @"Enter and confirm the value 65536. Press the ‘Yes’ button in the Set VBC validation window and press an input field");
+            DmiActions.ShowInstruction(this, @"Enter and confirm the value 65536");
+
+            //EVC28_MMIEchoedVBCSetData.MMI_M_VBC_CODE_ = 0xfeff;     // 65536 (0x100) bit-inverted
+            //EVC28_MMIEchoedVBCSetData.Send();
+            
+            DmiActions.ShowInstruction(this, @"Press the ‘Yes’ button in the Set VBC validation window and press an input field");
+
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 4;      // Settings;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.SystemVersion |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.Language |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.Volume |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.Brightness |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.SetVBC |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.EnableBrakePercentage |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.SetLocalTimeDateAndOffset |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.RemoveVBC;
+            EVC30_MMIRequestEnable.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window." + Environment.NewLine +
@@ -433,6 +489,9 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press the ‘Remove VBC’ button");
+
+            EVC19_MMIRemoveVBC.MMI_N_VBC = 0;
+            EVC19_MMIRemoveVBC.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Remove VBC window." + Environment.NewLine +
@@ -455,7 +514,17 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Validate Remove VBC window. Verify the following information,The ‘Close’ button is enabled
             Test Step Comment: (1) MMI_gen 9231 (partly: Validate Remove VBC window);    
             */
+            // Test omits press RBC button...
+            DmiActions.ShowInstruction(this, @"Press the ‘Remove VBC’ button");
+
+            EVC19_MMIRemoveVBC.MMI_N_VBC = 0;
+            EVC19_MMIRemoveVBC.MMI_M_BUTTONS = MMI_M_BUTTONS_VBC.BTN_YES_DATA_ENTRY_COMPLETE;
+            EVC19_MMIRemoveVBC.Send();
+
             DmiActions.ShowInstruction(this, @"Enter the value 65536 and press an input field to confirm. Press the ‘Yes’ button");
+
+            //EVC29_MMIEchoedRemoveRBCData.MMI_M_VBC_CODE_ = 0xfeff;       // 65536 (0x100) bit-inverted   
+            //EVC29_MMIEchoedRemoveRBCData.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Remove VBC validation window." + Environment.NewLine +
@@ -478,7 +547,13 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Remove VBC window
             Test Step Comment: Table 71 (Partly: step 76-2 (Remove VBC validation window));
             */
-            DmiActions.ShowInstruction(this, @"Press the ‘Remove VBC’ button. Enter the value 65536 and confirm by pressing an input field. Press the ‘No’ button in the Remove VBC validation window and press an input field");
+            DmiActions.ShowInstruction(this, @"Press the ‘Remove VBC’ button");
+
+            EVC19_MMIRemoveVBC.MMI_N_VBC = 0;
+            EVC19_MMIRemoveVBC.MMI_M_BUTTONS = MMI_M_BUTTONS_VBC.BTN_YES_DATA_ENTRY_COMPLETE;
+            EVC19_MMIRemoveVBC.Send();
+
+            DmiActions.ShowInstruction(this, @"Enter the value 65536 and confirm by pressing an input field. Press the ‘No’ button in the Remove VBC validation window and press an input field");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Remove VBC window.");
@@ -489,7 +564,33 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Settings window.The ‘Remove VBC’ button is disabled
             Test Step Comment: Table 71 (Partly: step 76-2 (Remove VBC validation window));
             */
-            DmiActions.ShowInstruction(this, @"Enter the value 65536 and confirm by pressing an input field. Press the ‘Yes’ button in the Remove VBC validation window and press an input field");
+            // Step missing this
+            DmiActions.ShowInstruction(this, @"Press the ‘Remove VBC’ button");
+
+            EVC19_MMIRemoveVBC.MMI_N_VBC = 0;
+            EVC19_MMIRemoveVBC.MMI_M_BUTTONS = MMI_M_BUTTONS_VBC.BTN_YES_DATA_ENTRY_COMPLETE;
+            EVC19_MMIRemoveVBC.Send();
+
+            DmiActions.ShowInstruction(this, @"Enter the value 65536 and confirm by pressing an input field");
+
+
+            //EVC29_MMIEchoedRemoveRBCData.MMI_M_VBC_CODE_ = 0xfeff;       // 65536 (0x100) bit-inverted   
+            //EVC29_MMIEchoedRemoveRBCData.Send();
+
+            DmiActions.ShowInstruction(this, @"Press the ‘Yes’ button in the Remove VBC validation window and press an input field");
+
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 4;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = (EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter |
+                                                                EVC30_MMIRequestEnable.EnabledRequests.SystemVersion |
+                                                                EVC30_MMIRequestEnable.EnabledRequests.Language |
+                                                                EVC30_MMIRequestEnable.EnabledRequests.Volume |
+                                                                EVC30_MMIRequestEnable.EnabledRequests.Brightness |
+                                                                EVC30_MMIRequestEnable.EnabledRequests.SetVBC |
+                                                                EVC30_MMIRequestEnable.EnabledRequests.EnableBrakePercentage |
+                                                                EVC30_MMIRequestEnable.EnabledRequests.SetLocalTimeDateAndOffset) &
+                                                               ~EVC30_MMIRequestEnable.EnabledRequests.RemoveVBC;
+            EVC30_MMIRequestEnable.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window." + Environment.NewLine +
@@ -514,7 +615,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Settings window
             Test Step Comment: MMI_gen 8785 (partly: additional DMI technical function, Brake);
             */
-            DmiActions.ShowInstruction(this, @"Press the ‘Close’ button in the Brake validation window");
+            DmiActions.ShowInstruction(this, @"Press the ‘Close’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window.");
