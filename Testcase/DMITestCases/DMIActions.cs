@@ -224,25 +224,28 @@ namespace Testcase.DMITestCases
             ushort mmiMTrainsetId)
 
         {
-            // Train data enabled
-/*
-            EVC10_MMIEchoedTrainData.MMI_M_DATA_ENABLE = MMI_M_DATA_ENABLE.TrainSetID; // "Train Set ID" data enabled
-            EVC10_MMIEchoedTrainData.MMI_L_TRAIN = 0; // Train length
-            EVC10_MMIEchoedTrainData.MMI_V_MAXTRAIN = 0; // Max train speed
-            EVC10_MMIEchoedTrainData.MMI_NID_KEY_TRAIN_CAT = MMI_NID_KEY.NoDedicatedKey; // Train category
-            EVC10_MMIEchoedTrainData.MMI_M_BRAKE_PERC = 0; // Brake percentage
-            EVC10_MMIEchoedTrainData.MMI_NID_KEY_AXLE_LOAD = MMI_NID_KEY.NoDedicatedKey; // Axle load category
-            EVC10_MMIEchoedTrainData.MMI_M_AIRTIGHT = 0; // Train equipped with airtight system
-            EVC10_MMIEchoedTrainData.MMI_NID_KEY_LOAD_GAUGE = MMI_NID_KEY.NoDedicatedKey; // Loading gauge type of train 
-            EVC10_MMIEchoedTrainData.MMI_M_BUTTONS = 0; // No Buttons available
-            EVC10_MMIEchoedTrainData.MMI_M_TRAINSET_ID = mmiMTrainsetId; // Preselected Trainset ID
-            // MMI_Alt_Dem = 0: No alternative train data entry method available
+            // Train data as per EVC6 (inverted)
+            /*
+            EVC10_MMIEchoedTrainData.MMI_M_DATA_ENABLE = ~MMI_M_DATA_ENABLE.TrainSetID; // "Train Set ID" data enabled
+            EVC10_MMIEchoedTrainData.MMI_L_TRAIN = 0xffff; // Train length 0 in
+            EVC10_MMIEchoedTrainData.MMI_V_MAXTRAIN = 0xffff; // Max train speed
+            EVC10_MMIEchoedTrainData.MMI_NID_KEY_TRAIN_CAT = ~MMI_NID_KEY.NoDedicatedKey; // Train category
+            EVC10_MMIEchoedTrainData.MMI_M_BRAKE_PERC = 0xff; // Brake percentage
+            EVC10_MMIEchoedTrainData.MMI_NID_KEY_AXLE_LOAD = ~MMI_NID_KEY.NoDedicatedKey; // Axle load category
+            EVC10_MMIEchoedTrainData.MMI_M_AIRTIGHT = 0xff; // Train equipped with airtight system
+            EVC10_MMIEchoedTrainData.MMI_NID_KEY_LOAD_GAUGE = ~MMI_NID_KEY.NoDedicatedKey; // Loading gauge type of train 
 
+            //EVC10_MMIEchoedTrainData.MMI_M_BUTTONS = 0; // No Buttons available
+
+            EVC10_MMIEchoedTrainData.MMI_M_TRAINSET_ID = 65535 - mmiMTrainsetId; // Preselected Trainset ID
+            EVC10_MMIEchoedTrainData.MMI_Alt_Dem = 0xffff: No alternative train data entry method available
+
+            // VSIS says that captions are inverted also?
+        
             EVC10_MMIEchoedTrainData.TrainSetCaptions = new List<string>(fixedTrainsetCaptions);
-            EVC10_MMIEchoedTrainData.DataElements = new List<DataElement>(); // no train data elements
 
             EVC10_MMIEchoedTrainData.Send();
-*/
+            */
         }
 
 
@@ -264,28 +267,26 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void Send_EVC10_MMIEchoedTrainData(MMI_M_DATA_ENABLE mmiMDataEnable, ushort mmiLTrain,
             ushort mmiVMaxTrain, MMI_NID_KEY mmiNidKeyTrainCat, byte mmiMBrakePerc, MMI_NID_KEY mmiNidKeyAxleLoad,
-            byte mmiMAirtight, MMI_NID_KEY mmiNidKeyLoadGauge, byte mmiMButtons, ushort mmiMTrainsetId,
+            byte mmiMAirtight, MMI_NID_KEY mmiNidKeyLoadGauge, ushort mmiMTrainsetId,
             ushort mmiMAltDem, string[] trainSetCaptions, DataElement[] dataElements)
         {
-            // Train data enabled
+            // Train data as for EVC6 but inverted
 
-            //EVC10_MMIEchoedTrainData.MMI_M_DATA_ENABLE = mmiMDataEnable;
+            //EVC10_MMIEchoedTrainData.MMI_M_DATA_ENABLE = ~mmiMDataEnable;
 
-            //EVC10_MMIEchoedTrainData.MMI_L_TRAIN = mmiLTrain; // Train length
+            //EVC10_MMIEchoedTrainData.MMI_L_TRAIN = 65535 - mmiLTrain; // Train length
 
             //EVC10_MMIEchoedTrainData.MMI_V_MAXTRAIN = mmiVMaxTrain; // Max train speed
-            //EVC10_MMIEchoedTrainData.MMI_NID_KEY_TRAIN_CAT = mmiNidKeyTrainCat; // Train category
-            //EVC10_MMIEchoedTrainData.MMI_M_BRAKE_PERC = mmiMBrakePerc; // Brake percentage
-            //EVC10_MMIEchoedTrainData.MMI_NID_KEY_AXLE_LOAD = mmiNidKeyAxleLoad; // Axle load category
-            //EVC10_MMIEchoedTrainData.MMI_M_AIRTIGHT = mmiMAirtight; // Train equipped with airtight system
-            //EVC10_MMIEchoedTrainData.MMI_NID_KEY_LOAD_GAUGE = mmiNidKeyLoadGauge; // Loading gauge type of train 
-            //EVC10_MMIEchoedTrainData.MMI_M_BUTTONS = mmiMButtons; // Button available
-
-            //EVC10_MMIEchoedTrainData.MMI_M_TRAINSET_ID = mmiMTrainsetId;
-            //EVC10_MMIEchoedTrainData.MMI_M_ALT_DEM = mmiMAltDem;
+            //EVC10_MMIEchoedTrainData.MMI_NID_KEY_TRAIN_CAT = ~mmiNidKeyTrainCat; // Train category
+            //EVC10_MMIEchoedTrainData.MMI_M_BRAKE_PERC = 255 - mmiMBrakePerc; // Brake percentage
+            //EVC10_MMIEchoedTrainData.MMI_NID_KEY_AXLE_LOAD = ~mmiNidKeyAxleLoad; // Axle load category
+            //EVC10_MMIEchoedTrainData.MMI_M_AIRTIGHT = 255 - mmiMAirtight; // Train equipped with airtight system
+            //EVC10_MMIEchoedTrainData.MMI_NID_KEY_LOAD_GAUGE = ~mmiNidKeyLoadGauge; // Loading gauge type of train 
+            
+            //EVC10_MMIEchoedTrainData.MMI_M_TRAINSET_ID = 65535 - mmiMTrainsetId;
+            //EVC10_MMIEchoedTrainData.MMI_M_ALT_DEM = 65535 - mmiMAltDem;
 
             //EVC10_MMIEchoedTrainData.TrainSetCaptions = new List<string>(trainSetCaptions);
-            //EVC10_MMIEchoedTrainData.DataElements = new List<DataElement>(dataElements);
 
             //EVC10_MMIEchoedTrainData.Send();
         }

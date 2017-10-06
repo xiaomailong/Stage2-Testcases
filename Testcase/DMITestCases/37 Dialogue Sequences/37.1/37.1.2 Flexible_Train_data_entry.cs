@@ -185,24 +185,23 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, @"Press ‘Yes’ button");
 
-            DmiActions.Send_EVC10_MMIEchoedTrainData(~(Variables.MMI_M_DATA_ENABLE.TrainSetID |
-                                                       Variables.MMI_M_DATA_ENABLE.TrainCategory |
-                                                       Variables.MMI_M_DATA_ENABLE.TrainLength |
-                                                       Variables.MMI_M_DATA_ENABLE.BrakePercentage |
-                                                       Variables.MMI_M_DATA_ENABLE.MaxTrainSpeed |
-                                                       Variables.MMI_M_DATA_ENABLE.AxleLoadCategory |
-                                                       Variables.MMI_M_DATA_ENABLE.Airtightness |
-                                                       Variables.MMI_M_DATA_ENABLE.LoadingGauge),
-                                                      61335,                        // bit-inverted 4000 
-                                                      61216,                        // bit-inverted 120
-                                                      (Variables.MMI_NID_KEY)249,   // bit-inverted TILT1 (6)
-                                                      155,                          // bit-inverted 100 
-                                                      (Variables.MMI_NID_KEY)232,   // bit-inverted B1 (23)
-                                                      255,                          // bit-inverted 0 (No)
-                                                      (Variables.MMI_NID_KEY)221,   // bit-inverted G1 (34)
-                                                      219,                          // bit-inverted 36
-                                                      0xffff,                       // bit-inverted 0
-                                                      0xffff,                       // bit-inverted 0
+            DmiActions.Send_EVC10_MMIEchoedTrainData(Variables.MMI_M_DATA_ENABLE.TrainSetID |
+                                                     Variables.MMI_M_DATA_ENABLE.TrainCategory |
+                                                     Variables.MMI_M_DATA_ENABLE.TrainLength |
+                                                     Variables.MMI_M_DATA_ENABLE.BrakePercentage |
+                                                     Variables.MMI_M_DATA_ENABLE.MaxTrainSpeed |
+                                                     Variables.MMI_M_DATA_ENABLE.AxleLoadCategory |
+                                                     Variables.MMI_M_DATA_ENABLE.Airtightness |
+                                                     Variables.MMI_M_DATA_ENABLE.LoadingGauge,
+                                                     4000, 
+                                                     120,
+                                                     Variables.MMI_NID_KEY.TILT1,
+                                                     100, 
+                                                     Variables.MMI_NID_KEY.CATB1,
+                                                     0,
+                                                     Variables.MMI_NID_KEY.G1,
+                                                     0,
+                                                     0,
                                                       new[] { "FLU", "RLU", "Rescue" }, null);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -265,24 +264,23 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, @"Press ‘Yes’ button");
 
-            DmiActions.Send_EVC10_MMIEchoedTrainData(~(Variables.MMI_M_DATA_ENABLE.TrainSetID |
-                                                       Variables.MMI_M_DATA_ENABLE.TrainCategory |
-                                                       Variables.MMI_M_DATA_ENABLE.TrainLength |
-                                                       Variables.MMI_M_DATA_ENABLE.BrakePercentage |
-                                                       Variables.MMI_M_DATA_ENABLE.MaxTrainSpeed |
-                                                       Variables.MMI_M_DATA_ENABLE.AxleLoadCategory |
-                                                       Variables.MMI_M_DATA_ENABLE.Airtightness |
-                                                       Variables.MMI_M_DATA_ENABLE.LoadingGauge),
-                                                      61335,                        // bit-inverted 4000 
-                                                      61216,                        // bit-inverted 120
-                                                      (Variables.MMI_NID_KEY)249,   // bit-inverted TILT1 (6)
-                                                      155,                          // bit-inverted 100 
-                                                      (Variables.MMI_NID_KEY)232,   // bit-inverted B1 (23)
-                                                      255,                          // bit-inverted 0 (No)
-                                                      (Variables.MMI_NID_KEY)221,   // bit-inverted G1 (34)
-                                                      219,                          // bit-inverted 36
-                                                      0xffff,                       // bit-inverted 0
-                                                      0xffff,                       // bit-inverted 0
+            DmiActions.Send_EVC10_MMIEchoedTrainData(Variables.MMI_M_DATA_ENABLE.TrainSetID |
+                                                     Variables.MMI_M_DATA_ENABLE.TrainCategory |
+                                                     Variables.MMI_M_DATA_ENABLE.TrainLength |
+                                                     Variables.MMI_M_DATA_ENABLE.BrakePercentage |
+                                                     Variables.MMI_M_DATA_ENABLE.MaxTrainSpeed |
+                                                     Variables.MMI_M_DATA_ENABLE.AxleLoadCategory |
+                                                     Variables.MMI_M_DATA_ENABLE.Airtightness |
+                                                     Variables.MMI_M_DATA_ENABLE.LoadingGauge,
+                                                     4000,
+                                                     120,
+                                                     Variables.MMI_NID_KEY.TILT1,
+                                                     100,
+                                                     Variables.MMI_NID_KEY.CATB1,
+                                                     0,
+                                                     Variables.MMI_NID_KEY.G1,
+                                                     0,
+                                                     0,
                                                       new[] { "FLU", "RLU", "Rescue" }, null);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
