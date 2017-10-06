@@ -54,9 +54,8 @@ namespace Testcase.DMITestCases
             // Set driver ID
             DmiActions.Set_Driver_ID(this, "1234");
 
-            // Set to level 1 and SR mode
+            // Set to level 1
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L2;
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
 
             // Enable standard buttons including Start, and display Default window.
             DmiActions.Finished_SoM_Default_Window(this);
@@ -66,8 +65,6 @@ namespace Testcase.DMITestCases
         {
             // Post-conditions from TestSpec
             // DMI displays in SR mode, level 3
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in SR mode, Level 3.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -84,11 +81,8 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 11915 (partly: SH refused); MMI_gen 134 (partly: E5);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press ‘Main’ buttonPress and hold ‘Shunting’ button at least 2 seconds. Release ‘Shunting’ button");
-           
-            // The test spec differs from DMI_RS_ETCS_R4. A wait screen should be displayed first: if SH refused is received or after a timeout the message
-            // is displayed...
-          
+            DmiActions.ShowInstruction(this, @"Press ‘Main’ button, then press and hold ‘Shunting’ button for at least 2 seconds. Release the ‘Shunting’ button");
+                     
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 290;
             EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -102,23 +96,18 @@ namespace Testcase.DMITestCases
             Action: Re-validate the step1 by re-starting OTE Simulator and starting the precondition with ETCS level 3
             Expected Result: See the expected results at Step 1
             */
-            // ?? Is this sufficient...
             // Restart
+            DmiActions.ShowInstruction(this, "Power down the system, wait 10s then power up the system");
             DmiActions.Start_ATP();
-
             // Set train running number, cab 1 active, and other defaults
             DmiActions.Activate_Cabin_1(this);
-
             // Set driver ID
             DmiActions.Set_Driver_ID(this, "1234");
-
-            // Set to level 1 and SH mode
+            // Set to level 3 and SH mode
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L3;
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
 
             DmiActions.ShowInstruction(this, @"Press and hold ‘Shunting’ button for at least 2 seconds. Release ‘Shunting’ button");
-            // The test spec differs from DMI_RS_ETCS_R4. A wait screen should be displayed first: if SH refused is received or after a timeout the message
-            // is displayed...
+           
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 290;
             EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
