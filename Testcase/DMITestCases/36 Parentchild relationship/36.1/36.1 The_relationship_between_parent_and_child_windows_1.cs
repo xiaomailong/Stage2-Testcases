@@ -78,7 +78,7 @@ namespace Testcase.DMITestCases
             Expected Result: The Settings window is displayed
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press the ‘Settings’ button");
+            DmiActions.ShowInstruction(this, @"Confirm the Driver ID, then press the ‘Settings’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window.");
@@ -93,13 +93,16 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press the ‘Close’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI close the Settings window and displays the Driver ID window.");
+                                "1. DMI closes the Settings window and displays the Driver ID window.");
             /*
             Test Step 4
             Action: Press ‘TRN’ button
             Expected Result: The Train Running Number window is displayed
             */
             DmiActions.ShowInstruction(this, @"Press ‘TRN’ button");
+
+            EVC16_CurrentTrainNumber.TrainRunningNumber = 1;
+            EVC16_CurrentTrainNumber.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Train Running Number window.");
@@ -121,8 +124,23 @@ namespace Testcase.DMITestCases
             Action: Enter Driver ID and perform brake test
             Expected Result: The Level window is displayed
             */
-            // Call generic Action Method
+            EVC14_MMICurrentDriverID.MMI_X_DRIVER_ID = "";
+            EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE = EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE_BUTTONS.Settings |
+                                                        EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE_BUTTONS.TRN;
+            EVC14_MMICurrentDriverID.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
+            EVC14_MMICurrentDriverID.Send();
+
+            // Brake test is in Settings window?
             DmiActions.ShowInstruction(this, @"Enter Driver ID and perform brake test");
+
+            EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Disabled;
+            EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new Variables.MMI_Q_LEVEL_NTC_ID[] { Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level };
+            EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new Variables.MMI_M_CURRENT_LEVEL[] { Variables.MMI_M_CURRENT_LEVEL.NotLastUsedLevel };
+            EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = new Variables.MMI_M_LEVEL_FLAG[] { Variables.MMI_M_LEVEL_FLAG.MarkedLevel };
+            EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = new Variables.MMI_M_INHIBITED_LEVEL[] { Variables.MMI_M_INHIBITED_LEVEL.NotInhibited };
+            EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = new Variables.MMI_M_INHIBIT_ENABLE[] { Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting };
+            EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new Variables.MMI_M_LEVEL_NTC_ID[] { Variables.MMI_M_LEVEL_NTC_ID.L1 };
+            EVC20_MMISelectLevel.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Level window.");
@@ -134,6 +152,13 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Select and confirm Level 1");
 
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;          // Main
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.DriverID |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.TrainData |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.Level;
+            EVC30_MMIRequestEnable.Send();
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Main window.");
 
@@ -144,6 +169,12 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press the ‘Driver ID’ button");
+
+            EVC14_MMICurrentDriverID.MMI_X_DRIVER_ID = "";
+            EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE = EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE_BUTTONS.Settings |
+                                                        EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE_BUTTONS.TRN;
+            EVC14_MMICurrentDriverID.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
+            EVC14_MMICurrentDriverID.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Driver ID window." + Environment.NewLine +
@@ -168,6 +199,21 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press the ‘Train data’ button");
 
+            DmiActions.Send_EVC6_MMICurrentTrainData(Variables.MMI_M_DATA_ENABLE.TrainSetID |
+                                                     Variables.MMI_M_DATA_ENABLE.TrainCategory |
+                                                     Variables.MMI_M_DATA_ENABLE.TrainLength |
+                                                     Variables.MMI_M_DATA_ENABLE.BrakePercentage |
+                                                     Variables.MMI_M_DATA_ENABLE.MaxTrainSpeed |
+                                                     Variables.MMI_M_DATA_ENABLE.AxleLoadCategory |
+                                                     Variables.MMI_M_DATA_ENABLE.Airtightness,
+                                                     100, 200,
+                                                     Variables.MMI_NID_KEY.PASS2,
+                                                     70,
+                                                     Variables.MMI_NID_KEY.CATA,
+                                                     0,
+                                                     Variables.MMI_NID_KEY.G1,
+                                                     36, 0, 0, new[] { "FLU", "RLU", "Rescue" }, null);
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Train data window." + Environment.NewLine +
                                 "2. The ‘Close’ button is displayed enabled.");
@@ -190,7 +236,23 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press ‘Train data’ button");
-            // Call generic Check Results Method
+
+            DmiActions.Send_EVC6_MMICurrentTrainData(Variables.MMI_M_DATA_ENABLE.TrainSetID |
+                                                     Variables.MMI_M_DATA_ENABLE.TrainCategory |
+                                                     Variables.MMI_M_DATA_ENABLE.TrainLength |
+                                                     Variables.MMI_M_DATA_ENABLE.BrakePercentage |
+                                                     Variables.MMI_M_DATA_ENABLE.MaxTrainSpeed |
+                                                     Variables.MMI_M_DATA_ENABLE.AxleLoadCategory |
+                                                     Variables.MMI_M_DATA_ENABLE.Airtightness |
+                                                     Variables.MMI_M_DATA_ENABLE.LoadingGauge,
+                                                     100, 200,
+                                                     Variables.MMI_NID_KEY.PASS2,
+                                                     70,
+                                                     Variables.MMI_NID_KEY.CATA,
+                                                     0,
+                                                     Variables.MMI_NID_KEY.G1,
+                                                     36, 0, 0, new[] { "FLU", "RLU", "Rescue" }, null);
+
             DmiExpectedResults.Train_data_window_displayed(this);
 
             /*
@@ -200,7 +262,24 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, "If the train data area fixed, re-select the train type and press the ‘Yes’ button" + Environment.NewLine +
                                              "If the train data are flexible, enter all the train data and press the ‘Yes’ button");
-            
+
+            // Difficult to investigate EVC107 response from DMI to check what was set so display some data
+            DmiActions.Send_EVC10_MMIEchoedTrainData(Variables.MMI_M_DATA_ENABLE.TrainSetID |
+                                                     Variables.MMI_M_DATA_ENABLE.TrainCategory |
+                                                     Variables.MMI_M_DATA_ENABLE.TrainLength |
+                                                     Variables.MMI_M_DATA_ENABLE.BrakePercentage |
+                                                     Variables.MMI_M_DATA_ENABLE.MaxTrainSpeed |
+                                                     Variables.MMI_M_DATA_ENABLE.AxleLoadCategory |
+                                                     Variables.MMI_M_DATA_ENABLE.Airtightness,
+                                                     100, 200,
+                                                     Variables.MMI_NID_KEY.PASS2,
+                                                     70, 
+                                                     Variables.MMI_NID_KEY.CATA,
+                                                     0,
+                                                     Variables.MMI_NID_KEY.G1,
+                                                     0, 0,
+                                                     new[] { "FLU", "RLU", "Rescue" }, null);
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Train data validation window." + Environment.NewLine +
                                 "2. The ‘Close’ button is displayed enabled.");
@@ -225,6 +304,16 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press the ‘Level’ button");
 
+            EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
+            EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new Variables.MMI_Q_LEVEL_NTC_ID[] { Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level };
+            EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new Variables.MMI_M_CURRENT_LEVEL[] { Variables.MMI_M_CURRENT_LEVEL.NotLastUsedLevel };
+            EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = new Variables.MMI_M_LEVEL_FLAG[] { Variables.MMI_M_LEVEL_FLAG.MarkedLevel };
+            EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = new Variables.MMI_M_INHIBITED_LEVEL[] { Variables.MMI_M_INHIBITED_LEVEL.NotInhibited };
+            EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = new Variables.MMI_M_INHIBIT_ENABLE[] { Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting };
+            EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new Variables.MMI_M_LEVEL_NTC_ID[] { Variables.MMI_M_LEVEL_NTC_ID.L1 };
+            EVC20_MMISelectLevel.Send();
+
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Level window." + Environment.NewLine +
                                 "2. The ‘Close’ button is displayed enabled.");
@@ -246,6 +335,9 @@ namespace Testcase.DMITestCases
             Expected Result: The Train Running Number window is displayed. The ‘Close’ button is presented as enabled state
             */
             DmiActions.ShowInstruction(this, @"Press the ‘Train Running Number’ button");
+
+            EVC16_CurrentTrainNumber.TrainRunningNumber = 1;
+            EVC16_CurrentTrainNumber.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Train Running Number window." + Environment.NewLine +
