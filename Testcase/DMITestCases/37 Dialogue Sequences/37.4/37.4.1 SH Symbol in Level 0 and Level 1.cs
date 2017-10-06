@@ -63,8 +63,6 @@ namespace Testcase.DMITestCases
         {
             // Post-conditions from TestSpec
             // DMI displays in SH mode, level 1
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in SH mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -82,10 +80,12 @@ namespace Testcase.DMITestCases
 
             Test Step Comment: MMI_gen 11914 (partly: receives SH symbol); MMI_gen 11084 (partly: SH);MMI_gen 11914 (partly: display the symbol when receive SH symbol); MMI_gen 110 (partly: MO10);MMI_gen 11914 (partly: close main window and return to the default window);
             */
+
+            DmiActions.ShowInstruction(this, @"Press and hold the ‘Shunting’ button for at least 2 seconds, then release the button");
+
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L0;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Shunting;
 
-            DmiActions.ShowInstruction(this, @"Press and hold ‘Shunting’ button for at least 2 seconds. Release ‘Shunting’ button");
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the symbol M001 in area B7." + Environment.NewLine +
                                 "2. DMI closes Main window and displays the Default window.");
@@ -95,8 +95,8 @@ namespace Testcase.DMITestCases
             Action: Re-validate the step 1 by re-starting OTE Simulator and starting the precondition with ETCS level 1.
             Expected Result: See the expected results at Step 1
             */
-            // ?? Is this sufficient...
-            // Restart
+            DmiActions.ShowInstruction(this, @"Power down the system, wait 10s and then power up the system");
+
             DmiActions.Start_ATP();
 
             // Set train running number, cab 1 active, and other defaults
@@ -105,9 +105,8 @@ namespace Testcase.DMITestCases
             // Set driver ID
             DmiActions.Set_Driver_ID(this, "1234");
 
-            // Set to level 1 and SH mode
+            // Set to level 1
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
             
             DmiActions.ShowInstruction(this, @"Press and hold ‘Shunting’ button for at least 2 seconds. Release ‘Shunting’ button");
 
