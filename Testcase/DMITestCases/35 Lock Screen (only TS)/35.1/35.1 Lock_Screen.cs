@@ -78,18 +78,50 @@ namespace Testcase.DMITestCases
             DmiActions.Display_Level_Window(this);
             DmiActions.ShowInstruction(this, "Select and enter Level 1");
 
-            DmiActions.Display_Main_Window_with_Start_button_not_enabled(this);
+            DmiActions.Display_Main_Window_with_Start_button_enabled(this);
             DmiActions.ShowInstruction(this, @"Press ‘Train data’ button");
 
-            DmiActions.Display_Train_Data_Window(this);
+            //won't know what data to display in validation: DmiActions.Display_Train_Data_Window(this);
+            DmiActions.Send_EVC6_MMICurrentTrainData(Variables.MMI_M_DATA_ENABLE.TrainSetID |
+                                                     Variables.MMI_M_DATA_ENABLE.TrainCategory |
+                                                     Variables.MMI_M_DATA_ENABLE.TrainLength |
+                                                     Variables.MMI_M_DATA_ENABLE.BrakePercentage |
+                                                     Variables.MMI_M_DATA_ENABLE.MaxTrainSpeed |
+                                                     Variables.MMI_M_DATA_ENABLE.AxleLoadCategory |
+                                                     Variables.MMI_M_DATA_ENABLE.Airtightness,
+                                                     100, 200,
+                                                     Variables.MMI_NID_KEY.PASS2,
+                                                     70,
+                                                     Variables.MMI_NID_KEY.CATA,
+                                                     0,
+                                                     Variables.MMI_NID_KEY.G1,
+                                                     36, 0, 0, new[] { "FLU", "RLU", "Rescue" }, null);
+
             DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
-                                "1. Enter and confirm value in each input field." + Environment.NewLine +
+                                "1. Confirm value in each input field." + Environment.NewLine +
                                 "2. Press ‘Yes’ button.");
 
-            DmiActions.Display_Train_data_validation_Window(this);
+            // EVC10 needed for this: DmiActions.Display_Train_data_validation_Window(this);
+            DmiActions.Send_EVC10_MMIEchoedTrainData(Variables.MMI_M_DATA_ENABLE.TrainSetID |
+                                                     Variables.MMI_M_DATA_ENABLE.TrainCategory |
+                                                     Variables.MMI_M_DATA_ENABLE.TrainLength |
+                                                     Variables.MMI_M_DATA_ENABLE.BrakePercentage |
+                                                     Variables.MMI_M_DATA_ENABLE.MaxTrainSpeed |
+                                                     Variables.MMI_M_DATA_ENABLE.AxleLoadCategory |
+                                                     Variables.MMI_M_DATA_ENABLE.Airtightness,
+                                                     100, 200,
+                                                     Variables.MMI_NID_KEY.PASS2,
+                                                     70, 
+                                                     Variables.MMI_NID_KEY.CATA,
+                                                     0,
+                                                     Variables.MMI_NID_KEY.G1,
+                                                     0, 0,
+                                                     new[] { "FLU", "RLU", "Rescue" }, null);
+
+            // test wrong: pressing Yes button confirms the data?
             DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
                                 "1. Press ‘Yes’ button." + Environment.NewLine +
-                                "2. Confirmed the selected value by pressing the input field.");
+                                "2. Confirmed the selected values by pressing  a data input field.");
 
             DmiActions.Display_TRN_Window(this);
             DmiActions.ShowInstruction(this, "Enter and confirm Train Running Number and press the ‘Close’ button");
@@ -139,7 +171,15 @@ namespace Testcase.DMITestCases
             Action: Press ‘Main’ button and select ‘Start’ button. Then, acknowledge SR mode
             Expected Result: DMI displays in SR mode and Level 1
             */
-            DmiActions.ShowInstruction(this, "Press the ‘Close’ button. Select the ‘Start’ button and acknowledge SR mode");
+            DmiActions.ShowInstruction(this, "Press the ‘Main’ button, then select the ‘Start’ button");
+
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 263;            // Ack SR mode
+            EVC8_MMIDriverMessage.Send();
+
+            DmiActions.ShowInstruction(this, "Acknowledge SR mode");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SR mode and Level 1.");
@@ -162,8 +202,9 @@ namespace Testcase.DMITestCases
             */
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 40;
             
+            // Will this work?
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. Note that the speed registered = 40 km'h and after 1s DMI displays the Default window." + Environment.NewLine +
+                                "1. Note that the speed registered = 40 km/h and after 1s DMI displays the Default window." + Environment.NewLine +
                                 "2. DMI plays the Sinfo sound.");
 
             /*
