@@ -94,8 +94,8 @@ namespace Testcase.DMITestCases
             Action: Re-validate the step1 by re-starting OTE Simulator and starting the precondition with ETCS level 3
             Expected Result: See the expected results at Step 1
             */
-            // ?? Is this sufficient...
             // Restart
+            DmiActions.ShowInstruction(this, "Power down the system, wait 10s, then power up the system");
             DmiActions.Start_ATP();
 
             // Set train running number, cab 1 active, and other defaults
