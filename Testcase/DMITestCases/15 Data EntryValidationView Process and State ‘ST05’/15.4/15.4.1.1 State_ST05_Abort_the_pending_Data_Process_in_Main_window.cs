@@ -215,7 +215,7 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, @"Enter and accept the values of all Input Fields. Press on the enabled ‘Yes’ button");
 
-            DmiActions.Send_EVC10_MMIEchoedTrainData_FixedDataEntry(this, new[] { "FLU", "RLU", "Rescue" }, 2);
+            DmiActions.Send_EVC10_MMIEchoedTrainData_FixedDataEntry(this, Variables.paramEvc6FixedTrainsetCaptions);
             //EVC10_MMIEchoedTrainData.MMI_M_BUTTONS = 36;  // BTN_YES_DATA_ENTRY_COMPLETE
             //EVC10_MMIEchoedTrainData.Send();
 

@@ -264,7 +264,7 @@ namespace Testcase.DMITestCases
                                              "If the train data are flexible, enter all the train data and press the ‘Yes’ button");
 
             // Difficult to investigate EVC107 response from DMI to check what was set so display some data
-            DmiActions.Send_EVC10_MMIEchoedTrainData(Variables.MMI_M_DATA_ENABLE.TrainSetID |
+            /*DmiActions.Send_EVC10_MMIEchoedTrainData(Variables.MMI_M_DATA_ENABLE.TrainSetID |
                                                      Variables.MMI_M_DATA_ENABLE.TrainCategory |
                                                      Variables.MMI_M_DATA_ENABLE.TrainLength |
                                                      Variables.MMI_M_DATA_ENABLE.BrakePercentage |
@@ -278,7 +278,8 @@ namespace Testcase.DMITestCases
                                                      0,
                                                      Variables.MMI_NID_KEY.G1,
                                                      0, 0,
-                                                     new[] { "FLU", "RLU", "Rescue" }, null);
+                                                     new[] { "FLU", "RLU", "Rescue" }, null);*/
+            DmiActions.Send_EVC10_MMIEchoedTrainData_FixedDataEntry(this, Variables.paramEvc6FixedTrainsetCaptions);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Train data validation window." + Environment.NewLine +

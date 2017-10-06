@@ -225,21 +225,22 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, "Confirm all values in the train data window, then press the ‘Yes’ button");
 
-            DmiActions.Send_EVC10_MMIEchoedTrainData(Variables.MMI_M_DATA_ENABLE.TrainSetID |
-                                                     Variables.MMI_M_DATA_ENABLE.TrainCategory |
-                                                     Variables.MMI_M_DATA_ENABLE.TrainLength |
-                                                     Variables.MMI_M_DATA_ENABLE.BrakePercentage |
-                                                     Variables.MMI_M_DATA_ENABLE.MaxTrainSpeed |
-                                                     Variables.MMI_M_DATA_ENABLE.AxleLoadCategory |
-                                                     Variables.MMI_M_DATA_ENABLE.Airtightness |
-                                                     Variables.MMI_M_DATA_ENABLE.LoadingGauge,
-                                                     100, 200,
-                                                     Variables.MMI_NID_KEY.PASS2,
-                                                     100,
-                                                     Variables.MMI_NID_KEY.CATA,
-                                                     0,
-                                                     Variables.MMI_NID_KEY.G1,
-                                                     0, 0, new[] { "FLU", "RLU", "Rescue" }, null);
+            //DmiActions.Send_EVC10_MMIEchoedTrainData(Variables.MMI_M_DATA_ENABLE.TrainSetID |
+            //                                         Variables.MMI_M_DATA_ENABLE.TrainCategory |
+            //                                         Variables.MMI_M_DATA_ENABLE.TrainLength |
+            //                                         Variables.MMI_M_DATA_ENABLE.BrakePercentage |
+            //                                         Variables.MMI_M_DATA_ENABLE.MaxTrainSpeed |
+            //                                         Variables.MMI_M_DATA_ENABLE.AxleLoadCategory |
+            //                                         Variables.MMI_M_DATA_ENABLE.Airtightness |
+            //                                         Variables.MMI_M_DATA_ENABLE.LoadingGauge,
+            //                                         100, 200,
+            //                                         Variables.MMI_NID_KEY.PASS2,
+            //                                         100,
+            //                                         Variables.MMI_NID_KEY.CATA,
+            //                                         0,
+            //                                         Variables.MMI_NID_KEY.G1,
+            //                                         0, 0, new[] { "FLU", "RLU", "Rescue" }, null);
+            DmiActions.Send_EVC10_MMIEchoedTrainData_FixedDataEntry(this, Variables.paramEvc6FixedTrainsetCaptions);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Train data validation window.");
@@ -300,21 +301,22 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, @"Confirm all values in the train data window. Press ‘Yes’ button");
 
-            DmiActions.Send_EVC10_MMIEchoedTrainData(Variables.MMI_M_DATA_ENABLE.TrainSetID |
-                                                     Variables.MMI_M_DATA_ENABLE.TrainCategory |
-                                                     Variables.MMI_M_DATA_ENABLE.TrainLength |
-                                                     Variables.MMI_M_DATA_ENABLE.BrakePercentage |
-                                                     Variables.MMI_M_DATA_ENABLE.MaxTrainSpeed |
-                                                     Variables.MMI_M_DATA_ENABLE.AxleLoadCategory |
-                                                     Variables.MMI_M_DATA_ENABLE.Airtightness |
-                                                     Variables.MMI_M_DATA_ENABLE.LoadingGauge,
-                                                     100, 200,
-                                                     Variables.MMI_NID_KEY.PASS2,
-                                                     100,
-                                                     Variables.MMI_NID_KEY.CATA,
-                                                     0,
-                                                     Variables.MMI_NID_KEY.G1,
-                                                     0, 0, new[] { "FLU", "RLU", "Rescue" }, null);
+            //DmiActions.Send_EVC10_MMIEchoedTrainData(Variables.MMI_M_DATA_ENABLE.TrainSetID |
+            //                                         Variables.MMI_M_DATA_ENABLE.TrainCategory |
+            //                                         Variables.MMI_M_DATA_ENABLE.TrainLength |
+            //                                         Variables.MMI_M_DATA_ENABLE.BrakePercentage |
+            //                                         Variables.MMI_M_DATA_ENABLE.MaxTrainSpeed |
+            //                                         Variables.MMI_M_DATA_ENABLE.AxleLoadCategory |
+            //                                         Variables.MMI_M_DATA_ENABLE.Airtightness |
+            //                                         Variables.MMI_M_DATA_ENABLE.LoadingGauge,
+            //                                         100, 200,
+            //                                         Variables.MMI_NID_KEY.PASS2,
+            //                                         100,
+            //                                         Variables.MMI_NID_KEY.CATA,
+            //                                         0,
+            //                                         Variables.MMI_NID_KEY.G1,
+            //                                         0, 0, new[] { "FLU", "RLU", "Rescue" }, null);
+            DmiActions.Send_EVC10_MMIEchoedTrainData_FixedDataEntry(this, Variables.paramEvc6FixedTrainsetCaptions);
 
             DmiActions.ShowInstruction(this, @"Press ‘Yes’ button in the train data validation window");
 

@@ -109,6 +109,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static MMI_M_DATA_ENABLE MMI_M_DATA_ENABLE
         {
+            get => (MMI_M_DATA_ENABLE)(_pool.SITR.ETCS1.CurrentTrainData.MmiMDataEnable.Value);
             set => _pool.SITR.ETCS1.CurrentTrainData.MmiMDataEnable.Value = (ushort) value;
         }
 
@@ -122,6 +123,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static ushort MMI_L_TRAIN
         {
+            get => _pool.SITR.ETCS1.CurrentTrainData.MmiLTrain.Value;
             set => _pool.SITR.ETCS1.CurrentTrainData.MmiLTrain.Value = value;
         }
 
@@ -135,6 +137,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static ushort MMI_V_MAXTRAIN
         {
+            get => _pool.SITR.ETCS1.CurrentTrainData.MmiVMaxtrain.Value;
             set => _pool.SITR.ETCS1.CurrentTrainData.MmiVMaxtrain.Value = value;
         }
 
@@ -164,6 +167,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static MMI_NID_KEY MMI_NID_KEY_TRAIN_CAT
         {
+            get => (MMI_NID_KEY)(_pool.SITR.ETCS1.CurrentTrainData.MmiNidKeyTrainCat.Value);
             set => _pool.SITR.ETCS1.CurrentTrainData.MmiNidKeyTrainCat.Value = (byte) value;
         }
 
@@ -178,6 +182,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static ushort MMI_M_BRAKE_PERC
         {
+            get => _pool.SITR.ETCS1.CurrentTrainData.MmiMBrakePerc.Value;
             set => _pool.SITR.ETCS1.CurrentTrainData.MmiMBrakePerc.Value = (byte) value;
         }
 
@@ -202,6 +207,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static MMI_NID_KEY MMI_NID_KEY_AXLE_LOAD
         {
+            get => (MMI_NID_KEY)(_pool.SITR.ETCS1.CurrentTrainData.MmiNidKeyAxleLoad.Value);
             set => _pool.SITR.ETCS1.CurrentTrainData.MmiNidKeyAxleLoad.Value = (byte) value;
         }
 
@@ -216,6 +222,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static ushort MMI_M_AIRTIGHT
         {
+            get => _pool.SITR.ETCS1.CurrentTrainData.MmiMAirtight.Value;
             set => _pool.SITR.ETCS1.CurrentTrainData.MmiMAirtight.Value = (byte) value;
         }
 
@@ -232,6 +239,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static MMI_NID_KEY MMI_NID_KEY_LOAD_GAUGE
         {
+            get => (MMI_NID_KEY)(_pool.SITR.ETCS1.CurrentTrainData.MmiNidKeyLoadGauge.Value);
             set => _pool.SITR.ETCS1.CurrentTrainData.MmiNidKeyLoadGauge.Value = (byte) value;
         }
 

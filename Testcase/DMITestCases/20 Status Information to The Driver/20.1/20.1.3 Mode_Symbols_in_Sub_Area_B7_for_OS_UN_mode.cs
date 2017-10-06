@@ -132,12 +132,12 @@ namespace Testcase.DMITestCases
 
             DmiExpectedResults.Fixed_Train_Data_entered(this, Fixed_Trainset_Captions.FLU);
 
-            return GlobalTestResult;
-
             DmiActions.Display_Train_data_validation_Window(this);
             DmiExpectedResults.Train_data_validation_window_displayed(this);
 
             #endregion
+
+            return GlobalTestResult;
 
             #region Test Step 6
             /*
