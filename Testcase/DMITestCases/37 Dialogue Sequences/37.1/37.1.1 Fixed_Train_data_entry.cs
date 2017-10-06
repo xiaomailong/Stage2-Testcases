@@ -81,21 +81,10 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Press ‘Train data’ button");
 
-            DmiActions.Send_EVC6_MMICurrentTrainData(Variables.MMI_M_DATA_ENABLE.TrainSetID |
-                                                     Variables.MMI_M_DATA_ENABLE.TrainCategory |
-                                                     Variables.MMI_M_DATA_ENABLE.TrainLength |
-                                                     Variables.MMI_M_DATA_ENABLE.BrakePercentage |
-                                                     Variables.MMI_M_DATA_ENABLE.MaxTrainSpeed |
-                                                     Variables.MMI_M_DATA_ENABLE.AxleLoadCategory |
-                                                     Variables.MMI_M_DATA_ENABLE.Airtightness,
-                                                     100, 200, 
-                                                     Variables.MMI_NID_KEY.PASS1, 
-                                                     70,
-                                                     Variables.MMI_NID_KEY.CATA, 
-                                                     0,
-                                                     Variables.MMI_NID_KEY.G1, 
-                                                     36, 0, 0, new[] { "FLU", "RLU", "Rescue" }, null);
-
+            DmiActions.Send_EVC6_MMICurrentTrainData_FixedDataEntry(this,
+                                                                    new[] { "FLU", "RLU", "Rescue" },
+                                                                    1);
+                
             DmiExpectedResults.Train_data_window_displayed(this);
 
             /*
@@ -103,7 +92,8 @@ namespace Testcase.DMITestCases
             Action: Select dedicated keyboard button which have different label from an input field without confirmation
             Expected Result: The value of input field is changed refer to pressed button
             */
-            DmiActions.ShowInstruction(this, "Press a key on the dedicated keyboard with a label other than ‘PASS 1’ without confirming the value");
+            DmiActions.ShowInstruction(this, "Press the <type 2> key on the dedicated keyboard without confirming the value");
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field displays the value pressed.");
 
@@ -115,20 +105,9 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Press the ‘Close’ button, then press Train data button");
 
-            DmiActions.Send_EVC6_MMICurrentTrainData(Variables.MMI_M_DATA_ENABLE.TrainSetID |
-                                                     Variables.MMI_M_DATA_ENABLE.TrainCategory |
-                                                     Variables.MMI_M_DATA_ENABLE.TrainLength |
-                                                     Variables.MMI_M_DATA_ENABLE.BrakePercentage |
-                                                     Variables.MMI_M_DATA_ENABLE.MaxTrainSpeed |
-                                                     Variables.MMI_M_DATA_ENABLE.AxleLoadCategory |
-                                                     Variables.MMI_M_DATA_ENABLE.Airtightness,
-                                                     100, 200,
-                                                     Variables.MMI_NID_KEY.PASS1,
-                                                     70,
-                                                     Variables.MMI_NID_KEY.CATA,
-                                                     0,
-                                                     Variables.MMI_NID_KEY.G1,
-                                                     36, 0, 0, new[] { "FLU", "RLU", "Rescue" }, null);
+            DmiActions.Send_EVC6_MMICurrentTrainData_FixedDataEntry(this,
+                                                                    new[] { "FLU", "RLU", "Rescue" },
+                                                                    1);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Train data window." + Environment.NewLine +
@@ -139,26 +118,11 @@ namespace Testcase.DMITestCases
             Action: Select and confirm dedicated keyboard button which have different label from an input field. Then, press ‘Yes’ button
             Expected Result: DMI displays Train data validation window
             */
-            DmiActions.ShowInstruction(this, @"Press the ‘PASS 2’ key on the dedicated keyboard, then press ‘Yes’ button");
-            
-            DmiActions.Send_EVC10_MMIEchoedTrainData(~(Variables.MMI_M_DATA_ENABLE.TrainSetID |
-                                                       Variables.MMI_M_DATA_ENABLE.TrainCategory |
-                                                       Variables.MMI_M_DATA_ENABLE.TrainLength |
-                                                       Variables.MMI_M_DATA_ENABLE.BrakePercentage |
-                                                       Variables.MMI_M_DATA_ENABLE.MaxTrainSpeed |
-                                                       Variables.MMI_M_DATA_ENABLE.AxleLoadCategory |
-                                                       Variables.MMI_M_DATA_ENABLE.Airtightness),
-                                                      65435,                          // bit-inverted 100 
-                                                      65335,                          // bit-inverted 200
-                                                      (Variables.MMI_NID_KEY)251,   // bit-inverted PASS2 (4)
-                                                      185,                          // bit-inverted 70 
-                                                      (Variables.MMI_NID_KEY)234,   // bit-inverted CATA (21)
-                                                      255,                          // bit-inverted 0
-                                                      Variables.MMI_NID_KEY.G1,
-                                                      219,                          // bit-inverted 36
-                                                      0xffff,                       // bit-inverted 0
-                                                      0xffff,                       // bit-inverted 0
-                                                      new[] { "FLU", "RLU", "Rescue" }, null);
+            DmiActions.ShowInstruction(this, @"Press the <type 2> key on the dedicated keyboard, then press ‘Yes’ button");
+
+            DmiActions.Send_EVC10_MMIEchoedTrainData_FixedDataEntry(this,
+                                                                    new[] { "FLU", "RLU", "Rescue" },
+                                                                    2);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Train data validation window.");
@@ -181,24 +145,14 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Press the ‘Train data’ button");
 
-            DmiActions.Send_EVC6_MMICurrentTrainData(Variables.MMI_M_DATA_ENABLE.TrainSetID |
-                                                     Variables.MMI_M_DATA_ENABLE.TrainCategory |
-                                                     Variables.MMI_M_DATA_ENABLE.TrainLength |
-                                                     Variables.MMI_M_DATA_ENABLE.BrakePercentage |
-                                                     Variables.MMI_M_DATA_ENABLE.MaxTrainSpeed |
-                                                     Variables.MMI_M_DATA_ENABLE.AxleLoadCategory |
-                                                     Variables.MMI_M_DATA_ENABLE.Airtightness,
-                                                     100, 200,
-                                                     Variables.MMI_NID_KEY.PASS1,
-                                                     70,
-                                                     Variables.MMI_NID_KEY.CATA,
-                                                     0,
-                                                     Variables.MMI_NID_KEY.G1,
-                                                     36, 0, 0, new[] { "FLU", "RLU", "Rescue" }, null);
+
+            DmiActions.Send_EVC6_MMICurrentTrainData_FixedDataEntry(this,
+                                                                    new[] { "FLU", "RLU", "Rescue" },
+                                                                    1);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Train data window." + Environment.NewLine +
-                                "2. Train type is ‘PASS 1’ and does not change to ‘PASS 2’ (confirmed in Step 5.");
+                                "2. Train type is ‘type 1’ and does not change to ‘type 2’ (confirmed in Step 5.");
 
             /*
             Test Step 8
@@ -206,26 +160,11 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Main window.
             Test Step Comment:
             */
-            DmiActions.ShowInstruction(this, @"Press the ‘PASS 2’ key on the dedicated keyboard, then press ‘Yes’ button");
+            DmiActions.ShowInstruction(this, @"Press the ‘type 2’ key on the dedicated keyboard, then press ‘Yes’ button");
 
-            DmiActions.Send_EVC10_MMIEchoedTrainData(~(Variables.MMI_M_DATA_ENABLE.TrainSetID |
-                                                       Variables.MMI_M_DATA_ENABLE.TrainCategory |
-                                                       Variables.MMI_M_DATA_ENABLE.TrainLength |
-                                                       Variables.MMI_M_DATA_ENABLE.BrakePercentage |
-                                                       Variables.MMI_M_DATA_ENABLE.MaxTrainSpeed |
-                                                       Variables.MMI_M_DATA_ENABLE.AxleLoadCategory |
-                                                       Variables.MMI_M_DATA_ENABLE.Airtightness),
-                                                      65435,                          // bit-inverted 100 
-                                                      65335,                          // bit-inverted 200
-                                                      (Variables.MMI_NID_KEY)251,   // bit-inverted PASS2 (4)
-                                                      185,                          // bit-inverted 70 
-                                                      (Variables.MMI_NID_KEY)234,   // bit-inverted CATA (21)
-                                                      255,                          // bit-inverted 0
-                                                      Variables.MMI_NID_KEY.G1,
-                                                      219,                          // bit-inverted 36
-                                                      0xffff,                       // bit-inverted 0
-                                                      0xffff,                       // bit-inverted 0
-                                                      new[] { "FLU", "RLU", "Rescue" }, null);
+            DmiActions.Send_EVC10_MMIEchoedTrainData_FixedDataEntry(this,
+                                                                    new[] { "FLU", "RLU", "Rescue" },
+                                                                    2);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Train data validation window.");
@@ -240,24 +179,13 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Press ‘Train data’ button");
 
-            DmiActions.Send_EVC6_MMICurrentTrainData(Variables.MMI_M_DATA_ENABLE.TrainSetID |
-                                                     Variables.MMI_M_DATA_ENABLE.TrainCategory |
-                                                     Variables.MMI_M_DATA_ENABLE.TrainLength |
-                                                     Variables.MMI_M_DATA_ENABLE.BrakePercentage |
-                                                     Variables.MMI_M_DATA_ENABLE.MaxTrainSpeed |
-                                                     Variables.MMI_M_DATA_ENABLE.AxleLoadCategory |
-                                                     Variables.MMI_M_DATA_ENABLE.Airtightness,
-                                                     100, 200,
-                                                     Variables.MMI_NID_KEY.PASS2,
-                                                     70,
-                                                     Variables.MMI_NID_KEY.CATA,
-                                                     0,
-                                                     Variables.MMI_NID_KEY.G1,
-                                                     36, 0, 0, new[] { "FLU", "RLU", "Rescue" }, null);
+            DmiActions.Send_EVC6_MMICurrentTrainData_FixedDataEntry(this,
+                                                                    new[] { "FLU", "RLU", "Rescue" },
+                                                                    2);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Train data window." + Environment.NewLine +
-                                "2. Train type changes to ‘PASS 2’ (confirmed in Step 8).");
+                                "2. Train type changes to ‘type 2’ (confirmed in Step 8).");
 
             /*
             Test Step 10
