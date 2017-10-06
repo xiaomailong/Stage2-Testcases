@@ -16,81 +16,85 @@ namespace Testcase.Telegrams.EVCtoDMI
     public static class EVC10_MMIEchoedTrainData
     {
         private static SignalPool _pool;
-        private static int _trainsetid;
-        private static int _maltdem;
-        const string BaseString = "ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub";
+        const string BaseStringEVC06 = "ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub";
+        const string BaseStringEVC06_1 = "_EVC06CurrentTrainDataSub11";
+        const string BaseStringEVC10 = "ETCS1_EchoedTrainData_EVC10EchoedTrainDataSub";
+        const string BaseStringEVC10_1 = "_EVC10EchoedTrainDataSub11";
+
 
         /// <summary>
-        /// Initialise an instance of EVC-6 MMI Current Train Data telegram.
+        /// Initialise an instance of EVC-10 MMI Echoed Train Data telegram.
         /// </summary>
         /// <param name="pool"></param>
         public static void Initialise(SignalPool pool)
         {
             _pool = pool;
             TrainSetCaptions = new List<string>();
-            DataElements = new List<DataElement>();
 
             // Set as dynamic
-            _pool.SITR.SMDCtrl.ETCS1.CurrentTrainData.Value = 0x8;
+            _pool.SITR.SMDCtrl.ETCS1.EchoedTrainData.Value = 0x8;
 
             // Set default values
-            _pool.SITR.ETCS1.CurrentTrainData.MmiMPacket.Value = 6; // Packet ID
+            _pool.SITR.ETCS1.EchoedTrainData.MmiMPacket.Value = 10; // Packet ID
         }
 
-        private static void SetAlias()
-        {
-            _pool.SITR.ETCS1.CurrentTrainData.EVC6alias1.Value = (byte) (_trainsetid << 4 | _maltdem << 2);
-        }
-
+        /// <summary>
+        /// Sends the EVC10 packet after having filled its dynamic fields 
+        /// </summary>
         public static void Send()
         {
             if (TrainSetCaptions.Count > 9)
-                throw new ArgumentOutOfRangeException();            
+                throw new ArgumentOutOfRangeException();
+            if (TrainSetCaptions.Count != _pool.SITR.ETCS1.CurrentTrainData.MmiNTrainset.Value)
+                throw new Exception("MmiNTrainset from EVC-6 and number of captions do not match!");
 
-            ushort totalSizeCounter = 144;
-
-            // Set number of trainset captions
-            _pool.SITR.ETCS1.EchoedTrainData.MmiNTrainsetsR.Value = (ushort) TrainSetCaptions.Count;
+                ushort totalSizeCounter = 144;
 
             // Populate the array of trainset captions
             for (var trainsetIndex = 0; trainsetIndex < TrainSetCaptions.Count; trainsetIndex++)
             {
                 var charArray = TrainSetCaptions[trainsetIndex].ToCharArray();
+                ushort evc6MmiNCaptionTrainset = (ushort)_pool.SITR.Client.Read($"{BaseStringEVC06}1{trainsetIndex}_MmiNCaptionTrainset");
+
                 if (charArray.Length > 12)
                     throw new ArgumentOutOfRangeException();
+                if (charArray.Length != evc6MmiNCaptionTrainset)
+                    throw new Exception("MmiNCaptionTrainset from EVC-6 and length of caption do not match!");
 
                 // Set length of char array
-                _pool.SITR.Client.Write($"{BaseString}1{trainsetIndex}_MmiNCaptionTrainset", charArray.Length);
+                _pool.SITR.Client.Write($"{BaseStringEVC10}1{trainsetIndex}_MmiNCaptionTrainsetR", (ushort)~evc6MmiNCaptionTrainset);
 
                 totalSizeCounter += 16;
 
                 for (var charIndex = 0; charIndex < charArray.Length; charIndex++)
                 {
                     var character = charArray[charIndex];
+                    char evc6MmiXCaptionTrainset;
 
                     // Trainset caption text character
                     if (charIndex < 10)
                     {
-                        _pool.SITR.Client.Write($"{BaseString}1{trainsetIndex}_EVC06CurrentTrainDataSub110{charIndex}_MmiXCaptionTrainset", character);
+                        evc6MmiXCaptionTrainset = (char)_pool.SITR.Client.Read($"{BaseStringEVC06}1{trainsetIndex}{BaseStringEVC06_1}0{charIndex}_MmiXCaptionTrainset");
+                        if (character != evc6MmiXCaptionTrainset)
+                            throw new Exception("MmiNCaptionTrainset from EVC-6 and length of caption do not match!");
+                        _pool.SITR.Client.Write($"{BaseStringEVC10}1{trainsetIndex}{BaseStringEVC10_1}0{charIndex}_MmiXCaptionTrainsetR", (char)~evc6MmiXCaptionTrainset);
                     }
                     else
                     {
-                        _pool.SITR.Client.Write($"{BaseString}1{trainsetIndex}_EVC06CurrentTrainDataSub11{charIndex}_MmiXCaptionTrainset", character);
+                        evc6MmiXCaptionTrainset = (char)_pool.SITR.Client.Read($"{BaseStringEVC06}1{trainsetIndex}{BaseStringEVC06_1}{charIndex}_MmiXCaptionTrainset");
+                        if (character != evc6MmiXCaptionTrainset)
+                            throw new Exception("MmiNCaptionTrainset from EVC-6 and length of caption do not match!");
+                        _pool.SITR.Client.Write($"{BaseStringEVC10}1{trainsetIndex}{BaseStringEVC10_1}{charIndex}_MmiXCaptionTrainsetR", (char)~evc6MmiXCaptionTrainset);
                     }
 
                     totalSizeCounter += 8;
                 }
             }
 
-            // Set number of train data elements
-            _pool.SITR.ETCS1.CurrentTrainData.MmiNDataElements.Value = (ushort) DataElements.Count;
-
-            totalSizeCounter = PopulateDataElements($"{BaseString}2", totalSizeCounter, DataElements, _pool);
-
             // Set the total length of the packet
-            _pool.SITR.ETCS1.CurrentTrainData.MmiLPacket.Value = totalSizeCounter;
+            _pool.SITR.ETCS1.EchoedTrainData.MmiLPacket.Value = totalSizeCounter;
 
-            _pool.SITR.SMDCtrl.ETCS1.CurrentTrainData.Value = 0x09;
+            _pool.SITR.SMDCtrl.ETCS1.EchoedTrainData.Value = 0x09;
         }
 
         /// <summary>
@@ -244,12 +248,11 @@ namespace Testcase.Telegrams.EVCtoDMI
         ///     37 = "GC"
         ///     38 = "Out of GC"
         /// </summary>
-        public static byte MMI_NID_KEY_LOAD_GAUGE
+        public static byte MMI_NID_KEY_LOAD_GAUGE_R
         {
             get => _pool.SITR.ETCS1.EchoedTrainData.MmiNidKeyLoadGaugeR.Value;
             set => _pool.SITR.ETCS1.EchoedTrainData.MmiNidKeyLoadGaugeR.Value = value;
-        }
-        
+        }       
 
         /// <summary>
         /// ID of selected pre-configured train data set.
@@ -266,32 +269,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             set => _pool.SITR.ETCS1.EchoedTrainData.EVC10alias1.Value = value;
         }
 
-        /// <summary>
-        /// Control information for alternative train data entry method.
-        /// 
-        /// Values:
-        /// 0 = "No alternative train data entry method enabled (covers 'fixed train data entry' and 'flexible
-        /// train data entry' according to ERA_ERTMS_15560, v3.4.0, ch. 11.3.9.6.a+b)"
-        /// 1 = "Flexible train data entry &lt;-&gt; train data entry for Train Sets (covers 'switchable train data
-        /// entry' according to ERA_ERTMS_15560, v3.4.0, ch. 11.3.9.6.c)"
-        /// 2 = "Reserved"
-        /// 3 = "Reserved"
-        /// 
-        /// Note: In case no alternative TDE method is enabled, the variable "MMI_M_TRAINSET_ID"
-        /// determines between "flexible TDE" (MMI_M_TRAINSET_ID = 0) or "train set TDE"
-        /// (MMI_M_TRAINSET_ID != 0). This approach is chosen to deviate not too much between BL2 and BL3 interface.
-        /// </summary>
-        public static ushort MMI_M_ALT_DEM
-        {
-            set
-            {
-                _maltdem = value;
-                SetAlias();
-            }
-        }
-
         public static List<string> TrainSetCaptions { get; set; }
 
-        public static List<DataElement> DataElements { get; set; }
     }
 }
