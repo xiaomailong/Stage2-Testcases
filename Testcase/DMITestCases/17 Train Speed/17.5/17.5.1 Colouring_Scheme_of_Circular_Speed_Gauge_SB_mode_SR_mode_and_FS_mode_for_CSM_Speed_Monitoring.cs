@@ -84,7 +84,7 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, "Enter and validate all train data");
 
-            DmiActions.Send_EVC10_MMIEchoedTrainData_FixedDataEntry(this, new[] { "FLU", "RLU", "Rescue" }, 2);
+            DmiActions.Send_EVC10_MMIEchoedTrainData_FixedDataEntry(this, Variables.paramEvc6FixedTrainsetCaptions);
 
             DmiActions.ShowInstruction(this, @"Press the ‘Train running number’ button");
 

@@ -132,7 +132,7 @@ namespace Testcase.DMITestCases
             Expected Result: The Train Running Number window is displayed.All objects, text messages and buttons are presented within the same layer
             Test Step Comment: MMI_gen 4351;
             */
-            DmiActions.Send_EVC10_MMIEchoedTrainData_FixedDataEntry(this, new[] { "FLU", "RLU", "Rescue" }, 2);
+            DmiActions.Send_EVC10_MMIEchoedTrainData_FixedDataEntry(this, Variables.paramEvc6FixedTrainsetCaptions);
             DmiActions.ShowInstruction(this, "Confirm and validate the Train data");
 
             EVC16_CurrentTrainNumber.TrainRunningNumber = 1;
