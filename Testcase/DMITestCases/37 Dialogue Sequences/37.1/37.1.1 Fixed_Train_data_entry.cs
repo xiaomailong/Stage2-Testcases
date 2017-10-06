@@ -120,9 +120,7 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Press the <type 2> key on the dedicated keyboard, then press ‘Yes’ button");
 
-            DmiActions.Send_EVC10_MMIEchoedTrainData_FixedDataEntry(this,
-                                                                    new[] { "FLU", "RLU", "Rescue" },
-                                                                    2);
+            DmiActions.Send_EVC10_MMIEchoedTrainData_FixedDataEntry(this, Variables.paramEvc6FixedTrainsetCaptions);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Train data validation window.");
@@ -162,9 +160,7 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Press the ‘type 2’ key on the dedicated keyboard, then press ‘Yes’ button");
 
-            DmiActions.Send_EVC10_MMIEchoedTrainData_FixedDataEntry(this,
-                                                                    new[] { "FLU", "RLU", "Rescue" },
-                                                                    2);
+            DmiActions.Send_EVC10_MMIEchoedTrainData_FixedDataEntry(this, Variables.paramEvc6FixedTrainsetCaptions);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Train data validation window.");

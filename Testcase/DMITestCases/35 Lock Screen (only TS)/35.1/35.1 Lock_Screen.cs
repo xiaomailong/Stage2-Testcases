@@ -102,7 +102,7 @@ namespace Testcase.DMITestCases
                                 "2. Press ‘Yes’ button.");
 
             // EVC10 needed for this: DmiActions.Display_Train_data_validation_Window(this);
-            DmiActions.Send_EVC10_MMIEchoedTrainData(Variables.MMI_M_DATA_ENABLE.TrainSetID |
+            /*DmiActions.Send_EVC10_MMIEchoedTrainData(Variables.MMI_M_DATA_ENABLE.TrainSetID |
                                                      Variables.MMI_M_DATA_ENABLE.TrainCategory |
                                                      Variables.MMI_M_DATA_ENABLE.TrainLength |
                                                      Variables.MMI_M_DATA_ENABLE.BrakePercentage |
@@ -116,7 +116,8 @@ namespace Testcase.DMITestCases
                                                      0,
                                                      Variables.MMI_NID_KEY.G1,
                                                      0, 0,
-                                                     new[] { "FLU", "RLU", "Rescue" }, null);
+                                                     new[] { "FLU", "RLU", "Rescue" }, null);*/
+            DmiActions.Send_EVC10_MMIEchoedTrainData_FixedDataEntry(this, Variables.paramEvc6FixedTrainsetCaptions);
 
             // test wrong: pressing Yes button confirms the data?
             DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +

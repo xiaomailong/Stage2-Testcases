@@ -185,7 +185,7 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, @"Press ‘Yes’ button");
 
-            DmiActions.Send_EVC10_MMIEchoedTrainData(Variables.MMI_M_DATA_ENABLE.TrainSetID |
+            /*DmiActions.Send_EVC10_MMIEchoedTrainData(Variables.MMI_M_DATA_ENABLE.TrainSetID |
                                                      Variables.MMI_M_DATA_ENABLE.TrainCategory |
                                                      Variables.MMI_M_DATA_ENABLE.TrainLength |
                                                      Variables.MMI_M_DATA_ENABLE.BrakePercentage |
@@ -202,7 +202,8 @@ namespace Testcase.DMITestCases
                                                      Variables.MMI_NID_KEY.G1,
                                                      0,
                                                      0,
-                                                      new[] { "FLU", "RLU", "Rescue" }, null);
+                                                      new[] { "FLU", "RLU", "Rescue" }, null);*/
+            DmiActions.Send_EVC10_MMIEchoedTrainData_FixedDataEntry(this, Variables.paramEvc6FixedTrainsetCaptions);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Train validation data window.");
@@ -264,7 +265,7 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, @"Press ‘Yes’ button");
 
-            DmiActions.Send_EVC10_MMIEchoedTrainData(Variables.MMI_M_DATA_ENABLE.TrainSetID |
+            /*DmiActions.Send_EVC10_MMIEchoedTrainData(Variables.MMI_M_DATA_ENABLE.TrainSetID |
                                                      Variables.MMI_M_DATA_ENABLE.TrainCategory |
                                                      Variables.MMI_M_DATA_ENABLE.TrainLength |
                                                      Variables.MMI_M_DATA_ENABLE.BrakePercentage |
@@ -281,7 +282,8 @@ namespace Testcase.DMITestCases
                                                      Variables.MMI_NID_KEY.G1,
                                                      0,
                                                      0,
-                                                      new[] { "FLU", "RLU", "Rescue" }, null);
+                                                      new[] { "FLU", "RLU", "Rescue" }, null);*/
+            DmiActions.Send_EVC10_MMIEchoedTrainData_FixedDataEntry(this, Variables.paramEvc6FixedTrainsetCaptions);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Train data validation window.");
