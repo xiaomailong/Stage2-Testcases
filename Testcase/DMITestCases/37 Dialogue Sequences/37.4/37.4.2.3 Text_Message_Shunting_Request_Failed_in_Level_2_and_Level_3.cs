@@ -65,8 +65,6 @@ namespace Testcase.DMITestCases
         {
             // Post-conditions from TestSpec
             // DMI displays is in SH mode, level 3
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in SR mode, Level 3.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -83,14 +81,25 @@ namespace Testcase.DMITestCases
             Test Step Comment: Level 2:(1) MMI_gen 9151;(2) MMI_gen 11915 (partly: SH request failed); MMI_gen 134 (partly: E5);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press ‘Main’ button. Press and hold ‘Shunting’ button at least 2 seconds.Release ‘Shunting’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Main’ button");
+
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Shunting;
+            EVC30_MMIRequestEnable.Send();
+
+            DmiActions.ShowInstruction(this, @"Press and hold the ‘Shunting’ button at least 2 seconds.Release ‘Shunting’ button");
 
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 716;
             EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
-
             EVC8_MMIDriverMessage.Send();
+
+            // DMI_RS_ETCS doc says that main window is re-displayed with all buttons disabled
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;      // Main window
+            EVC30_MMIRequestEnable.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI is in the entry state of ‘ST05’." + Environment.NewLine +
@@ -114,19 +123,15 @@ namespace Testcase.DMITestCases
             Expected Result: See the expected results at Step 1
             Test Step Comment: Level 3:(1) MMI_gen 9151;(2) MMI_gen 11915 (partly: SH request failed); MMI_gen 134 (partly: E5);
             */
-            // ?? Is this sufficient...
             // Restart
+            DmiActions.ShowInstruction(this, "Power down the system, wait 10s, then power up the system");
             DmiActions.Start_ATP();
-
             // Set train running number, cab 1 active, and other defaults
             DmiActions.Activate_Cabin_1(this);
-
             // Set driver ID
             DmiActions.Set_Driver_ID(this, "1234");
-
             // Set to level 1 and SH mode
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L3;
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
 
             DmiActions.ShowInstruction(this, @"Press ‘Main’ button. Press and hold ‘Shunting’ button at least 2 seconds.Release ‘Shunting’ button");
 
@@ -134,8 +139,12 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
-
             EVC8_MMIDriverMessage.Send();
+
+            // DMI_RS_ETCS doc says that main window is re-displayed with all buttons disabled
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;      // Main window
+            EVC30_MMIRequestEnable.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI is in the entry state of ‘ST05’." + Environment.NewLine +
