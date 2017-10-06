@@ -64,7 +64,8 @@ namespace Testcase.DMITestCases
             Action: At the Default window, press ‘Data View’ button
             Expected Result: DMI displays Data View window
             */
-            DmiActions.ShowInstruction(this, @"Press ‘Driver ID’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Data View’ button");
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Data View window.");
 
