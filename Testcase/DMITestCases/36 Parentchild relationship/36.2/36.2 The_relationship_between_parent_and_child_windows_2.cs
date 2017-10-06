@@ -51,7 +51,7 @@ namespace Testcase.DMITestCases
             // Set driver ID
             DmiActions.Set_Driver_ID(this, "1234");
 
-            // Set to level 1 and SB mode
+            // Set to level 2 and SB mode
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L2;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
             DmiActions.Finished_SoM_Default_Window(this);
@@ -61,8 +61,6 @@ namespace Testcase.DMITestCases
         {
             // Post-conditions from TestSpec
             // DMI displays  in SB mode, Level 2
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in SB mode, Level 2.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -77,6 +75,13 @@ namespace Testcase.DMITestCases
             Action: Perform the following procedure,Press and hold ‘Radio Network ID’ button at least 2 second.Release the pressed area
             Expected Result: DMI displays Radio Network ID window
             */
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;      // display main window
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.RadioNetworkID |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.EnterRBCData |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.Level;
+            EVC30_MMIRequestEnable.Send();
+
             DmiActions.ShowInstruction(this, @"Press and hold the ‘Radio Network ID’ button for at least 2 second. Release the ‘Radio Network ID’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -151,7 +156,12 @@ namespace Testcase.DMITestCases
             Action: Perform the following procedure,Press ‘Close’ button.Press ‘Data view’ button
             Expected Result: DMI displays Data view window
             */
+            // Does this mean Train data?
             DmiActions.ShowInstruction(this, @"Press the ‘Close’ button in the Main window. Press the ‘Data view’ button");
+
+            //EVC13_MMIDataView.MMI_X_DRIVER_ID = "1234";
+            //EVC13_MMIDataView.MMI_NID_OPERATION = 1;
+            //EVC13_MMIDataView.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                              "1. DMI displays the Data view window.");
