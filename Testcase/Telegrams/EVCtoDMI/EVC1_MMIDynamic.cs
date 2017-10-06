@@ -142,9 +142,9 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// <summary>
         /// Sets train speed to "unknown"
         /// </summary>
-        public static short MMI_V_TRAIN_UNKNOWN
+        public static void MmiVTrainUnknown()
         {
-            set => _pool.SITR.ETCS1.Dynamic.MmiVTrain.Value = -1;
+            _pool.SITR.ETCS1.Dynamic.MmiVTrain.Value = -1;
         }
 
         /// <summary>
@@ -207,9 +207,9 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// <summary>
         /// Sets V Target to "No target"
         /// </summary>
-        public static short MMI_V_TARGET_NOTARGET
+        public static void MmiVNoTarget()
         {
-            set => _pool.SITR.ETCS1.Dynamic.MmiVTarget.Value = -1;
+            _pool.SITR.ETCS1.Dynamic.MmiVTarget.Value = -1;
         }
 
         /// <summary>
@@ -329,9 +329,9 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// <summary>
         /// Sets V Release to "Not applicable, i.e. train currently not in release speed area"
         /// </summary>
-        public static short MMI_V_PERMITTED_NORELEASE
+        public static void MmiVNoRelease()
         {
-            set => _pool.SITR.ETCS1.Dynamic.MmiVRelease.Value = -1;
+            _pool.SITR.ETCS1.Dynamic.MmiVRelease.Value = -1;
         }
 
         /// <summary>
@@ -369,17 +369,17 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// <summary>
         /// Sets MMI_O_BRAKETARGET to "No target"
         /// </summary>
-        public static int MMI_O_BRAKETARGET_NOTARGET
+        public static void MmiONoBrakeTarget()
         {
-            set => _pool.SITR.ETCS1.Dynamic.MmiOBraketarget.Value = -1;
+            _pool.SITR.ETCS1.Dynamic.MmiOBraketarget.Value = -1;
         }
 
         /// <summary>
         /// Sets MMI_O_BRAKETARGET to "Infinite distance in Reversing mode (RV)"
         /// </summary>
-        public static int MMI_O_BRAKETARGET_INFINITE_REVERSE
+        public static void MmiONoBrakeTargetInfiniteReverse()
         {
-            set => _pool.SITR.ETCS1.Dynamic.MmiOBraketarget.Value = 2147483647;
+            _pool.SITR.ETCS1.Dynamic.MmiOBraketarget.Value = 2147483647;
         }
 
         /// <summary>
@@ -419,9 +419,9 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// <summary>
         /// Sets MMI_O_IML to "spare"
         /// </summary>
-        public static int MMI_O_IML_SPARE
+        public static void MmiOImlSpare()
         {
-            set => _pool.SITR.ETCS1.Dynamic.MmiOIml.Value = -1;
+            _pool.SITR.ETCS1.Dynamic.MmiOIml.Value = -1;
         }
     }
 

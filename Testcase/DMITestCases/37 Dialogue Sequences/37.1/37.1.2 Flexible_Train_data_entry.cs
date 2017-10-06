@@ -13,6 +13,8 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.EVCtoDMI;
+
 
 namespace Testcase.DMITestCases
 {
@@ -40,14 +42,13 @@ namespace Testcase.DMITestCases
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
+            
         }
 
         public override void PostExecution()
         {
             // Post-conditions from TestSpec
             // DMI displays in SB mode, level 1
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in SB mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -66,6 +67,11 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, "Press the ‘Main’ button");
 
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;      // Main
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.TrainData;
+            EVC30_MMIRequestEnable.Send();
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Main window.");
 
@@ -75,7 +81,24 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Train data window.Note: Please memo the value of each input field to be compare with action step 4
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press ‘Train data’ button");
+            DmiActions.ShowInstruction(this, @"Press the ‘Train data’ button");
+
+            DmiActions.Send_EVC6_MMICurrentTrainData(Variables.MMI_M_DATA_ENABLE.TrainSetID |
+                                                     Variables.MMI_M_DATA_ENABLE.TrainCategory |
+                                                     Variables.MMI_M_DATA_ENABLE.TrainLength |
+                                                     Variables.MMI_M_DATA_ENABLE.BrakePercentage |
+                                                     Variables.MMI_M_DATA_ENABLE.MaxTrainSpeed |
+                                                     Variables.MMI_M_DATA_ENABLE.AxleLoadCategory |
+                                                     Variables.MMI_M_DATA_ENABLE.Airtightness |
+                                                     Variables.MMI_M_DATA_ENABLE.LoadingGauge,
+                                                     100, 200,
+                                                     Variables.MMI_NID_KEY.PASS1,
+                                                     70,
+                                                     Variables.MMI_NID_KEY.CATA,
+                                                     1,
+                                                     Variables.MMI_NID_KEY.G1,
+                                                     36, 0, 0, new[] { "FLU", "RLU", "Rescue" }, null);
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Train data window" + Environment.NewLine +
                                 "Note the value of each Input Field displayed for later comparison.");
@@ -97,7 +120,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Modify the value for the Maximum speed  Input Field to ‘120’, confirm the value and check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Input Field value changes according to the data entered.");
 
-            WaitForVerification("Modify the value for the Axel load category Input Field to ‘B1’, confirm the value and check the following:" + Environment.NewLine + Environment.NewLine +
+            WaitForVerification("Modify the value for the Axle load category Input Field to ‘B1’, confirm the value and check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Input Field value changes according to the data entered.");
 
             WaitForVerification("Modify the value for the Airtight Input Field to ‘No’, confirm the value and check the following:" + Environment.NewLine + Environment.NewLine +
@@ -112,10 +135,27 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Train data window.Verifies the displayed values of each input field are same as action step No.2
             Test Step Comment: MMI_gen 8865 (partly: Exception 1);
             */
-            DmiActions.ShowInstruction(this, @"Press ‘Close’ button then press ‘Train data’ button");
+            DmiActions.ShowInstruction(this, @"Press the ‘Close’ button then press ‘Train data’ button");
+
+            DmiActions.Send_EVC6_MMICurrentTrainData(Variables.MMI_M_DATA_ENABLE.TrainSetID |
+                                                     Variables.MMI_M_DATA_ENABLE.TrainCategory |
+                                                     Variables.MMI_M_DATA_ENABLE.TrainLength |
+                                                     Variables.MMI_M_DATA_ENABLE.BrakePercentage |
+                                                     Variables.MMI_M_DATA_ENABLE.MaxTrainSpeed |
+                                                     Variables.MMI_M_DATA_ENABLE.AxleLoadCategory |
+                                                     Variables.MMI_M_DATA_ENABLE.Airtightness |
+                                                     Variables.MMI_M_DATA_ENABLE.LoadingGauge,
+                                                     100, 200,
+                                                     Variables.MMI_NID_KEY.PASS1,
+                                                     70,
+                                                     Variables.MMI_NID_KEY.CATA,
+                                                     1,
+                                                     Variables.MMI_NID_KEY.G1,
+                                                     36, 0, 0, new[] { "FLU", "RLU", "Rescue" }, null);
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Train data window" + Environment.NewLine +
-                                "2. The values of each Input Field are as input in Step 2.");
+                                "2. The values of each data input field are as in Step 2.");
 
             /*
             Test Step 5
@@ -134,7 +174,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Modify the value for the Maximum speed  Input Field to ‘120’, confirm the value and check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Input Field value changes according to the data entered.");
 
-            WaitForVerification("Modify the value for the Axel load category Input Field to ‘B1’, confirm the value and check the following:" + Environment.NewLine + Environment.NewLine +
+            WaitForVerification("Modify the value for the Axle load category Input Field to ‘B1’, confirm the value and check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Input Field value changes according to the data entered.");
 
             WaitForVerification("Modify the value for the Airtight Input Field to ‘No’, confirm the value and check the following:" + Environment.NewLine + Environment.NewLine +
@@ -143,9 +183,29 @@ namespace Testcase.DMITestCases
             WaitForVerification("Modify the value for the Loading gauge  Input Field to ‘Out of GC’, confirm the value and check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Input Field value changes according to the data entered.");
 
-            DmiActions.ShowInstruction(this, @"Press ‘Yes’ button then press ‘Train data’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Yes’ button");
+
+            DmiActions.Send_EVC10_MMIEchoedTrainData(Variables.MMI_M_DATA_ENABLE.TrainSetID |
+                                                     Variables.MMI_M_DATA_ENABLE.TrainCategory |
+                                                     Variables.MMI_M_DATA_ENABLE.TrainLength |
+                                                     Variables.MMI_M_DATA_ENABLE.BrakePercentage |
+                                                     Variables.MMI_M_DATA_ENABLE.MaxTrainSpeed |
+                                                     Variables.MMI_M_DATA_ENABLE.AxleLoadCategory |
+                                                     Variables.MMI_M_DATA_ENABLE.Airtightness |
+                                                     Variables.MMI_M_DATA_ENABLE.LoadingGauge,
+                                                     4000, 
+                                                     120,
+                                                     Variables.MMI_NID_KEY.TILT1,
+                                                     100, 
+                                                     Variables.MMI_NID_KEY.CATB1,
+                                                     0,
+                                                     Variables.MMI_NID_KEY.G1,
+                                                     0,
+                                                     0,
+                                                      new[] { "FLU", "RLU", "Rescue" }, null);
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays Train validation data window.");
+                                "1. DMI displays the Train validation data window.");
 
             /*
             Test Step 6
@@ -155,6 +215,23 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press and confirm ‘No’ button");
+
+            DmiActions.Send_EVC6_MMICurrentTrainData(Variables.MMI_M_DATA_ENABLE.TrainSetID |
+                                                     Variables.MMI_M_DATA_ENABLE.TrainCategory |
+                                                     Variables.MMI_M_DATA_ENABLE.TrainLength |
+                                                     Variables.MMI_M_DATA_ENABLE.BrakePercentage |
+                                                     Variables.MMI_M_DATA_ENABLE.MaxTrainSpeed |
+                                                     Variables.MMI_M_DATA_ENABLE.AxleLoadCategory |
+                                                     Variables.MMI_M_DATA_ENABLE.Airtightness |
+                                                     Variables.MMI_M_DATA_ENABLE.LoadingGauge,
+                                                     100, 200,
+                                                     Variables.MMI_NID_KEY.PASS1,
+                                                     70,
+                                                     Variables.MMI_NID_KEY.CATA,
+                                                     1,
+                                                     Variables.MMI_NID_KEY.G1,
+                                                     36, 0, 0, new[] { "FLU", "RLU", "Rescue" }, null);
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Train data window." + Environment.NewLine +
                                 "2. The values of each Input Field are different from those entered in Step 5");
@@ -176,7 +253,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Modify the value for the Maximum speed  Input Field to ‘120’, confirm the value and check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Input Field value changes according to the data entered.");
 
-            WaitForVerification("Modify the value for the Axel load category Input Field to ‘B1’, confirm the value and check the following:" + Environment.NewLine + Environment.NewLine +
+            WaitForVerification("Modify the value for the Axle load category Input Field to ‘B1’, confirm the value and check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Input Field value changes according to the data entered.");
 
             WaitForVerification("Modify the value for the Airtight Input Field to ‘No’, confirm the value and check the following:" + Environment.NewLine + Environment.NewLine +
@@ -186,6 +263,26 @@ namespace Testcase.DMITestCases
                                 "1. The Input Field value changes according to the data entered.");
 
             DmiActions.ShowInstruction(this, @"Press ‘Yes’ button");
+
+            DmiActions.Send_EVC10_MMIEchoedTrainData(Variables.MMI_M_DATA_ENABLE.TrainSetID |
+                                                     Variables.MMI_M_DATA_ENABLE.TrainCategory |
+                                                     Variables.MMI_M_DATA_ENABLE.TrainLength |
+                                                     Variables.MMI_M_DATA_ENABLE.BrakePercentage |
+                                                     Variables.MMI_M_DATA_ENABLE.MaxTrainSpeed |
+                                                     Variables.MMI_M_DATA_ENABLE.AxleLoadCategory |
+                                                     Variables.MMI_M_DATA_ENABLE.Airtightness |
+                                                     Variables.MMI_M_DATA_ENABLE.LoadingGauge,
+                                                     4000,
+                                                     120,
+                                                     Variables.MMI_NID_KEY.TILT1,
+                                                     100,
+                                                     Variables.MMI_NID_KEY.CATB1,
+                                                     0,
+                                                     Variables.MMI_NID_KEY.G1,
+                                                     0,
+                                                     0,
+                                                      new[] { "FLU", "RLU", "Rescue" }, null);
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Train data validation window.");
 
@@ -195,6 +292,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Main window
             */
             DmiActions.ShowInstruction(this, @"Press and confirm ‘Yes’ button in Train data validation window");
+            
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Train data window.");
 
@@ -205,6 +303,27 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 8863 (partly: Exception);
             */
             DmiActions.ShowInstruction(this, @"Press ‘Train data’ button");
+
+            DmiActions.Send_EVC6_MMICurrentTrainData(Variables.MMI_M_DATA_ENABLE.TrainSetID |
+                                                     Variables.MMI_M_DATA_ENABLE.TrainCategory |
+                                                     Variables.MMI_M_DATA_ENABLE.TrainLength |
+                                                     Variables.MMI_M_DATA_ENABLE.BrakePercentage |
+                                                     Variables.MMI_M_DATA_ENABLE.MaxTrainSpeed |
+                                                     Variables.MMI_M_DATA_ENABLE.AxleLoadCategory |
+                                                     Variables.MMI_M_DATA_ENABLE.Airtightness |
+                                                     Variables.MMI_M_DATA_ENABLE.LoadingGauge,
+                                                     4000,
+                                                     120,
+                                                     Variables.MMI_NID_KEY.TILT1,
+                                                     100,
+                                                     Variables.MMI_NID_KEY.CATB1,
+                                                     0,
+                                                     Variables.MMI_NID_KEY.G1,
+                                                     36,
+                                                     0,
+                                                     0,
+                                                     new[] { "FLU", "RLU", "Rescue" }, null);
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Train data window." + Environment.NewLine +
                                 "2. The values of each Input Field are those entered in Step 7");
