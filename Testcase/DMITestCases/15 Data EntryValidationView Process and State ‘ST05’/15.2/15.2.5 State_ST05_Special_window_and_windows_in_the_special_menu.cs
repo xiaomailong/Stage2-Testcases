@@ -72,7 +72,8 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8859 (partly: special window);(2) MMI_gen 5646 (partly: always enable, special window);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press ‘Spec’ button");
+            DmiActions.ShowInstruction(this, @"Press the ‘Spec’ button");
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Default window until Special window is displayed." + Environment.NewLine +
                                 "2. ‘Close’ button is always enabled.");
@@ -91,7 +92,15 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information;(1)   Verify DMI still displays Special window until SR speed/distance window is displayed.(2)   Verify the close button is always enable
             Test Step Comment: (1) MMI_gen 8859 (partly: windows in special menu);(2) MMI_gen 5646 (partly: always enable, windows in special menu);
             */
-            DmiActions.ShowInstruction(this, @"Press ‘Spec’ button. Press ‘S/R speed distance’ button.");
+            DmiActions.ShowInstruction(this, @"Press ‘Spec’ button");
+
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 3;      // Special window
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.SRSpeedDistance |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.Adhesion;
+            EVC30_MMIRequestEnable.Send();
+
+            DmiActions.ShowInstruction(this, @"Press ‘S/R speed distance’ button.");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Special window until SR speed/distance window is displayed." + Environment.NewLine +
@@ -142,6 +151,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information;(1)   The Main, Override, Data view, Spec and Setting buttons are always enabled
             Test Step Comment: (1) Note under the MMI_gen 5728;
             */
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 716;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
             EVC8_MMIDriverMessage.Send();
 
@@ -171,6 +181,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
+
             WaitForVerification(@"Press the ‘Spec’ button and check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Special window with the Adhesion button enabled.");
 

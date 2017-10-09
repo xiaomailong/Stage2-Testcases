@@ -720,11 +720,11 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Wheel diameter validation window.");
 
-            //EVC41_MMIEchoedMaintenanceData.CheckMSduWheelSizeErr = /* Telegrams.EVCtoDMI.Variables.?? */  0xe3;   // ~(0x1d)
-            //EVC41_MMIEchoedMaintenanceData.CheckMSduWheelSize2 = /* Telegrams.EVCtoDMI.Variables.?? */  0xfc18;   // ~(0x03e8)
-            //EVC41_MMIEchoedMaintenanceData.CheckMSduWheelSize1 = /* Telegrams.EVCtoDMI.Variables.?? */  0xfc18;   // ~(0x03e8)
-            //EVC41_MMIEchoedMaintenanceData.CheckQDataSet = /* Telegrams.EVCtoDMI.Variables.?? */  0xff;           // ~(0x00)
-
+            EVC41_MMIEchoedMaintenanceData.MMI_M_WHEEL_SIZE_ERR_ = (Telegrams.EVCtoDMI.Variables.MMI_M_WHEEL_SIZE_ERR)0x1d;
+            EVC41_MMIEchoedMaintenanceData.MMI_M_SDU_WHEEL_SIZE_2_ = (Telegrams.EVCtoDMI.Variables.MMI_M_SDU_WHEEL_SIZE)0x03e8;
+            EVC41_MMIEchoedMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1_ = (Telegrams.EVCtoDMI.Variables.MMI_M_SDU_WHEEL_SIZE)0x03e8;
+            EVC41_MMIEchoedMaintenanceData.MMI_Q_MD_DATASET_ = Telegrams.EVCtoDMI.Variables.MMI_Q_MD_DATASET.WheelDiameter;   
+            
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Wheel diameter validation window.");
 

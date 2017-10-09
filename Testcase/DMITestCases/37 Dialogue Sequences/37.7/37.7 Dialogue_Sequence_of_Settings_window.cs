@@ -459,7 +459,7 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Enter and confirm the value 65536");
 
-            //EVC28_MMIEchoedVBCSetData.MMI_M_VBC_CODE_ = 0xfeff;     // 65536 (0x100) bit-inverted
+            //EVC28_MMIEchoedVBCSetData.MMI_M_VBC_CODE_ = 65536 // (0x100) bit-inverted is 0xfeff;
             //EVC28_MMIEchoedVBCSetData.Send();
             
             DmiActions.ShowInstruction(this, @"Press the ‘Yes’ button in the Set VBC validation window and press an input field");

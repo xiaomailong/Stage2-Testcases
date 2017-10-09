@@ -96,8 +96,8 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Accept the values of all Input Fields as shown. Press the ‘Yes’ button and check the log file for packet EVC-41 from DMI with MMI_Q_MD_DATASET = 0");
 
-            //EVC41_MMIEchoedMaintenanceData.MMI_Q_MD_DATASET = 0;
-            //EVC41_MMIEchoedMaintenanceData.Send(this);
+            EVC41_MMIEchoedMaintenanceData.MMI_Q_MD_DATASET_ = Variables.MMI_Q_MD_DATASET.WheelDiameter;
+            EVC41_MMIEchoedMaintenanceData.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                "1. DMI displays the Wheel Diameter validation window." + Environment.NewLine +
@@ -141,8 +141,8 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Accept the values of all Input Fields as shown. Press the ‘Yes’ button and check the log file for packet EVC-141 from DMI with MMI_Q_MD_DATASET = 1");
 
-            //EVC41_MMI_EchoedMaintenanceData.MMI_Q_MD_DATASET = 1;
-            //EVC41_MMI_EchoedMaintenanceData.Send(this);
+            EVC41_MMIEchoedMaintenanceData.MMI_Q_MD_DATASET_ = Variables.MMI_Q_MD_DATASET.Doppler;
+            EVC41_MMIEchoedMaintenanceData.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                "1. DMI displays the Radar validation window." + Environment.NewLine +

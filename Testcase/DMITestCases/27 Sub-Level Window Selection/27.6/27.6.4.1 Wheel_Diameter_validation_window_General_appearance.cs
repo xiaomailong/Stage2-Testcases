@@ -90,8 +90,8 @@ namespace Testcase.DMITestCases
             // EVC-140 is sent out when the data are accepted. How do you know what the values are unless they were specified to be entered?
 
             // Open the wheel diameter validation window
-            //EVC41_MMIEchoedMaintenanceData.MMI_Q_MD_DATASET = 0;
-            //EVC41_MMIEchoedMaintenanceData.Send();
+            EVC41_MMIEchoedMaintenanceData.MMI_Q_MD_DATASET_ = Variables.MMI_Q_MD_DATASET.WheelDiameter;
+            EVC41_MMIEchoedMaintenanceData.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Wheel Diameter Validation window comprising:" + Environment.NewLine +
@@ -187,9 +187,9 @@ namespace Testcase.DMITestCases
                                              "Enter a value for Wheel Diameter 2 and press its data input field" + Environment.NewLine +
                                              "Enter a value for Accuracy and press its data input field" + Environment.NewLine +
                                              @"Press the ‘Yes’ button");
-
-            //EVC41_MMIEchoedMaintenanceData.MMI_Q_MD_DATASET = 0;
-            //EVC41_MMIEchoedMaintenanceData.Send();
+            
+            EVC41_MMIEchoedMaintenanceData.MMI_Q_MD_DATASET_ = Variables.MMI_Q_MD_DATASET.WheelDiameter;
+            EVC41_MMIEchoedMaintenanceData.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Wheel diameter validation window.");
@@ -215,8 +215,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press the ‘Wheel diameter’ button. Enter and confirm all data in the Wheel diameter window, then press the ‘Yes’ button");
 
             // Open the wheel diameter validation window
-            //EVC41_MMIEchoedMaintenanceData.MMI_Q_MD_DATASET = 0;
-            //EVC41_MMIEchoedMaintenanceData.Send();
+            EVC41_MMIEchoedMaintenanceData.MMI_Q_MD_DATASET_ = Variables.MMI_Q_MD_DATASET.WheelDiameter;
+            EVC41_MMIEchoedMaintenanceData.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Wheel diameter validation window.");
@@ -268,8 +268,8 @@ namespace Testcase.DMITestCases
             DmiActions.Re_establish_communication_EVC_DMI(this);
 
             // Open the wheel diameter validation window
-            //EVC41_MMIEchoedMaintenanceData.MMI_Q_MD_DATASET = 0;
-            //EVC41_MMIEchoedMaintenanceData.Send();
+            EVC41_MMIEchoedMaintenanceData.MMI_Q_MD_DATASET_ = Variables.MMI_Q_MD_DATASET.WheelDiameter;
+            EVC41_MMIEchoedMaintenanceData.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. All buttons except the ‘No’ button are disabled." + Environment.NewLine +

@@ -28,7 +28,7 @@ namespace Testcase.XML
     {
         private static SignalPool _pool;
 
-        public static void Send(SignalPool pool)
+        public static void Send(SignalPool pool, bool dataInputSelected = false)
         {
             _pool = pool;
 
@@ -59,7 +59,8 @@ namespace Testcase.XML
                                       "1. DMI is in the exit state of ‘ST05’." + Environment.NewLine +
                                       "2. The hourglass symbol ST05 is removed." + Environment.NewLine +
                                       "3. All buttons are enabled." + Environment.NewLine +
-                                      "4. ‘Close’ button NA11 is displayed enabled in area G.");
+                                      "4. ‘Close’ button NA11 is displayed enabled in area G." + 
+                                      (dataInputSelected ? Environment.NewLine + "5. The data input field is ‘Selected’." : ""));
 
         }
     }

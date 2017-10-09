@@ -593,8 +593,8 @@ namespace Testcase.DMITestCases
             //EVC140_MMI_NewMaintenanceData.CheckMPulsePerKm2 = (Variables.MMI_M_PULSE_PER_KM)20001;
 
             // Open the Radar validation window
-            //EVC41_MMIEchoedMaintenanceData.MMI_Q_MD_DATASET = 0;
-            //EVC41_MMIEchoedMaintenanceData.Send();
+            EVC41_MMIEchoedMaintenanceData.MMI_Q_MD_DATASET_ = Variables.MMI_Q_MD_DATASET.WheelDiameter;
+            EVC41_MMIEchoedMaintenanceData.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMi displays the Radar validation window");

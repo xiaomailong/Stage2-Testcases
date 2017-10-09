@@ -77,6 +77,11 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Main window.(1)   Verify the close button is always enable
             Test Step Comment: (1) MMI_gen 5646 (partly: always enable, Main window);
             */
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Start | Variables.standardFlags;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
+            EVC30_MMIRequestEnable.Send();
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Main Window." + Environment.NewLine +
                                 "2. ‘Close’ button is enabled.");
@@ -98,6 +103,10 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press ‘Driver ID’ button");
 
+            EVC14_MMICurrentDriverID.MMI_X_DRIVER_ID = "1234";
+            EVC14_MMICurrentDriverID.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
+            EVC14_MMICurrentDriverID.Send();
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Main window until Driver ID window is displayed." + Environment.NewLine +
                                 "2. ‘Close’ button is always enabled.");
@@ -108,29 +117,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information;DMI in the entry state of ‘ST05’.(1)   The hourglass symbol ST05 is displayed.(2)   Verify all buttons and the close button are disable.(3)   The disabled Close button NA12 is display in area G.(4)   The Input Field is deselected.10 seconds laterDMI in the exit state of ‘ST05’.(5)   The hourglass symbol ST05 is removed.(6)  The state of all buttons is restored according to the last status before script is sent.(7)  The enabled Close button NA11 is display in area G.(8)   The input field is in the ‘Selected’ state
             Test Step Comment: (1) MMI_gen 12018 (partly: windows in main menu);(2) MMI_gen 168 (partly: disabled buttons, windows in main menu); MMI_gen 5646 (partly: State ‘ST05’ button is disabled, windows in main menu); MMI_gen 4395 (partly: close button, disabled, windows in main menu);(3) MMI_gen 4396 (partly: close, NA12, windows in main menu);(4) MMI_gen 168 (partly: deselect input field, windows in main menu);(5) MMI_gen 5728 (partly: removal, EVC, windows in main menu);(6) MMI_gen 5728 (partly: restore after ST05, windows in main menu);(7) MMI_gen 4396 (partly: close, NA11, windows in main menu);(8) MMI_gen 5728 (partly: input field, windows in main menu)
             */
-            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
-
-            EVC8_MMIDriverMessage.Send();
-
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                      "1. DMI is in the entry state of ‘ST05’." + Environment.NewLine +
-                                      "2. The hourglass symbol ST05 is displayed" + Environment.NewLine +
-                                      "3. All buttons and the ‘Close’ button are disabled." + Environment.NewLine +
-                                      "4. ‘Close’ button NA12 is displayed disabled in area G." + Environment.NewLine +
-                                      "5. The Input Field is not selected.");
-
-            this.Wait_Realtime(10000);
-            
-            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
-
-            EVC8_MMIDriverMessage.Send();
-
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI is in the exit state of ‘ST05’." + Environment.NewLine +
-                                "2. The hourglass symbol ST05 is removed." + Environment.NewLine +
-                                "3. All buttons are enabled." + Environment.NewLine +
-                                "4. ‘Close’ button NA11 is displayed enabled in area G." + Environment.NewLine +
-                                "5. The Input Field is selected.");
+            XML.XML_10_2_2_a.Send(this, true); 
 
             /*
             Test Step 5
@@ -148,6 +135,9 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Press ‘Close’ button in Driver ID window. Press ‘Train Data’ button");
 
+            EVC6_MMICurrentTrainData.MMI_M_BUTTONS = Convert.ToUInt16(Variables.MMI_M_BUTTONS.BTN_CLOSE);
+            DmiActions.Send_EVC6_MMICurrentTrainData_FixedDataEntry(this, new[] { "FLU", "RLU", "Rescue" }, 1);
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Main window until Train Data window is displayed." + Environment.NewLine +
                                 "2. ‘Close’ button is enabled.");
@@ -158,27 +148,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information;DMI in the entry state of ‘ST05’.(1)  The hourglass symbol ST05 is displayed.(2)  Verify all buttons and the close button are disable.(3)  The disabled Close button NA12 is display in area G.10 seconds laterDMI in the exit state of ‘ST05’.(4)  The hourglass symbol ST05 is removed.(5)  The state of all buttons is restored according to the last status before script is sent.(6)  The enabled Close button NA11 is display in area G
             Test Step Comment: (1) MMI_gen 12018 (partly: windows in main menu);(2) MMI_gen 168 (partly: disabled buttons, windows in main menu); MMI_gen 5646 (partly: State ‘ST05’ button is disabled, windows in main menu); MMI_gen 4395 (partly: close button, disabled, windows in main menu);(3) MMI_gen 4396 (partly: close, NA12, windows in main menu);(4) MMI_gen 5728 (partly: removal, EVC, windows in main menu);(5) MMI_gen 5728 (partly: restore after ST05, windows in main menu);(6) MMI_gen 4396 (partly: close, NA11, windows in main menu);
             */
-            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
-
-            EVC8_MMIDriverMessage.Send();
-
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                      "1. DMI is in the entry state of ‘ST05’." + Environment.NewLine +
-                                      "2. The hourglass symbol ST05 is displayed" + Environment.NewLine +
-                                      "3. All buttons and the ‘Close’ button are disabled." + Environment.NewLine +
-                                      "4. ‘Close’ button NA12 is displayed disabled in area G.");
-
-            this.Wait_Realtime(10000);
-
-            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
-
-            EVC8_MMIDriverMessage.Send();
-
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI is in the exit state of ‘ST05’." + Environment.NewLine +
-                                "2. The hourglass symbol ST05 is removed." + Environment.NewLine +
-                                "3. All buttons are enabled." + Environment.NewLine +
-                                "4. ‘Close’ button NA11 is displayed enabled in area G.");
+            XML.XML_10_2_2_a.Send(this);
 
             /*
             Test Step 8
@@ -187,64 +157,61 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8859 (partly: windows in main menu);(2) MMI_gen 5646 (partly: always enable, windows in main menu);(3) MMI_gen 5719 (partly: always enable, windows in main menu);
             */
             DmiActions.ShowInstruction(this, "Accept train type in the Train data window");
+
+            DmiActions.ShowInstruction(this, @"Press the ‘Yes’ key");
+
+            DmiActions.Send_EVC10_MMIEchoedTrainData_FixedDataEntry(this, new[] { "FLU", "RLU", "Rescue" });
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Train data window until the Validate Train data window is displayed.");
 
-            DmiActions.ShowInstruction(this, @"Press the ‘Yes’ button");
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The ‘Close’ button is enabled." + Environment.NewLine +
                                 @"2. The <Yes> button is enabled");
+            
+            DmiActions.ShowInstruction(this, @"Press the ‘Yes’ key");
 
-            DmiActions.ShowInstruction(this, @"Press the ‘Yes’ button on the keypad");
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The ‘Close’ button is enabled." + Environment.NewLine +
-                                @"2. The <Yes> button is enabled");
-
+                                @"2. The <Yes> key is enabled");
+          
             /*
             Test Step 9
             Action: Repeat action step 2 with Validate Train Data window
             Expected Result: Verify the following information;DMI entry on state of 'ST05'.(1)   The hourglass symbol ST05 is displayed.(2)   Verify all buttons and the close button are disable.(3)  The disabled Close button NA12 is display in area G.(4)  The Input Field is deselected.10 seconds laterDMI in the exit state of ‘ST05’.(5)  The hourglass symbol ST05 is removed.(6)  The state of all buttons is restored according to the last status before script is sent.(7)  The enabled Close button NA11 is display in area G.(8)  The input field is in the ‘Selected’ state
             Test Step Comment: (1) MMI_gen 12018 (partly: windows in main menu);(2) MMI_gen 168 (partly: disabled buttons, windows in main menu); MMI_gen 5646 (partly: State ‘ST05’ button is disabled, windows in main menu); MMI_gen 5719 (partly: State ‘ST05’ button is disabled, windows in main menu); MMI_gen 4395 (partly: close button, disabled, windows in main menu);(3) MMI_gen 4396 (partly: close, NA12, windows in main menu);(4) MMI_gen 168 (partly: deselect input field, windows in main menu);(5) MMI_gen 5728 (partly: removal, EVC, windows in main menu);(6) MMI_gen 5728 (partly: restore after ST05, windows in main menu);(7) MMI_gen 4396 (partly: close, NA11, windows in main menu);(8) MMI_gen 5728 (partly: input field, windows in main menu)
             */
-            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
-
-            EVC8_MMIDriverMessage.Send();
-
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI is in the entry state of ‘ST05’." + Environment.NewLine +
-                                "2. The hourglass symbol ST05 is displayed" + Environment.NewLine +
-                                "3. All buttons and the ‘Close’ button are disabled." + Environment.NewLine +
-                                "4. ‘Close’ button NA12 is displayed disabled in area G." + Environment.NewLine +
-                                "5. The input field is not selected.");
-
-            this.Wait_Realtime(10000);
-
-            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
-
-            EVC8_MMIDriverMessage.Send();
-
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI is in the exit state of ‘ST05’." + Environment.NewLine +
-                                "2. The hourglass symbol ST05 is removed." + Environment.NewLine +
-                                "3. All buttons are enabled." + Environment.NewLine +
-                                "4. ‘Close’ button NA11 is displayed enabled in area G." + Environment.NewLine +
-                                "5. The input field is selected.");
-
+            XML.XML_10_2_2_a.Send(this, true);
+            
             /*
             Test Step 10
             Action: Perform the following procedure;Press ‘close’ button (Validate Train Data window).Press ‘Train Data’ button.Press ‘Enter data’ button
             Expected Result: Verify the following information;(1)   Verify DMI still displays fixed TDE in Train data window until the window is changed to flexible TDE in Train data window.(2)   Verify the close button is always enable
             Test Step Comment: (1) MMI_gen 8859 (partly: windows in main menu);(2) MMI_gen 5646 (partly: always enable, windows in main menu);
             */
-            DmiActions.ShowInstruction(this, @"Press the ‘Close’ but     ton in the Validate Train data window");
+            DmiActions.ShowInstruction(this, @"Press the ‘Close’ button in the Validate Train data window");
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays fixed TDE in Train data window until the window is changed to flexible TDE in Train data window.");       
+                                "1. DMI displays fixed TDE in Train data window until the window is changed to flexible TDE in the Train data window.");       
 
             DmiActions.ShowInstruction(this, @"Press the ‘Train Data’ button.");
+
+            DmiActions.Send_EVC6_MMICurrentTrainData(Variables.MMI_M_DATA_ENABLE.TrainLength,
+                                                     100, 
+                                                     120,
+                                                     Variables.MMI_NID_KEY.PASS1,
+                                                     90,
+                                                     Variables.MMI_NID_KEY.CATA,
+                                                     0,
+                                                     Variables.MMI_NID_KEY.G1,
+                                                     Convert.ToByte(Variables.MMI_M_BUTTONS.BTN_CLOSE | Variables.MMI_M_BUTTONS.BTN_YES_DATA_ENTRY_COMPLETE),
+                                                     0, 0, new[] { "FLU", "RLU", "Rescue" }, null);
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Close’ button is enabled.");
 
             DmiActions.ShowInstruction(this, @"Press the ‘Enter Data’ button.");
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Close’ button is enabled.");
 
@@ -254,30 +221,11 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information;DMI in the entry state of ‘ST05’.(1)   The hourglass symbol ST05 is displayed.(2)   Verify all buttons and the close button are disable. (except ‘Navigator’ button)(3)   The disabled Close button NA12 is display in area G.(4)   All Input Field are deselected.10 seconds laterDMI in the exit state of ‘ST05’.(5)   The hourglass symbol ST05 is removed.(6)   The state of all buttons is restored according to the last status before script is sent.(7)   The enabled Close button NA11 is display in area G.(8)   The input field is stated as follows:The first input field is in the ‘Selected’ state.The all others are in the ‘Not selected’ state
             Test Step Comment: (1) MMI_gen 12018 (partly: windows in main menu);(2) MMI_gen 168 (partly: disabled buttons, windows in main menu); MMI_gen 5646 (partly: State ‘ST05’ button is disabled, windows in main menu); MMI_gen 4395 (partly: close button, disabled, windows in main menu); Note under the MMI_gen 5728;(3) MMI_gen 4396 (partly: close, NA12, windows in main menu);(4) MMI_gen 168 (partly: deselect input field, windows in main menu);(5) MMI_gen 5728 (partly: removal, EVC, windows in main menu);(6) MMI_gen 5728 (partly: restore after ST05, windows in main menu);(7) MMI_gen 4396 (partly: close, NA11, windows in main menu);(8) MMI_gen 5728 (partly: input field, windows in main menu)
             */
-            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
-
-            EVC8_MMIDriverMessage.Send();
+            XML.XML_10_2_2_a.Send(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                      "1. DMI is in the entry state of ‘ST05’." + Environment.NewLine +
-                                      "2. The hourglass symbol ST05 is displayed" + Environment.NewLine +
-                                      "3. All buttons and the ‘Close’ button are disabled except the ‘Navigator’ button ." + Environment.NewLine +
-                                      "4. ‘Close’ button NA12 is displayed disabled in area G." + Environment.NewLine +
-                                      "5. All Input Fields are not selected");
-
-            this.Wait_Realtime(10000);
-
-            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
-
-            EVC8_MMIDriverMessage.Send();
-
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI is in the exit state of ‘ST05’." + Environment.NewLine +
-                                "2. The hourglass symbol ST05 is removed." + Environment.NewLine +
-                                "3. All buttons are enabled." + Environment.NewLine +
-                                "4. ‘Close’ button NA11 is displayed enabled in area G." + Environment.NewLine +
-                                "5. The first Input Field is selected." + Environment.NewLine +
-                                "6. All other Input Fields are not selected.");
+                                "1. The first data input field is ‘Selected’." + Environment.NewLine +
+                                "2. All other data input fields are ‘Not Selected’.");
 
             /*
             Test Step 12
@@ -285,11 +233,16 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information;(1)   Verify DMI still displays Train data window until Validate Train data window is displayed.(2)   Verify the close button is always enable. (3)   Verify the <Yes> button is always enable
             Test Step Comment: (1) MMI_gen 8859 (partly: windows in main menu);(2) MMI_gen 5646 (partly: always enable, windows in main menu); (3) MMI_gen 5719 (partly: always enable, windows in main menu);
             */
-            DmiActions.ShowInstruction(this, @"Accept all values in the Train data window");
+            DmiActions.ShowInstruction(this, @"Accept all values in the Train data window, then press the ‘Yes’ button");
+
+            // This sends the inverted bit map of current state of EVC6 so should work
+            DmiActions.Send_EVC10_MMIEchoedTrainData_FixedDataEntry(this, new[] { "FLU", "RLU", "Rescue" });
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Train data window until the Validate Train data window is displayed.");
 
             DmiActions.ShowInstruction(this, @"Press the ‘Yes’ button");
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. ‘Close’ button is enabled." + Environment.NewLine +
                                 @"2. <Yes> button is enabled.");
@@ -299,28 +252,7 @@ namespace Testcase.DMITestCases
             Expected Result: See the expectation in step 9
             Test Step Comment: See step 9 for the Validate Train Data window in the Main menu
             */
-            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
-
-            EVC8_MMIDriverMessage.Send();
-
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI is in the entry state of ‘ST05’." + Environment.NewLine +
-                                "2. The hourglass symbol ST05 is displayed" + Environment.NewLine +
-                                "3. All buttons and the ‘Close’ button are disabled." + Environment.NewLine +
-                                "4. ‘Close’ button NA12 is displayed disabled in area G.");
-
-            this.Wait_Realtime(10000);
-
-            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
-
-            EVC8_MMIDriverMessage.Send();
-
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI is in the exit state of ‘ST05’." + Environment.NewLine +
-                                "2. The hourglass symbol ST05 is removed." + Environment.NewLine +
-                                "3. All buttons are enabled." + Environment.NewLine +
-                                "4. ‘Close’ button NA11 is displayed enabled in area G." + Environment.NewLine +
-                                "5. The input field is selected.");
+            XML.XML_10_2_2_a.Send(this, true);
 
             // Steps 14 and 15 missing in spec
             /*
@@ -329,7 +261,17 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information;(1)   Verify DMI still displays Main window until Level window is displayed.(2)   Verify the close button is always enable
             Test Step Comment: (1) MMI_gen 8859 (partly: windows in main menu);(2) MMI_gen 5646 (partly: always enable, windows in main menu);
             */
-            DmiActions.ShowInstruction(this, "Accept entered data by pressing an input field");
+            DmiActions.ShowInstruction(this, "Accept entered data by pressing an input field, the press the ‘Level’ button");
+
+            EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
+            EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new Variables.MMI_Q_LEVEL_NTC_ID[] { Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level };
+            EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new Variables.MMI_M_CURRENT_LEVEL[] { Variables.MMI_M_CURRENT_LEVEL.NotLastUsedLevel };
+            EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = new Variables.MMI_M_LEVEL_FLAG[] { Variables.MMI_M_LEVEL_FLAG.MarkedLevel };
+            EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = new Variables.MMI_M_INHIBITED_LEVEL[] { Variables.MMI_M_INHIBITED_LEVEL.NotInhibited };
+            EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = new Variables.MMI_M_INHIBIT_ENABLE[] { Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting };
+            EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new Variables.MMI_M_LEVEL_NTC_ID[] { Variables.MMI_M_LEVEL_NTC_ID.L1 };
+            EVC20_MMISelectLevel.Send();
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Main window until the Level window is displayed.");
 
@@ -343,29 +285,7 @@ namespace Testcase.DMITestCases
             Expected Result: See the expectation in step 4
             Test Step Comment: See step 4 for the Level window in the Main menu
             */
-            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
-
-            EVC8_MMIDriverMessage.Send();
-
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                      "1. DMI is in the entry state of ‘ST05’." + Environment.NewLine +
-                                      "2. The hourglass symbol ST05 is displayed" + Environment.NewLine +
-                                      "3. All buttons and the ‘Close’ button are disabled." + Environment.NewLine +
-                                      "4. ‘Close’ button NA12 is displayed disabled in area G." + Environment.NewLine +
-                                      "5. The Input Field is not selected.");
-
-            this.Wait_Realtime(10000);
-
-            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
-
-            EVC8_MMIDriverMessage.Send();
-
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI is in the exit state of ‘ST05’." + Environment.NewLine +
-                                "2. The hourglass symbol ST05 is removed." + Environment.NewLine +
-                                "3. All buttons are enabled." + Environment.NewLine +
-                                "4. ‘Close’ button NA11 is displayed enabled in area G." + Environment.NewLine +
-                                "5. The Input Field is selected.");
+            XML.XML_10_2_2_a.Send(this, true);
 
             /*
             Test Step 18
@@ -386,56 +306,29 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Level window until the Level inhibition window is displayed." + Environment.NewLine +
-                                "2. ‘Close’ button is enabled.");  
+                                "2. ‘Close’ button is enabled.");
 
             /*
             Test Step 20
-            Action: Repeat action step 2 with Train running number window
+            Action: Repeat action step 2 with Level inhibition window
             Expected Result: See the expectation in step 4
             Test Step Comment: See step 4 for Train running number window in the Main menu
             */
-            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
-
-            EVC8_MMIDriverMessage.Send();
-
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                      "1. DMI is in the entry state of ‘ST05’." + Environment.NewLine +
-                                      "2. The hourglass symbol ST05 is displayed" + Environment.NewLine +
-                                      "3. All buttons and the ‘Close’ button are disabled." + Environment.NewLine +
-                                      "4. ‘Close’ button NA12 is displayed disabled in area G." + Environment.NewLine +
-                                      "5. The Input Field is not selected.");
-
-            this.Wait_Realtime(10000);
-
-            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
-
-            EVC8_MMIDriverMessage.Send();
-
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI is in the exit state of ‘ST05’." + Environment.NewLine +
-                                "2. The hourglass symbol ST05 is removed." + Environment.NewLine +
-                                "3. All buttons are enabled." + Environment.NewLine +
-                                "4. ‘Close’ button NA11 is displayed enabled in area G." + Environment.NewLine +
-                                "5. The Input Field is selected.");
-
-
-            DmiActions.ShowInstruction(this, @"Press ‘L inh’ button");
-
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the Level window until the Level inhibition window is displayed." + Environment.NewLine +
-                                "2. ‘Close’ button is enabled.");
-
+            XML.XML_10_2_2_a.Send(this, true);
+            
             /*
             Test Step 21 Action: Perform the following procedure;Press ‘close’ button (Level window).Press ‘Train running number’ button
             Expected Result: Verify the following information;(1)   Verify DMI still displays Main window until Train running number window is displayed.(2)   Verify the close button is always enable
             Test Step Comment: (1) MMI_gen 8859 (partly: windows in main menu);(2) MMI_gen 5646 (partly: always enable, windows in main menu);        
             */
-            DmiActions.ShowInstruction(this, @"Press ‘Close’ button in the Level window");
+            DmiActions.ShowInstruction(this, @"Confirm the data in the Level inhibition window, then press the ‘Close’ button in the Level window." + Environment.NewLine +
+                                             @"Press the ‘Train running number’ button");
+
+            EVC16_CurrentTrainNumber.TrainRunningNumber = 1;
+            EVC16_CurrentTrainNumber.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Main window until the Train running number window is displayed.");
-
-            DmiActions.ShowInstruction(this, @"Press ‘Train running number’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. ‘Close’ button is enabled.");
@@ -446,29 +339,7 @@ namespace Testcase.DMITestCases
             Expected Result: See the expectation in step 4
             Test Step Comment: See step 4 for Train running number window in the Main menu
             */
-            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
-
-            EVC8_MMIDriverMessage.Send();
-
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                      "1. DMI is in the entry state of ‘ST05’." + Environment.NewLine +
-                                      "2. The hourglass symbol ST05 is displayed" + Environment.NewLine +
-                                      "3. All buttons and the ‘Close’ button are disabled." + Environment.NewLine +
-                                      "4. ‘Close’ button NA12 is displayed disabled in area G." + Environment.NewLine +
-                                      "5. The Input Field is not selected.");
-
-            this.Wait_Realtime(10000);
-
-            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
-
-            EVC8_MMIDriverMessage.Send();
-
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI is in the exit state of ‘ST05’." + Environment.NewLine +
-                                "2. The hourglass symbol ST05 is removed." + Environment.NewLine +
-                                "3. All buttons are enabled." + Environment.NewLine +
-                                "4. ‘Close’ button NA11 is displayed enabled in area G." + Environment.NewLine +
-                                "5. The Input Field is selected.");
+            XML.XML_10_2_2_a.Send(this, true);
 
             /*
             Test Step 23

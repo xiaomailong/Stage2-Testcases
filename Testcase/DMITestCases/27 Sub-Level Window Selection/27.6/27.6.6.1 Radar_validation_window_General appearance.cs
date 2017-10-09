@@ -83,8 +83,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press the ‘Radar’ button to open the Radar window, then enter and confirm all data");
 
             // Open the Radar validation window
-            //EVC41_MMIEchoedMaintenanceData.MMI_Q_MD_DATASET = 0;
-            //EVC41_MMIEchoedMaintenanceData.Send();
+            EVC41_MMIEchoedMaintenanceData.MMI_Q_MD_DATASET_ = Variables.MMI_Q_MD_DATASET.Doppler;
+            EVC41_MMIEchoedMaintenanceData.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. DMI displays the Radar validation window with the title ‘Validate radar’, rightaligned." + Environment.NewLine +
@@ -168,8 +168,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press the ‘Radar’ button, enter and confirm all data, then press the ‘Yes’ button");
 
             // Open the Radar validation window
-            //EVC41_MMIEchoedMaintenanceData.MMI_Q_MD_DATASET = 0;
-            //EVC41_MMIEchoedMaintenanceData.Send();
+            EVC41_MMIEchoedMaintenanceData.MMI_Q_MD_DATASET_ = Variables.MMI_Q_MD_DATASET.Doppler;
+            EVC41_MMIEchoedMaintenanceData.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. DMI displays the Radar validation window");
@@ -196,8 +196,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press the ‘Radar’ button, enter and confirm all data, then press the ‘Yes’ button");
 
             // Open the Radar validation window
-            //EVC41_MMIEchoedMaintenanceData.MMI_Q_MD_DATASET = 0;
-            //EVC41_MMIEchoedMaintenanceData.Send();
+            EVC41_MMIEchoedMaintenanceData.MMI_Q_MD_DATASET_ = Variables.MMI_Q_MD_DATASET.Doppler;
+            EVC41_MMIEchoedMaintenanceData.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. DMI displays the Radar validation window");
