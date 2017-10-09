@@ -65,7 +65,11 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information;(1)   Verify DMI still displays Default window until Data View window is displayed.(2)   Verify the close button is always enable
             Test Step Comment: (1) MMI_gen 8859 (partly: Data view window);(2) MMI_gen 5646 (partly: always enable, Data view window)
             */
-            DmiActions.ShowInstruction(this, @"Press ‘Close’ button in the Data View window. Press ‘Data View’ button.");
+            // In default window?
+            //DmiActions.ShowInstruction(this, @"Press ‘Close’ button in the Data View window. Press ‘Data View’ button.");
+            //DmiActions.ShowInstruction(this, @"Press the ‘Data View’ button.");
+
+            //EVC13_MMIDataView.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Default window until Data View window is displayed." + Environment.NewLine +

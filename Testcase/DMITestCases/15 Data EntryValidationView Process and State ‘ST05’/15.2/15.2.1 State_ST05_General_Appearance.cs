@@ -142,7 +142,13 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press ‘Train data’ button");
-            // Call generic Check Results Method
+
+            // Send fixed data first
+            EVC6_MMICurrentTrainData.MMI_M_BUTTONS = Convert.ToUInt16(Variables.MMI_M_BUTTONS.BTN_CLOSE | Variables.MMI_M_BUTTONS.BTN_YES_DATA_ENTRY_COMPLETE);
+            DmiActions.Send_EVC6_MMICurrentTrainData_FixedDataEntry(this,
+                                                                    new[] { "FLU", "RLU", "Rescue" },
+                                                                    1);
+     
             DmiExpectedResults.Train_data_window_displayed(this);
 
             /*
@@ -152,8 +158,17 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 5728 (partly: ‘Train data’ window, data entry window, before ST05 state)(2) MMI_gen 5728 (partly: ‘Train data’ window, data entry window, before ST05 state, state of buttons)
             */
             DmiActions.ShowInstruction(this, @"Accept the value of ‘Train type’ in the Fixed Train data window");
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Selected’ state of the input fields (black text on medium-grey background) changes to ‘Accepted’ (white text on dark-grey background).");
+
+            DmiActions.ShowInstruction(this, @"Press the ‘Close button");
+
+            EVC6_MMICurrentTrainData.MMI_M_BUTTONS = Convert.ToUInt16(Variables.MMI_M_BUTTONS.BTN_CLOSE | Variables.MMI_M_BUTTONS.BTN_YES_DATA_ENTRY_COMPLETE);
+            EVC6_MMICurrentTrainData.MMI_L_TRAIN = 100;
+            EVC6_MMICurrentTrainData.MMI_M_DATA_ENABLE = Variables.MMI_M_DATA_ENABLE.TrainLength;
+            EVC6_MMICurrentTrainData.TrainSetCaptions = new List<string> { "FLU", "RLU", "Rescue" };
+            EVC6_MMICurrentTrainData.Send();
 
             DmiActions.ShowInstruction(this, @"Accept the value of ‘Train length’ in the Flexible Train data window");
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -196,6 +211,8 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 5728 (partly: ‘Train data’ validation window, data validation window, before ST05 state)(2) MMI_gen 5728 (partly: ‘Train data’ validation window, data validation window, before ST05 state, state of buttons)
             */
             DmiActions.ShowInstruction(this, @"Accept all values in the Train data window. Press ‘Yes’ button. Press ‘Yes’ button (on keypad)");
+            DmiActions.Send_EVC10_MMIEchoedTrainData_FixedDataEntry(this, new[] { "FLU", "RLU", "Rescue" });
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Train data validation window with ‘Yes’ in the input field." + Environment.NewLine +
                                 "2. The input field is in ‘Selected’ state (black text on medium-grey background)." + Environment.NewLine +
@@ -233,6 +250,10 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Train Running Number window
             */
             DmiActions.ShowInstruction(this, "Accept entered data by pressing an input field");
+
+            EVC16_CurrentTrainNumber.TrainRunningNumber = 1;
+            EVC16_CurrentTrainNumber.Send();
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Train Running Number window");
 
@@ -244,10 +265,12 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Enter and confirm Train running number");
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Main window");
 
             EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;      // Main window
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = (EVC30_MMIRequestEnable.EnabledRequests.Start |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.DriverID |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.TrainData |
