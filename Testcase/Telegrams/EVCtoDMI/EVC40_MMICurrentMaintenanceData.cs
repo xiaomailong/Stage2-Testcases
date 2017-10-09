@@ -19,7 +19,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// <summary>
         /// Initialise EVC-40 MMI_Current_Maintenance_Data telegram.
         /// </summary>
-        /// <param name="pool"></param>
+        /// <param name="pool">Signal Pool</param>
         public static void Initialise(SignalPool pool)
         {
             _pool = pool;
@@ -30,7 +30,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         }
 
         /// <summary>
-        /// Send EVC40 Additional Order telegram.
+        /// Send EVC40 Current Maintenance Data telegram.
         /// </summary>
         public static void Send()
         {

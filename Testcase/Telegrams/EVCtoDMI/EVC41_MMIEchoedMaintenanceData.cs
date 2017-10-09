@@ -10,16 +10,19 @@ namespace Testcase.Telegrams.EVCtoDMI
     /// <summary>
     /// This packet shall be sent when stored maintenance data shall be presented via the MMI. 
     /// This packet is used in relation with packets EVC-41, EVC-140 and EVC-141. 
-    /// The purpose of those packets is to provide vital maintenance data to the ATP.
+    /// 
+    /// Note: All variables in this packet (Exception: MMI_M_PACKET and MMI_L_PACKET) shall be the same as in packet EVC-40
+    /// but bit-inverted and in reverse order. Their names shall end with “_”.
+    /// See train data packets EVC-6, EVC-10, EVC-110 and EVC-117 as examples of packet definitions according this rule.
     /// </summary>
     public static class EVC41_MMIEchoedMaintenanceData
     {
         private static SignalPool _pool;
 
         /// <summary>
-        /// Initialise EVC-40 MMI_Current_Maintenance_Data telegram.
+        /// Initialise EVC-41 MMI_Echoed_Maintenance_Data telegram.
         /// </summary>
-        /// <param name="pool"></param>
+        /// <param name="pool">Signal Pool</param>
         public static void Initialise(SignalPool pool)
         {
             _pool = pool;
@@ -30,7 +33,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         }
 
         /// <summary>
-        /// Send EVC40 Additional Order telegram.
+        /// Send EVC41 Echoed Maintenance Data telegram.
         /// </summary>
         public static void Send()
         {
