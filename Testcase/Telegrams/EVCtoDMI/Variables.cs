@@ -905,5 +905,64 @@ namespace Testcase.Telegrams.EVCtoDMI
             RLU = 2,
             Rescue = 3           
         }
+
+        /// <summary>
+        /// Bit-reverses a 32-bit number
+        /// </summary>
+        /// <param name="intToBeReversed"></param>
+        /// <returns>Reversed 32-bit uint</returns>
+        public static uint BitReverser32(uint intToBeReversed)
+        {
+            uint y = 0;
+
+            for (int i = 0; i < 32; i++)
+            {
+                y <<= 1;
+                y |= intToBeReversed & 1;
+                intToBeReversed >>= 1;
+            }
+
+            return y;
+        }
+
+        /// <summary>
+        /// Bit-reverses a 16-bit number
+        /// </summary>
+        /// <param name="intToBeReversed"></param>
+        /// <returns>Reversed 16-bit uint</returns>
+        public static ushort BitReverser16(ushort intToBeReversed)
+        {
+            int y = 0;
+
+            for (int i = 0; i < 16; i++)
+            {
+                y <<= 1;
+                y |= intToBeReversed & 1;
+                intToBeReversed >>= 1;
+            }
+
+            ushort reversedInt = Convert.ToUInt16(y);
+            return reversedInt;
+        }
+
+        /// <summary>
+        /// Bit-reverses a 8-bit number
+        /// </summary>
+        /// <param name="byteToBeReversed"></param>
+        /// <returns>Reversed byte</returns>
+        public static byte BitReverser8(byte byteToBeReversed)
+        {
+            int y = 0;
+
+            for (int i = 0; i < 8; i++)
+            {
+                y <<= 1;
+                y |= byteToBeReversed & 1;
+                byteToBeReversed >>= 1;
+            }
+
+            byte reversedByte = Convert.ToByte(y);
+            return reversedByte;
+        }
     }
 }
