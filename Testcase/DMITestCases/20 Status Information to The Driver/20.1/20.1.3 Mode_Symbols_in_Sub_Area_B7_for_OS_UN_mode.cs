@@ -145,11 +145,7 @@ namespace Testcase.DMITestCases
             Action: Press ‘Yes’ button.Then, confirmed selected value by pressing an input field
             Expected Result: DMI displays Train Running Number window
             */
-            // Call generic Check Results Method
-
-            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
-                                "1. Press ‘Yes’ button." + Environment.NewLine +
-                                "2. Confirmed the selected value by pressing the input field.");
+            
             DmiExpectedResults.Fixed_Train_Data_validated(this);
 
             DmiActions.Display_TRN_Window(this);
