@@ -132,6 +132,7 @@ namespace Testcase.Telegrams.DMItoEVC
                         }
                         // Else display the real value extracted
                         else
+
                         {
                             _pool.TraceError("MMI_N_DATA_ELEMENTS = " + 1 + Environment.NewLine +
                             "MMI_NID_DATA[0] = " + _nidData + Environment.NewLine +

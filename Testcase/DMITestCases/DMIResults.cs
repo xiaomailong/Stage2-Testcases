@@ -921,6 +921,9 @@ namespace Testcase.DMITestCases
         /// <param name="pool"></param>
         public static void Fixed_Train_Data_validated(SignalPool pool)
         {
+            DmiActions.ShowInstruction(pool, @"Perform the following action after pressing OK: " + Environment.NewLine + Environment.NewLine +
+                                "1. Press ‘Yes’ button." + Environment.NewLine +
+                                "2. Confirmed the selected value by pressing the input field.");
             //to be updated (packet 110 to be checked)
         }
 

@@ -39,7 +39,7 @@ namespace Testcase.Telegrams.EVCtoDMI
 
         private static void SetAlias()
         {
-            _pool.SITR.ETCS1.CurrentTrainData.EVC6alias1.Value = (byte) (_trainsetid << 4 | _maltdem << 2);
+            _pool.SITR.ETCS1.CurrentTrainData.MmiMButtons.Value = (byte) (_trainsetid << 4 | _maltdem << 2);
         }
 
         public static void Send()
@@ -302,6 +302,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static ushort MMI_M_BUTTONS
         {
+            get => _pool.SITR.ETCS1.CurrentTrainData.MmiMButtons.Value;
             set => _pool.SITR.ETCS1.CurrentTrainData.MmiMButtons.Value = (byte) value;
         }
 
@@ -316,6 +317,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static ushort MMI_M_TRAINSET_ID
         {
+            get => (ushort)((_pool.SITR.ETCS1.CurrentTrainData.EVC6alias1.Value & 0xF0) >> 4);
             set
             {
                 _trainsetid = value;
@@ -340,6 +342,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static ushort MMI_M_ALT_DEM
         {
+            get => (ushort)((_pool.SITR.ETCS1.CurrentTrainData.EVC6alias1.Value & 0x0C) >> 2);
             set
             {
                 _maltdem = value;
