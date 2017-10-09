@@ -51,7 +51,7 @@ namespace Testcase.DMITestCases
             // Set driver ID
             DmiActions.Set_Driver_ID(this, "1234");
 
-            // Set to level 1 and SR mode
+            // Set to level 2 and SR mode
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L2;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
 
@@ -80,7 +80,19 @@ namespace Testcase.DMITestCases
             Action: At the RBC contact window, press ‘RBC Data’ button
             Expected Result: DMI displays RBC Data window
             */
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 255;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.EnterRBCData;
+            EVC30_MMIRequestEnable.Send();
+
+            EVC22_MMICurrentRBC.MMI_NID_WINDOW = 5;
+            EVC22_MMICurrentRBC.Send();
+            
             DmiActions.ShowInstruction(this, @"Press the ‘RBC Data’ button in the RBC Contact window");
+
+            EVC22_MMICurrentRBC.MMI_NID_WINDOW = 10;
+            EVC22_MMICurrentRBC.Send();
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the RBC Data window.");
 
@@ -99,6 +111,10 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the followin information,(1)     The RBC Data window is closed, DMI displays System info window after received packet EVC-24
             Test Step Comment: (1) MMI_gen 5507 (partly: RBC Data window, abort an already pending data entry process, received packet of different window from ETCS onboard);
             */
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 254;
+            EVC30_MMIRequestEnable.Send();
+
             XML.XML_10_4_1_5_b.Send(this);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The RBC Data window is closed and DMI displays the System info window");
@@ -109,6 +125,11 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the followin information,(1)    The Radio Network ID window is closed, DMI displays System info window after received packet EVC-24
             Test Step Comment: (1) MMI_gen 5507 (partly: Radio Network ID window, abort an already pending data entry process, received packet of different window from ETCS onboard);
             */
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 255;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.RadioNetworkID;
+            EVC30_MMIRequestEnable.Send();
+
             DmiActions.ShowInstruction(this, @"Press the ‘Close’ button in the System info window. Press and hold the ‘Radio network ID’ button for at least 2 seconds." + Environment.NewLine +
                                              @"Release the area pressed");
 
@@ -116,7 +137,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The hourglass symbol ST05 is displayed in the window title area.");
 
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 254;
+            EVC30_MMIRequestEnable.Send();
+
             XML.XML_10_4_1_5_b.Send(this);
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Radio Network ID window is closed and DMI displays the System info window");
 
