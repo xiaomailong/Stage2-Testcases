@@ -143,10 +143,11 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, "Press the ‘Yes’ button in the ‘Wheel diameter’ window");
 
-            //EVC41_MMIEchoedMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1 = 1500;
-            //EVC41_MMIEchoedMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1 = 1500;
-            //EVC41_MMIEchoedMaintenanceData.MMI_M_WHEEL_SIZE_ERR = 32;
-            //EVC41_MMIEchoedMaintenanceData.Send();
+            EVC41_MMIEchoedMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1_ = (Variables.MMI_M_SDU_WHEEL_SIZE)1500;
+            EVC41_MMIEchoedMaintenanceData.MMI_M_SDU_WHEEL_SIZE_2_ = (Variables.MMI_M_SDU_WHEEL_SIZE)1500;
+            EVC41_MMIEchoedMaintenanceData.MMI_M_WHEEL_SIZE_ERR_ = (Variables.MMI_M_WHEEL_SIZE_ERR)32;
+            EVC41_MMIEchoedMaintenanceData.MMI_Q_MD_DATASET_ = Variables.MMI_Q_MD_DATASET.WheelDiameter;
+            EVC41_MMIEchoedMaintenanceData.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Validate Wheel Diameter window is displayed." + Environment.NewLine + 

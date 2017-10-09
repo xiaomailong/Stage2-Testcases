@@ -126,8 +126,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press the ‘Yes’ button in the Radar window.");
 
             // Open the Radar validation window
-            //EVC41_MMIEchoedMaintenanceData.MMI_Q_MD_DATASET = 0;
-            //EVC41_MMIEchoedMaintenanceData.Send();
+            EVC41_MMIEchoedMaintenanceData.MMI_Q_MD_DATASET_ = Variables.MMI_Q_MD_DATASET.Doppler;
+            EVC41_MMIEchoedMaintenanceData.Send();
 
             // Spec says cursor is underneath the character entered but gen 4690 says under the next character to be entered...
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +

@@ -57,7 +57,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// 
         /// Note: All special values concerning cross/range checks are only used in packets EVC-40 and EVC-41.
         /// </summary>
-        public static MMI_M_PULSE_PER_KM MMI_M_PULSE_PER_KM_1
+        public static MMI_M_PULSE_PER_KM MMI_M_PULSE_PER_KM_1_
         {
             set
             {
@@ -85,7 +85,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// 
         /// Note: All special values concerning cross/range checks are only used in packets EVC-40 and EVC-41.
         /// </summary>
-        public static MMI_M_PULSE_PER_KM MMI_M_PULSE_PER_KM_2
+        public static MMI_M_PULSE_PER_KM MMI_M_PULSE_PER_KM_2_
         {
             set
             {
@@ -111,7 +111,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// 
         /// Note: All special values concerning cross/range checks are only used in packets EVC-40 and EVC-41.
         /// </summary>
-        public static MMI_M_SDU_WHEEL_SIZE MMI_M_SDU_WHEEL_SIZE_1
+        public static MMI_M_SDU_WHEEL_SIZE MMI_M_SDU_WHEEL_SIZE_1_
         {
             set
             {
@@ -137,7 +137,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// 
         /// Note: All special values concerning cross/range checks are only used in packets EVC-40 and EVC-41.
         /// </summary>
-        public static MMI_M_SDU_WHEEL_SIZE MMI_M_SDU_WHEEL_SIZE_2
+        public static MMI_M_SDU_WHEEL_SIZE MMI_M_SDU_WHEEL_SIZE_2_
         {
             set
             {
@@ -155,7 +155,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// 0 = "Wheel diameter"
         /// 1 = "Doppler"
         /// </summary>
-        public static MMI_Q_MD_DATASET MMI_Q_MD_DATASET
+        public static MMI_Q_MD_DATASET MMI_Q_MD_DATASET_
         {
             set
             {
@@ -180,7 +180,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// 
         /// Note: All special values concerning cross/range checks are only used in packets EVC-40 and EVC-41.
         /// </summary>
-        public static MMI_M_WHEEL_SIZE_ERR MMI_M_WHEEL_SIZE_ERR
+        public static MMI_M_WHEEL_SIZE_ERR MMI_M_WHEEL_SIZE_ERR_
         {
             set
             {

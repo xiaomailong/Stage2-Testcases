@@ -138,8 +138,8 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Radar data validation window");
 
             // Open the Radar validation window
-            //EVC41_MMIEchoedMaintenanceData.MMI_Q_MD_DATASET = 0;
-            //EVC41_MMIEchoedMaintenanceData.Send();
+            EVC41_MMIEchoedMaintenanceData.MMI_Q_MD_DATASET_ = Variables.MMI_Q_MD_DATASET.Doppler;
+            EVC41_MMIEchoedMaintenanceData.Send();
 
             DmiActions.ShowInstruction(this, @"Validate the data in the data validation window by pressing in the data input field labelled ‘Yes’");
 
