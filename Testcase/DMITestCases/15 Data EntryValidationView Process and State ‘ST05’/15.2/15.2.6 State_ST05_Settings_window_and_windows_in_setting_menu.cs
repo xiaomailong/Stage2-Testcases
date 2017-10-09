@@ -656,9 +656,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8859 (partly: windows in setting menu);(2) MMI_gen 5646 (partly: always enable, windows in setting menu);
             */
             DmiActions.ShowInstruction(this, @"Accept the entered data by pressing an input field. Press the ‘Remove VBC’ button");
-            
-            //EVC19_MMIRemoveVBC.MMI_M_BUTTONS = ;
-            //EVC29_MMIEchoedSetVBCData.Send();
+
+            EVC19_MMIRemoveVBC.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_VBC.BTN_YES_DATA_ENTRY_COMPLETE;
+            EVC19_MMIRemoveVBC.Send();
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window until the Remove VBC window is displayed." + Environment.NewLine +
                                 @"2. The ‘Close’ button is always enabled.");
@@ -669,25 +670,7 @@ namespace Testcase.DMITestCases
             Expected Result: See the expectation in step 2
             Test Step Comment: See step 2 for Remove VBC window in the Settings menu
             */
-            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
-            EVC8_MMIDriverMessage.Send();
-
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI is in the entry state of ‘ST05’." + Environment.NewLine +
-                                "2. The hourglass symbol ST05 is displayed." + Environment.NewLine +
-                                "3. All buttons and the ‘Close’ button are disabled." + Environment.NewLine +
-                                "4. The ‘Close’ button NA12 is displayed disabled in area G.");
-
-            Wait_Realtime(10000);
-
-            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
-            EVC8_MMIDriverMessage.Send();
-
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI is in the exit state of ‘ST05’." + Environment.NewLine +
-                                "2. The hourglass symbol ST05 is removed." + Environment.NewLine +
-                                "3. All buttons are enabled." + Environment.NewLine +
-                                "4. The ‘Close’ button NA11 is displayed enabled in area G.");
+            XML.XML_10_2_6_a.Send(this);
 
             /*
             Test Step 30
@@ -697,8 +680,12 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Enter VBC Code ‘65536’ and accept entered data by pressing an input field. Press ‘Yes’ button. Press ‘Yes’ button on keypad");
 
+            
+            //EVC29_MMIEchoedRemoveVBCData.MMI_M_VBC_CODE_ = 65536;
+            //EVC29_MMIEchoedRemoveVBCData.Send();
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays Remove VBC window until Validate Remove VBC window is displayed." + Environment.NewLine +
+                                "1. DMI displays the Remove VBC window until the Validate Remove VBC window is displayed." + Environment.NewLine +
                                 @"2. The ‘Close’ button is always enabled." + Environment.NewLine +
                                 @"3. <Yes> button is always enabled.");
 
@@ -708,6 +695,7 @@ namespace Testcase.DMITestCases
             Expected Result: See the expectation in step 8
             Test Step Comment: See step 8 for Validate remove VBC window in the Settings menu
             */
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 716;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
             EVC8_MMIDriverMessage.Send();
 
@@ -789,6 +777,7 @@ namespace Testcase.DMITestCases
             Expected Result: See the expectation in step 4
             Test Step Comment: See step 4 for Brake window in the Settings menu
             */
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 716;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
             EVC8_MMIDriverMessage.Send();
 
@@ -828,6 +817,7 @@ namespace Testcase.DMITestCases
             Expected Result: See the expectation in step 4
             Test Step Comment: See step 4 for Brake test window in the Settings menu
             */
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 716;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
             EVC8_MMIDriverMessage.Send();
 
@@ -856,6 +846,8 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Press ‘Close’ button in Brake Test Window. Press ‘Percentage’ button");
 
+            EVC50_MMICurrentBrakePercentage.Send();
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Brake window until Brake percentage window is displayed." + Environment.NewLine +
                                 @"2. The ‘Close’ button is always enabled.");
@@ -866,6 +858,7 @@ namespace Testcase.DMITestCases
             Expected Result: See the expectation in step 2
             Test Step Comment: See step 2 for Brake percentage window in the Settings menu
             */
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 716;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
             EVC8_MMIDriverMessage.Send();
 
@@ -896,6 +889,9 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Enter Brake percentage ‘80’ and accept entered data by pressing an input field. Press ‘Yes’ button on keypad");
 
+            //EVC51_MMIEchoedBrakePercentage.MMI_M_BP_CURRENT_ = 80;
+            //EVC51_MMIEchoedBrakePercentage.Send();
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Brake percentage window until Validate Brake percentage window is displayed." + Environment.NewLine +
                                 @"2. The ‘Close’ button is always enabled." + Environment.NewLine +
@@ -907,6 +903,7 @@ namespace Testcase.DMITestCases
             Expected Result: See the expectation in step 8
             Test Step Comment: See step 8 for Validate brake percentage window in the Settings menu
             */
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 716;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
             EVC8_MMIDriverMessage.Send();
 
@@ -935,12 +932,14 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information;(1)   Verify DMI still displays Setting window until System Info window is displayed.(2)   Verify the close button is always enable
             Test Step Comment: (1) MMI_gen 8859 (partly: windows in setting menu);(2) MMI_gen 5646 (partly: always enable, windows in setting menu);
             */
-            DmiActions.ShowInstruction(this, @"Accept entered data by pressing an input field. Press ‘Close’ button in Brake window. Press ‘System Info’ button");
-
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 4;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 255;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_LOW = true;
             EVC30_MMIRequestEnable.Send();
+
+            DmiActions.ShowInstruction(this, @"Accept entered data by pressing an input field. Press ‘Close’ button in Brake window. Press ‘System Info’ button");
+
+            //EVC24_MMISystemInfo.Send(); 
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Setting window until System Info window is displayed." + Environment.NewLine +
@@ -952,6 +951,7 @@ namespace Testcase.DMITestCases
             Expected Result: See the expectation in step 23
             Test Step Comment: See step 23 for System Info window in the Settings menu
             */
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 716;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
             EVC8_MMIDriverMessage.Send();
 
