@@ -874,6 +874,11 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Accept entered data by pressing an input field. Press ‘Close’ button in Brake window. Press ‘System Info’ button");
 
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 4;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_LOW = true;
+            EVC30_MMIRequestEnable.Send();
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Setting window until System Info window is displayed." + Environment.NewLine +
                                 @"2. ‘Close’ button is always enabled.");

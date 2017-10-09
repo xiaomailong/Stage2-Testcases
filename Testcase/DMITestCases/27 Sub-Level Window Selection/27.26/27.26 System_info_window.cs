@@ -81,8 +81,7 @@ namespace Testcase.DMITestCases
             
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = 4;      // Settings window
-            // This may be needed to set System info enabled
-            //EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_LOW = true;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_LOW = true;
             EVC30_MMIRequestEnable.Send();
 
             DmiActions.ShowInstruction(this, @"Press the ‘System info’ button");

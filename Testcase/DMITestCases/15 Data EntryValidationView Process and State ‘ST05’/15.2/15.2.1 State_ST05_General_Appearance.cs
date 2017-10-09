@@ -68,10 +68,10 @@ namespace Testcase.DMITestCases
             */
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Main Window.");
-
-            // The spec says the least significant bit #32 is on (EnableBrakePercentage) ???
-            // Can't at present set System info...
+            
             EVC30_MMIRequestEnable.SendBlank();
+            // The spec says the least significant bit #32 is on 
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_LOW = true;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = (EVC30_MMIRequestEnable.EnabledRequests.DriverID |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.TrainData |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.Level |
@@ -82,7 +82,7 @@ namespace Testcase.DMITestCases
                                                                 EVC30_MMIRequestEnable.EnabledRequests.NonLeading |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.MaintainShunting |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.EOA);
-            
+
             EVC30_MMIRequestEnable.Send();
 
             WaitForVerification("Check that DMI displays the following buttons in the state specified:" + Environment.NewLine + Environment.NewLine +
@@ -119,10 +119,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 5728 (partly: removal, EVC);(2) MMI_gen 5728 (partly: restore (after ST05), ‘Main’ window, menu window);(3) MMI_gen 4396 (partly: close, NA11);
             */
             XML.XML_10_2_b.Send(this);
-
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. ");
-
+            
             WaitForVerification("Check that DMI displays or hides the following objects in the state specified according to the last received EVC-30 message:" + Environment.NewLine + Environment.NewLine +
                                 "1. The hourglass symbol ST05 is removed." + Environment.NewLine + 
                                 "2. ‘Start’ button is disabled." + Environment.NewLine +

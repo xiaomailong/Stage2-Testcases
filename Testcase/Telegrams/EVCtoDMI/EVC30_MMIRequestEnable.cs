@@ -132,6 +132,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             }
         }
 
+        #region System Info enabling test
         // TODO To implement properly at some point
         ///// <summary>
         ///// This variable controls which generic driver requests shall be accessible by the driver
@@ -142,16 +143,17 @@ namespace Testcase.Telegrams.EVCtoDMI
         ///// 0 = "System info"
         ///// 1..31 = not used, set to zero
         ///// </summary>
-        //public static bool MMI_Q_REQUEST_ENABLE_LOW
-        //{
-        //    set
-        //    {
-        //        if (value)
-        //            _pool.SITR.ETCS1.EnableRequest.MmiQRequestEnable.Value[1] = 0x80000000;
-        //        else
-        //            _pool.SITR.ETCS1.EnableRequest.MmiQRequestEnable.Value[1] = 0x00000000;
-        //    }
-        //}
+        public static bool MMI_Q_REQUEST_ENABLE_LOW
+        {
+            set
+            {
+                if (value)
+                    _pool.SITR.ETCS1.EnableRequest.MmiQRequestEnable.Value[1] = 0x80000000;
+                else
+                    _pool.SITR.ETCS1.EnableRequest.MmiQRequestEnable.Value[1] = 0x00000000;
+            }
+        }
+        #endregion
 
         [Flags]
         public enum EnabledRequests : uint
