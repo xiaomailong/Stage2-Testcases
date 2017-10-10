@@ -43,7 +43,7 @@ namespace Testcase.DMITestCases
             base.PreExecution();
 
             // The Maintenance password in tag name ‘PASS_CODE_MTN’ of the configuration file is set correctly refer to MMI_gen 11722Test system is power on.Cabin is activated.Settings window is opened. 
-            // NO !!!!!!  Can't do this: Maintenance window is opened.Radar window is opened.
+            // ?? Maintenance window is opened.Radar window is opened.
             DmiActions.Start_ATP();
             DmiActions.Activate_Cabin_1(this);
             DmiActions.Set_Driver_ID(this, "1234");
@@ -72,20 +72,13 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,Use the log file to confirm that DMI received the packet MMI_ECHOED_MAINTENANCE_DATA (EVC-41) with variable MMI_Q_MD_DATASET = 1. Use the log file to confirm that the following variables in packet EVC-41 are same as the entered data,MMI_M_PULSE_PER_KM_1 = entered radar 1DMI displays Radar Validation window.The following objects are displayed in Radar Validation window. Enabled Close button (NA11)Window TitleInput fieldYes buttonNo buttonWindow TitleThe window title is ‘Validate radar’.The window title is right aligned.LayerThe window is displayed in main area A/B/C/D/E/F/G.All areas of Data validation window are Layer 0.Input fieldThe window contains a single input field which have only data area.The value of input field is empty.KeyboardThe displayed keyboard type is dedicated keyboard which contain only ‘Yes’ and ‘No’ button.The key #7 is No button.The key #8 is Yes button.Echo TextEcho Text is composed of a Label part and Data part.The Label of echo text is right aligned.The Data part of echo text is left aligned.The order of echo texts are same as of the Radar window as follows,Radar 1 (mm)Radar 2 (mm)The data part of echo texts is displayed the data value same as of the Radar window.The echo texts are located in Main area A,B,C and E.The colour of echo texts is white.General property of windowThe Radar Validation window is presented with objects, text messages and buttons which is the one of several levels and allocated to areas of DMI. All objects, text messages and buttons are presented within the same layer.The Default window is not displayed and covered the current window
             Test Step Comment: (1) MMI_gen 11792 (partly: EVC-41);(2) MMI_gen 11797;(3) MMI_gen 11792 (partly: open Radar Validation window, touch screen);(4) MMI_gen 11791 (partly: MMI_gen 5215 (partly: Close button, Window title, Input field, No button, Yes button)); MMI_gen 4392 (partly: [Close] NA11);(5) MMI_gen 11795;(6) MMI_gen 11791 (partly: MMI_gen 5216);(7) MMI_gen 11791 (partly: MMI_gen 7943);(8) MMI_gen 11791 (partly: MMI_gen 5303);(9) MMI_gen 11791 (partly: MMI_gen 5214 (partly: single input field));          (10) MMI_gen 11791 (partly: MMI_gen 5484 (partly: empty)); (11) MMI_gen 11791 (partly: MMI_gen 5214 (partly: dedicated keyboard, MMI_gen 5006), MMI_gen 5006);(12) MMI_gen 11791 (partly: MMI_gen 5263 (partly: MMI_gen 4696));(13) MMI_gen 11791 (partly: MMI_gen 5263 (partly: MMI_gen 4702 (partly: right aligned)));(14) MMI_gen 11791 (partly: MMI_gen 5263 (partly: MMI_gen 4704 (partly: left aligned)));(15) MMI_gen 11796;                  MMI_gen 11791 (partly: MMI_gen 5263 (partly: MMI_gen 4701 (partly: same order), MMI_gen 4697));(16) MMI_gen 11791 (partly: MMI_gen 5263 (partly: MMI_gen 4698));(17) MMI_gen 11791 (partly: MMI_gen 5263 (partly: MMI_gen 4701 (partly: Main area A, B, C and E));(18) MMI_gen 11791 (partly: MMI_gen 5263 (partly: MMI_gen 4700 (partly: data validation process)));(19) MMI_gen 4350;(20) MMI_gen 4351;(21) MMI_gen 4353;
             */
-            DmiActions.ShowInstruction(this, "Press the ‘Maintenance’ button and enter the password from the PASS_CODE_MTN in the configuration file " + Environment.NewLine +
-                                             "in the Password Maintenance window");
-
-            EVC40_MMICurrentMaintenanceData.MMI_Q_MD_DATASET = Variables.MMI_Q_MD_DATASET.Doppler;
-            EVC40_MMICurrentMaintenanceData.MMI_M_PULSE_PER_KM_1 = Variables.MMI_M_PULSE_PER_KM.NoRadarOnBoard;
-            EVC40_MMICurrentMaintenanceData.MMI_M_PULSE_PER_KM_2 = Variables.MMI_M_PULSE_PER_KM.NoRadarOnBoard;
-            EVC40_MMICurrentMaintenanceData.Send();
-
             DmiActions.ShowInstruction(this, "Press the ‘Radar’ button to open the Radar window, then enter and confirm all data");
 
-            // Open the Radar validation window
-            EVC41_MMIEchoedMaintenanceData.MMI_Q_MD_DATASET_ = Variables.MMI_Q_MD_DATASET.Doppler;
-            EVC41_MMIEchoedMaintenanceData.Send();
-
+            EVC40_MMICurrentMaintenanceData.MMI_Q_MD_DATASET = Variables.MMI_Q_MD_DATASET.Doppler;
+            EVC40_MMICurrentMaintenanceData.MMI_M_PULSE_PER_KM_1 = (Variables.MMI_M_PULSE_PER_KM)20001;
+            EVC40_MMICurrentMaintenanceData.MMI_M_PULSE_PER_KM_2 = (Variables.MMI_M_PULSE_PER_KM)20001;
+            EVC40_MMICurrentMaintenanceData.Send();
+            
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. DMI displays the Radar validation window with the title ‘Validate radar’, rightaligned." + Environment.NewLine +
                                 @"2. The Radar Validation window displays an enabled Close button(symbol NA11), a data input field, a ‘Yes’ button and a ‘No’ button." + Environment.NewLine +
@@ -165,11 +158,21 @@ namespace Testcase.DMITestCases
             Action: Perform the following procedure,Press ‘Radar’ button.Enter and confirm all data in Radar window.Press ‘Yes’ button
             Expected Result: DMI displays Radar validation window
             */
-            DmiActions.ShowInstruction(this, "Press the ‘Radar’ button, enter and confirm all data, then press the ‘Yes’ button");
+            DmiActions.ShowInstruction(this, "Press the ‘Radar’ button");
+
+            EVC40_MMICurrentMaintenanceData.MMI_Q_MD_DATASET = Variables.MMI_Q_MD_DATASET.Doppler;
+            EVC40_MMICurrentMaintenanceData.MMI_M_PULSE_PER_KM_1 = (Variables.MMI_M_PULSE_PER_KM)20001;
+            EVC40_MMICurrentMaintenanceData.MMI_M_PULSE_PER_KM_2 = (Variables.MMI_M_PULSE_PER_KM)20001;
+            EVC40_MMICurrentMaintenanceData.Send();
+
+            DmiActions.ShowInstruction(this, "Confirm all data, then press the ‘Yes’ button");
 
             // Open the Radar validation window
             EVC41_MMIEchoedMaintenanceData.MMI_Q_MD_DATASET_ = Variables.MMI_Q_MD_DATASET.Doppler;
+            EVC41_MMIEchoedMaintenanceData.MMI_M_PULSE_PER_KM_1_ = (Variables.MMI_M_PULSE_PER_KM)20001;
+            EVC41_MMIEchoedMaintenanceData.MMI_M_PULSE_PER_KM_2_ = (Variables.MMI_M_PULSE_PER_KM)20001;
             EVC41_MMIEchoedMaintenanceData.Send();
+            EVC41_MMIEchoedMaintenanceData.MMI_Q_MD_DATASET_ = Variables.MMI_Q_MD_DATASET.Doppler;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. DMI displays the Radar validation window");
@@ -193,11 +196,20 @@ namespace Testcase.DMITestCases
             Action: Perform the following procedure,Press ‘Radar’ button.Enter and confirm all data in Radar window.Press ‘Yes’ button
             Expected Result: DMI displays Radar validation window
             */
-            DmiActions.ShowInstruction(this, "Press the ‘Radar’ button, enter and confirm all data, then press the ‘Yes’ button");
+            DmiActions.ShowInstruction(this, "Press the ‘Radar’ button");
 
-            // Open the Radar validation window
+            EVC40_MMICurrentMaintenanceData.MMI_Q_MD_DATASET = Variables.MMI_Q_MD_DATASET.Doppler;
+            EVC40_MMICurrentMaintenanceData.MMI_M_PULSE_PER_KM_1 = (Variables.MMI_M_PULSE_PER_KM)20001;
+            EVC40_MMICurrentMaintenanceData.MMI_M_PULSE_PER_KM_2 = (Variables.MMI_M_PULSE_PER_KM)20001;
+            EVC40_MMICurrentMaintenanceData.Send();
+
+            DmiActions.ShowInstruction(this, "Confirm all data, then press the ‘Yes’ button");
+
             EVC41_MMIEchoedMaintenanceData.MMI_Q_MD_DATASET_ = Variables.MMI_Q_MD_DATASET.Doppler;
+            EVC41_MMIEchoedMaintenanceData.MMI_M_PULSE_PER_KM_1_ = (Variables.MMI_M_PULSE_PER_KM)20001;
+            EVC41_MMIEchoedMaintenanceData.MMI_M_PULSE_PER_KM_2_ = (Variables.MMI_M_PULSE_PER_KM)20001;
             EVC41_MMIEchoedMaintenanceData.Send();
+            EVC41_MMIEchoedMaintenanceData.MMI_Q_MD_DATASET_ = Variables.MMI_Q_MD_DATASET.Doppler;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. DMI displays the Radar validation window");
@@ -232,7 +244,20 @@ namespace Testcase.DMITestCases
             Action: Perform the following procedure,Press ‘Radar’ button.Enter and confirm all data in Radar window.Press ‘Yes’ button.Then, Simulate loss-communication between ETCS onboard and DMI
             Expected Result: DMI displays Default window with the  message “ATP Down Alarm” and sound alarm
             */
-            DmiActions.ShowInstruction(this, "Press the ‘Radar’ button, enter and confirm all data, then press the ‘Yes’ button");
+            DmiActions.ShowInstruction(this, "Press the ‘Radar’ button");
+
+            EVC40_MMICurrentMaintenanceData.MMI_Q_MD_DATASET = Variables.MMI_Q_MD_DATASET.Doppler;
+            EVC40_MMICurrentMaintenanceData.MMI_M_PULSE_PER_KM_1 = (Variables.MMI_M_PULSE_PER_KM)20001;
+            EVC40_MMICurrentMaintenanceData.MMI_M_PULSE_PER_KM_2 = (Variables.MMI_M_PULSE_PER_KM)20001;
+            EVC40_MMICurrentMaintenanceData.Send();
+
+            DmiActions.ShowInstruction(this, "Confirm all data, then press the ‘Yes’ button");
+
+            EVC41_MMIEchoedMaintenanceData.MMI_Q_MD_DATASET_ = Variables.MMI_Q_MD_DATASET.Doppler;
+            EVC41_MMIEchoedMaintenanceData.MMI_M_PULSE_PER_KM_1_ = (Variables.MMI_M_PULSE_PER_KM)20001;
+            EVC41_MMIEchoedMaintenanceData.MMI_M_PULSE_PER_KM_2_ = (Variables.MMI_M_PULSE_PER_KM)20001;
+            EVC41_MMIEchoedMaintenanceData.Send();
+            EVC41_MMIEchoedMaintenanceData.MMI_Q_MD_DATASET_ = Variables.MMI_Q_MD_DATASET.Doppler;
 
             DmiActions.Simulate_communication_loss_EVC_DMI(this);
 
