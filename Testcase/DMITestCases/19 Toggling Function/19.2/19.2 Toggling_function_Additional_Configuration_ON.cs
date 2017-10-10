@@ -435,6 +435,11 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SH mode, Level 1.Verify the following information,The white basic speed hook is displayed on sub-area B2 (toggle on).The objects below are not displayed on DMI,Medium-grey basic speed hookDistance to target (digital)Release Speed Digital
             Test Step Comment: (1) MMI_gen 11868 (partly: SH mode);                    MMI_gen 6450 (partly: 2nd bullet, SH mode) , Table 34 (CSM), MMI_gen 6898 (partly: configuration ‘ON’); MMI_gen 6320 (partly: SH mode, Table 34 (CSM));(2) MMI_gen 6890 (partly: SH mode, un-concerned object), Table 34 (CSM), Table 38 (CSM), Table 35 (CSM)
             */
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 255;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Shunting;
+            EVC30_MMIRequestEnable.Send();
+
             DmiActions.ShowInstruction(this, "Press the ‘Main’ button. Press and hold ‘Shunting’ button for up to 2s then release the ‘Shunting’ button");
 
             // surely irrelevant here??
