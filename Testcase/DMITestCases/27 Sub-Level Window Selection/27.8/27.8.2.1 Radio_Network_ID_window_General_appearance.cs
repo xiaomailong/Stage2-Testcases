@@ -76,7 +76,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Driver ID window
             */
             DmiActions.Activate_Cabin_1(this);
-
+            DmiActions.Set_Driver_ID(this, "1234");
             DmiExpectedResults.Driver_ID_window_displayed(this);
 
             /*
@@ -103,13 +103,16 @@ namespace Testcase.DMITestCases
 
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L2;
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 255;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.RadioNetworkID;
             EVC30_MMIRequestEnable.Send();
 
-            DmiActions.ShowInstruction(this, "Press the ‘Radio Network ID’ button");
+            // via RBC contact window
+            EVC22_MMICurrentRBC.MMI_NID_WINDOW = 5;
+            EVC22_MMICurrentRBC.Send();
 
-            // This test is incomplete: no details of EVC22 
+            DmiActions.ShowInstruction(this, "Press the ‘Radio Network ID’ button");
+            
             EVC22_MMICurrentRBC.MMI_NID_WINDOW = 9;
             EVC22_MMICurrentRBC.NetworkCaptions = new List<string> { "GSMR-A", "GSMR-B" };
             EVC22_MMICurrentRBC.DataElements = new List<DataElement> { new DataElement { Identifier = 0, QDataCheck = 23, EchoText = "23" },
@@ -230,7 +233,7 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, "Confirm the current data without re-entering the Radio Network ID");
 
-            // EVC112_MMINewRBCData.CheckMMiNDataElements = 1;          // ??
+            //EVC112_MMINewRBCData.CheckMMiNDataElements = 1;          // ??
             //EVC112_MMINewRBCData.CheckMmiNidData = 3;
             //EVC112_MMINewRBCData.CheckMMiMButtons = Variables.MMI_M_BUTTONS.BTN_ENTER;
             //EVC112_MMINewRBCData.CheckMmiNidMn = 23;   // 1st key
