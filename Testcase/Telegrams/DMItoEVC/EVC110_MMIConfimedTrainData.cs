@@ -18,17 +18,17 @@ namespace Testcase.Telegrams.DMItoEVC
     /// 3. Driver completes entering a data block by pressing 'Yes'.
     /// 4. Driver overrules an operational check rule by pressing 'Delay Type Yes'.
     /// </summary>
-    public static class EVC110_MMIConfirmedTrainData
+    public static class EVC110_MMIConfimedTrainData
     {
         private static SignalPool _pool;
         private static bool _checkResult;
         private static byte _trainsetID;
         private static byte _mAltDem;
 
-        private const string BaseString = "DMI->ETCS: EVC-110 [MMI_CONFIRMED_TRAIN_DATA]";
+        static string baseString = "DMI->ETCS: EVC-110 [MMI_CONFIRMED_TRAIN_DATA]";
 
         /// <summary>
-        /// Initialise EVC110 MMI_Confirmed_Train_Data telegram.
+        /// Initialise EVC110 MMI_New_Train_Data telegram.
         /// </summary>
         /// <param name="pool"></param>
         public static void Initialise(SignalPool pool)
@@ -58,7 +58,7 @@ namespace Testcase.Telegrams.DMItoEVC
                 // If check passes
                 if (_checkResult)
                 {
-                    _pool.TraceReport(BaseString + Environment.NewLine +
+                    _pool.TraceReport(baseString + Environment.NewLine +
                         "MMI_L_TRAIN = " + 0 + Environment.NewLine +
                         "MMI_V_MAXTRAIN = " + 0 + Environment.NewLine +
                         "MMI_NID_KEY_TRAIN_CAT = \"" + MMI_NID_KEY.NoDedicatedKey + "\"" + Environment.NewLine +
@@ -72,7 +72,7 @@ namespace Testcase.Telegrams.DMItoEVC
                 // Else display the real value extracted from EVC-107
                 else
                 {
-                    _pool.TraceError(BaseString + Environment.NewLine +
+                    _pool.TraceError(baseString + Environment.NewLine +
                         "MMI_L_TRAIN = \"" + _pool.SITR.CCUO.ETCS1NewTrainData.MmiLTrain.Value + "\"" + Environment.NewLine +
                         "MMI_V_MAXTRAIN = \"" + _pool.SITR.CCUO.ETCS1NewTrainData.MmiLTrain.Value + "\"" + Environment.NewLine +
                         "MMI_NID_KEY_TRAIN_CAT = \"" + Enum.GetName(typeof(MMI_NID_KEY), _pool.SITR.CCUO.ETCS1NewTrainData.MmiNidKeyTrainCat.Value) + "\"" + Environment.NewLine +
@@ -89,7 +89,7 @@ namespace Testcase.Telegrams.DMItoEVC
             // Show generic DMI -> EVC telegram failure
             else
             {
-                DmiExpectedResults.DMItoEVC_Telegram_Not_Received(_pool, BaseString);
+                DmiExpectedResults.DMItoEVC_Telegram_Not_Received(_pool, baseString);
             }
         }   
     }
