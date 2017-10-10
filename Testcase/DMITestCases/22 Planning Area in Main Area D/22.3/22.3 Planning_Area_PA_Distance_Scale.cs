@@ -48,8 +48,6 @@ namespace Testcase.DMITestCases
         {
             // Post-conditions from TestSpec
             // DMI displays in FS mode, level 1.
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in FS mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -91,10 +89,12 @@ namespace Testcase.DMITestCases
             // Need to set track descriptions for scale to display correctly
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 20000;  // 200m
 
-            List<TrackDescription> descriptionsList = new List<TrackDescription>();
-            descriptionsList.Add(new TrackDescription { MMI_G_GRADIENT = 10, MMI_O_GRADIENT = 10000, MMI_O_MRSP = 10500, MMI_V_MRSP = 800} );
-            descriptionsList.Add(new TrackDescription { MMI_G_GRADIENT = 15, MMI_O_GRADIENT = 20000, MMI_O_MRSP = 15000, MMI_V_MRSP = 700} );
-            descriptionsList.Add(new TrackDescription { MMI_G_GRADIENT = 20, MMI_O_GRADIENT = 30000, MMI_O_MRSP = 20500, MMI_V_MRSP = 600} );
+            List<TrackDescription> descriptionsList = new List<TrackDescription>()
+            {
+              { MMI_G_GRADIENT = 10, MMI_O_GRADIENT = 10000, MMI_O_MRSP = 10500, MMI_V_MRSP = 800},
+              { MMI_G_GRADIENT = 15, MMI_O_GRADIENT = 20000, MMI_O_MRSP = 15000, MMI_V_MRSP = 700},
+              { MMI_G_GRADIENT = 20, MMI_O_GRADIENT = 30000, MMI_O_MRSP = 20500, MMI_V_MRSP = 600}
+            };
 
             EVC4_MMITrackDescription.TrackDescriptions = descriptionsList;
             EVC4_MMITrackDescription.Send(); 
