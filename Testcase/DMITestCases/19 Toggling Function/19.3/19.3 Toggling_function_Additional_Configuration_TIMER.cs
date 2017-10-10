@@ -51,9 +51,6 @@ namespace Testcase.DMITestCases
         {
             // Post-conditions from TestSpec
             // DMI displays in PT mode, Level 1.
-            // Surely SH??
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in PT mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -83,7 +80,7 @@ namespace Testcase.DMITestCases
             */
             // Doesn't the symbol appear in C6??
             DmiActions.ShowInstruction(this, "Change the train direction to reverse and press the symbol in sub-area C1");
-            //EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Reversing;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Reversing;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in RV mode, Level 1." + Environment.NewLine +
@@ -140,7 +137,17 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The objects below are displayed on DMI for 10 secondsWhite basic speed hookMedium-grey basic speed hookDistance to target (digital)The release speed digital is not displayed
             Test Step Comment: (1) MMI_gen 11868 (partly: SR mode);                    MMI_gen 6450 (partly: 3rd bullet, SR mode), Table 34 (not CSM), Table 38 (not CSM), MMI_gen 6898 (partly: configuration ‘TIMER’);(2) MMI_gen 6890 (partly: SR mode, un-concerned object), Table 35 (not CSM)
             */
-            DmiActions.ShowInstruction(this, "Press ‘Spec’ button. Press ‘SR speed/disาtance’ button. Enter and confirm the following data, SR speed = 40 km/h, SR distance = 300m");
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 255;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.SRSpeedDistance;
+            EVC30_MMIRequestEnable.SendBlank();
+
+            DmiActions.ShowInstruction(this, "Press ‘Spec’ button. Press ‘SR speed/distance’ button");
+
+            EVC11_MMICurrentSRRules.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS.BTN_YES_DATA_ENTRY_COMPLETE;
+            EVC11_MMICurrentSRRules.Send();
+
+            DmiActions.ShowInstruction(this, "Enter and confirm the following data, SR speed = 40 km/h, SR distance = 300m");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the White Basic speed hook for 10s then removes it." + Environment.NewLine +
@@ -184,13 +191,19 @@ namespace Testcase.DMITestCases
             */
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 20;
 
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 264;
+            EVC8_MMIDriverMessage.Send();
+
             DmiActions.ShowInstruction(this, @"Acknowledge by pressing on area C1");
 
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L0;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Unfitted;
 
             WaitForVerification("Check the following :" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in UN mode, Level 1." + Environment.NewLine +
+                                "1. DMI displays in UN mode, Level 0." + Environment.NewLine +
                                 "2. DMI does not display the White basic speed hook." + Environment.NewLine +
                                 "3. DMI does not display the Medium-grey basic speed hook." + Environment.NewLine +
                                 "4. DMI does not display the Digital distance to target." + Environment.NewLine +
@@ -253,16 +266,16 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in OS mode, Level 1.Verify the following information,The objects below are displayed on DMI for 10 secondsBasic speed Hook(s)Distance to target (digital)Release speed digital
             Test Step Comment: (1) MMI_gen 11868 (partly: OS mode), Table 34 (not CSM), Table 35 (not CSM), Table 38 (not CSM), MMI_gen 6450 (partly: 3rd bullet, OS mode), MMI_gen 6898 (configuration ‘TIMER’, OS mode);
             */
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.OnSight;
-
-            // Need to send EVC8 with MO08 to get an acknowledgement symbol displayed??
-            EVC8_MMIDriverMessage.MMI_I_TEXT = 4;
-            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
+            
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 259;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
             EVC8_MMIDriverMessage.Send();
 
             DmiActions.ShowInstruction(this, "Acknowledge OS mode by pressing in sub-area C1");
+
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.OnSight;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in OS mode, Level 1." + Environment.NewLine +
@@ -308,16 +321,15 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in LS mode, Level 1.Verify the following information,The objects below are displayed on DMI,Distance to target (digital)Release Speed DigitalThe objects below are not displayed on DMI,White Basic speed HookMedium-grey basic speed hook
             Test Step Comment: (1) MMI_gen 6892 (partly: LS mode, Table 35 (not CSM), Table 38 (not CSM))(2) MMI_gen 6890 (partly: LS mode, unidentified mode, un-concerned object), Table 34 (not CSM)
             */
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.LimitedSupervision;
-
-            // Need to send EVC8 with MO22 to get an acknowledgement symbol displayed??
            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
-           EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
-           EVC8_MMIDriverMessage.MMI_I_TEXT = 4;
+           EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+           EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
            EVC8_MMIDriverMessage.MMI_Q_TEXT = 709;
            EVC8_MMIDriverMessage.Send();
 
             DmiActions.ShowInstruction(this, "Acknowledge by pressing in sub-area C1");
+
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.LimitedSupervision;
 
             WaitForVerification("Check the following :" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in LS mode, Level 1." + Environment.NewLine +
@@ -381,7 +393,13 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in PT mode, Level 1. Verify the following information,The objects below are not displayed on DMI,White Basic speed HookMedium-grey basic speed hookDistance to target (digital)Release Speed Digital
             Test Step Comment: (1) MMI_gen 6892 (partly: PT mode, Table 34, Table 38, Table 35), MMI_gen 6890 (partly: PT mode, unidentified mode, un-concerned object)
             */
-            DmiActions.ShowInstruction(this, "Acknowledge PT mode by pressing in sub-area C1");
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 266;
+            EVC8_MMIDriverMessage.Send();
+
+            DmiActions.ShowInstruction(this, "Acknowledge TR mode by pressing in sub-area C1");
 
             // ?? Spec is inconsistent: either TR or PT mode
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.PostTrip;
@@ -417,10 +435,14 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SH mode, Level 1.Verify the following information,The white basic speed hook is displayed on DMI for 10 secondsThe objects below are not displayed on DMI,Medium-grey basic speed hookDistance to target (digital)Release Speed Digital
             Test Step Comment: (1) MMI_gen 11868 (partly: SH mode);                    MMI_gen 6450 (partly: 3rd bullet, SH mode) , Table 34 (CSM), MMI_gen 6898 (partly: configuration ‘TIMER’);(2) MMI_gen 6890 (partly: SH mode, un-concerned object), Table 34 (CSM), Table 38 (CSM), Table 35 (CSM)
             */
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 255;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Shunting;
+            EVC30_MMIRequestEnable.Send();
+
             DmiActions.ShowInstruction(this, "Press the ‘Main’ button. Press and hold ‘Shunting’ button for up to 2s then release the ‘Shunting’ button");
 
-            // surely irrelevant here??
-            //DmiExpectedResults.Shunting_button_pressed_and_hold(this);
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Shunting;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SH mode, Level 1." + Environment.NewLine +

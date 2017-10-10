@@ -11,21 +11,22 @@ namespace Testcase.Telegrams.EVCtoDMI
     /// 2.) Display/change echo text after data checks have been performed by ETC;
     ///     This also includes control over the allowed driver actions in case some data check has failed.
     /// It also gives the ETC the ability to control the status/type of the "Yes" button, if specified by functional requirements for ETC and DMI.
+    /// 
     /// Note: Parameter 'MMI_N_DATA_ELEMENTS' distinguishes between use case 1.) and 2.)
     /// </summary>
     public static class EVC10_MMIEchoedTrainData
     {
         private static SignalPool _pool;
-        const string BaseStringEVC06 = "ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub";
-        const string BaseStringEVC06_1 = "_EVC06CurrentTrainDataSub11";
-        const string BaseStringEVC10 = "ETCS1_EchoedTrainData_EVC10EchoedTrainDataSub";
-        const string BaseStringEVC10_1 = "_EVC10EchoedTrainDataSub11";
+        private const string BaseStringEvc06 = "ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub1";
+        private const string BaseStringEvc06_1 = "_EVC06CurrentTrainDataSub11";
+        private const string BaseStringEvc10 = "ETCS1_EchoedTrainData_EVC10EchoedTrainDataSub1";
+        private const string BaseStringEvc10_1 = "_EVC10EchoedTrainDataSub11";
 
 
         /// <summary>
         /// Initialise an instance of EVC-10 MMI Echoed Train Data telegram.
         /// </summary>
-        /// <param name="pool"></param>
+        /// <param name="pool">Signal Pool</param>
         public static void Initialise(SignalPool pool)
         {
             _pool = pool;
@@ -39,18 +40,19 @@ namespace Testcase.Telegrams.EVCtoDMI
         }
 
         /// <summary>
-        /// Sends the EVC10 packet after having filled its dynamic fields 
+        /// Sends the EVC-10 packet after having filled its dynamic fields 
         /// </summary>
         public static void Send()
         {
-            // Number of traiset captions shall not be higher than 9
+            // Maximum number of trainset captions shall be 9
             if (TrainSetCaptions.Count > 9)
                 throw new ArgumentOutOfRangeException();
-            // Number of traiset captions set in parameter shall be the same than the one set in EVC-6
+
+            // Number of trainset captions set in parameter shall be the same than the one set in EVC-6
             if (TrainSetCaptions.Count != _pool.SITR.ETCS1.CurrentTrainData.MmiNTrainset.Value)
                 throw new Exception("MmiNTrainset from EVC-6 and number of captions do not match!");
 
-            // Set packet size
+            // Set initial packet size
             ushort totalSizeCounter = 144;
 
             // Populate the array of trainset captions
@@ -58,20 +60,22 @@ namespace Testcase.Telegrams.EVCtoDMI
             {
                 // Get each trainset caption from function parameter
                 var charArray = TrainSetCaptions[trainsetIndex].ToCharArray();
+                
                 // Get MmiNCaptionTrainset from EVC-6
-                ushort evc6MmiNCaptionTrainset = (ushort)_pool.SITR.Client.Read($"{BaseStringEVC06}1{trainsetIndex}_MmiNCaptionTrainset");
+                ushort evc6MmiNCaptionTrainset = (ushort)_pool.SITR.Client.Read($"{BaseStringEvc06}{trainsetIndex}_MmiNCaptionTrainset");
 
-                // trainset caption length from function parameter shall not be bigger than 12 ...
+                // Maxmimum trainset caption length from function parameter shall be 12 ...
                 if (charArray.Length > 12)
                     throw new ArgumentOutOfRangeException();
-                // ... and shall be equal to the value extract from EVC-6 packet
+                
+                // ... and shall be equal to the value extracted from EVC-6 packet
                 if (charArray.Length != evc6MmiNCaptionTrainset)
                     throw new Exception("MmiNCaptionTrainset from EVC-6 and length of caption do not match!");
 
                 // Set length of char array, but bit-inverted
-                _pool.SITR.Client.Write($"{BaseStringEVC10}1{trainsetIndex}_MmiNCaptionTrainsetR", (ushort)~evc6MmiNCaptionTrainset);
+                _pool.SITR.Client.Write($"{BaseStringEvc10}{trainsetIndex}_MmiNCaptionTrainsetR", (ushort)~evc6MmiNCaptionTrainset);
 
-                // Set packet size
+                // Increment packet size
                 totalSizeCounter += 16;
 
                 // Populate the characters of trainset captions 
@@ -79,6 +83,7 @@ namespace Testcase.Telegrams.EVCtoDMI
                 {
                     // Get each trainset caption character from function parameter
                     var character = charArray[charIndex];
+                    
                     // Declare value to get MmiXCaptionTrainset from EVC-6 packet
                     char evc6MmiXCaptionTrainset;
 
@@ -86,31 +91,36 @@ namespace Testcase.Telegrams.EVCtoDMI
                     if (charIndex < 10)
                     {
                         // Get MmiXCaptionTrainset from EVC-6
-                        evc6MmiXCaptionTrainset = (char)_pool.SITR.Client.Read($"{BaseStringEVC06}1{trainsetIndex}{BaseStringEVC06_1}0{charIndex}_MmiXCaptionTrainset");
-                        // value from function paramater shall be equal to the value extract from EVC-6 packet
+                        evc6MmiXCaptionTrainset = (char)_pool.SITR.Client.Read($"{BaseStringEvc06}{trainsetIndex}{BaseStringEvc06_1}0{charIndex}_MmiXCaptionTrainset");
+
+                        // Value from function paramater shall be equal to the value extract from EVC-6 packet
                         if (character != evc6MmiXCaptionTrainset)
-                            throw new Exception("MmiNCaptionTrainset from EVC-6 and length of caption do not match!");
+                            throw new Exception("MmiXCaptionTrainset does not match that of EVC-6!");
+
                         // Set char value but bit-inverted
-                        _pool.SITR.Client.Write($"{BaseStringEVC10}1{trainsetIndex}{BaseStringEVC10_1}0{charIndex}_MmiXCaptionTrainsetR", (char)~evc6MmiXCaptionTrainset);
+                        _pool.SITR.Client.Write($"{BaseStringEvc10}{trainsetIndex}{BaseStringEvc10_1}0{charIndex}_MmiXCaptionTrainsetR", (char)~evc6MmiXCaptionTrainset);
                     }
                     else
                     {
                         // Get MmiXCaptionTrainset from EVC-6 
-                        evc6MmiXCaptionTrainset = (char)_pool.SITR.Client.Read($"{BaseStringEVC06}1{trainsetIndex}{BaseStringEVC06_1}{charIndex}_MmiXCaptionTrainset");
-                        // value from function paramater shall be equal to the value extract from EVC-6 packet
+                        evc6MmiXCaptionTrainset = (char)_pool.SITR.Client.Read($"{BaseStringEvc06}{trainsetIndex}{BaseStringEvc06_1}{charIndex}_MmiXCaptionTrainset");
+
+                        // Value from function paramater shall be equal to the value extracted from EVC-6 packet
                         if (character != evc6MmiXCaptionTrainset)
-                            throw new Exception("MmiNCaptionTrainset from EVC-6 and length of caption do not match!");
+                            throw new Exception("MmiXCaptionTrainset does not match that of EVC-6!");
+                        
                         // Set char value but bit-inverted
-                        _pool.SITR.Client.Write($"{BaseStringEVC10}1{trainsetIndex}{BaseStringEVC10_1}{charIndex}_MmiXCaptionTrainsetR", (char)~evc6MmiXCaptionTrainset);
+                        _pool.SITR.Client.Write($"{BaseStringEvc10}{trainsetIndex}{BaseStringEvc10_1}{charIndex}_MmiXCaptionTrainsetR", (char)~evc6MmiXCaptionTrainset);
                     }
 
-                    // Set packet size
+                    // Increment packet size
                     totalSizeCounter += 8;
                 }
             }
 
             // Set the total length of the packet
             _pool.SITR.ETCS1.EchoedTrainData.MmiLPacket.Value = totalSizeCounter;
+            
             // Send telegram
             _pool.SITR.SMDCtrl.ETCS1.EchoedTrainData.Value = 0x0009;
         }
@@ -122,10 +132,10 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// 0 = "No trainset available, flexible TDE may apply"
         /// 1..9 = "applicable number of trainsets"
         /// </summary>
-        public static ushort MMI_N_TRAINSETS_R
+        public static ushort MMI_N_TRAINSETS_
         {
             get => _pool.SITR.ETCS1.EchoedTrainData.MmiNTrainsetsR.Value;
-            set => _pool.SITR.ETCS1.EchoedTrainData.MmiNTrainsetsR.Value = value;
+            set => _pool.SITR.ETCS1.EchoedTrainData.MmiNTrainsetsR.Value = (ushort)~value;
         }
         
         /// <summary>
@@ -136,10 +146,10 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// 2.) In case of a Train Data View procedure this variable controls visibility of data items (ERA_ERTMS_015560, v3.4.0, chapter 11.5.1.5).
         /// 3.) In packet EVC-10 this variable controls highlighting of changed data items (ERA_ERTMS_015560, v3.4.0, chapter 11.4.1.4, 10.3.3.5).
         /// </summary>
-        public static ushort MMI_M_DATA_ENABLE_R
+        public static ushort MMI_M_DATA_ENABLE_
         {
-            get => _pool.SITR.ETCS1.CurrentTrainData.MmiMDataEnable.Value;
-            set => _pool.SITR.ETCS1.EchoedTrainData.MmiMDataEnableR.Value = value;
+            get => _pool.SITR.ETCS1.EchoedTrainData.MmiMDataEnableR.Value;
+            set => _pool.SITR.ETCS1.EchoedTrainData.MmiMDataEnableR.Value = (ushort)~value;
         }
 
         /// <summary>
@@ -150,10 +160,10 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// 1..4095 = "total train length"
         /// 4096..65535 = "Reserved"
         /// </summary>
-        public static ushort MMI_L_TRAIN_R
+        public static ushort MMI_L_TRAIN_
         {
             get => _pool.SITR.ETCS1.EchoedTrainData.MmiLTrainR.Value;
-            set => _pool.SITR.ETCS1.EchoedTrainData.MmiLTrainR.Value = value;
+            set => _pool.SITR.ETCS1.EchoedTrainData.MmiLTrainR.Value = (ushort)~value;
         }
 
         /// <summary>
@@ -164,10 +174,10 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// 1..600 = "max train speed"
         /// 601..65535 = "Reserved"
         /// </summary>
-        public static ushort MMI_V_MAXTRAIN_R
+        public static ushort MMI_V_MAXTRAIN_
         {
             get => _pool.SITR.ETCS1.EchoedTrainData.MmiVMaxtrainR.Value;
-            set => _pool.SITR.ETCS1.EchoedTrainData.MmiVMaxtrainR.Value = value;
+            set => _pool.SITR.ETCS1.EchoedTrainData.MmiVMaxtrainR.Value = (ushort)~value;
         }
 
         /// <summary>
@@ -194,10 +204,10 @@ namespace Testcase.Telegrams.EVCtoDMI
         ///     19 = "FG 3"
         ///     20 = "FG 4"
         /// </summary>
-        public static byte MMI_NID_KEY_TRAIN_CAT_R
+        public static byte MMI_NID_KEY_TRAIN_CAT_
         {
             get => _pool.SITR.ETCS1.EchoedTrainData.MmiNidKeyTrainCatR.Value;
-            set => _pool.SITR.ETCS1.EchoedTrainData.MmiNidKeyTrainCatR.Value = value;
+            set => _pool.SITR.ETCS1.EchoedTrainData.MmiNidKeyTrainCatR.Value = (byte)~value;
         }
 
         /// <summary>
@@ -209,10 +219,10 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// 10..250 = "Brake Percentage given in '%'"
         /// 251..255 = "Reserved"
         /// </summary>
-        public static byte MMI_M_BRAKE_PERC_R
+        public static byte MMI_M_BRAKE_PERC_
         {
             get => _pool.SITR.ETCS1.EchoedTrainData.MmiMBrakePercR.Value;
-            set => _pool.SITR.ETCS1.EchoedTrainData.MmiMBrakePercR.Value = value;
+            set => _pool.SITR.ETCS1.EchoedTrainData.MmiMBrakePercR.Value = (byte)~value;
         }
 
         /// <summary>
@@ -237,7 +247,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         public static byte MMI_NID_KEY_AXLE_LOAD_R
         {
             get => _pool.SITR.ETCS1.EchoedTrainData.MmiNidKeyAxleLoadR.Value;
-            set => _pool.SITR.ETCS1.EchoedTrainData.MmiNidKeyAxleLoadR.Value = value;
+            set => _pool.SITR.ETCS1.EchoedTrainData.MmiNidKeyAxleLoadR.Value = (byte)~value;
         }
 
         /// <summary>
@@ -252,7 +262,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         public static byte MMI_M_AIRTIGHT_R
         {
             get => _pool.SITR.ETCS1.EchoedTrainData.MmiMAirtightR.Value;
-            set => _pool.SITR.ETCS1.EchoedTrainData.MmiMAirtightR.Value = value;
+            set => _pool.SITR.ETCS1.EchoedTrainData.MmiMAirtightR.Value = (byte)~value;
         }
 
         /// <summary>
@@ -266,10 +276,10 @@ namespace Testcase.Telegrams.EVCtoDMI
         ///     37 = "GC"
         ///     38 = "Out of GC"
         /// </summary>
-        public static byte MMI_NID_KEY_LOAD_GAUGE_R
+        public static byte MMI_NID_KEY_LOAD_GAUGE_
         {
             get => _pool.SITR.ETCS1.EchoedTrainData.MmiNidKeyLoadGaugeR.Value;
-            set => _pool.SITR.ETCS1.EchoedTrainData.MmiNidKeyLoadGaugeR.Value = value;
+            set => _pool.SITR.ETCS1.EchoedTrainData.MmiNidKeyLoadGaugeR.Value = (byte)~value;
         }       
 
         /// <summary>
@@ -287,6 +297,9 @@ namespace Testcase.Telegrams.EVCtoDMI
             set => _pool.SITR.ETCS1.EchoedTrainData.EVC10alias1.Value = value;
         }
 
+        /// <summary>
+        /// List of Trainset captions to be echoed
+        /// </summary>
         public static List<string> TrainSetCaptions { get; set; }
 
     }

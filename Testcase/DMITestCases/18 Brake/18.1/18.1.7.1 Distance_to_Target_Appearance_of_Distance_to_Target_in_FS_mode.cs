@@ -57,8 +57,6 @@ namespace Testcase.DMITestCases
             // Call the TestCaseBase PostExecution
             base.PostExecution();
             // DMI displays in FS mode, Level 1
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in FS mode, Level 1.");
         }
 
         public override bool TestcaseEntryPoint()

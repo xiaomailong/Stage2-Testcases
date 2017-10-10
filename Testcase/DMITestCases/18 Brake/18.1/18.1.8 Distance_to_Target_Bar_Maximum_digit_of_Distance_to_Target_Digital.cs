@@ -54,8 +54,6 @@ namespace Testcase.DMITestCases
             // Post-conditions from TestSpec
 
             // DMI displays in FS mode, Level 1
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in FS mode, Level 1.");
             // Call the TestCaseBase PostExecution
             base.PostExecution();
 
@@ -81,7 +79,7 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Does the DMI display the SR mode symbol (MO09) and then replace it with the FS mode symbol (MO11) in area B7 after 2s?" + Environment.NewLine +
-                                "2. The first digit of digital distance to target in sub-area A2 is non-zero (should be 200)." + Environment.NewLine +
+                                "2. The first digit of digital distance to target in sub-area A2 is non-zero." + Environment.NewLine +
                                 "3. The digital distance to target  is right aligned.");
 
             /*

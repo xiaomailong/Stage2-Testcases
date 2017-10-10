@@ -51,8 +51,6 @@ namespace Testcase.DMITestCases
         {
             // Post-conditions from TestSpec
             // DMI displays in PT mode, Level 1
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in PT mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -70,18 +68,22 @@ namespace Testcase.DMITestCases
             */
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 10;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 10000;      // 100m
+
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 709;
+            EVC8_MMIDriverMessage.Send();
+
+            DmiActions.ShowInstruction(this, "Acknowledge LS mode by pressing in sub-area C1");
+            
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.LimitedSupervision;
-
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. Does the DMI delete the SR mode symbol (MO09) and replace it with the LS mode symbol (MO21) in area B7?");
-
-            DmiActions.ShowInstruction(this, "Acknowledgement LS mode by pressing in sub-area C1");
-
             EVC1_MMIDynamic.MMI_O_BRAKETARGET = -1;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The distance to target bar is not displayed in sub-area A3." + Environment.NewLine +
-                                "2. The digital distance to target is not displayed in sub-area A2.");
+                                "1. Does the DMI delete the SR mode symbol (MO09) and replace it with the LS mode symbol (MO21) in area B7?" + Environment.NewLine +
+                                "2. The distance to target bar is not displayed in sub-area A3." + Environment.NewLine +
+                                "3. The digital distance to target is not displayed in sub-area A2.");
 
             /*
             Test Step 2
@@ -107,7 +109,9 @@ namespace Testcase.DMITestCases
             */
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.PostTrip;
 
-            DmiActions.ShowInstruction(this, "Acknowledgement PT mode by pressing in sub-area C1");
+            // No acknowledgement status for PT mode...
+            //DmiActions.ShowInstruction(this, "Acknowledgement PT mode by pressing in sub-area C1");
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Does the DMI delete the TR mode symbol (MO03) and replace it with the PT mode symbol (MO06) in area B7?" + Environment.NewLine + Environment.NewLine +
                                 "2. The distance to target bar is not displayed in sub-area A3." + Environment.NewLine +

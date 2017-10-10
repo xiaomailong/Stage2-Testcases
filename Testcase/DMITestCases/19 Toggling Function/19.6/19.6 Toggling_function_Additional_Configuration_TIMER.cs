@@ -47,19 +47,13 @@ namespace Testcase.DMITestCases
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
-
-            DmiActions.Start_ATP();
-
-            // Set train running number, cab 1 active, and other defaults
-            DmiActions.Activate_Cabin_1(this);
+            
         }
 
         public override void PostExecution()
         {
             // Post-conditions from TestSpec
             // DMI displays in SH mode, Level 1.
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in SH mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -74,7 +68,9 @@ namespace Testcase.DMITestCases
             Action: Perform SoM in SR mode, level 1
             Expected Result: DMI displays Default window in SR mode, level 1.Note: The basic speed hook is appear for 10 seconds
             */
-            DmiActions.ShowInstruction(this, "Perform SoM in SR mode, level 1.");
+            // tested elsewhere: set SR mode, level 1
+            //DmiActions.ShowInstruction(this, "Perform SoM in SR mode, level 1.");
+            DmiActions.Complete_SoM_L1_SR(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Default window in SR mode, level 1." + Environment.NewLine +
@@ -85,7 +81,17 @@ namespace Testcase.DMITestCases
             Action: Perform the following procedure, Press ‘Spec’ buttonPress ‘SR speed/distance’ buttonEnter and confirm the following data,SR speed = 40 km/hSR distance = 300 m
             Expected Result: DMI displays Special window
             */
-            DmiActions.ShowInstruction(this, "Press the ‘Spec’ button. Press the ‘SR speed/distance’ button. Enter and confirm the following data, SR speed = 40 km/hSR distance = 300 m");
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 255;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.SRSpeedDistance;
+            EVC30_MMIRequestEnable.Send();
+
+            DmiActions.ShowInstruction(this, "Press the ‘Spec’ button. Press the ‘SR speed/distance’ button");
+
+            EVC11_MMICurrentSRRules.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS.BTN_YES_DATA_ENTRY_COMPLETE;
+            EVC11_MMICurrentSRRules.Send();
+
+            DmiActions.ShowInstruction(this, "Enter and confirm the following data, SR speed = 40 km/h, SR distance = 300 m");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Special window.");
@@ -199,7 +205,6 @@ namespace Testcase.DMITestCases
             */
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.OnSight;
 
-
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in OS mode, level 1." + Environment.NewLine +
                                 "2. DMI displays the White basic speed hook for 10s then removes it.");
@@ -265,7 +270,12 @@ namespace Testcase.DMITestCases
             Action: Perform the following procedure,Press ‘Main’ button.Press and hold ‘Shunting’ button at least 2 seconds.Release the pressed button
             Expected Result: DMI displays in SH mode, level 1.Note: The basic speed hook is appear for 10 seconds
             */
-            DmiActions.ShowInstruction(this, "Press ‘Main’ button.Press and hold ‘Shunting’ button at least 2 seconds. Release the ‘Shunting’ button");
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 255;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Shunting;
+            EVC30_MMIRequestEnable.Send();
+
+            DmiActions.ShowInstruction(this, "Press the ‘Main’ button. Press and hold the ‘Shunting’ button at least 2 seconds. Release the ‘Shunting’ button");
 
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Shunting;
 
