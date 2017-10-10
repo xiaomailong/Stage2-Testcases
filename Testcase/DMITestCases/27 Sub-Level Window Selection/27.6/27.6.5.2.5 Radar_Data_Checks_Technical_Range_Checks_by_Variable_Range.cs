@@ -75,15 +75,12 @@ namespace Testcase.DMITestCases
             Action: Open the ‘Radar’ data entry window from the Settings menu
             Expected Result: The ‘Radar’ data entry window appears on ETCS-DMI screen instead of the ‘Settings’ menu window
             */
-            DmiActions.ShowInstruction(this, "Press the ‘Maintenance’ button and enter the password from the PASS_CODE_MTN in the configuration file " + Environment.NewLine +
-                                             "in the Password Maintenance window");
+            DmiActions.ShowInstruction(this, "Press the ‘Radar’ button to open the Radar window.");
 
             EVC40_MMICurrentMaintenanceData.MMI_Q_MD_DATASET = Variables.MMI_Q_MD_DATASET.Doppler;
             EVC40_MMICurrentMaintenanceData.MMI_M_PULSE_PER_KM_1 = Variables.MMI_M_PULSE_PER_KM.NoRadarOnBoard;
             EVC40_MMICurrentMaintenanceData.MMI_M_PULSE_PER_KM_2 = Variables.MMI_M_PULSE_PER_KM.NoRadarOnBoard;
             EVC40_MMICurrentMaintenanceData.Send();
-
-            DmiActions.ShowInstruction(this, "Press the ‘Radar’ button to open the Radar window.");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. DMI displays the Radar window");
@@ -138,6 +135,8 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Radar data validation window");
 
             // Open the Radar validation window
+            EVC41_MMIEchoedMaintenanceData.MMI_M_PULSE_PER_KM_1_ = (Variables.MMI_M_PULSE_PER_KM)20001;
+            EVC41_MMIEchoedMaintenanceData.MMI_M_PULSE_PER_KM_2_ = (Variables.MMI_M_PULSE_PER_KM)85534;
             EVC41_MMIEchoedMaintenanceData.MMI_Q_MD_DATASET_ = Variables.MMI_Q_MD_DATASET.Doppler;
             EVC41_MMIEchoedMaintenanceData.Send();
 
