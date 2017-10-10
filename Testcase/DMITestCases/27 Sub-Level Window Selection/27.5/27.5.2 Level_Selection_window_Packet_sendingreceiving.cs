@@ -80,6 +80,8 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.Activate_Cabin_1(this);
 
+            EVC14_MMICurrentDriverID.Send();
+
             // Call generic Check Results Method
             DmiExpectedResults.Driver_ID_window_displayed(this);
 
@@ -100,18 +102,31 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Level window.Verify the following information,Use the log file to confirm the amount of buttons which displayed in Level window are consisted with value of variable MMI_N_LEVELS (EVC-20)Example:MMI_N_LEVELS = 8, 8 keypad buttons.Use the log file to confirm an information for the ETCS Levels, the label of each button are presented to driver correctly refer to each index of variable MMI_Q_LEVEL_NTC_ID (EVC-20) and MMI_M_LEVEL_NTC_ID (EVC-20) as follows,Level 1MMI_Q_LEVEL_NTC_ID[0] = 1MMI_M_LEVEL_NTC_ID[0] = 1MMI_M_INHIBITED_LEVEL[0] = 0Level 2MMI_Q_LEVEL_NTC_ID[1] = 1MMI_M_LEVEL_NTC_ID[1] = 2MMI_M_INHIBITED_LEVEL[1] = 0Level 3MMI_Q_LEVEL_NTC_ID[2] = 1MMI_M_LEVEL_NTC_ID[2] = 3MMI_M_INHIBITED_LEVEL[2] = 0Level 0MMI_Q_LEVEL_NTC_ID[3] = 1MMI_M_LEVEL_NTC_ID[3] = 0MMI_M_INHIBITED_LEVEL[3] = 0Level ATBMMI_Q_LEVEL_NTC_ID[4] = 0MMI_M_LEVEL_NTC_ID[4] = 1MMI_M_INHIBITED_LEVEL[4] = 0Level PZB/LZBMMI_Q_LEVEL_NTC_ID[5] = 0MMI_M_LEVEL_NTC_ID[5] = 9MMI_M_INHIBITED_LEVEL[5] = 0Level TPWS/AWSMMI_Q_LEVEL_NTC_ID[6] = 0MMI_M_LEVEL_NTC_ID[6] = 20MMI_M_INHIBITED_LEVEL[6] = 0Level ATC SE/NOMMI_Q_LEVEL_NTC_ID[7] = 0MMI_M_LEVEL_NTC_ID[7] = 22MMI_M_INHIBITED_LEVEL[7] = 0Note: The first index of parameter is the topmost position in packet EVC-20.The position each buttons are displayed correctly refer to received EVC-20 as picture below,Note: The label of NTC buttons are replaced refer to value of MMI_Q_LEVEL_NTC_ID and MMI_M_LEVEL_NTC_ID in expected result (2).The text colour of each button are displayed as grey refer to each value of MMI_M_INHIBITED_LEVEL inexpected result (2) .Use the log file to confirm that every index of variable MMI_M_LEVEL_FLAG (EVC-20) = 1.All buttons in keypad are enabled refer to each value of MMI_M_LEVEL_FLAG in expected result (5)
             Test Step Comment: (1) MMI_gen 1972 (partly: contain all levels reported by packet EVC-20);(2) MMI_gen 1978 (partly: occurrence in packet EVC-20);(3) MMI_gen 1972 (partly: presented to the driver, presented by one object in the list);                        MMI_gen 1978 (partly: The selection list, the topmost position of the selection list);                          MMI_gen 8025;(4) MMI_gen 1979 (partly: MMI_M_INHIBITED_LEVEL , appropriate colour);(5) MMI_gen 1979 (partly: MMI_M_LEVEL_FLAG);(6) MMI_gen 1979 (partly: not inhibited levels button enabling);
             */
-            DmiActions.ShowInstruction(this, "Enter Driver ID. Select and confirm Level 1, then press the ‘Level’ button");
+            // Skip brake test: tested elsewhere
+            DmiActions.ShowInstruction(this, "Enter and confirm Driver ID");
 
-            EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = MMI_Q_CLOSE_ENABLE.Disabled;
+            EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Disabled;
+            EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new Variables.MMI_Q_LEVEL_NTC_ID[] { Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level };
+            EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new Variables.MMI_M_CURRENT_LEVEL[] { Variables.MMI_M_CURRENT_LEVEL.LastUsedLevel };
+            EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = new Variables.MMI_M_LEVEL_FLAG[] { Variables.MMI_M_LEVEL_FLAG.MarkedLevel };
+            EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = new Variables.MMI_M_INHIBITED_LEVEL[] { Variables.MMI_M_INHIBITED_LEVEL.NotInhibited };
+            EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = new Variables.MMI_M_INHIBIT_ENABLE[] { Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting };
+            EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new Variables.MMI_M_LEVEL_NTC_ID[] { Variables.MMI_M_LEVEL_NTC_ID.L1 };
+            EVC20_MMISelectLevel.Send();
+
+            DmiActions.ShowInstruction(this, "Select and confirm Level 1");
+
+            DmiActions.ShowInstruction(this, "Press the ‘Level’ button");
+
             Variables.MMI_Q_LEVEL_NTC_ID[] paramEvc20MmiQLevelNtcId =
                 { MMI_Q_LEVEL_NTC_ID.ETCS_Level,
                 MMI_Q_LEVEL_NTC_ID.ETCS_Level,
-                MMI_Q_LEVEL_NTC_ID.ETCS_Level,
+                MMI_Q_LEVEL_NTC_ID.ETCS_Level, 
                 MMI_Q_LEVEL_NTC_ID.ETCS_Level,
                 MMI_Q_LEVEL_NTC_ID.STM_ID,
                 MMI_Q_LEVEL_NTC_ID.STM_ID };
             Variables.MMI_M_CURRENT_LEVEL[] paramEvc20MmiMCurrentLevel =
-                { MMI_M_CURRENT_LEVEL.NotLastUsedLevel,
+                { MMI_M_CURRENT_LEVEL.LastUsedLevel,
                 MMI_M_CURRENT_LEVEL.NotLastUsedLevel,
                 MMI_M_CURRENT_LEVEL.NotLastUsedLevel,
                 MMI_M_CURRENT_LEVEL.NotLastUsedLevel,
