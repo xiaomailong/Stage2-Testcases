@@ -91,9 +91,9 @@ namespace Testcase.DMITestCases
 
             List<TrackDescription> descriptionsList = new List<TrackDescription>()
             {
-              { MMI_G_GRADIENT = 10, MMI_O_GRADIENT = 10000, MMI_O_MRSP = 10500, MMI_V_MRSP = 800},
-              { MMI_G_GRADIENT = 15, MMI_O_GRADIENT = 20000, MMI_O_MRSP = 15000, MMI_V_MRSP = 700},
-              { MMI_G_GRADIENT = 20, MMI_O_GRADIENT = 30000, MMI_O_MRSP = 20500, MMI_V_MRSP = 600}
+                new TrackDescription { MMI_G_GRADIENT = 10, MMI_O_GRADIENT = 10000, MMI_O_MRSP = 10500, MMI_V_MRSP = 800},
+                new TrackDescription { MMI_G_GRADIENT = 15, MMI_O_GRADIENT = 20000, MMI_O_MRSP = 15000, MMI_V_MRSP = 700},
+                new TrackDescription { MMI_G_GRADIENT = 20, MMI_O_GRADIENT = 30000, MMI_O_MRSP = 20500, MMI_V_MRSP = 600}
             };
 
             EVC4_MMITrackDescription.TrackDescriptions = descriptionsList;
