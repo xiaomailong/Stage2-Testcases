@@ -83,6 +83,14 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, "Select the Main menu item");
 
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.TrainData |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.Level |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.Shunting |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.TrainRunningNumber;
+            EVC30_MMIRequestEnable.Send();
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Main window." + Environment.NewLine +
                                 "2. The ‘Start’, ‘Maintain Shunting’ and ‘Non-leading’ buttons are displayed disabled." + Environment.NewLine +
@@ -133,6 +141,8 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, "Select the Data view menu item");
 
+            //EVC13_MMIDataView.Send();
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Data view window with the title ‘Data view (1/2)’." + Environment.NewLine +
                                 "2. The ‘Close’ button is displayed enabled.");
@@ -179,8 +189,21 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Settings window The Close buton is enable
             Test Step Comment: MMI_gen 1319 (partly:bullet1 and bullet2);
             */
-            DmiActions.ShowInstruction(this, "Select the Settings menu item");
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 4;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_LOW = true;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Language |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.Brightness |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.SetVBC |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.EnableBrakePercentage |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.Volume |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.SystemVersion |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.RemoveVBC |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.SetLocalOffset |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter;
 
+            DmiActions.ShowInstruction(this, "Select the Settings menu item");
+             
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window with the title ‘Settings’." + Environment.NewLine +
                                 "2. The ‘Language’ button is displayed enabled with symbol SE03." + Environment.NewLine +
