@@ -78,7 +78,19 @@ namespace Testcase.DMITestCases
             // Set driver ID
             DmiActions.Set_Driver_ID(this, "1234");
 
-            // Set to level 1 and SR mode
+            EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Disabled;
+
+            EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new Variables.MMI_Q_LEVEL_NTC_ID[] { Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level };
+            EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new Variables.MMI_M_CURRENT_LEVEL[] { Variables.MMI_M_CURRENT_LEVEL.NotLastUsedLevel };
+            EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = new Variables.MMI_M_LEVEL_FLAG[] { Variables.MMI_M_LEVEL_FLAG.MarkedLevel };
+            EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = new Variables.MMI_M_INHIBITED_LEVEL[] { Variables.MMI_M_INHIBITED_LEVEL.NotInhibited };
+            EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = new Variables.MMI_M_INHIBIT_ENABLE[] { Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting };
+            EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new Variables.MMI_M_LEVEL_NTC_ID[] { Variables.MMI_M_LEVEL_NTC_ID.L0 };
+            EVC20_MMISelectLevel.Send();
+
+            DmiActions.ShowInstruction(this, "Confirm Level 2");
+
+            // Set to level 2 and SR mode 
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L2;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
 
@@ -87,7 +99,21 @@ namespace Testcase.DMITestCases
 
             // Is RBC window displayed?
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays Level window until RBC contact window is displayed");
+                                "1. DMI displays the Level window");
+
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 255;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.ContactLastRBC |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.EnterRBCData |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.RadioNetworkID;
+            EVC30_MMIRequestEnable.Send();
+            
+            EVC22_MMICurrentRBC.MMI_NID_WINDOW = 5;
+            EVC22_MMICurrentRBC.MMI_M_BUTTONS = EVC22_MMICurrentRBC.EVC22BUTTONS.BTN_YES_DATA_ENTRY_COMPLETE;
+            EVC22_MMICurrentRBC.Send();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the RBC contact window.");
 
             /*
             Test Step 2
@@ -111,10 +137,16 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information;(1)   Verify DMI still displays RBC contact window until Radio network ID window is displayed.(2)   Verify the close button is always enable
             Test Step Comment: (1) MMI_gen 8859 (partly: windows in RBC contact menu);(2) MMI_gen 5646 (partly: always enable, windows in RBC contact menu);
             */
-            DmiActions.ShowInstruction(this, @"Press and hold ‘Radio Network ID’ button for at least two seconds. Release ‘Radio network ID’ button");
+            DmiActions.ShowInstruction(this, @"Press and hold the ‘Radio Network ID’ button for at least two seconds. Release ‘Radio network ID’ button");
+
+            EVC22_MMICurrentRBC.MMI_NID_WINDOW = 9;
+            EVC22_MMICurrentRBC.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
+            EVC22_MMICurrentRBC.MMI_M_BUTTONS = EVC22_MMICurrentRBC.EVC22BUTTONS.BTN_YES_DATA_ENTRY_COMPLETE;
+            EVC22_MMICurrentRBC.NetworkCaptions = new List<string> { "GSMR-A", "GSMR-B" };
+            EVC22_MMICurrentRBC.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays RBC contact window until Radio network ID window is displayed." + Environment.NewLine +
+                                "1. DMI displays the RBC contact window until the Radio network ID window is displayed." + Environment.NewLine +
                                 @"2. ‘Close’ button is always enabled.");
 
             /*
@@ -123,6 +155,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information;DMI entry on state of 'ST05'(1)   The hourglass symbol ST05 is displayed.(2)   Verify all buttons and the close button is disable.(3)   The disabled Close button NA12 is display in area G.(4)   The Input Field is deselected.10 seconds laterDMI exit on state of 'ST05'(5)   The hourglass symbol ST05 is removed.(6)   The state of all buttons is restored according to the last status before script is sent.(7)   The enabled Close button NA11 is display in area G.(8)   The input field is in the ‘Selected’ state
             Test Step Comment: (1) MMI_gen 12018 (partly: windows in RBC contact menu);(2) MMI_gen 168 (partly: disabled buttons, windows in RBC contact menu); MMI_gen 5646 (partly: State ‘ST05’ button is disabled, windows in RBC contact menu); MMI_gen 4395 (partly: close button, disabled, windows in RBC contact menu);(3) MMI_gen 4396 (partly: close, NA12, windows in RBC contact menu);(4) MMI_gen 168 (partly: deselect input field, windows in RBC contact menu);(5) MMI_gen 5728 (partly: removal, EVC, windows in RBC contact menu);(6) MMI_gen 5728 (partly: restore after ST05, windows in RBC contact menu);(7) MMI_gen 4396 (partly: close, NA11, windows in RBC contact menu);(8) MMI_gen 5728 (partly: input field, windows in RBC contact menu);
             */
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 716;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
             EVC8_MMIDriverMessage.Send();
 
@@ -155,7 +188,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press ‘Close’ button in the Radio network ID window. Press ‘Enter RBC data’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays RBC contact window until RBC data window is displayed." + Environment.NewLine +
+                                "1. DMI displays the RBC contact window until the RBC data window is displayed." + Environment.NewLine +
                                 @"2. ‘Close’ button is always enabled.");
 
             /*
@@ -164,6 +197,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information;DMI entry on state of 'ST05'(1)   The hourglass symbol ST05 is displayed.(2)   Verify all buttons and the close button is disable.(3)   The disabled Close button NA12 is display in area G.(4)   All Input Field are deselected.10 seconds laterDMI exit on state of 'ST05'(5)   The hourglass symbol ST05 is removed.(6)   The state of all buttons is restored according to the last status before script is sent.(7)   The enabled Close button NA11 is display in area G.(8)   The input field is stated as follows:The first input field is in the ‘Selected’ state.The all others are in the ‘Not selected’ state
             Test Step Comment: (1) MMI_gen 12018 (partly: windows in RBC contact menu);(2) MMI_gen 168 (partly: disabled buttons, windows in RBC contact menu); MMI_gen 5646 (partly: State ‘ST05’ button is disabled, windows in RBC contact menu); MMI_gen 4395 (partly: close button, disabled, windows in RBC contact menu);(3) MMI_gen 4396 (partly: close, NA12, windows in RBC contact menu);(4) MMI_gen 168 (partly: deselect input field, windows in RBC contact menu);(5) MMI_gen 5728 (partly: removal, EVC, windows in RBC contact menu);(6) MMI_gen 5728 (partly: restore after ST05, windows in RBC contact menu);(7) MMI_gen 4396 (partly: close, NA11, windows in RBC contact menu);(8) MMI_gen 5728 (partly: input field, windows in RBC contact menu);
             */
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 716;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
             EVC8_MMIDriverMessage.Send();
 

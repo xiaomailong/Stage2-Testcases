@@ -51,8 +51,6 @@ namespace Testcase.DMITestCases
         {
             // Post-conditions from TestSpec
             // DMI displays in FS mode, level 1.
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in FS mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -84,7 +82,11 @@ namespace Testcase.DMITestCases
             Action: Driver performs SoM to SR mode, level 1
             Expected Result: DMI displays in SR mode, level 1
             */
-            DmiActions.ShowInstruction(this, "Perform SoM to SR mode, level 1");
+            // Not practcal and tested elsewhere...
+            //DmiActions.ShowInstruction(this, "Perform SoM to SR mode, level 1");
+
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
 
             // Call generic Check Results Method
             DmiExpectedResults.SR_Mode_displayed(this);

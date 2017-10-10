@@ -53,8 +53,6 @@ namespace Testcase.DMITestCases
         {
             // Post-conditions from TestSpec
             // DMI displays in UN mode, level 0
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in UN mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();

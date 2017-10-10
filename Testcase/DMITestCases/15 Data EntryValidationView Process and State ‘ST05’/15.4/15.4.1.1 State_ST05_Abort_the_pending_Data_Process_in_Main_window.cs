@@ -1,18 +1,4 @@
 using System;
-using System.Diagnostics;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using BT_Tools;
-using BT_CSB_Tools;
-using BT_CSB_Tools.Logging;
-using BT_CSB_Tools.Utils.Xml;
-using BT_CSB_Tools.SignalPoolGenerator.Signals;
-using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal;
-using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
-using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
-using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
-using CL345;
 using Testcase.Telegrams.EVCtoDMI;
 
 
@@ -74,7 +60,8 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.Send();
           
             DmiActions.ShowInstruction(this, @"Press ‘Driver ID’ button");
-            // Call generic Check Results Method
+            DmiActions.Set_Driver_ID(this, "1234");
+            
             DmiExpectedResults.Driver_ID_window_displayed(this);
 
             /*
@@ -99,7 +86,18 @@ namespace Testcase.DMITestCases
 
             XML.XML_10_4_1_1_b.Send(this);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The Driver ID window is closed and DMI displays the System info window.");
+                                "1. The Driver ID window is closed");
+
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 255;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.TrainData |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.DriverID |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.Level |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.TrainRunningNumber;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_LOW = true;
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the System info window.");
 
             /*
             Test Step 4
@@ -118,7 +116,8 @@ namespace Testcase.DMITestCases
                                                                EVC30_MMIRequestEnable.EnabledRequests.DriverID |
                                                                EVC30_MMIRequestEnable.EnabledRequests.Level |
                                                                EVC30_MMIRequestEnable.EnabledRequests.TrainRunningNumber;
-            
+            EVC30_MMIRequestEnable.Send();
+
             DmiActions.ShowInstruction(this, @"Open the Train Running number window");
 
             EVC16_CurrentTrainNumber.TrainRunningNumber = 1;
@@ -135,7 +134,7 @@ namespace Testcase.DMITestCases
             XML.XML_10_4_1_1_b.Send(this);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Driver ID window is closed and DMI displays the System info window.");
-
+            
             /*
             Test Step 5
             Action: Perform the following procedure,At System info window, press ‘close’ button.Open Level windowRepeat action step 2-3
@@ -144,18 +143,43 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Press the  ‘Close’ button in the System info window");
 
-            EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
-            EVC20_MMISelectLevel.Send();
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;       // Main window
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.TrainData |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.DriverID |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.Level |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.TrainRunningNumber;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_LOW = true;
+            EVC30_MMIRequestEnable.Send();
+
 
             DmiActions.ShowInstruction(this, @"Open the Level window.");
+
+            EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
+            EVC20_MMISelectLevel.Send();
 
             XML.XML_10_4_1_1_a.Send(this);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The hourglass symbol ST05 is displayed in the window title area.");
+            
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
+            EVC8_MMIDriverMessage.Send();
 
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = 254;    // Close window
             EVC30_MMIRequestEnable.Send();
+
+            //EVC24MMISystemInfo.MMI_NID_ENGINE_1 = 1234;
+            //EVC24MMISystemInfo.MMI_T_TIMEOUT_BRAKES = 0x5695224c;         // 1452614220
+            //EVC24MMISystemInfo.MMI_T_TIMEOUT_BTM = 0x54b3eecc;            // 1421078220
+            //EVC24MMISystemInfo.MMI_T_TIMEOUT_TBSW = 0x538b4d4c;           // 1401638220
+            //EVC24MMISystemInfo.MMI_ETC_VER = 0xffaa0f;                    // 16755215
+            //EVC24MMISystemInfo.MMI_M_AVAIL_SERVICES = 0xffff;             // 65535 
+
+            // Discrepancy betwee spec (config = 55)
+            //EVC24MMISystemInfo.MMI_M_BRAKE_CONFIG = 55;                   // 236 in xml
+            //EVC24MMISystemInfo.MMI_M_LEVEL_INSTALLED = 248;
+            //EVC24MMISystemInfo.Send();
 
             XML.XML_10_4_1_1_b.Send(this);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -216,8 +240,6 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Enter and accept the values of all Input Fields. Press on the enabled ‘Yes’ button");
 
             DmiActions.Send_EVC10_MMIEchoedTrainData_FixedDataEntry(this, Variables.paramEvc6FixedTrainsetCaptions);
-            //EVC10_MMIEchoedTrainData.MMI_M_BUTTONS = 36;  // BTN_YES_DATA_ENTRY_COMPLETE
-            //EVC10_MMIEchoedTrainData.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Train validation window.");
@@ -232,7 +254,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The hourglass symbol ST05 is displayed in the window title area.");
 
-                        EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = 254;    // Close window
             EVC30_MMIRequestEnable.Send();
 

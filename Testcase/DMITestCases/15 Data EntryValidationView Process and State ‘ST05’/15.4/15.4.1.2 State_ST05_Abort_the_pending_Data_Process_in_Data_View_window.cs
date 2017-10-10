@@ -13,6 +13,7 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.EVCtoDMI;
 
 namespace Testcase.DMITestCases
 {
@@ -58,13 +59,14 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
             /*
             Test Step 1
             Action: At the Default window, press ‘Data View’ button
             Expected Result: DMI displays Data View window
             */
             DmiActions.ShowInstruction(this, @"Press ‘Data View’ button");
+
+            // EVC13_MMIDataView.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Data View window.");
@@ -94,11 +96,21 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the followin information,(1)     The System Info window is closed, DMI displays Driver ID window after received packet EVC-14
             Test Step Comment: (1) MMI_gen 5507 (partly: System Info window, abort an already pending data view process, received packet of different window from ETCS onboard);
             */
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_LOW = true;
+            EVC30_MMIRequestEnable.Send();
+
             DmiActions.ShowInstruction(this, @"Press the ‘Close’ button in the Driver ID window. Open the System info window");
+
+            //EVC13_MMISystemInfo.Send();
 
             XML.XML_10_4_1_2_a.Send(this);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The hourglass symbol ST05 is displayed in the window title area."); 
+
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 254;
+            EVC30_MMIRequestEnable.Send();
 
             XML.XML_10_4_1_2_b.Send(this);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -110,11 +122,19 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the followin information,(1)     The System version window is closed, DMI displays Driver ID window after received packet EVC-14
             Test Step Comment: (1) MMI_gen 5507 (partly: System version window, abort an already pending data view process, received packet of different window from ETCS onboard);
             */
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.SystemVersion;
+            EVC30_MMIRequestEnable.Send();
+
             DmiActions.ShowInstruction(this, @"Press the ‘Close’ button in the Driver ID window. Open the System version window");
 
             XML.XML_10_4_1_2_a.Send(this);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The hourglass symbol ST05 is displayed in the window title area.");
+
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 254;
+            EVC30_MMIRequestEnable.Send();
 
             XML.XML_10_4_1_2_b.Send(this);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
