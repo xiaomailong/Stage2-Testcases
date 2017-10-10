@@ -279,6 +279,8 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Release the ‘Data view’ button");
 
+            //EVC13_MMIDataView.Send();
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Data view window.");
 
@@ -403,7 +405,12 @@ namespace Testcase.DMITestCases
             Action: Press ‘Language’ button
             Expected Result: DMI displays Language window
             */
-            // Call generic Action Method
+            // Enable the button
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 4;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Language;
+            EVC30_MMIRequestEnable.Send();
+
             DmiActions.ShowInstruction(this, @"Press the ‘Language’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
