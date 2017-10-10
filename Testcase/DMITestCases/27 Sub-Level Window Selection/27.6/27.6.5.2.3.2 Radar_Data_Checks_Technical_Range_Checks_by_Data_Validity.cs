@@ -126,6 +126,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press the ‘Yes’ button in the Radar window.");
 
             // Open the Radar validation window
+            EVC41_MMIEchoedMaintenanceData.MMI_M_PULSE_PER_KM_1_ = (Variables.MMI_M_PULSE_PER_KM)85534;
             EVC41_MMIEchoedMaintenanceData.MMI_Q_MD_DATASET_ = Variables.MMI_Q_MD_DATASET.Doppler;
             EVC41_MMIEchoedMaintenanceData.Send();
 
@@ -137,7 +138,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Validate the data in the data validation window by pressing in the data area of the data input field displaying ‘Yes’");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the Settings window with the ‘Radar’ button is enabled.");
+                                "1. DMI displays the Settings window with the ‘Radar’ button enabled.");
 
             /*
             Test Step 5
