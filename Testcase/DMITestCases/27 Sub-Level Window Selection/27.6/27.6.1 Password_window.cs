@@ -67,7 +67,11 @@ namespace Testcase.DMITestCases
             */
             DmiActions.Complete_SoM_L1_SB(this);
 
-            // Call generic Action Method
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 4;
+            EVC30_MMIRequestEnable.Send();
+
             DmiActions.ShowInstruction(this, @"Press the ‘Settings’ button and then the ‘Maintenance’ button in the Settings window.");
 
             WaitForVerification("Check the following (* indicates sub-areas drawn as one area):" + Environment.NewLine + Environment.NewLine +
