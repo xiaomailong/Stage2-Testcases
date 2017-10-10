@@ -17,9 +17,9 @@ namespace Testcase.Telegrams.EVCtoDMI
     public static class EVC10_MMIEchoedTrainData
     {
         private static SignalPool _pool;
-        private const string BaseStringEvc06 = "ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub";
+        private const string BaseStringEvc06 = "ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub1";
         private const string BaseStringEvc06_1 = "_EVC06CurrentTrainDataSub11";
-        private const string BaseStringEvc10 = "ETCS1_EchoedTrainData_EVC10EchoedTrainDataSub";
+        private const string BaseStringEvc10 = "ETCS1_EchoedTrainData_EVC10EchoedTrainDataSub1";
         private const string BaseStringEvc10_1 = "_EVC10EchoedTrainDataSub11";
 
 
@@ -62,7 +62,7 @@ namespace Testcase.Telegrams.EVCtoDMI
                 var charArray = TrainSetCaptions[trainsetIndex].ToCharArray();
                 
                 // Get MmiNCaptionTrainset from EVC-6
-                ushort evc6MmiNCaptionTrainset = (ushort)_pool.SITR.Client.Read($"{BaseStringEvc06}1{trainsetIndex}_MmiNCaptionTrainset");
+                ushort evc6MmiNCaptionTrainset = (ushort)_pool.SITR.Client.Read($"{BaseStringEvc06}{trainsetIndex}_MmiNCaptionTrainset");
 
                 // Maxmimum trainset caption length from function parameter shall be 12 ...
                 if (charArray.Length > 12)
@@ -73,7 +73,7 @@ namespace Testcase.Telegrams.EVCtoDMI
                     throw new Exception("MmiNCaptionTrainset from EVC-6 and length of caption do not match!");
 
                 // Set length of char array, but bit-inverted
-                _pool.SITR.Client.Write($"{BaseStringEvc10}1{trainsetIndex}_MmiNCaptionTrainsetR", (ushort)~evc6MmiNCaptionTrainset);
+                _pool.SITR.Client.Write($"{BaseStringEvc10}{trainsetIndex}_MmiNCaptionTrainsetR", (ushort)~evc6MmiNCaptionTrainset);
 
                 // Increment packet size
                 totalSizeCounter += 16;
@@ -91,26 +91,26 @@ namespace Testcase.Telegrams.EVCtoDMI
                     if (charIndex < 10)
                     {
                         // Get MmiXCaptionTrainset from EVC-6
-                        evc6MmiXCaptionTrainset = (char)_pool.SITR.Client.Read($"{BaseStringEvc06}1{trainsetIndex}{BaseStringEvc06_1}0{charIndex}_MmiXCaptionTrainset");
+                        evc6MmiXCaptionTrainset = (char)_pool.SITR.Client.Read($"{BaseStringEvc06}{trainsetIndex}{BaseStringEvc06_1}0{charIndex}_MmiXCaptionTrainset");
 
                         // Value from function paramater shall be equal to the value extract from EVC-6 packet
                         if (character != evc6MmiXCaptionTrainset)
                             throw new Exception("MmiXCaptionTrainset does not match that of EVC-6!");
 
                         // Set char value but bit-inverted
-                        _pool.SITR.Client.Write($"{BaseStringEvc10}1{trainsetIndex}{BaseStringEvc10_1}0{charIndex}_MmiXCaptionTrainsetR", (char)~evc6MmiXCaptionTrainset);
+                        _pool.SITR.Client.Write($"{BaseStringEvc10}{trainsetIndex}{BaseStringEvc10_1}0{charIndex}_MmiXCaptionTrainsetR", (char)~evc6MmiXCaptionTrainset);
                     }
                     else
                     {
                         // Get MmiXCaptionTrainset from EVC-6 
-                        evc6MmiXCaptionTrainset = (char)_pool.SITR.Client.Read($"{BaseStringEvc06}1{trainsetIndex}{BaseStringEvc06_1}{charIndex}_MmiXCaptionTrainset");
+                        evc6MmiXCaptionTrainset = (char)_pool.SITR.Client.Read($"{BaseStringEvc06}{trainsetIndex}{BaseStringEvc06_1}{charIndex}_MmiXCaptionTrainset");
 
                         // Value from function paramater shall be equal to the value extracted from EVC-6 packet
                         if (character != evc6MmiXCaptionTrainset)
                             throw new Exception("MmiXCaptionTrainset does not match that of EVC-6!");
                         
                         // Set char value but bit-inverted
-                        _pool.SITR.Client.Write($"{BaseStringEvc10}1{trainsetIndex}{BaseStringEvc10_1}{charIndex}_MmiXCaptionTrainsetR", (char)~evc6MmiXCaptionTrainset);
+                        _pool.SITR.Client.Write($"{BaseStringEvc10}{trainsetIndex}{BaseStringEvc10_1}{charIndex}_MmiXCaptionTrainsetR", (char)~evc6MmiXCaptionTrainset);
                     }
 
                     // Increment packet size
@@ -297,6 +297,9 @@ namespace Testcase.Telegrams.EVCtoDMI
             set => _pool.SITR.ETCS1.EchoedTrainData.EVC10alias1.Value = value;
         }
 
+        /// <summary>
+        /// List of Trainset captions to be echoed
+        /// </summary>
         public static List<string> TrainSetCaptions { get; set; }
 
     }
