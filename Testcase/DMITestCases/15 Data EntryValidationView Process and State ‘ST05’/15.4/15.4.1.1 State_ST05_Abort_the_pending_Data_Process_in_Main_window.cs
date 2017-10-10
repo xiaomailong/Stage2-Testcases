@@ -69,7 +69,7 @@ namespace Testcase.DMITestCases
             Action: Use the test script file 10_4_1_1_a.xml to send EVC-8 withMMI_Q_TEXT_CRITERIA = 3 MMI_Q_TEXT = 716
             Expected Result: The hourglass symbol ST05 is displayed at window title area
             */
-            XML.XML_10_4_1_1_a.Send(this);
+            XML_10_4_1_1_a_b(msgType.typea);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The hourglass symbol ST05 is displayed in the window title area.");
@@ -84,7 +84,7 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = 254;    // Close window
             EVC30_MMIRequestEnable.Send();
 
-            XML.XML_10_4_1_1_b.Send(this);
+            XML_10_4_1_1_a_b(msgType.typeb);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Driver ID window is closed");
 
@@ -123,7 +123,7 @@ namespace Testcase.DMITestCases
             EVC16_CurrentTrainNumber.TrainRunningNumber = 1;
             EVC16_CurrentTrainNumber.Send();
 
-            XML.XML_10_4_1_1_a.Send(this);
+            XML_10_4_1_1_a_b(msgType.typea);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The hourglass symbol ST05 is displayed in the window title area.");
 
@@ -131,7 +131,7 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = 254;    // Close window
             EVC30_MMIRequestEnable.Send();
 
-            XML.XML_10_4_1_1_b.Send(this);
+            XML_10_4_1_1_a_b(msgType.typeb);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Driver ID window is closed and DMI displays the System info window.");
             
@@ -158,7 +158,7 @@ namespace Testcase.DMITestCases
             EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
             EVC20_MMISelectLevel.Send();
 
-            XML.XML_10_4_1_1_a.Send(this);
+            XML_10_4_1_1_a_b(msgType.typea);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The hourglass symbol ST05 is displayed in the window title area.");
             
@@ -181,7 +181,7 @@ namespace Testcase.DMITestCases
             //EVC24MMISystemInfo.MMI_M_LEVEL_INSTALLED = 248;
             //EVC24MMISystemInfo.Send();
 
-            XML.XML_10_4_1_1_b.Send(this);
+            XML_10_4_1_1_a_b(msgType.typeb);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Level window is closed and DMI displays the System info window.");
 
@@ -206,7 +206,7 @@ namespace Testcase.DMITestCases
 
             DmiActions.Send_EVC6_MMICurrentTrainData_FixedDataEntry(this, new[] { "FLU", "RLU", "Rescue" }, 2);
 
-            XML.XML_10_4_1_1_a.Send(this);
+            XML_10_4_1_1_a_b(msgType.typea);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The hourglass symbol ST05 is displayed in the window title area.");
 
@@ -214,7 +214,7 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = 254;    // Close window
             EVC30_MMIRequestEnable.Send();
 
-            XML.XML_10_4_1_1_b.Send(this);
+            XML_10_4_1_1_a_b(msgType.typeb);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Train data window is closed and DMI displays the System info window.");
 
@@ -243,14 +243,14 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Train validation window.");
-            
+
             /*
             Test Step 8
             Action: Repeat action step 2-3
             Expected Result: Verify the followin information,(1)    The Train data validation window is closed, DMI displays System info window after received packet EVC-24
             Test Step Comment: (1) MMI_gen 5507 (partly: Train Data Number window, abort an already pending data entry process, received packet of different window from ETCS onboard);
             */
-            XML.XML_10_4_1_1_a.Send(this);
+            XML_10_4_1_1_a_b(msgType.typea);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The hourglass symbol ST05 is displayed in the window title area.");
 
@@ -258,7 +258,7 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = 254;    // Close window
             EVC30_MMIRequestEnable.Send();
 
-            XML.XML_10_4_1_1_b.Send(this);
+            XML_10_4_1_1_a_b(msgType.typeb);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Train Data validation window is closed and DMI displays the System info window.");
 
@@ -270,5 +270,43 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
+
+        #region Send_XML_10_4_1_1_a_b_DMI_Test_Specification
+        enum msgType
+        {
+            typea,
+            typeb
+        }
+
+        private void XML_10_4_1_1_a_b(msgType type)
+        {
+            if (type == msgType.typea)
+            {
+                EVC8_MMIDriverMessage.MMI_Q_TEXT = 716;
+                EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+                EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
+                EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+
+                EVC8_MMIDriverMessage.Send();
+            }
+            else if (type == msgType.typeb)
+            {
+                //EVC24MMISystemInfo.MMI_NID_ENGINE_1 = 1234;
+                //EVC24MMISystemInfo.MMI_T_TIMEOUT_BRAKES = 0x5695224c;         // 1452614220
+                //EVC24MMISystemInfo.MMI_T_TIMEOUT_BTM = 0x54b3eecc;            // 1421078220
+                //EVC24MMISystemInfo.MMI_T_TIMEOUT_TBSW = 0x538b4d4c;           // 1401638220
+                //EVC24MMISystemInfo.MMI_ETC_VER = 0xffaa0f;                    // 16755215
+                //EVC24MMISystemInfo.MMI_M_AVAIL_SERVICES = 0xffff;             // 65535 
+
+                // Discrepancy betwee spec (config = 55)
+                //EVC24MMISystemInfo.MMI_M_BRAKE_CONFIG = 55;                   // 236 in xml
+                //EVC24MMISystemInfo.MMI_M_LEVEL_INSTALLED = 248;
+
+                //EVC24MMISystemInfo.Send();
+            }
+        }
+        #endregion
+
+
     }
 }

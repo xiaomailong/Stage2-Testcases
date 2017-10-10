@@ -76,7 +76,7 @@ namespace Testcase.DMITestCases
             Action: Use the test script file 10_4_1_2_a.xml to send EVC-8 withMMI_Q_TEXT_CRITERIA = 3 MMI_Q_TEXT = 716
             Expected Result: The hourglass symbol ST05 is displayed at window title area
             */
-            XML.XML_10_4_1_2_a.Send(this);
+            XML_10_4_1_2_a_b(msgType.typea);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The hourglass symbol ST05 is displayed in the window title area.");
 
@@ -86,7 +86,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the followin information,(1)     The Data View window is closed, DMI displays Driver ID window after received packet EVC-14
             Test Step Comment: (1) MMI_gen 5507 (partly: Data View window, abort an already pending data view process, received packet of different window from ETCS onboard);
             */
-            XML.XML_10_4_1_2_b.Send(this);
+            XML_10_4_1_2_a_b(msgType.typeb);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Data View window is closed and DMI displays the Driver ID window");
 
@@ -104,7 +104,7 @@ namespace Testcase.DMITestCases
 
             //EVC13_MMISystemInfo.Send();
 
-            XML.XML_10_4_1_2_a.Send(this);
+            XML_10_4_1_2_a_b(msgType.typea);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The hourglass symbol ST05 is displayed in the window title area."); 
 
@@ -112,7 +112,7 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = 254;
             EVC30_MMIRequestEnable.Send();
 
-            XML.XML_10_4_1_2_b.Send(this);
+            XML_10_4_1_2_a_b(msgType.typeb);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The System info window is closed and DMI displays the Driver ID window");
 
@@ -128,7 +128,7 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, @"Press the ‘Close’ button in the Driver ID window. Open the System version window");
 
-            XML.XML_10_4_1_2_a.Send(this);
+            XML_10_4_1_2_a_b(msgType.typea);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The hourglass symbol ST05 is displayed in the window title area.");
 
@@ -136,7 +136,7 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = 254;
             EVC30_MMIRequestEnable.Send();
 
-            XML.XML_10_4_1_2_b.Send(this);
+            XML_10_4_1_2_a_b(msgType.typeb);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The System version window is closed and DMI displays the Driver ID window");
 
@@ -148,5 +148,32 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
+        #region Send_XML_10_4_1_2_a_b_DMI_Test_Specification
+        enum msgType
+        {
+            typea,
+            typeb
+        }
+
+        private void XML_10_4_1_2_a_b(msgType type)
+        {
+            if (type == msgType.typea)
+            {
+
+                EVC8_MMIDriverMessage.MMI_Q_TEXT = 716;
+                EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+                EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
+                EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+
+                EVC8_MMIDriverMessage.Send();
+            }
+            else if (type == msgType.typeb)
+            {
+                EVC14_MMICurrentDriverID.MMI_X_DRIVER_ID = "4444";
+                EVC14_MMICurrentDriverID.Send();
+            }
+        }
+        #endregion
+
     }
 }

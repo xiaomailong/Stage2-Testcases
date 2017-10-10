@@ -107,7 +107,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information;DMI in the entry state of ‘ST05’(1)   The hourglass symbol ST05 is displayed.(2)   Verify all buttons and the close button is disable.(3)   The disabled Close button NA12 is display in area G.(4)   The Input Field is deselected.10 seconds laterDMI in the exit state of ‘ST05’(5)   The hourglass symbol ST05 is removed.(6)   The state of all buttons is restored according to the last status before script is sent.(7)   The enabled Close button NA11 is display in area G.(8)   The input field is in the ‘Selected’ state
             Test Step Comment: (1) MMI_gen 12018 (partly: windows in setting menu);(2) MMI_gen 168 (partly: disabled buttons, windows in setting menu); MMI_gen 5646 (partly: State ‘ST05’ button is disabled, windows in setting menu); MMI_gen 4395 (partly: close button, disabled, windows in setting menu);(3) MMI_gen 4396 (partly: close, NA12, windows in setting menu);(4) MMI_gen 168 (partly: deselect input field, windows in setting menu);(5) MMI_gen 5728 (partly: removal, EVC, windows in setting menu);(6) MMI_gen 5728 (partly: restore after ST05, windows in setting menu);(7) MMI_gen 4396 (partly: close, NA11, windows in setting menu);(8) MMI_gen 5728 (partly: input field, windows in setting menu);
             */
-            XML.XML_10_2_6_a.Send(this);
+            XML_10_2_6_a();
 
             /*
             Test Step 3
@@ -670,7 +670,7 @@ namespace Testcase.DMITestCases
             Expected Result: See the expectation in step 2
             Test Step Comment: See step 2 for Remove VBC window in the Settings menu
             */
-            XML.XML_10_2_6_a.Send(this);
+            XML_10_2_6_a();
 
             /*
             Test Step 30
@@ -978,5 +978,39 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
+        #region Send_XML_10_2_6_a_DMI_Test_Specification
+        private void XML_10_2_6_a()
+        {
+            // Step 2/1
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 716;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
+
+            EVC8_MMIDriverMessage.Send();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI is in the entry state of ‘ST05’." + Environment.NewLine +
+                                "2. The hourglass symbol ST05 is displayed." + Environment.NewLine +
+                                "3. All buttons and the ‘Close’ button are disabled." + Environment.NewLine +
+                                "4. ‘Close’ button NA12 is displayed disabled in area G." + Environment.NewLine +
+                                "5. The Input Field is not selected.");
+
+            Wait_Realtime(10000);
+
+            // Step 2/2
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
+
+            EVC8_MMIDriverMessage.Send();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI is in the exit state of ‘ST05’." + Environment.NewLine +
+                                "2. The hourglass symbol ST05 is removed." + Environment.NewLine +
+                                "3. All buttons are enabled." + Environment.NewLine +
+                                "4. ‘Close’ button NA11 is displayed enabled in area G." + Environment.NewLine +
+                                "5. The Input Field is selected.");
+        }
+        #endregion
+
     }
 }

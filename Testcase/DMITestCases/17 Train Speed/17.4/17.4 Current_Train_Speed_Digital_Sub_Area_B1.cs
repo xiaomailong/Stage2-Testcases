@@ -146,15 +146,15 @@ namespace Testcase.DMITestCases
             Expected Result: The speed digital is changed to 15 km/h
             Test Step Comment: MMI_gen 1279 (partly: decimal rounded up, near integer)
             */
-            XML_12_4_a.Send(this);
+            XML_12_4(msgType.typea);
 
             // Spec says this may need repeating 
             this.Wait_Realtime(200);
-            XML_12_4_a.Send(this);
+            XML_12_4(msgType.typea);
             this.Wait_Realtime(200);
-            XML_12_4_a.Send(this);
+            XML_12_4(msgType.typea);
             this.Wait_Realtime(200);
-            XML_12_4_a.Send(this);
+            XML_12_4(msgType.typea);
 
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -166,15 +166,15 @@ namespace Testcase.DMITestCases
             Expected Result: The speed digital is 18 km/h
             Test Step Comment: MMI_gen 1279 (partly: NEGATIVE, decimal rounded up)
             */
-            XML_12_4_b.Send(this);
+            XML_12_4(msgType.typeb);
 
             // Spec says this may need repeating 
             this.Wait_Realtime(200);
-            XML_12_4_b.Send(this);
+            XML_12_4(msgType.typeb);
             this.Wait_Realtime(200);
-            XML_12_4_b.Send(this);
+            XML_12_4(msgType.typeb);
             this.Wait_Realtime(200);
-            XML_12_4_b.Send(this);
+            XML_12_4(msgType.typeb);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The speed displayed is 18 km/h");
@@ -185,15 +185,15 @@ namespace Testcase.DMITestCases
             Expected Result: The speed digital is 23 km/h
             Test Step Comment: MMI_gen 1279 (partly: decimal rounded up, far from integer)
             */
-            XML_12_4_c.Send(this);
+            XML_12_4(msgType.typec);
 
             // Spec says this may need repeating 
             this.Wait_Realtime(200);
-            XML_12_4_c.Send(this);
+            XML_12_4(msgType.typec);
             this.Wait_Realtime(200);
-            XML_12_4_c.Send(this);
+            XML_12_4(msgType.typec);
             this.Wait_Realtime(200);
-            XML_12_4_c.Send(this);
+            XML_12_4(msgType.typec);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The speed displayed is 23 km/h");
@@ -206,5 +206,50 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
+        #region Send_XML_12_4_DMI_Test_Specification
+        enum msgType
+        {
+            typea,
+            typeb,
+            typec
+        }
+
+        private void XML_12_4(msgType type)
+        {
+
+            EVC1_MMIDynamic.MMI_M_SLIDE = 0;
+            EVC1_MMIDynamic.MMI_M_SLIP = 0;
+            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring;   // 0
+            EVC1_MMIDynamic.MMI_A_TRAIN = 0;
+            EVC1_MMIDynamic.MMI_V_TARGET = 1111;
+            EVC1_MMIDynamic.MMI_V_PERMITTED = 1111;
+            EVC1_MMIDynamic.MMI_V_RELEASE = 555;
+            EVC1_MMIDynamic.MMI_O_BRAKETARGET = 0;
+            EVC1_MMIDynamic.MMI_O_IML = 0;
+            EVC1_MMIDynamic.MMI_V_INTERVENTION = 0;
+
+            SITR.ETCS1.Dynamic.EVC01Validity1.Value = 0x0;
+            SITR.ETCS1.Dynamic.EVC01Validity2.Value = 0x0;
+            //SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity1.Value = 4415; // All validity bits set
+            //SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity2.Value = 63;   // All validity bits set
+
+            switch (type)
+            {
+                case msgType.typea:
+                    EVC1_MMIDynamic.MMI_V_TRAIN = 389;
+
+                    break;
+                case msgType.typeb:
+                    EVC1_MMIDynamic.MMI_V_TRAIN = 500;
+
+                    break;
+                case msgType.typec:
+                    EVC1_MMIDynamic.MMI_V_TRAIN = 625;
+
+                    break;
+            }
+        }
+        #endregion
+
     }
 }
