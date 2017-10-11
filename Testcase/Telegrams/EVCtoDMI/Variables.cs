@@ -29,7 +29,7 @@ namespace Testcase.Telegrams.EVCtoDMI
                 var varNamestring = baseString + tdeIndex + "_";
                 var charArray = trainDataElement.EchoText.ToCharArray();
                 if (charArray.Length > 10)
-                    throw new ArgumentOutOfRangeException("Too many chars in the caption string!");
+                    throw new ArgumentOutOfRangeException(charArray.ToString(), "Too many characters in the caption string!");
 
                 // Set identifier
                 _pool.SITR.Client.Write(varNamestring + "MmiNidData", (byte)trainDataElement.Identifier);
@@ -899,6 +899,13 @@ namespace Testcase.Telegrams.EVCtoDMI
             Doppler = 1
         }
 
+        /// <summary>
+        /// Fixed trainset captions used for Crossrail
+        /// 
+        /// FLU = "Fixed length unit" -> 9 cars
+        /// RLU = "Reduced length unit" -> 7 cars
+        /// Rescue = "Rescue" -> 18 cars
+        /// </summary>
         public enum Fixed_Trainset_Captions : byte
         {
             FLU = 1,
