@@ -247,7 +247,7 @@ namespace Testcase.DMITestCases
             //EVC112_MMINewRBCData.CheckMMiNDataElements = 0;    
             //EVC112_MMINewRBCData.CheckMMiMButtons = Variables.MMI_M_BUTTONS.BTN_RADIO_NETWORK_ID;
 
-            EVC22_MMICurrentRBC.MMI_NID_WINDOW = 5;
+            EVC22_MMICurrentRBC.MMI_NID_WINDOW = 9;
             EVC22_MMICurrentRBC.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -366,6 +366,7 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, @"Select and confirm ‘Level 2’");
 
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L2;
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.ContactLastRBC;

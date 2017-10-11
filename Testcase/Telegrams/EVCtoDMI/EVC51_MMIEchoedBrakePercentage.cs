@@ -1,23 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using CL345;
+﻿using CL345;
 using static Testcase.Telegrams.EVCtoDMI.Variables;
+
 
 namespace Testcase.Telegrams.EVCtoDMI
 {
     /// <summary>
     /// This packet shall be sent when stored brake percentage data shall be presented via the MMI. 
-    /// This packet is used in relation with packets EVC-51, EVC-150 and EVC-151. 
-    /// The purpose of those packets is to allow the driver to modify the brake percentage besides the Train Data Entry procedure.
+    /// This packet is used in relation with packets EVC-50, EVC-150 and EVC-151. 
+    /// The purpose of those packets is to allow the driver to validate the brake percentage (together with the Train Data Entry procedure.)
+    /// The properties correspond with those in EVC50 (except the setters invert and reverse the bits of their set values).
     /// </summary>
-    public static class EVC50_MMICurrentBrakePercentage
+    public static class EVC51_MMIEchoedBrakePercentage
     {
         private static SignalPool _pool;
 
         /// <summary>
-        /// Initialise EVC-50 MMI_Current_Brake_Percentage telegram.
+        /// Initialise EVC51 MMI_Echoed_Brake_Percentage telegram.
         /// </summary>
         /// <param name="pool"></param>
         public static void Initialise(SignalPool pool)
@@ -25,8 +23,8 @@ namespace Testcase.Telegrams.EVCtoDMI
             _pool = pool;
 
             // Set default values
-            _pool.SITR.ETCS1.CurrentBrakePercentage.MmiMPacket.Value = 50;  // Packet ID
-            _pool.SITR.ETCS1.CurrentBrakePercentage.MmiLPacket.Value = 56;  // Packet length
+            _pool.SITR.ETCS1.EchoedBrakePercentage.MmiMPacket.Value = 51;  // Packet ID
+            _pool.SITR.ETCS1.EchoedBrakePercentage.MmiLPacket.Value = 56;  // Packet length
         }
 
         /// <summary>
@@ -34,7 +32,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static void Send()
         {
-            _pool.SITR.SMDCtrl.ETCS1.CurrentBrakePercentage.Value = 1;
+            _pool.SITR.SMDCtrl.ETCS1.EchoedBrakePercentage.Value = 0x0001;
         }
 
         /// <summary>
@@ -46,9 +44,16 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// 251..255 = "Reserved"
         /// 
         /// </summary>
-        public static byte MMI_M_BP_ORIG
+        public static byte MMI_M_BP_ORIG_
         {
-            set => _pool.SITR.ETCS1.CurrentBrakePercentage.MmiMBpOrig.Value = value;
+            set
+            {
+                byte bpOrig_ = value;
+
+                bpOrig_ = (byte) ~bpOrig_;
+                _pool.SITR.ETCS1.EchoedBrakePercentage.MmiMBpOrigR.Value = BitReverser8(bpOrig_);
+            }
+
         }
 
         /// <summary>
@@ -62,12 +67,16 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// 251="Technical Range Check failed"
         /// 252..254="Reserved"
         /// 255 = "Original value exceeded (will be displayed as '++++' in grey, Data Field 'Current BP')"
-        /// 
-        /// Note: All special values concerning cross/range checks are only used in packet EVC-50.
         /// </summary>
-        public static byte MMI_M_BP_CURRENT
+        public static byte MMI_M_BP_CURRENT_
         {
-            set => _pool.SITR.ETCS1.CurrentBrakePercentage.MmiMBpCurrent.Value = value;
+            set
+            {
+                byte bpCurrent_ = value;
+
+                bpCurrent_ = (byte) ~bpCurrent_;
+                _pool.SITR.ETCS1.EchoedBrakePercentage.MmiMBpCurrentR.Value = BitReverser8(bpCurrent_);
+            }
         }
 
         /// <summary>
@@ -83,9 +92,15 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// Note: All special values are only used in packet EVC-50.
 
         /// </summary>
-        public static byte MMI_M_BP_MEASURED
+        public static byte MMI_M_BP_MEASURED_
         {
-            set => _pool.SITR.ETCS1.CurrentBrakePercentage.MmiMBpMeasured.Value = value;
+            set
+            {
+                byte bpMmeasured_ = value;
+
+                bpMmeasured_ = (byte)~bpMmeasured_;
+                _pool.SITR.ETCS1.EchoedBrakePercentage.MmiMBpMeasuredR.Value = BitReverser8(bpMmeasured_);
+            }
         }        
     }
 }

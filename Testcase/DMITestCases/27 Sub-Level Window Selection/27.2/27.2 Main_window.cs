@@ -73,8 +73,9 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8351 (partly: touch screen, enabling condition of ‘Start’ button); MMI_gen 591 (partly: EVC-30, enabling, start);(2) MMI_gen 4350;(3) MMI_gen 4351;(4) MMI_gen 4353;(5) MMI_gen 4354;
             */
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 6;
-            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Start;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.TrainRunningNumber |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.Start;
             EVC30_MMIRequestEnable.Send();
 
             // Call generic Action Method
@@ -142,6 +143,12 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Main window.Verify the following points,Menu windowThe Main window is displayed in main area D/F/G.The window title is ‘Main’.The following objects are display in Main window, Enabled Close button (NA11)Window TitleButton 1 with label ‘Start’Button 2 with label ‘Driver ID’Button 3 with label ‘Train data’ Button 5 with label ‘Level’Button 6 with label ‘Train running number’Button 7 with label ‘Shunting’Button 8 with label ‘Non-Leading’Button 9 with label ‘Maintain shunting’Note: See the position of buttons in picture below,LayersThe level of layers in each area of window as follows,Layer 0: Area D, F, G, E10, E11, Y, and ZLayer -1: Area A1, (A2+A3)*, A4, B*, C1, (C2+C3+C4)*, C5, C6, C7, C8, C9, E1, E2, E3, E4, (E5-E9)*.Layer -2: Area B3, B4, B5, B6 and B7.Note: ‘*’ symbol is mean that specified area are drawn as one area
             Test Step Comment: (1) MMI_gen 8349 (partly: MMI_gen 7909);(2) MMI_gen 8350; MMI_gen 4360 (partly: window title);(3) MMI_gen 8349 (partly: MMI_gen 4556 (partly: Close button, Window Title)); MMI_gen 4355 (partly: Buttons, Close button); MMI_gen 8351 (partly: touch screen, button with label, Driver ID, Train data, Level, Train Running Number, Shunting, Non-Leading, Maintain shunting); MMI_gen 4392 (partly: [Close] NA11);(4) MMI_gen 8349 (partly: MMI_gen 4630, MMI gen 5944 (partly: touch screen));
             */
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 263;
+            EVC8_MMIDriverMessage.Send();
+            
             DmiActions.ShowInstruction(this, "Acknowledge SR mode, then press the ‘Main’ button");
 
             EVC30_MMIRequestEnable.SendBlank();
@@ -485,6 +492,8 @@ namespace Testcase.DMITestCases
 
             EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.ContinueShuntingOnDeskClosure;
 
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Shunting;
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Default window in SH mode, Level 1.");
 
@@ -588,10 +597,24 @@ namespace Testcase.DMITestCases
                                                                
             EVC30_MMIRequestEnable.Send();
 
-            DmiActions.ShowInstruction(this, @"Enter the Driver ID. Select and confirm Level 1.");
+            EVC14_MMICurrentDriverID.Send();
+
+            DmiActions.ShowInstruction(this, @"Enter the Driver ID and confirm");
+
+            EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Disabled;
+            EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new Variables.MMI_Q_LEVEL_NTC_ID[] { Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level };
+            EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new Variables.MMI_M_CURRENT_LEVEL[] { Variables.MMI_M_CURRENT_LEVEL.LastUsedLevel };
+            EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = new Variables.MMI_M_LEVEL_FLAG[] { Variables.MMI_M_LEVEL_FLAG.MarkedLevel };
+            EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = new Variables.MMI_M_INHIBITED_LEVEL[] { Variables.MMI_M_INHIBITED_LEVEL.NotInhibited };
+            EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = new Variables.MMI_M_INHIBIT_ENABLE[] { Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting };
+            EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new Variables.MMI_M_LEVEL_NTC_ID[] { Variables.MMI_M_LEVEL_NTC_ID.L1 };
+            EVC20_MMISelectLevel.Send();
+
+            DmiActions.ShowInstruction(this, @"Select and confirm Level 1.");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Main window.");
+
             /*
             Test Step 19
             Action: Simulates the ‘Non-leading’ signal by activating the ‘Non-leading’ checkbox on OTE
@@ -599,9 +622,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8351 (partly: enabling condition of ‘Non-leading’ button);(2) MMI_gen 591 (partly: enabling condition of ‘Non-leading’ button);
             */
             DmiActions.ShowInstruction(this, @"Activate the ‘Non-leading’ checkbox on OTE to simulate the ‘Non-leading’ signal");
-
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.NonLeading;
-
+            
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = (EVC30_MMIRequestEnable.EnabledRequests.DriverID |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.TrainData |
@@ -673,6 +694,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Release the ‘Non-leading’ button");
 
             EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.StartNonLeading;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.NonLeading;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Default window in NL mode, Level 1.");
@@ -722,7 +744,20 @@ namespace Testcase.DMITestCases
                                                                  EVC30_MMIRequestEnable.EnabledRequests.MaintainShunting);
             EVC30_MMIRequestEnable.Send();
 
-            DmiActions.ShowInstruction(this, "Enter Driver ID. Select and confirm Level 1.");
+            EVC14_MMICurrentDriverID.Send();
+
+            DmiActions.ShowInstruction(this, "Enter and confirm Driver ID");
+
+            EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Disabled;
+            EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new Variables.MMI_Q_LEVEL_NTC_ID[] { Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level };
+            EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new Variables.MMI_M_CURRENT_LEVEL[] { Variables.MMI_M_CURRENT_LEVEL.LastUsedLevel };
+            EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = new Variables.MMI_M_LEVEL_FLAG[] { Variables.MMI_M_LEVEL_FLAG.MarkedLevel };
+            EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = new Variables.MMI_M_INHIBITED_LEVEL[] { Variables.MMI_M_INHIBITED_LEVEL.NotInhibited };
+            EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = new Variables.MMI_M_INHIBIT_ENABLE[] { Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting };
+            EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new Variables.MMI_M_LEVEL_NTC_ID[] { Variables.MMI_M_LEVEL_NTC_ID.L1 };
+            EVC20_MMISelectLevel.Send();
+
+            DmiActions.ShowInstruction(this, "Select and confirm Level 1.");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Main window" +

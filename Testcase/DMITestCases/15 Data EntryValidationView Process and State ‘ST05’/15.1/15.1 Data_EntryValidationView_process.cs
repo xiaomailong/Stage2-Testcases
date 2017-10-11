@@ -29,16 +29,15 @@ namespace Testcase.DMITestCases
     /// MMI_gen 1316 (partly: disabled state in Table 23 (Active state, Idle state), enable state in Table 23 (Active state, Idle state)); MMI_gen 5647;
     /// 
     /// Scenario:
-    /// 1.The ‘Settings’ menu window is displayed.
-    /// 2.Use the test script files to send packets in order to verify button state in a Setting menu window. 
-    /// 3.Active the cabin and perform SoM until select and confirm Level 1.
-    /// 4.Use the test script files to send packets in order to verify button state in a Main menu window. 
-    /// 5.Open the ‘Override’ window and use the test script files to send packets in order to verify buttons state. 
-    /// 6.Open the ‘Special’ window and use the test script files to send packets in order to verify buttons state. 
-    /// 7.Open the ‘Setting’ window and use the test script files to send packets in order to verify buttons state.
-    /// 8.Reactive the cabin and perform SoM until select and confirm Level 2.
-    /// 9.Open the ‘RBC contact’ window and use the test script files to send packets in order to verify buttons state.
-    /// 
+    /// 1. The ‘Settings’ menu window is displayed.
+    /// 2. Use the test script files to send packets in order to verify button state in a Setting menu window. 
+    /// 3. Active the cabin and perform SoM until select and confirm Level 1.
+    /// 4. Use the test script files to send packets in order to verify button state in a Main menu window. 
+    /// 5. Open the ‘Override’ window and use the test script files to send packets in order to verify buttons state. 
+    /// 6. Open the ‘Special’ window and use the test script files to send packets in order to verify buttons state. 
+    /// 7. Open the ‘Setting’ window and use the test script files to send packets in order to verify buttons state.
+    /// 8. Reactive the cabin and perform SoM until select and confirm Level 2.
+    /// 9. Open the ‘RBC contact’ window and use the test script files to send packets in order to verify buttons state.
     /// </summary>
     public class TC_ID_10_1_Data_EntryValidationView_process : TestcaseBase
     {
@@ -48,7 +47,7 @@ namespace Testcase.DMITestCases
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
-            // Test system is powered onCabin is inactive
+            // Test system is powered on. Cabin is inactive
             DmiActions.Complete_SoM_L1_SB(this);
         }
 
@@ -78,15 +77,20 @@ namespace Testcase.DMITestCases
 
             /*
             Test Step 2
-            Action: Use the test script file 10_1_a.xml to disable and enable button via EVC-30 withPacket 1 (disable all button)all bit of variable MMI_Q_REQUEST_ENABLE = ‘0’ and MMI_NID_WINDOW = 255Packet 2 (enable all button) Send EVC-30 with all bit of variable MMI_Q_REQUEST_ENABLE = ‘1’ and MMI_NID_WINDOW = 255
-            Expected Result: Verify the following information,(1)   All buttons in Settings menu window are disabled, except ‘Lock screen for cleaning’.10 seconds later(2)   All buttons in Settings menu window are enabled, except ‘Lock screen for cleaning’.Note: Button ‘Lock screen for cleaning’ is not controlled by ETCS onboard
-            Test Step Comment: (1) MMI_gen 1316 (partly: disabled state in Table 23, Idle state);(2) MMI_gen 1316 (partly: enable state in Table 23, Idle state); 
+            Action: Use the test script file 10_1_a.xml to disable and enable button via EVC-30 with
+                    Packet 1 (disable all button) all bit of variable MMI_Q_REQUEST_ENABLE = ‘0’ and MMI_NID_WINDOW = 255
+                    Packet 2 (enable all button) Send EVC-30 with all bit of variable MMI_Q_REQUEST_ENABLE = ‘1’ and MMI_NID_WINDOW = 255
+            Expected Result: All buttons in Settings menu window are disabled, except ‘Lock screen for cleaning’. 10 seconds later
+                            All buttons in Settings menu window are enabled, except ‘Lock screen for cleaning’.
+                            Note: Button ‘Lock screen for cleaning’ is not controlled by ETCS onboard
+            Test Step Comment: (1) MMI_gen 1316 (partly: disabled state in Table 23, Idle state);
+                                (2) MMI_gen 1316 (partly: enable state in Table 23, Idle state); 
             */
             XML_10_1_a("Settings");
 
             /*
             Test Step 3
-            Action: Perform the following procedure,Close the Setting windowCabin A is activated.Perform SoM until select and confirm Level 1
+            Action: Close the Setting window. Cabin A is activated. Perform SoM until select and confirm Level 1
             Expected Result: Main menu window is displayed
             */
             DmiActions.ShowInstruction(this, "Close the Setting window.");
@@ -96,16 +100,20 @@ namespace Testcase.DMITestCases
 
             /*
             Test Step 4
-            Action: Use the test script file 10_1_b.xml to disable and enable button via EVC-30 withPacket 1 (disable all button)all bit of variable MMI_Q_REQUEST_ENABLE = ‘0’ and MMI_NID_WINDOW = 1Packet 2 (enable all button) Send EVC-30 with all bit of variable MMI_Q_REQUEST_ENABLE = ‘1’ and MMI_NID_WINDOW = 1
-            Expected Result: Verify the following information,(1)   All buttons in Main menu window are disabled.10 seconds later(2)   All buttons in Main menu window are enabled
-            Test Step Comment: (1) MMI_gen 1316 (partly: disabled state in Table 23, Active state);(2) MMI_gen 1316 (partly: enable state in Table 23, Active state); 
+            Action: Use the test script file 10_1_b.xml to disable and enable button via EVC-30 with
+                    Packet 1 (disable all button) all bit of variable MMI_Q_REQUEST_ENABLE = ‘0’ and MMI_NID_WINDOW = 1
+                    Packet 2 (enable all button) Send EVC-30 with all bit of variable MMI_Q_REQUEST_ENABLE = ‘1’ and MMI_NID_WINDOW = 1
+            Expected Result: (1) All buttons in Main menu window are disabled. 10 seconds later
+                            (2) All buttons in Main menu window are enabled
+            Test Step Comment: (1) MMI_gen 1316 (partly: disabled state in Table 23, Active state);
+                                (2) MMI_gen 1316 (partly: enable state in Table 23, Active state); 
             */
             XML_10_1_b();
 
             /*
             Test Step 5
             Action: Close the Main window
-            Expected Result: (1)   The Default window is displayed
+            Expected Result: (1) The Default window is displayed
             Test Step Comment: (1) MMI_gen 5647
             */
             DmiActions.ShowInstruction(this, "Close the Main window");
@@ -115,9 +123,12 @@ namespace Testcase.DMITestCases
 
             /*
             Test Step 6
-            Action: Perform the following procedure;Press the Override button Repeat action step 2 with Override window
-            Expected Result: Override menu window is displayed.Verify the following information,(1)   All buttons in Override menu window are disabled.10 seconds later(2)   All buttons in Override menu window are enabled
-            Test Step Comment: (1) MMI_gen 1316 (partly: disabled state in Table 23, Active state);(2) MMI_gen 1316 (partly: enable state in Table 23, Active state); 
+            Action: Press the Override button. Repeat action step 2 with Override window
+            Expected Result: Override menu window is displayed.
+                            (1) All buttons in Override menu window are disabled. 10 seconds later
+                            (2) All buttons in Override menu window are enabled
+            Test Step Comment: (1) MMI_gen 1316 (partly: disabled state in Table 23, Active state);
+                                (2) MMI_gen 1316 (partly: enable state in Table 23, Active state); 
             */
             DmiActions.ShowInstruction(this, "Press the ‘Override’ button");
             XML_10_1_a("Override menu", false);
@@ -125,7 +136,7 @@ namespace Testcase.DMITestCases
             /*
             Test Step 7
             Action: Close the Override menu window
-            Expected Result: (1)   The Default window is displayed
+            Expected Result: (1) The Default window is displayed
             Test Step Comment: (1) MMI_gen 5647
             */
             DmiActions.ShowInstruction(this, "Close the Override menu window");
@@ -135,9 +146,12 @@ namespace Testcase.DMITestCases
 
             /*
             Test Step 8
-            Action: Perform the following procedure;Press ‘Spec’ buttonRepeat action step 2 with Special window
-            Expected Result: Special menu window is displayed.Verify the following information,(1)   All buttons in Special menu window are disabled.10 seconds later(2)   All buttons in Special menu window are enabled
-            Test Step Comment: (1) MMI_gen 1316 (partly: disabled state in Table 23, Active state);(2) MMI_gen 1316 (partly: enable state in Table 23, Active state); 
+            Action: Press ‘Spec’ button. Repeat action step 2 with Special window
+            Expected Result: Special menu window is displayed.
+                            (1) All buttons in Special menu window are disabled. 10 seconds later
+                            (2) All buttons in Special menu window are enabled
+            Test Step Comment: (1) MMI_gen 1316 (partly: disabled state in Table 23, Active state);
+                                (2) MMI_gen 1316 (partly: enable state in Table 23, Active state); 
             */
             DmiActions.ShowInstruction(this, "Press the ‘Spec’ button");
             XML_10_1_a("Special menu", false);
@@ -145,7 +159,7 @@ namespace Testcase.DMITestCases
             /*
             Test Step 9
             Action: Close the Special menu window
-            Expected Result: (1)   The Default window is displayed
+            Expected Result: (1) The Default window is displayed
             Test Step Comment: (1) MMI_gen 5647
             */
             DmiActions.ShowInstruction(this, "Close the Special menu window");
@@ -155,27 +169,37 @@ namespace Testcase.DMITestCases
 
             /*
             Test Step 10
-            Action: Perform the following procedure;Press ‘Settings’ buttonRepeat action step 2 with Settings window
-            Expected Result: Settings menu window is displayed.Verify the following information,(1)   All buttons in Settings menu window are disabled, except ‘Lock screen for cleaning’.10 seconds later(2)   All buttons in Settings menu window are enabled, except ‘Lock screen for cleaning’.Note: Button ‘Lock screen for cleaning’ is not controlled by ETCS onboard
-            Test Step Comment: (1) MMI_gen 1316 (partly: disabled state in Table 23, Active state);(2) MMI_gen 1316 (partly: enable state in Table 23, Active state); 
+            Action: Press ‘Settings’ button. Repeat action step 2 with Settings window
+            Expected Result: Settings menu window is displayed.
+                    (1) All buttons in Settings menu window are disabled, except ‘Lock screen for cleaning’. 10 seconds later
+                    (2) All buttons in Settings menu window are enabled, except ‘Lock screen for cleaning’.
+                    Note: Button ‘Lock screen for cleaning’ is not controlled by ETCS onboard
+            Test Step Comment: (1) MMI_gen 1316 (partly: disabled state in Table 23, Active state);
+                                (2) MMI_gen 1316 (partly: enable state in Table 23, Active state); 
             */
             DmiActions.ShowInstruction(this, "Press the ‘Settings’ button");
             XML_10_1_a("Settings menu");
 
             /*
             Test Step 11
-            Action: Perform the following procedure;Press ‘Brake’ buttonRepeat action step 2 with Brake window
-            Expected Result: Brake menu window is displayed.Verify the following information,(1)   All buttons in Brake menu window are disabled.10 seconds later(2)   All buttons in Brake menu window are enabled
-            Test Step Comment: (1) MMI_gen 1316 (partly: disabled state in Table 23, Active state);(2) MMI_gen 1316 (partly: enable state in Table 23, Active state); 
+            Action: Press ‘Brake’ button. Repeat action step 2 with Brake window
+            Expected Result: Brake menu window is displayed.
+                            (1) All buttons in Brake menu window are disabled. 10 seconds later
+                            (2) All buttons in Brake menu window are enabled
+            Test Step Comment: (1) MMI_gen 1316 (partly: disabled state in Table 23, Active state);
+                                (2) MMI_gen 1316 (partly: enable state in Table 23, Active state); 
             */
             DmiActions.ShowInstruction(this, "Press the ‘Brake’ button");
             XML_10_1_a("Brake menu", false);
 
             /*
             Test Step 12
-            Action: Perform the following procedure;Press ‘Test’ buttonRepeat action step 2 with Brake Test window
-            Expected Result: Brake Test menu window is displayed.Verify the following information,(1)   All buttons in Brake Test menu window are disabled.10 seconds later(2)   All buttons in Brake Test menu window are enabled
-            Test Step Comment: (1) MMI_gen 1316 (partly: disabled state in Table 23, Active state);(2) MMI_gen 1316 (partly: enable state in Table 23, Active state); 
+            Action: Press ‘Test’ button. Repeat action step 2 with Brake Test window
+            Expected Result: Brake Test menu window is displayed.
+                            (1) All buttons in Brake Test menu window are disabled. 10 seconds later
+                            (2) All buttons in Brake Test menu window are enabled
+            Test Step Comment: (1) MMI_gen 1316 (partly: disabled state in Table 23, Active state);
+                                (2) MMI_gen 1316 (partly: enable state in Table 23, Active state); 
             */
             DmiActions.ShowInstruction(this, "Press the ‘Test’ button");
             XML_10_1_a("Brake Test menu", false);
@@ -183,7 +207,7 @@ namespace Testcase.DMITestCases
             /*
             Test Step 13
             Action: Close the Brake Test window and Brake window
-            Expected Result: (1)   The Settings window is displayed
+            Expected Result: (1) The Settings window is displayed
             Test Step Comment: (1) MMI_gen 5647
             */
             DmiActions.ShowInstruction(this, "Close the Brake Test and Brake window");
@@ -194,7 +218,7 @@ namespace Testcase.DMITestCases
             /*
             Test Step 14
             Action: Close the Settings menu window
-            Expected Result: (1)   The Default window is displayed
+            Expected Result: (1) The Default window is displayed
             Test Step Comment: (1) MMI_gen 5647
             */
             DmiActions.ShowInstruction(this, "Close the Settings window");
@@ -204,18 +228,22 @@ namespace Testcase.DMITestCases
 
             /*
             Test Step 15
-            Action: Perform the following procedure,Press the Main button Press the Level buttonSelect and confirm Level 2Repeat action step 2 with RBC contact window
-            Expected Result: RBC contact window is displayedVerify the following information,(1)   All buttons in RBC contact window are disabled.10 seconds later(2)   All buttons in RBC contact window are enabled
-            Test Step Comment: (1) MMI_gen 1316 (partly: disabled state in Table 23, Active state);(2) MMI_gen 1316 (partly: enable state in Table 23, Active state); 
+            Action: Press the Main button. Press the Level button. Select and confirm Level 2.
+                    Repeat action step 2 with RBC contact window
+            Expected Result: RBC contact window is displayed
+                            (1) All buttons in RBC contact window are disabled. 10 seconds later
+                            (2) All buttons in RBC contact window are enabled
+            Test Step Comment: (1) MMI_gen 1316 (partly: disabled state in Table 23, Active state);
+                                (2) MMI_gen 1316 (partly: enable state in Table 23, Active state); 
             */
             EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = MMI_Q_CLOSE_ENABLE.Disabled;
 
-            EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new MMI_Q_LEVEL_NTC_ID[] { MMI_Q_LEVEL_NTC_ID.ETCS_Level };
-            EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new MMI_M_CURRENT_LEVEL[] { MMI_M_CURRENT_LEVEL.LastUsedLevel };
-            EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = new MMI_M_LEVEL_FLAG[] { MMI_M_LEVEL_FLAG.MarkedLevel };
-            EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = new MMI_M_INHIBITED_LEVEL[] { MMI_M_INHIBITED_LEVEL.NotInhibited };
-            EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = new MMI_M_INHIBIT_ENABLE[] { MMI_M_INHIBIT_ENABLE.AllowedForInhibiting };
-            EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new MMI_M_LEVEL_NTC_ID[] { MMI_M_LEVEL_NTC_ID.L2 };
+            EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new [] { MMI_Q_LEVEL_NTC_ID.ETCS_Level };
+            EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new [] { MMI_M_CURRENT_LEVEL.LastUsedLevel };
+            EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = new [] { MMI_M_LEVEL_FLAG.MarkedLevel };
+            EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = new [] { MMI_M_INHIBITED_LEVEL.NotInhibited };
+            EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = new [] { MMI_M_INHIBIT_ENABLE.AllowedForInhibiting };
+            EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new [] { MMI_M_LEVEL_NTC_ID.L2 };
             EVC20_MMISelectLevel.Send();
 
             DmiActions.ShowInstruction(this, "Press the Main button. Press the Level button. Select and confirm Level 2");
@@ -232,7 +260,7 @@ namespace Testcase.DMITestCases
             /*
             Test Step 16
             Action: Close the RBC contact window
-            Expected Result: (1)   The Main menu window is displayed
+            Expected Result: (1) The Main menu window is displayed
             Test Step Comment: (1) MMI_gen 5647
             */
             DmiActions.ShowInstruction(this, "Close the RBC contact window");
@@ -253,23 +281,25 @@ namespace Testcase.DMITestCases
         private void XML_10_1_a(string windowName, bool showLock = true)
         { 
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 0xff;   // Enable all windows
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 0xff;   // No window specified
             
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.None;
             EVC30_MMIRequestEnable.Send();
 
             if (showLock)
             {
-                WaitForVerification($"Check that all but one of the buttons in the {windowName} window are disabled (displayed with a border with Dark-Grey text) and the following:" + Environment.NewLine + Environment.NewLine +
+                WaitForVerification($"Check that all but one of the buttons in the {windowName} window are disabled (displayed " +
+                                    $"with a border with dark-grey text) and the following:" + Environment.NewLine + Environment.NewLine +
                                     @"1. The ‘Lock screen for cleaning’ button is not disabled.");
             }
             else
             {
                 WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                     $"All the buttons in the {windowName} window are disabled (displayed with a border with Dark-Grey text).");
+                                     $"All the buttons in the {windowName} window are disabled (displayed with a border with dark-grey text).");
             }
 
-            Wait_Realtime(10000);
+            // Reduced waiting time to speed up testing
+            Wait_Realtime(3000);
 
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = 0xff;
@@ -309,14 +339,14 @@ namespace Testcase.DMITestCases
 
             if (showLock)
             {
-                WaitForVerification($"Check that all but one of the buttons in the {windowName} window are enabled with the exception of the following:" + Environment.NewLine + Environment.NewLine +
+                WaitForVerification($"Check that all but one of the buttons in the {windowName} window are enabled with " +
+                                    $"the exception of the following:" + Environment.NewLine + Environment.NewLine +
                                     @"1. The ‘Lock screen for cleaning’ button.");
             }
             else
             {
                 WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                      $"1. All the buttons in the {windowName} window are enabled.");
-
             }
         }
         #endregion
@@ -331,9 +361,10 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. All the buttons in the Main menu window are disabled (displayed with a border with Dark-Grey text)");
+                                "1. All the buttons in the Main menu window are disabled (displayed with a border with dark-grey text).");
 
-            Wait_Realtime(10000);
+            // Reduced waiting time to speed up testing
+            Wait_Realtime(3000);
 
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = 0x01;   // Enable Main window

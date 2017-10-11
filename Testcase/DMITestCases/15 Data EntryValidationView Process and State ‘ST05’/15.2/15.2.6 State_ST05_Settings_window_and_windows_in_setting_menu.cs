@@ -681,8 +681,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Enter VBC Code ‘65536’ and accept entered data by pressing an input field. Press ‘Yes’ button. Press ‘Yes’ button on keypad");
 
             
-            //EVC29_MMIEchoedRemoveVBCData.MMI_M_VBC_CODE_ = 65536;
-            //EVC29_MMIEchoedRemoveVBCData.Send();
+            EVC29_MMIEchoedRemoveVBCData.MMI_M_VBC_CODE_ = 65536;
+            EVC29_MMIEchoedRemoveVBCData.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Remove VBC window until the Validate Remove VBC window is displayed." + Environment.NewLine +
@@ -889,8 +889,8 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Enter Brake percentage ‘80’ and accept entered data by pressing an input field. Press ‘Yes’ button on keypad");
 
-            //EVC51_MMIEchoedBrakePercentage.MMI_M_BP_CURRENT_ = 80;
-            //EVC51_MMIEchoedBrakePercentage.Send();
+            EVC51_MMIEchoedBrakePercentage.MMI_M_BP_CURRENT_ = 80;
+            EVC51_MMIEchoedBrakePercentage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Brake percentage window until Validate Brake percentage window is displayed." + Environment.NewLine +

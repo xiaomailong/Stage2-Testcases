@@ -167,8 +167,8 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Press the data input field (accept)");
 
-            //EVC51_MMIEchoedBrakePercentage.MMI_M_BP_ORIG_ = 0xd7;       // (value 40 -> 0x28, bit-inverted)
-            //EVC51_MMIEchoedBrakePercentage.Send();
+            EVC51_MMIEchoedBrakePercentage.MMI_M_BP_ORIG_ = 40;  
+            EVC51_MMIEchoedBrakePercentage.Send();
 
             /*
             Test Step 9 (marked Step 10 in Spec.)

@@ -128,8 +128,8 @@ namespace Testcase.DMITestCases
             Action: This step is to complete the process of ‘Brake percentage’:- Press the ‘Yes’ button on the ‘Brake percentage’ window.- Validate the data in the data validation window
             Expected Result: 1. After pressing the ‘Yes’ button, the data validation window (‘Validate Brake percentage’) appears instead of the ‘Brake percentage’ data entry window. The data part of echo text displays “250” in white.2. After the data area of the input field containing “Yes” is pressed, the data validation window disappears and returns to the parent window (‘Settings’ window) of ‘Brake percentage’ window with enabled ‘Brake percentage’ button
             */
-            //EVC51_MMIEchoedBrakePercentage.MMI_M_BP_ORIG_ = 0x05;       // (value 250 -> 0xfa, bit-inverted)
-            //EVC51_MMIEchoedBrakePercentage.Send();
+            EVC51_MMIEchoedBrakePercentage.MMI_M_BP_ORIG_ = 250;  
+            EVC51_MMIEchoedBrakePercentage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Brake percentage validation window" + Environment.NewLine +

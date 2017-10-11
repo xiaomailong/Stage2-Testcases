@@ -14,6 +14,7 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
 using Testcase.Telegrams.DMItoEVC;
+using Testcase.Telegrams.EVCtoDMI;
 
 
 namespace Testcase.DMITestCases
@@ -69,8 +70,6 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,DMI received the EVC-30 with [MMI_ENABLE_REQUEST (EVC-30).MMI_Q_REQUEST_ENABLE_64] (#29) = 0 in order to disable wheel diameter.DMI received the EVC-30 with [MMI_ENABLE_REQUEST (EVC-30).MMI_Q_REQUEST_ENABLE_64] (#30) = 0 in order to disable doppler.The ‘Maintenance’ button is disabled
             Test Step Comment: (1) MMI_gen 11746 (partly: disable wheel diameter);(2) MMI_gen 11746 (partly: disable doppler);(3) MMI_gen 11724;
             */
-            DmiActions.ShowInstruction(this, @"Confirm the password and then press the ‘Settings’ button");
-
             XML.XML_22_6_2_a.Send(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -86,7 +85,6 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Maintenance’ button is enabled");
-
 
             /*
             Test Step 3
@@ -224,6 +222,9 @@ namespace Testcase.DMITestCases
 
             EVC101_MMIDriverRequest.CheckMRequestReleased = Telegrams.EVCtoDMI.Variables.MMI_M_REQUEST.ChangeWheelDiameter;
 
+            EVC40_MMICurrentMaintenanceData.MMI_Q_MD_DATASET = Variables.MMI_Q_MD_DATASET.WheelDiameter;
+            EVC40_MMICurrentMaintenanceData.Send();
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Wheel diameter window.");
             
@@ -270,6 +271,9 @@ namespace Testcase.DMITestCases
 
             EVC101_MMIDriverRequest.CheckMRequestReleased = Telegrams.EVCtoDMI.Variables.MMI_M_REQUEST.ChangeDoppler;
 
+            EVC40_MMICurrentMaintenanceData.MMI_Q_MD_DATASET = Variables.MMI_Q_MD_DATASET.Doppler;
+            EVC40_MMICurrentMaintenanceData.Send();
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Radar window.");
 
@@ -297,10 +301,34 @@ namespace Testcase.DMITestCases
             Expected Result: See the expected results of Step 10 – Step 13 and the following additional information,DMI displays Settings window
             Test Step Comment: (1) MMI_gen 11743 (partly: MMI_gen 4557 (partly: button ‘Close’));
             */
-
-            // This step is meaningless: after pressing the Maintenance button the maintenance password is required...
-            //DmiActions.ShowInstruction(this, @"Press the ‘Maintenance’ button");
+            DmiActions.ShowInstruction(this, @"Press the ‘Maintenance’ button");
             
+            // Repeat Step 10 for ‘Close’ button 
+            DmiActions.ShowInstruction(this, @"Press and hold the ‘Close’ button");
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The ‘Close’ button is displayed pressed, without a border." + Environment.NewLine +
+                                "2. The ‘Click’ sound is played once.");
+
+            // Repeat Step 11 for ‘Close’ button
+            DmiActions.ShowInstruction(this, @"Drag the ‘Close’ button outside of its area, keeping the button pressed");
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The ‘Close’ button is displayed enabled." + Environment.NewLine +
+                                "2. No sound is played.");
+
+            // Repeat Step 12 for ‘Close’ button
+            DmiActions.ShowInstruction(this, @"Whilst keeping the ‘Close’ button pressed, drag it back inside its area");
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The ‘Close’ button is displayed pressed." + Environment.NewLine +
+                                "2. No sound is played.");
+
+            // Repeat Step 13 for ‘Close’ button
+            DmiActions.ShowInstruction(this, @"Release the ‘Close’ button");
+            
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the Close window.");
             /*
             Test Step 18
             Action: End of test

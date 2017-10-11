@@ -81,12 +81,12 @@ namespace Testcase.DMITestCases
             
             EVC50_MMICurrentBrakePercentage.Send();
 
-            DmiActions.ShowInstruction(this, "Enter and confirm the following values: " + Environment.NewLine +
-                                             @"‘99’ for ‘Original BP’, ‘95’ for ‘Last measured BP’ and ‘90’ for ‘Brake percentage’");
+            DmiActions.ShowInstruction(this, "Enter and confirm the value ‘90’ for ‘Brake percentage’");
 
-            //EVC51_MMIEchoedBrakePercentage.MMI_M_BP_ORIG_ = 0x9c;       // (99 -> 0x63, bit-inverted)
-            //EVC51_MMIEchoedBrakePercentage.MMI_M_BP_CURRENT_ = 0xa0;
-            //EVC51_MMIEchoedBrakePercentage.MMI_M_BP_MEASURED_ = 0xa5;
+            EVC51_MMIEchoedBrakePercentage.MMI_M_BP_ORIG_ = 99; 
+            EVC51_MMIEchoedBrakePercentage.MMI_M_BP_CURRENT_ = 90;
+            EVC51_MMIEchoedBrakePercentage.MMI_M_BP_MEASURED_ = 95;
+            EVC51_MMIEchoedBrakePercentage.Send();
 
             // Spec says echo texts are displayed in areas A, B, C and E but DMI_RS_ETCS shows them in area D ??
             WaitForVerification("Check the following (* indicates sub-areas drawn as one area):" + Environment.NewLine + Environment.NewLine +
@@ -132,16 +132,17 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Press the ‘Brake percentage’ button.");
 
-            EVC50_MMICurrentBrakePercentage.MMI_M_M_BP_ORIG = 99;
+            EVC50_MMICurrentBrakePercentage.MMI_M_BP_ORIG = 99;
             EVC50_MMICurrentBrakePercentage.MMI_M_BP_MEASURED = 95;
             EVC50_MMICurrentBrakePercentage.MMI_M_BP_CURRENT = 90;
             EVC50_MMICurrentBrakePercentage.Send();
 
             DmiActions.ShowInstruction(this, "Enter and confirm the value ‘89’ for ‘Brake percentage’");
 
-            //EVC51_MMIEchoedBrakePercentage.MMI_M_BP_ORIG_ = 0x9c;       // (99 -> 0x63, bit-inverted)
-            //EVC51_MMIEchoedBrakePercentage.MMI_M_BP_CURRENT_ = 0xa0;
-            //EVC51_MMIEchoedBrakePercentage.MMI_M_BP_MEASURED_ = 0xa6;
+            EVC51_MMIEchoedBrakePercentage.MMI_M_BP_ORIG_ = 99;       // (99 -> 0x63, bit-inverted)
+            EVC51_MMIEchoedBrakePercentage.MMI_M_BP_CURRENT_ = 89;
+            EVC51_MMIEchoedBrakePercentage.MMI_M_BP_MEASURED_ = 95;
+            EVC51_MMIEchoedBrakePercentage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Brake percentage validation window");
@@ -171,16 +172,17 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Press the ‘Brake percentage’ button.");
 
-            EVC50_MMICurrentBrakePercentage.MMI_M_M_BP_ORIG = 99;
+            EVC50_MMICurrentBrakePercentage.MMI_M_BP_ORIG = 99;
             EVC50_MMICurrentBrakePercentage.MMI_M_BP_MEASURED = 95;
             EVC50_MMICurrentBrakePercentage.MMI_M_BP_CURRENT = 89;
             EVC50_MMICurrentBrakePercentage.Send();
 
             DmiActions.ShowInstruction(this, "Enter and confirm the value ‘88’ for ‘Brake percentage’");
 
-            //EVC51_MMIEchoedBrakePercentage.MMI_M_BP_ORIG_ = 0x9e;       // (99 -> 0x61, bit-inverted)
-            //EVC51_MMIEchoedBrakePercentage.MMI_M_BP_CURRENT_ = 0xa2;
-            //EVC51_MMIEchoedBrakePercentage.MMI_M_BP_MEASURED_ = 0xa7;
+            EVC51_MMIEchoedBrakePercentage.MMI_M_BP_ORIG_ = 99;  
+            EVC51_MMIEchoedBrakePercentage.MMI_M_BP_CURRENT_ = 88;
+            EVC51_MMIEchoedBrakePercentage.MMI_M_BP_MEASURED_ = 95;
+            EVC51_MMIEchoedBrakePercentage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Brake percentage validation window");
@@ -204,9 +206,9 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, "Press in the data input field to confirm the entered data");
 
-            //EVC51_MMIEchoedBrakePercentage.MMI_M_BP_ORIG_ = 0x9c;       // (99 -> 0x63, bit-inverted)
-            //EVC51_MMIEchoedBrakePercentage.MMI_M_BP_CURRENT_ = 0xa0;
-            //EVC151_MMIConfirmedBrakePercentage.CheckMmiMBPMeasured_ = 0xa7;
+            EVC50_MMICurrentBrakePercentage.MMI_M_BP_ORIG = 99;
+            EVC50_MMICurrentBrakePercentage.MMI_M_BP_CURRENT = 88;
+            EVC50_MMICurrentBrakePercentage.MMI_M_BP_MEASURED= 95;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Brake window");
@@ -218,7 +220,7 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Press the ‘Brake percentage’ button.");
 
-            EVC50_MMICurrentBrakePercentage.MMI_M_M_BP_ORIG = 99;
+            EVC50_MMICurrentBrakePercentage.MMI_M_BP_ORIG = 99;
             EVC50_MMICurrentBrakePercentage.MMI_M_BP_MEASURED = 95;
             EVC50_MMICurrentBrakePercentage.MMI_M_BP_CURRENT = 88;
             EVC50_MMICurrentBrakePercentage.Send();

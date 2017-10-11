@@ -77,7 +77,8 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.DriverID;
             EVC30_MMIRequestEnable.Send();
 
-            DmiActions.ShowInstruction(this, "Enter the Driver ID");
+            EVC14_MMICurrentDriverID.Send();
+            DmiActions.ShowInstruction(this, "Enter and confirm the Driver ID");
 
             EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = MMI_Q_CLOSE_ENABLE.Disabled;
             Variables.MMI_Q_LEVEL_NTC_ID[] paramEvc20MmiQLevelNtcId =
@@ -238,7 +239,7 @@ namespace Testcase.DMITestCases
             EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.LevelEntered;
 
             EVC121_MMINewLevel.LevelSelected = MMI_M_LEVEL_NTC_ID.L1;
-
+            
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Level window and displays the Main window" + Environment.NewLine +
                                 "2. DMI displays in SB mode, Level 1.");
@@ -253,8 +254,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press the ‘Level’ button");
 
             EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = MMI_Q_CLOSE_ENABLE.Enabled;
-            paramEvc20MmiMCurrentLevel[1] = MMI_M_CURRENT_LEVEL.LastUsedLevel;
-           
+            paramEvc20MmiMCurrentLevel[0] = MMI_M_CURRENT_LEVEL.LastUsedLevel;
             EVC20_MMISelectLevel.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -280,42 +280,32 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press the ‘Level 2’ button, then press and hold the input field");
 
             EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.LevelEntered;
-
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘Click’ sound is played once.");
-
+            
             DmiActions.ShowInstruction(this, "Whilst keeping the input field pressed, drag it out of its area");
-
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI still displays the Level window." + Environment.NewLine +
-                                @"2. The ‘Click’ sound is not played.");
+            
             DmiActions.ShowInstruction(this, "Whilst keeping the input field pressed, drag it back inside its area");
-
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI still displays the Level window." + Environment.NewLine +
-                                @"2. The ‘Click’ sound is not played.");
-
+            
             DmiActions.ShowInstruction(this, "Release the input field");
 
             EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.LevelEntered;
 
             EVC121_MMINewLevel.LevelSelected = MMI_M_LEVEL_NTC_ID.L2;
 
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L2;
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Level window and displays the Main window" + Environment.NewLine +
-                                "2. DMI displays in SB mode, Level 1.");
+                                "2. DMI displays in SB mode, Level 2.");
 
             DmiActions.ShowInstruction(this, @"Press the ‘Level’ button");
 
             EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = MMI_Q_CLOSE_ENABLE.Enabled;
             paramEvc20MmiMCurrentLevel[0] = MMI_M_CURRENT_LEVEL.NotLastUsedLevel;
             paramEvc20MmiMCurrentLevel[1] = MMI_M_CURRENT_LEVEL.LastUsedLevel;
-
             EVC20_MMISelectLevel.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The input field displays ‘Level 2’." + Environment.NewLine +
-                                "2. The Level window contains an enabled ‘Close’ button (symbol NA11).");
+                                "1. The input field displays ‘Level 2’.");
 
             DmiActions.ShowInstruction(this, @"Press the input field to confirm the current value (without entering data)");
 
@@ -325,41 +315,30 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press the ‘Level 3’ button, then press and hold the input field");
 
             EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.LevelEntered;
-
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘Click’ sound is played once.");
-            DmiActions.ShowInstruction(this, "Whilst keeping the input field pressed, drag it out of its area");
-
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI still displays the Level window." + Environment.NewLine +
-                                @"2. The ‘Click’ sound is not played.");
+            
             DmiActions.ShowInstruction(this, "Whilst keeping the input field pressed, drag it back inside its area");
-
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI still displays the Level window." + Environment.NewLine +
-                                @"2. The ‘Click’ sound is not played.");
-
+            
             DmiActions.ShowInstruction(this, "Release the input field");
 
             EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.LevelEntered;
 
             EVC121_MMINewLevel.LevelSelected = MMI_M_LEVEL_NTC_ID.L3;
 
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L3;
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Level window and displays the Main window" + Environment.NewLine +
-                                "2. DMI displays in SB mode, Level 1.");
+                                "2. DMI displays in SB mode, Level 3.");
 
             DmiActions.ShowInstruction(this, @"Press the ‘Level’ button");
 
             EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = MMI_Q_CLOSE_ENABLE.Enabled;
             paramEvc20MmiMCurrentLevel[1] = MMI_M_CURRENT_LEVEL.NotLastUsedLevel;
             paramEvc20MmiMCurrentLevel[2] = MMI_M_CURRENT_LEVEL.LastUsedLevel;
-
             EVC20_MMISelectLevel.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The input field displays ‘Level 3’." + Environment.NewLine +
-                                "2. The Level window contains an enabled ‘Close’ button (symbol NA11).");
+                                "1. The input field displays ‘Level 3’.");
 
             DmiActions.ShowInstruction(this, @"Press the input field to confirm the current value (without entering data)");
 
@@ -370,40 +349,28 @@ namespace Testcase.DMITestCases
 
             EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.LevelEntered;
 
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘Click’ sound is played once.");
-            DmiActions.ShowInstruction(this, "Whilst keeping the input field pressed, drag it out of its area");
-
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI still displays the Level window." + Environment.NewLine +
-                                @"2. The ‘Click’ sound is not played.");
             DmiActions.ShowInstruction(this, "Whilst keeping the input field pressed, drag it back inside its area");
-
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI still displays the Level window." + Environment.NewLine +
-                                @"2. The ‘Click’ sound is not played.");
-
+            
             DmiActions.ShowInstruction(this, "Release the input field");
 
             EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.LevelEntered;
 
             EVC121_MMINewLevel.LevelSelected = MMI_M_LEVEL_NTC_ID.L0;
 
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L0;
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI closes the Level window and displays the Main window" + Environment.NewLine +
-                                "2. DMI displays in SB mode, Level 1.");
+                                "1. DMI displays in SB mode, Level 0.");
 
             DmiActions.ShowInstruction(this, @"Press the ‘Level’ button");
 
             EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = MMI_Q_CLOSE_ENABLE.Enabled;
             paramEvc20MmiMCurrentLevel[2] = MMI_M_CURRENT_LEVEL.NotLastUsedLevel;
             paramEvc20MmiMCurrentLevel[3] = MMI_M_CURRENT_LEVEL.LastUsedLevel;
-
             EVC20_MMISelectLevel.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The input field displays ‘Level 0’." + Environment.NewLine +
-                                "2. The Level window contains an enabled ‘Close’ button (symbol NA11).");
+                                "1. The input field displays ‘Level 0’.");
 
             DmiActions.ShowInstruction(this, @"Press the input field to confirm the current value (without entering data)");
 
@@ -413,41 +380,31 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press the ‘CBTC’ button, then press and hold the input field");
 
             EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.LevelEntered;
-
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘Click’ sound is played once.");
+            
             DmiActions.ShowInstruction(this, "Whilst keeping the input field pressed, drag it out of its area");
-
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI still displays the Level window." + Environment.NewLine +
-                                @"2. The ‘Click’ sound is not played.");
+            
             DmiActions.ShowInstruction(this, "Whilst keeping the input field pressed, drag it back inside its area");
-
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI still displays the Level window." + Environment.NewLine +
-                                @"2. The ‘Click’ sound is not played.");
-
+            
             DmiActions.ShowInstruction(this, "Release the input field");
 
             EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.LevelEntered;
 
             EVC121_MMINewLevel.LevelSelected = MMI_M_LEVEL_NTC_ID.CBTC;
 
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.LNTC;
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI closes the Level window and displays the Main window" + Environment.NewLine +
-                                "2. DMI displays in SB mode, Level 1.");
+                                "1. DMI displays in SB mode, Level NTC.");
 
             DmiActions.ShowInstruction(this, @"Press the ‘Level’ button");
 
             EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = MMI_Q_CLOSE_ENABLE.Enabled;
             paramEvc20MmiMCurrentLevel[3] = MMI_M_CURRENT_LEVEL.NotLastUsedLevel;
             paramEvc20MmiMCurrentLevel[4] = MMI_M_CURRENT_LEVEL.LastUsedLevel;
-
             EVC20_MMISelectLevel.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The input field displays ‘CBTC’." + Environment.NewLine +
-                                "2. The Level window contains an enabled ‘Close’ button (symbol NA11).");
+                                "1. The input field displays ‘CBTC’.");
 
             DmiActions.ShowInstruction(this, @"Press the input field to confirm the current value (without entering data)");
 
@@ -457,20 +414,11 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press the ‘AWS_TPWS’ button, then press and hold the input field");
 
             EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.LevelEntered;
-
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘Click’ sound is played once.");
+            
             DmiActions.ShowInstruction(this, "Whilst keeping the input field pressed, drag it out of its area");
 
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI still displays the Level window." + Environment.NewLine +
-                                @"2. The ‘Click’ sound is not played.");
             DmiActions.ShowInstruction(this, "Whilst keeping the input field pressed, drag it back inside its area");
-
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI still displays the Level window." + Environment.NewLine +
-                                @"2. The ‘Click’ sound is not played.");
-
+            
             DmiActions.ShowInstruction(this, "Release the input field");
 
             EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.LevelEntered;
@@ -478,8 +426,7 @@ namespace Testcase.DMITestCases
             EVC121_MMINewLevel.LevelSelected = MMI_M_LEVEL_NTC_ID.AWS_TPWS;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI closes the Level window and displays the Main window" + Environment.NewLine +
-                                "2. DMI displays in SB mode, Level 1.");
+                                "1. DMI displays in SB mode, Level NTC.");
 
             DmiActions.ShowInstruction(this, @"Press the ‘Level’ button");
 
@@ -490,8 +437,7 @@ namespace Testcase.DMITestCases
             EVC20_MMISelectLevel.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The input field displays ‘AWS_TPWS’." + Environment.NewLine +
-                                "2. The Level window contains an enabled ‘Close’ button (symbol NA11).");
+                                "1. The input field displays ‘AWS_TPWS’.");
 
             DmiActions.ShowInstruction(this, @"Press the input field to confirm the current value (without entering data)");
 
@@ -547,7 +493,7 @@ namespace Testcase.DMITestCases
             EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.ExitChangeLevel;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI closes the Level windows and displays the Main window"); 
+                                "1. DMI closes the Level window and displays the Main window");
 
             /*
             Test Step 15
@@ -555,7 +501,11 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The input field displays the previous entered value from step 10
             Test Step Comment: (1) MMI_gen 11383 (partly: discarded);
             */
-            // Call generic Action Method
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;      // Main
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Level;
+            EVC30_MMIRequestEnable.Send();
+            
             DmiActions.ShowInstruction(this, @"Press the ‘Level’ button");
 
             EVC20_MMISelectLevel.Send();
@@ -584,7 +534,7 @@ namespace Testcase.DMITestCases
             XML.XML_22_5_1_b.Send(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displaya the Main window.");
+                                "1. DMI displays the Main window.");
 
             /*
             Test Step 18

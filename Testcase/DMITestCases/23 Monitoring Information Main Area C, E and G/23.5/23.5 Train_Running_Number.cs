@@ -42,6 +42,9 @@ namespace Testcase.DMITestCases
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
+
+            DmiActions.Start_ATP();
+            DmiActions.Activate_Cabin_1(this);
         }
 
         public override void PostExecution()
@@ -52,9 +55,6 @@ namespace Testcase.DMITestCases
             // Call the TestCaseBase PostExecution
             base.PostExecution();
 
-            DmiActions.Start_ATP();
-
-            DmiActions.Activate_Cabin_1(this);
         }
 
         public override bool TestcaseEntryPoint()
@@ -66,7 +66,20 @@ namespace Testcase.DMITestCases
             Action: Perform the following procedure, Enter Driver ID and perform brake test.Select and confirm Level 1.Press ‘Train data’ button.Enter an confirm the train data.Validate the Train data
             Expected Result: The Train Running Number window is displayed
             */
-            DmiActions.ShowInstruction(this, "Enter the Driver ID and perform the brake test. Select and confirm Level 1." + Environment.NewLine +
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;      // Main
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.DriverID |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.Level |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.TrainRunningNumber |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.StartBrakeTest |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.EnableBrakePercentage |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.TrainData;
+            EVC14_MMICurrentDriverID.Send();
+
+            DmiActions.ShowInstruction(this, "Enter and confirm the Driver ID, then perform the brake test");
+
+
+            DmiActions.ShowInstruction(this, " Select and confirm Level 1." + Environment.NewLine +
                                              "Press the ‘Train data’ button. Enter, confirm and validate the train data.");
 
             DmiExpectedResults.TRN_window_displayed(this);

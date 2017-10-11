@@ -69,7 +69,11 @@ namespace Testcase.DMITestCases
             Action: Perform SoM to SR mode, level 2.Then, drive the train forward with speed = 30km/h
             Expected Result: DMI displays in SR mode, level 2
             */
-            DmiActions.ShowInstruction(this, "Perform SoM to SR mode, level 2");
+            // steps tested elsewhere, force SR/2
+            DmiActions.Complete_SoM_L1_SR(this);
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L2;
+
+            //DmiActions.ShowInstruction(this, "Perform SoM to SR mode, level 2");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SR mode, Level 2.");
@@ -109,6 +113,10 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press the ‘Main’ button");
 
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;  
+            EVC30_MMIRequestEnable.Send();
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Main window.");
 
@@ -118,7 +126,9 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,DMI displays the TAF Question box in area D and cover a currently open Main window. TAF Question box is divided into a Question part and Answer part.The Question part is placed to the left of the Answer part.The symbol DR02 is displayed in centered of the Question part.The background colour of Question part is Dark-Grey.The label ‘Yes’ is displayed in Answer part with black colour.The background colour of Answer part is Medium-Grey.The Main window is forced to background, The background of area D is blank.The area G is shown the Default window’s contents.The area F is displayed into the foreground with the buttons.Use the log file to confirm that DMI received packet information MMI_DRIVER_MESSAGE (EVC-8) with following variables,MMI_Q_TEXT = 298 (Confirm Track Ahead Free)MMI_Q_TEXT_CRITERIA = 1 (Removed after Ack)The border of Question part and Answer Part are drawn with medium grey colour in the following positions,LeftTopRightBottom
             Test Step Comment: (1) MMI_gen 3966 (partly:Placed in Main-Area D);              MMI_gen 6963 (partly: Placed in Main-Area D, in the focus of acknowledgement list); MMI_gen 3374 (partly: TAF, button is visible);(2) MMI_gen 6946; MMI_gen 3374 (partly: button is not faulty);(3 ) MMI_gen 6948;(4) MMI_gen 6949 (partly: DR02);(5) MMI_gen 6949 (partly: Background colour of Question part);(6) MMI_gen 6950 (partly: Label ‘Yes’);(7) MMI_gen 6950 (partly: Background colour of Answer part);(8) MMI_gen 3966 (partly: 1st bullet); MMI_gen 3374 (partly: not covered by open half-grid array window);(9) MMI_gen 3966 (partly: 2nd bullet);(10) MMI_gen 3966 (partly: 3rd  bullet);(11) MMI_gen 6963 (partly: 1st bullet); MMI_gen 6951 (partly: Enabled Yes button by EVC-8); MMI_gen 3374 (partly: enabled by ETCS);(12) MMI_gen 6953 (partly: same border, MMI_gen 4211 (partly: medium grey colour line));
             */
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 298;
             EVC8_MMIDriverMessage.Send();
 
@@ -219,7 +229,6 @@ namespace Testcase.DMITestCases
 
             // Remove TAF Question box
             EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
-            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 298;
             EVC8_MMIDriverMessage.Send();

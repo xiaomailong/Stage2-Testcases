@@ -593,11 +593,14 @@ namespace Testcase.DMITestCases
             //EVC140_MMI_NewMaintenanceData.CheckMPulsePerKm2 = (Variables.MMI_M_PULSE_PER_KM)20001;
 
             // Open the Radar validation window
-            EVC41_MMIEchoedMaintenanceData.MMI_Q_MD_DATASET_ = Variables.MMI_Q_MD_DATASET.WheelDiameter;
+            
+            EVC41_MMIEchoedMaintenanceData.MMI_M_PULSE_PER_KM_1_ = (Variables.MMI_M_PULSE_PER_KM)20001;
+            EVC41_MMIEchoedMaintenanceData.MMI_M_PULSE_PER_KM_2_ = (Variables.MMI_M_PULSE_PER_KM) 20001;
+            EVC41_MMIEchoedMaintenanceData.MMI_Q_MD_DATASET_ = Variables.MMI_Q_MD_DATASET.Doppler;
             EVC41_MMIEchoedMaintenanceData.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMi displays the Radar validation window");
+                                "1. DMI displays the Radar validation window");
 
             /*
             Test Step 16
@@ -616,16 +619,25 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The first input field is used to revalidation the Radar 1
             Test Step Comment: (1) MMI_gen 11774 (partly: revalidation); 
             */
-            DmiActions.ShowInstruction(this, @"Press the ‘Yes’ button and confirm the current data without re-entering Radar 1 or Radar 2." + Environment.NewLine +
-                                              "Press ‘Yes’ button. Press ‘Yes’ button and confirm the entered data at Radar validation window");
+            DmiActions.ShowInstruction(this, @"Press the ‘Radar’ button");
 
-            EVC40_MMICurrentMaintenanceData.MMI_Q_MD_DATASET = Variables.MMI_Q_MD_DATASET.Doppler;
             EVC40_MMICurrentMaintenanceData.MMI_M_PULSE_PER_KM_1 = (Variables.MMI_M_PULSE_PER_KM)20001;
             EVC40_MMICurrentMaintenanceData.MMI_M_PULSE_PER_KM_2 = (Variables.MMI_M_PULSE_PER_KM)20001;
+            EVC40_MMICurrentMaintenanceData.MMI_Q_MD_DATASET = Variables.MMI_Q_MD_DATASET.Doppler;
+            EVC41_MMIEchoedMaintenanceData.Send();
+
+            DmiActions.ShowInstruction(this, @"Confirm the current data without re-entering Radar 1 or Radar 2 and press the ‘Yes’ button");
+
+            EVC41_MMIEchoedMaintenanceData.MMI_M_PULSE_PER_KM_1_ = (Variables.MMI_M_PULSE_PER_KM)20001;
+            EVC41_MMIEchoedMaintenanceData.MMI_M_PULSE_PER_KM_2_ = (Variables.MMI_M_PULSE_PER_KM)20001;
+            EVC41_MMIEchoedMaintenanceData.MMI_Q_MD_DATASET_ = Variables.MMI_Q_MD_DATASET.Doppler;
+            EVC41_MMIEchoedMaintenanceData.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Radar 1 data input field is used to re-validate the Radar 1 value"); 
 
+            DmiActions.ShowInstruction(this, @"Press the ‘Yes’ button to confirm the data in the Radar validation window");
+            
             /*
             Test Step 18
             Action: Press ‘Radar’ button
@@ -633,6 +645,11 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press the ‘Radar’ button");
+
+            EVC40_MMICurrentMaintenanceData.MMI_M_PULSE_PER_KM_1 = (Variables.MMI_M_PULSE_PER_KM)20001;
+            EVC40_MMICurrentMaintenanceData.MMI_M_PULSE_PER_KM_2 = (Variables.MMI_M_PULSE_PER_KM)20001;
+            EVC40_MMICurrentMaintenanceData.MMI_Q_MD_DATASET = Variables.MMI_Q_MD_DATASET.Doppler;
+            EVC41_MMIEchoedMaintenanceData.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Radar window");
