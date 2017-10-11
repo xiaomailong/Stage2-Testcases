@@ -99,7 +99,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   Tthe release speed digital in sub-area B6 is removed
             Test Step Comment: (1) MMI_gen 11112;
             */
-            XML_12_7_3_a.Send(this);
+            XML_12_7_3();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                  "1. The digital release speed in sub-area B6 is removed.");
@@ -112,5 +112,29 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
+        #region Send_XML_12_7_3_DMI_Test_Specification
+
+        private void XML_12_7_3()
+        {
+            EVC1_MMIDynamic.MMI_M_SLIDE = 0;
+            EVC1_MMIDynamic.MMI_M_SLIP = 1;
+            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Spare;   // 7
+            EVC1_MMIDynamic.MMI_A_TRAIN = 0;
+            EVC1_MMIDynamic.MMI_V_TRAIN = 100;
+            EVC1_MMIDynamic.MMI_V_TARGET = 1111;
+            EVC1_MMIDynamic.MMI_V_PERMITTED = 833;
+            EVC1_MMIDynamic.MMI_V_RELEASE = 11112;
+            EVC1_MMIDynamic.MMI_O_BRAKETARGET = 10002000;
+            EVC1_MMIDynamic.MMI_O_IML = 0;
+            EVC1_MMIDynamic.MMI_V_INTERVENTION = 0;
+
+            SITR.ETCS1.Dynamic.EVC01Validity1.Value = 0x0;
+            SITR.ETCS1.Dynamic.EVC01Validity2.Value = 0x0;
+            //SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity1.Value = 4415; // All validity bits set
+            //SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity2.Value = 63;   // All validity bits set
+
+        }
+        #endregion
+
     }
 }

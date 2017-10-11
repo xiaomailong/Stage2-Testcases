@@ -129,7 +129,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   The following objects are not display on DMI,Speed PointerSpeed DigitalCSGCSG-ExtensionAll hooksTarget Distance BarTarget Distance Digital
             Test Step Comment: (1) MMI_gen 1086 (partly: negative case - when MMI_V_TRAIN not equal -1); MMI_gen 1268 (partly: negative case - when MMI_DYNAMIC not elder than 600ms and MMI_V_TRAIN not greater than and equal -1); MMI_gen 1275;
             */
-            XML_12_8_a.Send(this);
+            XML_12_8();
 
             WaitForVerification("Check that the following objects are not displayed" + Environment.NewLine + Environment.NewLine +
                                 "1. The Speed pointer" + Environment.NewLine +
@@ -148,5 +148,27 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
+        #region Send_XML_12_8_DMI_Test_Specification
+
+        private void XML_12_8()
+        {
+            EVC1_MMIDynamic.MMI_M_SLIDE = 1;
+            EVC1_MMIDynamic.MMI_M_SLIP = 1;
+            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring;   // 0
+            EVC1_MMIDynamic.MMI_A_TRAIN = 0;
+            EVC1_MMIDynamic.MMI_V_TRAIN = -2;    // value in xml file is unsigned  
+            EVC1_MMIDynamic.MMI_V_TARGET = 1111;
+            EVC1_MMIDynamic.MMI_V_PERMITTED = 1111;
+            EVC1_MMIDynamic.MMI_V_RELEASE = 555;
+            EVC1_MMIDynamic.MMI_O_BRAKETARGET = 0;
+            EVC1_MMIDynamic.MMI_O_IML = 0;
+            EVC1_MMIDynamic.MMI_V_INTERVENTION = 0;
+
+            SITR.ETCS1.Dynamic.EVC01Validity1.Value = 0x0;
+            SITR.ETCS1.Dynamic.EVC01Validity2.Value = 0x0;
+
+        }
+        #endregion
+
     }
 }

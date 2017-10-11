@@ -121,7 +121,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information;DMI in the entry state of ‘ST05’(1)    The hourglass symbol ST05 is displayed at window title area.(2)    The hourglass symbol ST05 is vertically aligned center of the window title area.(3)    The symbol ST05 is move to the right every second.(4)    After symbol ST05 is moved to the end of the window title area, the symbol comes back to the first position and keeps moving to the right. (5)    Verify all buttons and the close button is disable.(6)    The disabled Close button NA12 is display in area G.10 seconds laterDMI in the exit state of ‘ST05’(7)   The hourglass symbol ST05 is removed.(8)   The state of all buttons is restored according to the last status before script is sent.(9)   The enabled Close button NA11 is display in area G
             Test Step Comment: (1) MMI_gen 12018 (partly: RBC contact window);(2) MMI_gen 8521 (partly: vertically centered, RBC contact window);(3) MMI_gen 8521 (partly: Move to the right every second, RBC contact window);(4) MMI_gen 8521 (partly: no more possible to display, RBC contact window);(5) MMI_gen 168 (partly: disabled buttons, RBC contact window); MMI_gen 5646 (partly: State ‘ST05’ button is disabled, RBC contact window); MMI_gen 4395 (partly: close button, disabled, RBC contact window);(6) MMI_gen 4396 (partly: close, NA12, RBC contact window);(7) MMI_gen 5728 (partly: removal, EVC, RBC contact window);(8) MMI_gen 5728 (partly: restore after ST05, RBC contact window);(9) MMI_gen 4396 (partly: close, NA11, RBC contact window);
             */
-            XML.XML_10_2_7_a.Send(this);
+            XML_10_7_a_b(msgType.typea);
 
             /*
             Test Step 3
@@ -129,7 +129,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information;(1)   ‘close’ buttons in RBC contact window is enable.10 seconds later(2)   ‘close’ buttons in Level window is disable
             Test Step Comment: (1) MMI_gen 5646 (partly: Exceptions of RBC contact window, enable);(2) MMI_gen 5646 (partly: Exceptions of RBC contact windows, disable);
             */
-            XML.XML_10_2_7_b.Send(this);
+            XML_10_7_a_b(msgType.typeb);
 
             /*
             Test Step 4
@@ -230,5 +230,64 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
+        #region Send_XML_10_7_a_b_DMI_Test_Specification
+        enum msgType
+        {
+            typea,
+            typeb
+        }
+
+        private void XML_10_7_a_b(msgType type)
+        {
+            if (type == msgType.typea)
+            {
+                // Step 2/1
+                EVC8_MMIDriverMessage.MMI_Q_TEXT = 716;
+                EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+                EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+                EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
+
+                EVC8_MMIDriverMessage.Send();
+
+                WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                    "1. DMI is in the entry state of ‘ST05’." + Environment.NewLine +
+                                    "2. The hourglass symbol ST05 is displayed vertically aligned in the center of the window title area." + Environment.NewLine +
+                                    "3. The hourglass symbol ST05 moves to the right every second." + Environment.NewLine +
+                                    "4. When the hourglass symbol ST05 has reached the edge of the window title area it is re-displayed on the lefthand side of the window title area and continues to move to the right." + Environment.NewLine +
+                                    "5. All buttons and the ‘Close’ button are disabled." + Environment.NewLine +
+                                    "6. ‘Close’ button NA12 is displayed disabled in area G.");
+
+                Wait_Realtime(10000);
+
+                // Step 2/2
+                EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
+
+                EVC8_MMIDriverMessage.Send();
+
+                WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                    "1. DMI is in the exit state of ‘ST05’." + Environment.NewLine +
+                                    "2. The hourglass symbol ST05 is removed." + Environment.NewLine +
+                                    "3. All buttons are enabled." + Environment.NewLine +
+                                    "4. ‘Close’ button NA11 is displayed enabled in area G.");
+            }
+            else if (type == msgType.typeb)
+            {
+                EVC22_MMICurrentRBC.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
+                EVC22_MMICurrentRBC.Send();
+
+                WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                    "1. ‘Close’ button in RBC contact window is enabled.");
+
+                Wait_Realtime(10000);
+
+                EVC22_MMICurrentRBC.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Disabled;
+                EVC22_MMICurrentRBC.Send();
+
+                WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                    "1. ‘Close’ button in RBC contact window is disabled.");
+            }
+        }
+        #endregion
+
     }
 }

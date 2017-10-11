@@ -104,7 +104,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The hourglass symbol ST05 is displayed at window title area.The hourglass symbol ST05 is vertically aligned center of the window title area.All buttons and the ‘Close’ button are disabled.The disabled Close button NA12 is display in area G.The symbol ST05 is move to the right every second.After symbol ST05 is moved to the end of the window title area, the symbol comes back to the first position and keeps moving to the right
             Test Step Comment: (1) MMI_gen 12018, MMI_gen 8355 (partly: EVC-8);(2) MMI_gen 8355 (partly: vertically centered)(3) MMI_gen 168 (partly: disabled buttons, ‘Main’ window, menu window); MMI_gen 5464 (partly: state ST05, 4th bullet); MMI_gen 4395 (partly: close button, disabled); (4) MMI_gen 4396 (partly: close, NA12);(5) MMI_gen 8355 (partly: Move to the right every second);(6) MMI_gen 8355 (partly: no more possible to display);
             */
-            XML.XML_10_2_a.Send(this);
+            Send_XML_10_2_a_b(msgType.typea);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the hourglass symbol ST05, vertically aligned, in the centre of the window title area." + Environment.NewLine +
@@ -118,8 +118,8 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The hourglass symbol ST05 is removed.The state of all buttons is restored according to the last received EVC-30, see Step 3:Button Start is disabledButton Driver ID is enabledButton Train Data is enabledButton Level is enabledButton Train running number is enabledButton Shunting is enabledButton Non-Leading is disabledButton Maintain Shunting is disabledThe enabled Close button NA11 is display in area G
             Test Step Comment: (1) MMI_gen 5728 (partly: removal, EVC);(2) MMI_gen 5728 (partly: restore (after ST05), ‘Main’ window, menu window);(3) MMI_gen 4396 (partly: close, NA11);
             */
-            XML.XML_10_2_b.Send(this);
-            
+            Send_XML_10_2_a_b(msgType.typeb);
+
             WaitForVerification("Check that DMI displays or hides the following objects in the state specified according to the last received EVC-30 message:" + Environment.NewLine + Environment.NewLine +
                                 "1. The hourglass symbol ST05 is removed." + Environment.NewLine + 
                                 "2. ‘Start’ button is disabled." + Environment.NewLine +
@@ -182,7 +182,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The hourglass symbol ST05 is displayed.The buttons are disabled as follows:The ‘Close’ button is disabled.The ‘Yes’ button is disabled.The keypad is still enabled.All input field is in the ‘Not Selected’ state (dark-grey background with grey text)
             Test Step Comment: (1) MMI_gen 12018(2) MMI_gen 168 (partly: disabled button, ‘Train data’ window, data entry window);(3) Note under MMI_gen 5728;(4) MMI_gen 168 (partly: deselect input field);
             */
-            XML.XML_10_2_a.Send(this);
+            Send_XML_10_2_a_b(msgType.typea);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The hourglass symbol ST05 is displayed." + Environment.NewLine +
                                 "2. The ‘Close’ button is disabled." + Environment.NewLine +
@@ -196,7 +196,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The hourglass symbol ST05 is removed.The button state is resumed as follows:The ‘Close’ button is enabled.The ‘Yes’ button is enabled.The input field is stated as follows:The first input field is in the ‘Selected’ state.The rests are in the ‘Not selected’ state
             Test Step Comment: (1) MMI_gen 5728 (partly: removal, EVC);(2) MMI_gen 5728 (partly: restore (after ST05), ‘Train data’ window, data entry window);(3) MMI_gen 5728 (partly: MMI_gen 5211, MMI_gen 4683 (partly: data entry))
             */
-            XML.XML_10_2_b.Send(this);
+            Send_XML_10_2_a_b(msgType.typeb);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The hourglass symbol ST05 is removed." + Environment.NewLine +
                                 "2. The ‘Close’ button is enabled." + Environment.NewLine +
@@ -238,7 +238,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verifies the following points,The hourglass symbol ST05 is removed.The ‘Close’ button is enabled.The input field is in the ‘Selected’ state
             Test Step Comment: (1) MMI_gen 5728 (partly: removal, EVC);(2) MMI_gen 5728 (partly: restore (after ST05), ‘Train data’ validation window, data validation window);(3) MMI_gen 5728 (partly: MMI_gen 5211, MMI_gen 4683 (partly: data validation))
             */
-            XML.XML_10_2_b.Send(this);
+            Send_XML_10_2_a_b(msgType.typeb);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The hourglass symbol ST05 is removed." + Environment.NewLine +
                                 "2. The ‘Close’ button is enabled." + Environment.NewLine +
@@ -298,7 +298,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays the  message “ATP Down Alarm” with sound alarm.Verify the following information,The hourglass symbol ST05 is displayed.All buttons and the ‘Close’ button are disabled
             Test Step Comment: (1) MMI_gen 12018, MMI_gen 5732 (partly: before communication lost, current window ‘Main’);(2) MMI_gen 168 (partly: disabled buttons, ‘Main’ window, menu window);
             */
-            XML.XML_10_2_a.Send(this);
+            Send_XML_10_2_a_b(msgType.typea);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the  message ‘ATP Down Alarm’." + Environment.NewLine +
@@ -348,7 +348,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The hourglass symbol ST05 is displayed.The ‘Close’ button is disabled.The navigation buttons are still enabled
             Test Step Comment: (1) MMI_gen 12018;(2) MMI_gen 168 (partly: disabled button, data view window);(3) Note under MMI_gen 5728;
             */
-            XML.XML_10_2_a.Send(this);
+            Send_XML_10_2_a_b(msgType.typea);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The hourglass symbol ST05 is displayed." + Environment.NewLine +
@@ -361,7 +361,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The hourglass symbol ST05 is removed.The ‘Close’ button is enabled
             Test Step Comment: (1) MMI_gen 5728 (partly: removal, EVC);(2) MMI_gen 5728 (partly: restore (after ST05), data view window);
             */
-            XML.XML_10_2_b.Send(this);
+            Send_XML_10_2_a_b(msgType.typeb);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The hourglass symbol ST05 is removed." + Environment.NewLine +
@@ -373,7 +373,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The hourglass symbol ST05 is displayed
             Test Step Comment: (1) MMI_gen 5731 (partly: before the expiration of 45 seconds, current window ‘Data view’);
             */
-            XML.XML_10_2_a.Send(this);
+            Send_XML_10_2_a_b(msgType.typea);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The hourglass symbol ST05 is displayed.");
@@ -406,5 +406,32 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
+        #region Send_XML_10_2_a_b_DMI_Test_Specification
+        enum msgType
+        {
+            typea,
+            typeb
+        }
+        private void Send_XML_10_2_a_b(msgType type)
+        {
+            if (type == msgType.typea)
+            {
+                EVC8_MMIDriverMessage.MMI_Q_TEXT = 716;
+                EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+                EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
+
+                EVC8_MMIDriverMessage.Send();
+            }
+            else if (type == msgType.typeb)
+            {
+                EVC8_MMIDriverMessage.MMI_Q_TEXT = 716;
+                EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+                EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
+
+                EVC8_MMIDriverMessage.Send();
+            }
+        }
+        #endregion
+
     }
 }

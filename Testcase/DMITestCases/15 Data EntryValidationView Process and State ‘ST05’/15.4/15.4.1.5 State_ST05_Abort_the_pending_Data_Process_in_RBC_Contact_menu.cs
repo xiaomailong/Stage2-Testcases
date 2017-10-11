@@ -101,7 +101,7 @@ namespace Testcase.DMITestCases
             Action: Use the test script file 10_4_1_5_a.xml to send EVC-8 withMMI_Q_TEXT_CRITERIA = 3 MMI_Q_TEXT = 716
             Expected Result: The hourglass symbol ST05 is displayed at window title area
             */
-            XML.XML_10_4_1_5_a.Send(this);
+            XML_10_4_1_5_a_b(msgType.typea);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The hourglass symbol ST05 is displayed in the window title area.");
 
@@ -115,7 +115,7 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = 254;
             EVC30_MMIRequestEnable.Send();
 
-            XML.XML_10_4_1_5_b.Send(this);
+            XML_10_4_1_5_a_b(msgType.typeb);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The RBC Data window is closed and DMI displays the System info window");
 
@@ -133,7 +133,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press the ‘Close’ button in the System info window. Press and hold the ‘Radio network ID’ button for at least 2 seconds." + Environment.NewLine +
                                              @"Release the area pressed");
 
-            XML.XML_10_4_1_5_a.Send(this);
+            XML_10_4_1_5_a_b(msgType.typea);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The hourglass symbol ST05 is displayed in the window title area.");
 
@@ -141,7 +141,7 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = 254;
             EVC30_MMIRequestEnable.Send();
 
-            XML.XML_10_4_1_5_b.Send(this);
+            XML_10_4_1_5_a_b(msgType.typeb);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Radio Network ID window is closed and DMI displays the System info window");
@@ -154,5 +154,41 @@ namespace Testcase.DMITestCases
             
             return GlobalTestResult;
         }
+        #region Send_XML_10_4_1_5_a_b_DMI_Test_Specification
+        enum msgType
+        {
+            typea,
+            typeb
+        }
+
+        private void XML_10_4_1_5_a_b(msgType type)
+        {
+            if (type == msgType.typea)
+            {
+                EVC8_MMIDriverMessage.MMI_Q_TEXT = 716;
+                EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+                EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
+                EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+
+                EVC8_MMIDriverMessage.Send();
+            }
+            else if (type == msgType.typeb)
+            {
+                //EVC24MMISystemInfo.MMI_NID_ENGINE_1 = 1234;
+                //EVC24MMISystemInfo.MMI_T_TIMEOUT_BRAKES = 0x5695224c;         // 1452614220
+                //EVC24MMISystemInfo.MMI_T_TIMEOUT_BTM = 0x54b3eecc;            // 1421078220
+                //EVC24MMISystemInfo.MMI_T_TIMEOUT_TBSW = 0x538b4d4c;           // 1401638220
+                //EVC24MMISystemInfo.MMI_ETC_VER = 0xffaa0f;                    // 16755215
+                //EVC24MMISystemInfo.MMI_M_AVAIL_SERVICES = 0xffff;             // 65535 
+
+                // Discrepancy betwee spec (config = 55)
+                //EVC24MMISystemInfo.MMI_M_BRAKE_CONFIG = 55;                   // 236 in xml
+                //EVC24MMISystemInfo.MMI_M_LEVEL_INSTALLED = 248;
+
+                //EVC24MMISystemInfo.Send();
+            }
+        }
+        #endregion
+
     }
 }

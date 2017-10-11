@@ -90,7 +90,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The Slip indication is displayed and shown as arrow pointing clockwise.The colour of Slip indication is displayed as same as speed digital colour. The Slip indication is displayed on speed hub of the speed pointer. DMI plays sound Sinfo once
             Test Step Comment: (1) MMI_gen 1079 (partly: slip, presented),   MMI_gen 1694(partly: slip is set), MMI_gen 1695(partly: slide is not set), MMI_gen 1692 (partly: ETC speed, slip);   (2) MMI_gen 7013(partly: slip);(3) MMI_gen 1696 (partly:slip);(4) MMI_gen 7012 (partly: slip); MMI_gen 9516 (partly: slip indication); MMI_gen 12025 (partly: slip indication);
             */
-            XML_12_12_a.Send(this);
+            XML_12_12(msgType.typea);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Slip indication is displayed and shown as arrow pointing clockwise." + Environment.NewLine +
@@ -104,7 +104,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The ‘Slip/Slide’ indication is not displayed on the speed hub
             Test Step Comment: (1) MMI_gen 1079 (partly: slip, presented),   MMI_gen 1694(partly: slip is not set), MMI_gen 1695(partly: slide is set), MMI_gen 1692 (partly: ETC speed);   
             */
-            XML_12_12_b.Send(this);
+            XML_12_12(msgType.typeb);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Slip / Slide’ indication is not displayed on the speed hub.");
@@ -115,7 +115,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The ‘Slip’ indication is displayed on the speed hub as a clockwise arrow
             Test Step Comment: (1) MMI_gen 1079 (partly: slip, presented),   MMI_gen 1694(partly: slip is set), MMI_gen 1695(partly: slide is set), MMI_gen 1693, MMI_gen 1692 (partly: ETC speed, slip);
             */
-            XML_12_12_c.Send(this);
+            XML_12_12(msgType.typec);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Slip’ indication is displayed on the speed hub as a clockwise arrow.");
@@ -138,5 +138,70 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
+
+        #region Send_XML_12_12_DMI_Test_Specification
+        enum msgType
+        {
+            typea,
+            typeb,
+            typec
+        }
+
+        private void XML_12_12(msgType type)
+        {
+            if (type == msgType.typea)
+            {
+                EVC1_MMIDynamic.MMI_M_SLIDE = 0;
+                EVC1_MMIDynamic.MMI_M_SLIP = 1;
+                EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring;   // 0
+                EVC1_MMIDynamic.MMI_A_TRAIN = 0;
+                EVC1_MMIDynamic.MMI_V_TRAIN = 100;
+                EVC1_MMIDynamic.MMI_V_TARGET = 1111;
+                EVC1_MMIDynamic.MMI_V_PERMITTED = 1111;
+                EVC1_MMIDynamic.MMI_V_RELEASE = 555;
+                EVC1_MMIDynamic.MMI_O_BRAKETARGET = 0;
+                EVC1_MMIDynamic.MMI_O_IML = 0;
+                EVC1_MMIDynamic.MMI_V_INTERVENTION = 0;
+
+                SITR.ETCS1.Dynamic.EVC01Validity1.Value = 0x0;
+                SITR.ETCS1.Dynamic.EVC01Validity2.Value = 0x0;
+            }
+            else if (type == msgType.typeb)
+            {
+                EVC1_MMIDynamic.MMI_M_SLIDE = 1;
+                EVC1_MMIDynamic.MMI_M_SLIP = 0;
+                EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring;   // 0
+                EVC1_MMIDynamic.MMI_A_TRAIN = 0;
+                EVC1_MMIDynamic.MMI_V_TRAIN = 100;
+                EVC1_MMIDynamic.MMI_V_TARGET = 1111;
+                EVC1_MMIDynamic.MMI_V_PERMITTED = 1111;
+                EVC1_MMIDynamic.MMI_V_RELEASE = 555;
+                EVC1_MMIDynamic.MMI_O_BRAKETARGET = 0;
+                EVC1_MMIDynamic.MMI_O_IML = 0;
+                EVC1_MMIDynamic.MMI_V_INTERVENTION = 0;
+
+                SITR.ETCS1.Dynamic.EVC01Validity1.Value = 0x0;
+                SITR.ETCS1.Dynamic.EVC01Validity2.Value = 0x0;
+            }
+            else if (type == msgType.typec)
+            {
+                EVC1_MMIDynamic.MMI_M_SLIDE = 1;
+                EVC1_MMIDynamic.MMI_M_SLIP = 1;
+                EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring;   // 0
+                EVC1_MMIDynamic.MMI_A_TRAIN = 0;
+                EVC1_MMIDynamic.MMI_V_TRAIN = 100;
+                EVC1_MMIDynamic.MMI_V_TARGET = 1111;
+                EVC1_MMIDynamic.MMI_V_PERMITTED = 1111;
+                EVC1_MMIDynamic.MMI_V_RELEASE = 555;
+                EVC1_MMIDynamic.MMI_O_BRAKETARGET = 0;
+                EVC1_MMIDynamic.MMI_O_IML = 0;
+                EVC1_MMIDynamic.MMI_V_INTERVENTION = 0;
+
+                SITR.ETCS1.Dynamic.EVC01Validity1.Value = 0x0;
+                SITR.ETCS1.Dynamic.EVC01Validity2.Value = 0x0;
+            }
+        }
+        #endregion
+
     }
 }

@@ -87,7 +87,7 @@ namespace Testcase.DMITestCases
             Action: Use the test script file 12_14_a.xml to send EVC-1 with,MMI_M_SLIP = 1MMI_M_SLIDE = 0
             Expected Result: The Slip indication is displayed and shown as arrow pointing clockwise
             */
-            XML_12_14_a.Send(this);
+            XML_12_14(msgType.typea);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Slip indication is displayed and shown as arrow pointing clockwise.");
@@ -97,7 +97,7 @@ namespace Testcase.DMITestCases
             Action: Use the test script file 12_14_b.xml to send EVC-1 with,MMI_M_SLIP = 0MMI_M_SLIDE = 1
             Expected Result: The Slide indication is displayed and shown as arrow pointing counterclockwise
             */
-            XML_12_14_b.Send(this);
+            XML_12_14(msgType.typeb);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Slide indication is displayed and shown as arrow pointing clockwise.");
@@ -108,7 +108,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The Slip indication is displayed and shown as arrow pointing clockwise
             Test Step Comment: (1) MMI_gen 1693;
             */
-            XML_12_14_c.Send(this);
+            XML_12_14(msgType.typec);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. (1)	The Slip indication is displayed and shown as arrow pointing clockwise.");
@@ -121,5 +121,70 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
+        #region Send_XML_12_14_DMI_Test_Specification
+        enum msgType
+        {
+            typea,
+            typeb,
+            typec
+        }
+
+        private void XML_12_14(msgType type)
+        {
+            if (type == msgType.typea)
+            {
+                EVC1_MMIDynamic.MMI_M_SLIDE = 0;
+                EVC1_MMIDynamic.MMI_M_SLIP = 1;
+                EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring;   // 0
+                EVC1_MMIDynamic.MMI_A_TRAIN = 0;
+                EVC1_MMIDynamic.MMI_V_TRAIN = 3888;
+                EVC1_MMIDynamic.MMI_V_TARGET = 1111;
+                EVC1_MMIDynamic.MMI_V_PERMITTED = 1111;
+                EVC1_MMIDynamic.MMI_V_RELEASE = 555;
+                EVC1_MMIDynamic.MMI_O_BRAKETARGET = 0;
+                EVC1_MMIDynamic.MMI_O_IML = 0;
+                EVC1_MMIDynamic.MMI_V_INTERVENTION = 0;
+
+                SITR.ETCS1.Dynamic.EVC01Validity1.Value = 0x0;
+                SITR.ETCS1.Dynamic.EVC01Validity2.Value = 0x0;
+            }
+            else if (type == msgType.typeb)
+            {
+
+                EVC1_MMIDynamic.MMI_M_SLIDE = 1;
+                EVC1_MMIDynamic.MMI_M_SLIP = 0;
+                EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring;   // 0
+                EVC1_MMIDynamic.MMI_A_TRAIN = 0;
+                EVC1_MMIDynamic.MMI_V_TRAIN = 3888;
+                EVC1_MMIDynamic.MMI_V_TARGET = 1111;
+                EVC1_MMIDynamic.MMI_V_PERMITTED = 1111;
+                EVC1_MMIDynamic.MMI_V_RELEASE = 555;
+                EVC1_MMIDynamic.MMI_O_BRAKETARGET = 0;
+                EVC1_MMIDynamic.MMI_O_IML = 0;
+                EVC1_MMIDynamic.MMI_V_INTERVENTION = 0;
+
+                SITR.ETCS1.Dynamic.EVC01Validity1.Value = 0x0;
+                SITR.ETCS1.Dynamic.EVC01Validity2.Value = 0x0;
+            }
+            else if (type == msgType.typec)
+            {
+                EVC1_MMIDynamic.MMI_M_SLIDE = 1;
+                EVC1_MMIDynamic.MMI_M_SLIP = 1;
+                EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring;   // 0
+                EVC1_MMIDynamic.MMI_A_TRAIN = 0;
+                EVC1_MMIDynamic.MMI_V_TRAIN = 3888;
+                EVC1_MMIDynamic.MMI_V_TARGET = 1111;
+                EVC1_MMIDynamic.MMI_V_PERMITTED = 1111;
+                EVC1_MMIDynamic.MMI_V_RELEASE = 555;
+                EVC1_MMIDynamic.MMI_O_BRAKETARGET = 0;
+                EVC1_MMIDynamic.MMI_O_IML = 0;
+                EVC1_MMIDynamic.MMI_V_INTERVENTION = 0;
+
+                SITR.ETCS1.Dynamic.EVC01Validity1.Value = 0x0;
+                SITR.ETCS1.Dynamic.EVC01Validity2.Value = 0x0;
+            }
+        }
+        #endregion
+
     }
 }

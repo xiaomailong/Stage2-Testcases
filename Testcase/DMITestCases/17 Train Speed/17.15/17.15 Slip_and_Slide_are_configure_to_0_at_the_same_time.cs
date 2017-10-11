@@ -88,7 +88,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify that Slip and Slide indicator are not display on DMI
             Test Step Comment: (1) MMI_gen 1692 (partly: ETC speed, disabled);   
             */
-            XML_12_15_a.Send(this);
+            XML_12_15(msgType.typea);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Slip and Slide indicator are not displayed on DMI.");
@@ -99,7 +99,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify that Slip and Slide indicator are not display on DMI
             Test Step Comment: (1) MMI_gen 1692 (partly: ETC speed, disabled);   
             */
-            XML_12_15_b.Send(this);
+            XML_12_15(msgType.typeb);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Slip and Slide indicator are not displayed on DMI.");
@@ -110,7 +110,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify that Slip and Slide indicator are not display on DMI
             Test Step Comment: (1) MMI_gen 1692 (partly: ETC speed, disabled);   
             */
-            XML_12_15_c.Send(this);
+            XML_12_15(msgType.typec);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Slip and Slide indicator are not displayed on DMI.");
@@ -124,5 +124,70 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
+        #region Send_XML_12_15_DMI_Test_Specification
+        enum msgType
+        {
+            typea,
+            typeb,
+            typec
+        }
+
+        private void XML_12_15(msgType type)
+        {
+            if (type == msgType.typea)
+            {
+                EVC1_MMIDynamic.MMI_M_SLIDE = 0;
+                EVC1_MMIDynamic.MMI_M_SLIP = 1;
+                EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring;   // 0
+                EVC1_MMIDynamic.MMI_A_TRAIN = 0;
+                EVC1_MMIDynamic.MMI_V_TRAIN = 3888;
+                EVC1_MMIDynamic.MMI_V_TARGET = 1111;
+                EVC1_MMIDynamic.MMI_V_PERMITTED = 1111;
+                EVC1_MMIDynamic.MMI_V_RELEASE = 555;
+                EVC1_MMIDynamic.MMI_O_BRAKETARGET = 0;
+                EVC1_MMIDynamic.MMI_O_IML = 0;
+                EVC1_MMIDynamic.MMI_V_INTERVENTION = 0;
+
+                SITR.ETCS1.Dynamic.EVC01Validity1.Value = 0x0;
+                SITR.ETCS1.Dynamic.EVC01Validity2.Value = 0x0;
+            }
+            else if (type == msgType.typeb)
+            {
+                EVC1_MMIDynamic.MMI_M_SLIDE = 1;
+                EVC1_MMIDynamic.MMI_M_SLIP = 0;
+                EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring;   // 0
+                EVC1_MMIDynamic.MMI_A_TRAIN = 0;
+                EVC1_MMIDynamic.MMI_V_TRAIN = 3888;
+                EVC1_MMIDynamic.MMI_V_TARGET = 1111;
+                EVC1_MMIDynamic.MMI_V_PERMITTED = 1111;
+                EVC1_MMIDynamic.MMI_V_RELEASE = 555;
+                EVC1_MMIDynamic.MMI_O_BRAKETARGET = 0;
+                EVC1_MMIDynamic.MMI_O_IML = 0;
+                EVC1_MMIDynamic.MMI_V_INTERVENTION = 0;
+
+                SITR.ETCS1.Dynamic.EVC01Validity1.Value = 0x0;
+                SITR.ETCS1.Dynamic.EVC01Validity2.Value = 0x0;
+
+            }
+            else if (type == msgType.typec)
+            {
+                EVC1_MMIDynamic.MMI_M_SLIDE = 1;
+                EVC1_MMIDynamic.MMI_M_SLIP = 1;
+                EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring;   // 0
+                EVC1_MMIDynamic.MMI_A_TRAIN = 0;
+                EVC1_MMIDynamic.MMI_V_TRAIN = 3888;
+                EVC1_MMIDynamic.MMI_V_TARGET = 1111;
+                EVC1_MMIDynamic.MMI_V_PERMITTED = 1111;
+                EVC1_MMIDynamic.MMI_V_RELEASE = 555;
+                EVC1_MMIDynamic.MMI_O_BRAKETARGET = 0;
+                EVC1_MMIDynamic.MMI_O_IML = 0;
+                EVC1_MMIDynamic.MMI_V_INTERVENTION = 0;
+
+                SITR.ETCS1.Dynamic.EVC01Validity1.Value = 0x0;
+                SITR.ETCS1.Dynamic.EVC01Validity2.Value = 0x0;
+            }
+        }
+        #endregion
+
     }
 }
