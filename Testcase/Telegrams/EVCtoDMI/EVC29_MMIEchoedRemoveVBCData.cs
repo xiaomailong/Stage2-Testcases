@@ -11,15 +11,9 @@ using CL345;
 namespace Testcase.Telegrams.EVCtoDMI
 {
     /// <summary>
-    /// This packet is sent sporadically from ETC when the 'Remove VBC' procedure
-    /// is ongoing and is intended to support the following use cases:
-    /// 1. Prompt the driver to enter a VBC code
-    /// 2. Display/change echo text after data checks have been performed by EVC;
-    ///     this also includes control over the allowed driver actions in case some data check has failed
-    /// It also gives the ETC the ability to control the status/type of the "Yes" button,
-    ///     if specified by functional requirements for ETC and DMI.
-    /// 
-    /// Note: Parameter 'MMI_N_VBC' distinguishes between use case 1 and 2.
+    /// This packet shall be sent from ETC to MMI when the driver has finished the 'Remove VBC' data entry 
+    /// by pressing the "Yes" button and all checks have passed. The packet starts the 'Remove VBC' Data Validation window / procedure
+    /// at MMI.  the "Yes" button, if specified by functional requirements for ETC and DMI.
     /// </summary>
     public static class EVC29_MMIEchoedRemoveVBCData
     {
