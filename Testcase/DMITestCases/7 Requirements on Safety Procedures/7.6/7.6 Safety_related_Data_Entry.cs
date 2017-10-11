@@ -13,6 +13,7 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.DMItoEVC;
 using Testcase.Telegrams.EVCtoDMI;
 
 
@@ -260,9 +261,7 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Press the ‘Close’ button. Enter Driver ID and skip the brake test. Select and confirm ‘Level 1’.	Press the ‘Train data’ button");
 
-            // Need to send set of data for the input values ??
-            //EVC6_MMiCurrentTrainData...
-            //EVC6_MMICurrentTrainData.Send();
+            DmiActions.Send_EVC6_MMICurrentTrainData_FixedDataEntry(this, new[] { "FLU" }, 2);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                "1. DMI displays the Train data window." + Environment.NewLine +
@@ -274,11 +273,11 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Train data validation window.Verify the following information,(1)    Use the log file to confirm that DMI sent out packet EVC-107 with variable based on confirmed data to ETCS Onboard.(2)   Use the log file to confirm that DMI received packet EVC-10 from ETCS Onboard.(3)   The position of ‘Yes’ button on Train Data validation window is located at the different location of ‘Yes’ button on Train data window.(4)   The format of presentation in Train data validation window is difference from Train data window as follows,           -   The data pending for confirmation of Train data validation window is presented as echo texts.(5)   The presentation of echo text in Train data validation window is located at the difference location of an Input Fields in Train data window
             Test Step Comment: (1) MMI_gen 3203 (partly: Train Data Entry);(2) MMI_gen 3226 (partly: Train Data Validation);(3) MMI_gen 3205 (partly: Train Data Entry and Validation);(4) MMI_gen 3390 (partly: Train Validation);(5) MMI_gen 3391 (partly: Train Data Entry and Validation);
             */
-            DmiActions.ShowInstruction(this, "@Accept the values of each Input Field and check the log file for packet EVC-107 from DMI with variables reflecting the accepted data");
+            DmiActions.ShowInstruction(this, "@Accept the values of each Input Field");
 
-            // Need to send set of data for the input values ??
-            //EVC10_MMIEchoedTrainData...
-            //EVC10_MMIEchoedTrainData.Send(this);        
+            EVC107_MMINewTrainData.TrainsetSelected = Variables.Fixed_Trainset_Captions.FLU;
+
+            DmiActions.Send_EVC10_MMIEchoedTrainData_FixedDataEntry(this, new[] { "FLU" });
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Train Data validation window." + Environment.NewLine +
