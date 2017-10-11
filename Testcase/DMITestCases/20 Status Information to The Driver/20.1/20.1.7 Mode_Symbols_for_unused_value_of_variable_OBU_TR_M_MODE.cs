@@ -67,8 +67,7 @@ namespace Testcase.DMITestCases
             (1)   There is no symbol displayed on sub-area B7
             Test Step Comment: (1) MMI_gen 580;
             */
-
-            XML.XML_15_1_7_a.Send(this);
+            XML_15_1_7(msgType.typea);
 
             /*
             Test Step 2
@@ -77,7 +76,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 580;
             */
 
-            XML.XML_15_1_7_b.Send(this);
+            XML_15_1_7(msgType.typeb);
 
             /*
             Test Step 3
@@ -86,7 +85,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 580;
             */
 
-            XML.XML_15_1_7_c.Send(this);
+            XML_15_1_7(msgType.typec);
 
             /*
             Test Step 4
@@ -95,7 +94,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 580;
             */
 
-            XML.XML_15_1_7_d.Send(this);
+            XML_15_1_7(msgType.typed);
 
             /*
             Test Step 5
@@ -104,7 +103,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 580;
             */
 
-            XML.XML_15_1_7_e.Send(this);
+            XML_15_1_7(msgType.typee);
 
             /*
             Test Step 6
@@ -113,7 +112,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 580;
             */
 
-            XML.XML_15_1_7_f.Send(this);
+            XML_15_1_7(msgType.typef);
 
             /*
             Test Step 7
@@ -122,7 +121,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 580;
             */
 
-            XML.XML_15_1_7_g.Send(this);
+            XML_15_1_7(msgType.typeg);
 
             /*
             Test Step 8
@@ -131,7 +130,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 580;
             */
 
-            XML.XML_15_1_7_h.Send(this);
+            XML_15_1_7(msgType.typeh);
 
             /*
             Test Step 9
@@ -139,8 +138,80 @@ namespace Testcase.DMITestCases
             Expected Result: 
             */
 
-
             return GlobalTestResult;
         }
+        #region Send_XML_15_1_7_DMI_Test_Specification
+        enum msgType
+        {
+            typea,
+            typeb,
+            typec,
+            typed,
+            typee,
+            typef,
+            typeg,
+            typeh
+        }
+
+        private void XML_15_1_7(msgType type)
+        {
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_EBTestInProgress = 0;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_EB_Status = 0;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_RadioStatus = 0;
+
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_STM_HS_ENABLED = 0;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_STM_DA_ENABLED = 0;
+
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_BrakeTest_Status =
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_BRAKETEST_STATUS.BrakeTestNotInProgress;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level =
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L0;
+
+            // Value to check -	MMI_OBU_TR_M_MODE = 17 (“Not used”)
+
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_ADHESION = 0;
+            EVC7_MMIEtcsMiscOutSignals.OBU_TR_NID_STM_HS = 0;
+            EVC7_MMIEtcsMiscOutSignals.OBU_TR_NID_STM_DA = 0;
+            EVC7_MMIEtcsMiscOutSignals.BRAKE_TEST_TIMEOUT = 0;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 10000000;
+
+            SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity1.Value = 4096;
+            SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity2.Value = 1;
+            SITR.ETCS1.EtcsMiscOutSignals.EVC7SSW1.Value = 0;
+            SITR.ETCS1.EtcsMiscOutSignals.EVC7SSW2.Value = 0;
+            SITR.ETCS1.EtcsMiscOutSignals.EVC7SSW3.Value = 0;
+            SITR.Client.Write("ETCS1_EtcsMiscOutSignals_SDT_UDV", 0);
+            switch (type)
+            {
+                case msgType.typea:
+                    SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrMMode.Value = 17;
+                    break;
+                case msgType.typeb:
+                    SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrMMode.Value = 127;
+                    break;
+                case msgType.typec:
+                    SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrMMode.Value = 129;
+                    break;
+                case msgType.typed:
+                    SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrMMode.Value = 255;
+                    break;
+                case msgType.typee:
+                    SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrMMode.Value = 18;
+                    break;
+                case msgType.typef:
+                    SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrMMode.Value = 126;
+                    break;
+                case msgType.typeg:
+                    SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrMMode.Value = 130;
+                    break;
+                case msgType.typeh:
+                    SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrMMode.Value = 254;
+                    break;
+            }
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                      "There is no symbol displayed on sub-area B7.");
+
+        }
+        #endregion
     }
 }

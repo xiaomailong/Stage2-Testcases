@@ -92,7 +92,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,Verify that the train running number is disappear from sub-area G11.Note: The result will be appear only short time because it’s interrupted by ATP-CU packet information
             Test Step Comment: (1) MMI_gen 1043 (partly: invalid, G11);
             */
-            XML.XML_18_5.Send(this);
+            XML_18_5();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI removes the train running number.");
@@ -105,5 +105,31 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
+        #region Send_XML_18_5_DMI_Test_Specification
+        private void XML_18_5()
+        {
+
+            EVC2_MMIStatus.TrainRunningNumber = 0xa12f;         // an invalid number
+            EVC2_MMIStatus.MMI_M_ADHESION = 0;
+            EVC2_MMIStatus.MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.Cabin1Active;
+            EVC2_MMIStatus.MMI_M_OVERRIDE_EOA = false;
+
+            EVC2_MMIStatus.Send();
+
+            Wait_Realtime(500);
+            EVC2_MMIStatus.Send();
+
+            Wait_Realtime(500);
+            EVC2_MMIStatus.Send();
+
+            Wait_Realtime(500);
+            EVC2_MMIStatus.Send();
+
+            Wait_Realtime(500);
+            EVC2_MMIStatus.Send();
+
+        }
+        #endregion
+
     }
 }

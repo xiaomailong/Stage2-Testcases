@@ -200,7 +200,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,DMI displays TAF Question box which contain only ‘Yes’ button
             Test Step Comment: (1) MMI_gen 4504 (partly: TAF Question Box);
             */
-            XML.XML_16_1.Send(this);
+            XML_16_1();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the TAF Question box containing only a ‘Yes’ button.");
@@ -235,5 +235,17 @@ namespace Testcase.DMITestCases
             
             return GlobalTestResult;
         }
+        #region Send_XML_16_1_DMI_Test_Specification
+        private void XML_16_1()
+        {
+            // Step 2/1
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 298;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 0;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 2;
+
+            EVC8_MMIDriverMessage.Send();
+        }
+        #endregion
     }
 }

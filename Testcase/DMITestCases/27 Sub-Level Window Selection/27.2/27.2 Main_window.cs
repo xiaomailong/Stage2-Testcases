@@ -733,7 +733,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify that the ‘Drive ID’ button is disabled
             Test Step Comment: MMI_gen 591 (partly: disabling condition of ‘Driver ID’ button);
             */
-            XML.XML_7_1_a.Send(this);
+            XML_7_1(msgType.typea);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Driver ID’ button is disabled.");
@@ -744,7 +744,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify that the ‘Drive ID’ button is enabled
             Test Step Comment: MMI_gen 591 (partly: enabling condition of ‘Driver ID’ button);
             */
-            XML.XML_7_1_b.Send(this);
+            XML_7_1(msgType.typeb);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Driver ID’ button is enabled.");
@@ -791,5 +791,91 @@ namespace Testcase.DMITestCases
             
             return GlobalTestResult;
         }
+
+        #region Send_XML_7_1_DMI_Test_Specification
+        enum msgType
+        {
+            typea,
+            typeb
+        }
+
+        private void XML_7_1(msgType type)
+        {
+            EVC30_MMIRequestEnable.SendBlank();
+            switch (type)
+            {
+
+                case msgType.typea:
+                    EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = (EVC30_MMIRequestEnable.EnabledRequests.Language |
+                                                                        EVC30_MMIRequestEnable.EnabledRequests.Volume |
+                                                                        EVC30_MMIRequestEnable.EnabledRequests.Brightness |
+                                                                        EVC30_MMIRequestEnable.EnabledRequests.SystemVersion) &
+                                                                       ~(EVC30_MMIRequestEnable.EnabledRequests.Start |
+                                                                         EVC30_MMIRequestEnable.EnabledRequests.DriverID |
+                                                                         EVC30_MMIRequestEnable.EnabledRequests.TrainData |
+                                                                         EVC30_MMIRequestEnable.EnabledRequests.Level |
+                                                                         EVC30_MMIRequestEnable.EnabledRequests.TrainRunningNumber |
+                                                                         EVC30_MMIRequestEnable.EnabledRequests.Shunting |
+                                                                         EVC30_MMIRequestEnable.EnabledRequests.ExitShunting |
+                                                                         EVC30_MMIRequestEnable.EnabledRequests.NonLeading |
+                                                                         EVC30_MMIRequestEnable.EnabledRequests.MaintainShunting |
+                                                                         EVC30_MMIRequestEnable.EnabledRequests.EOA |
+                                                                         EVC30_MMIRequestEnable.EnabledRequests.Adhesion |
+                                                                         EVC30_MMIRequestEnable.EnabledRequests.SRSpeedDistance |
+                                                                         EVC30_MMIRequestEnable.EnabledRequests.TrainIntegrity |
+                                                                         EVC30_MMIRequestEnable.EnabledRequests.SetVBC |
+                                                                         EVC30_MMIRequestEnable.EnabledRequests.RemoveVBC |
+                                                                         EVC30_MMIRequestEnable.EnabledRequests.ContactLastRBC |
+                                                                         EVC30_MMIRequestEnable.EnabledRequests.UseShortNumber |
+                                                                         EVC30_MMIRequestEnable.EnabledRequests.EnterRBCData |
+                                                                         EVC30_MMIRequestEnable.EnabledRequests.RadioNetworkID |
+                                                                         EVC30_MMIRequestEnable.EnabledRequests.GeographicalPosition |
+                                                                         EVC30_MMIRequestEnable.EnabledRequests.EndOfDataEntryNTC |
+                                                                         EVC30_MMIRequestEnable.EnabledRequests.SetLocalTimeDateAndOffset |
+                                                                         EVC30_MMIRequestEnable.EnabledRequests.SetLocalOffset |
+                                                                         EVC30_MMIRequestEnable.EnabledRequests.Reserved |
+                                                                         EVC30_MMIRequestEnable.EnabledRequests.StartBrakeTest |
+                                                                         EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter |
+                                                                         EVC30_MMIRequestEnable.EnabledRequests.EnableDoppler |
+                                                                         EVC30_MMIRequestEnable.EnabledRequests.EnableBrakePercentage);
+                    break;
+                case msgType.typeb:
+                    EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = (EVC30_MMIRequestEnable.EnabledRequests.DriverID |
+                                                                        EVC30_MMIRequestEnable.EnabledRequests.Language |
+                                                                        EVC30_MMIRequestEnable.EnabledRequests.Volume |
+                                                                        EVC30_MMIRequestEnable.EnabledRequests.Brightness |
+                                                                        EVC30_MMIRequestEnable.EnabledRequests.SystemVersion) &
+                                                                       ~(EVC30_MMIRequestEnable.EnabledRequests.Start |
+                                                                         EVC30_MMIRequestEnable.EnabledRequests.TrainData |
+                                                                         EVC30_MMIRequestEnable.EnabledRequests.Level |
+                                                                         EVC30_MMIRequestEnable.EnabledRequests.TrainRunningNumber |
+                                                                         EVC30_MMIRequestEnable.EnabledRequests.Shunting |
+                                                                         EVC30_MMIRequestEnable.EnabledRequests.ExitShunting |
+                                                                         EVC30_MMIRequestEnable.EnabledRequests.NonLeading |
+                                                                         EVC30_MMIRequestEnable.EnabledRequests.MaintainShunting |
+                                                                         EVC30_MMIRequestEnable.EnabledRequests.EOA |
+                                                                         EVC30_MMIRequestEnable.EnabledRequests.Adhesion |
+                                                                         EVC30_MMIRequestEnable.EnabledRequests.SRSpeedDistance |
+                                                                         EVC30_MMIRequestEnable.EnabledRequests.TrainIntegrity |
+                                                                         EVC30_MMIRequestEnable.EnabledRequests.SetVBC |
+                                                                         EVC30_MMIRequestEnable.EnabledRequests.RemoveVBC |
+                                                                         EVC30_MMIRequestEnable.EnabledRequests.ContactLastRBC |
+                                                                         EVC30_MMIRequestEnable.EnabledRequests.UseShortNumber |
+                                                                         EVC30_MMIRequestEnable.EnabledRequests.EnterRBCData |
+                                                                         EVC30_MMIRequestEnable.EnabledRequests.RadioNetworkID |
+                                                                         EVC30_MMIRequestEnable.EnabledRequests.GeographicalPosition |
+                                                                         EVC30_MMIRequestEnable.EnabledRequests.EndOfDataEntryNTC |
+                                                                         EVC30_MMIRequestEnable.EnabledRequests.SetLocalTimeDateAndOffset |
+                                                                         EVC30_MMIRequestEnable.EnabledRequests.SetLocalOffset |
+                                                                         EVC30_MMIRequestEnable.EnabledRequests.Reserved |
+                                                                         EVC30_MMIRequestEnable.EnabledRequests.StartBrakeTest |
+                                                                         EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter |
+                                                                         EVC30_MMIRequestEnable.EnabledRequests.EnableDoppler |
+                                                                         EVC30_MMIRequestEnable.EnabledRequests.EnableBrakePercentage);
+                    break;
+            }
+            EVC30_MMIRequestEnable.Send();
+        }
+        #endregion
     }
 }

@@ -73,7 +73,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 4468 (partly: ‘ACK’ in yellow);(2) MMI_gen 4507 (partly: 'NACK' in yellow colour);(3) MMI_gen 4468 (partly: configured background colour); MMI_gen 4507 (partly: configured background colour);
 
             */
-            XML.XML_6_4_a.Send(this);
+            XML_6_4(msgType.typea);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the message ‘Brake test aborted, perform new Test?’ with acknowledgement buttons in sub-areas E5-E9." + Environment.NewLine +
@@ -138,8 +138,8 @@ namespace Testcase.DMITestCases
 
             Test Step Comment: MMI_gen 4470 (partly: 'ACK'); MMI_gen 3375; MMI_gen 3200 (partly: ACK button);
             */
-            XML.XML_6_4_a.Send(this);
-            
+            XML_6_4(msgType.typea);
+
             // Repeat Step 2
             DmiActions.ShowInstruction(this, "Press and hold the ‘ACK’ button");
 
@@ -174,7 +174,7 @@ namespace Testcase.DMITestCases
 
             Test Step Comment: (1) MMI_gen 4468 (partly: Note); MMI_gen 3374 (partly: Text acknowledgement, visible, not faulty);
             */
-            XML.XML_6_4_b.Send(this);
+            XML_6_4(msgType.typeb);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displaying the message ‘Brake test aborted. Perform new Test?’ with a flashing yellow frame around sub-areas E5-E9.");
@@ -239,5 +239,31 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
+
+        #region Send_XML_6_4_DMI_Test_Specification
+        enum msgType
+        {
+            typea,
+            typeb
+        }
+
+        private void XML_6_4(msgType type)
+        {
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 527;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.PlainTextMessage = "";
+            switch (type)
+            {
+                case msgType.typea:
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 2;
+                    break;
+                case msgType.typeb:
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 0;
+                    break;
+            }
+            EVC8_MMIDriverMessage.Send();
+        }
+        #endregion
     }
 }

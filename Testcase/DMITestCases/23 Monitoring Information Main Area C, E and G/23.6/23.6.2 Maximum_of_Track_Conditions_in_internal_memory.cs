@@ -68,7 +68,7 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, "Close the Main window");
 
-            XML.XML_18_6_2_a.Send(this);
+            XML_18_6_2(msgType.typea);
 
             /*
             Test Step 2
@@ -139,7 +139,7 @@ namespace Testcase.DMITestCases
             Expected Result: The symbol TC02 is removed from sub-area B3.Verify the following information,(1)   The 3 symbols are correctly  displayed in the specified location below,The symbol TC01 is display in sub-area B3.The symbol TC04 is display in sub-area B4.The symbol TC06 is display in sub-area B5
             Test Step Comment: (1) MMI_gen 10470; MMI_gen 662 (partly: TC06); MMI_gen 667; MMI_gen 10465 (partly: TC06); MMI_gen 10467;
             */
-            XML.XML_18_6_2_b.Send(this);
+            XML_18_6_2(msgType.typeb);
 
             /*
             Test Step 13
@@ -427,7 +427,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   The symbol TC05 is display in sub-area B3 with yellow flashing frame
             Test Step Comment: (1) MMI_gen 10465 (partly: TC05); MMI_gen 662 (partly: TC05);
             */
-            XML.XML_18_6_2_c.Send(this);
+            XML_18_6_2(msgType.typec);
 
             /*
             Test Step 47
@@ -442,21 +442,21 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   The symbol TC09 is display in sub-area B3 with yellow flashing frame
             Test Step Comment: (1) MMI_gen 10465 (partly: TC09); MMI_gen 662 (partly: TC09);
             */
-            
+
             /*
             Test Step 49
             Action: Send EVC-32 with,MMI_Q_TRACKCOND_UPDATE = 0MMI_N_TRACKCONDITIONS = 1MMI_NID_TRACKCOND = 0MMI_Q_TRACKCOND_STEP = 1MMI_M_TRACKCOND_TYPE = 0MMI_Q_TRACKCOND_ACTION_START = 0MMI_Q_TRACKCOND_ACTION_END = 0
             Expected Result: Verify the following information,(1)   The symbol TC11 is display in sub-area B3 with yellow flashing frame
             Test Step Comment: (1) MMI_gen 10465 (partly: TC11); MMI_gen 662 (partly: TC11);
             */
-            
+
             /*
             Test Step 50
             Action: Send EVC-32 with,MMI_Q_TRACKCOND_UPDATE = 0MMI_N_TRACKCONDITIONS = 1MMI_NID_TRACKCOND = 0MMI_Q_TRACKCOND_STEP = 1MMI_M_TRACKCOND_TYPE = 6MMI_Q_TRACKCOND_ACTION_START = 0MMI_Q_TRACKCOND_ACTION_END = 0
             Expected Result: Verify the following information,(1)   The symbol TC14 is display in sub-area B3 with yellow flashing frame
             Test Step Comment: (1) MMI_gen 10465 (partly: TC14); MMI_gen 662 (partly: TC14);
             */
-            
+
             /*
             Test Step 51
             Action: Send EVC-32 with,MMI_Q_TRACKCOND_UPDATE = 0MMI_N_TRACKCONDITIONS = 1MMI_NID_TRACKCOND = 0MMI_Q_TRACKCOND_STEP = 1MMI_M_TRACKCOND_TYPE = 7MMI_Q_TRACKCOND_ACTION_START = 0MMI_Q_TRACKCOND_ACTION_END = 0
@@ -470,21 +470,21 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   The symbol TC18 is display in sub-area B3 with yellow flashing frame
             Test Step Comment: (1) MMI_gen 10465 (partly: TC18); MMI_gen 662 (partly: TC18); 
             */
-            
+
             /*
             Test Step 53
             Action: Send EVC-32 with,MMI_Q_TRACKCOND_UPDATE = 0MMI_N_TRACKCONDITIONS = 1MMI_NID_TRACKCOND = 0MMI_Q_TRACKCOND_STEP = 1MMI_M_TRACKCOND_TYPE = 5MMI_Q_TRACKCOND_ACTION_START = 0MMI_Q_TRACKCOND_ACTION_END = 0
             Expected Result: Verify the following information,(1)   The symbol TC21 is display in sub-area B3 with yellow flashing frame
             Test Step Comment: (1) MMI_gen 10465 (partly: TC21); MMI_gen 662 (partly: TC21); 
             */
-            
+
             /*
             Test Step 54
             Action: Send EVC-32 with,MMI_Q_TRACKCOND_UPDATE = 0MMI_N_TRACKCONDITIONS = 1MMI_NID_TRACKCOND = 0MMI_Q_TRACKCOND_STEP = 3MMI_M_TRACKCOND_TYPE = 5MMI_Q_TRACKCOND_ACTION_START = 0MMI_Q_TRACKCOND_ACTION_END = 0
             Expected Result: Verify the following information,(1)   The symbol TC22 is display in sub-area B3 with yellow flashing frame
             Test Step Comment: (1) MMI_gen 10465 (partly: TC22); MMI_gen 662 (partly: TC22);
             */
-            
+
             /*
             Test Step 55
             Action: Send EVC-32 with,MMI_Q_TRACKCOND_UPDATE = 0MMI_N_TRACKCONDITIONS = 1MMI_NID_TRACKCOND = 0MMI_Q_TRACKCOND_STEP = 1MMI_M_TRACKCOND_TYPE = 10MMI_Q_TRACKCOND_ACTION_START = 0MMI_Q_TRACKCOND_ACTION_END = 0
@@ -498,28 +498,28 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   The symbol TC26 is display in sub-area B3 with yellow flashing frame
             Test Step Comment: (1) MMI_gen 10465 (partly: TC26); MMI_gen 662 (partly: TC26);
             */
-            
+
             /*
             Test Step 57
             Action: Send EVC-32 with,MMI_Q_TRACKCOND_UPDATE = 0MMI_N_TRACKCONDITIONS = 1MMI_NID_TRACKCOND = 0MMI_Q_TRACKCOND_STEP = 1MMI_M_TRACKCOND_TYPE = 12MMI_Q_TRACKCOND_ACTION_START = 0MMI_Q_TRACKCOND_ACTION_END = 0
             Expected Result: Verify the following information,(1)   The symbol TC28 is display in sub-area B3 with yellow flashing frame
             Test Step Comment: (1) MMI_gen 10465 (partly: TC28); MMI_gen 662 (partly: TC28);
             */
-            
+
             /*
             Test Step 58
             Action: Send EVC-32 with,MMI_Q_TRACKCOND_UPDATE = 0MMI_N_TRACKCONDITIONS = 1MMI_NID_TRACKCOND = 0MMI_Q_TRACKCOND_STEP = 1MMI_M_TRACKCOND_TYPE = 13MMI_Q_TRACKCOND_ACTION_START = 0MMI_Q_TRACKCOND_ACTION_END = 0
             Expected Result: Verify the following information,(1)   The symbol TC30 is display in sub-area B3 with yellow flashing frame
             Test Step Comment: (1) MMI_gen 10465 (partly: TC30); MMI_gen 662 (partly: TC30);
             */
-            
+
             /*
             Test Step 59
             Action: Send EVC-32 with,MMI_Q_TRACKCOND_UPDATE = 0MMI_N_TRACKCONDITIONS = 1MMI_NID_TRACKCOND = 0MMI_Q_TRACKCOND_STEP = 1MMI_M_TRACKCOND_TYPE = 14MMI_Q_TRACKCOND_ACTION_START = 0MMI_Q_TRACKCOND_ACTION_END = 0
             Expected Result: Verify the following information,(1)   The symbol TC32 is display in sub-area B3 with yellow flashing frame
             Test Step Comment: (1) MMI_gen 10465 (partly: TC32); MMI_gen 662 (partly: TC32);
             */
-            
+
             /*
             Test Step 60
             Action: Send EVC-32 with,MMI_Q_TRACKCOND_UPDATE = 0MMI_N_TRACKCONDITIONS = 1MMI_NID_TRACKCOND = 0MMI_Q_TRACKCOND_STEP = 1MMI_M_TRACKCOND_TYPE = 15MMI_Q_TRACKCOND_ACTION_START = 0MMI_Q_TRACKCOND_ACTION_END = 0
@@ -527,13 +527,13 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 10465 (partly: TC34); MMI_gen 662 (partly: TC34);
             */
 
-                        /*
-            Test Step 61
-            Action: Send EVC-32 with,MMI_Q_TRACKCOND_UPDATE = 0MMI_N_TRACKCONDITIONS = 1MMI_NID_TRACKCOND = 0MMI_Q_TRACKCOND_STEP = 1MMI_M_TRACKCOND_TYPE = 2MMI_Q_TRACKCOND_ACTION_START = 0MMI_Q_TRACKCOND_ACTION_END = 0
-            Expected Result: Verify the following information,(1)   The symbol TC35 is display in sub-area B3 with yellow flashing frame
-            Test Step Comment: (1) MMI_gen 10465 (partly: TC35); MMI_gen 662 (partly: TC35);
-            */
-            
+            /*
+Test Step 61
+Action: Send EVC-32 with,MMI_Q_TRACKCOND_UPDATE = 0MMI_N_TRACKCONDITIONS = 1MMI_NID_TRACKCOND = 0MMI_Q_TRACKCOND_STEP = 1MMI_M_TRACKCOND_TYPE = 2MMI_Q_TRACKCOND_ACTION_START = 0MMI_Q_TRACKCOND_ACTION_END = 0
+Expected Result: Verify the following information,(1)   The symbol TC35 is display in sub-area B3 with yellow flashing frame
+Test Step Comment: (1) MMI_gen 10465 (partly: TC35); MMI_gen 662 (partly: TC35);
+*/
+
             /*
             Test Step 62
             Action: Send EVC-32 with,MMI_Q_TRACKCOND_UPDATE = 0MMI_N_TRACKCONDITIONS = 1MMI_NID_TRACKCOND = 0MMI_Q_TRACKCOND_STEP = 1MMI_M_TRACKCOND_TYPE = 1MMI_Q_TRACKCOND_ACTION_START = 0MMI_Q_TRACKCOND_ACTION_END = 0
@@ -549,5 +549,835 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
+        #region Send_XML_18_6_2_DMI_Test_Specification
+        enum msgType
+        {
+            typea,
+            typeb,
+            typec
+        }
+
+        private void XML_18_6_2(msgType type)
+        {
+            switch (type)
+            {
+
+                case msgType.typea:
+                    // Step 1
+                    EVC32_MMITrackConditions.MMI_Q_TRACKCOND_UPDATE = 0;
+
+                    TrackCondition trackCondition0 = new TrackCondition
+                    {
+                        MMI_O_TRACKCOND_ANNOUNCE = 0,
+                        MMI_O_TRACKCOND_START = 0,
+                        MMI_O_TRACKCOND_END = 0,
+                        MMI_NID_TRACKCOND = 0,
+                        MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Pantograph,
+                        MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea,
+                        MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithoutDriverAction,
+                        MMI_Q_TRACKCOND_ACTION_END = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction
+                    };
+                    TrackCondition trackCondition1 = new TrackCondition
+                    {
+                        MMI_O_TRACKCOND_ANNOUNCE = 0,
+                        MMI_O_TRACKCOND_START = 0,
+                        MMI_O_TRACKCOND_END = 0,
+                        MMI_NID_TRACKCOND = 1,
+                        MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Pantograph,
+                        MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.InsideArea_Active,
+                        MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithoutDriverAction,
+                        MMI_Q_TRACKCOND_ACTION_END = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction
+                    };
+                    TrackCondition trackCondition2 = new TrackCondition
+                    {
+                        MMI_O_TRACKCOND_ANNOUNCE = 0,
+                        MMI_O_TRACKCOND_START = 0,
+                        MMI_O_TRACKCOND_END = 0,
+                        MMI_NID_TRACKCOND = 2,
+                        MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Pantograph,
+                        MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.LeaveArea,
+                        MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction,
+                        MMI_Q_TRACKCOND_ACTION_END = Variables.MMI_Q_TRACKCOND_ACTION.WithoutDriverAction
+                    };
+
+                    List<TrackCondition> trackConditionList = new List<TrackCondition> { trackCondition0, trackCondition1, trackCondition2 };
+
+                    EVC32_MMITrackConditions.TrackConditions = trackConditionList;
+
+                    EVC32_MMITrackConditions.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                              "1. DMI displays symbol TC02 in sub-area B3." + Environment.NewLine +
+                                              "2. DMI displays symbol TC01 in sub-area B4." + Environment.NewLine +
+                                              "3. DMI displays symbol TC04 in sub-area B5.");
+
+                    // Step 2
+                    EVC32_MMITrackConditions.MMI_Q_TRACKCOND_UPDATE = 1;
+
+                    trackCondition0.MMI_NID_TRACKCOND = 3;
+                    trackCondition0.MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Main_power_switch_Neutral_Section;
+                    trackCondition0.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea;
+                    trackCondition0.MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithoutDriverAction;
+                    trackCondition0.MMI_Q_TRACKCOND_ACTION_END = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction;
+
+                    trackCondition1.MMI_NID_TRACKCOND = 4;
+                    trackCondition1.MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Main_power_switch_Neutral_Section;
+                    trackCondition0.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.InsideArea_Active;
+                    trackCondition1.MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction;
+                    trackCondition1.MMI_Q_TRACKCOND_ACTION_END = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction;
+
+                    trackCondition1.MMI_NID_TRACKCOND = 5;
+                    trackCondition1.MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Main_power_switch_Neutral_Section;
+                    trackCondition0.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.LeaveArea;
+                    trackCondition1.MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction;
+                    trackCondition1.MMI_Q_TRACKCOND_ACTION_END = Variables.MMI_Q_TRACKCOND_ACTION.WithoutDriverAction;
+
+                    EVC32_MMITrackConditions.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                              "1. DMI still displays symbol TC02 in sub-area B3." + Environment.NewLine +
+                                              "2. DMI still displays symbol TC01 in sub-area B4." + Environment.NewLine +
+                                              "3. DMI still displays symbol TC04 in sub-area B5.");
+
+                    // Step 3
+                    trackCondition0.MMI_NID_TRACKCOND = 6;
+
+                    trackCondition0.MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Non_Stopping_Area;
+                    trackCondition0.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea;
+                    trackCondition0.MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithoutDriverAction;
+                    trackCondition0.MMI_Q_TRACKCOND_ACTION_END = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction;
+
+                    trackCondition1.MMI_NID_TRACKCOND = 7;
+                    trackCondition1.MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Radio_hole;
+                    trackCondition0.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.InsideArea_Active;
+                    trackCondition1.MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithoutDriverAction;
+                    trackCondition1.MMI_Q_TRACKCOND_ACTION_END = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction;
+
+                    trackCondition1.MMI_NID_TRACKCOND = 8;
+                    trackCondition1.MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Magnetic_Shoe_Brakes;
+                    trackCondition0.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea;
+                    trackCondition1.MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithoutDriverAction;
+                    trackCondition1.MMI_Q_TRACKCOND_ACTION_END = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction;
+
+                    EVC32_MMITrackConditions.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                              "1. DMI still displays symbol TC02 in sub-area B3." + Environment.NewLine +
+                                              "2. DMI still displays symbol TC01 in sub-area B4." + Environment.NewLine +
+                                              "3. DMI still displays symbol TC04 in sub-area B5.");
+
+                    // Step 4            
+                    trackCondition0.MMI_NID_TRACKCOND = 9;
+
+                    trackCondition0.MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Magnetic_Shoe_Brakes;
+                    trackCondition0.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.InsideArea_Active;
+                    trackCondition0.MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction;
+                    trackCondition0.MMI_Q_TRACKCOND_ACTION_END = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction;
+
+                    trackCondition1.MMI_NID_TRACKCOND = 10;
+                    trackCondition1.MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Eddy_Current_Brakes;
+                    trackCondition0.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea;
+                    trackCondition1.MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithoutDriverAction;
+                    trackCondition1.MMI_Q_TRACKCOND_ACTION_END = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction;
+
+                    trackCondition1.MMI_NID_TRACKCOND = 11;
+                    trackCondition1.MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Eddy_Current_Brakes;
+                    trackCondition0.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.InsideArea_Active;
+                    trackCondition1.MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction;
+                    trackCondition1.MMI_Q_TRACKCOND_ACTION_END = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction;
+
+                    EVC32_MMITrackConditions.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                              "1. DMI still displays symbol TC02 in sub-area B3." + Environment.NewLine +
+                                              "2. DMI still displays symbol TC01 in sub-area B4." + Environment.NewLine +
+                                              "3. DMI still displays symbol TC04 in sub-area B5.");
+
+                    // Step 5           
+                    trackCondition0.MMI_NID_TRACKCOND = 12;
+
+                    trackCondition0.MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Regenerative_Brakes;
+                    trackCondition0.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea;
+                    trackCondition0.MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithoutDriverAction;
+                    trackCondition0.MMI_Q_TRACKCOND_ACTION_END = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction;
+
+                    trackCondition1.MMI_NID_TRACKCOND = 13;
+                    trackCondition1.MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Regenerative_Brakes;
+                    trackCondition0.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.InsideArea_Active;
+                    trackCondition1.MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction;
+                    trackCondition1.MMI_Q_TRACKCOND_ACTION_END = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction;
+
+                    trackCondition1.MMI_NID_TRACKCOND = 14;
+                    trackCondition1.MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Air_tightness;
+                    trackCondition0.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea;
+                    trackCondition1.MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithoutDriverAction;
+                    trackCondition1.MMI_Q_TRACKCOND_ACTION_END = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction;
+
+                    EVC32_MMITrackConditions.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                              "1. DMI still displays symbol TC02 in sub-area B3." + Environment.NewLine +
+                                              "2. DMI still displays symbol TC01 in sub-area B4." + Environment.NewLine +
+                                              "3. DMI still displays symbol TC04 in sub-area B5.");
+
+                    // Step 6
+                    trackCondition0.MMI_NID_TRACKCOND = 15;
+
+                    trackCondition0.MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Air_tightness;
+                    trackCondition0.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.InsideArea_Active;
+                    trackCondition0.MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction;
+                    trackCondition0.MMI_Q_TRACKCOND_ACTION_END = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction;
+
+                    trackCondition1.MMI_NID_TRACKCOND = 16;
+                    trackCondition1.MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Air_tightness;
+                    trackCondition0.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.LeaveArea;
+                    trackCondition1.MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction;
+                    trackCondition1.MMI_Q_TRACKCOND_ACTION_END = Variables.MMI_Q_TRACKCOND_ACTION.WithoutDriverAction;
+
+                    trackCondition1.MMI_NID_TRACKCOND = 17;
+                    trackCondition1.MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Change_traction_not_fitted;
+                    trackCondition0.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea;
+                    trackCondition1.MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithoutDriverAction;
+                    trackCondition1.MMI_Q_TRACKCOND_ACTION_END = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction;
+
+                    EVC32_MMITrackConditions.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                              "1. DMI still displays symbol TC02 in sub-area B3." + Environment.NewLine +
+                                              "2. DMI still displays symbol TC01 in sub-area B4." + Environment.NewLine +
+                                              "3. DMI still displays symbol TC04 in sub-area B5.");
+
+                    // Step 7
+                    trackCondition0.MMI_NID_TRACKCOND = 18;
+
+                    trackCondition0.MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Change_traction_not_fitted;
+                    trackCondition0.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.InsideArea_Active;
+                    trackCondition0.MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction;
+                    trackCondition0.MMI_Q_TRACKCOND_ACTION_END = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction;
+
+                    trackCondition1.MMI_NID_TRACKCOND = 19;
+                    trackCondition1.MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Change_traction_AC_25_kV_50_Hz;
+                    trackCondition0.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea;
+                    trackCondition1.MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithoutDriverAction;
+                    trackCondition1.MMI_Q_TRACKCOND_ACTION_END = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction;
+
+                    trackCondition1.MMI_NID_TRACKCOND = 20;
+                    trackCondition1.MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Change_traction_AC_25_kV_50_Hz;
+                    trackCondition0.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.InsideArea_Active;
+                    trackCondition1.MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction;
+                    trackCondition1.MMI_Q_TRACKCOND_ACTION_END = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction;
+
+                    EVC32_MMITrackConditions.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                              "1. DMI still displays symbol TC02 in sub-area B3." + Environment.NewLine +
+                                              "2. DMI still displays symbol TC01 in sub-area B4." + Environment.NewLine +
+                                              "3. DMI still displays symbol TC04 in sub-area B5.");
+
+                    // Step 8
+                    trackCondition0.MMI_NID_TRACKCOND = 21;
+
+                    trackCondition0.MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Change_traction_AC_15_kV_16_7_Hz;
+                    trackCondition0.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea;
+                    trackCondition0.MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithoutDriverAction;
+                    trackCondition0.MMI_Q_TRACKCOND_ACTION_END = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction;
+
+                    trackCondition1.MMI_NID_TRACKCOND = 22;
+                    trackCondition1.MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Change_traction_AC_15_kV_16_7_Hz;
+                    trackCondition0.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.InsideArea_Active;
+                    trackCondition1.MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction;
+                    trackCondition1.MMI_Q_TRACKCOND_ACTION_END = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction;
+
+                    trackCondition1.MMI_NID_TRACKCOND = 23;
+                    trackCondition1.MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Change_traction_DC_3_kV;
+                    trackCondition0.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea;
+                    trackCondition1.MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithoutDriverAction;
+                    trackCondition1.MMI_Q_TRACKCOND_ACTION_END = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction;
+
+                    EVC32_MMITrackConditions.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                              "1. DMI still displays symbol TC02 in sub-area B3." + Environment.NewLine +
+                                              "2. DMI still displays symbol TC01 in sub-area B4." + Environment.NewLine +
+                                              "3. DMI still displays symbol TC04 in sub-area B5.");
+
+                    // Step 9
+                    trackCondition0.MMI_NID_TRACKCOND = 24;
+
+                    trackCondition0.MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Change_traction_DC_3_kV;
+                    trackCondition0.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.InsideArea_Active;
+                    trackCondition0.MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction;
+                    trackCondition0.MMI_Q_TRACKCOND_ACTION_END = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction;
+
+                    trackCondition1.MMI_NID_TRACKCOND = 25;
+                    trackCondition1.MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Change_traction_DC_1_5_kV;
+                    trackCondition0.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea;
+                    trackCondition1.MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithoutDriverAction;
+                    trackCondition1.MMI_Q_TRACKCOND_ACTION_END = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction;
+
+                    trackCondition1.MMI_NID_TRACKCOND = 26;
+                    trackCondition1.MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Change_traction_DC_1_5_kV;
+                    trackCondition0.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.InsideArea_Active;
+                    trackCondition1.MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction;
+                    trackCondition1.MMI_Q_TRACKCOND_ACTION_END = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction;
+
+                    EVC32_MMITrackConditions.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                              "1. DMI still displays symbol TC02 in sub-area B3." + Environment.NewLine +
+                                              "2. DMI still displays symbol TC01 in sub-area B4." + Environment.NewLine +
+                                              "3. DMI still displays symbol TC04 in sub-area B5.");
+
+                    // Step 10
+                    trackCondition0.MMI_NID_TRACKCOND = 27;
+                    trackCondition0.MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Change_traction_DC_600_750;
+                    trackCondition0.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea;
+                    trackCondition0.MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithoutDriverAction;
+                    trackCondition0.MMI_Q_TRACKCOND_ACTION_END = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction;
+
+                    trackCondition1.MMI_NID_TRACKCOND = 28;
+                    trackCondition1.MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Change_traction_DC_600_750;
+                    trackCondition0.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.InsideArea_Active;
+                    trackCondition1.MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction;
+                    trackCondition1.MMI_Q_TRACKCOND_ACTION_END = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction;
+
+                    trackCondition1.MMI_NID_TRACKCOND = 29;
+                    trackCondition1.MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Tunnel_Stopping_Area;
+                    trackCondition0.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.InsideArea_Active;
+                    trackCondition1.MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction;
+                    trackCondition1.MMI_Q_TRACKCOND_ACTION_END = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction;
+
+                    EVC32_MMITrackConditions.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                              "1. DMI still displays symbol TC02 in sub-area B3." + Environment.NewLine +
+                                              "2. DMI still displays symbol TC01 in sub-area B4." + Environment.NewLine +
+                                              "3. DMI still displays symbol TC04 in sub-area B5." + Environment.NewLine +
+                                              "4. DMI displays symbol TC36 in sub-area C2.");
+
+                    // Step 11   
+                    trackCondition0.MMI_NID_TRACKCOND = 30;
+                    trackCondition0.MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Pantograph;
+                    trackCondition0.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea;
+                    trackCondition0.MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction;
+                    trackCondition0.MMI_Q_TRACKCOND_ACTION_END = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction;
+
+                    trackConditionList.Remove(trackCondition1);
+                    trackConditionList.Remove(trackCondition2);
+
+                    EVC32_MMITrackConditions.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                              "1. DMI still displays symbol TC02 in sub-area B3." + Environment.NewLine +
+                                              "2. DMI still displays symbol TC01 in sub-area B4." + Environment.NewLine +
+                                              "3. DMI still displays symbol TC04 in sub-area B5.");
+
+
+
+
+                    break;
+                case msgType.typeb:
+
+                    // Step 12
+                    EVC32_MMITrackConditions.MMI_Q_TRACKCOND_UPDATE = 1;
+
+                    TrackCondition trackCondition = new TrackCondition
+                    {
+                        MMI_O_TRACKCOND_ANNOUNCE = 0,
+                        MMI_O_TRACKCOND_START = 0,
+                        MMI_O_TRACKCOND_END = 0,
+                        MMI_NID_TRACKCOND = 0,
+                        MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Non_Stopping_Area,
+                        MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.RemoveTC,
+                        MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction,
+                        MMI_Q_TRACKCOND_ACTION_END = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction
+                    };
+
+                    EVC32_MMITrackConditions.TrackConditions = new List<TrackCondition> { trackCondition };
+
+                    EVC32_MMITrackConditions.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                              "1. DMI removes symbol TC02 from sub-area B3." + Environment.NewLine +
+                                              "2. DMI displays symbol TC01 in sub-area B3." + Environment.NewLine +
+                                              "3. DMI displays symbol TC04 in sub-area B4." + Environment.NewLine +
+                                              "4. DMI displays symbol TC06 in sub-area B5.");
+
+                    // Step 13
+                    trackCondition.MMI_NID_TRACKCOND = 1;
+                    trackCondition.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.RemoveTC;
+                    EVC32_MMITrackConditions.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                              "1. DMI removes symbol TC01 from sub-area B3." + Environment.NewLine +
+                                              "2. DMI displays symbol TC04 in sub-area B3." + Environment.NewLine +
+                                              "3. DMI displays symbol TC06 in sub-area B4." + Environment.NewLine +
+                                              "4. DMI displays symbol TC06 in sub-area B5.");
+
+
+                    // Step 14
+                    trackCondition.MMI_NID_TRACKCOND = 2;
+                    trackCondition.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.RemoveTC;
+                    EVC32_MMITrackConditions.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                              "1. DMI removes symbol TC04 from sub-area B3." + Environment.NewLine +
+                                              "2. DMI displays symbol TC06 in sub-area B3." + Environment.NewLine +
+                                              "3. DMI displays symbol TC06 in sub-area B4." + Environment.NewLine +
+                                              "4. DMI displays symbol TC08 in sub-area B5.");
+
+                    // Step 15
+                    trackCondition.MMI_NID_TRACKCOND = 3;
+                    trackCondition.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.RemoveTC;
+                    EVC32_MMITrackConditions.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                              "1. DMI removes symbol TC06 from sub-area B3." + Environment.NewLine +
+                                              "2. DMI displays symbol TC06 in sub-area B3." + Environment.NewLine +
+                                              "3. DMI displays symbol TC08 in sub-area B4." + Environment.NewLine +
+                                              "4. DMI displays symbol TC010 in sub-area B5.");
+
+                    // Step 16
+                    trackCondition.MMI_NID_TRACKCOND = 4;
+                    trackCondition.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.RemoveTC;
+                    EVC32_MMITrackConditions.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                              "1. DMI removes symbol TC06 from sub-area B3." + Environment.NewLine +
+                                              "2. DMI displays symbol TC08 in sub-area B3." + Environment.NewLine +
+                                              "3. DMI displays symbol TC010 in sub-area B4." + Environment.NewLine +
+                                              "4. DMI displays symbol TC012 in sub-area B5.");
+
+                    // Step 17
+                    trackCondition.MMI_NID_TRACKCOND = 5;
+                    trackCondition.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.RemoveTC;
+                    EVC32_MMITrackConditions.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                              "1. DMI removes symbol TC08 from sub-area B3." + Environment.NewLine +
+                                              "2. DMI displays symbol TC10 in sub-area B3." + Environment.NewLine +
+                                              "3. DMI displays symbol TC12 in sub-area B4." + Environment.NewLine +
+                                              "4. DMI displays symbol TC13 in sub-area B5.");
+
+                    // Step 18
+                    trackCondition.MMI_NID_TRACKCOND = 6;
+                    trackCondition.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.RemoveTC;
+                    EVC32_MMITrackConditions.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                              "1. DMI removes symbol TC10 from sub-area B3." + Environment.NewLine +
+                                              "2. DMI displays symbol TC12 in sub-area B3." + Environment.NewLine +
+                                              "3. DMI displays symbol TC13 in sub-area B4." + Environment.NewLine +
+                                              "4. DMI displays symbol TC13 in sub-area B5.");
+
+                    // Step 19
+                    trackCondition.MMI_NID_TRACKCOND = 7;
+                    trackCondition.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.RemoveTC;
+                    EVC32_MMITrackConditions.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                              "1. DMI removes symbol TC12 from sub-area B3." + Environment.NewLine +
+                                              "2. DMI displays symbol TC13 in sub-area B3." + Environment.NewLine +
+                                              "3. DMI displays symbol TC13 in sub-area B4." + Environment.NewLine +
+                                              "4. DMI displays symbol TC15 in sub-area B5.");
+
+                    // Step 20
+                    trackCondition.MMI_NID_TRACKCOND = 8;
+                    trackCondition.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.RemoveTC;
+                    EVC32_MMITrackConditions.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                              "1. DMI removes symbol TC13 from sub-area B3." + Environment.NewLine +
+                                              "2. DMI displays symbol TC13 in sub-area B3." + Environment.NewLine +
+                                              "3. DMI displays symbol TC15 in sub-area B4." + Environment.NewLine +
+                                              "4. DMI displays symbol TC15 in sub-area B5.");
+
+                    // Step 21
+                    trackCondition.MMI_NID_TRACKCOND = 9;
+                    trackCondition.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.RemoveTC;
+                    EVC32_MMITrackConditions.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                              "1. DMI removes symbol TC13 from sub-area B3." + Environment.NewLine +
+                                              "2. DMI displays symbol TC15 in sub-area B3." + Environment.NewLine +
+                                              "3. DMI displays symbol TC15 in sub-area B4." + Environment.NewLine +
+                                              "4. DMI displays symbol TC17 in sub-area B5.");
+
+                    // Step 22
+                    trackCondition.MMI_NID_TRACKCOND = 10;
+                    trackCondition.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.RemoveTC;
+                    EVC32_MMITrackConditions.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                              "1. DMI removes symbol TC15 from sub-area B3." + Environment.NewLine +
+                                              "2. DMI displays symbol TC15 in sub-area B3." + Environment.NewLine +
+                                              "3. DMI displays symbol TC17 in sub-area B4." + Environment.NewLine +
+                                              "4. DMI displays symbol TC17 in sub-area B5.");
+
+                    // Step 23
+                    trackCondition.MMI_NID_TRACKCOND = 11;
+                    trackCondition.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.RemoveTC;
+                    EVC32_MMITrackConditions.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                              "1. DMI removes symbol TC15 from sub-area B3." + Environment.NewLine +
+                                              "2. DMI displays symbol TC17 in sub-area B3." + Environment.NewLine +
+                                              "3. DMI displays symbol TC17 in sub-area B4." + Environment.NewLine +
+                                              "4. DMI displays symbol TC19 in sub-area B5.");
+
+                    // Step 24
+                    trackCondition.MMI_NID_TRACKCOND = 12;
+                    trackCondition.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.RemoveTC;
+                    EVC32_MMITrackConditions.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                              "1. DMI removes symbol TC15 from sub-area B3." + Environment.NewLine +
+                                              "2. DMI displays symbol TC17 in sub-area B3." + Environment.NewLine +
+                                              "3. DMI displays symbol TC17 in sub-area B4." + Environment.NewLine +
+                                              "4. DMI displays symbol TC19 in sub-area B5.");
+
+                    // Step 25
+                    trackCondition.MMI_NID_TRACKCOND = 13;
+                    trackCondition.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.RemoveTC;
+                    EVC32_MMITrackConditions.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                              "1. DMI removes symbol TC17 from sub-area B3." + Environment.NewLine +
+                                              "2. DMI displays symbol TC19 in sub-area B3." + Environment.NewLine +
+                                              "3. DMI displays symbol TC19 in sub-area B4." + Environment.NewLine +
+                                              "4. DMI displays symbol TC20 in sub-area B5.");
+
+                    // Step 26
+                    trackCondition.MMI_NID_TRACKCOND = 14;
+                    trackCondition.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.RemoveTC;
+                    EVC32_MMITrackConditions.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                              "1. DMI removes symbol TC19 from sub-area B3." + Environment.NewLine +
+                                              "2. DMI displays symbol TC19 in sub-area B3." + Environment.NewLine +
+                                              "3. DMI displays symbol TC20 in sub-area B4." + Environment.NewLine +
+                                              "4. DMI displays symbol TC23 in sub-area B5.");
+
+                    // Step 27
+                    trackCondition.MMI_NID_TRACKCOND = 15;
+                    trackCondition.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.RemoveTC;
+                    EVC32_MMITrackConditions.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                              "1. DMI removes symbol TC19 from sub-area B3." + Environment.NewLine +
+                                              "2. DMI displays symbol TC20 in sub-area B3." + Environment.NewLine +
+                                              "3. DMI displays symbol TC23 in sub-area B4." + Environment.NewLine +
+                                              "4. DMI displays symbol TC23 in sub-area B5.");
+
+                    // Step 28
+                    trackCondition.MMI_NID_TRACKCOND = 16;
+                    trackCondition.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.RemoveTC;
+                    EVC32_MMITrackConditions.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                              "1. DMI removes symbol TC20 from sub-area B3." + Environment.NewLine +
+                                              "2. DMI displays symbol TC23 in sub-area B3." + Environment.NewLine +
+                                              "3. DMI displays symbol TC23 in sub-area B4." + Environment.NewLine +
+                                              "4. DMI displays symbol TC25 in sub-area B5.");
+
+                    // Step 29
+                    trackCondition.MMI_NID_TRACKCOND = 17;
+                    trackCondition.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.RemoveTC;
+                    EVC32_MMITrackConditions.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                              "1. DMI removes symbol TC23 from sub-area B3." + Environment.NewLine +
+                                              "2. DMI displays symbol TC23 in sub-area B3." + Environment.NewLine +
+                                              "3. DMI displays symbol TC25 in sub-area B4." + Environment.NewLine +
+                                              "4. DMI displays symbol TC25 in sub-area B5.");
+
+                    // Step 30
+                    trackCondition.MMI_NID_TRACKCOND = 18;
+                    trackCondition.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.RemoveTC;
+                    EVC32_MMITrackConditions.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                              "1. DMI removes symbol TC23 from sub-area B3" + Environment.NewLine +
+                                              "2. DMI displays symbol TC25 in sub-area B3." + Environment.NewLine +
+                                              "3. DMI displays symbol TC25 in sub-area B4." + Environment.NewLine +
+                                              "4. DMI displays symbol TC27 in sub-area B5.");
+
+                    // Step 31
+                    trackCondition.MMI_NID_TRACKCOND = 19;
+                    trackCondition.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.RemoveTC;
+                    EVC32_MMITrackConditions.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                              "1. DMI removes symbol TC25 from sub-area B3." + Environment.NewLine +
+                                              "2. DMI displays symbol TC25 in sub-area B3." + Environment.NewLine +
+                                              "3. DMI displays symbol TC27 in sub-area B4." + Environment.NewLine +
+                                              "4. DMI displays symbol TC27 in sub-area B5.");
+
+                    // Step 32
+                    trackCondition.MMI_NID_TRACKCOND = 20;
+                    trackCondition.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.RemoveTC;
+                    EVC32_MMITrackConditions.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                              "1. DMI removes symbol TC25 from sub-area B3." + Environment.NewLine +
+                                              "2. DMI displays symbol TC27 in sub-area B3." + Environment.NewLine +
+                                              "3. DMI displays symbol TC27 in sub-area B4." + Environment.NewLine +
+                                              "4. DMI displays symbol TC29 in sub-area B5.");
+
+                    // Step 33
+                    trackCondition.MMI_NID_TRACKCOND = 21;
+                    trackCondition.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.RemoveTC;
+                    EVC32_MMITrackConditions.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                              "1. DMI removes symbol TC27 from sub-area B3." + Environment.NewLine +
+                                              "2. DMI displays symbol TC27 in sub-area B3." + Environment.NewLine +
+                                              "3. DMI displays symbol TC29 in sub-area B4." + Environment.NewLine +
+                                              "4. DMI displays symbol TC29 in sub-area B5.");
+
+                    // Step 34
+                    trackCondition.MMI_NID_TRACKCOND = 22;
+                    trackCondition.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.RemoveTC;
+                    EVC32_MMITrackConditions.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                              "1. DMI removes symbol TC27 from sub-area B3." + Environment.NewLine +
+                                              "2. DMI displays symbol TC29 in sub-area B3." + Environment.NewLine +
+                                              "3. DMI displays symbol TC29 in sub-area B4." + Environment.NewLine +
+                                              "4. DMI displays symbol TC31 in sub-area B5.");
+
+                    // Step 35
+                    trackCondition.MMI_NID_TRACKCOND = 23;
+                    trackCondition.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.RemoveTC;
+                    EVC32_MMITrackConditions.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                              "1. DMI removes symbol TC29 from sub-area B3." + Environment.NewLine +
+                                              "2. DMI displays symbol TC29 in sub-area B3." + Environment.NewLine +
+                                              "3. DMI displays symbol TC31 in sub-area B4." + Environment.NewLine +
+                                              "4. DMI displays symbol TC31 in sub-area B5.");
+
+                    // Step 36
+                    trackCondition.MMI_NID_TRACKCOND = 24;
+                    trackCondition.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.RemoveTC;
+                    EVC32_MMITrackConditions.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                              "1. DMI removes symbol TC29 from sub-area B3." + Environment.NewLine +
+                                              "2. DMI displays symbol TC31 in sub-area B3." + Environment.NewLine +
+                                              "3. DMI displays symbol TC31 in sub-area B4." + Environment.NewLine +
+                                              "4. DMI displays symbol TC33 in sub-area B5.");
+
+                    // Step 37
+                    trackCondition.MMI_NID_TRACKCOND = 25;
+                    trackCondition.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.RemoveTC;
+                    EVC32_MMITrackConditions.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                              "1. DMI removes symbol TC31 from sub-area B3." + Environment.NewLine +
+                                              "2. DMI displays symbol TC31 in sub-area B3." + Environment.NewLine +
+                                              "3. DMI displays symbol TC33 in sub-area B4." + Environment.NewLine +
+                                              "4. DMI displays symbol TC33 in sub-area B5.");
+
+                    // Step 38
+                    trackCondition.MMI_NID_TRACKCOND = 26;
+                    trackCondition.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.RemoveTC;
+                    EVC32_MMITrackConditions.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                              "1. DMI removes symbol TC31 from sub-area B3." + Environment.NewLine +
+                                              "2. DMI displays symbol TC33 in sub-area B3." + Environment.NewLine +
+                                              "3. DMI displays symbol TC33 in sub-area B4." + Environment.NewLine +
+                                              "4. DMI displays symbol TC03 in sub-area B5.");
+
+                    // Step 39
+                    trackCondition.MMI_NID_TRACKCOND = 27;
+                    trackCondition.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.RemoveTC;
+                    EVC32_MMITrackConditions.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                              "1. DMI removes symbol TC33 from sub-area B3." + Environment.NewLine +
+                                              "2. DMI displays symbol TC33 in sub-area B3." + Environment.NewLine +
+                                              "3. DMI displays symbol TC03 in sub-area B4." + Environment.NewLine +
+                                              "4. DMI displays no symbol in sub-area B5.");
+
+                    // Step 40
+                    trackCondition.MMI_NID_TRACKCOND = 28;
+                    trackCondition.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.RemoveTC;
+                    EVC32_MMITrackConditions.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                              "1. DMI removes symbol TC33 from sub-area B3." + Environment.NewLine +
+                                              "2. DMI displays symbol TC03 in sub-area B3 with a yellow flashing frame." + Environment.NewLine +
+                                              "3. DMI displays no symbol in sub-area B4." + Environment.NewLine +
+                                              "4. DMI displays no symbol in sub-area B5.");
+
+                    // Step 41
+                    trackCondition.MMI_NID_TRACKCOND = 29;
+                    trackCondition.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.RemoveTC;
+                    EVC32_MMITrackConditions.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                              "1. DMI removes symbol TC36 from sub-area C1");
+
+                    break;
+                case msgType.typec:
+
+                    // Step 46
+                    EVC32_MMITrackConditions.MMI_Q_TRACKCOND_UPDATE = 0;
+
+                    TrackCondition trackConditionC = new TrackCondition
+                    {
+                        MMI_O_TRACKCOND_ANNOUNCE = 0,
+                        MMI_O_TRACKCOND_START = 0,
+                        MMI_O_TRACKCOND_END = 0,
+                        MMI_NID_TRACKCOND = 0,
+                        MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Pantograph,
+                        MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.LeaveArea,
+                        MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction,
+                        MMI_Q_TRACKCOND_ACTION_END = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction
+                    };
+
+                    EVC32_MMITrackConditions.TrackConditions = new List<TrackCondition> { trackConditionC };
+
+                    EVC32_MMITrackConditions.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                              "1. DMI displays symbol TC05 in sub-area B3 with a yellow flashing frame.");
+
+                    // Step 47
+                    trackConditionC.MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Main_power_switch_Neutral_Section;
+                    trackConditionC.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea;
+                    EVC32_MMITrackConditions.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                              "1. DMI displays symbol TC07 in sub-area B3 with a yellow flashing frame.");
+
+
+                    // Step 48
+                    trackConditionC.MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Main_power_switch_Neutral_Section;
+                    trackConditionC.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.LeaveArea;
+                    EVC32_MMITrackConditions.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                              "1. DMI displays symbol TC09 in sub-area B3 with a yellow flashing frame.");
+
+                    // Step 49
+                    trackConditionC.MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Non_Stopping_Area;
+                    trackConditionC.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea;
+                    EVC32_MMITrackConditions.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                              "1. DMI displays symbol TC11 in sub-area B3 with a yellow flashing frame.");
+
+                    // Step 50
+                    trackConditionC.MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Magnetic_Shoe_Brakes;
+                    trackConditionC.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea;
+                    EVC32_MMITrackConditions.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                              "1. DMI displays symbol TC14 in sub-area B3 with a yellow flashing frame.");
+
+                    // Step 51
+                    trackConditionC.MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Eddy_Current_Brakes;
+                    trackConditionC.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea;
+                    EVC32_MMITrackConditions.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                              "1. DMI displays symbol TC16 in sub-area B3 with a yellow flashing frame.");
+
+                    // Step 52
+                    trackConditionC.MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Regenerative_Brakes;
+                    trackConditionC.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea;
+                    EVC32_MMITrackConditions.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                              "1. DMI displays symbol TC18 in sub-area B3 with a yellow flashing frame.");
+
+                    // Step 53
+                    trackConditionC.MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Air_tightness;
+                    trackConditionC.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea;
+                    EVC32_MMITrackConditions.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                              "1. DMI displays symbol TC21 in sub-area B3 with a yellow flashing frame.");
+
+                    // Step 54
+                    trackConditionC.MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Air_tightness;
+                    trackConditionC.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.LeaveArea;
+                    EVC32_MMITrackConditions.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                              "1. DMI displays symbol TC22 in sub-area B3 with a yellow flashing frame.");
+
+                    // Step 55
+                    trackConditionC.MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Change_traction_not_fitted;
+                    trackConditionC.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea;
+                    EVC32_MMITrackConditions.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                              "1. DMI displays symbol TC24 in sub-area B3 with a yellow flashing frame.");
+
+                    // Step 56
+                    trackConditionC.MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Change_traction_AC_25_kV_50_Hz;
+                    trackConditionC.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea;
+                    EVC32_MMITrackConditions.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                              "1. DMI displays symbol TC26 in sub-area B3 with a yellow flashing frame.");
+
+                    // Step 57
+                    trackConditionC.MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Change_traction_AC_15_kV_16_7_Hz;
+                    trackConditionC.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea;
+                    EVC32_MMITrackConditions.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                              "1. DMI displays symbol TC28 in sub-area B3 with a yellow flashing frame.");
+
+                    // Step 58
+                    trackConditionC.MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Change_traction_DC_3_kV;
+                    trackConditionC.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea;
+                    EVC32_MMITrackConditions.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                              "1. DMI displays symbol TC30 in sub-area B3 with a yellow flashing frame.");
+
+                    // Step 59
+                    trackConditionC.MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Change_traction_DC_1_5_kV;
+                    trackConditionC.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea;
+                    EVC32_MMITrackConditions.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                              "1. DMI displays symbol TC32 in sub-area B3 with a yellow flashing frame.");
+
+                    // Step 60
+                    trackConditionC.MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Change_traction_DC_600_750;
+                    trackConditionC.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea;
+                    EVC32_MMITrackConditions.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                              "1. DMI displays symbol TC34 in sub-area B3 with a yellow flashing frame.");
+
+                    // Step 61
+                    trackConditionC.MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Sound_Horn;
+                    trackConditionC.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea;
+                    EVC32_MMITrackConditions.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                              "1. DMI displays symbol TC35 in sub-area B3 with a yellow flashing frame.");
+
+                    // Step 62
+                    trackConditionC.MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Tunnel_Stopping_Area;
+                    trackConditionC.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea;
+                    EVC32_MMITrackConditions.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                              "1. DMI displays symbol TC37 in sub-area B3 with a yellow flashing frame.");
+
+                    break;
+            }
+        }
+        #endregion
+
     }
 }
