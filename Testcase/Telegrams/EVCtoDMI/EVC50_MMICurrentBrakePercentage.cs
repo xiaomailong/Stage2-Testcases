@@ -46,7 +46,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// 251..255 = "Reserved"
         /// 
         /// </summary>
-        public static byte MMI_M_M_BP_ORIG
+        public static byte MMI_M_BP_ORIG
         {
             set => _pool.SITR.ETCS1.CurrentBrakePercentage.MmiMBpOrig.Value = value;
         }

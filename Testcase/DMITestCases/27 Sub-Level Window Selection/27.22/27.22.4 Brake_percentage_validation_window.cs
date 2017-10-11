@@ -132,7 +132,7 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Press the ‘Brake percentage’ button.");
 
-            EVC50_MMICurrentBrakePercentage.MMI_M_M_BP_ORIG = 99;
+            EVC50_MMICurrentBrakePercentage.MMI_M_BP_ORIG = 99;
             EVC50_MMICurrentBrakePercentage.MMI_M_BP_MEASURED = 95;
             EVC50_MMICurrentBrakePercentage.MMI_M_BP_CURRENT = 90;
             EVC50_MMICurrentBrakePercentage.Send();
@@ -172,7 +172,7 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Press the ‘Brake percentage’ button.");
 
-            EVC50_MMICurrentBrakePercentage.MMI_M_M_BP_ORIG = 99;
+            EVC50_MMICurrentBrakePercentage.MMI_M_BP_ORIG = 99;
             EVC50_MMICurrentBrakePercentage.MMI_M_BP_MEASURED = 95;
             EVC50_MMICurrentBrakePercentage.MMI_M_BP_CURRENT = 89;
             EVC50_MMICurrentBrakePercentage.Send();
@@ -220,7 +220,7 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Press the ‘Brake percentage’ button.");
 
-            EVC50_MMICurrentBrakePercentage.MMI_M_M_BP_ORIG = 99;
+            EVC50_MMICurrentBrakePercentage.MMI_M_BP_ORIG = 99;
             EVC50_MMICurrentBrakePercentage.MMI_M_BP_MEASURED = 95;
             EVC50_MMICurrentBrakePercentage.MMI_M_BP_CURRENT = 88;
             EVC50_MMICurrentBrakePercentage.Send();

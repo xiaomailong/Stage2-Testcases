@@ -92,7 +92,7 @@ namespace Testcase.DMITestCases
 
             EVC50_MMICurrentBrakePercentage.MMI_M_BP_CURRENT = 85;
             EVC50_MMICurrentBrakePercentage.MMI_M_BP_MEASURED = 92;
-            EVC50_MMICurrentBrakePercentage.MMI_M_M_BP_ORIG = 90;
+            EVC50_MMICurrentBrakePercentage.MMI_M_BP_ORIG = 90;
             EVC50_MMICurrentBrakePercentage.Send();
 
             // Spec refers to Maintenance password window instead of Brake Percentage: ignored;
@@ -362,7 +362,7 @@ namespace Testcase.DMITestCases
 
             EVC50_MMICurrentBrakePercentage.MMI_M_BP_CURRENT = 85;
             EVC50_MMICurrentBrakePercentage.MMI_M_BP_MEASURED = 92;
-            EVC50_MMICurrentBrakePercentage.MMI_M_M_BP_ORIG = 100;
+            EVC50_MMICurrentBrakePercentage.MMI_M_BP_ORIG = 100;
             EVC50_MMICurrentBrakePercentage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -425,7 +425,7 @@ namespace Testcase.DMITestCases
 
             EVC50_MMICurrentBrakePercentage.MMI_M_BP_CURRENT = 85;
             EVC50_MMICurrentBrakePercentage.MMI_M_BP_MEASURED = 92;
-            EVC50_MMICurrentBrakePercentage.MMI_M_M_BP_ORIG = 99;
+            EVC50_MMICurrentBrakePercentage.MMI_M_BP_ORIG = 99;
             EVC50_MMICurrentBrakePercentage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
