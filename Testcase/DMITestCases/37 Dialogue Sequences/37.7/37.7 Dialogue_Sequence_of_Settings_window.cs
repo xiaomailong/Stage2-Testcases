@@ -523,8 +523,8 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, @"Enter the value 65536 and press an input field to confirm. Press the ‘Yes’ button");
 
-            //EVC29_MMIEchoedRemoveRBCData.MMI_M_VBC_CODE_ = 0xfeff;       // 65536 (0x100) bit-inverted   
-            //EVC29_MMIEchoedRemoveRBCData.Send();
+            EVC29_MMIEchoedRemoveVBCData.MMI_M_VBC_CODE_ = 65536;     
+            EVC29_MMIEchoedRemoveVBCData.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Remove VBC validation window." + Environment.NewLine +
@@ -574,8 +574,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Enter the value 65536 and confirm by pressing an input field");
 
 
-            //EVC29_MMIEchoedRemoveRBCData.MMI_M_VBC_CODE_ = 0xfeff;       // 65536 (0x100) bit-inverted   
-            //EVC29_MMIEchoedRemoveRBCData.Send();
+            EVC29_MMIEchoedRemoveVBCData.MMI_M_VBC_CODE_ = 65536;
+            EVC29_MMIEchoedRemoveVBCData.Send();
 
             DmiActions.ShowInstruction(this, @"Press the ‘Yes’ button in the Remove VBC validation window and press an input field");
 

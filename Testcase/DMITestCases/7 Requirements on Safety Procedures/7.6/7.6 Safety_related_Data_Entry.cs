@@ -234,7 +234,9 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Enter and confirm the value ‘65536’ at an Input Field.Then, press ‘Yes’ button and check the log file for packet EVC-119 from DMI");
 
-            // EVC29_MMIEchoedRemoveVBCData.Send(this);     // ??
+            EVC29_MMIEchoedRemoveVBCData.MMI_M_VBC_CODE_ = 66535;
+            EVC29_MMIEchoedRemoveVBCData.Send();
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                "1. DMI displays the Remove VBC validation window." + Environment.NewLine +
                                 @"2. The ‘Yes’ button in the Remove VBC validation  window is at a different location from the ‘Yes’ button in the Remove VBC window." + Environment.NewLine +

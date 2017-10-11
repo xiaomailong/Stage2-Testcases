@@ -206,7 +206,7 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, "Press in the data input field to confirm the entered data");
 
-            EVC50_MMICurrentBrakePercentage.MMI_M_BP_ORIG = 99;
+            EVC50_MMICurrentBrakePercentage.MMI_M_M_BP_ORIG = 99;
             EVC50_MMICurrentBrakePercentage.MMI_M_BP_CURRENT = 88;
             EVC50_MMICurrentBrakePercentage.MMI_M_BP_MEASURED= 95;
 
