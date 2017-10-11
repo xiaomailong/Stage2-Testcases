@@ -310,7 +310,7 @@ namespace Testcase.DMITestCases
             XML.XML_2_6_a.Send(this);
 
             // Need to send set of data for the input values ??
-            EVC50_MMICurrentBrakePercentage.MMI_M_M_BP_ORIG = 100;
+            EVC50_MMICurrentBrakePercentage.MMI_M_BP_ORIG = 100;
             EVC50_MMICurrentBrakePercentage.MMI_M_BP_MEASURED = 93;
             EVC50_MMICurrentBrakePercentage.MMI_M_BP_CURRENT = 92;
             EVC50_MMICurrentBrakePercentage.Send();

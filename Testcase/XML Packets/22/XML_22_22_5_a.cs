@@ -32,7 +32,7 @@ namespace Testcase.XML
         {
             _pool = pool;
 
-            EVC50_MMICurrentBrakePercentage.MMI_M_M_BP_ORIG = 50;
+            EVC50_MMICurrentBrakePercentage.MMI_M_BP_ORIG = 50;
             EVC50_MMICurrentBrakePercentage.MMI_M_BP_MEASURED = 255;
             EVC50_MMICurrentBrakePercentage.MMI_M_BP_CURRENT = 251;
             EVC20_MMISelectLevel.Send();            
