@@ -343,8 +343,8 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, @"Confirm the data to open the Remove VBC validation window");
 
-            //EVC29_MMIEchoedRemoveVBCData.MMI_M_VBC_CODE_ = 0;
-            //EVC29_MMIEchoedRemoveVBCData.Send();
+            EVC29_MMIEchoedRemoveVBCData.MMI_M_VBC_CODE_ = 0;
+            EVC29_MMIEchoedRemoveVBCData.Send();
 
             XML_10_4_1_4_a_b(msgType.typea);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +

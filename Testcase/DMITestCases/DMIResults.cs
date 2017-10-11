@@ -924,7 +924,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(pool, @"Perform the following action after pressing OK: " + Environment.NewLine + Environment.NewLine +
                                 "1. Press ‘Yes’ button." + Environment.NewLine +
                                 "2. Confirmed the selected value by pressing the input field.");
-            //to be updated (packet 110 to be checked)
+            EVC110_MMIConfimedTrainData.CheckConfirmedTrainData();
         }
 
         /// <summary>
