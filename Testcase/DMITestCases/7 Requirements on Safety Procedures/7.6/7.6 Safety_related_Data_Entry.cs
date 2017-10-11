@@ -329,7 +329,7 @@ namespace Testcase.DMITestCases
 
             // Need to send set of data for the input values ??
             //EVC51_MMIEchoedBrakePercentage...
-            //EVC51_MMIEchoedBrakePercentage.Send(this);
+            EVC51_MMIEchoedBrakePercentage.Send();
             
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Brake percentage validation window." + Environment.NewLine +

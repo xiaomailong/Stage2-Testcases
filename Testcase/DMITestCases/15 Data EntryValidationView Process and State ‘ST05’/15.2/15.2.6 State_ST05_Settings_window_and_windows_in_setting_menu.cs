@@ -889,8 +889,8 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Enter Brake percentage ‘80’ and accept entered data by pressing an input field. Press ‘Yes’ button on keypad");
 
-            //EVC51_MMIEchoedBrakePercentage.MMI_M_BP_CURRENT_ = 80;
-            //EVC51_MMIEchoedBrakePercentage.Send();
+            EVC51_MMIEchoedBrakePercentage.MMI_M_BP_CURRENT_ = 80;
+            EVC51_MMIEchoedBrakePercentage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Brake percentage window until Validate Brake percentage window is displayed." + Environment.NewLine +

@@ -347,8 +347,7 @@ namespace Testcase.DMITestCases
 
             //EVC150_MMIConfirmedBrakePercentage.CheckMmiMBPCurrent = 100;
 
-            //EVC51_MMIEchoedBrakePercentage.MMI_M_BP_ORIG_ = 0x9b;       // (value 100 -> 0x64, bit-inverted)
-            //EVC51_MMIEchoedBrakePercentage.Send();
+            EVC51_MMIEchoedBrakePercentage.MMI_M_BP_ORIG_ = 100;   
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Brake percentage window.");
