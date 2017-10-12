@@ -31,6 +31,8 @@ namespace Testcase
 
             // Initialise instance of all telegrams
             TraceInfo("Initialise default telegram values.");
+
+            // EVC->DMI
             EVC0_MMIStartATP.Initialise(this);
             EVC1_MMIDynamic.Initialise(this);
             EVC2_MMIStatus.Initialise(this);
@@ -40,28 +42,46 @@ namespace Testcase
             EVC6_MMICurrentTrainData.Initialise(this);
             EVC7_MMIEtcsMiscOutSignals.Initialise(this);
             EVC8_MMIDriverMessage.Initialise(this);
+
+            EVC11_MMICurrentSRRules.Initialise(this);
             EVC14_MMICurrentDriverID.Initialise(this);
             EVC16_CurrentTrainNumber.Initialise(this);
             EVC18_MMISetVBC.Initialise(this);
             EVC19_MMIRemoveVBC.Initialise(this);
+
             EVC20_MMISelectLevel.Initialise(this);
             EVC22_MMICurrentRBC.Initialise(this);
+            EVC23_MMILssma.Initialise(this);
+            EVC25_MMISpecificSTMDERequest.Initialise(this);
+            EVC29_MMIEchoedRemoveVBCData.Initialise(this);
+
             EVC30_MMIRequestEnable.Initialise(this);
+            EVC31_MMINTCDeSelect.Initialise(this);
             EVC32_MMITrackConditions.Initialise(this);
             EVC33_MMIAdditionalOrder.Initialise(this);
             EVC34_MMISystemVersion.Initialise(this);
 
+            EVC40_MMICurrentMaintenanceData.Initialise(this);
+            EVC41_MMIEchoedMaintenanceData.Initialise(this);
+
+            EVC50_MMICurrentBrakePercentage.Initialise(this);
+            EVC51_MMIEchoedBrakePercentage.Initialise(this);
+
+            // DMI->EVC
+            EVC100_MMIStartMmi.Initialise(this);
             EVC101_MMIDriverRequest.Initialise(this);
             EVC102_MMIStatusReport.Initialise(this);
             EVC104_MMINewDriverData.Initialise(this);
             EVC107_MMINewTrainData.Initialise(this);
+            //EVC109_MMISetTimeMMI.Initialise(this);
+            EVC110_MMIConfimedTrainData.Initialise(this);
+
             EVC111_MMIDriverMessageAck.Initialise(this);
             EVC116_MMINewTrainNumber.Initialise(this);
-            EVC121_MMINewLevel.Initialise(this);
-            EVC152_MMIDriverAction.Initialise(this);
 
-            // Initialises all EVC packets that contain dynamic arrays
-            SITR.SMDCtrl.ETCS1.EchoedTrainData.Value = 0x8;
+            EVC121_MMINewLevel.Initialise(this);
+
+            EVC152_MMIDriverAction.Initialise(this);
         }
 
         public override void PostExecution()
