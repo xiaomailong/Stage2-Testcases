@@ -31,7 +31,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             DataElements = new List<DataElement>();
 
             // Set as dynamic
-            _pool.SITR.SMDCtrl.ETCS1.CurrentTrainData.Value = 0x8;
+            _pool.SITR.SMDCtrl.ETCS1.CurrentTrainData.Value = 0x0008;
 
             // Set default values
             _pool.SITR.ETCS1.CurrentTrainData.MmiMPacket.Value = 6; // Packet ID
@@ -96,7 +96,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             // Set the total length of the packet
             _pool.SITR.ETCS1.CurrentTrainData.MmiLPacket.Value = totalSizeCounter;
 
-            _pool.SITR.SMDCtrl.ETCS1.CurrentTrainData.Value = 0x09;
+            _pool.SITR.SMDCtrl.ETCS1.CurrentTrainData.Value = 0x0009;
         }
 
         /// <summary>
