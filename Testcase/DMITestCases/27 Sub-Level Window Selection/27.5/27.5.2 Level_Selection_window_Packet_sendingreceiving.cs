@@ -68,7 +68,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,Level window is not display on DMI
             Test Step Comment: (1) MMI_gen 1630 (partly: NEAGTIVE, 1st bullet);
             */
-            XML.XML_22_5_2_a.Send(this);
+            XML_22_5_2(msgType.typea);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI does not display the Level window ");
@@ -91,7 +91,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,DMI still displays Driver ID window
             Test Step Comment: (1) MMI_gen 1630 (partly: NEAGTIVE, 2nd  bullet);
             */
-            XML.XML_22_5_2_b.Send(this);
+            XML_22_5_2(msgType.typeb);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI still displays the Driver ID window ");
@@ -182,7 +182,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The buttons of Level window and the value of an input field are changed refer to received packet EVC-20 as picture below,
             Test Step Comment: (1) MMI_gen 2197;    
             */
-            XML.XML_22_5_2_c.Send(this);
+            XML_22_5_2(msgType.typec);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. A keyboard with a 3 x 1 array of buttons is displayed with the following buttons(left to right):" + Environment.NewLine +
@@ -194,7 +194,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The Level window is closed.Use the log file to confirm that there is no packet information (i.e. EVC-101, EVC-121) send out from DMI
             Test Step Comment: (1) MMI_gen 2277 (partly: immediately close the Level window);(2) MMI_gen 2277 (partly: No response shall be transmitted);
             */
-            XML.XML_22_5_2_b.Send(this);
+            XML_22_5_2(msgType.typeb);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Level window");
@@ -207,5 +207,89 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
+        #region Send_XML_22_5_2_DMI_Test_Specification
+        enum msgType
+        {
+            typea,
+            typeb,
+            typec
+        }
+
+        private void XML_22_5_2(msgType type)
+        {
+            EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Disabled;
+            switch (type)
+            {
+                case msgType.typea:
+                    EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new Variables.MMI_Q_LEVEL_NTC_ID[]
+                    { Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level,
+                        Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level };
+                    EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new Variables.MMI_M_CURRENT_LEVEL[]
+                    { Variables.MMI_M_CURRENT_LEVEL.NotLastUsedLevel,
+                        Variables.MMI_M_CURRENT_LEVEL.NotLastUsedLevel };
+                    EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = new Variables.MMI_M_LEVEL_FLAG[]
+                    { Variables.MMI_M_LEVEL_FLAG.MarkedLevel,
+                        Variables.MMI_M_LEVEL_FLAG.MarkedLevel };
+                    EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = new Variables.MMI_M_INHIBITED_LEVEL[]
+                    { Variables.MMI_M_INHIBITED_LEVEL.NotInhibited,
+                        Variables.MMI_M_INHIBITED_LEVEL.Inhibited };
+                    EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = new Variables.MMI_M_INHIBIT_ENABLE[]
+                    { Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting,
+                        Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting };
+                    EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new Variables.MMI_M_LEVEL_NTC_ID[]
+                    { Variables.MMI_M_LEVEL_NTC_ID.L0,
+                        Variables.MMI_M_LEVEL_NTC_ID.L2 };
+                    break;
+                case msgType.typeb:
+
+                    EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Disabled;
+
+                    EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = null;
+                    EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = null;
+                    EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = null;
+                    EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = null;
+                    EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = null;
+                    EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = null;
+                    break;
+                case msgType.typec:
+
+                    EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = MMI_Q_CLOSE_ENABLE.Disabled;
+
+                    Variables.MMI_Q_LEVEL_NTC_ID[] paramEvc20MmiQLevelNtcId =
+                        { MMI_Q_LEVEL_NTC_ID.ETCS_Level,
+                          MMI_Q_LEVEL_NTC_ID.ETCS_Level,
+                          MMI_Q_LEVEL_NTC_ID.ETCS_Level };
+                    Variables.MMI_M_CURRENT_LEVEL[] paramEvc20MmiMCurrentLevel =
+                        { MMI_M_CURRENT_LEVEL.NotLastUsedLevel,
+                          MMI_M_CURRENT_LEVEL.NotLastUsedLevel,
+                          MMI_M_CURRENT_LEVEL.NotLastUsedLevel };
+                    Variables.MMI_M_LEVEL_FLAG[] paramEvc20MmiMLevelFlag =
+                        { MMI_M_LEVEL_FLAG.MarkedLevel,
+                         MMI_M_LEVEL_FLAG.MarkedLevel,
+                         MMI_M_LEVEL_FLAG.MarkedLevel };
+                    Variables.MMI_M_INHIBITED_LEVEL[] paramEvc20MmiMInhibitedLevel =
+                        { MMI_M_INHIBITED_LEVEL.NotInhibited,
+                          MMI_M_INHIBITED_LEVEL.NotInhibited,
+                          MMI_M_INHIBITED_LEVEL.NotInhibited };
+                    Variables.MMI_M_INHIBIT_ENABLE[] paramEvc20MmiMInhibitEnable =
+                        { MMI_M_INHIBIT_ENABLE.AllowedForInhibiting,
+                          MMI_M_INHIBIT_ENABLE.AllowedForInhibiting,
+                          MMI_M_INHIBIT_ENABLE.AllowedForInhibiting };
+                    Variables.MMI_M_LEVEL_NTC_ID[] paramEvc20MmiMLevelNtcId =
+                        { MMI_M_LEVEL_NTC_ID.L0,
+                          MMI_M_LEVEL_NTC_ID.L2,
+                          MMI_M_LEVEL_NTC_ID.AWS_TPWS };
+
+                    EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = paramEvc20MmiQLevelNtcId;
+                    EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = paramEvc20MmiMCurrentLevel;
+                    EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = paramEvc20MmiMLevelFlag;
+                    EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = paramEvc20MmiMInhibitedLevel;
+                    EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = paramEvc20MmiMInhibitEnable;
+                    EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = paramEvc20MmiMLevelNtcId;
+                    break;
+            }
+            EVC20_MMISelectLevel.Send();
+        }
+        #endregion
     }
 }

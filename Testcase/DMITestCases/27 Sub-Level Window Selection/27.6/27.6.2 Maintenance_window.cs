@@ -70,7 +70,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,DMI received the EVC-30 with [MMI_ENABLE_REQUEST (EVC-30).MMI_Q_REQUEST_ENABLE_64] (#29) = 0 in order to disable wheel diameter.DMI received the EVC-30 with [MMI_ENABLE_REQUEST (EVC-30).MMI_Q_REQUEST_ENABLE_64] (#30) = 0 in order to disable doppler.The ‘Maintenance’ button is disabled
             Test Step Comment: (1) MMI_gen 11746 (partly: disable wheel diameter);(2) MMI_gen 11746 (partly: disable doppler);(3) MMI_gen 11724;
             */
-            XML.XML_22_6_2_a.Send(this);
+            XML_22_6_2(msgType.typea);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Maintenance’ button is disabled");
@@ -81,7 +81,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information, DMI received the EVC-30 with [MMI_ENABLE_REQUEST (EVC-30).MMI_Q_REQUEST_ENABLE_64] (#29) = 1 in order to enable wheel diameter.DMI received the EVC-30 with [MMI_ENABLE_REQUEST (EVC-30).MMI_Q_REQUEST_ENABLE_64] (#30) = 0 in order to disable doppler.The ‘Maintenance’ button is enabled
             Test Step Comment: (1) MMI_gen 11746 (partly: enable wheel diameter);(2) MMI_gen 11746 (partly: disable doppler);(3) MMI_gen 11724;
             */
-            XML.XML_22_6_2_b.Send(this);
+            XML_22_6_2(msgType.typeb);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Maintenance’ button is enabled");
@@ -105,7 +105,7 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Press the ‘Close’ button to return to the Settings window");
 
-            XML.XML_22_6_2_a.Send(this);
+            XML_22_6_2(msgType.typea);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Maintenance’ button is disabled");
@@ -116,7 +116,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,DMI received the EVC-30 with [MMI_ENABLE_REQUEST (EVC-30).MMI_Q_REQUEST_ENABLE_64] (#29) = 0 in order to disable wheel diameter.DMI received the EVC-30 with [MMI_ENABLE_REQUEST (EVC-30).MMI_Q_REQUEST_ENABLE_64] (#30) = 1 in order to enable doppler.The ‘Maintenance’ button is enabled
             Test Step Comment: (1) MMI_gen 11746 (partly: disable wheel diameter);(2) MMI_gen 11746 (partly: enable doppler);(3) MMI_gen 11724;
             */
-            XML.XML_22_6_2_c.Send(this);
+            XML_22_6_2(msgType.typec);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Maintenance’ button is enabled");
@@ -140,7 +140,7 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Press the ‘Close’ button to return to the Settings window");
 
-            XML.XML_22_6_2_a.Send(this);
+            XML_22_6_2(msgType.typea);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Maintenance’ button is disabled");
@@ -151,7 +151,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,DMI received the EVC-30 with [MMI_ENABLE_REQUEST (EVC-30).MMI_Q_REQUEST_ENABLE_64] (#29) = 1 in order to enable wheel diameter.DMI received the EVC-30 with [MMI_ENABLE_REQUEST (EVC-30).MMI_Q_REQUEST_ENABLE_64] (#30) = 1 in order to enabled doppler.The ‘Maintenance’ button is enabled
             Test Step Comment: (1) MMI_gen 11746 (partly: enable wheel diameter);(2) MMI_gen 11746 (partly: enable doppler);(3) MMI_gen 11724;
             */
-            XML.XML_22_6_2_d.Send(this);
+            XML_22_6_2(msgType.typed);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Maintenance’ button is enabled");
@@ -337,5 +337,184 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
+        #region Send_XML_22_6_2_DMI_Test_Specification
+        enum msgType
+        {
+            typea,
+            typeb,
+            typec,
+            typed
+        }
+
+        private void XML_22_6_2(msgType type)
+        {
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 0x4;   // Enable all windows
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.None;
+            EVC30_MMIRequestEnable.Send();
+            switch (type)
+            {
+                case msgType.typea:
+                    // This step just wants doppler and wheel diameter disabled: nothing is said about the others so they might as well be disabled
+                    /*
+                           EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Start |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.DriverID |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.TrainData |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.Level |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.TrainRunningNumber |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.Shunting |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.ExitShunting |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.NonLeading |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.MaintainShunting | 
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.EOA |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.Adhesion |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.SRSpeedDistance |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.TrainIntegrity |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.Language |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.Volume |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.Brightness |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.SystemVersion |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.SetVBC |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.RemoveVBC |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.ContactLastRBC |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.UseShortNumber |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.EnterRBCData |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.RadioNetworkID |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.GeographicalPosition |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.EndOfDataEntryNTC |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.SetLocalTimeDateAndOffset |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.SetLocalOffset |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.Reserved |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.StartBrakeTest |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.EnableDoppler |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.EnableBrakePercentage;
+                    */
+                    break;
+                case msgType.typeb:
+                    // The state here should be that all flags are disabled
+                    EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter;
+
+                    // This step just wants wheel diameter enabled: nothing is said about the others so they might as well be disabled
+                    /*
+                           EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Start |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.DriverID |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.TrainData |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.Level |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.TrainRunningNumber |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.Shunting |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.ExitShunting |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.NonLeading |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.MaintainShunting | 
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.EOA |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.Adhesion |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.SRSpeedDistance |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.TrainIntegrity |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.Language |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.Volume |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.Brightness |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.SystemVersion |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.SetVBC |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.RemoveVBC |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.ContactLastRBC |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.UseShortNumber |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.EnterRBCData |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.RadioNetworkID |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.GeographicalPosition |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.EndOfDataEntryNTC |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.SetLocalTimeDateAndOffset |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.SetLocalOffset |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.Reserved |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.StartBrakeTest |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.EnableDoppler |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.EnableBrakePercentage;
+                    */
+                    break;
+                case msgType.typec:
+                    // The state here should be that all flags are disabled
+                    EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.EnableDoppler;
+
+                    // This step just wants wheel diameter enabled: nothing is said about the others so they might as well be disabled
+                    /*
+                           EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Start |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.DriverID |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.TrainData |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.Level |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.TrainRunningNumber |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.Shunting |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.ExitShunting |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.NonLeading |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.MaintainShunting | 
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.EOA |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.Adhesion |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.SRSpeedDistance |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.TrainIntegrity |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.Language |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.Volume |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.Brightness |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.SystemVersion |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.SetVBC |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.RemoveVBC |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.ContactLastRBC |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.UseShortNumber |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.EnterRBCData |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.RadioNetworkID |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.GeographicalPosition |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.EndOfDataEntryNTC |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.SetLocalTimeDateAndOffset |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.SetLocalOffset |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.Reserved |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.StartBrakeTest |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.EnableDoppler |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.EnableBrakePercentage;
+                    */
+                    break;
+                case msgType.typed:
+                    // The state here should be that all flags are disabled
+                    EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.EnableDoppler;
+
+                    // This step just wants wheel diameter enabled: nothing is said about the others so they might as well be disabled
+                    /*
+                           EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Start |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.DriverID |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.TrainData |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.Level |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.TrainRunningNumber |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.Shunting |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.ExitShunting |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.NonLeading |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.MaintainShunting | 
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.EOA |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.Adhesion |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.SRSpeedDistance |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.TrainIntegrity |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.Language |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.Volume |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.Brightness |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.SystemVersion |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.SetVBC |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.RemoveVBC |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.ContactLastRBC |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.UseShortNumber |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.EnterRBCData |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.RadioNetworkID |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.GeographicalPosition |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.EndOfDataEntryNTC |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.SetLocalTimeDateAndOffset |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.SetLocalOffset |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.Reserved |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.StartBrakeTest |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.EnableDoppler |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.EnableBrakePercentage;
+                    */
+                    break;
+            }
+            EVC30_MMIRequestEnable.Send();
+        }
+        #endregion
     }
 }

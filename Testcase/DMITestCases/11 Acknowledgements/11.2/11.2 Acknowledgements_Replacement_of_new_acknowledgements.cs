@@ -67,7 +67,7 @@ namespace Testcase.DMITestCases
             Action: Use the test script file 6_2_a.xml to send EVC-8 with,MMI_Q_TEXT = 280MMI_Q_TEXT_CRITERIA = 1MMI_I_TEXT = 1
             Expected Result: DMI displays the text message ‘Emergency stop’ in sub-area E5 with yellow flashing frame
             */
-            XML.XML_6_2_a.Send(this);
+            XML_6_2(msgType.typea);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the message ‘Emergency stop’ in sub-area E5 with a yellow flashing frame.");
@@ -105,7 +105,7 @@ namespace Testcase.DMITestCases
             Action: Use the test script file 6_2_b.xml to send EVC-8 with,MMI_Q_TEXT = 1MMI_Q_TEXT_CRITERIA = 1MMI_I_TEXT = 1
             Expected Result: DMI displays the text message 'Acknowledgement' in sub-area E5 with yellow flashing frame
             */
-            XML.XML_6_2_b.Send(this);
+            XML_6_2(msgType.typeb);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the message ‘Acknowledgement’ in sub-area E5 with a yellow flashing frame.");
@@ -134,7 +134,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)    DMI still displays ST01 symbol in sub-area C9
             Test Step Comment: (1) MMI_gen 7036 (partly: focus shall not move);
             */
-            XML.XML_6_2_c.Send(this);
+            XML_6_2(msgType.typec);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI still displays symbol ST01 in sub-area C9.");

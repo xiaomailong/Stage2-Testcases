@@ -197,7 +197,12 @@ namespace Testcase.DMITestCases
             EVC50_MMICurrentBrakePercentage.MMI_M_BP_CURRENT = 40;
             EVC50_MMICurrentBrakePercentage.Send();
 
-            XML.XML_22_22_5_a.Send(this);
+            #region Send_XML_22_22_5_DMI_Test_Specification
+            EVC50_MMICurrentBrakePercentage.MMI_M_BP_ORIG = 50;
+            EVC50_MMICurrentBrakePercentage.MMI_M_BP_MEASURED = 255;
+            EVC50_MMICurrentBrakePercentage.MMI_M_BP_CURRENT = 251;
+            EVC20_MMISelectLevel.Send();
+            #endregion
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The ‘Enter’ button of the data input field displays ‘40’." + Environment.NewLine +

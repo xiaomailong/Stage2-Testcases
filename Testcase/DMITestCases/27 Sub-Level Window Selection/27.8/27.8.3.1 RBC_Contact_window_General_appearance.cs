@@ -63,7 +63,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,DMI does not display RBC Contact window
             Test Step Comment: (1) MMI_gen 9446 (partly: NEGATIVE, inactive);
             */
-            XML.XML_22_8_3_1_a.Send(this);
+            XML_22_8_3_1(msgType.typea);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI does not display the RBC contact ID window");
@@ -467,7 +467,7 @@ namespace Testcase.DMITestCases
             Expected Result: The RBC Contact window is closed, DMI displays Main window
             Test Step Comment: MMI_gen 11241;
             */
-            XML.XML_22_8_3_1_b.Send(this);
+            XML_22_8_3_1(msgType.typeb);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the RBC Contact window and displays the Main window.");
@@ -480,5 +480,31 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
+        #region Send_XML_22_8_3_1_DMI_Test_Specification
+        enum msgType
+        {
+            typea,
+            typeb
+        }
+
+        private void XML_22_8_3_1(msgType type)
+        {
+
+            EVC22_MMICurrentRBC.NID_RBC = 0;
+            EVC22_MMICurrentRBC.MMI_NID_RADIO = 0;
+            EVC22_MMICurrentRBC.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Disabled;
+            EVC22_MMICurrentRBC.MMI_M_BUTTONS = EVC22_MMICurrentRBC.EVC22BUTTONS.NoButton;
+            switch (type)
+            {
+                case msgType.typea:
+                    EVC22_MMICurrentRBC.MMI_NID_WINDOW = 5;
+                    break;
+                case msgType.typeb:
+                    EVC22_MMICurrentRBC.MMI_NID_WINDOW = 9;
+                    break;
+            }
+            EVC22_MMICurrentRBC.Send();
+        }
+        #endregion
     }
 }

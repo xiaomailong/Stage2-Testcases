@@ -15,6 +15,7 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
 using Testcase.Telegrams.EVCtoDMI;
 using Testcase.Telegrams.DMItoEVC;
+using static Testcase.Telegrams.EVCtoDMI.Variables;
 
 
 namespace Testcase.DMITestCases
@@ -66,7 +67,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI does not display RBC data window
             Test Step Comment: MMI_gen 9445 (partly: NEGATIVE, inactive);
             */
-            XML.XML_22_8_1_1_a.Send(this);
+            XML_22_8_1_1(msgType.typea);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. DMI does not display the RBC data window");
@@ -809,7 +810,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The value of input fields for RBC ID and RBC Phone number are changed refer to received packet as follows,RBC ID = 1234RBC Phone number = 1234
             Test Step Comment: (1) MMI_gen 1628; MMI_gen 1616 (partly: [0-9]); MMI_gen 1620 (partly: displayed);
             */
-            XML.XML_22_8_1_1_a.Send(this);
+            XML_22_8_1_1(msgType.typea);
 
             // Spec says phone number and ID are 1234, surely what was saved before would be expected?
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -822,7 +823,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The value of input fields for RBC Phone number are changed to empty refer to received packet
             Test Step Comment: (1) MMI_gen 1620 (partly: empty, unknown); MMI_gem 1616 (partly: only contains F);
             */
-            XML.XML_22_8_1_1_b.Send(this);
+            XML_22_8_1_1(msgType.typeb);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘RBC Phone number’ data input field is blank.");
@@ -833,7 +834,7 @@ namespace Testcase.DMITestCases
             Expected Result: erify the following information,The value of input fields for RBC Phone number are changed to empty refer to received packet
             Test Step Comment: (1) MMI_gen 1620 (partly: empty, unused);
             */
-            XML.XML_22_8_1_1_c.Send(this);
+            XML_22_8_1_1(msgType.typec);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘RBC Phone number’ data input field is blank.");
@@ -856,7 +857,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   The result of variable MMI_N_DATA_ELEMENTS and MMI_Q_DATA_CHECK are ignored, the value of each input field is changed refer to the value of variable MMI_NID_RBC and MMI_NID_RADIO as follows,  RBC ID = 5678  RBC Phone number = 5678
             Test Step Comment: (1) MMI_gen 9454;
             */
-            XML.XML_22_8_1_1_d.Send(this);
+            XML_22_8_1_1(msgType.typed);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘RBC Phone number’ data input field displays ‘5678’." + Environment.NewLine +
@@ -883,5 +884,47 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
+
+        #region Send_XML_8_1_1_DMI_Test_Specification
+        enum msgType
+        {
+            typea,
+            typeb,
+            typec,
+            typed
+        }
+
+        private void XML_22_8_1_1(msgType type)
+        {
+            EVC22_MMICurrentRBC.MMI_NID_WINDOW = 10;
+            EVC22_MMICurrentRBC.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
+            EVC22_MMICurrentRBC.MMI_M_BUTTONS = EVC22_MMICurrentRBC.EVC22BUTTONS.NoButton;
+            switch (type)
+            {
+                case msgType.typea:
+                    EVC22_MMICurrentRBC.NID_RBC = 1234;
+                    EVC22_MMICurrentRBC.MMI_NID_RADIO = 0x1234ffffffffffff;
+                    break;
+                case msgType.typeb:
+                    EVC22_MMICurrentRBC.NID_RBC = 1234;
+                    EVC22_MMICurrentRBC.MMI_NID_RADIO = 0xffffffffffffffff;
+                    break;
+                case msgType.typec:
+                    EVC22_MMICurrentRBC.NID_RBC = 1234;
+                    EVC22_MMICurrentRBC.MMI_NID_RADIO = 0xabcdefffffffffff;
+                    break;
+                case msgType.typed:
+                    EVC22_MMICurrentRBC.NID_RBC = 5648;
+                    // spec says 5678ef....
+                    EVC22_MMICurrentRBC.MMI_NID_RADIO = 0x5678ffffffffffff;
+                    EVC22_MMICurrentRBC.DataElements = new List<DataElement> { new DataElement { Identifier = 0, QDataCheck = 4, EchoText = "\0x1\0x30" },
+                        new DataElement { Identifier = 1, QDataCheck = 5, EchoText = "\0x1\0x30"} };
+                    break;
+            }
+            EVC22_MMICurrentRBC.Send();
+        }
+        #endregion
+
+
     }
 }

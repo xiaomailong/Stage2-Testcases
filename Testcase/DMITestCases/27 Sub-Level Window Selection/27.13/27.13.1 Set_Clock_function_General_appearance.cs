@@ -70,7 +70,7 @@ namespace Testcase.DMITestCases
             Expected Result: The Set clock button is disabled
             Test Step Comment: MMI_gen 1563         (partly: disabled);             
             */
-            XML.XML_22_13_1_a.Send(this);
+            XML_22_13_1(msgType.typea);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Set’ clock button is disabled");
@@ -83,7 +83,7 @@ namespace Testcase.DMITestCases
             */
             DmiActions.Deactivate_Cabin(this);
 
-            XML.XML_22_13_1_d.Send(this);
+            XML_22_13_1(msgType.typed);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Set’ clock button stays disabled");
@@ -96,7 +96,7 @@ namespace Testcase.DMITestCases
             Expected Result: The Set clock button is enabled
             Test Step Comment: MMI_gen 1563         (partly: enabled);             
             */
-            XML.XML_22_13_1_d.Send(this);
+            XML_22_13_1(msgType.typed);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Set’ clock button is enabled");
@@ -1909,7 +1909,7 @@ namespace Testcase.DMITestCases
             Action: Use the test script file 22_13_1_a.xml to send EVC-30
             Expected Result: The Set clock button is disabled
             */
-            XML.XML_22_13_1_a.Send(this);
+            XML_22_13_1(msgType.typea);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Set clock’ button is disabled");
@@ -1920,7 +1920,7 @@ namespace Testcase.DMITestCases
             Expected Result: The Set clock button is enabled
             Test Step Comment: MMI_gen 1563         (partly: enabled bit#26);             
             */
-            XML.XML_22_13_1_c.Send(this);
+            XML_22_13_1(msgType.typec);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Set clock’ button is enabled");
@@ -1955,7 +1955,7 @@ namespace Testcase.DMITestCases
             Expected Result: The Set clock button is enabled
             Test Step Comment: MMI_gen 1563         (partly: enabled bit#25);             
             */
-            XML.XML_22_13_1_a.Send(this);
+            XML_22_13_1(msgType.typea);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Set clock’ button is enabled");
@@ -1990,5 +1990,38 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
+        #region Send_XML_22_13_1_DMI_Test_Specification
+        enum msgType
+        {
+            typea,
+            typeb,
+            typec,
+            typed
+        }
+
+        private void XML_22_13_1(msgType type)
+        {
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.None;
+            EVC30_MMIRequestEnable.Send();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 4;      // Settings
+            switch (type)
+            {
+                case msgType.typea:
+                    break;
+                case msgType.typeb:
+                    EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.SetLocalTimeDateAndOffset;
+                    break;
+                case msgType.typec:
+                    EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.SetLocalOffset;
+                    break;
+                case msgType.typed:
+                    EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.SetLocalTimeDateAndOffset |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.SetLocalOffset;
+                    break;
+            }
+            EVC30_MMIRequestEnable.Send();
+        }
+        #endregion
     }
 }

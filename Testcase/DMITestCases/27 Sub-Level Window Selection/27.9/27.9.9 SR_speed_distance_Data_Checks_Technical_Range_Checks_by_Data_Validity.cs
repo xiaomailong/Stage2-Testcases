@@ -293,7 +293,7 @@ namespace Testcase.DMITestCases
             Expected Result: Input Field(1) The ‘Enter’ button associated to the data area of the input field displays the previously entered value.Echo Texts of SR Distance(2) The data part of the echo text displays “++++”
             Test Step Comment: Requirements:(1) MMI_gen 8297 (partly: MMI_gen 4714 (partly: previously entered (faulty) value)); MMI_gen 4699 (technical range);(2) MMI_gen 8297 (partly: MMI_gen 12148 (MMI_gen 4713 (partly: indication))) MMI_gen 9509 (partly: only affect the object indicated in MMI_NID_DATA);Note: This is a temporary approach for non-support test environment on the data checks.
             */
-            XML.XML_22_9_9_a.Send(this);
+            XML_22_9_9(msgType.typea);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The echo text for SR speed still displays ‘40’." + Environment.NewLine +
@@ -306,7 +306,7 @@ namespace Testcase.DMITestCases
             Expected Result: Input Field(1) The ‘Enter’ button associated to the data area of the input field displays the previously entered value.Echo Texts of SR Speed(2) The data part of the echo text displays “++++”
             Test Step Comment: Requirements:(1) MMI_gen 8297 (partly: MMI_gen 4714 (partly: previously entered (faulty) value)); MMI_gen 4699 (technical range);(2) MMI_gen 8297 (partly: MMI_gen 12148 (MMI_gen 4713 (partly: indication))) MMI_gen 9509 (partly: only affect the object indicated in MMI_NID_DATA);Note: This is a temporary approach for non-support test environment on the data checks.
             */
-            XML.XML_22_9_9_b.Send(this);
+            XML_22_9_9(msgType.typeb);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The ‘Enter’ button for the data area of the SR speed data input field  still displays ‘40’." + Environment.NewLine +
@@ -321,5 +321,32 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
+        #region Send_XML_22_9_9_DMI_Test_Specification
+        enum msgType
+        {
+            typea,
+            typeb
+        }
+
+        private void XML_22_9_9(msgType type)
+        {
+            switch (type)
+            {
+                case msgType.typea:
+                    //some values taken from xml file not spec where different
+                    EVC11_MMICurrentSRRules.DataElements = new List<Variables.DataElement> { new Variables.DataElement { Identifier = 16, EchoText = "", QDataCheck = 1 } };
+                    EVC11_MMICurrentSRRules.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS.No_Button;
+                    break;
+                case msgType.typeb:
+                    //some values taken from xml file not spec where different
+                    EVC11_MMICurrentSRRules.MMI_L_STFF = 100000;
+                    EVC11_MMICurrentSRRules.MMI_V_STFF = 100;
+                    EVC11_MMICurrentSRRules.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS.BTN_LEVEL;
+                    EVC11_MMICurrentSRRules.DataElements = new List<Variables.DataElement> { new Variables.DataElement { Identifier = 15, QDataCheck = 1 } };
+                    break;
+            }
+            EVC11_MMICurrentSRRules.Send();
+        }
+        #endregion
     }
 }

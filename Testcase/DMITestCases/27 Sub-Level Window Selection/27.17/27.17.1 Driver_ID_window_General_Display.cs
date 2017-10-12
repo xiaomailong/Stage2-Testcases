@@ -66,7 +66,7 @@ namespace Testcase.DMITestCases
             Expected Result: (1) Driver ID window is not displayed
             Test Step Comment: (1) MMI_gen 183 (partly: inactive);
             */
-            XML.XML_22_17_a.Send(this);
+            XML_22_17(msgType.typea);
 
             // Wait 10s
             this.Wait_Realtime(10000);
@@ -83,7 +83,7 @@ namespace Testcase.DMITestCases
             DmiActions.Activate_Cabin_1(this);
 
             // Force display of the DriverID window
-            XML.XML_22_17_a.Send(this);
+            XML_22_17(msgType.typea);
 
             WaitForVerification("Check the following (* indicates sub-areas drawn as one area):" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Main window and, after a pause, the Driver ID window with the title ‘Driver ID’." + Environment.NewLine +
@@ -339,8 +339,8 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the state of ‘TRN’ button and ‘Settings’ button as follows,‘Settings’ button is enabled.‘TRN’ button is enabled
             Test Step Comment: (1) MMI_gen 8037 (partly: enabled settings, enabled TRN);
             */
-            XML.XML_22_17_b.Send(this);
-            
+            XML_22_17(msgType.typeb);
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘TRN’ button and ‘Settings’ buttons are displayed enabled.");
 
@@ -350,7 +350,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the state of ‘TRN’ button and ‘Settings’ button as follows,‘Settings’ button is disabled.‘TRN’ button is disabled
             Test Step Comment: (1) MMI_gen 8037 (partly: disabled settings, disabled TRN);
             */
-            XML.XML_22_17_c.Send(this);
+            XML_22_17(msgType.typec);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘TRN’ button and ‘Settings’ buttons are displayed disabled.");
@@ -361,7 +361,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the state of ‘TRN’ button and ‘Settings’ button as follows,‘Settings’ button is enabled.‘TRN’ button is disabled
             Test Step Comment: (1) MMI_gen 8037 (partly: enabled settings, disabled TRN);
             */
-            XML.XML_22_17_d.Send(this);
+            XML_22_17(msgType.typed);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Settings’ buttons is displayed enabled." + Environment.NewLine +
@@ -373,7 +373,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the state of ‘TRN’ button and ‘Settings’ button as follows,‘Settings’ button is disabled.‘TRN’ button is enabled
             Test Step Comment: (1) MMI_gen 8037 (partly: disabled settings, enabled TRN);
             */
-            XML.XML_22_17_e.Send(this);
+            XML_22_17(msgType.typee);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Settings’ buttons is displayed disabled." + Environment.NewLine +
@@ -400,5 +400,50 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
+        #region Send_XML_22_17_DMI_Test_Specification
+        enum msgType
+        {
+            typea,
+            typeb,
+            typec,
+            typed,
+            typee
+        }
+
+        private void XML_22_17(msgType type)
+        {
+            switch (type)
+            {
+                case msgType.typea:
+                    EVC14_MMICurrentDriverID.MMI_X_DRIVER_ID = "4444";
+                    EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE = EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE_BUTTONS.Settings |
+                                                                EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE_BUTTONS.TRN;
+                    EVC14_MMICurrentDriverID.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Disabled;
+                    break;
+                case msgType.typeb:
+                    EVC14_MMICurrentDriverID.MMI_X_DRIVER_ID = "";
+                    EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE = EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE_BUTTONS.Settings |
+                                                                EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE_BUTTONS.TRN;
+                    EVC14_MMICurrentDriverID.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
+                    break;
+                case msgType.typec:
+                    EVC14_MMICurrentDriverID.MMI_X_DRIVER_ID = "";
+                    EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE = (EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE_BUTTONS)0;
+                    EVC14_MMICurrentDriverID.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
+                    break;
+                case msgType.typed:
+                    EVC14_MMICurrentDriverID.MMI_X_DRIVER_ID = "";
+                    EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE = EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE_BUTTONS.Settings;
+                    EVC14_MMICurrentDriverID.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
+                    break;
+                case msgType.typee:
+                    EVC14_MMICurrentDriverID.MMI_X_DRIVER_ID = "";
+                    EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE = EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE_BUTTONS.TRN;
+                    EVC14_MMICurrentDriverID.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
+                    break;
+            }
+            EVC14_MMICurrentDriverID.Send();
+        }
+        #endregion
     }
 }

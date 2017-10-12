@@ -68,7 +68,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI does not display SR speed/distance window
             Test Step Comment: MMI_gen 1704 (partly: NEGATIVE, inactive);
             */
-            XML.XML_22_9_1_a.Send(this);
+            XML_22_9_1(msgType.typea);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI does not display the SR/speed distance window");
@@ -817,14 +817,14 @@ namespace Testcase.DMITestCases
             
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The SR speed data input field is displayed ‘Selected’.");
-            
+
             /*
             Test Step 31
             Action: Use the test script file 22_9_1_a.xml to send EVC-11
             Expected Result: Verify the following information,The value of an input fields for SR speed and SR distance are changed refer to received packet as follows,SR Speed = 100SR Distance = 100000
             Test Step Comment: (1) MMI_gen 1705 (partly: MMI_gen 9887); MMI_gen 1709 (partly: displayed in integers, no leading ‘0’ displayed); MMI_gen 1710 (partly: displayed in integers, no leading ‘0’ displayed);
             */
-            XML.XML_22_9_1_a.Send(this);
+            XML_22_9_1(msgType.typea);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The SR speed data input field displays ‘100’." + Environment.NewLine +
@@ -836,7 +836,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The value of input fields for SR speed and SR distance are changed to blank
             Test Step Comment: (1) MMI_gen 1709 (partly: out of range); MMI_gen 1710 (partly: out of range);
             */
-            XML.XML_22_9_1_b.Send(this);
+            XML_22_9_1(msgType.typeb);
 
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -870,5 +870,32 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
+        #region Send_XML_22_9_1_DMI_Test_Specification
+        enum msgType
+        {
+            typea,
+            typeb
+        }
+
+        private void XML_22_9_1(msgType type)
+        {
+            EVC11_MMICurrentSRRules.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS.No_Button;
+            switch (type)
+            {
+                case msgType.typea:
+                    //some values taken from xml file not spec where different
+                    EVC11_MMICurrentSRRules.MMI_L_STFF = 100000;
+                    EVC11_MMICurrentSRRules.MMI_V_STFF = 100;
+                    break;
+                case msgType.typeb:
+
+                    //some values taken from xml file not spec where different
+                    EVC11_MMICurrentSRRules.MMI_L_STFF = 100001;
+                    EVC11_MMICurrentSRRules.MMI_V_STFF = 601;
+                    break;
+            }
+            EVC11_MMICurrentSRRules.Send();
+        }
+        #endregion
     }
 }

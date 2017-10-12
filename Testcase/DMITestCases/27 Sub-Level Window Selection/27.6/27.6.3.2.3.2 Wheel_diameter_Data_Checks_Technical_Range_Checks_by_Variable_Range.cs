@@ -149,7 +149,14 @@ namespace Testcase.DMITestCases
             Expected Result: Input Field (All)(1) The ‘Enter’ button associated to the data area of the input field displays the previously entered value.Echo Texts (All)(2) The data part of the echo text displays “++++”.
             Test Step Comment: Requirements: (1) MMI_gen 11757 (partly: MMI_gen 4714 (partly: previously entered (faulty) value)); MMI_gen 4699 (technical range);(2) MMI_gen 11757 (partly: MMI_gen 12148 (MMI_gen 4713 (partly: indication)));
             */
-            XML.XML_22_6_3_2_3_2_a.Send(this);
+            #region Send_XML_22_6_3_2_3_2_DMI_Test_Specification
+            EVC40_MMICurrentMaintenanceData.MMI_Q_MD_DATASET = Variables.MMI_Q_MD_DATASET.WheelDiameter;
+            EVC40_MMICurrentMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1 = Variables.MMI_M_SDU_WHEEL_SIZE.TechnicalRangeCheckFailed;
+            EVC40_MMICurrentMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1 = Variables.MMI_M_SDU_WHEEL_SIZE.TechnicalRangeCheckFailed;
+            EVC40_MMICurrentMaintenanceData.MMI_M_WHEEL_SIZE_ERR = Variables.MMI_M_WHEEL_SIZE_ERR.TechnicalRangeCheckFailed;
+
+            EVC40_MMICurrentMaintenanceData.Send();
+            #endregion
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data part of the data input fields display the values entered previously." + Environment.NewLine +

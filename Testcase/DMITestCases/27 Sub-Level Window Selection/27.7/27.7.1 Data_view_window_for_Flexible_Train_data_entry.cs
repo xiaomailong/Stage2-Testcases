@@ -187,7 +187,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,DMI displays the following information respectively with blank value:Page 1:Driver IDTrain running numberPage 2:Radio Network IDRBC Phone Number
             Test Step Comment: (1) MMI_gen 8586 (partly: modify by other ETCS external source); MMI_gen 8582 (partly: MMI_gen 5336 (partly: NEGATIVE, display only Driver ID/Train running number/ Radio Network ID/ RBC Phone number);
             */
-            XML.XML_22_7_1_a.Send(this);
+            XML_22_7_1(msgType.typea);
 
             WaitForVerification("Check the following (scrolling the window to see both pages):" + Environment.NewLine + Environment.NewLine +
                                 "1. On page 1, DMI displays information on Driver ID and Train running number with blank values." + Environment.NewLine +
@@ -198,7 +198,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   The data part of following information are automatically insert a line brake at the end of first line, represented as 2 lines.Page 1:Driver IDPage 2:Radio Network IDRBC Phone Number
             Test Step Comment: (1) MMI_gen 7514;
             */
-            XML.XML_22_7_1_b.Send(this);
+            XML_22_7_1(msgType.typeb);
 
             WaitForVerification("Check the following information is displayed with a line break inserted after the first line so that the data" + Environment.NewLine +
                                 "are displayed over two lines (scrolling the window to see both pages):" + Environment.NewLine + Environment.NewLine +
@@ -225,5 +225,47 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
+        #region Send_XML_22_7_1_DMI_Test_Specification
+        enum msgType
+        {
+            typea,
+            typeb
+        }
+
+        private void XML_22_7_1(msgType type)
+        {
+            switch (type)
+            {
+                case msgType.typea:
+                    EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Disabled;
+
+                    EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new Variables.MMI_Q_LEVEL_NTC_ID[] { Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level };
+                    EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new Variables.MMI_M_CURRENT_LEVEL[] { Variables.MMI_M_CURRENT_LEVEL.LastUsedLevel };
+                    EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = new Variables.MMI_M_LEVEL_FLAG[] { Variables.MMI_M_LEVEL_FLAG.MarkedLevel };
+                    EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = new Variables.MMI_M_INHIBITED_LEVEL[] { Variables.MMI_M_INHIBITED_LEVEL.NotInhibited };
+                    EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = new Variables.MMI_M_INHIBIT_ENABLE[] { Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting };
+                    EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new Variables.MMI_M_LEVEL_NTC_ID[] { Variables.MMI_M_LEVEL_NTC_ID.L3 };
+
+                    EVC20_MMISelectLevel.Send();
+                    break;
+                case msgType.typeb:
+                    // values taken from xml not spec. where different
+                    //EVC13.MMI_X_DRIVER_ID[0] = 825373492;
+                    //EVC13.MMI_X_DRIVER_ID[1] = 909588537;
+                    //EVC13.MMI_X_DRIVER_ID[2] = 825373492;
+                    //EVC13.MMI_X_DRIVER_ID[3] = 909588537;
+
+                    //EVC13.MMI_M_DATA_ENABLE = 0x7f00;               // 32512
+                    //EVC13.MMI_N_CAPTION_TRAINSET = "ABCDEFGHIJKL";         
+                    //EVC13.MMI_X_CAPTION_NETWORK = "ABCDEFGHIJKLMNOP";
+
+                    //EVC13.MMI_NID_RADIO[0] = 0x99999999;          // 2576980377
+                    //EVC13.MMI_NID_RADIO[1] = 0x99999999;          // 2576980377
+
+                    //EVC13.Send();
+                    break;
+            }
+        }
+        #endregion
     }
 }

@@ -75,8 +75,9 @@ namespace Testcase.DMITestCases
             Action: Use the test script file 22_22_3_a.xmlSend EVC-30 with,MMI_NID_WINDOW = 4MMI_Q_REQUEST_ENABLE_64 (#31) = 1
             Expected Result: The ‘Brake percentage’ button is enabled
             */
-            XML.XML_22_22_3_a.Send(this);
-            
+            XML_22_22_3(msgType.typea);
+
+
             DmiActions.ShowInstruction(this, @"Press the ‘Brake’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -438,7 +439,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)    The value of echo text ‘Last measured BP’ is show as “_ _ _ _”
             Test Step Comment: (1) MMI_gen 11679; MMI_gen 11831 (partly: MMI_gen 11679);
             */
-            XML.XML_22_22_3_b.Send(this);
+            XML_22_22_3(msgType.typeb);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Last measured BP’ echo text displays ‘____’.");
@@ -464,5 +465,31 @@ namespace Testcase.DMITestCases
             
             return GlobalTestResult;
         }
+        #region Send_XML_22_22_3_DMI_Test_Specification
+        enum msgType
+        {
+            typea,
+            typeb
+        }
+
+        private void XML_22_22_3(msgType type)
+        {
+            switch (type)
+            {
+                case msgType.typea:
+                    EVC30_MMIRequestEnable.SendBlank();
+                    EVC30_MMIRequestEnable.MMI_NID_WINDOW = 4;
+                    EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.EnableBrakePercentage;
+                    EVC20_MMISelectLevel.Send();
+                    break;
+                case msgType.typeb:
+                    EVC50_MMICurrentBrakePercentage.MMI_M_BP_ORIG = 50;
+                    EVC50_MMICurrentBrakePercentage.MMI_M_BP_MEASURED = 254;
+                    EVC50_MMICurrentBrakePercentage.MMI_M_BP_CURRENT = 255;
+                    EVC50_MMICurrentBrakePercentage.Send();
+                    break;
+            }
+        }
+        #endregion
     }
 }
