@@ -1,19 +1,17 @@
 ﻿#region usings
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using CL345;
-
 #endregion
 
 namespace Testcase.Telegrams.EVCtoDMI
 {
     /// <summary>
     /// This packet shall be sent from ETC to MMI when the driver has finished the 'Remove VBC' data entry 
-    /// by pressing the "Yes" button and all checks have passed. The packet starts the 'Remove VBC' Data Validation window / procedure
-    /// at MMI.  the "Yes" button, if specified by functional requirements for ETC and DMI.
+    /// by pressing the "Yes" button and all checks have passed.
+    /// The packet starts the 'Remove VBC' Data Validation window / procedure at MMI.
     /// </summary>
     public static class EVC29_MMIEchoedRemoveVBCData
     {
@@ -23,14 +21,14 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// Initialise EVC-29 MMI_Echoed_Remove_VBC_Data telegram
         /// (VBC = Virtual Balise Cover)
         /// </summary>
-        /// <param name="pool"></param>
+        /// <param name="pool">SignalPool</param>
         public static void Initialise(SignalPool pool)
         {
             _pool = pool;
 
             // Set default values
             _pool.SITR.ETCS1.EchoedRemoveVbcData.MmiMPacket.Value = 29; // Packet ID
-            _pool.SITR.ETCS1.EchoedRemoveVbcData.MmiLPacket.Value = 64;
+            _pool.SITR.ETCS1.EchoedRemoveVbcData.MmiLPacket.Value = 64; // Packet size
 
             MMI_M_VBC_CODE_ = 0xff;
         }
