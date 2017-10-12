@@ -147,7 +147,13 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 11785 (partly: MMI_gen 4714 (partly: previously entered (faulty) value)); MMI_gen 4699 (technical range); MMI_gen 11785 (partly: MMI_gen 12148 (MMI_gen 4713 (partly: indication))); Note: This is a temporary approach for non-support test environment on the data checks.
             */
             // Call generic Action Method
-            XML.XML_22_6_5_2_3_2_a.Send(this);
+            #region Send_XML_22_6_5_2_3_2_DMI_Test_Specification
+            EVC40_MMICurrentMaintenanceData.MMI_Q_MD_DATASET = Variables.MMI_Q_MD_DATASET.Doppler;
+            EVC40_MMICurrentMaintenanceData.MMI_M_PULSE_PER_KM_1 = Variables.MMI_M_PULSE_PER_KM.TechnicalRangeCheckFailed;
+
+            EVC40_MMICurrentMaintenanceData.Send();
+
+            #endregion
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The ‘Enter’ button of the data input field displays the previously entered value." + Environment.NewLine +

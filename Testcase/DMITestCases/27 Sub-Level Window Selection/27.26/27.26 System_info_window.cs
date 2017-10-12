@@ -214,7 +214,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify that ‘System info’ button is disabled
             Test Step Comment: MMI_gen 1551 (partly: disabling);
             */
-            XML.XML_22_26_a.Send(this);
+            XML_22_26(msgType.typea);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘System info’ button is disabled.");
@@ -233,7 +233,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the state of ‘System info’ button is enabled.DMI displays System info window after received packet EVC-24.The Data part of Data view text is able to display multiples value in same label (see the value of hardware configuration are splitted to be a multiple lines).Verify the display information are displayed correctly refer to received packet as follows,MMI Product version = 255.170.15Vehicle ID = 1234Brake configuration is display only the following items,SB availableSB as RTWRelease TCO @BRTCO feedback OKSoft isolation allowedHardware configuration is display only the following items,MMI 1MMI 2Redundant MMI 1Redundant MMI 2BTM antenna 1BTM antenna 2Radio modem 1Radio modem 2DRUEuroloop BTM(s)
             Test Step Comment: (1) MMI_gen 1551 (partly: enabling); (2) MMI_gen 2463 (partly: open System info window);(3) MMI_gen 11902 (partly:MMI_gen 7510);      (4) MMI_gen 2463 (partly: presentation of data); MMI_gen 11695; MMI_gen 11902 (partly: MMI_gen 5336 (partly: valid));
             */
-            XML.XML_22_26_b.Send(this);
+            XML_22_26(msgType.typeb);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘System info’ button is enabled.");
@@ -270,5 +270,37 @@ namespace Testcase.DMITestCases
             
             return GlobalTestResult;
         }
+        #region Send_XML_22_26_DMI_Test_Specification
+        enum msgType
+        {
+            typea,
+            typeb
+        }
+
+        private void XML_22_26(msgType type)
+        {
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 0x4;
+            switch (type)
+            {
+                case msgType.typea:
+                    EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Language |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.Volume |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.Brightness |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.SystemVersion |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.SetVBC;
+                    break;
+                case msgType.typeb:
+                    EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Language |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.Volume |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.Brightness |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.SystemVersion |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.SetVBC |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter;
+                    break;
+            }
+            EVC30_MMIRequestEnable.Send();
+        }
+        #endregion
     }
 }

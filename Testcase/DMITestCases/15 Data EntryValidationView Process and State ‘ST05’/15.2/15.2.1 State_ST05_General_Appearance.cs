@@ -225,12 +225,12 @@ namespace Testcase.DMITestCases
             Expected Result: Verifies the following points,The hourglass symbol ST05 is displayed.The ‘Close’ button is disabled.The keypad is still enabled.The input field is in the ‘Not Selected’ state (dark-grey background with grey text)
             Test Step Comment: (1) MMI_gen 12018;(2) MMI_gen 168 (partly: disabled button, ‘Train data’ validation window, data validation window);(3) Note under MMI_gen 5728; MMI_gen 5719 (partly: exception, state ST05);(4) MMI_gen 168 (partly: deselect input field);
             */
-            XML.XML_10_2_a.Send(this);
+            Send_XML_10_2_a_b(msgType.typea);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The hourglass symbol ST05 is displayed." + Environment.NewLine +
                                 "2. The ‘Close’ button is disabled." + Environment.NewLine +
                                 "3. The keypad is still enabled." + Environment.NewLine +
-                                "4. The input fields is in the ‘Not Selected’ state (grey text on dark-grey background)");
+                                "4. The input fields is in the ‘Not Selected’ state (grey text on dark-grey background)"); 
 
             /*
             Test Step 10

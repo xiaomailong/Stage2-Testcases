@@ -576,7 +576,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,DMI close the Level inhibition window and displays Level window instead.Use the log file to confirm that there is no packet information (i.e. EVC-101, EVC-121) send out from DMI
             Test Step Comment: (1) MMI_gen 2278 (partly: close Level inhibition window);(2) MMI_gen 2278 (partly: No response is transmitted to onboard);
             */
-            XML.XML_22_5_3_a.Send(this);
+            XML_22_5_3(msgType.typea);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Inhibition level window and opens the Level window.");
@@ -659,7 +659,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,DMI displays Level window.The state of ‘L inh’ button in sub-area G13 is disabled.  Use the log file to confirm that DMI received packet information EVC-20 with every index of variable MMI_M_CURRENT_LEVEL = 0.Use the log file to confirm that there is no packet information (i.e. EVC-101, EVC-121) send out from DMI.The value of an input field is blank refer to received packet EVC-20
             Test Step Comment: (1) MMI_gen 2199 (partly: close the 'Level Inhibition' window, Open and updated ‘Level’ window);(2) MMI_gen 1784 (partly: condition is not fulfilled);(3) MMI_gen 1784 (partly: NEGATIVE, 2nd bullet);(4) MMI_gen 2199 (partly: discard allentries of the driver);(5) MMI_gen 1784 (partly: NEGATIVE, 3rd bullet);
             */
-            XML.XML_22_5_3_b.Send(this);
+            XML_22_5_3(msgType.typeb);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Level window" + Environment.NewLine +
@@ -672,8 +672,56 @@ namespace Testcase.DMITestCases
             Expected Result: 
             */
 
-
             return GlobalTestResult;
         }
+
+        #region Send_XML_22_5_3_DMI_Test_Specification
+        enum msgType
+        {
+            typea,
+            typeb
+        }
+
+        private void XML_22_5_3(msgType type)
+        {
+            switch (type)
+            {
+                case msgType.typea:
+                    EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Disabled;
+
+                    EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = null;
+                    EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = null;
+                    EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = null;
+                    EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = null;
+                    EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = null;
+                    EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = null;
+                    break;
+                case msgType.typeb:
+
+                    EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = MMI_Q_CLOSE_ENABLE.Disabled;
+
+                    EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new Variables.MMI_Q_LEVEL_NTC_ID[]
+                    { Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level,
+                        Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level };
+                    EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new Variables.MMI_M_CURRENT_LEVEL[]
+                    { Variables.MMI_M_CURRENT_LEVEL.NotLastUsedLevel,
+                        Variables.MMI_M_CURRENT_LEVEL.NotLastUsedLevel };
+                    EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = new Variables.MMI_M_LEVEL_FLAG[]
+                    { Variables.MMI_M_LEVEL_FLAG.MarkedLevel,
+                        Variables.MMI_M_LEVEL_FLAG.MarkedLevel };
+                    EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = new Variables.MMI_M_INHIBITED_LEVEL[]
+                    { Variables.MMI_M_INHIBITED_LEVEL.NotInhibited,
+                        Variables.MMI_M_INHIBITED_LEVEL.Inhibited };
+                    EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = new Variables.MMI_M_INHIBIT_ENABLE[]
+                    { Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting,
+                        Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting };
+                    EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new Variables.MMI_M_LEVEL_NTC_ID[]
+                    { Variables.MMI_M_LEVEL_NTC_ID.L0,
+                        Variables.MMI_M_LEVEL_NTC_ID.L2 };
+                    break;
+            }
+            EVC20_MMISelectLevel.Send();
+        }
+        #endregion
     }
 }

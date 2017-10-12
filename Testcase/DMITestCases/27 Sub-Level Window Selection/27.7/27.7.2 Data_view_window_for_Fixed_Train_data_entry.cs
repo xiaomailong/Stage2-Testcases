@@ -200,7 +200,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,DMI displays the following information respectively with blank value:Page 1:Driver IDTrain running numberPage 2:Radio Network IDRBC IDRBC Phone Number
             Test Step Comment: (1) MMI_gen 8586 (partly: modify by other ETCS external source); MMI_gen 8582 (partly: MMI_gen 5336 (partly: NEGATIVE, display only Driver ID/Train running number/ Radio Network ID/ RBC ID/ RBC Phone number));
             */
-            XML.XML_22_7_2_a.Send(this);
+            XML_22_7_2(msgType.typea);
 
             WaitForVerification("Check the following (scrolling the window to see both pages):" + Environment.NewLine + Environment.NewLine +
                                 "1. On page 1, DMI displays information on Driver ID and Train running number with blank values." + Environment.NewLine +
@@ -214,7 +214,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   The data part of following information are automatically insert a line brake at the end of first line, represented as 2 lines.Page 1:Driver IDPage 2:Radio Network IDRBC Phone Number
             Test Step Comment: (1) MMI_gen 7514;
             */
-            XML.XML_22_7_2_b.Send(this);
+            XML_22_7_2(msgType.typeb);
 
             WaitForVerification("Check the following information is displayed with a line break inserted after the first line so that the data" + Environment.NewLine +
                                 "are displayed over two lines (scrolling the window to see both pages):" + Environment.NewLine + Environment.NewLine +
@@ -229,5 +229,61 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
+
+        #region Send_XML_22_7_2_DMI_Test_Specification
+        enum msgType
+        {
+            typea,
+            typeb
+        }
+
+        private void XML_22_7_2(msgType type)
+        {
+            switch (type)
+            {
+                case msgType.typea:
+                    //values taken from xml file not spec where different
+                    //EVC13.MMI_X_DRIVER_ID[0] = 0;
+                    //EVC13.MMI_X_DRIVER_ID[1] = 0;
+                    //EVC13.MMI_X_DRIVER_ID[2] = 0;
+                    //EVC13.MMI_X_DRIVER_ID[3] = 0;
+
+                    //EVC13.MMI_NID_OPERATION = 0xffffffff;         // 4294967295
+                    //EVC13.MMI_M_DATA_ENABLE = 0x80;               // 128
+
+                    //EVC13.MMI_NID_KEY_TRAIN_CAT = 21;
+                    //EVC13.MMI_L_TRAIN = 0x1000;                   // 4096
+                    //EVC13.MMI_V_MAXTRAIN = 601;
+                    //EVC13.MMI_M_BRAKE_PERC = 9;
+                    //EVC13.MMI_NID_KEY_AXLE_LOAD = 20;
+                    //EVC13.MMI_NID_RADIO[0] = 0xffffffff;          // 4294967295
+                    //EVC13.MMI_NID_RADIO[1] = 0xffffffff;          // 4294967295
+                    //EVC13.MMI_NID_RBC = 0x800000;                 // 8388608
+                    //EVC13.MMI_M_AIRTIGHT = 3;     
+                    //EVC13.MMI_NID_KEY_LOAD_GAUGE = 33;
+                    //EVC13.MMI_N_VBC = 0x0;
+                    //EVC13.MMI_X_CAPTION_NETWORK = "\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0";
+                    //EVC13.Send();
+                    break;
+                case msgType.typeb:
+                    // values taken from xml not spec. where different
+                    //EVC13.MMI_X_DRIVER_ID[0] = 825373492;
+                    //EVC13.MMI_X_DRIVER_ID[1] = 909588537;
+                    //EVC13.MMI_X_DRIVER_ID[2] = 825373492;
+                    //EVC13.MMI_X_DRIVER_ID[3] = 909588537;
+
+                    //EVC13.MMI_M_DATA_ENABLE = 0xff00;               // 65280
+                    //EVC13.MMI_N_CAPTION_TRAINSET = "ABCDEFGHIJKL";  
+                    //EVC13.MMI_X_CAPTION_NETWORK = "ABCDEFGHIJKLMNOP";
+
+                    //EVC13.MMI_NID_RADIO[0] = 0x99999999;          // 2576980377
+                    //EVC13.MMI_NID_RADIO[1] = 0x99999999;          // 2576980377
+
+                    //EVC13.Send();
+                    break;
+            }
+        }
+        #endregion
+
     }
 }

@@ -65,7 +65,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,DMI does not display Radio Network ID window
             Test Step Comment: (1) MMI_gen 9448 (partly: NEGATIVE, inactive);
             */
-            XML.XML_22_8_2_1_a.Send(this);
+            XML_22_8_2_1(msgType.typea);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI does not display the Radio Network ID window");
@@ -85,7 +85,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI still displays Driver ID window
             Test Step Comment: 1) MMI_gen 9448 (partly: NEGATIVE, MMI_N_NETWORKS = 0);
             */
-            XML.XML_22_8_2_1_b.Send(this);
+            XML_22_8_2_1(msgType.typeb);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI still displays the Driver ID window");
@@ -324,5 +324,27 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
+        #region Send_XML_22_8_2_1_DMI_Test_Specification
+        enum msgType
+        {
+            typea,
+            typeb
+        }
+
+        private void XML_22_8_2_1(msgType type)
+        {
+            EVC22_MMICurrentRBC.MMI_NID_WINDOW = 9;
+            switch (type)
+            {
+                case msgType.typea:
+                    EVC22_MMICurrentRBC.NetworkCaptions = new List<string> { "GSMR-A", "GSMR-B" };
+                    break;
+                case msgType.typeb:
+                    EVC22_MMICurrentRBC.NetworkCaptions = null;
+                    break;
+            }
+            EVC22_MMICurrentRBC.Send();
+        }
+        #endregion
     }
 }

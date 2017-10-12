@@ -100,7 +100,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,InformationThe data view is display a following information correctly refer to received packet informationOperated system version = 255.255
             Test Step Comment: (1) MMI_gen 11988; MMI_gen 8766 (partly: MMI_gen 5336 (partly: valid));  
             */
-            XML.XML_22_14.Send(this);
+            XML_22_14();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data view displays ‘255.255’ for the Operating system version.");
@@ -150,5 +150,23 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
+        #region Send_XML_22_14_DMI_Test_Specification
+        private void XML_22_14()
+        {
+            EVC34_MMISystemVersion.SYSTEM_VERSION_X = 0xff;
+            EVC34_MMISystemVersion.SYSTEM_VERSION_Y = 0xff;
+            EVC34_MMISystemVersion.Send();
+
+            /*
+            // Test spec does not say anything about closing the window as in xml (the NID value should be 254 for that)
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.None;
+            EVC30_MMIRequestEnable.Send();
+
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 4;  // Settings
+            EVC30_MMIRequestEnable.Send();
+            */
+        }
+        #endregion
     }
 }

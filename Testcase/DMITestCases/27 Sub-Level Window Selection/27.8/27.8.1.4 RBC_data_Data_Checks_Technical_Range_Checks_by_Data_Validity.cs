@@ -167,7 +167,15 @@ namespace Testcase.DMITestCases
             Expected Result: EVC-22(1) The 'Yes' button is disabled
             Test Step Comment: Requirements:MMI_gen 9467;Note: This is a temporary approach for non-support test environment on the data checks.
             */
-            XML.XML_22_8_1_4_a.Send(this);
+            #region Send_XML_22_8_1_4_DMI_Test_Specification
+            EVC22_MMICurrentRBC.MMI_NID_WINDOW = 10;
+            EVC22_MMICurrentRBC.NID_RBC = 1234;
+            EVC22_MMICurrentRBC.MMI_NID_RADIO = 0xffffffffffffffff;
+            EVC22_MMICurrentRBC.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
+            EVC22_MMICurrentRBC.MMI_M_BUTTONS = EVC22_MMICurrentRBC.EVC22BUTTONS.NoButton;
+
+            EVC22_MMICurrentRBC.Send();
+            #endregion
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Yes’ button is displayed disabled");

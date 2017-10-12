@@ -73,8 +73,8 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,Use the log file to verify that DMI receives the EVC-30 with [MMI_ENABLE_REQUEST (EVC-30).MMI_Q_REQUEST_ENABLE_64] (#31) = 0 (Disable Brake Percentage)Use the log file to verify that DMI receives the EVC-30 with [MMI_ENABLE_REQUEST (EVC-30).MMI_Q_REQUEST_ENABLE_64] (#28) = 0 (Disable to Start Brake Test)The ‘Brake button is disabled
             Test Step Comment: (1) MMI_gen 11938 (partly: disable);(2) MMI_gen 11938 (partly: disable, MMI_gen 11810);                                     MMI_gen 11810 (partly: disable);(3) MMI_gen 11805 (partly: disable);
             */
-            XML.XML_22_21_1_a.Send(this);
-            
+            XML_22_21_1(msgType.typea);
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Brake’ button is displayed disabled.");
 
@@ -84,7 +84,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,Use the log file to verify that DMI receives the EVC-30 with [MMI_ENABLE_REQUEST (EVC-30).MMI_Q_REQUEST_ENABLE_64] (#31) = 1 (Enable Brake Percentage)Use the log file to verify that DMI receives the EVC-30 with [MMI_ENABLE_REQUEST (EVC-30).MMI_Q_REQUEST_ENABLE_64] (#28) = 0 (Disable to Start Brake Test)The ‘Brake’ button is enabled
             Test Step Comment: (1) MMI_gen 11938 (partly: enable);(2) MMI_gen 11938 (partly: disable, MMI_gen 11810);                                     MMI_gen 11810 (partly: disable);(3) MMI_gen 11805 (partly: disable);
             */
-            XML.XML_22_21_1_b.Send(this);
+            XML_22_21_1(msgType.typeb);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Brake’ button is displayed enabled.");
@@ -117,7 +117,7 @@ namespace Testcase.DMITestCases
             Action: Use the test script file 22_22_1_a.xml to send EVC-30 with,MMI_NID_WINDOW = 4MMI_Q_REQUEST_ENABLE_64 (#31) = 0MMI_Q_REQUEST_ENABLE_64 (#28) = 0
             Expected Result: The ‘Brake’ button is disabled
             */
-            XML.XML_22_21_1_a.Send(this);
+            XML_22_21_1(msgType.typea);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Brake’ button is displayed disabled.");
@@ -128,7 +128,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,Use the log file to verify that DMI receives the EVC-30 with [MMI_ENABLE_REQUEST (EVC-30).MMI_Q_REQUEST_ENABLE_64] (#31) = 0 (Disable Brake Percentage)Use the log file to verify that DMI receives the EVC-30 with [MMI_ENABLE_REQUEST (EVC-30).MMI_Q_REQUEST_ENABLE_64] (#28) = 1 (Enable to Start Brake Test)The ‘Brake’ button is enabled
             Test Step Comment: (1) MMI_gen 11938 (partly: disable);(2) MMI_gen 11938 (partly: enable, MMI_gen 11810);                                     MMI_gen 11810 (partly: enable);(3) MMI_gen 11805 (partly: enable);
             */
-            XML.XML_22_21_1_c.Send(this);
+            XML_22_21_1(msgType.typec);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Brake’ button is displayed enabled.");
@@ -161,7 +161,7 @@ namespace Testcase.DMITestCases
             Action: Use the test script file 22_22_1_a.xml to send EVC-30 with,MMI_NID_WINDOW = 4MMI_Q_REQUEST_ENABLE_64 (#31) = 0MMI_Q_REQUEST_ENABLE_64 (#28) = 0
             Expected Result: The ‘Brake’ button is disabled
             */
-            XML.XML_22_21_1_a.Send(this);
+            XML_22_21_1(msgType.typea);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Brake’ button is displayed disabled.");
@@ -172,7 +172,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,Use the log file to verify that DMI receives the EVC-30 with [MMI_ENABLE_REQUEST (EVC-30).MMI_Q_REQUEST_ENABLE_64] (#31) = 1 (Enable Brake Percentage)Use the log file to verify that DMI receives the EVC-30 with [MMI_ENABLE_REQUEST (EVC-30).MMI_Q_REQUEST_ENABLE_64] (#28) = 1 (Enable to Start Brake Test)The ‘Brake’ button is enabled
             Test Step Comment: (1) MMI_gen 11938 (partly: enable);(2) MMI_gen 11938 (partly: enable, MMI_gen 11810);                                     MMI_gen 11810 (partly: enable);(3) MMI_gen 11805 (partly: enable);
             */
-            XML.XML_22_21_1_d.Send(this);
+            XML_22_21_1(msgType.typed);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Brake’ button is displayed enabled.");
@@ -332,5 +332,77 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
+
+        #region Send_XML_22_21_1_DMI_Test_Specification
+        enum msgType
+        {
+            typea,
+            typeb,
+            typec,
+            typed
+        }
+
+        private void XML_22_21_1(msgType type)
+        {
+            EVC30_MMIRequestEnable.SendBlank();
+            // Xml indicates that bit 32 should be set: commented out code for enable-low word is correct according to ATP_FE doc.
+            // Xml indicates that bit 30 (Radio) should be set, should be 31 (Brake percentage) for test
+            // The Start Brake test... should be redundant (iff SendBlank() does clear the word)
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 4;
+            switch (type)
+            {
+                case msgType.typea:
+                    // Xml says bit 30 is on (Doppler): irrelevant
+                    EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = (EVC30_MMIRequestEnable.EnabledRequests.Language |
+                                                                        EVC30_MMIRequestEnable.EnabledRequests.Volume |
+                                                                        EVC30_MMIRequestEnable.EnabledRequests.Brightness |
+                                                                        EVC30_MMIRequestEnable.EnabledRequests.SystemVersion |
+                                                                        EVC30_MMIRequestEnable.EnabledRequests.SetVBC /* |
+                                                                EVC30_MMIRequestEnable.EnabledRequests.EnableDoppler */) &
+                                                                       (EVC30_MMIRequestEnable.EnabledRequests.StartBrakeTest |
+                                                                        EVC30_MMIRequestEnable.EnabledRequests.EnableBrakePercentage);
+                    break;
+                case msgType.typeb:
+                    // Xml says bit 30 is on (Doppler) irrelevant for test
+                    EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = (EVC30_MMIRequestEnable.EnabledRequests.Language |
+                                                                        EVC30_MMIRequestEnable.EnabledRequests.Volume |
+                                                                        EVC30_MMIRequestEnable.EnabledRequests.Brightness |
+                                                                        EVC30_MMIRequestEnable.EnabledRequests.SystemVersion |
+                                                                        EVC30_MMIRequestEnable.EnabledRequests.SetVBC /* |
+                                                                EVC30_MMIRequestEnable.EnabledRequests.EnableDoppler */ |
+                                                                        EVC30_MMIRequestEnable.EnabledRequests.EnableBrakePercentage) &
+                                                                       ~EVC30_MMIRequestEnable.EnabledRequests.StartBrakeTest;
+                    break;
+                case msgType.typec:
+                    // Xml indicates that bit 32 should be set: commented out code for enable-low word is correct according to ATP_FE doc.
+                    EVC30_MMIRequestEnable.MMI_NID_WINDOW = 4;          // Xml says 1 (Main window)
+                    // Test says bit 31 off, 28 on, xml says 30 (doppler) is on: irrelevant
+                    EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = (EVC30_MMIRequestEnable.EnabledRequests.Language |
+                                                                        EVC30_MMIRequestEnable.EnabledRequests.Volume |
+                                                                        EVC30_MMIRequestEnable.EnabledRequests.Brightness |
+                                                                        EVC30_MMIRequestEnable.EnabledRequests.SystemVersion |
+                                                                        EVC30_MMIRequestEnable.EnabledRequests.SetVBC |
+                                                                        EVC30_MMIRequestEnable.EnabledRequests.StartBrakeTest /* |
+                                                                EVC30_MMIRequestEnable.EnabledRequests.EnableDoppler */) &
+                                                                       ~EVC30_MMIRequestEnable.EnabledRequests.EnableBrakePercentage;
+                    break;
+                case msgType.typed:
+
+                    // Xml indicates that bit 32 should be set: commented out code for enable-low word is correct according to ATP_FE doc.
+                    EVC30_MMIRequestEnable.MMI_NID_WINDOW = 4;
+                    // Xml says bit 30 (doppler) is on: irrelevant for test
+                    EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Language |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.Volume |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.Brightness |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.SystemVersion |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.SetVBC |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.StartBrakeTest /* |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.EnableDoppler */ |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests.EnableBrakePercentage;
+                    break;
+            }
+            EVC20_MMISelectLevel.Send();
+        }
+        #endregion
     }
 }
