@@ -146,8 +146,6 @@ namespace Testcase.DMITestCases
             
             DmiExpectedResults.Fixed_Train_Data_validated(this);
 
-            return GlobalTestResult;
-
             DmiActions.Display_TRN_Window(this);
             DmiExpectedResults.TRN_window_displayed(this);
 
@@ -210,6 +208,8 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.UN_Mode_displayed(this);
 
             #endregion
+
+            return GlobalTestResult;
 
             #region Test Step 10
             /*
