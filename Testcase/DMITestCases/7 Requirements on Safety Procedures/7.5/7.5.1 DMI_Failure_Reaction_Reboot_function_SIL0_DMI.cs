@@ -64,7 +64,13 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   DMI is rebooted
             Test Step Comment: (1) MMI_gen 11439;
             */
-            XML.XML_2_5_1_a.Send(this);
+
+            #region Send_XML_5_5_1_10_DMI_Test_Specification
+            // XML indicates MMI_M_START_REQ property with value of 10
+            //EVC0_MMIStartATP.MMI_M_START_REQ = 10;
+            //EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.GoToIdle;
+            Testcase.DMITestCases.DmiActions.Start_ATP();
+            #endregion
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                "1. DMI is rebooted.");

@@ -158,5 +158,35 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
+        #region Send_XML_6_2_DMI_Test_Specification
+        enum msgType
+        {
+            typea,
+            typeb,
+            typec
+        }
+
+        private void XML_6_2(msgType type)
+        {
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.PlainTextMessage = "";
+            switch (type)
+            {
+                case msgType.typea:
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT = 280;
+                    break;
+                case msgType.typeb:
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT = 1;
+                    break;
+                case msgType.typec:
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT = 269;
+                    break;
+            }
+            EVC8_MMIDriverMessage.Send();
+        }
+        #endregion
+
     }
 }

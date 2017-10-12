@@ -67,7 +67,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)    DMI displays ST01 symbol with yellow flashing frame in sub-area C9
             Test Step Comment: (1) MMI_gen 4504 (partly: symbols);
             */
-            XML.XML_6_6_a.Send(this);
+            XML_6_6(msgType.typea);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the ST01 symbol with a yellow flashing frame in sub-area C9.");
@@ -84,7 +84,7 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
             EVC8_MMIDriverMessage.Send();
 
-            XML.XML_6_6_b.Send(this);
+            XML_6_6(msgType.typeb);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the DR02 symbol and a ‘Yes’ button (to the right) in area D.");
@@ -101,7 +101,7 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
             EVC8_MMIDriverMessage.Send();
 
-            XML.XML_6_6_c.Send(this);
+            XML_6_6(msgType.typec);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the MO10 symbol with a yellow flashing frame in sub-area C1.");
@@ -114,5 +114,35 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
+        #region Send_XML_6_6_DMI_Test_Specification
+        enum msgType
+        {
+            typea,
+            typeb,
+            typec
+        }
+
+        private void XML_6_6(msgType type)
+        {
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 2;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.PlainTextMessage = "";
+            switch (type)
+            {
+                case msgType.typea:
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT = 260;
+                    break;
+                case msgType.typeb:
+
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT = 298;
+                    break;
+                case msgType.typec:
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT = 263;
+                    break;
+            }
+            EVC8_MMIDriverMessage.Send();
+        }
+        #endregion
     }
 }

@@ -306,8 +306,14 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 3226 (partly: Brake Percentage Data Entry);(2)  MMI_gen 3390 (partly: Brake Percentage Data Entry);
             */
             DmiActions.ShowInstruction(this, @"Enter and confirm the train running number. Press ‘Close’ button. Press ‘Settings’ button. Press ‘Brake’ button");
-            
-            XML.XML_2_6_a.Send(this);
+
+            #region Send_XML_2_6_DMI_Test_Specification
+            // Does this display Train Running window (expect Brake Percentage)
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 4;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.EnableBrakePercentage;
+            EVC30_MMIRequestEnable.Send();
+            #endregion
 
             // Need to send set of data for the input values ??
             EVC50_MMICurrentBrakePercentage.MMI_M_BP_ORIG = 100;

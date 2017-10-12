@@ -13,6 +13,7 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.EVCtoDMI;
 
 namespace Testcase.DMITestCases
 {
@@ -57,7 +58,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            XML.XML_15_3_2_a.Send(this);
+            XML_15_3_2(msgType.typea);
             // Steps 1 to 7 are carried out in XML_15_3_2_a.cs
             /*
             Test Step 1
@@ -152,7 +153,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The fixed text message ‘Doppler error’ is removed.The text message ‘Wheel data settings were successfully changed’ at the lowest position is move up to close the gap, display in sub-area E9.The navigation buttons <Down> at sub-area E11 is disabled, display as symbol NA16. E.g.Hidden messages (above): Tachometer error  Unauthorize passing ofShown messages: EOA/LOA  *+  Wheel data settings were successfully changed  Level crossing not protected
             Test Step Comment: (1) MMI_gen 144 (partly: MMI_I_TEXT);(2) MMI_gen 144 (partly: move up to close the gap);(3) MMI_gen 140 (partly: disabled);
             */
-            XML.XML_15_3_2_b.Send(this);
+            XML_15_3_2(msgType.typeb);
 
             /*
             Test Step 12
@@ -178,7 +179,7 @@ namespace Testcase.DMITestCases
             Action: Use the test script file 15_3_2_c.xml to send a multiple packet of EVC-8 to remove a text message,Common variables MMI_Q_TEXT = 0MMI_Q_TEXT_CRITERIA = 4MMI_Q_TEXT_CLASS = 0The order of MMI_I_TEXT value in each packetMMI_I_TEXT = 1MMI_I_TEXT = 3MMI_I_TEXT = 5MMI_I_TEXT = 6
             Expected Result: The text messages of “Tachometer error”, “*+”, “Wheel data settings were successfully changed” and “Level crossing not protected” disappear.E.g.Shown messages: Unauthorize passing of EOA/LOA
             */
-            XML.XML_15_3_2_c.Send(this);
+            XML_15_3_2(msgType.typec);
 
             /*
             Test Step 15
@@ -186,7 +187,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)    The new incoming message “Fixed Text Message 261” is display in sub-area E6.E.g.Shown messages: Unauthorize passing of EOA/LOA  Fixed Text Message 261
             Test Step Comment: (1) MMI_gen 148 (indexing, auxiliary);
             */
-            XML.XML_15_3_2_d.Send(this);
+            XML_15_3_2(msgType.typed);
             // Steps 15 to 18 are carried out in XML_15_3_2_d.cs
 
             /*
@@ -219,7 +220,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)    The new incoming message “Fixed Text Message 261” is removed from sub-area E9.E.g.Shown messages:  Fixed Text Message 271  Fixed Text Message 270  Unauthorize passing of EOA/LOAFixed Text Message 272
             Test Step Comment: (1) MMI_gen 148 (deleting, auxiliary);
             */
-            XML.XML_15_3_2_e.Send(this);
+            XML_15_3_2(msgType.typee);
             // Steps 19 and 20 are carried out in XML_15_3_2_e.cs
             DmiActions.ShowInstruction(this, @"Press <Down> button");
 
@@ -242,5 +243,261 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
+
+        #region Send_XML_15_3_2_DMI_Test_Specification
+        enum msgType
+        {
+            typea,
+            typeb,
+            typec,
+            typed,
+            typee
+        }
+
+        private void XML_15_3_2(msgType type)
+        {
+            switch (type)
+            {
+
+                case msgType.typea:
+                    // Step 1
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
+                    EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT = 256;
+                    EVC8_MMIDriverMessage.PlainTextMessage = "*+";
+
+                    EVC8_MMIDriverMessage.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                             "1. The plain text message ‘*+’ is displayed sub-area E5 without a yellow flashing frame." + Environment.NewLine +
+                                             "2. The text message is presented with characters in bold style." + Environment.NewLine +
+                                             "3. Sound Sinfo is played.");
+
+                    // Step 2
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.AuxiliaryInformation;
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
+                    EVC8_MMIDriverMessage.MMI_I_TEXT = 2;
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT = 266;
+                    EVC8_MMIDriverMessage.PlainTextMessage = "**";
+
+                    EVC8_MMIDriverMessage.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                             "1. The plain text message ‘**’ is displayed sub-area E5 without a yellow flashing frame." + Environment.NewLine +
+                                             "2. The text message is presented with characters in regular style." + Environment.NewLine +
+                                             "3. No sound is played." + Environment.NewLine +
+                                             "4. There is no gap between the new text message and older message from the previous step.");
+
+                    // Step 3
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.AuxiliaryInformation;
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
+                    EVC8_MMIDriverMessage.MMI_I_TEXT = 3;
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT = 0;
+                    EVC8_MMIDriverMessage.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                             "1. Text message ‘Level crossing not protected’ is displayed in sub-area E6 without a yellow flashing frame." + Environment.NewLine +
+                                             "2. The bold text message is still displayed above the regular messages." + Environment.NewLine +
+                                             "3. No sound is played." + Environment.NewLine +
+                                             "4. The old text message ‘**’ is moved to sub-area E7.");
+
+                    // Step 4
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
+                    EVC8_MMIDriverMessage.MMI_I_TEXT = 4;
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT = 273;
+                    EVC8_MMIDriverMessage.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                             "1. Text message ‘Unauthorized passing of EOA/LOA’ is displayed in sub-area E5-E6 without yellow flashing frame." + Environment.NewLine +
+                                             "2. Sound Sinfo is played." + Environment.NewLine +
+                                             "3. The old text messages are moved to sub-areas E7 - E9 respectively." + Environment.NewLine +
+                                             "4. The navigation buttons < Up > and < Down > at sub-areas E10 - E11 are disabled." + Environment.NewLine +
+                                             "5. DMI displays symbol NA15 at sub-area E10." + Environment.NewLine +
+                                             "6. DMI displays symbol NA16 at sub-area E11.");
+
+                    // Step 5
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
+                    EVC8_MMIDriverMessage.MMI_I_TEXT = 5;
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT = 625;
+                    EVC8_MMIDriverMessage.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                             "1. Text message ‘Tachometer error’ is displayed in sub-area E5 without yellow flashing frame." + Environment.NewLine +
+                                             "2. Sound Sinfo is played." + Environment.NewLine +
+                                             "3. The old text messages are moved to sub-area E6 - E9 respectively." + Environment.NewLine +
+                                             "4. The navigation button <Down> is disabled." + Environment.NewLine +
+                                             "5. DMI displays symbol NA14 at sub-area E11.");
+
+                    // Step 6
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.AuxiliaryInformation;
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
+                    EVC8_MMIDriverMessage.MMI_I_TEXT = 6;
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT = 712;
+                    EVC8_MMIDriverMessage.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                             "1. Truncated text message ‘Wheel data settings were successfully changed’ is displayed in sub-area E9 without yellow flashing frame." + Environment.NewLine +
+                                             "2. No sound is played.");
+
+                    // Step 7
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.AuxiliaryInformation;
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
+                    EVC8_MMIDriverMessage.MMI_I_TEXT = 2;
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT = 583;
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                        "1. Text message ‘Doppler error’ is displayed in sub - area E9 without yellow flashing frame." + Environment.NewLine +
+                                        "2. No sound is played.");
+
+
+                    break;
+                case msgType.typeb:
+                    // Step 1
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.AuxiliaryInformation;
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
+                    EVC8_MMIDriverMessage.MMI_I_TEXT = 2;
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT = 0;
+
+                    EVC8_MMIDriverMessage.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                             "1. The fixed text message ‘Doppler error’ is removed." + Environment.NewLine +
+                                             "2. The text message ‘Wheel data settings were successfully changed’ at the lowest position is moved up to close the gap, displayed in sub-area E9." + Environment.NewLine +
+                                             "3. The navigation button <Down> at sub-area E11 is disabled, displayed as symbol NA16.");
+
+                    break;
+                case msgType.typec:
+                    // A series of EVC-8 messages are sent (see 15_3_2_c.xml) to successively remove a line of text
+
+                    // Step 14/1
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
+                    EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT = 0;
+
+                    EVC8_MMIDriverMessage.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                             "1. The text message ‘Tachometer error’ is removed.");
+
+                    // Step 14/2
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
+                    EVC8_MMIDriverMessage.MMI_I_TEXT = 3;
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT = 0;
+
+                    EVC8_MMIDriverMessage.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                             "1. The text message ‘*+’ is removed.");
+
+                    // Step 14/3
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
+                    EVC8_MMIDriverMessage.MMI_I_TEXT = 5;
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT = 0;
+
+                    EVC8_MMIDriverMessage.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                             "1. The text message ‘Wheel data settings were successfully changed’ is removed.");
+
+                    // Step 14/4
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
+                    EVC8_MMIDriverMessage.MMI_I_TEXT = 6;
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT = 0;
+
+                    EVC8_MMIDriverMessage.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                             "1. The text message ‘Level crossing not protected’ is removed.");
+
+
+                    break;
+                case msgType.typed:
+                    // XML file has these 4 steps as step 14
+
+                    // Step 15
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.AuxiliaryInformation;
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+                    EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT = 261;
+
+                    EVC8_MMIDriverMessage.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                             "1. The new incoming message “Fixed Text Message 261” is displayed in sub-area E6.");
+
+                    // Step 16
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+                    EVC8_MMIDriverMessage.MMI_I_TEXT = 3;
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT = 270;
+
+                    EVC8_MMIDriverMessage.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                             "1. The new incoming message “Fixed Text Message 270” is display in sub-area E5.");
+
+                    // Step 17
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+                    EVC8_MMIDriverMessage.MMI_I_TEXT = 5;
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT = 271;
+
+                    EVC8_MMIDriverMessage.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                             "1. The new incoming message “Fixed Text Message 271” is display in sub-area E5.");
+
+                    // Step 18
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.AuxiliaryInformation;
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+                    EVC8_MMIDriverMessage.MMI_I_TEXT = 6;
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT = 272;
+
+                    EVC8_MMIDriverMessage.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                             "1. The new incoming message “Fixed Text Message 272” is display in sub-area E9.");
+
+
+                    break;
+                case msgType.typee:
+                    // XML file has these 2 steps as step 14
+                    // The spec has Q_TEXT_CLASS = 4 while Q_TEXT_CRITERIA = 1. These should be reversed - XML file is correct
+
+                    // Step 19
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.AuxiliaryInformation;
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
+                    EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT = 261;
+
+                    EVC8_MMIDriverMessage.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                             "1. The new incoming message “Fixed Text Message 261” is removed from sub-area E9.");
+
+                    // Step 20
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
+                    EVC8_MMIDriverMessage.MMI_I_TEXT = 5;
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT = 271;
+
+                    EVC8_MMIDriverMessage.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                             "1. The new incoming message “Fixed Text Message 271” is removed from sub-area E5.");
+
+
+                    break;
+
+            }
+        }
+        #endregion
     }
 }

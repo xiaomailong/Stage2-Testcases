@@ -188,7 +188,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   The symbol ‘MO17’ is displayed in sub-area C1
             Test Step Comment: (1) MMI_gen 4483 (partly: chronological reception order); MMI_gen 11232 (partly: MMI_gen 4483 (partly: chronological reception order));
             */
-            XML.XML_6_1_a.Send(this);
+            XML_6_1(msgType.typea);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the symbol MO17 (with a yellow flashing frame) in sub-area C1.");
@@ -211,7 +211,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays text message 'Brake test aborted, perform new Test?' in sub-area E5 with ACK/NACK buttons.Verify the following information, (1)   The 'ACK' and 'NACK' buttons are placed in sub-area E5-E9.(2)   The buttons are cleary separated and placed below the text to be acknowledged.(3)   The yellow flashing frame are surrounded 'ACK' and 'NACK' button. The text message itself is not framed.(4)   The text message ‘Brake test aborted, perform new test?” is displayed as 2 lines refer to the manual line brake ‘\n’ which added in the definition of text message in configuration file.        Note: See the definition of text message in language_mgr.xml
             Test Step Comment: (1) MMI_gen 4505 (partly: composed by sub-area E5-E9);(2) MMI_gen 4505 (partly: cleary separated, beneath the text);(3) MMI_gen 4471 (partly: 'ACK' and 'NACK' buttons are surrounded by yellow flashing frame, text message not be framed);(4) MMI_gen 7509;
             */
-            XML.XML_6_1_b.Send(this);
+            XML_6_1(msgType.typeb);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the message ‘Brake test aborted, perform new Test?’ in sub-area E5 with ‘Yes’/‘No’ buttons." + Environment.NewLine +
@@ -262,7 +262,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   The sound 'Sinfo' is played once.(2)   The text message is surrounded by flashing yellow frame which drawn around sub-area E5-E9. No ‘NACK’ button
             Test Step Comment: (1) MMI_gen 9393 (partly: sound ‘Sinfo’); MMI_gen 9516 (partly: acknowledgable information); MMI_gen 12025 (partly: acknowledgable information);(2) MMI_gen 4471 (partly: text message only 'ACK'); MMI_gen 4505 (partly: without 'NACK' option, formed by sub-area E5-E9, No ‘NACK’ button); MMI_gen 9393 (partly: flashing frame surround text message);
             */
-            XML.XML_6_1_c.Send(this);
+            XML_6_1(msgType.typec);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the message ‘Perform Brake Test!’ with a flashing yellow frame around sub-areas E5-E9." + Environment.NewLine +
@@ -287,7 +287,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 4505 (partly: touch sensitive);
             */
             // repeat 10 for sub-area E6
-            XML.XML_6_1_b.Send(this);
+            XML_6_1(msgType.typeb);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the message ‘Brake test aborted, perform new Test?’ in sub-area E5 with ‘Yes’/‘No’ buttons." + Environment.NewLine +
@@ -304,7 +304,7 @@ namespace Testcase.DMITestCases
                                 "2. DMI still displays the message ‘Brake test aborted, perform new Test?’ in sub-areas E5-E9 with ‘Yes’/‘No’ buttons.");
 
             // repeat 10 for sub-area E7
-            XML.XML_6_1_b.Send(this);
+            XML_6_1(msgType.typeb);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the message ‘Brake test aborted, perform new Test?’ in sub-area E5 with ‘Yes’/‘No’ buttons." + Environment.NewLine +
@@ -321,7 +321,7 @@ namespace Testcase.DMITestCases
                                 "2. DMI still displays the message ‘Brake test aborted, perform new Test?’ in sub-areas E5-E9 with ‘Yes’/‘No’ buttons.");
 
             // repeat 10 for sub - area E8
-            XML.XML_6_1_b.Send(this);
+            XML_6_1(msgType.typeb);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the message ‘Brake test aborted, perform new Test?’ in sub-area E5 with ‘Yes’/‘No’ buttons." + Environment.NewLine +
@@ -338,7 +338,7 @@ namespace Testcase.DMITestCases
                                 "2. DMI still displays the message ‘Brake test aborted, perform new Test?’ in sub-areas E5-E9 with ‘Yes’/‘No’ buttons.");
 
             // repeat 10 for sub - area E9
-            XML.XML_6_1_b.Send(this);
+            XML_6_1(msgType.typeb);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the message ‘Brake test aborted, perform new Test?’ in sub-area E5 with ‘Yes’/‘No’ buttons." + Environment.NewLine +
@@ -360,7 +360,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   The sound ‘Click’ is played once.(2)   The sub-area C1 is shown as pressed state, the border of button is removed.(3)   Use the log file to confirm that DMI send EVC-101 with variable MMI_Q_BUTTON = 1 (Pressed) and MMI_T_BUTTONEVENT is not blank
             Test Step Comment: (1) MMI_gen 3200 (partly: Mode acknowledgement, MMI_gen 4381 (partly: the sound for Up-Type button));(2) MMI_gen 3200 (partly: Mode acknowledgement, MMI_gen 4381 (partly: change to state ‘Pressed’ as long as remain actuated));(3) MMI_gen 3200 (partly: Mode acknowledgement, pressed, MMI_gen 11387 (partly: send events of Pressed independently to ETCS), MMI_gen 11907 (partly: EVC-101, timestamp)); 
             */
-            XML.XML_6_1_a.Send(this);
+            XML_6_1(msgType.typea);
 
             DmiActions.ShowInstruction(this, "After symbol MO17 has been displayed, press in and hold sub-area C1");
 
@@ -415,7 +415,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays symbol LE07 in area C1 with flashing yellow frame
             Test Step Comment: MMI_gen 3374 (partly: Level acknowledgement symbol, visible, not faulty);
             */
-            XML.XML_6_1_d.Send(this);
+            XML_6_1(msgType.typed);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays symbol LE07 in area C1 with a flashing yellow frame");
@@ -427,7 +427,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 3200 (partly: Level acknowledgement symbol);
             */
             // Repeat 16
-            XML.XML_6_1_a.Send(this);
+            XML_6_1(msgType.typea);
 
             DmiActions.ShowInstruction(this, "After symbol MO17 has been displayed, press in and hold sub-area C1");
 
@@ -463,5 +463,45 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
+        #region Send_XML_6_1_DMI_Test_Specification
+        enum msgType
+        {
+            typea,
+            typeb,
+            typec,
+            typed
+        }
+
+        private void XML_6_1(msgType type)
+        {
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            switch (type)
+            {
+
+                case msgType.typea:
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT = 264;
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+                    EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+                    break;
+                case msgType.typeb:
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT = 527;
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 2;
+                    EVC8_MMIDriverMessage.MMI_I_TEXT = 2;
+                    break;
+                case msgType.typec:
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT = 514;
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+                    EVC8_MMIDriverMessage.MMI_I_TEXT = 3;
+                    break;
+                case msgType.typed:
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT = 257;
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+                    EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+                    EVC8_MMIDriverMessage.PlainTextMessage = "\0x0";
+                    break;
+            }
+            EVC8_MMIDriverMessage.Send();
+        }
+        #endregion
     }
 }

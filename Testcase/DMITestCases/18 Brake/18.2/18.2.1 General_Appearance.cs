@@ -138,7 +138,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verifies that the following information,The symbol ST01 is displayed in sub-area C9 with yellow flashing frame.A yellow flashing frame is surrounded in the related object (sub-area C9) and sound Sinfo is played
             Test Step Comment: (1) MMI_gen 1382 (partly: receives packet);                 (2) MMI_gen 1382 (partly: MMI_gen 9393);
             */
-            XML.XML_13_2_1_a.Send(this);
+            XML_13_2_1(msgType.typea);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the symbol ST01 in sub-area C9 surrounded by a yellow flashing frame." + Environment.NewLine +
@@ -197,7 +197,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 116; MMI_gen 9516 (partly: removal of the Brake Intervention); MMI_gen 12025 (partly: removal of the Brake Intervention);
             */
             // Call generic Action Method
-            XML.XML_13_2_1_b.Send(this);
+            XML_13_2_1(msgType.typeb);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI plays sound ‘Sinfo’");
@@ -208,7 +208,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information, The sub-area C8 can be acknowledged as sensitive areaThe flashing frame belonging to the acknowledgement is disappearedThe symbol ‘ST01’ is still displayed.When the driver carries out an acknowledgement, the DMI will send [MMI_DRIVER_MESSAGE_ACK (EVC-111)] for pressed and released event with [MMI_DRIVER_MESSAGE (EVC-8).MMI_I_TEXT] and [MMI_DRIVER_MESSAGE_ACK (EVC-111).MMI_Q_ACK]Note: For pressed and released event, the DMI will send variable [MMI_DRIVER_MESSAGE_ACK (EVC-111).MMI_Q_ACK] = 1 with  [MMI_DRIVER_MESSAGE_ACK (EVC-111).MMI_Q_BUTTON] = 1, and then send [MMI_DRIVER_MESSAGE_ACK (EVC-111).MMI_Q_ACK] = 1 with  [MMI_DRIVER_MESSAGE_ACK (EVC-111).MMI_Q_BUTTON] = 0
             Test Step Comment: (1) MMI_gen 1400 (partly: C8);                                         (2) MMI_gen 1382 (partly: MMI_gen 4499 (partly: flashing frame));                       (3) MMI_gen 1382 (partly: MMI_gen 4499 (partly: symbol after acknowledgement is given));(4) MMI_gen 1382 (partly: MMI_gen146);
             */
-            XML.XML_13_2_1_a.Send(this);
+            XML_13_2_1(msgType.typea);
 
             DmiActions.ShowInstruction(this, "Press in sub-area C8 (below ST01 symbol)");
 
@@ -232,7 +232,7 @@ namespace Testcase.DMITestCases
             Action: This step is to clear the symbol ‘ST01’ after verification of the previous step.Use the test script file 13_2_1_b.xml to send EVC-8 with,MMI_Q_TEXT_CRITERIA = 4MMI_I_TEXT = 1
             Expected Result: 
             */
-            XML.XML_13_2_1_b.Send(this);
+            XML_13_2_1(msgType.typeb);
 
             /*
             Test Step 13
@@ -240,7 +240,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The sub-area C9 can be acknowledged as sensitive areaThe flashing frame belonging to the acknowledgement is disappearedThe symbol ‘ST01’ is still displayed.When the driver carries out an acknowledgement, the DMI will send [MMI_DRIVER_MESSAGE_ACK (EVC-111)] for pressed and released event with [MMI_DRIVER_MESSAGE (EVC-8).MMI_I_TEXT] and [MMI_DRIVER_MESSAGE_ACK (EVC-111).MMI_Q_ACK]Note: For pressed and released event, the DMI will send variable [MMI_DRIVER_MESSAGE_ACK (EVC-111).MMI_Q_ACK] = 1 with  [MMI_DRIVER_MESSAGE_ACK (EVC-111).MMI_Q_BUTTON] = 1, and then send [MMI_DRIVER_MESSAGE_ACK (EVC-111).MMI_Q_ACK] = 1 with  [MMI_DRIVER_MESSAGE_ACK (EVC-111).MMI_Q_BUTTON] = 0
             Test Step Comment: (1) MMI_gen 1400 (partly: sub-area C8);                                      (2) MMI_gen 1382 (partly: MMI_gen4499 (partly: flashing frame));            (3) MMI_gen 1382 (partly:  MMI_gen 4499 (partly: symbol after acknowledgement is given));                             (4) MMI_gen 1382 (partly: MMI_gen146);
             */
-            XML.XML_13_2_1_a.Send(this);
+            XML_13_2_1(msgType.typea);
 
             DmiActions.ShowInstruction(this, "Press in sub-area C9 (below ST01 symbol)");
 
@@ -267,5 +267,39 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
+        #region Send_XML_13_2_1_DMI_Test_Specification
+        enum msgType
+        {
+            typea,
+            typeb
+        }
+
+        private void XML_13_2_1(msgType type)
+        {
+            switch (type)
+            {
+
+                case msgType.typea:
+                    // Step 2/1
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT = 260;
+                    EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 0;
+
+                    EVC8_MMIDriverMessage.Send();
+
+                    break;
+                case msgType.typeb:
+
+                    EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
+
+                    EVC8_MMIDriverMessage.Send();
+
+                    break;
+
+            }
+        }
+        #endregion
     }
 }

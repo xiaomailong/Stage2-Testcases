@@ -67,7 +67,7 @@ namespace Testcase.DMITestCases
             Action: Use the test script file 6_3_a.xml to send EVC-8 with,MMI_Q_TEXT = 280MMI_Q_TEXT_CRITERIA = 1MMI_I_TEXT = 1
             Expected Result: DMI displays the text message ‘Emergency stop’ in sub-area E5
             */
-            XML.XML_6_3_a.Send(this);
+            XML_6_3(msgType.typea);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the message ‘Emergency stop’ in sub-area E5.");
@@ -151,7 +151,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   The display information on DMI still not change, ST01 symbol is displayed on sub-area C9
             Test Step Comment: (1) MMI_gen 4484 (partly: NEGATIVE, lower priority, focus not moved);
             */
-            XML.XML_6_3_b.Send(this);
+            XML_6_3(msgType.typeb);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI display does not change and still displays symbol ST01 in sub-area C9.");
@@ -197,7 +197,7 @@ namespace Testcase.DMITestCases
             Action: Use the test script file 6_3_c.xml to send EVC-8 with,MMI_Q_TEXT = 554MMI_Q_TEXT_CRITERIA = 1MMI_I_TEXT = 11
             Expected Result: The display information on DMI still not change, ST01 symbol is displayed on sub-area C9
             */
-            XML.XML_6_3_c.Send(this);
+            XML_6_3(msgType.typec);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI display does not change and still displays symbol ST01 in sub-area C9.");
@@ -208,7 +208,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   The symbol ST01 in sub-area C9 is removed.(2)   Use the log file to confirm that DMI is not send out packet EVC-111.(3)   After 1 second, the symbol DR02 is displayed on area D
             Test Step Comment: (1) MMI_gen 4485 (partly: ETCS Onboard); MMI_gen 4498 (partly: disappear);(2) MMI_gen 4498 (partly: sensitive area is removed);(3) MMI_gen 4498 (partly: reappear, next pending acknowledgement);
             */
-            XML.XML_6_3_d.Send(this);
+            XML_6_3(msgType.typed);
 
             DmiActions.ShowInstruction(this, "Press in sub-area C9");
 
@@ -300,7 +300,7 @@ namespace Testcase.DMITestCases
             Expected Result: See the expected result No.1-6
             */
             // Should steps 2-6 be repeated also??
-            XML.XML_6_3_a.Send(this);
+            XML_6_3(msgType.typea);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the message ‘Emergency stop’ in sub-area E5.");
@@ -339,5 +339,47 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
+
+        #region Send_XML_6_3_DMI_Test_Specification
+        enum msgType
+        {
+            typea,
+            typeb,
+            typec,
+            typed
+        }
+
+        private void XML_6_3(msgType type)
+        {
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.PlainTextMessage = "";
+            switch (type)
+            {
+                case msgType.typea:
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT = 280;
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+                    EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+                    break;
+                case msgType.typeb:
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT = 264;
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+                    EVC8_MMIDriverMessage.MMI_I_TEXT = 7;
+                    break;
+                case msgType.typec:
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT = 554;
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+                    EVC8_MMIDriverMessage.MMI_I_TEXT = 11;
+                    break;
+                case msgType.typed:
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT = 0;
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
+                    EVC8_MMIDriverMessage.MMI_I_TEXT = 6;
+                    break;
+            }
+            EVC8_MMIDriverMessage.Send();
+        }
+        #endregion
+
+
     }
 }
