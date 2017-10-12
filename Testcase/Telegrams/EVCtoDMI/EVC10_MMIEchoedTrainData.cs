@@ -1,7 +1,9 @@
-﻿using System;
+﻿#region usings
+using System;
 using System.Collections.Generic;
 using CL345;
 using static Testcase.Telegrams.EVCtoDMI.Variables;
+#endregion
 
 namespace Testcase.Telegrams.EVCtoDMI
 {
@@ -79,10 +81,10 @@ namespace Testcase.Telegrams.EVCtoDMI
                 totalSizeCounter += 16;
 
                 // Populate the characters of trainset captions 
-                for (var charIndex = 0; charIndex < charArray.Length; charIndex++)
+                for (short charIndex = 0; charIndex < charArray.Length; charIndex++)
                 {
                     // Get each trainset caption character from function parameter
-                    var character = charArray[charIndex];
+                    char character = charArray[charIndex];
                     
                     // Declare value to get MmiXCaptionTrainset from EVC-6 packet
                     char evc6MmiXCaptionTrainset;
@@ -121,7 +123,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             // Set the total length of the packet
             _pool.SITR.ETCS1.EchoedTrainData.MmiLPacket.Value = totalSizeCounter;
             
-            // Send telegram
+            // Send dynamic telegram
             _pool.SITR.SMDCtrl.ETCS1.EchoedTrainData.Value = 0x0009;
         }
 
