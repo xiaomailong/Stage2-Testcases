@@ -237,7 +237,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Enter and confirm the value ‘65536’ at an Input Field.Then, press ‘Yes’ button and check the log file for packet EVC-119 from DMI");
 
-            EVC29_MMIEchoedRemoveVBCData.MMI_M_VBC_CODE_ = 66535;
+            EVC29_MMIEchoedRemoveVBCData.MMI_M_VBC_CODE_ = 66536;
             EVC29_MMIEchoedRemoveVBCData.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -253,8 +253,9 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 3203 (partly: Remove VBC Data Validation);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press ‘Yes’ button.Then, confirm an entered value by pressing  an Input Field and check the log file for packet EVC-129 from DMI with variables reflecting the accepted data");
+            DmiActions.ShowInstruction(this, @"Press ‘Yes’ button.Then, confirm an entered value by pressing  an Input Field");
 
+            EVC129_MMIConfirmedRemoveVBC.Check_VBC_Code = 65536;
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                "1. DMI displays the Settings window.");
 
