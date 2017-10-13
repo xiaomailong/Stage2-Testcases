@@ -11,7 +11,7 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 namespace Testcase.Telegrams.DMItoEVC
 {
     /// <summary>
-    /// This packet shall be sent when the driver has entered or validated driver identity number.
+    /// This packet shall be sent sporadically from DMI when the driver has confirmed data in the 'Set VBC' validation window.
     /// </summary>
     public static class EVC128_MMIConfirmedSetVBC
     {
