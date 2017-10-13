@@ -210,9 +210,7 @@ namespace Testcase.DMITestCases
             /// Test spec says Radar validation window but message means that Set RBC Validation window would be displayed...
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Enter and confirm the value ‘65536’ in an Input Field, then press the ‘Yes’ button");
-
-            EVC128_MMIConfirmedSetVBC.Check_VBC_Code = 65536;
-
+            
             //EVC28_MMIEchoedSetVBCData.M_VBC_CODE_ = 65536;
             //EVC28_MMIEchoedSetVBCData.Send();
 
@@ -229,7 +227,9 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 3203 (partly: Set VBC Data Validation);
             */
             // Call generic Action Method           
-            DmiActions.ShowInstruction(this, @"Press the ‘Yes’ button. Accept an Input Field value by pressing it and check the log file for packet EVC-128 from DMI with variables reflecting the accepted data");
+            DmiActions.ShowInstruction(this, @"Press the ‘Yes’ button. Accept an Input Field value by pressing it");
+
+            EVC128_MMIConfirmedSetVBC.Check_VBC_Code = 65536;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                "1. DMI displays the Settings window.");
