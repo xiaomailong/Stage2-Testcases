@@ -3,6 +3,7 @@
 using CL345;
 using System;
 using System.Collections.Generic;
+using System.Text;
 
 #endregion
 
@@ -91,21 +92,23 @@ namespace Testcase.Telegrams.EVCtoDMI
                 throw new ArgumentOutOfRangeException("Packet size exceeds maximum allowed");
             }
 
+            string packetName = "ETCS1_SpecificStmDeRequest_";
+
             // For all data units
             for (int k = 0; k < numberOfDataUnits; k++)
             {
-                var varnamestring = $"ETCS1_SpecificStmDeRequest_EVC25SpecificStmDeRequestSub10{k}_";
+                string tagName1 = packetName + $"EVC25SpecificStmDeRequestSub10{k}_";
 
                 // write out the MMI_NID_NTC value
-                _pool.SITR.Client.Write($@"{varnamestring}MmiNidNtc", StmData[k].nidNtc);
+                _pool.SITR.Client.Write(tagName1 + "MmiNidNtc", StmData[k].nidNtc);
                 totalSizeCounter += sizeof(byte);
 
                 // write out the MMI_STM_NID_DATA value (index
-                _pool.SITR.Client.Write($@"{varnamestring}MmiStmNidData", StmData[k].stmNidData);
+                _pool.SITR.Client.Write(tagName1 + "MmiStmNidData", StmData[k].stmNidData);
                 totalSizeCounter += sizeof(byte);
 
                 // write out the MMI_EVC_M_XATTRIBUTE value (type)
-                _pool.SITR.Client.Write($@"{varnamestring}MmiEvcMXattribute", StmData[k].evcMXAttribute);
+                _pool.SITR.Client.Write(tagName1 + "MmiEvcMXattribute", StmData[k].evcMXAttribute);
                 totalSizeCounter += sizeof(ushort);
 
                 var caption = StmData[k].stmCaption.ToCharArray();
@@ -118,16 +121,17 @@ namespace Testcase.Telegrams.EVCtoDMI
                 else
                 {
                     // write out the MMI_L_CAPTION value (length)
-                    _pool.SITR.Client.Write($@"{varnamestring}MmiLCaption", (ushort) caption.Length);
+                    _pool.SITR.Client.Write(tagName1 + "MmiLCaption", (ushort) caption.Length);
                     totalSizeCounter += sizeof(ushort);
                 }
 
                 // Write individual caption chars
                 // Dynamic fields 2nd dimension
+                string tagName2 = $"{tagName1}EVC25SpecificStmDeRequestSub110";
+
                 for (int l = 0; l < caption.Length; l++)
                 {
-                    _pool.SITR.Client.Write($"{varnamestring}EVC25SpecificStmDeRequestSub110{k}_MmiStmXCaption",
-                        caption[l]);
+                    _pool.SITR.Client.Write($"{tagName2}{l}_MmiStmXCaption", caption[l]);
                     totalSizeCounter += sizeof(byte);
                 }
 
@@ -140,14 +144,16 @@ namespace Testcase.Telegrams.EVCtoDMI
                 else
                 {
                     // write out the MMI_STM_L_VALUE (length of xvalue string)
-                    _pool.SITR.Client.Write($"{varnamestring}MmiStmLValue", xValue.Length);
+                    _pool.SITR.Client.Write($"{tagName1}MmiStmLValue", xValue.Length);
                     totalSizeCounter += sizeof(ushort);
                 }
+
+                tagName2 = $"{tagName1}EVC25SpecificStmDeRequestSub120";
 
                 // write out the XValue chars
                 for (int l = 0; l < xValue.Length; l++)
                 {
-                    _pool.SITR.Client.Write($"{varnamestring}EVC25SpecificStmDeRequestSub120{l}_MmiStmXValue", xValue[l]);
+                    _pool.SITR.Client.Write($"{tagName2}{l}_MmiStmXValue", xValue[l]);
                     totalSizeCounter += sizeof(byte);
                 }
 
@@ -160,8 +166,10 @@ namespace Testcase.Telegrams.EVCtoDMI
                 }
                 else
                 {
-                    _pool.SITR.Client.Write($"{varnamestring}MmiNIter2", numberInPickupList);
+                    _pool.SITR.Client.Write($"{tagName1}MmiNIter2", numberInPickupList);
                     totalSizeCounter += sizeof(ushort);
+
+                    string tagName3 = $"{tagName1}EVC25SpecificStmDeRequestSub130";
 
                     for (int l = 0; l < numberInPickupList; l++)
                     {
@@ -172,13 +180,14 @@ namespace Testcase.Telegrams.EVCtoDMI
                         }
                         else
                         {
-                            var varSubNameString = $"{varnamestring}EVC25SpecificStmDeRequestSub130{l}_";
-                            _pool.SITR.Client.Write($"{varSubNameString}MmiStmLValue", pickUpXValue.Length);
+                            string tagName4 = $"{tagName3}{l}_";
+                            _pool.SITR.Client.Write($"{tagName3}MmiStmLValue", pickUpXValue.Length);
+
+                            string tagName5 = $"{tagName4}EVC25SpecificStmDRequestSub1310";
 
                             for (int m = 0; m < pickUpXValue.Length; m++)
                             {
-                                _pool.SITR.Client.Write($"{varSubNameString}EVC25SpecificStmDRequestSub1310{m}_MmiStmXValue",
-                                                        pickUpXValue[m]);
+                                _pool.SITR.Client.Write($"{tagName5}{m}_MmiStmXValue", pickUpXValue[m]);
                                 totalSizeCounter += sizeof(byte);
                             }
                         }
