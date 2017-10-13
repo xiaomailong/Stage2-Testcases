@@ -96,9 +96,11 @@ namespace Testcase.DMITestCases
                                              "Enter ‘500’ for Wheel Diameter 2 and press its data input field" + Environment.NewLine +
                                              "Enter ‘0’ for Accuracy and press its data input field");
 
-            //EVC140_MMINewMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1 = 500;        // A check fn.?
-            //EVC140_MMINewMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1 = 500;
-            //EVC140_MMINewMaintenanceData.MMI_M_WHEEL_SIZE_ERR = 0;
+            EVC140_MMINewMaintenanceData.MMI_Q_MD_DATASET = Variables.MMI_Q_MD_DATASET.WheelDiameter;
+            EVC140_MMINewMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1 = (Variables.MMI_M_SDU_WHEEL_SIZE)500;        // A check fn.?
+            EVC140_MMINewMaintenanceData.MMI_M_SDU_WHEEL_SIZE_2 = (Variables.MMI_M_SDU_WHEEL_SIZE)500;
+            EVC140_MMINewMaintenanceData.MMI_M_WHEEL_SIZE_ERR = (Variables.MMI_M_WHEEL_SIZE_ERR)0;
+            EVC140_MMINewMaintenanceData.CheckTelegram();
 
             // MMI_gen 4651 gives the selected state as this:
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -129,9 +131,9 @@ namespace Testcase.DMITestCases
                                              "Enter ‘1500’ for Wheel Diameter 2 and press its data input field" + Environment.NewLine +
                                              "Enter ‘32’ for Accuracy and press its data input field");
 
-            //EVC140_MMINewMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1 = 1500;        // A check fn.?
-            //EVC140_MMINewMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1 = 1500;
-            //EVC140_MMINewMaintenanceData.MMI_M_WHEEL_SIZE_ERR = 32;
+            EVC140_MMINewMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1 = (Variables.MMI_M_SDU_WHEEL_SIZE)1500;      
+            EVC140_MMINewMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1 = (Variables.MMI_M_SDU_WHEEL_SIZE)1500;
+            EVC140_MMINewMaintenanceData.MMI_M_WHEEL_SIZE_ERR = (Variables.MMI_M_WHEEL_SIZE_ERR)32;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The values entered are displayed selected.");

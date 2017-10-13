@@ -711,11 +711,12 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Release the ‘Yes’ button");
 
-            //EVC140_CurrentMaintenanceData.CheckQDataSet = /* Telegrams.EVCtoDMI.Variables.?? */  0;
-            //EVC140_CurrentMaintenanceData.CheckMSduWheelSize1 = /* Telegrams.EVCtoDMI.Variables.?? */  0x3e8;
-            //EVC140_CurrentMaintenanceData.CheckMSduWheelSize2 = /* Telegrams.EVCtoDMI.Variables.?? */  0x3e8;
-            //EVC140_CurrentMaintenanceData.CheckMSduWheelSizeErr = /* Telegrams.EVCtoDMI.Variables.?? */  0x1d;
-            
+            EVC140_MMINewMaintenanceData.MMI_Q_MD_DATASET = Variables.MMI_Q_MD_DATASET.WheelDiameter;
+            EVC140_MMINewMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1 = (Telegrams.EVCtoDMI.Variables.MMI_M_SDU_WHEEL_SIZE)0x3e8;
+            EVC140_MMINewMaintenanceData.MMI_M_SDU_WHEEL_SIZE_2 =  (Telegrams.EVCtoDMI.Variables.MMI_M_SDU_WHEEL_SIZE)0x3e8;
+            EVC140_MMINewMaintenanceData.MMI_M_WHEEL_SIZE_ERR = (Telegrams.EVCtoDMI.Variables.MMI_M_WHEEL_SIZE_ERR)0x1d;
+            EVC140_MMINewMaintenanceData.CheckTelegram();
+
 
             // assume that EVC41 will invert the values
             EVC41_MMIEchoedMaintenanceData.MMI_M_WHEEL_SIZE_ERR_ = (Variables.MMI_M_WHEEL_SIZE_ERR)0x1d;

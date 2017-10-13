@@ -83,6 +83,9 @@ namespace Testcase.DMITestCases
                                              @"then press the ‘Wheel diameter’ button in the Maintenance window");
                                           
             EVC40_MMICurrentMaintenanceData.MMI_Q_MD_DATASET = Variables.MMI_Q_MD_DATASET.WheelDiameter;
+            EVC40_MMICurrentMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1 = (Variables.MMI_M_SDU_WHEEL_SIZE)20001;
+            EVC40_MMICurrentMaintenanceData.MMI_M_SDU_WHEEL_SIZE_2 = (Variables.MMI_M_SDU_WHEEL_SIZE)20001;
+            EVC40_MMICurrentMaintenanceData.MMI_M_WHEEL_SIZE_ERR = (Variables.MMI_M_WHEEL_SIZE_ERR)200;
             EVC40_MMICurrentMaintenanceData.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -95,11 +98,20 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Wheel diameter validation window.Verify the following information,(1)    Use the log file to confirm that DMI sent out packet EVC-140 variable based on confirmed data and MMI_Q_MD_DATASET = 0 to ETCS Onboard.(2)   Use the log file to confirm that DMI received packet EVC-41 with variable MMI_Q_MD_DATASET = 0 from ETCS Onboard.(3)   The position of ‘Yes’ button on Wheel diameter validation window is located at the different location of ‘Yes’ button on Wheel diameter window.(4)   The format of presentation in Wheel diameter validation window is difference from Wheel diameter window as follows,           -   The data pending for confirmation of Wheel diameter validation window is presented as echo texts.(5)   The presentation of echo text in Wheel diameter validation window is located at the difference location of an Input Fields in Wheel diameter window
             Test Step Comment: (1) MMI_gen 3203 (Maintenance Data Entry);(2) MMI_gen 3226 (partly: Maintenance Data Validation);(3) MMI_gen 3205 (partly: Maintenance Data Entry and Validation);(4) MMI_gen 3390 (partly: Maintenance Validation);(5) MMI_gen 3391 (partly: Maintenance Data Entry and Validation);
             */
-            DmiActions.ShowInstruction(this, @"Accept the values of all Input Fields as shown. Press the ‘Yes’ button and check the log file for packet EVC-41 from DMI with MMI_Q_MD_DATASET = 0");
+            DmiActions.ShowInstruction(this, @"Accept the values of all Input Fields as shown. Press the ‘Yes’ button");
+
+            EVC140_MMINewMaintenanceData.MMI_Q_MD_DATASET = Variables.MMI_Q_MD_DATASET.WheelDiameter;
+            EVC140_MMINewMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1 = (Variables.MMI_M_SDU_WHEEL_SIZE)1000;
+            EVC140_MMINewMaintenanceData.MMI_M_SDU_WHEEL_SIZE_2 = (Variables.MMI_M_SDU_WHEEL_SIZE)100;
+            EVC140_MMINewMaintenanceData.MMI_M_WHEEL_SIZE_ERR = (Variables.MMI_M_WHEEL_SIZE_ERR) 30;
+            EVC140_MMINewMaintenanceData.CheckTelegram();
 
             EVC41_MMIEchoedMaintenanceData.MMI_Q_MD_DATASET_ = Variables.MMI_Q_MD_DATASET.WheelDiameter;
-            EVC41_MMIEchoedMaintenanceData.Send();
-
+            EVC41_MMIEchoedMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1_ = (Variables.MMI_M_SDU_WHEEL_SIZE)1000;
+            EVC41_MMIEchoedMaintenanceData.MMI_M_SDU_WHEEL_SIZE_2_ = (Variables.MMI_M_SDU_WHEEL_SIZE)100;
+            EVC41_MMIEchoedMaintenanceData.MMI_M_WHEEL_SIZE_ERR_ = (Variables.MMI_M_WHEEL_SIZE_ERR)30;
+            EVC41_MMIEchoedMaintenanceData.Send(); 
+            
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                "1. DMI displays the Wheel Diameter validation window." + Environment.NewLine +
                                @"2. The ‘Yes’ button in the Wheel diameter validation window is at a different location from the ‘Yes’ button in the Wheel diameter window." + Environment.NewLine +
@@ -127,7 +139,9 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press ‘Radar’ button");
 
-            EVC40_MMICurrentMaintenanceData.MMI_Q_MD_DATASET = Variables.MMI_Q_MD_DATASET.WheelDiameter;
+            EVC40_MMICurrentMaintenanceData.MMI_Q_MD_DATASET = Variables.MMI_Q_MD_DATASET.Doppler;
+            EVC40_MMICurrentMaintenanceData.MMI_M_PULSE_PER_KM_1 = (Variables.MMI_M_PULSE_PER_KM) 20001;
+            EVC40_MMICurrentMaintenanceData.MMI_M_PULSE_PER_KM_2 = (Variables.MMI_M_PULSE_PER_KM)20001;
             EVC40_MMICurrentMaintenanceData.Send();
             
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -140,9 +154,16 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Radar validation window.Verify the following information,(1)    Use the log file to confirm that DMI sent out packet EVC-140 variable based on confirmed data and MMI_Q_MD_DATASET = 1 to ETCS Onboard.(2)   Use the log file to confirm that DMI received packet EVC-41 with variable MMI_Q_MD_DATASET = 1 from ETCS Onboard.(3)   The position of ‘Yes’ button on Radar validation window is located at the different location of ‘Yes’ button on Radar window.(4)   The format of presentation in Radar validation window is difference from Radar window as follows,           -   The data pending for confirmation of Radar validation window is presented as echo texts.(5)   The presentation of echo text in Radar validation window is located at the difference location of an Input Fields in Radar window
             Test Step Comment: (1) MMI_gen 3203 (Maintenance Data Entry);(2) MMI_gen 3226 (partly: Maintenance Data Validation);(3) MMI_gen 3205 (partly: Maintenance Data Entry and Validation);(4) MMI_gen 3390 (partly: Maintenance Validation);(5) MMI_gen 3391 (partly: Maintenance Data Entry and Validation);
             */
-            DmiActions.ShowInstruction(this, @"Accept the values of all Input Fields as shown. Press the ‘Yes’ button and check the log file for packet EVC-141 from DMI with MMI_Q_MD_DATASET = 1");
+            DmiActions.ShowInstruction(this, @"Accept the values of all Input Fields as shown. Press the ‘Yes’ button");
+
+            EVC140_MMINewMaintenanceData.MMI_Q_MD_DATASET = Variables.MMI_Q_MD_DATASET.Doppler;
+            EVC140_MMINewMaintenanceData.MMI_M_PULSE_PER_KM_1 = (Variables.MMI_M_PULSE_PER_KM)20001;
+            EVC140_MMINewMaintenanceData.MMI_M_PULSE_PER_KM_2 = (Variables.MMI_M_PULSE_PER_KM)20001;
+            EVC140_MMINewMaintenanceData.CheckTelegram();
 
             EVC41_MMIEchoedMaintenanceData.MMI_Q_MD_DATASET_ = Variables.MMI_Q_MD_DATASET.Doppler;
+            EVC41_MMIEchoedMaintenanceData.MMI_M_PULSE_PER_KM_1_ = (Variables.MMI_M_PULSE_PER_KM)20001;
+            EVC41_MMIEchoedMaintenanceData.MMI_M_PULSE_PER_KM_2_ = (Variables.MMI_M_PULSE_PER_KM)20001;
             EVC41_MMIEchoedMaintenanceData.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +

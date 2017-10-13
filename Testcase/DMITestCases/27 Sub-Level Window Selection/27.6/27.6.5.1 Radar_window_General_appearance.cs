@@ -588,12 +588,12 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Release the ‘Yes’ button");
 
-            //EVC140_MMI_NewMaintenanceData.CheckQMdDataset = 1;
-            //EVC140_MMI_NewMaintenanceData.CheckMPulsePerKm1 = (Variables.MMI_M_PULSE_PER_KM)20001;
-            //EVC140_MMI_NewMaintenanceData.CheckMPulsePerKm2 = (Variables.MMI_M_PULSE_PER_KM)20001;
+            EVC140_MMINewMaintenanceData.MMI_Q_MD_DATASET = Variables.MMI_Q_MD_DATASET.Doppler;
+            EVC140_MMINewMaintenanceData.MMI_M_PULSE_PER_KM_1 = (Variables.MMI_M_PULSE_PER_KM)20001;
+            EVC140_MMINewMaintenanceData.MMI_M_PULSE_PER_KM_2 = (Variables.MMI_M_PULSE_PER_KM)20001;
+            EVC140_MMINewMaintenanceData.CheckTelegram();
 
             // Open the Radar validation window
-            
             EVC41_MMIEchoedMaintenanceData.MMI_M_PULSE_PER_KM_1_ = (Variables.MMI_M_PULSE_PER_KM)20001;
             EVC41_MMIEchoedMaintenanceData.MMI_M_PULSE_PER_KM_2_ = (Variables.MMI_M_PULSE_PER_KM) 20001;
             EVC41_MMIEchoedMaintenanceData.MMI_Q_MD_DATASET_ = Variables.MMI_Q_MD_DATASET.Doppler;
