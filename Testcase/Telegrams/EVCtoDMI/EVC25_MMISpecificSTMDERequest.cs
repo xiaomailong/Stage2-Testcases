@@ -24,7 +24,7 @@ namespace Testcase.Telegrams.EVCtoDMI
     public static class EVC25_MMISpecificSTMDERequest
     {
         private static SignalPool _pool;
-        private static byte _driverAndFollowing;
+        private static byte _evc25Alias1;
 
         /// <summary>
         /// Initialise EVC-25 MMI Specific STM DE Request telegram
@@ -33,7 +33,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         public static void Initialise(SignalPool pool)
         {
             _pool = pool;
-            _driverAndFollowing = 0x00;
+            _evc25Alias1 = 0x00;
             StmData = new List<EVC25_StmData>();
 
 
@@ -72,7 +72,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static void Send()
         {
-            _pool.SITR.ETCS1.SpecificStmDeRequest.EVC25alias1.Value = _driverAndFollowing;
+            _pool.SITR.ETCS1.SpecificStmDeRequest.EVC25alias1.Value = _evc25Alias1;
 
             ushort numberOfDataUnits = (ushort)StmData.Count;
 
@@ -100,15 +100,22 @@ namespace Testcase.Telegrams.EVCtoDMI
                 string tagName1 = packetName + $"EVC25SpecificStmDeRequestSub10{k}_";
 
                 // write out the MMI_NID_NTC value
-                _pool.SITR.Client.Write(tagName1 + "MmiNidNtc", StmData[k].nidNtc);
+
+                string requestName = tagName1 + "MmiNidNtc";
+
+                _pool.SITR.Client.Write(requestName, StmData[k].nidNtc);
                 totalSizeCounter += sizeof(byte);
 
-                // write out the MMI_STM_NID_DATA value (index
-                _pool.SITR.Client.Write(tagName1 + "MmiStmNidData", StmData[k].stmNidData);
+                // write out the MMI_STM_NID_DATA value (index)
+                requestName = tagName1 + "MmiStmNidData";
+
+                _pool.SITR.Client.Write(requestName, StmData[k].stmNidData);
                 totalSizeCounter += sizeof(byte);
 
                 // write out the MMI_EVC_M_XATTRIBUTE value (type)
-                _pool.SITR.Client.Write(tagName1 + "MmiEvcMXattribute", StmData[k].evcMXAttribute);
+                requestName = tagName1 + "MmiEvcMXattribute";
+
+                _pool.SITR.Client.Write(requestName, StmData[k].evcMXAttribute);
                 totalSizeCounter += sizeof(ushort);
 
                 var caption = StmData[k].stmCaption.ToCharArray();
@@ -121,7 +128,9 @@ namespace Testcase.Telegrams.EVCtoDMI
                 else
                 {
                     // write out the MMI_L_CAPTION value (length)
-                    _pool.SITR.Client.Write(tagName1 + "MmiLCaption", (ushort) caption.Length);
+                    requestName = tagName1 + "MmiLCaption";
+
+                    _pool.SITR.Client.Write(requestName, (ushort) caption.Length);
                     totalSizeCounter += sizeof(ushort);
                 }
 
@@ -131,7 +140,9 @@ namespace Testcase.Telegrams.EVCtoDMI
 
                 for (int l = 0; l < caption.Length; l++)
                 {
-                    _pool.SITR.Client.Write($"{tagName2}{l}_MmiStmXCaption", caption[l]);
+                    requestName = $"{tagName2}{l}_MmiStmXCaption";
+
+                    _pool.SITR.Client.Write(requestName, caption[l]);
                     totalSizeCounter += sizeof(byte);
                 }
 
@@ -144,7 +155,9 @@ namespace Testcase.Telegrams.EVCtoDMI
                 else
                 {
                     // write out the MMI_STM_L_VALUE (length of xvalue string)
-                    _pool.SITR.Client.Write($"{tagName1}MmiStmLValue", xValue.Length);
+                    requestName = $"{tagName1}MmiStmLValue";
+
+                    _pool.SITR.Client.Write(requestName, xValue.Length);
                     totalSizeCounter += sizeof(ushort);
                 }
 
@@ -153,7 +166,9 @@ namespace Testcase.Telegrams.EVCtoDMI
                 // write out the XValue chars
                 for (int l = 0; l < xValue.Length; l++)
                 {
-                    _pool.SITR.Client.Write($"{tagName2}{l}_MmiStmXValue", xValue[l]);
+                    requestName = $"{tagName2}{l}_MmiStmXValue";
+
+                    _pool.SITR.Client.Write(requestName, xValue[l]);
                     totalSizeCounter += sizeof(byte);
                 }
 
@@ -166,7 +181,9 @@ namespace Testcase.Telegrams.EVCtoDMI
                 }
                 else
                 {
-                    _pool.SITR.Client.Write($"{tagName1}MmiNIter2", numberInPickupList);
+                     requestName = $"{tagName1}MmiNIter2";
+
+                    _pool.SITR.Client.Write(requestName, numberInPickupList);
                     totalSizeCounter += sizeof(ushort);
 
                     string tagName3 = $"{tagName1}EVC25SpecificStmDeRequestSub130";
@@ -181,13 +198,16 @@ namespace Testcase.Telegrams.EVCtoDMI
                         else
                         {
                             string tagName4 = $"{tagName3}{l}_";
-                            _pool.SITR.Client.Write($"{tagName3}MmiStmLValue", pickUpXValue.Length);
+                            requestName = $"{tagName3}MmiStmLValue";
+
+                            _pool.SITR.Client.Write(requestName, pickUpXValue.Length);
 
                             string tagName5 = $"{tagName4}EVC25SpecificStmDRequestSub1310";
 
                             for (int m = 0; m < pickUpXValue.Length; m++)
                             {
-                                _pool.SITR.Client.Write($"{tagName5}{m}_MmiStmXValue", pickUpXValue[m]);
+                                requestName = $"{tagName5}{m}_MmiStmXValue";
+                                _pool.SITR.Client.Write(requestName, pickUpXValue[m]);
                                 totalSizeCounter += sizeof(byte);
                             }
                         }
@@ -220,11 +240,11 @@ namespace Testcase.Telegrams.EVCtoDMI
             {
                 if (value)
                 {
-                    _driverAndFollowing |= 0x01;
+                    _evc25Alias1 |= 0x01;
                 }
                 else
                 {
-                    _driverAndFollowing &= 0xfe;
+                    _evc25Alias1 &= 0xfe;
                 }
             } 
         }
@@ -238,11 +258,11 @@ namespace Testcase.Telegrams.EVCtoDMI
             {
                 if (value)
                 {
-                    _driverAndFollowing |= 0x02;
+                    _evc25Alias1 |= 0x02;
                 }
                 else
                 {
-                    _driverAndFollowing &= 0xfd;
+                    _evc25Alias1 &= 0xfd;
                 }
             }
         }
