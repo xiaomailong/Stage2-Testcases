@@ -33,7 +33,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 17_2_1.tdg
     /// </summary>
-    public class Planning_Area_Layering_PASP_and_PA_Distance_scale : TestcaseBase
+    public class TC_ID_17_2_1_Planning_Area : TestcaseBase
     {
         public override void PreExecution()
         {

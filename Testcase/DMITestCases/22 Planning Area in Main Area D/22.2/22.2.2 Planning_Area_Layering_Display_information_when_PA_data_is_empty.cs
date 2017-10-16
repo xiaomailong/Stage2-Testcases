@@ -33,7 +33,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// N/A
     /// </summary>
-    public class Planning_Area_Layering_Display_information_when_PA_data_is_empty : TestcaseBase
+    public class TC_ID_17_2_2_Planning_Area : TestcaseBase
     {
         public override void PreExecution()
         {
