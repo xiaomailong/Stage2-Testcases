@@ -19,6 +19,8 @@ namespace Testcase.Telegrams.EVCtoDMI
     public static class EVC10_MMIEchoedTrainData
     {
         private static SignalPool _pool;
+        private static byte _enableByteValue;
+        private static ushort _enableUshortValue;
         private const string BaseStringEvc06 = "ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub1";
         private const string BaseStringEvc06_1 = "_EVC06CurrentTrainDataSub11";
         private const string BaseStringEvc10 = "ETCS1_EchoedTrainData_EVC10EchoedTrainDataSub1";
@@ -137,7 +139,11 @@ namespace Testcase.Telegrams.EVCtoDMI
         public static ushort MMI_N_TRAINSETS_
         {
             get => _pool.SITR.ETCS1.EchoedTrainData.MmiNTrainsetsR.Value;
-            set => _pool.SITR.ETCS1.EchoedTrainData.MmiNTrainsetsR.Value = (ushort)~value;
+            set
+            {
+                _enableUshortValue = value;
+                _pool.SITR.ETCS1.EchoedTrainData.MmiNTrainsetsR.Value = (ushort)~_enableUshortValue;
+            }
         }
         
         /// <summary>
@@ -151,7 +157,11 @@ namespace Testcase.Telegrams.EVCtoDMI
         public static ushort MMI_M_DATA_ENABLE_
         {
             get => _pool.SITR.ETCS1.EchoedTrainData.MmiMDataEnableR.Value;
-            set => _pool.SITR.ETCS1.EchoedTrainData.MmiMDataEnableR.Value = (ushort)~value;
+            set
+            {
+                _enableUshortValue = value;
+                _pool.SITR.ETCS1.EchoedTrainData.MmiMDataEnableR.Value = (ushort)~_enableUshortValue;
+            }
         }
 
         /// <summary>
@@ -165,7 +175,11 @@ namespace Testcase.Telegrams.EVCtoDMI
         public static ushort MMI_L_TRAIN_
         {
             get => _pool.SITR.ETCS1.EchoedTrainData.MmiLTrainR.Value;
-            set => _pool.SITR.ETCS1.EchoedTrainData.MmiLTrainR.Value = (ushort)~value;
+            set
+            {
+                _enableUshortValue = value;
+                _pool.SITR.ETCS1.EchoedTrainData.MmiLTrainR.Value = (ushort)~_enableUshortValue;
+            }
         }
 
         /// <summary>
@@ -179,7 +193,11 @@ namespace Testcase.Telegrams.EVCtoDMI
         public static ushort MMI_V_MAXTRAIN_
         {
             get => _pool.SITR.ETCS1.EchoedTrainData.MmiVMaxtrainR.Value;
-            set => _pool.SITR.ETCS1.EchoedTrainData.MmiVMaxtrainR.Value = (ushort)~value;
+            set
+            {
+                _enableUshortValue = value;
+                _pool.SITR.ETCS1.EchoedTrainData.MmiVMaxtrainR.Value = (ushort)~_enableUshortValue;
+            }
         }
 
         /// <summary>
@@ -209,7 +227,11 @@ namespace Testcase.Telegrams.EVCtoDMI
         public static byte MMI_NID_KEY_TRAIN_CAT_
         {
             get => _pool.SITR.ETCS1.EchoedTrainData.MmiNidKeyTrainCatR.Value;
-            set => _pool.SITR.ETCS1.EchoedTrainData.MmiNidKeyTrainCatR.Value = (byte)~value;
+            set
+            {
+                _enableByteValue = value;
+                _pool.SITR.ETCS1.EchoedTrainData.MmiNidKeyTrainCatR.Value = (byte)~_enableByteValue;
+            }
         }
 
         /// <summary>
@@ -224,7 +246,11 @@ namespace Testcase.Telegrams.EVCtoDMI
         public static byte MMI_M_BRAKE_PERC_
         {
             get => _pool.SITR.ETCS1.EchoedTrainData.MmiMBrakePercR.Value;
-            set => _pool.SITR.ETCS1.EchoedTrainData.MmiMBrakePercR.Value = (byte)~value;
+            set
+            {
+                _enableByteValue = value;
+                _pool.SITR.ETCS1.EchoedTrainData.MmiMBrakePercR.Value = (byte)~_enableByteValue;
+            }
         }
 
         /// <summary>
@@ -249,7 +275,11 @@ namespace Testcase.Telegrams.EVCtoDMI
         public static byte MMI_NID_KEY_AXLE_LOAD_R
         {
             get => _pool.SITR.ETCS1.EchoedTrainData.MmiNidKeyAxleLoadR.Value;
-            set => _pool.SITR.ETCS1.EchoedTrainData.MmiNidKeyAxleLoadR.Value = (byte)~value;
+            set
+            {
+                _enableByteValue = value;
+                _pool.SITR.ETCS1.EchoedTrainData.MmiNidKeyAxleLoadR.Value = (byte)~_enableByteValue;
+            }
         }
 
         /// <summary>
@@ -264,7 +294,11 @@ namespace Testcase.Telegrams.EVCtoDMI
         public static byte MMI_M_AIRTIGHT_R
         {
             get => _pool.SITR.ETCS1.EchoedTrainData.MmiMAirtightR.Value;
-            set => _pool.SITR.ETCS1.EchoedTrainData.MmiMAirtightR.Value = (byte)~value;
+            set
+            {
+                _enableByteValue = value;
+                _pool.SITR.ETCS1.EchoedTrainData.MmiMAirtightR.Value = (byte)~_enableByteValue;
+            }
         }
 
         /// <summary>
@@ -281,7 +315,11 @@ namespace Testcase.Telegrams.EVCtoDMI
         public static byte MMI_NID_KEY_LOAD_GAUGE_
         {
             get => _pool.SITR.ETCS1.EchoedTrainData.MmiNidKeyLoadGaugeR.Value;
-            set => _pool.SITR.ETCS1.EchoedTrainData.MmiNidKeyLoadGaugeR.Value = (byte)~value;
+            set
+            {
+                _enableByteValue = value;
+                _pool.SITR.ETCS1.EchoedTrainData.MmiNidKeyLoadGaugeR.Value = (byte)~_enableByteValue;
+            }
         }       
 
         /// <summary>
