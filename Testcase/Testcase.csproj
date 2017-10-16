@@ -94,6 +94,7 @@ if exist "$(TargetPath)" if not exist "$(TargetPath).locked" move "$(TargetPath)
     <Compile Include="DMITestCases\11 Acknowledgements\11.4\11.4 Acknowledgements_NACK_ACK_Buttons.cs" />
     <Compile Include="DMITestCases\11 Acknowledgements\11.6\11.6 Acknowledgements_Negative_acknowledgement_option_ignoring.cs" />
     <Compile Include="DMITestCases\11 Acknowledgements\11.7\11.7 Acknowledgements_Shared_Area_with_NTC_Acknowledgement.cs" />
+    <Compile Include="DMITestCases\14 Data Validation and Data View Window for TS\14.1\14.1 Data_Validation_Window_for_Flexible_train_data_entry_window.cs" />
     <Compile Include="DMITestCases\14 Data Validation and Data View Window for TS\14.2\14.2 Data_Validation_Window_for_Fixed_train_data_entry_window.cs" />
     <Compile Include="DMITestCases\15 Data EntryValidationView Process and State ‘ST05’\15.1\15.1 Data_EntryValidationView_process.cs" />
     <Compile Include="DMITestCases\15 Data EntryValidationView Process and State ‘ST05’\15.2\15.2.1 State_ST05_General_Appearance.cs" />
