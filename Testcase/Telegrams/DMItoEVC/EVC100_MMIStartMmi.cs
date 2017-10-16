@@ -33,7 +33,10 @@ namespace Testcase.Telegrams.DMItoEVC
             _pool.SITR.SMDCtrl.CCUO.ETCS1StartMmi.Value = 0x0001;
         }
 
-        private static void CheckTelegram()
+        /// <summary>
+        /// This method checks the content of EVC-100 packet. It must be called after having set the values to check.
+        /// </summary>
+        public static void CheckTelegram()
         {
             // Reset telegram received flag in RTSim
             _pool.SITR.SMDStat.CCUO.ETCS1StartMmi.Value = 0x00;
