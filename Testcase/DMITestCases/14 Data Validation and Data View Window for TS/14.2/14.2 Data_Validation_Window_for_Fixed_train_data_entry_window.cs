@@ -170,10 +170,14 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Confirm by pressing the data input field");
 
             EVC110_MMIConfimedTrainData.CheckConfirmedTrainData();
-            
-            // Spec says TRN window is displayed but would expect Train data window...
+
+            EVC16_CurrentTrainNumber.TrainRunningNumber = 1;
+            EVC16_CurrentTrainNumber.Send();
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. DMI closes the Train validation window and displays the Train data window");
+                                @"1. DMI closes the Train validation window and displays the Train running number window.");
+
+            DmiActions.ShowInstruction(this, "Confirm the data");
 
             /*
             Test Step 9

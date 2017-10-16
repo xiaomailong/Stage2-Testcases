@@ -94,6 +94,7 @@ if exist "$(TargetPath)" if not exist "$(TargetPath).locked" move "$(TargetPath)
     <Compile Include="DMITestCases\11 Acknowledgements\11.4\11.4 Acknowledgements_NACK_ACK_Buttons.cs" />
     <Compile Include="DMITestCases\11 Acknowledgements\11.6\11.6 Acknowledgements_Negative_acknowledgement_option_ignoring.cs" />
     <Compile Include="DMITestCases\11 Acknowledgements\11.7\11.7 Acknowledgements_Shared_Area_with_NTC_Acknowledgement.cs" />
+    <Compile Include="DMITestCases\14 Data Validation and Data View Window for TS\14.1\14.1 Data_Validation_Window_for_Flexible_train_data_entry_window.cs" />
     <Compile Include="DMITestCases\14 Data Validation and Data View Window for TS\14.2\14.2 Data_Validation_Window_for_Fixed_train_data_entry_window.cs" />
     <Compile Include="DMITestCases\15 Data EntryValidationView Process and State ‘ST05’\15.1\15.1 Data_EntryValidationView_process.cs" />
     <Compile Include="DMITestCases\15 Data EntryValidationView Process and State ‘ST05’\15.2\15.2.1 State_ST05_General_Appearance.cs" />
@@ -361,6 +362,7 @@ if exist "$(TargetPath)" if not exist "$(TargetPath).locked" move "$(TargetPath)
     <Compile Include="DMITestCases\7 Requirements on Safety Procedures\7.3\7.3 Frozen_Displays.cs" />
     <Compile Include="DMITestCases\7 Requirements on Safety Procedures\7.5\7.5.1 DMI_Failure_Reaction_Reboot_function_SIL0_DMI.cs" />
     <Compile Include="DMITestCases\7 Requirements on Safety Procedures\7.6\7.6 Safety_related_Data_Entry.cs" />
+    <Compile Include="DMITestCases\8 Essential Configurability\7.6 Safety_related_Data_Entry.cs" />
     <Compile Include="DMITestCases\8 Essential Configurability\8.1\8.1 DMI_language_selection_Configurable_at_least_eight_langauges.cs" />
     <Compile Include="DMITestCases\DMIActions.cs" />
     <Compile Include="DMITestCases\DMIResults.cs" />

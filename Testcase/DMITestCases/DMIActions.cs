@@ -214,6 +214,29 @@ namespace Testcase.DMITestCases
             EVC6_MMICurrentTrainData.Send();
         }
 
+        public static void Send_EVC10_MMIEchoedTrainData(SignalPool pool, MMI_M_DATA_ENABLE mmiMDataEnable, ushort mmiLTrain,
+                                                         ushort mmiVMaxTrain, MMI_NID_KEY mmiNidKeyTrainCat, 
+                                                         byte mmiMBrakePerc, MMI_NID_KEY mmiNidKeyAxleLoad,
+                                                         byte mmiMAirtight, MMI_NID_KEY mmiNidKeyLoadGauge, 
+                                                         string[] trainSetCaptions)
+        {
+            EVC10_MMIEchoedTrainData.MMI_M_DATA_ENABLE_ = Convert.ToUInt16(~mmiMDataEnable);         // Train data enabled
+            EVC10_MMIEchoedTrainData.MMI_L_TRAIN_ = Convert.ToUInt16(~mmiLTrain);                     // Train length
+            EVC10_MMIEchoedTrainData.MMI_V_MAXTRAIN_ = Convert.ToUInt16(~mmiVMaxTrain);               // Max train speed
+            EVC10_MMIEchoedTrainData.MMI_NID_KEY_TRAIN_CAT_ = Convert.ToByte(~mmiNidKeyTrainCat);   // Train category
+            EVC10_MMIEchoedTrainData.MMI_M_BRAKE_PERC_ = Convert.ToByte(~mmiMBrakePerc);             // Brake percentage
+            EVC10_MMIEchoedTrainData.MMI_NID_KEY_AXLE_LOAD_R = Convert.ToByte(~mmiNidKeyAxleLoad);   // Axle load category
+            EVC10_MMIEchoedTrainData.MMI_M_AIRTIGHT_R = Convert.ToByte(~mmiMAirtight);                 // Train equipped with airtight system
+            EVC10_MMIEchoedTrainData.MMI_NID_KEY_LOAD_GAUGE_ = Convert.ToByte(~mmiNidKeyLoadGauge); // Loading gauge type of train 
+            EVC10_MMIEchoedTrainData.EVC10_alias_1 = Convert.ToByte((~(pool.SITR.ETCS1.CurrentTrainData.EVC6alias1.Value)) & 0xFFFFFFFC);                              // Alias variable for bit mapping
+            EVC10_MMIEchoedTrainData.MMI_N_TRAINSETS_ =
+                Convert.ToUInt16(~(pool.SITR.ETCS1.CurrentTrainData.MmiNTrainset.Value));
+            EVC10_MMIEchoedTrainData.TrainSetCaptions = new List<string>(trainSetCaptions);
+
+            EVC10_MMIEchoedTrainData.Send();
+
+        }
+
         /// <summary>
         ///     Sends EVC-10 telegram with Fixed Data Entry for up to 9 trainset strings.
         /// </summary>
@@ -239,6 +262,7 @@ namespace Testcase.DMITestCases
             EVC10_MMIEchoedTrainData.Send();
 
         }
+
         /// <summary>
         /// Send standard EVC-20 telegram with Levels 0-3, CBTC, and AWS/TPWS selectable. Level 1 is preselected.
         /// </summary>
