@@ -228,7 +228,7 @@ namespace Testcase.DMITestCases
             EVC10_MMIEchoedTrainData.MMI_NID_KEY_AXLE_LOAD_R = Convert.ToByte(~mmiNidKeyAxleLoad);   // Axle load category
             EVC10_MMIEchoedTrainData.MMI_M_AIRTIGHT_R = Convert.ToByte(~mmiMAirtight);                 // Train equipped with airtight system
             EVC10_MMIEchoedTrainData.MMI_NID_KEY_LOAD_GAUGE_ = Convert.ToByte(~mmiNidKeyLoadGauge); // Loading gauge type of train 
-            EVC10_MMIEchoedTrainData.EVC10_alias_1 = Convert.ToByte((~(pool.SITR.ETCS1.CurrentTrainData.EVC6alias1.Value)) & 0xFFFFFFFC);                              // Alias variable for bit mapping
+            EVC10_MMIEchoedTrainData.EVC10_alias_1 = Convert.ToByte((~(pool.SITR.ETCS1.CurrentTrainData.EVC6alias1.Value)) & 0xFFFFFFFC); // Alias variable for bit mapping
             EVC10_MMIEchoedTrainData.MMI_N_TRAINSETS_ =
                 Convert.ToUInt16(~(pool.SITR.ETCS1.CurrentTrainData.MmiNTrainset.Value));
             EVC10_MMIEchoedTrainData.TrainSetCaptions = new List<string>(trainSetCaptions);
