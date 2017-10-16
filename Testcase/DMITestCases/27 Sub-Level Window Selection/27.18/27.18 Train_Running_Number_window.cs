@@ -66,8 +66,12 @@ namespace Testcase.DMITestCases
             Expected Result: Train Running Number window is not displayed.
             Test Step Comment: (1) MMI_gen 9958 (partly: inactive);
             */
-            XML.XML_22_18.Send(this);
-            this.Wait_Realtime(10000);
+            #region Send_XML_22_18_DMI_Test_Specification
+            EVC16_CurrentTrainNumber.TrainRunningNumber = 1;
+            EVC16_CurrentTrainNumber.Send();
+            #endregion
+
+            Wait_Realtime(10000);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI does not display the Train running number window.");

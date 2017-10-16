@@ -92,8 +92,10 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, "On the numeric keypad, enter the value ‘20001’ and confirm the entered data by pressing the data input field");
 
-            //EVC140_MMI_NewMaintenanceData.CheckQMdDataset = 1;
-            //EVC140_MMI_NewMaintenanceData.CheckMPulsePerKm1 = (Variables.MMI_M_PULSE_PER_KM)20001;
+            EVC140_MMINewMaintenanceData.MMI_Q_MD_DATASET = Variables.MMI_Q_MD_DATASET.Doppler;
+            EVC140_MMINewMaintenanceData.MMI_M_PULSE_PER_KM_1 = (Variables.MMI_M_PULSE_PER_KM)20001;
+            EVC140_MMINewMaintenanceData.MMI_M_PULSE_PER_KM_2 = Variables.MMI_M_PULSE_PER_KM.NoRadarOnBoard;
+            EVC140_MMINewMaintenanceData.CheckTelegram();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The data input field displays the value ‘20001’.");
@@ -118,8 +120,10 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, "On the numeric keypad, enter the value ‘85534’ and confirm the entered data by pressing the data input field");
 
-            //EVC140_MMI_NewMaintenanceData.CheckQMdDataset = 1;
-            //EVC140_MMI_NewMaintenanceData.CheckMPulsePerKm1 = (Variables.MMI_M_PULSE_PER_KM)85534;
+            EVC140_MMINewMaintenanceData.MMI_Q_MD_DATASET = Variables.MMI_Q_MD_DATASET.Doppler;
+            EVC140_MMINewMaintenanceData.MMI_M_PULSE_PER_KM_1 = (Variables.MMI_M_PULSE_PER_KM)85534;
+            EVC140_MMINewMaintenanceData.MMI_M_PULSE_PER_KM_2 = Variables.MMI_M_PULSE_PER_KM.NoRadarOnBoard;
+            EVC140_MMINewMaintenanceData.CheckTelegram();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The data input field data area displays the value ‘85534’.");

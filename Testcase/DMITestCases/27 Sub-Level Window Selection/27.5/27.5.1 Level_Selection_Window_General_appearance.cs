@@ -519,7 +519,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   The level window is updated according to the following,-      There is only one button ‘Level 3’ displayed in keypad-      The value of input field is changed to ‘Level 3’
             Test Step Comment: (1) MMI_gen 2197;
             */
-            XML.XML_22_5_1_a.Send(this);
+            XML_22_5_1(msgType.typea);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Level window displays only one button (‘Level 3’) on the keypad." + Environment.NewLine +
@@ -531,7 +531,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,DMI displays Main window
             Test Step Comment: (1) MMI_gen 1630 (partly: NEAGTIVE, 2nd  bullet); MMI_gen 2277;
             */
-            XML.XML_22_5_1_b.Send(this);
+            XML_22_5_1(msgType.typeb);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Main window.");
@@ -545,5 +545,37 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
+        #region Send_XML_22_5_1_DMI_Test_Specification
+        enum msgType
+        {
+            typea,
+            typeb
+        }
+
+        private void XML_22_5_1(msgType type)
+        {
+            EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Disabled;
+            switch (type)
+            {
+                case msgType.typea:
+                    EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new Variables.MMI_Q_LEVEL_NTC_ID[] { Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level };
+                    EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new Variables.MMI_M_CURRENT_LEVEL[] { Variables.MMI_M_CURRENT_LEVEL.LastUsedLevel };
+                    EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = new Variables.MMI_M_LEVEL_FLAG[] { Variables.MMI_M_LEVEL_FLAG.MarkedLevel };
+                    EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = new Variables.MMI_M_INHIBITED_LEVEL[] { Variables.MMI_M_INHIBITED_LEVEL.NotInhibited };
+                    EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = new Variables.MMI_M_INHIBIT_ENABLE[] { Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting };
+                    EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new Variables.MMI_M_LEVEL_NTC_ID[] { Variables.MMI_M_LEVEL_NTC_ID.L3 };
+                    break;
+                case msgType.typeb:
+                    EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = null;
+                    EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = null;
+                    EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = null;
+                    EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = null;
+                    EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = null;
+                    EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = null;
+                    break;
+            }
+            EVC20_MMISelectLevel.Send();
+        }
+        #endregion
     }
 }

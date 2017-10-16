@@ -143,7 +143,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays the message “ATP Down Alarm” with sound alarm.Verify the following information,(1)   The non-acknowledgeable message list is flushed, no driver message display in area E5-E9
             Test Step Comment: (1) MMI_gen 7048 (partly: MMI_gen 244);
             */
-            XML.XML_15_3_3_b.Send(this);
+            XML_15_3_3(msgType.typeb);
             DmiActions.Deactivate_Cabin(this);
             DmiActions.Simulate_communication_loss_EVC_DMI(this);
 

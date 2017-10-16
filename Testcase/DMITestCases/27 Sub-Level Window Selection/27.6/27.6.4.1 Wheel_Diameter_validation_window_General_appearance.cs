@@ -81,13 +81,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Using the numeric keypad ‘500’ for Wheel Diameter 1 and press its data input field" + Environment.NewLine +
                                              "Enter ‘500’ for Wheel Diameter 2 and press its data input field" + Environment.NewLine +
                                              "Enter ‘0’ for Accuracy and press its data input field");
-
-
-            //EVC140_CurrentMaintenanceData.CheckQDataSet = Variables.MMI_Q_MD_DATASET.WheelDiameter;
-            //EVC140_CurrentMaintenanceData.CheckMSduWheelSize1 = (Variables.MMI_M_SDU_WHEEL_SIZE)500;
-            //EVC140_CurrentMaintenanceData.CheckMSduWheelSize2 = (Variables.MMI_M_SDU_WHEEL_SIZE)500;
-            //EVC140_CurrentMaintenanceData.CheckMSduWheelSizeErr = (Variables.MMI_M_WHEEL_SIZE_ERR)0;
-
+            
             // Open the wheel diameter validation window
             EVC41_MMIEchoedMaintenanceData.MMI_M_WHEEL_SIZE_ERR_ = (Variables.MMI_M_WHEEL_SIZE_ERR)0;
             EVC41_MMIEchoedMaintenanceData.MMI_M_SDU_WHEEL_SIZE_2_ = (Variables.MMI_M_SDU_WHEEL_SIZE)500;
