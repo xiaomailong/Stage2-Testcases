@@ -13,6 +13,8 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.DMItoEVC;
+using Testcase.Telegrams.EVCtoDMI;
 
 namespace Testcase.DMITestCases
 {
@@ -34,15 +36,17 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 18_3.tdg
     /// </summary>
-    public class Reversing_Allowance_Sub_Area_C6 : TestcaseBase
+    public class TC_ID_18_3_Reversing_Allowance_Sub_Area_C6 : TestcaseBase
     {
         public override void PreExecution()
         {
             // Pre-conditions from TestSpec:
-            // Test system is powered on.Activate Cabin A.SoM is completed in SR mode, Level 1.
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
+
+            // Test system is powered on.Activate Cabin A.SoM is completed in SR mode, Level 1.
+            DmiActions.Complete_SoM_L1_SR(this);
         }
 
         public override void PostExecution()
@@ -58,14 +62,24 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
             /*
             Test Step 1
             Action: Drive the train forward passing BG1
             Expected Result: DMI changes from SR mode to FS mode, Level 1
             */
-            // Call generic Action Method
-            DmiActions.Drive_train_forward_passing_BG1(this);
+            // Put in slight pause so the mode change can be observed.
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
+            EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 10;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 0;
+
+            Wait_Realtime(3000);
+
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 100;
+            EVC1_MMIDynamic.MMI_O_BRAKETARGET = 3000;
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI changes from SR mode to FS mode,  Level 1" + Environment.NewLine +
+                                "2. DMI displays the ‘Reversing permitted’ symbol, ST06, in sub-area C6");
 
 
             /*
@@ -74,7 +88,14 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,Use the log file to confirm that DMI receives packet information [MMI_DRIVER_MESSAGE (EVC-8)] with variable [MMI_DRIVER_MESSAGE (EVC-8)].MMI_Q_TEXT = 286The symbol ST06 is displayed in sub-area C6
             Test Step Comment: (1) MMI_gen 7485 (partly: received packet EVC-8);(2) MMI_gen 7485        (partly: ST06);
             */
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 200;
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
 
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 286;
+            EVC8_MMIDriverMessage.Send();
 
             /*
             Test Step 3
@@ -82,6 +103,15 @@ namespace Testcase.DMITestCases
             Expected Result: An acknowledgement of ‘Reversing’ mode is displayed in sub-area C1
             */
 
+            DmiActions.ShowInstruction(this, "Change the train direction to reverse");
+
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 2;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 262;
+            EVC8_MMIDriverMessage.Send();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays symbol M015, in sub-area C1");
 
             /*
             Test Step 4
@@ -89,14 +119,25 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in RV mode.The symbol MO14 is displayed in sub-area B7.Use the log file to confirm that DMI sends out packet [MMI_DRIVER_ACTION (EVC-152)] with the value of variable MMI_M_DRIVER_ACTION refer to sequence below,a)   MMI_M_DRIVER_ACTION = 5 (Ack of Reversing mode)
             Test Step Comment: MMI_gen 11470 (partly: Bit # 5);
             */
+            DmiActions.ShowInstruction(this, @"Acknowledge ‘Reversing’ mode by pressing in area C1");
 
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 2;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 262;
+            EVC8_MMIDriverMessage.Send();
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Reversing;
+
+            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.ReversingModeAck;
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in RV mode" + Environment.NewLine + Environment.NewLine +
+                                "2. DMI displays symbol M014 in sub-area B7");
 
             /*
             Test Step 5
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }
