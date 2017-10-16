@@ -13,6 +13,7 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.EVCtoDMI;
 
 namespace Testcase.DMITestCases
 {
@@ -62,20 +63,20 @@ namespace Testcase.DMITestCases
             Action: Activate cabin A
             Expected Result: DMI displays Driver ID window
             */
-            // Call generic Action Method
             DmiActions.Activate_Cabin_1(this);
-            // Call generic Check Results Method
-            DmiExpectedResults.Driver_ID_window_displayed(this);
 
+            EVC14_MMICurrentDriverID.MMI_X_DRIVER_ID = "1234";
+            EVC14_MMICurrentDriverID.Send();
+
+            DmiExpectedResults.Driver_ID_window_displayed(this);
 
             /*
             Test Step 2
             Action: Perform SoM in SR mode, Level 1
             Expected Result: DMI displays in SR mode, level 1
             */
-            // Call generic Action Method
             DmiActions.Perform_SoM_in_SR_mode_Level_1(this);
-            // Call generic Check Results Method
+            
             DmiExpectedResults.SR_Mode_displayed(this);
 
 
@@ -85,14 +86,20 @@ namespace Testcase.DMITestCases
             Expected Result: DMI changes from SR mode to FS mode.Verify the order (background to fore ground) for each objects in PA as follows,PASPPA Distance ScaleIndication MarkerPA Track Condition, Gradient profile and Speed DiscontinuitiesHide/Show and Zoom PA buttons.Note: The object which have a lower order (i.e. PASP) cannot overlap the higher order object
             Test Step Comment: MMI_gen 7108;
             */
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
 
-
+            WaitForVerification("Check that the following objects are displayed in order (from background to foreground):" + Environment.NewLine + Environment.NewLine +
+                                "1. PASP." + Environment.NewLine +
+                                "2. PA Distance Scale." + Environment.NewLine +
+                                "3. Indication marker." + Environment.NewLine +
+                                "4. PA Track Condition, Gradient Profile and Speed Discontinuities." + Environment.NewLine +
+                                "5. Hide/Show and Zoom PA buttons." + Environment.NewLine +
+                                "6. An object in the background of another object does not overlap it." + Environment.NewLine);
             /*
             Test Step 4
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }

@@ -13,6 +13,7 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.EVCtoDMI;
 
 namespace Testcase.DMITestCases
 {
@@ -55,18 +56,18 @@ namespace Testcase.DMITestCases
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint
-
-
+            
             /*
             Test Step 1
             Action: Activate cabin A
             Expected Result: DMI displays Driver ID window
             */
-            // Call generic Action Method
             DmiActions.Activate_Cabin_1(this);
-            // Call generic Check Results Method
-            DmiExpectedResults.Driver_ID_window_displayed(this);
 
+            EVC14_MMICurrentDriverID.MMI_X_DRIVER_ID = "1234";
+            EVC14_MMICurrentDriverID.Send();
+
+            DmiExpectedResults.Driver_ID_window_displayed(this);
 
             /*
             Test Step 2
@@ -74,16 +75,19 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SR mode, level 1.Verify that there are only the following objects are displayed in PA,PA Distance Scale (0-4000m)PASP with PASP-dark-colour
             Test Step Comment: MMI_gen 7109;
             */
-            // Call generic Action Method
             DmiActions.Perform_SoM_in_SR_mode_Level_1(this);
 
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
+
+            WaitForVerification("Check that only the following objects are displayed:" + Environment.NewLine + Environment.NewLine +
+                                "1. PA Distance Scale." + Environment.NewLine +
+                                "2. PASP (in the PASP-dark-colour");
 
             /*
             Test Step 3
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }
