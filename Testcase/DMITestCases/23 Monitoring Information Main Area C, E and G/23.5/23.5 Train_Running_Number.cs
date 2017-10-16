@@ -76,11 +76,34 @@ namespace Testcase.DMITestCases
                                                                EVC30_MMIRequestEnable.EnabledRequests.TrainData;
             EVC14_MMICurrentDriverID.Send();
 
-            DmiActions.ShowInstruction(this, "Enter and confirm the Driver ID, then perform the brake test");
+            DmiActions.ShowInstruction(this, "Enter and confirm the Driver ID");
 
+            DmiActions.Request_Brake_Test(this);
 
-            DmiActions.ShowInstruction(this, " Select and confirm Level 1." + Environment.NewLine +
-                                             "Press the ‘Train data’ button. Enter, confirm and validate the train data.");
+            DmiActions.ShowInstruction(this, "Perform the brake test");
+            
+            EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Disabled;
+            EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new Variables.MMI_Q_LEVEL_NTC_ID[] { Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level };
+            EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new Variables.MMI_M_CURRENT_LEVEL[] { Variables.MMI_M_CURRENT_LEVEL.NotLastUsedLevel };
+            EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = new Variables.MMI_M_LEVEL_FLAG[] { Variables.MMI_M_LEVEL_FLAG.MarkedLevel };
+            EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = new Variables.MMI_M_INHIBITED_LEVEL[] { Variables.MMI_M_INHIBITED_LEVEL.NotInhibited };
+            EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = new Variables.MMI_M_INHIBIT_ENABLE[] { Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting };
+            EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new Variables.MMI_M_LEVEL_NTC_ID[] { Variables.MMI_M_LEVEL_NTC_ID.L1 };
+            EVC20_MMISelectLevel.Send();
+
+            DmiActions.ShowInstruction(this, "Select and confirm Level 1.");
+
+            DmiActions.ShowInstruction(this, @"Press the ‘Train data’ button");
+
+            DmiActions.Send_EVC6_MMICurrentTrainData_FixedDataEntry(this, new[] {"FLU", "RLU", "Rescue"}, 2);
+
+            DmiActions.ShowInstruction(this, " Enter and confirm the data");
+
+            DmiActions.Send_EVC10_MMIEchoedTrainData_FixedDataEntry(this, new[] { "FLU", "RLU", "Rescue" });
+
+            DmiActions.ShowInstruction(this, "Validate the train data.");
+
+            EVC16_CurrentTrainNumber.TrainRunningNumber = 1;
 
             DmiExpectedResults.TRN_window_displayed(this);
 
@@ -90,14 +113,14 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Default window.Verify the following information,DMI displays the train running number in sub-area G11.The displayed train running number is taken from [MMI_STATUS (EVC-2).MMI_NID_OPERATION].Note: The hexadecimal value ‘F’ is mean ‘No digit’.(i.e. ‘123456’ = 0x123456FF).The text of displayed train running number is coloured grey
             Test Step Comment: (1) MMI_gen 1043 (partly: valid, G11);   (2) MMI_gen 1044;  (3)MMI_gen 11905 (partly: text is grey);
             */
-            DmiActions.ShowInstruction(this, "Enter and confirm the train running number. Then, press the ‘Close’ button in the Main window");
+            DmiActions.ShowInstruction(this, "Enter and confirm the train running number (‘234’). Then press the ‘Close’ button in the Main window");
 
             EVC2_MMIStatus.TrainRunningNumber = 0x234FFFFF;
             EVC2_MMIStatus.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Default window." + Environment.NewLine +
-                                "2. DMI displays the Train Running number as ‘234’ in grey in sub-area G11.");
+                                "2. DMI displays the Train Running number ‘234’ in grey in sub-area G11.");
 
             /*
             Test Step 3
