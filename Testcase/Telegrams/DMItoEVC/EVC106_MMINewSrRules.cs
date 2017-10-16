@@ -17,7 +17,8 @@ namespace Testcase.Telegrams.DMItoEVC
     public static class EVC106_MMINewSrRules
     {
         private static SignalPool _pool;
-        private static bool _checkResult;  
+        private static bool _checkResult;
+        private static byte _nidData;
 
         static string baseString0 = "DMI->ETCS: EVC-106 [MMI_NEW_SR_RULES]";
         static string baseString1 = "CCUO_ETCS1NewSrRules_EVC106NewSrRulesSub";
@@ -29,7 +30,7 @@ namespace Testcase.Telegrams.DMItoEVC
         public static void Initialise(SignalPool pool)
         {
             _pool = pool;
-            MMI_N_DATA_ELEMENTS = new List<byte>();
+            MMI_NID_DATA = new List<byte>();
             _pool.SITR.SMDCtrl.CCUO.ETCS1NewSrRules.Value = 0x0009;
             _pool.SITR.SMDStat.CCUO.ETCS1NewSrRules.Value = 0x00;
         }
@@ -45,7 +46,65 @@ namespace Testcase.Telegrams.DMItoEVC
                 // Check all static fields
                 _checkResult = _pool.SITR.CCUO.ETCS1NewSrRules.MmiLStff.Value.Equals(MMI_L_STFF) &
                                _pool.SITR.CCUO.ETCS1NewSrRules.MmiVStff.Value.Equals(MMI_V_STFF) &
-                               _pool.SITR.CCUO.ETCS1NewSrRules.MmiMButtons.Value.Equals((byte) MMI_M_BUTTONS);
+                               _pool.SITR.CCUO.ETCS1NewSrRules.MmiMButtons.Value.Equals((byte)MMI_M_BUTTONS);
+
+                // If check passes
+                if (_checkResult)
+                {
+                    _pool.TraceReport(baseString0 + Environment.NewLine +
+                        "MMI_L_STFF = " + MMI_L_STFF + Environment.NewLine +
+                        "MMI_V_STFF = " + MMI_V_STFF + Environment.NewLine +
+                        "MMI_M_BUTTONS = \"" + MMI_M_BUTTONS + "\"" + Environment.NewLine +                       
+                        "Result: PASSED.");
+                }
+                // Else display the real value extracted from EVC-106
+                else
+                {
+                    _pool.TraceError(baseString0 + Environment.NewLine +
+                        "MMI_L_STFF = \"" + _pool.SITR.CCUO.ETCS1NewSrRules.MmiLStff.Value + "\"" + Environment.NewLine +
+                        "MMI_V_STFF = \"" + _pool.SITR.CCUO.ETCS1NewSrRules.MmiVStff.Value + "\"" + Environment.NewLine +
+                        "MMI_M_BUTTONS = \"" + Enum.GetName(typeof(MMI_M_BUTTONS_SR_RULES), _pool.SITR.CCUO.ETCS1NewSrRules.MmiMButtons.Value) + Environment.NewLine +
+                        "Result: FAILED!");
+                }
+
+                // Compare number of data element.                
+                if (_pool.SITR.CCUO.ETCS1NewSrRules.MmiNDataElements.Value.Equals(MMI_NID_DATA.Count))
+                {
+                    // if comparaison matches
+                    _pool.TraceReport("MMI_N_DATA_ELEMENTS = \"" + MMI_NID_DATA.Count + "\" Result: PASSED.");
+
+                    for (var _nidDataIndex = 0; _nidDataIndex < MMI_NID_DATA.Count; _nidDataIndex++)
+                    {
+                        _nidData = (byte)_pool.SITR.Client.Read($"{baseString1}{_nidDataIndex}_MmiNidData");
+                        // Compare each data element
+                        _checkResult = _nidData.Equals(MMI_NID_DATA[_nidDataIndex]);
+
+                        //if comparaison matches
+                        if (_checkResult)
+                        {
+                            _pool.TraceReport($"MMI_NID_DATA{_nidDataIndex} = \"{MMI_NID_DATA[_nidDataIndex]}\" Result: PASSED!");
+                        }
+                        // Else display the real value extracted from EVC-106
+                        else
+                        {
+                            _pool.TraceError($"MMI_NID_DATA{_nidDataIndex} = \"{_nidData}\" Result: FAILED!");
+                        }                        
+                    }
+                }
+                else
+                {
+                    // Else display the real value extracted from EVC-106
+                    _pool.TraceError(baseString0 + Environment.NewLine +
+                       "MMI_N_DATA_ELEMENTS = \"" + _pool.SITR.CCUO.ETCS1NewSrRules.MmiNDataElements.Value + "\" Result: FAILED!");
+
+                    // Display data elements value indicating that the test has failed
+                    for (var _nidDataIndex = 0; _nidDataIndex < _pool.SITR.CCUO.ETCS1NewSrRules.MmiNDataElements.Value; _nidDataIndex++)
+                    {
+                        _nidData = (byte)_pool.SITR.Client.Read($"{baseString1}{_nidDataIndex}_MmiNidData");
+                        _pool.TraceError($"{baseString0}" + Environment.NewLine +
+                            $"MMI_NID_DATA{_nidDataIndex} = \"{_nidData}\" Result: FAILED!");
+                    }
+                }
             }
             // EVC-106 could not be received
             else
@@ -88,8 +147,36 @@ namespace Testcase.Telegrams.DMItoEVC
         /// </summary>
         public static MMI_M_BUTTONS_SR_RULES MMI_M_BUTTONS { get; set; }
 
-
-        public static List<byte> MMI_N_DATA_ELEMENTS { get; set; }
+        /// <summary>
+        /// List of data entry element identifier.
+        /// 
+        /// Values:
+        /// 0 = "Train running number"
+        /// 1 = "ERTMS/ETCS Level"
+        /// 2 = "Driver ID"
+        /// 3 = "Radio network ID"
+        /// 4 = "RBC ID"
+        /// 5 = "RBC phone number"
+        /// 6 = "Train Type (Train Data Set Identifier)"
+        /// 7 = "Train category"
+        /// 8 = "Length"
+        /// 9 = "Brake percentage"
+        /// 10 = "Maximun speed"
+        /// 11 = "Axle load category"
+        /// 12 = "Airtight"
+        /// 13 = "Loading gauge"
+        /// 14 = "Operated system version"
+        /// 15 = "SR Speed"
+        /// 16 = "SR Distance"
+        /// 17 = "Adhesion"
+        /// 18 = "Set VBC code"
+        /// 19 = "Remove VBC code"
+        /// 20..254 = "spare"
+        /// 255 = "no specific data element defined"
+        /// 
+        /// Note: the definition is according to preliminary SubSet-121 'NID_DATA' definition.
+        /// </summary>
+        public static List<byte> MMI_NID_DATA { get; set; }
        
     }
 }
