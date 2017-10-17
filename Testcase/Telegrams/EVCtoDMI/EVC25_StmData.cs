@@ -13,11 +13,11 @@ namespace Testcase.Telegrams.EVCtoDMI
     /// </summary>
     public class EVC25_StmData
     {
-        public const int StmMaximumIterations = 6;
-        public const int StmCaptionMaximumLength = 21;
-        public const int StmXValueMaximumLength = 11;
-        public const int StmPickupXValueMaximumLength = 11;
-        public const int StmXValueMaximumIterations = 17;
+        public const int StmMaximumIterations = 5;
+        public const int StmCaptionMaximumLength = 20;
+        public const int StmXValueMaximumLength = 10;
+        public const int StmPickupXValueMaximumLength = 10;
+        public const int StmXValueMaximumIterations = 16;
         public const int BasicPacketLength = (3 * sizeof(UInt16)) + (2 * sizeof(byte));
 
         public const int MaximumPacketLength = BasicPacketLength +
