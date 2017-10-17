@@ -44,6 +44,7 @@ namespace Testcase
             EVC8_MMIDriverMessage.Initialise(this);
             EVC10_MMIEchoedTrainData.Initialise(this);
             EVC11_MMICurrentSRRules.Initialise(this);
+            EVC13_MMIDataView.Initialise(this);
             EVC14_MMICurrentDriverID.Initialise(this);
             EVC16_CurrentTrainNumber.Initialise(this);
             EVC18_MMISetVBC.Initialise(this);
