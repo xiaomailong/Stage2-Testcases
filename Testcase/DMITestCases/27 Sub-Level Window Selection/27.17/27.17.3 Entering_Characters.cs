@@ -456,7 +456,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The data value is separated as 2 lines. In each line is displayed only 8 characters
             Test Step Comment: (1) MMI_gen 8033 (partly: MMI_gen 4694 (partly: MMI_gen 4247));
             */
-            DmiActions.ShowInstruction(this, "Enter ‘1234 56’");
+            DmiActions.ShowInstruction(this, "Enter ‘123456’");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field displays ‘1234 5612’ and ‘3456’ (over 2 lines).");
