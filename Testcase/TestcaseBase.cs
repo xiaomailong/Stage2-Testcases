@@ -42,19 +42,17 @@ namespace Testcase
             EVC6_MMICurrentTrainData.Initialise(this);
             EVC7_MMIEtcsMiscOutSignals.Initialise(this);
             EVC8_MMIDriverMessage.Initialise(this);
-
+            EVC10_MMIEchoedTrainData.Initialise(this);
             EVC11_MMICurrentSRRules.Initialise(this);
             EVC14_MMICurrentDriverID.Initialise(this);
             EVC16_CurrentTrainNumber.Initialise(this);
             EVC18_MMISetVBC.Initialise(this);
             EVC19_MMIRemoveVBC.Initialise(this);
-
             EVC20_MMISelectLevel.Initialise(this);
             EVC22_MMICurrentRBC.Initialise(this);
             EVC23_MMILssma.Initialise(this);
             EVC25_MMISpecificSTMDERequest.Initialise(this);
             EVC29_MMIEchoedRemoveVBCData.Initialise(this);
-
             EVC30_MMIRequestEnable.Initialise(this);
             EVC31_MMINTCDeSelect.Initialise(this);
             EVC32_MMITrackConditions.Initialise(this);
@@ -72,15 +70,19 @@ namespace Testcase
             EVC101_MMIDriverRequest.Initialise(this);
             EVC102_MMIStatusReport.Initialise(this);
             EVC104_MMINewDriverData.Initialise(this);
+            EVC106_MMINewSrRules.Initialise(this);
             EVC107_MMINewTrainData.Initialise(this);
             //EVC109_MMISetTimeMMI.Initialise(this);
             EVC110_MMIConfimedTrainData.Initialise(this);
-
             EVC111_MMIDriverMessageAck.Initialise(this);
+            EVC112_MMINewRbcData.Initialise(this);
             EVC116_MMINewTrainNumber.Initialise(this);
 
             EVC121_MMINewLevel.Initialise(this);
-
+            EVC123_MMISpecificSTMDataToSTM.Initialise(this);
+            EVC128_MMIConfirmedSetVBC.Initialise(this);
+            EVC129_MMIConfirmedRemoveVBC.Initialise(this);
+            EVC140_MMINewMaintenanceData.Initialise(this);
             EVC152_MMIDriverAction.Initialise(this);
         }
 

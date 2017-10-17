@@ -893,16 +893,17 @@ namespace Testcase.DMITestCases
             EVC107_MMINewTrainData.MMI_M_BUTTONS = MMI_M_BUTTONS_TRAIN_DATA.BTN_ENTER;
             EVC107_MMINewTrainData.TrainsetSelected = trainsetSelected;
 
-            DataElement[] dataElements = new DataElement[8];
-
-            dataElements[0].Identifier = 6; dataElements[0].QDataCheck = 0; dataElements[0].EchoText = "FLU";
-            dataElements[1].Identifier = 6; dataElements[1].QDataCheck = 0; dataElements[1].EchoText = "RLU";
-            dataElements[2].Identifier = 6; dataElements[2].QDataCheck = 0; dataElements[2].EchoText = "Rescue";
-            dataElements[3].Identifier = 0; dataElements[3].QDataCheck = 0; dataElements[3].EchoText = "";
-            dataElements[4].Identifier = 0; dataElements[4].QDataCheck = 0; dataElements[4].EchoText = "";
-            dataElements[5].Identifier = 0; dataElements[5].QDataCheck = 0; dataElements[5].EchoText = "";
-            dataElements[6].Identifier = 0; dataElements[6].QDataCheck = 0; dataElements[6].EchoText = "";
-            dataElements[7].Identifier = 0; dataElements[7].QDataCheck = 0; dataElements[7].EchoText = "";
+            DataElement[] dataElements = new DataElement[8]
+            {
+                new DataElement{ Identifier = 6, QDataCheck = 0, EchoText = "FLU" },
+                new DataElement{ Identifier = 6, QDataCheck = 0, EchoText = "RLU" },
+                new DataElement{ Identifier = 6, QDataCheck = 0, EchoText = "Rescue" },
+                new DataElement{ Identifier = 0, QDataCheck = 0, EchoText = "" },
+                new DataElement{ Identifier = 0, QDataCheck = 0, EchoText = "" },
+                new DataElement{ Identifier = 0, QDataCheck = 0, EchoText = "" },
+                new DataElement{ Identifier = 0, QDataCheck = 0, EchoText = "" },
+                new DataElement{ Identifier = 0, QDataCheck = 0, EchoText = "" }
+            };
 
             DmiActions.Send_EVC6_MMICurrentTrainData(MMI_M_DATA_ENABLE.TrainSetID, 0, 0, MMI_NID_KEY.NoDedicatedKey, 0,
                 MMI_NID_KEY.NoDedicatedKey, 0, MMI_NID_KEY.NoDedicatedKey, (byte)MMI_M_BUTTONS.BTN_YES_DATA_ENTRY_COMPLETE,
