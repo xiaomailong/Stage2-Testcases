@@ -45,7 +45,8 @@ namespace Testcase.Telegrams.DMItoEVC
                     _pool.TraceReport($"{baseString} - [MMI_NID_LANGUAGE] = {MMI_NID_LANGUAGE}" + Environment.NewLine +
                                         "Result: PASSED.");
                 }
-                // Else display the real value extracted from EVC-104
+                // Else display the real value extracted from EVC-122
+
                 else
                 {
                     _pool.TraceError($"{baseString} - [MMI_NID_LANGUAGE] = " + _pool.SITR.CCUO.ETCS1NewLanguage.MmiNidLanguage.Value +

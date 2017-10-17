@@ -80,6 +80,7 @@ namespace Testcase
             EVC118_MMINewSetVbc.Initialise(this);
             EVC119_MMINewRemoveVbc.Initialise(this);
             EVC121_MMINewLevel.Initialise(this);
+            EVC122_MMINewLanguage.Initialise(this);
             EVC123_MMISpecificSTMDataToSTM.Initialise(this);
             EVC128_MMIConfirmedSetVBC.Initialise(this);
             EVC129_MMIConfirmedRemoveVBC.Initialise(this);
