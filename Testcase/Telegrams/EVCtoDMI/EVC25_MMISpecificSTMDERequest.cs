@@ -10,16 +10,12 @@ using System.Text;
 namespace Testcase.Telegrams.EVCtoDMI
 {
 
-    /// 
-    /// 
-    /// 
     /// <summary>
     /// This packet is used when a STM requests specific data input from the driver. Each MMI packet contains the data of
     /// one packet STM-179 according to [FFFIS_058], which in turn holds up to 5 variables. If more than 5 variables need
     /// to be presented this MMI packet will be repeated. NID_PACKET and L_PACKET of packet STM-179 are stripped.
     /// Because the content of this packet is given by the STM-functionality the assignment, ranges, values and meaning of
     /// all variables can only be given in the project-specific documentation.
-
     /// </summary>
     public static class EVC25_MMISpecificSTMDERequest
     {
@@ -29,16 +25,15 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// <summary>
         /// Initialise EVC-25 MMI Specific STM DE Request telegram
         /// </summary>
-        /// <param name="pool"></param>
+        /// <param name="pool">SignalPool</param>
         public static void Initialise(SignalPool pool)
         {
             _pool = pool;
             _evc25Alias1 = 0x00;
             StmData = new List<EVC25_StmData>();
 
-
             // Activate dynamic array
-            _pool.SITR.SMDCtrl.ETCS1.SpecificStmDeRequest.Value = 0x8;
+            _pool.SITR.SMDCtrl.ETCS1.SpecificStmDeRequest.Value = 0x0008;
 
             // Set default values
             _pool.SITR.ETCS1.SpecificStmDeRequest.MmiMPacket.Value = 25; // Packet ID
@@ -52,7 +47,8 @@ namespace Testcase.Telegrams.EVCtoDMI
             {
                 // MMI_NTC + MMI_STM_NID_DATA + MMI_EVC_ATTRIBUTE + MMI_L_CAPTION + MMI_L_VALUE 
                 sizeCalculated += (2 * sizeof(byte)) + (2 * sizeof(ushort));
-                                             //MMI_STM_X_CAPTION[k] chars MMI_STM_X_VALUE chars
+                
+                                    //MMI_STM_X_CAPTION[k] chars MMI_STM_X_VALUE chars
                 sizeCalculated += (stmElement.stmCaption.Length + stmElement.stmXValue.Length) * sizeof(byte);
 
                 // MMI_N_ITER2
@@ -76,6 +72,7 @@ namespace Testcase.Telegrams.EVCtoDMI
 
             ushort numberOfDataUnits = (ushort)StmData.Count;
 
+            // Limit number of data units to 5
             if (numberOfDataUnits > 5)
             {
                 throw new ArgumentOutOfRangeException("Too many STM Data units!");
@@ -87,6 +84,7 @@ namespace Testcase.Telegrams.EVCtoDMI
 
             ushort totalSizeCounter = EVC25_StmData.BasicPacketLength;
 
+            // Check for exceeding maximum packet size
             if (EVC25_StmData.MaximumPacketLength < FindPacketSize())
             {
                 throw new ArgumentOutOfRangeException("Packet size exceeds maximum allowed");
@@ -99,20 +97,19 @@ namespace Testcase.Telegrams.EVCtoDMI
             {
                 string tagName1 = packetName + $"EVC25SpecificStmDeRequestSub10{k}_";
 
-                // write out the MMI_NID_NTC value
-
+                // Write out the MMI_NID_NTC value
                 string requestName = tagName1 + "MmiNidNtc";
 
                 _pool.SITR.Client.Write(requestName, StmData[k].nidNtc);
                 totalSizeCounter += sizeof(byte);
 
-                // write out the MMI_STM_NID_DATA value (index)
+                // Write out the MMI_STM_NID_DATA value (index)
                 requestName = tagName1 + "MmiStmNidData";
 
                 _pool.SITR.Client.Write(requestName, StmData[k].stmNidData);
                 totalSizeCounter += sizeof(byte);
 
-                // write out the MMI_EVC_M_XATTRIBUTE value (type)
+                // Write out the MMI_EVC_M_XATTRIBUTE value (type)
                 requestName = tagName1 + "MmiEvcMXattribute";
 
                 _pool.SITR.Client.Write(requestName, StmData[k].evcMXAttribute);
@@ -127,23 +124,23 @@ namespace Testcase.Telegrams.EVCtoDMI
                 }
                 else
                 {
-                    // write out the MMI_L_CAPTION value (length)
+                    // Write out the MMI_L_CAPTION value (length)
                     requestName = tagName1 + "MmiLCaption";
 
                     _pool.SITR.Client.Write(requestName, (ushort) caption.Length);
                     totalSizeCounter += sizeof(ushort);
                 }
 
-                // Write individual caption chars
+                // Write individual caption characters
                 // Dynamic fields 2nd dimension
-                string tagName2 = $"{tagName1}EVC25SpecificStmDeRequestSub110";
+                string tagName2 = $"{tagName1}EVC25SpecificStmDeRequestSub11";
 
                 for (int l = 0; l < caption.Length; l++)
                 {
-                    requestName = $"{tagName2}{l}_MmiStmXCaption";
+                        requestName = $"{tagName2}{l.ToString("00")}_MmiStmXCaption";
 
-                    _pool.SITR.Client.Write(requestName, caption[l]);
-                    totalSizeCounter += sizeof(byte);
+                        _pool.SITR.Client.Write(requestName, caption[l]);
+                        totalSizeCounter += sizeof(byte);
                 }
 
                 var xValue = StmData[k].stmXValue.ToCharArray();
@@ -154,19 +151,19 @@ namespace Testcase.Telegrams.EVCtoDMI
                 }
                 else
                 {
-                    // write out the MMI_STM_L_VALUE (length of xvalue string)
+                    // Write out the MMI_STM_L_VALUE (length of xvalue string)
                     requestName = $"{tagName1}MmiStmLValue";
 
                     _pool.SITR.Client.Write(requestName, xValue.Length);
                     totalSizeCounter += sizeof(ushort);
                 }
 
-                tagName2 = $"{tagName1}EVC25SpecificStmDeRequestSub120";
+                tagName2 = $"{tagName1}EVC25SpecificStmDeRequestSub12";
 
-                // write out the XValue chars
+                // Write out the XValue characters
                 for (int l = 0; l < xValue.Length; l++)
                 {
-                    requestName = $"{tagName2}{l}_MmiStmXValue";
+                    requestName = $"{tagName2}{l.ToString("00")}_MmiStmXValue";
 
                     _pool.SITR.Client.Write(requestName, xValue[l]);
                     totalSizeCounter += sizeof(byte);
@@ -186,27 +183,28 @@ namespace Testcase.Telegrams.EVCtoDMI
                     _pool.SITR.Client.Write(requestName, numberInPickupList);
                     totalSizeCounter += sizeof(ushort);
 
-                    string tagName3 = $"{tagName1}EVC25SpecificStmDeRequestSub130";
+                    string tagName3 = $"{tagName1}EVC25SpecificStmDeRequestSub13";
 
                     for (int l = 0; l < numberInPickupList; l++)
                     {
                         var pickUpXValue = StmData[k].stmPickupList[l].ToCharArray();
+
                         if (pickUpXValue.Length > EVC25_StmData.StmPickupXValueMaximumLength)
                         {
                             throw new ArgumentOutOfRangeException("Too many characters in pick-up list x value string!");
                         }
                         else
                         {
-                            string tagName4 = $"{tagName3}{l}_";
-                            requestName = $"{tagName3}MmiStmLValue";
+                            string tagName4 = $"{tagName3}{l.ToString("00")}_";
+                            requestName = $"{tagName3}_MmiStmLValue";
 
                             _pool.SITR.Client.Write(requestName, pickUpXValue.Length);
 
-                            string tagName5 = $"{tagName4}EVC25SpecificStmDRequestSub1310";
+                            string tagName5 = $"{tagName4}EVC25SpecificStmDRequestSub131";
 
                             for (int m = 0; m < pickUpXValue.Length; m++)
                             {
-                                requestName = $"{tagName5}{m}_MmiStmXValue";
+                                requestName = $"{tagName5}{m.ToString("00")}_MmiStmXValue";
                                 _pool.SITR.Client.Write(requestName, pickUpXValue[m]);
                                 totalSizeCounter += sizeof(byte);
                             }
@@ -219,7 +217,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             _pool.SITR.ETCS1.SpecificStmDeRequest.MmiLPacket.Value = totalSizeCounter;
 
             // Send dynamic packet
-            _pool.SITR.SMDCtrl.ETCS1.SpecificStmDeRequest.Value = 0x9;
+            _pool.SITR.SMDCtrl.ETCS1.SpecificStmDeRequest.Value = 0x0009;
             
         }
 
