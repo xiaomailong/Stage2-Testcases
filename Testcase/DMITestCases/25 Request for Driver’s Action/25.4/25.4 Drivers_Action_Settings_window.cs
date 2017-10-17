@@ -13,6 +13,9 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.DMItoEVC;
+using Testcase.Telegrams.EVCtoDMI;
+
 
 namespace Testcase.DMITestCases
 {
@@ -40,10 +43,13 @@ namespace Testcase.DMITestCases
         public override void PreExecution()
         {
             // Pre-conditions from TestSpec:
-            // Test system is powered on.Cabin is activated.
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
+
+            // Test system is powered on.Cabin is activated.
+            DmiActions.Start_ATP();
+            DmiActions.Activate_Cabin_1(this);
         }
 
         public override void PostExecution()
@@ -58,15 +64,73 @@ namespace Testcase.DMITestCases
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint
-
-
+            
             /*
             Test Step 1
             Action: Perform the following procedure,a)   Press the ‘Settings’ button.b)  Press the ‘System version’ button.c)   Press the ‘Close’ button. Then, press the ‘System info’ button.d)   Press the ‘Close’ button. Then, press the ‘Brake’ button and ‘Brake test’ button respectively.e)   Press the ‘Close’ button. Then, press the ‘Set VBC’ button.f)    Press the ‘Close’ button
             Expected Result: Verify the following information(1)   Use the log file to confirm that DMI sends out packet [MMI_DRIVER_REQUEST (EVC-101)] with the value of variable MMI_M_REQUEST refer to sequence below,a)   MMI_M_REQUEST = 58 (Settings)b)   MMI_M_REQUEST = 55 (System version request)c)   MMI_M_REQUEST = 29 (System Info request)d)   MMI_M_REQUEST = 22 (Start Brake Test)e)   MMI_M_REQUEST = 23 (Start Set VBC)f)   MMI_M_REQUEST = 25 (Exit Set VBC)Note: The sequence of MMI_M_REQUEST value are consistent with step of each action.(2)   When the button is pressed in each action, the window of pressed button is closed
             Test Step Comment: (1) MMI_gen 151 (partly: MMI_M_REQUEST = 58, 55, 29, 22, 23, 25) ;(2) MMI_gen 151 (partly: close opened menu);
             */
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 0;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_LOW = true;     // System info enabled
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.SystemVersion |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.SetVBC |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.StartBrakeTest |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.EnableBrakePercentage |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.RemoveVBC |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.EnableDoppler;
+            EVC30_MMIRequestEnable.Send();
 
+            DmiActions.ShowInstruction(this, "Press the ‘Settings’ button");
+
+            EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.Settings; 
+
+            DmiActions.ShowInstruction(this, "Press the ‘System version’ button");
+
+            EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.SystemVersionRequest;
+
+            DmiActions.ShowInstruction(this, "Press the ‘Close’ button");
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI closes the System version window.");
+
+            DmiActions.ShowInstruction(this, "Press the ‘System info’ button");
+
+            EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.SystemInfoRequest;
+
+            DmiActions.ShowInstruction(this, "Press the ‘Close’ button");
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                    "1. DMI closes the System info window.");
+
+            DmiActions.ShowInstruction(this, "Press the ‘Brake’ button, then press the  ‘Brake test’ button");
+
+            EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.StartBrakeTest;
+
+            DmiActions.ShowInstruction(this, "Press the ‘Close’ button");
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI closes the Brake test window.");
+                                             
+            DmiActions.ShowInstruction(this, "Press the ‘Set VBC’ button");
+
+            EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.StartSetVBC;
+
+            EVC18_MMISetVBC.Send();
+
+            DmiActions.ShowInstruction(this, "Press the ‘Close’ button");
+
+            EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.ExitSetVBC;
+
+            EVC18_MMISetVBC.MMI_N_VBC = 1;
+            EVC18_MMISetVBC.MMI_Q_DATA_CHECK = Variables.Q_DATA_CHECK.All_checks_passed;
+            EVC18_MMISetVBC.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_VBC.BTN_SETTINGS;
+            EVC18_MMISetVBC.Send();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI closes the Set VBC window.");
 
             /*
             Test Step 2
@@ -74,7 +138,22 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information(1)   Use the log file to confirm that DMI sends out packet [MMI_DRIVER_REQUEST (EVC-101)] with the value of variable MMI_M_REQUEST = 24 (Start Remove VBC)(2)   The Settings window is closed, DMI displays Remove VBC window
             Test Step Comment: (1) MMI_gen 151 (partly: MMI_M_REQUEST = 24);(2) MMI_gen 151 (partly: close opened menu);
             */
+            DmiActions.ShowInstruction(this, "Press the ‘Set VBC’ button");
 
+            EVC18_MMISetVBC.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_VBC.BTN_YES_DATA_ENTRY_COMPLETE;
+            EVC18_MMISetVBC.Send();
+
+            DmiActions.ShowInstruction(this, "Enter and confirm the value ‘65536’ in the data input field, then press the ‘Yes’ button");
+
+            //EVC28_MMIEchoedVBCSetData.MMI_VBC_CODE_ = 65536;
+            //EVC28_MMIEchoedVBCSetData.Send();
+
+            DmiActions.ShowInstruction(this, "Select and confirm the ‘Yes’ button in the Set VBC validation window, then press the ‘Remove VBC’ button");
+            
+            EVC19_MMIRemoveVBC.Send(); 
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the Remove VBC window.");
 
             /*
             Test Step 3
@@ -85,16 +164,27 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press the ‘Close’ button");
 
+            EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.ExitRemoveVBC;
+
+            EVC19_MMIRemoveVBC.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_VBC.BTN_SETTINGS;
+            EVC19_MMIRemoveVBC.MMI_N_VBC = 1;
+            EVC19_MMIRemoveVBC.MMI_Q_DATA_CHECK = Variables.Q_DATA_CHECK.All_checks_passed;
+            EVC19_MMIRemoveVBC.Send();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the Settings window.");
 
             /*
             Test Step 4
             Action: Perform the following procedure,Press ‘Maintenance’ button.Enter the Maintenance window by entering the password same as a value in tag ‘PASS_CODE_MTN’ of the configuration file and confirming the password
             Expected Result: DMI displays Maintenance window
             */
-            // Call generic Action Method
-            DmiActions
-                .Perform_the_following_procedure_Press_Maintenance_button_Enter_the_Maintenance_window_by_entering_the_password_same_as_a_value_in_tag_PASS_CODE_MTN_of_the_configuration_file_and_confirming_the_password(this);
+            DmiActions.ShowInstruction(this, @"Press the ‘Maintenance’ button");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the Maintenance window.");
+
+            DmiActions.ShowInstruction(this, @"Enter the password (as in the ‘PASS_CODE_MTN’ tag of the configuration file), then confirm");
 
             /*
             Test Step 5
@@ -102,7 +192,33 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information(1)   Use the log file to confirm that DMI sends out packet [MMI_DRIVER_REQUEST (EVC-101)] with the value of variable MMI_M_REQUEST refer to sequence below,a)   MMI_M_REQUEST = 53 (Change Wheel Diameter)b)   MMI_M_REQUEST = 54 (Exit Maintenance)c)   MMI_M_REQUEST = 52 (Change Doppler)d)   MMI_M_REQUEST = 54 (Exit Maintenance)Note: The sequence of MMI_M_REQUEST value are consistent with step of each action.(2)   When the button is pressed in each action, the window of pressed button is closed.(3)   Use the log file to confirm that DMI receives packet EVC-30 with the value of following bit of MMI_Q_REQUEST_ENABLE_64Bit #29  = 1 (Enable wheel diameter)Bit #30 = 1 (Enable doppler) Bit #31 = 1 (Enable brake percentage)
             Test Step Comment: (1) MMI_gen 151 (partly: MMI_M_REQUEST = 53, 54, 52);(2) MMI_gen 151 (partly: close opened menu);(3) MMI_gen 1088 (partly, Bit # 29 to 31);Note: The MMI_M_REQUEST = 54 is send according to the MMI_gen 11758 and MMI_gen 11786 which also verified in another test cases.
             */
+            DmiActions.ShowInstruction(this, @"Press the ‘Wheel diameter’ button");
 
+            EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.ChangeWheelDiameter;
+
+            EVC40_MMICurrentMaintenanceData.MMI_Q_MD_DATASET = Variables.MMI_Q_MD_DATASET.WheelDiameter;
+            EVC40_MMICurrentMaintenanceData.Send();
+
+            DmiActions.ShowInstruction(this, @"Press the ‘Close’ button");
+
+            EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.ExitMaintenance;
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI closes the Wheel diameter window.");
+
+            DmiActions.ShowInstruction(this, @"Press the ‘Radar’ button");
+
+            EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.ChangeDoppler;
+
+            EVC40_MMICurrentMaintenanceData.MMI_Q_MD_DATASET = Variables.MMI_Q_MD_DATASET.Doppler;
+            EVC40_MMICurrentMaintenanceData.Send();
+
+            DmiActions.ShowInstruction(this, @"Press the ‘Close’ button");
+
+            EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.ExitMaintenance;
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI closes the Radar window.");
 
             /*
             Test Step 6
@@ -110,7 +226,18 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information(1)   Use the log file to confirm that DMI sends out packet [MMI_DRIVER_REQUEST (EVC-101)] with the value of variable MMI_M_REQUEST = 51 (Change Brake Percentage)(2)   The Brake window is closed, DMI displays Brake percentage window
             Test Step Comment: (1) MMI_gen 151 (partly: MMI_M_REQUEST = 51);(2) MMI_gen 151 (partly: close opened menu);
             */
+            DmiActions.ShowInstruction(this, "Press the ‘Brake’ button");
 
+            EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.StartBrakeTest;
+
+            XML_20_4_a();
+
+            DmiActions.ShowInstruction(this, "Press the ‘Brake percentage’ button");
+
+            EVC50_MMICurrentBrakePercentage.Send();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the Brake percentage window.");
 
             /*
             Test Step 7
@@ -121,15 +248,30 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press the ‘Close’ button");
 
+            EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.ExitBrakePercentage;
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the Brake window.");
 
             /*
             Test Step 8
             Action: End of test
             Expected Result: 
             */
-
-
+            
             return GlobalTestResult;
         }
+
+        
+        #region Send_XML_20_4_DMI_Test_Specification
+
+        private static void XML_20_4_a()
+        {
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 4;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.EnableBrakePercentage;
+            EVC30_MMIRequestEnable.Send();
+        }
+        #endregion
     }
 }

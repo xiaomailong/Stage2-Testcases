@@ -13,6 +13,9 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.DMItoEVC;
+using Testcase.Telegrams.EVCtoDMI;
+
 
 namespace Testcase.DMITestCases
 {
@@ -48,16 +51,17 @@ namespace Testcase.DMITestCases
         public override void PostExecution()
         {
             // Post-conditions from TestSpec
-            // DMI displays in SR mode, Level 1
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
+
+            // DMI displays in SR mode, Level 1
+            DmiActions.Complete_SoM_L1_SR(this);
         }
 
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint
-
 
             /*
             Test Step 1
@@ -65,7 +69,19 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)    Use the log file to confirm that DMI sends out packet [MMI_DRIVER_REQUEST (EVC-101)] with variable MMI_M_REQUEST = 13 (Change SR Rules)(2)   The Special window is closed, DMI displays SR speed/distance window
             Test Step Comment: (1) MMI_gen 151 (partly: MMI_M_REQUEST = 13);(2) MMI_gen 151 (partly: close opened menu);
             */
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 0;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.SRSpeedDistance |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.Adhesion |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.TrainIntegrity;
+            EVC30_MMIRequestEnable.Send();
 
+            DmiActions.ShowInstruction(this, "Press the ‘Special’ button, then press the ‘SR speed/distance’ button");
+
+            EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.ChangeSRrules;
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI closes the Special window and displays the SR speed/distance window.");
 
             /*
             Test Step 2
@@ -73,18 +89,24 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)    Use the log file to confirm that DMI sends out packet [MMI_DRIVER_REQUEST (EVC-101)] with variable MMI_M_REQUEST = 12 (Exit Change SR Rules)(2)   The SR speed/distance window is closed, DMI displays Special window
             Test Step Comment: (1) MMI_gen 151 (partly: MMI_M_REQUEST = 12);(2) MMI_gen 151 (partly: close opened menu);
             */
-            // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press the ‘Close’ button");
 
+            EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.ExitChangeSRrules;
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI closes the SR speed/distance window and displays the Special window.");
 
             /*
             Test Step 3
             Action: Drive the train forward pass BG1.Then, stop the train and press the ‘Special’ button
             Expected Result: DMI displays Special window with enabled Adhesion button
             */
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Special_window_with_enabled_Adhesion_button(this);
+            // DMI_RS_ETCS says train must be at a standstill
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
 
+            DmiActions.ShowInstruction(this, @"Press the ‘Close’ button, then press the ‘Special’ button");
+
+            DmiExpectedResults.DMI_displays_Special_window_with_enabled_Adhesion_button(this);
 
             /*
             Test Step 4
@@ -92,15 +114,27 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)    Use the log file to confirm that DMI sends out packet [MMI_DRIVER_REQUEST (EVC-101)] with variable MMI_M_REQUEST = 11 (Set adhesion coefficient to ‘slippery rail’)(2)   The Adhesion window is closed, DMI displays Special window
             Test Step Comment: (1) MMI_gen 151 (partly: MMI_M_REQUEST = 11);(2) MMI_gen 151 (partly: close opened menu);
             */
+            // DMI_RS_ETCS says mode should be SB if National value does not allow other modes
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
 
+            DmiActions.ShowInstruction(this, @"Press the ‘Adhesion’ button, then select and confirm the ‘Slippery rail’ button");
 
+            EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.SetAdhesionCoefficientToSlipperyRail;
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI closes the Adhesion window and displays the Special window.");
             /*
             Test Step 5
             Action: Press the ‘Adhesion’ button.Then, select and confirm ‘Non slippery rail’ button
             Expected Result: DMI displays Special window.Verify the following information,(1)    Use the log file to confirm that DMI sends out packet [MMI_DRIVER_REQUEST (EVC-101)] with variable MMI_M_REQUEST = 10 (Restore adhesion coefficient to ‘non-slippery rail’)(2)   The Adhesion window is closed, DMI displays Special window
             Test Step Comment: (1) MMI_gen 151 (partly: MMI_M_REQUEST = 10);(2) MMI_gen 151 (partly: close opened menu);
             */
+            DmiActions.ShowInstruction(this, @"Press the ‘Adhesion’ button, then select and confirm the ‘Non slippery rail’ button");
 
+            EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.RestoreAdhesionCoefficientToNonSlipperyRail; ;
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI closes the Adhesion window and displays the Special window.");
 
             /*
             Test Step 6
@@ -108,14 +142,19 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)    Use the log file to confirm that DMI sends out packet [MMI_DRIVER_REQUEST (EVC-101)] with variable MMI_M_REQUEST = 38 (Start procedure ‘Train Integrity’)(2)   The Special window is closed, DMI displays Default window
             Test Step Comment: (1) MMI_gen 151 (partly: MMI_M_REQUEST = 38);(2) MMI_gen 151 (partly: close opened menu);
             */
+            DmiActions.ShowInstruction(this, @"Press and hold the ‘Train integrity’ button for at least 2s, then release the pressed button");
 
+            EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.StartProcedureTrainIntegrity;
 
+            // DMI_RS_ETCS says two packets for the separate button events need to be sent...
+            Wait_Realtime(300);
+            EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.StartProcedureTrainIntegrity;
+            
             /*
             Test Step 7
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }

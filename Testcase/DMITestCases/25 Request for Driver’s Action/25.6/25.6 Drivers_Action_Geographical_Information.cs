@@ -13,6 +13,8 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.DMItoEVC;
+using Testcase.Telegrams.EVCtoDMI;
 
 namespace Testcase.DMITestCases
 {
@@ -38,10 +40,12 @@ namespace Testcase.DMITestCases
         public override void PreExecution()
         {
             // Pre-conditions from TestSpec:
-            // Test system is powered on.Cabin is activated.SoM is performed in SR mode, level 1.
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
+
+            // Test system is powered on.Cabin is activated.SoM is performed in SR mode, level 1.
+            DmiActions.Complete_SoM_L1_SR(this);
         }
 
         public override void PostExecution()
@@ -63,9 +67,9 @@ namespace Testcase.DMITestCases
             Action: Drive the train forward pass BG1
             Expected Result: The symbol ‘DR03’ is displayed in sub-area G12
             */
-            // Call generic Action Method
-            DmiActions.Drive_the_train_forward_pass_BG1(this);
-
+            // Not indicated what the default state of the G12 area indicator is: displayed or not
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays symbol DR03 in sub-area G12.");
 
             /*
             Test Step 2
@@ -73,7 +77,17 @@ namespace Testcase.DMITestCases
             Expected Result: DMI display the Geographical Position Indicator on sub-area G12.Verify the following information(1)   Use the log file to confirm that DMI sends out packet [MMI_DRIVER_REQUEST (EVC-101)] with the value of variable MMI_M_REQUEST = 8 (Geographical position request).(2)   Use the log file to confirm that DMI sends out packet [MMI_DRIVER_ACTION (EVC-152)] with the value of variable MMI_M_DRIVER_ACTION refer to sequence below,a)   MMI_M_DRIVER_ACTION = 30 (Request to show geographical position)
             Test Step Comment: (1) MMI_gen 151 (partly: MMI_M_REQUEST = 8);(2) MMI_gen 11470 (partly: Bit # 30);
             */
+            DmiActions.ShowInstruction(this, @"Press on the ‘DR03’ symbol in sub-area G12");
 
+            EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.GeographicalPositionRequest;
+            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.RequestToShowGeographicalPosition;
+
+            EVC5_MMIGeoPosition.MMI_M_ABSOLUTPOS = 8388609;
+            EVC5_MMIGeoPosition.MMI_M_RELATIVPOS = 0;
+            EVC5_MMIGeoPosition.Send();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the ‘Geographical Position Indicator’ in sub-area G12.");
 
             /*
             Test Step 3
@@ -81,14 +95,18 @@ namespace Testcase.DMITestCases
             Expected Result: The symbol ‘DR03’ is resumed.Use the log file to confirm that DMI sends out packet [MMI_DRIVER_ACTION (EVC-152)] with the value of variable MMI_M_DRIVER_ACTION refer to sequence below,a)   MMI_M_DRIVER_ACTION = 33 (Request to hide geographical position)
             Test Step Comment: MMI_gen 11470 (partly: Bit # 33);
             */
+            DmiActions.ShowInstruction(this, @"Press the ‘Geographical Position Indicator’ in sub-area G12");
 
+            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.RequestToHideGeographicalPosition;
 
-            /*
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays symbol DR03 in sub-area G12.");
+
+            /* 
             Test Step 4
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }
