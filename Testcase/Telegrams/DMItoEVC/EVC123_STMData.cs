@@ -5,11 +5,11 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using static Testcase.Telegrams.EVCtoDMI.Variables;
 
 
+namespace Testcase.Telegrams.DMItoEVC
+{
 /// <summary>
 /// This structure collects the repeated data for the EVC25 packet
 /// </summary>
-namespace Testcase.Telegrams.DMItoEVC
-{
     public class EVC123_StmDataElement
     {
         public byte stmNidNtc;
