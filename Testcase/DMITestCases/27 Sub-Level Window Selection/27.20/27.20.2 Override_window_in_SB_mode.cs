@@ -72,9 +72,12 @@ namespace Testcase.DMITestCases
 
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;      // Main window
-            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.ContactLastRBC |
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.EnterRBCData |
                                                                EVC30_MMIRequestEnable.EnabledRequests.TrainData;
             EVC30_MMIRequestEnable.Send();
+
+            EVC22_MMICurrentRBC.MMI_NID_WINDOW = 5;
+            EVC22_MMICurrentRBC.Send();
 
             DmiActions.ShowInstruction(this, "Press the ‘Enter RBC Data’ button");
 
@@ -100,7 +103,14 @@ namespace Testcase.DMITestCases
             Action: Perform the following procedure,Press ‘Train data’ button.Enter and validate train data
             Expected Result: DMI displays Main window with enabled ‘Start’ button
             */
-            DmiActions.ShowInstruction(this, "Press the ‘Train data’ button, then enter and validate the train data");
+            DmiActions.ShowInstruction(this, "Press the ‘Train data’ button");
+
+
+            DmiActions.Send_EVC6_MMICurrentTrainData_FixedDataEntry(this, new[] { "FLU", "RLU", "Rescue" }, 2);
+
+            DmiActions.ShowInstruction(this, "Enter and validate the train data");
+
+            DmiActions.Send_EVC10_MMIEchoedTrainData_FixedDataEntry(this, new[] { "FLU", "RLU", "Rescue" });
 
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
