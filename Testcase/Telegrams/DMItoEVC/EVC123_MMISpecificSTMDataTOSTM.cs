@@ -18,8 +18,8 @@ namespace Testcase.Telegrams.DMItoEVC
 
         private static EVC123_StmData _stmData;
 
-        static private string baseString0 = "DMI->ETCS: EVC-123 [MMI_SPECIFIC_STR_DATA_TO_STM]";
-        static private string baseString1 = "CCUO_ETCS1SpecificStmDataToStm_EVC123SpecificStmDataToStmSub10";
+        private static string baseString0 = "DMI->ETCS: EVC-123 [MMI_SPECIFIC_STR_DATA_TO_STM]";
+        private static string baseString1 = "CCUO_ETCS1SpecificStmDataToStm_EVC123SpecificStmDataToStmSub10";
 
         /// <summary>
         /// Initialise EVC107 MMI_New_Train_Data telegram.
