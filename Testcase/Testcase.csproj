@@ -380,6 +380,7 @@ if exist "$(TargetPath)" if not exist "$(TargetPath).locked" move "$(TargetPath)
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SoM_Level1.cs" />
     <Compile Include="Telegrams\DMItoEVC\EVC100_MMIStartMmi.cs" />
+    <Compile Include="Telegrams\DMItoEVC\EVC118_MMINewSetVbc.cs" />
     <Compile Include="Telegrams\DMItoEVC\EVC112_MMINewRbcData.cs" />
     <Compile Include="Telegrams\DMItoEVC\EVC109_MMISetTimeMMI.cs" />
     <Compile Include="Telegrams\DMItoEVC\EVC110_MMIConfimedTrainData.cs" />

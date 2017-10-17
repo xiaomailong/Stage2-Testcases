@@ -77,7 +77,7 @@ namespace Testcase
             EVC111_MMIDriverMessageAck.Initialise(this);
             EVC112_MMINewRbcData.Initialise(this);
             EVC116_MMINewTrainNumber.Initialise(this);
-
+            EVC118_MMINewSetVbc.Initialise(this);
             EVC121_MMINewLevel.Initialise(this);
             EVC123_MMISpecificSTMDataToSTM.Initialise(this);
             EVC128_MMIConfirmedSetVBC.Initialise(this);
