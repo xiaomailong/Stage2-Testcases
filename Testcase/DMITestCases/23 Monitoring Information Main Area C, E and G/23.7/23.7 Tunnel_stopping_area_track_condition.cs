@@ -69,7 +69,7 @@ namespace Testcase.DMITestCases
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in FS_mode, Level 1.");
+                                "1. DMI displays in FS mode, Level 1.");
 
             /*
             Test Step 2
