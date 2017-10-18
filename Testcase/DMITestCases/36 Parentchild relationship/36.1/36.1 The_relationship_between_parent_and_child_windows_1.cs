@@ -42,7 +42,7 @@ namespace Testcase.DMITestCases
             // Call the TestCaseBase PreExecution
             base.PreExecution();
             // System is powered on.
-            DmiActions.Start_ATP(); ;
+            DmiActions.Start_ATP();
         }
 
         public override void PostExecution()
@@ -92,6 +92,10 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press the ‘Close’ button");
 
+            EVC14_MMICurrentDriverID.MMI_X_DRIVER_ID = "1";
+            EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE = EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE_BUTTONS.TRN;
+            EVC14_MMICurrentDriverID.Send();
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Settings window and displays the Driver ID window.");
             /*
@@ -103,7 +107,7 @@ namespace Testcase.DMITestCases
 
             EVC16_CurrentTrainNumber.TrainRunningNumber = 1;
             EVC16_CurrentTrainNumber.Send();
-
+        
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Train Running Number window.");
 
@@ -117,7 +121,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press the ‘Close’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI close the Train Running Number window and displays the Driver ID window.");
+                                "1. DMI closes the Train Running Number window and displays the Driver ID window.");
 
             /*
             Test Step 6
@@ -129,8 +133,7 @@ namespace Testcase.DMITestCases
                                                         EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE_BUTTONS.TRN;
             EVC14_MMICurrentDriverID.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
             EVC14_MMICurrentDriverID.Send();
-
-            // Brake test is in Settings window?
+            
             DmiActions.ShowInstruction(this, @"Enter Driver ID and perform brake test");
 
             EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Disabled;
@@ -264,7 +267,7 @@ namespace Testcase.DMITestCases
                                              "If the train data are flexible, enter all the train data and press the ‘Yes’ button");
 
             // Difficult to investigate EVC107 response from DMI to check what was set so display some data
-            /*DmiActions.Send_EVC10_MMIEchoedTrainData(Variables.MMI_M_DATA_ENABLE.TrainSetID |
+            DmiActions.Send_EVC10_MMIEchoedTrainData(this, Variables.MMI_M_DATA_ENABLE.TrainSetID |
                                                      Variables.MMI_M_DATA_ENABLE.TrainCategory |
                                                      Variables.MMI_M_DATA_ENABLE.TrainLength |
                                                      Variables.MMI_M_DATA_ENABLE.BrakePercentage |
@@ -273,12 +276,11 @@ namespace Testcase.DMITestCases
                                                      Variables.MMI_M_DATA_ENABLE.Airtightness,
                                                      100, 200,
                                                      Variables.MMI_NID_KEY.PASS2,
-                                                     70, 
+                                                     70,
                                                      Variables.MMI_NID_KEY.CATA,
                                                      0,
                                                      Variables.MMI_NID_KEY.G1,
-                                                     0, 0,
-                                                     new[] { "FLU", "RLU", "Rescue" }, null);*/
+                                                     new[] { "FLU", "RLU", "Rescue" });
             DmiActions.Send_EVC10_MMIEchoedTrainData_FixedDataEntry(this, Variables.paramEvc6FixedTrainsetCaptions);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
