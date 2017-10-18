@@ -265,7 +265,7 @@ namespace Testcase.DMITestCases
         
         #region Send_XML_20_4_DMI_Test_Specification
 
-        private static void XML_20_4_a()
+        private void XML_20_4_a()
         {
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = 4;

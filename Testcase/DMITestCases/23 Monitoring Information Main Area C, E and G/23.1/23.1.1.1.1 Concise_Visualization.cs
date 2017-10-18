@@ -258,7 +258,7 @@ namespace Testcase.DMITestCases
 
         #region Send_XML_18_1_1_1_1_DMI_Test_Specification
 
-        private static void XML_18_1_1_1_1_a()
+        private void XML_18_1_1_1_1_a()
         {
             EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -268,7 +268,7 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
         }
 
-        private static void XML_18_1_1_1_1_b()
+        private void XML_18_1_1_1_1_b()
         {
             EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;

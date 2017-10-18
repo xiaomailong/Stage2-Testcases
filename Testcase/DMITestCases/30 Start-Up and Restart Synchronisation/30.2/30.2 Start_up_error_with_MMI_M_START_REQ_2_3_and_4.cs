@@ -13,6 +13,7 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.EVCtoDMI;
 
 namespace Testcase.DMITestCases
 {
@@ -31,7 +32,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 25_2_a.xml25_2_b.xml25_2_c.xml
     /// </summary>
-    public class Start_up_error_with_MMI_M_START_REQ_2_3_and_4 : TestcaseBase
+    public class TC_ID_25_2_Start_up_error_with_MMI_M_START_REQ_2_3_and_4 : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -54,7 +55,6 @@ namespace Testcase.DMITestCases
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint
-
 
             /*
             Test Step 1
@@ -104,8 +104,43 @@ namespace Testcase.DMITestCases
             Expected Result: 
             */
 
-
             return GlobalTestResult;
         }
+
+
+        #region Send_XML_25_2_DMI_Test_Specification
+
+        private enum msgType
+        {
+            typea,
+            typeb,
+            typec,
+            typed
+        }
+
+        private void XML_25_2(msgType packetSelector)
+        {
+            // XML file suggests sending a 0 and then waiting 5ms before sending important EVC0 signal
+            EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.VersionInfo;
+            EVC0_MMIStartATP.Send();
+            Wait_Realtime(5);
+        
+            switch ( packetSelector )
+            {
+                case msgType.typea:
+                    EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.VersionInfo;
+
+                    break;
+                case msgType.typeb:
+                    break;
+                case msgType.typec:
+                    break;
+                case msgType.typed:
+                    break;
+            }
+            
+        }
+        #endregion
+
     }
 }
