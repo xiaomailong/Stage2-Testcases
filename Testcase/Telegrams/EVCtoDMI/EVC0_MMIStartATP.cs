@@ -48,13 +48,26 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// EVC-0 telegram start-up type
         /// 
         /// Values:
+        /// 0 = "Version info request"
+        /// 1 = "Go to Idle state"
+        /// 2 = "Error: MMI type not supported"
+        /// 3 = "Error: Incompatible IF versions"
+        /// 4 = "Error: Incompatible SW versions"
+        /// 5..9 = "Spare"
+        /// 10 = "DMI reboot. Indication error"
+        /// 11..255 = "Spare"
+
         /// Request Version Information
         /// Go to Idle
         /// </summary>
-        public enum EVC0Type
+        public enum EVC0Type: byte
         {
-            VersionInfo,
-            GoToIdle
+            VersionInfo = 0,
+            GoToIdle = 1,
+            MMITypeNotSupported = 2,
+            IncompatibleIFVersions = 3,
+            IncompatibleSWVersions = 4,
+            DMIRebootIndicationError = 10
         }
     }
 }
