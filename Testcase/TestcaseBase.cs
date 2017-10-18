@@ -53,6 +53,8 @@ namespace Testcase
             EVC22_MMICurrentRBC.Initialise(this);
             EVC23_MMILssma.Initialise(this);
             EVC25_MMISpecificSTMDERequest.Initialise(this);
+            EVC27_MMISpecificSTMTestRequest.Initialise(this);
+            EVC28_MMIEchoedSetVBCData.Initialise(this);
             EVC29_MMIEchoedRemoveVBCData.Initialise(this);
             EVC30_MMIRequestEnable.Initialise(this);
             EVC31_MMINTCDeSelect.Initialise(this);
@@ -86,6 +88,9 @@ namespace Testcase
             EVC128_MMIConfirmedSetVBC.Initialise(this);
             EVC129_MMIConfirmedRemoveVBC.Initialise(this);
             EVC140_MMINewMaintenanceData.Initialise(this);
+            EVC141_MMIConfirmedMaintenanceData.Initialise(this);
+            EVC150_MMINewBrakePercentage.Initialise(this);
+            EVC151_MMIConfirmedBrakePercentage.Initialise(this);
             EVC152_MMIDriverAction.Initialise(this);
         }
 
