@@ -439,7 +439,7 @@ namespace Testcase.DMITestCases
 
             // Other signals need setting 
             // from VSIS looks like the other buttons are controlled by MMI_Q_REQUEST_ENABLE_LOW
-            //EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_LOW = true;          // System info enabled
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_LOW = true;          // System info enabled
 
             EVC30_MMIRequestEnable.Send();
 
