@@ -141,11 +141,24 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, "Select the Data view menu item");
 
-            //EVC13_MMIDataView.Send();
+            EVC13_MMIDataView.MMI_X_DRIVER_ID = "1";
+            EVC13_MMIDataView.MMI_NID_OPERATION = 0;
+            EVC13_MMIDataView.MMI_NID_KEY_TRAIN_CAT = Variables.MMI_NID_KEY.PASS1;
+            EVC13_MMIDataView.MMI_L_TRAIN = 100;
+            EVC13_MMIDataView.MMI_M_BRAKE_PERC = 70;
+            EVC13_MMIDataView.MMI_V_MAXTRAIN = 160;
+            EVC13_MMIDataView.MMI_NID_KEY_AXLE_LOAD = Variables.MMI_NID_KEY.CATA;
+            EVC13_MMIDataView.MMI_M_AIRTIGHT = 0;
+            EVC13_MMIDataView.MMI_NID_KEY_LOAD_GAUGE = Variables.MMI_NID_KEY.OutofGC;
+            EVC13_MMIDataView.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Data view window with the title ‘Data view (1/2)’." + Environment.NewLine +
-                                "2. The ‘Close’ button is displayed enabled.");
+                                "2. The ‘Close’ button is displayed enabled." + Environment.NewLine +
+                                "3. The data values are displayed in a (horizontal) list" + Environment.NewLine +
+                                "4. Driver ID = ‘1’, Train running number = ‘0’ (greyed out);" + Environment.NewLine +
+                                "5. Train category = ‘PASS 1’, Length (m) = ‘100’, Brake Percentage = ‘70, Max speed (km/h) = 160," +
+                                "6. Axle load category = ‘A’, Airtight = ‘No’, Loading gauge = ‘Out of GC’ (all highlighted).");
             
             /*
             Test Step 7
