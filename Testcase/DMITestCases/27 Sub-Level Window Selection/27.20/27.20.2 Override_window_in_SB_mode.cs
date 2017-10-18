@@ -95,6 +95,11 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, "Enter and confirm the following values: RBC ID = 6996969, RBC Phone number = 0031840880100, then, press the ‘Yes’ button");
 
+            // Need to close RBC Contact window
+            EVC22_MMICurrentRBC.MMI_NID_WINDOW = 9;
+            EVC22_MMICurrentRBC.NetworkCaptions = null;
+            EVC22_MMICurrentRBC.Send();
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Main window.");
 
@@ -115,7 +120,8 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Start |
-                                                               EVC30_MMIRequestEnable.EnabledRequests.EOA;
+                                                               EVC30_MMIRequestEnable.EnabledRequests.EOA |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.Level;
             EVC30_MMIRequestEnable.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
