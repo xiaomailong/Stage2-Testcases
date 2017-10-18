@@ -52,6 +52,7 @@ namespace Testcase
             EVC20_MMISelectLevel.Initialise(this);
             EVC22_MMICurrentRBC.Initialise(this);
             EVC23_MMILssma.Initialise(this);
+            EVC24_MMISystemInfo.Initialise(this);
             EVC25_MMISpecificSTMDERequest.Initialise(this);
             EVC27_MMISpecificSTMTestRequest.Initialise(this);
             EVC28_MMIEchoedSetVBCData.Initialise(this);
