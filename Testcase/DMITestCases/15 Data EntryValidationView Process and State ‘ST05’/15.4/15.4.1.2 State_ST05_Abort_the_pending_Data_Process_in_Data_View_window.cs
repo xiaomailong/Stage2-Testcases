@@ -102,7 +102,7 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, @"Press the ‘Close’ button in the Driver ID window. Open the System info window");
 
-            //EVC13_MMISystemInfo.Send();
+            EVC24_MMISystemInfo.Send();
 
             XML_10_4_1_2_a_b(msgType.typea);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
