@@ -237,34 +237,41 @@ namespace Testcase.DMITestCases
             switch (type)
             {
                 case msgType.typea:
-                    EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Disabled;
+                    // values taken from xml not spec. where different
+                    EVC13_MMIDataView.MMI_X_DRIVER_ID = "";
+                    EVC13_MMIDataView.MMI_NID_OPERATION = 0xffffffff;
+                    EVC13_MMIDataView.MMI_M_DATA_ENABLE = (Variables.MMI_M_DATA_ENABLE)0x0080;     // 128
+                    EVC13_MMIDataView.MMI_L_TRAIN = 4096;
+                    EVC13_MMIDataView.MMI_V_MAXTRAIN = 601;
+                    EVC13_MMIDataView.MMI_M_BRAKE_PERC = 9;
+                    EVC13_MMIDataView.MMI_NID_KEY_AXLE_LOAD = Variables.MMI_NID_KEY.FG4;       // 20
+                    EVC13_MMIDataView.MMI_NID_RADIO = 0xffffffffffffffff;          // 4294967295 (= 0xffffffff) hi, 4294967295 (= 0xffffffff) lo
+                    EVC13_MMIDataView.MMI_M_AIRTIGHT = 3;
+                    EVC13_MMIDataView.MMI_NID_KEY_LOAD_GAUGE = Variables.MMI_NID_KEY.CATE5;
+                    EVC13_MMIDataView.Trainset_Caption = "\0x00\0x00\0x00\0x00\0x00\0x00\0x00\0x00\0x00\0x00\0x00\0x00\0x00";
+                    EVC13_MMIDataView.Network_Caption = "\0x00\0x00\0x00\0x00\0x00\0x00\0x00\0x00\0x00\0x00\0x00\0x00\0x00\0x00\0x00\0x00\0x00";
+                    EVC13_MMIDataView.MMI_NID_KEY_TRAIN_CAT = Variables.MMI_NID_KEY.CATA;  // 21
 
-                    EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new Variables.MMI_Q_LEVEL_NTC_ID[] { Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level };
-                    EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new Variables.MMI_M_CURRENT_LEVEL[] { Variables.MMI_M_CURRENT_LEVEL.LastUsedLevel };
-                    EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = new Variables.MMI_M_LEVEL_FLAG[] { Variables.MMI_M_LEVEL_FLAG.MarkedLevel };
-                    EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = new Variables.MMI_M_INHIBITED_LEVEL[] { Variables.MMI_M_INHIBITED_LEVEL.NotInhibited };
-                    EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = new Variables.MMI_M_INHIBIT_ENABLE[] { Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting };
-                    EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new Variables.MMI_M_LEVEL_NTC_ID[] { Variables.MMI_M_LEVEL_NTC_ID.L3 };
-
-                    EVC20_MMISelectLevel.Send();
                     break;
                 case msgType.typeb:
                     // values taken from xml not spec. where different
-                    //EVC13.MMI_X_DRIVER_ID[0] = 825373492;
-                    //EVC13.MMI_X_DRIVER_ID[1] = 909588537;
-                    //EVC13.MMI_X_DRIVER_ID[2] = 825373492;
-                    //EVC13.MMI_X_DRIVER_ID[3] = 909588537;
-
-                    //EVC13.MMI_M_DATA_ENABLE = 0x7f00;               // 32512
-                    //EVC13.MMI_N_CAPTION_TRAINSET = "ABCDEFGHIJKL";         
-                    //EVC13.MMI_X_CAPTION_NETWORK = "ABCDEFGHIJKLMNOP";
-
-                    //EVC13.MMI_NID_RADIO[0] = 0x99999999;          // 2576980377
-                    //EVC13.MMI_NID_RADIO[1] = 0x99999999;          // 2576980377
-
-                    //EVC13.Send();
+                    EVC13_MMIDataView.MMI_X_DRIVER_ID = "12346789123426789";
+                    EVC13_MMIDataView.MMI_NID_OPERATION = 0x9999999;
+                    EVC13_MMIDataView.MMI_M_DATA_ENABLE = (Variables.MMI_M_DATA_ENABLE)0x7f00;     // 32512
+                    EVC13_MMIDataView.MMI_L_TRAIN = 4095;
+                    EVC13_MMIDataView.MMI_V_MAXTRAIN = 600;
+                    EVC13_MMIDataView.MMI_M_BRAKE_PERC = 250;
+                    EVC13_MMIDataView.MMI_NID_KEY_AXLE_LOAD = Variables.MMI_NID_KEY.CATA;       // 21
+                    EVC13_MMIDataView.MMI_NID_RADIO = 0x9999999999999999;          // 2576980377 (= 0x9999999) hi, 2576980377 (= 0x9999999) lo
+                    EVC13_MMIDataView.MMI_M_AIRTIGHT = 0;
+                    EVC13_MMIDataView.MMI_NID_KEY_LOAD_GAUGE = Variables.MMI_NID_KEY.G1;
+                    EVC13_MMIDataView.Trainset_Caption = "ABCDEFGHIJKL";         
+                    EVC13_MMIDataView.Network_Caption = "ABCDEFGHIJKLMNOP";
+                    EVC13_MMIDataView.MMI_NID_KEY_TRAIN_CAT = Variables.MMI_NID_KEY.PASS1;  // 3
                     break;
             }
+
+            EVC13_MMIDataView.Send();
         }
         #endregion
     }

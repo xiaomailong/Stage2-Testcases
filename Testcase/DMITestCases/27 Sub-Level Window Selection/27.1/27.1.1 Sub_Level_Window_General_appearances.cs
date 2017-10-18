@@ -279,7 +279,7 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Release the ‘Data view’ button");
 
-            //EVC13_MMIDataView.Send();
+            EVC13_MMIDataView.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Data view window.");

@@ -70,7 +70,7 @@ namespace Testcase.DMITestCases
             //DmiActions.ShowInstruction(this, @"Press ‘Close’ button in the Data View window. Press ‘Data View’ button.");
             //DmiActions.ShowInstruction(this, @"Press the ‘Data View’ button.");
 
-            //EVC13_MMIDataView.Send();
+            EVC13_MMIDataView.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Default window until Data View window is displayed." + Environment.NewLine +

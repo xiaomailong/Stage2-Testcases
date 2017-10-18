@@ -14,6 +14,7 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
 using Testcase.Telegrams.DMItoEVC;
+using Testcase.Telegrams.EVCtoDMI;
 
 
 namespace Testcase.DMITestCases
@@ -243,45 +244,42 @@ namespace Testcase.DMITestCases
             {
                 case msgType.typea:
                     //values taken from xml file not spec where different
-                    //EVC13.MMI_X_DRIVER_ID[0] = 0;
-                    //EVC13.MMI_X_DRIVER_ID[1] = 0;
-                    //EVC13.MMI_X_DRIVER_ID[2] = 0;
-                    //EVC13.MMI_X_DRIVER_ID[3] = 0;
+                    EVC13_MMIDataView.MMI_X_DRIVER_ID = "";
 
-                    //EVC13.MMI_NID_OPERATION = 0xffffffff;         // 4294967295
-                    //EVC13.MMI_M_DATA_ENABLE = 0x80;               // 128
-
-                    //EVC13.MMI_NID_KEY_TRAIN_CAT = 21;
-                    //EVC13.MMI_L_TRAIN = 0x1000;                   // 4096
-                    //EVC13.MMI_V_MAXTRAIN = 601;
-                    //EVC13.MMI_M_BRAKE_PERC = 9;
-                    //EVC13.MMI_NID_KEY_AXLE_LOAD = 20;
-                    //EVC13.MMI_NID_RADIO[0] = 0xffffffff;          // 4294967295
-                    //EVC13.MMI_NID_RADIO[1] = 0xffffffff;          // 4294967295
-                    //EVC13.MMI_NID_RBC = 0x800000;                 // 8388608
-                    //EVC13.MMI_M_AIRTIGHT = 3;     
-                    //EVC13.MMI_NID_KEY_LOAD_GAUGE = 33;
-                    //EVC13.MMI_N_VBC = 0x0;
-                    //EVC13.MMI_X_CAPTION_NETWORK = "\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0";
-                    //EVC13.Send();
+                    EVC13_MMIDataView.MMI_NID_OPERATION = 0xffffffff;         // 4294967295
+                    EVC13_MMIDataView.MMI_M_DATA_ENABLE = (Variables.MMI_M_DATA_ENABLE)0x80;               // 128
+                    EVC13_MMIDataView.MMI_NID_KEY_TRAIN_CAT = Variables.MMI_NID_KEY.CATA;             // 21
+                    EVC13_MMIDataView.MMI_L_TRAIN = 0x1000;                   // 4096
+                    EVC13_MMIDataView.MMI_V_MAXTRAIN = 601;
+                    EVC13_MMIDataView.MMI_M_BRAKE_PERC = 9;
+                    EVC13_MMIDataView.MMI_NID_KEY_AXLE_LOAD = Variables.MMI_NID_KEY.FG4;          // 20
+                    EVC13_MMIDataView.MMI_NID_RADIO = 0xffffffffffffffff;          // 4294967295 (hi and lo)z`
+                    EVC13_MMIDataView.MMI_M_AIRTIGHT = 3;
+                    EVC13_MMIDataView.MMI_NID_KEY_LOAD_GAUGE = Variables.MMI_NID_KEY.CATE5;      // 33
+                    EVC13_MMIDataView.Trainset_Caption = "\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0";
+                    EVC13_MMIDataView.Network_Caption = "\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0";
                     break;
                 case msgType.typeb:
                     // values taken from xml not spec. where different
-                    //EVC13.MMI_X_DRIVER_ID[0] = 825373492;
-                    //EVC13.MMI_X_DRIVER_ID[1] = 909588537;
-                    //EVC13.MMI_X_DRIVER_ID[2] = 825373492;
-                    //EVC13.MMI_X_DRIVER_ID[3] = 909588537;
+                    EVC13_MMIDataView.MMI_X_DRIVER_ID = "1234678912346789";
+                    EVC13_MMIDataView.MMI_NID_OPERATION = 0xffffffff;         // 4294967295
 
-                    //EVC13.MMI_M_DATA_ENABLE = 0xff00;               // 65280
-                    //EVC13.MMI_N_CAPTION_TRAINSET = "ABCDEFGHIJKL";  
-                    //EVC13.MMI_X_CAPTION_NETWORK = "ABCDEFGHIJKLMNOP";
+                    EVC13_MMIDataView.MMI_M_DATA_ENABLE = (Variables.MMI_M_DATA_ENABLE)0xff00;               // 65280
+                    EVC13_MMIDataView.MMI_NID_KEY_TRAIN_CAT = Variables.MMI_NID_KEY.CATA;             // 21
+                    EVC13_MMIDataView.MMI_L_TRAIN = 4095;
+                    EVC13_MMIDataView.MMI_V_MAXTRAIN = 600;
+                    EVC13_MMIDataView.MMI_M_BRAKE_PERC = 250;
+                    EVC13_MMIDataView.MMI_NID_KEY_AXLE_LOAD = Variables.MMI_NID_KEY.CATA;          // 21
+                    EVC13_MMIDataView.MMI_NID_RADIO = 0x9999999999999999;          // 2576980377 (hi and lo)
+                    EVC13_MMIDataView.MMI_M_AIRTIGHT = 0;
+                    EVC13_MMIDataView.MMI_NID_KEY_LOAD_GAUGE = Variables.MMI_NID_KEY.G1;      // 34
+                    EVC13_MMIDataView.Trainset_Caption = "ABCFGHIJKLMN";  
+                    EVC13_MMIDataView.Network_Caption = "ABCDEFGHIJKLMNOP";
 
-                    //EVC13.MMI_NID_RADIO[0] = 0x99999999;          // 2576980377
-                    //EVC13.MMI_NID_RADIO[1] = 0x99999999;          // 2576980377
-
-                    //EVC13.Send();
                     break;
             }
+
+            EVC13_MMIDataView.Send();
         }
         #endregion
 

@@ -159,9 +159,9 @@ namespace Testcase.DMITestCases
             // Does this mean Train data?
             DmiActions.ShowInstruction(this, @"Press the ‘Close’ button in the Main window. Press the ‘Data view’ button");
 
-            //EVC13_MMIDataView.MMI_X_DRIVER_ID = "1234";
-            //EVC13_MMIDataView.MMI_NID_OPERATION = 1;
-            //EVC13_MMIDataView.Send();
+            EVC13_MMIDataView.MMI_X_DRIVER_ID = "1234";
+            EVC13_MMIDataView.MMI_NID_OPERATION = 1;
+            EVC13_MMIDataView.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                              "1. DMI displays the Data view window.");

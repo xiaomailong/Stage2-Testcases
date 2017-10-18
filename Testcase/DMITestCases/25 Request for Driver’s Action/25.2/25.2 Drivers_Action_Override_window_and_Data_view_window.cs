@@ -93,7 +93,7 @@ namespace Testcase.DMITestCases
 
             EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.StartTrainDataView;
 
-            //EVC13_MMIDataView.Send();
+            EVC13_MMIDataView.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Default window and displays the Data view window.");
