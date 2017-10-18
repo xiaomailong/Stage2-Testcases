@@ -62,16 +62,31 @@ namespace Testcase.DMITestCases
             Expected Result: (1)    DMI displays the message “MMI type not supported” instead of “starting up” in area E5
             Test Step Comment: (1) MMI_gen 236 (partly: MMI_M_START_REQ = 2)
             */
+            EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.VersionInfo;
+            EVC0_MMIStartATP.Send();
 
+            DmiActions.Re_establish_communication_EVC_DMI(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the message ‘Starting up’ in area E5.");
+
+            XML_25_2(msgType.typea);
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays removes the message ‘Starting up’ and displays ‘MMI type not supported’ in area E5.");
 
             /*
             Test Step 2
             Action: Restart OTE and ATP again until the message “starting up” is displayed in area E5
             Expected Result: 
             */
-            // Call generic Action Method
-            DmiActions.Restart_OTE_and_ATP_again_until_the_message_starting_up_is_displayed_in_area_E5(this);
+            DmiActions.ShowInstruction(this, "Power down the system, wait 10s, then power up the system again");
 
+            EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.VersionInfo;
+            EVC0_MMIStartATP.Send();
+
+            DmiActions.Re_establish_communication_EVC_DMI(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the message ‘Starting up’ in area E5.");
 
             /*
             Test Step 3
@@ -79,16 +94,24 @@ namespace Testcase.DMITestCases
             Expected Result: (1)    DMI displays the message “Incompatible IF versions” instead of “starting up” in area E5
             Test Step Comment: (1) MMI_gen 236 (partly: MMI_M_START_REQ = 3)
             */
+            XML_25_2(msgType.typeb);
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays removes the message ‘Starting up’ and displays ‘Incompatible IF versions’ in area E5.");
 
             /*
             Test Step 4
             Action: Restart OTE and ATP again until the message “starting up” is displayed in area E5
             Expected Result: 
             */
-            // Call generic Action Method
-            DmiActions.Restart_OTE_and_ATP_again_until_the_message_starting_up_is_displayed_in_area_E5(this);
+            DmiActions.ShowInstruction(this, "Power down the system, wait 10s, then power up the system again");
 
+            EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.VersionInfo;
+            EVC0_MMIStartATP.Send();
+
+            DmiActions.Re_establish_communication_EVC_DMI(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the message ‘Starting up’ in area E5.");
 
             /*
             Test Step 5
@@ -96,8 +119,11 @@ namespace Testcase.DMITestCases
             Expected Result: (1)    DMI displays the message “Incompatible SW versions” instead of “starting up” in area E5
             Test Step Comment: (1) MMI_gen 236 (partly: MMI_M_START_REQ = 4)
             */
+            XML_25_2(msgType.typec);
 
-
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays removes the message ‘Starting up’ and displays ‘Incompatible SW versions’ in area E5.");
+            
             /*
             Test Step 6
             Action: End of test
@@ -114,8 +140,7 @@ namespace Testcase.DMITestCases
         {
             typea,
             typeb,
-            typec,
-            typed
+            typec
         }
 
         private void XML_25_2(msgType packetSelector)
@@ -124,21 +149,22 @@ namespace Testcase.DMITestCases
             EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.VersionInfo;
             EVC0_MMIStartATP.Send();
             Wait_Realtime(5);
-        
-            switch ( packetSelector )
+
+            switch (packetSelector)
             {
                 case msgType.typea:
-                    EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.VersionInfo;
-
+                    EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.MMITypeNotSupported;
                     break;
                 case msgType.typeb:
+                    EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.IncompatibleIFVersions;
                     break;
                 case msgType.typec:
-                    break;
-                case msgType.typed:
+                    EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.IncompatibleSWVersions;
                     break;
             }
-            
+
+            EVC0_MMIStartATP.Send();
+
         }
         #endregion
 
