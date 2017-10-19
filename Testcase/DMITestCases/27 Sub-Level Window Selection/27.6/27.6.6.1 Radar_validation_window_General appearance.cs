@@ -233,9 +233,10 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Press the data input field to confirm the data entered");
 
-            //EVC141_MMI_NewMaintenanceData.CheckQMdDataset = 1;
-            //EVC141_MMI_NewMaintenanceData.CheckMPulsePerKm1 = (Variables.MMI_M_PULSE_PER_KM)20001;
-            //EVC141_MMI_NewMaintenanceData.CheckMPulsePerKm2 = (Variables.MMI_M_PULSE_PER_KM)20001;
+            EVC141_MMIConfirmedMaintenanceData.MMI_Q_MD_DATASET = Variables.MMI_Q_MD_DATASET.Doppler;
+            EVC141_MMIConfirmedMaintenanceData.MMI_M_PULSE_PER_KM_1 = (Variables.MMI_M_PULSE_PER_KM)20001;
+            EVC141_MMIConfirmedMaintenanceData.MMI_M_PULSE_PER_KM_2 = (Variables.MMI_M_PULSE_PER_KM)20001;
+            EVC141_MMIConfirmedMaintenanceData.CheckTelegram();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the data validation window and displays the Maintenance window.");

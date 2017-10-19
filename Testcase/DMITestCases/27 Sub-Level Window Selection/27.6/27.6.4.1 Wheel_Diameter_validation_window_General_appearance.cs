@@ -245,7 +245,11 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Press on the data input field to confirm the entered data");
 
-            //EVC141_MMIConfirmedMaintenanceData.CheckMRequestReleased = Variables.MMI_M_REQUEST.ExitMaintenance;
+            EVC141_MMIConfirmedMaintenanceData.MMI_M_WHEEL_SIZE_ERR = (Variables.MMI_M_WHEEL_SIZE_ERR)0;
+            EVC141_MMIConfirmedMaintenanceData.MMI_M_SDU_WHEEL_SIZE_2 = (Variables.MMI_M_SDU_WHEEL_SIZE)500;
+            EVC141_MMIConfirmedMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1 = (Variables.MMI_M_SDU_WHEEL_SIZE)500;
+            EVC141_MMIConfirmedMaintenanceData.MMI_Q_MD_DATASET = Variables.MMI_Q_MD_DATASET.WheelDiameter;
+            EVC141_MMIConfirmedMaintenanceData.CheckTelegram();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Wheel diameter validation window and displays the Maintenance window.");
