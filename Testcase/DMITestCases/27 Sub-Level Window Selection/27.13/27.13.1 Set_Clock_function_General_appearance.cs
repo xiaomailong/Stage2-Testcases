@@ -1638,8 +1638,8 @@ namespace Testcase.DMITestCases
             // Repeat Step 29
             DmiActions.ShowInstruction(this, @"Release the ‘Yes’ button");
 
-            //EVC109_MmiSetTimeMmi.CheckMmiTZoneOffset = -48;
-            //EVC109_MmiSetTimeMmi.CheckMmiTUTC = 1481429471;
+            //EVC109_MMISetTimeMMI.CheckMmiTZoneOffset = -48;
+            //EVC109_MMISetTimeMMI.CheckMmiTUTC = 1481429471;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window.");
