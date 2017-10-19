@@ -17,7 +17,6 @@ namespace Testcase.Telegrams.DMItoEVC
     public static class EVC122_MMINewLanguage
     {
         private static SignalPool _pool;
-        private static bool _checkResult;
         const string baseString = "DMI->ETCS: EVC-122 [MMI_NEW_LANGUAGE]";
 
         /// <summary>
@@ -31,7 +30,7 @@ namespace Testcase.Telegrams.DMItoEVC
             _pool.SITR.SMDCtrl.CCUO.ETCS1NewLanguage.Value = 0x0001;
         }
 
-        private static void CheckNidLanguage()
+        public static void CheckNidLanguage()
         {
             // Reset telegram received flag in RTSim
             _pool.SITR.SMDStat.CCUO.ETCS1NewLanguage.Value = 0x00;

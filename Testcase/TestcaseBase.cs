@@ -62,10 +62,8 @@ namespace Testcase
             EVC32_MMITrackConditions.Initialise(this);
             EVC33_MMIAdditionalOrder.Initialise(this);
             EVC34_MMISystemVersion.Initialise(this);
-
             EVC40_MMICurrentMaintenanceData.Initialise(this);
             EVC41_MMIEchoedMaintenanceData.Initialise(this);
-
             EVC50_MMICurrentBrakePercentage.Initialise(this);
             EVC51_MMIEchoedBrakePercentage.Initialise(this);
 
