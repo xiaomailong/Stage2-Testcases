@@ -91,9 +91,10 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Enter the value ‘0’ in the SR speed data input field and press in the data input field to accept the valu.");
 
-            //EVC106_MmiNewSRRules.CheckMmiVStff = 0;
-            //EVC106_MmiNewSRRules.CheckMmiMButtons = MMI_M_BUTTONS.BTN_ENTER;
-            //EVC106_MmiNewSRRules.CheckNidData = 15;
+            EVC106_MMINewSrRules.MMI_V_STFF = 0;
+            EVC106_MMINewSrRules.MMI_NID_DATA = new List<byte> { 15 };
+            EVC106_MMINewSrRules.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_SR_RULES.BTN_ENTER;
+            EVC106_MMINewSrRules.CheckPacketContent();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The SR speed data input field displays ‘0’.");
@@ -117,9 +118,10 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Enter the value ‘600’ in the SR speed data input field and press in the data input field to accept the valu.");
 
-            //EVC106_MmiNewSRRules.CheckMmiVStff = 600;
-            //EVC106_MmiNewSRRules.CheckMmiMButtons = MMI_M_BUTTONS.BTN_ENTER;
-            //EVC106_MmiNewSRRules.CheckNidData = 15;
+            EVC106_MMINewSrRules.MMI_V_STFF = 600;
+            EVC106_MMINewSrRules.MMI_NID_DATA = new List<byte> { 15 };
+            EVC106_MMINewSrRules.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_SR_RULES.BTN_ENTER;
+            EVC106_MMINewSrRules.CheckPacketContent();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The ‘Enter’ button of the SR speed data input field displays ‘601’ in black on a grey background" + Environment.NewLine +
@@ -134,9 +136,10 @@ namespace Testcase.DMITestCases
             // Repeat Step 2 for SR distance
             DmiActions.ShowInstruction(this, @"Enter the value ‘0’ in the SR speed data input field and press in the data input field to accept the valu.");
 
-            //EVC106_MmiNewSRRules.CheckMmiVStff = 0;
-            //EVC106_MmiNewSRRules.CheckMmiMButtons = MMI_M_BUTTONS.BTN_ENTER;
-            //EVC106_MmiNewSRRules.CheckNidData = 16;
+            EVC106_MMINewSrRules.MMI_V_STFF = 0;
+            EVC106_MMINewSrRules.MMI_NID_DATA = new List<byte> { 16 };
+            EVC106_MMINewSrRules.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_SR_RULES.BTN_ENTER;
+            EVC106_MMINewSrRules.CheckPacketContent();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The SR distance data input field displays ‘0’.");

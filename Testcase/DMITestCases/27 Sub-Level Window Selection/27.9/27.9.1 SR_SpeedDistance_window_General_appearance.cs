@@ -346,9 +346,10 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, "Delete the value in the SR speed data input field, enter the value ‘40’ and confirm by pressing in the data input field");
 
-            //EVC106_MMINewSRRules.CheckMmiVStff = 40;
-            //EVC106_MMINewSRRules.CheckMmiNidData = 15;
-            //EVC106_MMINewSRRules.CheckMMiMButtons = Variables.MMI_M_BUTTONS.No_Button;
+            EVC106_MMINewSrRules.MMI_V_STFF = 40;
+            EVC106_MMINewSrRules.MMI_NID_DATA = new List<byte> { 15 };
+            EVC106_MMINewSrRules.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_SR_RULES.NoButton;
+            EVC106_MMINewSrRules.CheckPacketContent();
 
             List<DataElement> dataElements = new List<DataElement> { new DataElement { Identifier = 15, EchoText = "40", QDataCheck = 1 },
                                                                      new DataElement { Identifier = 16, EchoText = "", QDataCheck = 1} };
@@ -575,9 +576,10 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, "Delete the value in the SR distance data input field, enter the value ‘1000’ and confirm by pressing in the data input field");
 
-            //EVC106_MMINewSRRules.CheckMmiLStff = 1000;
-            //EVC106_MMINewSRRules.CheckMmiNidData = 16;
-            //EVC106_MMINewSRRules.CheckMMiMButtons = Variables.MMI_M_BUTTONS.BTN_ENTER;
+            EVC106_MMINewSrRules.MMI_V_STFF = 1000;
+            EVC106_MMINewSrRules.MMI_NID_DATA = new List<byte> { 16 };
+            EVC106_MMINewSrRules.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_SR_RULES.BTN_ENTER;
+            EVC106_MMINewSrRules.CheckPacketContent();
 
             EVC11_MMICurrentSRRules.MMI_M_BUTTONS = MMI_M_BUTTONS.BTN_YES_DATA_ENTRY_COMPLETE;
             EVC11_MMICurrentSRRules.Send();
@@ -663,7 +665,8 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Release the ‘Yes’ button");
 
-            //EVC106_MMINewSRRules.CheckMMiMButtons = Variables.MMI_M_BUTTONS.BTN_YES_DATA_ENTRY_COMPLETE;
+            EVC106_MMINewSrRules.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_SR_RULES.BTN_YES_DATA_ENTRY_COMPLETE;
+            EVC106_MMINewSrRules.CheckPacketContent();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Special window.");

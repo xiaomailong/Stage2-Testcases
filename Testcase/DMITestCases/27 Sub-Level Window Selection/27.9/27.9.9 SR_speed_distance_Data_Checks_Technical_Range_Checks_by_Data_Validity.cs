@@ -171,9 +171,11 @@ namespace Testcase.DMITestCases
 
             dataElement.QDataCheck = 0;
             dataElement.EchoText = "40";
-            //EVC106_MmiNewSRRules.CheckMmiVStff = 40;
-            //EVC106_MmiNewSRRules.CheckMmiMButtons = MMI_M_BUTTONS.BTN_ENTER;
-            //EVC106_MmiNewSRRules.CheckDataElements = dataElements;
+
+            EVC106_MMINewSrRules.MMI_V_STFF = 40;
+            EVC106_MMINewSrRules.MMI_NID_DATA = new List<byte> { 15 };
+            EVC106_MMINewSrRules.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_SR_RULES.BTN_ENTER;
+            EVC106_MMINewSrRules.CheckPacketContent();
 
             EVC11_MMICurrentSRRules.Send();
 
@@ -244,10 +246,11 @@ namespace Testcase.DMITestCases
             EVC11_MMICurrentSRRules.Send();
 
 
-            //EVC106_MmiNewSRRules.CheckMmiVStff = 10000;
-            //EVC106_MmiNewSRRules.CheckMmiMButtons = MMI_M_BUTTONS.BTN_ENTER;
-            //EVC106_MmiNewSRRules.CheckDataElements = dataElements;
-            
+            EVC106_MMINewSrRules.MMI_V_STFF = 10000;
+            EVC106_MMINewSrRules.MMI_NID_DATA = new List<byte> { 16 };
+            EVC106_MMINewSrRules.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_SR_RULES.BTN_ENTER;
+            EVC106_MMINewSrRules.CheckPacketContent();
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The SR distance data input field still displays ‘10000’.");
 
