@@ -712,9 +712,9 @@ namespace Testcase.DMITestCases
         ///     Step 2 in TC-ID: 15.1.3 in 20.1.3
         /// </summary>
         /// <param name="pool">Signal pool</param>
-        public static void Display_Level_Window(SignalPool pool)
+        public static void Display_Level_Window(SignalPool pool, bool closeEnable = true)
         {
-            Send_EVC20_MMISelectLevel_AllLevels(pool);
+            Send_EVC20_MMISelectLevel_AllLevels(pool, closeEnable ? true : false);
         }
 
         /// <summary>

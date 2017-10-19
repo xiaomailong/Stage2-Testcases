@@ -372,6 +372,17 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
+        /// Description: Close button on Level selection window is pressed
+        /// Used in:
+        ///     Step 3 in TC-ID: 15.2.3 in 20.2.3 
+        /// </summary>
+        public static void Close_Button_Level_Window_pressed_and_released(SignalPool pool)
+        {
+            EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.ExitChangeLevel;
+            EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.ExitChangeLevel;
+        }
+
+        /// <summary>
         /// Description: Shunting button is pressed and hold
         /// Used in:
         ///     Step 10 in TC-ID: 15.1.1 in 20.1.1     
