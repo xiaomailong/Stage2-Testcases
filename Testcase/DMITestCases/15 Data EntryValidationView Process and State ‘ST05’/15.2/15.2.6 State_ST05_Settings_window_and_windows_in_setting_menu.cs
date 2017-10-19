@@ -612,8 +612,8 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Enter VBC Code ‘65536’ and accept entered data by pressing an input field. Press ‘Yes’ button. Press ‘Yes’ button on keypad");
 
-            //EVC28_MMIEchoedSetVBCData.MMI_M_VBC_CODE = 65536;
-            //EVC28_MMIEchoedSetVBCData.Send();
+            EVC28_MMIEchoedSetVBCData.MMI_M_VBC_CODE = 65536;
+            EVC28_MMIEchoedSetVBCData.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Set VBC window until Validate Set VBC window is displayed." + Environment.NewLine +
