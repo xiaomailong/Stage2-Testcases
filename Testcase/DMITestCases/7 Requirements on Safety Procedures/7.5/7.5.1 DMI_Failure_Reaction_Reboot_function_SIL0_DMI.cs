@@ -13,6 +13,7 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.EVCtoDMI;
 
 namespace Testcase.DMITestCases
 {
@@ -67,9 +68,8 @@ namespace Testcase.DMITestCases
 
             #region Send_XML_5_5_1_10_DMI_Test_Specification
             // XML indicates MMI_M_START_REQ property with value of 10
-            //EVC0_MMIStartATP.MMI_M_START_REQ = 10;
-            //EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.GoToIdle;
-            Testcase.DMITestCases.DmiActions.Start_ATP();
+            Testcase.Telegrams.EVCtoDMI.EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.DMIRebootIndicationError;
+            Testcase.Telegrams.EVCtoDMI.EVC0_MMIStartATP.Send();
             #endregion
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
