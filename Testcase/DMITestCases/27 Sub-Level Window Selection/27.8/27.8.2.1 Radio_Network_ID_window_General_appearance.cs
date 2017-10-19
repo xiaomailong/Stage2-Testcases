@@ -204,11 +204,11 @@ namespace Testcase.DMITestCases
             // ?? Confirm
             DmiActions.ShowInstruction(this, @"Release the first data input field");
 
-            // EVC112_MMINewRBCData.CheckMMiNDataElements = 1;          // ??
-            //EVC112_MMINewRBCData.CheckMmiNidData = 3;
-            //EVC112_MMINewRBCData.CheckMMiMButtons = Variables.MMI_M_BUTTONS.BTN_ENTER;
-            //EVC112_MMINewRBCData.CheckMmiNidMn = 0;   // 1st key
-            
+            EVC112_MMINewRbcData.MMI_NID_DATA = new List<byte> { 3 };
+            EVC112_MMINewRbcData.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_RBC_DATA.BTN_ENTER;
+            EVC112_MMINewRbcData.MMI_NID_RBC = 6996969;
+            EVC112_MMINewRbcData.CheckPacketContent();
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Radio Network ID window.");
 
@@ -233,10 +233,10 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, "Confirm the current data without re-entering the Radio Network ID");
 
-            //EVC112_MMINewRBCData.CheckMMiNDataElements = 1;          // ??
-            //EVC112_MMINewRBCData.CheckMmiNidData = 3;
-            //EVC112_MMINewRBCData.CheckMMiMButtons = Variables.MMI_M_BUTTONS.BTN_ENTER;
-            //EVC112_MMINewRBCData.CheckMmiNidMn = 23;   // 1st key
+            EVC112_MMINewRbcData.MMI_NID_DATA = new List<byte> { 3 };
+            EVC112_MMINewRbcData.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_RBC_DATA.BTN_ENTER;
+            EVC112_MMINewRbcData.MMI_NID_RBC = 6996969;
+            EVC112_MMINewRbcData.CheckPacketContent();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Radio Network ID window.");

@@ -13,6 +13,7 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.DMItoEVC;
 using Testcase.Telegrams.EVCtoDMI;
 
 
@@ -145,8 +146,10 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Release the ‘Enter RBC data’ button");
 
-            //EVC112_MMINewRBCData.CheckMMiNDataElements = 0;    
-            //EVC112_MMINewRBCData.CheckMMiMButtons = Variables.MMI_M_BUTTONS.BTN_ENTER_RBC_DATA;
+            // Spec says button type = 23 
+            EVC112_MMINewRbcData.MMI_NID_DATA = null;
+            EVC112_MMINewRbcData.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_RBC_DATA.BTN_ENTER;
+            EVC112_MMINewRbcData.CheckPacketContent();
 
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
@@ -244,8 +247,10 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Release the ‘Radio Network ID’ button");
 
-            //EVC112_MMINewRBCData.CheckMMiNDataElements = 0;    
-            //EVC112_MMINewRBCData.CheckMMiMButtons = Variables.MMI_M_BUTTONS.BTN_RADIO_NETWORK_ID;
+            // Is this correct: no RBC data entered
+            EVC112_MMINewRbcData.MMI_NID_DATA = null; ;
+            EVC112_MMINewRbcData.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_RBC_DATA.BTN_YES_DATA_ENTRY_COMPLETE;
+            EVC112_MMINewRbcData.CheckPacketContent();
 
             EVC22_MMICurrentRBC.MMI_NID_WINDOW = 9;
             EVC22_MMICurrentRBC.Send();
@@ -329,8 +334,12 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, @"Release the ‘Contact last RBC’ button");
 
-            //EVC112_MMINewRBCData.CheckMMiNDataElements = 0;    
+/* 
             //EVC112_MMINewRBCData.CheckMMiMButtons = Variables.MMI_M_BUTTONS.BTN_CONTACT_LAST_RBC;
+            //EVC112 has no value of 21 for MMI_M_BUTTONS
+            EVC112_MMINewRbcData.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_RBC_DATA.BTN_YES_DATA_ENTRY_COMPLETE;
+            EVC112_MMINewRbcData.CheckPacketContent();
+*/
 
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;

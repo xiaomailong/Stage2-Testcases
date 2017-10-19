@@ -351,10 +351,10 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Delete the old value and enter ‘6996969’ for RBC ID, then confirm by pressing in the data input field");
 
-            // EVC112_MMINewRBCData.CheckMMiNDataElements = 1;          // ??
-            //EVC112_MMINewRBCData.CheckMmiNidData = 4;
-            //EVC112_MMINewRBCData.CheckMMiMButtons = Variables.MMI_M_BUTTONS.BTN_ENTER;
-            //EVC112_MMINewRBCData.CheckMmiNidRBC = 6996969;
+            EVC112_MMINewRbcData.MMI_NID_DATA = new List<byte> { 4 };
+            EVC112_MMINewRbcData.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_RBC_DATA.BTN_ENTER;
+            EVC112_MMINewRbcData.MMI_NID_RBC = 6996969;
+            EVC112_MMINewRbcData.CheckPacketContent();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field acts as an ‘Enter’ button." + Environment.NewLine +
@@ -647,11 +647,11 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Release the ‘Yes’ button");
 
-            // EVC112_MMINewRBCData.CheckMMiNDataElements = 0;          // ?? spec says 0 (??) surely 2
-            //EVC112_MMINewRBCData.CheckMmiNidData = 4;                 // ??
-            //EVC112_MMINewRBCData.CheckMMiMButtons = Variables.MMI_M_BUTTONS.BTN_YES_DATA_ENTRY_COMPLETE;
-            //EVC112_MMINewRBCData.CheckMmiNidRBC = 6996969;
-            //EVC112_MMINewRBCData.CheckMmiNidRadio = 0x0031840880100FFF;
+            EVC112_MMINewRbcData.MMI_NID_DATA = new List<byte> { 4 };
+            EVC112_MMINewRbcData.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_RBC_DATA.BTN_YES_DATA_ENTRY_COMPLETE;
+            EVC112_MMINewRbcData.MMI_NID_RBC = 6996969;
+            EVC112_MMINewRbcData.MMI_NID_RADIO = 0x0031840880100FFF;
+            EVC112_MMINewRbcData.CheckPacketContent();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Main window.");
@@ -846,10 +846,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9458 (partly: MMI_gen 1625); MMI_gen 1625 (partly: unknown);
             */
             DmiActions.ShowInstruction(this, @"Confirm the (blank) value of RBC Phone number by pressing its data input field");
-
-            // EVC112_MMINewRBCData.CheckMMiNDataElements = 1;          // ??
-            //EVC112_MMINewRBCData.CheckMmiNidData = 5;
-            //EVC112_MMINewRBCData.CheckMmiNidRBC = 0xffffffffffffffff;
+            
+            EVC112_MMINewRbcData.MMI_NID_DATA = new List<byte> { 5 };
+            EVC112_MMINewRbcData.MMI_NID_RADIO = 0xffffffffffffffff;
+            EVC112_MMINewRbcData.CheckPacketContent();
 
             /*
             Test Step 36
