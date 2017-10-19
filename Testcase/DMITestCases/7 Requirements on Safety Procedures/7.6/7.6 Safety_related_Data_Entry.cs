@@ -207,12 +207,12 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 3203 (Set VBC Data Entry);(2) MMI_gen 3226 (partly: Set VBC Data Validation);(3) MMI_gen 3205 (partly: Set VBC Data Entry and Validation);(4) MMI_gen 3390 (partly: Set VBC Validation);(5) MMI_gen 3391 (partly: Set VBC Data Entry and Validation);
             */
 
-            /// Test spec says Radar validation window but message means that Set RBC Validation window would be displayed...
+            // Test spec says Radar validation window but message means that Set RBC Validation window would be displayed...
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Enter and confirm the value ‘65536’ in an Input Field, then press the ‘Yes’ button");
             
-            //EVC28_MMIEchoedSetVBCData.M_VBC_CODE_ = 65536;
-            //EVC28_MMIEchoedSetVBCData.Send();
+            EVC28_MMIEchoedSetVBCData.MMI_M_VBC_CODE_ = 65536;
+            EVC28_MMIEchoedSetVBCData.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Set VBC validation window." + Environment.NewLine +

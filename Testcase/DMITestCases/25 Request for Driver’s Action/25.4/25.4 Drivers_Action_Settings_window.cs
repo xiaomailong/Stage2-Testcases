@@ -145,8 +145,8 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, "Enter and confirm the value ‘65536’ in the data input field, then press the ‘Yes’ button");
 
-            //EVC28_MMIEchoedVBCSetData.MMI_VBC_CODE_ = 65536;
-            //EVC28_MMIEchoedVBCSetData.Send();
+            EVC28_MMIEchoedSetVBCData.MMI_M_VBC_CODE_ = 65536;
+            EVC28_MMIEchoedSetVBCData.Send();
 
             DmiActions.ShowInstruction(this, "Select and confirm the ‘Yes’ button in the Set VBC validation window, then press the ‘Remove VBC’ button");
             
