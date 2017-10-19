@@ -77,7 +77,7 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, "Press the ‘Spec’ button, then press the ‘SR speed/distance’ button");
             
-            EVC11_MMICurrentSRRules.MMI_M_BUTTONS = MMI_M_BUTTONS.No_Button;
+            EVC11_MMICurrentSRRules.MMI_M_BUTTONS = MMI_M_BUTTONS.BTN_YES_DATA_ENTRY_COMPLETE;
             EVC11_MMICurrentSRRules.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -164,24 +164,14 @@ namespace Testcase.DMITestCases
             EVC11_MMICurrentSRRules.DataElements = new List<DataElement> { new DataElement { Identifier = 15, EchoText = "600", QDataCheck = 1 },
                                                                            new DataElement { Identifier = 16, EchoText = "100000", QDataCheck = 1} };
             EVC11_MMICurrentSRRules.Send();
-
-            // Need to send set of data for the input values ??
-            //EVC10_MMIEchoedTrainData...
-            //EVC10_MMIEchoedTrainData.Send(this);  
-
+            
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. DMI displays the ‘Validate SR speed/distance’ window." + Environment.NewLine +
                                 @"2. The data part of the SR speed echo text displays ‘600’ in white." + Environment.NewLine +
                                 @"3. The data part of the SR distance echo text displays ‘100000’ in white.");
 
             DmiActions.ShowInstruction(this, @"Validate the data in the data validation window");
-
-            // EVC-30 required to enable the validation window??
-            //EVC30_MMIRequestEnable.SendBlank();
-            //EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
-            //EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.SRSpeedDistance;
-            //EVC30_MMIRequestEnable.Send();
-
+            
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. DMI displays the SR speed/distance window.");
 
