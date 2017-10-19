@@ -41,7 +41,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// N/A
     /// </summary>
-    public class Drivers_Action_Main_window : TestcaseBase
+    public class TC_ID_20_1_Drivers_Action_Main_window : TestcaseBase
     {
         public override void PreExecution()
         {
