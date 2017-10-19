@@ -247,7 +247,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// <summary>
         /// Conversion factor for cm/s to mph
         /// </summary>
-        public const double CmSToMph = 0.02237;
+        public const double CmSToMph = 0.0223694;
 
         /// <summary>
         /// Driver Request enum
