@@ -346,9 +346,11 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Delete the old value, enter the value ‘100’ and confirm by pressing in the data input field");
 
-            //EVC150_MMIConfirmedBrakePercentage.CheckMmiMBPCurrent = 100;
+            EVC150_MMINewBrakePercentage.MMI_M_BP_CURRENT = 100;
+            EVC150_MMINewBrakePercentage.CheckTelegram();
 
-            EVC51_MMIEchoedBrakePercentage.MMI_M_BP_ORIG_ = 100;   
+            EVC51_MMIEchoedBrakePercentage.MMI_M_BP_ORIG_ = 100; 
+            EVC51_MMIEchoedBrakePercentage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Brake percentage window.");
