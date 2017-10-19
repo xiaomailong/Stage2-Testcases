@@ -361,7 +361,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Confirm the brake percentage value by pressing an Input Field and check the log file for packet EVC-150 from DMI with variables reflecting the accepted data");
 
             // Need to send set of data for the input values ??
-            //EVC51_MMIEchoedBrakePercentage...
+            EVC51_MMIEchoedBrakePercentage.MMI_M_BP_CURRENT_ = 92;
             EVC51_MMIEchoedBrakePercentage.Send();
             
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
