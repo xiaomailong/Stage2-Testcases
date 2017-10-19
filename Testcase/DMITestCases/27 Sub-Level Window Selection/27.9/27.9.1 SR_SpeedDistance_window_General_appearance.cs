@@ -81,11 +81,16 @@ namespace Testcase.DMITestCases
             */
             DmiActions.Complete_SoM_L1_SR(this);
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 3;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.SRSpeedDistance;
             EVC30_MMIRequestEnable.Send();
 
             DmiActions.ShowInstruction(this, "Press the ‘Spec’ button, then press the ‘SR speed/distance’ button");
+
+            EVC11_MMICurrentSRRules.DataElements = null;
+            EVC11_MMICurrentSRRules.MMI_L_STFF = 100000;
+            EVC11_MMICurrentSRRules.MMI_V_STFF = 100;
+            EVC11_MMICurrentSRRules.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the SR/speed distance window with the title ‘SR speed / distance’." + Environment.NewLine +
