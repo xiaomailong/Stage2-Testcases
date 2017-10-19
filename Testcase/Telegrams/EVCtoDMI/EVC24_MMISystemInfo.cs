@@ -80,7 +80,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// Values:
         /// 0 = "'Unknown'"
         /// </summary>
-        public static uint MMI_NID_ENDINE_1
+        public static uint MMI_NID_ENGINE_1
         {
             get => _pool.SITR.ETCS1.SystemInfo.MmiNidEngine1.Value;
             set => _pool.SITR.ETCS1.SystemInfo.MmiNidEngine1.Value = value;

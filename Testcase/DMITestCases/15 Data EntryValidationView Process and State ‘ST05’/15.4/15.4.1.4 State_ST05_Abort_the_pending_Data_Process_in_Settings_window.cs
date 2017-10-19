@@ -431,18 +431,18 @@ namespace Testcase.DMITestCases
             }
             else if (type == msgType.typeb)
             {
-                //EVC24MMISystemInfo.MMI_NID_ENGINE_1 = 1234;
-                //EVC24MMISystemInfo.MMI_T_TIMEOUT_BRAKES = 0x5695224c;         // 1452614220
-                //EVC24MMISystemInfo.MMI_T_TIMEOUT_BTM = 0x54b3eecc;            // 1421078220
-                //EVC24MMISystemInfo.MMI_T_TIMEOUT_TBSW = 0x538b4d4c;           // 1401638220
-                //EVC24MMISystemInfo.MMI_ETC_VER = 0xffaa0f;                    // 16755215
-                //EVC24MMISystemInfo.MMI_M_AVAIL_SERVICES = 0xffff;             // 65535 
+                EVC24_MMISystemInfo.MMI_NID_ENGINE_1 = 1234;
+                //EVC24_MMISystemInfo.MMI_T_TIMEOUT_BRAKES = 0x5695224c;         // 1452614220
+                //EVC24_MMISystemInfo.MMI_T_TIMEOUT_BTM = 0x54b3eecc;            // 1421078220
+                //EVC24_MMISystemInfo.MMI_T_TIMEOUT_TBSW = 0x538b4d4c;           // 1401638220
+                //EVC24_MMISystemInfo.MMI_ETC_VER = 0xffaa0f;                    // 16755215
+                //EVC24_MMISystemInfo.MMI_M_AVAIL_SERVICES = 0xffff;             // 65535 
 
                 // Discrepancy betwee spec (config = 55)
-                //EVC24MMISystemInfo.MMI_M_BRAKE_CONFIG = 55;                   // 236 in xml
-                //EVC24MMISystemInfo.MMI_M_LEVEL_INSTALLED = 248;
+                //EVC24_MMISystemInfo.MMI_M_BRAKE_CONFIG = 55;                   // 236 in xml
+                //EVC24_MMISystemInfo.MMI_M_LEVEL_INSTALLED = 248;
 
-                //EVC24MMISystemInfo.Send();
+                //EVC24_MMISystemInfo.Send();
             }
         }
         #endregion
