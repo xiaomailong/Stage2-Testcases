@@ -12,6 +12,11 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
+using Testcase.DMITestCases;
+using Testcase.Telegrams.DMItoEVC;
+using Testcase.Telegrams.EVCtoDMI;
+using static Testcase.Telegrams.EVCtoDMI.Variables;
+using Testcase.TemporaryFunctions;
 using CL345;
 
 namespace Testcase.DMITestCases
@@ -32,7 +37,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 15_2_3_a.xml, 15_2_3_b.xml
     /// </summary>
-    public class ETCS_Level_Announcement_symbol_in_Sub_Area_C1 : TestcaseBase
+    public class TC_15_2_3_ETCS_Level : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -41,6 +46,19 @@ namespace Testcase.DMITestCases
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
+            DmiActions.Start_ATP();
+
+            // Set train running number, cab 1 active, and other defaults
+            DmiActions.Activate_Cabin_1(this);
+
+            // Set driver ID
+            DmiActions.Set_Driver_ID(this, "1234");
+
+            // Set to level 1 and SR mode
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
+
+            DmiActions.Display_Main_Window_with_Start_button_enabled(this);
         }
 
         public override void PostExecution()
@@ -56,29 +74,81 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
+            #region Test Step 1
             /*
             Test Step 1
             Action: Press the 'Start' button
             Expected Result: The acknowledgement for Staff Responsible symbol (MO10) is displayed in sub-area C1
             */
 
+            DmiExpectedResults.Main_Window_displayed(this, true);
 
+            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
+                                "1. Press ‘Start’ button." + Environment.NewLine +
+                                "2. Press OK on THIS window within 3 seconds.");
+            DmiExpectedResults.Start_Button_pressed_and_released(this);
+
+            DmiActions.Send_SR_Mode_Ack(this);
+            DmiExpectedResults.SR_Mode_Ack_requested(this);
+
+            #endregion
+
+            #region Test Step 2
             /*
             Test Step 2
-            Action: Use the test script file 15_2_3_a.xml to send EVC-8 with,MMI_Q_TEXT = 257MMI_Q_TEXT_CRITERIA = 1MMI_N_TEXT = 1MMI_X_TEXT = 0
-            Expected Result: Verify the following information,(1)    The displays in sub-area C1 is not changed, DMI still displays MO10 symbol
+            Action: Use the test script file 15_2_3_a.xml to send EVC-8 with,
+            MMI_Q_TEXT = 257
+            MMI_Q_TEXT_CRITERIA = 1
+            MMI_N_TEXT = 1
+            MMI_X_TEXT = 0
+            Expected Result: Verify the following information,
+            (1)    The displays in sub-area C1 is not changed, DMI still displays MO10 symbol
             Test Step Comment: (1) MMI_gen 9429;
             */
 
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 257;
+            EVC8_MMIDriverMessage.PlainTextMessage = "0";
+            EVC8_MMIDriverMessage.Send();
+
+            DmiExpectedResults.Driver_symbol_displayed(this, "Acknowledgement for Staff Responsible mode", "MO10", "C1", true);
+
+            #endregion
 
             /*
             Test Step 3
-            Action: Perform the following procedure,Deactivate CabinActivate CabinEnter Driver ID and skip brake testSelect and confirm Level 1.Press ‘Close’ button
+            Action: Perform the following procedure,
+            Deactivate Cabin
+            Activate Cabin
+            Enter Driver ID and skip brake test
+            Select and confirm Level 1.
+            Press ‘Close’ button
             Expected Result: DMI displays in SB mode, level 1
             */
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_SB_mode_level_1(this);
+
+            DmiActions.Deactivate_Cabin(this);
+
+            Wait_Realtime(5000);
+
+            DmiActions.Activate_Cabin_1(this);
+
+            DmiActions.Set_Driver_ID(this, "1234");
+            DmiActions.Send_SB_Mode(this);
+            DmiExpectedResults.Driver_ID_window_displayed_in_SB_mode(this);
+
+            DmiExpectedResults.Driver_ID_entered(this);
+
+            DmiActions.Request_Brake_Test(this);
+            DmiExpectedResults.Brake_Test_Perform_Order(this, false);
+
+            DmiActions.Display_Level_Window(this,true);
+            DmiExpectedResults.Level_window_displayed(this);
+
+            DmiExpectedResults.Level_1_Selected(this);
+            DmiExpectedResults.Close_Button_Level_Window_pressed_and_released(this);
 
 
             /*
@@ -183,8 +253,7 @@ namespace Testcase.DMITestCases
             Expected Result: 
             */
 
-
             return GlobalTestResult;
-        }
+        }       
     }
 }
