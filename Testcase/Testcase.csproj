@@ -347,6 +347,8 @@ if exist "$(TargetPath)" if not exist "$(TargetPath).locked" move "$(TargetPath)
     <Compile Include="DMITestCases\37 Dialogue Sequences\37.7\37.7 Dialogue_Sequence_of_Settings_window.cs" />
     <Compile Include="DMITestCases\38 System Status Messages\38.1\38.1 ERTMSETCS_System_Status_Messages.cs" />
     <Compile Include="DMITestCases\38 System Status Messages\38.2\38.2 NTC_System_Status_Messages.cs" />
+    <Compile Include="DMITestCases\39 ERTMSETCS Audible Information %28504592005%29\39.1\39.1 Sound_S1_Driving_too_fast.cs" />
+    <Compile Include="DMITestCases\39 ERTMSETCS Audible Information %28504592005%29\39.2\39.2 End_of_Intervention.cs" />
     <Compile Include="DMITestCases\39 ERTMSETCS Audible Information %28504592005%29\39.3\39.3.1 Restrictive_Target_with_Speed_Monitoring_in_Full_Supervision_Mode.cs" />
     <Compile Include="DMITestCases\39 ERTMSETCS Audible Information %28504592005%29\39.3\39.3.2 Restrictive_Target_with_Movement_Authority_Changed_in_Full_Supervision_Mode.cs" />
     <Compile Include="DMITestCases\39 ERTMSETCS Audible Information %28504592005%29\39.3\39.3.3 Restrictive_Target_with_Speed_Monitoring_in_Limited_Supervision_Mode.cs" />
