@@ -13,6 +13,9 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.DMItoEVC;
+using Testcase.Telegrams.EVCtoDMI;
+
 
 namespace Testcase.DMITestCases
 {
@@ -34,12 +37,13 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// N/A
     /// </summary>
-    public class UTC_time_and_offset_timeby_driver : TestcaseBase
+    public class TC_ID_29_1_UTC_time_and_offset_timeby_driver : TestcaseBase
     {
         public override void PreExecution()
         {
             // Pre-conditions from TestSpec:
-            // Power off test systemSet the following tags name in configuration file (See the instruction in Appendix 1)CLOCK_TIME_SOURCE = 1 (by driver)
+            // Power off test systemSet the following tags name in configuration file (See the instruction in Appendix 1)
+            // CLOCK_TIME_SOURCE = 1 (by driver)
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
@@ -57,38 +61,62 @@ namespace Testcase.DMITestCases
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint
-
+            TraceInfo("This test case requires an ATP configuration change - " +
+                      "See Precondition requirements. If this is not done manually, the test may fail!");
 
             /*
             Test Step 1
             Action: Power on the system and activate cabin
             Expected Result: DMI displays SB mode
             */
-            // Call generic Action Method
-            DmiActions.Power_on_the_system_and_activate_cabin(this);
-            // Call generic Check Results Method
-            DmiExpectedResults.SB_Mode_displayed(this);
+            DmiActions.ShowInstruction(this, "Power up the system");
 
+            DmiActions.Start_ATP();
+            DmiActions.Activate_Cabin_1(this);
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SB mode");
 
             /*
             Test Step 2
             Action: Perform SoM to L1, SR mode
             Expected Result: Mode changes to SR mode , L1
             */
-            // Call generic Action Method
-            DmiActions.Perform_SoM_to_L1_SR_mode(this);
-            // Call generic Check Results Method
-            DmiExpectedResults.SR_Mode_displayed(this);
+            DmiActions.Set_Driver_ID(this, "1234");
+            DmiActions.ShowInstruction(this, "Enter and confirm Driver ID");
 
+            // Skip brake test
+
+            DmiActions.Display_Level_Window(this);
+            DmiActions.ShowInstruction(this, "Select and enter Level 1");
+
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 0;      // Default window
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.SetLocalTimeDateAndOffset;
+            EVC30_MMIRequestEnable.Send();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SR mode, Level 1.");
 
             /*
             Test Step 3
             Action: Select ‘Settings’ button and press ‘Set clock’ button
             Expected Result: The set clock window is opened
             */
-            // Call generic Action Method
-            DmiActions.Select_Settings_button_and_press_Set_clock_button(this);
+            DmiActions.ShowInstruction(this, @"Press the ‘Settings’ button, then press the ‘Set clock’ button");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the Set clock window with the title ‘Set clock (1/2)’." + Environment.NewLine +
+                                "2. Three data input fields for ‘Year’, ‘Month’ and ‘Day’ are displayed." + Environment.NewLine +
+                                "3. The data input fields have a label part with grey text (right-aligned) on a Dark-grey background." + Environment.NewLine +
+                                "4. The data part of the data input fields has left aligned text, the first field has Medium-grey text on a grey background;" + Environment.NewLine +
+                                "   the other data input fields data have dark-grey text on a Medium-grey background" + Environment.NewLine +
+                                "5. A dedicated numeric keypad is displayed below the data input fields with keys <1> to <9>," + Environment.NewLine +
+                                "   <Del> and <0>." + Environment.NewLine +
+                                "6. Enabled ‘Close’ and ‘Next’ and a disabled ‘Previous’ button are displayed below the keypad." + Environment.NewLine +
+                                "7. Echo texts for UTC and local time are displayed to the left of the keypad in white." +
+                                "8. An enabled ‘Yes’ button with the label ‘Clock set?’ is displayed in the bottom-left part of the window");
 
             /*
             Test Step 4
@@ -97,9 +125,18 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 2432;MMI_gen 2421 (partly: source by Driver);
             */
             // Call generic Check Results Method
-            DmiExpectedResults
-                .Verify_the_following_information_The_new_UTC_time_and_offset_time_are_changed_and_displayed_according_to_the_entered_data_from_the_driver_Use_the_log_file_to_verify_that_DMI_sends_out_packet_EVC_109_to_ETCS_OB_correctly(this);
+            DmiActions.ShowInstruction(this, "Set the date as follows:" + Environment.NewLine +
+                                             "Year = ‘2018’, Month = ‘12’, Day = ‘30’; then press the ‘Next button’ and set the time as follows:" + Environment.NewLine +
+                                             "Hour = ‘12’, Minute = ‘0’, Second = ‘0’ and Offset = ‘+10’");
 
+            //EVC109_MMISetTimeMMI.MMI_T_UTC = 1546135200;
+            //EVC109_MMISetTimeMMI.MMI_T_ZONE_OFFSET = 40;
+            //EVC109_MMISetTimeMMI.CheckTelegram();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The time and date are displayed as set" + Environment.NewLine +
+                                "2. The local time is displayed as ‘2018-12-30: 12:00:00’." + Environment.NewLine +
+                                "3. The UTC time is displayed as  ‘2018-12-30: 02:00:00’.");
 
             /*
             Test Step 5
@@ -107,17 +144,24 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The new UTC time and offset time are changed and displayed according to the entered data from the driver.Use the log file to verify that DMI sends out packet EVC-109 to ETCS OB correctly
             Test Step Comment: MMI_gen 2432;MMI_gen 2421 (partly: source by Driver);
             */
-            // Call generic Check Results Method
-            DmiExpectedResults
-                .Verify_the_following_information_The_new_UTC_time_and_offset_time_are_changed_and_displayed_according_to_the_entered_data_from_the_driver_Use_the_log_file_to_verify_that_DMI_sends_out_packet_EVC_109_to_ETCS_OB_correctly(this);
+            DmiActions.ShowInstruction(this, "Set the date as follows:" + Environment.NewLine +
+                                             "Year = ‘2017’, Month = ‘11’, Day = ‘29’; then press the ‘Next button’ and set the time as follows:" + Environment.NewLine +
+                                             "Hour = ‘11’, Minute = ‘59’, Second = ‘59’ and Offset = ‘+9’");
 
+            //EVC109_MMISetTimeMMI.MMI_T_UTC = 1511956799;
+            //EVC109_MMISetTimeMMI.MMI_T_ZONE_OFFSET = 36;
+            //EVC109_MMISetTimeMMI.CheckTelegram();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The time and date are displayed as set" + Environment.NewLine +
+                                "2. The local time is displayed as ‘2017-11-29: 11:59:59’." + Environment.NewLine +
+                                "3. The UTC time is displayed as  ‘2017-11-29: 02:59:59’.");
 
             /*
             Test Step 6
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }
