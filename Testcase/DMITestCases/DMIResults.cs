@@ -378,6 +378,8 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void Close_Button_Level_Window_pressed_and_released(SignalPool pool)
         {
+            DmiActions.ShowInstruction(pool, @"Perform the following action after pressing OK:" + Environment.NewLine + Environment.NewLine +
+                                "1. Press close button.");
             EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.ExitChangeLevel;
             EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.ExitChangeLevel;
         }
