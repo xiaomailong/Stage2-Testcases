@@ -31,7 +31,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// N/A
     /// </summary>
-    public class TC_ID_27_7_3_Sub_Level_Window : TestcaseBase
+    public class TC_ID_22_7_3_Sub_Level_Window : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -58,6 +58,9 @@ namespace Testcase.DMITestCases
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint
+            TraceInfo("This test case requires a DMI configuration change; See Precondition requirements. " +
+                      "If this is not done manually, the test may fail!");
+
 
             /*
             Test Step 1
