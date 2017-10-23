@@ -21,8 +21,31 @@ namespace Testcase.Telegrams.EVCtoDMI
     {
         private static SignalPool _pool;
         private static byte _evc25Alias1;
+        public const int StmMaximumIterations = 5;
+        public const int StmCaptionMaximumLength = 20;
+        public const int StmXValueMaximumLength = 10;
+        public const int StmPickupXValueMaximumLength = 10;
+        public const int StmXValueMaximumIterations = 16;
+        public const int BasicPacketLength = (3 * sizeof(UInt16)) + (2 * sizeof(byte));
 
-        /// <summary>
+        public const int MaximumPacketLength = BasicPacketLength +
+                                                (StmMaximumIterations *
+                                                (StmXValueMaximumLength + StmCaptionMaximumLength +
+                                                    (4 * sizeof(ushort)) + (2 * sizeof(byte)) +
+                                                    (StmXValueMaximumIterations *
+                                                    (StmPickupXValueMaximumLength + sizeof(ushort)))));
+
+    public class EVC25_StmData
+    {
+        public byte nidNtc;
+        public byte stmNidData;
+        public ushort evcMXAttribute;
+        public string stmCaption;
+        public string stmXValue;
+        public List<string> stmPickupList;
+    }
+
+    /// <summary>
         /// Initialise EVC-25 MMI Specific STM DE Request telegram
         /// </summary>
         /// <param name="pool">SignalPool</param>
@@ -41,7 +64,7 @@ namespace Testcase.Telegrams.EVCtoDMI
 
         private static uint FindPacketSize()
         {
-            int sizeCalculated = EVC25_StmData.BasicPacketLength;       // up to MMI_N_ITER
+            int sizeCalculated = BasicPacketLength;       // up to MMI_N_ITER
 
             foreach (var stmElement in StmData)
             {
@@ -82,10 +105,10 @@ namespace Testcase.Telegrams.EVCtoDMI
                 _pool.SITR.ETCS1.SpecificStmDeRequest.MmiNIter.Value = numberOfDataUnits;
             }
 
-            ushort totalSizeCounter = EVC25_StmData.BasicPacketLength;
+            ushort totalSizeCounter = BasicPacketLength;
 
             // Check for exceeding maximum packet size
-            if (EVC25_StmData.MaximumPacketLength < FindPacketSize())
+            if (MaximumPacketLength < FindPacketSize())
             {
                 throw new ArgumentOutOfRangeException("Packet size exceeds maximum allowed");
             }
@@ -118,7 +141,7 @@ namespace Testcase.Telegrams.EVCtoDMI
                 var caption = StmData[k].stmCaption.ToCharArray();
 
                 // Limit number of caption characters to 20
-                if (caption.Length > EVC25_StmData.StmCaptionMaximumLength)
+                if (caption.Length > StmCaptionMaximumLength)
                 {
                     throw new ArgumentOutOfRangeException("Too many characters in caption string!");
                 }
@@ -145,7 +168,7 @@ namespace Testcase.Telegrams.EVCtoDMI
 
                 var xValue = StmData[k].stmXValue.ToCharArray();
 
-                if (xValue.Length > EVC25_StmData.StmXValueMaximumLength)
+                if (xValue.Length > StmXValueMaximumLength)
                 {
                     throw new ArgumentOutOfRangeException("Too many characters in x value string!");
                 }
@@ -172,7 +195,7 @@ namespace Testcase.Telegrams.EVCtoDMI
                 // Pick-up list repeats additional captions
                 ushort numberInPickupList = (ushort)StmData[k].stmPickupList.Count;
 
-                if (numberInPickupList > EVC25_StmData.StmXValueMaximumIterations)
+                if (numberInPickupList > StmXValueMaximumIterations)
                 {
                     throw new ArgumentOutOfRangeException("Too many STM Pick-up list items!");
                 }
@@ -189,7 +212,7 @@ namespace Testcase.Telegrams.EVCtoDMI
                     {
                         var pickUpXValue = StmData[k].stmPickupList[l].ToCharArray();
 
-                        if (pickUpXValue.Length > EVC25_StmData.StmPickupXValueMaximumLength)
+                        if (pickUpXValue.Length > StmPickupXValueMaximumLength)
                         {
                             throw new ArgumentOutOfRangeException("Too many characters in pick-up list x value string!");
                         }
