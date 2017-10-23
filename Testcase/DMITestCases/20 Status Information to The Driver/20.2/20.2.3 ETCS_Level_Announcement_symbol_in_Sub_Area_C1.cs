@@ -268,7 +268,7 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.PlainTextMessage = "9";
             EVC8_MMIDriverMessage.Send();
 
-            DmiExpectedResults.Driver_symbol_displayed(this, "Acknowledgement for Level PZB/LZB", "LE09a", "C1", true);
+            DmiExpectedResults.Driver_symbol_displayed(this, "Acknowledgment for Level PZB/LZB", "LE09a", "C1", true);
 
             #endregion
 
@@ -320,6 +320,7 @@ namespace Testcase.DMITestCases
 
             #endregion
 
+            #region Test step 11
             /*
             Test Step 11
             Action: (Continue from step 10)Send EVC-8 with,
@@ -332,7 +333,18 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 1310 (partly:LE10);     
             */
 
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 276;
+            EVC8_MMIDriverMessage.PlainTextMessage = "1";
+            EVC8_MMIDriverMessage.Send();
 
+            DmiExpectedResults.Driver_symbol_displayed(this, "Announcement for Level 1", "LE10", "C1", false);
+
+            #endregion
+
+            #region Test step 12
             /*
             Test Step 12
             Action: (Continue from step 11)Send EVC-8 with,
@@ -345,7 +357,18 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 1310 (partly:LE12);     
             */
 
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 276;
+            EVC8_MMIDriverMessage.PlainTextMessage = "2";
+            EVC8_MMIDriverMessage.Send();
 
+            DmiExpectedResults.Driver_symbol_displayed(this, "Announcement for Level 2", "LE12", "C1", false);
+
+            #endregion
+
+            #region Test step 13
             /*
             Test Step 13
             Action: (Continue from step 12)Send EVC-8 with,
@@ -358,7 +381,18 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 1310 (partly:LE14);     
             */
 
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 276;
+            EVC8_MMIDriverMessage.PlainTextMessage = "3";
+            EVC8_MMIDriverMessage.Send();
 
+            DmiExpectedResults.Driver_symbol_displayed(this, "Announcement for Level 3", "LE14", "C1", false);
+
+            #endregion
+
+            #region Test step 14
             /*
             Test Step 14
             Action: (Continue from step 13)Send EVC-8 with,
@@ -371,7 +405,18 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 1310 (partly:LE08a);     
             */
 
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 277;
+            EVC8_MMIDriverMessage.PlainTextMessage = "9";
+            EVC8_MMIDriverMessage.Send();
 
+            DmiExpectedResults.Driver_symbol_displayed(this, "Announcement for Level PZB/LZB", "LE08a", "C1", false);
+
+            #endregion
+
+            #region Test step 15
             /*
             Test Step 15
             Action: (Continue from step 14)Send EVC-8 with,
@@ -384,12 +429,24 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 1310 (partly:LE08);     
             */
 
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 277;
+            EVC8_MMIDriverMessage.PlainTextMessage = "4";
+            EVC8_MMIDriverMessage.Send();
 
+            DmiExpectedResults.Driver_symbol_displayed(this, "Announcement for Level NTC", "LE08", "C1", false);
+
+            #endregion
+
+            #region Test step 16
             /*
             Test Step 16
             Action: End of test
             Expected Result: 
             */
+            #endregion
 
             return GlobalTestResult;
         }       
