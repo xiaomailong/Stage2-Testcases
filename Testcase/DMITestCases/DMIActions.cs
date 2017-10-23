@@ -1469,7 +1469,7 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void Drive_the_train_forward_pass_BG1(SignalPool pool)
         {
-            throw new NotImplementedException();
+
         }
 
         /// <summary>
@@ -1723,7 +1723,7 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void Drive_the_train_forward_pass_BG3(SignalPool pool)
         {
-            throw new NotImplementedException();
+
         }
 
         /// <summary>
@@ -1853,7 +1853,7 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void Drive_the_train_pass_a_distance_to_level_transition(SignalPool pool)
         {
-            throw new NotImplementedException();
+
         }
 
         /// <summary>
