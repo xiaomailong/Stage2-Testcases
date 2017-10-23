@@ -13,6 +13,7 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.DMItoEVC;
 using Testcase.Telegrams.EVCtoDMI;
 
 
@@ -70,7 +71,6 @@ namespace Testcase.DMITestCases
             Action: Perform the following action:         Power on the systemActivate the cabin Perform start of mission to ATB STM mode , Level NTC
             Expected Result: DMI displays in ATB STM mode, Level NTC
             */
-            // Call generic Action Method
             DmiActions.ShowInstruction(this, "Power on the system");
 
             DmiActions.Start_ATP();
@@ -81,15 +81,24 @@ namespace Testcase.DMITestCases
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.LNTC;
             DmiActions.Finished_SoM_Default_Window(this);
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SN mode, Level NTC");
+
             /*
             Test Step 2
             Action: Drive the train forward with 30 km/h and then pass BG0 with level transition announcement
             Expected Result: DMI displays LE12 symbol in sub-area C1
-            Test Step Comment: MMI_gen 9430 (partly:Negative LE12); ;
+            Test Step Comment: MMI_gen 9430 (partly:Negative LE12);
             */
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. ")
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 276;
+            EVC8_MMIDriverMessage.PlainTextMessage = "\0x02";
+            EVC8_MMIDriverMessage.Send();
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the Level transition symbol, LE12, in sub-area C1.");
 
             /*
             Test Step 3
@@ -97,9 +106,13 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays LE13 symbol in sub-area C1
             Test Step Comment: MMI_gen 9431 (partly: LE13); 
             */
-            // Call generic Action Method
-            DmiActions.Pass_the_level_transition_acknowledgement_area(this);
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 257;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+            EVC8_MMIDriverMessage.PlainTextMessage = "\0x02";
+            EVC8_MMIDriverMessage.Send();
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the Level transition symbol, LE13, in sub-area C1.");
 
             /*
             Test Step 4
@@ -107,23 +120,33 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)    DMI replaces LE13 symbol with LE12 in sub-area C1.(2)     Use the log file to confirm that DMI sends out packet [MMI_DRIVER_ACTION (EVC-152)] with the value of variable MMI_M_DRIVER_ACTION refer to sequence below,a)   MMI_M_DRIVER_ACTION = 8 (Ack level 2)
             Test Step Comment: (1) MMI_gen 9431 (partly: LE12);(2) MMI_gen 11470 (partly: Bit #8);
             */
+            DmiActions.ShowInstruction(this, "Press  in sub-area C1 to acknowledgement the Level transition symbol, LE13");
 
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 276;
+            EVC8_MMIDriverMessage.PlainTextMessage = "\0x02";
+            EVC8_MMIDriverMessage.Send();
+            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.Level2Ack;
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI removes symbol LE13 and displays the Level transition symbol, LE12, in sub-area C1.");
 
             /*
             Test Step 5
             Action: Pass BG1 at level transition border
             Expected Result: Mode changes to FS mode, Level 2
             */
-            // Call generic Action Method
-            DmiActions.Pass_BG1_at_level_transition_border(this);
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L2;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in FS mode, Level 2.");
 
             /*
             Test Step 6
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }
