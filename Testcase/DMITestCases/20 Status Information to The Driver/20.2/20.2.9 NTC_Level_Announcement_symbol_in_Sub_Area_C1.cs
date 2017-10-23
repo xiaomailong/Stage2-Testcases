@@ -13,6 +13,8 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.EVCtoDMI;
+
 
 namespace Testcase.DMITestCases
 {
@@ -33,12 +35,13 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 15_2_9_a.xml
     /// </summary>
-    public class NTC_Level_Announcement_symbol_in_Sub_Area_C1 : TestcaseBase
+    public class TC_ID_15_2_9_NTC_Level_Announcement_ : TestcaseBase
     {
         public override void PreExecution()
         {
             // Pre-conditions from TestSpec:
-            // System is power OFF.Configure atpcu configuration file as following (See the instruction in Appendix 2)- M_InstalledLevels = 31- NID_NTC_Installe_0 = 1 (ATB)
+            // System is power OFF.Configure atpcu configuration file as following (See the instruction in Appendix 2)
+            // M_InstalledLevels = 31- NID_NTC_Installe_0 = 1 (ATB)
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
@@ -56,20 +59,46 @@ namespace Testcase.DMITestCases
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint
-
+            TraceInfo("This test case requires an ATP configuration change - " + 
+                      "See Precondition requirements. If this is not done manually, the test may fail!");
 
             /*
             Test Step 1
             Action: Peform following action:Power ON the systemActivate cabin A  perform Start of Mission to ATB STM until train running number entry
             Expected Result: DMI displays main window
             */
+            DmiActions.ShowInstruction(this, "Power on the system");
 
+            DmiActions.Start_ATP();
+            DmiActions.Activate_Cabin_1(this);
+            DmiActions.Set_Driver_ID(this, "1234");
+            // Skip brake test, train data entry
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.NationalSystem;
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Start;
+            EVC30_MMIRequestEnable.Send();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the Main window");
 
             /*
             Test Step 2
             Action: Press the ‘Start’ button
             Expected Result: The acknowledgement for NTC symbol (MO20) is displayed in area C1
             */
+            DmiActions.ShowInstruction(this, "Press the ‘Start’ button");
+
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 555;
+            EVC8_MMIDriverMessage.Send();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the ‘Acknowledgement for NTC’ symbol, MO20, in sub-area C1");
+
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.NationalSystem;
 
 
             /*
@@ -79,22 +108,35 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 9429 (partly, NTC);
             */
 
+            #region Send_XML_15_2_9_DMI_Test_Specification
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 257;
+            EVC8_MMIDriverMessage.PlainTextMessage = "\0x00";
+            EVC8_MMIDriverMessage.Send();
+            
+            WaitForVerification("Check the following: + " + Environment.NewLine + Environment.NewLine +
+                                "1. DMI still displays symbol M020 in sub-area C1.");
+            #endregion
 
             /*
             Test Step 4
             Action: Confirm NTC
             Expected Result: DMI displays in ATB STM mode, Level NTC
             */
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_ATB_STM_mode_Level_NTC(this);
+            DmiActions.ShowInstruction(this, "Confirm NTC Level");
 
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.LNTC;
+
+            WaitForVerification("Check the following: + " + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SN mode, Level NTC");
 
             /*
             Test Step 5
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }
