@@ -52,7 +52,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// <summary>
         /// Initialise EVC-26 MMI Specific STM DW Values telegram
         /// </summary>
-        /// <param name="pool"></param>
+        /// <param name="pool">SignalPool</param>
         public static void Initialise(SignalPool pool)
         {
             _pool = pool;
