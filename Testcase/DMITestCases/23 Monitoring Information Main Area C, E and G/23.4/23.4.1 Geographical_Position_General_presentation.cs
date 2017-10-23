@@ -154,6 +154,8 @@ namespace Testcase.DMITestCases
 
             // Check if Geographic Position button has been pressed
             EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.GeographicalPositionRequest;
+            EVC5_MMIGeoPosition.MMI_M_ABSOLUTPOS = 8388609;
+            EVC5_MMIGeoPosition.MMI_M_RELATIVPOS = 0;
             EVC5_MMIGeoPosition.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
