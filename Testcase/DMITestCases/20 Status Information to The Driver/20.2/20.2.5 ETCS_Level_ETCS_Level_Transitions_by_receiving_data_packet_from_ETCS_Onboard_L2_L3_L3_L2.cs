@@ -13,8 +13,6 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
-using Testcase.Telegrams.EVCtoDMI;
-
 
 namespace Testcase.DMITestCases
 {
@@ -33,18 +31,15 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 15_2_5.tdg, 15_2_5.utt
     /// </summary>
-    public class TC_ID_15_2_5_ETCS_Level : TestcaseBase
+    public class ETCS_Level_ETCS_Level_Transitions_by_receiving_data_packet_from_ETCS_Onboard_L2_L3_L3_L2 : TestcaseBase
     {
         public override void PreExecution()
         {
             // Pre-conditions from TestSpec:
+            // -     System is power ON.-     SoM is performed in SR mode, Level 2
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
-
-            // -     System is power ON.-     SoM is performed in SR mode, Level 2
-            DmiActions.Complete_SoM_L1_SR(this);
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L2;
         }
 
         public override void PostExecution()
@@ -60,31 +55,25 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
+
             /*
             Test Step 1
             Action: Drive the train forward pass BG1
             Expected Result: Verify the following information,(1)     DMI display symbol LE14 in sub-area C1.(2)    Use the log file to confirm that DMI receives packet information EVC-8 with the following variables,MMI_Q_TEXT = 276MMI_Q_TEXT_CRITIRIA = 3MMI_N_TEXT = 1MMI_X_TEXT = 3
             Test Step Comment: (1) MMI_gen 9430 (partly: LE14);(2) MMI_gen 7025 (partly: 2nd bullet, #4, non-Ack Level 3 transition);
             */
-            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
-            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
-            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
-            EVC8_MMIDriverMessage.PlainTextMessage = "\0x03";
-            EVC8_MMIDriverMessage.MMI_Q_TEXT = 276;
-            EVC8_MMIDriverMessage.Send();
+            // Call generic Action Method
+            DmiActions.Drive_the_train_forward_pass_BG1(this);
 
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays symbol LE14 in sub-area C1.");
 
             /*
             Test Step 2
             Action: Drive the train forward pass a distance to level transition
             Expected Result: Level transition from Level 2 to Level 3
             */
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L3;
+            // Call generic Action Method
+            DmiActions.Drive_the_train_forward_pass_a_distance_to_level_transition(this);
 
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI changes from Level 2 to Level 3.");
 
             /*
             Test Step 3
@@ -92,31 +81,25 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)     DMI display symbol LE12 in sub-area C1.(2)    Use the log file to confirm that DMI receives packet information EVC-8 with the following variables,MMI_Q_TEXT = 276MMI_Q_TEXT_CRITIRIA = 3MMI_N_TEXT = 1MMI_X_TEXT = 2
             Test Step Comment: (1) MMI_gen 9430 (partly: LE12);(2) MMI_gen 7025 (partly: 2nd bullet, #4, non-Ack Level 2 transition);
             */
-            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
-            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
-            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
-            EVC8_MMIDriverMessage.PlainTextMessage = "\0x02";
-            EVC8_MMIDriverMessage.MMI_Q_TEXT = 276;
-            EVC8_MMIDriverMessage.Send();
+            // Call generic Action Method
+            DmiActions.Drive_the_train_forward_pass_BG2(this);
 
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays symbol LE12 in sub-area C1.");
 
             /*
             Test Step 4
             Action: Drive the train forward pass a distance to level transition
             Expected Result: Level transition from Level 3 to Level 2
             */
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L2;
+            // Call generic Action Method
+            DmiActions.Drive_the_train_forward_pass_a_distance_to_level_transition(this);
 
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI changes from Level 3 to Level 2.");
 
             /*
             Test Step 5
             Action: End of test
             Expected Result: 
             */
+
 
             return GlobalTestResult;
         }

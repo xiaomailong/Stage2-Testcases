@@ -13,8 +13,6 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
-using Testcase.Telegrams.EVCtoDMI;
-
 
 namespace Testcase.DMITestCases
 {
@@ -37,13 +35,12 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 15_2_10.tdg
     /// </summary>
-    public class TC_15_2_19_ETCS_Level : TestcaseBase
+    public class ETCS_Level_ETCS_Level_Transitions_by_receiving_data_packet_from_ETCS_Onboard_L0_LNTC : TestcaseBase
     {
         public override void PreExecution()
         {
             // Pre-conditions from TestSpec:
-            // System is power OFF.Configure atpcu configuration file as following (See the instruction in Appendix 2)
-            // M_InstalledLevels = 31NID_NTC_Installed_0 = 1 (ATB)
+            // System is power OFF.Configure atpcu configuration file as following (See the instruction in Appendix 2)M_InstalledLevels = 31NID_NTC_Installed_0 = 1 (ATB)
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
@@ -61,25 +58,14 @@ namespace Testcase.DMITestCases
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint
-            TraceInfo("This test case requires an ATP configuration change - " +
-                      "See Precondition requirements. If this is not done manually, the test may fail!");
+
 
             /*
             Test Step 1
             Action: Perform the following action:         Power on the systemActivate the cabin Perform start of mission to Unfitted mode , Level 0
             Expected Result: DMI displays Unfitted mode, Level 0
             */
-            DmiActions.Start_ATP();
-            DmiActions.Activate_Cabin_1(this);
-            DmiActions.Set_Driver_ID(this,"1234");
-            // Skip brake test...
-            // Set to level 0 and UN mode
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L0;
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Unfitted;
-            DmiActions.Finished_SoM_Default_Window(this);
 
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in UN mode, Level 0.");
 
             /*
             Test Step 2
@@ -87,15 +73,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays LE08 symbol in sub-area C1
             Test Step Comment: MMI_gen 9430 (partly:Negative LE08); 
             */
-            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
-            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
-            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
-            EVC8_MMIDriverMessage.MMI_Q_TEXT = 277;
-            EVC8_MMIDriverMessage.PlainTextMessage = "\0x00";
-            EVC8_MMIDriverMessage.Send();
+            // Call generic Action Method
+            DmiActions.Drive_the_train_forward_with_30_kmh_then_pass_BG0_with_level_transition_announcement(this);
 
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays symbol LE08 in sub-area C1");
 
             /*
             Test Step 3
@@ -103,11 +83,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays LE09 symbol in sub-area C1
             Test Step Comment: MMI_gen 9431 (partly: LE09); 
             */
-            EVC8_MMIDriverMessage.MMI_Q_TEXT = 258;
-            EVC8_MMIDriverMessage.Send();
+            // Call generic Action Method
+            DmiActions.Pass_the_level_transition_acknowledgement_area(this);
 
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays symbol LE09 in sub-area C1");
 
             /*
             Test Step 4
@@ -115,31 +93,23 @@ namespace Testcase.DMITestCases
             Expected Result: DMI replaces LE09 symbol with LE08 in sub-area C1
             Test Step Comment: MMI_gen 9431 (partly: LE08);
             */
-            DmiActions.ShowInstruction(this, "Press in sub-area C1 to confirm the level");
-            
-            EVC8_MMIDriverMessage.MMI_Q_TEXT = 277;
-            EVC8_MMIDriverMessage.Send();
 
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays symbol LE08 in sub-area C1");
 
             /*
             Test Step 5
             Action: Pass BG1 at level transition border
             Expected Result: Mode changes to ATB STM mode, Level NTC
             */
-            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
-            EVC8_MMIDriverMessage.Send();
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.LNTC;
+            // Call generic Action Method
+            DmiActions.Pass_BG1_at_level_transition_border(this);
 
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in SN mode, Level NTC.");
 
             /*
             Test Step 6
             Action: End of test
             Expected Result: 
             */
+
 
             return GlobalTestResult;
         }
