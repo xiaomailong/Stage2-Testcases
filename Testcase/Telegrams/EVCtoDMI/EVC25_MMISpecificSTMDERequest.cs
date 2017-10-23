@@ -95,7 +95,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             // For all data units
             for (int k = 0; k < numberOfDataUnits; k++)
             {
-                string tagName1 = packetName + $"EVC25SpecificStmDeRequestSub10{k}_";
+                string tagName1 = packetName + $"EVC25SpecificStmDeRequestSub1{k}_";
 
                 // Write out the MMI_NID_NTC value
                 string requestName = tagName1 + "MmiNidNtc";
@@ -204,7 +204,7 @@ namespace Testcase.Telegrams.EVCtoDMI
 
                             for (int m = 0; m < pickUpXValue.Length; m++)
                             {
-                                requestName = $"{tagName5}{m.ToString("00")}_MmiStmXValue";
+                                requestName = $"{tagName5}{m}_MmiStmXValue";
                                 _pool.SITR.Client.Write(requestName, pickUpXValue[m]);
                                 totalSizeCounter += sizeof(byte);
                             }
