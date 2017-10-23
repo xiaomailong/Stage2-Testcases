@@ -88,7 +88,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 9430 (partly:Negative LE12); ;
             */
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. ")
+                                "1. ");
 
 
             /*
