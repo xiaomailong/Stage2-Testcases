@@ -27,8 +27,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         private const ushort EVC26_alias_1_bits = 8;
         private const ushort MMI_N_ITER_bits = 16;
         private const ushort StmMaxIterations = 5;
-        private const ushort StmCaptionMaxLength = 21;
-        private const ushort StmXValueMaxLength = 11;
+        private const ushort StmCaptionMaxLength = 20;
+        private const ushort StmXValueMaxLength = 10;
         private const ushort BasicPacketLength = (MMI_M_PACKET_bits + MMI_L_PACKET_bits + MMI_NID_NTC_bits +
                                                      EVC26_alias_1_bits + MMI_N_ITER_bits);
 
@@ -58,8 +58,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             _pool = pool;
             _evc26Alias1 = 0x00;
             StmData = new List<EVC26_StmData>();
-
-
+            
             // Activate dynamic array
             _pool.SITR.SMDCtrl.ETCS1.SpecificStmDwValue.Value = 0x0008;
 
