@@ -25,7 +25,7 @@ namespace Testcase.Telegrams.DMItoEVC
         /// <summary>
         /// Initialise EVC-109 MMI_SET_TIME_MMI.
         /// </summary>
-        /// <param name="pool"></param>
+        /// <param name="pool">SignalPool</param>
         public static void Initialise(SignalPool pool)
         {
             _pool = pool;

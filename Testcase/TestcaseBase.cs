@@ -54,6 +54,7 @@ namespace Testcase
             EVC23_MMILssma.Initialise(this);
             EVC24_MMISystemInfo.Initialise(this);
             EVC25_MMISpecificSTMDERequest.Initialise(this);
+            EVC26_MMISpecificSTMDWValues.Initialise(this);
             EVC27_MMISpecificSTMTestRequest.Initialise(this);
             EVC28_MMIEchoedSetVBCData.Initialise(this);
             EVC29_MMIEchoedRemoveVBCData.Initialise(this);
@@ -74,7 +75,7 @@ namespace Testcase
             EVC104_MMINewDriverData.Initialise(this);
             EVC106_MMINewSrRules.Initialise(this);
             EVC107_MMINewTrainData.Initialise(this);
-            //EVC109_MMISetTimeMMI.Initialise(this);
+            EVC109_MMISetTimeMMI.Initialise(this);
             EVC110_MMIConfimedTrainData.Initialise(this);
             EVC111_MMIDriverMessageAck.Initialise(this);
             EVC112_MMINewRbcData.Initialise(this);
