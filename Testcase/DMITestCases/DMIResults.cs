@@ -652,7 +652,7 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
-        /// Description: Level 0 is selected
+        /// Description: Level 1 is selected
         /// Used in:
         ///     Step 2 in TC-ID: 15.2.1 in 20.2.1
         /// </summary>

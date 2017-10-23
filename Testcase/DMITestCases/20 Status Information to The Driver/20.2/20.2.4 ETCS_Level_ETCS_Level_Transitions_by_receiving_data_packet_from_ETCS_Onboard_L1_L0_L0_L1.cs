@@ -43,6 +43,7 @@ namespace Testcase.DMITestCases
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
+            DmiActions.Start_ATP();
         }
 
         public override void PostExecution()
@@ -64,8 +65,13 @@ namespace Testcase.DMITestCases
             Action: Acivate cabin A
             Expected Result: DMI displays Driver ID window
             */
-            // Call generic Check Results Method
-            DmiExpectedResults.Driver_ID_window_displayed(this);
+
+            DmiActions.Activate_Cabin_1(this);
+            DmiExpectedResults.Cabin_A_is_activated(this);
+
+            DmiActions.Set_Driver_ID(this, "1234");
+            DmiActions.Send_SB_Mode(this);
+            DmiExpectedResults.Driver_ID_window_displayed_in_SB_mode(this);
 
 
             /*
@@ -73,15 +79,26 @@ namespace Testcase.DMITestCases
             Action: Perform SoM in SR mode, Level 1
             Expected Result: DMI displays in SR mode Level 1
             */
-            // Call generic Action Method
-            DmiActions.Perform_SoM_in_SR_mode_Level_1(this);
 
+            DmiActions.Perform_SoM_in_SR_mode_Level_1(this);
+            DmiExpectedResults.SR_Mode_displayed(this);
+            DmiExpectedResults.Driver_symbol_displayed(this, "Level 1", "LE03", "C1", false);
 
             /*
             Test Step 3
             Action: Drive the train forward pass BG1
-            Expected Result: DMI displays symbol LE07 in area C1 with flashing yellow frame.Verify the following information,(1)    Use the log file to confirm that DMI receives packet information EVC-8 with the following variables,MMI_Q_TEXT = 276MMI_Q_TEXT_CRITIRIA = 1MMI_N_TEXT = 1MMI_X_TEXT = 0(2)    Use the log file to confirm that DMI sends out packet [MMI_DRIVER_ACTION (EVC-152)] with the value of variable MMI_M_DRIVER_ACTION refer to sequence below,a)   MMI_M_DRIVER_ACTION = 6 (Ack level 0)
-            Test Step Comment: (1) MMI_gen 7025 (partly: 2nd bullet, #4, Ack Level 0 transition); MMI_gen 1310 (partly:LE07); MMI_gen 9431 (partly: LE07);(2) MMI_gen 11470 (partly: Bit #6);
+            Expected Result: DMI displays symbol LE07 in area C1 with flashing yellow frame.
+            Verify the following information,
+            (1)    Use the log file to confirm that DMI receives packet information EVC-8 with the following variables,
+            MMI_Q_TEXT = 276
+            MMI_Q_TEXT_CRITIRIA = 1
+            MMI_N_TEXT = 1
+            MMI_X_TEXT = 0
+            (2)    Use the log file to confirm that DMI sends out packet [MMI_DRIVER_ACTION (EVC-152)] with the value of variable MMI_M_DRIVER_ACTION refer to sequence below,
+            a)   MMI_M_DRIVER_ACTION = 6 (Ack level 0)
+            Test Step Comment: (1) MMI_gen 7025 (partly: 2nd bullet, #4, Ack Level 0 transition); 
+                                   MMI_gen 1310 (partly:LE07); MMI_gen 9431 (partly: LE07);
+                               (2) MMI_gen 11470 (partly: Bit #6);
             */
             // Call generic Action Method
             DmiActions.Drive_the_train_forward_pass_BG1(this);
