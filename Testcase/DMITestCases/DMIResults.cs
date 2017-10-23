@@ -83,6 +83,7 @@ namespace Testcase.DMITestCases
         /// Description: Level 0 Acknowledgement symbol on DMI area C1 is pressed and released.
         /// Used in:
         ///     Step 1 in TC-ID: 15.1.4 in 20.1.4
+        ///     Step 4 in TC-ID: 15.2.4 in 20.2.4
         /// </summary>
         public static void L0_Announcement_Ack_pressed_and_released(SignalPool pool)
         {

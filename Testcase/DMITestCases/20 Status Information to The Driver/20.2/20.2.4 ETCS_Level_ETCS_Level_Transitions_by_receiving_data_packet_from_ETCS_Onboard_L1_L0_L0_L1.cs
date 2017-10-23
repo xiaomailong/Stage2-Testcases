@@ -12,6 +12,11 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
+using Testcase.DMITestCases;
+using Testcase.Telegrams.DMItoEVC;
+using Testcase.Telegrams.EVCtoDMI;
+using static Testcase.Telegrams.EVCtoDMI.Variables;
+using Testcase.TemporaryFunctions;
 using CL345;
 
 namespace Testcase.DMITestCases
@@ -100,47 +105,96 @@ namespace Testcase.DMITestCases
                                    MMI_gen 1310 (partly:LE07); MMI_gen 9431 (partly: LE07);
                                (2) MMI_gen 11470 (partly: Bit #6);
             */
-            // Call generic Action Method
+
             DmiActions.Drive_the_train_forward_pass_BG1(this);
 
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 276;
+            EVC8_MMIDriverMessage.PlainTextMessage = "0";
+            EVC8_MMIDriverMessage.Send();
+
+            DmiExpectedResults.L0_Announcement_Ack_Requested(this);
+
+            // Samson: I don't think that the DMI should send back EVC-152 at this point. 
+            // It should wait the driver action ie. it should be sent at next step.
 
             /*
             Test Step 4
             Action: Press an area C1 for acknowledgement
-            Expected Result: Verify the following information,The symbol LE06 is display in area C1 instead of symbol LE07 immediately.Use the log file to confirm that DMI receives packet information EVC-8 with the following variables,MMI_Q_TEXT = 276MMI_Q_TEXT_CRITIRIA = 3MMI_N_TEXT = 1MMI_X_TEXT = 0
-            Test Step Comment: (1) MMI_gen 9431          (partly: The symbol LE06 is replace respectively LE07); MMI_gen 9430          (partly:LE06);(2) MMI_gen 7025 (partly: 2nd bullet, #4, non-Ack Level 0 transition);
+            Expected Result: Verify the following information,
+            The symbol LE06 is display in area C1 instead of symbol LE07 immediately.
+            Use the log file to confirm that DMI receives packet information EVC-8 with the following variables,
+            MMI_Q_TEXT = 276
+            MMI_Q_TEXT_CRITIRIA = 3
+            MMI_N_TEXT = 1
+            MMI_X_TEXT = 0
+            Test Step Comment: (1) MMI_gen 9431 (partly: The symbol LE06 is replace respectively LE07); 
+                                   MMI_gen 9430 (partly:LE06);
+                               (2) MMI_gen 7025 (partly: 2nd bullet, #4, non-Ack Level 0 transition);
             */
-            // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press an area C1 for acknowledgement");
 
+            DmiActions.ShowInstruction(this, @"Perform the following action after pressing OK:" + Environment.NewLine + Environment.NewLine +
+                                "1. Acknowledge L0 annoucement by pressing DMI area C1");
+
+            DmiExpectedResults.L0_Announcement_Ack_pressed_and_released(this);
+
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 276;
+            EVC8_MMIDriverMessage.PlainTextMessage = "0";
+            EVC8_MMIDriverMessage.Send();
+
+            DmiExpectedResults.Driver_symbol_displayed(this, "Announcement for Level 0", "LE06", "C1", false);
 
             /*
             Test Step 5
             Action: Drive the train pass a distance to level transition
-            Expected Result: Level transition from Level 1 to Level 0.DMI displays symbol LE01 in area C8
+            Expected Result: Level transition from Level 1 to Level 0.
+            DMI displays symbol LE01 in area C8
             */
-            // Call generic Action Method
             DmiActions.Drive_the_train_pass_a_distance_to_level_transition(this);
 
+            DmiActions.Send_L0(this);
+            DmiExpectedResults.Driver_symbol_displayed(this, "Level 0", "LE01", "C8", false);
 
             /*
             Test Step 6
             Action: Drive the train forward pass BG3
-            Expected Result: Verify the following information,The symbol LE10 is display in area C1.Use the log file to confirm that DMI receives packet information EVC-8 with the following variables,MMI_Q_TEXT = 276MMI_Q_TEXT_CRITIRIA = 3MMI_N_TEXT = 1MMI_X_TEXT = 1
-            Test Step Comment: (1) MMI_gen 9430          (partly:LE10);(2) MMI_gen 7025 (partly: 2nd bullet, #4, non-Ack Level 1 transition);
+            Expected Result: Verify the following information,The symbol LE10 is display in area C1.
+            Use the log file to confirm that DMI receives packet information EVC-8 with the following variables,
+            MMI_Q_TEXT = 276
+            MMI_Q_TEXT_CRITIRIA = 3
+            MMI_N_TEXT = 1
+            MMI_X_TEXT = 1
+            Test Step Comment: (1) MMI_gen 9430 (partly:LE10);
+                               (2) MMI_gen 7025 (partly: 2nd bullet, #4, non-Ack Level 1 transition);
             */
-            // Call generic Action Method
+
             DmiActions.Drive_the_train_forward_pass_BG3(this);
 
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 276;
+            EVC8_MMIDriverMessage.PlainTextMessage = "1";
+            EVC8_MMIDriverMessage.Send();
+
+            DmiExpectedResults.Driver_symbol_displayed(this, "Announcement for Level 1", "LE10", "C1", false);
 
             /*
             Test Step 7
             Action: Drive the train pass a distance to level transition
-            Expected Result: Level transition from Level 0 to Level 1.DMI displays symbol LE03 in area C8
+            Expected Result: Level transition from Level 0 to Level 1.
+            DMI displays symbol LE03 in area C8
             */
-            // Call generic Action Method
+
             DmiActions.Drive_the_train_pass_a_distance_to_level_transition(this);
 
+            DmiActions.Send_L1(this);
+            DmiExpectedResults.Driver_symbol_displayed(this, "Level 1", "LE03", "C8", false);
 
             /*
             Test Step 8
