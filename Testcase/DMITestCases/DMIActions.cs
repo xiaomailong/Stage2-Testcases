@@ -753,6 +753,20 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
+        /// Description: RBC Data sent to be displayed on th DMI
+        /// Used in:
+        ///     Step 1 in TC-ID: 22.27.1 in 27.27.1
+        /// </summary>
+        /// <param name="pool">Signal pool</param>
+        public static void Display_Set_VBC_Window(SignalPool pool)
+        {
+            EVC18_MMISetVBC.MMI_M_BUTTONS = MMI_M_BUTTONS_VBC.BTN_YES_DATA_ENTRY_COMPLETE;
+            EVC18_MMISetVBC.MMI_N_VBC = 0;
+            EVC18_MMISetVBC.Send();
+
+        }
+
+        /// <summary>
         /// Description: Train Data sent to be displayed on th DMI
         /// Used in:
         ///     Step 6 in TC-ID: 15.1.3 in 20.1.3
@@ -1050,6 +1064,19 @@ namespace Testcase.DMITestCases
         public static void Complete_start_of_mission(SignalPool pool)
         {
             throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Description: Open the Settings window
+        /// Used in:
+        ///     Step 1 in TC-ID: 22.27 in 27.27
+        /// </summary>
+        public static void Open_the_Settings_window(SignalPool pool)
+        {
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = standardFlags;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 4;
+            EVC30_MMIRequestEnable.Send();
         }
 
         /// <summary>

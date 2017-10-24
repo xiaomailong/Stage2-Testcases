@@ -31,12 +31,17 @@ namespace Testcase.DMITestCases
     /// Used files:
     ///  N/A
     /// </summary>
-    public class Set_VBC_Data_Entry_Window : TestcaseBase
+    public class TC_22_27_1_Set_VBC_Window : TestcaseBase
     {
         public override void PreExecution()
         {
             // Pre-conditions from TestSpec:
-            // Test system is powered ON.Cabin is activated.Settings window is opened.
+            // Test system is powered ON.
+            // Cabin is activated.
+            // Settings window is opened.
+            DmiActions.Start_ATP();
+            DmiActions.Activate_Cabin_1(this);
+            DmiActions.Open_the_Settings_window(this);
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
@@ -55,16 +60,136 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
+            #region Test Step 1
             /*
             Test Step 1
             Action: Press ‘Set VBC’ button
-            Expected Result: DMI displays Set VBC window.Verify the following information,Data Entry WindowThe window title is ‘Set VBC’.The text label of the window title is right aligned.The following objects are displayed in Set VBC window,  Enabled Close button (NA11)Window TitleInput fieldsThe following objects are additionally displayed in Set VBC window,Yes buttonThe text label ‘Set VBC Entry complete?’Yes button is displayed in Disabled state as follows,Text label is black Background colour is dark-greyThe border colour is medium-grey the same as the input field’s colour.The sensitive area of Yes button is extended from text label ‘Set VBC entry complete?’Input fieldsThe input fields are located on Main area D and F.Each input field is devided into a Label Area and a Data Area.The Label Area is give the topic of the input field.The Label Area text is displayed corresponding to the input field as ‘VBC code’.The Label Area is placed to the left of The Data Area.The text in the Label Area is aligned to the right.The value of data in the Data Area is aligned to the left.The text colour of the Label Area is grey and the background colour of the Label Area is dark-grey.There are only single input fields displayed in the window.The first input field is in state ‘Selected’ as follows,The background colour of the Data Area is medium-grey.KeyboardThe keyboard associated to selected input field ‘Set VBC’ is Numeric keyboard.The keyboard contains enabled button for the number <1> to <9>, <Delete>(NA21) , <0> and disabled <Decimal_Separator>. NA21, Delete button.LayersThe level of layers of all areas in window are in Layer 0.Echo TextsThe Label Part of an echo texts is same as the Label area of an input fields.The echo texts are displayed in main area A, B, C and E with same order as their related input fields.The Label part of echo text is right aligned.The colour of texts in echo texts are grey.Entering CharactersThe cursor is flashed by changing from visible to not visible.The cursor is displayed as horizontal line below the value in the input field.Packet transmissionUse the log file to confirm that DMI sent out packet information [MMI_DRIVER_REQUEST (EVC-101)] with variable MMI_M_REQUEST = 23 (Start Set VBC).Use the log file to confirm that DMI received packet information [MMI_SET_VBC (EVC-18)] with MMI_N_VBC = 0
-            Test Step Comment: (1) MMI_gen 8327;(2) MMI_gen 8326 (partly: MMI_gen 4888);(3) MMI_gen 8326 (partly: MMI_gen 4799 (partly: Close button, Window Title, Input fields)); MMI_gen 4392 (partly: [Close] NA11); MMI_gen 4355 (partly: Close button); (4) MMI_gen 8326 (partly: MMI_gen 4891 (partly: Yes button, Area for [Window Title] Entry complete?));(5) MMI_gen 8326 (partly: MMI_gen 4910 (partly: Disabled, MMI_gen 4211 (partly: colour)), MMI_gen 4909 (partly: Disabled)); MMI_gen 4377 (partly: shown);(6) MMI_gen 8326 (partly: MMI_gen 4908 (partly: extended));(7) MMI_gen 8326 (partly: MMI_gen 4637 (partly: Main-areas D and F)); MMI_gen 4355 (partly: input fields);(8) MMI_gen 8326 (partly: MMI_gen 4640);(9) MMI_gen 8326 (partly: MMI_gen 4641);(10) MMI_gen 8326 (partly: MMI_gen 9412); MMI_gen 8329 (partly: label);(11) MMI_gen 8326 (partly: MMI_gen 4645);(12) MMI_gen 8326 (partly: MMI_gen 4646 (partly: right aligned));(13) MMI_gen 8326 (partly: MMI_gen 4647 (partly: left aligned));(14) MMI_gen 8326 (partly: MMI_gen 4648);(15) MMI_gen 8326 (partly: MMI_gen 4720); MMI_gen 8329 (partly: single input field);(16) MMI_gen 8326 (partly: MMI_gen 4651 (partly: background colour), MMI_gen 4683 (partly: selected), MMI_gen 5211 (partly: selected));(17) MMI_gen 8331; MMI_gen 8326 (partly: MMI_gen 4912, MMI_gen 4678); (18) MMI_gen 8326 (partly: MMI_gen 5003); MMI_gen 4392 (partly: [Delete] NA21);(19) MMI_gen 8326 (partly: MMI_gen 5190);(20) MMI_gen 8326 (partly: MMI_gen 4697); (21) MMI_gen 8326 (partly: MMI_gen 4701);(22) MMI_gen 8326 (partly: MMI_gen 4702 (partly: right aligned));(23) MMI_gen 8326 (partly: MMI_gen 4700 (partly: otherwise, grey)); MMI_gen 4241;(24) MMI_gen 8326 (partly: MMI_gen 4691 (partly: flash));(25) MMI_gen 8326 (partly: MMI_gen 4689, MMI_gen 4690);(26) MMI_gen 9881;(27) MMI_gen 9883;
             */
-            // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press ‘Set VBC’ button");
 
+            DmiExpectedResults.Set_VBC_Button_pressed_and_released(this);
+            DmiActions.Display_Set_VBC_Window(this);
+
+            /*
+            Expected Result: DMI displays Set VBC window.
+            Verify the following information,
+            */
+
+            WaitForVerification("DATA ENTRY WINDOW:" + Environment.NewLine + Environment.NewLine +
+                "The window title is ‘Set VBC’." + Environment.NewLine +
+                "The text label of the window title is right aligned." + Environment.NewLine +
+                "The following objects are displayed in Set VBC window:" + Environment.NewLine +
+                " - Enabled Close button(NA11)" + Environment.NewLine +
+                " - Window Title" + Environment.NewLine +
+                " - Input fields" + Environment.NewLine + Environment.NewLine +
+                "The following objects are additionally displayed in Set VBC window:" + Environment.NewLine +
+                " - Yes button" + Environment.NewLine +
+                " - The text label ‘Set VBC Entry complete ?’" + Environment.NewLine + Environment.NewLine +
+                "Yes button is displayed in Disabled state as follows:" + Environment.NewLine +
+                " - Text label is black" + Environment.NewLine +
+                " - Background colour is dark - grey" + Environment.NewLine +
+                " - The border colour is medium - grey the same as the input field’s colour." + Environment.NewLine + Environment.NewLine +
+                "The sensitive area of Yes button is extended from text label ‘Set VBC entry complete ?’");
+
+            /*
+            Data Entry Window
+            The window title is ‘Set VBC’.
+            The text label of the window title is right aligned.
+            The following objects are displayed in Set VBC window,  
+                Enabled Close button (NA11)
+                Window Title
+                Input fields
+            The following objects are additionally displayed in Set VBC window,
+                Yes button
+                The text label ‘Set VBC Entry complete?’
+            Yes button is displayed in Disabled state as follows,
+                Text label is black 
+                Background colour is dark-grey
+                The border colour is medium-grey the same as the input field’s colour.
+            The sensitive area of Yes button is extended from text label ‘Set VBC entry complete?’
+
+            Input fields
+            
+            The input fields are located on Main area D and F.
+            Each input field is devided into a Label Area and a Data Area.
+            The Label Area is give the topic of the input field.
+            The Label Area text is displayed corresponding to the input field as ‘VBC code’.
+            The Label Area is placed to the left of The Data Area.
+            The text in the Label Area is aligned to the right.
+            The value of data in the Data Area is aligned to the left.
+            The text colour of the Label Area is grey and the background colour of the Label Area is dark-grey.
+            There are only single input fields displayed in the window.
+            The first input field is in state ‘Selected’ as follows,
+                The background colour of the Data Area is medium-grey.
+                
+            Keyboard
+            
+            The keyboard associated to selected input field ‘Set VBC’ is Numeric keyboard.
+            The keyboard contains enabled button for the number <1> to <9>, <Delete>(NA21) , <0> and disabled <Decimal_Separator>. 
+                NA21, Delete button.
+                
+            Layers
+            
+            The level of layers of all areas in window are in Layer 0.
+            
+            Echo Texts
+            
+            The Label Part of an echo texts is same as the Label area of an input fields.
+            The echo texts are displayed in main area A, B, C and E with same order as their related input fields.
+            The Label part of echo text is right aligned.
+            The colour of texts in echo texts are grey.
+            
+            Entering Characters
+            
+            The cursor is flashed by changing from visible to not visible.
+            The cursor is displayed as horizontal line below the value in the input field.
+
+            Packet transmission
+            
+            Use the log file to confirm that DMI sent out packet information [MMI_DRIVER_REQUEST (EVC-101)] with variable MMI_M_REQUEST = 23 (Start Set VBC).
+            Use the log file to confirm that DMI received packet information [MMI_SET_VBC (EVC-18)] with MMI_N_VBC = 0
+            
+            Test Step Comment: (1) MMI_gen 8327;
+                               (2) MMI_gen 8326 (partly: MMI_gen 4888);
+                               (3) MMI_gen 8326 (partly: MMI_gen 4799 (partly: Close button, Window Title, Input fields)); 
+                                   MMI_gen 4392 (partly: [Close] NA11); 
+                                   MMI_gen 4355 (partly: Close button); 
+                               (4) MMI_gen 8326 (partly: MMI_gen 4891 (partly: Yes button, Area for [Window Title] Entry complete?));
+                               (5) MMI_gen 8326 (partly: MMI_gen 4910 (partly: Disabled, MMI_gen 4211 (partly: colour)), 
+                                   MMI_gen 4909 (partly: Disabled)); 
+                                   MMI_gen 4377 (partly: shown);
+                               (6) MMI_gen 8326 (partly: MMI_gen 4908 (partly: extended));
+                               (7) MMI_gen 8326 (partly: MMI_gen 4637 (partly: Main-areas D and F)); 
+                                   MMI_gen 4355 (partly: input fields);
+                               (8) MMI_gen 8326 (partly: MMI_gen 4640);
+                               (9) MMI_gen 8326 (partly: MMI_gen 4641);
+                               (10) MMI_gen 8326 (partly: MMI_gen 9412); 
+                                    MMI_gen 8329 (partly: label);
+                               (11) MMI_gen 8326 (partly: MMI_gen 4645);
+                               (12) MMI_gen 8326 (partly: MMI_gen 4646 (partly: right aligned));
+                               (13) MMI_gen 8326 (partly: MMI_gen 4647 (partly: left aligned));
+                               (14) MMI_gen 8326 (partly: MMI_gen 4648);
+                               (15) MMI_gen 8326 (partly: MMI_gen 4720); 
+                                    MMI_gen 8329 (partly: single input field);
+                               (16) MMI_gen 8326 (partly: MMI_gen 4651 (partly: background colour), MMI_gen 4683 (partly: selected), MMI_gen 5211 (partly: selected));
+                               (17) MMI_gen 8331; 
+                                    MMI_gen 8326 (partly: MMI_gen 4912, MMI_gen 4678); 
+                               (18) MMI_gen 8326 (partly: MMI_gen 5003); 
+                                    MMI_gen 4392 (partly: [Delete] NA21);
+                               (19) MMI_gen 8326 (partly: MMI_gen 5190);
+                               (20) MMI_gen 8326 (partly: MMI_gen 4697); 
+                               (21) MMI_gen 8326 (partly: MMI_gen 4701);
+                               (22) MMI_gen 8326 (partly: MMI_gen 4702 (partly: right aligned));
+                               (23) MMI_gen 8326 (partly: MMI_gen 4700 (partly: otherwise, grey)); 
+                                    MMI_gen 4241;
+                               (24) MMI_gen 8326 (partly: MMI_gen 4691 (partly: flash));
+                               (25) MMI_gen 8326 (partly: MMI_gen 4689, MMI_gen 4690);
+                               (26) MMI_gen 9881;
+                               (27) MMI_gen 9883;
+            */
+
+
+
+            #endregion
 
             /*
             Test Step 2

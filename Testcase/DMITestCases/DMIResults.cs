@@ -399,6 +399,19 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
+        /// Description: Close button on Level selection window is pressed
+        /// Used in:
+        ///     Step 1 in TC-ID: 22.27.1 in 27.27.1
+        /// </summary>
+        public static void Set_VBC_Button_pressed_and_released(SignalPool pool)
+        {
+            DmiActions.ShowInstruction(pool, @"Perform the following action after pressing OK:" + Environment.NewLine + Environment.NewLine +
+                                "1. Press Set VBC button.");
+            EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.StartSetVBC;
+            EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.StartSetVBC;
+        }
+
+        /// <summary>
         /// Description: DMI displays SH mode
         /// Used in:
         ///     Step 8 in TC-ID: 15.1.1 in 20.1.1
@@ -775,6 +788,16 @@ namespace Testcase.DMITestCases
         public static void RBC_Contact_Window_displayed(SignalPool pool)
         {
             pool.WaitForVerification("Is the RBC Contact window displayed on the DMI?");
+        }
+
+        /// <summary>
+        /// Description: DMI displays RBC contact window
+        /// Used in:
+        ///     Step 1 in TC-ID: 22.27.1 in 27.27.1 
+        /// </summary>
+        public static void Set_VBC_Window_displayed(SignalPool pool)
+        {
+            pool.WaitForVerification("Is the Set VBC window displayed on the DMI?");
         }
 
         /// <summary>
