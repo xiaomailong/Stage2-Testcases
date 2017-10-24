@@ -244,12 +244,12 @@ namespace Testcase.DMITestCases
 
                     EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Disabled;
 
-                    EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = null;
-                    EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = null;
-                    EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = null;
-                    EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = null;
-                    EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = null;
-                    EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = null;
+                    EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new MMI_Q_LEVEL_NTC_ID[0];
+                    EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new MMI_M_CURRENT_LEVEL[0];
+                    EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = new MMI_M_LEVEL_FLAG[0];
+                    EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = new MMI_M_INHIBITED_LEVEL[0];
+                    EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = new MMI_M_INHIBIT_ENABLE[0];
+                    EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new MMI_M_LEVEL_NTC_ID[0];
                     break;
                 case msgType.typec:
 

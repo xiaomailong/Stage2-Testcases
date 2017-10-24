@@ -340,7 +340,7 @@ namespace Testcase.DMITestCases
                     EVC22_MMICurrentRBC.NetworkCaptions = new List<string> { "GSMR-A", "GSMR-B" };
                     break;
                 case msgType.typeb:
-                    EVC22_MMICurrentRBC.NetworkCaptions = null;
+                    EVC22_MMICurrentRBC.NetworkCaptions.Clear();
                     break;
             }
             EVC22_MMICurrentRBC.Send();

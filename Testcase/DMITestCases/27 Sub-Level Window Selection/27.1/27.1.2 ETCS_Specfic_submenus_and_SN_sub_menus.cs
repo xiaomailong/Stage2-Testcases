@@ -44,6 +44,9 @@ namespace Testcase.DMITestCases
             // Call the TestCaseBase PreExecution
             base.PreExecution();
 
+            //Set the following tags name in configuration file(See the instruction in Appendix 2)
+            // Q_CustomConfig = 3 M_InstalledLevels = 31 NID_NTC_Installed_0 = 9 M_DefalutLevels = 31 NID_NTC_Default_0 = 9
+
             // The system is powered ON
             DmiActions.Start_ATP();
         }
@@ -60,6 +63,8 @@ namespace Testcase.DMITestCases
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint
+            TraceInfo("This test case requires an ATP configuration change - " +
+                      "See Precondition requirements. If this is not done manually, the test may fail!");
 
             /*
             Test Step 1

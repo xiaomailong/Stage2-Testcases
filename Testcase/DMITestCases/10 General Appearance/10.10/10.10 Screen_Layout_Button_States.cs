@@ -621,42 +621,41 @@ namespace Testcase.DMITestCases
 
             // Step 15
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = (EVC30_MMIRequestEnable.EnabledRequests.Start |
-                                                                EVC30_MMIRequestEnable.EnabledRequests.DriverID |
-                                                                EVC30_MMIRequestEnable.EnabledRequests.TrainData |
-                                                                EVC30_MMIRequestEnable.EnabledRequests.Level |
-                                                                EVC30_MMIRequestEnable.EnabledRequests.TrainRunningNumber |
-                                                                EVC30_MMIRequestEnable.EnabledRequests.Shunting |
-                                                                EVC30_MMIRequestEnable.EnabledRequests.ExitShunting |
-                                                                EVC30_MMIRequestEnable.EnabledRequests.NonLeading |
-                                                                EVC30_MMIRequestEnable.EnabledRequests.MaintainShunting |
-                                                                EVC30_MMIRequestEnable.EnabledRequests.EOA |
-                                                                EVC30_MMIRequestEnable.EnabledRequests.Adhesion |
-                                                                EVC30_MMIRequestEnable.EnabledRequests.SRSpeedDistance |
-                                                                EVC30_MMIRequestEnable.EnabledRequests.TrainIntegrity |
-                                                                EVC30_MMIRequestEnable.EnabledRequests.Language |
-                                                                EVC30_MMIRequestEnable.EnabledRequests.Volume |
-                                                                EVC30_MMIRequestEnable.EnabledRequests.Brightness |
-                                                                EVC30_MMIRequestEnable.EnabledRequests.SystemVersion |
-                                                                EVC30_MMIRequestEnable.EnabledRequests.SetVBC |
-                                                                EVC30_MMIRequestEnable.EnabledRequests.RemoveVBC |
-                                                                EVC30_MMIRequestEnable.EnabledRequests.ContactLastRBC |
-                                                                EVC30_MMIRequestEnable.EnabledRequests.UseShortNumber |
-                                                                EVC30_MMIRequestEnable.EnabledRequests.EnterRBCData |
-                                                                EVC30_MMIRequestEnable.EnabledRequests.RadioNetworkID |
-                                                                EVC30_MMIRequestEnable.EnabledRequests.EndOfDataEntryNTC |
-                                                                EVC30_MMIRequestEnable.EnabledRequests.SetLocalTimeDateAndOffset |
-                                                                EVC30_MMIRequestEnable.EnabledRequests.SetLocalOffset |
-                                                                EVC30_MMIRequestEnable.EnabledRequests.Reserved |
-                                                                EVC30_MMIRequestEnable.EnabledRequests.StartBrakeTest |
-                                                                EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter |
-                                                                EVC30_MMIRequestEnable.EnabledRequests.EnableDoppler |
-                                                                EVC30_MMIRequestEnable.EnabledRequests.EnableBrakePercentage) &
-                                                               ~EVC30_MMIRequestEnable.EnabledRequests.GeographicalPosition;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Start |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.DriverID |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.TrainData |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.Level |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.TrainRunningNumber |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.Shunting |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.ExitShunting |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.NonLeading |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.MaintainShunting |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.EOA |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.Adhesion |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.SRSpeedDistance |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.TrainIntegrity |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.Language |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.Volume |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.Brightness |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.SystemVersion |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.SetVBC |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.RemoveVBC |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.ContactLastRBC |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.UseShortNumber |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.EnterRBCData |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.RadioNetworkID |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.EndOfDataEntryNTC |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.SetLocalTimeDateAndOffset |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.SetLocalOffset |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.Reserved |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.StartBrakeTest |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.EnableDoppler |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.EnableBrakePercentage;
             EVC30_MMIRequestEnable.Send();
 
             WaitForVerification("Check that the following button is displayed with a border with Dark-Grey text:" + Environment.NewLine + Environment.NewLine +
-                                      @"1. The ‘Geograhical position’ button.");
+                                      @"1. The ‘Geographical position’ button.");
 
 
             // Step 16
@@ -685,8 +684,11 @@ namespace Testcase.DMITestCases
             //DMITestCases.DmiActions.ShowInstruction(this, "Enter Driver ID and perform brake test. Select and confirm Level 2");
             DMITestCases.DmiActions.ShowInstruction(this, "Enter Driver ID");
 
+            // force Level 2
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L2;
+
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = (EVC30_MMIRequestEnable.EnabledRequests.Start |
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Start |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.DriverID |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.TrainData |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.Level |
@@ -713,11 +715,7 @@ namespace Testcase.DMITestCases
                                                                 EVC30_MMIRequestEnable.EnabledRequests.StartBrakeTest |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.EnableDoppler |
-                                                                EVC30_MMIRequestEnable.EnabledRequests.EnableBrakePercentage) &
-                                                               ~(EVC30_MMIRequestEnable.EnabledRequests.ContactLastRBC |
-                                                                 EVC30_MMIRequestEnable.EnabledRequests.UseShortNumber |
-                                                                 EVC30_MMIRequestEnable.EnabledRequests.EnterRBCData |
-                                                                 EVC30_MMIRequestEnable.EnabledRequests.RadioNetworkID);
+                                                                EVC30_MMIRequestEnable.EnabledRequests.EnableBrakePercentage;
             EVC30_MMIRequestEnable.Send();
 
             WaitForVerification("Check that the following buttons are displayed with a border with Dark-Grey text:" + Environment.NewLine + Environment.NewLine +
@@ -747,7 +745,7 @@ namespace Testcase.DMITestCases
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.LNTC;
 
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = (EVC30_MMIRequestEnable.EnabledRequests.Start |
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Start |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.DriverID |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.TrainData |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.Level |
@@ -777,8 +775,7 @@ namespace Testcase.DMITestCases
                                                                 EVC30_MMIRequestEnable.EnabledRequests.StartBrakeTest |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.EnableDoppler |
-                                                                EVC30_MMIRequestEnable.EnabledRequests.EnableBrakePercentage) &
-                                                               ~EVC30_MMIRequestEnable.EnabledRequests.EndOfDataEntryNTC;
+                                                                EVC30_MMIRequestEnable.EnabledRequests.EnableBrakePercentage;
             EVC30_MMIRequestEnable.Send();
 
             WaitForVerification("Check that the following button is displayed with a border with Dark-Grey text:" + Environment.NewLine + Environment.NewLine +
@@ -793,7 +790,9 @@ namespace Testcase.DMITestCases
             DMITestCases.DmiActions.Set_Driver_ID(this, "1234");
 
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
-            DMITestCases.DmiExpectedResults.SB_Mode_displayed(this);
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SB mode");
 
             // Step 22
             // Test says active cabin (It is) and do brake test: as before ignore
@@ -801,7 +800,7 @@ namespace Testcase.DMITestCases
                                                            @"Press the ‘Settings’ button. Press the ‘Brake’ button");
 
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = (EVC30_MMIRequestEnable.EnabledRequests.Start |
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Start |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.DriverID |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.TrainData |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.Level |
@@ -831,8 +830,7 @@ namespace Testcase.DMITestCases
                                                                 EVC30_MMIRequestEnable.EnabledRequests.Reserved |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.EnableDoppler |
-                                                                EVC30_MMIRequestEnable.EnabledRequests.EnableBrakePercentage) &
-                                                               ~EVC30_MMIRequestEnable.EnabledRequests.StartBrakeTest;
+                                                                EVC30_MMIRequestEnable.EnabledRequests.EnableBrakePercentage;
             EVC30_MMIRequestEnable.Send();
 
             WaitForVerification("Check that the following button is displayed with a border with Dark-Grey text:" + Environment.NewLine + Environment.NewLine +

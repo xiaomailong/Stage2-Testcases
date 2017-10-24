@@ -130,7 +130,7 @@ namespace Testcase.DMITestCases
 
             // DMI_RS_ETCS says if 0 network items this packet closes RBC Contact window
             EVC22_MMICurrentRBC.MMI_NID_WINDOW = 9;
-            EVC22_MMICurrentRBC.NetworkCaptions = null;
+            EVC22_MMICurrentRBC.NetworkCaptions.Clear();
             EVC22_MMICurrentRBC.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +

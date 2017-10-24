@@ -58,7 +58,9 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
-            // Testcase entrypoint                                  
+            // Testcase entrypoint
+            TraceInfo("This test case requires an ATP configuration change - " +
+                      "See Precondition requirements. If this is not done manually, the test may fail!");
 
             /*
             Test Step 1

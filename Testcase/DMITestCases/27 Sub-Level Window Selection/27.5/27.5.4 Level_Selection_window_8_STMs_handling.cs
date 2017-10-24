@@ -60,7 +60,8 @@ namespace Testcase.DMITestCases
             // Testcase entrypoint
             TraceInfo("This test case requires an ATP configuration change - " +
                         "See Precondition requirements. If this is not done manually, the test may fail!");
-            // M_InstalledLevels = 4082NID_NTC_Installe_0 = 1NID_NTC_Installe_1 = 20NID_NTC_Installe_2 = 28NID_NTC_Installe_3 = 9NID_NTC_Installe_4 = 6NID_NTC_Installe_5 = 10NID_NTC_Installe_6 = 22NID_NTC_Installe_7 = 0
+            // M_InstalledLevels = 4082NID_NTC_Installe_0 = 1NID_NTC_Installe_1 = 20NID_NTC_Installe_2 = 28NID_NTC_Installe_3 = 9
+            // NID_NTC_Installe_4 = 6NID_NTC_Installe_5 = 10NID_NTC_Installe_6 = 22NID_NTC_Installe_7 = 0
 
             /*
             Test Step 1
@@ -74,8 +75,8 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.DriverID;
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
             EVC30_MMIRequestEnable.Send();
+            DmiActions.Set_Driver_ID(this, "1234");
 
-            // Call generic Check Results Method
             DmiExpectedResults.Driver_ID_window_displayed_in_SB_mode(this);
 
             /*
@@ -84,18 +85,36 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The level selection window displays 8 folllowing STMs accroding to configuration settingATBTPWS/AWSTBL1+PZB/LZBPZBLZBATC2ASFA
             Test Step Comment: MMI_gen 1077;
             */
-            DmiActions.ShowInstruction(this, "Enter Driver ID.");
+            DmiActions.ShowInstruction(this, "Enter Driver ID and confirm.");
+
+
+            EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Disabled;
+
+            EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new Variables.MMI_Q_LEVEL_NTC_ID[] 
+            { Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level, Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level};
+
+            EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new Variables.MMI_M_CURRENT_LEVEL[] 
+            { Variables.MMI_M_CURRENT_LEVEL.NotLastUsedLevel, Variables.MMI_M_CURRENT_LEVEL.NotLastUsedLevel };
+
+            EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = new Variables.MMI_M_LEVEL_FLAG[] 
+            { Variables.MMI_M_LEVEL_FLAG.MarkedLevel, Variables.MMI_M_LEVEL_FLAG.MarkedLevel };
+
+            EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = new Variables.MMI_M_INHIBITED_LEVEL[] 
+            { Variables.MMI_M_INHIBITED_LEVEL.NotInhibited, Variables.MMI_M_INHIBITED_LEVEL.NotInhibited };
+
+            EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = new Variables.MMI_M_INHIBIT_ENABLE[] 
+            { Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting, Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting };
+
+            EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new Variables.MMI_M_LEVEL_NTC_ID[] 
+            { Variables.MMI_M_LEVEL_NTC_ID.AWS_TPWS, Variables.MMI_M_LEVEL_NTC_ID.CBTC };
+            EVC20_MMISelectLevel.Send();
 
             // The STMs will probably differ from these: check and alter!
+            TraceInfo("The STMs displayed depend on the configuration - this test should not be automatically failed.");
+
             WaitForVerification("Check that the following STMs are displayed:" + Environment.NewLine + Environment.NewLine +
-                                "1. ATB" + Environment.NewLine +
-                                "2. TPWS/AWS" + Environment.NewLine +
-                                "3. TLB1+S" + Environment.NewLine +
-                                "4. PZB/LZB" + Environment.NewLine +
-                                "5. PZB" + Environment.NewLine +
-                                "6. LZB" + Environment.NewLine +
-                                "7. ATC2" + Environment.NewLine +
-                                "8. ASFA");
+                                "1. TPWS/AWS" + Environment.NewLine +
+                                "2. CBTC");
 
             /*
             Test Step 3

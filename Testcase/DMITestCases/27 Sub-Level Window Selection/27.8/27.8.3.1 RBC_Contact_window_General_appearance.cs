@@ -64,6 +64,8 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,DMI does not display RBC Contact window
             Test Step Comment: (1) MMI_gen 9446 (partly: NEGATIVE, inactive);
             */
+            // Make sure that cabin is not active
+            DmiActions.Deactivate_Cabin(this);
             XML_22_8_3_1(msgType.typea);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -81,14 +83,18 @@ namespace Testcase.DMITestCases
 
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
-            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = (EVC30_MMIRequestEnable.EnabledRequests.EnterRBCData |
-                                                                EVC30_MMIRequestEnable.EnabledRequests.RadioNetworkID) &
-                                                               ~(EVC30_MMIRequestEnable.EnabledRequests.ContactLastRBC |
-                                                                 EVC30_MMIRequestEnable.EnabledRequests.UseShortNumber);
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.EnterRBCData |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.RadioNetworkID;
             EVC30_MMIRequestEnable.Send();
             EVC22_MMICurrentRBC.MMI_NID_WINDOW = 5;
             EVC22_MMICurrentRBC.Send();
 
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 716;
+            EVC8_MMIDriverMessage.Send();
+            
             WaitForVerification("Check the following (* indicates sub-areas drawn as one area):" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the RBC Contact window in areas D, F and G, with 3 layers, with the title ‘RBC Contact’." + Environment.NewLine +
                                 "2. The hour-glass, symbol ST05, is displayed vertically-centred in the window title, moving to the right each second and " + Environment.NewLine +
@@ -108,6 +114,10 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The sound ‘Click’ is played once.The ‘Enter RBC data’ button is shown as pressed state, the border of button is removed
             Test Step Comment: (1) MMI_gen 8516 (partly: MMI_gen 4557 (partly: button ‘Enter RBC data’), MMI_gen 4381 (partly: the sound for Up-Type button)); MMI_gen 9512; MMI_gen 968; (2) MMI_gen 8516 (partly: MMI_gen 4557 (partly: button ‘Enter RBC data’), MMI_gen 4381 (partly: change to state ‘Pressed’ as long as remain actuated)); MMI_gen 4375;
             */
+            // Remove hourglass
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
+            EVC8_MMIDriverMessage.Send();
+
             DmiActions.ShowInstruction(this, "Press and hold the ‘Enter RBC data’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -174,7 +184,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press the ‘Close’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI does not display the RBC contact window");
+                                "1. DMI displays the RBC contact window");
 
             /*
             Test Step 8
@@ -253,6 +263,8 @@ namespace Testcase.DMITestCases
             EVC112_MMINewRbcData.CheckPacketContent();
 
             EVC22_MMICurrentRBC.MMI_NID_WINDOW = 9;
+            EVC22_MMICurrentRBC.NetworkCaptions = new List<string> { "GSMR-A", "GSMR-B" };
+            EVC22_MMICurrentRBC.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
             EVC22_MMICurrentRBC.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
