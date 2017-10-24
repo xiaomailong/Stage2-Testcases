@@ -566,12 +566,12 @@ namespace Testcase.DMITestCases
                     EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new Variables.MMI_M_LEVEL_NTC_ID[] { Variables.MMI_M_LEVEL_NTC_ID.L3 };
                     break;
                 case msgType.typeb:
-                    EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = null;
-                    EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = null;
-                    EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = null;
-                    EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = null;
-                    EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = null;
-                    EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = null;
+                    EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new MMI_Q_LEVEL_NTC_ID[0];
+                    EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new MMI_M_CURRENT_LEVEL[0];
+                    EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = new MMI_M_LEVEL_FLAG[0];
+                    EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = new MMI_M_INHIBITED_LEVEL[0];
+                    EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = new MMI_M_INHIBIT_ENABLE[0];
+                    EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new MMI_M_LEVEL_NTC_ID[0];
                     break;
             }
             EVC20_MMISelectLevel.Send();
