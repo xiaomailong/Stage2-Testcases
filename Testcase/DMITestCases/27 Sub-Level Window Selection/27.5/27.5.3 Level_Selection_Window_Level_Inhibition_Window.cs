@@ -38,12 +38,15 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 22_5_3_a.xml, 22_5_3_b.xml
     /// </summary>
-    public class TC_22_5_3_Level_Windoww : TestcaseBase
+    public class TC_22_5_3_Level_Window : TestcaseBase
     {
         public override void PreExecution()
         {
             // Pre-conditions from TestSpec:
-            // Use the ATP config editor to set the following parameters as follows,M_DefaultLevels = 15M_InstalledLevels = 15InhibitEnable_1 = 16InhibitEnable_2 = 16InhibitEnable_3 = 16InhibitEnable_4 = 16InhibitEnable_5 = 16Test system is power on.Cabin is activated.
+            // Use the ATP config editor to set the following parameters as follows,
+            // M_DefaultLevels = 15M_InstalledLevels = 15InhibitEnable_1 = 16InhibitEnable_2 = 16InhibitEnable_3 = 16Inhibit
+            // Enable_4 = 16InhibitEnable_5 = 16
+            // Test system is power on.Cabin is activated.
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
@@ -65,7 +68,9 @@ namespace Testcase.DMITestCases
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint
-            
+            TraceInfo("This test case requires an ATP configuration change - " +
+                      "See Precondition requirements. If this is not done manually, the test may fail!");
+
             /*
             Test Step 1
             Action: Enter Driver ID and perform brake test
@@ -73,25 +78,27 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 1784 (partly: NEGATIVE, condition is not fulfilled);(2) MMI_gen 1784 (partly: NEGATIVE, 1st bullet);
             */
             // Call generic Action Method
+            DmiActions.Set_Driver_ID(this, "1234");
+
             DmiActions.ShowInstruction(this, "Enter Driver ID");
             
             EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Disabled;
             EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new Variables.MMI_Q_LEVEL_NTC_ID[] 
                                                           { Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level };
             EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new Variables.MMI_M_CURRENT_LEVEL[]
-                                                           { Variables.MMI_M_CURRENT_LEVEL.LastUsedLevel };
+                                                           { Variables.MMI_M_CURRENT_LEVEL.NotLastUsedLevel };
             EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = new Variables.MMI_M_LEVEL_FLAG[]
                                                         { Variables.MMI_M_LEVEL_FLAG.MarkedLevel };
             EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = new Variables.MMI_M_INHIBITED_LEVEL[]
                                                              { Variables.MMI_M_INHIBITED_LEVEL.Inhibited };
             EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = new Variables.MMI_M_INHIBIT_ENABLE[]
-                                                            { Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting };
+                                                            { Variables.MMI_M_INHIBIT_ENABLE.NotAllowedForInhibiting };
             EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new Variables.MMI_M_LEVEL_NTC_ID[]
                                                           {  Variables.MMI_M_LEVEL_NTC_ID.L0 };
             EVC20_MMISelectLevel.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the ‘L inh’ button disabled in sub-area G3.");
+                                "1. DMI displays the ‘L inh’ button disabled in sub-area G13.");
 
             /*
             Test Step 2
@@ -100,7 +107,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 1784 (partly: enabled);(2) MMI_gen 2217 (partly: Level window, grey); MMI_gen 1979 (partly: table 54, grey);(3) MMI_gen 1784 (partly: 1st bullet);                  MMI_gen 2216 (partly: EVC-20);                                 MMI_gen 2219 (partly: EVC-20);                                   MMI_gen 2218 (partly: EVC-20); MMI_gen 2217 (partly: MMI_gen 2216);
             */
             DmiActions.ShowInstruction(this, "Power off the system. Use the ATP config editor to set the value of the following parameters:" + Environment.NewLine +
-                                             "InhibitEnable_1 = 1InhibitEnable_2 = 2InhibitEnable_3 = 3InhibitEnable_4 = 4" + Environment.NewLine +
+                                             "InhibitEnable_1 = 1 InhibitEnable_2 = 2 InhibitEnable_3 = 3 InhibitEnable_4 = 4" + Environment.NewLine +
                                              "Power on the system. Enter the Driver ID");
 
             EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = MMI_Q_CLOSE_ENABLE.Disabled;
@@ -139,7 +146,7 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Level window" + Environment.NewLine +
-                                "2. The ‘L inh’ button is displayed disabled in sub-area G3." + Environment.NewLine +
+                                "2. The ‘L inh’ button is displayed enabled in sub-area G13." + Environment.NewLine +
                                 "3. Each button in the keypad has grey text");
 
             /*
@@ -330,7 +337,7 @@ namespace Testcase.DMITestCases
             EVC121_MMINewLevel.LevelSelected = MMI_M_LEVEL_NTC_ID.L0;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI closed the Inhibition level window and opens the Main window." + Environment.NewLine +
+                                "1. DMI closes the Inhibition level window and opens the Main window." + Environment.NewLine +
                                 "2. The ‘Level 2’ button is displayed with orange text");
 
             /*
