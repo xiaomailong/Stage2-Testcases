@@ -97,7 +97,7 @@ namespace Testcase.DMITestCases
 
             // Need to close RBC Contact window
             EVC22_MMICurrentRBC.MMI_NID_WINDOW = 9;
-            EVC22_MMICurrentRBC.NetworkCaptions = null;
+            EVC22_MMICurrentRBC.NetworkCaptions.Clear();
             EVC22_MMICurrentRBC.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
