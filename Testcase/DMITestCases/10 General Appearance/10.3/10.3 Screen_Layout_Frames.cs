@@ -73,8 +73,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Start_ATP();
-
             DmiActions.Activate_Cabin_1(this);
+            DmiActions.Finished_SoM_Default_Window(pool);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Default window.");
