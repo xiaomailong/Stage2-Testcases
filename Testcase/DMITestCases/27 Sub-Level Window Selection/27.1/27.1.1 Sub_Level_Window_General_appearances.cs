@@ -456,7 +456,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 2957;
             */
             // Repeat Step 30
-            DmiActions.ShowInstruction(this, @"Select and confirm ‘Francais’ language");
+            DmiActions.ShowInstruction(this, @"Select and confirm a language other than German");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window with texts displayed in French.");
