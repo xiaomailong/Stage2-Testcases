@@ -101,7 +101,7 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void LS_Mode_Ack_Requested(SignalPool pool)
         {
-            Driver_symbol_displayed(pool, "Acknowledgement for Limited Supervion mode", "MO22", "C1", true);
+            Driver_symbol_displayed(pool, "Acknowledgement for Limited Supervision mode", "MO22", "C1", true);
         }
 
         /// <summary>
