@@ -15,6 +15,7 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
 using Testcase.Telegrams.DMItoEVC;
 using Testcase.Telegrams.EVCtoDMI;
+using static Testcase.Telegrams.EVCtoDMI.Variables;
 
 
 namespace Testcase.DMITestCases
@@ -34,7 +35,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 22_7_1_a.xml, 22_7_1_b.xml
     /// </summary>
-    public class TC_ID_27_7_1_Sub_Level_Window : TestcaseBase
+    public class TC_ID_22_7_1_Sub_Level_Window : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -73,15 +74,24 @@ namespace Testcase.DMITestCases
 
             EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.StartTrainDataView;
 
-            //?? EVC13.MMI_MRequest = (MMI_M_DATA_ENABLE.TrainCategory |
-            //                         MMI_M_DATA_ENABLE.TrainLength |
-            //                          MMI_M_DATA_ENABLE.BrakePercentage |
-            //                         MMI_M_DATA_ENABLE.MaxTrainSpeed |
-            //                         MMI_M_DATA_ENABLE.AxleLoadCategory |
-            //                         MMI_M_DATA_ENABLE.AirTightness |
-            //                         MMI_M_DATA_ENABLE.LoadGauge) &
-            //                         ~MMI_M_DATA_ENABLE.TrainSetID;
-            //   EVC13.Send();
+            EVC13_MMIDataView.MMI_M_DATA_ENABLE = MMI_M_DATA_ENABLE.TrainCategory |
+                                                  MMI_M_DATA_ENABLE.TrainLength |
+                                                  MMI_M_DATA_ENABLE.BrakePercentage |
+                                                  MMI_M_DATA_ENABLE.MaxTrainSpeed |
+                                                  MMI_M_DATA_ENABLE.AxleLoadCategory |
+                                                  MMI_M_DATA_ENABLE.Airtightness |
+                                                  MMI_M_DATA_ENABLE.LoadingGauge;
+            //                       &  ~MMI_M_DATA_ENABLE.TrainSetID;
+            EVC13_MMIDataView.MMI_X_DRIVER_ID = "1";
+            EVC13_MMIDataView.MMI_NID_OPERATION = 0;
+            EVC13_MMIDataView.MMI_NID_KEY_TRAIN_CAT = Variables.MMI_NID_KEY.PASS1;
+            EVC13_MMIDataView.MMI_L_TRAIN = 100;
+            EVC13_MMIDataView.MMI_M_BRAKE_PERC = 70;
+            EVC13_MMIDataView.MMI_V_MAXTRAIN = 160;
+            EVC13_MMIDataView.MMI_NID_KEY_AXLE_LOAD = Variables.MMI_NID_KEY.CATA;
+            EVC13_MMIDataView.MMI_M_AIRTIGHT = 0;
+            EVC13_MMIDataView.MMI_NID_KEY_LOAD_GAUGE = Variables.MMI_NID_KEY.OutofGC;
+            EVC13_MMIDataView.Send();
 
             // The window title is displayed with text ‘Data view(1 / 2)’
             WaitForVerification("Check the following (* indicates sub-areas drawn as one area):" + Environment.NewLine + Environment.NewLine +
