@@ -34,7 +34,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 22_7_2_a.xml, 22_7_2_b.xml
     /// </summary>
-    public class TC_ID_22_7_2_Sub_Level_Window : TestcaseBase
+    public class TC_ID_27_7_2_Sub_Level_Window : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -61,9 +61,7 @@ namespace Testcase.DMITestCases
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint
-            TraceInfo("This test case requires an ATP configuration change - " +
-                      "See Precondition requirements. If this is not done manually, the test may fail!");
-
+            
             /*
             Test Step 1
             Action: Press ‘Data view’ button
@@ -77,24 +75,18 @@ namespace Testcase.DMITestCases
             
             EVC101_MMIDriverRequest.CheckMRequestReleased = Telegrams.EVCtoDMI.Variables.MMI_M_REQUEST.StartTrainDataView;
 
-            EVC13_MMIDataView.MMI_M_DATA_ENABLE = MMI_M_DATA_ENABLE.TrainSetID |
-                                                  MMI_M_DATA_ENABLE.TrainCategory |
-                                                  MMI_M_DATA_ENABLE.TrainLength |
-                                                  MMI_M_DATA_ENABLE.BrakePercentage |
-                                                  MMI_M_DATA_ENABLE.MaxTrainSpeed |
-                                                  MMI_M_DATA_ENABLE.AxleLoadCategory |
-                                                  MMI_M_DATA_ENABLE.AirTightness |
-                                                  MMI_M_DATA_ENABLE.LoadGauge;
-            EVC13_MMIDataView.MMI_NID_OPERATION = 0;
-            EVC13_MMIDataView.MMI_NID_KEY_TRAIN_CAT = Variables.MMI_NID_KEY.PASS1;
-            EVC13_MMIDataView.MMI_L_TRAIN = 100;
-            EVC13_MMIDataView.MMI_M_BRAKE_PERC = 70;
-            EVC13_MMIDataView.MMI_V_MAXTRAIN = 160;
-            EVC13_MMIDataView.MMI_NID_KEY_AXLE_LOAD = Variables.MMI_NID_KEY.CATA;
-            EVC13_MMIDataView.MMI_M_AIRTIGHT = 0;
-            EVC13_MMIDataView.MMI_NID_KEY_LOAD_GAUGE = Variables.MMI_NID_KEY.OutofGC;
-            EVC13_MMIDataView.Send();
-            
+            //?? EVC13.MMI_MRequest = MMI_M_DATA_ENABLE.TrainSetID |
+            //                        MMI_M_DATA_ENABLE.TrainCategory |
+            //                        MMI_M_DATA_ENABLE.TrainLength |
+            //                        MMI_M_DATA_ENABLE.BrakePercentage |
+            //                        MMI_M_DATA_ENABLE.MaxTrainSpeed |
+            //                        MMI_M_DATA_ENABLE.AxleLoadCategory |
+            //                        MMI_M_DATA_ENABLE.AirTightness |
+            //                        MMI_M_DATA_ENABLE.LoadGauge;
+            //   EVC13.Send();
+
+            // Spec says display Train Running number which is in EVC6...
+            //
             WaitForVerification("Check the following (* indicates sub-areas drawn as one area):" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Data view window." + Environment.NewLine +
                                 "2. The Data view window covers (Main) areas D, F and G." + Environment.NewLine +
@@ -213,7 +205,9 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following (scrolling the window to see both pages):" + Environment.NewLine + Environment.NewLine +
                                 "1. On page 1, DMI displays information on Driver ID and Train running number with blank values." + Environment.NewLine +
-                                "2. On page 2, DMI displays information on Radio Network ID, RBC ID and RBC Phone Number with blank values.");
+                                "2. On page 2, DMI displays information on Radio Network ID, RBC ID and Train running number with blank values.");
+
+            /*
 
             /*
             Test Step 8
@@ -259,7 +253,7 @@ namespace Testcase.DMITestCases
                     EVC13_MMIDataView.MMI_V_MAXTRAIN = 601;
                     EVC13_MMIDataView.MMI_M_BRAKE_PERC = 9;
                     EVC13_MMIDataView.MMI_NID_KEY_AXLE_LOAD = Variables.MMI_NID_KEY.FG4;          // 20
-                    EVC13_MMIDataView.MMI_NID_RADIO = 0xffffffffffffffff;          // 4294967295 (hi and lo)
+                    EVC13_MMIDataView.MMI_NID_RADIO = 0xffffffffffffffff;          // 4294967295 (hi and lo)z`
                     EVC13_MMIDataView.MMI_M_AIRTIGHT = 3;
                     EVC13_MMIDataView.MMI_NID_KEY_LOAD_GAUGE = Variables.MMI_NID_KEY.CATE5;      // 33
                     EVC13_MMIDataView.Trainset_Caption = "\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0";
