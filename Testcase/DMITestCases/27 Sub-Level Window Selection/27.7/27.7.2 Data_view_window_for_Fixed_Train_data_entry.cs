@@ -35,7 +35,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 22_7_2_a.xml, 22_7_2_b.xml
     /// </summary>
-    public class TC_ID_27_7_2_Sub_Level_Window : TestcaseBase
+    public class TC_ID_22_7_2_Sub_Level_Window : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -218,9 +218,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following (scrolling the window to see both pages):" + Environment.NewLine + Environment.NewLine +
                                 "1. On page 1, DMI displays information on Driver ID and Train running number with blank values." + Environment.NewLine +
                                 "2. On page 2, DMI displays information on Radio Network ID, RBC ID and Train running number with blank values.");
-
-            /*
-
+            
             /*
             Test Step 8
             Action: Use the test script file 22_7_2_b.xml to send EVC-13 with,MMI_X_DRIVER_ID = 0x31323334363738393132333436373839MMI_M_DATA_ENABLE = 255MMI_N_CAPTION_NETWORK = 16MMI_X_CAPTION_TRAINSET[0] = 65MMI_X_CAPTION_TRAINSET[1] = 66MMI_X_CAPTION_TRAINSET[2] = 67MMI_X_CAPTION_TRAINSET[3] = 68MMI_X_CAPTION_TRAINSET[4] = 69MMI_X_CAPTION_TRAINSET[5] = 70MMI_X_CAPTION_TRAINSET[6] = 71MMI_X_CAPTION_TRAINSET[7] = 72MMI_X_CAPTION_TRAINSET[8] = 73MMI_X_CAPTION_TRAINSET[9] = 74MMI_X_CAPTION_TRAINSET[10] = 75MMI_X_CAPTION_TRAINSET[11] = 76MMI_X_CAPTION_TRAINSET[12] =77MMI_X_CAPTION_TRAINSET[13] = 78MMI_X_CAPTION_TRAINSET[14] = 79MMI_X_CAPTION_TRAINSET[15] = 80MMI_NID_RADIO = 0x9999999999999999
