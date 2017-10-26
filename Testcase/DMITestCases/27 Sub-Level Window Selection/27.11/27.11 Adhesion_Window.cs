@@ -36,7 +36,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 22_11.tdg
     /// </summary>
-    public class Adhesion_Window : TestcaseBase
+    public class TC_ID_22_11_Adhesion_Window : TestcaseBase
     {
         public override void PreExecution()
         {

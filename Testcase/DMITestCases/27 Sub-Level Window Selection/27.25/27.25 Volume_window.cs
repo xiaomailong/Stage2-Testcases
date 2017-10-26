@@ -33,7 +33,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// N/A
     /// </summary>
-    public class TC_ID_27_25_Volume_window : TestcaseBase
+    public class TC_ID_22_25_Volume_window : TestcaseBase
     {
         public override void PreExecution()
         {

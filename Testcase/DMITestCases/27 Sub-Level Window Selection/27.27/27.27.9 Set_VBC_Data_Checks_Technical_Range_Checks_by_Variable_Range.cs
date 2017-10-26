@@ -34,7 +34,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// N/A
     /// </summary>
-    public class Set_VBC_Data_Checks_Technical_Range_Checks_by_Variable_Range : TestcaseBase
+    public class TC_ID_22_27_9_Set_VBC_Data_Checks_Technical_Range_Checks_by_Variable_Range : TestcaseBase
     {
         public override void PreExecution()
         {

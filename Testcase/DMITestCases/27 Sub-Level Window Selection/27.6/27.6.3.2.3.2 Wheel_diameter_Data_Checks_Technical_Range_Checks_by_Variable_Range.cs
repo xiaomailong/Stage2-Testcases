@@ -39,7 +39,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 22_6_3_2_3_2.xml
     /// </summary>
-    public class TC_ID_27_6_2_3_2_Wheel_diameter : TestcaseBase
+    public class TC_ID_22_6_2_3_2_Wheel_diameter : TestcaseBase
     {
         public override void PreExecution()
         {

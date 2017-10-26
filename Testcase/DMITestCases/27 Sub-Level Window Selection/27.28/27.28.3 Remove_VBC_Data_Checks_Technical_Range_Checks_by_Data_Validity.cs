@@ -35,7 +35,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 22_28_3_a.xml
     /// </summary>
-    public class Remove_VBC_Data_Checks_Technical_Range_Checks_by_Data_Validity : TestcaseBase
+    public class TC_ID_22_28_3_Remove_VBC_Data_Checks_Technical_Range_Checks_by_Data_Validity : TestcaseBase
     {
         public override void PreExecution()
         {

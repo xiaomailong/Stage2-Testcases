@@ -33,7 +33,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// N/A
     /// </summary>
-    public class TC_ID_27_6_6_1_Radar_validation_window : TestcaseBase
+    public class TC_ID_22_6_6_1_Radar_validation_window : TestcaseBase
     {
         public override void PreExecution()
         {
