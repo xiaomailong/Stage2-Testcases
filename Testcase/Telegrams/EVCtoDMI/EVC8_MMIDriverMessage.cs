@@ -16,21 +16,22 @@ namespace Testcase.Telegrams.EVCtoDMI
         private static SignalPool _pool;
         private static MMI_Q_TEXT_CLASS _mmiQTextClass;
         private static ushort _mmiQTextCriteria;
+        private const string baseString = "ETCS1_DriverMessage_EVC08DriverMessageSub";
 
         /// <summary>
         /// Initialise dynamic EVC-8 MMI Driver Message telegram.
         /// </summary>
-        /// <param name="pool"></param>
+        /// <param name="pool">SignalPool</param>
         public static void Initialise(SignalPool pool)
         {
             _pool = pool;
 
             // Set as dynamic
-            _pool.SITR.SMDCtrl.ETCS1.DriverMessage.Value = 0x8;
+            _pool.SITR.SMDCtrl.ETCS1.DriverMessage.Value = 0x0008;
 
             // Set default values
             _pool.SITR.ETCS1.DriverMessage.MmiMPacket.Value = 8; // Packet ID
-            _pool.SITR.ETCS1.DriverMessage.MmiNText.Value = 0x0; // Number of customs text characters. i.e. 0
+            _pool.SITR.ETCS1.DriverMessage.MmiNText.Value = 0; // Number of custom text characters. i.e. 0
 
             // TODO this needs to change when plain text string is implemented
             _pool.SITR.ETCS1.DriverMessage.MmiLPacket.Value = 80; // Packet length
@@ -47,7 +48,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static void Send()
         {
-            _pool.SITR.SMDCtrl.ETCS1.DriverMessage.Value = 0x9;
+            _pool.SITR.SMDCtrl.ETCS1.DriverMessage.Value = 0x0009;
         }
 
         /// <summary>
@@ -271,7 +272,7 @@ namespace Testcase.Telegrams.EVCtoDMI
 
                 // If PlainTextMessage has too many characters
                 if (charArray.Length > 256)
-                    throw new ArgumentOutOfRangeException("PlainTextMessage", "Too many characters in the message!");
+                    throw new ArgumentOutOfRangeException("Too many characters in the message!");
 
                 // Number of characters in PlainTextMessage
                 _pool.SITR.ETCS1.DriverMessage.MmiNText.Value = (ushort) charArray.Length;
@@ -280,11 +281,11 @@ namespace Testcase.Telegrams.EVCtoDMI
                 for (int i = 0; i < charArray.Length; i++)
                 {
                     if (i < 10)
-                        _pool.SITR.Client.Write($"ETCS1_DriverMessage_EVC08DriverMessageSub00{i}_MmiXText", charArray[i]);
+                        _pool.SITR.Client.Write($"{baseString}00{i}_MmiXText", charArray[i]);
                     else if (i < 100)
-                        _pool.SITR.Client.Write($"ETCS1_DriverMessage_EVC08DriverMessageSub0{i}_MmiXText", charArray[i]);
+                        _pool.SITR.Client.Write($"{baseString}0{i}_MmiXText", charArray[i]);
                     else
-                        _pool.SITR.Client.Write($"ETCS1_DriverMessage_EVC08DriverMessageSub{i}_MmiXText", charArray[i]);
+                        _pool.SITR.Client.Write($"{baseString}{i}_MmiXText", charArray[i]);
                 }
             }
         }
