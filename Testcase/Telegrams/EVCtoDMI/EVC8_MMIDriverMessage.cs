@@ -16,7 +16,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         private static SignalPool _pool;
         private static MMI_Q_TEXT_CLASS _mmiQTextClass;
         private static ushort _mmiQTextCriteria;
-        private static string baseString = "ETCS1_DriverMessage_EVC08DriverMessageSub";
+        private const string baseString = "ETCS1_DriverMessage_EVC08DriverMessageSub";
 
         /// <summary>
         /// Initialise dynamic EVC-8 MMI Driver Message telegram.
