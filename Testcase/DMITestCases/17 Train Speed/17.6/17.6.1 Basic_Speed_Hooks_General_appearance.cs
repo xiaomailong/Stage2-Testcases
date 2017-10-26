@@ -38,7 +38,8 @@ namespace Testcase.DMITestCases
         public override void PreExecution()
         {
             // Pre-conditions from TestSpec:
-            // The DMI default configuration has TOGGLE_FUNCTION = 0 (‘ON’).System is power on.Cabin is activated.SoM is performed in SR mode, Level 1.
+            // The DMI default configuration has TOGGLE_FUNCTION = 0 (‘ON’).
+            // System is power on.Cabin is activated.SoM is performed in SR mode, Level 1.
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
@@ -49,8 +50,6 @@ namespace Testcase.DMITestCases
         {
             // Post-conditions from TestSpec
             // DMI displays in SH mode, level 1.
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in SH mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -59,6 +58,8 @@ namespace Testcase.DMITestCases
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint
+            TraceInfo("This test case requires an ATP configuration change - " +
+                      "See Precondition requirements. If this is not done manually, the test may fail!");
 
             /*
             Test Step 1
