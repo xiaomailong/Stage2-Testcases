@@ -23,6 +23,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         private static SignalPool _pool;
         private static uint _nidC = NidC;
         private static uint _nidRbc;
+        private const string baseString = "ETCS1_CurrentRbcData_EVC22CurrentRbcDataSub";
 
         /// <summary>
         /// Initialise EVC-22 MMI Current RBC Data telegram
@@ -64,7 +65,7 @@ namespace Testcase.Telegrams.EVCtoDMI
 
                 ushort numberNetworkCaptionChars = (ushort)caption.Length;
 
-                var varnamestring = $"ETCS1_CurrentRbcData_EVC22CurrentRbcDataSub1{k}_";
+                string varnamestring = $"{baseString}1{k}_";
 
                 // Limit number of caption characters to 16
                 if (caption.Length > 16)
@@ -79,30 +80,22 @@ namespace Testcase.Telegrams.EVCtoDMI
                 for (int l = 0; l < numberNetworkCaptionChars; l++)
                 {
                     // Network caption text character
-                    if (l < 10)
-                    {
-                        _pool.SITR.Client.Write(
-                            $"{varnamestring}EVC22CurrentRbcDataSub110{l}_MmiXCaptionNetwork", caption[l]);
-                    }
-                    else
-                    {
-                        _pool.SITR.Client.Write(
-                            $"{varnamestring}EVC22CurrentRbcDataSub11{l}_MmiXCaptionNetwork", caption[l]);
-                    }
-
+                    _pool.SITR.Client.Write(
+                        $"{varnamestring}EVC22CurrentRbcDataSub11{l.ToString("00")}_MmiXCaptionNetwork", caption[l]);
+                    
                     totalSizeCounter += 8;
                 }
             }
 
             _pool.SITR.ETCS1.CurrentRbcData.MmiNDataElements.Value = (ushort)DataElements.Count; // Number of data elements to enter
 
-            totalSizeCounter = PopulateDataElements("ETCS1_CurrentRbcData_EVC22CurrentRbcDataSub2", totalSizeCounter, DataElements, _pool);
+            totalSizeCounter = PopulateDataElements($"{baseString}2", totalSizeCounter, DataElements, _pool);
 
             // Set packet length
             _pool.SITR.ETCS1.CurrentRbcData.MmiLPacket.Value = totalSizeCounter;
 
             // Send dynamic packet
-            _pool.SITR.SMDCtrl.ETCS1.CurrentRbcData.Value = 0x9;
+            _pool.SITR.SMDCtrl.ETCS1.CurrentRbcData.Value = 0x0009;
         }
 
         /// <summary>
