@@ -189,7 +189,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Release_Speed_Monitoring;
-            EVC1_MMIDynamic.MMI_V_RELEASE = 5;
+            EVC1_MMIDynamic.MMI_V_RELEASE_KMH = 5;
             
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer yellow?");
@@ -203,6 +203,7 @@ namespace Testcase.DMITestCases
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Indication_Status_Release_Speed_Monitoring;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 6;
             EVC1_MMIDynamic.MMI_V_INTERVENTION_KMH = 20;
+            EVC1_MMIDynamic.MMI_V_RELEASE_KMH = 6;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer yellow?");
