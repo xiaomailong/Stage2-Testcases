@@ -31,7 +31,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// N/A
     /// </summary>
-    public class Remove_VBC_Validation_Window : TestcaseBase
+    public class TC_ID_22_28_2_Remove_VBC_Validation_Window : TestcaseBase
     {
         public override void PreExecution()
         {

@@ -34,7 +34,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// N/A
     /// </summary>
-    public class Switchable_train_data_entry : TestcaseBase
+    public class TC_ID_22_23_Switchable_train_data_entry : TestcaseBase
     {
         public override void PreExecution()
         {

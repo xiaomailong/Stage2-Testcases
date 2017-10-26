@@ -35,7 +35,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 22_29_3_a.xml, 22_29_3_b.xml, 22_29_3_c.xml 
     /// </summary>
-    public class Train_data_Flexible_Data_Checks_Technical_Range_Checks_by_Data_Validity : TestcaseBase
+    public class TC_ID_22_29_3_Train_data_Flexible_Data_Checks_Technical_Range_Checks_by_Data_Validity : TestcaseBase
     {
         public override void PreExecution()
         {

@@ -33,7 +33,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 22_13_1_a.xml, 22_13_1_b.xml, 22_13_1_c.xml, 22_13_1_d.xml
     /// </summary>
-    public class Set_Clock_function_General_appearance : TestcaseBase
+    public class TC_ID_22_13_1_Set_Clock_function_General_appearance : TestcaseBase
     {
         public override void PreExecution()
         {
