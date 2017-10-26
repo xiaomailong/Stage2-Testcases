@@ -165,9 +165,6 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   The Circular Speed Gauge is removed from sub-area B2.Note: The ciruclar speed guage is re-appear when DMI received packet EVC-7 from ETCS onboard
             Test Step Comment: (1) MMI_gen 977 (partly: OBU_TR_M_MODE);
             */
-            // CSG needs to be displayed?? 
-            //DmiActions.Complete_SoM_L1_FS(this);
-
             XML_12_5_4(msgType.typef);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -226,22 +223,26 @@ namespace Testcase.DMITestCases
 
                     break;
                 case msgType.typeb:
-                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring;   // 0
+                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Warning_Status_Ceiling_Speed_Monitoring;   // 4
+                    EVC1_MMIDynamic.MMI_V_TARGET = 11112;           // invalid
                     EVC1_MMIDynamic.MMI_V_TRAIN = 0;
 
                     break;
                 case msgType.typec:
                     EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring;   // 0
+                    EVC1_MMIDynamic.MMI_V_PERMITTED = 11112;        //invalid
                     EVC1_MMIDynamic.MMI_V_TRAIN = 0;
 
                     break;
                 case msgType.typed:
                     EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring;   // 0
+                    EVC1_MMIDynamic.MMI_V_INTERVENTION = 11112;     // invalid
                     EVC1_MMIDynamic.MMI_V_TRAIN = 0;
 
                     break;
                 case msgType.typee:
                     EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring;   // 0
+                    EVC1_MMIDynamic.MMI_V_RELEASE = 11112;      // invalid
                     EVC1_MMIDynamic.MMI_V_TRAIN = 0;
 
                     break;
@@ -251,8 +252,7 @@ namespace Testcase.DMITestCases
                     EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_RadioStatus = 0;
                     EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_STM_HS_ENABLED = 0;
                     EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_STM_DA_ENABLED = 0;
-                    EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_BrakeTest_Status =
-                    EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_BRAKETEST_STATUS.BrakeTestNotInProgress;
+                    EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_BrakeTest_Status = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_BRAKETEST_STATUS.BrakeTestNotInProgress;
                     EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
                     EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Invalid;
                     EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_ADHESION = 100; // "Spare"
