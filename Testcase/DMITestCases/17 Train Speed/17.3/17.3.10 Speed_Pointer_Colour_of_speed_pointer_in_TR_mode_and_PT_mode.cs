@@ -80,15 +80,14 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 6299 (partly: OBU_TR_M_MODE = 7);(2) MMI_gen 6299 (partly: colour of speed pointer, TR mode);
             */
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Trip;
-            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 1;
 
             EVC1_MMIDynamic.MMI_O_BRAKETARGET = 0;
             // set target distance to 0 to simulate passing EOA??
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                  "1. DMI displays in TR mode, level 1." + Environment.NewLine +
-                                 "2. Train speed drops to 0" + Environment.NewLine + 
-                                 "3. Is the speed pointer red?");
+                                 "2. Is the speed pointer red?");
 
             /*
             Test Step 3
@@ -103,8 +102,7 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                  "1. DMI displays in PT mode, level 1." + Environment.NewLine +
-                                 "2. Train speed drops to 0" + Environment.NewLine +
-                                 "3. Is the speed pointer grey?");
+                                 "2. Is the speed pointer grey?");
 
             /*
             Test Step 4
