@@ -52,6 +52,10 @@ namespace Testcase.Telegrams.EVCtoDMI
 
         /// <summary>
         /// The class of the text/symbol
+        /// 
+        /// Values:
+        /// 0 = "Auxiliary information"
+        /// 1 = "Important information"
         /// </summary>
         public static MMI_Q_TEXT_CLASS MMI_Q_TEXT_CLASS
         {
@@ -286,6 +290,9 @@ namespace Testcase.Telegrams.EVCtoDMI
         }
     }
 
+    /// <summary>
+    /// MMI_Q_TEX_CLASS enum
+    /// </summary>
     public enum MMI_Q_TEXT_CLASS : byte
     {
         AuxiliaryInformation = 0,
