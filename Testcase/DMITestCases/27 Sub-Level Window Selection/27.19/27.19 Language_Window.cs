@@ -33,7 +33,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// N/A
     /// </summary>
-    public class Language_Window : TestcaseBase
+    public class TC_ID_22_19_Language_Window : TestcaseBase
     {
         public override void PreExecution()
         {

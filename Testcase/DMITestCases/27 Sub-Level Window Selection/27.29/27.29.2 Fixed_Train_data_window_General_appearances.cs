@@ -36,7 +36,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 22_29_2_a.xml, 22_29_2_b.xml
     /// </summary>
-    public class Fixed_Train_data_window_General_appearances : TestcaseBase
+    public class TC_ID_22_29_2_Fixed_Train_data_window_General_appearances : TestcaseBase
     {
         public override void PreExecution()
         {

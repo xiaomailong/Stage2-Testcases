@@ -35,7 +35,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 22_10.tdg
     /// </summary>
-    public class Special_window : TestcaseBase
+    public class TC_ID_22_10_Special_window : TestcaseBase
     {
         public override void PreExecution()
         {

@@ -35,7 +35,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// N/A
     /// </summary>
-    public class Subcategory_National : TestcaseBase
+    public class TC_22_12_Subcategory_National : TestcaseBase
     {
         public override void PreExecution()
         {

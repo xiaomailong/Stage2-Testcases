@@ -34,7 +34,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 22_26_a.xml, 22_26_b.xml
     /// </summary>
-    public class System_info_window : TestcaseBase
+    public class TC_ID_22_26_System_info_window : TestcaseBase
     {
         public override void PreExecution()
         {
