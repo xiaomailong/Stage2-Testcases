@@ -85,6 +85,7 @@ namespace Testcase.DMITestCases
                                 "3. The messages in sub-areas E5-E9 move down by one line");
             
             DmiActions.ShowInstruction(this, @"Press and hold the ‘Down’ button for at least 2 seconds.");
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The ‘Down’ button is displayed pressed and immediately changed to enabled repeatedly." + Environment.NewLine +
                                 "2. The text message in sub-areas E5-E9 move down by one line each time the ‘Down’ button becomes enabled again." + Environment.NewLine +
@@ -98,6 +99,8 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Press and hold the ‘Down’ button until the message ‘Balise read error’ is displayed on sub-area E9. Release the ‘Down’ button");
 
+            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.ScrollDownButtonActivated;
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +                  
                                 @"1. The ‘Down’ button NA16 symbol is displayed disabled in sub-area E11." + Environment.NewLine +
                                 @"2. The  ‘Up’ button NA13 symbol is displayed as enabled in sub-area E10.");
@@ -109,6 +112,8 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 4393 (partly: up button); MMI_gen 4392 (partly: symbol NA13, scroll up);(2) MMI_gen 11470 (partly: Bit # 41);
             */
             DmiActions.ShowInstruction(this, @"Press and release the ‘Up’ button.");
+
+            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.ScrollUpButtonActivated;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The ‘click’ sound is played once." + Environment.NewLine +
