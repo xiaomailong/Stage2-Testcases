@@ -90,64 +90,38 @@ namespace Testcase.DMITestCases
                 " - The border colour is medium - grey the same as the input field’s colour." + Environment.NewLine + Environment.NewLine +
                 "The sensitive area of Yes button is extended from text label ‘Set VBC entry complete ?’");
 
-            /*
-            Data Entry Window
-            The window title is ‘Set VBC’.
-            The text label of the window title is right aligned.
-            The following objects are displayed in Set VBC window,  
-                Enabled Close button (NA11)
-                Window Title
-                Input fields
-            The following objects are additionally displayed in Set VBC window,
-                Yes button
-                The text label ‘Set VBC Entry complete?’
-            Yes button is displayed in Disabled state as follows,
-                Text label is black 
-                Background colour is dark-grey
-                The border colour is medium-grey the same as the input field’s colour.
-            The sensitive area of Yes button is extended from text label ‘Set VBC entry complete?’
+            WaitForVerification("INPUT FIELDS:" + Environment.NewLine + Environment.NewLine +
+                "The input fields are located on Main area D and F." + Environment.NewLine +
+                "Each input field is devided into a Label Area and a Data Area." + Environment.NewLine +
+                "The Label Area is give the topic of the input field." + Environment.NewLine +
+                "The Label Area text is displayed corresponding to the input field as ‘VBC code’." + Environment.NewLine +
+                "The Label Area is placed to the left of The Data Area." + Environment.NewLine +
+                "The text in the Label Area is aligned to the right." + Environment.NewLine +
+                "The value of data in the Data Area is aligned to the left." + Environment.NewLine +
+                "The text colour of the Label Area is grey and the background colour of the Label Area is dark-grey." + Environment.NewLine +
+                "There are only single input fields displayed in the window." + Environment.NewLine +
+                "The first input field is in state ‘Selected’ as follows," + Environment.NewLine + Environment.NewLine +
+                " - The background colour of the Data Area is medium-grey.");
 
-            Input fields
-            
-            The input fields are located on Main area D and F.
-            Each input field is devided into a Label Area and a Data Area.
-            The Label Area is give the topic of the input field.
-            The Label Area text is displayed corresponding to the input field as ‘VBC code’.
-            The Label Area is placed to the left of The Data Area.
-            The text in the Label Area is aligned to the right.
-            The value of data in the Data Area is aligned to the left.
-            The text colour of the Label Area is grey and the background colour of the Label Area is dark-grey.
-            There are only single input fields displayed in the window.
-            The first input field is in state ‘Selected’ as follows,
-                The background colour of the Data Area is medium-grey.
-                
-            Keyboard
-            
-            The keyboard associated to selected input field ‘Set VBC’ is Numeric keyboard.
-            The keyboard contains enabled button for the number <1> to <9>, <Delete>(NA21) , <0> and disabled <Decimal_Separator>. 
-                NA21, Delete button.
-                
-            Layers
-            
-            The level of layers of all areas in window are in Layer 0.
-            
-            Echo Texts
-            
-            The Label Part of an echo texts is same as the Label area of an input fields.
-            The echo texts are displayed in main area A, B, C and E with same order as their related input fields.
-            The Label part of echo text is right aligned.
-            The colour of texts in echo texts are grey.
-            
-            Entering Characters
-            
-            The cursor is flashed by changing from visible to not visible.
-            The cursor is displayed as horizontal line below the value in the input field.
+            WaitForVerification("KEYBOARD:" + Environment.NewLine + Environment.NewLine +
+                "The keyboard associated to selected input field ‘Set VBC’ is Numeric keyboard." + Environment.NewLine +
+                "The keyboard contains enabled button for the number <1> to <9>, <Delete>(NA21) , <0> and disabled <Decimal_Separator>." + Environment.NewLine +
+                "NA21, Delete button.");
 
-            Packet transmission
-            
-            Use the log file to confirm that DMI sent out packet information [MMI_DRIVER_REQUEST (EVC-101)] with variable MMI_M_REQUEST = 23 (Start Set VBC).
-            Use the log file to confirm that DMI received packet information [MMI_SET_VBC (EVC-18)] with MMI_N_VBC = 0
-            
+            WaitForVerification("LAYERS:" + Environment.NewLine + Environment.NewLine +
+                "The level of layers of all areas in window are in Layer 0.");
+
+            WaitForVerification("ECHO TEXTS:" + Environment.NewLine + Environment.NewLine +
+                "The Label Part of an echo texts is same as the Label area of an input fields." + Environment.NewLine +
+                "The echo texts are displayed in main area A, B, C and E with same order as their related input fields." + Environment.NewLine +
+                "The Label part of echo text is right aligned." + Environment.NewLine +
+                "The colour of texts in echo texts are grey.");
+
+            WaitForVerification("ENTERING CHARACTERS:" + Environment.NewLine + Environment.NewLine +
+                "The cursor is flashed by changing from visible to not visible." + Environment.NewLine +
+                "The cursor is displayed as horizontal line below the value in the input field.");
+
+            /*                                                   
             Test Step Comment: (1) MMI_gen 8327;
                                (2) MMI_gen 8326 (partly: MMI_gen 4888);
                                (3) MMI_gen 8326 (partly: MMI_gen 4799 (partly: Close button, Window Title, Input fields)); 
@@ -186,9 +160,6 @@ namespace Testcase.DMITestCases
                                (26) MMI_gen 9881;
                                (27) MMI_gen 9883;
             */
-
-
-
             #endregion
 
             /*
