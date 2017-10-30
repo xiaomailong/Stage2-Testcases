@@ -274,44 +274,48 @@ namespace Testcase.DMITestCases
                                (4) MMI_gen 8326 (partly: MMI_gen 4913 (partly: MMI_gen 4386 (partly: visual of repeat function)));
                                (5) MMI_gen 8326 (partly: MMI_gen 4913 (partly: MMI_gen 4386 (partly: audible of repeat function)));
             */
-            #endregion           
+            #endregion
 
+            #region Test Step 6
             /*
             Test Step 6
             Action: Release ‘Del’ button
             Expected Result: Verify the following information, The character is stop removing
             Test Step Comment: (1) MMI_gen 8326 (partly: MMI_gen 4913 (partly: MMI_gen 4384 (partly: ETCS-MMI’s function associated to the button)));
             */
-            // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Release ‘Del’ button");
-            // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_The_character_is_stop_removing(this);
 
+            DmiActions.ShowInstruction(this, @"Release the pressed button");
+            WaitForVerification("The character is stop removing.");
 
+            #endregion
+
+            #region Test Step 7
             /*
             Test Step 7
             Action: Enter the data value with 5 characters
-            Expected Result: Verify the following information,The 5 characters are added on an input field as one group. (e.g. ‘12345')
+            Expected Result: Verify the following information,
+            The 5 characters are added on an input field as one group. (e.g. ‘12345')
             Test Step Comment: (1) MMI_gen 8326 (partly: MMI_gen 4694 (partly: NEGATIVE, 6th character));
             */
-            // Call generic Action Method
+
             DmiActions.ShowInstruction(this, @"Enter the data value with 5 characters");
-            // Call generic Check Results Method
-            DmiExpectedResults
-                .Verify_the_following_information_The_5_characters_are_added_on_an_input_field_as_one_group_e_g_12345(this);
+            WaitForVerification("The 5 characters are added on an input field as one group. (e.g. ‘12345')");
 
+            #endregion
 
+            #region Test Step 8
             /*
             Test Step 8
             Action: Continue to enter the 6th character
-            Expected Result: Verify the following information,The fifth character is shown after a gap of fourth character, separated as 2 groups (e.g. 1234 56)
+            Expected Result: Verify the following information,
+            The fifth character is shown after a gap of fourth character, separated as 2 groups (e.g. 1234 56)
             Test Step Comment: (1) MMI_gen 8326 (partly: MMI_gen 4694 (partly: MMI_gen 4246));
             */
-            // Call generic Action Method
-            DmiActions.Continue_to_enter_the_6th_character(this);
-            // Call generic Check Results Method
-            DmiExpectedResults
-                .Verify_the_following_information_The_fifth_character_is_shown_after_a_gap_of_fourth_character_separated_as_2_groups_e_g_1234_56(this);
+
+            DmiActions.ShowInstruction(this, @"Continue to enter the 6th character");
+            WaitForVerification("The fifth character is shown after a gap of fourth character, separated as 2 groups (e.g. 1234 56)");
+
+            #endregion
 
 
             /*
