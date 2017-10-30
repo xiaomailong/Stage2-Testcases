@@ -18,25 +18,25 @@ namespace Testcase.Telegrams.EVCtoDMI
         private static SignalPool _pool;
         private static int _trainsetid;
         private static int _maltdem;
-        const string BaseString = "ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub";
+        private const string BaseString = "ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub";
 
         /// <summary>
         /// Initialise an instance of EVC-6 MMI Current Train Data telegram.
         /// </summary>
-        /// <param name="pool"></param>
+        /// <param name="pool">SignalPool</param>
         public static void Initialise(SignalPool pool)
         {
             _pool = pool;
             TrainSetCaptions = new List<string>();
             DataElements = new List<DataElement>();
-            MMI_M_ALT_DEM = 0;
-            MMI_M_TRAINSET_ID = 0;
-
+            
             // Set as dynamic
             _pool.SITR.SMDCtrl.ETCS1.CurrentTrainData.Value = 0x0008;
 
             // Set default values
             _pool.SITR.ETCS1.CurrentTrainData.MmiMPacket.Value = 6; // Packet ID
+            MMI_M_ALT_DEM = 0;
+            MMI_M_TRAINSET_ID = 0;
         }
 
         // Change the EVC6_Alias_1 by bit-shifting the MMI_TRAINSET_ID and MMI_ALT_DEM values
@@ -52,11 +52,8 @@ namespace Testcase.Telegrams.EVCtoDMI
                 throw new ArgumentOutOfRangeException();
             if (DataElements.Count > 9)
                 throw new ArgumentOutOfRangeException();
-            // Samson: These two following lines have been commented because TrainSetCaptions represents the set of FIXED TRAIN DATA
-            // wheareas DataElements carries FLEXIBLE TRAIN DATA, hence they should not be compared
-            //if (TrainSetCaptions.Count != DataElements.Count)
-            //    throw new Exception("Number of Train Data elements and number of captions do not match!");
 
+            // Set initial telegram size
             ushort totalSizeCounter = 176;
 
             // Set number of trainset captions
@@ -77,17 +74,10 @@ namespace Testcase.Telegrams.EVCtoDMI
 
                 for (int charIndex = 0; charIndex < charArray.Length; charIndex++)
                 {
-                    var character = charArray[charIndex];
+                    char character = charArray[charIndex];
 
-                    // Trainset caption text character
-                    if (charIndex < 10)
-                    {
-                        _pool.SITR.Client.Write($"{BaseString}1{trainsetIndex}_EVC06CurrentTrainDataSub110{charIndex}_MmiXCaptionTrainset", character);
-                    }
-                    else
-                    {
-                        _pool.SITR.Client.Write($"{BaseString}1{trainsetIndex}_EVC06CurrentTrainDataSub11{charIndex}_MmiXCaptionTrainset", character);
-                    }
+                    _pool.SITR.Client.Write($"{BaseString}1{trainsetIndex}_EVC06CurrentTrainDataSub11" +
+                                            $"{charIndex.ToString("00")}_MmiXCaptionTrainset", character);
 
                     totalSizeCounter += 8;
                 }
