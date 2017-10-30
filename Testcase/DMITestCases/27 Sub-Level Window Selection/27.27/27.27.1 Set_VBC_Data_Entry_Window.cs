@@ -317,25 +317,68 @@ namespace Testcase.DMITestCases
 
             #endregion
 
-
+            #region Test Step 9
             /*
             Test Step 9
             Action: Continue to enter the new value more than 8 characters
-            Expected Result: Verify the following information,The data value is separated into 2 lines. In each line is displayed only 8 characters
+            Expected Result: Verify the following information,
+            The data value is separated into 2 lines. 
+            In each line is displayed only 8 characters
             Test Step Comment: (1) MMI_gen 8326 (partly: MMI_gen 4694 (partly: MMI_gen 4247));
             */
-            // Call generic Action Method
-            DmiActions.Continue_to_enter_the_new_value_more_than_8_characters(this);
-            // Call generic Check Results Method
-            DmiExpectedResults
-                .Verify_the_following_information_The_data_value_is_separated_into_2_lines_In_each_line_is_displayed_only_8_characters(this);
 
+            DmiActions.ShowInstruction(this, @"Continue to enter the new value more than 8 characters");
+            WaitForVerification("Verify the following information:" + Environment.NewLine + Environment.NewLine +
+                "The data value is separated into 2 lines. " + Environment.NewLine +
+                "In each line is displayed only 8 characters.");
+            #endregion
 
             /*
             Test Step 10
-            Action: Delete the old value and enter the value ‘65536’ for VBC code.Then, confirm an entered data by pressing an input field
-            Expected Result: Verify the following information,Input fieldsThe associated ‘Enter’ button is data field itself.An input field is used to allow the driver to enter data.The state of ‘VBC Code’ input field is changed to ‘accepted’ as follows,The background colour of the Data Area is dark-grey.The colour of data value is white.There is no input field selected.Echo TextsThe echo text of ‘VBC Code’ is changed to white colour.The value of echo text is changed refer to entered data.Data Entry windowThe state of ‘Yes’ button below text label ‘Train data Entry is complete?’ is enabled as follows,The background colour of the Data Area is medium-grey.The colour of data value is black.The colour of border is medium-grey.Packet transmissionUse the log file to confirm that DMI sent out packet [MMI_NEW_SET_VBC (EVC-118)] with following variablesMMI_M_VBC_CODE (bit 16-23) = 65536MMI_M_BUTTONS = 254The data part of the echo text of train category is displayed according to [MMI_SET_VBC (EVC-18)] with the following variables,MMI_N_TEXT = 5MMI_X_TEXT = “65536”
-            Test Step Comment: (1) MMI_gen 8326 (partly: MMI_gen 4682);(2) MMI_gen 8326 (partly: MMI_gen 4634);(3) MMI_gen 8326 (partly: MMI_gen 4652, MMI_gen 4684 (partly: accepted));(4) MMI_gen 8326 (partly: MMI_gen 4684 (partly: No next input field, data entry process terminated));(5) MMI_gen 8326 (partly: MMI_gen 4700);(6) MMI_gen 8326 (partly: MMI_gen 4681, MMI_gen 4890, MMI_gen 4698);(7) MMI_gen 8326 (partly: MMI_gen 4909 (partly:Enabled), MMI_gen 4910 (partly: Enabled, MMI_gen 4211 (partly: colour))); MMI_gen 4374;(8) MMI_gen 9923 (partly: [enter], EVC-118);(9) MMI_gen 9900;
+            Action: Delete the old value and enter the value ‘65536’ for VBC code.
+            Then, confirm an entered data by pressing an input field
+            Expected Result: Verify the following information,
+
+            Input fields
+
+            The associated ‘Enter’ button is data field itself.
+            An input field is used to allow the driver to enter data.
+            The state of ‘VBC Code’ input field is changed to ‘accepted’ as follows,
+            - The background colour of the Data Area is dark-grey.
+            - The colour of data value is white.
+            There is no input field selected.
+            
+            Echo Texts
+
+            The echo text of ‘VBC Code’ is changed to white colour.
+            The value of echo text is changed refer to entered data.
+
+            Data Entry window
+
+            The state of ‘Yes’ button below text label ‘Train data Entry is complete?’ is enabled as follows,
+            - The background colour of the Data Area is medium-grey.
+            - The colour of data value is black.
+            - The colour of border is medium-grey.
+
+            Packet transmission
+
+            Use the log file to confirm that DMI sent out packet [MMI_NEW_SET_VBC (EVC-118)] with following variables
+            - MMI_M_VBC_CODE (bit 16-23) = 65536
+            - MMI_M_BUTTONS = 254
+            The data part of the echo text of train category is displayed according to [MMI_SET_VBC (EVC-18)] with the following variables,
+            - MMI_N_TEXT = 5
+            - MMI_X_TEXT = “65536”
+
+            Test Step Comment: (1) MMI_gen 8326 (partly: MMI_gen 4682);
+                               (2) MMI_gen 8326 (partly: MMI_gen 4634);
+                               (3) MMI_gen 8326 (partly: MMI_gen 4652, MMI_gen 4684 (partly: accepted));
+                               (4) MMI_gen 8326 (partly: MMI_gen 4684 (partly: No next input field, data entry process terminated));
+                               (5) MMI_gen 8326 (partly: MMI_gen 4700);
+                               (6) MMI_gen 8326 (partly: MMI_gen 4681, MMI_gen 4890, MMI_gen 4698);
+                               (7) MMI_gen 8326 (partly: MMI_gen 4909 (partly:Enabled), MMI_gen 4910 (partly: Enabled, MMI_gen 4211 (partly: colour))); 
+                                   MMI_gen 4374;
+                               (8) MMI_gen 9923 (partly: [enter], EVC-118);
+                               (9) MMI_gen 9900;
             */
             // Call generic Action Method
             DmiActions
