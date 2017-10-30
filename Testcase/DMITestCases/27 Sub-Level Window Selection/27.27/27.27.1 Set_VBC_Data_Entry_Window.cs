@@ -90,64 +90,38 @@ namespace Testcase.DMITestCases
                 " - The border colour is medium - grey the same as the input field’s colour." + Environment.NewLine + Environment.NewLine +
                 "The sensitive area of Yes button is extended from text label ‘Set VBC entry complete ?’");
 
-            /*
-            Data Entry Window
-            The window title is ‘Set VBC’.
-            The text label of the window title is right aligned.
-            The following objects are displayed in Set VBC window,  
-                Enabled Close button (NA11)
-                Window Title
-                Input fields
-            The following objects are additionally displayed in Set VBC window,
-                Yes button
-                The text label ‘Set VBC Entry complete?’
-            Yes button is displayed in Disabled state as follows,
-                Text label is black 
-                Background colour is dark-grey
-                The border colour is medium-grey the same as the input field’s colour.
-            The sensitive area of Yes button is extended from text label ‘Set VBC entry complete?’
+            WaitForVerification("INPUT FIELDS:" + Environment.NewLine + Environment.NewLine +
+                "The input fields are located on Main area D and F." + Environment.NewLine +
+                "Each input field is devided into a Label Area and a Data Area." + Environment.NewLine +
+                "The Label Area is give the topic of the input field." + Environment.NewLine +
+                "The Label Area text is displayed corresponding to the input field as ‘VBC code’." + Environment.NewLine +
+                "The Label Area is placed to the left of The Data Area." + Environment.NewLine +
+                "The text in the Label Area is aligned to the right." + Environment.NewLine +
+                "The value of data in the Data Area is aligned to the left." + Environment.NewLine +
+                "The text colour of the Label Area is grey and the background colour of the Label Area is dark-grey." + Environment.NewLine +
+                "There are only single input fields displayed in the window." + Environment.NewLine +
+                "The first input field is in state ‘Selected’ as follows," + Environment.NewLine + Environment.NewLine +
+                " - The background colour of the Data Area is medium-grey.");
 
-            Input fields
-            
-            The input fields are located on Main area D and F.
-            Each input field is devided into a Label Area and a Data Area.
-            The Label Area is give the topic of the input field.
-            The Label Area text is displayed corresponding to the input field as ‘VBC code’.
-            The Label Area is placed to the left of The Data Area.
-            The text in the Label Area is aligned to the right.
-            The value of data in the Data Area is aligned to the left.
-            The text colour of the Label Area is grey and the background colour of the Label Area is dark-grey.
-            There are only single input fields displayed in the window.
-            The first input field is in state ‘Selected’ as follows,
-                The background colour of the Data Area is medium-grey.
-                
-            Keyboard
-            
-            The keyboard associated to selected input field ‘Set VBC’ is Numeric keyboard.
-            The keyboard contains enabled button for the number <1> to <9>, <Delete>(NA21) , <0> and disabled <Decimal_Separator>. 
-                NA21, Delete button.
-                
-            Layers
-            
-            The level of layers of all areas in window are in Layer 0.
-            
-            Echo Texts
-            
-            The Label Part of an echo texts is same as the Label area of an input fields.
-            The echo texts are displayed in main area A, B, C and E with same order as their related input fields.
-            The Label part of echo text is right aligned.
-            The colour of texts in echo texts are grey.
-            
-            Entering Characters
-            
-            The cursor is flashed by changing from visible to not visible.
-            The cursor is displayed as horizontal line below the value in the input field.
+            WaitForVerification("KEYBOARD:" + Environment.NewLine + Environment.NewLine +
+                "The keyboard associated to selected input field ‘Set VBC’ is Numeric keyboard." + Environment.NewLine +
+                "The keyboard contains enabled button for the number <1> to <9>, <Delete>(NA21) , <0> and disabled <Decimal_Separator>." + Environment.NewLine +
+                "NA21, Delete button.");
 
-            Packet transmission
-            
-            Use the log file to confirm that DMI sent out packet information [MMI_DRIVER_REQUEST (EVC-101)] with variable MMI_M_REQUEST = 23 (Start Set VBC).
-            Use the log file to confirm that DMI received packet information [MMI_SET_VBC (EVC-18)] with MMI_N_VBC = 0
-            
+            WaitForVerification("LAYERS:" + Environment.NewLine + Environment.NewLine +
+                "The level of layers of all areas in window are in Layer 0.");
+
+            WaitForVerification("ECHO TEXTS:" + Environment.NewLine + Environment.NewLine +
+                "The Label Part of an echo texts is same as the Label area of an input fields." + Environment.NewLine +
+                "The echo texts are displayed in main area A, B, C and E with same order as their related input fields." + Environment.NewLine +
+                "The Label part of echo text is right aligned." + Environment.NewLine +
+                "The colour of texts in echo texts are grey.");
+
+            WaitForVerification("ENTERING CHARACTERS:" + Environment.NewLine + Environment.NewLine +
+                "The cursor is flashed by changing from visible to not visible." + Environment.NewLine +
+                "The cursor is displayed as horizontal line below the value in the input field.");
+
+            /*                                                   
             Test Step Comment: (1) MMI_gen 8327;
                                (2) MMI_gen 8326 (partly: MMI_gen 4888);
                                (3) MMI_gen 8326 (partly: MMI_gen 4799 (partly: Close button, Window Title, Input fields)); 
@@ -186,34 +160,63 @@ namespace Testcase.DMITestCases
                                (26) MMI_gen 9881;
                                (27) MMI_gen 9883;
             */
-
-
-
             #endregion
 
+            #region Test Step 2
             /*
             Test Step 2
             Action: Press and hold ‘0’ button
-            Expected Result: Verify the following information,The state of button is changed to ‘Pressed’ and immediately back to ‘Enabled’ state.The sound ‘Click’ is played once.The Input Field displays the value associated to the data key according to the pressings in state ‘Pressed’.The cursor is displayed as horizontal line below the value of the numeric-keyboard data key in the input field.The input field is used to enter the VBC code.The colour of data value is black.An echo text is composed of Label Part and Data Part.The Data part of echo text is left aligned
-            Test Step Comment: (1) MMI_gen 8326 (partly: MMI_gen 4913 (partly: MMI_gen 4384 (partly: Change to state ‘Pressed’ and immediately back to state ‘Enabled’)));   (2) MMI_gen 8326 (partly: MMI_gen 4913 (partly: MMI_gen 4384 (partly: sound ‘Click’))); MMI_gen 9512; MMI_gen 968;(3) MMI_gen 8326 (partly: MMI_gen 4679, MMI_gen 4913 (partly: MMI_gen 4384 (partly: ETCS-MMI’s function associated to the button)));(4) MMI_gen 8326 (partly: MMI_gen 4689, MMI_gen 4690);(5) MMI_gen 8329 (partly: entry);(6) MMI_gen 8326 (partly: MMI_gen 4651 (partly: data value);(7) MMI_gen 8326 (partly: MMI_gen 4696);(8) MMI_gen 8326 (partly: MMI_gen 4704 (partly: left aligned));
             */
-            // Call generic Action Method
+
             DmiActions.ShowInstruction(this, @"Press and hold ‘0’ button");
-            // Call generic Check Results Method
-            DmiExpectedResults
-                .Verify_the_following_information_The_state_of_button_is_changed_to_Pressed_and_immediately_back_to_Enabled_state_The_sound_Click_is_played_once_The_Input_Field_displays_the_value_associated_to_the_data_key_according_to_the_pressings_in_state_Pressed_The_cursor_is_displayed_as_horizontal_line_below_the_value_of_the_numeric_keyboard_data_key_in_the_input_field_The_input_field_is_used_to_enter_the_VBC_code_The_colour_of_data_value_is_black_An_echo_text_is_composed_of_Label_Part_and_Data_Part_The_Data_part_of_echo_text_is_left_aligned(this);
 
+            /*
+            Expected Result: Verify the following information,
+            */
 
+            WaitForVerification("Verify the following information," + Environment.NewLine + Environment.NewLine +
+                "The state of button is changed to ‘Pressed’ and immediately back to ‘Enabled’ state." + Environment.NewLine +
+                "The sound ‘Click’ is played once." + Environment.NewLine +
+                "The Input Field displays the value associated to the data key according to the pressings in state ‘Pressed’." + Environment.NewLine +
+                "The cursor is displayed as horizontal line below the value of the numeric-keyboard data key in the input field." + Environment.NewLine +
+                "The input field is used to enter the VBC code." + Environment.NewLine +
+                "The colour of data value is black." + Environment.NewLine +
+                "An echo text is composed of Label Part and Data Part." + Environment.NewLine +
+                "The Data part of echo text is left aligned");
+
+            /*
+            Test Step Comment: (1) MMI_gen 8326 (partly: MMI_gen 4913 (partly: MMI_gen 4384 (partly: Change to state ‘Pressed’ and immediately back to state ‘Enabled’)));   
+                               (2) MMI_gen 8326 (partly: MMI_gen 4913 (partly: MMI_gen 4384 (partly: sound ‘Click’))); 
+                                   MMI_gen 9512; 
+                                   MMI_gen 968;
+                               (3) MMI_gen 8326 (partly: MMI_gen 4679, MMI_gen 4913 (partly: MMI_gen 4384 (partly: ETCS-MMI’s function associated to the button)));
+                               (4) MMI_gen 8326 (partly: MMI_gen 4689, MMI_gen 4690);
+                               (5) MMI_gen 8329 (partly: entry);
+                               (6) MMI_gen 8326 (partly: MMI_gen 4651 (partly: data value);
+                               (7) MMI_gen 8326 (partly: MMI_gen 4696);
+                               (8) MMI_gen 8326 (partly: MMI_gen 4704 (partly: left aligned));
+            */
+            #endregion
+
+            #region Test Step 3
             /*
             Test Step 3
             Action: Release the pressed button
-            Expected Result: Verify the following information,The state of released button is changed to enabled
-            Test Step Comment: (1) MMI_gen 8326 (partly: MMI_gen 4913 (partly: MMI_gen 4384 (partly: ETCS-MMI’s function associated to the button)));
             */
-            // Call generic Action Method
+
             DmiActions.ShowInstruction(this, @"Release the pressed button");
-            // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_The_state_of_released_button_is_changed_to_enabled(this);
+
+            /*
+            Expected Result: Verify the following information,
+            The state of released button is changed to enabled            
+            */
+
+            WaitForVerification("The state of released button is changed to enabled.");
+
+            /*
+            Test Step Comment: (1) MMI_gen 8326(partly: MMI_gen 4913(partly: MMI_gen 4384(partly: ETCS - MMI’s function associated to the button)));
+            */
+            #endregion
 
 
             /*
