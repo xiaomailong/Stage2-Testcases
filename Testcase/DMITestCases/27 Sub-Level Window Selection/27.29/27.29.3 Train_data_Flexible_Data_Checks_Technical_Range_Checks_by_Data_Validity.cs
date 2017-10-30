@@ -13,6 +13,9 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.EVCtoDMI;
+using static Testcase.Telegrams.EVCtoDMI.Variables;
+
 
 namespace Testcase.DMITestCases
 {
@@ -40,10 +43,16 @@ namespace Testcase.DMITestCases
         public override void PreExecution()
         {
             // Pre-conditions from TestSpec:
-            // 1. The test environment is powered on.2. ATP-CU is verified that the train is set as ‘Flexible’.TR_OBU_TrainType = 23. The cabin is activated.4. The ‘Start of Mission’ procedure is performed until the ‘Staff Resonsible’ mode, level 1, is confirmed.5. The ‘Main’ window is opened.
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
+
+            // 1. The test environment is powered on.
+            // 2. ATP-CU is verified that the train is set as ‘Flexible’.TR_OBU_TrainType = 2
+            // 3. The cabin is activated.
+            // 4. The ‘Start of Mission’ procedure is performed until the ‘Staff Resonsible’ mode, level 1, is confirmed.
+            // 5. The ‘Main’ window is opened.
+            DmiActions.Complete_SoM_L1_SR(this);
         }
 
         public override void PostExecution()
@@ -58,6 +67,8 @@ namespace Testcase.DMITestCases
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint
+            TraceInfo("This test case requires an ATP configuration change - " +
+                      "See Precondition requirements. If this is not done manually, the test may fail!");
 
 
             /*
@@ -65,9 +76,26 @@ namespace Testcase.DMITestCases
             Action: Open the ‘Train data’ data entry window from the Main menu
             Expected Result: The ‘Train data’ data entry window appears on DMI screen instead of the ‘Main’ menu window
             */
-            // Call generic Action Method
-            DmiActions.Open_the_Train_data_data_entry_window_from_the_Main_menu(this);
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.TrainData;
+            EVC30_MMIRequestEnable.Send();
 
+            DmiActions.ShowInstruction(this, "Press the ‘Train data’ button");
+            
+            DmiActions.Send_EVC6_MMICurrentTrainData(Variables.MMI_M_DATA_ENABLE.TrainLength |
+                                                     Variables.MMI_M_DATA_ENABLE.BrakePercentage |
+                                                     Variables.MMI_M_DATA_ENABLE.MaxTrainSpeed,
+                                                     100, 200,
+                                                     Variables.MMI_NID_KEY.PASS2,
+                                                     70,
+                                                     Variables.MMI_NID_KEY.CATA,
+                                                     0,
+                                                     Variables.MMI_NID_KEY.G1,
+                                                     36, 0, 0, new[] { "FLU", "RLU", "Rescue" }, null);
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the Train data window instead of the Main window.");
 
             /*
             Test Step 2
@@ -75,7 +103,9 @@ namespace Testcase.DMITestCases
             Expected Result: EVC-6Use the log file to verify that DMI receives variables of packet EVC-6 as below:(1) MMI_Q_DATA_CHECK = 1 in order to indicate the technical range check failure.(2) MMI_M_BUTTONS = 255 (no button) and the 'Yes' button is disabled.(3) MMI_NID_DATA = 8 (Length)Input Field(4) The ‘Enter’ button associated to the data area of the input field is coloured grey and its text is black (state ‘Selected IF/Data value’).(5) The ‘Enter’ button associated to the data area of the input field displays “1” (previously entered value).Echo Texts of Train Length(6) The data part of the echo text displays “++++”.(7) The data part of the echo text is coloured red
             Test Step Comment: Requirements:(1) MMI_gen 8089 (partly: EVC-6, MMI_gen 12147);(2) MMI_gen 9408;(3) MMI_gen 9419 (partly: MMI_NID_DATA);(4) MMI_gen 8089 (partly: MMI_gen 4714 (partly: state 'Selected IF/data value')); MMI_gen 9310 (partly: accept data);(5) MMI_gen 8089 (partly: MMI_gen 4714 (partly: previously entered (faulty) value)); MMI_gen 4699 (technical range); MMI_gen 9419 (partly: EVC-6 does not affect);(6) MMI_gen 8089 (partly: MMI_gen 4713 (partly: indication)); MMI_gen 9310 (partly: [technical range, No OK, echo text]); MMI_gen 9419 (partly: technical range, echo text);(7) MMI_gen 9404 (partly: MMI_gen 4713 (partly: red)), MMI_gen 8089 (partly: MMI_gen 4713 (partly: red)); MMI_gen 9419 (partly: technical range, red);
             */
+            DmiActions.ShowInstruction(this, "Using the numeric keypad, enter ‘1’ for the Train length and press the data input field to accept the value");
 
+            EVC6_MMICurrentTrainData.MMI_M_BUTTONS = Convert.ToUInt16(Variables.MMI_M_BUTTONS.No_Button);
 
             /*
             Test Step 3
