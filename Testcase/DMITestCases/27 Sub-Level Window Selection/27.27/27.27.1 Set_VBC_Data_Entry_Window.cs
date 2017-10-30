@@ -162,29 +162,61 @@ namespace Testcase.DMITestCases
             */
             #endregion
 
+            #region Test Step 2
             /*
             Test Step 2
             Action: Press and hold ‘0’ button
-            Expected Result: Verify the following information,The state of button is changed to ‘Pressed’ and immediately back to ‘Enabled’ state.The sound ‘Click’ is played once.The Input Field displays the value associated to the data key according to the pressings in state ‘Pressed’.The cursor is displayed as horizontal line below the value of the numeric-keyboard data key in the input field.The input field is used to enter the VBC code.The colour of data value is black.An echo text is composed of Label Part and Data Part.The Data part of echo text is left aligned
-            Test Step Comment: (1) MMI_gen 8326 (partly: MMI_gen 4913 (partly: MMI_gen 4384 (partly: Change to state ‘Pressed’ and immediately back to state ‘Enabled’)));   (2) MMI_gen 8326 (partly: MMI_gen 4913 (partly: MMI_gen 4384 (partly: sound ‘Click’))); MMI_gen 9512; MMI_gen 968;(3) MMI_gen 8326 (partly: MMI_gen 4679, MMI_gen 4913 (partly: MMI_gen 4384 (partly: ETCS-MMI’s function associated to the button)));(4) MMI_gen 8326 (partly: MMI_gen 4689, MMI_gen 4690);(5) MMI_gen 8329 (partly: entry);(6) MMI_gen 8326 (partly: MMI_gen 4651 (partly: data value);(7) MMI_gen 8326 (partly: MMI_gen 4696);(8) MMI_gen 8326 (partly: MMI_gen 4704 (partly: left aligned));
             */
-            // Call generic Action Method
+
             DmiActions.ShowInstruction(this, @"Press and hold ‘0’ button");
-            // Call generic Check Results Method
-            DmiExpectedResults
-                .Verify_the_following_information_The_state_of_button_is_changed_to_Pressed_and_immediately_back_to_Enabled_state_The_sound_Click_is_played_once_The_Input_Field_displays_the_value_associated_to_the_data_key_according_to_the_pressings_in_state_Pressed_The_cursor_is_displayed_as_horizontal_line_below_the_value_of_the_numeric_keyboard_data_key_in_the_input_field_The_input_field_is_used_to_enter_the_VBC_code_The_colour_of_data_value_is_black_An_echo_text_is_composed_of_Label_Part_and_Data_Part_The_Data_part_of_echo_text_is_left_aligned(this);
 
+            /*
+            Expected Result: Verify the following information,
+            */
 
+            WaitForVerification("Verify the following information," + Environment.NewLine + Environment.NewLine +
+                "The state of button is changed to ‘Pressed’ and immediately back to ‘Enabled’ state." + Environment.NewLine +
+                "The sound ‘Click’ is played once." + Environment.NewLine +
+                "The Input Field displays the value associated to the data key according to the pressings in state ‘Pressed’." + Environment.NewLine +
+                "The cursor is displayed as horizontal line below the value of the numeric-keyboard data key in the input field." + Environment.NewLine +
+                "The input field is used to enter the VBC code." + Environment.NewLine +
+                "The colour of data value is black." + Environment.NewLine +
+                "An echo text is composed of Label Part and Data Part." + Environment.NewLine +
+                "The Data part of echo text is left aligned");
+
+            /*
+            Test Step Comment: (1) MMI_gen 8326 (partly: MMI_gen 4913 (partly: MMI_gen 4384 (partly: Change to state ‘Pressed’ and immediately back to state ‘Enabled’)));   
+                               (2) MMI_gen 8326 (partly: MMI_gen 4913 (partly: MMI_gen 4384 (partly: sound ‘Click’))); 
+                                   MMI_gen 9512; 
+                                   MMI_gen 968;
+                               (3) MMI_gen 8326 (partly: MMI_gen 4679, MMI_gen 4913 (partly: MMI_gen 4384 (partly: ETCS-MMI’s function associated to the button)));
+                               (4) MMI_gen 8326 (partly: MMI_gen 4689, MMI_gen 4690);
+                               (5) MMI_gen 8329 (partly: entry);
+                               (6) MMI_gen 8326 (partly: MMI_gen 4651 (partly: data value);
+                               (7) MMI_gen 8326 (partly: MMI_gen 4696);
+                               (8) MMI_gen 8326 (partly: MMI_gen 4704 (partly: left aligned));
+            */
+            #endregion
+
+            #region Test Step 3
             /*
             Test Step 3
             Action: Release the pressed button
-            Expected Result: Verify the following information,The state of released button is changed to enabled
-            Test Step Comment: (1) MMI_gen 8326 (partly: MMI_gen 4913 (partly: MMI_gen 4384 (partly: ETCS-MMI’s function associated to the button)));
             */
-            // Call generic Action Method
+
             DmiActions.ShowInstruction(this, @"Release the pressed button");
-            // Call generic Check Results Method
-            DmiExpectedResults.Verify_the_following_information_The_state_of_released_button_is_changed_to_enabled(this);
+
+            /*
+            Expected Result: Verify the following information,
+            The state of released button is changed to enabled            
+            */
+
+            WaitForVerification("The state of released button is changed to enabled.");
+
+            /*
+            Test Step Comment: (1) MMI_gen 8326(partly: MMI_gen 4913(partly: MMI_gen 4384(partly: ETCS - MMI’s function associated to the button)));
+            */
+            #endregion
 
 
             /*
