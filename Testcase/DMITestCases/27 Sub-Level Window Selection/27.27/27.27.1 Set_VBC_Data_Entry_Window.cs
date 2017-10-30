@@ -218,33 +218,63 @@ namespace Testcase.DMITestCases
             */
             #endregion
 
-
+            #region Test Step 4
             /*
             Test Step 4
-            Action: Perform action step 3-4 for the ‘1’ to ‘9’ buttons.Note: Press the ‘Del’ button to delete an information when entered data is out of input field range is acceptable
-            Expected Result: See the expected results of Step 3 – Step 4 and the following additional information,The pressed key is added in an input field immediately. The cursor is jumped to next position after entered the character immediately
-            Test Step Comment: (1) MMI_gen 8326 (partly: MMI_gen 4642);  (2) MMI_gen 8326 (partly: MMI_gen 4692);
+            Action: Perform action step 3-4 for the ‘1’ to ‘9’ buttons.
+            Note: Press the ‘Del’ button to delete an information when entered data is out of input field range is acceptable
             */
-            // Call generic Action Method
-            DmiActions
-                .Perform_action_step_3_4_for_the_1_to_9_buttons_Note_Press_the_Del_button_to_delete_an_information_when_entered_data_is_out_of_input_field_range_is_acceptable(this);
-            // Call generic Check Results Method
-            DmiExpectedResults
-                .See_the_expected_results_of_Step_3_Step_4_and_the_following_additional_information_The_pressed_key_is_added_in_an_input_field_immediately_The_cursor_is_jumped_to_next_position_after_entered_the_character_immediately(this);
 
+            DmiActions.ShowInstruction(this, @"Perform action step 3-4 for the ‘1’ to ‘9’ buttons.");
 
             /*
-            Test Step 5
-            Action: Press and hold ‘Del’ button.Note: Stopwatch is required
-            Expected Result: Verify the following information,While press and hold button less than 1.5 secSound ‘Click’ is played once.The state of button is changed to ‘Pressed’ and immediately back to ‘Enabled’ state.The last character is removed from an input field after pressing the button.While press and hold button over 1.5 secThe state ‘pressed’ and ‘released’ are switched repeatly while button is pressed and the characters are removed from an input field repeatly refer to pressed state.The sound ‘Click’ is played repeatly while button is pressed
-            Test Step Comment: (1) MMI_gen 8326 (partly: MMI_gen 4913 (partly: MMI_gen 4384 (partly: sound ‘Click’))); MMI_gen 9512; MMI_gen 968;(2) MMI_gen 8326 (partly: MMI_gen 4913 (partly: MMI_gen 4384 (partly: Change to state ‘Pressed’ and immediately back to state ‘Enabled’)));   (3) MMI_gen 8326 (partly: MMI_gen 4913 (partly: MMI_gen 4384 (partly: ETCS-MMI’s function associated to the button))); MMI_gen 4393 (partly: [Delete]);(4) MMI_gen 8326 (partly: MMI_gen 4913 (partly: MMI_gen 4386 (partly: visual of repeat function)));(5) MMI_gen 8326 (partly: MMI_gen 4913 (partly: MMI_gen 4386 (partly: audible of repeat function)));
+            Expected Result: See the expected results of Step 3 – Step 4 and the following additional information,
+            The pressed key is added in an input field immediately. 
+            The cursor is jumped to next position after entered the character immediately
             */
-            // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press and hold ‘Del’ button.Note: Stopwatch is required");
-            // Call generic Check Results Method
-            DmiExpectedResults
-                .Verify_the_following_information_While_press_and_hold_button_less_than_1_5_secSound_Click_is_played_once_The_state_of_button_is_changed_to_Pressed_and_immediately_back_to_Enabled_state_The_last_character_is_removed_from_an_input_field_after_pressing_the_button_While_press_and_hold_button_over_1_5_secThe_state_pressed_and_released_are_switched_repeatly_while_button_is_pressed_and_the_characters_are_removed_from_an_input_field_repeatly_refer_to_pressed_state_The_sound_Click_is_played_repeatly_while_button_is_pressed(this);
 
+            WaitForVerification("See the expected results of Step 3 – Step 4 and the following additional information:" + Environment.NewLine + Environment.NewLine +
+                "The pressed key is added in an input field immediately. " + Environment.NewLine +
+                "The cursor is jumped to next position after entered the character immediately.");
+
+            /*
+            Test Step Comment: (1) MMI_gen 8326 (partly: MMI_gen 4642);  
+                               (2) MMI_gen 8326 (partly: MMI_gen 4692);
+            */
+            #endregion
+
+            #region Test Step 5
+            /*
+            Test Step 5
+            Action: Press and hold ‘Del’ button.
+            Note: Stopwatch is required
+            */
+
+            DmiActions.ShowInstruction(this, @"Press and hold ‘Del’ button.");
+
+            /*
+            Expected Result: Verify the following information,
+            */
+
+            WaitForVerification("Verify the following information," + Environment.NewLine + Environment.NewLine +
+                "While press and hold button less than 1.5 secSound ‘Click’ is played once." + Environment.NewLine +
+                "The state of button is changed to ‘Pressed’ and immediately back to ‘Enabled’ state." + Environment.NewLine +
+                "The last character is removed from an input field after pressing the button." + Environment.NewLine +
+                "While press and hold button over 1.5 sec" + Environment.NewLine +
+                "The state ‘pressed’ and ‘released’ are switched repeatly while button is pressed and the characters are removed from an input field repeatly refer to pressed state." + Environment.NewLine +
+                "The sound ‘Click’ is played repeatly while button is pressed");
+
+            /*
+            Test Step Comment: (1) MMI_gen 8326 (partly: MMI_gen 4913 (partly: MMI_gen 4384 (partly: sound ‘Click’))); 
+                                   MMI_gen 9512; 
+                                   MMI_gen 968;
+                               (2) MMI_gen 8326 (partly: MMI_gen 4913 (partly: MMI_gen 4384 (partly: Change to state ‘Pressed’ and immediately back to state ‘Enabled’)));   
+                               (3) MMI_gen 8326 (partly: MMI_gen 4913 (partly: MMI_gen 4384 (partly: ETCS-MMI’s function associated to the button))); 
+                                   MMI_gen 4393 (partly: [Delete]);
+                               (4) MMI_gen 8326 (partly: MMI_gen 4913 (partly: MMI_gen 4386 (partly: visual of repeat function)));
+                               (5) MMI_gen 8326 (partly: MMI_gen 4913 (partly: MMI_gen 4386 (partly: audible of repeat function)));
+            */
+            #endregion           
 
             /*
             Test Step 6
