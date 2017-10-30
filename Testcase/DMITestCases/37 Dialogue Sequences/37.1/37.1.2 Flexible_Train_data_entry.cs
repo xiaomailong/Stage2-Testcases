@@ -97,7 +97,8 @@ namespace Testcase.DMITestCases
                                                      Variables.MMI_NID_KEY.CATA,
                                                      1,
                                                      Variables.MMI_NID_KEY.G1,
-                                                     36, 0, 0, new[] { "FLU", "RLU", "Rescue" }, null);
+                                                     EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE,
+                                                     0, 0, new[] { "FLU", "RLU", "Rescue" }, null);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Train data window" + Environment.NewLine +
@@ -151,7 +152,8 @@ namespace Testcase.DMITestCases
                                                      Variables.MMI_NID_KEY.CATA,
                                                      1,
                                                      Variables.MMI_NID_KEY.G1,
-                                                     36, 0, 0, new[] { "FLU", "RLU", "Rescue" }, null);
+                                                     EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE,
+                                                     0, 0, new[] { "FLU", "RLU", "Rescue" }, null);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Train data window" + Environment.NewLine +
@@ -231,7 +233,8 @@ namespace Testcase.DMITestCases
                                                      Variables.MMI_NID_KEY.CATA,
                                                      1,
                                                      Variables.MMI_NID_KEY.G1,
-                                                     36, 0, 0, new[] { "FLU", "RLU", "Rescue" }, null);
+                                                     EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE,
+                                                     0, 0, new[] { "FLU", "RLU", "Rescue" }, null);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Train data window." + Environment.NewLine +
@@ -321,7 +324,7 @@ namespace Testcase.DMITestCases
                                                      Variables.MMI_NID_KEY.CATB1,
                                                      0,
                                                      Variables.MMI_NID_KEY.G1,
-                                                     36,
+                                                     EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE,
                                                      0,
                                                      0,
                                                      new[] { "FLU", "RLU", "Rescue" }, null);

@@ -943,7 +943,8 @@ namespace Testcase.DMITestCases
             };
 
             DmiActions.Send_EVC6_MMICurrentTrainData(MMI_M_DATA_ENABLE.TrainSetID, 0, 0, MMI_NID_KEY.NoDedicatedKey, 0,
-                MMI_NID_KEY.NoDedicatedKey, 0, MMI_NID_KEY.NoDedicatedKey, (byte)MMI_M_BUTTONS.BTN_YES_DATA_ENTRY_COMPLETE,
+                MMI_NID_KEY.NoDedicatedKey, 0, MMI_NID_KEY.NoDedicatedKey, 
+                EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE,
                 Convert.ToUInt16((byte)(trainsetSelected)), 0, paramEvc6FixedTrainsetCaptions, dataElements);
 
             EVC107_MMINewTrainData.MMI_M_BUTTONS = MMI_M_BUTTONS_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE;
