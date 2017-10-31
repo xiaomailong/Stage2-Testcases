@@ -333,25 +333,15 @@ namespace Testcase.DMITestCases
                 "In each line is displayed only 8 characters.");
             #endregion
 
+            #region Test Step 10
             /*
             Test Step 10
             Action: Delete the old value and enter the value ‘65536’ for VBC code.
             Then, confirm an entered data by pressing an input field
             Expected Result: Verify the following information,
 
-            Input fields
-
-            The associated ‘Enter’ button is data field itself.
-            An input field is used to allow the driver to enter data.
-            The state of ‘VBC Code’ input field is changed to ‘accepted’ as follows,
-            - The background colour of the Data Area is dark-grey.
-            - The colour of data value is white.
-            There is no input field selected.
             
-            Echo Texts
 
-            The echo text of ‘VBC Code’ is changed to white colour.
-            The value of echo text is changed refer to entered data.
 
             Data Entry window
 
@@ -380,9 +370,31 @@ namespace Testcase.DMITestCases
                                (8) MMI_gen 9923 (partly: [enter], EVC-118);
                                (9) MMI_gen 9900;
             */
-            // Call generic Action Method
-            DmiActions
-                .Delete_the_old_value_and_enter_the_value_65536_for_VBC_code_Then_confirm_an_entered_data_by_pressing_an_input_field(this);
+
+            DmiActions.ShowInstruction(this, @"Delete the old value and enter the value ‘65536’ for VBC code.");
+            DmiExpectedResults.VBC_code_entered(this);
+
+            DmiActions.Set_VBC_Code(this, "65536");                     
+
+            WaitForVerification("INPUT FIELDS:" + Environment.NewLine + Environment.NewLine +
+               "The associated ‘Enter’ button is data field itself." + Environment.NewLine +
+               "An input field is used to allow the driver to enter data." + Environment.NewLine +
+               "The state of ‘VBC Code’ input field is changed to ‘accepted’ as follows:" + Environment.NewLine +
+               " - The background colour of the Data Area is dark - grey." + Environment.NewLine +
+               " - The colour of data value is white." + Environment.NewLine +
+               "There is no input field selected.");            
+           
+            WaitForVerification("ECHO TEXTS:" + Environment.NewLine + Environment.NewLine +
+                "The echo text of ‘VBC Code’ is changed to white colour." + Environment.NewLine +
+                "The value of echo text is changed refer to entered data.");
+
+           WaitForVerification("DATA ENTRY WINDOW:" + Environment.NewLine + Environment.NewLine +
+               "The state of ‘Yes’ button below text label ‘Train data Entry is complete?’ is enabled as follows," + Environment.NewLine +
+               " - The background colour of the Data Area is medium - grey." + Environment.NewLine +
+               " - The colour of data value is black." + Environment.NewLine +
+               " - The colour of border is medium - grey.");
+
+            #endregion
 
 
             /*

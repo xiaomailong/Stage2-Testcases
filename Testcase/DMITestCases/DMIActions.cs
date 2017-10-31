@@ -125,6 +125,22 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
+        /// Set Driver ID string
+        /// </summary>
+        /// <param name="pool">Signal pool</param>
+        /// <param name="vbcCode"></param>
+        public static void Set_VBC_Code(SignalPool pool, string vbcCode)
+        {
+            EVC18_MMISetVBC.MMI_M_BUTTONS = MMI_M_BUTTONS_VBC.BTN_YES_DATA_ENTRY_COMPLETE;
+            EVC18_MMISetVBC.MMI_N_VBC = 1;
+            EVC18_MMISetVBC.NID_VBCMK = 0;
+            EVC18_MMISetVBC.SetVBCCode();
+            EVC18_MMISetVBC.MMI_Q_DATA_CHECK = Q_DATA_CHECK.All_checks_passed;
+            EVC18_MMISetVBC.ECHO_TEXT = vbcCode;
+            EVC18_MMISetVBC.Send();
+        }
+
+        /// <summary>
         /// Description: Set Override Mode. *
         /// This function shall be called after driveraction StartEOA has been performed
         /// </summary>

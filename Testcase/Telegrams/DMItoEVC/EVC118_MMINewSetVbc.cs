@@ -18,6 +18,7 @@ namespace Testcase.Telegrams.DMItoEVC
     {
         private static SignalPool _pool;
         private static bool _checkResult;
+        private static uint _mVDCCode;
 
         static string baseString0 = "DMI->ETCS: EVC-118 [MMI_NEW_SET_VBC]";
 
@@ -91,6 +92,25 @@ namespace Testcase.Telegrams.DMItoEVC
         /// Note: the definition is according to preliminary SubSet-121 'M_BUTTONS' definition.
         /// </summary>
         public static MMI_M_BUTTONS_VBC MMI_M_BUTTONS { get; set; }
-       
+
+        public static uint Get_M_VBC_CODE
+        {
+            get
+            {
+                // Reset telegram received flag in RTSim
+                _pool.SITR.SMDStat.CCUO.ETCS1NewSetVbc.Value = 0x00;
+
+                if (_pool.SITR.SMDStat.CCUO.ETCS1NewSetVbc.WaitForCondition(Is.Equal, 1, 20000, 100))
+                {
+                    _mVDCCode = _pool.SITR.CCUO.ETCS1NewSetVbc.MmiMVbcCode.Value;
+                    return _mVDCCode;
+                }
+                else
+                {
+                    DmiExpectedResults.DMItoEVC_Telegram_Not_Received(_pool, baseString0);
+                    return 0;
+                }
+            }
+        }
     }
 }
