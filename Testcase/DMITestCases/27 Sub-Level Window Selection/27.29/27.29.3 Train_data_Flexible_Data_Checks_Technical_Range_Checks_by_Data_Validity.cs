@@ -40,8 +40,8 @@ namespace Testcase.DMITestCases
     /// </summary>
     /// 
 
-     -----------------------------------------------------------
-    // This test has been deliberately left incomplete: not clear if/when flexible train tests will be needed
+    //------------------------------------------------------------
+    // This test has been left incomplete: not clear if/when flexible train tests will be needed
     // EVC6 needs extension to allow correct data checking (echo test display...)
     // ===========================================================
 
