@@ -38,6 +38,13 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 22_29_3_a.xml, 22_29_3_b.xml, 22_29_3_c.xml 
     /// </summary>
+    /// 
+
+     -----------------------------------------------------------
+    // This test has been deliberately left incomplete: not clear if/when flexible train tests will be needed
+    // EVC6 needs extension to allow correct data checking (echo test display...)
+    // ===========================================================
+
     public class TC_ID_22_29_3_Train_data_Flexible_Data_Checks_Technical_Range_Checks_by_Data_Validity : TestcaseBase
     {
         public override void PreExecution()
