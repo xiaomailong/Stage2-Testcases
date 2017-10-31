@@ -95,7 +95,8 @@ namespace Testcase.DMITestCases
                                                      Variables.MMI_NID_KEY.CATA,
                                                      0,
                                                      Variables.MMI_NID_KEY.G1,
-                                                     36, 0, 0, new[] { "FLU", "RLU", "Rescue" }, null);
+                                                     EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE,
+                                                     0, 0, new[] { "FLU", "RLU", "Rescue" }, null);
 
             DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
                                 "1. Confirm value in each input field." + Environment.NewLine +

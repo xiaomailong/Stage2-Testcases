@@ -18,50 +18,52 @@ namespace Testcase.Telegrams.EVCtoDMI
         private static SignalPool _pool;
         private static int _trainsetid;
         private static int _maltdem;
-        const string BaseString = "ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub";
+        private const string BaseString = "ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub";
 
         /// <summary>
         /// Initialise an instance of EVC-6 MMI Current Train Data telegram.
         /// </summary>
-        /// <param name="pool"></param>
+        /// <param name="pool">SignalPool</param>
         public static void Initialise(SignalPool pool)
         {
             _pool = pool;
             TrainSetCaptions = new List<string>();
             DataElements = new List<DataElement>();
-
+            
             // Set as dynamic
             _pool.SITR.SMDCtrl.ETCS1.CurrentTrainData.Value = 0x0008;
 
             // Set default values
             _pool.SITR.ETCS1.CurrentTrainData.MmiMPacket.Value = 6; // Packet ID
+            MMI_M_ALT_DEM = 0;
+            MMI_M_TRAINSET_ID = 0;
         }
 
+        // Change the EVC6_Alias_1 by bit-shifting the MMI_TRAINSET_ID and MMI_ALT_DEM values
         private static void SetAlias()
         {
-            _pool.SITR.ETCS1.CurrentTrainData.MmiMButtons.Value = (byte) (_trainsetid << 4 | _maltdem << 2);
+            _pool.SITR.ETCS1.CurrentTrainData.EVC6alias1.Value = (byte) (_trainsetid << 4 | _maltdem << 2);
         }
 
+        // Send instance of EVC-6 Current Train Data telegram
         public static void Send()
         {
             if (TrainSetCaptions.Count > 9)
                 throw new ArgumentOutOfRangeException();
             if (DataElements.Count > 9)
                 throw new ArgumentOutOfRangeException();
-            // Samson: These two following lines have been commented because TrainSetCaptions represents the set of FIXED TRAIN DATA
-            // wheareas DataElements carries FLEXIBLE TRAIN DATA, hence they should not be compared
-            //if (TrainSetCaptions.Count != DataElements.Count)
-            //    throw new Exception("Number of Train Data elements and number of captions do not match!");
 
-            ushort totalSizeCounter = 160;
+            // Set initial telegram size
+            ushort totalSizeCounter = 176;
 
             // Set number of trainset captions
             _pool.SITR.ETCS1.CurrentTrainData.MmiNTrainset.Value = (ushort) TrainSetCaptions.Count;
 
             // Populate the array of trainset captions
-            for (var trainsetIndex = 0; trainsetIndex < TrainSetCaptions.Count; trainsetIndex++)
+            for (int trainsetIndex = 0; trainsetIndex < TrainSetCaptions.Count; trainsetIndex++)
             {
                 var charArray = TrainSetCaptions[trainsetIndex].ToCharArray();
+
                 if (charArray.Length > 12)
                     throw new ArgumentOutOfRangeException();
 
@@ -70,19 +72,12 @@ namespace Testcase.Telegrams.EVCtoDMI
 
                 totalSizeCounter += 16;
 
-                for (var charIndex = 0; charIndex < charArray.Length; charIndex++)
+                for (int charIndex = 0; charIndex < charArray.Length; charIndex++)
                 {
-                    var character = charArray[charIndex];
+                    char character = charArray[charIndex];
 
-                    // Trainset caption text character
-                    if (charIndex < 10)
-                    {
-                        _pool.SITR.Client.Write($"{BaseString}1{trainsetIndex}_EVC06CurrentTrainDataSub110{charIndex}_MmiXCaptionTrainset", character);
-                    }
-                    else
-                    {
-                        _pool.SITR.Client.Write($"{BaseString}1{trainsetIndex}_EVC06CurrentTrainDataSub11{charIndex}_MmiXCaptionTrainset", character);
-                    }
+                    _pool.SITR.Client.Write($"{BaseString}1{trainsetIndex}_EVC06CurrentTrainDataSub11" +
+                                            $"{charIndex.ToString("00")}_MmiXCaptionTrainset", character);
 
                     totalSizeCounter += 8;
                 }
@@ -96,6 +91,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             // Set the total length of the packet
             _pool.SITR.ETCS1.CurrentTrainData.MmiLPacket.Value = totalSizeCounter;
 
+            // Send the telegram
             _pool.SITR.SMDCtrl.ETCS1.CurrentTrainData.Value = 0x0009;
         }
 
@@ -247,62 +243,15 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// Identifier of MMI Buttons.
         /// 
         /// Values:
-        /// 0 = "BTN_MAIN"
-        /// 1 = "BTN_OVERRIDE"
-        /// 2 = "BTN_DATA_VIEW"
-        /// 3 = "BTN_SPECIAL"
-        /// 4 = "BTN_SETTINGS"
-        /// 5 = "BTN_START"
-        /// 6 = "BTN_DRIVER_ID"
-        /// 7 = "BTN_TRAIN_DATA"
-        /// 8 = "BTN_LEVEL"
-        /// 9 = "BTN_TRAIN_RUNNING_NUMBER"
-        /// 10 = "BTN_SHUNTING"
-        /// 11 = "BTN_EXIT_SHUNTING"
-        /// 12 = "BTN_NON_LEADING"
-        /// 13 = "BTN_MAINTAIN_SHUNTING"
-        /// 14 = "BTN_OVERRIDE_EOA"
-        /// 15 = "BTN_ADHESION"
-        /// 16 = "BTN_SR_SPEED_DISTANCE"
-        /// 17 = "BTN_TRAIN_INTEGRITY"
-        /// 18 = "BTN_SYSTEM_VERSION"
-        /// 19 = "BTN_SET_VBC"
-        /// 20 = "BTN_REMOVE_VBC"
-        /// 21 = "BTN_CONTACT_LAST_RBC"
-        /// 22 = "BTN_USE_SHORT_NUMBER"
-        /// 23 = "BTN_ENTER_RBC_DATA"
-        /// 24 = "BTN_RADIO_NETWORK_ID"
-        /// 25 = "BTN_DRIVERID_TRAIN_RUNNING_NUMBER "
-        /// 26 = "BTN_DRIVERID_SETTINGS"
-        /// 27 = "BTN_SWITCH_FIXED_TRAIN_DATA_ENTRY"
-        /// 28 = "BTN_SWITCH_FLEXIBLE_TRAIN_DATA_ENTRY"
-        /// 29 = "BTN_TOGGLE_TUNNELSTOP_AREA"
-        /// 30 = "BTN_TOGGLE_SPEED_DISTANCE_INFO"
-        /// 31 = "BTN_YES_TRACK_AHEAD_FREE"
-        /// 32 = "BTN_TOGGLE_GEOPOS"
-        /// 33 = "BTN_CLOSE"
-        /// 34 = "BTN_SCROLL_UP"
-        /// 35 = "BTN_SCROLL_DOWN"
         /// 36 = "BTN_YES_DATA_ENTRY_COMPLETE"
         /// 37 = "BTN_YES_DATA_ENTRY_COMPLETE_DELAY_TYPE"
-        /// 38 = "BTN_STM_DATA_ENTRY_SELECTION_POS1"
-        /// 39 = "BTN_STM_DATA_ENTRY_SELECTION_POS2"
-        /// 40 = "BTN_STM_DATA_ENTRY_SELECTION_POS3"
-        /// 41 = "BTN_STM_DATA_ENTRY_SELECTION_POS4"
-        /// 42 = "BTN_STM_DATA_ENTRY_SELECTION_POS5"
-        /// 43 = "BTN_STM_DATA_ENTRY_SELECTION_POS6"
-        /// 44 = "BTN_STM_DATA_ENTRY_SELECTION_POS7"
-        /// 45 = "BTN_STM_DATA_ENTRY_SELECTION_POS8"
-        /// 46 = "BTN_STM_END_OF_DATA_ENTRY"
-        /// 47..252 = "Spare"
-        /// 253 = "BTN_ENTER_DELAY_TYPE"
-        /// 254 = "BTN_ENTER"
         /// 255 = "no button"
+        /// 
         /// Note: the definition is according to preliminary SubSet-121 'M_BUTTONS' definition.
         /// </summary>
-        public static ushort MMI_M_BUTTONS
+        public static MMI_M_BUTTONS_CURRENT_TRAIN_DATA MMI_M_BUTTONS
         {
-            get => _pool.SITR.ETCS1.CurrentTrainData.MmiMButtons.Value;
+            get => (MMI_M_BUTTONS_CURRENT_TRAIN_DATA)_pool.SITR.ETCS1.CurrentTrainData.MmiMButtons.Value;
             set => _pool.SITR.ETCS1.CurrentTrainData.MmiMButtons.Value = (byte) value;
         }
 
@@ -318,6 +267,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         public static ushort MMI_M_TRAINSET_ID
         {
             get => (ushort)((_pool.SITR.ETCS1.CurrentTrainData.EVC6alias1.Value & 0xF0) >> 4);
+
             set
             {
                 _trainsetid = value;
@@ -336,22 +286,38 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// 2 = "Reserved"
         /// 3 = "Reserved"
         /// 
-        /// Note: In case no alternative TDE method is enabled, the variable "MMI_M_TRAINSET_ID"
-        /// determines between "flexible TDE" (MMI_M_TRAINSET_ID = 0) or "train set TDE"
-        /// (MMI_M_TRAINSET_ID != 0). This approach is chosen to deviate not too much between BL2 and BL3 interface.
+        /// Note: In case no alternative TDE method is enabled, the variable "MMI_M_TRAINSET_ID" determines between
+        /// "flexible TDE" (MMI_M_TRAINSET_ID = 0) or "train set TDE" (MMI_M_TRAINSET_ID != 0).
+        /// This approach is chosen to deviate not too much between BL2 and BL3 interface.
         /// </summary>
         public static ushort MMI_M_ALT_DEM
         {
             get => (ushort)((_pool.SITR.ETCS1.CurrentTrainData.EVC6alias1.Value & 0x0C) >> 2);
+
             set
             {
                 _maltdem = value;
                 SetAlias();
             }
         }
-
+        
         public static List<string> TrainSetCaptions { get; set; }
 
         public static List<DataElement> DataElements { get; set; }
+
+        /// <summary>
+        /// MMI_M_Buttons for EVC-6 enum
+        /// 
+        /// Values:
+        /// 36 = "BTN_YES_DATA_ENTRY_COMPLETE"
+        /// 37 = "BTN_YES_DATA_ENTRY_COMPLETE_DELAY_TYPE"
+        /// 255 = "no button"
+        /// </summary>
+        public enum MMI_M_BUTTONS_CURRENT_TRAIN_DATA : byte
+        {
+            BTN_YES_DATA_ENTRY_COMPLETE = 36,
+            BTN_YES_DATA_ENTRY_COMPLETE_DELAY_TYPE = 37,
+            NoButton = 255
+        }
     }
 }

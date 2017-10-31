@@ -196,7 +196,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         }
 
         /// <summary>
-        /// MMI_M_Buttons for EVC-6 and EVC-107 enum
+        /// MMI_M_Buttons for EVC-107 enum
         /// </summary>
         public enum MMI_M_BUTTONS_TRAIN_DATA : byte
         {

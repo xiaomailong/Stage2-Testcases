@@ -136,7 +136,6 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Press ‘Close’ button in Driver ID window. Press ‘Train Data’ button");
 
-            EVC6_MMICurrentTrainData.MMI_M_BUTTONS = Convert.ToUInt16(Variables.MMI_M_BUTTONS.BTN_CLOSE);
             DmiActions.Send_EVC6_MMICurrentTrainData_FixedDataEntry(this, new[] { "FLU", "RLU", "Rescue" }, 1);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -205,7 +204,7 @@ namespace Testcase.DMITestCases
                                                      Variables.MMI_NID_KEY.CATA,
                                                      0,
                                                      Variables.MMI_NID_KEY.G1,
-                                                     Convert.ToByte(Variables.MMI_M_BUTTONS.BTN_CLOSE | Variables.MMI_M_BUTTONS.BTN_YES_DATA_ENTRY_COMPLETE),
+                                                     EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE,
                                                      0, 0, new[] { "FLU", "RLU", "Rescue" }, null);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +

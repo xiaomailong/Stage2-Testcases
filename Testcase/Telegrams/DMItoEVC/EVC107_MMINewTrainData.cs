@@ -42,8 +42,8 @@ namespace Testcase.Telegrams.DMItoEVC
         private static byte _evc107alias1;
         */
 
-        static string baseString0 = "DMI->ETCS: EVC-107 [MMI_NEW_TRAIN_DATA]";
-        static string baseString1 = "CCUO_ETCS1NewTrainData_EVC107NewTrainDataSub";
+        private const string BaseString0 = "DMI->ETCS: EVC-107 [MMI_NEW_TRAIN_DATA]";
+        private const string BaseString1 = "CCUO_ETCS1NewTrainData_EVC107NewTrainDataSub";
 
         /// <summary>
         /// Initialise EVC107 MMI_New_Train_Data telegram.
@@ -78,7 +78,7 @@ namespace Testcase.Telegrams.DMItoEVC
                 // If check passes
                 if (_checkResult)
                 {
-                    _pool.TraceReport(baseString0 + Environment.NewLine +
+                    _pool.TraceReport(BaseString0 + Environment.NewLine +
                         "MMI_L_TRAIN = " + 0 + Environment.NewLine +
                         "MMI_V_MAXTRAIN = " + 0 + Environment.NewLine +
                         "MMI_NID_KEY_TRAIN_CAT = \"" + MMI_NID_KEY.NoDedicatedKey + "\"" + Environment.NewLine +
@@ -94,7 +94,7 @@ namespace Testcase.Telegrams.DMItoEVC
                 // Else display the real value extracted from EVC-107
                 else
                 {
-                    _pool.TraceError(baseString0 + Environment.NewLine +
+                    _pool.TraceError(BaseString0 + Environment.NewLine +
                         "MMI_L_TRAIN = \"" + _pool.SITR.CCUO.ETCS1NewTrainData.MmiLTrain.Value + "\"" + Environment.NewLine +
                         "MMI_V_MAXTRAIN = \"" + _pool.SITR.CCUO.ETCS1NewTrainData.MmiLTrain.Value + "\"" + Environment.NewLine +
                         "MMI_NID_KEY_TRAIN_CAT = \"" + Enum.GetName(typeof(MMI_NID_KEY), _pool.SITR.CCUO.ETCS1NewTrainData.MmiNidKeyTrainCat.Value) + "\"" + Environment.NewLine +
@@ -118,7 +118,7 @@ namespace Testcase.Telegrams.DMItoEVC
                     if (_nDataElements.Equals(1))
                     {
                         // Get MMI_NID_DATA
-                        _nidData = (byte)_pool.SITR.Client.Read($"{baseString1}0_MmiNidData"); //to be changed once the EVC107 rtsim configuration is updated
+                        _nidData = (byte)_pool.SITR.Client.Read($"{BaseString1}0_MmiNidData"); //to be changed once the EVC107 rtsim configuration is updated
 
                         // For Trainset selection, MMI_NID_DATA should be equal to 6 (= Train Type)
                         _checkResult = _nidData.Equals(6); 
@@ -145,7 +145,7 @@ namespace Testcase.Telegrams.DMItoEVC
                         _pool.TraceError("MMI_N_DATA_ELEMENTS = " + _nDataElements);
                         for (int k = 0; k < _nDataElements; k++)
                         {
-                            _nidData = (byte)_pool.SITR.Client.Read($"{baseString1}0{k}_MmiNidData");
+                            _nidData = (byte)_pool.SITR.Client.Read($"{BaseString1}0{k}_MmiNidData");
                             _pool.TraceError($"MMI_NID_DATA[{k}] = " + _nidData + ". Result = FAILED!");
                         }
                     }
@@ -170,7 +170,7 @@ namespace Testcase.Telegrams.DMItoEVC
                         _pool.TraceError("MMI_N_DATA_ELEMENTS = " + _nDataElements);
                         for (int k = 0; k < _nDataElements; k++)
                         {
-                            _nidData = (byte)_pool.SITR.Client.Read($"{baseString1}0{k}_MmiNidData");
+                            _nidData = (byte)_pool.SITR.Client.Read($"{BaseString1}0{k}_MmiNidData");
                             _pool.TraceError($"MMI_NID_DATA[{k}] = " + _nidData + ". Result = FAILED!");
                         }
                     }
@@ -181,7 +181,7 @@ namespace Testcase.Telegrams.DMItoEVC
                     _pool.TraceReport("MMI_N_DATA_ELEMENTS = " + _nDataElements);
                     for (int k = 0; k < _nDataElements; k++)
                     {
-                        _nidData = (byte)_pool.SITR.Client.Read($"{baseString1}0{k}_MmiNidData");
+                        _nidData = (byte)_pool.SITR.Client.Read($"{BaseString1}0{k}_MmiNidData");
                         _pool.TraceError($"MMI_NID_DATA[{k}] = " + _nidData + ".");
                     }
                 }
@@ -189,7 +189,7 @@ namespace Testcase.Telegrams.DMItoEVC
             // Show generic DMI -> EVC telegram failure
             else
             {
-                DmiExpectedResults.DMItoEVC_Telegram_Not_Received(_pool, baseString0);
+                DmiExpectedResults.DMItoEVC_Telegram_Not_Received(_pool, BaseString0);
             }
         }
 

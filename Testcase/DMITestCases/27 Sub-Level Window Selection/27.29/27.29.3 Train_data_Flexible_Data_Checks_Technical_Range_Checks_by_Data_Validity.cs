@@ -38,6 +38,13 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 22_29_3_a.xml, 22_29_3_b.xml, 22_29_3_c.xml 
     /// </summary>
+    /// 
+
+     -----------------------------------------------------------
+    // This test has been deliberately left incomplete: not clear if/when flexible train tests will be needed
+    // EVC6 needs extension to allow correct data checking (echo test display...)
+    // ===========================================================
+
     public class TC_ID_22_29_3_Train_data_Flexible_Data_Checks_Technical_Range_Checks_by_Data_Validity : TestcaseBase
     {
         public override void PreExecution()
@@ -92,7 +99,8 @@ namespace Testcase.DMITestCases
                                                      Variables.MMI_NID_KEY.CATA,
                                                      0,
                                                      Variables.MMI_NID_KEY.G1,
-                                                     36, 0, 0, new[] { "FLU", "RLU", "Rescue" }, null);
+                                                     EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE,
+                                                     0, 0, new[] { "FLU", "RLU", "Rescue" }, null);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Train data window instead of the Main window.");
@@ -105,7 +113,7 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, "Using the numeric keypad, enter ‘1’ for the Train length and press the data input field to accept the value");
 
-            EVC6_MMICurrentTrainData.MMI_M_BUTTONS = Convert.ToUInt16(Variables.MMI_M_BUTTONS.No_Button);
+            EVC6_MMICurrentTrainData.MMI_M_BUTTONS = EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.NoButton;
 
             /*
             Test Step 3

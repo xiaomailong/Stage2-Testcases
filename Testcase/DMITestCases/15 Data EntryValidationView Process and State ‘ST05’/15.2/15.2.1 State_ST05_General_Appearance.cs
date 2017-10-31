@@ -144,7 +144,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press ‘Train data’ button");
 
             // Send fixed data first
-            EVC6_MMICurrentTrainData.MMI_M_BUTTONS = Convert.ToUInt16(Variables.MMI_M_BUTTONS.BTN_CLOSE | Variables.MMI_M_BUTTONS.BTN_YES_DATA_ENTRY_COMPLETE);
+            EVC6_MMICurrentTrainData.MMI_M_BUTTONS = EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE;
             DmiActions.Send_EVC6_MMICurrentTrainData_FixedDataEntry(this,
                                                                     new[] { "FLU", "RLU", "Rescue" },
                                                                     1);
@@ -164,7 +164,7 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, @"Press the ‘Close button");
 
-            EVC6_MMICurrentTrainData.MMI_M_BUTTONS = Convert.ToUInt16(Variables.MMI_M_BUTTONS.BTN_CLOSE | Variables.MMI_M_BUTTONS.BTN_YES_DATA_ENTRY_COMPLETE);
+            EVC6_MMICurrentTrainData.MMI_M_BUTTONS = EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE;
             EVC6_MMICurrentTrainData.MMI_L_TRAIN = 100;
             EVC6_MMICurrentTrainData.MMI_M_DATA_ENABLE = Variables.MMI_M_DATA_ENABLE.TrainLength;
             EVC6_MMICurrentTrainData.TrainSetCaptions = new List<string> { "FLU", "RLU", "Rescue" };
