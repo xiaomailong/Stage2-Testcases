@@ -638,6 +638,21 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
+        /// Description: VBC code is entered
+        /// Used in:
+        ///     Step 10 in TC-ID: 22.27.1 in 27.27.1
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void VBC_code_entered(SignalPool pool)
+        {
+            DmiActions.ShowInstruction(pool, @"Perform the following action after pressing OK:" + Environment.NewLine + Environment.NewLine +
+                                "1. Enter and validate VBC Code");
+
+            uint vbcCode = EVC118_MMINewSetVbc.Get_M_VBC_CODE;
+            pool.WaitForVerification($"Is \"{vbcCode}\" the VBC Code you entered?");
+        }
+
+        /// <summary>
         /// Description:
         /// Used in:
         ///     Step 4 in TC-ID: 15.1.3 in 20.1.3     
