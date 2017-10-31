@@ -397,7 +397,7 @@ namespace Testcase.DMITestCases
             return GlobalTestResult;
         }
 
-        #region Send_XML_22_29_2_Test_Specification
+        #region Send_XML_22_29_2_DMI_Test_Specification
 
         private enum msgType : byte
         {
