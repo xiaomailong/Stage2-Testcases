@@ -132,14 +132,15 @@ namespace Testcase.DMITestCases
             */
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 11000;
-            // In diagram first scale line is at 125 (m) == 12500 (cm) O_TRACKCOND_ANNOUNCE - MMI_OBU_TR_O_TRAIN should == 12500
-            trackCondition.MMI_O_TRACKCOND_ANNOUNCE = 21500;
+            // In diagram first scale line is at 125, bottom of symbol at ~80 (m) == 12500 (cm): difference ~4500
+            // O_TRACKCOND_ANNOUNCE - MMI_OBU_TR_O_TRAIN should == 4500
+            trackCondition.MMI_O_TRACKCOND_ANNOUNCE = 15500;
             trackCondition.MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Non_Stopping_Area;
             trackCondition.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.ApproachingArea;
             EVC22_MMICurrentRBC.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The bottom of the PL09 symbol is displayed at 125.");
+                                "1. The bottom of the PL09 symbol is displayed at ~80.");
 
             /*
             Test Step 6
