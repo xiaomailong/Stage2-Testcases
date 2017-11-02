@@ -159,13 +159,13 @@ namespace Testcase.DMITestCases
             */
             // Remove current track condition?
             trackCondition.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.RemoveTC;
-            EVC22_MMICurrentRBC.Send();
+            EVC32_MMITrackConditions.Send();
 
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
             trackCondition.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea;
             trackCondition.MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction;
             trackCondition.MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Sound_Horn;
-            EVC22_MMICurrentRBC.Send();
+            EVC32_MMITrackConditions.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays symbol TC35 in sub-area B3.");

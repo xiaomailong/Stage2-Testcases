@@ -138,7 +138,7 @@ namespace Testcase.DMITestCases
 
             // Test spec says _STEP is 0, Table 45 says PL17 is _TYPE 5 (Air-tightness), _STEP 1, _ACTION_START 1
             trackCondition.MMI_O_TRACKCOND_ANNOUNCE = 23300;
-            EVC22_MMICurrentRBC.Send();
+            EVC32_MMITrackConditions.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The bottom of the PL17 symbol is displayed at ~2.");

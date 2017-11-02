@@ -137,7 +137,7 @@ namespace Testcase.DMITestCases
             // O_TRACKCOND_ANNOUNCE - MMI_OBU_TR_O_TRAIN should == 7500
             
             trackCondition.MMI_O_TRACKCOND_ANNOUNCE = 18500;
-            EVC22_MMICurrentRBC.Send();
+            EVC32_MMITrackConditions.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The bottom of the PL13 symbol is displayed at ~75.");
