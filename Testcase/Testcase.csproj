@@ -223,6 +223,7 @@ if exist "$(TargetPath)" if not exist "$(TargetPath).locked" move "$(TargetPath)
     <Compile Include="DMITestCases\22 Planning Area in Main Area D\22.4\22.4.4 PA_Track_Condition_Radio_Hole_in_Sub_Area_D2_and_B3.cs" />
     <Compile Include="DMITestCases\22 Planning Area in Main Area D\22.4\22.4.5 PA_Track_Condition_Air_Tightness_in_Sub_Area_D2_and_B3.cs" />
     <Compile Include="DMITestCases\22 Planning Area in Main Area D\22.4\22.4.6 PA_Track_Condition_Switch_off_regenerative_brake_in_Sub_Area_D2_and_B3.cs" />
+    <Compile Include="DMITestCases\22 Planning Area in Main Area D\22.4\22.4.7 PA_Track_Condition_Switch_off_eddy_current_brake_in_Sub_Area_D2_and_B3.cs" />
     <Compile Include="DMITestCases\22 Planning Area in Main Area D\22.4\22.4.8 PA_Track_Condition_Switch_off_magnetic_shoe_brake_in_Sub_Area_D2_and_B3.cs" />
     <Compile Include="DMITestCases\22 Planning Area in Main Area D\22.4\22.4.9 PA_Track_Condition_Switch_off_main_power_switch_in_Sub_Area_D2_and_B3.cs" />
     <Compile Include="DMITestCases\22 Planning Area in Main Area D\22.5\22.5.1 PA_Gradient_Profile_General_appearance.cs" />
