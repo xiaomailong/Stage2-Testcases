@@ -140,7 +140,7 @@ namespace Testcase.DMITestCases
             EVC22_MMICurrentRBC.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The bottom of the PL15 symbol is displayed at ~80.");
+                                "1. The bottom of the PL05 symbol is displayed at ~80.");
 
             /*
             Test Step 6
@@ -164,6 +164,7 @@ namespace Testcase.DMITestCases
 
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
             trackCondition.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.InsideArea_Active;
+            trackCondition.MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithoutDriverAction;
             EVC32_MMITrackConditions.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -208,7 +209,7 @@ namespace Testcase.DMITestCases
             EVC32_MMITrackConditions.Send();
 
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
-            trackCondition.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.InsideArea_Active;
+            trackCondition.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.LeaveArea;
             EVC32_MMITrackConditions.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
