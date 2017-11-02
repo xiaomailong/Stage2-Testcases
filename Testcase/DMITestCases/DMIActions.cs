@@ -30,12 +30,37 @@ namespace Testcase.DMITestCases
     public class DmiActions
     {
         /// <summary>
+        /// Forces DMI into completed SoM, L0, UN Mode. Displays Default window.
+        /// No user input required.
+        /// </summary>
+        /// <param name="pool">Signal pool</param>
+        public static void Complete_SoM_L0_UN(SignalPool pool)
+        {
+            // Start DMI/ETCS
+            Start_ATP();
+
+            // Set train running number, cab 1 active, and other defaults
+            Activate_Cabin_1(pool);
+
+            // Set driver ID
+            Set_Driver_ID(pool, "1234");
+
+            // Set to level 0 and UN mode
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L0;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Unfitted;
+
+            // Enable standard buttons including Start, and display Default window.
+            Finished_SoM_Default_Window(pool);
+        }
+
+        /// <summary>
         /// Forces DMI into completed SoM, L1, SB Mode. Displays Default window.
         /// No user input required.
         /// </summary>
         /// <param name="pool">Signal pool</param>
         public static void Complete_SoM_L1_SB(SignalPool pool)
         {
+            // Start DMI/ETCS
             Start_ATP();
 
             // Set train running number, cab 1 active, and other defaults
