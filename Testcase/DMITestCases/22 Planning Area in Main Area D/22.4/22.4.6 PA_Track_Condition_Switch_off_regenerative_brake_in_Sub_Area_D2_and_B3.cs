@@ -169,8 +169,7 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays symbol TC17 in sub-area B3.");
-
-
+            
             /*
             Test Step 8
             Action: Driver the train forward with speed = 40 km/h
