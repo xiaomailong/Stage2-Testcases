@@ -143,7 +143,7 @@ namespace Testcase.DMITestCases
             EVC22_MMICurrentRBC.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The bottom of the PL31 symbol is displayed at ~60.");
+                                "1. The bottom of the PL33 symbol is displayed at ~60.");
 
             /*
             Test Step 6
