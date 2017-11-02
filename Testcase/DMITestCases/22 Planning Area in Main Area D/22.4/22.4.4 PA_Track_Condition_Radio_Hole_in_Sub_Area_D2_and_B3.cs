@@ -136,7 +136,7 @@ namespace Testcase.DMITestCases
             // In diagram first scale line is at 250, bottom of symbol at ~150 (m) : difference ~10000 (cm)
             // O_TRACKCOND_ANNOUNCE - MMI_OBU_TR_O_TRAIN should == 10000
             trackCondition.MMI_O_TRACKCOND_START = 21000;
-            EVC22_MMICurrentRBC.Send();
+            EVC32_MMITrackConditions.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The bottom of the PL10 symbol is displayed at ~150.");
@@ -160,7 +160,7 @@ namespace Testcase.DMITestCases
             trackCondition.MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Radio_hole;
             trackCondition.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea;
             trackCondition.MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithoutDriverAction;
-            EVC22_MMICurrentRBC.Send();
+            EVC32_MMITrackConditions.Send();
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -183,7 +183,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9965;
             */
             trackCondition.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.RemoveTC;
-            EVC22_MMICurrentRBC.Send();
+            EVC32_MMITrackConditions.Send();
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +

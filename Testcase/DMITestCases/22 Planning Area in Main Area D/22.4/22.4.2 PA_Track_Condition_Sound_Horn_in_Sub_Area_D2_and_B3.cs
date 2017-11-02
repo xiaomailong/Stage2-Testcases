@@ -136,7 +136,7 @@ namespace Testcase.DMITestCases
             trackCondition.MMI_O_TRACKCOND_START = 13500;
             trackCondition.MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Sound_Horn;
             trackCondition.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea;
-            EVC22_MMICurrentRBC.Send();
+            EVC32_MMITrackConditions.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The bottom of the PL24 symbol is displayed at ~100.");
@@ -187,7 +187,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9965;
             */
             trackCondition.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.RemoveTC;
-            EVC22_MMICurrentRBC.Send();
+            EVC32_MMITrackConditions.Send();
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
