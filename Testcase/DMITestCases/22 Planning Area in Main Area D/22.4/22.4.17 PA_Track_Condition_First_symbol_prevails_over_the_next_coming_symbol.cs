@@ -36,7 +36,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 17_4_17.tdg
     /// </summary>
-    public class PA_Track_Condition_First_symbol_prevails_over_the_next_coming_symbol : TestcaseBase
+    public class TC_ID_17_4_17_PA_Track_Condition_First_symbol_prevails_over_the_next_coming_symbol : TestcaseBase
     {
         public override void PreExecution()
         {

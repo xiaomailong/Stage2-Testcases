@@ -35,7 +35,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 17_4_6.tdg
     /// </summary>
-    public class PA_Track_Condition_Switch_off_regenerative_brake_in_Sub_Area_D2_and_B3 : TestcaseBase
+    public class TC_ID_4_6_PA_Track_Condition_Switch_off_regenerative_brake_in_Sub_Area_D2_and_B3 : TestcaseBase
     {
         public override void PreExecution()
         {

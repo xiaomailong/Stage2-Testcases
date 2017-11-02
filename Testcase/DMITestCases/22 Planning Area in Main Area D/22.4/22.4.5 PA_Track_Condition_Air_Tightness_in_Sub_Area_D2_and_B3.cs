@@ -35,7 +35,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 17_4_5.tdg
     /// </summary>
-    public class PA_Track_Condition_Air_Tightness_in_Sub_Area_D2_and_B3 : TestcaseBase
+    public class TC_ID_17_4_5_PA_Track_Condition_Air_Tightness_in_Sub_Area_D2_and_B3 : TestcaseBase
     {
         public override void PreExecution()
         {

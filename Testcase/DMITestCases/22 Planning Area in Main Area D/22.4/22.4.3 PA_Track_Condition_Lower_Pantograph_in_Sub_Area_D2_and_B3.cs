@@ -35,7 +35,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 17_4_3.tdg
     /// </summary>
-    public class PA_Track_Condition_Lower_Pantograph_in_Sub_Area_D2_and_B3 : TestcaseBase
+    public class TC_17_4_3_PA_Track_Condition_Lower_Pantograph_in_Sub_Area_D2_and_B3 : TestcaseBase
     {
         public override void PreExecution()
         {
