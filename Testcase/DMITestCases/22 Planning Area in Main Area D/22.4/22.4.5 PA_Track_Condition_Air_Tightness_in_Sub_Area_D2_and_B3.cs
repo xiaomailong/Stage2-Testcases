@@ -115,6 +115,7 @@ namespace Testcase.DMITestCases
                 MMI_NID_TRACKCOND = 0,
                 MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Air_tightness,
                 MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea,
+                MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithoutDriverAction,
                 MMI_Q_TRACKCOND_ACTION_END = 0
             };
 
@@ -206,7 +207,6 @@ namespace Testcase.DMITestCases
             // 1st display line at 500m: symbol at this, MMI_O_TRACKCOND_END - (EVC7)OBU_TR_O_TRAIN => ~50000 (cm)
             trackCondition.MMI_O_TRACKCOND_END = 105000;
             EVC32_MMITrackConditions.Send();
-
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The bottom of the PL18 symbol is displayed at ~2.");
