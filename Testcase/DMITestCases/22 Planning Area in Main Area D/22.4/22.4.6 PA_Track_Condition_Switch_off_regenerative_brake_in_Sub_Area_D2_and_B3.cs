@@ -78,7 +78,7 @@ namespace Testcase.DMITestCases
             Action: Drive the train forward with speed = 20 km/h
             Expected Result: The speed pointer is indicated as 20  km/h
             */
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 20;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in FS mode, Level 1.");
