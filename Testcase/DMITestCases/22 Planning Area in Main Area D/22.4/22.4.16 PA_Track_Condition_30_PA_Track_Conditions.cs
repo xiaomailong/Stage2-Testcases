@@ -13,6 +13,8 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.EVCtoDMI;
+
 
 namespace Testcase.DMITestCases
 {
@@ -34,7 +36,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 17_4_16.tdg
     /// </summary>
-    public class PA_Track_Condition_30_PA_Track_Conditions : TestcaseBase
+    public class TC_ID_17_4_16_PA_Track_Condition_30_PA_Track_Conditions : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -58,36 +60,131 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
             /*
             Test Step 1
             Action: Drive the train up to 20 km/h
             Expected Result: The speed pointer is indicated as 20  km/h
             */
-            // Call generic Action Method
-            DmiActions.Drive_the_train_up_to_20_kmh(this);
-            // Call generic Check Results Method
-            DmiExpectedResults.The_speed_pointer_is_indicated_as_20_kmh(this);
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 20;
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in FS mode, Level 1.");
 
 
             /*
             Test Step 2
-            Action: Pass BG0 with MA and Track descriptionPkt 12,21 and 27
+            Action: Drive the train forward pass BG0 with MA and Track descriptionPkt 12,21 and 27
             Expected Result: Mode changes to FS mode , L1
             */
-            // Call generic Action Method
-            DmiActions.Pass_BG0_with_MA_and_Track_descriptionPkt_12_21_and_27(this);
-            // Call generic Check Results Method
-            DmiExpectedResults.Mode_changes_to_FS_mode_L1(this);
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in FS mode, Level 1.");
 
             /*
             Test Step 3
-            Action: Pass BG1 with  conatining 30 PA Track conditionPkt 65:M_TRACKCOND(0) =0M_TRACKCOND(1) =1M_TRACKCOND(2) =2M_TRACKCOND(3) =3M_TRACKCOND(4) =4M_TRACKCOND(5) =5M_TRACKCOND(6) =6M_TRACKCOND(7) =7M_TRACKCOND(8) =8M_TRACKCOND(9) = 0M_TRACKCOND(10) =1 M_TRACKCOND(11) =2M_TRACKCOND(12) =3M_TRACKCOND(13) =4M_TRACKCOND(14) =5M_TRACKCOND(15) =6M_TRACKCOND(16) =1M_TRACKCOND(17) =6M_TRACKCOND(18) =3M_TRACKCOND(19) =1M_TRACKCOND(20) =2M_TRACKCOND(21) =8M_TRACKCOND(22) =0M_TRACKCOND(23) =9M_TRACKCOND(24) =8M_TRACKCOND(25) =3M_TRACKCOND(26) =5M_TRACKCOND(27) =7M_TRACKCOND(28) =4M_TRACKCOND(29) =6
-            Expected Result: DMI displays track condition symbol in sub-area D2,D3, D4
-            Test Step Comment: MMI-gen_1282;MMI_gen 1317;
+            Action: Pass BG1 with Track conditionPkt 68:D_TRACKCOND = 500L_TRACKCOND = 200M_TRACKCOND = 8(Switch off magnetic shoe brake)
+            Expected Result: Mode remians in FS mode
             */
+            EVC32_MMITrackConditions.MMI_Q_TRACKCOND_UPDATE = 0;
 
+            List<TrackCondition> trackConditions =
+                new List<TrackCondition>
+                {
+            /* 0 */ new TrackCondition { MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Regenerative_Brakes,
+                                         MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea,
+                                         MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction },
+            /* 1 */ new TrackCondition { MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Tunnel_Stopping_Area,
+                                         MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea,
+                                         MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction },
+            /* 2 */ new TrackCondition { MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Magnetic_Shoe_Brakes,
+                                         MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea,
+                                         MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction},
+            /* 3 */ new TrackCondition { MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Main_power_switch_Neutral_Section,
+                                         MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea,
+                                         MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction },
+            /* 4 */ new TrackCondition { MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Radio_hole,
+                                         MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.InsideArea_Active },
+            /* 5 */ new TrackCondition { MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Air_tightness,
+                                         MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea,
+                                         MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction },
+            /* 6 */ new TrackCondition { MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Non_Stopping_Area,
+                                         MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea,
+                                         MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction },
+            /* 7 */ new TrackCondition { MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Pantograph,
+                                         MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.InsideArea_Active,
+                                         MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction },
+            /* 8 */ new TrackCondition { MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Magnetic_Shoe_Brakes,
+                                         MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea,
+                                         MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithoutDriverAction },
+            /* 0 */ new TrackCondition { MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Regenerative_Brakes,
+                                         MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea,
+                                         MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction },
+            /* 1 */ new TrackCondition { MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Tunnel_Stopping_Area,
+                                         MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea,
+                                         MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction },
+            /* 2 */ new TrackCondition { MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Magnetic_Shoe_Brakes,
+                                         MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea,
+                                         MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction},
+            /* 3 */ new TrackCondition { MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Main_power_switch_Neutral_Section,
+                                         MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea,
+                                         MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction },
+            /* 4 */ new TrackCondition { MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Radio_hole,
+                                         MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.InsideArea_Active },
+            /* 5 */ new TrackCondition { MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Air_tightness,
+                                         MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea,
+                                         MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction },
+            /* 6 */ new TrackCondition { MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Non_Stopping_Area,
+                                         MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea,
+                                         MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction },
+            /* 1 */ new TrackCondition { MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Tunnel_Stopping_Area,
+                                         MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea,
+                                         MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction },
+            /* 6 */ new TrackCondition { MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Non_Stopping_Area,
+                                         MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea,
+                                         MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction },
+            /* 3 */ new TrackCondition { MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Main_power_switch_Neutral_Section,
+                                         MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea,
+                                         MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction },
+            /* 1 */ new TrackCondition { MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Tunnel_Stopping_Area,
+                                         MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea,
+                                         MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction },
+            /* 2 */ new TrackCondition { MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Magnetic_Shoe_Brakes,
+                                         MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea,
+                                         MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction},
+            /* 8 */ new TrackCondition { MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Magnetic_Shoe_Brakes,
+                                         MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea,
+                                         MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithoutDriverAction },
+            /* 0 */ new TrackCondition { MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Regenerative_Brakes,
+                                         MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea,
+                                         MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction },
+            /* 9 */ new TrackCondition { MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Eddy_Current_Brakes,
+                                         MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea,
+                                         MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithoutDriverAction },
+            /* 8 */ new TrackCondition { MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Magnetic_Shoe_Brakes,
+                                         MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea,
+                                         MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithoutDriverAction },
+            /* 3 */ new TrackCondition { MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Main_power_switch_Neutral_Section,
+                                         MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea,
+                                         MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction },
+            /* 5 */ new TrackCondition { MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Air_tightness,
+                                         MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea,
+                                         MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction },
+            /* 7 */ new TrackCondition { MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Pantograph,
+                                         MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.InsideArea_Active,
+                                         MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction },
+            /* 4 */ new TrackCondition { MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Radio_hole,
+                                         MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.InsideArea_Active },
+            /* 6 */ new TrackCondition { MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Non_Stopping_Area,
+                                         MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea,
+                                         MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction }
+                };
+
+            EVC32_MMITrackConditions.TrackConditions = trackConditions;
+            EVC32_MMITrackConditions.Send();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays track condition symbols in sub-areas D2, D3, D4.");
 
             /*
             Test Step 4
@@ -95,26 +192,50 @@ namespace Testcase.DMITestCases
             Expected Result: The PA Track condition symbols are going down to the first distance scale (zero line) and no symbol jumping between D2, D3 and D4 area
             Test Step Comment: MMI_gen 1652;MMI_gen 1050;
             */
-            // Call generic Action Method
-            DmiActions.Continue_driving_with_20_Kmh(this);
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 50000;
+            // In diagram first scale line is at 125, bottom of symbol at ~60 (m)
+            // O_TRACKCOND_ANNOUNCE - MMI_OBU_TR_O_TRAIN should == 6000
 
+            // Set up 3 groups of 20m separated symbols (each 10th potentially over-lapping)
+            int tc = 0;
+            const int separation = 20000;                // (200m)
+            const int initialAnnouncement = 320000;      // (3000m)
+            foreach (TrackCondition trackCondition in trackConditions)
+            {
+                trackCondition.MMI_O_TRACKCOND_ANNOUNCE = initialAnnouncement - (tc * separation);
+                tc = (++tc) % 10;
+            }
+            EVC32_MMITrackConditions.Send();
+
+            Wait_Realtime(1000);
+            for (tc = 0; tc < 5; tc++)
+            {
+                EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN += 20000;
+                Wait_Realtime(500);
+            }
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The track condition symbols move towards the first distance scale (zero line)." + Environment.NewLine +
+                                "2. No symbols jump between sub-areas D2, D3 and D4.");
 
             /*
             Test Step 5
             Action: Continue driving with 20 Km/h
             Expected Result: DMI displays remianing track condition symbols on sub-area D2 and D3
             */
-            // Call generic Action Method
-            DmiActions.Continue_driving_with_20_Kmh(this);
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN += 10000;
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the remaining track condition symbols in sub-areas D2 and D3.");
 
             /*
             Test Step 6
             Action: Continue driving with 20 Km/h
             Expected Result: DMI displays remianing track condition symbols on sub-area D2
             */
-            // Call generic Action Method
-            DmiActions.Continue_driving_with_20_Kmh(this);
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN += 10000;
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the remaining track condition symbols in sub-area D2.");
 
 
             /*
@@ -123,16 +244,18 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Default window with the  message “ATP Down Alarm” and sound alarmPA Track Condition symbol shall be removed from sub-area D2
             Test Step Comment: MMI_gen 3051;
             */
-            // Call generic Action Method
-            DmiActions.Simulate_loss_communication_between_ETCS_onboard_and_DMI(this);
+            DmiActions.Simulate_communication_loss_EVC_DMI(this);
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the message ‘ATP Down Alarm’." + Environment.NewLine +
+                                "2. The ‘Alarm’ sound is played." + Environment.NewLine +
+                                "3. DMI does not display the track condition symbols.");
 
             /*
             Test Step 8
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }
