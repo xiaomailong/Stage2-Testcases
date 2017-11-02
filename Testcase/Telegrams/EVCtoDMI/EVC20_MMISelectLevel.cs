@@ -187,7 +187,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static MMI_M_LEVEL_NTC_ID[] MMI_M_LEVEL_NTC_ID
         {
-            set => _mLevelNtcId = value;          
+            set => _mLevelNtcId = value;
         }
 
         /// <summary>
@@ -201,7 +201,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static MMI_Q_CLOSE_ENABLE MMI_Q_CLOSE_ENABLE
         {
-            set => _pool.SITR.ETCS1.SelectLevel.MmiQCloseEnable.Value = (byte) value;               
+            set => _pool.SITR.ETCS1.SelectLevel.MmiQCloseEnable.Value = (byte) value;
         }
     }
 }
