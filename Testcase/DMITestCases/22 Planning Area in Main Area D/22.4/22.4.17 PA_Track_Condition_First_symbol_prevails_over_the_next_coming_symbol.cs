@@ -13,6 +13,8 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.EVCtoDMI;
+
 
 namespace Testcase.DMITestCases
 {
@@ -30,7 +32,7 @@ namespace Testcase.DMITestCases
     /// 2.Perform Start of Mission to L1, SR mode
     /// 3.Pass BG0 with MA and Track desciption
     /// 4.Mode changes to FS mode 
-    /// 5.Pass BG1 with containing pkt68 (Track condtion)                 M_TRACKCOND = 0 (Non Stopping area)         M_TRACKCOND = 2 (Sound Horn)         M_TRACKCOND = 4 (Radio Hole)                  M_TRACKCOND = 0 (Non Stopping area)      
+    /// 5.Pass BG1 with containing pkt68 (Track condtion)M_TRACKCOND = 0 (Non Stopping area) M_TRACKCOND = 2 (Sound Horn) M_TRACKCOND = 4 (Radio Hole)  M_TRACKCOND = 0 (Non Stopping area)      
     /// 6.Verify the Track condition symbos display on area D2, D3 and D4
     /// 
     /// Used files:
@@ -41,10 +43,22 @@ namespace Testcase.DMITestCases
         public override void PreExecution()
         {
             // Pre-conditions from TestSpec:
-            // Power off the  systemTrain length is 100 mConfigure atpcu configuration file as follwing:TC_T_Panto_Down = 100TC_T_MainSwitch_Off = 100TC_T_Airtight_Close =100TC_T_Inhib_RBBrake = 100TC_T_ Inhib_ECBrake = 100TC_T_ Inhib_MSBrake = 100TC_T_Change_TractionSyst = 100TC_T_Allowed_CurrentConsump = 100 TC_T_StationPlatform = 100
+            // Train length is 100 m
+            // Configure atpcu configuration file as following:
+			// TC_T_Panto_Down = 100
+			// TC_T_MainSwitch_Off = 100
+			// TC_T_Airtight_Close =100
+			// TC_T_Inhib_RBBrake = 100
+			// TC_T_ Inhib_ECBrake = 100
+			// TC_T_ Inhib_MSBrake = 100
+			// TC_T_Change_TractionSyst = 100
+			// TC_T_Allowed_CurrentConsump = 100 
+			// TC_T_StationPlatform = 100
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
+
+            // Power off the  system
         }
 
         public override void PostExecution()
@@ -59,7 +73,8 @@ namespace Testcase.DMITestCases
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint
-
+            TraceInfo("This test case requires an ATP configuration change - " +
+                      "See Precondition requirements. If this is not done manually, the test may fail!");
 
             /*
             Test Step 1
@@ -67,50 +82,72 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SB mode
             */
             // Call generic Action Method
-            DmiActions.Power_on_the_system_and_activate_cabin(this);
-            // Call generic Check Results Method
-            DmiExpectedResults.SB_Mode_displayed(this);
+            DmiActions.ShowInstruction(this, "Power on the system");
+            DmiActions.Start_ATP();
+            DmiActions.Activate_Cabin_1(this);
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SB mode");
 
             /*
             Test Step 2
             Action: Perform SoM to L1, SR mode
             Expected Result: Mode changes to SR mode , L1
             */
-            // Call generic Action Method
-            DmiActions.Perform_SoM_to_L1_SR_mode(this);
-            // Call generic Check Results Method
-            DmiExpectedResults.SR_Mode_displayed(this);
+            // Testing to SR mode is done elsewhere: force...
+            DmiActions.Set_Driver_ID(this, "1234");
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
+            DmiActions.Finished_SoM_Default_Window(this);
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SR mode, Level 1.");
 
             /*
             Test Step 3
             Action: Drive the train up to 20 km/h
             Expected Result: The speed pointer is indicated as 20  km/h
             */
-            // Call generic Action Method
-            DmiActions.Drive_the_train_up_to_20_kmh(this);
-            // Call generic Check Results Method
-            DmiExpectedResults.The_speed_pointer_is_indicated_as_20_kmh(this);
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 20;
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The speed pointer is displayed with speed = 20 km/h.");
 
             /*
             Test Step 4
             Action: Pass BG0 with MA and Track descriptionPkt 12,21 and 27
             Expected Result: Mode changes to FS mode , Level 1
             */
-            // Call generic Action Method
-            DmiActions.Pass_BG0_with_MA_and_Track_descriptionPkt_12_21_and_27(this);
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in FS mode, Level 1.");
 
             /*
             Test Step 5
             Action: Pass BG1 with 4Track conditions Pkt 68:D_TRACKCOND(1) = 400L_TRACKCOND(1) = 200M_TRACKCOND(1) = 0D_TRACKCOND(2) = 0L_TRACKCOND(2) = 200M_TRACKCOND(2) = 2D_TRACKCOND(3) = 5L_TRACKCOND(3) = 200M_TRACKCOND(3) = 4D_TRACKCOND(4) = 10L_TRACKCOND(4) = 200M_TRACKCOND(4) = 0
             Expected Result: Mode remins in FS mode
             */
-            // Call generic Check Results Method
-            DmiExpectedResults.Mode_remins_in_FS_mode(this);
+            EVC32_MMITrackConditions.MMI_Q_TRACKCOND_UPDATE = 0;
 
+            EVC32_MMITrackConditions.TrackConditions =
+                new List<TrackCondition>
+                {
+            /* 0 */ new TrackCondition { MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Non_Stopping_Area,
+                                         MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea,
+                                         MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithoutDriverAction },
+            /* 1 */ new TrackCondition { MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Sound_Horn,
+                                         MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea,
+                                         MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithoutDriverAction },
+            /* 2 */ new TrackCondition { MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Radio_hole,
+                                         MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea,
+                                         MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithoutDriverAction},
+            /* 3 */ new TrackCondition { MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Non_Stopping_Area,
+                                         MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea,
+                                         MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithoutDriverAction }
+                };
+
+            EVC32_MMITrackConditions.Send();
 
             /*
             Test Step 6
@@ -118,14 +155,14 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following informationDMI displays Track condition symbol “ Non-stopping area” over “ Sound horn”
             Test Step Comment: MMI_gen 1417;
             */
-
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays track condition symbol ‘Non-stopping area’, TC10, over symbol ‘Non-stopping area’, TC35.");
 
             /*
             Test Step 7
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }
