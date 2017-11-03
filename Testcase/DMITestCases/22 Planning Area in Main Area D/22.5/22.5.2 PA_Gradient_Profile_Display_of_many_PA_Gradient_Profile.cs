@@ -90,6 +90,7 @@ namespace Testcase.DMITestCases
             };
 
             EVC4_MMITrackDescription.TrackDescriptions = descriptionsList;
+            EVC4_MMITrackDescription.MMI_G_GRADIENT_CURR = 2;
             EVC4_MMITrackDescription.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -98,11 +99,11 @@ namespace Testcase.DMITestCases
                                 "3. 5 Gradient Profile segment bars are displayed, described from the bottom upwards:" + Environment.NewLine +
                                 "4. The gradient values are displayed in the centre of the bar." + Environment.NewLine +
                                 "5  Bars with positive gradient values have a ‘+’ sign at the top and bottom edges." + Environment.NewLine +
-                                "6. Bar #4 has a negative gradient values indicated by ‘-’ signs at the top and bottom edges." + Environment.NewLine +
-                                "7. Bar #1 has the value ‘2’ in black on a grey background (from 0 to 250)." + Environment.NewLine +
-                                "8. Bar #2 has the value ‘5’ in black on a grey background (from 251 to 500)." + Environment.NewLine +
-                                "9. Bar #3 has the value ‘20’ in black on a grey background (from 501 to 1000)." + Environment.NewLine +
-                                "10. Bar #4 has the value ‘16 in white  on a Dark-grey background (from 1001 to 2000)." + Environment.NewLine +
+                                "6. Bar #4 has a negative gradient value indicated by ‘-’ signs at the top and bottom edges." + Environment.NewLine +
+                                "7. Bar #1 has the value ‘2’ in black on a grey background (from 0 to 250), with its lower border at 0m." + Environment.NewLine +
+                                "8. Bar #2 has the value ‘5’ in black on a grey background (from 251 to 500), with its lower border at 250m.." + Environment.NewLine +
+                                "9. Bar #3 has the value ‘20’ in black on a grey background (from 501 to 1000), with its lower border at 500m.." + Environment.NewLine +
+                                "10. Bar #4 has the value ‘16 in white  on a Dark-grey background (from 1001 to 2000), with its lower border at 2000m." + Environment.NewLine +
                                 "11. Bar #5 has the value ‘10’ in black on a grey background (from 2001 to 4000)." + Environment.NewLine +
                                 "12. The window contains scale up (+) and scale down (-) buttons." + Environment.NewLine +
                                 "13. The gradients are on a scale from 0 to 4000m.");
