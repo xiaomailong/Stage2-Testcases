@@ -338,17 +338,7 @@ namespace Testcase.DMITestCases
             Test Step 10
             Action: Delete the old value and enter the value ‘65536’ for VBC code.
             Then, confirm an entered data by pressing an input field
-            Expected Result: Verify the following information,
-
-            
-
-
-            Data Entry window
-
-            The state of ‘Yes’ button below text label ‘Train data Entry is complete?’ is enabled as follows,
-            - The background colour of the Data Area is medium-grey.
-            - The colour of data value is black.
-            - The colour of border is medium-grey.
+            Expected Result: Verify the following information,           
 
             Packet transmission
 
@@ -396,24 +386,32 @@ namespace Testcase.DMITestCases
 
             #endregion
 
-
             /*
             Test Step 11
             Action: Select and enter the value ‘65536’ for VBC code again
-            Expected Result: Verify the following information,The state of ‘Yes’ button below text label ‘Set VBC entry is complete?’ is disabled
+            Expected Result: Verify the following information,
+            The state of ‘Yes’ button below text label ‘Set VBC entry is complete?’ is disabled
             Test Step Comment: (1) MMI_gen 8326 (partly: MMI_gen 4909 (partly: state selected and with recently entered key), MMI_gen 4680 (partly: value has been modified));
             */
-            // Call generic Action Method
-            DmiActions.Select_and_enter_the_value_65536_for_VBC_code_again(this);
+
 
 
             /*
             Test Step 12
-            Action: Confirm an entered data.Then, apply the action step 2-3 for ‘Yes’ button
-            Expected Result: See the expected results of Step 2 – Step 3 and the following points,DMI displays Set VBC validation window.Use the log file to confirm that DMI sent out packet [MMI_NEW_SET_VBC (EVC-118)] with following variablesMMI_M_VBC_CODE (bit 16-23) = 65536MMI_M_BUTTONS = 36
-            Test Step Comment: (1) MMI_gen 8326 (partly: MMI_gen 4911 (partly:  MMI_gen 4381 (partly: change to state ‘Pressed’ as long as remain actuated))); MMI_gen 5387 (partly: closure);(2) MMI_gen 8326 (partly: MMI_gen 4911 (partly: MMI_gen 4381 (partly: exit state ‘Pressed’, execute function associated to the button))); MMI_gen 9923 (partly: [Yes], EVC-107); MMI_gen 9902; MMI_gen 5387 (partly: transmission);
+            Action: Confirm an entered data.
+            Then, apply the action step 2-3 for ‘Yes’ button
+            Expected Result: See the expected results of Step 2 – Step 3 and the following points,
+            DMI displays Set VBC validation window.
+            Use the log file to confirm that DMI sent out packet [MMI_NEW_SET_VBC (EVC-118)] with following variables
+            MMI_M_VBC_CODE (bit 16-23) = 65536
+            MMI_M_BUTTONS = 36
+            Test Step Comment: (1) MMI_gen 8326 (partly: MMI_gen 4911 (partly:  MMI_gen 4381 (partly: change to state ‘Pressed’ as long as remain actuated))); 
+                                   MMI_gen 5387 (partly: closure);
+                               (2) MMI_gen 8326 (partly: MMI_gen 4911 (partly: MMI_gen 4381 (partly: exit state ‘Pressed’, execute function associated to the button))); 
+                                   MMI_gen 9923 (partly: [Yes], EVC-107); 
+                                   MMI_gen 9902; 
+                                   MMI_gen 5387 (partly: transmission);
             */
-            // Call generic Action Method
             DmiActions.Confirm_an_entered_data_Then_apply_the_action_step_2_3_for_Yes_button(this);
 
 
