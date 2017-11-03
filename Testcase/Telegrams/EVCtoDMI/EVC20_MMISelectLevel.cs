@@ -27,18 +27,18 @@ namespace Testcase.Telegrams.EVCtoDMI
         private static MMI_M_INHIBIT_ENABLE[] _mInhibitEnable;
         private static MMI_M_LEVEL_NTC_ID[] _mLevelNtcId;
         private static ushort _nLevels;
-        private static string _baseString = "ETCS1_SelectLevel_EVC20SelectLevelSub";
+        private const string BaseString = "ETCS1_SelectLevel_EVC20SelectLevelSub";
 
         /// <summary>
         /// Initialise an instance of EVC-20 MMI Select Level telegram.
         /// </summary>
-        /// <param name="pool"></param>
+        /// <param name="pool">SignalPool</param>
         public static void Initialise(SignalPool pool)
         {
             _pool = pool;
 
             // Set as dynamic
-            _pool.SITR.SMDCtrl.ETCS1.SelectLevel.Value = 0x8;
+            _pool.SITR.SMDCtrl.ETCS1.SelectLevel.Value = 0x0008;
 
             // Set default values
             _pool.SITR.ETCS1.SelectLevel.MmiMPacket.Value = 20; // Packet ID
@@ -63,43 +63,45 @@ namespace Testcase.Telegrams.EVCtoDMI
             // Populate telegram with MMI_N_LEVELS
             _pool.SITR.ETCS1.SelectLevel.MmiNLevels.Value = _nLevels;
 
-            for (var k = 0; k < _nLevels; k++)
+            for (int k = 0; k < _nLevels; k++)
             {
                 // xxxx xxxx => x000 0000
-                uint uintMmiQLevelNtcId = Convert.ToUInt32(_qLevelNtcId[k]);
+                uint uintMmiQLevelNtcId = (uint) _qLevelNtcId[k];
                 uintMmiQLevelNtcId <<= 7;
                 
                 // xxxx xxxx => 0x00 0000
-                uint uintMmiMCurrentLevel = Convert.ToUInt32(_mCurrentLevel[k]);
+                uint uintMmiMCurrentLevel = (uint) _mCurrentLevel[k];
                 uintMmiMCurrentLevel <<= 6;
                 
                 // xxxx xxxx => 00x0 0000
-                uint uintMmiMLevelFlag = Convert.ToUInt32(_mLevelFlag[k]);
+                uint uintMmiMLevelFlag = (uint) _mLevelFlag[k];
                 uintMmiMLevelFlag <<= 5;
                 
                 // xxxx xxxx => 000x 0000
-                uint uintMmiMInhibitedLevel = Convert.ToUInt32(_mInhibitedLevel[k]);
+                uint uintMmiMInhibitedLevel = (uint) _mInhibitedLevel[k];
                 uintMmiMInhibitedLevel <<= 4;
                 
                 // xxxx xxxx => 0000 x000
-                uint uintMmiMInhibitEnable = Convert.ToUInt32(_mInhibitEnable[k]);
+                uint uintMmiMInhibitEnable = (uint) _mInhibitEnable[k];
                 uintMmiMInhibitEnable <<= 3;
 
                 // Build EVC20_alias_1 
-                byte evc20Alias1 = Convert.ToByte(uintMmiQLevelNtcId | uintMmiMCurrentLevel |
-                                                  uintMmiMLevelFlag | uintMmiMInhibitedLevel |
-                                                  uintMmiMInhibitEnable);
+                byte evc20Alias1 = (byte)(uintMmiQLevelNtcId |
+                                                    uintMmiMCurrentLevel |
+                                                    uintMmiMLevelFlag |
+                                                    uintMmiMInhibitedLevel |
+                                                    uintMmiMInhibitEnable);
 
                 // Populate telegram with dynamic fields
                 if (k < 10)
                 {
-                    _pool.SITR.Client.Write(_baseString + $"0{k}_EVC20alias1", evc20Alias1);
-                    _pool.SITR.Client.Write(_baseString + $"0{k}_MmiMLevelNtcId", Convert.ToByte(_mLevelNtcId[k]));
+                    _pool.SITR.Client.Write($"{BaseString}0{k}_EVC20alias1", evc20Alias1);
+                    _pool.SITR.Client.Write($"{BaseString}0{k}_MmiMLevelNtcId", (byte) _mLevelNtcId[k]);
                 }
                 else
                 {
-                    _pool.SITR.Client.Write(_baseString + $"{k}_EVC20alias1", evc20Alias1);
-                    _pool.SITR.Client.Write(_baseString + $"{k}_MmiMLevelNtcId", Convert.ToByte(_mLevelNtcId[k]));
+                    _pool.SITR.Client.Write($"{BaseString}{k}_EVC20alias1", evc20Alias1);
+                    _pool.SITR.Client.Write($"{BaseString}{k}_MmiMLevelNtcId", (byte) _mLevelNtcId[k]);
                 }
             }
         }
@@ -110,8 +112,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         public static void Send()
         {
             SetLevelInfoK();
-            _pool.SITR.ETCS1.SelectLevel.MmiLPacket.Value = (ushort) (56 + (_nLevels * 16));
-            _pool.SITR.SMDCtrl.ETCS1.SelectLevel.Value = 0x09;
+            _pool.SITR.ETCS1.SelectLevel.MmiLPacket.Value = (ushort)(56 + (_nLevels * 16));
+            _pool.SITR.SMDCtrl.ETCS1.SelectLevel.Value = 0x0009;
         }
 
         /// <summary>
@@ -185,7 +187,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static MMI_M_LEVEL_NTC_ID[] MMI_M_LEVEL_NTC_ID
         {
-            set => _mLevelNtcId = value;          
+            set => _mLevelNtcId = value;
         }
 
         /// <summary>
@@ -199,7 +201,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static MMI_Q_CLOSE_ENABLE MMI_Q_CLOSE_ENABLE
         {
-            set => _pool.SITR.ETCS1.SelectLevel.MmiQCloseEnable.Value = (byte) value;               
+            set => _pool.SITR.ETCS1.SelectLevel.MmiQCloseEnable.Value = (byte) value;
         }
     }
 }

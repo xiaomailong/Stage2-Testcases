@@ -32,10 +32,10 @@ namespace Testcase.Telegrams.EVCtoDMI
             _pool = pool;
 
             // Set as dynamic
-            _pool.SITR.SMDCtrl.ETCS1.SelectLevel.Value = 0x8;
+            _pool.SITR.SMDCtrl.ETCS1.NtcDeSelect.Value = 0x0008;
 
             // Set default values
-            _pool.SITR.ETCS1.SelectLevel.MmiMPacket.Value = 31; // Packet ID
+            _pool.SITR.ETCS1.NtcDeSelect.MmiMPacket.Value = 31; // Packet ID
         }
 
         private static void SetNtcInfoK()
