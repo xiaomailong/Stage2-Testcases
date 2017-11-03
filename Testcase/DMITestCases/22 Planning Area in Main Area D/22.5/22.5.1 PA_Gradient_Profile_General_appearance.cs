@@ -13,6 +13,8 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.EVCtoDMI;
+
 
 namespace Testcase.DMITestCases
 {
@@ -33,7 +35,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 17_5_1.tdg
     /// </summary>
-    public class PA_Gradient_Profile_General_appearance : TestcaseBase
+    public class TC_17_5_1_PA_Gradient_Profile_General_appearance : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -63,11 +65,11 @@ namespace Testcase.DMITestCases
             Action: Activate cabin A. Driver performs SoM to SR mode, level 1
             Expected Result: DMI displays in SR mode, level 1
             */
-            // Call generic Action Method
-            DmiActions.Activate_cabin_A_Driver_performs_SoM_to_SR_mode_level_1(this);
-            // Call generic Check Results Method
-            DmiExpectedResults.SR_Mode_displayed(this);
+            // Force this, tested elsewhere
+            DmiActions.Complete_SoM_L1_SR(this);
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SR mode, Level 1.");
 
             /*
             Test Step 2
@@ -75,9 +77,31 @@ namespace Testcase.DMITestCases
             Expected Result: DMI changes from SR mode to FS mode.The Planning Area is displayed in area D.Verify that the Gradient Profile is displayed in sub-area D5 and shown as a set of bars with different gradients. (see the second figure in ‘Comment’ column)The Gradient Profile segment bar is displayed two ‘+’ signs for uphill gradient, two ‘-‘ signs for downhill gradient, and no sign for zero gradient. The gradient value is displayed in the middle of the bar. (see the second figure in ‘Comment’ column)The Downhill PA Gradient Profile segment bars are displayed in dark-grey colour with the value and sign of gradient in white. The Uphill and zero PA Gradient Profile segment bars are displayed in grey colour with the value and sign of gradient in black.The Uphill and zero PA Gradient Profile have a white line on their upper and left boundary.The Downhill PA Gradient Profile have a grey line on their upper and left boundary.All PA gradient Profile have a black line on their lower boundary
             Test Step Comment: (1) MMI_gen 638;      MMI_gen 9940;    (2) MMI_gen 640;              MMI_gen 7268;                       (3) MMI_gen 639;             (4) MMI_gen 2605;       (5) MMI_gen 3050 (partly: white line);         (6) MMI_gen 3034 (partly: grey line);           (7) MMI_gen 7270   (partly: black line);
             */
-            // Call generic Action Method
-            DmiActions.Drive_train_forward_passing_BG1(this);
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 300000;
 
+            List<TrackDescription> descriptionsList = new List<TrackDescription>()
+            {
+                new TrackDescription { MMI_G_GRADIENT = 10, MMI_O_GRADIENT = 10000, MMI_O_MRSP = 10500, MMI_V_MRSP = 800},
+                new TrackDescription { MMI_G_GRADIENT = 15, MMI_O_GRADIENT = 20000, MMI_O_MRSP = 15000, MMI_V_MRSP = 700},
+                new TrackDescription { MMI_G_GRADIENT = 20, MMI_O_GRADIENT = 30000, MMI_O_MRSP = 20500, MMI_V_MRSP = 600},
+                new TrackDescription { MMI_G_GRADIENT = -5, MMI_O_GRADIENT = 40000, MMI_O_MRSP = 30000, MMI_V_MRSP_MPH = 400}                
+            };
+
+            EVC4_MMITrackDescription.TrackDescriptions = descriptionsList;
+            EVC4_MMITrackDescription.Send();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in FS mode, Level 1." + Environment.NewLine +
+                                "2. The Gradient Profile displays in sub-area D5, shown as a set of bars with different gradients." + Environment.NewLine +
+                                "3. The Gradient Profile segment bar displays two ‘+’ signs for uphill gradient," + Environment.NewLine +
+                                "   two ‘-’ signs for downhill gradient and no sign for zero gradient." + Environment.NewLine +
+                                "4. The gradient value is displayed in the centre of the bar." + Environment.NewLine +
+                                "5. The Downhill PA Gradient Profile segment bars have values in white on a Dark-grey background." + Environment.NewLine +
+                                "6. The Uphill and zero PA Gradient Profile segment bars have values (and the signs) in black on a grey background." + Environment.NewLine +
+                                "7. The Uphill and zero PA Gradient Profiles have  white upper and left borders." + Environment.NewLine +
+                                "8. The Downhill PA Gradient Profiles have grey upper and left borders." + Environment.NewLine +
+                                "9. The lower borders of all PA Gradient Profiles are black");
 
             /*
             Test Step 3
@@ -88,6 +112,10 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.Simulate_communication_loss_EVC_DMI(this);
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the ‘ATP Down Alarm’." + Environment.NewLine +
+                                "2. The ‘Alarm’ sound is played." + Environment.NewLine +
+                                "3. DMI does not display PA Gradient Profiles.");
 
             /*
             Test Step 4
@@ -98,13 +126,15 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.Re_establish_communication_EVC_DMI(this);
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in FS mode, Level 1." + Environment.NewLine +
+                                "2. The PA Gradient Profiles are re-displayed.");
 
             /*
             Test Step 5
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }

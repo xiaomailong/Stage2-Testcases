@@ -13,6 +13,8 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.EVCtoDMI;
+
 
 namespace Testcase.DMITestCases
 {
@@ -34,6 +36,8 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class PA_Gradient_Profile_Invalid_Information_Ignoring : TestcaseBase
     {
+        static List<TrackDescription> DescriptionsList;
+
         public override void PreExecution()
         {
             // Pre-conditions from TestSpec:
@@ -56,33 +60,45 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
             /*
             Test Step 1
             Action: Activate cabin A. Then  perform SoM to SR mode, level 1
             Expected Result: DMI displays SR mode, level 1
             */
-            // Call generic Action Method
-            DmiActions.Activate_cabin_A_Then_perform_SoM_to_SR_mode_level_1(this);
-            // Call generic Check Results Method
-            DmiExpectedResults.SR_Mode_displayed(this);
+            DmiActions.Complete_SoM_L1_SR(this);
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SR mode, Level 1.");
 
             /*
             Test Step 2
             Action: Drive the train forward pass BG1.Then, stop the train
             Expected Result: DMI changes from SR to FS mode. The Planning Area is displayed in area D with PA Gradient Profile value = 1 and PA Gradient Profile colour is grey
             */
-            // Call generic Action Method
-            DmiActions.Drive_the_train_forward_pass_BG1_Then_stop_the_train(this);
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 10000;
 
+            DescriptionsList = new List<TrackDescription>()
+            {
+                new TrackDescription { MMI_G_GRADIENT = 2, MMI_O_GRADIENT = 25000 }
+            };
 
+            EVC4_MMITrackDescription.TrackDescriptions = DescriptionsList;
+            EVC4_MMITrackDescription.MMI_G_GRADIENT_CURR = 2;
+            EVC4_MMITrackDescription.Send();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in FS mode, Level 1." + Environment.NewLine +
+                                "2. The Planning Area is displayed in area D." + Environment.NewLine +
+                                "3. A Gradient Profile is displayed in grey, with a value (Uphill) of 2.");
+
+            // Steps 3 to 6 are in XML_17_5_4_a()
             /*
             Test Step 3
             Action: Use the test script file 17_5_4_a.xml to send EVC-4 with,MMI_V_MRSP_CURR = 11111MMI_N_MRSP = 0MMI_G_GRADIENT_CURR = 254MMI_N_GRADIENT = 0
             Expected Result: Verify that the value of PA Gradient Profile is change to 254
             */
-
+            XML_17_5_4_a();
 
             /*
             Test Step 4
@@ -91,13 +107,11 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 7260 (partly: 4th bullet);
             */
 
-
             /*
             Test Step 5
             Action: Send EVC-4 with,MMI_V_MRSP_CURR = 11111MMI_N_MRSP = 0MMI_G_GRADIENT_CURR = -254MMI_N_GRADIENT = 0
             Expected Result: Verify that the value of PA Gradient Profile is change to 254 and PA Gradient Profile colour is change to dark-grey colour
             */
-
 
             /*
             Test Step 6
@@ -106,13 +120,13 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 7257 (partly: Special value);      
             */
 
-
+            // Steps 7 to 8 are in XML_17_5_4_b 
             /*
             Test Step 7
             Action: Use the test script file 17_5_4_b.xml to send EVC-4 with,MMI_V_MRSP_CURR = 11111MMI_N_MRSP = 0MMI_G_GRADIENT_CURR = 10MMI_N_GRADIENT = 0
             Expected Result: The Planning Area is displayed in area D with PA Gradient Profile value = 10 and PA Gradient Profile colour is grey
             */
-
+            XML_17_5_4_b();
 
             /*
             Test Step 8
@@ -121,13 +135,13 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 7260 (partly: 3rd  bullet);
             */
 
-
+            // Steps 8 to 9 are in XML_17_5_4_c
             /*
             Test Step 9
             Action: Use the test script file 17_5_4_c.xml to send EVC-4 with,MMI_V_MRSP_CURR = 11111MMI_N_MRSP = 0MMI_G_GRADIENT_CURR = 22MMI_N_GRADIENT = 1MMI_G_GRADIENT = 11MMI_O_GRADIENT_2 = 15259MMI_O_GRADIENT_1 = 16176
             Expected Result: The 2 PA Gradient profiles (value = 11 and 22) are displayed in area D5
             */
-
+            XML_17_5_4_c();
 
             /*
             Test Step 10
@@ -135,21 +149,15 @@ namespace Testcase.DMITestCases
             Expected Result: Verify that the value of PA Gradient Profile is not change, still display PA Gradient Profiles value = 11 and 22
             Test Step Comment: MMI_gen 7260 (partly: 1st   bullet);                      
             */
-            // Call generic Check Results Method
-            DmiExpectedResults
-                .Verify_that_the_value_of_PA_Gradient_Profile_is_not_change_still_display_PA_Gradient_Profiles_value_11_and_22(this);
 
-
+            // Steps 11 to 13 are in XML_17_5_4_d
             /*
             Test Step 11
             Action: Use the test script file 17_5_4_d.xml to send EVC-4 with,MMI_V_MRSP_CURR = 11111MMI_N_MRSP = 0MMI_G_GRADIENT_CURR = 20MMI_N_GRADIENT = 1MMI_G_GRADIENT = 1MMI_O_GRADIENT_2 = 15258MMI_O_GRADIENT_1 = 51712
             Expected Result: Verify that the value of PA Gradient Profile is not change, still display PA Gradient Profiles value = 11 and 22
             Test Step Comment: MMI_gen 7261 (partly: 3rd bullet);
             */
-            // Call generic Check Results Method
-            DmiExpectedResults
-                .Verify_that_the_value_of_PA_Gradient_Profile_is_not_change_still_display_PA_Gradient_Profiles_value_11_and_22(this);
-
+            XML_17_5_4_d();
 
             /*
             Test Step 12
@@ -157,10 +165,6 @@ namespace Testcase.DMITestCases
             Expected Result: Verify that the value of PA Gradient Profile is not change, still display PA Gradient Profiles value = 11 and 22
             Test Step Comment: MMI_gen 7261 (partly: 1st  bullet);
             */
-            // Call generic Check Results Method
-            DmiExpectedResults
-                .Verify_that_the_value_of_PA_Gradient_Profile_is_not_change_still_display_PA_Gradient_Profiles_value_11_and_22(this);
-
 
             /*
             Test Step 13
@@ -168,17 +172,14 @@ namespace Testcase.DMITestCases
             Expected Result: Verify that the value of PA Gradient Profile is not change, still display PA Gradient Profiles value = 11 and 22
             Test Step Comment: MMI_gen 7261 (partly: 2nd   bullet);
             */
-            // Call generic Check Results Method
-            DmiExpectedResults
-                .Verify_that_the_value_of_PA_Gradient_Profile_is_not_change_still_display_PA_Gradient_Profiles_value_11_and_22(this);
 
-
+            // Steps 14 to 15 are in XML_17_5_4_e
             /*
             Test Step 14
             Action: Use the test script file 17_5_4_e.xml to send EVC-4 with,MMI_V_MRSP_CURR = 11111MMI_N_MRSP = 1MMI_V_MRSP = 3000MMI_O_MRSP_2 = 15259MMI_O_MRSP_1 = 16176MMI_G_GRADIENT_CURR = 20MMI_N_GRADIENT = 0
             Expected Result: Verify that only one PA Gradient value is display as value = 20 with speed profile updated as picture in comment
             */
-
+            XML_17_5_4_e();
 
             /*
             Test Step 15
@@ -187,15 +188,159 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 7260 (partly: 2nd   bullet);    
             */
 
-
             /*
             Test Step 16
             Action: End of test
             Expected Result: 
             */
 
-
             return GlobalTestResult;
         }
+
+#region Send_XML_17_5_4_DMI_Test_Specification
+            
+
+        private void XML_17_5_4_a()
+        {
+            DescriptionsList.Clear();
+
+            // Step 3
+            EVC4_MMITrackDescription.MMI_G_GRADIENT_CURR = 254;
+            EVC4_MMITrackDescription.MMI_V_MRSP_CURR = 0;
+            EVC4_MMITrackDescription.Send();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The Gradient Profile value displayed is (+) 254.");
+
+            // Step 4
+            EVC4_MMITrackDescription.MMI_G_GRADIENT_CURR = 255;
+            EVC4_MMITrackDescription.MMI_V_MRSP_CURR = 11111;
+            EVC4_MMITrackDescription.Send();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The Gradient Profile value displayed is still 254.");
+
+            // Step 5
+            EVC4_MMITrackDescription.MMI_G_GRADIENT_CURR = -254;
+            EVC4_MMITrackDescription.Send();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The Gradient Profile value displayed is (-) 254 in Dark-grey .");
+
+            // Step 6
+            EVC4_MMITrackDescription.MMI_G_GRADIENT_CURR = 255;
+            EVC4_MMITrackDescription.MMI_V_MRSP_CURR = 11111;
+            EVC4_MMITrackDescription.Send();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The Gradient Profile is removed from area D.");
+        }
+        
+        private void XML_17_5_4_b()
+        {
+            // Step 7
+            EVC4_MMITrackDescription.MMI_G_GRADIENT_CURR = 10;
+            EVC4_MMITrackDescription.MMI_V_MRSP_CURR = 11111;
+            EVC4_MMITrackDescription.Send();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1.  Planning Area is displayed in area D." + Environment.NewLine +
+                                "2. A Gradient Profile is displayed in grey, with a value (Uphill) of 10.");
+
+            // Step 8
+            EVC4_MMITrackDescription.MMI_G_GRADIENT_CURR = 20;
+            EVC4_MMITrackDescription.MMI_V_MRSP_CURR = 11112;
+            EVC4_MMITrackDescription.Send();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The Gradient Profile value displayed is still 10.");
+        }
+
+        private void XML_17_5_4_c()
+        {
+            // Step 9
+            DescriptionsList.Clear();
+            DescriptionsList.Add(new TrackDescription { MMI_G_GRADIENT = 22, MMI_O_GRADIENT = 16176 });
+            DescriptionsList.Add(new TrackDescription { MMI_G_GRADIENT = 11, MMI_O_GRADIENT = 15259 });
+
+            EVC4_MMITrackDescription.MMI_G_GRADIENT_CURR = 22;
+            EVC4_MMITrackDescription.MMI_V_MRSP_CURR = 11111;
+            EVC4_MMITrackDescription.Send();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1.  Planning Area is displayed in area D." + Environment.NewLine +
+                                "2. Two Gradient Profiles are displayed in grey, with values (Uphill) of 11 and 22.");
+
+            // Step 10
+            // 32 descriptions: invalid list
+            for (int dl = 0; dl < 30; dl++)
+            {
+                DescriptionsList.Add(new TrackDescription { MMI_G_GRADIENT = 22, MMI_O_GRADIENT = 15259 });
+            }
+
+            EVC4_MMITrackDescription.MMI_G_GRADIENT_CURR = 10;
+            EVC4_MMITrackDescription.Send();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The Gradient Profile values displayed are still 11 and 22.");
+
+        }
+
+        // Incomplete: spec and xml files area at variance with DMI_RS_ETCS and VSIS documents
+        private void XML_17_5_4_d()
+        {
+            // Step 11
+            TrackDescription descriptionElement = DescriptionsList[0];
+            descriptionElement.MMI_G_GRADIENT = 20;
+            descriptionElement.MMI_O_GRADIENT = 15258;
+            descriptionElement = DescriptionsList[1];
+            descriptionElement.MMI_G_GRADIENT = 1;
+            descriptionElement.MMI_O_GRADIENT = 51712;
+            
+            EVC4_MMITrackDescription.MMI_G_GRADIENT_CURR = 20;
+            EVC4_MMITrackDescription.MMI_V_MRSP_CURR = 11111;
+            EVC4_MMITrackDescription.Send();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The Gradient Profile values displayed are still 11 and 22.");
+
+
+            // Step 12
+            EVC4_MMITrackDescription.Send();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The Gradient Profile values displayed are still 11 and 22.");
+
+            // Step 13
+            EVC4_MMITrackDescription.Send();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The Gradient Profile values displayed are still 11 and 22.");            
+        }
+
+        // Incomplete?: spec and xml files area at variance with DMI_RS_ETCS and VSIS documents
+        private void XML_17_5_4_e()
+        {
+            // Step 14
+            DescriptionsList.Clear();
+            DescriptionsList.Add(new TrackDescription {MMI_G_GRADIENT = 20, MMI_O_GRADIENT = 40000});
+            EVC4_MMITrackDescription.Send();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. One Gradient Profile is displayed in grey, with value (Uphill) of 20.");
+
+            // Step 15
+            DescriptionsList.Clear();
+
+            EVC4_MMITrackDescription.MMI_G_GRADIENT_CURR = 2;
+            EVC4_MMITrackDescription.Send();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. One Gradient Profile is still displayed in grey, with value (Uphill) of 20.");
+
+        }
+
+        #endregion
+
     }
 }
