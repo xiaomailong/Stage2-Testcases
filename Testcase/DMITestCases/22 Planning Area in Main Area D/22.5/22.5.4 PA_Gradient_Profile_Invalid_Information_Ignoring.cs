@@ -34,7 +34,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 17_5_4.tdg, 17_5_4_a.xml, 17_5_4_b.xml, 17_5_4_c.xml, 17_5_4_d.xml, 17_5_4_e.xml
     /// </summary>
-    public class PA_Gradient_Profile_Invalid_Information_Ignoring : TestcaseBase
+    public class TC_ID_17_5_4_PA_Gradient_Profile_Invalid_Information_Ignoring : TestcaseBase
     {
         static List<TrackDescription> DescriptionsList;
 
