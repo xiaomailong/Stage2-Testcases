@@ -304,7 +304,6 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Gradient Profile values displayed are still 11 and 22.");
 
-
             // Step 12
             EVC4_MMITrackDescription.Send();
 
@@ -323,14 +322,20 @@ namespace Testcase.DMITestCases
         {
             // Step 14
             DescriptionsList.Clear();
-            DescriptionsList.Add(new TrackDescription {MMI_G_GRADIENT = 20, MMI_O_GRADIENT = 40000});
+            // 
+            DescriptionsList.Add(new TrackDescription {MMI_V_MRSP = 3000, MMI_O_MRSP = 16176});
+
             EVC4_MMITrackDescription.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. One Gradient Profile is displayed in grey, with value (Uphill) of 20.");
 
             // Step 15
-            DescriptionsList.Clear();
+            // Add another 31 speed discontinuities => invalid set
+            for (int dl = 0; dl < 31; dl++)
+            {
+                DescriptionsList.Add(new TrackDescription {MMI_V_MRSP = 3000, MMI_O_MRSP = 16176 });
+            }
 
             EVC4_MMITrackDescription.MMI_G_GRADIENT_CURR = 2;
             EVC4_MMITrackDescription.Send();
