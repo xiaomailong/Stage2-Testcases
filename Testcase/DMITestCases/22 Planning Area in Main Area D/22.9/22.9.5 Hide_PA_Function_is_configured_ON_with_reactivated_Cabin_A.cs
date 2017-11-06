@@ -128,13 +128,6 @@ namespace Testcase.DMITestCases
             Action: Stop the train. Then, deactivate cabin A
             Expected Result: The train is at standstill.DMI is displays in SB mode
             */
-            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 40;
-
-            DmiActions.Deactivate_Cabin(this);
-
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in SB mode." + Environment.NewLine +
-                                "2. The speed displayed is ‘0’.");
 
             /*
             Test Step 6
