@@ -13,6 +13,8 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.EVCtoDMI;
+
 
 namespace Testcase.DMITestCases
 {
@@ -26,7 +28,8 @@ namespace Testcase.DMITestCases
     /// MMI_gen 7341; MMI_gen 2996 (partly: Timer);
     /// 
     /// Scenario:
-    /// Set HIDE PA FUNCTION configuration as Timer Set HIDE PA TIMER configuration as 20sActivate cabin A. Driver enters the Driver ID and performs brake test. Then the driver selects level 1, Train data, and validate the train data. After that driver enter Train running number and confirm SR mode. At 100 m, pass BG1 with pkt 12, pkt 21 and pkt 
+    /// Set HIDE PA FUNCTION configuration as Timer Set HIDE PA TIMER configuration as 20s
+    /// Activate cabin A. Driver enters the Driver ID and performs brake test. Then the driver selects level 1, Train data, and validate the train data. After that driver enter Train running number and confirm SR mode. At 100 m, pass BG1 with pkt 12, pkt 21 and pkt 
     /// 27.Mode changes to FS modeTurn off/on  DMI. The Hide PA button is appeared from the area D of DMISet HIDE PA TIMER configuration as 30s, 40s, 50s, 60s, 70s and 80s. Repeat test step 1-6 and verify the ‘Timer’ function of the Hide PA Function.
     /// 
     /// Used files:
@@ -37,10 +40,12 @@ namespace Testcase.DMITestCases
         public override void PreExecution()
         {
             // Pre-conditions from TestSpec:
-            // System is power off .Configure HIDE_PA_FUNCTION to 3 (Timer)Configure HIDE_PA_TIMER to 20s., See the instruction in Appendix 1
+            // Configure HIDE_PA_FUNCTION to 3 (Timer)Configure HIDE_PA_TIMER to 20s., See the instruction in Appendix 1
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
+
+            // System is power off .
         }
 
         public override void PostExecution()
@@ -55,38 +60,52 @@ namespace Testcase.DMITestCases
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint
-
+            TraceInfo("This test case requires an ATP configuration change - " +
+                      "See Precondition requirements. If this is not done manually, the test may fail!");
 
             /*
             Test Step 1
             Action: Power On the system
             Expected Result: DMI displays the default window
             */
-            // Call generic Action Method
-            DmiActions.Power_On_the_system(this);
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_the_default_window(this);
+            DmiActions.Start_ATP();
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the Default window.");
 
             /*
             Test Step 2
             Action: Activate cabin A and Perform SoM to SR mode, Level 1
             Expected Result: DMI displays in SR mode, level 1
             */
-            // Call generic Action Method
-            DmiActions.Activate_cabin_A_and_Perform_SoM_to_SR_mode_Level_1(this);
-            // Call generic Check Results Method
-            DmiExpectedResults.SR_Mode_displayed(this);
+            // Tested elsewhere, force SoM
+            DmiActions.Complete_SoM_L1_SR(this);
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SR mode, Level 1.");
 
             /*
             Test Step 3
             Action: Drive the train forward with speed = 40 km/h pass BG1
             Expected Result: DMI shows “Entering FS” message.DMI displays the Planning area. The Hide PA button is appeared on  the area D of the DMI
             */
-            // Call generic Action Method
-            DmiActions.Drive_the_train_forward_with_speed_40_kmh_pass_BG1(this);
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 40;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 10000;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 274;
+            EVC8_MMIDriverMessage.Send();
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the message ‘Entering FS’." + Environment.NewLine +
+                                "2. The Planning Area is displayed in area D." + Environment.NewLine +
+                                "3. The ‘Hide PA’ button is displayed in area D.");
+
+            // Remove the message
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
+            EVC8_MMIDriverMessage.Send();
 
             /*
             Test Step 4
@@ -95,19 +114,21 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 7341;
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press Hide PA button");
+            DmiActions.ShowInstruction(this, @"Press the ‘Hide PA’ button");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The Planning Area is hidden for 20s and then re-displayed in area D." + Environment.NewLine +
+                                "3. The ‘Hide PA’ button is displayed in area D.");
 
             /*
             Test Step 5
             Action: Turn off power of DMI
             Expected Result: DMI is power off
             */
-            // Call generic Action Method
-            DmiActions.Turn_off_power_of_DMI(this);
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_is_power_off(this);
+            DmiActions.ShowInstruction(this, @"Power down the system");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI is blank.");
 
             /*
             Test Step 6
@@ -115,9 +136,11 @@ namespace Testcase.DMITestCases
             Expected Result: DMI is power on DMI displays the Planning area The Hide PA button is appeared on  the main area D of the DMI
             Test Step Comment: MMI_gen 7341;  MMI_gen 2996 (partly: Timer); Hide PA icon
             */
-            // Call generic Action Method
-            DmiActions.Turn_on_power_of_DMI(this);
+            DmiActions.ShowInstruction(this, @"Wait 10s and power up the system");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The Planning Area is re-displayed in area D." + Environment.NewLine +
+                                "2. The ‘Hide PA’ button is re-displayed in area D.");
 
             /*
             Test Step 7
@@ -125,58 +148,354 @@ namespace Testcase.DMITestCases
             Expected Result: The Planning area is disappeared and hidden from main area D for 30s.After 30s the planning area is displayed.Verify that the Hide PA button is displayed at sub-area D14 on the planning area
             Test Step Comment: MMI_gen 7341;   MMI_gen 2996 (partly: Timer);
             */
+            DmiActions.ShowInstruction(this, @"Power down the system and wait 10s. Set the configuration HIDE_PA_TIMER = 30 and power up the system");
 
+            // Repeat Step 1
+            DmiActions.Start_ATP();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the Default window.");
+
+            // Repeat Step 2
+            DmiActions.Complete_SoM_L1_SR(this);
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SR mode, Level 1.");
+            
+            // Repeat Step 3
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 40;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 10000;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 274;
+            EVC8_MMIDriverMessage.Send();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the message ‘Entering FS’." + Environment.NewLine +
+                                "2. The Planning Area is displayed in area D." + Environment.NewLine +
+                                "3. The ‘Hide PA’ button is displayed in area D.");
+       
+            // Remove the message
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
+            EVC8_MMIDriverMessage.Send();
+
+            // Repeat Step 4
+            DmiActions.ShowInstruction(this, @"Press the ‘Hide PA’ button");
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The Planning Area is hidden for 30s and then re-displayed in area D." + Environment.NewLine +
+                                "3. The ‘Hide PA’ button is displayed in sub-area D14.");
+
+            // Repeat Step 5
+            DmiActions.ShowInstruction(this, @"Power down the system");
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI is blank.");
+
+            // Repeat Step 6
+            DmiActions.ShowInstruction(this, @"Wait 10s and power up the system");
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The Planning Area is re-displayed in area D." + Environment.NewLine +
+                                "2. The ‘Hide PA’ button is re-displayed in area D14.");
 
             /*
             Test Step 8
             Action: Set HIDE PA TIMER configuration as 40s and repeat test step 1-6
             Expected Result: The Planning area is disappeared and hidden from main area D for 40s.After 40s the planning area is displayed.Verify that the Hide PA button is displayed at sub-area D14 on the planning area
             */
+            DmiActions.ShowInstruction(this, @"Power down the system and wait 10s. Set the configuration HIDE_PA_TIMER = 40 and power up the system");
 
+            // Repeat Step 1
+            DmiActions.Start_ATP();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the Default window.");
+
+            // Repeat Step 2
+            DmiActions.Complete_SoM_L1_SR(this);
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SR mode, Level 1.");
+
+            // Repeat Step 3
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 40;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 10000;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 274;
+            EVC8_MMIDriverMessage.Send();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the message ‘Entering FS’." + Environment.NewLine +
+                                "2. The Planning Area is displayed in area D." + Environment.NewLine +
+                                "3. The ‘Hide PA’ button is displayed in area D.");
+
+            // Remove the message
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
+            EVC8_MMIDriverMessage.Send();
+
+            // Repeat Step 4
+            DmiActions.ShowInstruction(this, @"Press the ‘Hide PA’ button");
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The Planning Area is hidden for 40s and then re-displayed in area D." + Environment.NewLine +
+                                "3. The ‘Hide PA’ button is displayed in sub-area D14.");
+
+            // Repeat Step 5
+            DmiActions.ShowInstruction(this, @"Power down the system");
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI is blank.");
+
+            // Repeat Step 6
+            DmiActions.ShowInstruction(this, @"Wait 10s and power up the system");
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The Planning Area is re-displayed in area D." + Environment.NewLine +
+                                "2. The ‘Hide PA’ button is re-displayed in area D14.");
 
             /*
             Test Step 9
             Action: Set HIDE PA TIMER configuration as 50s and repeat test step 1-6
             Expected Result: The Planning area is disappeared and hidden from main area D for 50s.After 50s the planning area is displayed.Verify that the Hide PA button is displayed at sub-area D14 on the planning area
             */
+            DmiActions.ShowInstruction(this, @"Power down the system and wait 10s. Set the configuration HIDE_PA_TIMER = 50 and power up the system");
 
+            // Repeat Step 1
+            DmiActions.Start_ATP();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the Default window.");
+
+            // Repeat Step 2
+            DmiActions.Complete_SoM_L1_SR(this);
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SR mode, Level 1.");
+
+            // Repeat Step 3
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 40;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 10000;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 274;
+            EVC8_MMIDriverMessage.Send();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the message ‘Entering FS’." + Environment.NewLine +
+                                "2. The Planning Area is displayed in area D." + Environment.NewLine +
+                                "3. The ‘Hide PA’ button is displayed in area D.");
+
+            // Remove the message
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
+            EVC8_MMIDriverMessage.Send();
+
+            // Repeat Step 4
+            DmiActions.ShowInstruction(this, @"Press the ‘Hide PA’ button");
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The Planning Area is hidden for 50s and then re-displayed in area D." + Environment.NewLine +
+                                "3. The ‘Hide PA’ button is displayed in sub-area D14.");
+
+            // Repeat Step 5
+            DmiActions.ShowInstruction(this, @"Power down the system");
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI is blank.");
+
+            // Repeat Step 6
+            DmiActions.ShowInstruction(this, @"Wait 10s and power up the system");
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The Planning Area is re-displayed in area D." + Environment.NewLine +
+                                "2. The ‘Hide PA’ button is re-displayed in area D14.");
 
             /*
             Test Step 10
             Action: Set HIDE PA TIMER configuration as 60s and repeat test step 1-6
             Expected Result: The Planning area is disappeared and hidden from main area D for 60s.After 60s the planning area is displayed.Verify that the Hide PA button is displayed at sub-area D14 on the planning area
             */
-            // Call generic Check Results Method
-            DmiExpectedResults
-                .The_Planning_area_is_disappeared_and_hidden_from_main_area_D_for_60s_After_60s_the_planning_area_is_displayed_Verify_that_the_Hide_PA_button_is_displayed_at_sub_area_D14_on_the_planning_area(this);
+            DmiActions.ShowInstruction(this, @"Power down the system and wait 10s. Set the configuration HIDE_PA_TIMER = 60 and power up the system");
 
+            // Repeat Step 1
+            DmiActions.Start_ATP();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the Default window.");
+
+            // Repeat Step 2
+            DmiActions.Complete_SoM_L1_SR(this);
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SR mode, Level 1.");
+
+            // Repeat Step 3
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 40;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 10000;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 274;
+            EVC8_MMIDriverMessage.Send();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the message ‘Entering FS’." + Environment.NewLine +
+                                "2. The Planning Area is displayed in area D." + Environment.NewLine +
+                                "3. The ‘Hide PA’ button is displayed in area D.");
+
+            // Remove the message
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
+            EVC8_MMIDriverMessage.Send();
+
+            // Repeat Step 4
+            DmiActions.ShowInstruction(this, @"Press the ‘Hide PA’ button");
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The Planning Area is hidden for 60s and then re-displayed in area D." + Environment.NewLine +
+                                "3. The ‘Hide PA’ button is displayed in sub-area D14.");
+
+            // Repeat Step 5
+            DmiActions.ShowInstruction(this, @"Power down the system");
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI is blank.");
+
+            // Repeat Step 6
+            DmiActions.ShowInstruction(this, @"Wait 10s and power up the system");
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The Planning Area is re-displayed in area D." + Environment.NewLine +
+                                "2. The ‘Hide PA’ button is re-displayed in area D14.");
 
             /*
             Test Step 11
             Action: Set HIDE PA TIMER configuration as 70s and repeat test step 1-6
             Expected Result: The Planning area is disappeared and hidden from main area D for 60s.After 60s the planning area is displayed.Verify that the Hide PA button is displayed at sub-area D14 on the planning area
             */
-            // Call generic Check Results Method
-            DmiExpectedResults
-                .The_Planning_area_is_disappeared_and_hidden_from_main_area_D_for_60s_After_60s_the_planning_area_is_displayed_Verify_that_the_Hide_PA_button_is_displayed_at_sub_area_D14_on_the_planning_area(this);
+            DmiActions.ShowInstruction(this, @"Power down the system and wait 10s. Set the configuration HIDE_PA_TIMER = 70 and power up the system");
 
+            // Repeat Step 1
+            DmiActions.Start_ATP();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the Default window.");
+
+            // Repeat Step 2
+            DmiActions.Complete_SoM_L1_SR(this);
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SR mode, Level 1.");
+
+            // Repeat Step 3
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 40;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 10000;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 274;
+            EVC8_MMIDriverMessage.Send();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the message ‘Entering FS’." + Environment.NewLine +
+                                "2. The Planning Area is displayed in area D." + Environment.NewLine +
+                                "3. The ‘Hide PA’ button is displayed in area D.");
+
+            // Remove the message
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
+            EVC8_MMIDriverMessage.Send();
+
+            // Repeat Step 4
+            DmiActions.ShowInstruction(this, @"Press the ‘Hide PA’ button");
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The Planning Area is hidden for 70s and then re-displayed in area D." + Environment.NewLine +
+                                "3. The ‘Hide PA’ button is displayed in sub-area D14.");
+
+            // Repeat Step 5
+            DmiActions.ShowInstruction(this, @"Power down the system");
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI is blank.");
+
+            // Repeat Step 6
+            DmiActions.ShowInstruction(this, @"Wait 10s and power up the system");
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The Planning Area is re-displayed in area D." + Environment.NewLine +
+                                "2. The ‘Hide PA’ button is re-displayed in area D14.");
 
             /*
             Test Step 12
             Action: Set HIDE PA TIMER configuration as 80s and repeat test step 1-6
             Expected Result: The Planning area is disappeared and hidden from main area D for 60s.After 60s the planning area is displayed.Verify that the Hide PA button is displayed at sub-area D14 on the planning area
             */
-            // Call generic Check Results Method
-            DmiExpectedResults
-                .The_Planning_area_is_disappeared_and_hidden_from_main_area_D_for_60s_After_60s_the_planning_area_is_displayed_Verify_that_the_Hide_PA_button_is_displayed_at_sub_area_D14_on_the_planning_area(this);
+            DmiActions.ShowInstruction(this, @"Power down the system and wait 10s. Set the configuration HIDE_PA_TIMER = 80 and power up the system");
 
+            // Repeat Step 1
+            DmiActions.Start_ATP();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the Default window.");
+
+            // Repeat Step 2
+            DmiActions.Complete_SoM_L1_SR(this);
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SR mode, Level 1.");
+
+            // Repeat Step 3
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 40;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 10000;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 274;
+            EVC8_MMIDriverMessage.Send();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the message ‘Entering FS’." + Environment.NewLine +
+                                "2. The Planning Area is displayed in area D." + Environment.NewLine +
+                                "3. The ‘Hide PA’ button is displayed in area D.");
+
+            // Remove the message
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
+            EVC8_MMIDriverMessage.Send();
+
+            // Repeat Step 4
+            DmiActions.ShowInstruction(this, @"Press the ‘Hide PA’ button");
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The Planning Area is hidden for 80s and then re-displayed in area D." + Environment.NewLine +
+                                "3. The ‘Hide PA’ button is displayed in sub-area D14.");
+
+            // Repeat Step 5
+            DmiActions.ShowInstruction(this, @"Power down the system");
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI is blank.");
+
+            // Repeat Step 6
+            DmiActions.ShowInstruction(this, @"Wait 10s and power up the system");
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The Planning Area is re-displayed in area D." + Environment.NewLine +
+                                "2. The ‘Hide PA’ button is re-displayed in area D14.");
 
             /*
             Test Step 13
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }
