@@ -13,6 +13,8 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.EVCtoDMI;
+
 
 namespace Testcase.DMITestCases
 {
@@ -32,7 +34,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 17_7_2.tdg, 17_7_2.xml
     /// </summary>
-    public class PA_Speed_Profile_PASP_Information_updating : TestcaseBase
+    public class TC_ID_17_7_2_PA_Speed_Profile_PASP_Information_updating : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -56,15 +58,15 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
             /*
             Test Step 1
             Action: Activate cabin A then  perform SoM to SR mode, selects level 1
             Expected Result: DMI displays in SR mode, level 1
             */
-            // Call generic Check Results Method
-            DmiExpectedResults.SR_Mode_displayed(this);
+            DmiActions.Complete_SoM_L1_SR(this);
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SR Mode, Level 1.");
 
             /*
             Test Step 2
@@ -72,9 +74,26 @@ namespace Testcase.DMITestCases
             Expected Result: DMI changes from SR to FS mode. The Planning Area is displayed.Use the log file to confirm that DMI received packet information EVC-4 with variable MMI_V_MRSP[1] = 0Use the log file to confirm the start position for the segment of PA speed profile which have a value of [MMI_TRACK_DESCRIPTION (EVC-4).MMI_V_MRSP] =0 from the differentiate of variable [MMI_TRACK_DESCRIPTION (EVC-4).MMI_O_MRSP] and [MMI_ETCS_MISC_OUT_SIGNALS (EVC-7).OBU_TR_O_TRAIN] as follows,[MMI_TRACK_DESCRIPTION (EVC-4).MMI_O_MRSP[1]] – [MMI_ETCS_MISC_OUT_SIGNALS (EVC-7).OBU_TR_O_TRAIN] is approximately to 200000 (2000m)The width of each PA Speed Profile segments are displayed correctly as follows,0-1000m: The width is covered all of sub-area D7.1001-2000m: The width is covered only ¼ of sub-area D7.At position beyond 2000m, the whole width of sub-area D7 is displayed in PASP-Dark colour. (There is no PA Speed Profile segment drawn)
             Test Step Comment: (1) MMI_gen 2599 (partly: value 0); MMI_gen 7323 (partly: MMI_gen 2599);(2) MMI_gen 2599 (partly: 1st bullet);(3) MMI_gen 2599 (partly: 3rd bullet);
             */
-            // Call generic Action Method
-            DmiActions.Drive_the_train_forward_pass_BG1_Then_Stop_the_train(this);
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 5000;
+            EVC4_MMITrackDescription.MMI_G_GRADIENT_CURR = 0;
+            EVC4_MMITrackDescription.MMI_V_MRSP_CURR = 833;         // 30 km/h
 
+            List<TrackDescription> trackDescriptions = new List<TrackDescription>
+            {
+                new TrackDescription { MMI_O_MRSP = 105000},
+                new TrackDescription { MMI_V_MRSP = 0, MMI_O_MRSP = 205000}
+            };
+            EVC4_MMITrackDescription.TrackDescriptions = trackDescriptions;
+            EVC4_MMITrackDescription.Send();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in FS Mode, Level 1." + Environment.NewLine +
+                                "2. DMI displays the Planning Area." + Environment.NewLine +
+                                "3. From the zero line to position 1000m the whole width of sub-area D7 is in PASP-light." + Environment.NewLine +
+                                "4. From 1001m to position 2000m the PASP segment covers 1/4 of the width of sub-area D7." + Environment.NewLine +
+                                "5. Beyond 2000m the whole width of sub-area D7 is in PASP-dark." + Environment.NewLine +
+                                "6. (No PASP segments are displayed beyond 2000m.)");
 
             /*
             Test Step 3
@@ -82,7 +101,23 @@ namespace Testcase.DMITestCases
             Expected Result: The value of PA Gradient Profile is changed to 20.The previous PASP segment from step 2 is removed from DMI.The current PASP Segment is end up in infinity (see picture in comment)
             Test Step Comment: (1) MMI_gen 7313 (partly: Delete all PASP segments);(2) MMI_gen 7313       (partly: 2nd  bullet);           
             */
+        #region Send_XML_17_7_2_DMI_Test_Specification
 
+            trackDescriptions.RemoveAt(1);
+            trackDescriptions[0].MMI_V_MRSP = 11111;
+            trackDescriptions[0].MMI_O_MRSP = 0;
+
+            // XML indicates 10 for gradient: given value in Step 4, 20 => 10 seems more likely
+            EVC4_MMITrackDescription.MMI_G_GRADIENT_CURR = 20;
+            EVC4_MMITrackDescription.MMI_V_MRSP_CURR = 2777;
+            EVC4_MMITrackDescription.Send();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The PASP segment covering 1/4 of the width of sub-area D7 is removed." + Environment.NewLine +
+                                "2. The PA Gradient Profile value displayed is ‘20’." + Environment.NewLine +
+                                "3. The current PASP segment ends at infinity (displayed from 0 to beyond 4000m).");
+
+            #endregion
 
             /*
             Test Step 4
@@ -90,14 +125,21 @@ namespace Testcase.DMITestCases
             Expected Result: The value of PA Gradient Profile is changed to 10.Verify the following information,The current PASP Segments are deleted from area D7.The background colour of area D7 and D8 is PASP-Dark colour (see picture in comment)
             Test Step Comment: (1) MMI_gen 7313       (partly: 1st bullet);           (2) MMI_gen 2897;
             */
-
+            trackDescriptions.Clear();
+            EVC4_MMITrackDescription.MMI_V_MRSP_CURR = 0;
+            EVC4_MMITrackDescription.MMI_G_GRADIENT_CURR = 10;
+            EVC4_MMITrackDescription.Send();
+            
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The PASP segment is removed." + Environment.NewLine +
+                                "2. The PA Gradient Profile value displayed is ‘10’." + Environment.NewLine +
+                                "3. Sub-areas D7 and D8 are displayed with a PASP-dark background.");
 
             /*
             Test Step 5
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }
