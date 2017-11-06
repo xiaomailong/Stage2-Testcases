@@ -35,7 +35,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 17_9_5.tdg
     /// </summary>
-    public class Hide_PA_Function_is_configured_TIMER_with_reboot_DMI : TestcaseBase
+    public class TC_ID_17_9_5_TC_ID_Hide_PA_Function_is_configured_TIMER_with_reboot_DMI : TestcaseBase
     {
         public override void PreExecution()
         {
