@@ -149,7 +149,7 @@ namespace Testcase.DMITestCases
             Action: Turn off power of DMI
             Expected Result: DMI is power off
             */
-            DmiActions.ShowInstruction(this, @"Power down the system and wait 10s");
+            DmiActions.ShowInstruction(this, @"Power down the system");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI is blank.");
