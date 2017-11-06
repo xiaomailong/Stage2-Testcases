@@ -47,7 +47,7 @@ namespace Testcase.Telegrams.EVCtoDMI
                 {
                     var character = charArray[charIndex];
 
-                    if (charIndex < 10)
+                    if (charIndex < 10 && charArray.Length > 10)
                     {
                         _pool.SITR.Client.Write(varNamestring + baseString.Substring( baseString.LastIndexOf('_') + 1 ) + $"10{charIndex}_MmiXText", character);
                     }
