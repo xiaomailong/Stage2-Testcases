@@ -105,7 +105,7 @@ namespace Testcase.Telegrams.DMItoEVC
                         "MMI_NID_KEY_LOAD_GAUGE = \"" + Enum.GetName(typeof(MMI_NID_KEY), _pool.SITR.CCUO.ETCS1NewTrainData.MmiNidKeyLoadGauge.Value) + "\"" + Environment.NewLine +
                         "MMI_M_TRAINSET_ID = \"" + Enum.GetName(typeof(Fixed_Trainset_Captions), ((_pool.SITR.CCUO.ETCS1NewTrainData.EVC107alias1.Value & 0xF0) >> 4)) + "\"" + Environment.NewLine +
                         "MMI_M_ALT_DEM = \"" +  ((_pool.SITR.CCUO.ETCS1NewTrainData.EVC107alias1.Value & 0x0C) >> 2).ToString() + "\"" + Environment.NewLine +
-                        "MMI_M_BUTTONS = \"" + Enum.GetName(typeof(MMI_M_BUTTONS), _pool.SITR.CCUO.ETCS1NewTrainData.MmiMButtons.Value) + Environment.NewLine +
+                        "MMI_M_BUTTONS = \"" + Enum.GetName(typeof(MMI_M_BUTTONS), _pool.SITR.CCUO.ETCS1NewTrainData.MmiMButtons.Value) + "\"" + Environment.NewLine +
                         "Result: FAILED!");
                 }
 
@@ -119,7 +119,7 @@ namespace Testcase.Telegrams.DMItoEVC
                     if (_nDataElements.Equals(1))
                     {
                         // Get MMI_NID_DATA
-                        _nidData = (byte)_pool.SITR.Client.Read($"{BaseString1}0_MmiNidData"); //to be changed once the EVC107 rtsim configuration is updated
+                        _nidData = (byte)_pool.SITR.Client.Read($"{BaseString1}0_MmiNidData"); 
 
                         // For Trainset selection, MMI_NID_DATA should be equal to 6 (= Train Type)
                         _checkResult = _nidData.Equals(6); 
@@ -146,7 +146,7 @@ namespace Testcase.Telegrams.DMItoEVC
                         _pool.TraceError("MMI_N_DATA_ELEMENTS = " + _nDataElements);
                         for (int k = 0; k < _nDataElements; k++)
                         {
-                            _nidData = (byte)_pool.SITR.Client.Read($"{BaseString1}0{k}_MmiNidData");
+                            _nidData = (byte)_pool.SITR.Client.Read($"{BaseString1}{k}_MmiNidData");
                             _pool.TraceError($"MMI_NID_DATA[{k}] = " + _nidData + ". Result = FAILED!");
                         }
                     }
