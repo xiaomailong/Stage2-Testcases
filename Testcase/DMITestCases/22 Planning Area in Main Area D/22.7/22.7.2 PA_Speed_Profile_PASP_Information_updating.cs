@@ -145,15 +145,12 @@ namespace Testcase.DMITestCases
             switch ( packetSelector )
             {
             case msgPart.part1:
-                TrackDescriptions.RemoveAt(1);
-                TrackDescriptions[0].MMI_V_MRSP = 11111;
-                TrackDescriptions[0].MMI_O_MRSP = 0;
+                TrackDescriptions.Clear();
                 EVC4_MMITrackDescription.MMI_G_GRADIENT_CURR = 20;
                 EVC4_MMITrackDescription.MMI_V_MRSP_CURR = 2777;
                 EVC4_MMITrackDescription.Send();
                 break;
            case msgPart.part2:
-                TrackDescriptions.Clear();
                 EVC4_MMITrackDescription.MMI_V_MRSP_CURR = 0;
                 EVC4_MMITrackDescription.MMI_G_GRADIENT_CURR = 10;
                 EVC4_MMITrackDescription.Send();
