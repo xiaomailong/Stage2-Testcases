@@ -36,6 +36,8 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_17_7_2_PA_Speed_Profile_PASP_Information_updating : TestcaseBase
     {
+        static List<TrackDescription> TrackDescriptions;
+
         public override void PreExecution()
         {
             // Pre-conditions from TestSpec:
@@ -79,12 +81,12 @@ namespace Testcase.DMITestCases
             EVC4_MMITrackDescription.MMI_G_GRADIENT_CURR = 0;
             EVC4_MMITrackDescription.MMI_V_MRSP_CURR = 833;         // 30 km/h
 
-            List<TrackDescription> trackDescriptions = new List<TrackDescription>
+            TrackDescriptions = new List<TrackDescription>
             {
                 new TrackDescription { MMI_O_MRSP = 105000},
                 new TrackDescription { MMI_V_MRSP = 0, MMI_O_MRSP = 205000}
             };
-            EVC4_MMITrackDescription.TrackDescriptions = trackDescriptions;
+            EVC4_MMITrackDescription.TrackDescriptions = TrackDescriptions;
             EVC4_MMITrackDescription.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -101,23 +103,12 @@ namespace Testcase.DMITestCases
             Expected Result: The value of PA Gradient Profile is changed to 20.The previous PASP segment from step 2 is removed from DMI.The current PASP Segment is end up in infinity (see picture in comment)
             Test Step Comment: (1) MMI_gen 7313 (partly: Delete all PASP segments);(2) MMI_gen 7313       (partly: 2nd  bullet);           
             */
-        #region Send_XML_17_7_2_DMI_Test_Specification
-
-            trackDescriptions.RemoveAt(1);
-            trackDescriptions[0].MMI_V_MRSP = 11111;
-            trackDescriptions[0].MMI_O_MRSP = 0;
-
-            // XML indicates 10 for gradient: given value in Step 4, 20 => 10 seems more likely
-            EVC4_MMITrackDescription.MMI_G_GRADIENT_CURR = 20;
-            EVC4_MMITrackDescription.MMI_V_MRSP_CURR = 2777;
-            EVC4_MMITrackDescription.Send();
+            XML_17_7_2(msgPart.part1);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The PASP segment covering 1/4 of the width of sub-area D7 is removed." + Environment.NewLine +
                                 "2. The PA Gradient Profile value displayed is ‘20’." + Environment.NewLine +
                                 "3. The current PASP segment ends at infinity (displayed from 0 to beyond 4000m).");
-
-            #endregion
 
             /*
             Test Step 4
@@ -125,11 +116,8 @@ namespace Testcase.DMITestCases
             Expected Result: The value of PA Gradient Profile is changed to 10.Verify the following information,The current PASP Segments are deleted from area D7.The background colour of area D7 and D8 is PASP-Dark colour (see picture in comment)
             Test Step Comment: (1) MMI_gen 7313       (partly: 1st bullet);           (2) MMI_gen 2897;
             */
-            trackDescriptions.Clear();
-            EVC4_MMITrackDescription.MMI_V_MRSP_CURR = 0;
-            EVC4_MMITrackDescription.MMI_G_GRADIENT_CURR = 10;
-            EVC4_MMITrackDescription.Send();
-            
+            XML_17_7_2(msgPart.part2);
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The PASP segment is removed." + Environment.NewLine +
                                 "2. The PA Gradient Profile value displayed is ‘10’." + Environment.NewLine +
@@ -143,5 +131,35 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
+
+    #region Send_XML_17_7_2_DMI_Test_Specification
+
+        private enum msgPart : byte
+        {
+            part1,
+            part2
+        }
+    
+        private void XML_17_7_2(msgPart packetSelector)
+        {
+            switch ( packetSelector )
+            {
+            case msgPart.part1:
+                TrackDescriptions.RemoveAt(1);
+                TrackDescriptions[0].MMI_V_MRSP = 11111;
+                TrackDescriptions[0].MMI_O_MRSP = 0;
+                EVC4_MMITrackDescription.MMI_G_GRADIENT_CURR = 20;
+                EVC4_MMITrackDescription.MMI_V_MRSP_CURR = 2777;
+                EVC4_MMITrackDescription.Send();
+                break;
+           case msgPart.part2:
+                TrackDescriptions.Clear();
+                EVC4_MMITrackDescription.MMI_V_MRSP_CURR = 0;
+                EVC4_MMITrackDescription.MMI_G_GRADIENT_CURR = 10;
+                EVC4_MMITrackDescription.Send();
+                break;
+            }                  
+        }
+    #endregion
     }
 }
