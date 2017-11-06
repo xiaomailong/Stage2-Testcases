@@ -64,6 +64,7 @@ namespace Testcase.Telegrams.DMItoEVC
             // Check if telegram received flag has been set. Allows 20 seconds to enter train data.
             if (_pool.SITR.SMDStat.CCUO.ETCS1NewTrainData.WaitForCondition(Is.Equal, 1, 20000, 100))
             {
+                
                 // Check all static fields
                 _checkResult = _pool.SITR.CCUO.ETCS1NewTrainData.MmiLTrain.Value.Equals(0) &
                                _pool.SITR.CCUO.ETCS1NewTrainData.MmiVMaxtrain.Value.Equals(0) &
@@ -72,7 +73,7 @@ namespace Testcase.Telegrams.DMItoEVC
                                _pool.SITR.CCUO.ETCS1NewTrainData.MmiNidKeyAxleLoad.Value.Equals((byte)MMI_NID_KEY.NoDedicatedKey) &
                                _pool.SITR.CCUO.ETCS1NewTrainData.MmiMAirtight.Value.Equals(0) &
                                _pool.SITR.CCUO.ETCS1NewTrainData.MmiNidKeyLoadGauge.Value.Equals((byte)MMI_NID_KEY.NoDedicatedKey) &
-                               _pool.SITR.CCUO.ETCS1NewTrainData.EVC107alias1.Value.Equals((byte)mmiMTrainsetId << 4) &
+                               _pool.SITR.CCUO.ETCS1NewTrainData.EVC107alias1.Value.Equals((byte)((byte)mmiMTrainsetId << 4)) &
                                _pool.SITR.CCUO.ETCS1NewTrainData.MmiMButtons.Value.Equals((byte)_mButtons);
                             
                 // If check passes
@@ -86,9 +87,9 @@ namespace Testcase.Telegrams.DMItoEVC
                         "MMI_NID_KEY_AXLE_LOAD = \"" + MMI_NID_KEY.NoDedicatedKey + "\"" + Environment.NewLine +
                         "MMI_M_AIRTIGHT = " + 0 + Environment.NewLine +
                         "MMI_NID_KEY_LOAD_GAUGE = \"" + MMI_NID_KEY.NoDedicatedKey + "\"" + Environment.NewLine +
-                        "MMI_M_TRAINSET_ID = \"" + mmiMTrainsetId + "\"" + Environment.NewLine +
+                        "MMI_M_TRAINSET_ID = " + mmiMTrainsetId + Environment.NewLine +
                         "MMI_M_ALT_DEM = " + 0 + Environment.NewLine +
-                        "MMI_M_BUTTONS = \"" + _mButtons + Environment.NewLine +
+                        "MMI_M_BUTTONS = \"" + _mButtons + "\"" + Environment.NewLine +
                         "Result = PASSED.");
                 }
                 // Else display the real value extracted from EVC-107
@@ -103,7 +104,7 @@ namespace Testcase.Telegrams.DMItoEVC
                         "MMI_M_AIRTIGHT = \"" + _pool.SITR.CCUO.ETCS1NewTrainData.MmiLTrain.Value + "\"" + Environment.NewLine +
                         "MMI_NID_KEY_LOAD_GAUGE = \"" + Enum.GetName(typeof(MMI_NID_KEY), _pool.SITR.CCUO.ETCS1NewTrainData.MmiNidKeyLoadGauge.Value) + "\"" + Environment.NewLine +
                         "MMI_M_TRAINSET_ID = \"" + Enum.GetName(typeof(Fixed_Trainset_Captions), ((_pool.SITR.CCUO.ETCS1NewTrainData.EVC107alias1.Value & 0xF0) >> 4)) + "\"" + Environment.NewLine +
-                        "MMI_M_ALT_DEM = \"" + Enum.GetName(typeof(Fixed_Trainset_Captions), ((_pool.SITR.CCUO.ETCS1NewTrainData.EVC107alias1.Value & 0x0C) >> 2)) + "\"" + Environment.NewLine +
+                        "MMI_M_ALT_DEM = \"" +  ((_pool.SITR.CCUO.ETCS1NewTrainData.EVC107alias1.Value & 0x0C) >> 2).ToString() + "\"" + Environment.NewLine +
                         "MMI_M_BUTTONS = \"" + Enum.GetName(typeof(MMI_M_BUTTONS), _pool.SITR.CCUO.ETCS1NewTrainData.MmiMButtons.Value) + Environment.NewLine +
                         "Result: FAILED!");
                 }
