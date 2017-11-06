@@ -94,15 +94,15 @@ namespace Testcase.DMITestCases
             */
 
             /*
-            //Test Step 6
-            //Action: Enter and confirm the Train running number
-            //Expected Result: DMI displays the Main window
+            Test Step 6
+            Action: Enter and confirm the Train running number
+            Expected Result: DMI displays the Main window
             */
 
             /*
-            //Test Step 7
-            //Action: Press ‘Start’ button and confirm UN mode
-            //Expected Result: DMI displays in UN mode, level 0
+            Test Step 7
+            Action: Press ‘Start’ button and confirm UN mode
+            Expected Result: DMI displays in UN mode, level 0
             */
             
             DmiActions.Complete_SoM_L0_UN(this);
@@ -128,7 +128,6 @@ namespace Testcase.DMITestCases
             */
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
 
-            //DmiActions.ShowInstruction(this, @"Accept level 1");
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
 
             EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
