@@ -26,8 +26,8 @@ namespace Testcase.Telegrams.EVCtoDMI
             _pool = pool;
 
             // set default values
-            _pool.SITR.ETCS1.CurrentTrainNumber.MmiMPacket.Value = 23;
-            _pool.SITR.ETCS1.CurrentTrainNumber.MmiLPacket.Value = 48;
+            _pool.SITR.ETCS1.Lssma.MmiMPacket.Value = 23;
+            _pool.SITR.ETCS1.Lssma.MmiLPacket.Value = 48;
         }
 
         /// <summary>
