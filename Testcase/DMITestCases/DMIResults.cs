@@ -367,6 +367,8 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void Start_Button_pressed_and_released(SignalPool pool)
         {
+            DmiActions.ShowInstruction(pool, @"Perform the following action after pressing OK:" + Environment.NewLine + Environment.NewLine +
+                                "1. Press ‘Start’ button.");
             EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.Start;
             EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.Start;
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.StartSelected;
@@ -995,6 +997,7 @@ namespace Testcase.DMITestCases
                                 "1. Press ‘Yes’ button." + Environment.NewLine +
                                 "2. Confirmed the selected value by pressing the input field.");
             EVC110_MMIConfimedTrainData.CheckConfirmedTrainData();
+            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.TrainDataValidation;
         }
 
         /// <summary>

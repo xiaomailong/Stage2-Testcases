@@ -1008,8 +1008,7 @@ namespace Testcase.DMITestCases
         /// </summary>
         /// <param name="pool">Signal pool</param>
         public static void Display_Train_data_validation_Window(SignalPool pool)
-        {
-
+        {           
             /*
              * EVC-6 values are set to original without being sent to the DMI
              */
@@ -1029,7 +1028,7 @@ namespace Testcase.DMITestCases
             EVC6_MMICurrentTrainData.DataElements = new List<DataElement>();                // No train data elements
             EVC6_MMICurrentTrainData.SetWithoutSending();
 
-
+            // Send EVC 10
             Send_EVC10_MMIEchoedTrainData_FixedDataEntry(pool, paramEvc6FixedTrainsetCaptions);
         }
 
