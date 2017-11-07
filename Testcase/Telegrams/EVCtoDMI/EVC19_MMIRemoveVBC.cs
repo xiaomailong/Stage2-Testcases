@@ -1,11 +1,9 @@
 ﻿#region usings
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using CL345;
-
 #endregion
 
 namespace Testcase.Telegrams.EVCtoDMI
@@ -31,23 +29,23 @@ namespace Testcase.Telegrams.EVCtoDMI
         private static string Basestring = "ETCS1_RemoveVbc_EVC19RemoveVbcSub10";
 
         /// <summary>
-        /// Initialise EVC-19 MMI_Remove_VBC telegram
+        /// Initialise EVC-19 MMI Remove VBC telegram.
         /// (VBC = Virtual Balise Cover)
         /// </summary>
-        /// <param name="pool"></param>
+        /// <param name="pool">The SignalPool</param>
         public static void Initialise(SignalPool pool)
         {
             _pool = pool;
 
             // Set default values
-            _pool.SITR.ETCS1.RemoveVbc.MmiMPacket.Value = 19; // Packet ID
-            _pool.SITR.SMDCtrl.ETCS1.RemoveVbc.Value = 0x8;
+            _pool.SITR.ETCS1.RemoveVbc.MmiMPacket.Value = 19;
+            _pool.SITR.SMDCtrl.ETCS1.RemoveVbc.Value = 0x0008;
 
             MMI_N_VBC = 0;
         }
 
         /// <summary>
-        /// Send EVC-19 MMI_Remove_VBC telegram
+        /// Send EVC-19 MMI Remove VBC telegram.
         /// </summary>
         public static void Send()
         {
@@ -57,9 +55,8 @@ namespace Testcase.Telegrams.EVCtoDMI
                 _pool.SITR.ETCS1.RemoveVbc.MmiLPacket.Value = 64;
 
                 // Send non-dynamic packet to display Set VBC screen
-                _pool.SITR.SMDCtrl.ETCS1.RemoveVbc.Value = 1;
+                _pool.SITR.SMDCtrl.ETCS1.RemoveVbc.Value = 0x0001;
             }
-
             else
             {
                 // Set packet size
@@ -85,9 +82,8 @@ namespace Testcase.Telegrams.EVCtoDMI
                 _pool.SITR.ETCS1.RemoveVbc.MmiLPacket.Value = totalSizeCounter;
 
                 // Send dynamic packet.
-                _pool.SITR.SMDCtrl.ETCS1.RemoveVbc.Value = 0x09;
-            }
-
+                _pool.SITR.SMDCtrl.ETCS1.RemoveVbc.Value = 0x0009;
+            }           
         }
 
         /// <summary>
@@ -135,7 +131,6 @@ namespace Testcase.Telegrams.EVCtoDMI
                 {
                     throw new ArgumentOutOfRangeException("NID_VBCMK", "Virtual Balise Cover marker must be less than 64.");
                 }
-
                 else
                 {
                     _nidVbcmk = value;
@@ -178,7 +173,6 @@ namespace Testcase.Telegrams.EVCtoDMI
                 {
                     throw new ArgumentException("VBC Echo text must be 10 characters or less.");
                 }
-
                 else
                 {
                     _echoText = value;

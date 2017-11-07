@@ -1,4 +1,6 @@
-﻿using CL345;
+﻿#region usings
+using CL345;
+#endregion
 
 namespace Testcase.Telegrams.EVCtoDMI
 {
@@ -10,9 +12,9 @@ namespace Testcase.Telegrams.EVCtoDMI
         private static SignalPool _pool;
 
         /// <summary>
-        /// Initialise EVC-0 MMI_Start_ATP telegram.
+        /// Initialise EVC-0 MMI Start ATP telegram.
         /// </summary>
-        /// <param name="pool"></param>
+        /// <param name="pool">The SignalPool</param>
         public static void Initialise(SignalPool pool)
         {
             _pool = pool;
@@ -25,7 +27,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         public static EVC0Type Evc0Type { get; set; }
 
         /// <summary>
-        /// Send EVC-0 telegram.
+        /// Send EVC-0 MMI Start ATP telegram.
         /// </summary>
         public static void Send()
         {
@@ -34,12 +36,12 @@ namespace Testcase.Telegrams.EVCtoDMI
                 case EVC0Type.GoToIdle:
                     _pool.TraceInfo("ETCS->DMI: EVC-0 (MMI_START_ATP) \"Go to Idle state\"");
                     _pool.SITR.ETCS1.StartAtp.MmiMStartReq.Value = 1;
-                    _pool.SITR.SMDCtrl.ETCS1.StartAtp.Value = 1;
+                    _pool.SITR.SMDCtrl.ETCS1.StartAtp.Value = 0x0001;
                     break;
                 case EVC0Type.VersionInfo:
                     _pool.TraceInfo("ETCS->DMI: EVC-0 (MMI_START_ATP) \"Version info request\"");
                     _pool.SITR.ETCS1.StartAtp.MmiMStartReq.Value = 0;
-                    _pool.SITR.SMDCtrl.ETCS1.StartAtp.Value = 1;
+                    _pool.SITR.SMDCtrl.ETCS1.StartAtp.Value = 0x0001;
                     break;
             }
         }
@@ -56,9 +58,6 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// 5..9 = "Spare"
         /// 10 = "DMI reboot. Indication error"
         /// 11..255 = "Spare"
-
-        /// Request Version Information
-        /// Go to Idle
         /// </summary>
         public enum EVC0Type: byte
         {

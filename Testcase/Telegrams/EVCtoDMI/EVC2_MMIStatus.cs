@@ -1,4 +1,5 @@
-﻿using CL345;
+﻿#region usings
+using CL345;
 using System;
 using System.Diagnostics;
 using System.Collections.Generic;
@@ -11,9 +12,7 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using System.Windows.Forms;
-using Testcase.Telegrams;
-using Testcase.Telegrams.EVCtoDMI;
-using Testcase.TemporaryFunctions;
+#endregion
 
 namespace Testcase.Telegrams.EVCtoDMI
 {
@@ -23,14 +22,14 @@ namespace Testcase.Telegrams.EVCtoDMI
     public static class EVC2_MMIStatus
     {
         private static SignalPool _pool;
-        private static byte _mmiMAdhesion; // Adhesion can only be set by trackside for Crossrail project
+        private static byte _mmiMAdhesion;              // Adhesion can only be set by trackside for Crossrail project
         private static Variables.MMI_M_ACTIVE_CABIN _mmiMActiveCabin;
         private static bool _mmiMOverrideEoa;
 
         /// <summary>
-        /// Initialise EVC-2 MMI_STATUS telegram
+        /// Initialise EVC-2 MMI Status telegram.
         /// </summary>
-        /// <param name="pool"></param>
+        /// <param name="pool">The SignalPool</param>
         public static void Initialise(SignalPool pool)
         {
             _pool = pool;
@@ -108,7 +107,7 @@ namespace Testcase.Telegrams.EVCtoDMI
 
         private static void SetAlias()
         {
-            var mmiMActiveCabin = (byte) _mmiMActiveCabin;
+            byte mmiMActiveCabin = (byte) _mmiMActiveCabin;
             var mmiMOverrideEoa = Convert.ToByte(_mmiMOverrideEoa);
 
             _pool.SITR.ETCS1.Status.EVC2alias1.Value =
@@ -116,7 +115,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         }
 
         /// <summary>
-        /// Send EVC-2 telegram
+        /// Send EVC-2 MMI Status telegram.
         /// </summary>
         public static void Send()
         {

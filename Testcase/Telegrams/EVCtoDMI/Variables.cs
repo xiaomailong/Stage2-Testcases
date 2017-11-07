@@ -15,19 +15,22 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// Note: EVC-22 captions must be limited to 10 chars compared to the 16 allowed in the VSIS.
         /// </summary>
         /// <param name="baseString">The base RTSIM signal name to use</param>
-        /// <param name="totalSizeCounter">Reference counter for total size of telegram</param>
+        /// <param name="totalSizeCounter">Counter for total size of telegram</param>
+        /// <param name="dataElements">Data elements to be checked and verified by the EVC</param>
         /// <param name="_pool">The SignalPool</param>
         /// <returns></returns>
         public static ushort PopulateDataElements(string baseString, ushort totalSizeCounter,
             List<DataElement> dataElements, SignalPool _pool)
         {
             // Populate the data elements array
-            for (var tdeIndex = 0; tdeIndex < dataElements.Count; tdeIndex++)
+            for (int tdeIndex = 0; tdeIndex < dataElements.Count; tdeIndex++)
             {
                 var trainDataElement = dataElements[tdeIndex];
 
-                var varNamestring = baseString + tdeIndex + "_";
+                string varNamestring = baseString + tdeIndex + "_";
+
                 var charArray = trainDataElement.EchoText.ToCharArray();
+
                 if (charArray.Length > 10)
                     throw new ArgumentOutOfRangeException(charArray.ToString(), "Too many characters in the caption string!");
 
@@ -43,7 +46,7 @@ namespace Testcase.Telegrams.EVCtoDMI
                 totalSizeCounter += 32;
 
                 // Populate the array
-                for (var charIndex = 0; charIndex < charArray.Length; charIndex++)
+                for (int charIndex = 0; charIndex < charArray.Length; charIndex++)
                 {
                     var character = charArray[charIndex];
 
@@ -56,9 +59,11 @@ namespace Testcase.Telegrams.EVCtoDMI
                         _pool.SITR.Client.Write(varNamestring + baseString.Substring( baseString.LastIndexOf('_') + 1 ) + $"1{charIndex}_MmiXText", character);
                     }
 
+                    // Increment packet by size of one character
                     totalSizeCounter += 8;
                 }
             }
+
             return totalSizeCounter;
         }
 

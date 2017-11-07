@@ -28,9 +28,9 @@ namespace Testcase.Telegrams.EVCtoDMI
 
 
         /// <summary>
-        /// Initialise an instance of EVC-10 MMI Echoed Train Data telegram.
+        /// Initialise EVC-10 MMI Echoed Train Data telegram.
         /// </summary>
-        /// <param name="pool">Signal Pool</param>
+        /// <param name="pool">The SignalPool</param>
         public static void Initialise(SignalPool pool)
         {
             _pool = pool;
@@ -44,7 +44,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         }
 
         /// <summary>
-        /// Sends the EVC-10 packet after having filled its dynamic fields 
+        /// Sends the EVC-10 packet after having populated its dynamic fields 
         /// </summary>
         public static void Send()
         {
@@ -60,7 +60,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             ushort totalSizeCounter = 144;
 
             // Populate the array of trainset captions
-            for (var trainsetIndex = 0; trainsetIndex < TrainSetCaptions.Count; trainsetIndex++)
+            for (int trainsetIndex = 0; trainsetIndex < TrainSetCaptions.Count; trainsetIndex++)
             {
                 // Get each trainset caption from function parameter
                 var charArray = TrainSetCaptions[trainsetIndex].ToCharArray();

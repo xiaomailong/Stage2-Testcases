@@ -1,13 +1,17 @@
-﻿using CL345;
+﻿#region usings
+using CL345;
 using System;
 using static Testcase.Telegrams.EVCtoDMI.Variables;
+#endregion
 
 namespace Testcase.Telegrams.EVCtoDMI
 {
     /// <summary>
     /// This packet contains dynamic information, such as current train speed, current position and current target data for the driver.
+    /// 
     /// Note:
-    /// This packet is routed via dedicated port and thus no header nor length information is contained in the (plain) data set. It is also protected via SDTv2.
+    /// This packet is routed via dedicated port and thus no header nor length information is contained in the (plain) data set.
+    /// It is also protected via SDTv2.
     /// Some variables that were formerly contained in EVC-1 are now part of EVC-7, which has to be evaluated by the DMI as well.
     /// </summary>
     public static class EVC1_MMIDynamic
@@ -18,9 +22,9 @@ namespace Testcase.Telegrams.EVCtoDMI
         private static MMI_M_WARNING _mmiMWarning;  // Warning/indication status
 
         /// <summary>
-        /// Initialise EVC-1 MMI_Dynamic telegram.
+        /// Initialise EVC-1 MMI Dynamic telegram.
         /// </summary>
-        /// <param name="pool"></param>
+        /// <param name="pool">The SignalPool</param>
         public static void Initialise(SignalPool pool)
         {
             _pool = pool;
@@ -37,17 +41,16 @@ namespace Testcase.Telegrams.EVCtoDMI
             _pool.SITR.ETCS1.Dynamic.MmiOIml.Value = -1;            // Spare
             _pool.SITR.ETCS1.Dynamic.EVC01Validity1.Value = 0xc800; // 51200 in decimal
             _pool.SITR.ETCS1.Dynamic.EVC01Validity2.Value = 0xff00; // 65280 in decimal
-            _pool.SITR.ETCS1.Dynamic.EVC01SSW1.Value = 0x8000; // 32768 in decimal
-            _pool.SITR.ETCS1.Dynamic.EVC01SSW2.Value = 0x8000; // 32768 in decimal
-            _pool.SITR.ETCS1.Dynamic.EVC01SSW3.Value = 0x8000; // 32768 in decimal
+            _pool.SITR.ETCS1.Dynamic.EVC01SSW1.Value = 0x8000;      // 32768 in decimal
+            _pool.SITR.ETCS1.Dynamic.EVC01SSW2.Value = 0x8000;      // 32768 in decimal
+            _pool.SITR.ETCS1.Dynamic.EVC01SSW3.Value = 0x8000;      // 32768 in decimal
         }
 
         private static void SetAlias()
         {
-            var mmiMWarning = (byte)_mmiMWarning;
+            byte mmiMWarning = (byte)_mmiMWarning;
 
-            _pool.SITR.ETCS1.Dynamic.EVC1alias1.Value =
-                (byte)(_mmiMSlip << 7 | _mmiMSlide << 6 | mmiMWarning);
+            _pool.SITR.ETCS1.Dynamic.EVC1alias1.Value = (byte)(_mmiMSlip << 7 | _mmiMSlide << 6 | mmiMWarning);
         }
 
         /// <summary>
