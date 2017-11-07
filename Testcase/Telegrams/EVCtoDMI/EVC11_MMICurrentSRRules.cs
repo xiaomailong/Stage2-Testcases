@@ -1,7 +1,9 @@
-﻿using System;
+﻿#region usings
+using System;
 using System.Collections.Generic;
 using CL345;
 using static Testcase.Telegrams.EVCtoDMI.Variables;
+#endregion
 
 namespace Testcase.Telegrams.EVCtoDMI
 {
@@ -19,21 +21,24 @@ namespace Testcase.Telegrams.EVCtoDMI
         private static SignalPool _pool;
 
         /// <summary>
-        /// Initialise an instance of EVC-6 MMI Current Train Data telegram.
+        /// Initialise EVC-6 MMI Current Train Data telegram.
         /// </summary>
-        /// <param name="pool"></param>
+        /// <param name="pool">The SignalPool</param>
         public static void Initialise(SignalPool pool)
         {
             _pool = pool;
             DataElements = new List<DataElement>();
 
             // Set as dynamic
-            _pool.SITR.SMDCtrl.ETCS1.CurrentSrRules.Value = 0x8;
+            _pool.SITR.SMDCtrl.ETCS1.CurrentSrRules.Value = 0x0008;
 
             // Set default values
             _pool.SITR.ETCS1.CurrentSrRules.MmiMPacket.Value = 11; // Packet ID
         }
 
+        /// <summary>
+        /// Send EVC-11 MMI Current SR Rules telegram.
+        /// </summary>
         public static void Send()
         {
             if (DataElements.Count > 3)
@@ -55,17 +60,20 @@ namespace Testcase.Telegrams.EVCtoDMI
 
         /// <summary>
         /// Distance on which the train is allowed to run in Staff Responsible mode.
+        /// 
         /// Values:
         /// 0..100000 = "Distance in Staff Responsible Mode"
         /// 100001..4294967295  = "Not Used"
         /// </summary>
         public static uint MMI_L_STFF
         {
+            get => _pool.SITR.ETCS1.CurrentSrRules.MmiLStff.Value;
             set => _pool.SITR.ETCS1.CurrentSrRules.MmiLStff.Value = value;
         }
 
         /// <summary>
         /// Speed value to override the default max Staff Responsible speed in the system
+        /// 
         /// Values:
         /// 0..600 = "Speed Value"
         /// 601..65535 = "Reserved"
@@ -75,6 +83,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static ushort MMI_V_STFF
         {
+            get => _pool.SITR.ETCS1.CurrentSrRules.MmiVStff.Value;
             set => _pool.SITR.ETCS1.CurrentSrRules.MmiVStff.Value = value;
         }        
 

@@ -1,10 +1,8 @@
 ﻿#region usings
-
 using System;
 using System.Collections.Generic;
 using CL345;
 using static Testcase.Telegrams.EVCtoDMI.Variables;
-
 #endregion
 
 namespace Testcase.Telegrams.EVCtoDMI
@@ -30,9 +28,9 @@ namespace Testcase.Telegrams.EVCtoDMI
         private const string BaseString = "ETCS1_SelectLevel_EVC20SelectLevelSub";
 
         /// <summary>
-        /// Initialise an instance of EVC-20 MMI Select Level telegram.
+        /// Initialise EVC-20 MMI Select Level telegram.
         /// </summary>
-        /// <param name="pool">SignalPool</param>
+        /// <param name="pool">The SignalPool</param>
         public static void Initialise(SignalPool pool)
         {
             _pool = pool;
@@ -41,7 +39,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             _pool.SITR.SMDCtrl.ETCS1.SelectLevel.Value = 0x0008;
 
             // Set default values
-            _pool.SITR.ETCS1.SelectLevel.MmiMPacket.Value = 20; // Packet ID
+            _pool.SITR.ETCS1.SelectLevel.MmiMPacket.Value = 20;
         }
 
         private static void SetLevelInfoK()
@@ -107,7 +105,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         }
 
         /// <summary>
-        /// Send EVC-20 telegram to the DMI.
+        /// Send EVC-20 MMI Select Level telegram.
         /// </summary>
         public static void Send()
         {
