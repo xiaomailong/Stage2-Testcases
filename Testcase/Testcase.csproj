@@ -264,6 +264,7 @@ if exist "$(TargetPath)" if not exist "$(TargetPath).locked" move "$(TargetPath)
     <Compile Include="DMITestCases\25 Request for Driver’s Action\25.4\25.4 Drivers_Action_Settings_window.cs" />
     <Compile Include="DMITestCases\25 Request for Driver’s Action\25.5\25.5 Drivers_Action_RBC_Contact_windows.cs" />
     <Compile Include="DMITestCases\25 Request for Driver’s Action\25.6\25.6 Drivers_Action_Geographical_Information.cs" />
+    <Compile Include="DMITestCases\26\26.1\26.1.1 Sound_S1_Over_Speed.cs" />
     <Compile Include="DMITestCases\27 Sub-Level Window Selection\27.10\27.10 Special_window.cs" />
     <Compile Include="DMITestCases\27 Sub-Level Window Selection\27.11\27.11 Adhesion_Window.cs" />
     <Compile Include="DMITestCases\27 Sub-Level Window Selection\27.12\27.12 Subcategory_National.cs" />
