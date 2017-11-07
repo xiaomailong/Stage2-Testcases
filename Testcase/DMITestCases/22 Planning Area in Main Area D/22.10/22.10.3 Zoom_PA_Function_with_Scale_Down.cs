@@ -13,6 +13,8 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.EVCtoDMI;
+
 
 namespace Testcase.DMITestCases
 {
@@ -31,15 +33,17 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 17_10_3.tdg
     /// </summary>
-    public class Zoom_PA_Function_with_Scale_Down : TestcaseBase
+    public class TC_ID_17_10_3_Zoom_PA_Function_with_Scale_Down : TestcaseBase
     {
         public override void PreExecution()
         {
             // Pre-conditions from TestSpec:
-            // System is power on.
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
+
+            // System is power on.
+            DmiActions.Start_ATP();
         }
 
         public override void PostExecution()
@@ -55,28 +59,29 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
             /*
             Test Step 1
             Action: Activate cabin A
             Expected Result: DMI displays the default window. The Driver ID window is displayed
             */
-            // Call generic Action Method
             DmiActions.Activate_Cabin_1(this);
-            // Call generic Check Results Method
-            DmiExpectedResults.Driver_ID_window_displayed(this);
+            DmiActions.Set_Driver_ID(this, "1234");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SB mode." + Environment.NewLine +
+                                "2. The Driver ID window is displayed.");
 
             /*
             Test Step 2
             Action: Driver performs SoM to SR mode, level 1
             Expected Result: DMI displays in SR mode, level 1
             */
-            // Call generic Action Method
-            DmiActions.Driver_performs_SoM_to_SR_mode_level_1(this);
-            // Call generic Check Results Method
-            DmiExpectedResults.SR_Mode_displayed(this);
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
+            DmiActions.Finished_SoM_Default_Window(this);
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SR mode, Level 1.");
 
             /*
             Test Step 3
@@ -84,9 +89,17 @@ namespace Testcase.DMITestCases
             Expected Result: DMI changes from SR mode to FS mode, Level 1 with PA in area D.Verify the following information,The symbol NA04 is displayed at sub-area D12
             Test Step Comment: (1) MMI_gen 7384 (partly: NA04);
             */
-            // Call generic Action Method
-            DmiActions.Drive_the_train_forward_pass_BG1(this);
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 30;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 10000;
+            EVC4_MMITrackDescription.MMI_G_GRADIENT_CURR = 0;
+            EVC4_MMITrackDescription.MMI_V_MRSP_CURR_KMH = 30;
+            EVC4_MMITrackDescription.Send();
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI changes from SR to FS mode, Level 1." + Environment.NewLine +
+                                "2. The Planning Area is displayed in area D." + Environment.NewLine +
+                                "3. The ‘Scale Down’ button is displayed with symbol NA04 in sub-area D12.");
 
             /*
             Test Step 4
@@ -94,7 +107,11 @@ namespace Testcase.DMITestCases
             Expected Result: DMI remains displays in FS mode.Verify the following information,The PA’s distance range is changed to [0…8000]
             Test Step Comment: (1) MMI_gen 7384 (partly: operable zoom PA);
             */
+            DmiActions.ShowInstruction(this, @"Press the ‘Scale Down’ button");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DM still displays in FS mode." + Environment.NewLine +
+                                "2. The Planning Area distance range changes to 0..8000.");
 
             /*
             Test Step 5
@@ -102,17 +119,23 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,Verify that the Zoom PA function is switched the PA’s distance range to the next higher range and the visualisation of the PA are updated accordingly.When the distance range is [0…32000], the symbol NA06 is displayed in sub-area D12
             Test Step Comment: (1) MMI_gen 7388;   (2) MMI_gen 7385;
             */
+            DmiActions.ShowInstruction(this, @"Press the ‘Scale Down’ button until the distance range changes to 0..32000");
 
-
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The Planning Area scale is displayed according to the range 0..32000." + Environment.NewLine +
+                                "2. The (enabled) ‘Scale Down’ symbol, NA04, is removed and the disabled ‘Scale Down’ symbol, NA06, is displayed in sub-area D12.");
+            
             /*
             Test Step 6
             Action: Press ‘Scale Down’ button
             Expected Result: Verify the following information,Verify that The ‘Scale Down’ button of the operable Zoom PA function is disabled, visualisation of the PA are not change
             Test Step Comment: (1) MMI_gen 7379 (partly: disable);  
             */
-            // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press ‘Scale Down’ button");
+            DmiActions.ShowInstruction(this, @"Press the ‘Scale Down’ button");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The Planning Area scale does not change." + Environment.NewLine +
+                                "2. The Zoom PA function is disabled.");
 
             /*
             Test Step 7
@@ -120,9 +143,11 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The PA’s distance range is changed to [0…16000] and the symbol NA04 is displayed in sub-area D12
             Test Step Comment: (1) MMI_gen 7379 (partly: opposite case); 
             */
-            // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press ‘Scale Up’ button");
+            DmiActions.ShowInstruction(this, @"Press the ‘Scale Up’ button");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The Planning Area scale is displayed according to the range 0..16000." + Environment.NewLine +
+                                "2. The (disabled) ‘Scale Down’ symbol, NA06, is removed and the enabled ‘Scale Down’ symbol, NA04, is displayed in sub-area D12.");
 
             /*
             Test Step 8
@@ -130,17 +155,18 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The Planning information area and the ‘Scale Down’ buttons are disappeared from DMI
             Test Step Comment: (1) MMI_gen 7373 (partly: no visible);
             */
-            // Call generic Action Method
-            DmiActions.Driver_presses_Hide_button_at_position_top_right_of_planning_area_in_sub_area_D14(this);
+            DmiActions.ShowInstruction(this, @"Press the ‘Hide’ button in the top right of sub-area D14");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. Planning Information is removed." + Environment.NewLine +
+                                "2. The ‘Scale Up’ and ‘Scale Down’ buttons are removed.");
 
             /*
             Test Step 9
             Action: End of test
             Expected Result: 
             */
-
-
+            
             return GlobalTestResult;
         }
     }
