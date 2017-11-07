@@ -13,6 +13,8 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.EVCtoDMI;
+
 
 namespace Testcase.DMITestCases
 {
@@ -31,15 +33,19 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 17_11.tdg
     /// </summary>
-    public class Handle_at_least_31_PA_Speed_Profile_Segments : TestcaseBase
+    public class TC_ID_17_11_Handle_at_least_31_PA_Speed_Profile_Segments : TestcaseBase
     {
         public override void PreExecution()
         {
             // Pre-conditions from TestSpec:
-            // System is power on.Train length = 100 mSet the following tags name in configuration file (See the instruction in Appendix 1)SPEED_DIAL_V_MAX = 400SPEED_DIAL_V_TRAINs = 100
+            // Train length = 100 mSet the following tags name in configuration file (See the instruction in Appendix 1)
+            // SPEED_DIAL_V_MAX = 400SPEED_DIAL_V_TRAINs = 100
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
+
+            // System is power on.
+            DmiActions.Start_ATP();
         }
 
         public override void PostExecution()
@@ -55,28 +61,29 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
             /*
             Test Step 1
             Action: Activate cabin A
             Expected Result: DMI displays the default window. The Driver ID window is displayed
             */
-            // Call generic Action Method
             DmiActions.Activate_Cabin_1(this);
-            // Call generic Check Results Method
-            DmiExpectedResults.Driver_ID_window_displayed(this);
+            DmiActions.Set_Driver_ID(this, "1234");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SB mode." + Environment.NewLine +
+                                "2. The Driver ID window is displayed.");
 
             /*
             Test Step 2
             Action: Driver performs SoM to SR mode, level 1
             Expected Result: DMI is displayed in SR mode, level 1
             */
-            // Call generic Action Method
-            DmiActions.Driver_performs_SoM_to_SR_mode_level_1(this);
-            // Call generic Check Results Method
-            DmiExpectedResults.SR_Mode_displayed(this);
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
+            DmiActions.Finished_SoM_Default_Window(this);
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SR mode, Level 1.");
 
             /*
             Test Step 3
@@ -84,177 +91,338 @@ namespace Testcase.DMITestCases
             Expected Result: DMI changes from SR mode to FS mode.The planning area is displayed the PA Speed Profile segments
             Test Step Comment: MMI_gen 7286 (partly: PL21);
             */
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 30;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 10000;
+            EVC4_MMITrackDescription.MMI_G_GRADIENT_CURR = 0;
+            EVC4_MMITrackDescription.MMI_V_MRSP_CURR_KMH = 30;
 
+            List<TrackDescription> trackDescriptions = new List<TrackDescription>
+            {
+                new TrackDescription {MMI_V_MRSP_KMH = 45, MMI_O_MRSP = 60000},
+                new TrackDescription {MMI_V_MRSP_KMH = 50, MMI_O_MRSP = 110000},
+                new TrackDescription {MMI_V_MRSP_KMH = 55, MMI_O_MRSP = 160000},
+                new TrackDescription {MMI_V_MRSP_KMH = 60, MMI_O_MRSP = 210000},
+                new TrackDescription {MMI_V_MRSP_KMH = 65, MMI_O_MRSP = 26000},
+                new TrackDescription {MMI_V_MRSP_KMH = 70, MMI_O_MRSP = 310000},
+                new TrackDescription {MMI_V_MRSP_KMH = 75, MMI_O_MRSP = 360000},
+                new TrackDescription {MMI_V_MRSP_KMH = 80, MMI_O_MRSP = 410000},
+                new TrackDescription {MMI_V_MRSP_KMH = 85, MMI_O_MRSP = 460000},
+                new TrackDescription {MMI_V_MRSP_KMH = 90, MMI_O_MRSP = 510000},
+                new TrackDescription {MMI_V_MRSP_KMH = 95, MMI_O_MRSP = 560000},
+                new TrackDescription {MMI_V_MRSP_KMH = 100, MMI_O_MRSP = 610000},
+                new TrackDescription {MMI_V_MRSP_KMH = 105, MMI_O_MRSP = 660000},
+                new TrackDescription {MMI_V_MRSP_KMH = 110, MMI_O_MRSP = 710000},
+                new TrackDescription {MMI_V_MRSP_KMH = 115, MMI_O_MRSP = 760000},
+                new TrackDescription {MMI_V_MRSP_KMH = 120, MMI_O_MRSP = 810000}
+            };
+            EVC4_MMITrackDescription.TrackDescriptions = trackDescriptions;
+            EVC4_MMITrackDescription.Send();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI changes from SR to FS mode, Level 1." + Environment.NewLine +
+                                "2. The Planning Area is displayed in area D." + Environment.NewLine +
+                                "3. Speed discontinuity increases, symbol PL21, are displayed at positions 500, 100, 1500, 2000, 2500, 3000, 3500 and 4000m.");
 
             /*
             Test Step 4
             Action: Pass BG2 Pkt 27 giving 16 segments of static speed profileD_STATIC = 7900, V_STATIC = 24N_ITER = 1516.     D_STATIC = 500, V_STATIC = 2517.     D_STATIC = 500, V_STATIC = 2618.     D_STATIC = 500, V_STATIC = 2719.     D_STATIC = 500, V_STATIC = 2820.     D_STATIC = 500, V_STATIC = 2921.     D_STATIC = 500, V_STATIC = 3022.     D_STATIC = 500, V_STATIC = 2923.     D_STATIC = 500, V_STATIC = 2824.     D_STATIC = 500, V_STATIC = 2725.     D_STATIC = 500, V_STATIC = 2626.     D_STATIC = 500, V_STATIC = 2527.     D_STATIC = 500, V_STATIC = 2428.     D_STATIC = 500, V_STATIC = 2329.     D_STATIC = 500, V_STATIC = 22  30.     D_STATIC = 500, V_STATIC = 21
-            Expected Result: The planning area keep showing PA Speed Profile segments
+            // D_STATIC = 7900, V_STATIC = 24N_ITER = 1516.     D_STATIC = 500, V_STATIC = 2517
+		    Expected Result: The planning area keep showing PA Speed Profile segments
             */
+            trackDescriptions.AddRange(new List<TrackDescription>
+            {
+              new TrackDescription {MMI_V_MRSP_KMH = 125, MMI_O_MRSP = 860000},
+              new TrackDescription {MMI_V_MRSP_KMH = 130, MMI_O_MRSP = 910000},
+              new TrackDescription {MMI_V_MRSP_KMH = 135, MMI_O_MRSP = 960000},
+              new TrackDescription {MMI_V_MRSP_KMH = 140, MMI_O_MRSP = 1100000},
+              new TrackDescription {MMI_V_MRSP_KMH = 145, MMI_O_MRSP = 1160000},
+              new TrackDescription {MMI_V_MRSP_KMH = 150, MMI_O_MRSP = 1210000},
+              new TrackDescription {MMI_V_MRSP_KMH = 145, MMI_O_MRSP = 1260000},
+              new TrackDescription {MMI_V_MRSP_KMH = 140, MMI_O_MRSP = 1310000},
+              new TrackDescription {MMI_V_MRSP_KMH = 135, MMI_O_MRSP = 1360000},
+              new TrackDescription {MMI_V_MRSP_KMH = 130, MMI_O_MRSP = 1410000},
+              new TrackDescription {MMI_V_MRSP_KMH = 125, MMI_O_MRSP = 1460000},
+              new TrackDescription {MMI_V_MRSP_KMH = 120, MMI_O_MRSP = 1510000},
+              new TrackDescription {MMI_V_MRSP_KMH = 115, MMI_O_MRSP = 1560000},
+              new TrackDescription {MMI_V_MRSP_KMH = 110, MMI_O_MRSP = 1610000},
+              new TrackDescription {MMI_V_MRSP_KMH = 105, MMI_O_MRSP = 1660000}
+            });
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The Planning Area is still displayed in area D." + Environment.NewLine +
+                                "2. Speed discontinuity increases, symbol PL21, are still displayed at positions 500, 100, 1500, 2000, 2500, 3000, 3500 and 4000m.");
 
             /*
             Test Step 5
             Action: Drive the train follow the permitted speed
             Expected Result: From step 6 to Step 27. Verify that the PA Speed Profile segment’s speed is higher than the the speed of the previous segment. DMI is displayed as symbol PL21 on the planning area. (see the figure in ‘Comment’ column)
             */
-            // Call generic Action Method
-            DmiActions.Drive_the_train_follow_the_permitted_speed(this);
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 15000;
 
-
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. Each successive speed discontinuity increases in speed from the previous.");
             /*
             Test Step 6
             Action: SSP in Pkt27 of BG1 iteration 1 is supervised
             Expected Result: Verify that the CSG is indicated the speed equal 45km/h. The symbol PL21 is displayed on the planning area
             */
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 45;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 50000;
 
-
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The speed increases to that of the nearest discontinuity." + Environment.NewLine +
+                                "2. The speed increase symbol, PL21, is displayed in the Planning Area.");
             /*
             Test Step 7
             Action: SSP in Pkt27 of BG1 iteration 2 is supervised
             Expected Result: Verify that the CSG is indicated the speed equal 50km/h. The symbol PL21 is displayed on the planning area
             */
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH += 5;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN += 50000;
 
-
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The speed increases to that of the nearest discontinuity." + Environment.NewLine +
+                                "2. The speed increase symbol, PL21, is displayed in the Planning Area.");
             /*
             Test Step 8
             Action: SSP in Pkt27 of BG1 iteration 3 is supervised
             Expected Result: Verify that the CSG is indicated the speed equal 55km/h. The symbol PL21 is displayed on the planning area
             */
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH += 5;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN += 50000;
 
-
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The speed increases to that of the nearest discontinuity." + Environment.NewLine +
+                                "2. The speed increase symbol, PL21, is displayed in the Planning Area.");
+            
             /*
             Test Step 9
             Action: SSP in Pkt27 of BG1 iteration 4 is supervised
             Expected Result: Verify that the CSG is indicated the speed equal 60km/h. The symbol PL21 is displayed on the planning area
             */
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH += 5;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN += 50000;
 
-
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The speed increases to that of the nearest discontinuity." + Environment.NewLine +
+                                "2. The speed increase symbol, PL21, is displayed in the Planning Area.");
+            
             /*
             Test Step 10
             Action: SSP in Pkt27 of BG1 iteration 5 is supervised
             Expected Result: Verify that the CSG is indicated the speed equal 65km/h. The symbol PL21 is displayed on the planning area
             */
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH += 5;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN += 50000;
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The speed increases to that of the nearest discontinuity." + Environment.NewLine +
+                                "2. The speed increase symbol, PL21, is displayed in the Planning Area.");
 
             /*
             Test Step 11
             Action: SSP in Pkt27 of BG1 iteration 6 is supervised
             Expected Result: Verify that the CSG is indicated the speed equal 70km/h. The symbol PL21 is displayed on the planning area
             */
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH += 5;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN += 50000;
 
-
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The speed increases to that of the nearest discontinuity." + Environment.NewLine +
+                                "2. The speed increase symbol, PL21, is displayed in the Planning Area.");
+            
             /*
             Test Step 12
             Action: SSP in Pkt27 of BG1 iteration 7 is supervised
             Expected Result: Verify that the CSG is indicated the speed equal 75km/h. The symbol PL21 is displayed on the planning area
             */
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH += 5;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN += 50000;
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The speed increases to that of the nearest discontinuity." + Environment.NewLine +
+                                "2. The speed increase symbol, PL21, is displayed in the Planning Area.");
 
             /*
             Test Step 13
             Action: SSP in Pkt27 of BG1 iteration 8 is supervised
             Expected Result: Verify that the CSG is indicated the speed equal 80km/h. The symbol PL21 is displayed on the planning area
             */
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH += 5;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN += 50000;
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The speed increases to that of the nearest discontinuity." + Environment.NewLine +
+                                "2. The speed increase symbol, PL21, is displayed in the Planning Area.");
 
             /*
             Test Step 14
             Action: SSP in Pkt27 of BG1 iteration 9 is supervised
             Expected Result: Verify that the CSG is indicated the speed equal 85km/h. The symbol PL21 is displayed on the planning area
             */
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH += 5;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN += 50000;
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The speed increases to that of the nearest discontinuity." + Environment.NewLine +
+                                "2. The speed increase symbol, PL21, is displayed in the Planning Area.");
 
             /*
             Test Step 15
             Action: SSP in Pkt27 of BG1 iteration 10 is supervised
             Expected Result: Verify that the CSG is indicated the speed equal 90km/h. The symbol PL21 is displayed on the planning area
             */
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH += 5;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN += 50000;
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The speed increases to that of the nearest discontinuity." + Environment.NewLine +
+                                "2. The speed increase symbol, PL21, is displayed in the Planning Area.");
 
             /*
             Test Step 16
             Action: SSP in Pkt27 of BG1 iteration 11 is supervised
             Expected Result: Verify that the CSG is indicated the speed equal 95km/h. The symbol PL21 is displayed on the planning area
             */
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH += 5;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN += 50000;
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The speed increases to that of the nearest discontinuity." + Environment.NewLine +
+                                "2. The speed increase symbol, PL21, is displayed in the Planning Area.");
 
             /*
             Test Step 17
             Action: SSP in Pkt27 of BG1 iteration 12 is supervised
             Expected Result: Verify that the CSG is indicated the speed equal 100km/h. The symbol PL21 is displayed on the planning area
             */
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH += 5;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN += 50000;
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The speed increases to that of the nearest discontinuity." + Environment.NewLine +
+                                "2. The speed increase symbol, PL21, is displayed in the Planning Area.");
 
             /*
             Test Step 18
             Action: SSP in Pkt27 of BG1 iteration 13 is supervised
             Expected Result: Verify that the CSG is indicated the speed equal 105km/h. The symbol PL21 is displayed on the planning area
             */
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH += 5;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN += 50000;
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The speed increases to that of the nearest discontinuity." + Environment.NewLine +
+                                "2. The speed increase symbol, PL21, is displayed in the Planning Area.");
 
             /*
             Test Step 19
             Action: SSP in Pkt27 of BG1 iteration 14 is supervised
             Expected Result: Verify that the CSG is indicated the speed equal 110km/h. The symbol PL21 is displayed on the planning area
             */
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH += 5;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN += 50000;
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The speed increases to that of the nearest discontinuity." + Environment.NewLine +
+                                "2. The speed increase symbol, PL21, is displayed in the Planning Area.");
 
             /*
             Test Step 20
             Action: SSP in Pkt27 of BG1 iteration 15 is supervised
             Expected Result: Verify that the CSG is indicated the speed equal 115km/h. The symbol PL21 is displayed on the planning area
             */
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH += 5;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN += 50000;
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The speed increases to that of the nearest discontinuity." + Environment.NewLine +
+                                "2. The speed increase symbol, PL21, is displayed in the Planning Area.");
 
             /*
             Test Step 21
             Action: SSP in Pkt27 of BG2 iteration 16 is supervised
             Expected Result: Verify that the CSG is indicated the speed equal 120km/h. The symbol PL21 is displayed on the planning area
             */
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH += 5;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN += 50000;
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The speed increases to that of the nearest discontinuity." + Environment.NewLine +
+                                "2. The speed increase symbol, PL21, is displayed in the Planning Area.");
 
             /*
             Test Step 22
             Action: SSP in Pkt27 of BG2 iteration 17 is supervised
             Expected Result: Verify that the CSG is indicated the speed equal 125km/h. The symbol PL21 is displayed on the planning area
             */
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH += 5;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN += 50000;
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The speed increases to that of the nearest discontinuity." + Environment.NewLine +
+                                "2. The speed increase symbol, PL21, is displayed in the Planning Area.");
 
             /*
             Test Step 23
             Action: SSP in Pkt27 of BG2 iteration 18 is supervised
             Expected Result: Verify that the CSG is indicated the speed equal 130km/h. The symbol PL21 is displayed on the planning area
             */
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH += 5;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN += 50000;
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The speed increases to that of the nearest discontinuity." + Environment.NewLine +
+                                "2. The speed increase symbol, PL21, is displayed in the Planning Area.");
 
             /*
             Test Step 24
             Action: SSP in Pkt27 of BG2 iteration 19 is supervised
             Expected Result: Verify that the CSG is indicated the speed equal 135km/h. The symbol PL21 is displayed on the planning area
             */
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH += 5;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN += 50000;
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The speed increases to that of the nearest discontinuity." + Environment.NewLine +
+                                "2. The speed increase symbol, PL21, is displayed in the Planning Area.");
 
             /*
             Test Step 25
             Action: SSP in Pkt27 of BG2 iteration 20 is supervised
             Expected Result: Verify that the CSG is indicated the speed equal 140km/h. The symbol PL21 is displayed on the planning area
             */
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH += 5;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN += 50000;
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The speed increases to that of the nearest discontinuity." + Environment.NewLine +
+                                "2. The speed increase symbol, PL21, is displayed in the Planning Area.");
 
             /*
             Test Step 26
             Action: SSP in Pkt27 of BG2 iteration 21 is supervised
             Expected Result: Verify that the CSG is indicated the speed equal 145km/h. The symbol PL21 is displayed on the planning area
             */
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH += 5;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN += 50000;
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The speed increases to that of the nearest discontinuity." + Environment.NewLine +
+                                "2. The speed increase symbol, PL21, is displayed in the Planning Area.");
 
             /*
             Test Step 27
             Action: SSP in Pkt27 of BG2 iteration 22 is supervised
             Expected Result: Verify that the CSG is indicated the speed equal 150km/h. The symbol PL21 is displayed on the planning area
             */
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH += 5;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN += 50000;
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The speed increases to that of the nearest discontinuity." + Environment.NewLine +
+                                "2. The speed increase symbol, PL21, is displayed in the Planning Area.");
 
             /*
             Test Step 28
@@ -262,63 +430,108 @@ namespace Testcase.DMITestCases
             Expected Result: From step 28 to Step 41. Verify that the PA Speed Profile segment’s speed is lower than the the speed of the previous segment. DMI is displayed as symbol PL22 on the planning areaVerify that the CSG is indicated the speed equal 145km/h. The symbol PL22 is displayed on the planning area
             Test Step Comment: MMI_gen 7286 (partly: PL22);
             */
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH -= 5;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN += 50000;
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The speed decreases to that of the nearest discontinuity." + Environment.NewLine +
+                                "2. The speed decrease symbol, PL22, is displayed in the Planning Area.");
 
             /*
             Test Step 29
             Action: SSP in Pkt27 of BG2 iteration 24 is supervised
             Expected Result: Verify that the CSG is indicated the speed equal 140km/h. The symbol PL22 is displayed on the planning area
             */
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH -= 5;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN += 50000;
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The speed decreases to that of the nearest discontinuity." + Environment.NewLine +
+                                "2. The speed decrease symbol, PL22, is displayed in the Planning Area.");
 
             /*
             Test Step 30
             Action: SSP in Pkt27 of BG2 iteration 25 is supervised
             Expected Result: Verify that the CSG is indicated the speed equal 135km/h. The symbol PL22 is displayed on the planning area
             */
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH -= 5;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN += 50000;
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The speed decreases to that of the nearest discontinuity." + Environment.NewLine +
+                                "2. The speed decrease symbol, PL22, is displayed in the Planning Area.");
 
             /*
             Test Step 31
             Action: SSP in Pkt27 of BG2 iteration 26 is supervised
             Expected Result: Verify that the CSG is indicated the speed equal 130km/h. The symbol PL22 is displayed on the planning area
             */
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH -= 5;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN += 50000;
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The speed decreases to that of the nearest discontinuity." + Environment.NewLine +
+                                "2. The speed decrease symbol, PL22, is displayed in the Planning Area.");
 
             /*
             Test Step 32
             Action: SSP in Pkt27 of BG2 iteration 27 is supervised
             Expected Result: Verify that the CSG is indicated the speed equal 125km/h. The symbol PL22 is displayed on the planning area
             */
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH -= 5;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN += 50000;
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The speed decreases to that of the nearest discontinuity." + Environment.NewLine +
+                                "2. The speed decrease symbol, PL22, is displayed in the Planning Area.");
 
             /*
             Test Step 33
             Action: SSP in Pkt27 of BG2 iteration 28 is supervised
             Expected Result: Verify that the CSG is indicated the speed equal 120km/h. The symbol PL22 is displayed on the planning area
             */
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH -= 5;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN += 50000;
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The speed decreases to that of the nearest discontinuity." + Environment.NewLine +
+                                "2. The speed decrease symbol, PL22, is displayed in the Planning Area.");
 
             /*
             Test Step 34
             Action: SSP in Pkt27 of BG2 iteration 29 is supervised
             Expected Result: Verify that the CSG is indicated the speed equal 115km/h. The symbol PL22 is displayed on the planning area
             */
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH -= 5;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN += 50000;
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The speed decreases to that of the nearest discontinuity." + Environment.NewLine +
+                                "2. The speed decrease symbol, PL22, is displayed in the Planning Area.");
 
             /*
             Test Step 35
             Action: SSP in Pkt27 of BG2 iteration 30 is supervised
             Expected Result: Verify that the CSG is indicated the speed equal 110km/h. The symbol PL22 is displayed on the planning area
             */
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH -= 5;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN += 50000;
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The speed decreases to that of the nearest discontinuity." + Environment.NewLine +
+                                "2. The speed decrease symbol, PL22, is displayed in the Planning Area.");
 
             /*
             Test Step 36
             Action: SSP in Pkt27 of BG2 iteration 31 is supervised
             Expected Result: Verify that the CSG is indicated the speed equal 105 km/h. The symbol PL22 is displayed on the planning area
             */
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH -= 5;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN += 50000;
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The speed decreases to that of the nearest discontinuity." + Environment.NewLine +
+                                "2. The speed decrease symbol, PL22, is displayed in the Planning Area.");
 
             /*
             Test Step 37
@@ -326,16 +539,17 @@ namespace Testcase.DMITestCases
             Expected Result: Verify that The symbol PL23 is displayed on the planning area
             Test Step Comment: MMI_gen 7286 (partly: PL23);
             */
-            // Call generic Action Method
-            DmiActions.Continue_to_drive_the_train_forward(this);
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH -= 5;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN += 50000;
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The speed decrease to zero target symbol, PL23, is displayed in the Planning Area.");
 
             /*
             Test Step 38
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }
