@@ -107,7 +107,19 @@ namespace Testcase.Telegrams.DMItoEVC
         {
             get
             {
-                return _pool.SITR.CCUO.ETCS1NewTrainNumber.MmiNidOperation.Value;
+                // Reset telegram received flag in RTSim
+                _pool.SITR.SMDStat.CCUO.ETCS1NewTrainNumber.Value = 0x00;
+
+                if (_pool.SITR.SMDStat.CCUO.ETCS1NewTrainNumber.WaitForCondition(Is.Equal, 1, 20000, 100))
+                {
+                    _nidOperation = _pool.SITR.CCUO.ETCS1NewTrainNumber.MmiNidOperation.Value;
+                    return _nidOperation;
+                }
+                else
+                {
+                    DmiExpectedResults.DMItoEVC_Telegram_Not_Received(_pool, baseString);
+                    return 0xffffffff;
+                }
             }
         }
     }

@@ -814,6 +814,19 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
+        /// Description: Default Window sent to be displayed on th DMI
+        /// Used in:
+        ///     Step 8 in TC-ID: 15.1.3 in 20.1.3
+        /// </summary>
+        /// <param name="pool">Signal pool</param>
+        public static void Display_Default_Window(SignalPool pool)
+        {
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 0;
+            EVC30_MMIRequestEnable.Send();
+        }
+
+        /// <summary>
         /// Description: Asks the Tester to enter a LSSMA to be send to the DMI
         /// Used in:
         ///     Step 2 in TC-ID: 15.1.6 in 20.1.6
