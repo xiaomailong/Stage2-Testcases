@@ -77,7 +77,8 @@ namespace Testcase.Telegrams.EVCtoDMI
                     throw new Exception("MmiNCaptionTrainset from EVC-6 and length of caption do not match!");
 
                 // Set length of char array, but bit-inverted
-                _pool.SITR.Client.Write($"{BaseStringEvc10}{trainsetIndex}_MmiNCaptionTrainsetR", (ushort)~evc6MmiNCaptionTrainset);
+                // !!!! VARPATH NAME NEED TO BE CORRECTED in FLCONFIG file !!!!
+                _pool.SITR.Client.Write($"{BaseStringEvc10}{trainsetIndex}_MmiNCapitionTrainsetR", (ushort)~evc6MmiNCaptionTrainset);
 
                 // Increment packet size
                 totalSizeCounter += 16;

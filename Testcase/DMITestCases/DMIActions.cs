@@ -756,7 +756,7 @@ namespace Testcase.DMITestCases
         /// <param name="pool">Signal pool</param>
         public static void Display_Train_Data_Window(SignalPool pool)
         {
-            Send_EVC6_MMICurrentTrainData_FixedDataEntry(pool, new [] { "FLU", "RLU", "Rescue" }, 1);
+            Send_EVC6_MMICurrentTrainData_FixedDataEntry(pool, new [] { "FLU", "RLU", "Rescue" }, 15);
             
             // Keep this line below please. Work in progress..
             //Send_EVC6_MMICurrentTrainData_FixedDataEntry(pool, paramEvc6FixedTrainsetCaptions, 15);
@@ -1009,6 +1009,27 @@ namespace Testcase.DMITestCases
         /// <param name="pool">Signal pool</param>
         public static void Display_Train_data_validation_Window(SignalPool pool)
         {
+
+            /*
+             * EVC-6 values are set to original without being sent to the DMI
+             */
+            EVC6_MMICurrentTrainData.MMI_M_DATA_ENABLE = MMI_M_DATA_ENABLE.TrainSetID;      // "Train Set ID" data enabled
+            EVC6_MMICurrentTrainData.MMI_L_TRAIN = 0;                                       // Train length
+            EVC6_MMICurrentTrainData.MMI_V_MAXTRAIN = 0;                                    // Max train speed
+            EVC6_MMICurrentTrainData.MMI_NID_KEY_TRAIN_CAT = MMI_NID_KEY.NoDedicatedKey;    // Train category
+            EVC6_MMICurrentTrainData.MMI_M_BRAKE_PERC = 0;                                  // Brake percentage
+            EVC6_MMICurrentTrainData.MMI_NID_KEY_AXLE_LOAD = MMI_NID_KEY.NoDedicatedKey;    // Axle load category
+            EVC6_MMICurrentTrainData.MMI_M_AIRTIGHT = 0;                                    // Train equipped with airtight system
+            EVC6_MMICurrentTrainData.MMI_NID_KEY_LOAD_GAUGE = MMI_NID_KEY.NoDedicatedKey;   // Loading gauge type of train 
+            EVC6_MMICurrentTrainData.MMI_M_BUTTONS =
+                EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE;
+            EVC6_MMICurrentTrainData.MMI_M_TRAINSET_ID = 15;                                // Preselected Trainset ID
+            EVC6_MMICurrentTrainData.MMI_M_ALT_DEM = 0;                                     // No alternative train data available
+            EVC6_MMICurrentTrainData.TrainSetCaptions = new List<string>(paramEvc6FixedTrainsetCaptions);
+            EVC6_MMICurrentTrainData.DataElements = new List<DataElement>();                // No train data elements
+            EVC6_MMICurrentTrainData.SetWithoutSending();
+
+
             Send_EVC10_MMIEchoedTrainData_FixedDataEntry(pool, paramEvc6FixedTrainsetCaptions);
         }
 

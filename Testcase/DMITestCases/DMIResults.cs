@@ -939,11 +939,11 @@ namespace Testcase.DMITestCases
         public static void Fixed_Train_Data_entered(SignalPool pool, Fixed_Trainset_Captions trainsetSelected)
         {
             DmiActions.ShowInstruction(pool, @"Perform the following action after pressing OK:" + Environment.NewLine + Environment.NewLine +
-                                "1. Select and enter \""+ trainsetSelected +"\"." + Environment.NewLine +
-                                "2. Press \"Yes\".");
+                                "1. Select and enter \""+ trainsetSelected +"\".");
 
             EVC107_MMINewTrainData.MMI_M_BUTTONS = MMI_M_BUTTONS_TRAIN_DATA.BTN_ENTER;
             EVC107_MMINewTrainData.TrainsetSelected = trainsetSelected;
+
 
             DataElement[] dataElements1 = new DataElement[1]
             {
@@ -956,7 +956,10 @@ namespace Testcase.DMITestCases
             DmiActions.Send_EVC6_MMICurrentTrainData(MMI_M_DATA_ENABLE.TrainSetID, 0, 0, MMI_NID_KEY.NoDedicatedKey, 0,
                 MMI_NID_KEY.NoDedicatedKey, 0, MMI_NID_KEY.NoDedicatedKey, 
                 EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE,
-                Convert.ToUInt16((byte)(trainsetSelected)), 0, null, dataElements1);
+                Convert.ToUInt16((byte)(trainsetSelected)), 0, new string[]{}, dataElements1);
+
+            DmiActions.ShowInstruction(pool, @"Perform the following action after pressing OK:" + Environment.NewLine + Environment.NewLine +
+                                "1. Press \"Yes\".");
 
             EVC107_MMINewTrainData.MMI_M_BUTTONS = MMI_M_BUTTONS_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE;
             EVC107_MMINewTrainData.TrainsetSelected = trainsetSelected;
@@ -976,7 +979,7 @@ namespace Testcase.DMITestCases
             DmiActions.Send_EVC6_MMICurrentTrainData(MMI_M_DATA_ENABLE.NONE, 0, 0, MMI_NID_KEY.NoDedicatedKey, 0,
                 MMI_NID_KEY.NoDedicatedKey, 0, MMI_NID_KEY.NoDedicatedKey,
                 EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE,
-                Convert.ToUInt16((byte)(trainsetSelected)), 0, null, dataElements2);
+                Convert.ToUInt16((byte)(trainsetSelected)), 0, new string[]{}, dataElements2);
         }
 
         /// <summary>

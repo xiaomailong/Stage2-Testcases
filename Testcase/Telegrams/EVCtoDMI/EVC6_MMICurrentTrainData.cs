@@ -95,6 +95,55 @@ namespace Testcase.Telegrams.EVCtoDMI
             _pool.SITR.SMDCtrl.ETCS1.CurrentTrainData.Value = 0x0009;
         }
 
+        // Set the value for an instance of EVC-6 Current Train Data telegram WITHOUT SENDING IT!
+        // This method should preceed EVC-10 packet sending
+        public static void SetWithoutSending()
+        {
+            if (TrainSetCaptions.Count > 9)
+                throw new ArgumentOutOfRangeException();
+            if (DataElements.Count > 9)
+                throw new ArgumentOutOfRangeException();
+
+            // Set initial telegram size
+            ushort totalSizeCounter = 176;
+
+            // Set number of trainset captions
+            _pool.SITR.ETCS1.CurrentTrainData.MmiNTrainset.Value = (ushort)TrainSetCaptions.Count;
+
+            // Populate the array of trainset captions
+            for (int trainsetIndex = 0; trainsetIndex < TrainSetCaptions.Count; trainsetIndex++)
+            {
+                var charArray = TrainSetCaptions[trainsetIndex].ToCharArray();
+
+                if (charArray.Length > 12)
+                    throw new ArgumentOutOfRangeException();
+
+                // Set length of char array
+                _pool.SITR.Client.Write($"{BaseString}1{trainsetIndex}_MmiNCaptionTrainset", charArray.Length);
+
+                totalSizeCounter += 16;
+
+                for (int charIndex = 0; charIndex < charArray.Length; charIndex++)
+                {
+                    char character = charArray[charIndex];
+
+                    _pool.SITR.Client.Write($"{BaseString}1{trainsetIndex}_EVC06CurrentTrainDataSub11" +
+                                            $"{charIndex.ToString("00")}_MmiXCaptionTrainset", character);
+
+                    totalSizeCounter += 8;
+                }
+            }
+
+            // Set number of train data elements
+            _pool.SITR.ETCS1.CurrentTrainData.MmiNDataElements.Value = (ushort)DataElements.Count;
+
+            totalSizeCounter = PopulateDataElements($"{BaseString}2", totalSizeCounter, DataElements, _pool);
+
+            // Set the total length of the packet
+            _pool.SITR.ETCS1.CurrentTrainData.MmiLPacket.Value = totalSizeCounter;
+            
+        }
+
         /// <summary>
         /// A bit mask that, for each variable, tells if a data value is enabled (e.g. for 'edit' in EVC-6).
         /// 1 == 'enabled'.
