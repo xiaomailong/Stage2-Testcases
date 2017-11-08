@@ -73,7 +73,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7985 (partly: MMI_gen 5189 (partly: touch screen), MMI_gen 5944 (partly: touch screen)));(2) MMI_gen 7986;(3) MMI_gen 7985 (partly: half grid array);(4) MMI_gen 7985 (partly: MMI_gen 4640 (partly: only data area), MMI_gen 4720, MMI_gen 4889 (partly: merge label and data));(5) MMI_gen 7985 (party: MMI_gen 4722 (partly: Table 12 <Close> button, Window title , Input field)); (6) MMI_gen 7985 (partly: MMI_gen 4637 (partly: Main-areas D and F));(7) MMI_gen 7985 (partly: note under the MMI_gen 9412);(8) MMI_gen 7985 (partly: single input field, only data part);(9) MMI_gen 2194 (partly: no marked);(10) MMI_gen 7988; MMI_gen 7985 (partly: MMI_gen 4912);(11) MMI_gen 7985 (partly: MMI_gen 4678);(12) MMI_gen 1972; MMI_gen 1978;(13) MMI_gen 1630 (partly: fulfilled condition, EVC-20); (14) MMI_gen 2194 (partly: no marked, EVC-20, [GenVSIS]);(15) MMI_gen 2206 (partly: list provided by EVC-20);(16) MMI_gen 1979 (partly: ETCS Level, MMI_M_LEVEL_FLAG);(17) MMI_gen 1979 (partly: button enabling);
             */
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.EVC30WindowID.Level;      // Level
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Level;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.DriverID;
             EVC30_MMIRequestEnable.Send();
 
@@ -502,7 +502,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11383 (partly: discarded);
             */
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.EVC30WindowID.Main;      // Main
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;      // Main
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Level;
             EVC30_MMIRequestEnable.Send();
             

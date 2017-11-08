@@ -69,7 +69,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 972 (partly: OBU_TR_M_MODE, table 33, mode SB); MMI_gen 6310 (partly: mode);(2) MMI_gen 972 (partly: CSG shall not displayed, table 33, mode SB);
             */
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.EVC30WindowID.Main;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.TrainData |
                                                                EVC30_MMIRequestEnable.EnabledRequests.TrainRunningNumber |
                                                                EVC30_MMIRequestEnable.EnabledRequests.Start;

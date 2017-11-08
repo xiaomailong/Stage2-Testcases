@@ -25,7 +25,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             // Set default values
             _pool.SITR.ETCS1.EnableRequest.MmiMPacket.Value = 30;
             _pool.SITR.ETCS1.EnableRequest.MmiLPacket.Value = 128;
-            MMI_NID_WINDOW = EVC30WindowID.No_window_specified;
+            MMI_NID_WINDOW = WindowID.No_window_specified;
         }
 
         /// <summary>
@@ -42,7 +42,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static void SendBlank()
         {
-            _pool.SITR.ETCS1.EnableRequest.MmiNidWindow.Value = (byte)EVC30WindowID.No_window_specified;
+            _pool.SITR.ETCS1.EnableRequest.MmiNidWindow.Value = (byte)WindowID.No_window_specified;
             _pool.SITR.Client.Write("ETCS1_EnableRequest_MmiQRequestEnable", new uint[] {0x00000000, 0x00000000});
             Send();
         }
@@ -89,7 +89,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// it is assumed that there are use cases where the variable is contained in a sent package, but there is
         /// no intention to do a statement about a specific window. Then the special value 'no window specified' can be used.
         /// </summary>
-        public static EVC30WindowID MMI_NID_WINDOW
+        public static WindowID MMI_NID_WINDOW
         {
             set => _pool.SITR.ETCS1.EnableRequest.MmiNidWindow.Value = (byte) value;
         }
@@ -164,9 +164,9 @@ namespace Testcase.Telegrams.EVCtoDMI
         #endregion
 
         /// <summary>
-        /// Enum used to specify window ID
+        /// Enum used to specify window ID in EVC-30 telegram
         /// </summary>
-        public enum EVC30WindowID : ushort
+        public enum WindowID : byte
         {
              Default = 0,
              Main = 1,

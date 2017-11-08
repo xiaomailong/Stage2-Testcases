@@ -162,7 +162,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 4392 (partly: bullet a, close button, NA11);(2) MMI_gen 4392 (partly: bullet c, next button, NA17);(3) MMI_gen 4394 (partly: previous, disabled); MMI_gen 4396 (partly: previous, NA19); MMI_gen 4392 (partly: bullet d, previous button);
             */
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.EVC30WindowID.Main;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.TrainData;
             EVC30_MMIRequestEnable.Send();
 

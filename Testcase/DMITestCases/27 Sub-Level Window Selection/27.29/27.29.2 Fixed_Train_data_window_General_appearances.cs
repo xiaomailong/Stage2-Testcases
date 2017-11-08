@@ -75,7 +75,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8087; MMI_gen 4355 (partly: Window title);(2) MMI_gen 8086 (partly: MMI_gen 4888);(3) MMI_gen 8086 (partly: MMI_gen 4799 (partly: Close button, Previous button, Next button, Window Title, Input fields)); MMI_gen 4392 (partly: [Close] NA11); MMI_gen 4355 (partly: Buttons, Close button);(4) MMI_gen 8086 (partly: MMI_gen 4891 (partly: Yes button, Area for [Window Title] Entry complete?));(5) MMI_gen 8086 (partly: MMI_gen 4910 (partly: Disabled, MMI_gen 4211 (partly: colour)), MMI_gen 4909 (partly: Disabled)); MMI_gen 4377 (partly: shown);(6) MMI_gen 8086 (partly: MMI_gen 4908 (partly: extended));(7) MMI_gen 8086 (partly: MMI_gen 4637 (partly: Main-areas D and F)); MMI_gen 4355 (partly: input fields);(8) MMI_gen 8086 (partly: MMI_gen 4640);(9) MMI_gen 8086 (partly: MMI_gen 4641);(10) MMI_gen 8086 (partly: MMI_gen 9412);(11) MMI_gen 8086 (partly: MMI_gen 4645);(12) MMI_gen 8086 (partly: MMI_gen 4646 (partly: right aligned));(13) MMI_gen 8086 (partly: MMI_gen 4647 (partly: left aligned));(14) MMI_gen 8086 (partly: MMI_gen 4648);(15) MMI_gen 8086 (partly: MMI_gen 4720);(16) MMI_gen 8086 (partly: MMI_gen 4651 (partly: Train Type), MMI_gen 4683 (partly: selected), MMI_gen 5211 (partly: selected));(17) MMI_gen 8104; MMI_gen 8086 (partly: MMI_gen 4912, MMI_gen 4678);(18) MMI_gen 8086 (partly: MMI_gen 5190);(19) MMI_gen 8086 (partly: MMI_gen 4696);(20) MMI_gen 8086 (partly: MMI_gen 4697); MMI_gen 187 (partly: label part of echo text);(21) MMI_gen 8086 (partly: MMI_gen 4701);(22) MMI_gen 8086 (partly: MMI_gen 4702 (partly: right aligned));(23) MMI_gen 8086 (partly: MMI_gen 4704 (partly: left aligned));(24) MMI_gen 8086 (partly: MMI_gen 4700 (partly: otherwise, grey)); MMI_gen 4241;(25) MMI_gen 8086 (partly: MMI_gen 4691 (partly: flash, Train category));(26) MMI_gen 8086 (partly: MMI_gen 4689, MMI_gen 4690);(27) MMI_gen 187 (partly: EVC-6, MMI_N_DATA_ELEMENT = 0, MMI_M_DATA_ENABLE ); MMI_gen 9402 (partly: fixed);(28) MMI_gen 9414; MMI_gen 11384 (partly: number of train sets);(29) MMI_gen 187 (partly: Not editable  data);(30) MMI_gen 11384 (partly: caption texts);(31) MMI_gen 11384 (partly: indicate the train set);(32) MMI_gen 4350;(33) MMI_gen 4351;(34) MMI_gen 4353;
             */
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.EVC30WindowID.Main;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.TrainData;
 
             DmiActions.ShowInstruction(this, @"Press the ‘Train Data’ button");
@@ -345,7 +345,7 @@ namespace Testcase.DMITestCases
 
             // Is this correct?
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.EVC30WindowID.Close_current_return_to_parent;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Close_current_return_to_parent;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.TrainData;
             EVC30_MMIRequestEnable.Send();
 

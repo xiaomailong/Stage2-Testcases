@@ -74,7 +74,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 151 (partly: MMI_M_REQUEST = 56, 61, 28, 33) ;(2) MMI_gen 151 (partly: close opened menu);
             */
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.EVC30WindowID.No_window_specified;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.No_window_specified;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.EnterRBCData |
                                                                EVC30_MMIRequestEnable.EnabledRequests.RadioNetworkID |
                                                                EVC30_MMIRequestEnable.EnabledRequests.ContactLastRBC |

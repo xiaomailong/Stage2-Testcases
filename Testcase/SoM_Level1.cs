@@ -84,7 +84,7 @@ namespace Testcase
 
             // TODO Have I set the correct flags?
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.EVC30WindowID.No_window_specified;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.No_window_specified;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = Variables.standardFlags;
             EVC30_MMIRequestEnable.Send();
 
@@ -117,7 +117,7 @@ namespace Testcase
 
             // Send EVC-30 MMI_REQUEST_ENABLE
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.EVC30WindowID.No_window_specified;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.No_window_specified;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH =
                 Variables.standardFlags | EVC30_MMIRequestEnable.EnabledRequests.ContactLastRBC;
             EVC30_MMIRequestEnable.Send();
@@ -134,7 +134,7 @@ namespace Testcase
 
             // Send EVC-30 MMI_ENABLE_REQUEST
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.EVC30WindowID.No_window_specified;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.No_window_specified;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH =
                 Variables.standardFlags | EVC30_MMIRequestEnable.EnabledRequests.ContactLastRBC |
                 EVC30_MMIRequestEnable.EnabledRequests.Start;
