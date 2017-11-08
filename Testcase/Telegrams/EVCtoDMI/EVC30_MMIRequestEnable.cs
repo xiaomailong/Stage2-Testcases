@@ -42,7 +42,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static void SendBlank()
         {
-            _pool.SITR.ETCS1.EnableRequest.MmiNidWindow.Value = (byte)WindowID.No_window_specified;
+            MMI_NID_WINDOW = WindowID.No_window_specified;
             _pool.SITR.Client.Write("ETCS1_EnableRequest_MmiQRequestEnable", new uint[] {0x00000000, 0x00000000});
             Send();
         }
