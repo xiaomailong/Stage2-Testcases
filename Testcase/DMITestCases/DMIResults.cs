@@ -36,7 +36,7 @@ namespace Testcase.DMITestCases
         {
             pool.TraceError($"{TelegramString} telegram was NOT received by RTSim.");
         }
-        
+
         /// <summary>
         /// Used when TC is not needed since it tests the same interfaces as another test case.
         /// </summary>
@@ -48,7 +48,7 @@ namespace Testcase.DMITestCases
             pool.TraceInfo($"This test case is not required since it tests the same interfaces as TC {TestcaseID}" +
                             $" in section {SectionNumber} of the specification.");
         }
-        
+
         /// <summary>
         /// Prompt for verification of symbol displayed on the DMI.
         /// </summary>
@@ -196,7 +196,7 @@ namespace Testcase.DMITestCases
         {
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.StaffResponsibleModeAck;
             pool.WaitForVerification("Has the MO10 (Acknowledgement for Staff Responsible mode) symbol opacity decreased to 50%?");
-            
+
         }
 
         /// <summary>
@@ -621,7 +621,7 @@ namespace Testcase.DMITestCases
             string _sOrder;
             if (order) { _sOrder = "Yes"; } else { _sOrder = "No"; }
 
-            DmiActions.ShowInstruction(pool, @"Perform the following action after pressing OK:" + Environment.NewLine + Environment.NewLine + 
+            DmiActions.ShowInstruction(pool, @"Perform the following action after pressing OK:" + Environment.NewLine + Environment.NewLine +
                                 "1. Press \"" + _sOrder + "\" on DMI in area E.");
 
             EVC111_MMIDriverMessageAck.MMI_I_TEXT = 1;
@@ -941,57 +941,38 @@ namespace Testcase.DMITestCases
         public static void Fixed_Train_Data_entered(SignalPool pool, Fixed_Trainset_Captions trainsetSelected)
         {
             DmiActions.ShowInstruction(pool, @"Perform the following action after pressing OK:" + Environment.NewLine + Environment.NewLine +
-                                "1. Select and enter \""+ trainsetSelected +"\".");
+                                "1. Select and enter \"" + trainsetSelected + "\".");
 
             EVC107_MMINewTrainData.MMI_M_BUTTONS = MMI_M_BUTTONS_TRAIN_DATA.BTN_ENTER;
             EVC107_MMINewTrainData.TrainsetSelected = trainsetSelected;
 
 
-            DataElement[] dataElements1 = new DataElement[1]
-            {
-                new DataElement{
-                    Identifier = 6,
-                    QDataCheck = 0,
-                    EchoText = Enum.GetName(typeof(Fixed_Trainset_Captions),trainsetSelected) }
-            };
+        }
 
-            DmiActions.Send_EVC6_MMICurrentTrainData(MMI_M_DATA_ENABLE.TrainSetID, 0, 0, MMI_NID_KEY.NoDedicatedKey, 0,
-                MMI_NID_KEY.NoDedicatedKey, 0, MMI_NID_KEY.NoDedicatedKey, 
-                EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE,
-                Convert.ToUInt16((byte)(trainsetSelected)), 0, new string[]{}, dataElements1);
+        /// <summary>
+        /// Description: Driver validates Fixed Train Data
+        /// Used in:
+        ///     Step 5 in 15.1.3
+        /// </summary>
+        /// <param name="pool"></param>
+        /// <param name="trainsetSelected"></param>
+        public static void Fixed_Train_Data_validated(SignalPool pool, Fixed_Trainset_Captions trainsetSelected)
+        { 
 
             DmiActions.ShowInstruction(pool, @"Perform the following action after pressing OK:" + Environment.NewLine + Environment.NewLine +
                                 "1. Press \"Yes\".");
 
             EVC107_MMINewTrainData.MMI_M_BUTTONS = MMI_M_BUTTONS_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE;
             EVC107_MMINewTrainData.TrainsetSelected = trainsetSelected;
-
-            DataElement[] dataElements2 = new DataElement[8]
-            {
-                new DataElement{ Identifier = 6, QDataCheck = 0, EchoText = "" },
-                new DataElement{ Identifier = 9, QDataCheck = 0, EchoText = "" },
-                new DataElement{ Identifier = 10, QDataCheck = 0, EchoText = "" },
-                new DataElement{ Identifier = 11, QDataCheck = 0, EchoText = "" },
-                new DataElement{ Identifier = 12, QDataCheck = 0, EchoText = "" },
-                new DataElement{ Identifier = 13, QDataCheck = 0, EchoText = "" },
-                new DataElement{ Identifier = 7, QDataCheck = 0, EchoText = "" },
-                new DataElement{ Identifier = 8, QDataCheck = 0, EchoText = "" }
-            };
-
-            DmiActions.Send_EVC6_MMICurrentTrainData(MMI_M_DATA_ENABLE.NONE, 0, 0, MMI_NID_KEY.NoDedicatedKey, 0,
-                MMI_NID_KEY.NoDedicatedKey, 0, MMI_NID_KEY.NoDedicatedKey,
-                EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE,
-                Convert.ToUInt16((byte)(trainsetSelected)), 0, new string[]{}, dataElements2);
-        }
+        }       
 
         /// <summary>
-        /// Description: Driver validates Fixed Train Data
-        /// 
+        /// Description: Driver completes Train Data validation
         /// Used in:
         ///     Step 6 in 15.1.3
         /// </summary>
         /// <param name="pool"></param>
-        public static void Fixed_Train_Data_validated(SignalPool pool)
+        public static void Train_Data_validation_completed(SignalPool pool)
         {
             DmiActions.ShowInstruction(pool, @"Perform the following action after pressing OK: " + Environment.NewLine + Environment.NewLine +
                                 "1. Press ‘Yes’ button." + Environment.NewLine +

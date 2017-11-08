@@ -754,12 +754,60 @@ namespace Testcase.DMITestCases
         ///     Step 4 in TC-ID: 15.1.3 in 20.1.3
         /// </summary>
         /// <param name="pool">Signal pool</param>
-        public static void Display_Train_Data_Window(SignalPool pool)
+        public static void Display_Fixed_Train_Data_Window(SignalPool pool)
         {
             Send_EVC6_MMICurrentTrainData_FixedDataEntry(pool, new [] { "FLU", "RLU", "Rescue" }, 15);
             
             // Keep this line below please. Work in progress..
             //Send_EVC6_MMICurrentTrainData_FixedDataEntry(pool, paramEvc6FixedTrainsetCaptions, 15);
+        }
+
+        /// <summary>
+        /// Description: Enable "Yes" button to validate Fixed Train data selection
+        /// Used in:
+        ///     Step 4 in TC-ID: 15.1.3 in 20.1.3
+        /// </summary>
+        /// <param name="pool"></param>
+        /// <param name="trainsetSelected"></param>
+        public static void Enable_Fixed_Train_Data_Validation(SignalPool pool, Fixed_Trainset_Captions trainsetSelected)
+        {
+            DataElement[] dataElements = new DataElement[1]
+            {
+                new DataElement{
+                    Identifier = 6,
+                    QDataCheck = 0,
+                    EchoText = Enum.GetName(typeof(Fixed_Trainset_Captions),trainsetSelected) }
+            };
+
+            DmiActions.Send_EVC6_MMICurrentTrainData(MMI_M_DATA_ENABLE.TrainSetID, 0, 0, MMI_NID_KEY.NoDedicatedKey, 0,
+                MMI_NID_KEY.NoDedicatedKey, 0, MMI_NID_KEY.NoDedicatedKey,
+                EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE,
+                Convert.ToUInt16((byte)(trainsetSelected)), 0, new string[] { }, dataElements);
+        }
+
+        /// <summary>
+        /// Description: Finishes the Train Data Entry process in order to move to Train Data Validation
+        /// </summary>
+        /// <param name="pool"></param>
+        /// <param name="trainsetSelected"></param>
+        public static void Complete_Fixed_Train_Data_Entry(SignalPool pool, Fixed_Trainset_Captions trainsetSelected)
+        {
+            DataElement[] dataElements = new DataElement[8]
+            {
+                new DataElement{ Identifier = 6, QDataCheck = 0, EchoText = "" },
+                new DataElement{ Identifier = 9, QDataCheck = 0, EchoText = "" },
+                new DataElement{ Identifier = 10, QDataCheck = 0, EchoText = "" },
+                new DataElement{ Identifier = 11, QDataCheck = 0, EchoText = "" },
+                new DataElement{ Identifier = 12, QDataCheck = 0, EchoText = "" },
+                new DataElement{ Identifier = 13, QDataCheck = 0, EchoText = "" },
+                new DataElement{ Identifier = 7, QDataCheck = 0, EchoText = "" },
+                new DataElement{ Identifier = 8, QDataCheck = 0, EchoText = "" }
+            };
+
+            DmiActions.Send_EVC6_MMICurrentTrainData(MMI_M_DATA_ENABLE.NONE, 0, 0, MMI_NID_KEY.NoDedicatedKey, 0,
+                MMI_NID_KEY.NoDedicatedKey, 0, MMI_NID_KEY.NoDedicatedKey,
+                EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE,
+                Convert.ToUInt16((byte)(trainsetSelected)), 0, new string[] { }, dataElements);
         }
 
         /// <summary>
@@ -1072,7 +1120,7 @@ namespace Testcase.DMITestCases
             Display_Main_Window_with_Start_button_not_enabled(pool);
             ShowInstruction(pool, @"Press ‘Train data’ button");
 
-            Display_Train_Data_Window(pool);
+            Display_Fixed_Train_Data_Window(pool);
             ShowInstruction(pool, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
                                     "1. Enter and confirm value in each input field." + Environment.NewLine +
                                     "2. Press ‘Yes’ button.");

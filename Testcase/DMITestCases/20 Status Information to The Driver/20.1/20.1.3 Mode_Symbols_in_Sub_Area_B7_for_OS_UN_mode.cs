@@ -118,7 +118,7 @@ namespace Testcase.DMITestCases
 
             DmiExpectedResults.Train_Data_Button_pressed_and_released(this);
 
-            DmiActions.Display_Train_Data_Window(this);
+            DmiActions.Display_Fixed_Train_Data_Window(this);
             DmiExpectedResults.Train_data_window_displayed(this);
 
             #endregion
@@ -132,6 +132,13 @@ namespace Testcase.DMITestCases
 
             DmiExpectedResults.Fixed_Train_Data_entered(this, Fixed_Trainset_Captions.FLU);
             
+            DmiActions.Enable_Fixed_Train_Data_Validation(this, Fixed_Trainset_Captions.FLU);
+            DmiExpectedResults.Fixed_Train_Data_validated(this, Fixed_Trainset_Captions.FLU);
+
+            DmiActions.Complete_Fixed_Train_Data_Entry(this, Fixed_Trainset_Captions.FLU);
+
+            Wait_Realtime(1000);
+
             DmiActions.Display_Train_data_validation_Window(this);
             DmiExpectedResults.Train_data_validation_window_displayed(this);
 
@@ -144,7 +151,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Train Running Number window
             */
 
-            DmiExpectedResults.Fixed_Train_Data_validated(this);
+            DmiExpectedResults.Train_Data_validation_completed(this);
 
             Wait_Realtime(5000);
 
@@ -152,7 +159,7 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.TRN_window_displayed(this);
 
             #endregion                        
-
+            return GlobalTestResult;
             #region Test Step 7
             /*
             Test Step 7
@@ -258,7 +265,7 @@ namespace Testcase.DMITestCases
                                 "1. Press ‘Train data’ button." + Environment.NewLine +
                                 "2. Press OK on THIS window.");
 
-            DmiActions.Display_Train_Data_Window(this);
+            DmiActions.Display_Fixed_Train_Data_Window(this);
             DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
                                 "1. Enter and confirm value in each input field." + Environment.NewLine +
                                 "2. Press ‘Yes’ button." + Environment.NewLine +
