@@ -18,8 +18,12 @@
   <DefaultResult>Yes</DefaultResult>
   <ValidationMode>False</ValidationMode>
   <CustomProperties>
-    <!-- <XSLFile>C:\FILE\TO\CUSTOM.xsl</XSLFile>
-	 <JenkinsUrl>http://localhost:8080/job/JUnit%20Test%20Job/ws/</JenkinsUrl>
-	 <JenkinsJobPath>C:\jenkins\ws\JUnit Test Job</JenkinsJobPath> -->
+    <!-- 
+    <XSLFile>C:\FILE\TO\CUSTOM.xsl</XSLFile>    
+    <DisableKeepAlive>False</DisableKeepAlive>
+    <FailedTestcaseRetryCount>3</FailedTestcaseRetryCount>
+    <TraceReferencedAssemblyVersions>False</TraceReferencedAssemblyVersions>
+    <TraceUnReferencedAssemblyVersions>False</TraceUnReferencedAssemblyVersions>
+    -->
   </CustomProperties>
 </TestInfoXml>
