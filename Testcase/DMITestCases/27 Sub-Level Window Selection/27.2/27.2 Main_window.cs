@@ -73,7 +73,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8351 (partly: touch screen, enabling condition of ‘Start’ button); MMI_gen 591 (partly: EVC-30, enabling, start);(2) MMI_gen 4350;(3) MMI_gen 4351;(4) MMI_gen 4353;(5) MMI_gen 4354;
             */
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.EVC30WindowID.Main;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.TrainRunningNumber |
                                                                EVC30_MMIRequestEnable.EnabledRequests.Start;
             EVC30_MMIRequestEnable.Send();
@@ -152,7 +152,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Acknowledge SR mode, then press the ‘Main’ button");
 
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.EVC30WindowID.Main;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Start |
                                                                EVC30_MMIRequestEnable.EnabledRequests.DriverID |
                                                                EVC30_MMIRequestEnable.EnabledRequests.TrainData |
@@ -613,7 +613,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 591 (partly: EVC-30, disabling condition of ‘Exit Shunting’ button, enabling condition of ‘Train data’, ‘Level’, ‘Train running number’ and ‘Shunting’ buttons);
             */
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 3;      // Level window
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.EVC30WindowID.Special;      // Level window
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = (EVC30_MMIRequestEnable.EnabledRequests.DriverID |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.TrainData |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.Level |
@@ -761,7 +761,7 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"De-activate the ‘Non-leading’ checkbox on OTE to remove the ‘Non-leading’ signal");
             
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 3;      // Level window
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.EVC30WindowID.Level;      // Level window
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = (EVC30_MMIRequestEnable.EnabledRequests.DriverID |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.Level) &
                                                                ~(EVC30_MMIRequestEnable.EnabledRequests.Start |

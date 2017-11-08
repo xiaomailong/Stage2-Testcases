@@ -72,7 +72,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 151 (partly: MMI_M_REQUEST = 58, 55, 29, 22, 23, 25) ;(2) MMI_gen 151 (partly: close opened menu);
             */
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 0;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.EVC30WindowID.Default;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_LOW = true;     // System info enabled
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.SystemVersion |
                                                                EVC30_MMIRequestEnable.EnabledRequests.SetVBC |
@@ -268,7 +268,7 @@ namespace Testcase.DMITestCases
         private void XML_20_4_a()
         {
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 4;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.EVC30WindowID.Settings;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.EnableBrakePercentage;
             EVC30_MMIRequestEnable.Send();
         }

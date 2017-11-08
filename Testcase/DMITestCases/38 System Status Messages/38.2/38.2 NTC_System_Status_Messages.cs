@@ -98,7 +98,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Select and confirm AWS TPWS");
 
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.EVC30WindowID.Main;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.TrainData | 
                                                                EVC30_MMIRequestEnable.EnabledRequests.TrainRunningNumber;
 
@@ -188,7 +188,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Enter and confirm the Driver ID");
 
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.EVC30WindowID.Main;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.TrainData |
                                                                EVC30_MMIRequestEnable.EnabledRequests.TrainRunningNumber;
 
