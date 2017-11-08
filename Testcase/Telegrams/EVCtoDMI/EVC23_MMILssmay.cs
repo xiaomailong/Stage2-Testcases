@@ -1,11 +1,9 @@
 ﻿#region usings
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using CL345;
-
 #endregion
 
 namespace Testcase.Telegrams.EVCtoDMI
@@ -18,7 +16,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         private static SignalPool _pool;
 
         /// <summary>
-        /// Initialise EVC-23 MMI_LSSMA telegram.
+        /// Initialise EVC-23 MMI LSSMA telegram.
         /// </summary>
         /// <param name="pool">The SignalPool</param>
         public static void Initialise(SignalPool pool)
@@ -45,7 +43,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         }
 
         /// <summary>
-        /// Send EVC-23 telegram.
+        /// Send EVC-23 MMI LSSMA telegram.
         /// </summary>
         public static void Send()
         {

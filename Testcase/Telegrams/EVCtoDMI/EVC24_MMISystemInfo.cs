@@ -1,28 +1,27 @@
 ﻿#region usings
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using CL345;
 using static Testcase.Telegrams.EVCtoDMI.Variables;
-
 #endregion
 
 namespace Testcase.Telegrams.EVCtoDMI
 {
     /// <summary>
-    /// This packet shall be sent on request from the driver. The packet contains misc. system info for operational and initial maintenance purpose.
+    /// This packet shall be sent on request from the driver.
+    /// The packet contains miscellaneous system info for operational and initial maintenance purpose.
     /// </summary>
     public static class EVC24_MMISystemInfo
     {
         private static SignalPool _pool;
-        const string BaseString = "ETCS1_SystemInfo_EVC24SystemInfoSub";
+        private const string BaseString = "ETCS1_SystemInfo_EVC24SystemInfoSub";
 
         /// <summary>
-        /// Initialse EVC-24 MMI_System_Info telegram.
+        /// Initialise EVC-24 MMI System Info telegram.
         /// </summary>
-        /// <param name="pool"></param>
+        /// <param name="pool">The SignalPool</param>
         public static void Initialise(SignalPool pool)
         {
             _pool = pool;
@@ -35,7 +34,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         }
 
         /// <summary>
-        /// Send EVC-24 telegram.
+        /// Send EVC-24 MMI System Info telegram.
         /// </summary>
         public static void Send()
         {
@@ -48,7 +47,7 @@ namespace Testcase.Telegrams.EVCtoDMI
 
             _pool.SITR.ETCS1.SystemInfo.MmiNNidntc.Value = (ushort)MMI_NID_NTC.Count;
 
-            // for each element of the list
+            // For each element of the list
             for (var nidNtcIndex = 0; nidNtcIndex < MMI_NID_NTC.Count; nidNtcIndex++)
             {
                 // Get the NIDNTC info
@@ -77,6 +76,7 @@ namespace Testcase.Telegrams.EVCtoDMI
 
         /// <summary>
         /// Vehicle identity number provided by ETCS Onboard on request of the ETCS-MMI
+        /// 
         /// Values:
         /// 0 = "'Unknown'"
         /// </summary>
@@ -88,6 +88,9 @@ namespace Testcase.Telegrams.EVCtoDMI
 
         /// <summary>
         /// Next timeout for brake test in MM-DD-HH-MM as seconds since 01.01.1970, 00:00:00
+        /// 
+        /// Values:
+        /// 0..4294967295 s
         /// </summary>
         public static uint MMI_T_TIMEOUT_BRAKE
         {
@@ -97,6 +100,9 @@ namespace Testcase.Telegrams.EVCtoDMI
 
         /// <summary>
         /// Next timeout for BTM test in MM-DD-HH-MM as seconds since 01.01.1970, 00:00:00
+        /// 
+        /// Values:
+        /// 0..4294967295 s
         /// </summary>
         public static uint MMI_T_TIMEOUT_BTM
         {
@@ -106,6 +112,9 @@ namespace Testcase.Telegrams.EVCtoDMI
 
         /// <summary>
         /// Next timeout for TBSW test in MM-DD-HH-MM as seconds since 01.01.1970, 00:00:00
+        /// 
+        /// Values:
+        /// 0..4294967295 s
         /// </summary>
         public static uint MMI_T_TIMEOUT_TBSW
         {
@@ -115,6 +124,12 @@ namespace Testcase.Telegrams.EVCtoDMI
 
         /// <summary>
         /// This variable contains ETC version X.Y.Z (first byte is X)
+        /// 
+        /// Bits:
+        /// 0..7 = "X : UNSIGNED8"
+        /// 8..15 = "Y : UNSIGNED8"
+        /// 16..23 = "Z : UNSIGNED8"
+        /// 24..31 = "spare"
         /// </summary>
         public static uint MMI_M_ETC_VER
         {
@@ -147,6 +162,7 @@ namespace Testcase.Telegrams.EVCtoDMI
 
         /// <summary>
         /// Current brake configuration
+        /// 
         /// Bits:
         /// 0 = "SB available"
         /// 1 = "Spare"
@@ -165,6 +181,7 @@ namespace Testcase.Telegrams.EVCtoDMI
 
         /// <summary>
         /// Installed levels
+        /// 
         /// Bits:
         /// 0 = "Level 0 installed"
         /// 1 = "Level NTC installed"
@@ -180,12 +197,14 @@ namespace Testcase.Telegrams.EVCtoDMI
         }
 
         /// <summary>
-        /// NTC Identity. This variable identifies the non-ETCS track equipment on a given section of line for which the train requires NTC support (via e.g. STM or standalone system).
+        /// NTC Identity. This variable identifies the non-ETCS track equipment on a given section of
+        /// line for which the train requires NTC support (via e.g. STM or standalone system).
         /// (The definition of this variable is done by ERA ref [ETCS_VARIABLES])
         /// 
         /// Note: Refer to[ETCS_VARIABLES].
         /// Values not yet assigned to a dedicated NTC shall be handled as Not Defined.
-        /// In case of an insertion of text instead of values of MMI_NID_NTC (e.g.text messages) undefined values shall lead to textstring ‘<Unknown>’.
+        /// In case of an insertion of text instead of values of MMI_NID_NTC (e.g. text messages)
+        /// undefined values shall lead to text string ‘<Unknown>’.
         /// 
         /// Note 1: Value 255 is used in packets EVC-25 and EVC-26 to indicate termination.
         /// </summary>
@@ -193,6 +212,7 @@ namespace Testcase.Telegrams.EVCtoDMI
 
         /// <summary>
         /// This variable contains the current state of a STM.
+        /// 
         /// Values:
         /// 0 = "Reserved (mapped to NP for consistency)"
         /// 1 = "Power On (PO)"

@@ -1,10 +1,7 @@
 ﻿#region usings
-
 using CL345;
 using System;
 using System.Collections.Generic;
-using System.Text;
-
 #endregion
 
 namespace Testcase.Telegrams.EVCtoDMI
@@ -13,7 +10,7 @@ namespace Testcase.Telegrams.EVCtoDMI
     /// This packet is used when a STM presents specific data to the driver as the result of a STM specific data
     /// view request. Each MMI packet contains the data of one packet STM-183 according to SUBSET-058, which in turn
     /// holds up to 5 variables. If more than 5 variables need to be presented this MMI packet will be repeated.
-    /// NID_PACKET and L_PACKET of packet STM-183 are stripped.  Because the content of this packet is given by the
+    /// NID_PACKET and L_PACKET of packet STM-183 are stripped. Because the content of this packet is given by the
     /// STM-functionality the assignment, ranges, values and meaning of all variables can only be given in the
     /// project-specific documentation.
     /// </summary>
@@ -29,8 +26,11 @@ namespace Testcase.Telegrams.EVCtoDMI
         private const ushort StmMaxIterations = 5;
         private const ushort StmCaptionMaxLength = 20;
         private const ushort StmXValueMaxLength = 10;
-        private const ushort BasicPacketLength = (MMI_M_PACKET_bits + MMI_L_PACKET_bits + MMI_NID_NTC_bits +
-                                                     EVC26_alias_1_bits + MMI_N_ITER_bits);
+        private const ushort BasicPacketLength = MMI_M_PACKET_bits +
+                                                    MMI_L_PACKET_bits +
+                                                    MMI_NID_NTC_bits +
+                                                    EVC26_alias_1_bits +
+                                                    MMI_N_ITER_bits;
 
         /// <summary>
         /// List of STM elements.
@@ -38,7 +38,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         public static List<EVC26_StmData> StmData { get; set; }
 
         /// <summary>
-        /// This structure collects the repeated data for the EVC26 packet
+        /// This structure collects the repeated data for the EVC-26 packet
         /// </summary>
         public class EVC26_StmData
         {
@@ -50,9 +50,9 @@ namespace Testcase.Telegrams.EVCtoDMI
         }
 
         /// <summary>
-        /// Initialise EVC-26 MMI Specific STM DW Values telegram
+        /// Initialise EVC-26 MMI Specific STM DW Values telegram.
         /// </summary>
-        /// <param name="pool">SignalPool</param>
+        /// <param name="pool">The SignalPool</param>
         public static void Initialise(SignalPool pool)
         {
             _pool = pool;
@@ -63,11 +63,11 @@ namespace Testcase.Telegrams.EVCtoDMI
             _pool.SITR.SMDCtrl.ETCS1.SpecificStmDwValue.Value = 0x0008;
 
             // Set default values
-            _pool.SITR.ETCS1.SpecificStmDwValue.MmiMPacket.Value = 26; // Packet ID
+            _pool.SITR.ETCS1.SpecificStmDwValue.MmiMPacket.Value = 26;
         }
 
         /// <summary>
-        /// Send EVC-26 MMI Specific STM DW Values telegram
+        /// Send EVC-26 MMI Specific STM DW Values telegram.
         /// </summary>
         public static void Send()
         {
@@ -171,11 +171,20 @@ namespace Testcase.Telegrams.EVCtoDMI
 
             // Send dynamic packet
             _pool.SITR.SMDCtrl.ETCS1.SpecificStmDwValue.Value = 0x0009;
-
         }
 
         /// <summary>
-        /// Identity of the STM that requested the data
+        /// NTC Identity.
+        /// This variable identifies the non-ETCS track equipment on a given section of line
+        /// for which the train requires NTC support (via e.g. STM or standalone system).
+        /// (The definition of this variable is done by ERA ref [ETCS_VARIABLES])
+        /// 
+        /// Note: Refer to [ETCS_VARIABLES].
+        /// Values not yet assigned to a dedicated NTC shall be handled as Not Defined.
+        /// In case of an insertion of text instead of values of MMI_NID_NTC (e.g.text messages)
+        /// undefined values shall lead to text string ‘<Unknown>’.
+        /// 
+        /// Note 1: Value 255 is used in packets EVC-25 and EVC-26 to indicate termination.
         /// </summary>
         public static byte MMI_NID_NTC
         {
@@ -183,7 +192,14 @@ namespace Testcase.Telegrams.EVCtoDMI
         }
 
         /// <summary>
-        /// MMI_STM_Q_FOLLOWING
+        /// Indicate a following request.
+        /// Due to the possible length of an STM request for Specific STM Data, this qualifier is used to indicate
+        /// to the ETCS Onboard whether there is a request for Specific STM Data following that has to be managed
+        /// together with the current request by the ETCS Onboard or not.
+        /// 
+        /// Values:
+        /// 0 = "No following request to be managed together with the current one"
+        /// 1 = "There is a following request to be managed together with the current one"
         /// </summary>
         public static bool MMI_STM_Q_FOLLOWING
         {
