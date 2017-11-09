@@ -156,7 +156,7 @@ namespace Testcase.DMITestCases
             {
 
                 case msgType.typea:
-                    EVC1_MMIDynamic.MMI_V_TARGET = 11111;       // unsigned short value in xml is 65535 => -1 short : breaks in EVC1..Send(); using high value instead 
+                    EVC1_MMIDynamic.MMI_V_TARGET = 11112;       // unsigned short value in xml is 65535 => -1 short : breaks in EVC1..Send(); using high value instead 
                     EVC1_MMIDynamic.MMI_V_PERMITTED = 0;
 
                     SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity1.Value = 4415; // All validity bits set
@@ -166,10 +166,8 @@ namespace Testcase.DMITestCases
                 case msgType.typeb:
 
                     EVC1_MMIDynamic.MMI_V_TARGET = 0;
-                    EVC1_MMIDynamic.MMI_V_PERMITTED = 11111;       // unsigned short value in xml is 65535 => -1 short : breaks in EVC1..Send(); using high value instead 
-
-                    SITR.ETCS1.Dynamic.EVC01Validity1.Value = 0x0;
-                    SITR.ETCS1.Dynamic.EVC01Validity2.Value = 0x0;
+                    EVC1_MMIDynamic.MMI_V_PERMITTED = 11112;       // unsigned short value in xml is 65535 => -1 short : breaks in EVC1..Send(); using high value instead 
+                    
 
                     break;
 
