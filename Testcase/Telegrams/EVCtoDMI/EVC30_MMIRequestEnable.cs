@@ -136,7 +136,9 @@ namespace Testcase.Telegrams.EVCtoDMI
         {
             set
             {
-                _pool.SITR.Client.Write("ETCS1_EnableRequest_MmiQRequestEnable", new uint[] {Convert.ToUInt32(value), 0x80000000});
+                UInt64 requestEnable = Convert.ToUInt64( _pool.SITR.Client.Read("ETCS1_EnableRequest_MmiQRequestEnable"));
+                uint enableLow = Convert.ToUInt32(requestEnable & 0x00000000ffffffff);
+                _pool.SITR.Client.Write("ETCS1_EnableRequest_MmiQRequestEnable", new uint[] {Convert.ToUInt32(value), enableLow});
             }
         }
 
@@ -155,10 +157,11 @@ namespace Testcase.Telegrams.EVCtoDMI
         {
             set
             {
-                if (value)
-                    _pool.SITR.ETCS1.EnableRequest.MmiQRequestEnable.Value[1] = 0x80000000;
-                else
-                    _pool.SITR.ETCS1.EnableRequest.MmiQRequestEnable.Value[1] = 0x00000000;
+                UInt64 requestEnable = Convert.ToUInt64(_pool.SITR.Client.Read("ETCS1_EnableRequest_MmiQRequestEnable"));
+                uint enableHigh = Convert.ToUInt32(requestEnable & 0xffffffff00000000);
+                uint[] enableArray = new uint[] { enableHigh, value ? 0x80000000 : 0x00000000 };
+
+                _pool.SITR.Client.Write("ETCS1_EnableRequest_MmiQRequestEnable", enableArray);
             }
         }
         #endregion
