@@ -46,7 +46,7 @@ namespace Testcase.DMITestCases
             DmiActions.Start_ATP();
             DmiActions.Activate_Cabin_1(this);
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 4;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings;
             EVC30_MMIRequestEnable.Send();
         }
 
@@ -1654,7 +1654,7 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.Send();
 
             // The language is changed later...
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 4;      // Settings
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings;      // Settings
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.SetLocalTimeDateAndOffset |
                                                                EVC30_MMIRequestEnable.EnabledRequests.SetLocalOffset |
                                                                EVC30_MMIRequestEnable.EnabledRequests.Language;
@@ -2004,7 +2004,7 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.None;
             EVC30_MMIRequestEnable.Send();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 4;      // Settings
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings;      // Settings
             switch (type)
             {
                 case msgType.typea:

@@ -90,7 +90,7 @@ namespace Testcase.DMITestCases
             // Spec says Start button enabled
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.TrainRunningNumber |
                                                                EVC30_MMIRequestEnable.EnabledRequests.Start;
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;      // Main window
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;      // Main window
             EVC30_MMIRequestEnable.Send();
             
             // Call generic Check Results Method
@@ -603,7 +603,7 @@ namespace Testcase.DMITestCases
 
             // this relies on ETCS data so packet required...
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 4;  // Settings
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings;  // Settings
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.None;
             EVC30_MMIRequestEnable.Send();
 

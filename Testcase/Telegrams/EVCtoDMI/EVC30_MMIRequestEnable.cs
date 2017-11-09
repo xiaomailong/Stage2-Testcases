@@ -1,5 +1,7 @@
-﻿using System;
+﻿#region usings
+using System;
 using CL345;
+#endregion
 
 namespace Testcase.Telegrams.EVCtoDMI
 {
@@ -12,6 +14,10 @@ namespace Testcase.Telegrams.EVCtoDMI
     {
         private static SignalPool _pool;
 
+        /// <summary>
+        /// Initialise EVC-30 MMI Request Enable telegram.
+        /// </summary>
+        /// <param name="pool">The SignalPool</param>
         public static void Initialise(SignalPool pool)
         {
             _pool = pool;
@@ -19,28 +25,31 @@ namespace Testcase.Telegrams.EVCtoDMI
             // Set default values
             _pool.SITR.ETCS1.EnableRequest.MmiMPacket.Value = 30;
             _pool.SITR.ETCS1.EnableRequest.MmiLPacket.Value = 128;
-            MMI_NID_WINDOW = 255;
-        }
-
-        // Send instance of EVC-30 MMI Request Enable telegram
-        public static void Send()
-        {
-            _pool.SITR.SMDCtrl.ETCS1.EnableRequest.Value = 1;
+            MMI_NID_WINDOW = WindowID.No_window_specified;
         }
 
         /// <summary>
-        /// Send instance of EVC-30 MMI Request Enable telegram with ALL flags set to 0.
+        /// Send EVC-30 MMI Request Enable telegram.
+        /// </summary>
+        public static void Send()
+        {
+            _pool.SITR.SMDCtrl.ETCS1.EnableRequest.Value = 0x0001;
+        }
+
+        /// <summary>
+        /// Send EVC-30 MMI Request Enable telegram with ALL flags set to 0.
         /// This is used in between repeated EVC-30 telegram sendings.
         /// </summary>
         public static void SendBlank()
         {
-            _pool.SITR.ETCS1.EnableRequest.MmiNidWindow.Value = 255;
-            _pool.SITR.Client.Write("ETCS1_EnableRequest_MmiQRequestEnable", new uint[2] {0x00000000, 0x00000000});
-            _pool.SITR.SMDCtrl.ETCS1.EnableRequest.Value = 1;
+            MMI_NID_WINDOW = WindowID.No_window_specified;
+            _pool.SITR.Client.Write("ETCS1_EnableRequest_MmiQRequestEnable", new uint[] {0x00000000, 0x00000000});
+            Send();
         }
 
         /// <summary>
-        /// Identifier of currently active ETCS windows. Not all possible windows are controlled/used by this variable in the current packet.
+        /// Identifier of currently active ETCS windows.
+        /// Not all possible windows are controlled/used by this variable in the current packet.
         /// The relevant windows are specified by related requirements.
         /// 
         /// Values:
@@ -49,7 +58,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// 2 = "Override"
         /// 3 = "Special"
         /// 4 = "Settings"
-        /// 5 = "RBC contact" - Only accessed via
+        /// 5 = "RBC contact"
         /// 6 = "Train running number"
         /// 7 = "Level"
         /// 8 = "Driver ID"
@@ -73,14 +82,14 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// 253 = "Language"
         /// 254 = "close current window, return to parent"
         /// 255 = "no window specified"
+        /// 
         /// Note1: The definition is according to preliminary SubSet-121 'NID_WINDOW' definition + some
         /// extension for BT specific design.
-        /// Note2: The variable is already prepared for future use and contains all known possible windows; it
-        /// is assumed that there are use cases where the variable is contained in a sent package, but there is
-        /// no intention to do a statement about a specific window. Then the special value 'no window
-        /// specified' can be used.
+        /// Note2: The variable is already prepared for future use and contains all known possible windows;
+        /// it is assumed that there are use cases where the variable is contained in a sent package, but there is
+        /// no intention to do a statement about a specific window. Then the special value 'no window specified' can be used.
         /// </summary>
-        public static ushort MMI_NID_WINDOW
+        public static WindowID MMI_NID_WINDOW
         {
             set => _pool.SITR.ETCS1.EnableRequest.MmiNidWindow.Value = (byte) value;
         }
@@ -127,8 +136,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         {
             set
             {
-                _pool.SITR.Client.Write("ETCS1_EnableRequest_MmiQRequestEnable",
-                    new uint[2] {Convert.ToUInt32(value), 0x80000000});
+                _pool.SITR.Client.Write("ETCS1_EnableRequest_MmiQRequestEnable", new uint[] {Convert.ToUInt32(value), 0x80000000});
             }
         }
 
@@ -154,6 +162,42 @@ namespace Testcase.Telegrams.EVCtoDMI
             }
         }
         #endregion
+
+        /// <summary>
+        /// Enum used to specify window ID in EVC-30 telegram
+        /// </summary>
+        public enum WindowID : byte
+        {
+             Default = 0,
+             Main = 1,
+             Override = 2,
+             Special = 3,
+             Settings = 4,
+             RBC_contact = 5,
+             Train_running_number = 6,
+             Level = 7,
+             Driver_ID = 8,
+             Radio_network_ID = 9, 
+             RBC_data = 10,
+             Train_data = 11,
+             SR_speed_distance = 12,
+             Adhesion = 13,
+             Set_VBC = 14,
+             Remove_VBC = 15,
+             Train_data_validation = 16,
+             Set_VBC_validation = 17,
+             Remove_VBC_validation = 18,
+             Data_View = 19,
+             System_version = 20,
+             NTC_data_entry_selection = 21,
+             NTC_X_data = 22,
+             NTC_X_data_validation = 23,
+             NTC_X_data_view = 24,
+             Spare = 25,
+             Language = 253,
+             Close_current_return_to_parent = 254,
+             No_window_specified = 255
+        }
 
         [Flags]
         public enum EnabledRequests : uint

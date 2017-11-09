@@ -131,7 +131,7 @@ namespace Testcase.DMITestCases
         {
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Start | standardFlags;
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 0;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Default;
             EVC30_MMIRequestEnable.Send();
         }
 
@@ -177,7 +177,7 @@ namespace Testcase.DMITestCases
 
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Start | standardFlags;
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 0;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Default;
             EVC30_MMIRequestEnable.Send();
         }
 
@@ -691,7 +691,7 @@ namespace Testcase.DMITestCases
         public static void Display_Main_Window_with_Start_button_enabled(SignalPool pool)
         {
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = standardFlags | EVC30_MMIRequestEnable.EnabledRequests.Start;
             EVC30_MMIRequestEnable.Send();
         }
@@ -706,7 +706,7 @@ namespace Testcase.DMITestCases
         public static void Display_Main_Window_with_Start_button_not_enabled(SignalPool pool)
         {
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = standardFlags;
             EVC30_MMIRequestEnable.Send();
         }
@@ -856,7 +856,7 @@ namespace Testcase.DMITestCases
         public static void Display_Override_Window(SignalPool pool)
         {
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 2;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Override;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH =standardFlags | EVC30_MMIRequestEnable.EnabledRequests.EOA;               
             EVC30_MMIRequestEnable.Send();
         }
@@ -870,7 +870,7 @@ namespace Testcase.DMITestCases
         public static void Display_Default_Window(SignalPool pool)
         {
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 0;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Default;
             EVC30_MMIRequestEnable.Send();
         }
 
@@ -1176,7 +1176,7 @@ namespace Testcase.DMITestCases
         {
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = standardFlags;
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 4;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings;
             EVC30_MMIRequestEnable.Send();
         }
 

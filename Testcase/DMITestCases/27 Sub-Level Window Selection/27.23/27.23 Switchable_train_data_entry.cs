@@ -67,7 +67,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8095;   (2) MMI_gen 8098; MMI_gen 8099 (partly: bottom right corner);(3) MMI_gen 8097; (4) MMI_gen 9402 (partly:  MMI_M_ALT_DEM, switchable);
             */
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;      // Main
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;      // Main
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.TrainData;
             EVC30_MMIRequestEnable.Send();
 

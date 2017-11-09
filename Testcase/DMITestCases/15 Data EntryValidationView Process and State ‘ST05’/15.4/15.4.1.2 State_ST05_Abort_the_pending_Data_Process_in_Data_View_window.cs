@@ -109,7 +109,7 @@ namespace Testcase.DMITestCases
                                 "1. The hourglass symbol ST05 is displayed in the window title area."); 
 
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 254;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Close_current_return_to_parent;
             EVC30_MMIRequestEnable.Send();
 
             XML_10_4_1_2_a_b(msgType.typeb);
@@ -133,7 +133,7 @@ namespace Testcase.DMITestCases
                                 "1. The hourglass symbol ST05 is displayed in the window title area.");
 
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 254;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Close_current_return_to_parent;
             EVC30_MMIRequestEnable.Send();
 
             XML_10_4_1_2_a_b(msgType.typeb);

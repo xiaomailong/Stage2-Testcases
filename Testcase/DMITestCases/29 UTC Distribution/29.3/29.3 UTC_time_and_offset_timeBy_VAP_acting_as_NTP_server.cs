@@ -82,7 +82,7 @@ namespace Testcase.DMITestCases
             DmiActions.Complete_SoM_L1_SR(this);
 
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 0;      // Default window
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Default;      // Default window
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.SetLocalTimeDateAndOffset;
             EVC30_MMIRequestEnable.Send();
 
@@ -165,7 +165,7 @@ namespace Testcase.DMITestCases
 
             // Repeat Step 2
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 0;      // Default window
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Default;      // Default window
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.SetLocalTimeDateAndOffset;
             EVC30_MMIRequestEnable.Send();
 

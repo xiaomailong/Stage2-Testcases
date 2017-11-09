@@ -51,7 +51,7 @@ namespace Testcase.DMITestCases
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L2;
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 4;      // Settings window: no buttons enabled
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings;      // Settings window: no buttons enabled
             EVC30_MMIRequestEnable.Send();
         }
 
@@ -480,7 +480,7 @@ namespace Testcase.DMITestCases
             {
                 case msgType.typea:
                     EVC30_MMIRequestEnable.SendBlank();
-                    EVC30_MMIRequestEnable.MMI_NID_WINDOW = 4;
+                    EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings;
                     EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.EnableBrakePercentage;
                     EVC20_MMISelectLevel.Send();
                     break;

@@ -92,7 +92,7 @@ namespace Testcase.DMITestCases
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.Level1Selected;
 
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;      // Main
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;      // Main
             // Don't want non-leading enabled at this point (see Step 8)
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = (Variables.standardFlags | EVC30_MMIRequestEnable.EnabledRequests.Start) &
                                                                ~EVC30_MMIRequestEnable.EnabledRequests.NonLeading;
@@ -231,7 +231,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press the ‘Main’ button. Simulate the ‘Passive-Shunting’ signal by activating the ‘Passive-Shunting’ checkbox on OTE");
 
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.MaintainShunting |
                                                                EVC30_MMIRequestEnable.EnabledRequests.ExitShunting |
                                                                EVC30_MMIRequestEnable.EnabledRequests.NonLeading;
@@ -282,7 +282,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Confirm Level 1.");
 
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.NonLeading;
             EVC30_MMIRequestEnable.Send();
 

@@ -18,23 +18,23 @@ namespace Testcase.Telegrams.EVCtoDMI
         private static SignalPool _pool;
 
         /// <summary>
-        /// Initialise EVC-29 MMI_Echoed_Remove_VBC_Data telegram
+        /// Initialise EVC-29 MMI Echoed Remove VBC Data telegram.
         /// (VBC = Virtual Balise Cover)
         /// </summary>
-        /// <param name="pool">SignalPool</param>
+        /// <param name="pool">The SignalPool</param>
         public static void Initialise(SignalPool pool)
         {
             _pool = pool;
 
             // Set default values
-            _pool.SITR.ETCS1.EchoedRemoveVbcData.MmiMPacket.Value = 29; // Packet ID
-            _pool.SITR.ETCS1.EchoedRemoveVbcData.MmiLPacket.Value = 64; // Packet size
+            _pool.SITR.ETCS1.EchoedRemoveVbcData.MmiMPacket.Value = 29;
+            _pool.SITR.ETCS1.EchoedRemoveVbcData.MmiLPacket.Value = 64;
 
             MMI_M_VBC_CODE_ = 0xff;
         }
 
         /// <summary>
-        /// Send EVC-29 MMI_Echoed_Remove_VBC_Data telegram
+        /// Send EVC-29 MMI Echoed Remove VBC Data telegram.
         /// </summary>
         public static void Send()
         {
@@ -43,6 +43,7 @@ namespace Testcase.Telegrams.EVCtoDMI
 
         /// <summary>
         /// VBC Code
+        /// Enter the value needed and it will be automatically inverted
         /// 
         /// Values:
         /// 0..9 = "NID_C"
@@ -54,9 +55,9 @@ namespace Testcase.Telegrams.EVCtoDMI
         {
             set
             {
-                uint vbcCode_ = value;
+                uint vbcCode = value;
                 
-                _pool.SITR.ETCS1.EchoedRemoveVbcData.MmiMVbcCodeR.Value = ~vbcCode_;
+                _pool.SITR.ETCS1.EchoedRemoveVbcData.MmiMVbcCodeR.Value = ~vbcCode;
             }
         }
     }
