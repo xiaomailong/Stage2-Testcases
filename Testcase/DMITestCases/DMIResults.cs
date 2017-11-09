@@ -195,7 +195,7 @@ namespace Testcase.DMITestCases
         public static void SR_Mode_Ack_pressed_and_hold(SignalPool pool)
         {
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.StaffResponsibleModeAck;
-            pool.WaitForVerification("Has the MO10 (Acknowledgement for Staff Responsible mode) symbol opacity decreased to 50%?");
+            pool.WaitForVerification("Has the MO10 (Acknowledgement for Staff Responsible mode) symbol disappeared from sub-area C1?");
 
         }
 

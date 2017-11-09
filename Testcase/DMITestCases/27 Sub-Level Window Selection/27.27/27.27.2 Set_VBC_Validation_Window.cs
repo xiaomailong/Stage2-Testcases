@@ -58,11 +58,80 @@ namespace Testcase.DMITestCases
 
             /*
             Test Step 1
-            Action: Perform the following procedure,Enter and confirm value ‘65536’ at input field.Press ‘Yes’ button
-            Expected Result: Verify the following information,Use the log file to confirm that DMI received the packet MMI_ECHOED_SET_VBC_DATA (EVC-28). DMI displays Set VBC Validation window.The following objects are displayed in Set VBC Validation window. Enabled Close button (NA11)Window TitleInput fieldYes buttonNo buttonWindow TitleThe window title is ‘Validate set VBC’.The window title is right aligned.LayerThe window is displayed in main area A/B/C/D/E/F/G.All areas of Data validation window are displayed in Layer 0.Input fieldThe window is contains a single input field which has only data area.The value of input field is empty.KeyboardThe displayed keyboard type is dedicated keyboard which contain only ‘Yes’ and ‘No’ button.The key #7 is No button.The key #8 is Yes button.Echo TextEcho Text is composed of a Label part and Data part.The Label of echo text is right aligned.The Data part of echo text is left aligned.The order of echo texts are same as of the Set VBC window.The data part of echo texts are display the data value same as of the Set VBC window.The echo texts are located in Main area A,B,C and E.The echo texts colour is white.Use the log file to confirm that the following variable in packet EVC-28 is same as entered data and display in the data part of echo text,MMI_M_VBC_CODE = entered VBC codeGeneral property of windowThe Set VBC Validation window is presented with objects, text messages and buttons which is the one of several levels and allocated to areas of DMI. All objects, text messages and buttons are presented within the same layer.The Default window is not displayed and covered the current window
-            Test Step Comment: (1) MMI_gen 9925 (partly: EVC-28);(2) MMI_gen 9925 (partly: open Set VBC Validation window, touch screen);(3) MMI_gen 8563 (partly: MMI_gen 5215 (partly: Close button, Window title, Input field, No button, Yes button)); MMI_gen 4392 (partly: [Close] NA11);(4) MMI_gen 8564;(5) MMI_gen 8563 (partly: MMI_gen 5216);(6) MMI_gen 8563 (partly: MMI_gen 7943);(7) MMI_gen 8563 (partly: MMI_gen 5303);(8) MMI_gen 8563 (partly: MMI_gen 5214 (partly: single input field));          (9) MMI_gen 8563 (partly: MMI_gen 5484 (partly: empty)); (10) MMI_gen 8563 (partly: MMI_gen 5214 (partly: dedicated keyboard, MMI_gen 5006), MMI_gen 5006);(11) MMI_gen 8563 (partly: MMI_gen 5263 (partly: MMI_gen 4696));(12) MMI_gen 8563 (partly: MMI_gen 5263 (partly: MMI_gen 4702 (partly: right aligned)));(13) MMI_gen 8563 (partly: MMI_gen 5263 (partly: MMI_gen 4704 (partly: left aligned)));(14) MMI_gen 8563 (partly: MMI_gen 5263 (partly: MMI_gen 4701 (partly: same order), MMI_gen 4697));(15) MMI_gen 8563 (partly: MMI_gen 5263 (partly: MMI_gen 4698));(16) MMI_gen 8563 (partly: MMI_gen 5263 (partly: MMI_gen 4701 (partly: Main area A, B, C and E));(17) MMI_gen 8563 (partly: MMI_gen 5263 (partly: MMI_gen 4700 (partly: data validation process)));(18) MMI_gen 9928; MMI_gen 8565;(19) MMI_gen 4350;(20) MMI_gen 4351;(21) MMI_gen 4353;
+            Action: Perform the following procedure,
+            Enter and confirm value ‘65536’ at input field.
+            Press ‘Yes’ button
+            Expected Result: Verify the following information,
+            Use the log file to confirm that DMI received the packet MMI_ECHOED_SET_VBC_DATA (EVC-28). 
+            DMI displays Set VBC Validation window.
+            The following objects are displayed in Set VBC Validation window. 
+            Enabled Close button (NA11)
+            Window Title
+            Input field
+            Yes button
+            No button
+
+            Window Title
+
+            The window title is ‘Validate set VBC’.
+            The window title is right aligned.
+            
+            Layer
+
+            The window is displayed in main area A/B/C/D/E/F/G.
+            All areas of Data validation window are displayed in Layer 0.
+            
+            Input field
+            
+            The window is contains a single input field which has only data area.
+            The value of input field is empty.
+            
+            Keyboard
+            
+            The displayed keyboard type is dedicated keyboard which contain only ‘Yes’ and ‘No’ button.
+            The key #7 is No button.
+            The key #8 is Yes button.
+            
+            Echo Text
+            
+            Echo Text is composed of a Label part and Data part.
+            The Label of echo text is right aligned.
+            The Data part of echo text is left aligned.
+            The order of echo texts are same as of the Set VBC window.
+            The data part of echo texts are display the data value same as of the Set VBC window.
+            The echo texts are located in Main area A,B,C and E.
+            The echo texts colour is white.
+            
+            Use the log file to confirm that the following variable in packet EVC-28 is same as entered data and display in the data part of echo text,
+            MMI_M_VBC_CODE = entered VBC code
+            General property of window
+            The Set VBC Validation window is presented with objects, text messages and buttons which is the one of several levels and allocated to areas of DMI. 
+            All objects, text messages and buttons are presented within the same layer.
+            The Default window is not displayed and covered the current window
+            Test Step Comment: (1) MMI_gen 9925 (partly: EVC-28);
+                               (2) MMI_gen 9925 (partly: open Set VBC Validation window, touch screen);
+                               (3) MMI_gen 8563 (partly: MMI_gen 5215 (partly: Close button, Window title, Input field, No button, Yes button)); 
+                                   MMI_gen 4392 (partly: [Close] NA11);
+                               (4) MMI_gen 8564;
+                               (5) MMI_gen 8563 (partly: MMI_gen 5216);
+                               (6) MMI_gen 8563 (partly: MMI_gen 7943);
+                               (7) MMI_gen 8563 (partly: MMI_gen 5303);
+                               (8) MMI_gen 8563 (partly: MMI_gen 5214 (partly: single input field));          
+                               (9) MMI_gen 8563 (partly: MMI_gen 5484 (partly: empty)); 
+                               (10) MMI_gen 8563 (partly: MMI_gen 5214 (partly: dedicated keyboard, MMI_gen 5006), MMI_gen 5006);
+                               (11) MMI_gen 8563 (partly: MMI_gen 5263 (partly: MMI_gen 4696));
+                               (12) MMI_gen 8563 (partly: MMI_gen 5263 (partly: MMI_gen 4702 (partly: right aligned)));
+                               (13) MMI_gen 8563 (partly: MMI_gen 5263 (partly: MMI_gen 4704 (partly: left aligned)));
+                               (14) MMI_gen 8563 (partly: MMI_gen 5263 (partly: MMI_gen 4701 (partly: same order), MMI_gen 4697));
+                               (15) MMI_gen 8563 (partly: MMI_gen 5263 (partly: MMI_gen 4698));
+                               (16) MMI_gen 8563 (partly: MMI_gen 5263 (partly: MMI_gen 4701 (partly: Main area A, B, C and E));
+                               (17) MMI_gen 8563 (partly: MMI_gen 5263 (partly: MMI_gen 4700 (partly: data validation process)));
+                               (18) MMI_gen 9928; 
+                                    MMI_gen 8565;
+                               (19) MMI_gen 4350;
+                               (20) MMI_gen 4351;
+                               (21) MMI_gen 4353;
             */
-            // Call generic Action Method
             DmiActions.Perform_the_following_procedure_Enter_and_confirm_value_65536_at_input_field_Press_Yes_button(this);
 
 
@@ -81,7 +150,8 @@ namespace Testcase.DMITestCases
             /*
             Test Step 3
             Action: Press and hold an input field
-            Expected Result: Verify the following information,(1)    The state of an input field is changed to ‘Pressed’, the border of button is removed
+            Expected Result: Verify the following information,
+            (1)    The state of an input field is changed to ‘Pressed’, the border of button is removed
             Test Step Comment: (1) MMI_gen 9390 (partly: Set VBC Validation window);
             */
             // Call generic Action Method
@@ -94,7 +164,8 @@ namespace Testcase.DMITestCases
             /*
             Test Step 4
             Action: Slide out an input field
-            Expected Result: Verify the following information,(1)     The state of an input field is changed to ‘Enabled, the border of button is shown without a sound
+            Expected Result: Verify the following information,
+            (1)     The state of an input field is changed to ‘Enabled, the border of button is shown without a sound
             Test Step Comment: (1) MMI_gen 9390 (partly: Set VBC Validation window);
             */
             // Call generic Action Method
@@ -107,7 +178,8 @@ namespace Testcase.DMITestCases
             /*
             Test Step 5
             Action: Slide back into an input field
-            Expected Result: Verify the following information,(1)     The state of an input field is changed to ‘Pressed’, the border of button is removed
+            Expected Result: Verify the following information,
+            (1)     The state of an input field is changed to ‘Pressed’, the border of button is removed
             Test Step Comment: (1) MMI_gen 9390 (partly: Set VBC Validation window);
             */
             // Call generic Action Method
@@ -120,8 +192,13 @@ namespace Testcase.DMITestCases
             /*
             Test Step 6
             Action: Released the pressed area
-            Expected Result: Verify the following information,DMI displays Set VBC window.Use the log file to confirm that DMI sends out the packet [MMI_DRIVER_REQUEST (EVC-101)] with variable [MMI_DRIVER_REQUEST (EVC-101).MMI_M_REQUEST] = 25 (Exit Set VBC)
-            Test Step Comment: (1) MMI_gen 9926 (partly: No button, open Set VBC window);(2) MMI_gen 9926 (partly: EVC-101, MMI_gen 5724); MMI_gen 4392 (partly: [Enter], touch screen); MMI_gen 9390 (partly: Set VBC Validation window);
+            Expected Result: Verify the following information,
+            DMI displays Set VBC window.
+            Use the log file to confirm that DMI sends out the packet [MMI_DRIVER_REQUEST (EVC-101)] with variable [MMI_DRIVER_REQUEST (EVC-101).MMI_M_REQUEST] = 25 (Exit Set VBC)
+            Test Step Comment: (1) MMI_gen 9926 (partly: No button, open Set VBC window);
+                               (2) MMI_gen 9926 (partly: EVC-101, MMI_gen 5724); 
+                                   MMI_gen 4392 (partly: [Enter], touch screen); 
+                                   MMI_gen 9390 (partly: Set VBC Validation window);
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Released the pressed area");
@@ -129,7 +206,9 @@ namespace Testcase.DMITestCases
 
             /*
             Test Step 7
-            Action: Perform the following procedure,Enter and confirm value ‘65536’ at input field.Press ‘Yes’ button
+            Action: Perform the following procedure,
+            Enter and confirm value ‘65536’ at input field.
+            Press ‘Yes’ button
             Expected Result: DMI displays Set VBC Validation window
             */
             // Call generic Action Method
@@ -141,8 +220,12 @@ namespace Testcase.DMITestCases
             /*
             Test Step 8
             Action: Press ‘Close’ button
-            Expected Result: Verify the following information,DMI displays Settings window.Use the log file to confirm that DMI sends out the packet [MMI_DRIVER_REQUEST (EVC-101)] with variable [MMI_DRIVER_REQUEST (EVC-101).MMI_M_REQUEST] = 25 (Exit Set VBC)
-            Test Step Comment: (1) MMI_gen 9926 (partly: Close button, open Settings window); MMI_gen 4392 (partly: returning to the parent window);(2) MMI_gen 9926 (partly: EVC-101); 
+            Expected Result: Verify the following information,
+            DMI displays Settings window.
+            Use the log file to confirm that DMI sends out the packet [MMI_DRIVER_REQUEST (EVC-101)] with variable [MMI_DRIVER_REQUEST (EVC-101).MMI_M_REQUEST] = 25 (Exit Set VBC)
+            Test Step Comment: (1) MMI_gen 9926 (partly: Close button, open Settings window); 
+                                   MMI_gen 4392 (partly: returning to the parent window);
+                               (2) MMI_gen 9926 (partly: EVC-101); 
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
@@ -150,7 +233,10 @@ namespace Testcase.DMITestCases
 
             /*
             Test Step 9
-            Action: Perform the following procedure,Press ‘Set VBC’ button.Enter and confirm value ‘65536’ at input field.Press ‘Yes’ button
+            Action: Perform the following procedure,
+            Press ‘Set VBC’ button.
+            Enter and confirm value ‘65536’ at input field.
+            Press ‘Yes’ button
             Expected Result: DMI displays Set VBC Validation window
             */
             // Call generic Check Results Method
@@ -172,8 +258,13 @@ namespace Testcase.DMITestCases
             /*
             Test Step 11
             Action: Confirm entered data by pressing an input field
-            Expected Result: DMI displays Settings window.Verify the following information,The Set VBC validation is closed.Use the log file to confirm that DMI sends out the packet [MMI_CONFIRMED_SET_VBC (EVC-128)] with variable based on confirmed data
-            Test Step Comment: (1) MMI_gen 9926 (partly: MMI_gen 5720 (partly: closed));(2) MMI_gen 9927; MMI_gen 9926 (partly: MMI_gen 5720 (partly: ConfirmedData-Packet));
+            Expected Result: DMI displays Settings window.
+            Verify the following information,
+            The Set VBC validation is closed.
+            Use the log file to confirm that DMI sends out the packet [MMI_CONFIRMED_SET_VBC (EVC-128)] with variable based on confirmed data
+            Test Step Comment: (1) MMI_gen 9926 (partly: MMI_gen 5720 (partly: closed));
+                               (2) MMI_gen 9927; 
+                                   MMI_gen 9926 (partly: MMI_gen 5720 (partly: ConfirmedData-Packet));
             */
             // Call generic Action Method
             DmiActions.Confirm_entered_data_by_pressing_an_input_field(this);
@@ -181,7 +272,11 @@ namespace Testcase.DMITestCases
 
             /*
             Test Step 12
-            Action: Perform the following procedure,Press ‘Set VBC’ button.Enter and confirm value ‘65536’ at input field.Press ‘Yes’ button.Then, simulate loss-communication between ETCS onboard and DMI
+            Action: Perform the following procedure,
+            Press ‘Set VBC’ button.
+            Enter and confirm value ‘65536’ at input field.
+            Press ‘Yes’ button.
+            Then, simulate loss-communication between ETCS onboard and DMI
             Expected Result: DMI displays Default window with the message “ATP Down Alarm” and sound alarm
             */
 
@@ -189,8 +284,14 @@ namespace Testcase.DMITestCases
             /*
             Test Step 13
             Action: Re-establish communication between ETCS onboard and DMI
-            Expected Result: Verify the following informaiton,All buttons except ‘No’ button are disabled.The state of ‘No’ button is enabled.The disabled buttons are shown as a button is state ‘Disabled‘ with text label in dark-grey
-            Test Step Comment: (1) MMI_gen 9926 ( partly: MMI_gen 2519 (partly: Set VBC Validation window, All Request buttons except negative validations));(2) MMI_gen 9926 (partly: MMI_gen 2519 (partly: Set VBC Validation window, All negative validations));(3) MMI_gen 9926 ( partly: MMI_gen 1426 (partly: Set VBC Validation window)); MMI_gen 4377 (partly: shown);
+            Expected Result: Verify the following informaiton,
+            All buttons except ‘No’ button are disabled.
+            The state of ‘No’ button is enabled.
+            The disabled buttons are shown as a button is state ‘Disabled‘ with text label in dark-grey
+            Test Step Comment: (1) MMI_gen 9926 ( partly: MMI_gen 2519 (partly: Set VBC Validation window, All Request buttons except negative validations));
+                               (2) MMI_gen 9926 (partly: MMI_gen 2519 (partly: Set VBC Validation window, All negative validations));
+                               (3) MMI_gen 9926 ( partly: MMI_gen 1426 (partly: Set VBC Validation window)); 
+                                   MMI_gen 4377 (partly: shown);
             */
             // Call generic Action Method
             DmiActions.Re_establish_communication_between_ETCS_onboard_and_DMI(this);

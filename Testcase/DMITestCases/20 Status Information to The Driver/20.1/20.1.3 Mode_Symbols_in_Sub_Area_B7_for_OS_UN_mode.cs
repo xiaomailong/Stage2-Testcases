@@ -159,7 +159,7 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.TRN_window_displayed(this);
 
             #endregion                        
-            return GlobalTestResult;
+
             #region Test Step 7
             /*
             Test Step 7
@@ -267,10 +267,15 @@ namespace Testcase.DMITestCases
 
             DmiActions.Display_Fixed_Train_Data_Window(this);
             DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
-                                "1. Enter and confirm value in each input field." + Environment.NewLine +
-                                "2. Press ‘Yes’ button." + Environment.NewLine +
-                                "3. Press OK on THIS window.");
+                                "1. Enter FLU and confirm value in each input field." + Environment.NewLine +
+                                "2. Press OK on THIS window.");
 
+            DmiActions.Enable_Fixed_Train_Data_Validation(this, Fixed_Trainset_Captions.FLU);
+            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
+                                "1. Press ‘Yes’ button." + Environment.NewLine +
+                                "2. Press OK on THIS window.");
+
+            DmiActions.Complete_Fixed_Train_Data_Entry(this, Fixed_Trainset_Captions.FLU);
             DmiActions.Display_Train_data_validation_Window(this);
             DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
                                 "1. Press ‘Yes’ button." + Environment.NewLine +
