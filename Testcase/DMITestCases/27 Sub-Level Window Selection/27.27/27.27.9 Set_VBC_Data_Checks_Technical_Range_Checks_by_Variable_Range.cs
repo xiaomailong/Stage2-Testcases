@@ -13,6 +13,9 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.EVCtoDMI;
+using Testcase.Telegrams.DMItoEVC;
+
 
 namespace Testcase.DMITestCases
 {
@@ -39,10 +42,16 @@ namespace Testcase.DMITestCases
         public override void PreExecution()
         {
             // Pre-conditions from TestSpec:
-            // 1. The test environment is powered on.2. The cabin is activated.3. The ‘Settings’ window is opened from the ‘Driver ID’ window.
-
             // Call the TestCaseBase PreExecution
             base.PreExecution();
+
+            // 1. The test environment is powered on.2. The cabin is activated.3. The ‘Settings’ window is opened from the ‘Driver ID’ window.
+            DmiActions.Start_ATP();
+            DmiActions.Activate_Cabin_1(this);
+            EVC14_MMICurrentDriverID.MMI_X_DRIVER_ID = "1234";
+            EVC14_MMICurrentDriverID.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Disabled;
+            EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE = EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE_BUTTONS.Settings;
+            EVC14_MMICurrentDriverID.Send();
         }
 
         public override void PostExecution()
@@ -58,16 +67,19 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
             /*
             Test Step 1
             Action: Press the ‘Settings’ button located on the ‘Driver ID’ window.Then, open the ‘Set VBC’ data entry window from the Settings menu
             Expected Result: The ‘Set VBC’ data entry window appears on ETCS-DMI screen instead of the ‘Settings’ menu window
             */
-            // Call generic Check Results Method
-            DmiExpectedResults
-                .The_Set_VBC_data_entry_window_appears_on_ETCS_DMI_screen_instead_of_the_Settings_menu_window(this);
+            DmiActions.ShowInstruction(this, "Press the ‘Settings’ button, then press the ‘Set VBC’ button in the Settings window");
 
+            EVC18_MMISetVBC.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_VBC.BTN_YES_DATA_ENTRY_COMPLETE;
+            EVC18_MMISetVBC.MMI_N_VBC = 0;
+            EVC18_MMISetVBC.Send();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the Set VBC window.");
 
             /*
             Test Step 2
@@ -75,10 +87,18 @@ namespace Testcase.DMITestCases
             Expected Result: Input Field(1) The eventually displayed data value in the data area of the input field is replaced by “0” (character or value corresponding to the activated data key - state ‘Selected IF/value of pressed key(s)’).EVC-118(2) Use the log file to verify that DMI sends packet EVC-118 with variable:MMI_M_VBC_CODE = 0 MMI_M_BUTTONS =  254 (BTN_ENTER)EVC-18 (3) Use the log file to verify that DMI receives packet EVC-18 with variable:MMI_Q_DATA_CHECK = 0 (All checks have passed)-      MMI_X_TEXT = 48 (“0”)
             Test Step Comment: Requirements:(1) MMI_gen 9888 (partly: reactions to succeed, MMI_gen 4714 (partly: MMI_gen 4679), MMI_gen 9286 (partly: state switched), MMI_gen 12145 (partly: minimum inbound)), MMI_gen 9905 (partly: state switched);(2) MMI_gen 9888 (partly: reactions to succeed, MMI_gen 12147, MMI_gen 9286 (partly: enabled)), MMI_gen 9905 (partly: enabled), MMI_gen 9923 (partly: EVC-118, the ‘Enter’ button, accepted data complied with data checks, driver action);(3) MMI_gen 9888 (partly: reactions to succeed, EVC-18)
             */
-            // Call generic Action Method
-            DmiActions.ShowInstruction(this,
-                @"Enter “0” (minimum inbound) with the numeric keypad and press the data input field (Accept) in the same screen");
+            DmiActions.ShowInstruction(this, @"Enter ‘0’ (minimum inbound) with the numeric keypad and press the data input field (Accept)");
 
+            EVC118_MMINewSetVbc.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_VBC.BTN_ENTER;
+            EVC118_MMINewSetVbc.MMI_M_VBC_CODE = 0;
+            EVC118_MMINewSetVbc.CheckPacketContent();
+            
+            EVC18_MMISetVBC.MMI_Q_DATA_CHECK = Variables.Q_DATA_CHECK.All_checks_passed;
+            EVC18_MMISetVBC.ECHO_TEXT = "0";
+            EVC18_MMISetVBC.Send();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The data input field displays ‘0’.");
 
             /*
             Test Step 3
@@ -86,10 +106,15 @@ namespace Testcase.DMITestCases
             Expected Result: Input Field(1) The ‘Enter’ button associated to the data area of the input field is coloured grey and its text is black (state ‘Selected IF/Data value’).(2) The ‘Enter’ button associated to the data area of the input field displays “16777216” (previously entered value).EVC-118(3) Use the log file to verify that DMI does not send out packet EVC-118 as the ‘Enter’ button is disabled. Echo Texts(4) The data part of the echo text displays “++++”.(5) The data part of the echo text is coloured red
             Test Step Comment: Requirements:(1) MMI_gen 9888 (partly: reactions to failing, MMI_gen 4714 (partly: state 'Selected IF/data value'));(2) MMI_gen 9888 (partly: reactions to failing, MMI_gen 4714 (partly: previously entered (faulty) value), MMI_gen 12145 (partly: outbound)); MMI_gen 4699 (technical range);(3) MMI_gen 9888 (partly: MMI_gen 9286 (partly: button ‘Enter’, disabled), MMI_gen 12148 (partly: not send packets) , MMI_gen 12147), MMI_gen 9905 (partly: disabled), MMI_gen 9923 (partly: EVC-118); (4) MMI_gen 8328 (partly: MMI_gen 12148 (MMI_gen 4713 (partly: indication))), MMI_gen 9888 (partly: reactions to failing, MMI_gen 12148 (MMI_gen 4713 (partly: indication)));(5) MMI_gen 9898 (partly: MMI_gen 12148 (MMI_gen 4713 (partly: red))), MMI_gen 9888 (partly: reactions to failing, MMI_gen 12148 (MMI_gen 4713 (partly: red)));
             */
-            // Call generic Action Method
-            DmiActions.ShowInstruction(this,
-                @"Enter “16777216” (outbound) with the numeric keypad and press the data input field (Accept) in the same screen");
+            DmiActions.ShowInstruction(this, @"Enter ‘16777216’ with the numeric keypad and press the data input field (Accept)");
 
+            EVC18_MMISetVBC.MMI_Q_DATA_CHECK = Variables.Q_DATA_CHECK.Technical_Range_Check_failed;
+            EVC18_MMISetVBC.ECHO_TEXT = "0";
+            EVC18_MMISetVBC.Send();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The data input field ‘Enter’ button displays ‘16777216’ in black on a grey background." + Environment.NewLine +
+                                "3. The echo text displays ‘++++’ in red.");
 
             /*
             Test Step 4
@@ -97,30 +122,44 @@ namespace Testcase.DMITestCases
             Expected Result: Input Field(1) The eventually displayed data value in the data area of the input field is replaced by “16777215” (character or value corresponding to the activated data key - state ‘Selected IF/value of pressed key(s)’).EVC-118(2) Use the log file to verify that DMI sends packet EVC-118 with variable:MMI_M_VBC_CODE = 16777215MMI_M_BUTTONS =  254 (BTN_ENTER)EVC-18(3) Use the log file to verify that DMI receives packet EVC-18 with variable:MMI_Q_DATA_CHECK = 0MMI_X_TEXT = 49 (“1”)MMI_X_TEXT = 54 (“6”)MMI_X_TEXT = 55 (“7”)MMI_X_TEXT = 55 (“7”)MMI_X_TEXT = 55 (“7”)MMI_X_TEXT = 50 (“2”)MMI_X_TEXT = 49 (“1”)-      MMI_X_TEXT = 53 (“5”)
             Test Step Comment: Requirements:(1) MMI_gen 9888 (partly: MMI_gen 4714 (partly: MMI_gen 4679), MMI_gen 9286 (partly: state switched), MMI_gen 12145 (partly: maximum inbound)), MMI_gen 9905 (partly: state switched); (2) MMI_gen 9888 (partly: reactions to succeed, MMI_gen 12147, MMI_gen 9286 (partly: enabled)), MMI_gen 9905 (partly: enabled), MMI_gen 9923 (partly: EVC-118, the ‘Enter’ button, accepted data complied with data checks, driver action);(3) MMI_gen 9888 (partly: reactions to succeed, EVC-18)
             */
-            // Call generic Action Method
-            DmiActions.ShowInstruction(this,
-                @"Enter “16777215” (maximum inbound) with the numeric keypad and press the data input field (Accept) in the same screen");
+            DmiActions.ShowInstruction(this, @"Enter ‘16777215’ (maximum inbound) with the numeric keypad and press the data input field (Accept)");
 
+            EVC118_MMINewSetVbc.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_VBC.BTN_ENTER;
+            EVC118_MMINewSetVbc.MMI_M_VBC_CODE = 16777215;
+            EVC118_MMINewSetVbc.CheckPacketContent();
+
+            EVC18_MMISetVBC.MMI_Q_DATA_CHECK = Variables.Q_DATA_CHECK.All_checks_passed;
+            EVC18_MMISetVBC.ECHO_TEXT = "16777215";
+            EVC18_MMISetVBC.Send();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The data input field displays ‘16777215’ (in black on a Medium-grey bakground).");
 
             /*
             Test Step 5
             Action: This step is to complete the process of ‘set VBC’:- Press the ‘Yes’ button on the ‘Set VBC’ window.- Validate the data in the data validation window
             Expected Result: 1. After pressing the ‘Yes’ button, the data validation window (‘Validate Set VBC’) appears instead of the ‘Set VBC’ data entry window. The data part of echo text displays “65536” in white.2. After the data area of the input field containing “Yes” is pressed, the data validation window disappears and returns to the parent window (‘Settings’ window) of ‘Set VBC’ window with enabled ‘Set VBC’ button
             */
-            // Call generic Action Method
-            DmiActions
-                .This_step_is_to_complete_the_process_of_set_VBC_Press_the_Yes_button_on_the_Set_VBC_window_Validate_the_data_in_the_data_validation_window(this);
-            // Call generic Check Results Method
-            DmiExpectedResults
-                .After_pressing_the_Yes_button_the_data_validation_window_Validate_Set_VBC_appears_instead_of_the_Set_VBC_data_entry_window_The_data_part_of_echo_text_displays_65536_in_white_2_After_the_data_area_of_the_input_field_containing_Yes_is_pressed_the_data_validation_window_disappears_and_returns_to_the_parent_window_Settings_window_of_Set_VBC_window_with_enabled_Set_VBC_button(this);
+            DmiActions.ShowInstruction(this, @"Press the ‘Yes’ button in the ‘Set VBC’ window");
+            
+            EVC28_MMIEchoedSetVBCData.MMI_M_VBC_CODE_ = 16777215;
+            EVC28_MMIEchoedSetVBCData.Send();
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the Set VBC validation window." + Environment.NewLine +
+                                "2. The echo text (data part) displays ‘16777215’ in white.");
+
+            DmiActions.ShowInstruction(this, @"Validate the data in the Set VBC validation window");
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the Settings window." + Environment.NewLine +
+                                "2. The ‘Set VBC’ button is displayed enabled.");
 
             /*
             Test Step 6
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }
