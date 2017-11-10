@@ -86,14 +86,22 @@ namespace Testcase.DMITestCases
 
             DmiExpectedResults.Driver_ID_entered(this);
 
-            DmiActions.Request_Brake_Test(this);
+            DmiActions.Request_Brake_Test(this, 1);
             DmiExpectedResults.Brake_Test_Perform_Order(this, true);
+
+            DmiActions.Perform_Brake_Test(this, 2);
+
+            Wait_Realtime(5000);
+
+            DmiActions.Display_Brake_Test_Successful(this, 3);
 
             DmiActions.Display_Level_Window(this);
             DmiExpectedResults.Level_window_displayed(this);
 
-            #endregion
+            DmiActions.Delete_Brake_Test_Successful(this, 3);
 
+            #endregion
+       
             #region Test Step 3
             /*
             Action: Select and confirm Level 0
@@ -102,7 +110,7 @@ namespace Testcase.DMITestCases
             a)   MMI_M_DRIVER_ACTION = 34 (Level 0 selected)
             Test Step Comment: (1) MMI_gen 11470 (partly: Bit # 34);
             */
-            
+
             DmiExpectedResults.Level_0_Selected(this);
 
             DmiActions.Display_Main_Window_with_Start_button_not_enabled(this);

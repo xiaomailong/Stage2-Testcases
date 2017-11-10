@@ -12,7 +12,7 @@ namespace Testcase
     {
         static void Main(string[] args)
         {
-            TestcaseRunner.AddTestcase(typeof(TC_12_6_2_Train_Speed));
+            TestcaseRunner.AddTestcase(typeof(TC_15_1_3_ETCS_Mode_Symbols));
             TestcaseRunner.RunTestcases(args);
         }
     }
