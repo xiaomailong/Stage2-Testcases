@@ -262,8 +262,12 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
                                 "1. Perform Brake Test" + Environment.NewLine +
                                 "2. Press OK on THIS window.");
+            DmiActions.Perform_Brake_Test(this, 2);
+            Wait_Realtime(5000);
+            DmiActions.Display_Brake_Test_Successful(this, 3);
 
             DmiActions.Display_Level_Window(this);
+            DmiActions.Delete_Brake_Test_Successful(this, 3);
             DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
                                 "1. Select and enter Level 1" + Environment.NewLine +
                                 "2. Press OK on THIS window.");
