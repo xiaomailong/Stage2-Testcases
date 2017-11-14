@@ -57,8 +57,6 @@ namespace Testcase.DMITestCases
         {
             // Post-conditions from TestSpec
             // DMI displays in SR mode, level 1.
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in SR mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -89,7 +87,7 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the symbol MO10 in sub-area C1 in a yellow flashing frame." + Environment.NewLine +
+                                "1. DMI displays the acknowledge Staff Responsible mode symbol, MO10, in sub-area C1 in a yellow flashing frame." + Environment.NewLine +
                                 "2. The ‘Sinfo’ sound is played once.");
 
             /*
@@ -153,19 +151,19 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   Use the log file to confirm that DMI sends out packet information of EVC-111 with variables:MMI_I_TEXT = the same value related to the value of MMI_I_TEXT in EVC-8 (in test step2)MMI_Q_ACK = 1MMI_Q_BUTTON = 0MMI_T_BUTTONEVENT is not blank(2)   The symbol ST01 with yellow flashing frame is removed from sub-area C9.(3)   After 1 second, the symbol MO10 with yellow flashing frame re-appears in sub-area C1
             Test Step Comment: (1) MMI_gen 146; MMI_gen 11232 (partly: MMI_gen 146 (partly: released)); MMI_gen 3200 (partly: Brake Intervention, released);(2) MMI_gen 4499 (partly: driver's action 'ACK', flashing frame and button disappear, the symbol shall be removed); MMI_gen 9394 (partly: object); MMI_gen 4485 (partly: action of the driver); MMI_gen 11232 (partly: MMI_gen 4499 (partly: driver's action 'ACK', flashing frame and button disappear, the symbol shall be removed), MMI_gen 9394 (partly: object), MMI_gen 4485 (partly: action of the driver));(3) MMI_gen 4499 (partly: next pending acknowledgement pointed out); MMI_gen 11232 (partly: MMI_gen 4499 (partly: next pending acknowledgement pointed out));
             */
-            DmiActions.ShowInstruction(this, "Release the pressed area");
-
-            EVC8_MMIDriverMessage.MMI_I_TEXT = 2;
-            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
-            EVC8_MMIDriverMessage.Send();
+            DmiActions.ShowInstruction(this, "Release the pressed area");                     
 
             EVC111_MMIDriverMessageAck.MMI_Q_ACK = MMI_Q_ACK.AcknowledgeYES;
             EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI stops displaying the symbol ST01 with a yellow flashing frame in sub-area C1.");
-
-            this.Wait_Realtime(1000);
+          
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 260;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 2;
+            EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI re-displays the symbol ST01 in sub-area C1 with a yellow flashing frame after 1s.");
@@ -190,6 +188,8 @@ namespace Testcase.DMITestCases
             */
             XML_6_1(msgType.typea);
 
+            
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the symbol MO17 (with a yellow flashing frame) in sub-area C1.");
 
@@ -201,9 +201,9 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Acknowledge by pressing on sub-area C1. Press and hold sub-area C1 for at least 2s, then release the pressed area.");
             
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
-
-            // Call generic Check Results Method
-            DmiExpectedResults.SR_Mode_displayed(this);
+            
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SR mode, Level 1.");
 
             /*
             Test Step 10
@@ -246,7 +246,7 @@ namespace Testcase.DMITestCases
             EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
             this.Wait_Realtime(100);
 
-            DmiActions.ShowInstruction(this, "Release the ‘No’ button and check the log file for packet EVC111 from DMI with MMI_I_TEXT = 1, MMI_Q_ACK = 2, MMI_Q_BUTTON = 0");
+            DmiActions.ShowInstruction(this, "Release the ‘No’ button");
 
             EVC111_MMIDriverMessageAck.MMI_I_TEXT = 2;
             EVC111_MMIDriverMessageAck.MMI_Q_ACK = MMI_Q_ACK.NotAcknowledgeNO;
@@ -360,6 +360,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   The sound ‘Click’ is played once.(2)   The sub-area C1 is shown as pressed state, the border of button is removed.(3)   Use the log file to confirm that DMI send EVC-101 with variable MMI_Q_BUTTON = 1 (Pressed) and MMI_T_BUTTONEVENT is not blank
             Test Step Comment: (1) MMI_gen 3200 (partly: Mode acknowledgement, MMI_gen 4381 (partly: the sound for Up-Type button));(2) MMI_gen 3200 (partly: Mode acknowledgement, MMI_gen 4381 (partly: change to state ‘Pressed’ as long as remain actuated));(3) MMI_gen 3200 (partly: Mode acknowledgement, pressed, MMI_gen 11387 (partly: send events of Pressed independently to ETCS), MMI_gen 11907 (partly: EVC-101, timestamp)); 
             */
+            DmiActions.ShowInstruction(this, "Press the ‘No’ button to remove the message");
             XML_6_1(msgType.typea);
 
             DmiActions.ShowInstruction(this, "After symbol MO17 has been displayed, press in and hold sub-area C1");
