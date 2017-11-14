@@ -48,8 +48,6 @@ namespace Testcase.DMITestCases
         {
             // Post-conditions from TestSpec
             // DMI displays in SB mode
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in SB mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -65,8 +63,21 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Data View window
             */
             DmiActions.ShowInstruction(this, @"Press ‘Data View’ button");
-
-            // EVC13_MMIDataView.Send();
+            
+            EVC13_MMIDataView.MMI_X_DRIVER_ID = "";
+            EVC13_MMIDataView.MMI_NID_OPERATION = 0xffffffff;
+            EVC13_MMIDataView.MMI_M_DATA_ENABLE = (Variables.MMI_M_DATA_ENABLE)0x0080;     // 128
+            EVC13_MMIDataView.MMI_L_TRAIN = 4096;
+            EVC13_MMIDataView.MMI_V_MAXTRAIN = 601;
+            EVC13_MMIDataView.MMI_M_BRAKE_PERC = 9;
+            EVC13_MMIDataView.MMI_NID_KEY_AXLE_LOAD = Variables.MMI_NID_KEY.FG4;       // 20
+            EVC13_MMIDataView.MMI_NID_RADIO = 0xffffffffffffffff;          // 4294967295 (= 0xffffffff) hi, 4294967295 (= 0xffffffff) lo
+            EVC13_MMIDataView.MMI_M_AIRTIGHT = 3;
+            EVC13_MMIDataView.MMI_NID_KEY_LOAD_GAUGE = Variables.MMI_NID_KEY.CATE5;
+            EVC13_MMIDataView.Trainset_Caption = "";
+            EVC13_MMIDataView.Network_Caption = "";
+            EVC13_MMIDataView.MMI_NID_KEY_TRAIN_CAT = Variables.MMI_NID_KEY.CATA;  // 21
+            EVC13_MMIDataView.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Data View window.");
@@ -80,12 +91,18 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The hourglass symbol ST05 is displayed in the window title area.");
 
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
+            EVC8_MMIDriverMessage.Send();
+
             /*
             Test Step 3
             Action: Use the test script file 10_4_1_2_b.xml to send EVC-14 withMMI_X_DRIVER_ID = ‘4444’
             Expected Result: Verify the followin information,(1)     The Data View window is closed, DMI displays Driver ID window after received packet EVC-14
             Test Step Comment: (1) MMI_gen 5507 (partly: Data View window, abort an already pending data view process, received packet of different window from ETCS onboard);
             */
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Close_current_return_to_parent;
+            EVC30_MMIRequestEnable.Send();
             XML_10_4_1_2_a_b(msgType.typeb);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Data View window is closed and DMI displays the Driver ID window");
@@ -96,11 +113,14 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the followin information,(1)     The System Info window is closed, DMI displays Driver ID window after received packet EVC-14
             Test Step Comment: (1) MMI_gen 5507 (partly: System Info window, abort an already pending data view process, received packet of different window from ETCS onboard);
             */
+            DmiActions.ShowInstruction(this, @"Press the ‘Close’ button in the Driver ID window");
+
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_LOW = true;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Default;
             EVC30_MMIRequestEnable.Send();
 
-            DmiActions.ShowInstruction(this, @"Press the ‘Close’ button in the Driver ID window. Open the System info window");
+            DmiActions.ShowInstruction(this, @"Press the ‘Settings’ button, then open the System info window");
 
             EVC24_MMISystemInfo.Send();
 
@@ -108,8 +128,11 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The hourglass symbol ST05 is displayed in the window title area."); 
 
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
+            EVC8_MMIDriverMessage.Send();
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Close_current_return_to_parent;
+            EVC30_MMIRequestEnable.Send();
             EVC30_MMIRequestEnable.Send();
 
             XML_10_4_1_2_a_b(msgType.typeb);
@@ -122,11 +145,19 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the followin information,(1)     The System version window is closed, DMI displays Driver ID window after received packet EVC-14
             Test Step Comment: (1) MMI_gen 5507 (partly: System version window, abort an already pending data view process, received packet of different window from ETCS onboard);
             */
+
+            DmiActions.ShowInstruction(this, @"Press the ‘Close’ button in the Driver ID window");
+            
             EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.SystemVersion;
             EVC30_MMIRequestEnable.Send();
+            
+            DmiActions.ShowInstruction(this, "Open the System version window");
 
-            DmiActions.ShowInstruction(this, @"Press the ‘Close’ button in the Driver ID window. Open the System version window");
+            EVC34_MMISystemVersion.SYSTEM_VERSION_X = 123;
+            EVC34_MMISystemVersion.SYSTEM_VERSION_Y = 225;
+            EVC34_MMISystemVersion.Send();
 
             XML_10_4_1_2_a_b(msgType.typea);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
