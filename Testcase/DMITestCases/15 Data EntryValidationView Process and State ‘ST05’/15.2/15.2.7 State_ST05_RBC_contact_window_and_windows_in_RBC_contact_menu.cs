@@ -52,8 +52,6 @@ namespace Testcase.DMITestCases
         {
             // Post-conditions from TestSpec
             // DMI displays in SB mode
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in SB mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -97,15 +95,12 @@ namespace Testcase.DMITestCases
             // Enable standard buttons including Start, and display Default window.
             DmiActions.Finished_SoM_Default_Window(this);
 
-            // Is RBC window displayed?
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the Level window");
-
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.No_window_specified;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.ContactLastRBC |
                                                                EVC30_MMIRequestEnable.EnabledRequests.EnterRBCData |
-                                                               EVC30_MMIRequestEnable.EnabledRequests.RadioNetworkID;
+                                                               EVC30_MMIRequestEnable.EnabledRequests.RadioNetworkID |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.UseShortNumber;
             EVC30_MMIRequestEnable.Send();
             
             EVC22_MMICurrentRBC.MMI_NID_WINDOW = 5;
@@ -187,6 +182,12 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Press ‘Close’ button in the Radio network ID window. Press ‘Enter RBC data’ button");
 
+            EVC22_MMICurrentRBC.MMI_M_BUTTONS = EVC22_MMICurrentRBC.EVC22BUTTONS.BTN_YES_DATA_ENTRY_COMPLETE;
+            EVC22_MMICurrentRBC.MMI_NID_WINDOW = 10;
+            EVC22_MMICurrentRBC.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
+            EVC22_MMICurrentRBC.NID_RBC = 0;
+            EVC22_MMICurrentRBC.Send();
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the RBC contact window until the RBC data window is displayed." + Environment.NewLine +
                                 @"2. ‘Close’ button is always enabled.");
@@ -220,7 +221,7 @@ namespace Testcase.DMITestCases
                                 "3. All buttons are enabled." + Environment.NewLine +
                                 "4. ‘Close’ button NA11 is displayed enabled in area G." + Environment.NewLine +
                                 "5. The first Input Field is selected." + Environment.NewLine +
-                                "6. All other Input Fiels are not selected");
+                                "6. All other Input Fields are not selected");
 
             /*
             Test Step 8
