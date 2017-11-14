@@ -428,12 +428,54 @@ namespace Testcase.DMITestCases
         /// Used in:
         ///     Step 2 in TC-ID: 15.1.3 in 20.1.3
         /// </summary>
-        public static void Request_Brake_Test(SignalPool pool)
+        public static void Request_Brake_Test(SignalPool pool, ushort mmiIText = 1)
         {
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 2;
-            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = mmiIText;
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 514;
+            EVC8_MMIDriverMessage.Send();
+        }
+
+        /// <summary>
+        /// Description: ETCS perform the brake test
+        /// Used in:
+        ///     Step 2 in TC-ID: 15.1.3 in 20.1.3
+        /// </summary>
+        public static void Perform_Brake_Test(SignalPool pool, ushort mmiIText = 1)
+        {
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.AuxiliaryInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = mmiIText;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 516;
+            EVC8_MMIDriverMessage.Send();
+        }
+
+        /// <summary>
+        /// Description: ETCS perform the brake test
+        /// Used in:
+        ///     Step 2 in TC-ID: 15.1.3 in 20.1.3
+        /// </summary>
+        public static void Display_Brake_Test_Successful(SignalPool pool, ushort mmiIText = 1)
+        {
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.AuxiliaryInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = mmiIText;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 524;
+            EVC8_MMIDriverMessage.Send();
+        }
+
+        /// <summary>
+        /// Description: ETCS perform the brake test
+        /// Used in:
+        ///     Step 2 in TC-ID: 15.1.3 in 20.1.3
+        /// </summary>
+        public static void Delete_Brake_Test_Successful(SignalPool pool, ushort mmiIText = 1)
+        {
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.AuxiliaryInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = mmiIText;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 524;
             EVC8_MMIDriverMessage.Send();
         }
 
