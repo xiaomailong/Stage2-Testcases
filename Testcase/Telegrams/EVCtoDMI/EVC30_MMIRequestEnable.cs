@@ -136,9 +136,20 @@ namespace Testcase.Telegrams.EVCtoDMI
         {
             set
             {
-                UInt64 requestEnable = Convert.ToUInt64( _pool.SITR.Client.Read("ETCS1_EnableRequest_MmiQRequestEnable"));
-                uint enableLow = Convert.ToUInt32(requestEnable & 0x00000000ffffffff);
-                _pool.SITR.Client.Write("ETCS1_EnableRequest_MmiQRequestEnable", new uint[] {Convert.ToUInt32(value), enableLow});
+                uint[] enableRequest = new uint[2];
+                enableRequest[1] =  _pool.SITR.ETCS1.EnableRequest.MmiQRequestEnable.Value[1];
+                enableRequest[0] = Convert.ToUInt32(value);
+                _pool.SITR.Client.Write("ETCS1_EnableRequest_MmiQRequestEnable", enableRequest);
+                /*
+                object requestObject = new Object();
+                requestObject = _pool.SITR.Client.Read("ETCS1_EnableRequest_MmiQRequestEnable");
+       
+                ulong requestEnable= Convert.ToUInt64(requestObject);
+                ulong requestHigh = (ulong)value;
+                requestHigh = requestHigh << 32;
+                requestEnable = (requestEnable & 0x00000000ffffffff) + (requestHigh << 32);
+                _pool.SITR.Client.Write("ETCS1_EnableRequest_MmiQRequestEnable", requestEnable);
+                */
             }
         }
 
@@ -157,11 +168,17 @@ namespace Testcase.Telegrams.EVCtoDMI
         {
             set
             {
-                UInt64 requestEnable = Convert.ToUInt64(_pool.SITR.Client.Read("ETCS1_EnableRequest_MmiQRequestEnable"));
-                uint enableHigh = Convert.ToUInt32(requestEnable & 0xffffffff00000000);
-                uint[] enableArray = new uint[] { enableHigh, value ? 0x80000000 : 0x00000000 };
+                uint[] enableRequest = new uint[2];
+                enableRequest[0] =  _pool.SITR.ETCS1.EnableRequest.MmiQRequestEnable.Value[0];
+                enableRequest[1] = value ? 0x80000000 : 0x00000000;
+                _pool.SITR.Client.Write("ETCS1_EnableRequest_MmiQRequestEnable", enableRequest);
+                /*
+                object requestObject = _pool.SITR.Client.Read("ETCS1_EnableRequest_MmiQRequestEnable");
+                uint[] requestEnable = requestObject as uint[];               
+                requestEnable[1] = value ? 0x80000000 : 0x00000000;
 
-                _pool.SITR.Client.Write("ETCS1_EnableRequest_MmiQRequestEnable", enableArray);
+                _pool.SITR.Client.Write("ETCS1_EnableRequest_MmiQRequestEnable", requestEnable);
+                */
             }
         }
         #endregion
