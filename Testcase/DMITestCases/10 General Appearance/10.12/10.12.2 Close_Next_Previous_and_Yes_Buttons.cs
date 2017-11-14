@@ -85,7 +85,7 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Enter the Driver ID ‘12345678’");
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The Input Field is displayed with the value ‘12345678’");
+                                @"1. The Input Field is displayed with the value ‘1234 5678’");
 
             /*
             Test Step 3
@@ -136,6 +136,11 @@ namespace Testcase.DMITestCases
             EVC20_MMISelectLevel.Send();
 
             DmiActions.ShowInstruction(this, " Select and accept Level 1");
+
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Start | Variables.standardFlags;
+            EVC30_MMIRequestEnable.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Main window.");
