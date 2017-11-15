@@ -14,6 +14,8 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
 using Testcase.Telegrams.EVCtoDMI;
+using static Testcase.Telegrams.EVCtoDMI.Variables;
+
 
 namespace Testcase.DMITestCases
 {
@@ -48,8 +50,6 @@ namespace Testcase.DMITestCases
         {
             // Post-conditions from TestSpec
             // DMI displays in SB mode
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in SB mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -64,8 +64,11 @@ namespace Testcase.DMITestCases
             Action: At the Special window, press ‘SR speed/distance’’ button
             Expected Result: DMI displays SR speed/distance window
             */
-            DmiActions.ShowInstruction(this, @"Close the Main window. Press the ‘SR speed/distance’ button in the Special window");
+            DmiActions.ShowInstruction(this, @"Open the Special window, then press the ‘SR speed/distance’ button");
             
+            EVC11_MMICurrentSRRules.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS.BTN_ENTER;
+            EVC11_MMICurrentSRRules.Send();
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the SR/speed distance window.");
 
@@ -84,11 +87,25 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the followin information,(1)     The SR speed/distance window is closed, DMI displays System info window after received packet EVC-24
             Test Step Comment: (1) MMI_gen 5507 (partly: SR speed/distance window, abort an already pending data entry process, received packet of different window from ETCS onboard);
             */
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
+            EVC8_MMIDriverMessage.Send();
+            
+            EVC11_MMICurrentSRRules.DataElements = new List<DataElement> 
+            { new DataElement { Identifier = 0, EchoText = "0", QDataCheck = (ushort)Q_DATA_CHECK.All_checks_passed }, 
+              new DataElement { Identifier = 1, EchoText = "0", QDataCheck = (ushort)Q_DATA_CHECK.All_checks_passed } };
+              
+            EVC11_MMICurrentSRRules.Send();
+
+            // DMI is not closing the window as it should
+
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Close_current_return_to_parent;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Adhesion;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_LOW = true;
             EVC30_MMIRequestEnable.Send();
 
             XML_10_4_1_3_a_b(msgType.typeb);
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The SR speed/distance window is closed and DMI displays the System info window.");
 
@@ -98,11 +115,15 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the followin information,(1)     The Adhesion window is closed, DMI displays System info window after received packet EVC-24
             Test Step Comment: (1) MMI_gen 5507 (partly: Adhesion window, abort an already pending data entry process, received packet of different window from ETCS onboard);
             */
-            DmiActions.ShowInstruction(this, @" Press the ‘Close’ button in the System info window. Open the Adhesion window");
+            DmiActions.ShowInstruction(this, @" Press the ‘Close’ button in the System info window. Open the Special window, then press the ‘Adhesion’ button");
 
             XML_10_4_1_3_a_b(msgType.typea);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The hourglass symbol ST05 is displayed in the window title area.");
+            
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
+            EVC8_MMIDriverMessage.Send();
+            EVC30_MMIRequestEnable.Send();
 
             XML_10_4_1_3_a_b(msgType.typeb);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
