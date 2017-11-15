@@ -187,7 +187,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 6299 (partly: MMI_M_WARNING, train speed in relation to release speed MMI_V_RELEASE, FS mode in RSM supervision);(2) MMI_gen 6299 (partly: colour of speed pointer, FS mode in RSM supervision);
             */
             // Call generic Action Method
-            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 4;
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Release_Speed_Monitoring;
             EVC1_MMIDynamic.MMI_V_RELEASE_KMH = 5;
             
@@ -204,6 +204,7 @@ namespace Testcase.DMITestCases
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 6;
             EVC1_MMIDynamic.MMI_V_INTERVENTION_KMH = 20;
             EVC1_MMIDynamic.MMI_V_RELEASE_KMH = 6;
+            EVC1_MMIDynamic.MMI_V_PERMITTED_MPH = 20;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer yellow?");
@@ -297,6 +298,9 @@ namespace Testcase.DMITestCases
 
         private void XML_12_3_2(msgType type)
         {
+            SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity1.Value = 4415; // All validity bits set
+            SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity2.Value = 63;   // All validity bits set
+
             if (type == msgType.typea)
             {
                 EVC1_MMIDynamic.MMI_M_SLIDE = 0;
@@ -325,8 +329,6 @@ namespace Testcase.DMITestCases
                 EVC7_MMIEtcsMiscOutSignals.OBU_TR_NID_STM_DA = 255;
                 EVC7_MMIEtcsMiscOutSignals.BRAKE_TEST_TIMEOUT = 46;
                 EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 1000000000;
-                //SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity1.Value = 4415; // All validity bits set
-                //SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity2.Value = 63;   // All validity bits set
             }
             else if (type == msgType.typeb)
             {
@@ -356,8 +358,8 @@ namespace Testcase.DMITestCases
                 EVC7_MMIEtcsMiscOutSignals.OBU_TR_NID_STM_DA = 255;
                 EVC7_MMIEtcsMiscOutSignals.BRAKE_TEST_TIMEOUT = 46;
                 EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 1000000000;
-                //SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity1.Value = 4415; // All validity bits set
-                //SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity2.Value = 63;   // All validity bits set
+                SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity1.Value = 4415; // All validity bits set
+                SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity2.Value = 63;   // All validity bits set
 
             }
             else if (type == msgType.typec)
