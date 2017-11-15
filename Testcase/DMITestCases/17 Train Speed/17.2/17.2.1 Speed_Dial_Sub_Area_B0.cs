@@ -62,9 +62,6 @@ namespace Testcase.DMITestCases
         {
             // Post-conditions from TestSpec
             // DMI displays in SB mode, level 1
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in SB mode, Level 1.");
-
             // Call the TestCaseBase PostExecution
             base.PostExecution();
         }
@@ -83,7 +80,7 @@ namespace Testcase.DMITestCases
                                 "1. Speed Dial is displayed in sub-area B0." + Environment.NewLine +
                                 "2. Speed Dial a circular border and with speed scaling from 0 km/h to 400 km/h." + Environment.NewLine +
                                 "3. The numbers and lines on the speed indicator are in white." + Environment.NewLine +
-                                "4. Speed Dial hass short and long lines speed drawn radially from limit of sub-area B0 towards the center of sub-area B0 at every 10km/h." + Environment.NewLine +
+                                "4. Speed Dial has short and long lines speed drawn radially from limit of sub-area B0 towards the center of sub-area B0 at every 10km/h." + Environment.NewLine +
                                 "5. No speed unit is displayed beneath the speed pointer’s hub." + Environment.NewLine +
                                 "6. The scaling numbers are positioned at the end of the related indicator line towards the centre of B0.");
 
