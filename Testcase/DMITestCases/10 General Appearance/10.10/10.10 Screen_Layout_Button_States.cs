@@ -440,11 +440,7 @@ namespace Testcase.DMITestCases
                                                                  EVC30_MMIRequestEnable.EnabledRequests.RemoveVBC |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.SetLocalOffset |
                                                                  EVC30_MMIRequestEnable.EnabledRequests.SetLocalTimeDateAndOffset);
-
-            // Other signals need setting 
-            // from VSIS looks like the other buttons are controlled by MMI_Q_REQUEST_ENABLE_LOW
-            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_LOW = true;          // System info enabled
-
+            
             EVC30_MMIRequestEnable.Send();
 
             WaitForVerification("Check that the following buttons are displayed with a border with Dark-Grey text:" + Environment.NewLine + Environment.NewLine +
@@ -721,6 +717,12 @@ namespace Testcase.DMITestCases
                                                                 EVC30_MMIRequestEnable.EnabledRequests.EnableBrakePercentage;
             EVC30_MMIRequestEnable.Send();
 
+            // Need to display RBC Contact window
+            EVC22_MMICurrentRBC.MMI_NID_WINDOW = 5;
+            EVC22_MMICurrentRBC.MMI_M_BUTTONS = EVC22_MMICurrentRBC.EVC22BUTTONS.BTN_YES_DATA_ENTRY_COMPLETE;
+            EVC22_MMICurrentRBC.NetworkCaptions = new List<string> { "Network 1"};
+            EVC22_MMICurrentRBC.Send();
+
             WaitForVerification("Check that the following buttons are displayed with a border with Dark-Grey text:" + Environment.NewLine + Environment.NewLine +
                                       @"1. The ‘Contract last window’ button." + Environment.NewLine +
                                       @"2. The ‘Use short number’ button." + Environment.NewLine +
@@ -734,16 +736,30 @@ namespace Testcase.DMITestCases
 
             EVC2_MMIStatus.MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.Cabin1Active;
             EVC2_MMIStatus.Send();
+            
+            // Need to remove RBC Contact window
+            EVC22_MMICurrentRBC.NetworkCaptions = new List<string> {};
+            EVC22_MMICurrentRBC.MMI_NID_WINDOW = 9;
+            EVC22_MMICurrentRBC.Send();
 
             DMITestCases.DmiActions.Set_Driver_ID(this, "1234");
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
 
             DMITestCases.DmiExpectedResults.SB_Mode_displayed(this);
 
-
             // Step 20
             // Test says do all this: but tested elsewhere (activating cabin cannot be done by driver)
-            DMITestCases.DmiActions.ShowInstruction(this, "Activate Cabin A. Enter Driver ID and perform brake test. Select and confirm Level STM PLZB. Enter train data and confirm entry");
+
+            EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Disabled;
+            EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new Variables.MMI_Q_LEVEL_NTC_ID[] { Variables.MMI_Q_LEVEL_NTC_ID.STM_ID };
+            EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new Variables.MMI_M_CURRENT_LEVEL[] { Variables.MMI_M_CURRENT_LEVEL.LastUsedLevel };
+            EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = new Variables.MMI_M_LEVEL_FLAG[] { Variables.MMI_M_LEVEL_FLAG.MarkedLevel };
+            EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = new Variables.MMI_M_INHIBITED_LEVEL[] { Variables.MMI_M_INHIBITED_LEVEL.NotInhibited };
+            EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = new Variables.MMI_M_INHIBIT_ENABLE[] { Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting };
+            EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new Variables.MMI_M_LEVEL_NTC_ID[] { Variables.MMI_M_LEVEL_NTC_ID.AWS_TPWS };
+            EVC20_MMISelectLevel.Send();
+
+            DMITestCases.DmiActions.ShowInstruction(this, "Select and confirm Level AWS TPWS");
 
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.LNTC;
 
@@ -780,6 +796,12 @@ namespace Testcase.DMITestCases
                                                                 EVC30_MMIRequestEnable.EnabledRequests.EnableDoppler |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.EnableBrakePercentage;
             EVC30_MMIRequestEnable.Send();
+            EVC31_MMINTCDeSelect.Mmi_Q_Ntc_Enable = EVC31_MMINTCDeSelect.MMI_Q_NTC_ENABLE.NTC1 | EVC31_MMINTCDeSelect.MMI_Q_NTC_ENABLE.NTC2;
+            //byte[] ntcBytes = new byte[2];
+            //ntcBytes[0] = 1;
+            //ntcBytes[1] = 2;
+            //EVC31_MMINTCDeSelect.MMI_NID_NTC = ntcBytes;
+            EVC31_MMINTCDeSelect.Send();
 
             WaitForVerification("Check that the following button is displayed with a border with Dark-Grey text:" + Environment.NewLine + Environment.NewLine +
                                       @"1. The ‘End of data entry’ button.");
@@ -799,8 +821,7 @@ namespace Testcase.DMITestCases
 
             // Step 22
             // Test says active cabin (It is) and do brake test: as before ignore
-            DMITestCases.DmiActions.ShowInstruction(this, @"Press the ‘Close’ button in the Main window. " + Environment.NewLine +
-                                                           @"Press the ‘Settings’ button. Press the ‘Brake’ button");
+            DMITestCases.DmiActions.ShowInstruction(this, @"Press the ‘Close’ button in the Main window.");
 
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Start |
@@ -835,6 +856,8 @@ namespace Testcase.DMITestCases
                                                                 EVC30_MMIRequestEnable.EnabledRequests.EnableDoppler |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.EnableBrakePercentage;
             EVC30_MMIRequestEnable.Send();
+
+            DMITestCases.DmiActions.ShowInstruction(this, @"Press the ‘Settings’ button, then press the ‘Brake’ button");
 
             WaitForVerification("Check that the following button is displayed with a border with Dark-Grey text:" + Environment.NewLine + Environment.NewLine +
                                       @"1. The ‘Brake test’ button.");
