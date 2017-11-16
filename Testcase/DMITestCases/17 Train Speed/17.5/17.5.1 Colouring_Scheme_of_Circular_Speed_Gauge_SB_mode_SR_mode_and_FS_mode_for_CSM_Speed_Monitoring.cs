@@ -78,6 +78,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Main window in SB mode, Level 1.");
 
+
             DmiActions.ShowInstruction(this, @"Press the ‘Train data’ button");
 
             DmiActions.Send_EVC6_MMICurrentTrainData_FixedDataEntry(this, new[] { "FLU", "RLU", "Rescue" }, 2);
@@ -86,9 +87,11 @@ namespace Testcase.DMITestCases
 
             DmiActions.Send_EVC10_MMIEchoedTrainData_FixedDataEntry(this, Variables.paramEvc6FixedTrainsetCaptions);
 
-            DmiActions.ShowInstruction(this, @"Press the ‘Train running number’ button");
 
-            EVC2_MMIStatus.Send();
+            DmiActions.ShowInstruction(this, @"Press the ‘Train running number’ button");
+            
+            EVC16_CurrentTrainNumber.Send();
+
             DmiActions.ShowInstruction(this, "Enter the train running number");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -135,7 +138,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 972 (partly: MMI_M_WARNING, MMI_V_INTERVEN); MMI_gen 6310 (partly: supervision status, intervention speed);(2) MMI_gen 972 (partly: FS mode, CSM, 0km/h <= CSG <= Vperm);(3) MMI_gen 972 (partly: FS mode, CSM, Vperm <= CSG <= Vsbi );(4) MMI_gen 1155 (partly: Over-speed); MMI_gen 1182 (partly: Vsbi);
             */
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 151;
-            EVC1_MMIDynamic.MMI_V_INTERVENTION_KMH = 150;
+            EVC1_MMIDynamic.MMI_V_INTERVENTION_KMH = 155;
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Overspeed_Status_Ceiling_Speed_Monitoring;
             // ?? Send
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -150,6 +153,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 972 (partly: MMI_M_WARNING, MMI_V_INTERVEN); MMI_gen 6310 (partly: supervision status, intervention speed);(2) MMI_gen 972 (partly: FS mode, CSM, 0km/h <= CSG <= Vperm);(3) MMI_gen 972 (partly: FS mode, CSM, Vperm <= CSG <= Vsbi );(4) MMI_gen 1155 (partly: Warning);(5)   MMI_gen 5774; MMI_gen 11921 (partly: MMI_M_WARNING = 4);
             */
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 155;
+
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Warning_Status_Ceiling_Speed_Monitoring;
             // ?? Send
 
