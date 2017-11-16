@@ -133,6 +133,8 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, "Change the direction of train to reverse. Select and confirm RV mode.");
 
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
+            EVC8_MMIDriverMessage.Send();
             EVC1_MMIDynamic.MMI_O_BRAKETARGET = 2147483647;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Reversing;
 
