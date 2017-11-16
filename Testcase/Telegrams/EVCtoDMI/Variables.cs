@@ -842,6 +842,28 @@ namespace Testcase.Telegrams.EVCtoDMI
         }
 
         /// <summary>
+        /// Identifier of an MMI keyboard key name.
+        /// 
+        /// Values:
+        /// 34 = "G1"
+        /// 35 = "GA"
+        /// 36 = "GB"
+        /// 37 = "GC"
+        /// 38 = "Out of GC"
+        /// 
+        /// Note: the definition is according to preliminary SubSet-121 'NID_KEY' definition.
+        /// </summary>
+        public enum MMI_NID_KEY_Load_Gauge : byte
+        {
+            NoDedicatedKey = 0,
+            G1 = 34,
+            GA = 35,
+            GB = 36,
+            GC = 37,
+            OutofGC = 38
+        }
+
+        /// <summary>
         /// This is a maintenance parameter for Doppler radars 1 and 2. It gives the number of pulses per km-travelled distance.
         /// 
         /// Values:
