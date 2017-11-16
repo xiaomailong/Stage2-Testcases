@@ -195,7 +195,9 @@ namespace Testcase.DMITestCases
 
                     EVC1_MMIDynamic.MMI_M_SLIDE = 0;
                     EVC1_MMIDynamic.MMI_M_SLIP = 1;
-                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Spare;   // 7
+                    // This is being ignored so set another 'invalid' warning mode so remove target bar
+                    //EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Spare;   // 7
+                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Ceiling_Speed_Monitoring;
                     EVC1_MMIDynamic.MMI_A_TRAIN = 0;
                     EVC1_MMIDynamic.MMI_V_TRAIN = 100;
                     EVC1_MMIDynamic.MMI_V_TARGET = 1111;
@@ -205,8 +207,8 @@ namespace Testcase.DMITestCases
                     EVC1_MMIDynamic.MMI_O_IML = 0;
                     EVC1_MMIDynamic.MMI_V_INTERVENTION = 0;
 
-                    SITR.ETCS1.Dynamic.EVC01Validity1.Value = 0x0;
-                    SITR.ETCS1.Dynamic.EVC01Validity2.Value = 0x0;
+                    //SITR.ETCS1.Dynamic.EVC01Validity1.Value = 0x0;
+                    //SITR.ETCS1.Dynamic.EVC01Validity2.Value = 0x0;
 
                     break;
                 case msgType.typeb:
