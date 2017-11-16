@@ -85,6 +85,7 @@ namespace Testcase.DMITestCases
             Action: Drive the train forward passing BG1 with speed = 40 km/h until entering FS mode
             Expected Result: 
             */  // ?? Set an EOA so the DMI can display a target
+            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_PreIndication_Monitoring;
             EVC1_MMIDynamic.MMI_O_BRAKETARGET = 300000;              // 3 km: will cause the target display to show a white arrow on top
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 0;       // just starting off
 
