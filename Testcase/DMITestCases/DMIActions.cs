@@ -199,7 +199,7 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void Send_EVC6_MMICurrentTrainData(MMI_M_DATA_ENABLE mmiMDataEnable, ushort mmiLTrain,
             ushort mmiVMaxTrain, MMI_NID_KEY mmiNidKeyTrainCat, byte mmiMBrakePerc, MMI_NID_KEY mmiNidKeyAxleLoad,
-            byte mmiMAirtight, MMI_NID_KEY mmiNidKeyLoadGauge, EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA mmiMButtons,
+            byte mmiMAirtight, MMI_NID_KEY_Load_Gauge mmiNidKeyLoadGauge, EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA mmiMButtons,
             ushort mmiMTrainsetId, ushort mmiMAltDem, string[] trainSetCaptions, DataElement[] dataElements)
         {
             EVC6_MMICurrentTrainData.MMI_M_DATA_ENABLE = mmiMDataEnable;            // Train data enabled
@@ -238,7 +238,7 @@ namespace Testcase.DMITestCases
             EVC6_MMICurrentTrainData.MMI_M_BRAKE_PERC = 0;                                  // Brake percentage
             EVC6_MMICurrentTrainData.MMI_NID_KEY_AXLE_LOAD = MMI_NID_KEY.NoDedicatedKey;    // Axle load category
             EVC6_MMICurrentTrainData.MMI_M_AIRTIGHT = 0;                                    // Train equipped with airtight system
-            EVC6_MMICurrentTrainData.MMI_NID_KEY_LOAD_GAUGE = MMI_NID_KEY.NoDedicatedKey;   // Loading gauge type of train 
+            EVC6_MMICurrentTrainData.MMI_NID_KEY_LOAD_GAUGE = MMI_NID_KEY_Load_Gauge.NoDedicatedKey;   // Loading gauge type of train 
             EVC6_MMICurrentTrainData.MMI_M_BUTTONS = 
                 EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE;
             EVC6_MMICurrentTrainData.MMI_M_TRAINSET_ID = mmiMTrainsetId;                    // Preselected Trainset ID
@@ -822,7 +822,7 @@ namespace Testcase.DMITestCases
             };
 
             DmiActions.Send_EVC6_MMICurrentTrainData(MMI_M_DATA_ENABLE.TrainSetID, 0, 0, MMI_NID_KEY.NoDedicatedKey, 0,
-                MMI_NID_KEY.NoDedicatedKey, 0, MMI_NID_KEY.NoDedicatedKey,
+                MMI_NID_KEY.NoDedicatedKey, 0, MMI_NID_KEY_Load_Gauge.NoDedicatedKey,
                 EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE,
                 Convert.ToUInt16((byte)(trainsetSelected)), 0, new string[] { }, dataElements);
         }
@@ -847,7 +847,7 @@ namespace Testcase.DMITestCases
             };
 
             DmiActions.Send_EVC6_MMICurrentTrainData(MMI_M_DATA_ENABLE.NONE, 0, 0, MMI_NID_KEY.NoDedicatedKey, 0,
-                MMI_NID_KEY.NoDedicatedKey, 0, MMI_NID_KEY.NoDedicatedKey,
+                MMI_NID_KEY.NoDedicatedKey, 0, MMI_NID_KEY_Load_Gauge.NoDedicatedKey,
                 EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE,
                 Convert.ToUInt16((byte)(trainsetSelected)), 0, new string[] { }, dataElements);
         }
@@ -1122,7 +1122,7 @@ namespace Testcase.DMITestCases
             EVC6_MMICurrentTrainData.MMI_M_BRAKE_PERC = 0;                                  // Brake percentage
             EVC6_MMICurrentTrainData.MMI_NID_KEY_AXLE_LOAD = MMI_NID_KEY.NoDedicatedKey;    // Axle load category
             EVC6_MMICurrentTrainData.MMI_M_AIRTIGHT = 0;                                    // Train equipped with airtight system
-            EVC6_MMICurrentTrainData.MMI_NID_KEY_LOAD_GAUGE = MMI_NID_KEY.NoDedicatedKey;   // Loading gauge type of train 
+            EVC6_MMICurrentTrainData.MMI_NID_KEY_LOAD_GAUGE = MMI_NID_KEY_Load_Gauge.NoDedicatedKey;   // Loading gauge type of train 
             EVC6_MMICurrentTrainData.MMI_M_BUTTONS =
                 EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE;
             EVC6_MMICurrentTrainData.MMI_M_TRAINSET_ID = 15;                                // Preselected Trainset ID

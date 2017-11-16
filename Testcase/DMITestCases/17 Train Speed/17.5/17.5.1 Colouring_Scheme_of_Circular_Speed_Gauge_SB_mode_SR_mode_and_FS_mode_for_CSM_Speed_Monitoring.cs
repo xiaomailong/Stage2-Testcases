@@ -86,7 +86,7 @@ namespace Testcase.DMITestCases
                                              MMI_M_DATA_ENABLE.TrainLength | MMI_M_DATA_ENABLE.TrainSetID;
             string[] trainSetCaptions = new string[3] {"FLU", "RLU", "Rescue" };
 
-            DmiActions.Send_EVC6_MMICurrentTrainData(enableOption,100, 120, MMI_NID_KEY.TILT1, 120, MMI_NID_KEY.G1, 1, MMI_NID_KEY.CATA, 
+            DmiActions.Send_EVC6_MMICurrentTrainData(enableOption,100, 120, MMI_NID_KEY.TILT1, 120, MMI_NID_KEY.G1, 1, MMI_NID_KEY_Load_Gauge.G1, 
                                                      EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE,
                                                      1, 1, 
                                                      trainSetCaptions,

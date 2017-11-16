@@ -282,9 +282,9 @@ namespace Testcase.Telegrams.EVCtoDMI
         ///     37 = "GC"
         ///     38 = "Out of GC"
         /// </summary>
-        public static MMI_NID_KEY MMI_NID_KEY_LOAD_GAUGE
+        public static MMI_NID_KEY_Load_Gauge MMI_NID_KEY_LOAD_GAUGE
         {
-            get => (MMI_NID_KEY)(_pool.SITR.ETCS1.CurrentTrainData.MmiNidKeyLoadGauge.Value);
+            get => (MMI_NID_KEY_Load_Gauge)(_pool.SITR.ETCS1.CurrentTrainData.MmiNidKeyLoadGauge.Value);
             set => _pool.SITR.ETCS1.CurrentTrainData.MmiNidKeyLoadGauge.Value = (byte) value;
         }
 

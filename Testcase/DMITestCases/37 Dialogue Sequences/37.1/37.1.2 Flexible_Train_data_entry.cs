@@ -96,7 +96,7 @@ namespace Testcase.DMITestCases
                                                      70,
                                                      Variables.MMI_NID_KEY.CATA,
                                                      1,
-                                                     Variables.MMI_NID_KEY.G1,
+                                                     Variables.MMI_NID_KEY_Load_Gauge.G1,
                                                      EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE,
                                                      0, 0, new[] { "FLU", "RLU", "Rescue" }, null);
 
@@ -151,7 +151,7 @@ namespace Testcase.DMITestCases
                                                      70,
                                                      Variables.MMI_NID_KEY.CATA,
                                                      1,
-                                                     Variables.MMI_NID_KEY.G1,
+                                                     Variables.MMI_NID_KEY_Load_Gauge.G1,
                                                      EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE,
                                                      0, 0, new[] { "FLU", "RLU", "Rescue" }, null);
 
@@ -232,7 +232,7 @@ namespace Testcase.DMITestCases
                                                      70,
                                                      Variables.MMI_NID_KEY.CATA,
                                                      1,
-                                                     Variables.MMI_NID_KEY.G1,
+                                                     Variables.MMI_NID_KEY_Load_Gauge.G1,
                                                      EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE,
                                                      0, 0, new[] { "FLU", "RLU", "Rescue" }, null);
 
@@ -323,7 +323,7 @@ namespace Testcase.DMITestCases
                                                      100,
                                                      Variables.MMI_NID_KEY.CATB1,
                                                      0,
-                                                     Variables.MMI_NID_KEY.G1,
+                                                     Variables.MMI_NID_KEY_Load_Gauge.G1,
                                                      EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE,
                                                      0,
                                                      0,

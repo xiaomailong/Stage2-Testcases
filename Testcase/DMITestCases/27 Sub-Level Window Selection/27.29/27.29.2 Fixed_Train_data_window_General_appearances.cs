@@ -414,7 +414,7 @@ namespace Testcase.DMITestCases
             EVC6_MMICurrentTrainData.MMI_M_BRAKE_PERC = 0;
             EVC6_MMICurrentTrainData.MMI_NID_KEY_AXLE_LOAD = Variables.MMI_NID_KEY.NoDedicatedKey;
             EVC6_MMICurrentTrainData.MMI_M_AIRTIGHT = 0;
-            EVC6_MMICurrentTrainData.MMI_NID_KEY_LOAD_GAUGE = Variables.MMI_NID_KEY.NoDedicatedKey;
+            EVC6_MMICurrentTrainData.MMI_NID_KEY_LOAD_GAUGE = Variables.MMI_NID_KEY_Load_Gauge.NoDedicatedKey;
             EVC6_MMICurrentTrainData.MMI_M_TRAINSET_ID = 0;
             EVC6_MMICurrentTrainData.MMI_M_ALT_DEM = 0;
             EVC6_MMICurrentTrainData.TrainSetCaptions = new List<string> { "\0x01", "\0x01", "\0x01", "\0x01", "\0x01",
