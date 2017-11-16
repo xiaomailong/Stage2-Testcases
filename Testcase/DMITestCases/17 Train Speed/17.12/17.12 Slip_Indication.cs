@@ -150,6 +150,12 @@ namespace Testcase.DMITestCases
 
         private void XML_12_12(msgType type)
         {
+
+            //SITR.ETCS1.Dynamic.EVC01Validity1.Value = 0x0;
+            //SITR.ETCS1.Dynamic.EVC01Validity2.Value = 0x0;
+            SITR.ETCS1.Dynamic.EVC01Validity1.Value = 0xc800;
+            SITR.ETCS1.Dynamic.EVC01Validity2.Value = 0xff00;
+
             if (type == msgType.typea)
             {
                 EVC1_MMIDynamic.MMI_M_SLIDE = 0;
@@ -162,10 +168,7 @@ namespace Testcase.DMITestCases
                 EVC1_MMIDynamic.MMI_V_RELEASE = 555;
                 EVC1_MMIDynamic.MMI_O_BRAKETARGET = 0;
                 EVC1_MMIDynamic.MMI_O_IML = 0;
-                EVC1_MMIDynamic.MMI_V_INTERVENTION = 0;
-
-                SITR.ETCS1.Dynamic.EVC01Validity1.Value = 0x0;
-                SITR.ETCS1.Dynamic.EVC01Validity2.Value = 0x0;
+                EVC1_MMIDynamic.MMI_V_INTERVENTION = 0;                
             }
             else if (type == msgType.typeb)
             {
@@ -180,9 +183,6 @@ namespace Testcase.DMITestCases
                 EVC1_MMIDynamic.MMI_O_BRAKETARGET = 0;
                 EVC1_MMIDynamic.MMI_O_IML = 0;
                 EVC1_MMIDynamic.MMI_V_INTERVENTION = 0;
-
-                SITR.ETCS1.Dynamic.EVC01Validity1.Value = 0x0;
-                SITR.ETCS1.Dynamic.EVC01Validity2.Value = 0x0;
             }
             else if (type == msgType.typec)
             {
@@ -197,9 +197,6 @@ namespace Testcase.DMITestCases
                 EVC1_MMIDynamic.MMI_O_BRAKETARGET = 0;
                 EVC1_MMIDynamic.MMI_O_IML = 0;
                 EVC1_MMIDynamic.MMI_V_INTERVENTION = 0;
-
-                SITR.ETCS1.Dynamic.EVC01Validity1.Value = 0x0;
-                SITR.ETCS1.Dynamic.EVC01Validity2.Value = 0x0;
             }
         }
         #endregion
