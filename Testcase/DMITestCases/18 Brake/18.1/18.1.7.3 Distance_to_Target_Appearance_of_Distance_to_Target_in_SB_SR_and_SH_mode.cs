@@ -14,6 +14,7 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
 using Testcase.Telegrams.EVCtoDMI;
+using static Testcase.Telegrams.EVCtoDMI.Variables;
 
 
 namespace Testcase.DMITestCases
@@ -111,17 +112,22 @@ namespace Testcase.DMITestCases
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
 
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.No_window_specified;
-            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.SRSpeedDistance;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Close_current_return_to_parent;            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.SRSpeedDistance;
+        
             EVC30_MMIRequestEnable.Send();
 
             DmiActions.ShowInstruction(this, "Press the ‘Special’ button, then press the ‘SR speed / distance’ button");
 
-            EVC11_MMICurrentSRRules.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS.BTN_YES_DATA_ENTRY_COMPLETE;
+            EVC11_MMICurrentSRRules.MMI_M_BUTTONS = MMI_M_BUTTONS.BTN_YES_DATA_ENTRY_COMPLETE;
             EVC11_MMICurrentSRRules.Send();
 
-            DmiActions.ShowInstruction(this, "Enter the value of SR speed = 40 km/h and SR distance = 500m. Press the ‘Yes’ button." + Environment.NewLine +
-                                             "Press on sub-area B to toggle the basic speed hook so that is is displayed");
+            DmiActions.ShowInstruction(this, "Enter the value of SR speed = 40 km/h and SR distance = 500m. Press the ‘Yes’ button");
+
+            EVC11_MMICurrentSRRules.DataElements = new List<DataElement> 
+            { new DataElement {Identifier = 15, EchoText = "40", QDataCheck =  0}, new DataElement {Identifier = 16, EchoText = "500", QDataCheck =  0} };
+            EVC11_MMICurrentSRRules.Send();
+
+            DmiActions.ShowInstruction(this, "Press on sub-area B to toggle the basic speed hook so that is is displayed");
 
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
@@ -170,6 +176,7 @@ namespace Testcase.DMITestCases
             // Need to close the special window
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Close_current_return_to_parent;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Shunting;
             EVC30_MMIRequestEnable.Send();
 
             DmiActions.ShowInstruction(this, "Press ‘Main’ button.	Press and hold ‘Shunting’ button for at least 2s. Release the ‘Shunting’ button.");
