@@ -132,12 +132,20 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in RV mode, level 1.Verify the following information,(1)    Use the log file to confirm that DMI received packet EVC-1 with variable MMI_O_BRAKETARGET = 2147483647(2)    The symbol infinity '∞' is displayed for distance to target digital in sub-area A2.(3)    The symbol is be horizontally and vertically centered in Sub-Area A2
             Test Step Comment: (1) MMI_gen 6777  (partly: receive MMI_O_BRAKETARGET  equal special value);                   (2) MMI_gen 6777 (partly: when MMI_O_BRAKETARGET  equal special value); (3) MMI_gen 6777 (partly: horizontally and vertically centered);
             */
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 2;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 262;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+            EVC8_MMIDriverMessage.Send();
             DmiActions.ShowInstruction(this, "Change the direction of train to reverse. Select and confirm RV mode.");
 
-            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4; 
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 2;
+            EVC8_MMIDriverMessage.Send(); 
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 5;
             EVC8_MMIDriverMessage.Send();
             EVC1_MMIDynamic.MMI_O_BRAKETARGET = 2147483647;
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Reversing;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Reversing;     
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in RV mode, level 1." + Environment.NewLine +
