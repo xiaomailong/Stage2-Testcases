@@ -156,9 +156,7 @@ namespace Testcase.DMITestCases
             EVC111_MMIDriverMessageAck.MMI_I_TEXT = 1;
             EVC111_MMIDriverMessageAck.MMI_Q_ACK = MMI_Q_ACK.AcknowledgeYES;
             EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
-
-            this.Wait_Realtime(2000);
-
+            
             EVC111_MMIDriverMessageAck.MMI_I_TEXT = 1;
             EVC111_MMIDriverMessageAck.MMI_Q_ACK = MMI_Q_ACK.AcknowledgeYES;
             EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
@@ -180,8 +178,6 @@ namespace Testcase.DMITestCases
             EVC111_MMIDriverMessageAck.MMI_I_TEXT = 1;
             EVC111_MMIDriverMessageAck.MMI_Q_ACK = MMI_Q_ACK.AcknowledgeYES;
             EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
-
-            this.Wait_Realtime(2000);
 
             EVC111_MMIDriverMessageAck.MMI_I_TEXT = 1;
             EVC111_MMIDriverMessageAck.MMI_Q_ACK = MMI_Q_ACK.AcknowledgeYES;
@@ -216,8 +212,6 @@ namespace Testcase.DMITestCases
             EVC111_MMIDriverMessageAck.MMI_Q_ACK = MMI_Q_ACK.AcknowledgeYES;
             EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
 
-            this.Wait_Realtime(2000);
-
             EVC111_MMIDriverMessageAck.MMI_I_TEXT = 1;
             EVC111_MMIDriverMessageAck.MMI_Q_ACK = MMI_Q_ACK.AcknowledgeYES;
             EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
@@ -242,13 +236,13 @@ namespace Testcase.DMITestCases
             */
             XML_13_2_1(msgType.typea);
 
-            DmiActions.ShowInstruction(this, "Press in sub-area C9 (below ST01 symbol)");
+            DmiActions.ShowInstruction(this, "Press in sub-area C9 (above ST01 symbol)");
 
             EVC111_MMIDriverMessageAck.MMI_I_TEXT = 1;
             EVC111_MMIDriverMessageAck.MMI_Q_ACK = MMI_Q_ACK.AcknowledgeYES;
             EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
 
-            this.Wait_Realtime(2000);
+            //Wait_Realtime(2000);
 
             EVC111_MMIDriverMessageAck.MMI_I_TEXT = 1;
             EVC111_MMIDriverMessageAck.MMI_Q_ACK = MMI_Q_ACK.AcknowledgeYES;

@@ -14,6 +14,7 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
 using Testcase.Telegrams.EVCtoDMI;
+using static Testcase.Telegrams.EVCtoDMI.Variables;
 
 
 namespace Testcase.DMITestCases
@@ -102,6 +103,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Change the train direction to reverse and press the symbol in sub-area C1");
             
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Reversing;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 100000;
+            EVC1_MMIDynamic.MMI_O_BRAKETARGET = 150000;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in RV mode, Level 1." + Environment.NewLine +
@@ -142,9 +145,8 @@ namespace Testcase.DMITestCases
             EVC2_MMIStatus.Send();
 
             DMITestCases.DmiActions.Set_Driver_ID(this, "1234");
-
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
-
+            
             DMITestCases.DmiExpectedResults.SB_Mode_displayed(this);
 
             /*
@@ -153,8 +155,11 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SR mode, Level 1.The objects below not displayed on DMI, (toggle off)White basic speed hookDistance to target (digital)The release speed digital is not displayed
             Test Step Comment: (1) MMI_gen 11868 (partly: SR mode), Table 34 (CSM), Table 38 (CSM), MMI_gen 6450 (partly: 2nd bullet, SR mode), MMI_gen 6898 (partly: configuration ‘OFF’, SR mode);(2) MMI_gen 6890 (partly: SR mode, un-concerned object), Table 35 (CSM)
             */
+            // Tested ad nauseam, force...
             // Call generic Action Method
-            DmiActions.Perform_SoM_in_SR_mode_Level_1(this);
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
+            DmiActions.Finished_SoM_Default_Window(this);
 
             WaitForVerification("Check the mode and that the following objects are not displayed:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SR mode, Level 1." + Environment.NewLine +
@@ -173,13 +178,25 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.SRSpeedDistance;
             EVC30_MMIRequestEnable.Send();
 
-            DmiActions.ShowInstruction(this, "Press ‘Spec’ button. Press ‘SR speed/distance’ button. Enter and confirm the following data, SR speed = 40 km/h, SR distance = 300m");
+            DmiActions.ShowInstruction(this, "Press the ‘Spec’ button, then press the ‘SR speed/distance’ button");
+           
+            EVC11_MMICurrentSRRules.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS.BTN_YES_DATA_ENTRY_COMPLETE;
+            EVC11_MMICurrentSRRules.Send();
+
+            DmiActions.ShowInstruction(this, "Enter and confirm the following data, SR speed = 40 km/h, SR distance = 300m");
 
             WaitForVerification("Check that the following objects are still not displayed:" + Environment.NewLine + Environment.NewLine +
                                 "1. White Basic speed hook." + Environment.NewLine +
-                                "2.	Medium-grey basic speed hook." + Environment.NewLine +
+                                "2. Medium-grey basic speed hook." + Environment.NewLine +
                                 "3. Digital distance to target." + Environment.NewLine +
                                 "4. Digital release speed.");
+            
+            EVC11_MMICurrentSRRules.DataElements = new List<Variables.DataElement> 
+            {
+                new DataElement {Identifier = 15, EchoText = "40", QDataCheck = 0},
+                new DataElement {Identifier = 16, EchoText = "300", QDataCheck = 0}
+            };
+            EVC11_MMICurrentSRRules.Send();
 
             /*
             Test Step 7
@@ -188,11 +205,16 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 6890 (partly: Areas A, SR mode, toggle on), MMI_gen 6896 (partly: configuration ‘OFF’, SR mode, toggle visible), MMI_gen 6894 (partly: SR mode);    (2) MMI_gen 6890 (partly: SR mode, un-concerned object, toggle on) , Table 35 (not CSM)
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press the speedometer once");
 
+            DmiActions.ShowInstruction(this, @"Press the speedometer once");
+            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Target_Speed_Monitoring;
+            EVC1_MMIDynamic.MMI_V_TARGET_KMH = 10;
+            EVC1_MMIDynamic.MMI_V_RELEASE_KMH = 15;
+            EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 20;
+            
             WaitForVerification("Check that the following objects are displayed (toggled on):" + Environment.NewLine + Environment.NewLine +
                                 "1. White Basic speed hook." + Environment.NewLine +
-                                "2.	Medium-grey basic speed hook." + Environment.NewLine +
+                                "2. Medium-grey basic speed hook." + Environment.NewLine +
                                 "3. Digital distance to target." + Environment.NewLine +
                                 "4. Digital release speed.");
 
@@ -466,9 +488,7 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.Send();
        
             DmiActions.ShowInstruction(this, "Press the ‘Main’ button. Press and hold ‘Shunting’ button for up to 2s then release the ‘Shunting’ button");
-
-            // surely irrelevant here??
-            DmiExpectedResults.Shunting_button_pressed_and_hold(this);
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Shunting;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SH mode, Level 1." + Environment.NewLine +
