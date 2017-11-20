@@ -194,6 +194,7 @@ namespace Testcase.DMITestCases
             
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Target_Speed_Monitoring;
             EVC1_MMIDynamic.MMI_V_RELEASE_KMH = 15;
+            Wait_Realtime(10000);   
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the White Basic speed hook for 10s then removes it." + Environment.NewLine +
@@ -221,6 +222,7 @@ namespace Testcase.DMITestCases
             
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Ceiling_Speed_Monitoring;
             EVC1_MMIDynamic.MMI_V_RELEASE_KMH = 15;
+            
 
             /*
             Test Step 9
