@@ -14,6 +14,7 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
 using Testcase.Telegrams.EVCtoDMI;
+using static Testcase.Telegrams.EVCtoDMI.Variables;
 
 
 namespace Testcase.DMITestCases
@@ -66,7 +67,11 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in FS mode, Level 1 with the ST06 symbol at sub-area C6
             */
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
-            DmiActions.Send_RV_Permitted_Symbol(this);
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 286; // "#3 ST06 (Reversing is possible)"
+            EVC8_MMIDriverMessage.Send();
             
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays symbol ST06 in sub-area C6 in FS mode, Level 1.");
@@ -77,9 +82,18 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in RV mode, Level 1.Verify the following information,The objects below are displayed on DMI,White Basic speed HookDistance to target (digital)The objects below are not displayed on DMI,Medium-grey basic speed hookRelease Speed Digital
             Test Step Comment: (1) MMI_gen 6892 (partly: RV mode, Table 34 (CSM), Table 38 (CSM)); MMI_gen 6320 (partly: RV mode, Table 34 (CSM));(2) MMI_gen 6890 (partly: RV mode, unidentified mode, un-concerned object), Table 34 (CSM), Table 35 (CSM)
             */
-            // Doesn't the symbol appear in C6??
+            
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 262;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 2;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+            EVC8_MMIDriverMessage.Send();
+
             DmiActions.ShowInstruction(this, "Change the train direction to reverse and press the symbol in sub-area C1");
 
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
+            EVC8_MMIDriverMessage.Send();
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Reversing;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -97,6 +111,8 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, "Press on area A1-A4, and area B, respectively, at least twice");
 
+            EVC1_MMIDynamic.MMI_O_BRAKETARGET = 200000;
+           
             WaitForVerification("Check that the following objects do not toggle and remain the same as in the previous step:" + Environment.NewLine + Environment.NewLine +
                                 "1. White basic speed hook (remains visible)." + Environment.NewLine +
                                 "2.	Medium-grey basic speed hook (remains invisible)." + Environment.NewLine +
@@ -122,9 +138,14 @@ namespace Testcase.DMITestCases
             Action: Perform SoM in SR mode, Level 1
             Expected Result: DMI displays in SR mode, Level 1.The objects below are displayed on DMI, (toggle on)White basic speed hookDistance to target (digital)The release speed digital is not displayed
             Test Step Comment: (1) MMI_gen 11868 (partly: SR mode), Table 34 (CSM), Table 38 (CSM), MMI_gen 6450 (partly: 2nd bullet, SR mode), MMI_gen 6898 (partly: configuration ‘ON’, SR mode); MMI_gen 6320 (partly: SR mode, Table 34 (CSM)); (2) MMI_gen 6890 (partly: SR mode, un-concerned object), Table 35 (CSM)
-            */
-            // Call generic Action Method
-            DmiActions.Perform_SoM_in_SR_mode_Level_1(this);
+            */       
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
+            DmiActions.Finished_SoM_Default_Window(this);
+            EVC1_MMIDynamic.MMI_O_BRAKETARGET = 200000;
+            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Target_Speed_Monitoring;
+            EVC1_MMIDynamic.MMI_V_TARGET_KMH = 20;
+            EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 30;
+            EVC1_MMIDynamic.MMI_V_RELEASE_KMH = -1;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the White Basic speed hook." + Environment.NewLine +
@@ -145,10 +166,14 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, "Press ‘Spec’ button. Press ‘SR speed/distance’ button");
 
-            EVC11_MMICurrentSRRules.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS.BTN_YES_DATA_ENTRY_COMPLETE;
+            EVC11_MMICurrentSRRules.MMI_M_BUTTONS = MMI_M_BUTTONS.BTN_YES_DATA_ENTRY_COMPLETE;
             EVC11_MMICurrentSRRules.Send();
             
             DmiActions.ShowInstruction(this, "Enter and confirm the following data, SR speed = 40 km/h, SR distance = 300m");
+
+            EVC11_MMICurrentSRRules.DataElements = new List<DataElement>
+            { new DataElement { Identifier = 15, EchoText = "40", QDataCheck = 0}, new DataElement { Identifier = 16, EchoText = "300", QDataCheck = 0} };
+            EVC11_MMICurrentSRRules.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI still displays the White Basic speed hook." + Environment.NewLine +
