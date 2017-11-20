@@ -81,8 +81,7 @@ namespace Testcase.DMITestCases
             Action: Perform the following procedure,Chage the train direction to reversePress the symbol in sub-area C1
             Expected Result: DMI displays in RV mode, Level 1.Verify the following information,The objects below are displayed on DMI,White Basic speed HookDistance to target (digital)The objects below are not displayed on DMI,Medium-grey basic speed hookRelease Speed Digital
             Test Step Comment: (1) MMI_gen 6892 (partly: RV mode, Table 34 (CSM), Table 38 (CSM)); MMI_gen 6320 (partly: RV mode, Table 34 (CSM));(2) MMI_gen 6890 (partly: RV mode, unidentified mode, un-concerned object), Table 34 (CSM), Table 35 (CSM)
-            */
-            
+            */            
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 262;
             EVC8_MMIDriverMessage.MMI_I_TEXT = 2;
@@ -189,6 +188,8 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Press the speedometer once");
 
+            EVC1_MMIDynamic.MMI_V_RELEASE_KMH = 15;
+
             WaitForVerification("Check that the following objects are toggled:" + Environment.NewLine + Environment.NewLine +
                                 "1. White Basic speed hook (invisible)." + Environment.NewLine +
                                 "2.	Medium-grey basic speed hook (invisible)." + Environment.NewLine +
@@ -225,7 +226,7 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, @"Acknowledge by pressing on area C1");
 
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L0;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Unfitted;
 
             WaitForVerification("Check the following :" + Environment.NewLine + Environment.NewLine +
@@ -260,10 +261,11 @@ namespace Testcase.DMITestCases
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 20;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
+            EVC1_MMIDynamic.MMI_O_BRAKETARGET = 150000;
 
             WaitForVerification("Check the following :" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in FS mode, Level 1." + Environment.NewLine +
-                                "2.	DMI displays the Digital distance to target." + Environment.NewLine +
+                                "2. DMI displays the Digital distance to target." + Environment.NewLine +
                                 "3. DMI displays the Digital release speed." + Environment.NewLine +
                                 "4. DMI does not display the White basic speed hook." + Environment.NewLine +
                                 "5. DMI does not display the Medium-grey basic speed hook.");
@@ -347,7 +349,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 6892 (partly: LS mode, Table 35 (not CSM), Table 38 (not CSM))(2) MMI_gen 6890 (partly: LS mode, unidentified mode, un-concerned object), Table 34 (not CSM)
             */
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
-            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
             EVC8_MMIDriverMessage.MMI_I_TEXT = 4;
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 709;
             EVC8_MMIDriverMessage.Send();
@@ -467,8 +469,7 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, "Press the ‘Main’ button. Press and hold ‘Shunting’ button for up to 2s then release the ‘Shunting’ button");
 
-            // surely irrelevant here??
-            //DmiExpectedResults.Shunting_button_pressed_and_hold(this);
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Shunting;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SH mode, Level 1." + Environment.NewLine +
