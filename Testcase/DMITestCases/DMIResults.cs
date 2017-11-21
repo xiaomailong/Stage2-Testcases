@@ -615,7 +615,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(pool, "Perform the following action after pressing OK:" + Environment.NewLine + Environment.NewLine +
                                             "1. Enter and validate Train Running Number");
             uint trnInput = EVC116_MMINewTrainNumber.Get_NID_OPERATION;
-            pool.WaitForVerification($"Is \"{trnInput.ToString("X")}\" the Train running number entered?");
+            pool.WaitForVerification($"Is {trnInput} the Train running number entered?");
         }
 
         /// <summary>
