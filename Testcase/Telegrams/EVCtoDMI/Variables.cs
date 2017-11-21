@@ -967,6 +967,37 @@ namespace Testcase.Telegrams.EVCtoDMI
         }
 
         /// <summary>
+        /// DMI to EVC message name and packet number
+        /// </summary>
+        public enum DMItoEVCTelegram : byte
+        {
+            StartMmi = 100,
+            DriverRequest = 101,
+            StatusReport = 102,
+            NewDriverData = 104,
+            NewSrRules = 106,
+            NewTrainData = 107,
+            SetTimeMmi = 109,
+            ConfirmedTrainData = 110,
+            DriverMessageAck = 111,
+            NewRbcData = 112,
+            NewTrainNumber = 116,
+            NewSetVbc = 118,
+            NewRemoveVbc = 119,
+            NewLevel = 121,
+            NewLanguage = 122,
+            SpecificStmDataToStm = 123,
+            ConfirmedSetVbc = 128,
+            ConfirmedRemoveVbc = 129,
+            NewMaintenanceData = 140,
+            ConfirmedMaintenanceData = 141,
+            NewBrakePercentage = 150,
+            ConfirmedBrakePercentage = 151,
+            DriverAction = 152
+        }
+
+
+        /// <summary>
         /// Bit-reverses a 32-bit number
         /// </summary>
         /// <param name="intToBeReversed"></param>

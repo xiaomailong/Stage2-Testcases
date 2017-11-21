@@ -38,6 +38,15 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
+        /// Check that the expected DMI-EVC telegram is received by confirming that SMDStat flag has been set
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void DMItoEVC_Telegram_Received(SignalPool pool)
+        {
+
+        }
+
+        /// <summary>
         /// Used when TC is not needed since it tests the same interfaces as another test case.
         /// </summary>
         /// <param name="pool">The SignalPool</param>
