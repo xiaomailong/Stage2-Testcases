@@ -113,7 +113,7 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
             EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 257;
-            EVC8_MMIDriverMessage.PlainTextMessage = "\0x00";
+            EVC8_MMIDriverMessage.PlainTextMessage = "0";
             EVC8_MMIDriverMessage.Send();
             
             WaitForVerification("Check the following: + " + Environment.NewLine + Environment.NewLine +
