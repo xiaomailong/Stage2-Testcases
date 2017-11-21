@@ -68,7 +68,7 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
             EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
-            EVC8_MMIDriverMessage.PlainTextMessage = "\0x03";
+            EVC8_MMIDriverMessage.PlainTextMessage = "3";
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 276;
             EVC8_MMIDriverMessage.Send();
 
@@ -92,7 +92,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9430 (partly: LE12);(2) MMI_gen 7025 (partly: 2nd bullet, #4, non-Ack Level 2 transition);
             */
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
-            EVC8_MMIDriverMessage.PlainTextMessage = "\0x2";
+            EVC8_MMIDriverMessage.PlainTextMessage = "2";
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 276;
             EVC8_MMIDriverMessage.Send();
 
