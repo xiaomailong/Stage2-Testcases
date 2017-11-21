@@ -122,6 +122,8 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             DmiActions.ShowInstruction(this, "Acknowledge the level transition");
+
+            Telegrams.DMItoEVC.EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = Telegrams.DMItoEVC.EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.Level2Ack;
             
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 276;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
