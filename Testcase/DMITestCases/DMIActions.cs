@@ -257,17 +257,17 @@ namespace Testcase.DMITestCases
                                                          string[] trainSetCaptions)
         {
             // EVC-10 inverts all the integral values except the alias
-            EVC10_MMIEchoedTrainData.MMI_M_DATA_ENABLE_ = (ushort)mmiMDataEnable;                           // Train data enabled
-            EVC10_MMIEchoedTrainData.MMI_L_TRAIN_ = mmiLTrain;                                              // Train length
-            EVC10_MMIEchoedTrainData.MMI_V_MAXTRAIN_ = mmiVMaxTrain;                                        // Max train speed
-            EVC10_MMIEchoedTrainData.MMI_NID_KEY_TRAIN_CAT_ = (byte)mmiNidKeyTrainCat;                      // Train category
-            EVC10_MMIEchoedTrainData.MMI_M_BRAKE_PERC_ = mmiMBrakePerc;                                     // Brake percentage
-            EVC10_MMIEchoedTrainData.MMI_NID_KEY_AXLE_LOAD_R = (byte)mmiNidKeyAxleLoad;                     // Axle load category
-            EVC10_MMIEchoedTrainData.MMI_M_AIRTIGHT_R = mmiMAirtight;                                       // Train equipped with airtight system
-            EVC10_MMIEchoedTrainData.MMI_NID_KEY_LOAD_GAUGE_ = (byte)mmiNidKeyLoadGauge;                    // Loading gauge type of train 
-            EVC10_MMIEchoedTrainData.EVC10_alias_1 = pool.SITR.ETCS1.CurrentTrainData.EVC6alias1.Value;     // Alias variable for bit mapping
-            EVC10_MMIEchoedTrainData.MMI_N_TRAINSETS_ = pool.SITR.ETCS1.CurrentTrainData.MmiNTrainset.Value;
-            EVC10_MMIEchoedTrainData.TrainSetCaptions = new List<string>(trainSetCaptions);
+            EVC10_MMIEchoedTrainData.MMI_M_DATA_ENABLE_ = (ushort)EVC6_MMICurrentTrainData.MMI_M_DATA_ENABLE;                   // Train data enabled
+            EVC10_MMIEchoedTrainData.MMI_L_TRAIN_ = (ushort)EVC6_MMICurrentTrainData.MMI_L_TRAIN;                               // Train length
+            EVC10_MMIEchoedTrainData.MMI_V_MAXTRAIN_ = (ushort)EVC6_MMICurrentTrainData.MMI_V_MAXTRAIN;                         // Max train speed
+            EVC10_MMIEchoedTrainData.MMI_NID_KEY_TRAIN_CAT_ = (byte)EVC6_MMICurrentTrainData.MMI_NID_KEY_TRAIN_CAT;             // Train category
+            EVC10_MMIEchoedTrainData.MMI_M_BRAKE_PERC_ = (byte)EVC6_MMICurrentTrainData.MMI_M_BRAKE_PERC;                       // Brake percentage
+            EVC10_MMIEchoedTrainData.MMI_NID_KEY_AXLE_LOAD_R = (byte)EVC6_MMICurrentTrainData.MMI_NID_KEY_AXLE_LOAD;            // Axle load category
+            EVC10_MMIEchoedTrainData.MMI_M_AIRTIGHT_R = (byte)EVC6_MMICurrentTrainData.MMI_M_AIRTIGHT;                          // Train equipped with airtight system
+            EVC10_MMIEchoedTrainData.MMI_NID_KEY_LOAD_GAUGE_ = (byte)EVC6_MMICurrentTrainData.MMI_NID_KEY_LOAD_GAUGE;           // Loading gauge type of train 
+            EVC10_MMIEchoedTrainData.EVC10_alias_1 = pool.SITR.ETCS1.CurrentTrainData.EVC6alias1.Value;                         // Alias variable for bit mapping
+            EVC10_MMIEchoedTrainData.MMI_N_TRAINSETS_ = (ushort)pool.SITR.ETCS1.CurrentTrainData.MmiNTrainset.Value;
+            EVC10_MMIEchoedTrainData.TrainSetCaptions = EVC6_MMICurrentTrainData.TrainSetCaptions;
 
             EVC10_MMIEchoedTrainData.Send();
         }
