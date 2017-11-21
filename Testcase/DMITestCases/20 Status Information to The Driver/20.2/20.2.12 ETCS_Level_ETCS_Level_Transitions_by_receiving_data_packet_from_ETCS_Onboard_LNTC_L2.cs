@@ -38,7 +38,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 15_2_12.tdg, 15_2_12.utt 
     /// </summary>
-    public class ETCS_Level_ETCS_Level_Transitions_by_receiving_data_packet_from_ETCS_Onboard_LNTC_L2 : TestcaseBase
+    public class TC_ID_15_2_12_ETCS_Level : TestcaseBase
     {
         public override void PreExecution()
         {
