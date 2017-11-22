@@ -41,79 +41,82 @@ namespace Testcase.DMITestCases
         /// Check that the expected DMI-EVC telegram is received by confirming that SMDStat flag has been set
         /// </summary>
         /// <param name="pool"></param>
-        public static void DMItoEVC_Telegram_Received(SignalPool pool, byte mmiMPacket)
+        /// <param name="mmiMPacket"> Id of the telegram out of the DMI to check</param>
+        /// <param name="timeOut"> Time (in second) to spend checking that the telegram is received from telegram</param>
+        public static void DMItoEVC_Telegram_Received(SignalPool pool, DMItoEVCTelegram mmiMPacket, double timeOut)
         {
             bool msgReceived = false;
+            double _timeOutMs = timeOut * 1000; // time (in milliseconds) to check if the SMDStat flag is set
 
-            switch (mmiMPacket)
+            switch ((byte)mmiMPacket)
             {
                 case 100:
-                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1StartMmi.WaitForCondition(Is.Equal, 1, 10000, 100);
+                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1StartMmi.WaitForCondition(Is.Equal, 1, _timeOutMs, 100);
                     break;
                 case 101:
-                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1DriverRequest.WaitForCondition(Is.Equal, 1, 10000, 100);
+                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1DriverRequest.WaitForCondition(Is.Equal, 1, _timeOutMs, 100);
                     break;
                 case 102:
                     break;
                 case 104:
-                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1NewDriverData.WaitForCondition(Is.Equal, 1, 10000, 100);
+                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1NewDriverData.WaitForCondition(Is.Equal, 1, _timeOutMs, 100);
                     break;
                 case 106:
-                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1NewSrRules.WaitForCondition(Is.Equal, 1, 10000, 100);
+                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1NewSrRules.WaitForCondition(Is.Equal, 1, _timeOutMs, 100);
                     break;
                 case 107:
-                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1NewTrainData.WaitForCondition(Is.Equal, 1, 10000, 100);
+                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1NewTrainData.WaitForCondition(Is.Equal, 1, _timeOutMs, 100);
                     break;
                 case 109:
-                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1SetTimeMmi.WaitForCondition(Is.Equal, 1, 10000, 100);
+                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1SetTimeMmi.WaitForCondition(Is.Equal, 1, _timeOutMs, 100);
                     break;
                 case 110:
-                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1ConfirmedTrainData.WaitForCondition(Is.Equal, 1, 10000, 100);
+                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1ConfirmedTrainData.WaitForCondition(Is.Equal, 1, _timeOutMs, 100);
                     break;
                 case 111:
-                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1DriverMessageAck.WaitForCondition(Is.Equal, 1, 10000, 100);
+                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1DriverMessageAck.WaitForCondition(Is.Equal, 1, _timeOutMs, 100);
                     break;
                 case 112:
-                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1NewRbcData.WaitForCondition(Is.Equal, 1, 10000, 100);
+                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1NewRbcData.WaitForCondition(Is.Equal, 1, _timeOutMs, 100);
                     break;
                 case 116:
-                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1NewTrainNumber.WaitForCondition(Is.Equal, 1, 10000, 100);
+                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1NewTrainNumber.WaitForCondition(Is.Equal, 1, _timeOutMs, 100);
                     break;
                 case 118:
-                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1NewSetVbc.WaitForCondition(Is.Equal, 1, 10000, 100);
+                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1NewSetVbc.WaitForCondition(Is.Equal, 1, _timeOutMs, 100);
                     break;
                 case 119:
-                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1NewRemoveVbc.WaitForCondition(Is.Equal, 1, 10000, 100);
+                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1NewRemoveVbc.WaitForCondition(Is.Equal, 1, _timeOutMs, 100);
                     break;
                 case 121:
-                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1NewLevel.WaitForCondition(Is.Equal, 1, 10000, 100);
+                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1NewLevel.WaitForCondition(Is.Equal, 1, _timeOutMs, 100);
                     break;
                 case 122:
-                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1NewLanguage.WaitForCondition(Is.Equal, 1, 10000, 100);
+                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1NewLanguage.WaitForCondition(Is.Equal, 1, _timeOutMs, 100);
                     break;
                 case 123:
-                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1SpecificStmDataToStm.WaitForCondition(Is.Equal, 1, 10000, 100);
+                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1SpecificStmDataToStm.WaitForCondition(Is.Equal, 1, _timeOutMs, 100);
                     break;
                 case 128:
-                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1ConfirmedSetVbc.WaitForCondition(Is.Equal, 1, 10000, 100);
+                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1ConfirmedSetVbc.WaitForCondition(Is.Equal, 1, _timeOutMs, 100);
                     break;
                 case 129:
-                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1ConfirmedRemoveVbc.WaitForCondition(Is.Equal, 1, 10000, 100);
+                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1ConfirmedRemoveVbc.WaitForCondition(Is.Equal, 1, _timeOutMs, 100);
                     break;
                 case 140:
-                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1NewMaintenanceData.WaitForCondition(Is.Equal, 1, 10000, 100);
+                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1NewMaintenanceData.WaitForCondition(Is.Equal, 1, _timeOutMs, 100);
                     break;
                 case 141:
-                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1ConfirmedMaintenanceData.WaitForCondition(Is.Equal, 1, 10000, 100);
+                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1ConfirmedMaintenanceData.WaitForCondition(Is.Equal, 1, _timeOutMs, 100);
                     break;
                 case 150:
-                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1NewBrakePercentage.WaitForCondition(Is.Equal, 1, 10000, 100);
+                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1NewBrakePercentage.WaitForCondition(Is.Equal, 1, _timeOutMs, 100);
                     break;
                 case 151:
-                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1ConfirmedBrakePercentage.WaitForCondition(Is.Equal, 1, 10000, 100);
+                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1ConfirmedBrakePercentage.WaitForCondition(Is.Equal, 1, _timeOutMs, 100);
                     break;
                 case 152:
-                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1DriverAction.WaitForCondition(Is.Equal, 1, 10000, 100);
+                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1DriverAction.WaitForCondition(Is.Equal, 1, _timeOutMs, 100);
                     break;
                 default:
                     break;
@@ -121,12 +124,12 @@ namespace Testcase.DMITestCases
 
             if (msgReceived)
             {
-                pool.TraceReport($"DMI->ETCS: EVC-{mmiMPacket}[{Enum.GetName(typeof(DMItoEVCTelegram), mmiMPacket)}] is received.");
+                pool.TraceReport($"DMI->ETCS: EVC-{(byte)mmiMPacket}[{mmiMPacket.ToString()}] is received.");
             }
 
             else
             {
-                pool.TraceError($"DMI->ETCS: EVC-{mmiMPacket}[{Enum.GetName(typeof(DMItoEVCTelegram), mmiMPacket)}] is NOT received.");
+                pool.TraceError($"DMI->ETCS: EVC-{(byte)mmiMPacket}[{mmiMPacket.ToString()}] is NOT received.");
             }
         }
 

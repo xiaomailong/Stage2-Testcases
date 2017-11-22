@@ -74,6 +74,7 @@ namespace Testcase.DMITestCases
 
             DmiActions.Set_Driver_ID(this, "1234");
             DmiActions.Send_SB_Mode(this);
+            DmiExpectedResults.Driver_ID_window_displayed_in_SB_mode(this);
             #endregion
 
             #region Test Step 2
@@ -81,8 +82,10 @@ namespace Testcase.DMITestCases
             Action: Enter Driver ID and perform brake test
             Expected Result: DMI displays Level window
             */
-                
-            DmiActions.ShowInstruction(this, "Confirm the Driver ID");
+
+            DmiActions.ShowInstruction(this, "Confirm the Driver ID AFTER pressing OK");
+            DmiExpectedResults.DMItoEVC_Telegram_Received(this, DMItoEVCTelegram.ETCS1NewDriverData, 10);
+
             DmiActions.Request_Brake_Test(this, 1);
             DmiExpectedResults.Brake_Test_Perform_Order(this, true);
 
@@ -122,6 +125,7 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, "Press the ‘Train data’ button");
 
+            //EVC-6 in order to display Train Data Window
             DmiActions.Send_EVC6_MMICurrentTrainData((MMI_M_DATA_ENABLE)0xff00,
                                                      100, 120, MMI_NID_KEY.PASS1, 85, MMI_NID_KEY.FG1, 0, MMI_NID_KEY_Load_Gauge.G1,
                                                      EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE,
@@ -139,11 +143,55 @@ namespace Testcase.DMITestCases
             Action: Enter and confirm value in each input field.Then, press ‘Yes’ button
             Expected Result: DMI displays Train data validation window
             */
-            DmiActions.ShowInstruction(this, "Enter and confirm values in each input field");
-            
+            DmiActions.ShowInstruction(this, "Enter and confirm values in each input field AFTER pressing OK");
+            DmiExpectedResults.DMItoEVC_Telegram_Received(this,DMItoEVCTelegram.ETCS1NewTrainData, 20);
+
+            DataElement[] dataElements1 = new DataElement[7]
+            {
+                new DataElement{ Identifier = 9, QDataCheck = 0, EchoText = "85" },
+                new DataElement{ Identifier = 10, QDataCheck = 0, EchoText = "120" },
+                new DataElement{ Identifier = 11, QDataCheck = 0, EchoText = "FG1" },
+                new DataElement{ Identifier = 12, QDataCheck = 0, EchoText = "0" },
+                new DataElement{ Identifier = 13, QDataCheck = 0, EchoText = "G1" },
+                new DataElement{ Identifier = 7, QDataCheck = 0, EchoText = "PASS1" },
+                new DataElement{ Identifier = 8, QDataCheck = 0, EchoText = "100" }
+            };
+
+            //EVC-6 in order to enable "Yes" button
+            DmiActions.Send_EVC6_MMICurrentTrainData((MMI_M_DATA_ENABLE)0xff00,
+                                                     100, 120, MMI_NID_KEY.PASS1, 85, MMI_NID_KEY.FG1, 0, MMI_NID_KEY_Load_Gauge.G1,
+                                                     EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE,
+                                                     0, 0,
+                                                     new string[0],  //paramEvc6FixedTrainsetCaptions,
+                                                     dataElements1);
+
+            DmiActions.ShowInstruction(this, "Press 'Yes' button AFTER pressing OK");
+            DmiExpectedResults.DMItoEVC_Telegram_Received(this, DMItoEVCTelegram.ETCS1NewTrainData, 20);
+
+            DataElement[] dataElements2 = new DataElement[8]
+            {
+                new DataElement{ Identifier = 6, QDataCheck = 0, EchoText = "" },
+                new DataElement{ Identifier = 9, QDataCheck = 0, EchoText = "" },
+                new DataElement{ Identifier = 10, QDataCheck = 0, EchoText = "" },
+                new DataElement{ Identifier = 11, QDataCheck = 0, EchoText = "" },
+                new DataElement{ Identifier = 12, QDataCheck = 0, EchoText = "" },
+                new DataElement{ Identifier = 13, QDataCheck = 0, EchoText = "" },
+                new DataElement{ Identifier = 7, QDataCheck = 0, EchoText = "" },
+                new DataElement{ Identifier = 8, QDataCheck = 0, EchoText = "" }
+            };
+
+            //Optional: EVC-6 in order to complete Train Data Entry
+            DmiActions.Send_EVC6_MMICurrentTrainData((MMI_M_DATA_ENABLE)0xff00,
+                                                     100, 120, MMI_NID_KEY.PASS1, 85, MMI_NID_KEY.FG1, 0, MMI_NID_KEY_Load_Gauge.G1,
+                                                     EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE,
+                                                     0, 0,
+                                                     new string[0],  //paramEvc6FixedTrainsetCaptions,
+                                                     dataElements2);
+
+            //EVC-10 in order to display Train Data Validation window
             DmiActions.Send_EVC10_MMIEchoedTrainData(this, (MMI_M_DATA_ENABLE)0xff00,
                                                      100, 120, MMI_NID_KEY.PASS1, 85, MMI_NID_KEY.FG1, 0, MMI_NID_KEY.G1,
-                                                     paramEvc6FixedTrainsetCaptions); 
+                                                     new string[] { }); 
             
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Train data validation window");
@@ -156,12 +204,13 @@ namespace Testcase.DMITestCases
             Action: Press ‘Yes’ button.Then, confirmed selected value by pressing an input field
             Expected Result: DMI displays Train Running Number window
             */
-            DmiActions.ShowInstruction(this, "Press the ‘Yes’ button");            
+            DmiActions.ShowInstruction(this, "Press the ‘Yes’ button AFTER pressing OK");
+            DmiExpectedResults.DMItoEVC_Telegram_Received(this, DMItoEVCTelegram.ETCS1ConfirmedTrainData, 10);
 
             DmiActions.Display_TRN_Window(this);
             DmiExpectedResults.TRN_window_displayed(this);
 
-            #endregion                        
+            #endregion
 
             #region Test Step 7
             /*
@@ -170,7 +219,8 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Main window
             */
 
-            DmiExpectedResults.TRN_entered(this);
+            DmiActions.ShowInstruction(this, "Confirm the Train Running Number AFTER pressing OK");
+            DmiExpectedResults.DMItoEVC_Telegram_Received(this, DMItoEVCTelegram.ETCS1NewTrainNumber, 10);
 
             DmiActions.Display_Main_Window_with_Start_button_enabled(this);
             DmiExpectedResults.Main_Window_displayed(this,true);
