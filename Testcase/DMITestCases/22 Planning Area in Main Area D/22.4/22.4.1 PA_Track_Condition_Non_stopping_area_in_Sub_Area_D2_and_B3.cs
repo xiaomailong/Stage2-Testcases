@@ -35,7 +35,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 17_4_1.tdg
     /// </summary>
-    public class TC_17_4_1_PA_Track_Condition_Non_stopping_area_in_Sub_Area_D2_and_B3 : TestcaseBase
+    public class TC_ID_17_4_1_PA_Track_Condition_Non_stopping_area_in_Sub_Area_D2_and_B3 : TestcaseBase
     {
         public override void PreExecution()
         {
