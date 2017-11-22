@@ -104,6 +104,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 3722 (partly:ETCS)
             */
             DmiActions.ShowInstruction(this, "Enter and confirm the Driver ID. Perform brake test");
+            DmiActions.Request_Brake_Test(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI does not display the message ‘Brake Test in Progress’ because " +
