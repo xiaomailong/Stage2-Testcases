@@ -81,7 +81,7 @@ namespace Testcase.DMITestCases
             Expected Result: The speed pointer is indicated as 20  km/h
             */
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 20;
-
+            
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The speed pointer is displayed with speed = 20 km/h.");
 
@@ -122,7 +122,7 @@ namespace Testcase.DMITestCases
                 MMI_Q_TRACKCOND_ACTION_END = 0
             };
 
-            EVC32_MMITrackConditions.TrackConditions = new List<TrackCondition> { { trackCondition } };
+            EVC32_MMITrackConditions.TrackConditions = new List<TrackCondition> { trackCondition };
             EVC32_MMITrackConditions.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
