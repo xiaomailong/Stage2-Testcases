@@ -113,8 +113,8 @@ namespace Testcase.DMITestCases
                 MMI_O_TRACKCOND_END = 0,
                 MMI_NID_TRACKCOND = 0,
                 MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Radio_hole,
-                MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.InsideArea_Active,
-                MMI_Q_TRACKCOND_ACTION_START = 0,
+                MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea,
+                MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithoutDriverAction,
                 MMI_Q_TRACKCOND_ACTION_END = 0
             };
 
