@@ -123,6 +123,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 10486 (partly: criteria, MMI_gen 244);
             */
             DmiActions.Simulate_communication_loss_EVC_DMI(this);
+            Wait_Realtime(8000);
             this.WaitForVerification("Have all three LX symbols disappeared from the DMI?");
 
             /*
@@ -131,7 +132,17 @@ namespace Testcase.DMITestCases
             Expected Result: All LX01 symbols have reappeared in sub-area B3-B5
             Test Step Comment: (1) Note under MMI_gen 10486;
             */
-            DmiActions.Re_establish_communication_EVC_DMI(this);
+            DmiActions.Re_establish_communication_EVC_DMI(this);            
+            EVC33_MMIAdditionalOrder.MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Level_Crossing;
+            EVC33_MMIAdditionalOrder.MMI_NID_TRACKCOND = 1;
+            EVC33_MMIAdditionalOrder.MMI_Q_TRACKCOND_ACTION = Variables.MMI_Q_TRACKCOND_ACTION.WithoutDriverAction;
+            EVC33_MMIAdditionalOrder.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea;
+            EVC33_MMIAdditionalOrder.Send();
+            EVC33_MMIAdditionalOrder.MMI_NID_TRACKCOND = 2;
+            EVC33_MMIAdditionalOrder.Send();
+            EVC33_MMIAdditionalOrder.MMI_NID_TRACKCOND = 3;
+            EVC33_MMIAdditionalOrder.Send();
+
             this.WaitForVerification("Have all three LX symbols re-appeared on the DMI?");
 
             /*
@@ -173,7 +184,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 10484 (partly: removed stored LX);
                                 (2) MMI_gen 10484 (partly: reception packet EVC-33, NID = MMI_NID_TRACKCOND);
             */
-            EVC33_MMIAdditionalOrder.MMI_NID_TRACKCOND = 2;
+            EVC33_MMIAdditionalOrder.MMI_NID_TRACKCOND = 1;
             EVC33_MMIAdditionalOrder.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.RemoveTC;
             EVC33_MMIAdditionalOrder.Send();
             this.WaitForVerification("Has the LX symbol in area B3 disappeared from the DMI?");
