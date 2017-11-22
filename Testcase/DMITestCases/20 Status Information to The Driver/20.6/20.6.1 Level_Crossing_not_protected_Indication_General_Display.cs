@@ -42,7 +42,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 15_6.tdg
     /// </summary>
-    public class TC_15_6_Level_Crossing_not_protected_Indication : TestcaseBase
+    public class TC_ID_15_6_Level_Crossing_not_protected_Indication : TestcaseBase
     {
         public override void PreExecution()
         {
