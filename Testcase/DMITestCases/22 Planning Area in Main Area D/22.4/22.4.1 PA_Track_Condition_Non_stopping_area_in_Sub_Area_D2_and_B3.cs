@@ -169,7 +169,7 @@ namespace Testcase.DMITestCases
             EVC32_MMITrackConditions.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays symbol TC10 in sub-area B3.");
+                                "1. DMI displays symbol TC11 in sub-area B3.");
 
             /*
             Test Step 8
@@ -191,7 +191,7 @@ namespace Testcase.DMITestCases
             EVC32_MMITrackConditions.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI removes symbol TC10 from sub-area B3.");
+                                "1. DMI removes symbol TC11 from sub-area B3.");
 
             /*
             Test Step 10
