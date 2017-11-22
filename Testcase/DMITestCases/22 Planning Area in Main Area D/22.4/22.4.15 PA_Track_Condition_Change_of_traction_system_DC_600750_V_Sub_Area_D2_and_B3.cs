@@ -82,7 +82,7 @@ namespace Testcase.DMITestCases
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 20;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in FS mode, Level 1.");
+                                "1. DMI displays a speed of 20 km/h.");
 
 
             /*
