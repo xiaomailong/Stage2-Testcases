@@ -67,12 +67,16 @@ namespace Testcase.DMITestCases
             */
             // Don't understand this part of the test!
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
-            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
+            
+            // ETCS must be supplying the time: DMI does not prepend it to the message
 
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
             EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 256;
-            EVC8_MMIDriverMessage.PlainTextMessage = "TEST 15.4";
+            EVC8_MMIDriverMessage.PlainTextMessage = $"{DateTime.Now.ToLocalTime().ToString("HH:mm")} TEST 15.4";
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+            EVC8_MMIDriverMessage.Send();
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
 
             // spec says 'indent' is separator ??
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -129,6 +133,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,Once the first message is sent, DMI does not show the message as the message is marked as an incomplete sentence.Once the second message is sent, DMI does not show the message as the message is marked as an incomplete sentence.DMI displays “ DMITEST” in area E5 after the third message is sent.The first message is overwritten by the second message
             Test Step Comment: (1) MMI_gen 2557 (partly: first part, EVC-8.criteria = 5, incomplete sentence);(2) MMI_gen 2557 (partly: EVC-8.criteria = 5, incomplete sentence);(3) MMI_gen 2557 (partly: 9 seconds, the same index, non-ack);           MMI_gen 7046 (partly: concatenate, non-ack);      MMI_gen 7025 (partly: 2nd bullet, #1);(4) MMI_gen 7046 (partly: overwritten);
             */
+            XML_15_4(msgType.typej);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The plain text message ‘TEST’ does not appear." + Environment.NewLine +
                                 @"2. The plain text message ‘ DMI’ does not appear." + Environment.NewLine +
@@ -141,9 +146,6 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 2557 (partly: second part, different index);(2) MMI_gen 2557 (partly: 9 seconds, the same index, ack);           MMI_gen 7046 (partly: concatenate, ack);      MMI_gen 7025 (partly: 2nd bullet, #1);
             */
             XML_15_4(msgType.typek);
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. After 4s DMI displays ‘ DMI’ in area E5 with a yellow flashing frame." + Environment.NewLine +
-                                @"2. After a further 4s DMI displays ‘TEST DMI’ in area E5 with a yellow flashing frame.");
 
             /*
             Test Step 8
@@ -246,6 +248,7 @@ namespace Testcase.DMITestCases
                     Wait_Realtime(10000);
 
                     // Step 3/2            
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
                     EVC8_MMIDriverMessage.PlainTextMessage = " DMI";
                     EVC8_MMIDriverMessage.Send();
 
@@ -263,6 +266,7 @@ namespace Testcase.DMITestCases
                     Wait_Realtime(9000);
 
                     // Step 4/2            
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
                     EVC8_MMIDriverMessage.PlainTextMessage = " DMI";
                     EVC8_MMIDriverMessage.Send();
 
@@ -292,7 +296,7 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 5;
                     EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
                     EVC8_MMIDriverMessage.MMI_Q_TEXT = 543;
-                    EVC8_MMIDriverMessage.PlainTextMessage = "\0x14";
+                    EVC8_MMIDriverMessage.PlainTextMessage = "20";
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -357,7 +361,7 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 5;
                     EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
                     EVC8_MMIDriverMessage.MMI_Q_TEXT = 543;
-                    EVC8_MMIDriverMessage.PlainTextMessage = "c";
+                    EVC8_MMIDriverMessage.PlainTextMessage = "99";
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -494,7 +498,7 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
                     EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
                     EVC8_MMIDriverMessage.MMI_Q_TEXT = 522;
-                    EVC8_MMIDriverMessage.PlainTextMessage = "\0x00";
+                    EVC8_MMIDriverMessage.PlainTextMessage = "0";
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following where [@] is a solid white rectangular symbol:" + Environment.NewLine + Environment.NewLine +
@@ -620,7 +624,7 @@ namespace Testcase.DMITestCases
                     Wait_Realtime(9000);
 
                     // Step 6/3         
-                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 5;
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
                     EVC8_MMIDriverMessage.PlainTextMessage = "TEST";
                     EVC8_MMIDriverMessage.Send();
 
@@ -635,8 +639,8 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.MMI_Q_TEXT = 256;
                     EVC8_MMIDriverMessage.PlainTextMessage = "TEST";
                     EVC8_MMIDriverMessage.Send();
-
                     Wait_Realtime(4000);
+
 
                     // Step 7/2            
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 0;
@@ -644,12 +648,18 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.PlainTextMessage = " DMI";
                     EVC8_MMIDriverMessage.Send();
 
-                    Wait_Realtime(9000);
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                        @"1. After 4s DMI displays ‘ DMI’ in area E5 with a yellow flashing frame.");
+
+                    Wait_Realtime(4000);
 
                     // Step 7/3                      
                     EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
                     EVC8_MMIDriverMessage.PlainTextMessage = " DMI";
                     EVC8_MMIDriverMessage.Send();
+
+                    WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                        @"1. After a further 4s DMI displays ‘TEST DMI’ in area E5 with a yellow flashing frame.");
                     break;
             }
         }

@@ -92,7 +92,7 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
             EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
-            EVC8_MMIDriverMessage.PlainTextMessage = "\0x01";
+            EVC8_MMIDriverMessage.PlainTextMessage = "0";
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 276;
             EVC8_MMIDriverMessage.Send();
 

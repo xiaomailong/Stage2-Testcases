@@ -34,7 +34,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 17_1_4.tdg, 17_1_4.utt
     /// </summary>
-    public class TC_17_1_4_Planning_Area : TestcaseBase
+    public class TC_ID_17_1_4_Planning_Area : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -66,7 +66,8 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SR mode, level 2
             */
             // Call generic Check Results Method
-               DmiActions.Complete_SoM_L1_SR(this);
+            DmiActions.Complete_SoM_L1_SR(this);
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L2;
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI is displaying Staff Responsible Mode." + Environment.NewLine +
                                 "2. DMI shows that the ATP is in Level 2.");

@@ -37,7 +37,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 15_2_10.tdg
     /// </summary>
-    public class TC_15_2_19_ETCS_Level : TestcaseBase
+    public class TC_15_2_10_ETCS_Level : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -91,7 +91,7 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
             EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 277;
-            EVC8_MMIDriverMessage.PlainTextMessage = "\0x00";
+            EVC8_MMIDriverMessage.PlainTextMessage = "0";
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
