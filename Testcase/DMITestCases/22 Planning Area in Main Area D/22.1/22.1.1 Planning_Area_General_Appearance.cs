@@ -41,7 +41,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 17_1_1.tdg
     /// </summary>
-    public class TC_17_1_1_Planning_Area : TestcaseBase
+    public class TC_ID_17_1_1_Planning_Area : TestcaseBase
     {
         public override void PreExecution()
         {
