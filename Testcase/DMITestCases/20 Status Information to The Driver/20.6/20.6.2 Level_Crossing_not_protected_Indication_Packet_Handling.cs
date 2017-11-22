@@ -33,7 +33,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 15_6_2_a.xml, 15_6_2_b.xml, 15_6_2_c.xml, 15_6_2_d.xml, 15_6_2_e.xml, 15_6_2_f.xml, 15_6_2_g.xml, 15_6_2_h.xml, 15_6_2_i.xml, 15_6_2_j.xml
     /// </summary>
-    public class TC_15_6_2_Level_Crossing_not_protected_Indication : TestcaseBase
+    public class TC_ID_15_6_2_Level_Crossing_not_protected_Indication : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -292,7 +292,7 @@ namespace Testcase.DMITestCases
                             MMI_NID_TRACKCOND = 30,
                             MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Pantograph,
                             MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea,
-                            MMI_Q_TRACKCOND_ACTION_START = 0,
+                            MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithoutDriverAction,
                             MMI_Q_TRACKCOND_ACTION_END = 0 }
                         }
                     };
