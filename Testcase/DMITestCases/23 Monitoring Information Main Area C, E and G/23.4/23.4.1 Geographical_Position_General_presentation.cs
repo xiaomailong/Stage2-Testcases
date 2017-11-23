@@ -107,10 +107,9 @@ namespace Testcase.DMITestCases
             Action: Pass BG1 with Pkt 12, 21, and 27
             Expected Result: DMI displays in FS mode, level 1
             */
-            // Call generic Action Method
-            DmiActions.Send_FS_Mode(this);
-            // Call generic Check Results Method
-            DmiExpectedResults.FS_mode_displayed(this);
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "DMI displays in FS mode, level 1");
 
             /*
             Test Step 3
@@ -155,7 +154,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press on the ‘DR03’ symbol, on sub-area G12.");
 
             // Check if Geographic Position button has been pressed
-            EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.GeographicalPositionRequest;
+            // This wil not work: only release event is trackable
+            //EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.GeographicalPositionRequest;
             EVC5_MMIGeoPosition.MMI_M_ABSOLUTPOS = 8388609;
             EVC5_MMIGeoPosition.MMI_M_RELATIVPOS = 0;
             EVC5_MMIGeoPosition.Send();
