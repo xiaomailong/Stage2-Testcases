@@ -150,6 +150,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI is power off
             */
             DmiActions.ShowInstruction(this, @"Power down the system");
+            DmiActions.Complete_SoM_L1_FS(this);
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 40;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 10000;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI is blank.");
