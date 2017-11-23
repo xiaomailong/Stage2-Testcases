@@ -142,6 +142,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7340;MMI_gen 2996 (partly: Timer);
             */
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 40;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 600000;
 
             EVC8_MMIDriverMessage.MMI_I_TEXT = 1;

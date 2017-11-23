@@ -157,7 +157,7 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Planning Area is removed from area D." + Environment.NewLine +
-                                "2. The speed displayed is 0 km/h.");
+                                "2. The speed displayed is 30 km/h.");
 
             /*
             Test Step 9

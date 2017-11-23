@@ -428,6 +428,9 @@ namespace Testcase.DMITestCases
 
             // Repeat Step 6
             DmiActions.ShowInstruction(this, @"Wait 10s and power up the system");
+            DmiActions.Complete_SoM_L1_FS(this);
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 40;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 10000;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Planning Area is re-displayed in area D." + Environment.NewLine +
