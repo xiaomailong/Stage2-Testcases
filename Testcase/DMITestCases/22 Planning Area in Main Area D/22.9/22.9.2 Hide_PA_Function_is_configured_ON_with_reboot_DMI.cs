@@ -121,7 +121,10 @@ namespace Testcase.DMITestCases
             Expected Result: DMI is power on DMI displays the Planning area The Hide PA button is appeared on the area D of the DMI
             Test Step Comment: MMI_gen 7341;  MMI_gen 2996 (partly: ON); Hide PA icon
             */
-            DmiActions.ShowInstruction(this, @"Wait 10s and power up the system");
+            DmiActions.ShowInstruction(this, @"Wait 10s and power up the system");            
+            DmiActions.Complete_SoM_L1_FS(this);
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 40;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 10000;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Planning Area." + Environment.NewLine +
