@@ -35,7 +35,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 17_9_12.tdg
     /// </summary>
-    public class TC_17_9_12_Hide_PA_Function_with_the_occupied_by_system_outside_ETCS : TestcaseBase
+    public class TC_ID_17_9_12_Hide_PA_Function_with_the_occupied_by_system_outside_ETCS : TestcaseBase
     {
         public override void PreExecution()
         {

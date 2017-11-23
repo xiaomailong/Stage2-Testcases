@@ -35,7 +35,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 17_5_1.tdg
     /// </summary>
-    public class TC_17_5_1_PA_Gradient_Profile_General_appearance : TestcaseBase
+    public class TC_ID_17_5_1_PA_Gradient_Profile_General_appearance : TestcaseBase
     {
         public override void PreExecution()
         {

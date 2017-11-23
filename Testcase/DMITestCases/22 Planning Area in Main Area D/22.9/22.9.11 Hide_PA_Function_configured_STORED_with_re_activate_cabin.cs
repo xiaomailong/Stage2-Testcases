@@ -37,7 +37,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 17_9_11.tdg
     /// </summary>
-    public class TC_17_9_11_Hide_PA_Function_configured_STORED_with_re_activate_cabin : TestcaseBase
+    public class TC_ID_17_9_11_Hide_PA_Function_configured_STORED_with_re_activate_cabin : TestcaseBase
     {
         public override void PreExecution()
         {
