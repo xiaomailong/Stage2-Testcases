@@ -73,14 +73,12 @@ namespace Testcase.DMITestCases
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 0;
 
             Wait_Realtime(3000);
-
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 100;
             EVC1_MMIDynamic.MMI_O_BRAKETARGET = 3000;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI changes from SR mode to FS mode,  Level 1" + Environment.NewLine +
-                                "2. DMI displays the ‘Reversing permitted’ symbol, ST06, in sub-area C6");
-
+                                "1. DMI changes from SR mode to FS mode,  Level 1");
 
             /*
             Test Step 2
@@ -96,7 +94,9 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 286;
             EVC8_MMIDriverMessage.Send();
-
+            
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the ‘Reversing permitted’ symbol, ST06, in sub-area C6");
             /*
             Test Step 3
             Action: Change the train direction to ‘Reverse’
@@ -121,13 +121,11 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Acknowledge ‘Reversing’ mode by pressing in area C1");
 
-            EVC8_MMIDriverMessage.MMI_I_TEXT = 2;
+            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.ReversingModeAck;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
-            EVC8_MMIDriverMessage.MMI_Q_TEXT = 262;
             EVC8_MMIDriverMessage.Send();
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Reversing;
-
-            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.ReversingModeAck;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in RV mode" + Environment.NewLine + Environment.NewLine +
