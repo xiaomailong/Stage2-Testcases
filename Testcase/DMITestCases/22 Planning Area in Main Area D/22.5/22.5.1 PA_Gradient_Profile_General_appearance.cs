@@ -85,7 +85,7 @@ namespace Testcase.DMITestCases
                 new TrackDescription { MMI_G_GRADIENT = 10, MMI_O_GRADIENT = 10000, MMI_O_MRSP = 10500, MMI_V_MRSP = 800},
                 new TrackDescription { MMI_G_GRADIENT = 15, MMI_O_GRADIENT = 20000, MMI_O_MRSP = 15000, MMI_V_MRSP = 700},
                 new TrackDescription { MMI_G_GRADIENT = 20, MMI_O_GRADIENT = 30000, MMI_O_MRSP = 20500, MMI_V_MRSP = 600},
-                new TrackDescription { MMI_G_GRADIENT = -5, MMI_O_GRADIENT = 40000, MMI_O_MRSP = 30000, MMI_V_MRSP_MPH = 400}                
+                new TrackDescription { MMI_G_GRADIENT = -5, MMI_O_GRADIENT = 40000, MMI_O_MRSP = 30000, MMI_V_MRSP = 400}                
             };
 
             EVC4_MMITrackDescription.TrackDescriptions = descriptionsList;
