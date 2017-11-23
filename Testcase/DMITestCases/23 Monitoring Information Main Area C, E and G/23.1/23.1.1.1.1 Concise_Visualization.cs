@@ -128,7 +128,7 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
-            EVC8_MMIDriverMessage.MMI_Q_TEXT = 586;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 568;
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine +
@@ -194,7 +194,7 @@ namespace Testcase.DMITestCases
 
             // Spec says ST03 symbol, Connection established but 613 is ST103 Connection Up
             WaitForVerification("Check the following:" + Environment.NewLine +
-                                "1. DMI displays the ‘Connection Up’ symbol (ST103) in sub-area E1.");
+                                "1. DMI displays the ‘Connection established’ symbol (ST03) in sub-area E1.");
 
             /*
             Test Step 8
@@ -244,7 +244,7 @@ namespace Testcase.DMITestCases
             XML_18_1_1_1_1_b();
 
             WaitForVerification("Check the following:" + Environment.NewLine +
-                                "1. DMI displays the ‘Connection established’ symbol (ST03) in sub-area E1.");
+                                "1. DMI displays the ‘Connection established with two RBCs’ symbol (ST03B) in sub-area E1.");
 
             /*
             Test Step 12
