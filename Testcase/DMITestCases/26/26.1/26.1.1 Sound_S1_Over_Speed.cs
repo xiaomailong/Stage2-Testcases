@@ -118,7 +118,7 @@ namespace Testcase.DMITestCases
             Expected Result: The train is at standstill.
             Test Step Comment: 
             */
-            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 40;
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The speed displayed is 0 km/h.");
@@ -132,13 +132,11 @@ namespace Testcase.DMITestCases
         #region Send_XML_21_1_1_DMI_Test_Specification
 
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Overspeed_Status_Indication_Status_Target_Speed_Monitoring;
-            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 1107;
+            EVC1_MMIDynamic.MMI_V_TRAIN = 1107;
             EVC1_MMIDynamic.MMI_V_PERMITTED = 1101;   // below current speed
             EVC1_MMIDynamic.MMI_V_TARGET_KMH = 0;
-            EVC1_MMIDynamic.MMI_V_INTERVENTION_KMH = 1242;
-
-            DmiActions.ShowInstruction(this, @"Whilst keeping the  button pressed, drag outside its area");
-
+            EVC1_MMIDynamic.MMI_V_INTERVENTION = 1242;
+            
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Overspeed’sound (‘S1_toofast.wav’) is played once.");
 
