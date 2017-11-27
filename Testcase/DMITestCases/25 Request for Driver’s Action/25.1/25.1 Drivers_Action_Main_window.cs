@@ -87,10 +87,10 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, "Select and confirm Level 1");
 
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
-            EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.LevelEntered;
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.Level1Selected;
+            EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.LevelEntered;
 
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;      // Main
             // Don't want non-leading enabled at this point (see Step 8)
@@ -99,11 +99,11 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.Send();
 
             DmiActions.ShowInstruction(this, @"Press the ‘Driver ID’ button");
-
+            EVC14_MMICurrentDriverID.MMI_X_DRIVER_ID = "2";
+            EVC14_MMICurrentDriverID.Send();
             EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.ChangeDriverIdentity;
 
             DmiActions.ShowInstruction(this, @"Press the ‘Close’ button");
-
             EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.ExitDriverDataEntry;
             
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -123,7 +123,7 @@ namespace Testcase.DMITestCases
             EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.ExitTrainDataEntry;
 
             DmiActions.ShowInstruction(this, @"Press the ‘Level’ button");
-
+            EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
             EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.ChangeLevel;
             EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Disabled;
             EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new Variables.MMI_Q_LEVEL_NTC_ID[] { Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level };
@@ -163,8 +163,8 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Press the ‘Train data’ button");
 
-            EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.StartTrainDataEntry;
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.TrainDataEntryRequested;
+            EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.StartTrainDataEntry;
 
             DmiActions.Send_EVC6_MMICurrentTrainData_FixedDataEntry(this, new[] { "FLU" }, 1);
 

@@ -38,7 +38,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 20_4_a.xml
     /// </summary>
-    public class Drivers_Action_Settings_window : TestcaseBase
+    public class TC_ID_20_4_Drivers_Action_Settings_window : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -97,8 +97,17 @@ namespace Testcase.DMITestCases
                                 "1. DMI closes the System version window.");
 
             DmiActions.ShowInstruction(this, "Press the ‘System info’ button");
-
             EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.SystemInfoRequest;
+
+            EVC24_MMISystemInfo.MMI_NID_ENGINE_1 = 1234;
+            EVC24_MMISystemInfo.MMI_T_TIMEOUT_BRAKE = 0x5695224c;         // 1452614220
+            EVC24_MMISystemInfo.MMI_T_TIMEOUT_BTM = 0x54b3eecc;            // 1421078220
+            EVC24_MMISystemInfo.MMI_T_TIMEOUT_TBSW = 0x538b4d4c;           // 1401638220
+            EVC24_MMISystemInfo.MMI_M_ETC_VER = 0xffaa0f;                    // 16755215
+            EVC24_MMISystemInfo.MMI_M_AVAIL_SERVICES = 0xffff;             // 65535 
+            EVC24_MMISystemInfo.MMI_M_BRAKE_CONFIG = 55;      
+            EVC24_MMISystemInfo.MMI_M_LEVEL_INST = 248;
+            EVC24_MMISystemInfo.Send();
 
             DmiActions.ShowInstruction(this, "Press the ‘Close’ button");
 
@@ -122,10 +131,13 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, "Press the ‘Close’ button");
 
+
+
             EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.ExitSetVBC;
 
             EVC18_MMISetVBC.MMI_N_VBC = 1;
             EVC18_MMISetVBC.MMI_Q_DATA_CHECK = Variables.Q_DATA_CHECK.All_checks_passed;
+            EVC18_MMISetVBC.ECHO_TEXT = "";
             EVC18_MMISetVBC.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_VBC.BTN_SETTINGS;
             EVC18_MMISetVBC.Send();
 
@@ -148,8 +160,15 @@ namespace Testcase.DMITestCases
             EVC28_MMIEchoedSetVBCData.MMI_M_VBC_CODE_ = 65536;
             EVC28_MMIEchoedSetVBCData.Send();
 
-            DmiActions.ShowInstruction(this, "Select and confirm the ‘Yes’ button in the Set VBC validation window, then press the ‘Remove VBC’ button");
-            
+            DmiActions.ShowInstruction(this, "Select and confirm the ‘Yes’ button in the Set VBC validation window");
+            EVC18_MMISetVBC.ECHO_TEXT = "";
+            EVC18_MMISetVBC.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_VBC.BTN_SETTINGS;
+            EVC18_MMISetVBC.MMI_N_VBC = 1;
+            EVC18_MMISetVBC.MMI_Q_DATA_CHECK = Variables.Q_DATA_CHECK.All_checks_passed;
+            EVC18_MMISetVBC.Send();
+
+            DmiActions.ShowInstruction(this, "Press the ‘Remove VBC’ button");
+            EVC19_MMIRemoveVBC.MMI_N_VBC = 0;
             EVC19_MMIRemoveVBC.Send(); 
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -169,6 +188,7 @@ namespace Testcase.DMITestCases
             EVC19_MMIRemoveVBC.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_VBC.BTN_SETTINGS;
             EVC19_MMIRemoveVBC.MMI_N_VBC = 1;
             EVC19_MMIRemoveVBC.MMI_Q_DATA_CHECK = Variables.Q_DATA_CHECK.All_checks_passed;
+            EVC19_MMIRemoveVBC.ECHO_TEXT = "";
             EVC19_MMIRemoveVBC.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +

@@ -39,7 +39,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 20_5.utt
     /// </summary>
-    public class Drivers_Action_RBC_Contact_windows : TestcaseBase
+    public class TC_ID_25_5_Drivers_Action_RBC_Contact_windows : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -90,8 +90,8 @@ namespace Testcase.DMITestCases
 
             EVC22_MMICurrentRBC.MMI_NID_WINDOW = 9;
             EVC22_MMICurrentRBC.NetworkCaptions = new List<string> { "GSMR-A", "GSMR-B" };
-            EVC22_MMICurrentRBC.DataElements = new List<DataElement> { new DataElement { Identifier = 0, QDataCheck = 23, EchoText = "23" },
-                                                                       new DataElement { Identifier = 1, QDataCheck = 24, EchoText = "24" } };
+            EVC22_MMICurrentRBC.DataElements = new List<DataElement> { new DataElement { Identifier = 0, QDataCheck = 23, EchoText = "" },
+                                                                       new DataElement { Identifier = 1, QDataCheck = 24, EchoText = "" } };
             EVC22_MMICurrentRBC.Send();
 
             DmiActions.ShowInstruction(this, @"Press the ‘Close’ button");

@@ -35,7 +35,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 20_6.tdg
     /// </summary>
-    public class Drivers_Action_Geographical_Information : TestcaseBase
+    public class TC_ID_25_6_Drivers_Action_Geographical_Information : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -45,7 +45,16 @@ namespace Testcase.DMITestCases
             base.PreExecution();
 
             // Test system is powered on.Cabin is activated.SoM is performed in SR mode, level 1.
-            DmiActions.Complete_SoM_L1_SR(this);
+            DmiActions.Start_ATP();
+            DmiActions.Activate_Cabin_1(this);
+            DmiActions.Set_Driver_ID(this, "1234");
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Start | 
+                                                               EVC30_MMIRequestEnable.EnabledRequests.GeographicalPosition |
+                                                               Variables.standardFlags;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Default;
+            EVC30_MMIRequestEnable.Send();
         }
 
         public override void PostExecution()

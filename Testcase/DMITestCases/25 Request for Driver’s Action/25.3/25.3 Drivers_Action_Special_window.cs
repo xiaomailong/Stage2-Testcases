@@ -37,7 +37,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 20_3.tdg
     /// </summary>
-    public class Drivers_Action_Special_window : TestcaseBase
+    public class TC_ID_20_3_Drivers_Action_Special_window : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -79,6 +79,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press the ‘Special’ button, then press the ‘SR speed/distance’ button");
 
             EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.ChangeSRrules;
+            EVC11_MMICurrentSRRules.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS.BTN_CLOSE;
+            EVC11_MMICurrentSRRules.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Special window and displays the SR speed/distance window.");
@@ -92,6 +94,12 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press the ‘Close’ button");
 
             EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.ExitChangeSRrules;
+            EVC11_MMICurrentSRRules.DataElements = new List<Variables.DataElement>
+            {
+                new Variables.DataElement{ Identifier = 15, EchoText = "0", QDataCheck = 0 },
+                new Variables.DataElement{ Identifier = 16, EchoText = "0", QDataCheck = 0 }
+            };
+            EVC11_MMICurrentSRRules.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the SR speed/distance window and displays the Special window.");
