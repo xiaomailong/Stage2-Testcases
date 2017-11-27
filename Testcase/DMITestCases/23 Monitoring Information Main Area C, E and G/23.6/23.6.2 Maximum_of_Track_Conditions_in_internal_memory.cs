@@ -565,6 +565,7 @@ Test Step Comment: (1) MMI_gen 10465 (partly: TC35); MMI_gen 662 (partly: TC35);
                 case msgType.typea:
                     // Step 1
                     EVC32_MMITrackConditions.MMI_Q_TRACKCOND_UPDATE = 0;
+                    EVC32_MMITrackConditions.Send();
 
                     TrackCondition trackCondition0 = new TrackCondition
                     {
@@ -574,8 +575,7 @@ Test Step Comment: (1) MMI_gen 10465 (partly: TC35); MMI_gen 662 (partly: TC35);
                         MMI_NID_TRACKCOND = 0,
                         MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Pantograph,
                         MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea,
-                        MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithoutDriverAction,
-                        MMI_Q_TRACKCOND_ACTION_END = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction
+                        MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithoutDriverAction
                     };
                     TrackCondition trackCondition1 = new TrackCondition
                     {
@@ -585,8 +585,7 @@ Test Step Comment: (1) MMI_gen 10465 (partly: TC35); MMI_gen 662 (partly: TC35);
                         MMI_NID_TRACKCOND = 1,
                         MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Pantograph,
                         MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.InsideArea_Active,
-                        MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithoutDriverAction,
-                        MMI_Q_TRACKCOND_ACTION_END = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction
+                        MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithoutDriverAction
                     };
                     TrackCondition trackCondition2 = new TrackCondition
                     {
@@ -596,14 +595,12 @@ Test Step Comment: (1) MMI_gen 10465 (partly: TC35); MMI_gen 662 (partly: TC35);
                         MMI_NID_TRACKCOND = 2,
                         MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Pantograph,
                         MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.LeaveArea,
-                        MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction,
                         MMI_Q_TRACKCOND_ACTION_END = Variables.MMI_Q_TRACKCOND_ACTION.WithoutDriverAction
                     };
 
-                    List<TrackCondition> trackConditionList = new List<TrackCondition> { trackCondition0, trackCondition1, trackCondition2 };
-
+                    List<TrackCondition> trackConditionList = new List<TrackCondition> { trackCondition1 };
+                    //List<TrackCondition> trackConditionList = new List<TrackCondition> { trackCondition0, trackCondition1, trackCondition2 };
                     EVC32_MMITrackConditions.TrackConditions = trackConditionList;
-
                     EVC32_MMITrackConditions.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
