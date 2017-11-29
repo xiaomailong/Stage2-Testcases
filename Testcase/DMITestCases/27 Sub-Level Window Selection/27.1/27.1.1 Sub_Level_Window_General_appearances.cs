@@ -278,8 +278,20 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 2955 (partly: ‘Data view’, MMI_gen 4381 (partly: exit state ‘Pressed’, execute function associated to the button)) , MMI_gen 12137 (partly: Sub-level window, data view)
             */
             DmiActions.ShowInstruction(this, @"Release the ‘Data view’ button");
-
-            EVC13_MMIDataView.Send();
+            EVC13_MMIDataView.MMI_X_DRIVER_ID = "";
+            EVC13_MMIDataView.MMI_NID_OPERATION = 0xffffffff;
+            EVC13_MMIDataView.MMI_M_DATA_ENABLE = (Variables.MMI_M_DATA_ENABLE)0x0080;     // 128
+            EVC13_MMIDataView.MMI_L_TRAIN = 4096;
+            EVC13_MMIDataView.MMI_V_MAXTRAIN = 601;
+            EVC13_MMIDataView.MMI_M_BRAKE_PERC = 9;
+            EVC13_MMIDataView.MMI_NID_KEY_AXLE_LOAD = Variables.MMI_NID_KEY.FG4;       // 20
+            EVC13_MMIDataView.MMI_NID_RADIO = 0xffffffffffffffff;          // 4294967295 (= 0xffffffff) hi, 4294967295 (= 0xffffffff) lo
+            EVC13_MMIDataView.MMI_M_AIRTIGHT = 3;
+            EVC13_MMIDataView.MMI_NID_KEY_LOAD_GAUGE = Variables.MMI_NID_KEY.CATE5;
+            EVC13_MMIDataView.Trainset_Caption = "";
+            EVC13_MMIDataView.Network_Caption = "";
+            EVC13_MMIDataView.MMI_NID_KEY_TRAIN_CAT = Variables.MMI_NID_KEY.CATA;  // 21
+            EVC13_MMIDataView.Send(); ;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Data view window.");
@@ -459,7 +471,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Select and confirm a language other than German");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the Settings window with texts displayed in French.");
+                                "1. DMI displays the Settings window with texts displayed in the language just selected.");
 
             // Repeat Step 31
             DmiActions.ShowInstruction(this, @"Press the ‘Close’ button");

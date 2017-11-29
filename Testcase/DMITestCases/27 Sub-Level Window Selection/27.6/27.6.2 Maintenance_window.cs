@@ -35,7 +35,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 22_6_2_a.xml, 22_6_2_b.xml, 22_6_2_c.xml, 22_6_2_d.xml
     /// </summary>
-    public class TC_22_6_2_Maintenance_window : TestcaseBase
+    public class TC_ID_22_6_2_Maintenance_window : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -329,7 +329,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Release the ‘Close’ button");
             
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the Close window.");
+                                "1. DMI displays the Settings window.");
             /*
             Test Step 18
             Action: End of test

@@ -201,7 +201,7 @@ namespace Testcase.DMITestCases
                                 "6. The window title is ‘Level inhibition’." + Environment.NewLine +
                                 "7. A data input window with one input field covers areas D, F and G" + Environment.NewLine +
                                 "8. 4 buttons ‘Level 1’, ‘Level 2’, ‘Level 3’ and ‘Level 0’ are displayed." + Environment.NewLine +
-                                "9. The ‘Close’ button is displayed disabled." + Environment.NewLine +
+                                "9. The ‘Close’ button is displayed enabled." + Environment.NewLine +
                                 "10. The data input field is displayed in areas D and F." + Environment.NewLine +
                                 "11. The data input field is described by the window title." + Environment.NewLine +
                                 "12. The Level inhibition window contains only one data input field with only the data part." + Environment.NewLine +
@@ -255,7 +255,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press and hold the ‘Level 3’ button");
 
             WaitForVerification("Check the following (* indicates sub-areas drawn as one area):" + Environment.NewLine + Environment.NewLine +
-                                "1. The data input field displays ‘Level1’" + Environment.NewLine +
+                                "1. The data input field displays ‘Level3’" + Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 "3. The  ‘Level 3’ button is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
                                 "4. The input field can have a value entered." + Environment.NewLine +
@@ -265,13 +265,13 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Release the ‘Level 3’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The  ‘Level 1’ button is displayed enabled.");
+                                "1. The  ‘Level 3’ button is displayed enabled.");
 
             // Repeat for Level 0 button
             DmiActions.ShowInstruction(this, "Press and hold the ‘Level 0’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The data input field displays ‘Level1’" + Environment.NewLine +
+                                "1. The data input field displays ‘Level0’" + Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 "3. The  ‘Level 0’ button is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
                                 "4. The input field can have a value entered." + Environment.NewLine +
@@ -326,18 +326,12 @@ namespace Testcase.DMITestCases
             EVC20_MMISelectLevel.Send();
 
             EVC121_MMINewLevel.LevelSelected = MMI_M_LEVEL_NTC_ID.L1;
-            this.Wait_Realtime(300);
-
             EVC121_MMINewLevel.LevelSelected = MMI_M_LEVEL_NTC_ID.L2;
-            this.Wait_Realtime(300);
-
             EVC121_MMINewLevel.LevelSelected = MMI_M_LEVEL_NTC_ID.L3;
-            this.Wait_Realtime(300);
-
             EVC121_MMINewLevel.LevelSelected = MMI_M_LEVEL_NTC_ID.L0;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI closes the Inhibition level window and opens the Main window." + Environment.NewLine +
+                                "1. DMI closes the Inhibition level window and opens the Level window." + Environment.NewLine +
                                 "2. The ‘Level 2’ button is displayed with orange text");
 
             /*
@@ -411,18 +405,13 @@ namespace Testcase.DMITestCases
             EVC20_MMISelectLevel.Send();
 
             EVC121_MMINewLevel.LevelSelected = MMI_M_LEVEL_NTC_ID.L1;
-            this.Wait_Realtime(300);
-
             EVC121_MMINewLevel.LevelSelected = MMI_M_LEVEL_NTC_ID.L2;
-            this.Wait_Realtime(300);
-
             EVC121_MMINewLevel.LevelSelected = MMI_M_LEVEL_NTC_ID.L3;
-            this.Wait_Realtime(300);
-
             EVC121_MMINewLevel.LevelSelected = MMI_M_LEVEL_NTC_ID.L0;
 
+            EVC20_MMISelectLevel.Send();
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI closed the Inhibition level window and opens the Main window." + Environment.NewLine +
+                                "1. DMI closes the Inhibition level window and opens the Level window." + Environment.NewLine +
                                 "2. The ‘Level 1’ button is displayed with orange text");
 
             // Repeat Step 10 for Level 1
@@ -479,18 +468,13 @@ namespace Testcase.DMITestCases
             EVC20_MMISelectLevel.Send();
 
             EVC121_MMINewLevel.LevelSelected = MMI_M_LEVEL_NTC_ID.L1;
-            this.Wait_Realtime(300);
-
             EVC121_MMINewLevel.LevelSelected = MMI_M_LEVEL_NTC_ID.L2;
-            this.Wait_Realtime(300);
-
             EVC121_MMINewLevel.LevelSelected = MMI_M_LEVEL_NTC_ID.L3;
-            this.Wait_Realtime(300);
-
             EVC121_MMINewLevel.LevelSelected = MMI_M_LEVEL_NTC_ID.L0;
+            EVC20_MMISelectLevel.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI closes the Inhibition level window and opens the Main window." + Environment.NewLine +
+                                "1. DMI closes the Inhibition level window and opens the Level window." + Environment.NewLine +
                                 "2. The ‘Level 3’ button is displayed with orange text");
 
             // Repeat Step 10 for Level 3
@@ -513,7 +497,6 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Select and confirm ‘Level 0’, then acknowledge the inhibition level");
 
             EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = MMI_Q_CLOSE_ENABLE.Disabled;
-
             EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new MMI_Q_LEVEL_NTC_ID[]
                                                           { MMI_Q_LEVEL_NTC_ID.ETCS_Level,
                                                             MMI_Q_LEVEL_NTC_ID.ETCS_Level,
@@ -547,18 +530,13 @@ namespace Testcase.DMITestCases
             EVC20_MMISelectLevel.Send();
 
             EVC121_MMINewLevel.LevelSelected = MMI_M_LEVEL_NTC_ID.L1;
-            this.Wait_Realtime(300);
-
             EVC121_MMINewLevel.LevelSelected = MMI_M_LEVEL_NTC_ID.L2;
-            this.Wait_Realtime(300);
-
             EVC121_MMINewLevel.LevelSelected = MMI_M_LEVEL_NTC_ID.L3;
-            this.Wait_Realtime(300);
-
             EVC121_MMINewLevel.LevelSelected = MMI_M_LEVEL_NTC_ID.L0;
+            EVC20_MMISelectLevel.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI closed the Inhibition level window and opens the Main window." + Environment.NewLine +
+                                "1. DMI closes the Inhibition level window and opens the Level window." + Environment.NewLine +
                                 "2. The ‘Level 0’ button is displayed with orange text");
 
             // Repeat Step 10 for Level 1
@@ -584,6 +562,14 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 2278 (partly: close Level inhibition window);(2) MMI_gen 2278 (partly: No response is transmitted to onboard);
             */
             XML_22_5_3(msgType.typea);
+            EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = MMI_Q_CLOSE_ENABLE.Disabled;
+            EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new MMI_Q_LEVEL_NTC_ID[] { MMI_Q_LEVEL_NTC_ID.ETCS_Level, MMI_Q_LEVEL_NTC_ID.ETCS_Level };
+            EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new MMI_M_CURRENT_LEVEL[] { MMI_M_CURRENT_LEVEL.LastUsedLevel, MMI_M_CURRENT_LEVEL.LastUsedLevel };
+            EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = new MMI_M_LEVEL_FLAG[] { MMI_M_LEVEL_FLAG.MarkedLevel, MMI_M_LEVEL_FLAG.MarkedLevel };
+            EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = new MMI_M_INHIBITED_LEVEL[] { MMI_M_INHIBITED_LEVEL.Inhibited, MMI_M_INHIBITED_LEVEL.NotInhibited };
+            EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = new MMI_M_INHIBIT_ENABLE[] { MMI_M_INHIBIT_ENABLE.AllowedForInhibiting, MMI_M_INHIBIT_ENABLE.AllowedForInhibiting };
+            EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new MMI_M_LEVEL_NTC_ID[] { MMI_M_LEVEL_NTC_ID.L0, MMI_M_LEVEL_NTC_ID.L3 };
+            EVC20_MMISelectLevel.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Inhibition level window and opens the Level window.");
@@ -597,7 +583,7 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Level inhibition window." + Environment.NewLine +
-                                "2. The data input field value is ‘Level 0’.");
+                                "2. The data input field value is ‘Level 3’.");
 
             /*
             Test Step 15
@@ -644,6 +630,15 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Release the ‘Close’ button");
+
+            EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = MMI_Q_CLOSE_ENABLE.Disabled;
+            EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new MMI_Q_LEVEL_NTC_ID[] { MMI_Q_LEVEL_NTC_ID.ETCS_Level };
+            EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new MMI_M_CURRENT_LEVEL[] { MMI_M_CURRENT_LEVEL.LastUsedLevel };
+            EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = new MMI_M_LEVEL_FLAG[] { MMI_M_LEVEL_FLAG.MarkedLevel };
+            EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = new MMI_M_INHIBITED_LEVEL[] { MMI_M_INHIBITED_LEVEL.Inhibited };
+            EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = new MMI_M_INHIBIT_ENABLE[] { MMI_M_INHIBIT_ENABLE.AllowedForInhibiting };
+            EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new MMI_M_LEVEL_NTC_ID[] { MMI_M_LEVEL_NTC_ID.L0 };
+            EVC20_MMISelectLevel.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Level inhibition window and displays the Level window.");

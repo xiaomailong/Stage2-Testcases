@@ -115,10 +115,10 @@ namespace Testcase.Telegrams.EVCtoDMI
         {
             set
             {
-                uint wheelSize = (uint)value;
-                wheelSize = ~wheelSize;
+                ushort wheelSize = (ushort)value;
+                wheelSize = (ushort)~wheelSize;
 
-                _pool.SITR.ETCS1.EchoedMaintenanceData.MmiMSduWheelSize1R.Value = BitReverser16((ushort)wheelSize);
+                _pool.SITR.ETCS1.EchoedMaintenanceData.MmiMSduWheelSize1R.Value = BitReverser16(wheelSize);
             }
         }
 
@@ -141,10 +141,10 @@ namespace Testcase.Telegrams.EVCtoDMI
         {
             set
             {
-                uint wheelSize = (uint)value;
-                wheelSize = ~wheelSize;
+                ushort wheelSize = (ushort)value;
+                wheelSize = (ushort)~wheelSize;
 
-                _pool.SITR.ETCS1.EchoedMaintenanceData.MmiMSduWheelSize2R.Value = BitReverser16((ushort)wheelSize);
+                _pool.SITR.ETCS1.EchoedMaintenanceData.MmiMSduWheelSize2R.Value = BitReverser16(wheelSize);
             }
         }
 
@@ -184,10 +184,10 @@ namespace Testcase.Telegrams.EVCtoDMI
         {
             set
             {
-                int wheelSizeError = (int)value;
-                wheelSizeError = ~wheelSizeError;
+                byte wheelSizeError = (byte)value;
+                wheelSizeError = (byte)~wheelSizeError;
 
-                _pool.SITR.ETCS1.EchoedMaintenanceData.MmiMWheelSizeErrR.Value = BitReverser8((byte)wheelSizeError);
+                _pool.SITR.ETCS1.EchoedMaintenanceData.MmiMWheelSizeErrR.Value = BitReverser8(wheelSizeError);
             }
         }
     }

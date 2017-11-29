@@ -34,7 +34,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// N/A
     /// </summary>
-    public class TC_22_6_3_1_Wheel_diameter_window : TestcaseBase
+    public class TC_ID_22_6_3_1_Wheel_diameter_window : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -905,13 +905,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Wheel diameter 2’ data input field becomes selected.");
             // Wheel diameter 3
-            DmiActions.ShowInstruction(this, @"Press in and hold the data part of the ‘Wheel diameter 3’ data input field");
-            DmiActions.ShowInstruction(this, @"Drag the data part of the ‘Wheel diameter 3’ data input field outside of its area, keeping the area pressed");
-            DmiActions.ShowInstruction(this, @"Whilst keeping the label part of the ‘Wheel diameter 3’ data input field pressed, drag it back inside its area");
-            DmiActions.ShowInstruction(this, @"Release the label part of the ‘Wheel diameter 3’ data input field");
+            DmiActions.ShowInstruction(this, @"Press in and hold the data part of the ‘Accuracy’ data input field");
+            DmiActions.ShowInstruction(this, @"Drag the data part of the ‘Accuracy’ data input field outside of its area, keeping the area pressed");
+            DmiActions.ShowInstruction(this, @"Whilst keeping the label part of the ‘Accuracy’ data input field pressed, drag it back inside its area");
+            DmiActions.ShowInstruction(this, @"Release the label part of the ‘WAccuracy’ data input field");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘Wheel diameter 3’ data input field becomes selected.");
+                                "1. The ‘Accuracy’ data input field becomes selected.");
 
             /*
             Test Step 27

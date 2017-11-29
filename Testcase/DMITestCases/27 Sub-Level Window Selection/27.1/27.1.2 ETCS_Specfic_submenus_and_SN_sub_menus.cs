@@ -86,15 +86,17 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Main window The Close buton is enable
             Test Step Comment: MMI_gen 1319 (partly:bullet1 and bullet2);
             */
-            DmiActions.ShowInstruction(this, "Select the Main menu item");
 
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Default;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.TrainData |
                                                                EVC30_MMIRequestEnable.EnabledRequests.Level |
                                                                EVC30_MMIRequestEnable.EnabledRequests.Shunting |
-                                                               EVC30_MMIRequestEnable.EnabledRequests.TrainRunningNumber;
+                                                               EVC30_MMIRequestEnable.EnabledRequests.TrainRunningNumber |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.TrainIntegrity;
             EVC30_MMIRequestEnable.Send();
+
+            DmiActions.ShowInstruction(this, "Select the Main menu item");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Main window." + Environment.NewLine +
@@ -147,7 +149,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Select the Data view menu item");
 
             EVC13_MMIDataView.MMI_X_DRIVER_ID = "1";
-            EVC13_MMIDataView.MMI_NID_OPERATION = 0;
+            EVC13_MMIDataView.MMI_NID_OPERATION = 0x0fffffff;
             EVC13_MMIDataView.MMI_NID_KEY_TRAIN_CAT = Variables.MMI_NID_KEY.PASS1;
             EVC13_MMIDataView.MMI_L_TRAIN = 100;
             EVC13_MMIDataView.MMI_M_BRAKE_PERC = 70;
@@ -155,6 +157,8 @@ namespace Testcase.DMITestCases
             EVC13_MMIDataView.MMI_NID_KEY_AXLE_LOAD = Variables.MMI_NID_KEY.CATA;
             EVC13_MMIDataView.MMI_M_AIRTIGHT = 0;
             EVC13_MMIDataView.MMI_NID_KEY_LOAD_GAUGE = Variables.MMI_NID_KEY.OutofGC;
+            EVC13_MMIDataView.Trainset_Caption = "";
+            EVC13_MMIDataView.Network_Caption = "";
             EVC13_MMIDataView.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -218,7 +222,8 @@ namespace Testcase.DMITestCases
                                                                EVC30_MMIRequestEnable.EnabledRequests.SystemVersion |
                                                                EVC30_MMIRequestEnable.EnabledRequests.RemoveVBC |
                                                                EVC30_MMIRequestEnable.EnabledRequests.SetLocalOffset |
-                                                               EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter;
+                                                               EVC30_MMIRequestEnable.EnabledRequests.Reserved;
+            EVC30_MMIRequestEnable.Send();
 
             DmiActions.ShowInstruction(this, "Select the Settings menu item");
              
