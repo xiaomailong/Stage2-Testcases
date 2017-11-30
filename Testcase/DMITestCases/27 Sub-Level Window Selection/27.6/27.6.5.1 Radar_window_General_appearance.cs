@@ -624,7 +624,7 @@ namespace Testcase.DMITestCases
             EVC40_MMICurrentMaintenanceData.MMI_M_PULSE_PER_KM_1 = (Variables.MMI_M_PULSE_PER_KM)20001;
             EVC40_MMICurrentMaintenanceData.MMI_M_PULSE_PER_KM_2 = (Variables.MMI_M_PULSE_PER_KM)20001;
             EVC40_MMICurrentMaintenanceData.MMI_Q_MD_DATASET = Variables.MMI_Q_MD_DATASET.Doppler;
-            EVC41_MMIEchoedMaintenanceData.Send();
+            EVC40_MMICurrentMaintenanceData.Send();
 
             DmiActions.ShowInstruction(this, @"Confirm the current data without re-entering Radar 1 or Radar 2 and press the ‘Yes’ button");
 
@@ -649,7 +649,7 @@ namespace Testcase.DMITestCases
             EVC40_MMICurrentMaintenanceData.MMI_M_PULSE_PER_KM_1 = (Variables.MMI_M_PULSE_PER_KM)20001;
             EVC40_MMICurrentMaintenanceData.MMI_M_PULSE_PER_KM_2 = (Variables.MMI_M_PULSE_PER_KM)20001;
             EVC40_MMICurrentMaintenanceData.MMI_Q_MD_DATASET = Variables.MMI_Q_MD_DATASET.Doppler;
-            EVC41_MMIEchoedMaintenanceData.Send();
+            EVC40_MMICurrentMaintenanceData.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Radar window");

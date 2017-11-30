@@ -52,8 +52,6 @@ namespace Testcase.DMITestCases
         {
             // Post-conditions from TestSpec
             // DMI displays in SR mode, level 1.
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in SR mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -93,6 +91,8 @@ namespace Testcase.DMITestCases
             EVC13_MMIDataView.MMI_NID_KEY_AXLE_LOAD = Variables.MMI_NID_KEY.CATA;
             EVC13_MMIDataView.MMI_M_AIRTIGHT = 0;
             EVC13_MMIDataView.MMI_NID_KEY_LOAD_GAUGE = Variables.MMI_NID_KEY.OutofGC;
+            EVC13_MMIDataView.Network_Caption = "";
+            EVC13_MMIDataView.Trainset_Caption = "";
             EVC13_MMIDataView.Send();
 
             // The window title is displayed with text ‘Data view(1 / 2)’
@@ -188,7 +188,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Release the ‘Previous’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the next page of the Train data." + Environment.NewLine +
+                                "1. DMI displays the previous page of the Train data." + Environment.NewLine +
                                 "2. The data view items ‘RBC ID’, ‘RBC phone number’, ‘VBC set code’ (if any) are displayed correctly." + Environment.NewLine +
                                 @"3. The ‘Previous’ button is disabled (DMI displays symbol NA18.2)." + Environment.NewLine +
                                 @"4. The ‘Next’ button is enabled (DMI displays symbol NA18).");
@@ -260,15 +260,19 @@ namespace Testcase.DMITestCases
                     EVC13_MMIDataView.MMI_NID_RADIO = 0xffffffffffffffff;          // 4294967295 (= 0xffffffff) hi, 4294967295 (= 0xffffffff) lo
                     EVC13_MMIDataView.MMI_M_AIRTIGHT = 3;
                     EVC13_MMIDataView.MMI_NID_KEY_LOAD_GAUGE = Variables.MMI_NID_KEY.CATE5;
+                    // EVC13 strings not working at present
                     // XML settings will break: the captions are longer than permitted => set to length 12/16
-                    EVC13_MMIDataView.Trainset_Caption = "\0x00\0x00\0x00\0x00\0x00\0x00\0x00\0x00\0x00\0x00\0x00\0x00";
-                    EVC13_MMIDataView.Network_Caption = "\0x00\0x00\0x00\0x00\0x00\0x00\0x00\0x00\0x00\0x00\0x00\0x00\0x00\0x00\0x00\0x00";
+                    //EVC13_MMIDataView.Trainset_Caption = "000000000000";
+                    //EVC13_MMIDataView.Network_Caption = "0000000000000000";
                     EVC13_MMIDataView.MMI_NID_KEY_TRAIN_CAT = Variables.MMI_NID_KEY.CATA;  // 21
+                    EVC13_MMIDataView.Network_Caption = "";
+                    EVC13_MMIDataView.Trainset_Caption = "";
 
                     break;
                 case msgType.typeb:
-                    // values taken from xml not spec. where different
-                    EVC13_MMIDataView.MMI_X_DRIVER_ID = "12346789123426789";
+                    // values taken from xml not spec. where different: too long - 16 chars max
+
+                    EVC13_MMIDataView.MMI_X_DRIVER_ID = "1234567890123426";
                     EVC13_MMIDataView.MMI_NID_OPERATION = 0x9999999;
                     EVC13_MMIDataView.MMI_M_DATA_ENABLE = (Variables.MMI_M_DATA_ENABLE)0x7f00;     // 32512
                     EVC13_MMIDataView.MMI_L_TRAIN = 4095;
@@ -278,8 +282,8 @@ namespace Testcase.DMITestCases
                     EVC13_MMIDataView.MMI_NID_RADIO = 0x9999999999999999;          // 2576980377 (= 0x9999999) hi, 2576980377 (= 0x9999999) lo
                     EVC13_MMIDataView.MMI_M_AIRTIGHT = 0;
                     EVC13_MMIDataView.MMI_NID_KEY_LOAD_GAUGE = Variables.MMI_NID_KEY.G1;
-                    EVC13_MMIDataView.Trainset_Caption = "ABCDEFGHIJKL";         
-                    EVC13_MMIDataView.Network_Caption = "ABCDEFGHIJKLMNOP";
+                    //EVC13_MMIDataView.Trainset_Caption = "ABCDEFGHIJKL";         
+                    //EVC13_MMIDataView.Network_Caption = "ABCDEFGHIJKLMNOP";
                     EVC13_MMIDataView.MMI_NID_KEY_TRAIN_CAT = Variables.MMI_NID_KEY.PASS1;  // 3
                     break;
             }

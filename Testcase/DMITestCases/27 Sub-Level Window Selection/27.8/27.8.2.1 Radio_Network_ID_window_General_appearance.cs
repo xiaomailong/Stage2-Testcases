@@ -65,6 +65,8 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,DMI does not display Radio Network ID window
             Test Step Comment: (1) MMI_gen 9448 (partly: NEGATIVE, inactive);
             */
+            DmiActions.Start_ATP();
+
             XML_22_8_2_1(msgType.typea);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +

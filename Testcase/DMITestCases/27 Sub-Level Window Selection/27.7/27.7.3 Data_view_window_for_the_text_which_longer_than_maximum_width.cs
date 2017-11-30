@@ -90,6 +90,8 @@ namespace Testcase.DMITestCases
             EVC13_MMIDataView.MMI_NID_KEY_AXLE_LOAD = Variables.MMI_NID_KEY.CATA;
             EVC13_MMIDataView.MMI_M_AIRTIGHT = 0;
             EVC13_MMIDataView.MMI_NID_KEY_LOAD_GAUGE = Variables.MMI_NID_KEY.OutofGC;
+            EVC13_MMIDataView.Network_Caption = "";
+            EVC13_MMIDataView.Trainset_Caption = "";
             EVC13_MMIDataView.Send();
 
 

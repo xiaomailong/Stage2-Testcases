@@ -95,6 +95,8 @@ namespace Testcase.DMITestCases
             EVC13_MMIDataView.MMI_NID_KEY_AXLE_LOAD = Variables.MMI_NID_KEY.CATA;
             EVC13_MMIDataView.MMI_M_AIRTIGHT = 0;
             EVC13_MMIDataView.MMI_NID_KEY_LOAD_GAUGE = Variables.MMI_NID_KEY.OutofGC;
+            EVC13_MMIDataView.Network_Caption = "";
+            EVC13_MMIDataView.Trainset_Caption = "";
             EVC13_MMIDataView.Send();
 
             // Spec says display Train Running number which is in EVC6...
@@ -201,7 +203,7 @@ namespace Testcase.DMITestCases
 
             // Spec is incorrect: NA19 is disabled previous button (not enabled)
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. DMI displays the previous page of the Train data, with the window title being displayed with the text ‘Data view (2/2)’." + Environment.NewLine +
+                                @"1. DMI displays the previous page of the Train data, with the window title being displayed with the text ‘Data view (1/2)’." + Environment.NewLine +
                                 @"2. The data view items ‘RBC ID’, ‘RBC phone number’, ‘VBC set code’ (if any) are displayed correctly." + Environment.NewLine +
                                 @"3. The data part of the RBC phone number is displayed on two lines." + Environment.NewLine +
                                 @"3. The ‘Next’ button is enabled (DMI displays symbol NA17)." + Environment.NewLine +
@@ -266,12 +268,18 @@ namespace Testcase.DMITestCases
                     EVC13_MMIDataView.MMI_NID_RADIO = 0xffffffffffffffff;          // 4294967295 (hi and lo)z`
                     EVC13_MMIDataView.MMI_M_AIRTIGHT = 3;
                     EVC13_MMIDataView.MMI_NID_KEY_LOAD_GAUGE = Variables.MMI_NID_KEY.CATE5;      // 33
-                    EVC13_MMIDataView.Trainset_Caption = "\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0";
-                    EVC13_MMIDataView.Network_Caption = "\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0\0x0";
+
+                    // EVC13 incorrect at present: only send null strings...
+                    //EVC13_MMIDataView.Trainset_Caption = "000000000000";
+                    //EVC13_MMIDataView.Network_Caption = "0000000000000000";
+                    EVC13_MMIDataView.Trainset_Caption = "";
+                    EVC13_MMIDataView.Network_Caption = "";
                     break;
                 case msgType.typeb:
                     // values taken from xml not spec. where different
-                    EVC13_MMIDataView.MMI_X_DRIVER_ID = "1234678912346789";
+                    // config incorrect at present, driver id limited to 12 (not 16 chars as in VSIS)...
+                    // EVC13_MMIDataView.MMI_X_DRIVER_ID = "1234678912346789"; 
+                    EVC13_MMIDataView.MMI_X_DRIVER_ID = "12346789012";
                     EVC13_MMIDataView.MMI_NID_OPERATION = 0xffffffff;         // 4294967295
 
                     EVC13_MMIDataView.MMI_M_DATA_ENABLE = (Variables.MMI_M_DATA_ENABLE)0xff00;               // 65280
@@ -283,8 +291,10 @@ namespace Testcase.DMITestCases
                     EVC13_MMIDataView.MMI_NID_RADIO = 0x9999999999999999;          // 2576980377 (hi and lo)
                     EVC13_MMIDataView.MMI_M_AIRTIGHT = 0;
                     EVC13_MMIDataView.MMI_NID_KEY_LOAD_GAUGE = Variables.MMI_NID_KEY.G1;      // 34
-                    EVC13_MMIDataView.Trainset_Caption = "ABCFGHIJKLMN";  
-                    EVC13_MMIDataView.Network_Caption = "ABCDEFGHIJKLMNOP";
+
+                    // EVC13 incorrect at present: only send null strings...
+                    //EVC13_MMIDataView.Trainset_Caption = "ABCFGHIJKLMN";  
+                    //EVC13_MMIDataView.Network_Caption = "ABCDEFGHIJKLMNOP";
 
                     break;
             }

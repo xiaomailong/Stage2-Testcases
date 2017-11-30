@@ -53,7 +53,7 @@ namespace Testcase.DMITestCases
             DmiActions.Activate_Cabin_1(this);
             DmiActions.Set_Driver_ID(this, "1234");
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings;  // settings window
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Default;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter;
             EVC30_MMIRequestEnable.Send();
         }
@@ -101,6 +101,10 @@ namespace Testcase.DMITestCases
             EVC140_MMINewMaintenanceData.MMI_M_SDU_WHEEL_SIZE_2 = (Variables.MMI_M_SDU_WHEEL_SIZE)500;
             EVC140_MMINewMaintenanceData.MMI_M_WHEEL_SIZE_ERR = (Variables.MMI_M_WHEEL_SIZE_ERR)0;
             EVC140_MMINewMaintenanceData.CheckTelegram();
+            EVC40_MMICurrentMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1 = (Variables.MMI_M_SDU_WHEEL_SIZE)500;
+            EVC40_MMICurrentMaintenanceData.MMI_M_SDU_WHEEL_SIZE_2 = (Variables.MMI_M_SDU_WHEEL_SIZE)500;
+            EVC40_MMICurrentMaintenanceData.MMI_M_WHEEL_SIZE_ERR = (Variables.MMI_M_WHEEL_SIZE_ERR)0;
+            EVC40_MMICurrentMaintenanceData.Send();
 
             // MMI_gen 4651 gives the selected state as this:
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -115,6 +119,11 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Using the numeric keypad enter ‘1501’ for Wheel Diameter 1 and press its data input field" + Environment.NewLine +
                                              "Enter ‘499’ for Wheel Diameter 2 and press its data input field" + Environment.NewLine +
                                              "Enter ‘33’ for Accuracy and press its data input field");
+
+            EVC40_MMICurrentMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1 = Variables.MMI_M_SDU_WHEEL_SIZE.TechnicalRangeCheckFailed;
+            EVC40_MMICurrentMaintenanceData.MMI_M_SDU_WHEEL_SIZE_2 = Variables.MMI_M_SDU_WHEEL_SIZE.TechnicalRangeCheckFailed;
+            EVC40_MMICurrentMaintenanceData.MMI_M_WHEEL_SIZE_ERR = Variables.MMI_M_WHEEL_SIZE_ERR.TechnicalRangeCheckFailed;
+            EVC40_MMICurrentMaintenanceData.Send();
 
             // Note:MMI_gen 4651
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -132,7 +141,7 @@ namespace Testcase.DMITestCases
                                              "Enter ‘32’ for Accuracy and press its data input field");
 
             EVC140_MMINewMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1 = (Variables.MMI_M_SDU_WHEEL_SIZE)1500;      
-            EVC140_MMINewMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1 = (Variables.MMI_M_SDU_WHEEL_SIZE)1500;
+            EVC140_MMINewMaintenanceData.MMI_M_SDU_WHEEL_SIZE_2 = (Variables.MMI_M_SDU_WHEEL_SIZE)1500;
             EVC140_MMINewMaintenanceData.MMI_M_WHEEL_SIZE_ERR = (Variables.MMI_M_WHEEL_SIZE_ERR)32;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -167,7 +176,7 @@ namespace Testcase.DMITestCases
 
             // Don't understand the spec here...
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI removes the Validate Wheel Diameter window and displays the Settings window with the ‘Wheel Diameter’ button enabled.");
+                                "1. DMI removes the Validate Wheel Diameter window and displays the Maintenance window with the ‘Wheel Diameter’ button enabled.");
 
             /*
             Test Step 6

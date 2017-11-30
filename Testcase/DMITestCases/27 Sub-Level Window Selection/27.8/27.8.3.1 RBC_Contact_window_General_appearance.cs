@@ -65,7 +65,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9446 (partly: NEGATIVE, inactive);
             */
             // Make sure that cabin is not active
-            DmiActions.Deactivate_Cabin(this);
+            DmiActions.Start_ATP();
             XML_22_8_3_1(msgType.typea);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -87,6 +87,7 @@ namespace Testcase.DMITestCases
                                                                EVC30_MMIRequestEnable.EnabledRequests.RadioNetworkID;
             EVC30_MMIRequestEnable.Send();
             EVC22_MMICurrentRBC.MMI_NID_WINDOW = 5;
+            EVC22_MMICurrentRBC.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
             EVC22_MMICurrentRBC.Send();
 
             EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
@@ -162,13 +163,13 @@ namespace Testcase.DMITestCases
             EVC112_MMINewRbcData.CheckPacketContent();
 
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.No_window_specified;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = (EVC30_MMIRequestEnable.EnabledRequests.EnterRBCData |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.RadioNetworkID) &
                                                                ~(EVC30_MMIRequestEnable.EnabledRequests.ContactLastRBC |
                                                                  EVC30_MMIRequestEnable.EnabledRequests.UseShortNumber);
             EVC30_MMIRequestEnable.Send();
-            EVC22_MMICurrentRBC.MMI_NID_WINDOW = 5;
+            EVC22_MMICurrentRBC.MMI_NID_WINDOW = 10;
             EVC22_MMICurrentRBC.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -284,9 +285,17 @@ namespace Testcase.DMITestCases
             Action: Press ‘Enter RBC data’ button.Then, enter and confirm all data in RBC data window as follows,RBC ID= 6996969RBC Phone number = 0031840880100
             Expected Result: DMI displays Main window
             */
-            DmiActions.ShowInstruction(this, @"Press the ‘Enter RBC data’ button. Enter value ‘6996969RBC’ for RBC ID and confirm it;" + Environment.NewLine +
-                                             @"                                   enter value ‘0031840880100’ for Phone number and confirm it");
-            
+            DmiActions.ShowInstruction(this, @"Press the ‘Enter RBC data’ button");
+            EVC22_MMICurrentRBC.MMI_NID_WINDOW = 10;
+            EVC22_MMICurrentRBC.MMI_M_BUTTONS = EVC22_MMICurrentRBC.EVC22BUTTONS.BTN_YES_DATA_ENTRY_COMPLETE;
+            EVC22_MMICurrentRBC.Send();
+
+            DmiActions.ShowInstruction(this, "Enter ‘6996969RBC’ for RBC ID and confirm it and ‘0031840880100’ for Phone number and confirm it");
+
+            EVC22_MMICurrentRBC.MMI_NID_WINDOW = 9;
+            EVC22_MMICurrentRBC.NetworkCaptions.Clear();
+            EVC22_MMICurrentRBC.Send();
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Main window");
 
@@ -486,6 +495,11 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 11241;
             */
             XML_22_8_3_1(msgType.typeb);
+
+            // DMI seems to have trouble sometimes with remembering the window stack after a re-boot (this was causing the default window to be the parent
+            // of the RBC contact window even though Main was displayed and was the parent)
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;
+            EVC30_MMIRequestEnable.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the RBC Contact window and displays the Main window.");
