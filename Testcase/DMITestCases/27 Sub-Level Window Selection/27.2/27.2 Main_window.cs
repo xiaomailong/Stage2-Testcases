@@ -172,7 +172,7 @@ namespace Testcase.DMITestCases
                                 "8. DMI displays the ‘Train running number’ button (#6)." + Environment.NewLine +
                                 "9. DMI displays the ‘Shunting’ button (#7)." + Environment.NewLine +
                                 "10. DMI displays the ‘Non-Leading’ button (#8)." + Environment.NewLine +
-                                "11. DMI displays the ‘Main shunting’ button (#9)." + Environment.NewLine +           
+                                "11. DMI displays the ‘Maintain shunting’ button (#9)." + Environment.NewLine +           
                                 "15. The following screen areas are in Layer 0: D, F, G, E10, E11, Z and Y." + Environment.NewLine +
                                 "16. The following screen areas are in Layer 1: A1, (A2 + A3)*, A4, C1, (C2 + C3 + C4)*, C5, C6, C7, C8, C9, E1, E2, E3, E4, (E5-E9)." + Environment.NewLine +
                                 "17. The following screen areas are in Layer 2: B3, B4, B5, B6, B7");

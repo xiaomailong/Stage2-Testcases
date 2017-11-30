@@ -358,12 +358,13 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press and hold the <Del> key until the data input field is blank, then enter the value ‘65536’" + Environment.NewLine +
                                              "and confirm the data by pressing in the data input field");
 
-            EVC119_MMINewRemoveVbc.MMI_M_VBC_CODE = 65536;
+            EVC119_MMINewRemoveVbc.MMI_M_VBC_CODE = 65535;
             EVC119_MMINewRemoveVbc.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_VBC.BTN_ENTER;
             EVC119_MMINewRemoveVbc.CheckPacketContent();
 
             EVC19_MMIRemoveVBC.MMI_Q_DATA_CHECK = Variables.Q_DATA_CHECK.All_checks_passed;
-            EVC19_MMIRemoveVBC.ECHO_TEXT = "65536";
+            EVC19_MMIRemoveVBC.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_VBC.BTN_YES_DATA_ENTRY_COMPLETE;
+            EVC19_MMIRemoveVBC.ECHO_TEXT = "65535";
             EVC19_MMIRemoveVBC.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -380,7 +381,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The state of ‘Yes’ button below text label ‘Remove VBC entry is complete?’ is disabled
             Test Step Comment: (1) MMI_gen 8337 (partly: MMI_gen 4909 (partly: state selected and with recently entered key), MMI_gen 4680 (partly: value has been modified));
             */
-            DmiActions.ShowInstruction(this, "Select and enter the value ‘65536’ again");
+            DmiActions.ShowInstruction(this, "Select and enter the value ‘65535’ again");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Yes’ button (below the ‘Remove VBC Entry complete?’ label) is displayed disabled.");
@@ -392,6 +393,12 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8337 (partly: MMI_gen 4911 (partly:  MMI_gen 4381 (partly: change to state ‘Pressed’ as long as remain actuated))); MMI_gen 5387 (partly: closure);(2) MMI_gen 8337 (partly: MMI_gen 4911 (partly: MMI_gen 4381 (partly: exit state ‘Pressed’, execute function associated to the button))); MMI_gen 9924 (partly: [Yes], EVC-107); MMI_gen 9917; MMI_gen 5387 (partly: transmission);
             */
             DmiActions.ShowInstruction(this, "Confirm the data");
+
+            //EVC119....
+            EVC19_MMIRemoveVBC.MMI_Q_DATA_CHECK = Variables.Q_DATA_CHECK.All_checks_passed;
+            EVC19_MMIRemoveVBC.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_VBC.BTN_YES_DATA_ENTRY_COMPLETE;
+            EVC19_MMIRemoveVBC.ECHO_TEXT = "65535";
+            EVC19_MMIRemoveVBC.Send();
 
             // Repeat Step 2 for the ‘Yes’ button
             DmiActions.ShowInstruction(this, "Press and hold the ‘Yes’ button");
@@ -415,7 +422,7 @@ namespace Testcase.DMITestCases
             EVC29_MMIEchoedRemoveVBCData.MMI_M_VBC_CODE_ = 65536;
             EVC29_MMIEchoedRemoveVBCData.Send();
 
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+           WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Remove RBC validation window.");
 
             /*

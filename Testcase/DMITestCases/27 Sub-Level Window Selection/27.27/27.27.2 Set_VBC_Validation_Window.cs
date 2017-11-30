@@ -193,6 +193,11 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, @"Enter and confirm the value ‘65536’, then press the ‘Yes’ button");
 
+            EVC18_MMISetVBC.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_VBC.BTN_YES_DATA_ENTRY_COMPLETE;
+            EVC18_MMISetVBC.MMI_N_VBC = 1;
+            EVC18_MMISetVBC.MMI_Q_DATA_CHECK = Variables.Q_DATA_CHECK.All_checks_passed;
+            EVC18_MMISetVBC.ECHO_TEXT = "";
+            EVC18_MMISetVBC.Send();
             EVC28_MMIEchoedSetVBCData.MMI_M_VBC_CODE_ = 65536;
             EVC28_MMIEchoedSetVBCData.Send();
 
@@ -232,7 +237,9 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press the ‘Set VBC’ button.");
 
             EVC18_MMISetVBC.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_VBC.BTN_YES_DATA_ENTRY_COMPLETE;
-            EVC18_MMISetVBC.MMI_N_VBC = 0;
+            EVC18_MMISetVBC.MMI_N_VBC = 1;
+            EVC18_MMISetVBC.MMI_Q_DATA_CHECK = Variables.Q_DATA_CHECK.All_checks_passed;
+            EVC18_MMISetVBC.ECHO_TEXT = "";
             EVC18_MMISetVBC.Send();
 
             DmiActions.ShowInstruction(this, @"Enter and confirm the value ‘65536’, then press the ‘Yes’ button");

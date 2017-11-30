@@ -35,6 +35,10 @@ namespace Testcase.DMITestCases
     {
         public override void PreExecution()
         {
+            // Call the TestCaseBase PreExecution
+            base.PreExecution();
+
+
             // Pre-conditions from TestSpec:
             // Test system is powered ON.
             // Cabin is activated.
@@ -43,8 +47,6 @@ namespace Testcase.DMITestCases
             DmiActions.Activate_Cabin_1(this);
             DmiActions.Open_the_Settings_window(this);
 
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
         }
 
         public override void PostExecution()

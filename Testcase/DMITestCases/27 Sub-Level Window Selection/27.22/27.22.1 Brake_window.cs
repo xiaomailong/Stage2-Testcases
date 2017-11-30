@@ -50,7 +50,7 @@ namespace Testcase.DMITestCases
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings;      // Settings window: no buttons enabled
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Default;      // Settings window: no buttons enabled
             EVC30_MMIRequestEnable.Send();
         }
 
@@ -252,7 +252,7 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Press the ‘Close’ button");
 
-            WaitForVerification("Check the following (* indicates sub-areas drawn as one area):" + Environment.NewLine + Environment.NewLine +
+            WaitForVerification("Check the following   :" + Environment.NewLine + Environment.NewLine +
                                 @"1. DMI displays the Brake window");
 
 
@@ -287,6 +287,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Release the ‘Percentage’ button");
 
             Telegrams.DMItoEVC.EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.ChangeBrakePercentage;
+            EVC50_MMICurrentBrakePercentage.Send();
            
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. DMI displays the Brake percentage window");
@@ -401,7 +402,7 @@ namespace Testcase.DMITestCases
                                                                        EVC30_MMIRequestEnable.EnabledRequests.EnableBrakePercentage;
                     break;
             }
-            EVC20_MMISelectLevel.Send();
+            EVC30_MMIRequestEnable.Send();
         }
         #endregion
     }

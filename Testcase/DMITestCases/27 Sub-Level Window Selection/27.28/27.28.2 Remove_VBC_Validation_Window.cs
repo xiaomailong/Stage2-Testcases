@@ -110,7 +110,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press the <No> key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The data input field displays ‘65536’");
+                                "1. The data input field displays ‘No’");
 
             /*
             Test Step 3
@@ -165,11 +165,17 @@ namespace Testcase.DMITestCases
             EVC19_MMIRemoveVBC.Send();
 
             DmiActions.ShowInstruction(this, "Enter and confirm the value ‘65536’");
+
+            EVC19_MMIRemoveVBC.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_VBC.BTN_YES_DATA_ENTRY_COMPLETE;
+            EVC19_MMIRemoveVBC.MMI_N_VBC = 1;
+            EVC19_MMIRemoveVBC.MMI_Q_DATA_CHECK = Variables.Q_DATA_CHECK.All_checks_passed;
+            EVC19_MMIRemoveVBC.ECHO_TEXT = "65536";
+            EVC19_MMIRemoveVBC.Send();
+
+            DmiActions.ShowInstruction(this, "Press the ‘Yes’ button");
             
             EVC29_MMIEchoedRemoveVBCData.MMI_M_VBC_CODE_ = 65536;
             EVC29_MMIEchoedRemoveVBCData.Send();
-
-            DmiActions.ShowInstruction(this, @"Press the ‘Yes’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Remove VBC validation window");
@@ -183,7 +189,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press the ‘Yes’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The data input field displays ‘65536’");
+                                "1. The data input field displays ‘Yes’");
 
             /*
             Test Step 8
@@ -248,6 +254,10 @@ namespace Testcase.DMITestCases
             EVC28_MMIEchoedSetVBCData.MMI_M_VBC_CODE_ = 65536;
             EVC28_MMIEchoedSetVBCData.Send();
 
+            EVC18_MMISetVBC.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_VBC.BTN_YES_DATA_ENTRY_COMPLETE;
+            EVC18_MMISetVBC.MMI_Q_DATA_CHECK = Variables.Q_DATA_CHECK.All_checks_passed;
+            // EVC18_MMISetVBC.ECHO_TEXT = "65536";
+            EVC18_MMISetVBC.Send();
             DmiActions.ShowInstruction(this, "Press the ‘Yes’ button, then press the ‘Remove VBC’ button");
 
             EVC19_MMIRemoveVBC.MMI_N_VBC = 0;

@@ -46,7 +46,7 @@ namespace Testcase.DMITestCases
             DmiActions.Start_ATP();
             DmiActions.Activate_Cabin_1(this);
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Default;
             EVC30_MMIRequestEnable.Send();
         }
 
@@ -1888,10 +1888,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11943;
             */
             DmiActions.ShowInstruction(this, @"Press a data input field to confirm the data and press the ‘Yes’ button, then press the ‘Language button’;" + Environment.NewLine +
-                                             @"in the language window select ‘Francais’ and confirm the selection, then press the ‘Set clock’ button in the Settings window");
+                                             @"in the language window select ‘Deutsch’ and confirm the selection, then press the ‘Set clock’ button in the Settings window");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. All the labels are displayed in French.");
+                                "1. All the labels are displayed in German.");
 
             /*
             Test Step 43
@@ -1955,7 +1955,7 @@ namespace Testcase.DMITestCases
             Expected Result: The Set clock button is enabled
             Test Step Comment: MMI_gen 1563         (partly: enabled bit#25);             
             */
-            XML_22_13_1(msgType.typea);
+            XML_22_13_1(msgType.typeb);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Set clock’ button is enabled");
@@ -2002,9 +2002,7 @@ namespace Testcase.DMITestCases
         private void XML_22_13_1(msgType type)
         {
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.None;
-            EVC30_MMIRequestEnable.Send();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings;      // Settings
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.No_window_specified;      // Settings
             switch (type)
             {
                 case msgType.typea:

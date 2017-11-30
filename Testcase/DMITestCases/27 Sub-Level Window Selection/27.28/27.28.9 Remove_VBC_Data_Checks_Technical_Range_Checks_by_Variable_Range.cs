@@ -85,7 +85,7 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Remove VBC window, with the title ‘Remove VBC’, instead of the Settings window." + Environment.NewLine +
                                 "2. One data input field (and a corresponding echo text) labelled ‘VBC code’ are displayed." + Environment.NewLine +
                                 "3. A dedicated numeric keypad is displayed below the data input field with an enabled ‘Close’ button below it." + Environment.NewLine +
-                                "4. A ‘Set VBC entry complete?’ label is displayed in the bottom left-hand corner with an enabled ‘Yes’ button below it.");
+                                "4. A ‘Set VBC entry complete?’ label is displayed in the bottom left-hand corner with a disabled ‘Yes’ button below it.");
             
             /*
             Test Step 2
@@ -97,6 +97,8 @@ namespace Testcase.DMITestCases
                                        @"Enter “0” (minimum inbound) with the numeric keypad and press the data input field (Accept) in the same screen");
 
             EVC19_MMIRemoveVBC.MMI_Q_DATA_CHECK = Variables.Q_DATA_CHECK.All_checks_passed;
+            EVC19_MMIRemoveVBC.ECHO_TEXT = "0";
+            EVC19_MMIRemoveVBC.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_VBC.BTN_YES_DATA_ENTRY_COMPLETE;
             EVC19_MMIRemoveVBC.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -115,7 +117,7 @@ namespace Testcase.DMITestCases
             EVC119_MMINewRemoveVbc.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_VBC.BTN_ENTER;
             EVC119_MMINewRemoveVbc.CheckPacketContent();
             
-            EVC19_MMIRemoveVBC.MMI_Q_DATA_CHECK = Variables.Q_DATA_CHECK.All_checks_passed;
+            EVC19_MMIRemoveVBC.MMI_Q_DATA_CHECK = Variables.Q_DATA_CHECK.Technical_Range_Check_failed;
             EVC19_MMIRemoveVBC.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -137,6 +139,8 @@ namespace Testcase.DMITestCases
             EVC119_MMINewRemoveVbc.CheckPacketContent();
 
             EVC19_MMIRemoveVBC.ECHO_TEXT = "16777215";
+            EVC19_MMIRemoveVBC.MMI_Q_DATA_CHECK = Variables.Q_DATA_CHECK.All_checks_passed;
+            EVC19_MMIRemoveVBC.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_VBC.BTN_YES_DATA_ENTRY_COMPLETE;
             EVC19_MMIRemoveVBC.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +

@@ -76,8 +76,8 @@ namespace Testcase.DMITestCases
             Expected Result: The Settings window is displayed all sub-menus.Verify that the button for subcategory National is disabled
             Test Step Comment: MMI_gen 1547 (partly);
             */
-            // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press ‘Settings’ button");
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.NationalSystem;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window with all sub-menus." + Environment.NewLine +

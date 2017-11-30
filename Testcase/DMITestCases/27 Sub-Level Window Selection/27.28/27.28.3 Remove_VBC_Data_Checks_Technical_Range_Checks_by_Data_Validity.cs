@@ -92,7 +92,7 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Remove VBC window, with the title ‘Remove VBC’, instead of the Settings window." + Environment.NewLine +
                                 "2. One data input field (and a corresponding echo text) labelled ‘VBC code’ are displayed." + Environment.NewLine +
                                 "3. A dedicated numeric keypad is displayed below the data input field with an enabled ‘Close’ button below it." + Environment.NewLine +
-                                "4. A ‘Set VBC entry complete?’ label is displayed in the bottom left-hand corner with an enabled ‘Yes’ button below it.");
+                                "4. A ‘Remove VBC entry complete?’ label is displayed in the bottom left-hand corner with an enabled ‘Yes’ button below it.");
             
             /*
             Test Step 2

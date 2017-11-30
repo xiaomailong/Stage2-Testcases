@@ -69,8 +69,6 @@ namespace Testcase.DMITestCases
             Expected Result: The Special window is displayed with enabled/disabled sub-menus button.Verify that the Adhesion button is enabled
             */
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;
-            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.None;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Adhesion;
             EVC30_MMIRequestEnable.Send();
 
@@ -155,8 +153,7 @@ namespace Testcase.DMITestCases
             Expected Result: The Adhesion window is displayed
             */
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;
-            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.None;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.No_window_specified;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Adhesion;
             EVC30_MMIRequestEnable.Send();
 
@@ -185,8 +182,7 @@ namespace Testcase.DMITestCases
             Expected Result: The Adhesion window is displayed
             */
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;
-            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.None;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.No_window_specified;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Adhesion;
             EVC30_MMIRequestEnable.Send();
 
@@ -239,13 +235,8 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Release the data input field");
 
-            // No EVC101 ACK for button released
-
-            // Need to close this window and re-display the Special window
-            EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Close_current_return_to_parent;        // close window
-            EVC30_MMIRequestEnable.Send();
-
+            EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.RestoreAdhesionCoefficientToNonSlipperyRail;
+           
             /*
             Test Step 13
             Action: Press the ‘Adhesion’ button.Then, press the ‘Close’ button
@@ -253,9 +244,6 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 4392 (partly: returning to the parent window);
             */
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;        // close window
-            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.None;
-            EVC30_MMIRequestEnable.Send();
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Adhesion;
             EVC30_MMIRequestEnable.Send();
 

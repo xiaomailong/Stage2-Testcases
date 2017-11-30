@@ -87,9 +87,13 @@ namespace Testcase.DMITestCases
             Test Step Comment: Requirements:(1) MMI_gen 9888 (partly: reactions to failing, EVC-18, MMI_gen 12147);(2) MMI_gen 9901;(3) MMI_gen 9888 (partly: reactions to failing, MMI_gen 4714 (partly: state 'Selected IF/data value')); MMI_gen 9310 (partly: accept data);(4) MMI_gen 9888 (partly: reactions to failing, MMI_gen 4714 (partly: previously entered (faulty) value)); MMI_gen 4699 (partly: technical range);(5) MMI_gen 8328 (partly: MMI_gen 4713 (partly: indication)), MMI_gen 9888 (partly: reactions to failing, MMI_gen 4713 (partly: indication)); MMI_gen 9310 (partly: [technical range, failed], [echo text]); (6) MMI_gen 9898 (partly: MMI_gen 4713 (partly: red)), MMI_gen 9888 (partly: reactions to failing, MMI_gen 4713 (partly: red));
             */
             DmiActions.ShowInstruction(this, @"Enter and confirm the value ‘1’");
+              
+            // to make this work properly with a 'dumb' DMI in integration the EVC118 should be sent to provoke the correct EVC18 response
 
             EVC18_MMISetVBC.MMI_Q_DATA_CHECK = Variables.Q_DATA_CHECK.Technical_Range_Check_failed;
             EVC18_MMISetVBC.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_VBC.NoButton;
+            // at this time EVC18 throws on non-empty ECHOTEXT so this must be changed...
+            EVC18_MMISetVBC.ECHO_TEXT = "";         // should be 1
             EVC18_MMISetVBC.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -131,6 +135,7 @@ namespace Testcase.DMITestCases
 
             EVC18_MMISetVBC.MMI_Q_DATA_CHECK = Variables.Q_DATA_CHECK.Technical_Range_Check_failed;
             EVC18_MMISetVBC.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_VBC.NoButton;
+            //EVC18_MMISetVBC.ECHO_TEXT = "1";
             EVC18_MMISetVBC.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -155,7 +160,8 @@ namespace Testcase.DMITestCases
             Expected Result: Input Field(1) The eventually displayed data value in the data area of the input field is replaced by “65536” (character or value corresponding to the activated data key - state ‘Selected IF/value of pressed key(s)’)
             Test Step Comment: Requirements:(1) MMI_gen 9888 (partly: reactions to succeed, MMI_gen 4714 (partly: MMI_gen 4679), MMI_gen 9286 (partly: button ‘Enter’, enabled)), MMI_gen 9905 (partly: state switched); MMI_gen 9310 (partly: press one key);
             */
-            DmiActions.ShowInstruction(this, @"Enter ‘65536’ (valid value) with the numeric keypad");
+            DmiActions.ShowInstruction(this, @"Enter ‘65535’ (valid value) with the numeric keypad");
+            // EVC118/18...
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field now displays ‘65535’.");
@@ -170,11 +176,11 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press the data input field (Accept) in the same screen");
 
             EVC118_MMINewSetVbc.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_VBC.BTN_ENTER;
-            EVC118_MMINewSetVbc.MMI_M_VBC_CODE = 65536;
+            EVC118_MMINewSetVbc.MMI_M_VBC_CODE = 65535;
             EVC118_MMINewSetVbc.CheckPacketContent();
 
             EVC18_MMISetVBC.MMI_Q_DATA_CHECK = Variables.Q_DATA_CHECK.All_checks_passed;
-            EVC18_MMISetVBC.ECHO_TEXT = "65536";
+            //EVC18_MMISetVBC.ECHO_TEXT = "65535";
             EVC18_MMISetVBC.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -187,7 +193,7 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Press the ‘Yes’ button");
 
-            EVC28_MMIEchoedSetVBCData.MMI_M_VBC_CODE_ = 65536;
+            EVC28_MMIEchoedSetVBCData.MMI_M_VBC_CODE_ = 65535;
             EVC28_MMIEchoedSetVBCData.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -211,7 +217,7 @@ namespace Testcase.DMITestCases
 
             EVC18_MMISetVBC.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_VBC.NoButton;
             EVC18_MMISetVBC.MMI_Q_DATA_CHECK = Variables.Q_DATA_CHECK.Technical_Range_Check_failed;
-            EVC18_MMISetVBC.ECHO_TEXT = "123";
+            //EVC18_MMISetVBC.ECHO_TEXT = "123";
             EVC18_MMISetVBC.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +

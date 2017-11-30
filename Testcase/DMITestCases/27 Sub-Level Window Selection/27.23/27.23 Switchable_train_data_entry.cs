@@ -72,7 +72,7 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.Send();
 
             DmiActions.ShowInstruction(this, @"Press the ‘Train data’ button");
-
+            DmiActions.Send_EVC6_MMICurrentTrainData_FixedDataEntry(this, Variables.paramEvc6FixedTrainsetCaptions, 1);
             EVC6_MMICurrentTrainData.MMI_M_ALT_DEM = 1;
             EVC6_MMICurrentTrainData.Send();
 
