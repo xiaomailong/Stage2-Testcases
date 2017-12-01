@@ -56,7 +56,7 @@ namespace Testcase.DMITestCases
         {
             // Post-conditions from TestSpec
             // DMI displays SR mode.
-
+      
             // Call the TestCaseBase PostExecution
             base.PostExecution();
         }
@@ -67,12 +67,16 @@ namespace Testcase.DMITestCases
             TraceInfo("This test case requires an ATP configuration change - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");
 
-            // tested in 29.1 so not repeated
             /*
             Test Step 1
             Action: Power on test system and activate the cabin A (MMI 1)
             Expected Result: DMI displays SB mode
             */
+            DmiActions.Start_ATP();
+            DmiActions.Activate_Cabin_1(this);
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SB mode, Level 1.");
 
             /*
             Test Step 2
