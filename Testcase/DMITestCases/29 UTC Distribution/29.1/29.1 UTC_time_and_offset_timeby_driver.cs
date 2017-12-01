@@ -91,6 +91,7 @@ namespace Testcase.DMITestCases
             DmiActions.Display_Level_Window(this);
             DmiActions.ShowInstruction(this, "Select and enter Level 1");
 
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;        
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Default;      // Default window
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.SetLocalTimeDateAndOffset;
@@ -127,7 +128,7 @@ namespace Testcase.DMITestCases
             // Call generic Check Results Method
             DmiActions.ShowInstruction(this, "Set the date as follows:" + Environment.NewLine +
                                              "Year = ‘2018’, Month = ‘12’, Day = ‘30’; then press the ‘Next button’ and set the time as follows:" + Environment.NewLine +
-                                             "Hour = ‘12’, Minute = ‘0’, Second = ‘0’ and Offset = ‘+10’");
+                                             "Hour = ‘12’, Minute = ‘0’, Second = ‘0’ and Offset = ‘+15’");
 
             //EVC109_MMISetTimeMMI.MMI_T_UTC = 1546135200;
             //EVC109_MMISetTimeMMI.MMI_T_ZONE_OFFSET = 40;
