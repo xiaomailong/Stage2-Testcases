@@ -101,8 +101,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8868 (partly: RBC data entry);(2) MMI_gen 11283 (partly: RBC data entry); MMI_gen 3374 (partly: NEGATIVE, close by ETCS OB);
             */
             // ?? More required to get emergency symbol displayed
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Close_current_return_to_parent;
+            EVC30_MMIRequestEnable.Send();
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
-
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
             EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 260;
@@ -113,9 +115,6 @@ namespace Testcase.DMITestCases
 
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
 
-            EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Close_current_return_to_parent;
-            EVC30_MMIRequestEnable.Send();
 
             EVC22_MMICurrentRBC.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
             EVC22_MMICurrentRBC.MMI_NID_WINDOW = 5;
@@ -168,6 +167,9 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.RBC_contact;      // RBC Contact
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.RadioNetworkID;
             EVC30_MMIRequestEnable.Send();
+            EVC22_MMICurrentRBC.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
+            EVC22_MMICurrentRBC.MMI_NID_WINDOW = 5;
+            EVC22_MMICurrentRBC.Send();
 
             // In Radio network ID window, not RBC data
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +

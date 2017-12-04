@@ -106,6 +106,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: 
             */
             EVC1_MMIDynamic.MMI_V_PERMITTED = 100;
+            EVC1_MMIDynamic.MMI_V_INTERVENTION_KMH = 107;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 107;
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Ceiling_Speed_Monitoring;
 
@@ -193,7 +194,9 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 12039 (partly: MMI_M_WARNING = 13); (2) MMI_gen 12038 (partly: MMI_M_WARNING = 13 is no more active); MMI_gen 12039 (partly: MMI_M_WARNING = 13 is no more active);Note DMI appearance refers to Table 33: Conditions for display and colour of the CSG in [MMI-ETCS-gen].
             */
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Indication_Status_Target_Speed_Monitoring;
-            EVC1_MMIDynamic.MMI_V_PERMITTED = 70;
+            EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 70;
+            EVC1_MMIDynamic.MMI_V_INTERVENTION_KMH = 80;
+            EVC1_MMIDynamic.MMI_V_TARGET_KMH = 70;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 80;
             // In Intervention_Status_Indication_Status_Target_Speed_Monitoring
             

@@ -119,7 +119,7 @@ namespace Testcase.DMITestCases
             Test Step 4
             Action: Press ‘Close’ button
             Expected Result: DMI displays RBC contact window
-            Test Step Comment: MMI_gen 8785 (partly: RBC data window);
+            Test Step Comment: MMI_gen 8785 (partly: RBC data00 window);
             */
             DmiActions.ShowInstruction(this, @"Press the ‘Close’ button in the RBC data window");
 
@@ -140,7 +140,7 @@ namespace Testcase.DMITestCases
 
             // Need to force RBC contact window to close
             EVC22_MMICurrentRBC.MMI_NID_WINDOW = 9;
-            EVC22_MMICurrentRBC.DataElements = null;
+            EVC22_MMICurrentRBC.DataElements.Clear();
             EVC22_MMICurrentRBC.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +

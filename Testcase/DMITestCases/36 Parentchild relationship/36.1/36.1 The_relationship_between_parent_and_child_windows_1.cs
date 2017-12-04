@@ -119,6 +119,11 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press the ‘Close’ button");
+            EVC14_MMICurrentDriverID.MMI_X_DRIVER_ID = "";
+            EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE = EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE_BUTTONS.Settings |
+                                                        EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE_BUTTONS.TRN;
+            EVC14_MMICurrentDriverID.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
+            EVC14_MMICurrentDriverID.Send();            
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Train Running Number window and displays the Driver ID window.");
@@ -128,12 +133,6 @@ namespace Testcase.DMITestCases
             Action: Enter Driver ID and perform brake test
             Expected Result: The Level window is displayed
             */
-            EVC14_MMICurrentDriverID.MMI_X_DRIVER_ID = "";
-            EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE = EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE_BUTTONS.Settings |
-                                                        EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE_BUTTONS.TRN;
-            EVC14_MMICurrentDriverID.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
-            EVC14_MMICurrentDriverID.Send();
-            
             DmiActions.ShowInstruction(this, @"Enter Driver ID and perform brake test");
 
             EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Disabled;
@@ -216,7 +215,7 @@ namespace Testcase.DMITestCases
                                                      0,
                                                      Variables.MMI_NID_KEY_Load_Gauge.G1,
                                                      EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE,
-                                                     0, 0, new[] { "FLU", "RLU", "Rescue" }, null);
+                                                     0, 0, new[] { "FLU", "RLU", "Rescue" });
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Train data window." + Environment.NewLine +
@@ -256,7 +255,7 @@ namespace Testcase.DMITestCases
                                                      0,
                                                      Variables.MMI_NID_KEY_Load_Gauge.G1,
                                                      EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE,
-                                                     0, 0, new[] { "FLU", "RLU", "Rescue" }, null);
+                                                     0, 0, new[] { "FLU", "RLU", "Rescue" });
 
             DmiExpectedResults.Train_data_window_displayed(this);
 

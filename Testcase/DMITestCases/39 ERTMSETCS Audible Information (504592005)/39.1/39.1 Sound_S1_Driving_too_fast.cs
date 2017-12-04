@@ -108,6 +108,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 12029 (partly: MMI_M_WARNING = 8 with TDG file)(2) MMI_gen 12060 (partly: MMI_M_WARNING = 8 with TDG file)1Note Sound file is stored in DMI_ERTMS_BL3 product in database path:/proj/ccmbkk3/mmi_v.
             */
             EVC1_MMIDynamic.MMI_V_PERMITTED = 60;
+            EVC1_MMIDynamic.MMI_V_TARGET_KMH = 70;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 70;
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Overspeed_Status_Ceiling_Speed_Monitoring;
 
@@ -190,6 +191,8 @@ namespace Testcase.DMITestCases
             Test Step Comment: 1) MMI_gen 12029 (partly: MMI_M_WARNING = 10 with TDG file)(2) MMI_gen 12060 (partly: MMI_M_WARNING = 10 with TDG file)
             */
             EVC1_MMIDynamic.MMI_V_PERMITTED = 100;
+            EVC1_MMIDynamic.MMI_V_TARGET_KMH = 80;
+            EVC1_MMIDynamic.MMI_V_INTERVENTION_KMH = 102;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 95;
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Overspeed_Status_PreIndication_Monitoring;
             

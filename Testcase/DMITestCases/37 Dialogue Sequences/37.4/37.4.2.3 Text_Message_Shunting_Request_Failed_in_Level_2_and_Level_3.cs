@@ -132,6 +132,12 @@ namespace Testcase.DMITestCases
             DmiActions.Set_Driver_ID(this, "1234");
             // Set to level 1 and SH mode
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L3;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Shunting;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;      // Main window
+            EVC30_MMIRequestEnable.Send();
+
+            // RTSim doesn't seem to restore EVC30 on restart (at least reliably) so make sure that buttons are enabled
+            DmiActions.Finished_SoM_Default_Window(this);
 
             DmiActions.ShowInstruction(this, @"Press ‘Main’ button. Press and hold ‘Shunting’ button at least 2 seconds.Release ‘Shunting’ button");
 
