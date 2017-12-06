@@ -200,7 +200,7 @@ namespace Testcase.DMITestCases
         public static void Send_EVC6_MMICurrentTrainData(MMI_M_DATA_ENABLE mmiMDataEnable, ushort mmiLTrain,
             ushort mmiVMaxTrain, MMI_NID_KEY mmiNidKeyTrainCat, byte mmiMBrakePerc, MMI_NID_KEY mmiNidKeyAxleLoad,
             byte mmiMAirtight, MMI_NID_KEY_Load_Gauge mmiNidKeyLoadGauge, EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA mmiMButtons,
-            ushort mmiMTrainsetId, ushort mmiMAltDem, string[] trainSetCaptions, DataElement[] dataElements)
+            ushort mmiMTrainsetId, ushort mmiMAltDem, string[] trainSetCaptions, DataElement[] dataElements = null)
         {
             EVC6_MMICurrentTrainData.MMI_M_DATA_ENABLE = mmiMDataEnable;            // Train data enabled
             EVC6_MMICurrentTrainData.MMI_L_TRAIN = mmiLTrain;                       // Train length
@@ -216,7 +216,15 @@ namespace Testcase.DMITestCases
             EVC6_MMICurrentTrainData.MMI_M_ALT_DEM = mmiMAltDem;
 
             EVC6_MMICurrentTrainData.TrainSetCaptions = new List<string>(trainSetCaptions);
-            EVC6_MMICurrentTrainData.DataElements = new List<DataElement>(dataElements);
+
+            if (dataElements == null)
+            {
+                EVC6_MMICurrentTrainData.DataElements = new List<DataElement>();
+            }
+            else
+            {
+                EVC6_MMICurrentTrainData.DataElements = new List<DataElement>(dataElements);
+            }
 
             EVC6_MMICurrentTrainData.Send();
         }
