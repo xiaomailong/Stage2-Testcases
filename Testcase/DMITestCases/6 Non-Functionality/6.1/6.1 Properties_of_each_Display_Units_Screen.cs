@@ -40,6 +40,11 @@ namespace Testcase.DMITestCases
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
+
+            DmiActions.Start_ATP();
+            DmiActions.Activate_Cabin_1(this);
+            DmiActions.Set_Driver_ID(this, "1234");
+            DmiActions.Send_SB_Mode(this);
         }
 
         public override void PostExecution()
@@ -61,73 +66,109 @@ namespace Testcase.DMITestCases
             Action: Press ‘Settings’ button
             Expected Result: DMI displays Settings window
             */
-            // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press ‘Settings’ button");
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Settings_window(this);
 
+            DmiActions.ShowInstruction(this, @"Press ‘Settings’ button");
+            DmiActions.Open_the_Settings_window(this);
+
+            DmiExpectedResults.DMI_displays_Settings_window(this);
 
             /*
             Test Step 2
             Action: Press ‘Brightness’ button
-            Expected Result: DMI displays Brightness window.Verify the following information,The value of and input field is 55 (median value between 10 an 100)
+            Expected Result: DMI displays Brightness window.
+            Verify the following information,
+            The value of and input field is 55 (median value between 10 an 100)
             Test Step Comment: (1) MMI_gen 3091 (partly: default luminance);
             */
-            // Call generic Action Method
+
             DmiActions.ShowInstruction(this, @"Press ‘Brightness’ button");
 
+            WaitForVerification(@"Is the Brightness set at median value (= 55)?");
 
             /*
             Test Step 3
             Action: Press and hold ‘-‘ button in order to decreasing brightness to defined minimum level
-            Expected Result: The adjust luminance is used by DMI.Verify the following informationVerify that value of an input field is decreasing while button is pressed and the brightness is dimmer than before pressing button.Verify that the minimum level of bightness is defined as 10
-            Test Step Comment: (1) MMI_gen 258 (partly: adjustment of the brightness);(2) MMI_gen 258 (partly: defined minimum level);  
+            Expected Result: The adjust luminance is used by DMI.
+            Verify the following information
+            Verify that value of an input field is decreasing while button is pressed and the brightness is dimmer than before pressing button.
+            Verify that the minimum level of bightness is defined as 10
+            Test Step Comment: (1) MMI_gen 258 (partly: adjustment of the brightness);
+                               (2) MMI_gen 258 (partly: defined minimum level);  
             */
 
+            DmiActions.ShowInstruction(this, @"Press and hold ‘-‘ button in order to decreasing brightness to defined minimum level");
+
+            WaitForVerification("Verify that value of an input field is decreasing while button is pressed and the brightness is dimmer than before pressing button." + Environment.NewLine +
+                                "Verify that the minimum level of bightness is defined as 10.");
 
             /*
             Test Step 4
             Action: Press ‘Close’ button
             Expected Result: DMI displays Settings window
             */
-            // Call generic Action Method
+     
             DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Settings_window(this);
 
+            DmiExpectedResults.DMI_displays_Settings_window(this);
 
             /*
             Test Step 5
             Action: Press ‘Close’ button
             Expected Result: DMI displays Driver ID window
             */
-            // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
-            // Call generic Check Results Method
-            DmiExpectedResults.Driver_ID_window_displayed(this);
 
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
+
+            DmiExpectedResults.Driver_ID_window_displayed(this);
 
             /*
             Test Step 6
-            Action: Perform the following procedure,Press ‘Settings’ button.Press ‘Brightness’ button
-            Expected Result: DMI displays Brightness window.The value of an input field is restored to 55 and the brightness is not effected from setting of step 3
+            Action: Perform the following procedure,
+            Press ‘Settings’ button.
+            Press ‘Brightness’ button
+            Expected Result: DMI displays Brightness window.
+            The value of an input field is restored to 55 and the brightness is not effected from setting of step 3
             */
 
+            DmiActions.ShowInstruction(this, @"Press ‘Settings’ button");
+
+            DmiActions.ShowInstruction(this, @"Press ‘Brightness’ button");
+            WaitForVerification(@"Is the Brightness set at median value (= 55)?");
 
             /*
             Test Step 7
             Action: Press and hold ‘+‘ button in order to increasing brightness to defined maximum level
-            Expected Result: The value of an input field is increasing while button is pressed and the brightness is brighter than before pressing button.The maximum level of bightness is defined as 100
+            Expected Result: The value of an input field is increasing while button is pressed and the brightness is brighter than before pressing button.
+            The maximum level of bightness is defined as 100
             */
 
+            DmiActions.ShowInstruction(this, @"Press and hold ‘+‘ button in order to increasing brightness to defined maximum level");
+
+            WaitForVerification("Verify the following:" + Environment.NewLine + Environment.NewLine +
+                                "- The value of an input field is increasing while button is pressed and the brightness is brighter than before pressing button." + Environment.NewLine +
+                                "- The maximum level of bightness is defined as 100.");
 
             /*
             Test Step 8
-            Action: Perform the following procedure,Decrease the brightness to minimum value.De-activate CabinActivate CabinPress ‘Settings’ button.Press ‘Brightness’ button
+            Action: Perform the following procedure,
+            Decrease the brightness to minimum value.
+            De-activate Cabin
+            Activate Cabin
+            Press ‘Settings’ button.
+            Press ‘Brightness’ button
             Expected Result: The brightness is increased from the minimum and the value of and input field is 55 (median value between 10 an 100)
             Test Step Comment: MMI_gen 3091 (partly: In case no luminance is stored);
             */
 
+            DmiActions.ShowInstruction(this, @"Decrease the brightness to minimum value.");
+
+            DmiActions.ShowInstruction(this, @"Rebooting Cab...");
+            DmiActions.Deactivate_and_activate_cabin(this);
+
+            DmiActions.ShowInstruction(this, @"Press ‘Settings’ button");
+
+            DmiActions.ShowInstruction(this, @"Press ‘Brightness’ button");
+            WaitForVerification(@"Is the Brightness set at median value (= 55)?");
 
             /*
             Test Step 9
@@ -135,14 +176,29 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Settings window with luminance increased refer to entered data
             */
 
+            DmiActions.ShowInstruction(this, "Press and hold ‘+‘ button in order to increasing brightness to defined maximum level." + Environment.NewLine +
+                                             "Then, confirm entered data by pressing an input field");
+
+            WaitForVerification(@"Confirm that DMI displays Settings window with luminance increased refer to entered data");
 
             /*
             Test Step 10
-            Action: Press ‘Brightness’ button.Then, repeat action step 8
+            Action: Press ‘Brightness’ button.
+            Then, repeat action step 8
             Expected Result: The ‘Brightness’ window is come up with maximum value of the luminance range
             Test Step Comment: MMI_gen 3091 (partly: The last stored luminance shall be used when opening the desk);
             */
 
+            DmiActions.ShowInstruction(this, @"Decrease the brightness to minimum value.");
+
+            DmiActions.ShowInstruction(this, @"Rebooting Cab...");
+            DmiActions.Deactivate_and_activate_cabin(this);
+
+            DmiActions.ShowInstruction(this, @"Press ‘Settings’ button");
+
+            DmiActions.ShowInstruction(this, @"Press ‘Brightness’ button");
+
+            WaitForVerification(@"Is the Brightness set at its maximum value?");
 
             /*
             Test Step 11
