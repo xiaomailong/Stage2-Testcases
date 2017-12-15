@@ -1182,7 +1182,9 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void DMI_displays_in_SB_mode_level_1(SignalPool pool)
         {
-            throw new NotImplementedException();
+            Driver_symbol_displayed(pool, "Level 1", "LE03", "C8", true);
+            SB_Mode_displayed(pool);
+            
         }
 
         /// <summary>
