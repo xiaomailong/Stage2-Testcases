@@ -13,6 +13,7 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.EVCtoDMI;
 
 namespace Testcase.DMITestCases
 {
@@ -39,7 +40,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// N/A
     /// </summary>
-    public class Internal_Components : TestcaseBase
+    public class TC_1_2_Internal_Components : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -66,10 +67,15 @@ namespace Testcase.DMITestCases
 
             /*
             Test Step 1
-            Action: Power on DMI and start up the system.Activate cabin A
+            Action: Power on DMI and start up the system.
+            Activate cabin A
             Expected Result: DMI displays the default window. The Driver ID window is displayed
             */
-            // Call generic Check Results Method
+
+            DmiActions.Start_ATP();
+            DmiActions.Activate_Cabin_1(this);
+            DmiActions.Set_Driver_ID(this, "1234");
+            
             DmiExpectedResults.Driver_ID_window_displayed(this);
 
 
@@ -78,9 +84,15 @@ namespace Testcase.DMITestCases
             Action: Enter Driver ID and  selects level 1
             Expected Result: DMI displays in SB mode, level 1
             */
-            // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Enter Driver ID and  selects level 1");
-            // Call generic Check Results Method
+
+            DmiActions.Send_SB_Mode(this);
+            DmiExpectedResults.Driver_ID_entered(this);
+
+            DmiActions.Display_Level_Window(this);
+            DmiExpectedResults.Level_window_displayed(this);
+
+            DmiExpectedResults.Level_1_Selected(this);
+
             DmiExpectedResults.DMI_displays_in_SB_mode_level_1(this);
 
 
@@ -89,24 +101,39 @@ namespace Testcase.DMITestCases
             Action: Press ‘Close’ button and select ‘Settings menu’
             Expected Result: The Settings window is presented with all sub-menus
             */
-            // Call generic Check Results Method
-            DmiExpectedResults.The_Settings_window_is_presented_with_all_sub_menus(this);
+
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button and select ‘Settings menu’");
+            DmiActions.Open_the_Settings_window(this);
+
+            DmiExpectedResults.DMI_displays_Settings_window(this);
 
 
             /*
             Test Step 4
             Action: Select the icon of ‘Set Clock’ button
-            Expected Result: The Set Clock window is presented to the driver.Verify that the year, month, day, hour, minute, second are displayed as real time update
+            Expected Result: The Set Clock window is presented to the driver.
+            Verify that the year, month, day, hour, minute, second are displayed as real time update
             */
 
+            DmiActions.ShowInstruction(this, @"Select the icon of ‘Set Clock’ button");
+            WaitForVerification("The Set Clock window is presented to the driver." + Environment.NewLine +
+                                "Verify that the year, month, day, hour, minute, second are displayed as real time update.");
 
             /*
             Test Step 5
             Action: Enter the new value of Offset time. Then presses ‘Yes’ and closes the window
             Expected Result: The Settings window is displayed
             */
-            // Call generic Check Results Method
-            DmiExpectedResults.The_Settings_window_is_displayed(this);
+
+            DmiExpectedResults.UTC_time_changed(this);
+
+            // Possible send EVC-3 MMI_SET_TIME_ATP packet
+            EVC3_MMISetTimeATP.MMI_T_UTC = (uint)(DateTime.UtcNow - new DateTime(1970, 1, 1)).TotalSeconds;
+            EVC3_MMISetTimeATP.MMI_T_ZONE_OFFSET = 0;
+            EVC3_MMISetTimeATP.Send();
+
+            DmiActions.Open_the_Settings_window(this);
+            DmiExpectedResults.DMI_displays_Settings_window(this);
 
 
             /*
@@ -114,7 +141,8 @@ namespace Testcase.DMITestCases
             Action: Close the Settings window and deactivate cabin A
             Expected Result: Cabin A is deactivated
             */
-            // Call generic Check Results Method
+
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
             DmiExpectedResults.Cab_deactivated(this);
 
 
@@ -123,7 +151,10 @@ namespace Testcase.DMITestCases
             Action: Power off DMI for 48 hrs. Then, activate Cabin A
             Expected Result: DMI displays the default window. The Driver ID window is displayed
             */
-            // Call generic Check Results Method
+
+            DmiActions.Activate_Cabin_1(this);
+            DmiActions.Set_Driver_ID(this, "1234");
+
             DmiExpectedResults.Driver_ID_window_displayed(this);
 
 
@@ -132,20 +163,36 @@ namespace Testcase.DMITestCases
             Action: Enter Driver ID and  selects level 1
             Expected Result: DMI displays in SB mode, level 1
             */
-            // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Enter Driver ID and  selects level 1");
-            // Call generic Check Results Method
+
+            DmiActions.Send_SB_Mode(this);
+            DmiExpectedResults.Driver_ID_entered(this);
+
+            DmiActions.Display_Level_Window(this);
+            DmiExpectedResults.Level_window_displayed(this);
+
+            DmiExpectedResults.Level_1_Selected(this);
+
             DmiExpectedResults.DMI_displays_in_SB_mode_level_1(this);
 
 
             /*
             Test Step 9
-            Action: Perform the following procedure,Press ‘Close’ buttonSelect ‘Settings menu’Press ‘Set Clock’ button
-            Expected Result: The Set Clock window is displayed.Verify that the new offset time has been stored on DMI for 48 hrs
+            Action: Perform the following procedure,
+                    Press ‘Close’ button
+                    Select ‘Settings menu’
+                    Press ‘Set Clock’ button
+            Expected Result: The Set Clock window is displayed.
+                             Verify that the new offset time has been stored on DMI for 48 hrs
             Test Step Comment: MMI_gen 2446;
             */
 
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button and select ‘Settings menu’");
+            DmiActions.Open_the_Settings_window(this);
+            DmiExpectedResults.DMI_displays_Settings_window(this);
 
+            DmiActions.ShowInstruction(this, @"Select the icon of ‘Set Clock’ button");
+            WaitForVerification("The Set Clock window is displayed." + Environment.NewLine +
+                                "Verify that the new offset time has been stored on DMI for 48 hrs.");
             /*
             Test Step 10
             Action: End of test

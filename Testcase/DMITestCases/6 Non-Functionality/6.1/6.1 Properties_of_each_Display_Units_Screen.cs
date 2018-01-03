@@ -31,7 +31,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// N/A
     /// </summary>
-    public class Properties_of_each_Display_Units_Screen : TestcaseBase
+    public class TC_1_1_Properties_of_each_Display_Units_Screen : TestcaseBase
     {
         public override void PreExecution()
         {

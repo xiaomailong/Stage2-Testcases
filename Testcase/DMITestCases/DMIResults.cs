@@ -1153,7 +1153,7 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void DMI_displays_Settings_window(SignalPool pool)
         {
-            throw new NotImplementedException();
+            pool.WaitForVerification("Is the Settings window displayed?");
         }
 
         /// <summary>
@@ -1185,6 +1185,12 @@ namespace Testcase.DMITestCases
             Driver_symbol_displayed(pool, "Level 1", "LE03", "C8", true);
             SB_Mode_displayed(pool);
             
+        }
+
+        public static void UTC_time_changed(SignalPool pool)
+        {
+            DmiActions.ShowInstruction(pool, @"Enter the new value of Offset time. Then presses ‘Yes’ and closes the window");
+            DMItoEVC_Telegram_Received(pool, DMItoEVCTelegram.ETCS1SetTimeMmi, 1000);
         }
 
         /// <summary>
