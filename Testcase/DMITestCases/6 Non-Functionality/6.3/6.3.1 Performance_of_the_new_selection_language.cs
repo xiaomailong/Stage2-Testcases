@@ -13,6 +13,7 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using static Testcase.Telegrams.EVCtoDMI.Variables;
 
 namespace Testcase.DMITestCases
 {
@@ -26,12 +27,19 @@ namespace Testcase.DMITestCases
     /// MMI_gen 60; MMI_gen 61; MMI_gen 62,MMI_gen 11892; MMI_gen 11893; MMI_gen 4368; MMI_gen 7506; MMI_gen 7507; MMI_gen 11470 (partly: Bit # 29);
     /// 
     /// Scenario:
-    /// Power on the systemActivate cabin A.Enter the Driver ID and perform brake test.Select and confirm level 1.Verify that the text on windows, sub windows, buttons and text messages are displayed accroding to selected languagePower off DMI for 10 mins and power on again.Verify that the default window represents the text with the selected languageRestest with all stored languages
+    /// Power on the system
+    /// Activate cabin A.
+    /// Enter the Driver ID and perform brake test.
+    /// Select and confirm level 1.
+    /// Verify that the text on windows, sub windows, buttons and text messages are displayed accroding to selected language
+    /// Power off DMI for 10 mins and power on again.
+    /// Verify that the default window represents the text with the selected language
+    /// Restest with all stored languages
     /// 
     /// Used files:
     /// N/A
     /// </summary>
-    public class Performance_of_the_new_selection_language : TestcaseBase
+    public class TC_1_3_1_Performance_of_the_new_selection_language : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -40,6 +48,8 @@ namespace Testcase.DMITestCases
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
+            DmiActions.ShowInstruction(this, "This test need to be done with the real EVC" + Environment.NewLine + Environment.NewLine +
+                                       "The aim of this test is to check that the text on sub windows and buttons are presented in Engilsh language. ");
         }
 
         public override void PostExecution()
@@ -62,32 +72,65 @@ namespace Testcase.DMITestCases
             Expected Result: ‘Driver’s desk not active’ is displayed on DMI
             */
 
+            //DmiActions.Start_ATP();
+            //WaitForVerification("Is ‘Driver’s desk not active’  displayed on DMI?");
 
             /*
             Test Step 2
             Action: Activate cabin A
-            Expected Result: The Driver ID window is displayed.Time between step 1 and the display of the Driver ID window is <= 120 seconds
+            Expected Result: The Driver ID window is displayed.
+            Time between step 1 and the display of the Driver ID window is <= 120 seconds
             Test Step Comment: MMI_gen 60;
             */
-            // Call generic Action Method
-            DmiActions.Activate_Cabin_1(this);
 
+            //DmiActions.Activate_Cabin_1(this);
+            //DmiExpectedResults.Cabin_A_is_activated(this);
+
+            //DmiActions.Set_Driver_ID(this, "1234");
+            //DmiActions.Send_SB_Mode(this);
+            //DmiExpectedResults.Driver_ID_window_displayed_in_SB_mode(this);
 
             /*
             Test Step 3
-            Action: Perform the following procedure,Enter Driver ID and perform brake test.Select and confirm Level 1
+            Action: Perform the following procedure,
+                    Enter Driver ID and perform brake test.
+                    Select and confirm Level 1
             Expected Result: The Main window is presented with the text message ‘Brake test in progress’ is displayed as English language
             Test Step Comment: MMI_gen 61 (partly: Engilsh);
             */
 
+            //DmiExpectedResults.Driver_ID_entered(this);
+
+            //DmiActions.Request_Brake_Test(this, 1);
+            //DmiExpectedResults.Brake_Test_Perform_Order(this, true);
+
+            //DmiActions.Perform_Brake_Test(this, 2);
+            //WaitForVerification("Is ‘Brake test in progress’ displayed as English language on DMI?");
+
+            //Wait_Realtime(5000);
+
+            //DmiActions.Display_Brake_Test_Successful(this, 3);
+
+            //DmiActions.Display_Level_Window(this);
+            //DmiExpectedResults.Level_window_displayed(this);
+
+            //DmiActions.Delete_Brake_Test_Successful(this, 3);
+
+            //DmiExpectedResults.Level_1_Selected(this);
+
+            //DmiActions.Display_Main_Window_with_Start_button_not_enabled(this);
 
             /*
             Test Step 4
             Action: Enter all sub windows on DMI
             Expected Result: The text on sub windows and buttons are presented in Engilsh language
-            Test Step Comment: MMI_gen 61 (partly: Engilsh);MMI_gen_11892 (partly: Engilsh);MMI_gen 4368 (partly: (partly: language dependent text));
+            Test Step Comment: MMI_gen 61 (partly: Engilsh);
+                               MMI_gen_11892 (partly: Engilsh);
+                               MMI_gen 4368 (partly: (partly: language dependent text));
             */
 
+            //DmiActions.ShowInstruction(this,"Enter all sub windows on DMI -> This need to be done with the real EVC" + Environment.NewLine + Environment.NewLine +
+            //                           "The aim of this test is to check that the text on sub windows and buttons are presented in Engilsh language. ");
 
             /*
             Test Step 5
@@ -95,8 +138,46 @@ namespace Testcase.DMITestCases
             Expected Result: The text on winsows, sub windows buttons and text messages are presented in Engilsh language
             Test Step Comment: MMI_gen 61 (partly: Engilsh);MMI_gen_11892 (partly: Engilsh);MMI_gen 4368 (partly: language dependent text);
             */
-            // Call generic Action Method
-            DmiActions.Complete_start_of_mission(this);
+
+            //DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
+            //                    "1. Press ‘Train data’ button." + Environment.NewLine +
+            //                    "2. Press OK on THIS window.");
+
+            //DmiActions.Display_Fixed_Train_Data_Window(this);
+            //DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
+            //                    "1. Enter FLU and confirm value in each input field." + Environment.NewLine +
+            //                    "2. Press OK on THIS window.");
+
+            //DmiActions.Enable_Fixed_Train_Data_Validation(this, Fixed_Trainset_Captions.FLU);
+            //DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
+            //                    "1. Press ‘Yes’ button." + Environment.NewLine +
+            //                    "2. Press OK on THIS window.");
+
+            //DmiActions.Complete_Fixed_Train_Data_Entry(this, Fixed_Trainset_Captions.FLU);
+            //DmiActions.Display_Train_data_validation_Window(this);
+            //DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
+            //                    "1. Press ‘Yes’ button." + Environment.NewLine +
+            //                    "2. Confirmed the selected value by pressing the input field." + Environment.NewLine +
+            //                    "3. Press OK on THIS window.");
+
+            //DmiActions.Display_TRN_Window(this);
+            //DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
+            //                    "1. Enter and confirm Train Running Number." + Environment.NewLine +
+            //                    "2. Press OK on THIS window.");
+
+            //DmiActions.Display_Main_Window_with_Start_button_enabled(this);
+            //DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
+            //                    "1. Press ‘Start’ button." + Environment.NewLine +
+            //                    "2. Press OK on THIS window.");
+
+            //DmiActions.Send_SR_Mode_Ack(this);
+            //DmiActions.ShowInstruction(this, @"Perform the following action after pressing OK: " + Environment.NewLine + Environment.NewLine +
+            //                    "1. Press DMI Sub Area C1.");
+            //DmiExpectedResults.SR_Mode_Ack_pressed_and_hold(this);
+
+            //DmiActions.Send_SR_Mode(this);
+            //DmiActions.Send_L1(this);
+            //DmiActions.Finished_SoM_Default_Window(this);
 
 
             /*
