@@ -410,6 +410,24 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
+        /// Description: This function allows to stop sending periodically any EVC-1 forcing the DMI to go to "ATP-Down" state
+        /// MMI_gen 244-- 	If the ETCS-MMI is in “active” state and [EVC-1] is lost*, the MMI shall enter “ATP-Down” state...
+        /// Used in:
+        ///     Step 6 in TC-ID: 1.6 in 6.6
+        /// </summary>
+        public static void Force_Loss_Communication(SignalPool pool)
+        {
+            EVC1_MMIDynamic.ForceComunicationLoss(pool);
+            pool.Wait_Realtime(1000);
+        }
+
+        public static void Restablish_Communication(SignalPool pool)
+        {
+            EVC1_MMIDynamic.UnforceCommunicationLoss(pool);
+            pool.Wait_Realtime(1000);
+        }
+
+        /// <summary>
         /// Description: Activate cabin 1
         /// Used in:
         ///     Step 1 in TC-ID: 15.1.1 in 20.1.1

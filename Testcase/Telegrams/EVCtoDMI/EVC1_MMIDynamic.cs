@@ -54,6 +54,22 @@ namespace Testcase.Telegrams.EVCtoDMI
         }
 
         /// <summary>
+        /// This function allows to stop sending periodically any EVC-1 forcing the DMI to go to "ATP-Down" state
+        /// MMI_gen 244-- 	If the ETCS-MMI is in “active” state and [EVC-1] is lost*, the MMI shall enter “ATP-Down” state...
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void ForceComunicationLoss(SignalPool pool)
+        {
+            _pool.SITR.STGCtrl.ETCS1.Dynamic.Force(0x0000);
+        }
+
+        public static void UnforceCommunicationLoss(SignalPool pool)
+        {
+            _pool.SITR.STGCtrl.ETCS1.Dynamic.Unforce();
+            _pool.SITR.STGCtrl.ETCS1.Dynamic.Value = 0x0001;
+        }
+
+        /// <summary>
         /// Qualifier telling whether the MMI shall initiate an indication or a warning
         /// </summary>
         public static MMI_M_WARNING MMI_M_WARNING
