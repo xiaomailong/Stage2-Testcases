@@ -254,6 +254,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         {
             BTN_YES_DATA_ENTRY_COMPLETE = 36,
             BTN_YES_DATA_ENTRY_COMPLETE_DELAY_TYPE = 37,
+            BTN_ENTER = 254,
             NoButton = 255
         }
 

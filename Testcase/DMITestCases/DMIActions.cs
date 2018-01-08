@@ -537,6 +537,42 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
         }
 
+        public static void Show_RBC_Connection_Lost_Symbol(SignalPool pool)
+        {
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 12;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 282;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
+            EVC8_MMIDriverMessage.Send();
+        }
+
+        public static void Remove_RBC_Connection_Lost_Symbol(SignalPool pool)
+        {
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 12;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 282;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
+            EVC8_MMIDriverMessage.Send();
+        }
+
+        public static void Show_RBC_Connection_Established_Symbol(SignalPool pool)
+        {
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 15;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 568;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
+            EVC8_MMIDriverMessage.Send();
+        }
+
+        public static void Remove_RBC_Connection_Established_Symbol(SignalPool pool)
+        {
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 15;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 568;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
+            EVC8_MMIDriverMessage.Send();
+        }
+
         /// <summary>
         /// Description: L0 sent to the DMI
         /// Used in:
@@ -911,6 +947,18 @@ namespace Testcase.DMITestCases
         /// <summary>
         /// Description: RBC Data sent to be displayed on th DMI
         /// Used in:
+        ///     Step 1 in TC-ID: 15.2.2 in 20.2.2
+        /// </summary>
+        /// <param name="pool">Signal pool</param>
+        public static void Display_RBC_Contact_Window(SignalPool pool)
+        {
+            Send_EVC22_MMI_Current_RBC(pool, 2, 0x12345FFFFFFFFFFF, 5, true, EVC22_MMICurrentRBC.EVC22BUTTONS.BTN_ENTER, new[] { "Network1" });
+        }
+       
+
+        /// <summary>
+        /// Description: RBC Data sent to be displayed on th DMI
+        /// Used in:
         ///     Step 1 in TC-ID: 22.27.1 in 27.27.1
         /// </summary>
         /// <param name="pool">Signal pool</param>
@@ -1192,7 +1240,6 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void Perform_SoM_in_SR_mode_Level_1(SignalPool pool)
         {
-            Display_Driver_ID_Window(pool);
             Set_Driver_ID(pool, "1234");
             Send_SB_Mode(pool);
             ShowInstruction(pool, "Enter and confirm Driver ID");
@@ -1231,6 +1278,94 @@ namespace Testcase.DMITestCases
 
             Send_SR_Mode(pool);
             Finished_SoM_Default_Window(pool);
+        }
+
+        /// <summary>
+        /// Description: Perform SoM in SR mode, Level 2
+        /// Used in:
+        ///     Step 1 in TC-ID: 1.9 in 6.9 Performance of ETCS-DMI: Data handling
+        ///     Step 1 in TC-ID: 1.10 in 6.10 Performance of ETCS-DMI Data Processing
+        ///     Step 3 in TC-ID: 18.1.1.1.1 in 23.1.1.1.1 Concise Visualization
+        ///     Step 2 in TC-ID: 18.1.1.1.2 in 23.1.1.1.2 Verbose Visualization 
+        /// </summary>
+        public static void Perform_SoM_in_SR_mode_Level_2(SignalPool pool)
+        {
+            Set_Driver_ID(pool, "1234");
+            Send_SB_Mode(pool);
+            ShowInstruction(pool, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
+                                "1. Enter and confirm Driver ID." + Environment.NewLine +
+                                "2. Press OK on THIS window.");
+
+            Request_Brake_Test(pool);
+            ShowInstruction(pool, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
+                                "1. Perform Brake Test" + Environment.NewLine +
+                                "2. Press OK on THIS window.");
+            Perform_Brake_Test(pool, 2);
+            pool.Wait_Realtime(5000);
+            Display_Brake_Test_Successful(pool, 3);
+
+            Display_Level_Window(pool);
+            Delete_Brake_Test_Successful(pool, 3);
+            ShowInstruction(pool, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
+                                "1. Select and enter Level 2" + Environment.NewLine +
+                                "2. Press OK on THIS window.");
+
+            Display_RBC_Contact_Window(pool);
+            ShowInstruction(pool, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
+                                "1. Select and enter 'Contact last RBC'" + Environment.NewLine +
+                                "2. Press OK on THIS window.");
+
+            Show_RBC_Connection_Lost_Symbol(pool);
+            pool.Wait_Realtime(5000);
+            Remove_RBC_Connection_Lost_Symbol(pool);
+            pool.Wait_Realtime(5000);
+            Show_RBC_Connection_Established_Symbol(pool);
+
+            Display_Main_Window_with_Start_button_not_enabled(pool);
+            ShowInstruction(pool, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
+                                "1. Press ‘Train data’ button." + Environment.NewLine +
+                                "2. Press OK on THIS window.");
+
+            Display_Fixed_Train_Data_Window(pool);
+            ShowInstruction(pool, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
+                                "1. Enter FLU and confirm value in each input field." + Environment.NewLine +
+                                "2. Press OK on THIS window.");
+
+            Enable_Fixed_Train_Data_Validation(pool, Fixed_Trainset_Captions.FLU);
+            ShowInstruction(pool, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
+                                "1. Press ‘Yes’ button." + Environment.NewLine +
+                                "2. Press OK on THIS window.");
+
+            Complete_Fixed_Train_Data_Entry(pool, Fixed_Trainset_Captions.FLU);
+            Display_Train_data_validation_Window(pool);
+            ShowInstruction(pool, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
+                                "1. Press ‘Yes’ button." + Environment.NewLine +
+                                "2. Confirmed the selected value by pressing the input field." + Environment.NewLine +
+                                "3. Press OK on THIS window.");
+
+            Display_Train_data_validation_Window(pool);
+            ShowInstruction(pool, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
+                                    "1. Press ‘Yes’ button." + Environment.NewLine +
+                                    "2. Confirmed the selected value by pressing the input field.");
+
+            Display_TRN_Window(pool);
+            ShowInstruction(pool, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
+                                "1. Enter and confirm Train Running Number." + Environment.NewLine +
+                                "2. Press OK on THIS window.");
+
+            Display_Main_Window_with_Start_button_enabled(pool);
+            ShowInstruction(pool, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
+                                "1. Press ‘Start’ button." + Environment.NewLine +
+                                "2. Press OK on THIS window.");
+
+            Send_SR_Mode_Ack(pool);
+            ShowInstruction(pool, @"Perform the following action after pressing OK: " + Environment.NewLine + Environment.NewLine +
+                                "1. Press DMI Sub Area C1.");
+
+            Send_SR_Mode(pool);
+            Send_L2(pool);
+            Finished_SoM_Default_Window(pool);
+
         }
 
         /// <summary>
@@ -1301,19 +1436,6 @@ namespace Testcase.DMITestCases
         ///     Step 5 in TC-ID: 17.12 in Handle at least 31 PA Gradient Profile Segments
         /// </summary>
         public static void End_of_Test(SignalPool pool)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Description: Perform SoM in SR mode, Level 2
-        /// Used in:
-        ///     Step 1 in TC-ID: 1.9 in 6.9 Performance of ETCS-DMI: Data handling
-        ///     Step 1 in TC-ID: 1.10 in 6.10 Performance of ETCS-DMI Data Processing
-        ///     Step 3 in TC-ID: 18.1.1.1.1 in 23.1.1.1.1 Concise Visualization
-        ///     Step 2 in TC-ID: 18.1.1.1.2 in 23.1.1.1.2 Verbose Visualization
-        /// </summary>
-        public static void Perform_SoM_in_SR_mode_Level_2(SignalPool pool)
         {
             throw new NotImplementedException();
         }
