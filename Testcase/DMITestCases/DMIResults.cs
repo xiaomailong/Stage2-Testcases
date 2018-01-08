@@ -454,7 +454,7 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
-        /// Description: DMI displays Main window with enabled ‘Start’ button
+        /// Description: Start button is pressed and released
         /// Used in:
         ///     Step 1 in TC-ID: 5.10 in 10.10 Screen Layout: Button States
         ///     Step 3 in TC-ID: 22.20.2 in 27.20.2 Override window in SB mode
@@ -497,7 +497,7 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
-        /// Description: Close button on Level selection window is pressed
+        /// Description: Set VBC button is pressed and released
         /// Used in:
         ///     Step 1 in TC-ID: 22.27.1 in 27.27.1
         /// </summary>
@@ -507,6 +507,45 @@ namespace Testcase.DMITestCases
                                             "1. Press Set VBC button.");
             EVC101_MMIDriverRequest.CheckMRequestPressed = MMI_M_REQUEST.StartSetVBC;
             EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.StartSetVBC;
+        }
+
+        /// <summary>
+        /// Description: Data View button is pressed and released
+        /// Used in:
+        ///     
+        /// </summary>
+        public static void Data_View_Button_pressed_and_released(SignalPool pool)
+        {
+            DmiActions.ShowInstruction(pool, "Perform the following action after pressing OK:" + Environment.NewLine + Environment.NewLine +
+                                            "1. Press ‘Data view’ button.");
+            EVC101_MMIDriverRequest.CheckMRequestPressed = MMI_M_REQUEST.StartTrainDataView;
+            EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.StartTrainDataView;
+        }
+
+        /// <summary>
+        /// Description: Settings button is pressed and released
+        /// Used in:
+        ///     Step 1 in TC-ID: 22.27.1 in 27.27.1
+        /// </summary>
+        public static void Settings_Button_pressed_and_released(SignalPool pool)
+        {
+            DmiActions.ShowInstruction(pool, "Perform the following action after pressing OK:" + Environment.NewLine + Environment.NewLine +
+                                            "1. Press ‘Settings’ button.");
+            EVC101_MMIDriverRequest.CheckMRequestPressed = MMI_M_REQUEST.Settings;
+            EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.Settings;
+        }
+
+        /// <summary>
+        /// Description: System Version button is pressed and released
+        /// Used in:
+        ///     Step 1 in TC-ID: 22.27.1 in 27.27.1
+        /// </summary>
+        public static void System_Version_Button_pressed_and_released(SignalPool pool)
+        {
+            DmiActions.ShowInstruction(pool, "Perform the following action after pressing OK:" + Environment.NewLine + Environment.NewLine +
+                                            "1. Press ‘System Version’ button.");
+            EVC101_MMIDriverRequest.CheckMRequestPressed = MMI_M_REQUEST.SystemVersionRequest;
+            EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.SystemVersionRequest;
         }
 
         /// <summary>

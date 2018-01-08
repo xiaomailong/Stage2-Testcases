@@ -20,7 +20,9 @@ namespace Testcase.DMITestCases
     /// 6.10 Performance of ETCS-DMI Data Processing
     /// TC-ID: 1.10
     /// 
-    /// This test case verifies the performance of ETCS data processing within ETCS-DMI. The function designs comply with the conditions in [MMI-ETCS-gen]. The data range and interface comply with the data information in [VSIS_gen].
+    /// This test case verifies the performance of ETCS data processing within ETCS-DMI. 
+    /// The function designs comply with the conditions in [MMI-ETCS-gen]. 
+    /// The data range and interface comply with the data information in [VSIS_gen].
     /// 
     /// Tested Requirements:
     /// MMI_gen 3216; MMI_gen 88 (partly: ETCS BA);
@@ -33,15 +35,23 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 1_10.utt
     /// </summary>
-    public class Performance_of_ETCS_DMI_Data_Processing : TestcaseBase
+    public class TC_1_10_Performance_of_ETCS_DMI_Data_Processing : TestcaseBase
     {
         public override void PreExecution()
         {
             // Pre-conditions from TestSpec:
-            // 1. The test environment is powered on.2. The RCI client is connected to ETCS-DMI with the concerned ETCS-DMI IP address via port 15001 (Raw connection). 3. The RCI is commanded to start logging the following data:- The incoming data received by MVB port.- The concerned data for ETCS-DMI screen update.- The ETCS-DMI screen update according to the incoming data.4. The cabin is activated.
+            // 1. The test environment is powered on.
+            // 2. The RCI client is connected to ETCS-DMI with the concerned ETCS-DMI IP address via port 15001 (Raw connection). 
+            // 3. The RCI is commanded to start logging the following data:
+            //      - The incoming data received by MVB port.- The concerned data for ETCS-DMI screen update.
+            //      - The ETCS-DMI screen update according to the incoming data.
+            // 4. The cabin is activated.
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
+            DmiActions.ShowInstruction(this, "THIS TESCASE TO BE SKIPPED??");
+            DmiActions.Start_ATP();
+            DmiActions.Activate_Cabin_1(this);
         }
 
         public override void PostExecution()
@@ -63,10 +73,8 @@ namespace Testcase.DMITestCases
             Action: Perform SoM in SR mode, Level 2
             Expected Result: RCI logs the concerned activities as specified in the precondition
             */
-            // Call generic Action Method
+
             DmiActions.Perform_SoM_in_SR_mode_Level_2(this);
-            // Call generic Check Results Method
-            DmiExpectedResults.RCI_logs_the_concerned_activities_as_specified_in_the_precondition(this);
 
 
             /*
