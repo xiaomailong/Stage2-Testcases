@@ -13,6 +13,8 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.EVCtoDMI;
+
 
 namespace Testcase.DMITestCases
 {
@@ -33,15 +35,27 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 17_4_2.tdg
     /// </summary>
-    public class PA_Track_Condition_Sound_Horn_in_Sub_Area_D2_and_B3 : TestcaseBase
+    public class TC_ID_17_4_2_PA_Track_Condition_Sound_Horn_in_Sub_Area_D2_and_B3 : TestcaseBase
     {
         public override void PreExecution()
         {
             // Pre-conditions from TestSpec:
-            // Configure atpcu configuration file as following:TC_T_Panto_Down = 100TC_T_MainSwitch_Off = 100TC_T_Airtight_Close =100TC_T_Inhib_RBBrake = 100TC_T_ Inhib_ECBrake = 100TC_T_ Inhib_MSBrake = 100TC_T_Change_TractionSyst = 100TC_T_Allowed_CurrentConsump = 100 TC_T_StationPlatform = 100Test system is power on.SoM is performed in SR mode, level 1.
+            // Configure atpcu configuration file as following:
+            // TC_T_Panto_Down = 100
+            // TC_T_MainSwitch_Off = 100
+            // TC_T_Airtight_Close =100
+            // TC_T_Inhib_RBBrake = 100
+            // TC_T_ Inhib_ECBrake = 100
+            // TC_T_ Inhib_MSBrake = 100
+            // TC_T_Change_TractionSyst = 100
+            // TC_T_Allowed_CurrentConsump = 100
+            // TC_T_StationPlatform = 100
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
+
+            // Test system is power on.SoM is performed in SR mode, level 1.
+            DmiActions.Complete_SoM_L1_SR(this);
         }
 
         public override void PostExecution()
@@ -56,36 +70,34 @@ namespace Testcase.DMITestCases
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint
-
+            TraceInfo("This test case requires an ATP configuration change - " +
+                      "See Precondition requirements. If this is not done manually, the test may fail!");
 
             /*
             Test Step 1
             Action: Drive the train forward with speed = 20km/h
             Expected Result: The speed pointer is indicated as 20  km/h
             */
-            // Call generic Check Results Method
-            DmiExpectedResults.The_speed_pointer_is_indicated_as_20_kmh(this);
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 20;
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The speed pointer is displayed with speed = 20 km/h.");
 
             /*
             Test Step 2
             Action: Drive the train forward pass BG0 with MA and Track descriptionPkt 12,21 and 27
             Expected Result: Mode changes to FS mode , L1
             */
-            // Call generic Action Method
-            DmiActions.Drive_the_train_forward_pass_BG0_with_MA_and_Track_descriptionPkt_12_21_and_27(this);
-            // Call generic Check Results Method
-            DmiExpectedResults.Mode_changes_to_FS_mode_L1(this);
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in FS mode, Level 1.");
 
             /*
             Test Step 3
             Action: Continue to drive the train forward pass BG1 with Track condition Pkt 68:D_TRACKCOND = 200L_TRACKCOND = 200M_TRACKCOND = 2(Sound Horn)
             Expected Result: Mode remins in FS mode
             */
-            // Call generic Check Results Method
-            DmiExpectedResults.Mode_remins_in_FS_mode(this);
-
 
             /*
             Test Step 4
@@ -93,7 +105,22 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information(1)   DMI displays PL24 symbol in sub-area D2
             Test Step Comment: (1) MMI_gen 619(PL24);
             */
+            TrackCondition trackCondition = new TrackCondition
+            {
+                MMI_O_TRACKCOND_ANNOUNCE = 30000,
+                MMI_O_TRACKCOND_START = 0,
+                MMI_O_TRACKCOND_END = 0,
+                MMI_NID_TRACKCOND = 0,
+                MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Sound_Horn,
+                MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.InsideArea_Active,
+                MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithoutDriverAction,
+                MMI_Q_TRACKCOND_ACTION_END = 0
+            };
+            EVC32_MMITrackConditions.TrackConditions = new List<TrackCondition> { { trackCondition } };
+            EVC32_MMITrackConditions.Send();
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays symbol PL24 in sub-area D2.");
 
             /*
             Test Step 5
@@ -102,19 +129,27 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9980 (partly:Table45(PL24));MMI_gen 9979 (partly: START); MMI_gen 636 (partly: START);(2) MMI_gen 2604 (partly: bottom of the symbol, D2);
             */
             // Call generic Action Method
-            DmiActions.Stop_the_train(this);
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 11000;
+            // In diagram first scale line is at 125, bottom of symbol at ~100 (m): difference ~2500 (cm)
+            // O_TRACKCOND_ANNOUNCE - MMI_OBU_TR_O_TRAIN should == 2500
+            trackCondition.MMI_O_TRACKCOND_START = 13500;
+            trackCondition.MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Sound_Horn;
+            trackCondition.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea;
+            EVC32_MMITrackConditions.Send();
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The bottom of the PL24 symbol is displayed at ~100.");
 
             /*
             Test Step 6
             Action: Drive the train forward with speed = 20 km/h
             Expected Result: The speed pointer is indicated as 20  km/h
             */
-            // Call generic Action Method
-            DmiActions.Drive_the_train_forward_with_speed_20_kmh(this);
-            // Call generic Check Results Method
-            DmiExpectedResults.The_speed_pointer_is_indicated_as_20_kmh(this);
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 20;
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The speed pointer is displayed with speed = 20 km/h.");
 
             /*
             Test Step 7
@@ -122,18 +157,28 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information(1)   DMI displays TC35 symbol in sub-area B3.(2)   Use the log file to confirm that DMI recieved packet information MMI_DRIVER_MESSAGE_ACK (EVC-32) and MMI_ETCS_MISC_OUT_SIGNALS (EVC-7) with the following variables,MMI_M_TRACkCOND_TYPE = 2MMI_Q_TRACKCOND_STEP = 1MMI_Q_TRACKCOND_ACTION_START = 0
             Test Step Comment: (1) MMI_gen 10465 (partly:Table40(TC35));(2) MMI_gen 662 (partly: TC35);
             */
+            // Remove current track condition?
+            trackCondition.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.RemoveTC;
+            EVC32_MMITrackConditions.Send();
 
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
+            trackCondition.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea;
+            trackCondition.MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction;
+            trackCondition.MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Sound_Horn;
+            EVC32_MMITrackConditions.Send();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays symbol TC35 in sub-area B3.");
 
             /*
             Test Step 8
             Action: Drive the train forward with speed = 20 km/h
             Expected Result: The speed pointer is indicated as 20  km/h
             */
-            // Call generic Action Method
-            DmiActions.Drive_the_train_forward_with_speed_20_kmh(this);
-            // Call generic Check Results Method
-            DmiExpectedResults.The_speed_pointer_is_indicated_as_20_kmh(this);
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 20;
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The speed pointer is displayed with speed = 20 km/h.");
 
             /*
             Test Step 9
@@ -141,19 +186,18 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information(1)   Use the log file to confirm that DMI received packet information MMI_TRACK_CONDITIONS (EVC-32) with the following variables,MMI_Q_TRACKCOND_STEP = 4MMI_NID_TRACKCOND = same value with expected result No.2 of step 7
             Test Step Comment: (1) MMI_gen 9965;
             */
-            // Call generic Action Method
-            DmiActions.Stop_the_train_when_the_track_condition_symbol_has_been_removed_from_sub_area_B3(this);
-            // Call generic Check Results Method
-            DmiExpectedResults
-                .Verify_the_following_information1_Use_the_log_file_to_confirm_that_DMI_received_packet_information_MMI_TRACK_CONDITIONS_EVC_32_with_the_following_variables_MMI_Q_TRACKCOND_STEP_4MMI_NID_TRACKCOND_same_value_with_expected_result_No_2_of_step_7(this);
+            trackCondition.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.RemoveTC;
+            EVC32_MMITrackConditions.Send();
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI removes symbol TC35 from sub-area B3.");
 
             /*
             Test Step 10
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }

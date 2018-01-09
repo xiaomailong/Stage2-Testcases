@@ -17,6 +17,7 @@ namespace Testcase.Telegrams.DMItoEVC
         private static SignalPool _pool;
         private static bool _checkResult;
         private static MMI_M_MODE_READBACK _mModeReadBack;
+        private static MMI_M_MMI_STATUS _mMmiStatus;
         private static Variables.MMI_M_ACTIVE_CABIN _mActiveCabin;
         private const string BaseString = "DMI->ETCS: Check EVC-102 [MMI_STATUS_REPORT]";
 
@@ -79,6 +80,31 @@ namespace Testcase.Telegrams.DMItoEVC
             }
         }
 
+        private static void CheckMmiStatus()
+        {
+            // Get EVC102_alias_1_B1
+            byte evc102Alias1B1 = _pool.SITR.CCUO.ETCS1StatusReport.EVC102alias1B1.Value;
+
+            // Extract MMI_M_MM_STATUS (upper 4 bits according to VSIS 2.9)
+            byte mmiMStatus = (byte)((evc102Alias1B1 & 0xf0) >> 4); // xxxx xxxx -> xxxx 0000 -> 0000 xxxx
+
+            // Check MMI_M_ACTIV_CABIN value
+            _checkResult = mmiMStatus.Equals((byte)_mMmiStatus);
+
+            // If passed
+            if (_checkResult)
+            {
+                _pool.TraceReport($"{BaseString} - MMI_M_MMI_STATUS = \"{_mMmiStatus}\"" + Environment.NewLine +
+                                  "Result: PASSED.");
+            }
+            // Display the real value extracted from EVC-102 [MMI_STATUS_REPORT.MMI_M_MM_STATUS]
+            else
+            {
+                _pool.TraceError($"{BaseString} - MMI_M_MMI_STATUS = \"{mmiMStatus}\"" + Environment.NewLine +
+                                 "Result: FAILED!");
+            }
+        }
+
         /// <summary>
         /// Defines the identity of the activated cabin
         /// 
@@ -132,6 +158,17 @@ namespace Testcase.Telegrams.DMItoEVC
                 CheckModeReadBack(_mModeReadBack);
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        public static MMI_M_MMI_STATUS Check_MMI_M_MMI_STATUS
+        {
+            set
+            {
+                _mMmiStatus = value;
+                CheckMmiStatus();
+            }
+        }
 
         /// <summary>
         /// Check_MMI_M_MODE_READBACK enum
@@ -181,6 +218,30 @@ namespace Testcase.Telegrams.DMItoEVC
             StaffResponsible = 253,
             OnSight = 254,
             FullSupervision = 255,
+        }
+
+        /// <summary>
+        /// Defines the MMI status
+        /// 
+        /// Values:
+        /// 0 = "Unknown"
+        /// 1 = "Failure"
+        /// 2 = "Idle"
+        /// 3 = "Active"
+        /// 4 = "Spare"
+        /// 5 = "ATP Down, NACK"
+        /// 6 = "ATP Down, ACK "
+        /// 7..15 = "Spare"
+        /// </summary>
+        public enum MMI_M_MMI_STATUS : byte
+        {
+            StatusUnknown = 0,
+            StatusFailure = 1,
+            StatusIdle = 2,
+            StatusActive = 3,
+            StatusSpare = 4,
+            StatusATPDownNACK = 5,
+            StatusATPDownACK = 6
         }
     }
 }

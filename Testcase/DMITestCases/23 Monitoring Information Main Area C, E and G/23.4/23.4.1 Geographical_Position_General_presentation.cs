@@ -99,18 +99,17 @@ namespace Testcase.DMITestCases
             Action: Drive the train forward with the permitted speed
             Expected Result: DMI displays in SR mode, level 1
             */
-            // Call generic Check Results Method
-            DmiExpectedResults.SR_Mode_displayed(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "DMI displays in SR mode, level 1");
 
             /*
             Test Step 2
             Action: Pass BG1 with Pkt 12, 21, and 27
             Expected Result: DMI displays in FS mode, level 1
             */
-            // Call generic Action Method
-            DmiActions.Send_FS_Mode(this);
-            // Call generic Check Results Method
-            DmiExpectedResults.FS_mode_displayed(this);
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "DMI displays in FS mode, level 1");
 
             /*
             Test Step 3
@@ -124,10 +123,12 @@ namespace Testcase.DMITestCases
             */
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 1000000;
             EVC5_MMIGeoPosition.MMI_M_ABSOLUTPOS = 1000000;
+            EVC5_MMIGeoPosition.MMI_M_RELATIVPOS = 1;
+            EVC5_MMIGeoPosition.Send();
 
             EVC30_MMIRequestEnable.SendBlank();
 
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 255;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.No_window_specified;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = Variables.standardFlags | 
                                                                 EVC30_MMIRequestEnable.EnabledRequests.GeographicalPosition;
             EVC30_MMIRequestEnable.Send();
@@ -153,7 +154,10 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press on the ‘DR03’ symbol, on sub-area G12.");
 
             // Check if Geographic Position button has been pressed
-            EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.GeographicalPositionRequest;
+            // This wil not work: only release event is trackable
+            //EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.GeographicalPositionRequest;
+            EVC5_MMIGeoPosition.MMI_M_ABSOLUTPOS = 8388609;
+            EVC5_MMIGeoPosition.MMI_M_RELATIVPOS = 0;
             EVC5_MMIGeoPosition.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -219,6 +223,9 @@ namespace Testcase.DMITestCases
 
             EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.GeographicalPositionRequest;
 
+            WaitForVerification("Check the following: " + Environment.NewLine + Environment.NewLine +
+                                "1. The grey background of the geographical position is replaced by symbol DR03");
+
             /*
             Test Step 9
             Action: Pass BG3 with the new Geographical position
@@ -226,6 +233,9 @@ namespace Testcase.DMITestCases
             */
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 1000000;
             EVC5_MMIGeoPosition.MMI_M_ABSOLUTPOS = 1000000;
+
+            WaitForVerification("Check the following: " + Environment.NewLine + Environment.NewLine +
+                                "1. The DR03 symbol is still displayed in sub-area G12");
 
             /*
             Test Step 10
@@ -241,6 +251,9 @@ namespace Testcase.DMITestCases
 
             EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.GeographicalPositionRequest;
             EVC5_MMIGeoPosition.Send();
+
+            WaitForVerification("Check the following: " + Environment.NewLine + Environment.NewLine +
+                                "1. A number in the format nnnn_ddd is displayed in black on a grey background in sub-area G12");
 
             /*
             Test Step 11
@@ -276,7 +289,8 @@ namespace Testcase.DMITestCases
 
             DmiActions.Send_SR_Mode(this);
             // Call generic Check Results Method
-            DmiExpectedResults.SR_Mode_displayed(this);
+            WaitForVerification("Check the following: " + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SR mode, Level 1.");
 
             /*
             Test Step 13
@@ -303,6 +317,10 @@ namespace Testcase.DMITestCases
             EVC5_MMIGeoPosition.MMI_M_ABSOLUTPOS = 8388609;
             EVC5_MMIGeoPosition.MMI_M_RELATIVPOS = 0;
             EVC5_MMIGeoPosition.Send();
+
+            WaitForVerification("Check the following: " + Environment.NewLine + Environment.NewLine +
+                                "1. DMI removes the DR03 symbol in sub-area G12" + Environment.NewLine +
+                                "2. Sub-area G12 is not sensitive for toggling on/off");
 
             /*
             Test Step 15

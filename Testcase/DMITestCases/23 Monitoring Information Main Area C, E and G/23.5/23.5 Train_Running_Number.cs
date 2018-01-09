@@ -67,13 +67,14 @@ namespace Testcase.DMITestCases
             Expected Result: The Train Running Number window is displayed
             */
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;      // Main
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;      // Main
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.DriverID |
                                                                EVC30_MMIRequestEnable.EnabledRequests.Level |
                                                                EVC30_MMIRequestEnable.EnabledRequests.TrainRunningNumber |
                                                                EVC30_MMIRequestEnable.EnabledRequests.StartBrakeTest |
                                                                EVC30_MMIRequestEnable.EnabledRequests.EnableBrakePercentage |
                                                                EVC30_MMIRequestEnable.EnabledRequests.TrainData;
+            EVC30_MMIRequestEnable.Send();
             EVC14_MMICurrentDriverID.Send();
 
             DmiActions.ShowInstruction(this, "Enter and confirm the Driver ID");
@@ -95,7 +96,23 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, @"Press the ‘Train data’ button");
 
-            DmiActions.Send_EVC6_MMICurrentTrainData_FixedDataEntry(this, new[] {"FLU", "RLU", "Rescue"}, 2);
+
+                DmiActions.Send_EVC6_MMICurrentTrainData(Variables.MMI_M_DATA_ENABLE.TrainCategory |
+                                                     Variables.MMI_M_DATA_ENABLE.TrainLength |
+                                                     Variables.MMI_M_DATA_ENABLE.BrakePercentage |
+                                                     Variables.MMI_M_DATA_ENABLE.MaxTrainSpeed |
+                                                     Variables.MMI_M_DATA_ENABLE.AxleLoadCategory |
+                                                     Variables.MMI_M_DATA_ENABLE.Airtightness |
+                                                     Variables.MMI_M_DATA_ENABLE.LoadingGauge,
+                                                     100, 200, 
+                                                     Variables.MMI_NID_KEY.PASS1,
+                                                     70,
+                                                     Variables.MMI_NID_KEY.CATA,
+                                                     1,
+                                                     Variables.MMI_NID_KEY_Load_Gauge.G1,
+                                                     EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE,
+                                                     0, 0, new[] { "FLU", "RLU", "Rescue" },
+                                                     new Variables.DataElement[0]);
 
             DmiActions.ShowInstruction(this, " Enter and confirm the data");
 

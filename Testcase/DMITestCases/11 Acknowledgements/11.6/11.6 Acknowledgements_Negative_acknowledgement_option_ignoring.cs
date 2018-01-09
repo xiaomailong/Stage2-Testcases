@@ -50,8 +50,6 @@ namespace Testcase.DMITestCases
         {
             // Post-conditions from TestSpec
             // DMI displays in SB mode, Level 1
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in SB mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -125,7 +123,7 @@ namespace Testcase.DMITestCases
         private void XML_6_6(msgType type)
         {
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
-            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 2;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
             EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
             EVC8_MMIDriverMessage.PlainTextMessage = "";
             switch (type)

@@ -33,7 +33,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// N/A
     /// </summary>
-    public class Language_Window : TestcaseBase
+    public class TC_ID_22_19_Language_Window : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -48,7 +48,7 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.None;
             EVC30_MMIRequestEnable.Send();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 4;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Language;
             EVC30_MMIRequestEnable.Send();
         }

@@ -1,12 +1,10 @@
 ﻿#region usings
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using CL345;
 using static Testcase.Telegrams.EVCtoDMI.Variables;
-
 #endregion
 
 namespace Testcase.Telegrams.EVCtoDMI
@@ -19,9 +17,9 @@ namespace Testcase.Telegrams.EVCtoDMI
         private static SignalPool _pool;
 
         /// <summary>
-        /// Initialise EVC-14 MMI_Current_Driver_ID telegram.
+        /// Initialise EVC-14 MMI Current Driver ID telegram.
         /// </summary>
-        /// <param name="pool"></param>
+        /// <param name="pool">The SignalPool</param>
         public static void Initialise(SignalPool pool)
         {
             _pool = pool;
@@ -82,6 +80,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             {
                 if (value.Length > 16)
                     throw new ArgumentOutOfRangeException("Too many characters in Driver ID!");
+
                 _pool.SITR.ETCS1.CurrentDriverId.MmiXDriverId.Value = value;
             }
         }
@@ -91,7 +90,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static void Send()
         {
-            _pool.SITR.SMDCtrl.ETCS1.CurrentDriverId.Value = 1;
+            _pool.SITR.SMDCtrl.ETCS1.CurrentDriverId.Value = 0x0001;
         }
     }
 }

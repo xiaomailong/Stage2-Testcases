@@ -14,6 +14,7 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
 using Testcase.Telegrams.EVCtoDMI;
+using static Testcase.Telegrams.EVCtoDMI.Variables;
 
 
 namespace Testcase.DMITestCases
@@ -69,7 +70,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 972 (partly: OBU_TR_M_MODE, table 33, mode SB); MMI_gen 6310 (partly: mode);(2) MMI_gen 972 (partly: CSG shall not displayed, table 33, mode SB);
             */
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.TrainData |
                                                                EVC30_MMIRequestEnable.EnabledRequests.TrainRunningNumber |
                                                                EVC30_MMIRequestEnable.EnabledRequests.Start;
@@ -79,16 +80,27 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays Main window in SB mode, Level 1.");
 
             DmiActions.ShowInstruction(this, @"Press the ‘Train data’ button");
+          
+            MMI_M_DATA_ENABLE enableOption = MMI_M_DATA_ENABLE.Airtightness | MMI_M_DATA_ENABLE.AxleLoadCategory | MMI_M_DATA_ENABLE.BrakePercentage |
+                                             MMI_M_DATA_ENABLE.LoadingGauge | MMI_M_DATA_ENABLE.MaxTrainSpeed | MMI_M_DATA_ENABLE.TrainCategory |
+                                             MMI_M_DATA_ENABLE.TrainLength | MMI_M_DATA_ENABLE.TrainSetID;
+            string[] trainSetCaptions = new string[3] {"FLU", "RLU", "Rescue" };
 
-            DmiActions.Send_EVC6_MMICurrentTrainData_FixedDataEntry(this, new[] { "FLU", "RLU", "Rescue" }, 2);
-
+            DmiActions.Send_EVC6_MMICurrentTrainData(enableOption,100, 120, MMI_NID_KEY.TILT1, 120, MMI_NID_KEY.G1, 1, MMI_NID_KEY_Load_Gauge.G1, 
+                                                     EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE,
+                                                     1, 1, 
+                                                     trainSetCaptions,
+                                                     new DataElement[0]);
+            
             DmiActions.ShowInstruction(this, "Enter and validate all train data");
-
-            DmiActions.Send_EVC10_MMIEchoedTrainData_FixedDataEntry(this, Variables.paramEvc6FixedTrainsetCaptions);
-
+            
+            DmiActions.Send_EVC10_MMIEchoedTrainData(this, enableOption, 100, 120, MMI_NID_KEY.TILT1, 120, MMI_NID_KEY.G1, 1, MMI_NID_KEY.CATA, 
+                                                           trainSetCaptions);
+            
             DmiActions.ShowInstruction(this, @"Press the ‘Train running number’ button");
+            
+            EVC16_CurrentTrainNumber.Send();
 
-            EVC2_MMIStatus.Send();
             DmiActions.ShowInstruction(this, "Enter the train running number");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -135,7 +147,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 972 (partly: MMI_M_WARNING, MMI_V_INTERVEN); MMI_gen 6310 (partly: supervision status, intervention speed);(2) MMI_gen 972 (partly: FS mode, CSM, 0km/h <= CSG <= Vperm);(3) MMI_gen 972 (partly: FS mode, CSM, Vperm <= CSG <= Vsbi );(4) MMI_gen 1155 (partly: Over-speed); MMI_gen 1182 (partly: Vsbi);
             */
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 151;
-            EVC1_MMIDynamic.MMI_V_INTERVENTION_KMH = 150;
+            EVC1_MMIDynamic.MMI_V_INTERVENTION_KMH = 155;
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Overspeed_Status_Ceiling_Speed_Monitoring;
             // ?? Send
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -150,6 +162,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 972 (partly: MMI_M_WARNING, MMI_V_INTERVEN); MMI_gen 6310 (partly: supervision status, intervention speed);(2) MMI_gen 972 (partly: FS mode, CSM, 0km/h <= CSG <= Vperm);(3) MMI_gen 972 (partly: FS mode, CSM, Vperm <= CSG <= Vsbi );(4) MMI_gen 1155 (partly: Warning);(5)   MMI_gen 5774; MMI_gen 11921 (partly: MMI_M_WARNING = 4);
             */
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 155;
+
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Warning_Status_Ceiling_Speed_Monitoring;
             // ?? Send
 

@@ -33,7 +33,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// N/A
     /// </summary>
-    public class TC_ID_27_25_Volume_window : TestcaseBase
+    public class TC_ID_22_25_Volume_window : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -46,7 +46,7 @@ namespace Testcase.DMITestCases
             DmiActions.Start_ATP();
             DmiActions.Activate_Cabin_1(this);
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 4;      // Settings
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Default;      // Settings
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Volume;
             EVC30_MMIRequestEnable.Send();
         }

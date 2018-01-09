@@ -39,7 +39,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 22_6_3_2_3_2.xml
     /// </summary>
-    public class TC_ID_27_6_2_3_2_Wheel_diameter : TestcaseBase
+    public class TC_ID_22_6_2_3_2_Wheel_diameter : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -54,6 +54,10 @@ namespace Testcase.DMITestCases
             DmiActions.Set_Driver_ID(this, "1234");
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Default;
+            EVC30_MMIRequestEnable.Send();
         }
 
         public override void PostExecution()
@@ -76,7 +80,7 @@ namespace Testcase.DMITestCases
             Expected Result: The ‘Wheel diameter’ data entry window appears on ETCS-DMI screen instead of the ‘Settings’ menu window
             */
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 4;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Default;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter;
             EVC30_MMIRequestEnable.Send();
 
@@ -98,6 +102,20 @@ namespace Testcase.DMITestCases
                                              "Enter the value ‘500’ for Wheel Diameter 2 and press on the data input field to accept the value" + Environment.NewLine +
                                              "Enter the value ‘1’ for Accuracy and press on the data input field to accept the value");
 
+            // What should happen here is that EVC140 is sent when the data input is confirmed and ETCS responds with a validation EVC40 packet
+            // EVC140_MMINewMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1 = 500 et c.
+            // ETCS should respond with EVC40...
+            // The values specified are all valid according to VSIS
+            //EVC40_MMICurrentMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1 = (Variables.MMI_M_SDU_WHEEL_SIZE)500;
+            //EVC40_MMICurrentMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1 = (Variables.MMI_M_SDU_WHEEL_SIZE)500;
+            //EVC40_MMICurrentMaintenanceData.MMI_M_WHEEL_SIZE_ERR = (Variables.MMI_M_WHEEL_SIZE_ERR)1;
+            // ... and NOT:
+            EVC40_MMICurrentMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1 = Variables.MMI_M_SDU_WHEEL_SIZE.TechnicalRangeCheckFailed;
+            EVC40_MMICurrentMaintenanceData.MMI_M_SDU_WHEEL_SIZE_2 = Variables.MMI_M_SDU_WHEEL_SIZE.TechnicalRangeCheckFailed;
+            EVC40_MMICurrentMaintenanceData.MMI_M_WHEEL_SIZE_ERR = Variables.MMI_M_WHEEL_SIZE_ERR.TechnicalRangeCheckFailed;
+            EVC40_MMICurrentMaintenanceData.MMI_Q_MD_DATASET = Variables.MMI_Q_MD_DATASET.WheelDiameter;            
+            EVC40_MMICurrentMaintenanceData.Send();
+            
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The text of the data parts of the input field are in black on a grey background." + Environment.NewLine +
                                 "2. The data input fields display the values ‘500’, ‘500’ and ‘1’." + Environment.NewLine +
@@ -113,32 +131,36 @@ namespace Testcase.DMITestCases
                                              "Enter the value ‘1000’ for Wheel Diameter 2 and press on the data input field to accept the value" + Environment.NewLine +
                                              "Enter the value ‘5’ for Accuracy and press on the data input field to accept the value");
 
+            EVC40_MMICurrentMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1 = (Variables.MMI_M_SDU_WHEEL_SIZE)1000;
+            EVC40_MMICurrentMaintenanceData.MMI_M_SDU_WHEEL_SIZE_2 = (Variables.MMI_M_SDU_WHEEL_SIZE)1000;
+            EVC40_MMICurrentMaintenanceData.MMI_M_WHEEL_SIZE_ERR = (Variables.MMI_M_WHEEL_SIZE_ERR)5;
+            EVC40_MMICurrentMaintenanceData.MMI_Q_MD_DATASET = Variables.MMI_Q_MD_DATASET.WheelDiameter;
+            EVC40_MMICurrentMaintenanceData.Send();
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input fields display the values ‘1000’, ‘1000’ and ‘5’ in black on a grey background.");
-
-            DmiActions.ShowInstruction(this, "Press the ‘Yes’ button");
+            
 
             /*
             Test Step 4
             Action: This step is to complete the process of ‘Wheel diameter’: Press the ‘Yes’ button on the ‘Wheel diameter’ window. Validate the data in the data validation window.
             Expected Result: 1. After pressing the ‘Yes’ button, the data validation window (‘Validate Wheel diameter’) appears instead of the ‘Wheel diameter’ data entry window. The data part of echo text displays in white:Wheel diameter 1: 1000Wheel diameter 2: 1500Accuracy: 52. After the data area of the input field containing “Yes” is pressed, the data validation window disappears and returns to the parent window (‘Settings’ window) of ‘Wheel diameter’ window with enabled ‘Wheel diameter’ button.
             */
-            EVC40_MMICurrentMaintenanceData.MMI_M_WHEEL_SIZE_ERR = (Variables.MMI_M_WHEEL_SIZE_ERR)5;
-            EVC40_MMICurrentMaintenanceData.MMI_M_SDU_WHEEL_SIZE_2 = (Variables.MMI_M_SDU_WHEEL_SIZE)100;
-            EVC40_MMICurrentMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1 = (Variables.MMI_M_SDU_WHEEL_SIZE)1000;
-            EVC40_MMICurrentMaintenanceData.MMI_Q_MD_DATASET = Variables.MMI_Q_MD_DATASET.WheelDiameter;
-            EVC40_MMICurrentMaintenanceData.Send();
-
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the Validate Wheel Diameter window");
-
             DmiActions.ShowInstruction(this, "Press the ‘Yes’ button");
-
+            
             EVC41_MMIEchoedMaintenanceData.MMI_M_WHEEL_SIZE_ERR_ = (Variables.MMI_M_WHEEL_SIZE_ERR)5;
             EVC41_MMIEchoedMaintenanceData.MMI_M_SDU_WHEEL_SIZE_2_ = (Variables.MMI_M_SDU_WHEEL_SIZE)100;
             EVC41_MMIEchoedMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1_ = (Variables.MMI_M_SDU_WHEEL_SIZE)1000;
             EVC41_MMIEchoedMaintenanceData.MMI_Q_MD_DATASET_ = Variables.MMI_Q_MD_DATASET.WheelDiameter;
             EVC41_MMIEchoedMaintenanceData.Send();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the Validate Wheel Diameter window");
+
+            EVC40_MMICurrentMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1 = (Variables.MMI_M_SDU_WHEEL_SIZE)1000;
+            EVC40_MMICurrentMaintenanceData.MMI_M_SDU_WHEEL_SIZE_2 = (Variables.MMI_M_SDU_WHEEL_SIZE)1000;
+            EVC40_MMICurrentMaintenanceData.MMI_M_WHEEL_SIZE_ERR = (Variables.MMI_M_WHEEL_SIZE_ERR)5;
+            EVC40_MMICurrentMaintenanceData.MMI_Q_MD_DATASET = Variables.MMI_Q_MD_DATASET.WheelDiameter;
+            EVC40_MMICurrentMaintenanceData.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI removes the Validate Wheel Diameter window and displays the Wheel Diameter data entry window");
@@ -152,7 +174,7 @@ namespace Testcase.DMITestCases
             #region Send_XML_22_6_3_2_3_2_DMI_Test_Specification
             EVC40_MMICurrentMaintenanceData.MMI_Q_MD_DATASET = Variables.MMI_Q_MD_DATASET.WheelDiameter;
             EVC40_MMICurrentMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1 = Variables.MMI_M_SDU_WHEEL_SIZE.TechnicalRangeCheckFailed;
-            EVC40_MMICurrentMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1 = Variables.MMI_M_SDU_WHEEL_SIZE.TechnicalRangeCheckFailed;
+            EVC40_MMICurrentMaintenanceData.MMI_M_SDU_WHEEL_SIZE_2 = Variables.MMI_M_SDU_WHEEL_SIZE.TechnicalRangeCheckFailed;
             EVC40_MMICurrentMaintenanceData.MMI_M_WHEEL_SIZE_ERR = Variables.MMI_M_WHEEL_SIZE_ERR.TechnicalRangeCheckFailed;
 
             EVC40_MMICurrentMaintenanceData.Send();

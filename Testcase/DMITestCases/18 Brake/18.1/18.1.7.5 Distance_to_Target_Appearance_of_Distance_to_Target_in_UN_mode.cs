@@ -71,10 +71,12 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Perform SoM in UN mode, level 0");
 
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Unfitted;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L0;
+            DmiActions.Finished_SoM_Default_Window(this);
             EVC1_MMIDynamic.MMI_O_BRAKETARGET = -1;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in UN mode, level 0 (Symbol MO18 is displayed in area B7)." + Environment.NewLine +
+                                "1. DMI displays in UN mode, level 0 (Symbol MO16 is displayed in area B7)." + Environment.NewLine +
                                 "2. The distance to target bar is not displayed in sub-area A3." + Environment.NewLine +
                                 "3. The digital distance to target is not displayed in sub-area A2.");
             

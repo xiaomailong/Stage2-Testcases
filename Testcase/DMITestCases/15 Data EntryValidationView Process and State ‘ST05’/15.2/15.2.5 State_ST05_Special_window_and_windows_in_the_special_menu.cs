@@ -54,8 +54,6 @@ namespace Testcase.DMITestCases
         {
             // Post-conditions from TestSpec
             // DMI displays in SR mode
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in SR mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -92,15 +90,18 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information;(1)   Verify DMI still displays Special window until SR speed/distance window is displayed.(2)   Verify the close button is always enable
             Test Step Comment: (1) MMI_gen 8859 (partly: windows in special menu);(2) MMI_gen 5646 (partly: always enable, windows in special menu);
             */
-            DmiActions.ShowInstruction(this, @"Press ‘Spec’ button");
+            DmiActions.ShowInstruction(this, @"Close the Special window then press the ‘Spec’ button");
 
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 3;      // Special window
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Special;      // Special window
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.SRSpeedDistance |
                                                                EVC30_MMIRequestEnable.EnabledRequests.Adhesion;
             EVC30_MMIRequestEnable.Send();
 
             DmiActions.ShowInstruction(this, @"Press ‘S/R speed distance’ button.");
+            
+            EVC11_MMICurrentSRRules.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS.BTN_YES_DATA_ENTRY_COMPLETE;
+            EVC11_MMICurrentSRRules.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Special window until SR speed/distance window is displayed." + Environment.NewLine +
@@ -151,12 +152,15 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information;(1)   The Main, Override, Data view, Spec and Setting buttons are always enabled
             Test Step Comment: (1) Note under the MMI_gen 5728;
             */
+            DmiActions.Finished_SoM_Default_Window(this);
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The Main, Override, Data view, Spec and Setting buttons are always enabled.");
+
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 716;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
             EVC8_MMIDriverMessage.Send();
 
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The Main, Override, Data view, Spec and Setting buttons are always enabled.");
 
             this.Wait_Realtime(10000);
 
@@ -181,6 +185,10 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Special;      // Special window
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Adhesion;
+            EVC30_MMIRequestEnable.Send();
 
             WaitForVerification(@"Press the ‘Spec’ button and check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Special window with the Adhesion button enabled.");
@@ -191,7 +199,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information;(1)   Verify DMI still displays Special window until Adhesion window is displayed.(2)   Verify the close button is always enabled
             Test Step Comment: (1) MMI_gen 8859 (partly: windows in special menu);(2) MMI_gen 5646 (partly: always enable, windows in special menu);
             */
-            DmiActions.ShowInstruction(this, @"Press ‘Adhesion’ button in the Special window.");
+            DmiActions.ShowInstruction(this, @"Press the ‘Adhesion’ button in the Special window.");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Special window until Adhesion window is displayed." + Environment.NewLine +

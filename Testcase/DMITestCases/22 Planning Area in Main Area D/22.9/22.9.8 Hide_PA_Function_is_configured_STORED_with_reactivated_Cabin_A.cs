@@ -13,6 +13,8 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.EVCtoDMI;
+
 
 namespace Testcase.DMITestCases
 {
@@ -31,15 +33,18 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 17_9_8.tdg
     /// </summary>
-    public class Hide_PA_Function_is_configured_STORED_with_reactivated_Cabin_A : TestcaseBase
+    public class TC_ID_17_9_8_Hide_PA_Function_is_configured_STORED_with_reactivated_Cabin_A : TestcaseBase
     {
         public override void PreExecution()
         {
             // Pre-conditions from TestSpec:
-            // Set the following tags name in configuration file (See the instruction in Appendix 1)HIDE_PA_FUNCTION = 2 (‘Stored’ state)HIDE_PA_SR_MODE = 0 (PA will not show in SR mode)System is power OFF.
+            // Set the following tags name in configuration file (See the instruction in Appendix 1)
+            // HIDE_PA_FUNCTION = 2 (‘Stored’ state)HIDE_PA_SR_MODE = 0 (PA will not show in SR mode)
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
+
+            // System is power OFF.
         }
 
         public override void PostExecution()
@@ -54,69 +59,78 @@ namespace Testcase.DMITestCases
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint
-
+            TraceInfo("This test case requires an ATP configuration change - " +
+                      "See Precondition requirements. If this is not done manually, the test may fail!");
 
             /*
             Test Step 1
             Action: Power On the system
             Expected Result: The DMI displays the default window
             */
-            // Call generic Action Method
-            DmiActions.Power_On_the_system(this);
-            // Call generic Check Results Method
-            DmiExpectedResults.The_DMI_displays_the_default_window(this);
+            DmiActions.Start_ATP();
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the Default window.");
 
             /*
             Test Step 2
             Action: Activate cabin A and Perform SoM to SR mode, Level 1
             Expected Result: The DMI displays in SR mode,  level 1
             */
-            // Call generic Action Method
-            DmiActions.Activate_cabin_A_and_Perform_SoM_to_SR_mode_Level_1(this);
+            DmiActions.Complete_SoM_L1_SR(this);
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SR mode, Level 1.");
 
             /*
             Test Step 3
             Action: Drive the train forward with speed = 40 km/h pass BG1
             Expected Result: DMI displays in FS mode, Level 1 with PA in area D
             */
-            // Call generic Action Method
-            DmiActions.Drive_the_train_forward_with_speed_40_kmh_pass_BG1(this);
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 40;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 19000;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;        
 
-
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in FS mode, Level 1." + Environment.NewLine +
+                                "2. The Planning Area is displayed in area D.");
+            
             /*
             Test Step 4
             Action: Press Hide PA button
             Expected Result: The Planning area is disappeared from the area D of the DMI
             */
-            // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press Hide PA button");
-            // Call generic Check Results Method
-            DmiExpectedResults.The_Planning_area_is_disappeared_from_the_area_D_of_the_DMI(this);
+            DmiActions.ShowInstruction(this, @"Press the ‘Hide PA’ button");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The Planning Area is removed from area D.");
 
             /*
             Test Step 5
             Action: Stop the train. Then, deactivate cabin A
             Expected Result: The train is at standstill.DMI is displays in SB mode
             */
-            // Call generic Action Method
-            DmiActions.Stop_the_train_Then_deactivate_cabin_A(this);
-            // Call generic Check Results Method
-            DmiExpectedResults.The_train_is_at_standstill_DMI_is_displays_in_SB_mode(this);
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
 
+            DmiActions.Deactivate_Cabin(this);
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SB mode.");
 
             /*
             Test Step 6
             Action: Activate cabin A and Perform SoM to SR mode, Level 1
             Expected Result: DMI displays in SR mode, Level 1
             */
-            // Call generic Action Method
-            DmiActions.Activate_cabin_A_and_Perform_SoM_to_SR_mode_Level_1(this);
-            // Call generic Check Results Method
-            DmiExpectedResults.SR_Mode_displayed(this);
+            DmiActions.Activate_Cabin_1(this);
+            DmiActions.Set_Driver_ID(this, "1234");
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
+            DmiActions.Finished_SoM_Default_Window(this);
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 36000;
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SR mode, Level 1.");
 
             /*
             Test Step 7
@@ -124,27 +138,27 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in FS mode, Level 1.There is no PA display on DMI
             Test Step Comment: MMI_gen 7340;MMI_gen 2996 (partly: Stored);
             */
-            // Call generic Action Method
-            DmiActions.Drive_the_train_forward_with_speed_40_kmh_pass_BG2(this);
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_in_FS_mode_Level_1_There_is_no_PA_display_on_DMI(this);
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 40;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
 
-
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in FS mode, Level 1." + Environment.NewLine +
+                                "2. The Planning Area is not displayed in area D.");
             /*
             Test Step 8
             Action: Press the main area D
             Expected Result: The Hide PA button is appeared on  the area D of the DMI
             */
-            // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press the main area D");
+            DmiActions.ShowInstruction(this, @"Press in main area D");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The ‘Hide PA’ button is displayed in area D.");
 
             /*
             Test Step 9
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }

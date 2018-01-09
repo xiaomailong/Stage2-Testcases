@@ -42,7 +42,7 @@ namespace Testcase.DMITestCases
             // Call the TestCaseBase PreExecution
             base.PreExecution();
             DmiActions.Complete_SoM_L1_SB(this);
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L2;
+            //EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L2;
 
         }
 
@@ -166,9 +166,7 @@ namespace Testcase.DMITestCases
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_BRAKETEST_STATUS.BrakeTestNotInProgress;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level =
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L0;
-
-            // Value to check -	MMI_OBU_TR_M_MODE = 17 (“Not used”)
-
+            
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_ADHESION = 0;
             EVC7_MMIEtcsMiscOutSignals.OBU_TR_NID_STM_HS = 0;
             EVC7_MMIEtcsMiscOutSignals.OBU_TR_NID_STM_DA = 0;

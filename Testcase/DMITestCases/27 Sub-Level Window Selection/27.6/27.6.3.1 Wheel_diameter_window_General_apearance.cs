@@ -34,7 +34,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// N/A
     /// </summary>
-    public class TC_27_6_3_1_Wheel_diameter_window : TestcaseBase
+    public class TC_ID_22_6_3_1_Wheel_diameter_window : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -46,7 +46,6 @@ namespace Testcase.DMITestCases
 
             DmiActions.Start_ATP();
             DmiActions.Activate_Cabin_1(this);
-            DmiActions.Set_Driver_ID(this, "1234");
         }
 
         public override void PostExecution()
@@ -69,12 +68,21 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11694;(2) MMI_gen 11716 (partly: MMI_gen 4888);(3) MMI_gen 11716 (partly: MMI_gen 4799 (partly: Close button, Window Title, Input fields)); MMI_gen 4392 (partly: [Close] NA11); MMI_gen 4355 (partly: Buttons, Close button); (4) MMI_gen 11716 (partly: MMI_gen 4891 (partly: Yes button, Area for [Window Title] Entry complete?));(5) MMI_gen 11716 (partly: MMI_gen 4910 (partly: Disabled, MMI_gen 4211 (partly: colour)), MMI_gen 4909 (partly: Disabled)); MMI_gen 4377 (partly: shown);(6) MMI_gen 11716 (partly: MMI_gen 4908 (partly: extended));(7) MMI_gen 11716 (partly: MMI_gen 4637 (partly: Main-areas D and F)); MMI_gen 4355 (partly: input fields);(8) MMI_gen 11716 (partly: MMI_gen 4640);(9) MMI_gen 11716 (partly: MMI_gen 4641);(10) MMI_gen 11716 (partly: MMI_gen 9412); MMI_gen 11697 (partly: label); MMI_gen 11696 (partly: label); MMI_gen 11698 (partly: label);(11) MMI_gen 11716 (partly: MMI_gen 4645);(12) MMI_gen 11716 (partly: MMI_gen 4646 (partly: right aligned));(13) MMI_gen 11716 (partly: MMI_gen 4647 (partly: left aligned));(14) MMI_gen 11716 (partly: MMI_gen 4648);(15) MMI_gen 11716 (partly: MMI_gen 4720);(16) MMI_gen 11716 (partly: MMI_gen 4651 (partly: Wheel diameter 1), MMI_gen 4683 (partly: selected), MMI_gen 5211 (partly: selected));(17) MMI_gen 11716 (partly: MMI_gen 4649 (partly: selected ‘Wheel diameter 1’), MMI_gen 4651 (partly: Wheel diameter 2), MMI_gen 4683 (partly: not selected), MMI_gen 5211 (partly: not selected));(18) MMI_gen 11700 (partly: Wheel diameter 1); MMI_gen 11716 (partly: MMI_gen 4912 (partly: Wheel diameter 1), MMI_gen 4678 (partly: Wheel diameter 1)); (19) MMI_gen 11716 (partly: MMI_gen 5003); MMI_gen 4392 (partly: [Delete] NA21);(20) MMI_gen 11716 (partly: MMI_gen 5190);(21) MMI_gen 11716 (partly: MMI_gen 4696);(22) MMI_gen 11716 (partly: MMI_gen 4697); (23) MMI_gen 11716 (partly: MMI_gen 4701);(24) MMI_gen 11716 (partly: MMI_gen 4702 (partly: right aligned));(25) MMI_gen 11716 (partly: MMI_gen 4704 (partly: left aligned));(26) MMI_gen 11716 (partly: MMI_gen 4700 (partly: otherwise, grey)); MMI_gen 4241;(27) MMI_gen 11716 (partly: MMI_gen 4691 (partly: flash, Wheel diameter 1));(28) MMI_gen 11716 (partly: MMI_gen 4689, MMI_gen 4690);(29) MMI_gen 11734;(30) MMI_gen 11755; MMI_gen 11753; MMI_gen 11751; MMI_gen 11699;(31) MMI_gen 4350;(32) MMI_gen 4351;(33) MMI_gen 4353;
             */
             // Call generic Action Method
+
+            // Spec says settings window is opened from driver ID window            
+            EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE = EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE_BUTTONS.Settings;
+            EVC14_MMICurrentDriverID.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
+            EVC14_MMICurrentDriverID.Send();
+
+            DmiActions.ShowInstruction(this, @"Press the ‘Settings’ button"); 
+
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 0x4;        // Settings window
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings;        // Settings window
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter;
             EVC30_MMIRequestEnable.Send();
 
-            DmiActions.ShowInstruction(this, @"Press the Settings button then press the ‘Wheel diameter’ button in the Settings window");
+            DmiActions.ShowInstruction(this, @"Press the ‘Maintenance’ button, enter the password from the PASS_CODE_MTN tag in the configuration and confirm the password" + Environment.NewLine +
+                                             @"Press the ‘Wheel diameter’ button");
 
             EVC40_MMICurrentMaintenanceData.MMI_Q_MD_DATASET = Variables.MMI_Q_MD_DATASET.WheelDiameter;
             EVC40_MMICurrentMaintenanceData.Send();
@@ -897,13 +905,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Wheel diameter 2’ data input field becomes selected.");
             // Wheel diameter 3
-            DmiActions.ShowInstruction(this, @"Press in and hold the data part of the ‘Wheel diameter 3’ data input field");
-            DmiActions.ShowInstruction(this, @"Drag the data part of the ‘Wheel diameter 3’ data input field outside of its area, keeping the area pressed");
-            DmiActions.ShowInstruction(this, @"Whilst keeping the label part of the ‘Wheel diameter 3’ data input field pressed, drag it back inside its area");
-            DmiActions.ShowInstruction(this, @"Release the label part of the ‘Wheel diameter 3’ data input field");
+            DmiActions.ShowInstruction(this, @"Press in and hold the data part of the ‘Accuracy’ data input field");
+            DmiActions.ShowInstruction(this, @"Drag the data part of the ‘Accuracy’ data input field outside of its area, keeping the area pressed");
+            DmiActions.ShowInstruction(this, @"Whilst keeping the label part of the ‘Accuracy’ data input field pressed, drag it back inside its area");
+            DmiActions.ShowInstruction(this, @"Release the label part of the ‘WAccuracy’ data input field");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘Wheel diameter 3’ data input field becomes selected.");
+                                "1. The ‘Accuracy’ data input field becomes selected.");
 
             /*
             Test Step 27

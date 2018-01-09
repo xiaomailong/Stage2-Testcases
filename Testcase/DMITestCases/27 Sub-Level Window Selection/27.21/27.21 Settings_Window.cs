@@ -61,8 +61,8 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            TraceInfo("This test case requires a DMI configuration change - " +
-                      "System info cannot be disabled/enabled by text). If this is not done manually, the test may fail!");
+            TraceInfo("This test case may require a DMI configuration change - " +
+                      "System info may not be disabled/enabled by text). If this is not done manually, the test may fail!");
             /*
             Test Step 1
             Action: Press ‘Settings’ button
@@ -76,14 +76,16 @@ namespace Testcase.DMITestCases
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 0;      // Main window
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Default;      // Default window
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_LOW = true;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = (EVC30_MMIRequestEnable.EnabledRequests.Language |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.Volume |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.Brightness |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.SystemVersion |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.SetVBC |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.SetLocalTimeDateAndOffset |
-                                                                EVC30_MMIRequestEnable.EnabledRequests.StartBrakeTest) &
+                                                                EVC30_MMIRequestEnable.EnabledRequests.EnableBrakePercentage |
+                                                                EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter) &
                                                                ~EVC30_MMIRequestEnable.EnabledRequests.RemoveVBC;
             EVC30_MMIRequestEnable.Send();
 
@@ -259,6 +261,7 @@ namespace Testcase.DMITestCases
             // Repeat Step 5 for System version
             DmiActions.ShowInstruction(this, @"Release the ‘System version’ button");
 
+            EVC34_MMISystemVersion.Send();
             EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.SystemVersionRequest;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -294,6 +297,8 @@ namespace Testcase.DMITestCases
             // Repeat Step 5 for Set VBC
             DmiActions.ShowInstruction(this, @"Release the ‘Set VBC’ button");
 
+            EVC18_MMISetVBC.Send();
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Set VBC window.");
 
@@ -304,31 +309,31 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Settings window.");
 
             // Repeat Step 2 for Brake button
-            DmiActions.ShowInstruction(this, @"Press and hold the ‘Brake button’ button");
+            DmiActions.ShowInstruction(this, @"Press and hold the ‘Brake’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘Brake button’ button is displayed pressed, without a border." + Environment.NewLine +
+                                "1. The ‘Brake’ button is displayed pressed, without a border." + Environment.NewLine +
                                 "2. The ‘Click’ sound is played once.");
 
             // Repeat Step 3 for Brake button
-            DmiActions.ShowInstruction(this, @"Whilst keeping the ‘Brake button’ button pressed, drag it out of its area");
+            DmiActions.ShowInstruction(this, @"Whilst keeping the ‘Brake’ button pressed, drag it out of its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘Brake button’ button is displayed enabled, with a border." + Environment.NewLine +
+                                @"1. The ‘Brake’ button is displayed enabled, with a border." + Environment.NewLine +
                                 "2. No sound is played.");
 
             // Repeat Step 4 for Brake button
-            DmiActions.ShowInstruction(this, @"Whilst keeping the ‘Brake button’ button pressed, drag it back inside its area");
+            DmiActions.ShowInstruction(this, @"Whilst keeping the ‘Brake’ button pressed, drag it back inside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The ‘Brake button’ button is displayed pressed." + Environment.NewLine +
                                 "2. No sound is played.");
 
             // Repeat Step 5 for Brake button
-            DmiActions.ShowInstruction(this, @"Release the ‘Brake button’ button");
+            DmiActions.ShowInstruction(this, @"Release the ‘Brake’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the Brake button window.");
+                                "1. DMI displays the Brake window.");
 
             // Repeat Step 6
             DmiActions.ShowInstruction(this, @"Press the ‘Close’ button");
@@ -361,6 +366,8 @@ namespace Testcase.DMITestCases
 
             // Repeat Step 5 for System info
             DmiActions.ShowInstruction(this, @"Release the ‘System info’ button");
+
+            EVC24_MMISystemInfo.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the System info window.");
@@ -448,8 +455,8 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, @"Enter ‘65536’ for the VBC code and confirm the value, then press the ‘Yes’ button");
 
-            //EVC28_MMIEchoedSetVBCData.MMI_M_VBC_CODE_ = 0xfffffffffffeffff;     // 65536 bit-inverted
-            //EVC28_MMIEchoedSetVBCData.Send();
+            EVC28_MMIEchoedSetVBCData.MMI_M_VBC_CODE_ = 65536;     // 65536 bit-inverted
+            EVC28_MMIEchoedSetVBCData.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Set VBC data validation window.");
@@ -463,7 +470,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press the ‘Yes’ button and confirm the value by pressing a data input field");
 
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 0;      // Main window
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Default;      // Main window
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Language |
                                                                EVC30_MMIRequestEnable.EnabledRequests.Volume |
                                                                EVC30_MMIRequestEnable.EnabledRequests.Brightness |
@@ -507,6 +514,9 @@ namespace Testcase.DMITestCases
             // Repeat Step 5 for Remove VBC
             DmiActions.ShowInstruction(this, @"Release the ‘Remove VBC’ button");
 
+            EVC19_MMIRemoveVBC.MMI_N_VBC = 0;
+            EVC19_MMIRemoveVBC.Send();
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Remove VBC window.");
 
@@ -519,6 +529,10 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Press the ‘Close’ button");
 
+            EVC19_MMIRemoveVBC.MMI_N_VBC = 1;
+            EVC19_MMIRemoveVBC.MMI_Q_DATA_CHECK = Variables.Q_DATA_CHECK.All_checks_passed;
+            EVC19_MMIRemoveVBC.Send(); 
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window.");
 
@@ -529,7 +543,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11545 (partly: Disabling, #13, #14, #15, #16, #17, #18);(2) MMI_gen 11545 (partly: EVC-30, Disabling, #13, #14, #15, #16, #17, #18);
             */
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 0;      // Main window
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings;      // Settings window
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.None;
             EVC30_MMIRequestEnable.Send();
             
@@ -548,10 +562,20 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The following buttons are disabled,LanguageVolumeBrightnessSystem VersionSet VBCRemove VBCUse the log file to confirm that DMI receives EVC-30 with following value in each bit of variable MMI_Q_REQUEST_ENABLE_64Bit #13 = 1 (Language)Bit #14 = 1 (Volume)Bit #15 = 1 (Brightness)Bit #16 = 1 (System version)Bit #17 = 1 (Set VBC)Bit #18 = 1 (Remove VBC)
             Test Step Comment: (1) MMI_gen 11545 (partly: Enabling, #13, #14, #15, #16, #17, #18);(2) MMI_gen 11545 (partly: EVC-30, Enabling, #13, #14, #15, #16, #17, #18);
             */
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 260;
+            EVC8_MMIDriverMessage.Send();
+
             DmiActions.ShowInstruction(this, @"Acknowledge the ‘Brake intervention’ symbol by pressing in area E1");
 
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
+            EVC8_MMIDriverMessage.Send();
+
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 0;      // Main window
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings;      // Settings window
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Language |
                                                                EVC30_MMIRequestEnable.EnabledRequests.Volume |
                                                                EVC30_MMIRequestEnable.EnabledRequests.Brightness |
@@ -598,7 +622,6 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                           "1. The following ‘Set Clock’ button is disabled.");
 
-
             /*
             Test Step 17
             Action: Use the test script file 22_21_c.xml to send EVC-30 with,MMI_Q_REQUEST_ENABLE_64 _#25 = 1MMI_Q_REQUEST_ENABLE_64 _#26 = 1
@@ -609,7 +632,6 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                           "1. The following ‘Set Clock’ button is enabled.");
-
 
             /*
             Test Step 18
@@ -663,7 +685,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Release the ‘Close’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the Close window.");
+                                "1. DMI displays the Settings window.");
 
             // Repeat Step 6
             DmiActions.ShowInstruction(this, @"Press the ‘Close’ button");

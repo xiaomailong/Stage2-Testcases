@@ -115,7 +115,10 @@ namespace Testcase.DMITestCases
             EVC20_MMISelectLevel.Send();
 
             DmiActions.ShowInstruction(this, "Select and confirm Level 1");
-
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Level;
+            EVC30_MMIRequestEnable.Send();
             DmiActions.ShowInstruction(this, "Press the ‘Level’ button");
 
             Variables.MMI_Q_LEVEL_NTC_ID[] paramEvc20MmiQLevelNtcId =
@@ -186,7 +189,7 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. A keyboard with a 3 x 1 array of buttons is displayed with the following buttons(left to right):" + Environment.NewLine +
-                                "2. ‘Level 0’, ‘Level 2’, ‘AWS_TPWS’ 3 in the top row; ‘Level 0’, ‘CBTC’, ‘AWS_TPWS’ in the bottom row.");
+                                "2. ‘Level 0’, ‘Level 2’, ‘AWS_TPWS’.");
 
             /*
             Test Step 6
@@ -244,12 +247,12 @@ namespace Testcase.DMITestCases
 
                     EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Disabled;
 
-                    EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = null;
-                    EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = null;
-                    EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = null;
-                    EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = null;
-                    EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = null;
-                    EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = null;
+                    EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new MMI_Q_LEVEL_NTC_ID[0];
+                    EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new MMI_M_CURRENT_LEVEL[0];
+                    EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = new MMI_M_LEVEL_FLAG[0];
+                    EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = new MMI_M_INHIBITED_LEVEL[0];
+                    EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = new MMI_M_INHIBIT_ENABLE[0];
+                    EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new MMI_M_LEVEL_NTC_ID[0];
                     break;
                 case msgType.typec:
 
@@ -258,9 +261,9 @@ namespace Testcase.DMITestCases
                     Variables.MMI_Q_LEVEL_NTC_ID[] paramEvc20MmiQLevelNtcId =
                         { MMI_Q_LEVEL_NTC_ID.ETCS_Level,
                           MMI_Q_LEVEL_NTC_ID.ETCS_Level,
-                          MMI_Q_LEVEL_NTC_ID.ETCS_Level };
+                          MMI_Q_LEVEL_NTC_ID.STM_ID };
                     Variables.MMI_M_CURRENT_LEVEL[] paramEvc20MmiMCurrentLevel =
-                        { MMI_M_CURRENT_LEVEL.NotLastUsedLevel,
+                        { MMI_M_CURRENT_LEVEL.LastUsedLevel,
                           MMI_M_CURRENT_LEVEL.NotLastUsedLevel,
                           MMI_M_CURRENT_LEVEL.NotLastUsedLevel };
                     Variables.MMI_M_LEVEL_FLAG[] paramEvc20MmiMLevelFlag =

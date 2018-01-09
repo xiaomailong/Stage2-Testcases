@@ -78,7 +78,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press the ‘Settings’ button");
 
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 4;      // Settings;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings;      // Settings;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter |
                                                                EVC30_MMIRequestEnable.EnabledRequests.SystemVersion |
                                                                EVC30_MMIRequestEnable.EnabledRequests.Language |
@@ -418,8 +418,8 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, @"Enter the value 65536 and press a data input field to confirm. Press the ‘Yes’ button");
 
-            //EVC28_MMIEchoedVBCSetData.MMI_M_VBC_CODE_ = 0xfeff;     // 65536 (0x100) bit-inverted
-            //EVC28_MMIEchoedVBCSetData.Send();
+            EVC28_MMIEchoedSetVBCData.MMI_M_VBC_CODE_ = 65536;
+            EVC28_MMIEchoedSetVBCData.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Set VBC validation window." + Environment.NewLine +
@@ -459,13 +459,13 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Enter and confirm the value 65536");
 
-            //EVC28_MMIEchoedVBCSetData.MMI_M_VBC_CODE_ = 65536 // (0x100) bit-inverted is 0xfeff;
-            //EVC28_MMIEchoedVBCSetData.Send();
+            EVC28_MMIEchoedSetVBCData.MMI_M_VBC_CODE_ = 65536;
+            EVC28_MMIEchoedSetVBCData.Send();
             
             DmiActions.ShowInstruction(this, @"Press the ‘Yes’ button in the Set VBC validation window and press an input field");
 
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 4;      // Settings;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings;      // Settings;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter |
                                                                EVC30_MMIRequestEnable.EnabledRequests.SystemVersion |
                                                                EVC30_MMIRequestEnable.EnabledRequests.Language |
@@ -580,7 +580,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press the ‘Yes’ button in the Remove VBC validation window and press an input field");
 
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 4;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = (EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.SystemVersion |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.Language |

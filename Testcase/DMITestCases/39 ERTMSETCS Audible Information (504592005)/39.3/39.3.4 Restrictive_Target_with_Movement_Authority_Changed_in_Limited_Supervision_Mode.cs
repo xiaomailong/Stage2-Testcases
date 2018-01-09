@@ -13,6 +13,8 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.EVCtoDMI;
+
 
 namespace Testcase.DMITestCases
 {
@@ -35,7 +37,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 36_3_4.tdg
     /// </summary>
-    public class Restrictive_Target_with_Movement_Authority_Changed_in_Limited_Supervision_Mode : TestcaseBase
+    public class TC_ID_36_3_4_Restrictive_Target_with_Movement_Authority_Changed_in_Limited_Supervision_Mode : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -65,22 +67,21 @@ namespace Testcase.DMITestCases
             Action: Perform SoM to Level 1 in SR mode
             Expected Result: ETCS OB enters SR mode in Level 1
             */
-            // Call generic Action Method
-            DmiActions.Perform_SoM_to_Level_1_in_SR_mode(this);
-            // Call generic Check Results Method
-            DmiExpectedResults.ETCS_OB_enters_SR_mode_in_Level_1(this);
+            // Steps tested elsewhere: force SoM
+            DmiActions.Complete_SoM_L1_SR(this);
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SR mode, Level 1.");
 
             /*
             Test Step 2
             Action: Drive the train forward with constant speed at 20 km/h
             Expected Result: The train can drive forward and all brakes are not applied
             */
-            // Call generic Action Method
-            DmiActions.Drive_the_train_forward_with_constant_speed_at_20_kmh(this);
-            // Call generic Check Results Method
-            DmiExpectedResults.The_train_can_drive_forward_and_all_brakes_are_not_applied(this);
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 20;
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI does not display the ‘Emergency brake’ symbol, ST01, in sub-area C9.");
 
             /*
             Test Step 3
@@ -88,9 +89,13 @@ namespace Testcase.DMITestCases
             Expected Result: Sound Sinfo is not played when train pass BG1 with verification as follows:-Log FileUse log file to verify that after train pass BG1, train enters LS mode and restrictive target doesn’t exist in LS mode when the DMI receives the following:-- EVC-7 with variable [MMI_OBU_TR_M_Mode = 12].- EVC-1 with variable [MMI_V_TARGET = -1] all the time.- EVC-1 with variable [MMI_O_BRAKETARGET = -1] all the time
             Test Step Comment: MMI_gen 12043 (partly: MA changed in LS mode);
             */
-            // Call generic Action Method
-            DmiActions.Train_runs_pass_BG1(this);
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 10000;
+            EVC1_MMIDynamic.MMI_V_TARGET = -1;
+            EVC1_MMIDynamic.MMI_O_BRAKETARGET = -1;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.LimitedSupervision;
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The ‘Sinfo’ sound is not played");
 
             /*
             Test Step 4
@@ -99,19 +104,20 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 12043 (partly: MA changed in LS mode);
             */
             // Call generic Action Method
-            DmiActions.Train_runs_pass_BG2(this);
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 20000;
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The ‘Sinfo’ sound is (still) not played");
 
             /*
             Test Step 5
             Action: Stop the train
             Expected Result: The train is at standstill
             */
-            // Call generic Action Method
-            DmiActions.Stop_the_train(this);
-            // Call generic Check Results Method
-            DmiExpectedResults.The_train_is_at_standstill(this);
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The speed pointer displays 0 km/h.");
 
             /*
             Test Step 6

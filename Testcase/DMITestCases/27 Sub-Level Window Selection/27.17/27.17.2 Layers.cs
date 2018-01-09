@@ -75,7 +75,7 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.None;
             EVC30_MMIRequestEnable.Send();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.DriverID |
                                                                EVC30_MMIRequestEnable.EnabledRequests.StartBrakeTest;
             EVC30_MMIRequestEnable.Send();
@@ -85,12 +85,9 @@ namespace Testcase.DMITestCases
             EVC14_MMICurrentDriverID.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
             EVC14_MMICurrentDriverID.Send();
 
-            WaitForVerification("Check the following (* indicates sub-areas drawn as one area):" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the Driver ID window with 3 layers as a half-grid array." + Environment.NewLine +
-                                "2. Layer 0 is displayed in areas D, F and G." + Environment.NewLine +
-                                "3. Layer 1 is displayed in areas A1, (A2 + A3)*, A4, B*, C1, (C2 + C3 + C4)*, C5, C6, C7, C8, C9, E1, E2, E3, E4, (E5 - E9)*." + Environment.NewLine +
-                                "4. Layer 2 is displayed in areas B3, B4, B5, B6, B7." + Environment.NewLine +
-                                "5. Refer to DMI_RS_ETCS_R4.docx for the presentation of the window.");
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the Driver ID window as a half-grid array in areas D, F and G.");
+
 
             /*
             Test Step 2
@@ -100,6 +97,12 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, "Enter ‘1234’ for the Driver ID");
 
+            WaitForVerification("Check the following (* indicates sub-areas drawn as one area):" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the Driver ID window with 3 layers as a half-grid array." + Environment.NewLine +
+                                "2. Layer 0 is displayed in areas D, F and G." + Environment.NewLine +
+                                "3. Layer 1 is displayed in areas A1, (A2 + A3)*, A4, B*, C1, (C2 + C3 + C4)*, C5, C6, C7, C8, C9, E1, E2, E3, E4, (E5 - E9)*." + Environment.NewLine +
+                                "4. Layer 2 is displayed in areas B3, B4, B5, B6, B7." + Environment.NewLine +
+                                "5. Refer to DMI_RS_ETCS_R4.docx for the presentation of the window.");
             /*
             Test Step 3
             Action: Confirm the Driver ID and perform brake test
@@ -110,7 +113,7 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 2;
             EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
-            EVC8_MMIDriverMessage.MMI_Q_TEXT = 514;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 516;
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +

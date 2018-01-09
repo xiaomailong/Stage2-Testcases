@@ -109,6 +109,9 @@ namespace Testcase.DMITestCases
 
             EVC101_MMIDriverRequest.CheckMRequestReleased = Telegrams.EVCtoDMI.Variables.MMI_M_REQUEST.ChangeTrainRunningNumber;
 
+            EVC16_CurrentTrainNumber.TrainRunningNumber = 1;
+            EVC16_CurrentTrainNumber.Send();
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Train running number window");
 
@@ -183,7 +186,7 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.None;
             EVC30_MMIRequestEnable.Send();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.DriverID;
             EVC30_MMIRequestEnable.Send();
 
@@ -198,8 +201,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 183 (partly: active);(2) MMI_gen 8035 (partly: revalidation);(3) MMI_gen 8033 (party: MMI_gen 4722 (partly: Table 12 <Close> button, Window title, Input field)) MMI_gen 4392 (partly: [Close] NA11); MMI_gen 4396 (partly: Close, NA11);
             */
             DmiActions.ShowInstruction(this, @"Press the ‘Driver ID’ button");
-
-            // In the picture the TRN button seems to be disabled
+            
             EVC14_MMICurrentDriverID.MMI_X_DRIVER_ID = "1234567";
             EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE = EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE_BUTTONS.Settings &
                                                         ~EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE_BUTTONS.TRN;
@@ -271,7 +273,7 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.None;
             EVC30_MMIRequestEnable.Send();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.DriverID;
             EVC30_MMIRequestEnable.Send();
 
@@ -317,7 +319,7 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.None;
             EVC30_MMIRequestEnable.Send();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.DriverID;
             EVC30_MMIRequestEnable.Send();
 

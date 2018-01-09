@@ -48,7 +48,7 @@ namespace Testcase.DMITestCases
             DmiActions.Activate_Cabin_1(this);
             DmiActions.Set_Driver_ID(this, "1234");
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 4;  // settings window
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Default;  // settings window
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.EnableDoppler;
             EVC30_MMIRequestEnable.Send();
         }
@@ -77,8 +77,8 @@ namespace Testcase.DMITestCases
                                              "in the Password Maintenance window");
             
             EVC40_MMICurrentMaintenanceData.MMI_Q_MD_DATASET = Variables.MMI_Q_MD_DATASET.Doppler;
-            EVC40_MMICurrentMaintenanceData.MMI_M_PULSE_PER_KM_1 = Variables.MMI_M_PULSE_PER_KM.NoRadarOnBoard;
-            EVC40_MMICurrentMaintenanceData.MMI_M_PULSE_PER_KM_2 = Variables.MMI_M_PULSE_PER_KM.NoRadarOnBoard;
+            EVC40_MMICurrentMaintenanceData.MMI_M_PULSE_PER_KM_1 = (Variables.MMI_M_PULSE_PER_KM)22000;
+            EVC40_MMICurrentMaintenanceData.MMI_M_PULSE_PER_KM_2 = (Variables.MMI_M_PULSE_PER_KM)23000;
             EVC40_MMICurrentMaintenanceData.Send();            
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -102,8 +102,8 @@ namespace Testcase.DMITestCases
                                  "17. Objects and buttons can be displayed in several levels. Within a level they are allocated to areas." + Environment.NewLine +
                                  "18. All objects, text messages and buttons are presented within the same layer." + Environment.NewLine +
                                  "19. The Default window is not displayed covering the current window." + Environment.NewLine +
-                                 @"20. The value displayed in the Radar 1 data input field and echo text is ‘0’." + Environment.NewLine +
-                                 @"21. The value displayed in the Radar 2 data input field and echo text is ‘0’.");
+                                 @"20. The value displayed in the Radar 1 data input field and echo text is ‘22000’." + Environment.NewLine +
+                                 @"21. The value displayed in the Radar 2 data input field and echo text is ‘23000’.");
 
             /*
             Test Step 2
@@ -624,7 +624,7 @@ namespace Testcase.DMITestCases
             EVC40_MMICurrentMaintenanceData.MMI_M_PULSE_PER_KM_1 = (Variables.MMI_M_PULSE_PER_KM)20001;
             EVC40_MMICurrentMaintenanceData.MMI_M_PULSE_PER_KM_2 = (Variables.MMI_M_PULSE_PER_KM)20001;
             EVC40_MMICurrentMaintenanceData.MMI_Q_MD_DATASET = Variables.MMI_Q_MD_DATASET.Doppler;
-            EVC41_MMIEchoedMaintenanceData.Send();
+            EVC40_MMICurrentMaintenanceData.Send();
 
             DmiActions.ShowInstruction(this, @"Confirm the current data without re-entering Radar 1 or Radar 2 and press the ‘Yes’ button");
 
@@ -649,7 +649,7 @@ namespace Testcase.DMITestCases
             EVC40_MMICurrentMaintenanceData.MMI_M_PULSE_PER_KM_1 = (Variables.MMI_M_PULSE_PER_KM)20001;
             EVC40_MMICurrentMaintenanceData.MMI_M_PULSE_PER_KM_2 = (Variables.MMI_M_PULSE_PER_KM)20001;
             EVC40_MMICurrentMaintenanceData.MMI_Q_MD_DATASET = Variables.MMI_Q_MD_DATASET.Doppler;
-            EVC41_MMIEchoedMaintenanceData.Send();
+            EVC40_MMICurrentMaintenanceData.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Radar window");

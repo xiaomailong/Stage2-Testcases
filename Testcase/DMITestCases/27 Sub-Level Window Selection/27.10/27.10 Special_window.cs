@@ -35,7 +35,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 22_10.tdg
     /// </summary>
-    public class Special_window : TestcaseBase
+    public class TC_ID_22_10_Special_window : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -69,7 +69,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8434 (partly MMI_gen 7909);   (2) MMI_gen 8435; MMI_gen 4360 (partly: window title);(3) MMI_gen 8434 (partly: MMI_gen 4556 (partly: Close button, Window Title)); MMI_gen 4355 (partly: Buttons, Close button); MMI_gen 8436 (partly: touch screen, button with label, Adhesion, SR speed/distance, Train integrity); MMI_gen 4392 (partly: [Close] NA11);(4) MMI_gen 600 (partly: enabling #11 and #12, disabling #10);(5) MMI_gen 600 (partly: EVC-30, enabling #11 and #12, disabling #10); MMI_gen 1088 (partly, Bit #10 to #12)(6) MMI_gen 8434 (partly: MMI_gen 4630, MMI gen 5944 (partly: touch screen));(7) MMI_gen 4350;(8) MMI_gen 4351;(9) MMI_gen 4353;(10) MMI_gen 4354;
             */
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Default;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.None;
             EVC30_MMIRequestEnable.Send();      // Just to make sure that all are disabled
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = (EVC30_MMIRequestEnable.EnabledRequests.SRSpeedDistance |
@@ -103,7 +103,7 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Press the ‘Train integrity’ button and immediately release it");
 
-            EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.StartTrainDataEntry;
+            EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.StartProcedureTrainIntegrity;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The button is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
@@ -181,7 +181,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press the ‘Spec’ button");
 
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.None;
             EVC30_MMIRequestEnable.Send();      // Just to make sure that all are disabled
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = (EVC30_MMIRequestEnable.EnabledRequests.SRSpeedDistance |
@@ -238,6 +238,9 @@ namespace Testcase.DMITestCases
 
             EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.ChangeSRrules;
 
+            EVC11_MMICurrentSRRules.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS.BTN_YES_DATA_ENTRY_COMPLETE;
+            EVC11_MMICurrentSRRules.Send();
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the SR speed/distance window");
 
@@ -283,7 +286,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 600 (partly: enabling #10);(2) MMI_gen 600 (partly: enabling #10, EVC-30);
             */
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.No_window_specified;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.None;
             EVC30_MMIRequestEnable.Send();      // Just to make sure that all are disabled
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.SRSpeedDistance |
@@ -324,7 +327,8 @@ namespace Testcase.DMITestCases
             // Repeat Step 12 for the Adhesion button
             DmiActions.ShowInstruction(this, @"Release the ‘Adhesion’ button");
 
-            EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.ExitChangeSRrules;
+            // DMI_RS_ETCS does not specify a msg when adhesion button is pressed/released
+            //EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.ExitChangeSRrules;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Adhesion window");
@@ -346,12 +350,11 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 600 (partly: Disabling, #11, #12);(2) MMI_gen 600 (partly: Disabling, EVC-30, #11, #12);
             */
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.None;
             EVC30_MMIRequestEnable.Send();      // Just to make sure that all are disabled
-            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Adhesion &
-                                                               ~(EVC30_MMIRequestEnable.EnabledRequests.SRSpeedDistance |
-                                                                 EVC30_MMIRequestEnable.EnabledRequests.TrainIntegrity);
+            // Spec not clear whether adhesion is enabled
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Adhesion;
             EVC30_MMIRequestEnable.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -365,7 +368,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 600 (partly: Enabling, #11, #12);(2) MMI_gen 600 (partly: Enabling, EVC-30, #11, #12);
             */
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.None;
             EVC30_MMIRequestEnable.Send();      // Just to make sure that all are disabled
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Adhesion |
@@ -386,7 +389,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press the ‘Close’ button");
 
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.None;
             EVC30_MMIRequestEnable.Send();
 

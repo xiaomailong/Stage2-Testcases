@@ -50,7 +50,7 @@ namespace Testcase.DMITestCases
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 4;      // Settings window: no buttons enabled
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Default;      // Settings window: no buttons enabled
             EVC30_MMIRequestEnable.Send();
         }
 
@@ -252,7 +252,7 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Press the ‘Close’ button");
 
-            WaitForVerification("Check the following (* indicates sub-areas drawn as one area):" + Environment.NewLine + Environment.NewLine +
+            WaitForVerification("Check the following   :" + Environment.NewLine + Environment.NewLine +
                                 @"1. DMI displays the Brake window");
 
 
@@ -287,6 +287,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Release the ‘Percentage’ button");
 
             Telegrams.DMItoEVC.EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.ChangeBrakePercentage;
+            EVC50_MMICurrentBrakePercentage.Send();
            
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. DMI displays the Brake percentage window");
@@ -348,7 +349,7 @@ namespace Testcase.DMITestCases
             // Xml indicates that bit 32 should be set: commented out code for enable-low word is correct according to ATP_FE doc.
             // Xml indicates that bit 30 (Radio) should be set, should be 31 (Brake percentage) for test
             // The Start Brake test... should be redundant (iff SendBlank() does clear the word)
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 4;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings;
             switch (type)
             {
                 case msgType.typea:
@@ -375,7 +376,7 @@ namespace Testcase.DMITestCases
                     break;
                 case msgType.typec:
                     // Xml indicates that bit 32 should be set: commented out code for enable-low word is correct according to ATP_FE doc.
-                    EVC30_MMIRequestEnable.MMI_NID_WINDOW = 4;          // Xml says 1 (Main window)
+                    EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings;          // Xml says 1 (Main window)
                     // Test says bit 31 off, 28 on, xml says 30 (doppler) is on: irrelevant
                     EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = (EVC30_MMIRequestEnable.EnabledRequests.Language |
                                                                         EVC30_MMIRequestEnable.EnabledRequests.Volume |
@@ -389,7 +390,7 @@ namespace Testcase.DMITestCases
                 case msgType.typed:
 
                     // Xml indicates that bit 32 should be set: commented out code for enable-low word is correct according to ATP_FE doc.
-                    EVC30_MMIRequestEnable.MMI_NID_WINDOW = 4;
+                    EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings;
                     // Xml says bit 30 (doppler) is on: irrelevant for test
                     EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Language |
                                                                        EVC30_MMIRequestEnable.EnabledRequests.Volume |
@@ -401,7 +402,7 @@ namespace Testcase.DMITestCases
                                                                        EVC30_MMIRequestEnable.EnabledRequests.EnableBrakePercentage;
                     break;
             }
-            EVC20_MMISelectLevel.Send();
+            EVC30_MMIRequestEnable.Send();
         }
         #endregion
     }

@@ -34,7 +34,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// N/A
     /// </summary>
-    public class Switchable_train_data_entry : TestcaseBase
+    public class TC_ID_22_23_Switchable_train_data_entry : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -67,12 +67,12 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8095;   (2) MMI_gen 8098; MMI_gen 8099 (partly: bottom right corner);(3) MMI_gen 8097; (4) MMI_gen 9402 (partly:  MMI_M_ALT_DEM, switchable);
             */
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;      // Main
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;      // Main
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.TrainData;
             EVC30_MMIRequestEnable.Send();
 
             DmiActions.ShowInstruction(this, @"Press the ‘Train data’ button");
-
+            DmiActions.Send_EVC6_MMICurrentTrainData_FixedDataEntry(this, Variables.paramEvc6FixedTrainsetCaptions, 1);
             EVC6_MMICurrentTrainData.MMI_M_ALT_DEM = 1;
             EVC6_MMICurrentTrainData.Send();
 

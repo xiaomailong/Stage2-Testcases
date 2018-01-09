@@ -147,13 +147,15 @@ namespace Testcase.DMITestCases
             */
             XML_12_4(msgType.typea);
 
-            // Spec says this may need repeating 
+            // Spec says this may need repeating
+            /*
             this.Wait_Realtime(200);
             XML_12_4(msgType.typea);
             this.Wait_Realtime(200);
             XML_12_4(msgType.typea);
-            this.Wait_Realtime(200);
-            XML_12_4(msgType.typea);
+            //this.Wait_Realtime(200);
+            //XML_12_4(msgType.typea);
+            */
 
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -168,12 +170,14 @@ namespace Testcase.DMITestCases
             XML_12_4(msgType.typeb);
 
             // Spec says this may need repeating 
+            /*
             this.Wait_Realtime(200);
             XML_12_4(msgType.typeb);
             this.Wait_Realtime(200);
             XML_12_4(msgType.typeb);
             this.Wait_Realtime(200);
             XML_12_4(msgType.typeb);
+            */
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The speed displayed is 18 km/h");
@@ -187,12 +191,14 @@ namespace Testcase.DMITestCases
             XML_12_4(msgType.typec);
 
             // Spec says this may need repeating 
+            /*
             this.Wait_Realtime(200);
             XML_12_4(msgType.typec);
             this.Wait_Realtime(200);
             XML_12_4(msgType.typec);
             this.Wait_Realtime(200);
             XML_12_4(msgType.typec);
+            */
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The speed displayed is 23 km/h");
@@ -215,7 +221,6 @@ namespace Testcase.DMITestCases
 
         private void XML_12_4(msgType type)
         {
-
             EVC1_MMIDynamic.MMI_M_SLIDE = 0;
             EVC1_MMIDynamic.MMI_M_SLIP = 0;
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring;   // 0
@@ -227,26 +232,22 @@ namespace Testcase.DMITestCases
             EVC1_MMIDynamic.MMI_O_IML = 0;
             EVC1_MMIDynamic.MMI_V_INTERVENTION = 0;
 
-            SITR.ETCS1.Dynamic.EVC01Validity1.Value = 0x0;
-            SITR.ETCS1.Dynamic.EVC01Validity2.Value = 0x0;
-            //SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity1.Value = 4415; // All validity bits set
-            //SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity2.Value = 63;   // All validity bits set
-
             switch (type)
             {
                 case msgType.typea:
-                    EVC1_MMIDynamic.MMI_V_TRAIN = 389;
+                    EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 15;
 
                     break;
                 case msgType.typeb:
-                    EVC1_MMIDynamic.MMI_V_TRAIN = 500;
+                    EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 18;
 
                     break;
                 case msgType.typec:
-                    EVC1_MMIDynamic.MMI_V_TRAIN = 625;
+                    EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 23;
 
                     break;
             }
+         
         }
         #endregion
 

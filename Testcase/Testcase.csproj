@@ -14,6 +14,21 @@
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -223,6 +238,7 @@ if exist "$(TargetPath)" if not exist "$(TargetPath).locked" move "$(TargetPath)
     <Compile Include="DMITestCases\22 Planning Area in Main Area D\22.4\22.4.4 PA_Track_Condition_Radio_Hole_in_Sub_Area_D2_and_B3.cs" />
     <Compile Include="DMITestCases\22 Planning Area in Main Area D\22.4\22.4.5 PA_Track_Condition_Air_Tightness_in_Sub_Area_D2_and_B3.cs" />
     <Compile Include="DMITestCases\22 Planning Area in Main Area D\22.4\22.4.6 PA_Track_Condition_Switch_off_regenerative_brake_in_Sub_Area_D2_and_B3.cs" />
+    <Compile Include="DMITestCases\22 Planning Area in Main Area D\22.4\22.4.7 PA_Track_Condition_Switch_off_eddy_current_brake_in_Sub_Area_D2_and_B3.cs" />
     <Compile Include="DMITestCases\22 Planning Area in Main Area D\22.4\22.4.8 PA_Track_Condition_Switch_off_magnetic_shoe_brake_in_Sub_Area_D2_and_B3.cs" />
     <Compile Include="DMITestCases\22 Planning Area in Main Area D\22.4\22.4.9 PA_Track_Condition_Switch_off_main_power_switch_in_Sub_Area_D2_and_B3.cs" />
     <Compile Include="DMITestCases\22 Planning Area in Main Area D\22.5\22.5.1 PA_Gradient_Profile_General_appearance.cs" />
@@ -263,6 +279,7 @@ if exist "$(TargetPath)" if not exist "$(TargetPath).locked" move "$(TargetPath)
     <Compile Include="DMITestCases\25 Request for Driver’s Action\25.4\25.4 Drivers_Action_Settings_window.cs" />
     <Compile Include="DMITestCases\25 Request for Driver’s Action\25.5\25.5 Drivers_Action_RBC_Contact_windows.cs" />
     <Compile Include="DMITestCases\25 Request for Driver’s Action\25.6\25.6 Drivers_Action_Geographical_Information.cs" />
+    <Compile Include="DMITestCases\26\26.1\26.1.1 Sound_S1_Over_Speed.cs" />
     <Compile Include="DMITestCases\27 Sub-Level Window Selection\27.10\27.10 Special_window.cs" />
     <Compile Include="DMITestCases\27 Sub-Level Window Selection\27.11\27.11 Adhesion_Window.cs" />
     <Compile Include="DMITestCases\27 Sub-Level Window Selection\27.12\27.12 Subcategory_National.cs" />
@@ -347,6 +364,8 @@ if exist "$(TargetPath)" if not exist "$(TargetPath).locked" move "$(TargetPath)
     <Compile Include="DMITestCases\37 Dialogue Sequences\37.7\37.7 Dialogue_Sequence_of_Settings_window.cs" />
     <Compile Include="DMITestCases\38 System Status Messages\38.1\38.1 ERTMSETCS_System_Status_Messages.cs" />
     <Compile Include="DMITestCases\38 System Status Messages\38.2\38.2 NTC_System_Status_Messages.cs" />
+    <Compile Include="DMITestCases\39 ERTMSETCS Audible Information %28504592005%29\39.1\39.1 Sound_S1_Driving_too_fast.cs" />
+    <Compile Include="DMITestCases\39 ERTMSETCS Audible Information %28504592005%29\39.2\39.2 End_of_Intervention.cs" />
     <Compile Include="DMITestCases\39 ERTMSETCS Audible Information %28504592005%29\39.3\39.3.1 Restrictive_Target_with_Speed_Monitoring_in_Full_Supervision_Mode.cs" />
     <Compile Include="DMITestCases\39 ERTMSETCS Audible Information %28504592005%29\39.3\39.3.2 Restrictive_Target_with_Movement_Authority_Changed_in_Full_Supervision_Mode.cs" />
     <Compile Include="DMITestCases\39 ERTMSETCS Audible Information %28504592005%29\39.3\39.3.3 Restrictive_Target_with_Speed_Monitoring_in_Limited_Supervision_Mode.cs" />
@@ -403,10 +422,11 @@ if exist "$(TargetPath)" if not exist "$(TargetPath).locked" move "$(TargetPath)
     <Compile Include="Telegrams\DMItoEVC\EVC140_MMINewMaintenanceData.cs" />
     <Compile Include="Telegrams\DMItoEVC\EVC152_EVCDriverAction.cs" />
     <Compile Include="Telegrams\DMItoEVC\EVC101_MMIDriverRequest.cs" />
+    <Compile Include="Telegrams\EVCtoDMI\EVC24_MMISystemInfo.cs" />
+    <Compile Include="Telegrams\EVCtoDMI\EVC26_MMISpecificSTMDWValues.cs" />
     <Compile Include="Telegrams\EVCtoDMI\EVC28_MMIEchoedSetVBCData.cs" />
     <Compile Include="Telegrams\EVCtoDMI\EVC19_MMIRemoveVBC.cs" />
     <Compile Include="Telegrams\EVCtoDMI\EVC25_MMISpecificSTMDERequest.cs" />
-    <Compile Include="Telegrams\EVCtoDMI\EVC25_StmData.cs" />
     <Compile Include="Telegrams\EVCtoDMI\EVC27_MMISpecificSTMTestRequest.cs" />
     <Compile Include="Telegrams\EVCtoDMI\EVC29_MMIEchoedRemoveVBCData.cs" />
     <Compile Include="Telegrams\EVCtoDMI\EVC31_MMINTCDeSelect.cs" />
@@ -461,6 +481,13 @@ if exist "$(TargetPath)" if not exist "$(TargetPath).locked" move "$(TargetPath)
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DMITestCases\1 Introduction\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

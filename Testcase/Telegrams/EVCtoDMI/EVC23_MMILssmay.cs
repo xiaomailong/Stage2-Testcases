@@ -1,11 +1,9 @@
 ﻿#region usings
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using CL345;
-
 #endregion
 
 namespace Testcase.Telegrams.EVCtoDMI
@@ -18,20 +16,21 @@ namespace Testcase.Telegrams.EVCtoDMI
         private static SignalPool _pool;
 
         /// <summary>
-        /// Initialse EVC-23 MMI_LSSMA telegram.
+        /// Initialise EVC-23 MMI LSSMA telegram.
         /// </summary>
-        /// <param name="pool"></param>
+        /// <param name="pool">The SignalPool</param>
         public static void Initialise(SignalPool pool)
         {
             _pool = pool;
 
-            // set default values
-            _pool.SITR.ETCS1.CurrentTrainNumber.MmiMPacket.Value = 23;
-            _pool.SITR.ETCS1.CurrentTrainNumber.MmiLPacket.Value = 48;
+            // Set default values
+            _pool.SITR.ETCS1.Lssma.MmiMPacket.Value = 23;
+            _pool.SITR.ETCS1.Lssma.MmiLPacket.Value = 48;
         }
 
         /// <summary>
         /// LSSMA speed
+        /// 
         /// Values:
         /// 0..600 = "Speed Value"
         /// 601..65534 = "Reserved"
@@ -39,15 +38,16 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static ushort MMI_V_LSSMA
         {
+            get => _pool.SITR.ETCS1.Lssma.MmiVLssma.Value;
             set => _pool.SITR.ETCS1.Lssma.MmiVLssma.Value = value;
         }
 
         /// <summary>
-        /// Send EVC-23 telegram.
+        /// Send EVC-23 MMI LSSMA telegram.
         /// </summary>
         public static void Send()
         {
-            _pool.SITR.SMDCtrl.ETCS1.Lssma.Value = 1;
+            _pool.SITR.SMDCtrl.ETCS1.Lssma.Value = 0x0001;
         }
     }
 }

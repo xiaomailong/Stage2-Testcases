@@ -65,6 +65,8 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,DMI does not display Radio Network ID window
             Test Step Comment: (1) MMI_gen 9448 (partly: NEGATIVE, inactive);
             */
+            DmiActions.Start_ATP();
+
             XML_22_8_2_1(msgType.typea);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -103,7 +105,7 @@ namespace Testcase.DMITestCases
 
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L2;
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 255;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.No_window_specified;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.RadioNetworkID;
             EVC30_MMIRequestEnable.Send();
 
@@ -204,11 +206,11 @@ namespace Testcase.DMITestCases
             // ?? Confirm
             DmiActions.ShowInstruction(this, @"Release the first data input field");
 
-            // EVC112_MMINewRBCData.CheckMMiNDataElements = 1;          // ??
-            //EVC112_MMINewRBCData.CheckMmiNidData = 3;
-            //EVC112_MMINewRBCData.CheckMMiMButtons = Variables.MMI_M_BUTTONS.BTN_ENTER;
-            //EVC112_MMINewRBCData.CheckMmiNidMn = 0;   // 1st key
-            
+            EVC112_MMINewRbcData.MMI_NID_DATA = new List<byte> { 3 };
+            EVC112_MMINewRbcData.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_RBC_DATA.BTN_ENTER;
+            EVC112_MMINewRbcData.MMI_NID_RBC = 6996969;
+            EVC112_MMINewRbcData.CheckPacketContent();
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Radio Network ID window.");
 
@@ -233,10 +235,10 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, "Confirm the current data without re-entering the Radio Network ID");
 
-            //EVC112_MMINewRBCData.CheckMMiNDataElements = 1;          // ??
-            //EVC112_MMINewRBCData.CheckMmiNidData = 3;
-            //EVC112_MMINewRBCData.CheckMMiMButtons = Variables.MMI_M_BUTTONS.BTN_ENTER;
-            //EVC112_MMINewRBCData.CheckMmiNidMn = 23;   // 1st key
+            EVC112_MMINewRbcData.MMI_NID_DATA = new List<byte> { 3 };
+            EVC112_MMINewRbcData.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_RBC_DATA.BTN_ENTER;
+            EVC112_MMINewRbcData.MMI_NID_RBC = 6996969;
+            EVC112_MMINewRbcData.CheckPacketContent();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Radio Network ID window.");
@@ -340,7 +342,7 @@ namespace Testcase.DMITestCases
                     EVC22_MMICurrentRBC.NetworkCaptions = new List<string> { "GSMR-A", "GSMR-B" };
                     break;
                 case msgType.typeb:
-                    EVC22_MMICurrentRBC.NetworkCaptions = null;
+                    EVC22_MMICurrentRBC.NetworkCaptions.Clear();
                     break;
             }
             EVC22_MMICurrentRBC.Send();

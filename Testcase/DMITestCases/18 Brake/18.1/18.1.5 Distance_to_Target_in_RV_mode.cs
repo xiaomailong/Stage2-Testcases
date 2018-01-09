@@ -82,6 +82,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SR mode, level 1
             */
             DmiActions.ShowInstruction(this, "Perform SoM to SR mode, level 1: setting Train Length = 100m in train data entry");
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
+            DmiActions.Finished_SoM_Default_Window(this);
 
             // Call generic Check Results Method
             DmiExpectedResults.SR_Mode_displayed(this);
@@ -94,6 +97,7 @@ namespace Testcase.DMITestCases
 
             // ?? Set an EOA so the DMI can display a target
             EVC1_MMIDynamic.MMI_O_BRAKETARGET = 300000;              // 3 km: will cause the target display to show a white arrow on top
+            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_PreIndication_Monitoring;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 0;       // just starting off
 
             // Set the permitted speed so the current speed is allowed
@@ -154,6 +158,8 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, "Change the direction of train to reverse. Select and confirm RV mode.");
 
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
+            EVC8_MMIDriverMessage.Send();
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Reversing;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +

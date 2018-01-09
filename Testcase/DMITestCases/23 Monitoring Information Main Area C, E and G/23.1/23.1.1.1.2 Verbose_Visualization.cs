@@ -175,6 +175,9 @@ namespace Testcase.DMITestCases
             Wait_Realtime(2000);
 
             // Spec says MMI_Q_TEXT = 282 (ST04) as displayed: should sending ST03C (615) display ST04?
+            // remove RHS symbol in E1
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
+            EVC8_MMIDriverMessage.Send();
             EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;

@@ -33,7 +33,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 22_14.xml
     /// </summary>
-    public class System_Version_window : TestcaseBase
+    public class TC_ID_22_14_System_Version_window : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -46,9 +46,7 @@ namespace Testcase.DMITestCases
             DmiActions.Activate_Cabin_1(this);
 
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.None;
-            EVC30_MMIRequestEnable.Send();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 4;      // Settings
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Default;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.SystemVersion;
             EVC30_MMIRequestEnable.Send();
 
@@ -163,7 +161,7 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.None;
             EVC30_MMIRequestEnable.Send();
 
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 4;  // Settings
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings;  // Settings
             EVC30_MMIRequestEnable.Send();
             */
         }

@@ -35,13 +35,16 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 1_8.tdg
     /// </summary>
-    public class AcclerationDecleration_interval_4_0ms2_to_4_0_ms2 : TestcaseBase
+    public class TC_1_8_AcclerationDecleration : TestcaseBase
     {
         public override void PreExecution()
         {
             // Pre-conditions from TestSpec:
-            // Power off test systemSet the following OTE configuration file (OteCfg_PC.cfg)- tractionAcceleration 400- serviceBrakeDeceleration 400- emergencyBrakeDeceleration 400
-
+            // Power off test system
+            // Set the following OTE configuration file (OteCfg_PC.cfg):
+            //      - tractionAcceleration 400
+            //      - serviceBrakeDeceleration 400
+            //      - emergencyBrakeDeceleration 400
             // Call the TestCaseBase PreExecution
             base.PreExecution();
         }
@@ -59,16 +62,14 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
+            DmiActions.ShowInstruction(this, "THIS TESCASE NEEDS TO BE RUN WITH ETCS AND VSIM");
 
             /*
             Test Step 1
             Action: Power on the system and activate cabin
             Expected Result: DMI displays in SB mode
             */
-            // Call generic Action Method
-            DmiActions.Power_on_the_system_and_activate_cabin(this);
-            // Call generic Check Results Method
-            DmiExpectedResults.SB_Mode_displayed(this);
+
 
 
             /*
@@ -98,8 +99,6 @@ namespace Testcase.DMITestCases
             Action: End of Test
             Expected Result: 
             */
-            // Call generic Action Method
-            DmiActions.End_of_Test(this);
 
 
             return GlobalTestResult;

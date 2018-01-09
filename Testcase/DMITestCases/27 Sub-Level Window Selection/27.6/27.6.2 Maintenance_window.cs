@@ -35,7 +35,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 22_6_2_a.xml, 22_6_2_b.xml, 22_6_2_c.xml, 22_6_2_d.xml
     /// </summary>
-    public class TC_22_6_2_Maintenance_window : TestcaseBase
+    public class TC_ID_22_6_2_Maintenance_window : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -47,7 +47,6 @@ namespace Testcase.DMITestCases
 
             DmiActions.Start_ATP();
             DmiActions.Activate_Cabin_1(this);
-            DmiActions.Set_Driver_ID(this, "1234");
         }
 
         public override void PostExecution()
@@ -70,6 +69,8 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,DMI received the EVC-30 with [MMI_ENABLE_REQUEST (EVC-30).MMI_Q_REQUEST_ENABLE_64] (#29) = 0 in order to disable wheel diameter.DMI received the EVC-30 with [MMI_ENABLE_REQUEST (EVC-30).MMI_Q_REQUEST_ENABLE_64] (#30) = 0 in order to disable doppler.The ‘Maintenance’ button is disabled
             Test Step Comment: (1) MMI_gen 11746 (partly: disable wheel diameter);(2) MMI_gen 11746 (partly: disable doppler);(3) MMI_gen 11724;
             */
+            DmiActions.ShowInstruction(this, @"Press the ‘Settings’ button");
+
             XML_22_6_2(msgType.typea);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -328,7 +329,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Release the ‘Close’ button");
             
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the Close window.");
+                                "1. DMI displays the Settings window.");
             /*
             Test Step 18
             Action: End of test
@@ -349,7 +350,7 @@ namespace Testcase.DMITestCases
         private void XML_22_6_2(msgType type)
         {
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 0x4;   // Enable all windows
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.None;
             EVC30_MMIRequestEnable.Send();
             switch (type)

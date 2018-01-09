@@ -66,7 +66,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.SRSpeedDistance;
             EVC30_MMIRequestEnable.Send();
 
@@ -77,7 +77,7 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, "Press the ‘Spec’ button, then press the ‘SR speed/distance’ button");
             
-            EVC11_MMICurrentSRRules.MMI_M_BUTTONS = MMI_M_BUTTONS.No_Button;
+            EVC11_MMICurrentSRRules.MMI_M_BUTTONS = MMI_M_BUTTONS.BTN_YES_DATA_ENTRY_COMPLETE;
             EVC11_MMICurrentSRRules.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -89,11 +89,19 @@ namespace Testcase.DMITestCases
             Expected Result: Input Field(1) The eventually displayed data value in the data area of the input field is replaced by “0” (character or value corresponding to the activated data key - state ‘Selected IF/value of pressed key(s)’).EVC-106(2) Use the log file to verify that DMI sends packet EVC-106 with variable:MMI_V_STFF = 0 MMI_M_BUTTONS =  254 (BTN_ENTER) MMI_NID_DATA = 15 (SR Speed)
             Test Step Comment: Requirements:(1) MMI_gen 8297 (partly: reactions to succeed, MMI_gen 4714 (partly: MMI_gen 4679), MMI_gen 9286 (partly: state switched), MMI_gen 12145 (partly: minimum inbound));(2) MMI_gen 8297 (partly: reactions to succeed, MMI_gen 12147, MMI_gen 9286 (partly: enabled)); MMI_gen 9509 (partly: EVC-106, the ‘Enter’ button, accepted data complied with data checks, driver action);
             */
-            DmiActions.ShowInstruction(this, @"Enter the value ‘0’ in the SR speed data input field and press in the data input field to accept the valu.");
+            DmiActions.ShowInstruction(this, @"Enter the value ‘0’ in the SR speed data input field and press in the data input field to accept the value.");
 
-            //EVC106_MmiNewSRRules.CheckMmiVStff = 0;
-            //EVC106_MmiNewSRRules.CheckMmiMButtons = MMI_M_BUTTONS.BTN_ENTER;
-            //EVC106_MmiNewSRRules.CheckNidData = 15;
+            EVC106_MMINewSrRules.MMI_V_STFF = 0;
+            EVC106_MMINewSrRules.MMI_NID_DATA = new List<byte> { 15 };
+            EVC106_MMINewSrRules.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_SR_RULES.BTN_ENTER;
+            EVC106_MMINewSrRules.CheckPacketContent();
+            List<DataElement> dataElements = new List<DataElement>
+            {
+                new DataElement { Identifier = 15, EchoText = "0", QDataCheck = 0, },
+                new DataElement { Identifier = 16, EchoText = "", QDataCheck = 0 }
+            };
+            EVC11_MMICurrentSRRules.DataElements = dataElements;
+            EVC11_MMICurrentSRRules.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The SR speed data input field displays ‘0’.");
@@ -104,10 +112,11 @@ namespace Testcase.DMITestCases
             Expected Result: Input Field(1) The ‘Enter’ button associated to the data area of the input field is coloured grey and its text is black (state ‘Selected IF/Data value’).(2) The ‘Enter’ button associated to the data area of the input field displays “601” (previously entered value).EVC-106(3) Use the log file to verify that DMI does not send out packet EVC-106 as the ‘Enter’ button is disabled. Echo Texts(4) The data part of the echo text displays “++++”.(5) The data part of the echo text is coloured red
             Test Step Comment: Requirements:(1) MMI_gen 8297 (partly: reactions to failing, MMI_gen 4714 (partly: state 'Selected IF/data value'));(2) MMI_gen 8297 (partly: reactions to failing, MMI_gen 4714 (partly: previously entered (faulty) value), MMI_gen 12145 (partly: outbound)); MMI_gen 4699 (technical range);(3) MMI_gen 8297 (partly: MMI_gen 9286 (partly: button ‘Enter’, disabled), MMI_gen 12148 (partly: not send packets) , MMI_gen 12147); MMI_gen 9509 (partly: EVC-106); (4) MMI_gen 8297 (partly: reactions to failing, MMI_gen 12148 (MMI_gen 4713 (partly: indication)));(5) MMI_gen 8297 (partly: reactions to failing, MMI_gen 12148 (MMI_gen 4713 (partly: red)));
             */
-            DmiActions.ShowInstruction(this, @"Enter the value ‘601’ in the SR speed data input field and press in the data input field to accept the valu.");
-
+            DmiActions.ShowInstruction(this, @"Enter the value ‘601’ in the SR speed data input field and press in the data input field to accept the value.");
+             
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘Enter’ button of the SR speed data input field displays ‘601’ in black on a grey background");
+                                @"1. The ‘Enter’ button of the SR speed data input field displays ‘601’ in black on a grey background" + Environment.NewLine +
+                                @"2. The data part of the SR speed echo text displays ‘++++’ in red.");
 
             /*
             Test Step 4
@@ -115,15 +124,15 @@ namespace Testcase.DMITestCases
             Expected Result: Input Field(1) The eventually displayed data value in the data area of the input field is replaced by “600” (character or value corresponding to the activated data key - state ‘Selected IF/value of pressed key(s)’).EVC-106(2) Use the log file to verify that DMI sends packet EVC-106 with variable:MMI_V_STFF = 600MMI_M_BUTTONS =  254 (BTN_ENTER)MMI_NID_DATA = 15 (SR Speed)
             Test Step Comment: Requirements:(1) MMI_gen 8297 (partly: MMI_gen 4714 (partly: MMI_gen 4679), MMI_gen 9286 (partly: state switched), MMI_gen 12145 (partly: maximum inbound)); (2) MMI_gen 8297 (partly: reactions to succeed, MMI_gen 12147, MMI_gen 9286 (partly: enabled)); MMI_gen 9509 (partly: EVC-106, the ‘Enter’ button, accepted data complied with data checks, driver action);
             */
-            DmiActions.ShowInstruction(this, @"Enter the value ‘600’ in the SR speed data input field and press in the data input field to accept the valu.");
+            DmiActions.ShowInstruction(this, @"Enter the value ‘600’ in the SR speed data input field and press in the data input field to accept the value.");
 
-            //EVC106_MmiNewSRRules.CheckMmiVStff = 600;
-            //EVC106_MmiNewSRRules.CheckMmiMButtons = MMI_M_BUTTONS.BTN_ENTER;
-            //EVC106_MmiNewSRRules.CheckNidData = 15;
+            EVC106_MMINewSrRules.MMI_V_STFF = 600;
+            EVC106_MMINewSrRules.MMI_NID_DATA = new List<byte> { 15 };
+            EVC106_MMINewSrRules.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_SR_RULES.BTN_ENTER;
+            EVC106_MMINewSrRules.CheckPacketContent();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘Enter’ button of the SR speed data input field displays ‘601’ in black on a grey background" + Environment.NewLine +
-                                @"2. The data part of the SR speed echo text displays ‘++++’ in red.");
+                                @"1. The ‘Enter’ button of the SR speed data input field displays ‘600’ in black on a grey background");
 
             /*
             Test Step 5
@@ -134,9 +143,10 @@ namespace Testcase.DMITestCases
             // Repeat Step 2 for SR distance
             DmiActions.ShowInstruction(this, @"Enter the value ‘0’ in the SR speed data input field and press in the data input field to accept the valu.");
 
-            //EVC106_MmiNewSRRules.CheckMmiVStff = 0;
-            //EVC106_MmiNewSRRules.CheckMmiMButtons = MMI_M_BUTTONS.BTN_ENTER;
-            //EVC106_MmiNewSRRules.CheckNidData = 16;
+            EVC106_MMINewSrRules.MMI_V_STFF = 0;
+            EVC106_MMINewSrRules.MMI_NID_DATA = new List<byte> { 16 };
+            EVC106_MMINewSrRules.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_SR_RULES.BTN_ENTER;
+            EVC106_MMINewSrRules.CheckPacketContent();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The SR distance data input field displays ‘0’.");
@@ -164,24 +174,14 @@ namespace Testcase.DMITestCases
             EVC11_MMICurrentSRRules.DataElements = new List<DataElement> { new DataElement { Identifier = 15, EchoText = "600", QDataCheck = 1 },
                                                                            new DataElement { Identifier = 16, EchoText = "100000", QDataCheck = 1} };
             EVC11_MMICurrentSRRules.Send();
-
-            // Need to send set of data for the input values ??
-            //EVC10_MMIEchoedTrainData...
-            //EVC10_MMIEchoedTrainData.Send(this);  
-
+            
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. DMI displays the ‘Validate SR speed/distance’ window." + Environment.NewLine +
                                 @"2. The data part of the SR speed echo text displays ‘600’ in white." + Environment.NewLine +
                                 @"3. The data part of the SR distance echo text displays ‘100000’ in white.");
 
             DmiActions.ShowInstruction(this, @"Validate the data in the data validation window");
-
-            // EVC-30 required to enable the validation window??
-            //EVC30_MMIRequestEnable.SendBlank();
-            //EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
-            //EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.SRSpeedDistance;
-            //EVC30_MMIRequestEnable.Send();
-
+            
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. DMI displays the SR speed/distance window.");
 

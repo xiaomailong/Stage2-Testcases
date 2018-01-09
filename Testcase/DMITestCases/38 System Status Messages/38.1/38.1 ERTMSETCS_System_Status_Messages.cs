@@ -13,6 +13,8 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.EVCtoDMI;
+
 
 namespace Testcase.DMITestCases
 {
@@ -32,15 +34,17 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 35_1.xml
     /// </summary>
-    public class ERTMSETCS_System_Status_Messages : TestcaseBase
+    public class TC_ID_35_1_ERTMSETCS_System_Status_Messages : TestcaseBase
     {
         public override void PreExecution()
         {
             // Pre-conditions from TestSpec:
-            // System is power onSoM is performed until Level 1 is confirmed and the ‘Main’ window is closed.
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
+
+            // System is power onSoM is performed until Level 1 is confirmed and the ‘Main’ window is closed.
+            DmiActions.Complete_SoM_L1_SB(this);
         }
 
         public override void PostExecution()
@@ -56,14 +60,20 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-
             /*
             Test Step 1
             Action: Force the train roll away by moving of speed with ‘Neutral’ direction
             Expected Result: Verify the following information,DMI displays system message “Runaway movement” in sub-area E5 without yellow flashing frame.Use the log file to confirm that DMI received the EVC-8 with [MMI_DRIVER_MESSAGE (EVC-8).MMI_Q_TEXT] = 269
             Test Step Comment: (1) MMI_gen 9520 (partly: Table 76);(2) MMI_gen 9522 (partly: Table 76);
             */
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 269;
+            EVC8_MMIDriverMessage.Send();
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the message ‘Runaway movement’ in sub-area E5 without a yellow flashing frame.");
 
             /*
             Test Step 2
@@ -71,14 +81,170 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the display message in sub-area E5-E9 are correct refer to following message respectively,Balise read errorTrackside malfunctionCommunication errorEntering FSEntering OSSH refusedSH request failedTrackside not compatibleTrain data changedTrain is rejectedUnauthorized passing of EOA / LOANo MA received at level transitionSR distance exceededSH stop orderSR stop orderEmergency stopRV distance exceededNo Track DescriptionRoute unsuitable – axle load categoryRoute unsuitable – loading gaugeRoute unsuitable – traction systemRadio network registration failedNote: Use the <Up> and <Down> button to scroll the list of message in sub-area E5-E9
             Test Step Comment: MMI_gen 9522 (partly: Table 76);
             */
+            #region Send_XML_35_1_DMI_Test_Specification
 
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 267;
+            EVC8_MMIDriverMessage.Send();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the message ‘Balise read error’ in sub-area E5-E9 without a yellow flashing frame.");
+
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 2;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 560;
+            EVC8_MMIDriverMessage.Send();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the message ‘Trackside malfunction’ in sub-area E5-E9 without a yellow flashing frame.");
+
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 3;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 268;
+            EVC8_MMIDriverMessage.Send();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the message ‘Communication error’ in sub-area E5-E9 without a yellow flashing frame.");
+
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 4;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 274;
+            EVC8_MMIDriverMessage.Send();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the message ‘Entering FS’ in sub-area E5-E9 without a yellow flashing frame.");
+
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 5;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 275;
+            EVC8_MMIDriverMessage.Send();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the message ‘Entering OS’ in sub-area E5-E9 without a yellow flashing frame.");
+
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 6;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 290;
+            EVC8_MMIDriverMessage.Send();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the message ‘SH refused’ in sub-area E5-E9 without a yellow flashing frame.");
+
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 7;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 292;
+            EVC8_MMIDriverMessage.Send();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the message ‘SH request failed’ in sub-area E5-E9 without a yellow flashing frame.");
+
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 8;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 296;
+            EVC8_MMIDriverMessage.Send();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the message ‘Trackside not compatible’ in sub-area E5-E9 without a yellow flashing frame.");
+
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 9;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 310;
+            EVC8_MMIDriverMessage.Send();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the message ‘Train data changed’ in sub-area E5-E9 without a yellow flashing frame.");
+
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 10;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 299;
+            EVC8_MMIDriverMessage.Send();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the message ‘Train is rejected’ in sub-area E5-E9 without a yellow flashing frame.");
+
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 11;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 273;
+            EVC8_MMIDriverMessage.Send();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the message ‘Unauthorized passing of EOA / LOA’ in sub-area E5-E9 without a yellow flashing frame.");
+
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 12;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 300;
+            EVC8_MMIDriverMessage.Send();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the message ‘No MA received at level transition’ in sub-area E5-E9 without a yellow flashing frame.");
+
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 13;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 315;
+            EVC8_MMIDriverMessage.Send();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the message ‘SR distance exceeded’ in sub-area E5-E9 without a yellow flashing frame.");
+
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 14;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 606;
+            EVC8_MMIDriverMessage.Send();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the message ‘SH stop order’ in sub-area E5-E9 without a yellow flashing frame.");
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 15;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 316;
+            EVC8_MMIDriverMessage.Send();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the message ‘SR stop order’ in sub-area E5-E9 without a yellow flashing frame.");
+
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 16;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 280;
+            EVC8_MMIDriverMessage.Send();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the message ‘Emergency stop’ in sub-area E5-E9 without a yellow flashing frame.");
+
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 17;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 320;
+            EVC8_MMIDriverMessage.Send();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the message ‘RV distance exceeded’ in sub-area E5-E9 without a yellow flashing frame.");
+
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 18;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 572;
+            EVC8_MMIDriverMessage.Send();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the message ‘No Track Description’ in sub-area E5-E9 without a yellow flashing frame.");
+
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 19;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 701;
+            EVC8_MMIDriverMessage.Send();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the message ‘Route unsuitable – axle load category’ in sub-area E5-E9 without a yellow flashing frame.");
+
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 20;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 702;
+            EVC8_MMIDriverMessage.Send();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the message ‘Route unsuitable – loading gauge’ in sub-area E5-E9 without a yellow flashing frame.");
+
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 21;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 703;
+            EVC8_MMIDriverMessage.Send();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the message ‘Route unsuitable – traction system’ in sub-area E5-E9 without a yellow flashing frame.");
+
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 22;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 569;
+            EVC8_MMIDriverMessage.Send();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the message ‘	Radio network registration failed’ in sub-area E5-E9 without a yellow flashing frame.");
+
+            #endregion
 
             /*
             Test Step 3
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }

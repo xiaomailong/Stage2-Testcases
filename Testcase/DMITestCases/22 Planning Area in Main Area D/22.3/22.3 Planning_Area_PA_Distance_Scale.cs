@@ -33,7 +33,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 17_3.tdg
     /// </summary>
-    public class Planning_Area_PA_Distance_Scale : TestcaseBase
+    public class TC_ID_22_3_Planning_Area_PA_Distance_Scale : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -222,8 +222,8 @@ namespace Testcase.DMITestCases
             Expected Result: Verify that PA distance scale is not changed the selected range of PA distance scale, still display range as [0..32000]
             Test Step Comment: MMI_gen 7147 (partly: Communication loss);
             */
-            // Call generic Action Method
             DmiActions.Re_establish_communication_EVC_DMI(this);
+            EVC4_MMITrackDescription.Send(); 
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Planning Area" + Environment.NewLine +

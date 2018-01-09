@@ -94,15 +94,16 @@ namespace Testcase.DMITestCases
                                                      70,
                                                      Variables.MMI_NID_KEY.CATA,
                                                      0,
-                                                     Variables.MMI_NID_KEY.G1,
-                                                     36, 0, 0, new[] { "FLU", "RLU", "Rescue" }, null);
+                                                     Variables.MMI_NID_KEY_Load_Gauge.G1,
+                                                     EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE,
+                                                     0, 0, new[] { "FLU", "RLU", "Rescue" });
 
             DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
                                 "1. Confirm value in each input field." + Environment.NewLine +
                                 "2. Press ‘Yes’ button.");
 
-            // EVC10 needed for this: DmiActions.Display_Train_data_validation_Window(this);
-            /*DmiActions.Send_EVC10_MMIEchoedTrainData(Variables.MMI_M_DATA_ENABLE.TrainSetID |
+            DmiActions.Send_EVC10_MMIEchoedTrainData(this,
+                                                     Variables.MMI_M_DATA_ENABLE.TrainSetID |
                                                      Variables.MMI_M_DATA_ENABLE.TrainCategory |
                                                      Variables.MMI_M_DATA_ENABLE.TrainLength |
                                                      Variables.MMI_M_DATA_ENABLE.BrakePercentage |
@@ -115,9 +116,7 @@ namespace Testcase.DMITestCases
                                                      Variables.MMI_NID_KEY.CATA,
                                                      0,
                                                      Variables.MMI_NID_KEY.G1,
-                                                     0, 0,
-                                                     new[] { "FLU", "RLU", "Rescue" }, null);*/
-            DmiActions.Send_EVC10_MMIEchoedTrainData_FixedDataEntry(this, Variables.paramEvc6FixedTrainsetCaptions);
+                                                     new[] { "FLU", "RLU", "Rescue" });
 
             // test wrong: pressing Yes button confirms the data?
             DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
@@ -181,9 +180,15 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             DmiActions.ShowInstruction(this, "Acknowledge SR mode");
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SR mode and Level 1.");
+
+            // Remove SR ACK symbol
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
+            EVC8_MMIDriverMessage.Send();
 
             /*
             Test Step 6
@@ -205,7 +210,7 @@ namespace Testcase.DMITestCases
             
             // Will this work?
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. Note that the speed registered = 40 km/h and after 1s DMI displays the Default window." + Environment.NewLine +
+                                "1. Note that the speed registered is 40 km/h and after 1s DMI displays the Default window." + Environment.NewLine +
                                 "2. DMI plays the Sinfo sound.");
 
             /*

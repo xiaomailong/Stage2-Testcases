@@ -51,8 +51,6 @@ namespace Testcase.DMITestCases
         {
             // Post-conditions from TestSpec
             // DMI displays in SB mode, level 1
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in SB mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -81,11 +79,12 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 280;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
             EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.Send();
 
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
             EVC8_MMIDriverMessage.MMI_I_TEXT = 2;
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 257;
-            EVC8_MMIDriverMessage.PlainTextMessage = "\0x0";        // MMI_N_TEXT (length) 1
+            EVC8_MMIDriverMessage.PlainTextMessage = "0";        // MMI_N_TEXT (length) 1
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -96,11 +95,16 @@ namespace Testcase.DMITestCases
             Action: (Continue from step 2)Send EVC-8 with, MMI_Q_TEXT = 257MMI_Q_TEXT_CRITERIA = 1MMI_I_TEXT = 3MMI_N_TEXT = 1MMI_X_TEXT = 1
             Expected Result: DMI displays LE11 symbol with yellow flashing frame in sub-area C1
             */
+            // Remove LE07
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 2;
+            EVC8_MMIDriverMessage.Send();
+
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
             EVC8_MMIDriverMessage.MMI_I_TEXT = 3;
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 257;
-            EVC8_MMIDriverMessage.PlainTextMessage = "\0x1";        // MMI_N_TEXT (length) 1
-
+            EVC8_MMIDriverMessage.PlainTextMessage = "1";        // MMI_N_TEXT (length) 1
+            EVC8_MMIDriverMessage.Send();
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays symbol LE11 in sub-area C1 with a flashing yellow frame.");
 
@@ -110,6 +114,11 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   DMI displays MO08 symbol with yellow flashing frame in sub-area C1 instead of LE11 symbol
             Test Step Comment: (1) MMI_gen 4484;
             */
+            // Remove LE11
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 3;
+            EVC8_MMIDriverMessage.Send();
+
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
             EVC8_MMIDriverMessage.MMI_I_TEXT = 4;
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 259;
@@ -125,9 +134,15 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   The symbol in sub-area C1 is disappeared and DMI displays the symbol DR02 in area D instead
             Test Step Comment: (1) MMI_gen 4484;
             */
+            // Remove M008
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 4;
+            EVC8_MMIDriverMessage.Send();
+
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
             EVC8_MMIDriverMessage.MMI_I_TEXT = 5;
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 298;
+            EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI stops displaying symbol MO08 in sub-area C1 and displays symbol DR02 in area D.");
@@ -138,9 +153,15 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   The symbol in area D is disappeared and DMI displays the ST01 symbol on sub-area C9 instead
             Test Step Comment: (1) MMI_gen 4484;
             */
+            // Remove DR02
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 5;
+            EVC8_MMIDriverMessage.Send();
+
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
             EVC8_MMIDriverMessage.MMI_I_TEXT = 6;
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 260;
+            EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI stops displaying symbol DR02 in area D and displays symbol ST01 in sub-area C9.");
@@ -151,6 +172,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   The display information on DMI still not change, ST01 symbol is displayed on sub-area C9
             Test Step Comment: (1) MMI_gen 4484 (partly: NEGATIVE, lower priority, focus not moved);
             */
+
             XML_6_3(msgType.typeb);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -163,7 +185,9 @@ namespace Testcase.DMITestCases
             */
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
             EVC8_MMIDriverMessage.MMI_I_TEXT = 8;
-            EVC8_MMIDriverMessage.MMI_Q_TEXT = 269;
+            //EVC8_MMIDriverMessage.MMI_Q_TEXT = 269;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 265;
+            EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI display does not change and still displays symbol ST01 in sub-area C9.");
@@ -175,7 +199,8 @@ namespace Testcase.DMITestCases
             */
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
             EVC8_MMIDriverMessage.MMI_I_TEXT = 9;
-            EVC8_MMIDriverMessage.MMI_Q_TEXT = 268;
+            //EVC8_MMIDriverMessage.MMI_Q_TEXT = 268;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 266;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI display does not change and still displays symbol ST01 in sub-area C9.");
@@ -187,7 +212,9 @@ namespace Testcase.DMITestCases
             */
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
             EVC8_MMIDriverMessage.MMI_I_TEXT = 10;
-            EVC8_MMIDriverMessage.MMI_Q_TEXT = 267;
+            //EVC8_MMIDriverMessage.MMI_Q_TEXT = 267;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 2636;
+            EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI display does not change and still displays symbol ST01 in sub-area C9.");
@@ -214,6 +241,11 @@ namespace Testcase.DMITestCases
 
             // ?? Check for an 'empty' packet
             //Telegrams.DMItoEVC.EVC111_MMIDriverMessageAck.Check_MMI_Q_ACK = Telegrams.DMItoEVC.EVC111_MMIDriverMessageAck.MMI_Q_ACK.Spare;
+            Wait_Realtime(1000);
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 12;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 298;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+            EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI stops displaying symbol ST01 in sub-area C9." + Environment.NewLine +
@@ -226,16 +258,30 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 4486 (partly: mode acknowledgement); MMI_gen 4482 (moveable focus);
             */
             DmiActions.ShowInstruction(this, "Acknowledge TAF by pressing in area D");
+            
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 12;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
+            EVC8_MMIDriverMessage.Send();
+
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 259;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+            EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI stops displaying symbol DR02 in area D and displays symbol MO08 in area C1.");
 
-            /*
+            /*`
             Test Step 14
             Action: Press an acknowledgement on sub-area C1
             Expected Result: DMI displays MO17 symbol on sub-area C1
             */
             DmiActions.ShowInstruction(this, @"Acknowledge by pressing in sub-area C1");
+            
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.OnSight;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 12;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 264;
+            EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays symbol MO17 in sub-area C1");
@@ -246,6 +292,12 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 4486 (partly: level acknowledgement); MMI_gen 4482 (partly: moveable focus);
             */
             DmiActions.ShowInstruction(this, @"Acknowledge by pressing in sub-area C1");
+            
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 12;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 257;
+            EVC8_MMIDriverMessage.PlainTextMessage = "0";        // MMI_N_TEXT (length) 1
+            EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays symbol LE07 in sub-area C1");
@@ -257,6 +309,11 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 4486 (partly: other acknowledgement);(2) MMI_gen 4482 (partly: overflow);
             */
             DmiActions.ShowInstruction(this, @"Acknowledge by pressing in sub-area C1");
+            
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 269;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI stops displaying symbol LE07 in sub-area C1 and displays the message ‘Runaway movement’ in sub-area E5.");
@@ -268,6 +325,9 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 4486 (partly: the oldest entry);
             */
             DmiActions.ShowInstruction(this, @"Acknowledge by pressing in sub-area E5");
+            
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 268;
+            EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI stops displaying the message ‘Runaway movement’ and displays the message ‘Communication error’in sub-area E5.");
@@ -279,6 +339,11 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 4486 (partly: the oldest entry);
             */
             DmiActions.ShowInstruction(this, @"Acknowledge by pressing in sub-area E5");
+            
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 267;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI stops displaying the message ‘Communication error’ and displays the message ‘Balise read error’ in sub-area E5.");
@@ -290,6 +355,9 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 4486 (partly: the oldest entry); MMI_gen 4482 (partly: 10 pending acknowledgements);
             */
             DmiActions.ShowInstruction(this, @"Acknowledge by pressing in sub-area E5");
+            
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 554;
+            EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI stops displaying the message ‘Balise read error’ and displays the message ‘Reactivate the Cabin!’ in sub-area E5.");

@@ -70,11 +70,13 @@ namespace Testcase.DMITestCases
             Expected Result: The ‘SR speed / distance’ data entry window appears on ETCS-DMI screen instead of the ‘Special’ menu window
             */
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Special;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.SRSpeedDistance;
             EVC30_MMIRequestEnable.Send();
 
             DmiActions.ShowInstruction(this, "Press the ‘Spec’ button, then press the ‘SR speed/distance’ button");
+            EVC11_MMICurrentSRRules.MMI_M_BUTTONS = MMI_M_BUTTONS.BTN_YES_DATA_ENTRY_COMPLETE;
+            EVC11_MMICurrentSRRules.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the SR/speed distance window.");
@@ -131,9 +133,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: Requirements:(1) MMI_gen 8297 (partly: EVC-11, MMI_gen 12147); MMI_gen 9310 (partly: [Up-Type enabled button ‘Enter’], accept data);(2) MMI_gen 9892; (3) MMI_gen 8297 (partly: MMI_gen 4714 (partly: state 'Selected IF/data value'));
             */
             DmiActions.ShowInstruction(this, "Press in the SR speed data input field to accept the value");
-
-            EVC11_MMICurrentSRRules.Send();
-
+            
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The ‘Enter’ button has black text on a grey background." + Environment.NewLine +
                                 @"2. The ‘Yes’ button is disabled.");
@@ -171,9 +171,11 @@ namespace Testcase.DMITestCases
 
             dataElement.QDataCheck = 0;
             dataElement.EchoText = "40";
-            //EVC106_MmiNewSRRules.CheckMmiVStff = 40;
-            //EVC106_MmiNewSRRules.CheckMmiMButtons = MMI_M_BUTTONS.BTN_ENTER;
-            //EVC106_MmiNewSRRules.CheckDataElements = dataElements;
+
+            EVC106_MMINewSrRules.MMI_V_STFF = 40;
+            EVC106_MMINewSrRules.MMI_NID_DATA = new List<byte> { 15 };
+            EVC106_MMINewSrRules.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_SR_RULES.BTN_ENTER;
+            EVC106_MMINewSrRules.CheckPacketContent();
 
             EVC11_MMICurrentSRRules.Send();
 
@@ -244,10 +246,11 @@ namespace Testcase.DMITestCases
             EVC11_MMICurrentSRRules.Send();
 
 
-            //EVC106_MmiNewSRRules.CheckMmiVStff = 10000;
-            //EVC106_MmiNewSRRules.CheckMmiMButtons = MMI_M_BUTTONS.BTN_ENTER;
-            //EVC106_MmiNewSRRules.CheckDataElements = dataElements;
-            
+            EVC106_MMINewSrRules.MMI_V_STFF = 10000;
+            EVC106_MMINewSrRules.MMI_NID_DATA = new List<byte> { 16 };
+            EVC106_MMINewSrRules.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_SR_RULES.BTN_ENTER;
+            EVC106_MMINewSrRules.CheckPacketContent();
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The SR distance data input field still displays ‘10000’.");
 
@@ -257,17 +260,7 @@ namespace Testcase.DMITestCases
             Expected Result: 1. After pressing the ‘Yes’ button, the data validation window (‘Validate SR speed / distance’) appears instead of the ‘SR speed / distance’ data entry window. The data part of echo text displays in white:SR Speed: 40SR Distance: 100002. After the data area of the input field containing “Yes” is pressed, the data validation window disappears and returns to the parent window (‘Special’ window) of ‘SR speed / distance’ window with enabled ‘SR speed / distance’ button
             */
             DmiActions.ShowInstruction(this, "Press the ‘Yes’ button");
-
-            // EVC-30 required to enable the validation window??
-            //EVC30_MMIRequestEnable.SendBlank();
-            //EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
-            //EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.SRSpeedDistance;
-            //EVC30_MMIRequestEnable.Send();
-
-            // Need to send set of data for the input values ??
-            //EVC10_MMIEchoedTrainData...
-            //EVC10_MMIEchoedTrainData.Send(this);  
-
+            
             // Add a data element for correct SR speed
             dataElements.Add(new DataElement {Identifier = 15, EchoText = "40", QDataCheck = 1 });
             EVC11_MMICurrentSRRules.Send();
@@ -277,13 +270,7 @@ namespace Testcase.DMITestCases
                                 @"2. The echo text for the data area of the SR distance data input field displays ‘10000’ in white.");
 
             DmiActions.ShowInstruction(this, "Press the data area of the ‘Yes’ button");
-
-            // EVC-30 required to enable the validation window??
-            //EVC30_MMIRequestEnable.SendBlank();
-            //EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
-            //EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.SRSpeedDistance;
-            //EVC30_MMIRequestEnable.Send();
-
+            
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. DMI displays the SR speed/distance window with the ‘SR speed / distance’ button enabled.");
 

@@ -75,8 +75,11 @@ namespace Testcase.DMITestCases
             Action: Perform SoM in SR mode, Level 1
             Expected Result: DMI displays in SR mode, level 1
             */
-            DmiActions.Perform_SoM_in_SR_mode_Level_1(this);
-            
+            // Tested exhaustively elsewhere: force SoM
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
+            DmiActions.Finished_SoM_Default_Window(this);
+
             DmiExpectedResults.SR_Mode_displayed(this);
 
 

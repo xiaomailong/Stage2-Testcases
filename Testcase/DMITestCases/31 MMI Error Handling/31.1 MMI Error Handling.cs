@@ -121,8 +121,10 @@ namespace Testcase.DMITestCases
             */
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 40000;      // at 400m
             DmiActions.Simulate_communication_loss_EVC_DMI(this);
-            
-            // EVC102 check?? MMI_M_MMI_STATUS = 5
+
+            // Spec says EVC102 packet sent every 250 ms so wait and then check
+            Wait_Realtime(250);
+            EVC102_MMIStatusReport.Check_MMI_M_MMI_STATUS = EVC102_MMIStatusReport.MMI_M_MMI_STATUS.StatusATPDownNACK;          // 5
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI enters ‘ATP-down’ state, displaying the message ‘ATP Down Alarm’ in a yellow flashing frame." + Environment.NewLine +
@@ -137,7 +139,9 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, "Acknowledge the ‘ATP Down Alarm’ message");
 
-            // EVC102 check?? MMI_M_MMI_STATUS = 6
+            // Spec says EVC102 packet sent every 250 ms so wait and then check
+            Wait_Realtime(250);
+            EVC102_MMIStatusReport.Check_MMI_M_MMI_STATUS = EVC102_MMIStatusReport.MMI_M_MMI_STATUS.StatusATPDownACK;       // 6
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI stops playing the 1000Hz sound." + Environment.NewLine +
@@ -151,7 +155,10 @@ namespace Testcase.DMITestCases
             */
             DmiActions.Re_establish_communication_EVC_DMI(this);
 
-            // EVC102 check??  MMI_M_MMI_STATUS = 3
+            // Spec says EVC102 packet sent every 250 ms so wait and then check
+            Wait_Realtime(250);
+            EVC102_MMIStatusReport.Check_MMI_M_MMI_STATUS = EVC102_MMIStatusReport.MMI_M_MMI_STATUS.StatusActive;       // 3
+
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI stops displaying the message ‘ATP Down Alarm’." + Environment.NewLine +

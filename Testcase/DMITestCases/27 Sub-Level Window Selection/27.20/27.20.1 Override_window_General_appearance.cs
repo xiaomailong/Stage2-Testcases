@@ -86,7 +86,7 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.None;
             EVC30_MMIRequestEnable.Send();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 0;      // Default window
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Default;      // Default window
             EVC30_MMIRequestEnable.Send();
             
             // The test says Close a window (presumably the Main window was displayed so closing it returns to the Default window
@@ -105,7 +105,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press the ‘Close’ button");
 
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Start | Variables.standardFlags;
             EVC30_MMIRequestEnable.Send();
 
@@ -128,12 +128,13 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, "Acknowledge SR mode");
 
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
+            // Remove symbol
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
+            EVC8_MMIDriverMessage.Send();
 
-            // Does this go back to the default window without closing the Main?
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
+            
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 254;
-            EVC30_MMIRequestEnable.Send();
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.EOA;
             EVC30_MMIRequestEnable.Send();
 
@@ -222,10 +223,11 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.None;
             EVC30_MMIRequestEnable.Send();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.DriverID |
                                                                EVC30_MMIRequestEnable.EnabledRequests.Shunting |
-                                                               EVC30_MMIRequestEnable.EnabledRequests.MaintainShunting;
+                                                               EVC30_MMIRequestEnable.EnabledRequests.MaintainShunting |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.ExitShunting;
             EVC30_MMIRequestEnable.Send();
 
             DmiActions.ShowInstruction(this, @"Press the ‘Main’ button. In the main window press and hold the ‘Shunting’ button for 2 second, then release the button");

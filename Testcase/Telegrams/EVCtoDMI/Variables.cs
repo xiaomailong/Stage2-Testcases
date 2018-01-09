@@ -15,19 +15,22 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// Note: EVC-22 captions must be limited to 10 chars compared to the 16 allowed in the VSIS.
         /// </summary>
         /// <param name="baseString">The base RTSIM signal name to use</param>
-        /// <param name="totalSizeCounter">Reference counter for total size of telegram</param>
+        /// <param name="totalSizeCounter">Counter for total size of telegram</param>
+        /// <param name="dataElements">Data elements to be checked and verified by the EVC</param>
         /// <param name="_pool">The SignalPool</param>
         /// <returns></returns>
         public static ushort PopulateDataElements(string baseString, ushort totalSizeCounter,
             List<DataElement> dataElements, SignalPool _pool)
         {
             // Populate the data elements array
-            for (var tdeIndex = 0; tdeIndex < dataElements.Count; tdeIndex++)
+            for (int tdeIndex = 0; tdeIndex < dataElements.Count; tdeIndex++)
             {
                 var trainDataElement = dataElements[tdeIndex];
 
-                var varNamestring = baseString + tdeIndex + "_";
+                string varNamestring = baseString + tdeIndex + "_";
+
                 var charArray = trainDataElement.EchoText.ToCharArray();
+
                 if (charArray.Length > 10)
                     throw new ArgumentOutOfRangeException(charArray.ToString(), "Too many characters in the caption string!");
 
@@ -43,11 +46,11 @@ namespace Testcase.Telegrams.EVCtoDMI
                 totalSizeCounter += 32;
 
                 // Populate the array
-                for (var charIndex = 0; charIndex < charArray.Length; charIndex++)
+                for (int charIndex = 0; charIndex < charArray.Length; charIndex++)
                 {
                     var character = charArray[charIndex];
 
-                    if (charIndex < 10)
+                    if (charIndex < 10 && charArray.Length > 10)
                     {
                         _pool.SITR.Client.Write(varNamestring + baseString.Substring( baseString.LastIndexOf('_') + 1 ) + $"10{charIndex}_MmiXText", character);
                     }
@@ -56,9 +59,11 @@ namespace Testcase.Telegrams.EVCtoDMI
                         _pool.SITR.Client.Write(varNamestring + baseString.Substring( baseString.LastIndexOf('_') + 1 ) + $"1{charIndex}_MmiXText", character);
                     }
 
+                    // Increment packet by size of one character
                     totalSizeCounter += 8;
                 }
             }
+
             return totalSizeCounter;
         }
 
@@ -190,11 +195,13 @@ namespace Testcase.Telegrams.EVCtoDMI
             BTN_SETTINGS = 4,
             BTN_YES_DATA_ENTRY_COMPLETE = 36,
             BTN_YES_DATA_ENTRY_COMPLETE_DELAY_TYPE = 37,
+            BTN_ENTER_DELAY_TYPE = 253,
+            BTN_ENTER = 254,
             NoButton = 255
         }
 
         /// <summary>
-        /// MMI_M_Buttons for EVC-6 and EVC-107 enum
+        /// MMI_M_Buttons for EVC-107 enum
         /// </summary>
         public enum MMI_M_BUTTONS_TRAIN_DATA : byte
         {
@@ -247,7 +254,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// <summary>
         /// Conversion factor for cm/s to mph
         /// </summary>
-        public const double CmSToMph = 0.02237;
+        public const double CmSToMph = 0.0223694;
 
         /// <summary>
         /// Driver Request enum
@@ -835,6 +842,28 @@ namespace Testcase.Telegrams.EVCtoDMI
         }
 
         /// <summary>
+        /// Identifier of an MMI keyboard key name.
+        /// 
+        /// Values:
+        /// 34 = "G1"
+        /// 35 = "GA"
+        /// 36 = "GB"
+        /// 37 = "GC"
+        /// 38 = "Out of GC"
+        /// 
+        /// Note: the definition is according to preliminary SubSet-121 'NID_KEY' definition.
+        /// </summary>
+        public enum MMI_NID_KEY_Load_Gauge : byte
+        {
+            NoDedicatedKey = 0,
+            G1 = 34,
+            GA = 35,
+            GB = 36,
+            GC = 37,
+            OutofGC = 38
+        }
+
+        /// <summary>
         /// This is a maintenance parameter for Doppler radars 1 and 2. It gives the number of pulses per km-travelled distance.
         /// 
         /// Values:
@@ -936,6 +965,37 @@ namespace Testcase.Telegrams.EVCtoDMI
             RLU = 2,
             Rescue = 3           
         }
+
+        /// <summary>
+        /// DMI to EVC message name and packet number
+        /// </summary>
+        public enum DMItoEVCTelegram : byte
+        {
+            ETCS1StartMmi = 100,
+            ETCS1DriverRequest = 101,
+            ETCS1StatusReport = 102,
+            ETCS1NewDriverData = 104,
+            ETCS1NewSrRules = 106,
+            ETCS1NewTrainData = 107,
+            ETCS1SetTimeMmi = 109,
+            ETCS1ConfirmedTrainData = 110,
+            ETCS1DriverMessageAck = 111,
+            ETCS1NewRbcData = 112,
+            ETCS1NewTrainNumber = 116,
+            ETCS1NewSetVbc = 118,
+            ETCS1NewRemoveVbc = 119,
+            ETCS1NewLevel = 121,
+            ETCS1NewLanguage = 122,
+            ETCS1SpecificStmDataToStm = 123,
+            ETCS1ConfirmedSetVbc = 128,
+            ETCS1ConfirmedRemoveVbc = 129,
+            ETCS1NewMaintenanceData = 140,
+            ETCS1ConfirmedMaintenanceData = 141,
+            ETCS1NewBrakePercentage = 150,
+            ETCS1ConfirmedBrakePercentage = 151,
+            ETCS1DriverAction = 152
+        }
+
 
         /// <summary>
         /// Bit-reverses a 32-bit number

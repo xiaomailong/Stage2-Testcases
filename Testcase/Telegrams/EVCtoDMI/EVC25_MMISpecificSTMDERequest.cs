@@ -1,15 +1,12 @@
 ﻿#region usings
-
 using CL345;
 using System;
 using System.Collections.Generic;
 using System.Text;
-
 #endregion
 
 namespace Testcase.Telegrams.EVCtoDMI
 {
-
     /// <summary>
     /// This packet is used when a STM requests specific data input from the driver. Each MMI packet contains the data of
     /// one packet STM-179 according to [FFFIS_058], which in turn holds up to 5 variables. If more than 5 variables need
@@ -21,11 +18,34 @@ namespace Testcase.Telegrams.EVCtoDMI
     {
         private static SignalPool _pool;
         private static byte _evc25Alias1;
+        private const int StmMaximumIterations = 5;
+        private const int StmCaptionMaximumLength = 20;
+        private const int StmXValueMaximumLength = 10;
+        private const int StmPickupXValueMaximumLength = 10;
+        private const int StmXValueMaximumIterations = 16;
+        private const int BasicPacketLength = 3 * sizeof(UInt16) + 2 * sizeof(byte);
+
+        private const int MaximumPacketLength = BasicPacketLength +
+                                                StmMaximumIterations *
+                                                (StmXValueMaximumLength + StmCaptionMaximumLength +
+                                                    4 * sizeof(ushort) + 2 * sizeof(byte) +
+                                                    StmXValueMaximumIterations *
+                                                    (StmPickupXValueMaximumLength + sizeof(ushort)));
+
+        public class EVC25_StmData
+        {
+            public byte nidNtc;
+            public byte stmNidData;
+            public ushort evcMXAttribute;
+            public string stmCaption;
+            public string stmXValue;
+            public List<string> stmPickupList;
+        }
 
         /// <summary>
-        /// Initialise EVC-25 MMI Specific STM DE Request telegram
+        /// Initialise EVC-25 MMI Specific STM DE Request telegram.
         /// </summary>
-        /// <param name="pool">SignalPool</param>
+        /// <param name="pool">The SignalPool</param>
         public static void Initialise(SignalPool pool)
         {
             _pool = pool;
@@ -36,12 +56,12 @@ namespace Testcase.Telegrams.EVCtoDMI
             _pool.SITR.SMDCtrl.ETCS1.SpecificStmDeRequest.Value = 0x0008;
 
             // Set default values
-            _pool.SITR.ETCS1.SpecificStmDeRequest.MmiMPacket.Value = 25; // Packet ID
+            _pool.SITR.ETCS1.SpecificStmDeRequest.MmiMPacket.Value = 25;
         }
 
         private static uint FindPacketSize()
         {
-            int sizeCalculated = EVC25_StmData.BasicPacketLength;       // up to MMI_N_ITER
+            int sizeCalculated = BasicPacketLength;       // Up to MMI_N_ITER
 
             foreach (var stmElement in StmData)
             {
@@ -56,15 +76,16 @@ namespace Testcase.Telegrams.EVCtoDMI
 
                 for (int l = 0; l < stmElement.stmPickupList.Count; l++)
                 {
-                                      // MMI_STM_L_VALUE[l] + MMI_STM_X_VALUE chars.
+                                        // MMI_STM_L_VALUE[l] + MMI_STM_X_VALUE chars.
                     sizeCalculated += sizeof(ushort) + (stmElement.stmPickupList[l].Length * sizeof(byte));
                 }
             }
+
             return (uint)sizeCalculated;
         }
 
         /// <summary>
-        /// Send EVC-25 MMI Specific STM DE Request telegram
+        /// Send EVC-25 MMI Specific STM DE Request telegram.
         /// </summary>
         public static void Send()
         {
@@ -82,10 +103,10 @@ namespace Testcase.Telegrams.EVCtoDMI
                 _pool.SITR.ETCS1.SpecificStmDeRequest.MmiNIter.Value = numberOfDataUnits;
             }
 
-            ushort totalSizeCounter = EVC25_StmData.BasicPacketLength;
+            ushort totalSizeCounter = BasicPacketLength;
 
             // Check for exceeding maximum packet size
-            if (EVC25_StmData.MaximumPacketLength < FindPacketSize())
+            if (MaximumPacketLength < FindPacketSize())
             {
                 throw new ArgumentOutOfRangeException("Packet size exceeds maximum allowed");
             }
@@ -95,7 +116,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             // For all data units
             for (int k = 0; k < numberOfDataUnits; k++)
             {
-                string tagName1 = packetName + $"EVC25SpecificStmDeRequestSub10{k}_";
+                string tagName1 = packetName + $"EVC25SpecificStmDeRequestSub1{k}_";
 
                 // Write out the MMI_NID_NTC value
                 string requestName = tagName1 + "MmiNidNtc";
@@ -118,7 +139,7 @@ namespace Testcase.Telegrams.EVCtoDMI
                 var caption = StmData[k].stmCaption.ToCharArray();
 
                 // Limit number of caption characters to 20
-                if (caption.Length > EVC25_StmData.StmCaptionMaximumLength)
+                if (caption.Length > StmCaptionMaximumLength)
                 {
                     throw new ArgumentOutOfRangeException("Too many characters in caption string!");
                 }
@@ -145,7 +166,7 @@ namespace Testcase.Telegrams.EVCtoDMI
 
                 var xValue = StmData[k].stmXValue.ToCharArray();
 
-                if (xValue.Length > EVC25_StmData.StmXValueMaximumLength)
+                if (xValue.Length > StmXValueMaximumLength)
                 {
                     throw new ArgumentOutOfRangeException("Too many characters in x value string!");
                 }
@@ -172,13 +193,13 @@ namespace Testcase.Telegrams.EVCtoDMI
                 // Pick-up list repeats additional captions
                 ushort numberInPickupList = (ushort)StmData[k].stmPickupList.Count;
 
-                if (numberInPickupList > EVC25_StmData.StmXValueMaximumIterations)
+                if (numberInPickupList > StmXValueMaximumIterations)
                 {
                     throw new ArgumentOutOfRangeException("Too many STM Pick-up list items!");
                 }
                 else
                 {
-                     requestName = $"{tagName1}MmiNIter2";
+                        requestName = $"{tagName1}MmiNIter2";
 
                     _pool.SITR.Client.Write(requestName, numberInPickupList);
                     totalSizeCounter += sizeof(ushort);
@@ -189,7 +210,7 @@ namespace Testcase.Telegrams.EVCtoDMI
                     {
                         var pickUpXValue = StmData[k].stmPickupList[l].ToCharArray();
 
-                        if (pickUpXValue.Length > EVC25_StmData.StmPickupXValueMaximumLength)
+                        if (pickUpXValue.Length > StmPickupXValueMaximumLength)
                         {
                             throw new ArgumentOutOfRangeException("Too many characters in pick-up list x value string!");
                         }
@@ -204,7 +225,7 @@ namespace Testcase.Telegrams.EVCtoDMI
 
                             for (int m = 0; m < pickUpXValue.Length; m++)
                             {
-                                requestName = $"{tagName5}{m.ToString("00")}_MmiStmXValue";
+                                requestName = $"{tagName5}{m}_MmiStmXValue";
                                 _pool.SITR.Client.Write(requestName, pickUpXValue[m]);
                                 totalSizeCounter += sizeof(byte);
                             }
@@ -217,12 +238,21 @@ namespace Testcase.Telegrams.EVCtoDMI
             _pool.SITR.ETCS1.SpecificStmDeRequest.MmiLPacket.Value = totalSizeCounter;
 
             // Send dynamic packet
-            _pool.SITR.SMDCtrl.ETCS1.SpecificStmDeRequest.Value = 0x0009;
-            
+            _pool.SITR.SMDCtrl.ETCS1.SpecificStmDeRequest.Value = 0x0009;           
         }
 
         /// <summary>
-        /// Identity of the STM that requested the data
+        /// NTC Identity.
+        /// This variable identifies the non-ETCS track equipment on a given section of line
+        /// for which the train requires NTC support (via e.g. STM or standalone system).
+        /// (The definition of this variable is done by ERA ref [ETCS_VARIABLES])
+        /// 
+        /// Note: Refer to [ETCS_VARIABLES].
+        /// Values not yet assigned to a dedicated NTC shall be handled as Not Defined.
+        /// In case of an insertion of text instead of values of MMI_NID_NTC (e.g.text messages)
+        /// undefined values shall lead to text string ‘<Unknown>’.
+        /// 
+        /// Note 1: Value 255 is used in packets EVC-25 and EVC-26 to indicate termination.
         /// </summary>
         public static byte MMI_NID_NTC
         {
@@ -230,7 +260,12 @@ namespace Testcase.Telegrams.EVCtoDMI
         }
 
         /// <summary>
-        /// MMI_STM_Q_DRIVERINT
+        /// Need for driver intervention during Specific STM Data Entry.
+        /// Qualifier indicating if the STM still need Specific STM Data Entry or not.
+        /// 
+        /// Values:
+        /// 0 = "No driver intervention requested"
+        /// 1 = "Driver intervention requested"
         /// </summary>
         public static bool MMI_STM_Q_DRIVERINT
         {
@@ -244,11 +279,18 @@ namespace Testcase.Telegrams.EVCtoDMI
                 {
                     _evc25Alias1 &= 0xfe;
                 }
-            } 
+            }
         }
 
         /// <summary>
-        /// MMI_STM_Q_FOLLOWING
+        /// Indicate a following request.
+        /// Due to the possible length of an STM request for Specific STM Data, this qualifier is used to indicate
+        /// to the ETCS Onboard whether there is a request for Specific STM Data following that has to be managed
+        /// together with the current request by the ETCS Onboard or not.
+        /// 
+        /// Values:
+        /// 0 = "No following request to be managed together with the current one"
+        /// 1 = "There is a following request to be managed together with the current one"
         /// </summary>
         public static bool MMI_STM_Q_FOLLOWING
         {

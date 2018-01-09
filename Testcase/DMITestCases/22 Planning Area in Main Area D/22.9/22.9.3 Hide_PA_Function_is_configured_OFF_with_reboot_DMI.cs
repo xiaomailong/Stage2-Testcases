@@ -13,6 +13,8 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.EVCtoDMI;
+
 
 namespace Testcase.DMITestCases
 {
@@ -32,12 +34,13 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 17_9_3.tdg
     /// </summary>
-    public class Hide_PA_Function_is_configured_OFF_with_reboot_DMI : TestcaseBase
+    public class TC_ID_17_9_3_Hide_PA_Function_is_configured_OFF_with_reboot_DMI : TestcaseBase
     {
         public override void PreExecution()
         {
             // Pre-conditions from TestSpec:
-            // Set the following tags name in configuration file (See the instruction in Appendix 1)HIDE_PA_FUNCTION = 1 (‘OFF’ state)System is power off 
+            // Set the following tags name in configuration file (See the instruction in Appendix 1)
+            // HIDE_PA_FUNCTION = 1 (‘OFF’ state)System is power off 
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
@@ -55,29 +58,33 @@ namespace Testcase.DMITestCases
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint
-
+            TraceInfo("This test case requires an ATP configuration change - " +
+                      "See Precondition requirements. If this is not done manually, the test may fail!");
 
             /*
             Test Step 1
             Action: Power On the system
             Expected Result: DMI displays the Default window
             */
-            // Call generic Action Method
-            DmiActions.Power_On_the_system(this);
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_the_Default_window(this);
+            DmiActions.Start_ATP();
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the Default window.");
 
             /*
             Test Step 2
             Action: Activate cabin A and Perform SoM to SR mode, Level 1
             Expected Result: DMI displays in SR mode and level 1
             */
-            // Call generic Action Method
-            DmiActions.Activate_cabin_A_and_Perform_SoM_to_SR_mode_Level_1(this);
-            // Call generic Check Results Method
-            DmiExpectedResults.SR_Mode_displayed(this);
+            // Tested elsewhere, force SoM
+            DmiActions.Activate_Cabin_1(this);
+            DmiActions.Set_Driver_ID(this, "1234");
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
+            DmiActions.Finished_SoM_Default_Window(this);
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SR mode, Level 1.");
 
             /*
             Test Step 3
@@ -85,9 +92,22 @@ namespace Testcase.DMITestCases
             Expected Result: DMI shows “Entering FS” message.Verify the following information,The planning area is not displayed
             Test Step Comment: (1) MMI_gen 2996 (partly: OFF);
             */
-            // Call generic Action Method
-            DmiActions.Drive_the_train_forward_with_speed_40_kmh_pass_BG1(this);
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 40;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 10000;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 274;
+            EVC8_MMIDriverMessage.Send();
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the message ‘Entering FS’." + Environment.NewLine +
+                                "2. The Planning Area is not displayed.");
+
+            // Remove the message
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
+            EVC8_MMIDriverMessage.Send();
 
             /*
             Test Step 4
@@ -95,9 +115,11 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays the Planning area The Hide PA button is appeared on the area D of DMI
             Test Step Comment: (1) MMI_gen 2996 (partly: Configuration is Off and activation of the Show button);
             */
-            // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press on area D of the DMI");
+            DmiActions.ShowInstruction(this, @"Press in area D of the DMI");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The Planning Area is displayed in area D." + Environment.NewLine +
+                                "2. The ‘Hide PA’ button is displayed in area D.");
 
             /*
             Test Step 5
@@ -106,8 +128,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 2996 (partly: Activation of the Hide button);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press Hide PA button");
+            DmiActions.ShowInstruction(this, @"Press the ‘Hide PA’ button");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The Planning Area is removed from area D.");
 
             /*
             Test Step 6
@@ -117,17 +141,18 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press on area D of the DMI");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. The Planning Area is displayed in area D.");
 
             /*
             Test Step 7
             Action: Turn off power of DMI
             Expected Result: DMI is power off
             */
-            // Call generic Action Method
-            DmiActions.Turn_off_power_of_DMI(this);
-            // Call generic Check Results Method
-            DmiExpectedResults.DMI_is_power_off(this);
+            DmiActions.ShowInstruction(this, @"Power down the system");
 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI is blank.");
 
             /*
             Test Step 8
@@ -135,16 +160,19 @@ namespace Testcase.DMITestCases
             Expected Result: DMI is power on. Verify that the planning area is not displayed on DMI
             Test Step Comment: MMI_gen 7341;   MMI_gen 2996 (partly: OFF);
             */
-            // Call generic Action Method
-            DmiActions.Turn_on_power_of_DMI(this);
+            DmiActions.ShowInstruction(this, @"Wait 10s and power up the system");
+            DmiActions.Complete_SoM_L1_FS(this);
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 40;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 10000;
 
-
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI does not displays the Planning Area.");
+            
             /*
             Test Step 9
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }

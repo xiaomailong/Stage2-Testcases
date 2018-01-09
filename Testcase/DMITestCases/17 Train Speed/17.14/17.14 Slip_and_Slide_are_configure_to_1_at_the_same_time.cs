@@ -59,6 +59,8 @@ namespace Testcase.DMITestCases
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint
+            TraceInfo("This test case requires an ATP configuration change - " +
+                      "See Precondition requirements. If this is not done manually, the test may fail!");
 
             /*
             Test Step 1
@@ -130,6 +132,10 @@ namespace Testcase.DMITestCases
 
         private void XML_12_14(msgType type)
         {
+            // In other tests resetting these to 0 can cause test to fail
+            //SITR.ETCS1.Dynamic.EVC01Validity1.Value = 0x0;
+            //SITR.ETCS1.Dynamic.EVC01Validity2.Value = 0x0;
+
             if (type == msgType.typea)
             {
                 EVC1_MMIDynamic.MMI_M_SLIDE = 0;
@@ -144,8 +150,6 @@ namespace Testcase.DMITestCases
                 EVC1_MMIDynamic.MMI_O_IML = 0;
                 EVC1_MMIDynamic.MMI_V_INTERVENTION = 0;
 
-                SITR.ETCS1.Dynamic.EVC01Validity1.Value = 0x0;
-                SITR.ETCS1.Dynamic.EVC01Validity2.Value = 0x0;
             }
             else if (type == msgType.typeb)
             {
@@ -161,9 +165,6 @@ namespace Testcase.DMITestCases
                 EVC1_MMIDynamic.MMI_O_BRAKETARGET = 0;
                 EVC1_MMIDynamic.MMI_O_IML = 0;
                 EVC1_MMIDynamic.MMI_V_INTERVENTION = 0;
-
-                SITR.ETCS1.Dynamic.EVC01Validity1.Value = 0x0;
-                SITR.ETCS1.Dynamic.EVC01Validity2.Value = 0x0;
             }
             else if (type == msgType.typec)
             {
@@ -178,9 +179,6 @@ namespace Testcase.DMITestCases
                 EVC1_MMIDynamic.MMI_O_BRAKETARGET = 0;
                 EVC1_MMIDynamic.MMI_O_IML = 0;
                 EVC1_MMIDynamic.MMI_V_INTERVENTION = 0;
-
-                SITR.ETCS1.Dynamic.EVC01Validity1.Value = 0x0;
-                SITR.ETCS1.Dynamic.EVC01Validity2.Value = 0x0;
             }
         }
         #endregion

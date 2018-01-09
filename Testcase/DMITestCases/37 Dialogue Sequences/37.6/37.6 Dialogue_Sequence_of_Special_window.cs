@@ -101,9 +101,10 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press the ‘Spec’ button");
 
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 3;      // Special
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Special;      // Special
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Adhesion |
                                                                EVC30_MMIRequestEnable.EnabledRequests.SRSpeedDistance;
+            EVC30_MMIRequestEnable.Send();
             
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Special window.");
@@ -140,6 +141,10 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press the ‘SR speed/distance’ button");
+
+            EVC11_MMICurrentSRRules.MMI_V_STFF = 40;
+            EVC11_MMICurrentSRRules.MMI_L_STFF = 1000;
+            EVC11_MMICurrentSRRules.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the SR speed/distance window." + Environment.NewLine +

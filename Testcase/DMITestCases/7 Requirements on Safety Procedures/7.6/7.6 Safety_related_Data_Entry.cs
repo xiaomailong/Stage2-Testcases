@@ -53,7 +53,7 @@ namespace Testcase.DMITestCases
 
             // force the window
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 4;      // Settings window
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings;      // Settings window
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter;
             EVC30_MMIRequestEnable.Send();
             
@@ -207,12 +207,12 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 3203 (Set VBC Data Entry);(2) MMI_gen 3226 (partly: Set VBC Data Validation);(3) MMI_gen 3205 (partly: Set VBC Data Entry and Validation);(4) MMI_gen 3390 (partly: Set VBC Validation);(5) MMI_gen 3391 (partly: Set VBC Data Entry and Validation);
             */
 
-            /// Test spec says Radar validation window but message means that Set RBC Validation window would be displayed...
+            // Test spec says Radar validation window but message means that Set RBC Validation window would be displayed...
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Enter and confirm the value ‘65536’ in an Input Field, then press the ‘Yes’ button");
             
-            //EVC28_MMIEchoedSetVBCData.M_VBC_CODE_ = 65536;
-            //EVC28_MMIEchoedSetVBCData.Send();
+            EVC28_MMIEchoedSetVBCData.MMI_M_VBC_CODE_ = 65536;
+            EVC28_MMIEchoedSetVBCData.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Set VBC validation window." + Environment.NewLine +
@@ -335,7 +335,7 @@ namespace Testcase.DMITestCases
             #region Send_XML_2_6_DMI_Test_Specification
             // Does this display Train Running window (expect Brake Percentage)
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 4;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.EnableBrakePercentage;
             EVC30_MMIRequestEnable.Send();
             #endregion
@@ -361,7 +361,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Confirm the brake percentage value by pressing an Input Field and check the log file for packet EVC-150 from DMI with variables reflecting the accepted data");
 
             // Need to send set of data for the input values ??
-            //EVC51_MMIEchoedBrakePercentage...
+            EVC51_MMIEchoedBrakePercentage.MMI_M_BP_CURRENT_ = 92;
             EVC51_MMIEchoedBrakePercentage.Send();
             
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +

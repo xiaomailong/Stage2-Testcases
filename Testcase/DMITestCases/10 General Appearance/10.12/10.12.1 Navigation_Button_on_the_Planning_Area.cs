@@ -68,11 +68,26 @@ namespace Testcase.DMITestCases
             */
             // signal to DMI after BG is passed??
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 40;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 274;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+            EVC8_MMIDriverMessage.Send();
+            
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the message ‘Entering FS’.");
+
+            DmiActions.ShowInstruction(this, "Acknowledge FS mode");
+
+            // Remove message??
+            //EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
+            //EVC8_MMIDriverMessage.Send();
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
+
             WaitForVerification("Check the following and the planning information in the planning area:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the message ‘Entering FS’." + Environment.NewLine +
-                                "2. Scale Up button NA03 is displayed enabled in sub-area D9." + Environment.NewLine +
-                                "3. Scale Down button NA04 is displayed enabled in sub-area D12." + Environment.NewLine +
-                                "4.	Show/Hide PA button NA01 is enabled in Sub-area D14");
+                                "1. Scale Up button NA03 is displayed enabled in sub-area D9." + Environment.NewLine +
+                                "2. Scale Down button NA04 is displayed enabled in sub-area D12." + Environment.NewLine +
+                                "3. Show/Hide PA button NA01 is enabled in Sub-area D14");            
 
             /*
             Test Step 2

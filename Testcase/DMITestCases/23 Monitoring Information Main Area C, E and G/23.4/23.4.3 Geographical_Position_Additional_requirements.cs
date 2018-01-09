@@ -111,7 +111,7 @@ namespace Testcase.DMITestCases
 
             EVC30_MMIRequestEnable.SendBlank();
 
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 255;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.No_window_specified;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = Variables.standardFlags |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.GeographicalPosition;
             EVC30_MMIRequestEnable.Send();

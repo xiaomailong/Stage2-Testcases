@@ -48,9 +48,6 @@ namespace Testcase.DMITestCases
             // 1. The test environment is powered on.2. The cabin is activated.3. The ‘Start of Mission’ procedure is performed until level 2 is selected.4. RBC Data window is opened.
             DmiActions.Complete_SoM_L1_SB(this);
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L2;
-            EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
-            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.EnterRBCData;
         }
 
         public override void PostExecution()
@@ -71,9 +68,20 @@ namespace Testcase.DMITestCases
             Action: Enter valid values with the numeric keypad and press the data input field (Accept) in the same screen.RBC ID6996969RBC phone number0031840880100
             Expected Result: The ‘Yes’ button is enabled
             */
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.No_window_specified;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.EnterRBCData;
+            EVC30_MMIRequestEnable.Send();
+
+            // Force the RBC Contact window
+            EVC22_MMICurrentRBC.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Disabled;
+            EVC22_MMICurrentRBC.MMI_NID_WINDOW = 5;
+            EVC22_MMICurrentRBC.Send();
+
             DmiActions.ShowInstruction(this, @"Press the ‘RBC Data’ button.");
 
             EVC22_MMICurrentRBC.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
+            EVC22_MMICurrentRBC.MMI_M_BUTTONS = EVC22_MMICurrentRBC.EVC22BUTTONS.BTN_YES_DATA_ENTRY_COMPLETE;
             EVC22_MMICurrentRBC.MMI_NID_WINDOW = 10;
             EVC22_MMICurrentRBC.Send();
 
@@ -152,6 +160,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press the ‘RBC Data’ button.");
 
             EVC22_MMICurrentRBC.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
+            EVC22_MMICurrentRBC.MMI_M_BUTTONS = EVC22_MMICurrentRBC.EVC22BUTTONS.BTN_YES_DATA_ENTRY_COMPLETE;
             EVC22_MMICurrentRBC.MMI_NID_WINDOW = 10;
             EVC22_MMICurrentRBC.Send();
 

@@ -1,12 +1,10 @@
 ﻿#region usings
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using CL345;
 using static Testcase.Telegrams.EVCtoDMI.Variables;
-
 #endregion
 
 namespace Testcase.Telegrams.EVCtoDMI
@@ -23,11 +21,12 @@ namespace Testcase.Telegrams.EVCtoDMI
         private static SignalPool _pool;
         private static uint _nidC = NidC;
         private static uint _nidRbc;
+        private const string BaseString = "ETCS1_CurrentRbcData_EVC22CurrentRbcDataSub";
 
         /// <summary>
         /// Initialise EVC-22 MMI Current RBC Data telegram
         /// </summary>
-        /// <param name="pool"></param>
+        /// <param name="pool">The SignalPool</param>
         public static void Initialise(SignalPool pool)
         {
             _pool = pool;
@@ -36,24 +35,26 @@ namespace Testcase.Telegrams.EVCtoDMI
             DataElements = new List<DataElement>();
 
             // Activate dynamic array
-            _pool.SITR.SMDCtrl.ETCS1.CurrentRbcData.Value = 0x8;
+            _pool.SITR.SMDCtrl.ETCS1.CurrentRbcData.Value = 0x0008;
 
             // Set default values
-            _pool.SITR.ETCS1.CurrentRbcData.MmiMPacket.Value = 22; // Packet ID
+            _pool.SITR.ETCS1.CurrentRbcData.MmiMPacket.Value = 22;
         }
 
         /// <summary>
-        /// Send EVC-22 MMI Current RBC Data telegram
+        /// Send EVC-22 MMI Current RBC Data telegram.
         /// </summary>
         public static void Send()
         {
             ushort numberOfNetworks = (ushort)NetworkCaptions.Count;
+
             if (numberOfNetworks > 10)
                 throw new ArgumentOutOfRangeException("Too many RBC networks!");
             if (DataElements.Count > 9)
                 throw new ArgumentOutOfRangeException("Too many Data elements!");
 
-            _pool.SITR.ETCS1.CurrentRbcData.MmiNNetworks.Value = numberOfNetworks; // Number of networks
+            // Number of networks
+            _pool.SITR.ETCS1.CurrentRbcData.MmiNNetworks.Value = numberOfNetworks;
 
             ushort totalSizeCounter = 176;
 
@@ -64,45 +65,40 @@ namespace Testcase.Telegrams.EVCtoDMI
 
                 ushort numberNetworkCaptionChars = (ushort)caption.Length;
 
-                var varnamestring = $"ETCS1_CurrentRbcData_EVC22CurrentRbcDataSub1{k}_";
+                string varnamestring = $"{BaseString}1{k}_";
 
                 // Limit number of caption characters to 16
                 if (caption.Length > 16)
                     throw new ArgumentOutOfRangeException("Too many characters in caption string!");
 
-                // Write individual network chars
+                // Write individual network characters
                 _pool.SITR.Client.Write($"{varnamestring}MmiNCaptionNetwork", numberNetworkCaptionChars);
 
+                // Increment packet size
                 totalSizeCounter += 16;
 
                 // Dynamic fields 2nd dimension
                 for (int l = 0; l < numberNetworkCaptionChars; l++)
                 {
                     // Network caption text character
-                    if (l < 10)
-                    {
-                        _pool.SITR.Client.Write(
-                            $"{varnamestring}EVC22CurrentRbcDataSub110{l}_MmiXCaptionNetwork", caption[l]);
-                    }
-                    else
-                    {
-                        _pool.SITR.Client.Write(
-                            $"{varnamestring}EVC22CurrentRbcDataSub11{l}_MmiXCaptionNetwork", caption[l]);
-                    }
+                    _pool.SITR.Client.Write(
+                        $"{varnamestring}EVC22CurrentRbcDataSub11{l.ToString("00")}_MmiXCaptionNetwork", caption[l]);
 
+                    // Increment packet size
                     totalSizeCounter += 8;
                 }
             }
 
-            _pool.SITR.ETCS1.CurrentRbcData.MmiNDataElements.Value = (ushort)DataElements.Count; // Number of data elements to enter
+            // Number of data elements to enter
+            _pool.SITR.ETCS1.CurrentRbcData.MmiNDataElements.Value = (ushort)DataElements.Count;
 
-            totalSizeCounter = PopulateDataElements("ETCS1_CurrentRbcData_EVC22CurrentRbcDataSub2", totalSizeCounter, DataElements, _pool);
+            totalSizeCounter = PopulateDataElements($"{BaseString}2", totalSizeCounter, DataElements, _pool);
 
             // Set packet length
             _pool.SITR.ETCS1.CurrentRbcData.MmiLPacket.Value = totalSizeCounter;
 
             // Send dynamic packet
-            _pool.SITR.SMDCtrl.ETCS1.CurrentRbcData.Value = 0x9;
+            _pool.SITR.SMDCtrl.ETCS1.CurrentRbcData.Value = 0x0009;
         }
 
         /// <summary>
@@ -160,6 +156,15 @@ namespace Testcase.Telegrams.EVCtoDMI
 
         /// <summary>
         /// RBC phone number
+        /// 
+        /// Note:
+        /// For each digit:
+        /// Value 0..9	Digit value
+        /// Value A..E  Not Used
+        /// Value F     Use value F for indication of ‘no digit’ (if number shorter than 16 digits)
+        /// 
+        /// Special values:
+        /// 0xFFFFFFFF	'Unknown Subscriber Number'
         /// </summary>
         public static ulong MMI_NID_RADIO
         {
@@ -249,6 +254,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         {
             BTN_YES_DATA_ENTRY_COMPLETE = 36,
             BTN_YES_DATA_ENTRY_COMPLETE_DELAY_TYPE = 37,
+            BTN_ENTER = 254,
             NoButton = 255
         }
 

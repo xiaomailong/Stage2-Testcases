@@ -66,13 +66,12 @@ namespace Testcase.DMITestCases
             Expected Result: 
             */
 
-            DmiActions.Complete_SoM_L1_SR
-                (this);
+            DmiActions.Complete_SoM_L1_SR(this);
             DmiActions.Send_FS_Mode(this);
-            DmiExpectedResults.FS_mode_displayed(this);
 
-            DmiActions.Drive_train_forward_passing_BG2(this);
-
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in FS mode, Level 1.");
+            
             #endregion
 
             #region Test Step 2
@@ -112,7 +111,10 @@ namespace Testcase.DMITestCases
             */
 
             DmiActions.ShowInstruction(this, "Press DMI Sub Area C1");
-            DmiExpectedResults.RV_Mode_Ack_pressed_and_released(this);
+
+            // Remove the ACK symbol
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
+            EVC8_MMIDriverMessage.Send();
 
             DmiActions.Send_RV_Mode(this);
             DmiExpectedResults.RV_Mode_displayed(this);
@@ -138,8 +140,10 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Force the simulation of \"Sleeping\".");
             DmiActions.Send_SL_Mode(this);
 
-            DmiExpectedResults.SL_Mode_NOT_displayed(this);
-            DmiExpectedResults.Driver_s_cab_not_active_msg_displayed(this);
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI does not display a symbol in sub-area B7." + Environment.NewLine +
+                                "2. ETCS information for the driver is removed." + Environment.NewLine +
+                                "3. DMI displays the message \"Driver's cab not active\" in sub-area E5");
 
             #endregion
 

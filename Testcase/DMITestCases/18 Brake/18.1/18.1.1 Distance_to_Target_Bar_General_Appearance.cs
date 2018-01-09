@@ -84,6 +84,10 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, "Perform SoM to SR mode");
 
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
+            DmiActions.Finished_SoM_Default_Window(this);
+            
             // Call generic Check Results Method
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Does the DMI delete the SB mode symbol (MO13) and replace it with the SR mode symbol (MO09) in area B7");
@@ -112,13 +116,14 @@ namespace Testcase.DMITestCases
             // ?? Set an EOA so the DMI can display a target
             EVC1_MMIDynamic.MMI_O_BRAKETARGET = 200000;             // 2 km
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 5000;   // 50m
+            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_PreIndication_Monitoring;
 
             // Check log for 7.
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The distance to target bar is displayed in sub-area A3." + Environment.NewLine +
                                 "2. The distance scale is displayed in left column of sub-area A3." + Environment.NewLine +
                                 "3. The distance to target bar is displayed distance from zero to a maximum of 1000m according to the distance scale. " + Environment.NewLine +
-                                    "Distances above 1000m is limited to the distance scale’s upper boundary." + Environment.NewLine +
+                                    "Distances above 1000m are limited to the distance scale’s upper boundary." + Environment.NewLine +
                                 "4. The distance to target bar has a white arrow on top. (see the Spec.)." + Environment.NewLine +
                                 "5. The distance to target bar and distance scale are displayed in grey." + Environment.NewLine +
                                 "6. The distance to target is indicated by a vertical rectangular bar left aligned in the right-hand column of sub-area A3." + Environment.NewLine +

@@ -75,6 +75,11 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in OS mode, Level 1
             */
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.OnSight;
+            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_PreIndication_Monitoring;
+            EVC1_MMIDynamic.MMI_O_BRAKETARGET = 200000;
+            EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 20;
+            EVC1_MMIDynamic.MMI_V_TARGET_KMH = 40;
+            EVC1_MMIDynamic.MMI_V_RELEASE_KMH = 10;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in OS mode, Level 1.");
@@ -105,6 +110,12 @@ namespace Testcase.DMITestCases
             */
             this.Wait_Realtime(1000);
             DmiActions.Re_establish_communication_EVC_DMI(this);
+
+            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_PreIndication_Monitoring;
+            EVC1_MMIDynamic.MMI_O_BRAKETARGET = 200000;
+            EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 20;
+            EVC1_MMIDynamic.MMI_V_RELEASE_KMH = 10;
+            EVC1_MMIDynamic.MMI_V_TARGET_KMH = 40;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in OS mode, Level 1." + Environment.NewLine +

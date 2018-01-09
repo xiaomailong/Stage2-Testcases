@@ -51,7 +51,7 @@ namespace Testcase.DMITestCases
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L2;
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 4;      // Settings window: no buttons enabled
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings;      // Settings window: no buttons enabled
             EVC30_MMIRequestEnable.Send();
         }
 
@@ -346,9 +346,11 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Delete the old value, enter the value ‘100’ and confirm by pressing in the data input field");
 
-            //EVC150_MMIConfirmedBrakePercentage.CheckMmiMBPCurrent = 100;
+            EVC150_MMINewBrakePercentage.MMI_M_BP_CURRENT = 100;
+            EVC150_MMINewBrakePercentage.CheckTelegram();
 
-            EVC51_MMIEchoedBrakePercentage.MMI_M_BP_ORIG_ = 100;   
+            EVC51_MMIEchoedBrakePercentage.MMI_M_BP_ORIG_ = 100; 
+            EVC51_MMIEchoedBrakePercentage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Brake percentage window.");
@@ -478,9 +480,9 @@ namespace Testcase.DMITestCases
             {
                 case msgType.typea:
                     EVC30_MMIRequestEnable.SendBlank();
-                    EVC30_MMIRequestEnable.MMI_NID_WINDOW = 4;
+                    EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings;
                     EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.EnableBrakePercentage;
-                    EVC20_MMISelectLevel.Send();
+                    EVC30_MMIRequestEnable.Send();
                     break;
                 case msgType.typeb:
                     EVC50_MMICurrentBrakePercentage.MMI_M_BP_ORIG = 50;

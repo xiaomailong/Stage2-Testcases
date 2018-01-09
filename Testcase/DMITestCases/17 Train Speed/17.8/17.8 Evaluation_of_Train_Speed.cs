@@ -43,12 +43,13 @@ namespace Testcase.DMITestCases
         public override void PreExecution()
         {
             // Pre-conditions from TestSpec:
-            // -    Test system is powered on.-    ATP is still not start.
             // ?? Need to switch off/on
-            DmiActions.Start_ATP();
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
+
+            // Test system is powered on. ATP is still not start.
+            DmiActions.Start_ATP();
         }
 
         public override void PostExecution()
@@ -100,6 +101,9 @@ namespace Testcase.DMITestCases
             DmiActions.Finished_SoM_Default_Window(this);
 
             EVC1_MMIDynamic.MMI_V_TRAIN = 0;
+            EVC1_MMIDynamic.MMI_V_TARGET = 200;
+            EVC1_MMIDynamic.MMI_V_RELEASE = 250;
+            EVC1_MMIDynamic.MMI_V_PERMITTED = 300;
             
             WaitForVerification("Check that the following objects are displayed on the DMI with speed = 0:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Speed pointer" + Environment.NewLine +
@@ -155,7 +159,7 @@ namespace Testcase.DMITestCases
             EVC1_MMIDynamic.MMI_M_SLIP = 1;
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring;   // 0
             EVC1_MMIDynamic.MMI_A_TRAIN = 0;
-            EVC1_MMIDynamic.MMI_V_TRAIN = -2;    // value in xml file is unsigned  
+            EVC1_MMIDynamic.MMI_V_TRAIN = -1;    // value in xml file is out of range so send this
             EVC1_MMIDynamic.MMI_V_TARGET = 1111;
             EVC1_MMIDynamic.MMI_V_PERMITTED = 1111;
             EVC1_MMIDynamic.MMI_V_RELEASE = 555;
@@ -163,8 +167,8 @@ namespace Testcase.DMITestCases
             EVC1_MMIDynamic.MMI_O_IML = 0;
             EVC1_MMIDynamic.MMI_V_INTERVENTION = 0;
 
-            SITR.ETCS1.Dynamic.EVC01Validity1.Value = 0x0;
-            SITR.ETCS1.Dynamic.EVC01Validity2.Value = 0x0;
+            //SITR.ETCS1.Dynamic.EVC01Validity1.Value = 0x0;
+            //SITR.ETCS1.Dynamic.EVC01Validity2.Value = 0x0;
 
         }
         #endregion

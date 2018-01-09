@@ -106,10 +106,11 @@ namespace Testcase.DMITestCases
                                (2) MMI_gen 9474; MMI_gen 3375;
             */
 
-            DmiActions.ShowInstruction(this, "Press DMI sub area C1.");
-            DmiExpectedResults.SR_Mode_Ack_pressed_and_released(this);        
+            DmiActions.ShowInstruction(this, "Press and release DMI sub area C1.");
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                 "1. The M010 symbol briefly is removed and then displayed again (with a flashing border).");
             
-            DmiExpectedResults.SR_Mode_Ack_requested(this);
             DmiExpectedResults.SB_Mode_displayed(this);
 
             #endregion

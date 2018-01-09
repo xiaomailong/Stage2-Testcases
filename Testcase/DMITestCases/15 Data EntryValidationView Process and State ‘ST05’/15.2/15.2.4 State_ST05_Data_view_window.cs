@@ -49,8 +49,6 @@ namespace Testcase.DMITestCases
         {
             // Post-conditions from TestSpec
             // DMI displays in SB mode
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in SB mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -68,9 +66,21 @@ namespace Testcase.DMITestCases
             */
             // In default window?
             //DmiActions.ShowInstruction(this, @"Press ‘Close’ button in the Data View window. Press ‘Data View’ button.");
-            //DmiActions.ShowInstruction(this, @"Press the ‘Data View’ button.");
-
-            //EVC13_MMIDataView.Send();
+            //DmiActions.ShowInstruction(this, @"Press the ‘Data View’ button.");            
+            EVC13_MMIDataView.MMI_X_DRIVER_ID = "";
+            EVC13_MMIDataView.MMI_NID_OPERATION = 0xffffffff;
+            EVC13_MMIDataView.MMI_M_DATA_ENABLE = (Variables.MMI_M_DATA_ENABLE)0x0080;     // 128
+            EVC13_MMIDataView.MMI_L_TRAIN = 4096;
+            EVC13_MMIDataView.MMI_V_MAXTRAIN = 601;
+            EVC13_MMIDataView.MMI_M_BRAKE_PERC = 9;
+            EVC13_MMIDataView.MMI_NID_KEY_AXLE_LOAD = Variables.MMI_NID_KEY.FG4;       // 20
+            EVC13_MMIDataView.MMI_NID_RADIO = 0xffffffffffffffff;          // 4294967295 (= 0xffffffff) hi, 4294967295 (= 0xffffffff) lo
+            EVC13_MMIDataView.MMI_M_AIRTIGHT = 3;
+            EVC13_MMIDataView.MMI_NID_KEY_LOAD_GAUGE = Variables.MMI_NID_KEY.CATE5;
+            EVC13_MMIDataView.Trainset_Caption = "";
+            EVC13_MMIDataView.Network_Caption = "";
+            EVC13_MMIDataView.MMI_NID_KEY_TRAIN_CAT = Variables.MMI_NID_KEY.CATA;  // 21
+            EVC13_MMIDataView.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Default window until Data View window is displayed." + Environment.NewLine +

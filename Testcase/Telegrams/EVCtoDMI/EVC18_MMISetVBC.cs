@@ -1,18 +1,15 @@
 ﻿#region usings
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using CL345;
-
 #endregion
 
 namespace Testcase.Telegrams.EVCtoDMI
 {
     /// <summary>
-    /// This packet is sent sporadically from ETC when the 'Set VBC' procedure
-    /// is ongoing and is intended to support the following use cases:
+    /// This packet is sent sporadically from ETC when the 'Set VBC' procedure is ongoing and is intended to support the following use cases:
     /// 1. Prompt the driver to enter a VBC code
     /// 2. Display/change echo text after data checks have been performed by EVC;
     ///     this also includes control over the allowed driver actions in case some data check has failed
@@ -31,23 +28,23 @@ namespace Testcase.Telegrams.EVCtoDMI
         private static string Basestring = "ETCS1_SetVbc_EVC18SetVbcSub10";
 
         /// <summary>
-        /// Initialise EVC-18 MMI_Set_VBC telegram
+        /// Initialise EVC-18 MMI Set VBC telegram.
         /// (VBC = Virtual Balise Cover)
         /// </summary>
-        /// <param name="pool"></param>
+        /// <param name="pool">The SignalPool</param>
         public static void Initialise(SignalPool pool)
         {
             _pool = pool;
 
             // Set default values
-            _pool.SITR.ETCS1.SetVbc.MmiMPacket.Value = 18; // Packet ID
-            _pool.SITR.SMDCtrl.ETCS1.SetVbc.Value = 0x8;
+            _pool.SITR.ETCS1.SetVbc.MmiMPacket.Value = 18;
+            _pool.SITR.SMDCtrl.ETCS1.SetVbc.Value = 0x0008;
 
             MMI_N_VBC = 0;
         }
 
         /// <summary>
-        /// Send EVC-18 MMI_Set_VBC telegram
+        /// Send EVC-18 MMI Set VBC telegram.
         /// </summary>
         public static void Send()
         {
@@ -57,12 +54,11 @@ namespace Testcase.Telegrams.EVCtoDMI
                 _pool.SITR.ETCS1.SetVbc.MmiLPacket.Value = 64;
 
                 // Send non-dynamic packet to display Set VBC screen
-                _pool.SITR.SMDCtrl.ETCS1.SetVbc.Value = 1;
+                _pool.SITR.SMDCtrl.ETCS1.SetVbc.Value = 0x0001;
             }
-
             else
             {
-                // Set packet size
+                // Set initial packet size
                 ushort totalSizeCounter = 128;
 
                 // Echo Text array
@@ -85,7 +81,7 @@ namespace Testcase.Telegrams.EVCtoDMI
                 _pool.SITR.ETCS1.SetVbc.MmiLPacket.Value = totalSizeCounter;
 
                 // Send dynamic packet.
-                _pool.SITR.SMDCtrl.ETCS1.SetVbc.Value = 0x09;
+                _pool.SITR.SMDCtrl.ETCS1.SetVbc.Value = 0x0009;
             }
             
         }
@@ -135,7 +131,6 @@ namespace Testcase.Telegrams.EVCtoDMI
                 {
                     throw new ArgumentOutOfRangeException("NID_VBCMK", "Virtual Balise Cover marker must be less than 64.");
                 }
-
                 else
                 {
                     _nidVbcmk = value;

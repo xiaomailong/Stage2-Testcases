@@ -1,3 +1,4 @@
+
 using System;
 using Testcase.Telegrams.EVCtoDMI;
 
@@ -35,8 +36,6 @@ namespace Testcase.DMITestCases
         {
             // Post-conditions from TestSpec
             // DMI displays in SB mode
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in SB mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -52,7 +51,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Driver ID window
             */
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;       // Main window
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;       // Main window
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.TrainData |
                                                                EVC30_MMIRequestEnable.EnabledRequests.DriverID |
                                                                EVC30_MMIRequestEnable.EnabledRequests.Level |
@@ -81,15 +80,17 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 5507 (partly: Driver ID window, abort an already pending data entry process, received packet of different window from ETCS onboard);
             */
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 254;    // Close window
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Close_current_return_to_parent;    // Close window
             EVC30_MMIRequestEnable.Send();
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
+            EVC8_MMIDriverMessage.Send();
 
             XML_10_4_1_1_a_b(msgType.typeb);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Driver ID window is closed");
 
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 255;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.No_window_specified;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.TrainData |
                                                                EVC30_MMIRequestEnable.EnabledRequests.DriverID |
                                                                EVC30_MMIRequestEnable.EnabledRequests.Level |
@@ -111,7 +112,7 @@ namespace Testcase.DMITestCases
 
             // Re-display the main window with buttons enabled
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;       // Main window
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;       // Main window
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.TrainData |
                                                                EVC30_MMIRequestEnable.EnabledRequests.DriverID |
                                                                EVC30_MMIRequestEnable.EnabledRequests.Level |
@@ -128,8 +129,10 @@ namespace Testcase.DMITestCases
                                 "1. The hourglass symbol ST05 is displayed in the window title area.");
 
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 254;    // Close window
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Close_current_return_to_parent;    // Close window
             EVC30_MMIRequestEnable.Send();
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
+            EVC8_MMIDriverMessage.Send();
 
             XML_10_4_1_1_a_b(msgType.typeb);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -144,7 +147,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press the  ‘Close’ button in the System info window");
 
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;       // Main window
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;       // Main window
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.TrainData |
                                                                EVC30_MMIRequestEnable.EnabledRequests.DriverID |
                                                                EVC30_MMIRequestEnable.EnabledRequests.Level |
@@ -156,6 +159,12 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Open the Level window.");
 
             EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
+            EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new Variables.MMI_Q_LEVEL_NTC_ID[] { Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level };
+            EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new Variables.MMI_M_CURRENT_LEVEL[] { Variables.MMI_M_CURRENT_LEVEL.NotLastUsedLevel };
+            EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = new Variables.MMI_M_LEVEL_FLAG[] { Variables.MMI_M_LEVEL_FLAG.MarkedLevel };
+            EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = new Variables.MMI_M_INHIBITED_LEVEL[] { Variables.MMI_M_INHIBITED_LEVEL.NotInhibited };
+            EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = new Variables.MMI_M_INHIBIT_ENABLE[] { Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting };
+            EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new Variables.MMI_M_LEVEL_NTC_ID[] { Variables.MMI_M_LEVEL_NTC_ID.L1 };
             EVC20_MMISelectLevel.Send();
 
             XML_10_4_1_1_a_b(msgType.typea);
@@ -166,20 +175,20 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 254;    // Close window
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Close_current_return_to_parent;    // Close window
             EVC30_MMIRequestEnable.Send();
 
-            //EVC24MMISystemInfo.MMI_NID_ENGINE_1 = 1234;
-            //EVC24MMISystemInfo.MMI_T_TIMEOUT_BRAKES = 0x5695224c;         // 1452614220
-            //EVC24MMISystemInfo.MMI_T_TIMEOUT_BTM = 0x54b3eecc;            // 1421078220
-            //EVC24MMISystemInfo.MMI_T_TIMEOUT_TBSW = 0x538b4d4c;           // 1401638220
-            //EVC24MMISystemInfo.MMI_ETC_VER = 0xffaa0f;                    // 16755215
-            //EVC24MMISystemInfo.MMI_M_AVAIL_SERVICES = 0xffff;             // 65535 
+            EVC24_MMISystemInfo.MMI_NID_ENGINE_1 = 1234;
+            EVC24_MMISystemInfo.MMI_T_TIMEOUT_BRAKE = 0x5695224c;         // 1452614220
+            EVC24_MMISystemInfo.MMI_T_TIMEOUT_BTM = 0x54b3eecc;            // 1421078220
+            EVC24_MMISystemInfo.MMI_T_TIMEOUT_TBSW = 0x538b4d4c;           // 1401638220
+            EVC24_MMISystemInfo.MMI_M_ETC_VER = 0xffaa0f;                    // 16755215
+            EVC24_MMISystemInfo.MMI_M_AVAIL_SERVICES = 0xffff;             // 65535 
 
             // Discrepancy betwee spec (config = 55)
-            //EVC24MMISystemInfo.MMI_M_BRAKE_CONFIG = 55;                   // 236 in xml
-            //EVC24MMISystemInfo.MMI_M_LEVEL_INSTALLED = 248;
-            //EVC24MMISystemInfo.Send();
+            EVC24_MMISystemInfo.MMI_M_BRAKE_CONFIG = 55;                   // 236 in xml
+            EVC24_MMISystemInfo.MMI_M_LEVEL_INST = 248;
+            EVC24_MMISystemInfo.Send();
 
             XML_10_4_1_1_a_b(msgType.typeb);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -195,7 +204,7 @@ namespace Testcase.DMITestCases
 
             // Re-display the main window with buttons enabled
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;       // Main window
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;       // Main window
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.TrainData |
                                                                EVC30_MMIRequestEnable.EnabledRequests.DriverID |
                                                                EVC30_MMIRequestEnable.EnabledRequests.Level |
@@ -211,8 +220,10 @@ namespace Testcase.DMITestCases
                                 "1. The hourglass symbol ST05 is displayed in the window title area.");
 
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 254;    // Close window
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Close_current_return_to_parent;    // Close window
             EVC30_MMIRequestEnable.Send();
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
+            EVC8_MMIDriverMessage.Send();
 
             XML_10_4_1_1_a_b(msgType.typeb);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -227,7 +238,7 @@ namespace Testcase.DMITestCases
 
             // Re-display the main window with buttons enabled
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;       // Main window
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;       // Main window
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.TrainData |
                                                                EVC30_MMIRequestEnable.EnabledRequests.DriverID |
                                                                EVC30_MMIRequestEnable.EnabledRequests.Level |
@@ -235,7 +246,7 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, @"Open the Train data window");
 
-            DmiActions.Send_EVC6_MMICurrentTrainData_FixedDataEntry(this, new[] { "FLU", "RLU", "Rescue" }, 2);
+            DmiActions.Send_EVC6_MMICurrentTrainData_FixedDataEntry(this, new[] { "FLU", "RLU", "Rescue" }, 2);                                                                                                                                                                                                                                                     
 
             DmiActions.ShowInstruction(this, @"Enter and accept the values of all Input Fields. Press on the enabled ‘Yes’ button");
 
@@ -252,10 +263,10 @@ namespace Testcase.DMITestCases
             */
             XML_10_4_1_1_a_b(msgType.typea);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The hourglass symbol ST05 is displayed in the window title area.");
+                                "1. The hourglass symbol ST05 is displayed in the window title area.");                                             
 
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 254;    // Close window
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Close_current_return_to_parent;    // Close window
             EVC30_MMIRequestEnable.Send();
 
             XML_10_4_1_1_a_b(msgType.typeb);
@@ -291,18 +302,18 @@ namespace Testcase.DMITestCases
             }
             else if (type == msgType.typeb)
             {
-                //EVC24MMISystemInfo.MMI_NID_ENGINE_1 = 1234;
-                //EVC24MMISystemInfo.MMI_T_TIMEOUT_BRAKES = 0x5695224c;         // 1452614220
-                //EVC24MMISystemInfo.MMI_T_TIMEOUT_BTM = 0x54b3eecc;            // 1421078220
-                //EVC24MMISystemInfo.MMI_T_TIMEOUT_TBSW = 0x538b4d4c;           // 1401638220
-                //EVC24MMISystemInfo.MMI_ETC_VER = 0xffaa0f;                    // 16755215
-                //EVC24MMISystemInfo.MMI_M_AVAIL_SERVICES = 0xffff;             // 65535 
+                EVC24_MMISystemInfo.MMI_NID_ENGINE_1 = 1234;
+                EVC24_MMISystemInfo.MMI_T_TIMEOUT_BRAKE = 0x5695224c;         // 1452614220
+                EVC24_MMISystemInfo.MMI_T_TIMEOUT_BTM = 0x54b3eecc;            // 1421078220
+                EVC24_MMISystemInfo.MMI_T_TIMEOUT_TBSW = 0x538b4d4c;           // 1401638220
+                EVC24_MMISystemInfo.MMI_M_ETC_VER = 0xffaa0f;                    // 16755215
+                EVC24_MMISystemInfo.MMI_M_AVAIL_SERVICES = 0xffff;             // 65535 
 
                 // Discrepancy betwee spec (config = 55)
-                //EVC24MMISystemInfo.MMI_M_BRAKE_CONFIG = 55;                   // 236 in xml
-                //EVC24MMISystemInfo.MMI_M_LEVEL_INSTALLED = 248;
+                EVC24_MMISystemInfo.MMI_M_BRAKE_CONFIG = 55;                   // 236 in xml
+                EVC24_MMISystemInfo.MMI_M_LEVEL_INST = 248;
 
-                //EVC24MMISystemInfo.Send();
+                EVC24_MMISystemInfo.Send();
             }
         }
         #endregion

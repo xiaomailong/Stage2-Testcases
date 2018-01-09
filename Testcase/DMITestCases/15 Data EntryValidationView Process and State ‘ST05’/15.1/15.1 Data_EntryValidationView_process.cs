@@ -236,6 +236,8 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 1316 (partly: disabled state in Table 23, Active state);
                                 (2) MMI_gen 1316 (partly: enable state in Table 23, Active state); 
             */
+            DmiActions.ShowInstruction(this, "Press the ‘Main’ button, then press the ‘Level’ button");
+
             EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = MMI_Q_CLOSE_ENABLE.Disabled;
 
             EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new [] { MMI_Q_LEVEL_NTC_ID.ETCS_Level };
@@ -246,8 +248,9 @@ namespace Testcase.DMITestCases
             EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new [] { MMI_M_LEVEL_NTC_ID.L2 };
             EVC20_MMISelectLevel.Send();
 
-            DmiActions.ShowInstruction(this, "Press the Main button. Press the Level button. Select and confirm Level 2");
+            DmiActions.ShowInstruction(this, "Select and confirm Level 2");
 
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L2;
             EVC22_MMICurrentRBC.MMI_Q_CLOSE_ENABLE = MMI_Q_CLOSE_ENABLE.Enabled;
             EVC22_MMICurrentRBC.MMI_NID_WINDOW = 5;
             EVC22_MMICurrentRBC.Send();
@@ -281,7 +284,7 @@ namespace Testcase.DMITestCases
         private void XML_10_1_a(string windowName, bool showLock = true)
         { 
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 0xff;   // No window specified
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.No_window_specified;   // No window specified
             
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.None;
             EVC30_MMIRequestEnable.Send();
@@ -302,7 +305,8 @@ namespace Testcase.DMITestCases
             Wait_Realtime(3000);
 
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 0xff;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.No_window_specified;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_LOW = true;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Start |
                                                                EVC30_MMIRequestEnable.EnabledRequests.DriverID |
                                                                EVC30_MMIRequestEnable.EnabledRequests.TrainData |
@@ -355,7 +359,7 @@ namespace Testcase.DMITestCases
         private void XML_10_1_b()
         {
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 0x01;   // Enable Main window
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;   // Enable Main window
 
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.None;
             EVC30_MMIRequestEnable.Send();
@@ -367,7 +371,7 @@ namespace Testcase.DMITestCases
             Wait_Realtime(3000);
 
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 0x01;   // Enable Main window
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;   // Enable Main window
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Start |
                                                                EVC30_MMIRequestEnable.EnabledRequests.DriverID |
                                                                EVC30_MMIRequestEnable.EnabledRequests.TrainData |
@@ -403,7 +407,7 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. All the buttons in the Settings menu window are enabled.");
+                                @"1. All the buttons in the Main window are enabled.");
 
         }
         #endregion

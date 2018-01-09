@@ -13,6 +13,7 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.DMItoEVC;
 using Testcase.Telegrams.EVCtoDMI;
 
 
@@ -63,6 +64,8 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,DMI does not display RBC Contact window
             Test Step Comment: (1) MMI_gen 9446 (partly: NEGATIVE, inactive);
             */
+            // Make sure that cabin is not active
+            DmiActions.Start_ATP();
             XML_22_8_3_1(msgType.typea);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -79,15 +82,20 @@ namespace Testcase.DMITestCases
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L2;
 
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
-            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = (EVC30_MMIRequestEnable.EnabledRequests.EnterRBCData |
-                                                                EVC30_MMIRequestEnable.EnabledRequests.RadioNetworkID) &
-                                                               ~(EVC30_MMIRequestEnable.EnabledRequests.ContactLastRBC |
-                                                                 EVC30_MMIRequestEnable.EnabledRequests.UseShortNumber);
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.EnterRBCData |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.RadioNetworkID;
             EVC30_MMIRequestEnable.Send();
             EVC22_MMICurrentRBC.MMI_NID_WINDOW = 5;
+            EVC22_MMICurrentRBC.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
             EVC22_MMICurrentRBC.Send();
 
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 716;
+            EVC8_MMIDriverMessage.Send();
+            
             WaitForVerification("Check the following (* indicates sub-areas drawn as one area):" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the RBC Contact window in areas D, F and G, with 3 layers, with the title ‘RBC Contact’." + Environment.NewLine +
                                 "2. The hour-glass, symbol ST05, is displayed vertically-centred in the window title, moving to the right each second and " + Environment.NewLine +
@@ -107,6 +115,10 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The sound ‘Click’ is played once.The ‘Enter RBC data’ button is shown as pressed state, the border of button is removed
             Test Step Comment: (1) MMI_gen 8516 (partly: MMI_gen 4557 (partly: button ‘Enter RBC data’), MMI_gen 4381 (partly: the sound for Up-Type button)); MMI_gen 9512; MMI_gen 968; (2) MMI_gen 8516 (partly: MMI_gen 4557 (partly: button ‘Enter RBC data’), MMI_gen 4381 (partly: change to state ‘Pressed’ as long as remain actuated)); MMI_gen 4375;
             */
+            // Remove hourglass
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
+            EVC8_MMIDriverMessage.Send();
+
             DmiActions.ShowInstruction(this, "Press and hold the ‘Enter RBC data’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -145,17 +157,19 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Release the ‘Enter RBC data’ button");
 
-            //EVC112_MMINewRBCData.CheckMMiNDataElements = 0;    
-            //EVC112_MMINewRBCData.CheckMMiMButtons = Variables.MMI_M_BUTTONS.BTN_ENTER_RBC_DATA;
+            // Spec says button type = 23 
+            EVC112_MMINewRbcData.MMI_NID_DATA = new List<byte>();
+            EVC112_MMINewRbcData.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_RBC_DATA.BTN_ENTER;
+            EVC112_MMINewRbcData.CheckPacketContent();
 
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.No_window_specified;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = (EVC30_MMIRequestEnable.EnabledRequests.EnterRBCData |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.RadioNetworkID) &
                                                                ~(EVC30_MMIRequestEnable.EnabledRequests.ContactLastRBC |
                                                                  EVC30_MMIRequestEnable.EnabledRequests.UseShortNumber);
             EVC30_MMIRequestEnable.Send();
-            EVC22_MMICurrentRBC.MMI_NID_WINDOW = 5;
+            EVC22_MMICurrentRBC.MMI_NID_WINDOW = 10;
             EVC22_MMICurrentRBC.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -171,7 +185,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press the ‘Close’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI does not display the RBC contact window");
+                                "1. DMI displays the RBC contact window");
 
             /*
             Test Step 8
@@ -244,10 +258,14 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Release the ‘Radio Network ID’ button");
 
-            //EVC112_MMINewRBCData.CheckMMiNDataElements = 0;    
-            //EVC112_MMINewRBCData.CheckMMiMButtons = Variables.MMI_M_BUTTONS.BTN_RADIO_NETWORK_ID;
+            // Is this correct: no RBC data entered
+            //EVC112_MMINewRbcData.MMI_NID_DATA = new List<byte>();
+            EVC112_MMINewRbcData.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_RBC_DATA.BTN_YES_DATA_ENTRY_COMPLETE;
+            EVC112_MMINewRbcData.CheckPacketContent();
 
             EVC22_MMICurrentRBC.MMI_NID_WINDOW = 9;
+            EVC22_MMICurrentRBC.NetworkCaptions = new List<string> { "GSMR-A", "GSMR-B" };
+            EVC22_MMICurrentRBC.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
             EVC22_MMICurrentRBC.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -267,9 +285,17 @@ namespace Testcase.DMITestCases
             Action: Press ‘Enter RBC data’ button.Then, enter and confirm all data in RBC data window as follows,RBC ID= 6996969RBC Phone number = 0031840880100
             Expected Result: DMI displays Main window
             */
-            DmiActions.ShowInstruction(this, @"Press the ‘Enter RBC data’ button. Enter value ‘6996969RBC’ for RBC ID and confirm it;" + Environment.NewLine +
-                                             @"                                   enter value ‘0031840880100’ for Phone number and confirm it");
-            
+            DmiActions.ShowInstruction(this, @"Press the ‘Enter RBC data’ button");
+            EVC22_MMICurrentRBC.MMI_NID_WINDOW = 10;
+            EVC22_MMICurrentRBC.MMI_M_BUTTONS = EVC22_MMICurrentRBC.EVC22BUTTONS.BTN_YES_DATA_ENTRY_COMPLETE;
+            EVC22_MMICurrentRBC.Send();
+
+            DmiActions.ShowInstruction(this, "Enter ‘6996969RBC’ for RBC ID and confirm it and ‘0031840880100’ for Phone number and confirm it");
+
+            EVC22_MMICurrentRBC.MMI_NID_WINDOW = 9;
+            EVC22_MMICurrentRBC.NetworkCaptions.Clear();
+            EVC22_MMICurrentRBC.Send();
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Main window");
 
@@ -285,7 +311,7 @@ namespace Testcase.DMITestCases
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L2;
 
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.ContactLastRBC;
             EVC30_MMIRequestEnable.Send();
             EVC22_MMICurrentRBC.MMI_NID_WINDOW = 5;
@@ -328,12 +354,13 @@ namespace Testcase.DMITestCases
                                 "2. No sound is played.");
 
             DmiActions.ShowInstruction(this, @"Release the ‘Contact last RBC’ button");
-
-            //EVC112_MMINewRBCData.CheckMMiNDataElements = 0;    
-            //EVC112_MMINewRBCData.CheckMMiMButtons = Variables.MMI_M_BUTTONS.BTN_CONTACT_LAST_RBC;
+            
+            EVC112_MMINewRbcData.MMI_NID_DATA = new List<byte>();
+            EVC112_MMINewRbcData.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_RBC_DATA.BTN_ENTER;
+            EVC112_MMINewRbcData.CheckPacketContent();
 
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.ContactLastRBC;
             EVC30_MMIRequestEnable.Send();
             EVC22_MMICurrentRBC.MMI_NID_WINDOW = 5;
@@ -349,7 +376,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 4392 (partly: [Close] NA11);
             */
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Level;
             EVC30_MMIRequestEnable.Send();
 
@@ -368,7 +395,7 @@ namespace Testcase.DMITestCases
 
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L2;
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.ContactLastRBC;
             EVC30_MMIRequestEnable.Send();
             EVC22_MMICurrentRBC.MMI_NID_WINDOW = 5;
@@ -389,7 +416,7 @@ namespace Testcase.DMITestCases
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L2;
 
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.ContactLastRBC;
             EVC30_MMIRequestEnable.Send();
             EVC22_MMICurrentRBC.MMI_NID_WINDOW = 5;
@@ -451,7 +478,7 @@ namespace Testcase.DMITestCases
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L2;
 
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.ContactLastRBC;
             EVC30_MMIRequestEnable.Send();
             EVC22_MMICurrentRBC.MMI_NID_WINDOW = 5;
@@ -468,6 +495,11 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 11241;
             */
             XML_22_8_3_1(msgType.typeb);
+
+            // DMI seems to have trouble sometimes with remembering the window stack after a re-boot (this was causing the default window to be the parent
+            // of the RBC contact window even though Main was displayed and was the parent)
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;
+            EVC30_MMIRequestEnable.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the RBC Contact window and displays the Main window.");
@@ -501,6 +533,7 @@ namespace Testcase.DMITestCases
                     break;
                 case msgType.typeb:
                     EVC22_MMICurrentRBC.MMI_NID_WINDOW = 9;
+                    EVC22_MMICurrentRBC.NetworkCaptions = new List<string>();           // empty list so count now 0 to close window
                     break;
             }
             EVC22_MMICurrentRBC.Send();

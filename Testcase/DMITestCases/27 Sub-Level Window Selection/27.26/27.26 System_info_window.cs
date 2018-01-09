@@ -34,7 +34,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 22_26_a.xml, 22_26_b.xml
     /// </summary>
-    public class System_info_window : TestcaseBase
+    public class TC_ID_22_26_System_info_window : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -80,7 +80,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press the ‘Settings’ button");
             
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 4;      // Settings window
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings;      // Settings window
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_LOW = true;
             EVC30_MMIRequestEnable.Send();
 
@@ -88,18 +88,18 @@ namespace Testcase.DMITestCases
 
             EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.SystemInfoRequest;
 
-            //EVC24_MMISystemInfo.MMI_NID_ENGINE_1 = 1234;
-            //EVC24_MMISystemInfo.MMI_T_TIMEOUT_BRAKES = 1452614220;
-            //EVC24_MMISystemInfo.MMI_T_TIMEOUT_BTM = 1421078220;
-            //EVC24_MMISystemInfo.MMI_T_TIMEOUT_TBSW = 1401638220;
-            //EVC24_MMISystemInfo.MMI_M_ETC_VER = 16755215;
-            //EVC24_MMISystemInfo.MMI_M_BRAKE_CONFIG = 236;
-            //EVC24_MMISystemInfo.MMI_AVAIL_SERVICES = 65535;       // ?? undefined
-            //EVC24_MMISystemInfo.MMI_M_LEVEL_INST = 248;           // ?? undefined
-            //EVC24_MMISystemInfo.MMI_NID_NTC_1[0] = 20; 
-            //EVC24_MMISystemInfo.MMI_NID_STM_STATE[0] = 7;         // Data Available (DA)
+            EVC24_MMISystemInfo.MMI_NID_ENGINE_1 = 1234;
+            EVC24_MMISystemInfo.MMI_T_TIMEOUT_BRAKE = 1452614220;
+            EVC24_MMISystemInfo.MMI_T_TIMEOUT_BTM = 1421078220;
+            EVC24_MMISystemInfo.MMI_T_TIMEOUT_TBSW = 1401638220;
+            EVC24_MMISystemInfo.MMI_M_ETC_VER = 16755215;
+            EVC24_MMISystemInfo.MMI_M_BRAKE_CONFIG = 236;
+            EVC24_MMISystemInfo.MMI_M_AVAIL_SERVICES = 65535;       // ?? undefined
+            EVC24_MMISystemInfo.MMI_M_LEVEL_INST = 248;           // ?? undefined
+            EVC24_MMISystemInfo.MMI_NID_NTC = new List<byte>{ 20 }; 
+            EVC24_MMISystemInfo.MMI_NID_STMSTATE = new List<byte> { 7 };         // Data Available (DA)
 
-            //EVC24_MMISystemInfo.Send();
+            EVC24_MMISystemInfo.Send();
 
             WaitForVerification("Check the following (* indicates sub-areas drawn as one area):" + Environment.NewLine + Environment.NewLine +
                                 @"1. DMI displays the System info window with 3 layers, with the title ‘System info (1/2)’ where (1/2) shows the current window page." + Environment.NewLine +
@@ -238,18 +238,18 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘System info’ button is enabled.");
 
-            //EVC24_MMISystemInfo.MMI_NID_ENGINE_1 = 1234;
-            //EVC24_MMISystemInfo.MMI_T_TIMEOUT_BRAKES = 1452614220;
-            //EVC24_MMISystemInfo.MMI_T_TIMEOUT_BTM = 1421078220;
-            //EVC24_MMISystemInfo.MMI_T_TIMEOUT_TBSW = 1401638220;
-            //EVC24_MMISystemInfo.MMI_M_ETC_VER = 16755215;
-            //EVC24_MMISystemInfo.MMI_M_BRAKE_CONFIG = 236;
-            //EVC24_MMISystemInfo.MMI_AVAIL_SERVICES = 65535;       // ?? undefined
-            //EVC24_MMISystemInfo.MMI_M_LEVEL_INST = 248;           // ?? undefined
-            //EVC24_MMISystemInfo.MMI_NID_NTC_1[0] = 20; 
-            //EVC24_MMISystemInfo.MMI_NID_STM_STATE[0] = 7;         // Data Available (DA)
+            EVC24_MMISystemInfo.MMI_NID_ENGINE_1 = 1234;
+            EVC24_MMISystemInfo.MMI_T_TIMEOUT_BRAKE = 1452614220;
+            EVC24_MMISystemInfo.MMI_T_TIMEOUT_BTM = 1421078220;
+            EVC24_MMISystemInfo.MMI_T_TIMEOUT_TBSW = 1401638220;
+            EVC24_MMISystemInfo.MMI_M_ETC_VER = 16755215;
+            EVC24_MMISystemInfo.MMI_M_BRAKE_CONFIG = 236;
+            EVC24_MMISystemInfo.MMI_M_AVAIL_SERVICES = 65535;       // ?? undefined
+            EVC24_MMISystemInfo.MMI_M_LEVEL_INST = 248;           // ?? undefined
+            EVC24_MMISystemInfo.MMI_NID_NTC = new List<byte> { 20 }; 
+            EVC24_MMISystemInfo.MMI_NID_STMSTATE = new List<byte> { 7 };         // Data Available (DA)
 
-            //EVC24_MMISystemInfo.Send();
+            EVC24_MMISystemInfo.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the System info window." + Environment.NewLine +
@@ -280,7 +280,7 @@ namespace Testcase.DMITestCases
         private void XML_22_26(msgType type)
         {
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 0x4;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings;
             switch (type)
             {
                 case msgType.typea:

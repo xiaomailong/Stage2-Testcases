@@ -1,3 +1,4 @@
+#region usings
 using System;
 using System.Diagnostics;
 using System.Collections.Generic;
@@ -14,11 +15,10 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
-using Testcase.Telegrams;
 using Testcase.Telegrams.EVCtoDMI;
 using Testcase.Telegrams.DMItoEVC;
 using static Testcase.Telegrams.EVCtoDMI.Variables;
-using Testcase.TemporaryFunctions;
+#endregion
 
 namespace Testcase.DMITestCases
 {
@@ -30,42 +30,138 @@ namespace Testcase.DMITestCases
         /// <summary>
         /// Use when a DMI-EVC telegram is not received by RTSim due to the SMDStat flag not being set
         /// </summary>
-        /// <param name="pool">Signal pool</param>
-        /// <param name="basestring"></param>
-        public static void DMItoEVC_Telegram_Not_Received(SignalPool pool, string TelegramString)
+        /// <param name="pool">The SignalPool</param>
+        /// <param name="telegramString"></param>
+        public static void DMItoEVC_Telegram_Not_Received(SignalPool pool, string telegramString)
         {
-            pool.TraceError($"{TelegramString} telegram was NOT received by RTSim.");
+            pool.TraceError($"{telegramString} telegram was NOT received by RTSim.");
         }
-        
+
+        /// <summary>
+        /// Check that the expected DMI-EVC telegram is received by confirming that SMDStat flag has been set
+        /// </summary>
+        /// <param name="pool"></param>
+        /// <param name="mmiMPacket"> Id of the telegram out of the DMI to check</param>
+        /// <param name="timeOut"> Time (in second) to spend checking that the telegram is received from telegram</param>
+        public static void DMItoEVC_Telegram_Received(SignalPool pool, DMItoEVCTelegram mmiMPacket, double timeOut)
+        {
+            bool msgReceived = false;
+            double _timeOutMs = timeOut * 1000; // time (in milliseconds) to check if the SMDStat flag is set
+
+            switch ((byte)mmiMPacket)
+            {
+                case 100:
+                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1StartMmi.WaitForCondition(Is.Equal, 1, _timeOutMs, 100);
+                    break;
+                case 101:
+                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1DriverRequest.WaitForCondition(Is.Equal, 1, _timeOutMs, 100);
+                    break;
+                case 102:
+                    break;
+                case 104:
+                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1NewDriverData.WaitForCondition(Is.Equal, 1, _timeOutMs, 100);
+                    break;
+                case 106:
+                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1NewSrRules.WaitForCondition(Is.Equal, 1, _timeOutMs, 100);
+                    break;
+                case 107:
+                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1NewTrainData.WaitForCondition(Is.Equal, 1, _timeOutMs, 100);
+                    break;
+                case 109:
+                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1SetTimeMmi.WaitForCondition(Is.Equal, 1, _timeOutMs, 100);
+                    break;
+                case 110:
+                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1ConfirmedTrainData.WaitForCondition(Is.Equal, 1, _timeOutMs, 100);
+                    break;
+                case 111:
+                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1DriverMessageAck.WaitForCondition(Is.Equal, 1, _timeOutMs, 100);
+                    break;
+                case 112:
+                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1NewRbcData.WaitForCondition(Is.Equal, 1, _timeOutMs, 100);
+                    break;
+                case 116:
+                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1NewTrainNumber.WaitForCondition(Is.Equal, 1, _timeOutMs, 100);
+                    break;
+                case 118:
+                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1NewSetVbc.WaitForCondition(Is.Equal, 1, _timeOutMs, 100);
+                    break;
+                case 119:
+                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1NewRemoveVbc.WaitForCondition(Is.Equal, 1, _timeOutMs, 100);
+                    break;
+                case 121:
+                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1NewLevel.WaitForCondition(Is.Equal, 1, _timeOutMs, 100);
+                    break;
+                case 122:
+                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1NewLanguage.WaitForCondition(Is.Equal, 1, _timeOutMs, 100);
+                    break;
+                case 123:
+                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1SpecificStmDataToStm.WaitForCondition(Is.Equal, 1, _timeOutMs, 100);
+                    break;
+                case 128:
+                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1ConfirmedSetVbc.WaitForCondition(Is.Equal, 1, _timeOutMs, 100);
+                    break;
+                case 129:
+                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1ConfirmedRemoveVbc.WaitForCondition(Is.Equal, 1, _timeOutMs, 100);
+                    break;
+                case 140:
+                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1NewMaintenanceData.WaitForCondition(Is.Equal, 1, _timeOutMs, 100);
+                    break;
+                case 141:
+                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1ConfirmedMaintenanceData.WaitForCondition(Is.Equal, 1, _timeOutMs, 100);
+                    break;
+                case 150:
+                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1NewBrakePercentage.WaitForCondition(Is.Equal, 1, _timeOutMs, 100);
+                    break;
+                case 151:
+                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1ConfirmedBrakePercentage.WaitForCondition(Is.Equal, 1, _timeOutMs, 100);
+                    break;
+                case 152:
+                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1DriverAction.WaitForCondition(Is.Equal, 1, _timeOutMs, 100);
+                    break;
+                default:
+                    break;
+            }
+
+            if (msgReceived)
+            {
+                pool.TraceReport($"DMI->ETCS: EVC-{(byte)mmiMPacket}[{mmiMPacket.ToString()}] is received.");
+            }
+
+            else
+            {
+                pool.TraceError($"DMI->ETCS: EVC-{(byte)mmiMPacket}[{mmiMPacket.ToString()}] is NOT received.");
+            }
+        }
+
         /// <summary>
         /// Used when TC is not needed since it tests the same interfaces as another test case.
         /// </summary>
-        /// <param name="pool">Signal pool</param>
-        /// <param name="TestcaseID">Testcase ID as per specification</param>
-        /// <param name="SectionNumber">Section number as per specification</param>
-        public static void Testcase_not_required(SignalPool pool, string TestcaseID, string SectionNumber)
+        /// <param name="pool">The SignalPool</param>
+        /// <param name="testcaseId">Testcase ID as per specification</param>
+        /// <param name="sectionNumber">Section number as per specification</param>
+        public static void Testcase_not_required(SignalPool pool, string testcaseId, string sectionNumber)
         {
-            pool.TraceInfo($"This test case is not required since it tests the same interfaces as TC {TestcaseID}" +
-                            $" in section {SectionNumber} of the specification.");
+            pool.TraceInfo($"This test case is not required since it tests the same interfaces as TC {testcaseId}" +
+                            $" in section {sectionNumber} of the specification.");
         }
-        
+
         /// <summary>
         /// Prompt for verification of symbol displayed on the DMI.
         /// </summary>
-        /// <param name="pool">Signal Pool</param>
-        /// <param name="SymbolName">Symbol name as described in ERA_ERTMS_015560 v3.4</param>
-        /// <param name="SymbolNumber">Symbol number as described in ERA_ERTMS_015560 v3.4</param>
-        /// <param name="SymbolArea">Area of the DMI where the symbol should be displayed</param>
-        /// <param name="YellowBorder">Boolean of whether the symbol should have a yellow border</param>
-        public static void Driver_symbol_displayed(SignalPool pool, string SymbolName, string SymbolNumber, string SymbolArea,
-                                                    bool YellowBorder)
+        /// <param name="pool">The SignalPool</param>
+        /// <param name="symbolName">Symbol name as described in ERA_ERTMS_015560 v3.4</param>
+        /// <param name="symbolNumber">Symbol number as described in ERA_ERTMS_015560 v3.4</param>
+        /// <param name="symbolArea">Area of the DMI where the symbol should be displayed</param>
+        /// <param name="yellowBorder">Boolean of whether the symbol should have a yellow border</param>
+        public static void Driver_symbol_displayed(SignalPool pool, string symbolName, string symbolNumber, string symbolArea,
+                                                    bool yellowBorder)
         {
-            if (YellowBorder)
-                pool.WaitForVerification($"Is the {SymbolName} symbol ({SymbolNumber}) " +
-                    $"displayed with a yellow border in area {SymbolArea}?");
+            if (yellowBorder)
+                pool.WaitForVerification($"Is the {symbolName} symbol ({symbolNumber}) " +
+                    $"displayed with a yellow border in area {symbolArea}?");
             else
-                pool.WaitForVerification($"Is the {SymbolName} symbol ({SymbolNumber}) " +
-                    $"displayed in area {SymbolArea}?");
+                pool.WaitForVerification($"Is the {symbolName} symbol ({symbolNumber}) " +
+                    $"displayed in area {symbolArea}?");
         }
 
         /// <summary>
@@ -73,7 +169,7 @@ namespace Testcase.DMITestCases
         /// Used in:
         ///     Step 1 in TC-ID: 15.1.4 in 20.1.4
         /// </summary>
-        /// <param name="pool"></param>
+        /// <param name="pool">The SignalPool</param>
         public static void L0_Announcement_Ack_Requested(SignalPool pool)
         {
             Driver_symbol_displayed(pool, "Acknowledgement for Level 0", "LE07", "C1", true);
@@ -83,6 +179,7 @@ namespace Testcase.DMITestCases
         /// Description: Level 0 Acknowledgement symbol on DMI area C1 is pressed and released.
         /// Used in:
         ///     Step 1 in TC-ID: 15.1.4 in 20.1.4
+        ///     Step 4 in TC-ID: 15.2.4 in 20.2.4
         /// </summary>
         public static void L0_Announcement_Ack_pressed_and_released(SignalPool pool)
         {
@@ -100,7 +197,7 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void LS_Mode_Ack_Requested(SignalPool pool)
         {
-            Driver_symbol_displayed(pool, "Acknowledgement for Limited Supervion mode", "MO22", "C1", true);
+            Driver_symbol_displayed(pool, "Acknowledgement for Limited Supervision mode", "MO22", "C1", true);
         }
 
         /// <summary>
@@ -133,7 +230,7 @@ namespace Testcase.DMITestCases
         /// Used in:
         ///     Step 2 in TC-ID: 15.1.6 in 20.1.6
         /// </summary>
-        /// <param name="pool"></param>
+        /// <param name="pool">The SignalPool</param>
         public static void LSSMA_displayed(SignalPool pool)
         {
             Driver_symbol_displayed(pool, "LSSMA", "LS01", "A1", false);
@@ -194,8 +291,8 @@ namespace Testcase.DMITestCases
         public static void SR_Mode_Ack_pressed_and_hold(SignalPool pool)
         {
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.StaffResponsibleModeAck;
-            pool.WaitForVerification("Has the MO10 (Acknowledgement for Staff Responsible mode) symbol opacity decreased to 50%?");
-            
+            pool.WaitForVerification("Has the MO10 (Acknowledgement for Staff Responsible mode) symbol disappeared from sub-area C1?");
+
         }
 
         /// <summary>
@@ -227,7 +324,7 @@ namespace Testcase.DMITestCases
         /// Used in:
         ///     Step 2 in TC-ID: 12.7.2 in 17.7.2 
         /// </summary>
-        /// <param name="pool"></param>
+        /// <param name="pool">The SignalPool</param>
         public static void DMI_displays_in_SR_mode_level_1(SignalPool pool)
         {
             throw new NotImplementedException();
@@ -366,9 +463,24 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void Start_Button_pressed_and_released(SignalPool pool)
         {
-            EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.Start;
-            EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.Start;
+            DmiActions.ShowInstruction(pool, "Perform the following action after pressing OK:" + Environment.NewLine + Environment.NewLine +
+                                            "1. Press ‘Start’ button.");
+            //EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.Start;
+            EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.Start;
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.StartSelected;
+        }
+
+        /// <summary>
+        /// Description: Close button on Level selection window is pressed
+        /// Used in:
+        ///     Step 3 in TC-ID: 15.2.3 in 20.2.3 
+        /// </summary>
+        public static void Close_Button_Level_Window_pressed_and_released(SignalPool pool)
+        {
+            DmiActions.ShowInstruction(pool, "Perform the following action after pressing OK:" + Environment.NewLine + Environment.NewLine +
+                                            "1. Press close button.");
+            EVC101_MMIDriverRequest.CheckMRequestPressed = MMI_M_REQUEST.ExitChangeLevel;
+            EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.ExitChangeLevel;
         }
 
         /// <summary>
@@ -378,10 +490,23 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void Shunting_button_pressed_and_hold(SignalPool pool)
         {
-            EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.StartShunting;
+            EVC101_MMIDriverRequest.CheckMRequestPressed = MMI_M_REQUEST.StartShunting;
             pool.Wait_Realtime(2000);
-            EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.StartShunting;
+            EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.StartShunting;
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.ShuntingSelected;
+        }
+
+        /// <summary>
+        /// Description: Close button on Level selection window is pressed
+        /// Used in:
+        ///     Step 1 in TC-ID: 22.27.1 in 27.27.1
+        /// </summary>
+        public static void Set_VBC_Button_pressed_and_released(SignalPool pool)
+        {
+            DmiActions.ShowInstruction(pool, "Perform the following action after pressing OK:" + Environment.NewLine + Environment.NewLine +
+                                            "1. Press Set VBC button.");
+            EVC101_MMIDriverRequest.CheckMRequestPressed = MMI_M_REQUEST.StartSetVBC;
+            EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.StartSetVBC;
         }
 
         /// <summary>
@@ -402,9 +527,9 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void Exit_Shunting_button_pressed_and_hold(SignalPool pool)
         {
-            EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.ExitShunting;
+            EVC101_MMIDriverRequest.CheckMRequestPressed = MMI_M_REQUEST.ExitShunting;
             pool.Wait_Realtime(2000);
-            EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.ExitShunting;
+            EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.ExitShunting;
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.ExitShuntingSelected;
         }
 
@@ -492,9 +617,9 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void Non_leading_button_pressed_and_hold(SignalPool pool)
         {
-            EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.StartNonLeading;
+            EVC101_MMIDriverRequest.CheckMRequestPressed = MMI_M_REQUEST.StartNonLeading;
             pool.Wait_Realtime(2000);
-            EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.StartNonLeading;
+            EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.StartNonLeading;
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.NonLeadingSelected;
         }
 
@@ -545,7 +670,7 @@ namespace Testcase.DMITestCases
         /// Used in:
         ///     Step 5 in TC-ID: 15.1.2 in 20.1.2
         /// </summary>
-        /// <param name="pool"></param>
+        /// <param name="pool">The SignalPool</param>
         public static void Driver_s_cab_not_active_msg_displayed(SignalPool pool)
         {
             pool.WaitForVerification("Is the text \"Driver's cab not active\" displayed in area E5?");
@@ -556,14 +681,14 @@ namespace Testcase.DMITestCases
         /// Used in:
         ///     Step 2 in TC-ID: 15.1.3 in 20.1.3
         /// </summary>
-        /// <param name="pool"></param>
+        /// <param name="pool">The SignalPool</param>
         public static void Driver_ID_entered(SignalPool pool)
         {
-            DmiActions.ShowInstruction(pool, @"Perform the following action after pressing OK:" + Environment.NewLine + Environment.NewLine +
-                                "1. Enter and validate Driver ID");
+            DmiActions.ShowInstruction(pool, "Perform the following action after pressing OK:" + Environment.NewLine + Environment.NewLine +
+                                            "1. Enter and validate Driver ID");
 
-            string driverIDInput = EVC104_MMINewDriverData.Get_X_DRIVER_ID;
-            pool.WaitForVerification($"Is \"{driverIDInput}\" the Driver ID you entered?");
+            string driverIdInput = EVC104_MMINewDriverData.Get_X_DRIVER_ID;
+            pool.WaitForVerification($"Is \"{driverIdInput}\" the Driver ID you entered?");
         }
 
         /// <summary>
@@ -571,13 +696,13 @@ namespace Testcase.DMITestCases
         /// Used in:
         ///     Step 7 in TC-ID: 15.1.3 in 20.1.3
         /// </summary>
-        /// <param name="pool"></param>
+        /// <param name="pool">The SignalPool</param>
         public static void TRN_entered(SignalPool pool)
         {
-            DmiActions.ShowInstruction(pool, @"Perform the following action after pressing OK:" + Environment.NewLine + Environment.NewLine +
-                                "1. Enter and validate Train Running Number");
+            DmiActions.ShowInstruction(pool, "Perform the following action after pressing OK:" + Environment.NewLine + Environment.NewLine +
+                                            "1. Enter and validate Train Running Number");
             uint trnInput = EVC116_MMINewTrainNumber.Get_NID_OPERATION;
-            pool.WaitForVerification($"Is \"{trnInput}\" the Train running number entered?");
+            pool.WaitForVerification($"Is {trnInput} the Train running number entered?");
         }
 
         /// <summary>
@@ -585,29 +710,44 @@ namespace Testcase.DMITestCases
         /// Used in:
         ///     Step 2 in TC-ID: 15.1.3 in 20.1.3
         /// </summary>
-        /// <param name="pool"></param>
+        /// <param name="pool">The SignalPool</param>
         /// <param name="order">Indicates if Driver allows Brake Test to be performed</param>
         public static void Brake_Test_Perform_Order(SignalPool pool, bool order)
         {
             string _sOrder;
             if (order) { _sOrder = "Yes"; } else { _sOrder = "No"; }
 
-            DmiActions.ShowInstruction(pool, @"Perform the following action after pressing OK:" + Environment.NewLine + Environment.NewLine + 
-                                "1. Press \"" + _sOrder + "\" on DMI in area E.");
+            DmiActions.ShowInstruction(pool, "Perform the following action after pressing OK:" + Environment.NewLine + Environment.NewLine +
+                                            "1. Press \"" + _sOrder + "\" on DMI in area E.");
 
             EVC111_MMIDriverMessageAck.MMI_I_TEXT = 1;
 
             if (order)
             {
                 EVC111_MMIDriverMessageAck.MMI_Q_ACK = MMI_Q_ACK.AcknowledgeYES;
-                EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
+                EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = MMI_Q_BUTTON.Released;
             }
 
             else
             {
                 EVC111_MMIDriverMessageAck.MMI_Q_ACK = MMI_Q_ACK.NotAcknowledgeNO;
-                EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
+                EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = MMI_Q_BUTTON.Released;
             }
+        }
+
+        /// <summary>
+        /// Description: VBC code is entered
+        /// Used in:
+        ///     Step 10 in TC-ID: 22.27.1 in 27.27.1
+        /// </summary>
+        /// <param name="pool">The SignalPool</param>
+        public static void VBC_code_entered(SignalPool pool)
+        {
+            DmiActions.ShowInstruction(pool, "Perform the following action after pressing OK:" + Environment.NewLine + Environment.NewLine +
+                                            "1. Enter and validate VBC Code");
+
+            uint vbcCode = EVC118_MMINewSetVbc.Get_M_VBC_CODE;
+            pool.WaitForVerification($"Is \"{vbcCode}\" the VBC Code you entered?");
         }
 
         /// <summary>
@@ -617,9 +757,9 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void Train_Data_Button_pressed_and_released(SignalPool pool)
         {
-            DmiActions.ShowInstruction(pool, @"Perform the following action after pressing OK:" + Environment.NewLine + Environment.NewLine +
-                                "1. Press \"Train Data\".");
-            EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.StartTrainDataEntry;
+            DmiActions.ShowInstruction(pool, "Perform the following action after pressing OK:" + Environment.NewLine + Environment.NewLine +
+                                            "1. Press \"Train Data\".");
+            EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.StartTrainDataEntry;
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.TrainDataEntryRequested;
         }
 
@@ -629,25 +769,25 @@ namespace Testcase.DMITestCases
         ///     Step 3 in TC-ID: 15.1.3 in 20.1.3
         ///     Step 1 in TC-ID: 15.2.1 in 20.2.1
         /// </summary>
-        /// <param name="pool"></param>
+        /// <param name="pool">The SignalPool</param>
         public static void Level_0_Selected(SignalPool pool)
         {
-            DmiActions.ShowInstruction(pool, @"Perform the following action after pressing OK:" + Environment.NewLine + Environment.NewLine +
-                                "1. Select and enter Level 0");
+            DmiActions.ShowInstruction(pool, "Perform the following action after pressing OK:" + Environment.NewLine + Environment.NewLine +
+                                            "1. Select and enter Level 0");
             EVC121_MMINewLevel.LevelSelected = MMI_M_LEVEL_NTC_ID.L0;
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.Level0Selected;
         }
 
         /// <summary>
-        /// Description: Level 0 is selected
+        /// Description: Level 1 is selected
         /// Used in:
         ///     Step 2 in TC-ID: 15.2.1 in 20.2.1
         /// </summary>
-        /// <param name="pool"></param>
+        /// <param name="pool">The SignalPool</param>
         public static void Level_1_Selected(SignalPool pool)
         {
-            DmiActions.ShowInstruction(pool, @"Perform the following action after pressing OK:" + Environment.NewLine + Environment.NewLine +
-                                "1. Select and enter Level 1");
+            DmiActions.ShowInstruction(pool, "Perform the following action after pressing OK:" + Environment.NewLine + Environment.NewLine +
+                                            "1. Select and enter Level 1");
             EVC121_MMINewLevel.LevelSelected = MMI_M_LEVEL_NTC_ID.L1;
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.Level1Selected;
         }
@@ -657,11 +797,11 @@ namespace Testcase.DMITestCases
         /// Used in:
         ///     Step 1 in TC-ID: 15.2.2 in 20.2.2
         /// </summary>
-        /// <param name="pool"></param>
+        /// <param name="pool">The SignalPool</param>
         public static void Level_2_Selected(SignalPool pool)
         {
-            DmiActions.ShowInstruction(pool, @"Perform the following action after pressing OK:" + Environment.NewLine + Environment.NewLine +
-                                "1. Select and enter Level 2");
+            DmiActions.ShowInstruction(pool, "Perform the following action after pressing OK:" + Environment.NewLine + Environment.NewLine +
+                                            "1. Select and enter Level 2");
 
             EVC121_MMINewLevel.LevelSelected = MMI_M_LEVEL_NTC_ID.L2;
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.Level2Selected;
@@ -672,7 +812,7 @@ namespace Testcase.DMITestCases
         /// Used in:
         ///     Step 14 in TC-ID: 15.1.3 in 20.1.3
         /// </summary>
-        /// <param name="pool"></param>
+        /// <param name="pool">The SignalPool</param>
         public static void EOA_Button_pressed(SignalPool pool)
         {
             EVC101_MMIDriverRequest.CheckMRequestPressed = MMI_M_REQUEST.StartOverrideEOA;
@@ -688,7 +828,7 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void Cabin_A_is_activated(SignalPool pool)
         {
-            EVC102_MMIStatusReport.Check_MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.Cabin1Active;
+            EVC102_MMIStatusReport.Check_MMI_M_ACTIVE_CABIN = MMI_M_ACTIVE_CABIN.Cabin1Active;
         }
 
         /// <summary>
@@ -698,7 +838,7 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void Cabin_B_is_activated(SignalPool pool)
         {
-            EVC102_MMIStatusReport.Check_MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.Cabin2Active;
+            EVC102_MMIStatusReport.Check_MMI_M_ACTIVE_CABIN = MMI_M_ACTIVE_CABIN.Cabin2Active;
         }
 
         /// <summary>
@@ -708,7 +848,7 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void Cab_deactivated(SignalPool pool)
         {
-            EVC102_MMIStatusReport.Check_MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.NoCabinActive;
+            EVC102_MMIStatusReport.Check_MMI_M_ACTIVE_CABIN = MMI_M_ACTIVE_CABIN.NoCabinActive;
         }
 
         /// <summary>
@@ -764,6 +904,16 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
+        /// Description: DMI displays RBC contact window
+        /// Used in:
+        ///     Step 1 in TC-ID: 22.27.1 in 27.27.1 
+        /// </summary>
+        public static void Set_VBC_Window_displayed(SignalPool pool)
+        {
+            pool.WaitForVerification("Is the Set VBC window displayed on the DMI?");
+        }
+
+        /// <summary>
         /// Description: DMI displays Train Running Number window.Verify the following information,The Train data validation is closed.Use the log file to confirm that DMI sends out the packet [MMI_CONFIRMED_TRAIN DATA (EVC-110)] with variable based on confirmed data
         /// Used in:
         ///     Step 8 in TC-ID: 9.1 in Data Validation Window for Flexible train data entry window
@@ -787,7 +937,7 @@ namespace Testcase.DMITestCases
         /// Used in:
         ///     Step 13 in TC-ID: 15.1.3 in 20.1.3
         /// </summary>
-        /// <param name="pool"></param>
+        /// <param name="pool">The SignalPool</param>
         public static void Override_window_displayed(SignalPool pool)
         {
             pool.WaitForVerification("Is the Override window displayed on the DMI?");
@@ -883,49 +1033,46 @@ namespace Testcase.DMITestCases
         /// Used in:
         ///     Step 5 in 15.1.3
         /// </summary>
-        /// <param name="pool"></param>
+        /// <param name="pool">The SignalPool</param>
+        /// <param name="trainsetSelected">Number of the fixed trainset selected</param>
         public static void Fixed_Train_Data_entered(SignalPool pool, Fixed_Trainset_Captions trainsetSelected)
         {
-            DmiActions.ShowInstruction(pool, @"Perform the following action after pressing OK:" + Environment.NewLine + Environment.NewLine +
-                                "1. Select and enter \""+ trainsetSelected +"\"." + Environment.NewLine +
-                                "2. Press \"Yes\".");
+            DmiActions.ShowInstruction(pool, "Perform the following action after pressing OK:" + Environment.NewLine + Environment.NewLine +
+                                            $"1. Select and enter \"{trainsetSelected.ToString()}\".");
 
             EVC107_MMINewTrainData.MMI_M_BUTTONS = MMI_M_BUTTONS_TRAIN_DATA.BTN_ENTER;
             EVC107_MMINewTrainData.TrainsetSelected = trainsetSelected;
+            }
 
-            DataElement[] dataElements = new DataElement[8]
-            {
-                new DataElement{ Identifier = 6, QDataCheck = 0, EchoText = "FLU" },
-                new DataElement{ Identifier = 6, QDataCheck = 0, EchoText = "RLU" },
-                new DataElement{ Identifier = 6, QDataCheck = 0, EchoText = "Rescue" },
-                new DataElement{ Identifier = 0, QDataCheck = 0, EchoText = "" },
-                new DataElement{ Identifier = 0, QDataCheck = 0, EchoText = "" },
-                new DataElement{ Identifier = 0, QDataCheck = 0, EchoText = "" },
-                new DataElement{ Identifier = 0, QDataCheck = 0, EchoText = "" },
-                new DataElement{ Identifier = 0, QDataCheck = 0, EchoText = "" }
-            };
-
-            DmiActions.Send_EVC6_MMICurrentTrainData(MMI_M_DATA_ENABLE.TrainSetID, 0, 0, MMI_NID_KEY.NoDedicatedKey, 0,
-                MMI_NID_KEY.NoDedicatedKey, 0, MMI_NID_KEY.NoDedicatedKey, (byte)MMI_M_BUTTONS.BTN_YES_DATA_ENTRY_COMPLETE,
-                Convert.ToUInt16((byte)(trainsetSelected)), 0, paramEvc6FixedTrainsetCaptions, dataElements);
+        /// <summary>
+        /// Description: Driver validates Fixed Train Data
+        /// Used in:
+        ///     Step 5 in 15.1.3
+        /// </summary>
+        /// <param name="pool">The SignalPool</param>
+        /// <param name="trainsetSelected">Number of the fixed trainset selected</param>
+        public static void Fixed_Train_Data_validated(SignalPool pool, Fixed_Trainset_Captions trainsetSelected)
+        { 
+            DmiActions.ShowInstruction(pool, "Perform the following action after pressing OK:" + Environment.NewLine + Environment.NewLine +
+                                            "1. Press \"Yes\".");
 
             EVC107_MMINewTrainData.MMI_M_BUTTONS = MMI_M_BUTTONS_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE;
             EVC107_MMINewTrainData.TrainsetSelected = trainsetSelected;
         }
 
         /// <summary>
-        /// Description: Driver validates Fixed Train Data
-        /// 
+        /// Description: Driver completes Train Data validation
         /// Used in:
         ///     Step 6 in 15.1.3
         /// </summary>
-        /// <param name="pool"></param>
-        public static void Fixed_Train_Data_validated(SignalPool pool)
+        /// <param name="pool">The SignalPool</param>
+        public static void Train_Data_validation_completed(SignalPool pool)
         {
-            DmiActions.ShowInstruction(pool, @"Perform the following action after pressing OK: " + Environment.NewLine + Environment.NewLine +
-                                "1. Press ‘Yes’ button." + Environment.NewLine +
-                                "2. Confirmed the selected value by pressing the input field.");
+            DmiActions.ShowInstruction(pool, "Perform the following action after pressing OK: " + Environment.NewLine + Environment.NewLine +
+                                        "1. Press ‘Yes’ button." + Environment.NewLine +
+                                        "2. Confirmed the selected value by pressing the input field.");
             EVC110_MMIConfimedTrainData.CheckConfirmedTrainData();
+            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.TrainDataValidation;
         }
 
         /// <summary>
@@ -1006,7 +1153,7 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void DMI_displays_Settings_window(SignalPool pool)
         {
-            throw new NotImplementedException();
+            pool.WaitForVerification("Is the Settings window displayed?");
         }
 
         /// <summary>
@@ -1035,7 +1182,15 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void DMI_displays_in_SB_mode_level_1(SignalPool pool)
         {
-            throw new NotImplementedException();
+            Driver_symbol_displayed(pool, "Level 1", "LE03", "C8", true);
+            SB_Mode_displayed(pool);
+            
+        }
+
+        public static void UTC_time_changed(SignalPool pool)
+        {
+            DmiActions.ShowInstruction(pool, @"Enter the new value of Offset time. Then presses ‘Yes’ and closes the window");
+            DMItoEVC_Telegram_Received(pool, DMItoEVCTelegram.ETCS1SetTimeMmi, 1000);
         }
 
         /// <summary>

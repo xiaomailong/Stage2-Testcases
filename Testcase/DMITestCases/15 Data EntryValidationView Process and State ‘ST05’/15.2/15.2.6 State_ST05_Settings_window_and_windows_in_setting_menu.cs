@@ -71,8 +71,6 @@ namespace Testcase.DMITestCases
         {
             // Post-conditions from TestSpec
             // DMI displays in SR mode
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in SR mode, Level 1.");
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -92,7 +90,7 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Start | Variables.standardFlags;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_LOW = true;
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 0;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Default;
             EVC30_MMIRequestEnable.Send();
 
             DmiActions.ShowInstruction(this, @"Press the ‘Settings’ button. Press the ‘Maintenance’ button.");
@@ -612,8 +610,8 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Enter VBC Code ‘65536’ and accept entered data by pressing an input field. Press ‘Yes’ button. Press ‘Yes’ button on keypad");
 
-            //EVC28_MMIEchoedSetVBCData.MMI_M_VBC_CODE = 65536;
-            //EVC28_MMIEchoedSetVBCData.Send();
+            EVC28_MMIEchoedSetVBCData.MMI_M_VBC_CODE_ = 65536;
+            EVC28_MMIEchoedSetVBCData.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Set VBC window until Validate Set VBC window is displayed." + Environment.NewLine +
@@ -933,13 +931,13 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8859 (partly: windows in setting menu);(2) MMI_gen 5646 (partly: always enable, windows in setting menu);
             */
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 255;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.No_window_specified;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_LOW = true;
             EVC30_MMIRequestEnable.Send();
 
             DmiActions.ShowInstruction(this, @"Accept entered data by pressing an input field. Press ‘Close’ button in Brake window. Press ‘System Info’ button");
 
-            //EVC24_MMISystemInfo.Send(); 
+            EVC24_MMISystemInfo.Send(); 
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Setting window until System Info window is displayed." + Environment.NewLine +

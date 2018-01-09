@@ -81,8 +81,9 @@ namespace Testcase.DMITestCases
                                                      70,
                                                      Variables.MMI_NID_KEY.CATA,
                                                      1,
-                                                     Variables.MMI_NID_KEY.G1,
-                                                     36, 0, 0, new[] { "FLU", "RLU", "Rescue" }, null);
+                                                     Variables.MMI_NID_KEY_Load_Gauge.G1,
+                                                     EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE,
+                                                     0, 0, new[] { "FLU", "RLU", "Rescue" }, null);
 
             DmiActions.ShowInstruction(this, @"Enter and confirm all data in Train data window");
 
@@ -160,8 +161,9 @@ namespace Testcase.DMITestCases
                                                      70,
                                                      Variables.MMI_NID_KEY.CATA,
                                                      1,
-                                                     Variables.MMI_NID_KEY.G1,
-                                                     36, 0, 0, new[] { "FLU", "RLU", "Rescue" }, null);
+                                                     Variables.MMI_NID_KEY_Load_Gauge.G1,
+                                                     EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE,
+                                                     0, 0, new[] { "FLU", "RLU", "Rescue" }, null);
 
             DmiActions.ShowInstruction(this, @"Press the ‘Yes’ button");
 
@@ -196,7 +198,7 @@ namespace Testcase.DMITestCases
             EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.ExitTrainDataEntry;
 
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.TrainData;
             EVC30_MMIRequestEnable.Send();
 
@@ -222,8 +224,9 @@ namespace Testcase.DMITestCases
                                                      70,
                                                      Variables.MMI_NID_KEY.CATA,
                                                      1,
-                                                     Variables.MMI_NID_KEY.G1,
-                                                     36, 0, 0, new[] { "FLU", "RLU", "Rescue" }, null);
+                                                     Variables.MMI_NID_KEY_Load_Gauge.G1,
+                                                     EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE,
+                                                     0, 0, new[] { "FLU", "RLU", "Rescue" }, null);
 
             DmiActions.ShowInstruction(this, "Enter and confirm all data in the Train data window, then press the ‘Yes’ button");
 
@@ -295,8 +298,9 @@ namespace Testcase.DMITestCases
                                                      70,
                                                      Variables.MMI_NID_KEY.CATA,
                                                      1,
-                                                     Variables.MMI_NID_KEY.G1,
-                                                     36, 0, 0, new[] { "FLU", "RLU", "Rescue" }, null);
+                                                     Variables.MMI_NID_KEY_Load_Gauge.G1,
+                                                     EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE,
+                                                     0, 0, new[] { "FLU", "RLU", "Rescue" }, null);
 
             DmiActions.ShowInstruction(this, "Enter and confirm all data in Train data window, then press the ‘Yes’ button");
 

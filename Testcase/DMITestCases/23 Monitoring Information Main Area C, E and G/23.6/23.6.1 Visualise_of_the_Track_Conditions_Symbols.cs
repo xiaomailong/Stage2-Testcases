@@ -129,6 +129,14 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 7085;
             */
             DmiActions.ShowInstruction(this, "Perform SoM until after pressing the ‘Start’ button.");
+            EVC32_MMITrackConditions.MMI_Q_TRACKCOND_UPDATE = 0;
+            EVC32_MMITrackConditions.TrackConditions = new List<TrackCondition>();
+            EVC32_MMITrackConditions.Send();
+            DmiActions.Finished_SoM_Default_Window(this);
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 263;
+            EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI (only) displays symbol MO10 in sub-area C1");

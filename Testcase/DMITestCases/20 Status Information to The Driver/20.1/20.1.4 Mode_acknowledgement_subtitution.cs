@@ -13,6 +13,8 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
+using Testcase.Telegrams.EVCtoDMI;
+
 
 namespace Testcase.DMITestCases
 {
@@ -75,7 +77,12 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
                                 "1. Press DMI Sub Area C1." + Environment.NewLine +
                                 "2. Press OK on THIS window within 3 seconds.");
-            DmiExpectedResults.L0_Announcement_Ack_pressed_and_released(this);
+
+            // Spec displays LE06... (following ack of LE07")
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L0;
+            
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMi displays symbol LE06 in sub-area C1.");
 
             #endregion
 
@@ -105,12 +112,13 @@ namespace Testcase.DMITestCases
             (1)   The symbol MO08 is disappear and DMI displays LE07 symbol instead
             Test Step Comment: (1) MMI_gen 11234 (partly: driver acknowledge);
             */
-
             DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
                                 "1. Press DMI Sub Area C1." + Environment.NewLine +
                                 "2. Press OK on THIS window within 3 seconds.");
-            DmiExpectedResults.OS_Mode_Ack_pressed_and_released(this);
-            WaitForVerification("Is the LE06 symbol displayed in sub-area C1?");
+
+            WaitForVerification("Check the following: " + Environment.NewLine +
+                                "1. Has the MO08 symbol disappeared from sub-area C1?" + Environment.NewLine +
+                                "2. Is the LE06 symbol displayed in sub-area C1?");
 
             #endregion
 

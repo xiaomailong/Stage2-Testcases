@@ -278,7 +278,7 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.AuxiliaryInformation;
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
                     EVC8_MMIDriverMessage.MMI_I_TEXT = 2;
-                    EVC8_MMIDriverMessage.MMI_Q_TEXT = 266;
+                    EVC8_MMIDriverMessage.MMI_Q_TEXT = 256;
                     EVC8_MMIDriverMessage.PlainTextMessage = "**";
 
                     EVC8_MMIDriverMessage.Send();
@@ -328,7 +328,7 @@ namespace Testcase.DMITestCases
                                              "1. Text message ‘Tachometer error’ is displayed in sub-area E5 without yellow flashing frame." + Environment.NewLine +
                                              "2. Sound Sinfo is played." + Environment.NewLine +
                                              "3. The old text messages are moved to sub-area E6 - E9 respectively." + Environment.NewLine +
-                                             "4. The navigation button <Down> is disabled." + Environment.NewLine +
+                                             "4. The navigation button <Down> is enabled." + Environment.NewLine +
                                              "5. DMI displays symbol NA14 at sub-area E11.");
 
                     // Step 6
@@ -345,7 +345,7 @@ namespace Testcase.DMITestCases
                     // Step 7
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.AuxiliaryInformation;
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
-                    EVC8_MMIDriverMessage.MMI_I_TEXT = 2;
+                    EVC8_MMIDriverMessage.MMI_I_TEXT = 7;
                     EVC8_MMIDriverMessage.MMI_Q_TEXT = 583;
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +

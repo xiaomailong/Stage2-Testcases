@@ -39,7 +39,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 20_5.utt
     /// </summary>
-    public class Drivers_Action_RBC_Contact_windows : TestcaseBase
+    public class TC_ID_25_5_Drivers_Action_RBC_Contact_windows : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -74,7 +74,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 151 (partly: MMI_M_REQUEST = 56, 61, 28, 33) ;(2) MMI_gen 151 (partly: close opened menu);
             */
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 255;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.No_window_specified;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.EnterRBCData |
                                                                EVC30_MMIRequestEnable.EnabledRequests.RadioNetworkID |
                                                                EVC30_MMIRequestEnable.EnabledRequests.ContactLastRBC |
@@ -90,8 +90,8 @@ namespace Testcase.DMITestCases
 
             EVC22_MMICurrentRBC.MMI_NID_WINDOW = 9;
             EVC22_MMICurrentRBC.NetworkCaptions = new List<string> { "GSMR-A", "GSMR-B" };
-            EVC22_MMICurrentRBC.DataElements = new List<DataElement> { new DataElement { Identifier = 0, QDataCheck = 23, EchoText = "23" },
-                                                                       new DataElement { Identifier = 1, QDataCheck = 24, EchoText = "24" } };
+            EVC22_MMICurrentRBC.DataElements = new List<DataElement> { new DataElement { Identifier = 0, QDataCheck = 23, EchoText = "" },
+                                                                       new DataElement { Identifier = 1, QDataCheck = 24, EchoText = "" } };
             EVC22_MMICurrentRBC.Send();
 
             DmiActions.ShowInstruction(this, @"Press the ‘Close’ button");
@@ -130,7 +130,7 @@ namespace Testcase.DMITestCases
 
             // DMI_RS_ETCS says if 0 network items this packet closes RBC Contact window
             EVC22_MMICurrentRBC.MMI_NID_WINDOW = 9;
-            EVC22_MMICurrentRBC.NetworkCaptions = null;
+            EVC22_MMICurrentRBC.NetworkCaptions.Clear();
             EVC22_MMICurrentRBC.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +

@@ -1,8 +1,10 @@
-﻿using System;
+﻿#region usings
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using CL345;
+#endregion
 
 namespace Testcase.Telegrams.EVCtoDMI
 {
@@ -11,23 +13,23 @@ namespace Testcase.Telegrams.EVCtoDMI
         private static SignalPool _pool;
 
         /// <summary>
-        /// Initialise EVC-28 MMI_Echoed_Set_VBC_Data telegram
+        /// Initialise EVC-28 MMI Echoed Set VBC Data telegram.
         /// (VBC = Virtual Balise Cover)
         /// </summary>
-        /// <param name="pool">SignalPool</param>
+        /// <param name="pool">The SignalPool</param>
         public static void Initialise(SignalPool pool)
         {
             _pool = pool;
 
             // Set default values
-            _pool.SITR.ETCS1.EchoedSetVbcData.MmiMPacket.Value = 28; // Packet ID
-            _pool.SITR.ETCS1.EchoedSetVbcData.MmiLPacket.Value = 64; // Packet size
+            _pool.SITR.ETCS1.EchoedSetVbcData.MmiMPacket.Value = 28;
+            _pool.SITR.ETCS1.EchoedSetVbcData.MmiLPacket.Value = 64;
 
             MMI_M_VBC_CODE_ = 0xff;
         }
 
         /// <summary>
-        /// Send EVC-28 MMI_Echoed_Set_VBC_Data telegram
+        /// Send EVC-28 MMI Echoed Set VBC Data telegram.
         /// </summary>
         public static void Send()
         {
@@ -36,6 +38,7 @@ namespace Testcase.Telegrams.EVCtoDMI
 
         /// <summary>
         /// VBC Code
+        /// Enter the value needed and it will be automatically inverted
         /// 
         /// Values:
         /// 0..9 = "NID_C"

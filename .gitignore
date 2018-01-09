@@ -288,3 +288,5 @@ __pycache__/
 *.xsd.cs
 /TestcaseTests
 /TestcaseTests
+/Testcase/DMITestCases/DMIActions.cs.bak
+/Testcase/DMITestCases/DMIResults.cs.bak

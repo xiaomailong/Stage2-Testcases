@@ -95,6 +95,11 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 6774 (partly: when MMI_O_BRAKETARGET less than zero);(2) MMI_gen 6774 (partly: received MMI_O_BRAKETARGET is less than zero);(3) MMI_gen 2567 (partly: Table 38 'PT mode');
             */
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 266;
+            EVC8_MMIDriverMessage.Send();
 
             DmiActions.ShowInstruction(this, "Acknowledge Trip mode by pressing sub-area C1");
             

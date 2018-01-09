@@ -75,6 +75,7 @@ namespace Testcase.DMITestCases
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
 
             this.Wait_Realtime(2000);
+            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_PreIndication_Monitoring;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -98,7 +99,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   The distance to target bar and digital is removed from the DMI.        After test scipt file is executed, the distance to target bar and digital is re-appear refer to received packet EVC-1 from ETCS Onboard
             Test Step Comment: (1) MMI_gen 6877 (partly: MMI_M_WARNING is invalid); 
             */
-            XML_13_1_8(msgType.typeb); ;
+            XML_13_1_8(msgType.typeb);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI stops displaying the distance to target bar and digital distance to target.");
@@ -106,7 +107,7 @@ namespace Testcase.DMITestCases
             // Simulate the effect of the ETCS sending another 'valid' packet. Leave a gap so the DMI screen can be seen changing
             this.Wait_Realtime(2000);
 
-            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring;
+            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_PreIndication_Monitoring;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI re-displays the distance to target bar and digital distance to target after 2s.");
@@ -151,6 +152,8 @@ namespace Testcase.DMITestCases
             {
 
                 case msgType.typea:
+                    //SITR.ETCS1.Dynamic.EVC01Validity1.Value = 0x0;
+                    //SITR.ETCS1.Dynamic.EVC01Validity2.Value = 0x0;
 
                     EVC1_MMIDynamic.MMI_M_SLIDE = 0;
                     EVC1_MMIDynamic.MMI_M_SLIP = 1;
@@ -163,15 +166,16 @@ namespace Testcase.DMITestCases
                     EVC1_MMIDynamic.MMI_O_BRAKETARGET = 1010500000;
                     EVC1_MMIDynamic.MMI_O_IML = 0;
                     EVC1_MMIDynamic.MMI_V_INTERVENTION = 0;
-
-                    SITR.ETCS1.Dynamic.EVC01Validity1.Value = 0x0;
-                    SITR.ETCS1.Dynamic.EVC01Validity2.Value = 0x0;
-
                     break;
+
                 case msgType.typeb:
+                    //SITR.ETCS1.Dynamic.EVC01Validity1.Value = 0x0;
+                    //SITR.ETCS1.Dynamic.EVC01Validity2.Value = 0x0;
                     EVC1_MMIDynamic.MMI_M_SLIDE = 0;
                     EVC1_MMIDynamic.MMI_M_SLIP = 1;
-                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Spare;   // 7
+                    // DMI not responsive to this so chose another mode that removes distance to target items
+                    //EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Spare;   // 7
+                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Ceiling_Speed_Monitoring;
                     EVC1_MMIDynamic.MMI_A_TRAIN = 0;
                     EVC1_MMIDynamic.MMI_V_TRAIN = 0;
                     EVC1_MMIDynamic.MMI_V_TARGET = -1;      // 0xff would be 65535 as unsigned short
@@ -179,14 +183,12 @@ namespace Testcase.DMITestCases
                     EVC1_MMIDynamic.MMI_V_RELEASE = 0;
                     EVC1_MMIDynamic.MMI_O_BRAKETARGET = 1010500000;
                     EVC1_MMIDynamic.MMI_O_IML = 0;
-                    EVC1_MMIDynamic.MMI_V_INTERVENTION = 0;
-
-                    SITR.ETCS1.Dynamic.EVC01Validity1.Value = 0x0;
-                    SITR.ETCS1.Dynamic.EVC01Validity2.Value = 0x0;
-
-
+                    EVC1_MMIDynamic.MMI_V_INTERVENTION = 0;                
                     break;
+
                 case msgType.typec:
+                    //SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity1.Value = 4096;         // bit 12 MMI_OBU_TR_M_Level
+                    //SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity2.Value = 1;            // bit 0  MMI_OBU_TR_M_Mode
                     EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_EBTestInProgress = 0;
                     EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_EB_Status = 0;
                     EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_RadioStatus = 0;
@@ -201,13 +203,7 @@ namespace Testcase.DMITestCases
                     EVC7_MMIEtcsMiscOutSignals.OBU_TR_NID_STM_DA = 0;
                     EVC7_MMIEtcsMiscOutSignals.BRAKE_TEST_TIMEOUT = 0;
                     EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 10000000;
-
-                    SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity1.Value = 4096;         // bit 12 MMI_OBU_TR_M_Level
-                    SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity2.Value = 1;            // bit 0  MMI_OBU_TR_M_Mode
-
-
                     break;
-
             }
         }
         #endregion

@@ -51,15 +51,15 @@ namespace Testcase.Telegrams.DMItoEVC
                 _mAltDem = (ushort)((_pool.SITR.CCUO.ETCS1ConfirmedTrainData.EVC110alias1.Value & 0xC0) >> 6);
 
                 // Check all static fields
-                _checkResult = _pool.SITR.CCUO.ETCS1ConfirmedTrainData.MmiLTrainR.Value.Equals(Convert.ToUInt16(~EVC6_MMICurrentTrainData.MMI_L_TRAIN)) &
-                               _pool.SITR.CCUO.ETCS1ConfirmedTrainData.MmiVMaxtrainR.Value.Equals(Convert.ToUInt16(~EVC6_MMICurrentTrainData.MMI_V_MAXTRAIN)) &
-                               _pool.SITR.CCUO.ETCS1ConfirmedTrainData.MmiNidKeyTrainCatR.Value.Equals(Convert.ToByte(~((byte)EVC6_MMICurrentTrainData.MMI_NID_KEY_TRAIN_CAT))) &
-                               _pool.SITR.CCUO.ETCS1ConfirmedTrainData.MmiMBrakePercR.Value.Equals(Convert.ToByte(~EVC6_MMICurrentTrainData.MMI_M_BRAKE_PERC)) &
-                               _pool.SITR.CCUO.ETCS1ConfirmedTrainData.MmiNidKeyAxleLoadR.Value.Equals(Convert.ToByte(~((byte)EVC6_MMICurrentTrainData.MMI_NID_KEY_AXLE_LOAD))) &
-                               _pool.SITR.CCUO.ETCS1ConfirmedTrainData.MmiMAirtightR.Value.Equals(Convert.ToByte(~EVC6_MMICurrentTrainData.MMI_M_AIRTIGHT)) &
-                               _pool.SITR.CCUO.ETCS1ConfirmedTrainData.MmiNidKeyLoadGaugeR.Value.Equals(Convert.ToByte(~((byte)EVC6_MMICurrentTrainData.MMI_NID_KEY_LOAD_GAUGE))) &
-                               _mAltDem.Equals(Convert.ToUInt16(~EVC6_MMICurrentTrainData.MMI_M_ALT_DEM)) &
-                               _trainsetID.Equals(Convert.ToUInt16(~EVC6_MMICurrentTrainData.MMI_M_TRAINSET_ID));
+                _checkResult = _pool.SITR.CCUO.ETCS1ConfirmedTrainData.MmiLTrainR.Value.Equals(EVC10_MMIEchoedTrainData.MMI_L_TRAIN_) &
+                               _pool.SITR.CCUO.ETCS1ConfirmedTrainData.MmiVMaxtrainR.Value.Equals(EVC10_MMIEchoedTrainData.MMI_V_MAXTRAIN_) &
+                               _pool.SITR.CCUO.ETCS1ConfirmedTrainData.MmiNidKeyTrainCatR.Value.Equals(EVC10_MMIEchoedTrainData.MMI_NID_KEY_TRAIN_CAT_) &
+                               _pool.SITR.CCUO.ETCS1ConfirmedTrainData.MmiMBrakePercR.Value.Equals(EVC10_MMIEchoedTrainData.MMI_M_BRAKE_PERC_) &
+                               _pool.SITR.CCUO.ETCS1ConfirmedTrainData.MmiNidKeyAxleLoadR.Value.Equals(EVC10_MMIEchoedTrainData.MMI_NID_KEY_AXLE_LOAD_R) &
+                               _pool.SITR.CCUO.ETCS1ConfirmedTrainData.MmiMAirtightR.Value.Equals(EVC10_MMIEchoedTrainData.MMI_M_AIRTIGHT_R) &
+                               _pool.SITR.CCUO.ETCS1ConfirmedTrainData.MmiNidKeyLoadGaugeR.Value.Equals(EVC10_MMIEchoedTrainData.MMI_NID_KEY_LOAD_GAUGE_) &
+                               _mAltDem.Equals((EVC10_MMIEchoedTrainData.EVC10_alias_1 & 0x0C) >> 2) &
+                               _trainsetID.Equals(Convert.ToUInt16(~EVC6_MMICurrentTrainData.MMI_M_TRAINSET_ID & 0xF0) >> 4);
 
                 // If check passes
                 if (_checkResult)
@@ -71,15 +71,15 @@ namespace Testcase.Telegrams.DMItoEVC
                 else
                 {
                     _pool.TraceError($"{baseString} ({baseString1} bit-inverted):" + Environment.NewLine +
-                        "MMI_V_MAXTRAIN_R = " + _pool.SITR.CCUO.ETCS1ConfirmedTrainData.MmiVMaxtrainR.Value + "(" + Convert.ToUInt16(~EVC6_MMICurrentTrainData.MMI_V_MAXTRAIN) + ")" + Environment.NewLine +
-                        "MMI_L_TRAIN_R = " + _pool.SITR.CCUO.ETCS1ConfirmedTrainData.MmiLTrainR.Value + "(" + Convert.ToUInt16(~EVC6_MMICurrentTrainData.MMI_L_TRAIN) + ")" + Environment.NewLine +
-                        "MMI_M_ALT_DEM_R = " + _mAltDem + "(" + Convert.ToUInt16(~EVC6_MMICurrentTrainData.MMI_M_ALT_DEM) + ")" + Environment.NewLine +
-                        "MMI_M_TRAINSET_ID_R = " + _trainsetID + "(" + Convert.ToUInt16(~EVC6_MMICurrentTrainData.MMI_M_TRAINSET_ID) + ")" + Environment.NewLine +
-                        "MMI_NID_KEY_LOAD_GAUGE_R = " + _pool.SITR.CCUO.ETCS1ConfirmedTrainData.MmiNidKeyLoadGaugeR.Value + "(" + Convert.ToByte(~((byte)EVC6_MMICurrentTrainData.MMI_NID_KEY_LOAD_GAUGE)) + ")" + Environment.NewLine +
-                        "MMI_M_AIRTIGHT_R = \"" + _pool.SITR.CCUO.ETCS1ConfirmedTrainData.MmiMAirtightR.Value + "(" + Convert.ToByte(~EVC6_MMICurrentTrainData.MMI_M_AIRTIGHT) + ")" + Environment.NewLine +
-                        "MMI_NID_KEY_AXLE_LOAD_R = " + _pool.SITR.CCUO.ETCS1ConfirmedTrainData.MmiNidKeyAxleLoadR.Value + "(" + Convert.ToByte(~((byte)EVC6_MMICurrentTrainData.MMI_NID_KEY_AXLE_LOAD)) + ")" + Environment.NewLine +
-                        "MMI_M_BRAKE_PERC_R = " + _pool.SITR.CCUO.ETCS1ConfirmedTrainData.MmiMBrakePercR.Value + "(" + Convert.ToByte(~EVC6_MMICurrentTrainData.MMI_M_BRAKE_PERC) + ")" + Environment.NewLine +
-                        "MMI_NID_KEY_TRAIN_CAT_R = " + _pool.SITR.CCUO.ETCS1ConfirmedTrainData.MmiNidKeyTrainCatR.Value + "(" + Convert.ToByte(~((byte)EVC6_MMICurrentTrainData.MMI_NID_KEY_TRAIN_CAT)) + ")" + Environment.NewLine +
+                        "MMI_V_MAXTRAIN_R = " + _pool.SITR.CCUO.ETCS1ConfirmedTrainData.MmiVMaxtrainR.Value + Environment.NewLine +
+                        "MMI_L_TRAIN_R = " + _pool.SITR.CCUO.ETCS1ConfirmedTrainData.MmiLTrainR.Value + Environment.NewLine +
+                        "MMI_M_ALT_DEM_R = " + _mAltDem + Environment.NewLine +
+                        "MMI_M_TRAINSET_ID_R = " + _trainsetID + Environment.NewLine +
+                        "MMI_NID_KEY_LOAD_GAUGE_R = " + _pool.SITR.CCUO.ETCS1ConfirmedTrainData.MmiNidKeyLoadGaugeR.Value + Environment.NewLine +
+                        "MMI_M_AIRTIGHT_R = \"" + _pool.SITR.CCUO.ETCS1ConfirmedTrainData.MmiMAirtightR.Value + Environment.NewLine +
+                        "MMI_NID_KEY_AXLE_LOAD_R = " + _pool.SITR.CCUO.ETCS1ConfirmedTrainData.MmiNidKeyAxleLoadR.Value + Environment.NewLine +
+                        "MMI_M_BRAKE_PERC_R = " + _pool.SITR.CCUO.ETCS1ConfirmedTrainData.MmiMBrakePercR.Value + Environment.NewLine +
+                        "MMI_NID_KEY_TRAIN_CAT_R = " + _pool.SITR.CCUO.ETCS1ConfirmedTrainData.MmiNidKeyTrainCatR.Value + Environment.NewLine +
                         "Result: FAILED!");
                 }
             }

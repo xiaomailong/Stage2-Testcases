@@ -1,7 +1,9 @@
-﻿using System;
+﻿#region usings
+using System;
 using System.Collections.Generic;
 using CL345;
 using static Testcase.Telegrams.EVCtoDMI.Variables;
+#endregion
 
 namespace Testcase.Telegrams.EVCtoDMI
 {
@@ -14,9 +16,9 @@ namespace Testcase.Telegrams.EVCtoDMI
         const string BaseString = "ETCS1_DataView_EVC13DataViewSub";
 
         /// <summary>
-        /// Initialise an instance of EVC-13 MMI Data View telegram.
+        /// Initialise EVC-13 MMI Data View telegram.
         /// </summary>
-        /// <param name="pool"></param>
+        /// <param name="pool">The SignalPool</param>
         public static void Initialise(SignalPool pool)
         {
             _pool = pool;
@@ -29,16 +31,20 @@ namespace Testcase.Telegrams.EVCtoDMI
             _pool.SITR.ETCS1.DataView.MmiMPacket.Value = 13; // Packet ID
         }
 
+        /// <summary>
+        /// Send EVC-13 MMI Data View telegram.
+        /// </summary>
         public static void Send()
         {
             // Check the size of the list
             if (MMI_M_VBC_CODE.Count > 30)
                 throw new ArgumentOutOfRangeException("Too many VBC code entered!");
+            
             // Set the value on EVC-13 packet
             _pool.SITR.ETCS1.DataView.MmiNVbc.Value = (ushort) MMI_M_VBC_CODE.Count;           
 
-            // for each element of the list
-            for (var vbcIndex = 0; vbcIndex < MMI_M_VBC_CODE.Count; vbcIndex++)
+            // For each element of the list
+            for (int vbcIndex = 0; vbcIndex < MMI_M_VBC_CODE.Count; vbcIndex++)
             {
                 // Get the VBC Identifier
                 var _mVbcCode = MMI_M_VBC_CODE[vbcIndex];
@@ -57,16 +63,17 @@ namespace Testcase.Telegrams.EVCtoDMI
             // Check the length of the string
             if (Trainset_Caption.Length > 12)
                 throw new ArgumentOutOfRangeException("Too many characters in Train Data Set name!");
+            
             // Set the value on EVC-13 packet
             _pool.SITR.ETCS1.DataView.MmiNCaptionTrainset.Value = (ushort) Trainset_Caption.Length;
 
-            // for each char of the string
-            for (var charIndex = 0; charIndex < Trainset_Caption.Length; charIndex++)
+            // For each character of the string
+            for (int charIndex = 0; charIndex < Trainset_Caption.Length; charIndex++)
             {
-                // Get the value of that char
+                // Get the value of that character
                 var _xCaptionTrainset = Trainset_Caption[charIndex];
 
-                // Set the value on EVC-13 packet according to the Trainset caption char index
+                // Set the value on EVC-13 packet according to the Trainset caption character index
                 if (charIndex < 10)
                 {
                     _pool.SITR.Client.Write($"{BaseString}20{charIndex}_MmiXCaptionTrainset", _xCaptionTrainset);
@@ -80,11 +87,12 @@ namespace Testcase.Telegrams.EVCtoDMI
             // Check the length of the string
             if (Network_Caption.Length > 16)
                 throw new ArgumentOutOfRangeException("Too many characters in Network Id!");
+            
             // Set the value on EVC-13 packet
             _pool.SITR.ETCS1.DataView.MmiNCaptionNetwork.Value = (ushort) Network_Caption.Length;
 
-            // for each digit of the string
-            for (var digitIndex = 0; digitIndex < Network_Caption.Length; digitIndex++)
+            // For each digit of the string
+            for (int digitIndex = 0; digitIndex < Network_Caption.Length; digitIndex++)
             {
                 // Get the value of that digit
                 var _xCaptionNetwork = Network_Caption[digitIndex];
@@ -103,7 +111,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             // Set the total length of the packet
             _pool.SITR.ETCS1.DataView.MmiLPacket.Value = (ushort)(424 + MMI_M_VBC_CODE.Count * 32 + Trainset_Caption.Length * 16 + Network_Caption.Length + 8);
 
-            // Send telegram
+            // Send dynamic telegram
             _pool.SITR.SMDCtrl.ETCS1.DataView.Value = 0x0009;
         }
 
@@ -121,23 +129,28 @@ namespace Testcase.Telegrams.EVCtoDMI
         public static string MMI_X_DRIVER_ID
         {
             get => _pool.SITR.ETCS1.DataView.MmiXDriverId.Value;
+
             set
             {
                 if (value.Length > 16)
                     throw new ArgumentOutOfRangeException("Too many characters in Driver ID!");
+
                 _pool.SITR.ETCS1.DataView.MmiXDriverId.Value = value;
             }
         }
 
         /// <summary>
         /// Note: Definition according to Subset-026, 7.5.1.92.
+        /// 
         /// Binary Coded Decimal
+        /// 
         /// For each digit:
         /// Values 0-9 Digit value
         /// Values A-E Not used, spare
         /// Value F No digit (used for shorter numbers or when not applicable) or special value
         /// (see below)
         /// E.g. “1234567” is coded as 0x1234567F
+        /// 
         /// Special values:
         /// 0xFFFFFFFF 'Unknown Train Running Number'
         /// </summary>
@@ -157,7 +170,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static MMI_M_DATA_ENABLE MMI_M_DATA_ENABLE
         {
-            get => (MMI_M_DATA_ENABLE)(_pool.SITR.ETCS1.DataView.MmiMDataEnable.Value);
+            get => (MMI_M_DATA_ENABLE) _pool.SITR.ETCS1.DataView.MmiMDataEnable.Value;
             set => _pool.SITR.ETCS1.DataView.MmiMDataEnable.Value = (ushort)value;
         }
 
@@ -200,7 +213,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static ushort MMI_M_BRAKE_PERC
         {
-            get => (ushort)_pool.SITR.ETCS1.DataView.MmiMBrakePerc.Value;
+            get => _pool.SITR.ETCS1.DataView.MmiMBrakePerc.Value;
             set => _pool.SITR.ETCS1.DataView.MmiMBrakePerc.Value = (byte)value;
         }
 
@@ -225,12 +238,21 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static MMI_NID_KEY MMI_NID_KEY_AXLE_LOAD
         {
-            get => (MMI_NID_KEY)(_pool.SITR.ETCS1.DataView.MmiNidKeyAxleLoad.Value);
+            get => (MMI_NID_KEY) _pool.SITR.ETCS1.DataView.MmiNidKeyAxleLoad.Value;
             set => _pool.SITR.ETCS1.DataView.MmiNidKeyAxleLoad.Value = (byte)value;
         }
 
         /// <summary>
-        /// RBC phone number
+        /// Radio subscriber number (phone number), 32 high bits of 64
+        /// 
+        /// Note:
+        /// For each digit:
+        /// Value 0..9	Digit value
+        /// Value A..E  Not Used
+        /// Value F     Use value F for indication of ‘no digit’ (if number shorter than 16 digits)
+        /// 
+        /// Special values:
+        /// 0xFFFFFFFF	'Unknown Subscriber Number'
         /// </summary>
         public static ulong MMI_NID_RADIO
         {
@@ -255,9 +277,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// Bits 24..31 = 'spare'
         /// Special Value NID_RBC = 16383 - 'contact last known RBC'
         /// 
-        /// 24 bit (10 bit unsigned int for NID_C +
-        /// 14 bit unsigned int for NID_RBC)
-        ///
+        /// 24 bit (10 bit unsigned int for NID_C + 14 bit unsigned int for NID_RBC)
         /// </summary>
         private static uint MMI_NID_RBC
         {
@@ -293,7 +313,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static MMI_NID_KEY MMI_NID_KEY_LOAD_GAUGE
         {
-            get => (MMI_NID_KEY)(_pool.SITR.ETCS1.DataView.MmiNidKeyLoadGauge.Value);
+            get => (MMI_NID_KEY) _pool.SITR.ETCS1.DataView.MmiNidKeyLoadGauge.Value;
             set => _pool.SITR.ETCS1.DataView.MmiNidKeyLoadGauge.Value = (byte)value;
         }
 
@@ -338,7 +358,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static MMI_NID_KEY MMI_NID_KEY_TRAIN_CAT
         {
-            get => (MMI_NID_KEY)(_pool.SITR.ETCS1.DataView.MmiNidKeyTrainCat.Value);
+            get => (MMI_NID_KEY) _pool.SITR.ETCS1.DataView.MmiNidKeyTrainCat.Value;
             set => _pool.SITR.ETCS1.DataView.MmiNidKeyTrainCat.Value = (byte)value;
         }
     }

@@ -48,7 +48,6 @@ namespace Testcase.DMITestCases
             DmiActions.Activate_Cabin_1(this);
             DmiActions.Set_Driver_ID(this, "1234");
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.NonLeading;
             DmiActions.Display_Main_Window_with_Start_button_enabled(this);
         }
 
@@ -73,12 +72,11 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8351 (partly: touch screen, enabling condition of ‘Start’ button); MMI_gen 591 (partly: EVC-30, enabling, start);(2) MMI_gen 4350;(3) MMI_gen 4351;(4) MMI_gen 4353;(5) MMI_gen 4354;
             */
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.TrainRunningNumber |
                                                                EVC30_MMIRequestEnable.EnabledRequests.Start;
             EVC30_MMIRequestEnable.Send();
-
-            // Call generic Action Method
+            EVC16_CurrentTrainNumber.Send();
             DmiActions.ShowInstruction(this, @"Enter and confirm the Train running number");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -152,7 +150,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Acknowledge SR mode, then press the ‘Main’ button");
 
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Start |
                                                                EVC30_MMIRequestEnable.EnabledRequests.DriverID |
                                                                EVC30_MMIRequestEnable.EnabledRequests.TrainData |
@@ -174,7 +172,7 @@ namespace Testcase.DMITestCases
                                 "8. DMI displays the ‘Train running number’ button (#6)." + Environment.NewLine +
                                 "9. DMI displays the ‘Shunting’ button (#7)." + Environment.NewLine +
                                 "10. DMI displays the ‘Non-Leading’ button (#8)." + Environment.NewLine +
-                                "11. DMI displays the ‘Main shunting’ button (#9)." + Environment.NewLine +           
+                                "11. DMI displays the ‘Maintain shunting’ button (#9)." + Environment.NewLine +           
                                 "15. The following screen areas are in Layer 0: D, F, G, E10, E11, Z and Y." + Environment.NewLine +
                                 "16. The following screen areas are in Layer 1: A1, (A2 + A3)*, A4, C1, (C2 + C3 + C4)*, C5, C6, C7, C8, C9, E1, E2, E3, E4, (E5-E9)." + Environment.NewLine +
                                 "17. The following screen areas are in Layer 2: B3, B4, B5, B6, B7");
@@ -208,6 +206,10 @@ namespace Testcase.DMITestCases
 
             EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.ChangeDriverIdentity;
 
+            EVC14_MMICurrentDriverID.MMI_X_DRIVER_ID = "1234";
+            EVC14_MMICurrentDriverID.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
+            EVC14_MMICurrentDriverID.Send();
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Driver ID window.");
 
@@ -239,6 +241,16 @@ namespace Testcase.DMITestCases
 
             EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.ChangeLevel;
 
+            EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
+
+            EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new Variables.MMI_Q_LEVEL_NTC_ID[] { Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level };
+            EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new Variables.MMI_M_CURRENT_LEVEL[] { Variables.MMI_M_CURRENT_LEVEL.NotLastUsedLevel };
+            EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = new Variables.MMI_M_LEVEL_FLAG[] { Variables.MMI_M_LEVEL_FLAG.MarkedLevel };
+            EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = new Variables.MMI_M_INHIBITED_LEVEL[] { Variables.MMI_M_INHIBITED_LEVEL.NotInhibited };
+            EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = new Variables.MMI_M_INHIBIT_ENABLE[] { Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting };
+            EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new Variables.MMI_M_LEVEL_NTC_ID[] { Variables.MMI_M_LEVEL_NTC_ID.L1 };
+            EVC20_MMISelectLevel.Send();
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Level window.");
 
@@ -268,6 +280,7 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, @"Release the ‘Train data’ button");
 
+            DmiActions.Send_EVC6_MMICurrentTrainData_FixedDataEntry(this, new [] { "FLU"}, 1);
             EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.StartTrainDataEntry;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -299,6 +312,8 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, @"Release the ‘Train running number’ button");
 
+            EVC16_CurrentTrainNumber.TrainRunningNumber = 1;
+            EVC16_CurrentTrainNumber.Send();
             EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.ChangeTrainRunningNumber;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -401,20 +416,13 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The ‘Shunting’ button is replaced with the ‘Exit Shunting’ button.Use the log file to confirm that DMI receives EVC-30 with the following value in variable MMI_Q_REQUEST_ENABLE_64MMI_Q_REQUEST_ENABLE_64 (#0) = 0 (Start)MMI_Q_REQUEST_ENABLE_64 (#1) = 1 (Driver ID)MMI_Q_REQUEST_ENABLE_64 (#2) = 0 (Train Data)MMI_Q_REQUEST_ENABL15E_64 (#3) = 0 (Level)MMI_Q_REQUEST_ENABLE_64 (#4) = 0 (Train running number)MMI_Q_REQUEST_ENABLE_64 (#5) = 0 (Shunting)MMI_Q_REQUEST_ENABLE_64 (#6) = 1 (Exit Shunting)MMI_Q_REQUEST_ENABLE_64 (#7) = 0 (Non-Leading)MMI_Q_REQUEST_ENABLE_64 (#8) = 0 (Maintain Shunting)The following buttons are shown with a border and its text is coloured Dark-Grey:The ‘Start’ buttonThe ‘Train data’ buttonThe ‘Level’ buttonThe ‘Train running number’ buttonThe ‘Non-Leading’ buttonThe ‘Maintain Shunting’ button
             Test Step Comment: (1) MMI_gen 1423 (partly: DMI equipped with TS, replace)(2) MMI_gen 591 (partly: enabling condition of ‘Exit Shunting’ button, disabling condition of ‘Start’, ‘Train data’, ‘Level’, ‘Train running number’ and ‘Shunting’ buttons); (3) MMI_gen 591 (partly: enabling condition of ‘Exit Shunting’ button, disabling condition of ‘Start’, ‘Train data’, ‘Level’, ‘Train running number’ and ‘Shunting’ buttons”); MMI_gen 4377 (partly: shown);
             */
-            // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press the ‘Main’ button");
 
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = (EVC30_MMIRequestEnable.EnabledRequests.DriverID |
-                                                                EVC30_MMIRequestEnable.EnabledRequests.ExitShunting) &
-                                                               ~(EVC30_MMIRequestEnable.EnabledRequests.Start |
-                                                                 EVC30_MMIRequestEnable.EnabledRequests.TrainData |
-                                                                 EVC30_MMIRequestEnable.EnabledRequests.Level |
-                                                                 EVC30_MMIRequestEnable.EnabledRequests.TrainRunningNumber |
-                                                                 EVC30_MMIRequestEnable.EnabledRequests.Shunting |
-                                                                 EVC30_MMIRequestEnable.EnabledRequests.NonLeading |
-                                                                 EVC30_MMIRequestEnable.EnabledRequests.MaintainShunting);
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.DriverID |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.ExitShunting;
             EVC30_MMIRequestEnable.Send();
+            
+            DmiActions.ShowInstruction(this, @"Press the ‘Main’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI removes the ‘Shunting’ button and replaces it with the ‘Exit Shunting’ button" + Environment.NewLine +
@@ -430,6 +438,12 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Activate the ‘Passive-Shunting’ checkbox on OTE to simulate the ‘Passive-Shunting’ signal");
 
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.PassiveShunting;
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.DriverID |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.ExitShunting |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.MaintainShunting;
+            EVC30_MMIRequestEnable.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the ‘Maintain shunting’ button enabled.");
@@ -476,7 +490,7 @@ namespace Testcase.DMITestCases
                                               "then drag outside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the ‘Train Maintain shunting’ button enabled." + Environment.NewLine +
+                                "1. DMI displays the ‘Maintain shunting’ button enabled." + Environment.NewLine +
                                 "2. No sound is played.");
 
             // Repeat Step 12
@@ -558,7 +572,7 @@ namespace Testcase.DMITestCases
                                               "then drag outside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the ‘Train Exit shunting’ button enabled." + Environment.NewLine +
+                                "1. DMI displays the ‘Exit shunting’ button enabled." + Environment.NewLine +
                                 "2. No sound is played.");
 
             // Repeat Step 12
@@ -574,6 +588,8 @@ namespace Testcase.DMITestCases
 
             EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.ExitShunting;
 
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Shunting;
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Default window in SH mode, Level 1.");
 
@@ -584,7 +600,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 591 (partly: EVC-30, disabling condition of ‘Exit Shunting’ button, enabling condition of ‘Train data’, ‘Level’, ‘Train running number’ and ‘Shunting’ buttons);
             */
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 3;      // Level window
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Special;      // Level window
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = (EVC30_MMIRequestEnable.EnabledRequests.DriverID |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.TrainData |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.Level |
@@ -732,7 +748,7 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"De-activate the ‘Non-leading’ checkbox on OTE to remove the ‘Non-leading’ signal");
             
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 3;      // Level window
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Level;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = (EVC30_MMIRequestEnable.EnabledRequests.DriverID |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.Level) &
                                                                ~(EVC30_MMIRequestEnable.EnabledRequests.Start |

@@ -44,6 +44,9 @@ namespace Testcase.DMITestCases
             // Call the TestCaseBase PreExecution
             base.PreExecution();
 
+            //Set the following tags name in configuration file(See the instruction in Appendix 2)
+            // Q_CustomConfig = 3 M_InstalledLevels = 31 NID_NTC_Installed_0 = 9 M_DefalutLevels = 31 NID_NTC_Default_0 = 9
+
             // The system is powered ON
             DmiActions.Start_ATP();
         }
@@ -60,6 +63,8 @@ namespace Testcase.DMITestCases
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint
+            TraceInfo("This test case requires an ATP configuration change - " +
+                      "See Precondition requirements. If this is not done manually, the test may fail!");
 
             /*
             Test Step 1
@@ -81,15 +86,17 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Main window The Close buton is enable
             Test Step Comment: MMI_gen 1319 (partly:bullet1 and bullet2);
             */
-            DmiActions.ShowInstruction(this, "Select the Main menu item");
 
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Default;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.TrainData |
                                                                EVC30_MMIRequestEnable.EnabledRequests.Level |
                                                                EVC30_MMIRequestEnable.EnabledRequests.Shunting |
-                                                               EVC30_MMIRequestEnable.EnabledRequests.TrainRunningNumber;
+                                                               EVC30_MMIRequestEnable.EnabledRequests.TrainRunningNumber |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.TrainIntegrity;
             EVC30_MMIRequestEnable.Send();
+
+            DmiActions.ShowInstruction(this, "Select the Main menu item");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Main window." + Environment.NewLine +
@@ -141,11 +148,26 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, "Select the Data view menu item");
 
-            //EVC13_MMIDataView.Send();
+            EVC13_MMIDataView.MMI_X_DRIVER_ID = "1";
+            EVC13_MMIDataView.MMI_NID_OPERATION = 0x0fffffff;
+            EVC13_MMIDataView.MMI_NID_KEY_TRAIN_CAT = Variables.MMI_NID_KEY.PASS1;
+            EVC13_MMIDataView.MMI_L_TRAIN = 100;
+            EVC13_MMIDataView.MMI_M_BRAKE_PERC = 70;
+            EVC13_MMIDataView.MMI_V_MAXTRAIN = 160;
+            EVC13_MMIDataView.MMI_NID_KEY_AXLE_LOAD = Variables.MMI_NID_KEY.CATA;
+            EVC13_MMIDataView.MMI_M_AIRTIGHT = 0;
+            EVC13_MMIDataView.MMI_NID_KEY_LOAD_GAUGE = Variables.MMI_NID_KEY.OutofGC;
+            EVC13_MMIDataView.Trainset_Caption = "";
+            EVC13_MMIDataView.Network_Caption = "";
+            EVC13_MMIDataView.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Data view window with the title ‘Data view (1/2)’." + Environment.NewLine +
-                                "2. The ‘Close’ button is displayed enabled.");
+                                "2. The ‘Close’ button is displayed enabled." + Environment.NewLine +
+                                "3. The data values are displayed in a (horizontal) list" + Environment.NewLine +
+                                "4. Driver ID = ‘1’, Train running number = ‘0’ (greyed out);" + Environment.NewLine +
+                                "5. Train category = ‘PASS 1’, Length (m) = ‘100’, Brake Percentage = ‘70, Max speed (km/h) = 160," +
+                                "6. Axle load category = ‘A’, Airtight = ‘No’, Loading gauge = ‘Out of GC’ (all highlighted).");
             
             /*
             Test Step 7
@@ -190,7 +212,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 1319 (partly:bullet1 and bullet2);
             */
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 4;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_LOW = true;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Language |
                                                                EVC30_MMIRequestEnable.EnabledRequests.Brightness |
@@ -200,7 +222,8 @@ namespace Testcase.DMITestCases
                                                                EVC30_MMIRequestEnable.EnabledRequests.SystemVersion |
                                                                EVC30_MMIRequestEnable.EnabledRequests.RemoveVBC |
                                                                EVC30_MMIRequestEnable.EnabledRequests.SetLocalOffset |
-                                                               EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter;
+                                                               EVC30_MMIRequestEnable.EnabledRequests.Reserved;
+            EVC30_MMIRequestEnable.Send();
 
             DmiActions.ShowInstruction(this, "Select the Settings menu item");
              

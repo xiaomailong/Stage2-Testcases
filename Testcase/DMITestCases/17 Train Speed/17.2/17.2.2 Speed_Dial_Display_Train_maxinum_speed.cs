@@ -90,10 +90,9 @@ namespace Testcase.DMITestCases
             Expected Result: Mode changes to SR mode , level 1Verify the following information:The speed dial displays 550 km/h as a mixminum speed
             Test Step Comment: MMI_gen 67 (partly:550 km/h);
             */
-            DmiActions.Complete_SoM_L1_SR(this);
-
-            EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.StaffResponsible;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
+            DmiActions.Finished_SoM_Default_Window(this);
 
             WaitForVerification("Check the following" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SR mode, level 1." + Environment.NewLine + 
@@ -122,10 +121,9 @@ namespace Testcase.DMITestCases
 
             // Call generic Check Results Method
             DmiExpectedResults.SB_Mode_displayed(this);
-
-            DmiActions.Complete_SoM_L1_SR(this);
-
+            
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
+            DmiActions.Finished_SoM_Default_Window(this);
 
             WaitForVerification("Check the following" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SR mode, level 1." + Environment.NewLine +
@@ -148,10 +146,9 @@ namespace Testcase.DMITestCases
 
             // Call generic Check Results Method
             DmiExpectedResults.SB_Mode_displayed(this);
-
-            DmiActions.Complete_SoM_L1_SR(this);
-
+            
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
+            DmiActions.Finished_SoM_Default_Window(this);
 
             WaitForVerification("Check the following" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SR mode, level 1." + Environment.NewLine +
@@ -174,10 +171,9 @@ namespace Testcase.DMITestCases
 
             // Call generic Check Results Method
             DmiExpectedResults.SB_Mode_displayed(this);
-
-            DmiActions.Complete_SoM_L1_SR(this);
-
+            
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
+            DmiActions.Finished_SoM_Default_Window(this);
 
             WaitForVerification("Check the following" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SR mode, level 1." + Environment.NewLine +

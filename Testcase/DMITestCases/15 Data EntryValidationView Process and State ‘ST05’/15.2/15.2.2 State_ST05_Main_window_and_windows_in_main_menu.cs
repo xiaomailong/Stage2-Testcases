@@ -69,7 +69,8 @@ namespace Testcase.DMITestCases
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint
-
+            TraceInfo("This test case requires an ATP configuration change - " +
+                      "See Precondition requirements. If this is not done manually, the test may fail!");
 
             /*
             Test Step 1
@@ -79,7 +80,7 @@ namespace Testcase.DMITestCases
             */
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Start | Variables.standardFlags;
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 1;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;
             EVC30_MMIRequestEnable.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -135,7 +136,6 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Press ‘Close’ button in Driver ID window. Press ‘Train Data’ button");
 
-            EVC6_MMICurrentTrainData.MMI_M_BUTTONS = Convert.ToUInt16(Variables.MMI_M_BUTTONS.BTN_CLOSE);
             DmiActions.Send_EVC6_MMICurrentTrainData_FixedDataEntry(this, new[] { "FLU", "RLU", "Rescue" }, 1);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -191,8 +191,9 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Press the ‘Close’ button in the Validate Train data window");
 
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays fixed TDE in Train data window until the window is changed to flexible TDE in the Train data window.");       
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Close_current_return_to_parent;
+            EVC30_MMIRequestEnable.Send();
 
             DmiActions.ShowInstruction(this, @"Press the ‘Train Data’ button.");
 
@@ -203,18 +204,15 @@ namespace Testcase.DMITestCases
                                                      90,
                                                      Variables.MMI_NID_KEY.CATA,
                                                      0,
-                                                     Variables.MMI_NID_KEY.G1,
-                                                     Convert.ToByte(Variables.MMI_M_BUTTONS.BTN_CLOSE | Variables.MMI_M_BUTTONS.BTN_YES_DATA_ENTRY_COMPLETE),
-                                                     0, 0, new[] { "FLU", "RLU", "Rescue" }, null);
+                                                     Variables.MMI_NID_KEY_Load_Gauge.G1,
+                                                     EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE,
+                                                     0, 0, new[] { "FLU", "RLU", "Rescue" }, 
+                                                     new Variables.DataElement[] {});
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘Close’ button is enabled.");
-
-            DmiActions.ShowInstruction(this, @"Press the ‘Enter Data’ button.");
-
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘Close’ button is enabled.");
-
+                                "1. DMI displays fixed TDE in Train data window until the window is changed to flexible TDE in the Train data window." + Environment.NewLine +
+                                "2. The ‘Close’ button is enabled.");
+            
             /*
             Test Step 11
             Action: Repeat action step 2 with flexible Train Data window
@@ -236,7 +234,15 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Accept all values in the Train data window, then press the ‘Yes’ button");
 
             // This sends the inverted bit map of current state of EVC6 so should work
-            DmiActions.Send_EVC10_MMIEchoedTrainData_FixedDataEntry(this, new[] { "FLU", "RLU", "Rescue" });
+            DmiActions.Send_EVC10_MMIEchoedTrainData(this, Variables.MMI_M_DATA_ENABLE.TrainLength,
+                                                     100, 
+                                                     120,
+                                                     Variables.MMI_NID_KEY.PASS1,
+                                                     90,
+                                                     Variables.MMI_NID_KEY.CATA,
+                                                     0,
+                                                     Variables.MMI_NID_KEY.G1,
+                                                     new[] { "FLU", "RLU", "Rescue" });
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Train data window until the Validate Train data window is displayed.");
@@ -265,7 +271,7 @@ namespace Testcase.DMITestCases
 
             EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
             EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new Variables.MMI_Q_LEVEL_NTC_ID[] { Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level };
-            EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new Variables.MMI_M_CURRENT_LEVEL[] { Variables.MMI_M_CURRENT_LEVEL.NotLastUsedLevel };
+            EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new Variables.MMI_M_CURRENT_LEVEL[] { Variables.MMI_M_CURRENT_LEVEL.LastUsedLevel };
             EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = new Variables.MMI_M_LEVEL_FLAG[] { Variables.MMI_M_LEVEL_FLAG.MarkedLevel };
             EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = new Variables.MMI_M_INHIBITED_LEVEL[] { Variables.MMI_M_INHIBITED_LEVEL.NotInhibited };
             EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = new Variables.MMI_M_INHIBIT_ENABLE[] { Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting };
@@ -273,11 +279,8 @@ namespace Testcase.DMITestCases
             EVC20_MMISelectLevel.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the Main window until the Level window is displayed.");
-
-            DmiActions.ShowInstruction(this, @"Press ‘Level’ button");
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. ‘Close’ button is still enabled.");
+                                "1. DMI displays the Main window until the Level window is displayed." + Environment.NewLine +
+                                "2. ‘Close’ button is still enabled.");
 
             /*
             Test Step 17
@@ -396,35 +399,59 @@ namespace Testcase.DMITestCases
         {
             if (msgtype == msgType.typeb)
             {
-                EVC14_MMICurrentDriverID.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Disabled;
-                EVC14_MMICurrentDriverID.Send();
+                EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Disabled;
+                EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new Variables.MMI_Q_LEVEL_NTC_ID[] { Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level };
+                EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new Variables.MMI_M_CURRENT_LEVEL[] { Variables.MMI_M_CURRENT_LEVEL.LastUsedLevel };
+                EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = new Variables.MMI_M_LEVEL_FLAG[] { Variables.MMI_M_LEVEL_FLAG.MarkedLevel };
+                EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = new Variables.MMI_M_INHIBITED_LEVEL[] { Variables.MMI_M_INHIBITED_LEVEL.NotInhibited };
+                EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = new Variables.MMI_M_INHIBIT_ENABLE[] { Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting };
+                EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new Variables.MMI_M_LEVEL_NTC_ID[] { Variables.MMI_M_LEVEL_NTC_ID.L1 };
+                EVC20_MMISelectLevel.Send();
 
                 WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                    "1. ‘Close’ button in Driver ID window is disabled.");
+                                    "1. ‘Close’ button in Level window is disabled.");
 
                 Wait_Realtime(1000);
 
-                EVC14_MMICurrentDriverID.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
-                EVC14_MMICurrentDriverID.Send();
+                EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
+                EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new Variables.MMI_Q_LEVEL_NTC_ID[] { Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level };
+                EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new Variables.MMI_M_CURRENT_LEVEL[] { Variables.MMI_M_CURRENT_LEVEL.LastUsedLevel };
+                EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = new Variables.MMI_M_LEVEL_FLAG[] { Variables.MMI_M_LEVEL_FLAG.MarkedLevel };
+                EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = new Variables.MMI_M_INHIBITED_LEVEL[] { Variables.MMI_M_INHIBITED_LEVEL.NotInhibited };
+                EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = new Variables.MMI_M_INHIBIT_ENABLE[] { Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting };
+                EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new Variables.MMI_M_LEVEL_NTC_ID[] { Variables.MMI_M_LEVEL_NTC_ID.L1 };
+                EVC20_MMISelectLevel.Send();
 
                 WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                          "1. ‘Close’ button in Driver ID window is enabled.");
+                                          "1. ‘Close’ button in Level window is enabled.");
             }
             else if (msgtype == msgType.typec)
             {
-                EVC14_MMICurrentDriverID.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Disabled;
-                EVC14_MMICurrentDriverID.Send();
+                EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Disabled;
+                EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new Variables.MMI_Q_LEVEL_NTC_ID[] { Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level };
+                EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new Variables.MMI_M_CURRENT_LEVEL[] { Variables.MMI_M_CURRENT_LEVEL.LastUsedLevel };
+                EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = new Variables.MMI_M_LEVEL_FLAG[] { Variables.MMI_M_LEVEL_FLAG.MarkedLevel };
+                EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = new Variables.MMI_M_INHIBITED_LEVEL[] { Variables.MMI_M_INHIBITED_LEVEL.NotInhibited };
+                EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = new Variables.MMI_M_INHIBIT_ENABLE[] { Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting };
+                EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new Variables.MMI_M_LEVEL_NTC_ID[] { Variables.MMI_M_LEVEL_NTC_ID.L1 };
+                EVC20_MMISelectLevel.Send();
 
                 WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                    "1. ‘Close’ button in Driver ID window is disabled.");
+                                    "1. ‘Close’ button in Level window is disabled.");
 
                 Wait_Realtime(1000);
 
-                EVC14_MMICurrentDriverID.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
-                EVC14_MMICurrentDriverID.Send();
+                EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
+                EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new Variables.MMI_Q_LEVEL_NTC_ID[] { Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level };
+                EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new Variables.MMI_M_CURRENT_LEVEL[] { Variables.MMI_M_CURRENT_LEVEL.LastUsedLevel };
+                EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = new Variables.MMI_M_LEVEL_FLAG[] { Variables.MMI_M_LEVEL_FLAG.MarkedLevel };
+                EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = new Variables.MMI_M_INHIBITED_LEVEL[] { Variables.MMI_M_INHIBITED_LEVEL.NotInhibited };
+                EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = new Variables.MMI_M_INHIBIT_ENABLE[] { Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting };
+                EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new Variables.MMI_M_LEVEL_NTC_ID[] { Variables.MMI_M_LEVEL_NTC_ID.L1 };
+                EVC20_MMISelectLevel.Send();
 
                 WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                    "1. ‘Close’ button in Driver ID window is enabled.");
+                                    "1. ‘Close’ button in Level window is enabled.");
             }
         }
         #endregion

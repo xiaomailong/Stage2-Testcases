@@ -20,7 +20,8 @@ namespace Testcase.DMITestCases
     /// 6.6 Adjustment of Sound Volume
     /// TC-ID: 1.6
     /// 
-    /// This test case verifies the configuration of the default and minimum volume level and the volume adjustment of DMI acoustic. The adjustment and the presentation of the Volume window shall comply with [ERA] standard and [MMI-ETCS-gen].
+    /// This test case verifies the configuration of the default and minimum volume level and the volume adjustment of DMI acoustic. 
+    /// The adjustment and the presentation of the Volume window shall comply with [ERA] standard and [MMI-ETCS-gen].
     /// 
     /// Tested Requirements:
     /// MMI_gen 257; MMI_gen 1687; MMI_gen 3093; MMI_gen 3094;
@@ -28,7 +29,7 @@ namespace Testcase.DMITestCases
     /// Scenario:
     /// 1.Activate cabin A. Then, press the icon of ‘Settings menu’ button.
     /// 2.Press the icon of ‘Volume’ button. 
-    /// 3.Press and hold the button ‘-‘ to decrease the acoustic volume until minimum leve.
+    /// 3.Press and hold the button ‘-‘ to decrease the acoustic volume until minimum level.
     /// 4.Simulate the communication loss between ETCS Onboard and DMI. Then, verifies the ATP down alarm sound volume is always play as maximum volume 
     /// 5.Driver deactivates cabin A.
     /// 6.Re-test again for the volume increse by using ‘+’ button instead. 
@@ -36,7 +37,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// N/A
     /// </summary>
-    public class Adjustment_of_Sound_Volume : TestcaseBase
+    public class TC_1_6_Adjustment_of_Sound_Volume : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -45,6 +46,8 @@ namespace Testcase.DMITestCases
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
+
+            DmiActions.Start_ATP();
         }
 
         public override void PostExecution()
@@ -66,9 +69,10 @@ namespace Testcase.DMITestCases
             Action: Activate cabin A
             Expected Result: DMI displays Driver ID window
             */
-            // Call generic Action Method
+
             DmiActions.Activate_Cabin_1(this);
-            // Call generic Check Results Method
+            DmiActions.Set_Driver_ID(this, "1234");
+      
             DmiExpectedResults.Driver_ID_window_displayed(this);
 
 
@@ -77,72 +81,99 @@ namespace Testcase.DMITestCases
             Action: Press ‘Settings’ button
             Expected Result: The Settings window is presented with all sub-menus
             */
-            // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press ‘Settings’ button");
-            // Call generic Check Results Method
-            DmiExpectedResults.The_Settings_window_is_presented_with_all_sub_menus(this);
 
+            DmiActions.ShowInstruction(this, @"Press ‘Settings’ button");
+            DmiActions.Open_the_Settings_window(this);
+
+            DmiExpectedResults.DMI_displays_Settings_window(this);
 
             /*
             Test Step 3
             Action: Press ‘Volume’ button
-            Expected Result: Verify the following information,The Volume window is presented to the driver to adjust the DMI acoustic and the Volume window is displayed with the default volume as 70
+            Expected Result: Verify the following information,
+            The Volume window is presented to the driver to adjust the DMI acoustic and the Volume window is displayed with the default volume as 70
             Test Step Comment: (1) MMI_gen 3094 (partly: 1st bullet);
             */
-            // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press ‘Volume’ button");
 
+            DmiActions.ShowInstruction(this, @"Press ‘Volume’ button");
+            WaitForVerification("The Volume window is presented to the driver to adjust the DMI acoustic and the Volume window is displayed with the default volume as 70.");
 
             /*
             Test Step 4
             Action: Adjust acoustic volume by press and hold ‘-‘ button to the minimum level in order to decrease the acoustic volume
-            Expected Result: The adjusted acoustic volume is used by DMI.Verify that the minimum level of the volume is 10, as defined in the precondition and the ‘Click’ sound is lower and lower (never quiet)
-            Test Step Comment: (1) MMI_gen 257 (partly: on adjusting);     MMI_gen 1687;    MMI_gen 3093 (partly: sound ‘Click’, on adjusting); MMI_gen 3094 (partly: 2nd bullet); 
+            Expected Result: The adjusted acoustic volume is used by DMI.
+                             Verify that the minimum level of the volume is 10, as defined in the precondition and the ‘Click’ sound is lower and lower (never quiet)
+            Test Step Comment: (1) MMI_gen 257 (partly: on adjusting);     
+                                   MMI_gen 1687;    
+                                   MMI_gen 3093 (partly: sound ‘Click’, on adjusting); 
+                                   MMI_gen 3094 (partly: 2nd bullet); 
             */
 
+            DmiActions.ShowInstruction(this, @"Adjust acoustic volume by press and hold ‘-‘ button to the minimum level in order to decrease the acoustic volume");
+            WaitForVerification("The adjusted acoustic volume is used by DMI." + Environment.NewLine +
+                                "Verify that the minimum level of the volume is 10, as defined in the precondition and the ‘Click’ sound is lower and lower(never quiet)");
 
             /*
             Test Step 5
             Action: Press an input field to confirm adjusted volume
-            Expected Result: The Settings window is displayed. Verify that the acoustic sound from driver clicking button remains as a minimum level that was adjusted
-            Test Step Comment: (1) MMI_gen 257 (partly: adjusted (saved));               MMI_gen 3093 (partly: sound ‘Click’);     
+            Expected Result: The Settings window is displayed. 
+                             Verify that the acoustic sound from driver clicking button remains as a minimum level that was adjusted
+            Test Step Comment: (1) MMI_gen 257 (partly: adjusted (saved));               
+                                   MMI_gen 3093 (partly: sound ‘Click’);     
             */
 
+            DmiActions.ShowInstruction(this, @"Press an input field to confirm adjusted volume");
+            DmiActions.Open_the_Settings_window(this);
+
+            DmiExpectedResults.DMI_displays_Settings_window(this);
+            WaitForVerification("Verify that the acoustic sound from driver clicking button remains as a minimum level that was adjusted.");
 
             /*
             Test Step 6
             Action: Close the Settings window
-            Expected Result: Verify the following information,The acoustic sound from driver clicking button remains as a minimum level that was adjusted
-            Test Step Comment: (1) MMI_gen 257 (partly: adjusted (after saved));               MMI_gen 3093 (partly: sound ‘Click’);     
+            Expected Result: Verify the following information,
+                             The acoustic sound from driver clicking button remains as a minimum level that was adjusted
+            Test Step Comment: (1) MMI_gen 257 (partly: adjusted (after saved));
+                                   MMI_gen 3093 (partly: sound ‘Click’);     
             */
-            // Call generic Action Method
-            DmiActions.Close_the_Settings_window(this);
 
+            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
+            WaitForVerification("The acoustic sound from driver clicking button remains as a minimum level that was adjusted");
 
             /*
             Test Step 7
             Action: Simulate the communication lost between ETCS Onboard and DMI by unplugging the MVB cable
-            Expected Result: DMI displays the message ‘ATP Down Alarm’ with sound alarm.Verify that the driver can not adjust the acoustic sound volume for the ATP down alarm. The sound is played at maximum volume 100%. (Louder than the ‘Click’ sound at volume level 10)
+            Expected Result: DMI displays the message ‘ATP Down Alarm’ with sound alarm.
+            Verify that the driver can not adjust the acoustic sound volume for the ATP down alarm. 
+            The sound is played at maximum volume 100%. (Louder than the ‘Click’ sound at volume level 10)
             Test Step Comment: (1) MMI_gen 3093 (partly: ATP-Down alarm, non-adjustable);  
             */
 
+            DmiActions.Force_Loss_Communication(this);
+            WaitForVerification("Is the DMI displaying the message ‘ATP Down Alarm’ with sound alarm.");
+            WaitForVerification("Is the sound played at maximum volume 100%");
 
             /*
             Test Step 8
-            Action: Re-establish the communication between ETCS onboard and DMI.Then, deactivates cabin A
+            Action: Re-establish the communication between ETCS onboard and DMI.
+                    Then, deactivates cabin A
             Expected Result: Cabin A is deactivated
             */
-            // Call generic Check Results Method
+
+            DmiActions.Restablish_Communication(this);
             DmiExpectedResults.Cab_deactivated(this);
 
 
             /*
             Test Step 9
             Action: Repeat step 1-8 with press and hold ‘+’ button to the maximum level instead
-            Expected Result: Verify the following points,The maximum level of volume is 100 and and the ‘Click’ sound is louder and louder.When ‘Close’ button is pressed, sound from driver clicking button remain as a maximum level instead
+            Expected Result: Verify the following points,
+                     The maximum level of volume is 100 and and the ‘Click’ sound is louder and louder.
+                     When ‘Close’ button is pressed, sound from driver clicking button remain as a maximum level instead
             Test Step Comment: (1) MMI_gen 3094 (partly: recommended range 0..100 percentage) MMI_gen 257 (partly: driver’s adjustment of the volume);               MMI_gen 3093 (partly: sound ‘Click’);(2) MMI_gen 257 (partly: adjusted (after saved));               MMI_gen 3093 (partly: sound ‘Click’);     
             */
 
+            DmiActions.ShowInstruction(this, @"Repeat step 1-8 with press and hold ‘+’ button to the maximum level instead");
 
             /*
             Test Step 10

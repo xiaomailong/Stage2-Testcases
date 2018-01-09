@@ -21,6 +21,33 @@
             <param name="subscribe"></param>
             <returns></returns>
         </member>
+        <member name="M:BT_CSB_Tools.CSharpTestbench.CheckSignalInRange(BT_CSB_Tools.SignalPoolGenerator.Signals.BaseSignal,System.Object,System.Object,System.Double,System.Double,System.Int32)">
+            <summary>
+            Checks whether the specified signal is and stays in the given range
+            for the specified amount of time in the staticTimeout and at every
+            tick of the passed interval.
+            </summary>
+            <param name="signal">The signal whose value is to be checked.</param>
+            <param name="min">The minimum value for the range that is to be checked.</param>
+            <param name="max">The maximum value for the range that is to be checked.</param>
+            <param name="timeout">The timeout. When do you want to stop verifying?</param>
+            <param name="staticTimeout">The timeout of the static edition check.</param>
+            <param name="interval">The interval: how often do you want to check per minute?</param>
+            <typeparam name="T"></typeparam>
+            <returns>TRUE if the signal is in range and did not change, otherwise false.</returns>
+        </member>
+        <member name="M:BT_CSB_Tools.CSharpTestbench.CheckCondition(System.Double,System.Double,System.Int32,BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc.Atomic[])">
+            <summary>
+            Checks whether the specified signals are and stay with the sepcified condition
+            for the specified amount of time in the staticTimeout and at every
+            tick of the passed interval.
+            </summary>
+            <param name="timeout"></param>
+            <param name="staticTimeout"></param>
+            <param name="interval"></param>
+            <param name="atomicSignals"></param>
+            <returns></returns>
+        </member>
         <member name="M:BT_CSB_Tools.CSharpTestbench.CheckStatic(BT_CSB_Tools.SignalPoolGenerator.Signals.BaseSignal,System.Object,System.Double,System.Int32)">
             <summary>
             <para>_</para>
@@ -131,6 +158,18 @@
             </summary>
             <param name="signals"></param>
         </member>
+        <member name="M:BT_CSB_Tools.CSharpTestbench.InitializeSignalHandles(BT_CSB_Tools.SignalPoolGenerator.Signals.BaseSignal[])">
+            <summary>
+            If this testcase connects to a VirtualTrain or SoftTCSM environment
+            every signal which get's used later on in the testcase needs to be
+            initialized within this method first to work flawless.
+            _
+            Pass in every used signal comma seperated like this:
+            InitializeSignalHandles(signal1, signal2, ...); and call it
+            within the PreExecution(..) method of the testcase.
+            </summary>
+            <param name="signals"></param>
+        </member>
         <member name="M:BT_CSB_Tools.CSharpTestbench.LogTest(BT_CSB_Tools.CSharpTestbench.LogTestDelegate,System.String)">
             <summary>
             Logs the result of the LogTestDelegate with additional parameters, comments, arguments
@@ -174,19 +213,6 @@
             <param name="signals"></param>
             <returns></returns>
         </member>
-        <member name="M:BT_CSB_Tools.CSharpTestbench.ResetSignal(BT_CSB_Tools.SignalPoolGenerator.Signals.BaseSignal)">
-            <summary>
-            Resets passed signal.
-            </summary>
-            <param name="signal"></param>
-        </member>
-        <member name="M:BT_CSB_Tools.CSharpTestbench.ResetAllSignals(BT_CSB_Tools.SignalPoolGenerator.Clients.IClient)">
-            <summary>
-            Resets all signals. 
-            Resets all signals on a specific client, if passed.
-            </summary>
-            <param name="client"></param>
-        </member>
         <member name="M:BT_CSB_Tools.CSharpTestbench.ReadAtomic(System.Collections.Generic.List{BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc.Atomic},System.Boolean)">
             <summary>
             <para>_</para>
@@ -203,6 +229,26 @@
             <param name="valuesOnly"></param>
             <param name="signals"></param>
             <returns></returns>
+        </member>
+        <member name="M:BT_CSB_Tools.CSharpTestbench.ResetSignal(BT_CSB_Tools.SignalPoolGenerator.Signals.BaseSignal)">
+            <summary>
+            Resets passed signal.
+            </summary>
+            <param name="signal"></param>
+        </member>
+        <member name="M:BT_CSB_Tools.CSharpTestbench.ResetAllSignals(BT_CSB_Tools.SignalPoolGenerator.Clients.IClient)">
+            <summary>
+            Resets all signals. 
+            Resets all signals on a specific client, if passed.
+            </summary>
+            <param name="client"></param>
+        </member>
+        <member name="M:BT_CSB_Tools.CSharpTestbench.ResetAll(BT_CSB_Tools.SignalPoolGenerator.Clients.IClient)">
+            <summary>
+            Resets all signals. 
+            Resets all signals on a specific client, if passed.
+            </summary>
+            <param name="client"></param>
         </member>
         <member name="M:BT_CSB_Tools.CSharpTestbench.SetSignalsOnConsist(System.Collections.Generic.List{BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc.Atomic},System.Int32[])">
             <summary>
@@ -256,6 +302,20 @@
             <para>_</para>
             </summary>
             <param name="signals"></param>
+        </member>
+        <member name="M:BT_CSB_Tools.CSharpTestbench.UnforceAtomic(BT_CSB_Tools.SignalPoolGenerator.Signals.BaseSignal[])">
+            <summary>
+            <para>_</para>
+            <para>This method unforces all signals from a given list of basesignals.</para>
+            <para>_</para>
+            </summary>
+            <param name="signals"></param>
+        </member>
+        <member name="M:BT_CSB_Tools.CSharpTestbench.UnforceSignal(BT_CSB_Tools.SignalPoolGenerator.Signals.BaseSignal)">
+            <summary>
+            This method unforces the given signal.
+            </summary>
+            <param name="signal"></param>
         </member>
         <member name="M:BT_CSB_Tools.CSharpTestbench.WaitForCondition(BT_CSB_Tools.SignalPoolGenerator.Signals.BaseSignal,BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc.Is,System.Object,System.Double,System.Int32)">
             <summary>
@@ -520,31 +580,6 @@
             <param name="message"></param>
             <returns></returns>
         </member>
-        <member name="M:BT_CSB_Tools.CSharpTestbench.CheckSignalInRange(BT_CSB_Tools.SignalPoolGenerator.Signals.BaseSignal,System.Object,System.Object,System.Double,System.Double,System.Int32)">
-            <summary>
-            Checks whether the specified signal is and stays in the given range
-            for the specified amount of time in the staticTimeout and at every
-            tick of the passed interval.
-            </summary>
-            <param name="sig">The signal whose value is to be checked.</param>
-            <param name="min">The minimum value for the range that is to be checked.</param>
-            <param name="max">The maximum value for the range that is to be checked.</param>
-            <param name="timeout">The timeout. When do you want to stop verifying?</param>
-            <param name="staticTimeout">The timeout of the static edition check.</param>
-            <param name="interval">The interval: how often do you want to check per minute?</param>
-            <typeparam name="T"></typeparam>
-            <returns>TRUE if the signal is in range and did not change, otherwise false.</returns>
-        </member>
-        <member name="M:BT_CSB_Tools.CSharpTestbench.CheckCondition(System.Double,System.Double,System.Int32,BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc.Atomic[])">
-            <summary>
-            
-            </summary>
-            <param name="timeout"></param>
-            <param name="staticTimeout"></param>
-            <param name="interval"></param>
-            <param name="pars"></param>
-            <returns></returns>
-        </member>
         <member name="M:BT_CSB_Tools.CSharpTestbench.RunDebugger">
             <summary>
             This method allows to debug the testcase just in time.
@@ -734,6 +769,11 @@
             A counter for failed read attempts.
             </summary>
         </member>
+        <member name="F:BT_CSB_Tools.CSharpTestbench._customThreads">
+            <summary>
+            A list of custom threads.
+            </summary>
+        </member>
         <member name="M:BT_CSB_Tools.CSharpTestbench.#ctor">
             <summary>
             Initializes a new instance of the <see cref="T:BT_CSB_Tools.CSharpTestbench"/> class. 
@@ -824,7 +864,12 @@
             </summary>
             <param name="suspend"></param>
         </member>
-        <member name="M:BT_CSB_Tools.CSharpTestbench.TestcasePauseResumeAbort(System.Boolean)">
+        <member name="M:BT_CSB_Tools.CSharpTestbench.InitializeFTPWrapper">
+            <summary>
+            This initializes the ftp wrapper with a provided UCpath from testinfo.xml file.
+            </summary>
+        </member>
+        <member name="M:BT_CSB_Tools.CSharpTestbench.TestcasePauseResumeAbort(System.Boolean,System.Boolean)">
             <summary>
             This method toogles the running state of a testcase between running/paused.
             If abort is provided with true, the testcase will get aborted.
@@ -853,6 +898,12 @@
             </summary>
             <param name="expression"></param>
             <returns></returns>
+        </member>
+        <member name="M:BT_CSB_Tools.CSharpTestbench.EnableDisableTimeSyncTimer(System.Boolean)">
+            <summary>
+            Enable or Disable the TimeSyncTimer. This affects all c# testbench methods.
+            </summary>
+            <param name="status"></param>
         </member>
         <member name="M:BT_CSB_Tools.CSharpTestbench.TraceText(System.String,System.Object[])">
             <summary>
@@ -903,7 +954,7 @@
             <param name="comment"></param>
             <param name="args"></param>
         </member>
-        <member name="M:BT_CSB_Tools.CSharpTestbench.TraceReferencedAssemblyVersions">
+        <member name="M:BT_CSB_Tools.CSharpTestbench.TraceReferencedAssemblyVersions(System.Boolean)">
             <summary>
             Writes the version properties of all referenced assemblies, except the ones from microsoft and telerik
             </summary>
@@ -929,23 +980,6 @@
             <summary>
             This initializes the logger with a provided testinfo.xml file.
             </summary>
-        </member>
-        <member name="M:BT_CSB_Tools.CSharpTestbench.InitializeFTPWrapper">
-            <summary>
-            This initializes the ftp wrapper with a provided UCpath from testinfo.xml file.
-            </summary>
-        </member>
-        <member name="M:BT_CSB_Tools.CSharpTestbench.InitializeSignalHandles(BT_CSB_Tools.SignalPoolGenerator.Signals.BaseSignal[])">
-            <summary>
-            If this testcase connects to a VirtualTrain or SoftTCSM environment
-            every signal which get's used later on in the testcase needs to be
-            initialized within this method first to work flawless.
-            _
-            Pass in every used signal comma seperated like this:
-            InitializeSignalHandles(signal1, signal2, ...); and call it
-            within the PreExecution(..) method of the testcase.
-            </summary>
-            <param name="signals"></param>
         </member>
         <member name="M:BT_CSB_Tools.CSharpTestbench.CompareValues(System.Object,System.Object,BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc.Is)">
             <summary>
@@ -978,6 +1012,19 @@
             <param name="valueA"></param>
             <param name="valueB"></param>
             <param name="op"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BT_CSB_Tools.CSharpTestbench.Compare(BT_CSB_Tools.SignalPoolGenerator.Signals.BaseSignal,System.Object,System.Object,BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc.Is,BT_CSB_Tools.Logging.LogSignal)">
+            Compares two values with the given 'Is'-operator
+            and logs the result to corresponding properties.
+            Returns 'True' if values meet specified condition
+            Returns 'False' if compare fails.
+        </member>
+        <member name="M:BT_CSB_Tools.CSharpTestbench.ToString(BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc.Is)">
+            <summary>
+            Is enum to boolean expr.
+            </summary>
+            <param name="condition"></param>
             <returns></returns>
         </member>
         <member name="M:BT_CSB_Tools.CSharpTestbench.ShowWindow(System.IntPtr,System.Int32)">
@@ -1047,6 +1094,11 @@
         <member name="P:BT_CSB_Tools.CSharpTestbench.Clients">
             <summary>
             Gets all referenced and interfaced clients
+            </summary>
+        </member>
+        <member name="P:BT_CSB_Tools.CSharpTestbench.ClientsAll">
+            <summary>
+            Gets all referenced and interfaced clients, even from sub-testbench objects like SignalPoolInternal
             </summary>
         </member>
         <member name="P:BT_CSB_Tools.CSharpTestbench.Client">
@@ -1160,6 +1212,11 @@
         <member name="P:BT_CSB_Tools.CSharpTestbench.GlobalTestResult">
             <summary>
             The global test result. MUST be used to SET the testcase result.
+            </summary>
+        </member>
+        <member name="P:BT_CSB_Tools.CSharpTestbench.Testbench">
+            <summary>
+            The static main test bench object
             </summary>
         </member>
         <member name="F:BT_CSB_Tools.ExceptionHandler.EErrorCodes.NotAllSignalsAreEqualError">
@@ -1286,7 +1343,7 @@
         </member>
         <member name="T:BT_CSB_Tools.Logging.GuiLoggerAppender.MVVM.Model.GuiLogItemModel">
             <summary>
-            The gui log item model.
+            The gui log item model. MarshalByRefObject,
             </summary>
         </member>
         <member name="F:BT_CSB_Tools.Logging.GuiLoggerAppender.MVVM.Model.GuiLogItemModel._answer">
@@ -1337,6 +1394,21 @@
         <member name="F:BT_CSB_Tools.Logging.GuiLoggerAppender.MVVM.Model.GuiLogItemModel._progressBarVisibility">
             <summary>
             The progressbar visibility
+            </summary>
+        </member>
+        <member name="F:BT_CSB_Tools.Logging.GuiLoggerAppender.MVVM.Model.GuiLogItemModel._textBlockVisibility">
+            <summary>
+            The textblock visibility
+            </summary>
+        </member>
+        <member name="F:BT_CSB_Tools.Logging.GuiLoggerAppender.MVVM.Model.GuiLogItemModel._rowDetailsVisible">
+            <summary>
+            The row details visibility
+            </summary>
+        </member>
+        <member name="F:BT_CSB_Tools.Logging.GuiLoggerAppender.MVVM.Model.GuiLogItemModel._toggleButtonVisible">
+            <summary>
+            The row details visibility
             </summary>
         </member>
         <member name="P:BT_CSB_Tools.Logging.GuiLoggerAppender.MVVM.Model.GuiLogItemModel.Answer">
@@ -1420,7 +1492,7 @@
             The _testcaseIsRunning field backing the TestcaseIsRunning property.
             </summary>
         </member>
-        <member name="F:BT_CSB_Tools.Logging.GuiLoggerAppender.MVVM.ViewModel.GuiLogViewModel._progressBarItem">
+        <member name="F:BT_CSB_Tools.Logging.GuiLoggerAppender.MVVM.ViewModel.GuiLogViewModel._progressBarItems">
             <summary>
             The last progressbar item
             </summary>
@@ -1443,11 +1515,6 @@
             This method executes the PropertyChanged-Event with the name of the property
             The sender of the event
             The string of the property whichs value changed
-        </member>
-        <member name="E:BT_CSB_Tools.Logging.GuiLoggerAppender.MVVM.ViewModel.GuiLogViewModel.PropertyChanged">
-            <summary>
-            The property changed.
-            </summary>
         </member>
         <member name="P:BT_CSB_Tools.Logging.GuiLoggerAppender.MVVM.ViewModel.GuiLogViewModel.GuiLogItems">
             <summary>
@@ -1477,6 +1544,11 @@
         <member name="P:BT_CSB_Tools.Logging.GuiLoggerAppender.MVVM.ViewModel.GuiLogViewModel.TestcaseIsRunning">
             <summary>
             Gets or sets a value indicating whether  the TestcaseIsRunning.
+            </summary>
+        </member>
+        <member name="E:BT_CSB_Tools.Logging.GuiLoggerAppender.MVVM.ViewModel.GuiLogViewModel.PropertyChanged">
+            <summary>
+            The property changed.
             </summary>
         </member>
         <member name="T:BT_CSB_Tools.Logging.GuiLoggerAppender.MVVM.ViewModel.GuiLogViewModel.NotifyPropertyChangedDeleagte">
@@ -2061,6 +2133,30 @@
             <remarks/>
         </member>
         <member name="P:BT_CSB_Tools.Parser.FlConfig.flconfigDevicelistDevice.ecnuri">
+            <remarks/>
+        </member>
+        <member name="T:BT_CSB_Tools.Parser.FlConfig.flconfigDevicelistDeviceHWSignallistSignal">
+            <remarks/>
+        </member>
+        <member name="P:BT_CSB_Tools.Parser.FlConfig.flconfigDevicelistDeviceHWSignallistSignal.name">
+            <remarks/>
+        </member>
+        <member name="P:BT_CSB_Tools.Parser.FlConfig.flconfigDevicelistDeviceHWSignallistSignal.datatype">
+            <remarks/>
+        </member>
+        <member name="P:BT_CSB_Tools.Parser.FlConfig.flconfigDevicelistDeviceHWSignallistSignal.comment">
+            <remarks/>
+        </member>
+        <member name="P:BT_CSB_Tools.Parser.FlConfig.flconfigDevicelistDeviceHWSignallistSignal.arraysize">
+            <remarks/>
+        </member>
+        <member name="P:BT_CSB_Tools.Parser.FlConfig.flconfigDevicelistDeviceHWSignallistSignal.alias">
+            <remarks/>
+        </member>
+        <member name="P:BT_CSB_Tools.Parser.FlConfig.flconfigDevicelistDeviceHWSignallistSignal.defaultvalue">
+            <remarks/>
+        </member>
+        <member name="P:BT_CSB_Tools.Parser.FlConfig.flconfigDevicelistDeviceHWSignallistSignal.offset">
             <remarks/>
         </member>
         <member name="T:BT_CSB_Tools.Parser.FlConfig.flconfigDevicelistDeviceBusinterfacelistBusinterface">
@@ -3051,31 +3147,6 @@
               ALSO use only names, that do not c [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
              </summary>
         </member>
-        <member name="T:BT_CSB_Tools.SignalPoolGenerator.Clients.ERtSimClientWrapperErrorCodes">
-            <summary>
-            The e rt sim client wrapper error codes.
-            </summary>
-        </member>
-        <member name="F:BT_CSB_Tools.SignalPoolGenerator.Clients.ERtSimClientWrapperErrorCodes.Ok">
-            <summary>
-            No error, everything is fine!
-            </summary>
-        </member>
-        <member name="F:BT_CSB_Tools.SignalPoolGenerator.Clients.ERtSimClientWrapperErrorCodes.Unknown">
-            <summary>
-            An unknown error/exception occured.
-            </summary>
-        </member>
-        <member name="F:BT_CSB_Tools.SignalPoolGenerator.Clients.ERtSimClientWrapperErrorCodes.CouldNotConnect">
-            <summary>
-            The could not connect.
-            </summary>
-        </member>
-        <member name="F:BT_CSB_Tools.SignalPoolGenerator.Clients.ERtSimClientWrapperErrorCodes.IsNotConnected">
-            <summary>
-            The is not connected.
-            </summary>
-        </member>
         <member name="T:BT_CSB_Tools.SignalPoolGenerator.Clients.IClient">
             <summary>
             The Client interface.
@@ -3303,6 +3374,11 @@
             returns a status which is indicates the client state.
             </summary>
         </member>
+        <member name="P:BT_CSB_Tools.SignalPoolGenerator.Clients.IClient.Info">
+            <summary>h
+            return a status object of the client, which is bindable for the tcr.
+            </summary>
+        </member>
         <member name="P:BT_CSB_Tools.SignalPoolGenerator.Clients.IClient.Logger">
             <summary>
             returns or sets the logger of the c# test bench
@@ -3323,6 +3399,11 @@
             get a boolean indicating if its a dummy client
             </summary>
         </member>
+        <member name="P:BT_CSB_Tools.SignalPoolGenerator.Clients.IClient.IsEnabled">
+            <summary>
+            get a boolean indicating if its enabled
+            </summary>
+        </member>
         <member name="P:BT_CSB_Tools.SignalPoolGenerator.Clients.IClient.Type">
             <summary>
             get a string showing the underlying client type
@@ -3331,6 +3412,16 @@
         <member name="P:BT_CSB_Tools.SignalPoolGenerator.Clients.IClient.IsTraceable">
             <summary>
             get a boolean indicating if client is capable for signal tracing
+            </summary>
+        </member>
+        <member name="P:BT_CSB_Tools.SignalPoolGenerator.Clients.IClient.Parser">
+            <summary>
+            get the parser.
+            </summary>
+        </member>
+        <member name="P:BT_CSB_Tools.SignalPoolGenerator.Clients.IClient.Tag">
+            <summary>
+            get a tag object that could be anything
             </summary>
         </member>
         <member name="P:BT_CSB_Tools.SignalPoolGenerator.Clients.IClient.TryReadResult">
@@ -4330,6 +4421,23 @@
             The arrsize.
             </param>
         </member>
+        <member name="M:BT_CSB_Tools.SignalPoolGenerator.Signals.BaseSignal.AtomicOp(BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc.Is,System.Object,System.Double)">
+            <summary>
+            Returns a atomic object which is required for methods like WaitForSignal, waitforcondition and so on.
+            </summary>
+            <param name="condition"></param>
+            <param name="value"></param>
+            <param name="timeout"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BT_CSB_Tools.SignalPoolGenerator.Signals.BaseSignal.AtomicOp(System.Object,System.Double)">
+            <summary>
+            Returns a atomic object with a Is.Equal which is required for methods like WaitForSignal, WriteAtomic and so on.
+            </summary>
+            <param name="value"></param>
+            <param name="timeout"></param>
+            <returns></returns>
+        </member>
         <member name="M:BT_CSB_Tools.SignalPoolGenerator.Signals.BaseSignal.op_Equality(BT_CSB_Tools.SignalPoolGenerator.Signals.BaseSignal,System.Object)">
             <summary>
             The ==.
@@ -4639,6 +4747,20 @@
             The <see cref="T:System.Boolean"/>.
             </returns>
         </member>
+        <member name="M:BT_CSB_Tools.SignalPoolGenerator.Signals.BaseSignal.CheckSignalInRange(System.Object,System.Object,System.Double,System.Double,System.Int32)">
+            <summary>
+            Checks whether the specified signal is and stays in the given range
+            for the specified amount of time in the staticTimeout and at every
+            tick of the passed interval.
+            </summary>
+            <param name="min">The minimum value for the range that is to be checked.</param>
+            <param name="max">The maximum value for the range that is to be checked.</param>
+            <param name="timeout">The timeout. When do you want to stop verifying?</param>
+            <param name="staticTimeout">The timeout of the static edition check.</param>
+            <param name="interval">The interval: how often do you want to check per minute?</param>
+            <typeparam name="T"></typeparam>
+            <returns>TRUE if the signal is in range and did not change, otherwise false.</returns>
+        </member>
         <member name="M:BT_CSB_Tools.SignalPoolGenerator.Signals.BaseSignal.CheckStatic(System.Object,System.Double,System.Int32)">
             <summary>
             The check static.
@@ -4694,7 +4816,12 @@
             The <see cref="T:System.String"/>.
             </returns>
         </member>
-        <member name="M:BT_CSB_Tools.SignalPoolGenerator.Signals.BaseSignal.Reset(System.Boolean,System.Boolean)">
+        <member name="M:BT_CSB_Tools.SignalPoolGenerator.Signals.BaseSignal.Reset">
+            <summary>
+            Resets the signal
+            </summary>
+        </member>
+        <member name="M:BT_CSB_Tools.SignalPoolGenerator.Signals.BaseSignal.Reset(System.Boolean,System.Boolean,System.Boolean)">
             <summary>
             Resets the signal
             </summary>
@@ -4714,7 +4841,7 @@
         </member>
         <member name="M:BT_CSB_Tools.SignalPoolGenerator.Signals.BaseSignal.Subscribe(System.Int32)">
             <summary>
-            Ssubscribe the signal to the reading thread of the c# testbench
+            Subscribe the signal to the reading thread of the c# testbench
             </summary>
         </member>
         <member name="M:BT_CSB_Tools.SignalPoolGenerator.Signals.BaseSignal.Unsubscribe(System.Int32)">
@@ -4765,6 +4892,16 @@
         <member name="P:BT_CSB_Tools.SignalPoolGenerator.Signals.BaseSignal.LastValue">
             <summary>
             Gets the last value.
+            </summary>
+        </member>
+        <member name="P:BT_CSB_Tools.SignalPoolGenerator.Signals.BaseSignal.LastTime">
+            <summary>
+            Gets the time where the last value has changed
+            </summary>
+        </member>
+        <member name="P:BT_CSB_Tools.SignalPoolGenerator.Signals.BaseSignal.Logger">
+            <summary>
+            Gets the logger.
             </summary>
         </member>
         <member name="P:BT_CSB_Tools.SignalPoolGenerator.Signals.BaseSignal.ArraySize">
@@ -6114,7 +6251,7 @@
             WriteError out messages using the logging provider.
             </summary>
         </member>
-        <member name="F:BT_CSB_Tools.Logging.Log.counter">
+        <member name="F:BT_CSB_Tools.Logging.Log._counter">
             <summary>
             The counter.
             </summary>
@@ -6169,19 +6306,13 @@
             Thrown if the message is empty.
             </exception>
         </member>
-        <member name="M:BT_CSB_Tools.Logging.Log.TraceHeader(System.String)">
+        <member name="M:BT_CSB_Tools.Logging.Log.TraceHeader(System.String,System.Object[])">
             <summary>
             Gibt eine Überschrift in Fettschrift und Kursiv aus
             </summary>
             <param name="header">Der TraceText.</param>
         </member>
         <member name="M:BT_CSB_Tools.Logging.Log.TraceText(System.String,System.Object[])">
-            <summary>
-            Gibt einen TraceText aus
-            </summary>
-            <param name="text">der TraceText</param>
-        </member>
-        <member name="M:BT_CSB_Tools.Logging.Log.TraceInfo(System.String)">
             <summary>
             Gibt einen TraceText aus
             </summary>
@@ -6775,6 +6906,9 @@
         <member name="P:BT_CSB_Tools.Parser.RtsimConfig.rtsimconfigSig.alias">
             <remarks/>
         </member>
+        <member name="P:BT_CSB_Tools.Parser.RtsimConfig.rtsimconfigSig.aliases">
+            <remarks/>
+        </member>
         <member name="P:BT_CSB_Tools.Parser.RtsimConfig.rtsimconfigSig.Default">
             <remarks/>
         </member>
@@ -7331,7 +7465,7 @@
         </member>
         <member name="P:BT_CSB_Tools.SignalPoolGenerator.Clients.RTSimClientWrapper.RTSIMClient">
             <summary>
-            Gets the rtsim client.
+            Gets or sets the rtsim client.
             </summary>
         </member>
         <member name="P:BT_CSB_Tools.SignalPoolGenerator.Clients.RTSimClientWrapper.IP">

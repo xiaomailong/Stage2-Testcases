@@ -67,17 +67,18 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Default window in SR mode, Level 1 with MO03 symbol in sub-area C7.Verify the following information,(1)    Use the log file to confirm that DMI sends out packet [MMI_DRIVER_REQUEST (EVC-101)] with variable MMI_M_REQUEST = 7 (Start Override EOA (Pass stop))(2)   The Override window is closed, DMI displays Default window.(3)    Use the log file to confirm that DMI sends out packet [MMI_DRIVER_ACTION (EVC-152)] with the value of variable MMI_M_DRIVER_ACTION refer to sequence below,a)    MMI_M_DRIVER_ACTION = 14 (Override selected)
             Test Step Comment: (1) MMI_gen 151 (partly: MMI_M_REQUEST = 7);(2) MMI_gen 151 (partly: close opened menu);(3) MMI_gen 11470 (partly: Bit #14);
             */
-            DmiActions.ShowInstruction(this, "Press the ‘Override’ button, then press the ‘EOA’ button");
-
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = 255;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.No_window_specified;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.EOA;
+            EVC30_MMIRequestEnable.Send();
 
-            EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.StartOverrideEOA;
-            Wait_Realtime(300);
-            EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.StartOverrideEOA;
+            DmiActions.ShowInstruction(this, "Press the ‘Override’ button");
+            DmiActions.ShowInstruction(this, "Press the ‘EOA’ button");
 
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.OverrideSelected;
+            EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.StartOverrideEOA;
+            EVC2_MMIStatus.MMI_M_OVERRIDE_EOA = true;
+            EVC2_MMIStatus.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Override window and displays the Default window in SR mode, Level 1." + Environment.NewLine +
@@ -92,8 +93,20 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press the ‘Data view’ button");
 
             EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.StartTrainDataView;
-
-            //EVC13_MMIDataView.Send();
+            EVC13_MMIDataView.MMI_X_DRIVER_ID = "1234";
+            EVC13_MMIDataView.MMI_NID_OPERATION = 0xffffffff;
+            EVC13_MMIDataView.MMI_M_DATA_ENABLE = (Variables.MMI_M_DATA_ENABLE)0x0080;     // 128
+            EVC13_MMIDataView.MMI_L_TRAIN = 4096;
+            EVC13_MMIDataView.MMI_V_MAXTRAIN = 601;
+            EVC13_MMIDataView.MMI_M_BRAKE_PERC = 9;
+            EVC13_MMIDataView.MMI_NID_KEY_AXLE_LOAD = Variables.MMI_NID_KEY.FG4;       // 20
+            EVC13_MMIDataView.MMI_NID_RADIO = 0xffffffffffffffff;          // 4294967295 (= 0xffffffff) hi, 4294967295 (= 0xffffffff) lo
+            EVC13_MMIDataView.MMI_M_AIRTIGHT = 3;
+            EVC13_MMIDataView.MMI_NID_KEY_LOAD_GAUGE = Variables.MMI_NID_KEY.CATE5;
+            EVC13_MMIDataView.Trainset_Caption = "";
+            EVC13_MMIDataView.Network_Caption = "";
+            EVC13_MMIDataView.MMI_NID_KEY_TRAIN_CAT = Variables.MMI_NID_KEY.CATA;  // 21
+            EVC13_MMIDataView.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Default window and displays the Data view window.");

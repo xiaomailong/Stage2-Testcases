@@ -33,7 +33,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 18_7.tdg
     /// </summary>
-    public class Tunnel_stopping_area_track_condition : TestcaseBase
+    public class TC_ID_18_7_Tunnel_stopping_area_track_condition : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -93,10 +93,10 @@ namespace Testcase.DMITestCases
             EVC32_MMITrackConditions.MMI_Q_TRACKCOND_UPDATE = 0;
             EVC32_MMITrackConditions.TrackConditions = new List<TrackCondition>
                                                        { new TrackCondition
-                                                             { MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Non_Stopping_Area,
+                                                             { MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Tunnel_Stopping_Area,
                                                                MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea,
                                                                MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction,
-                                                               MMI_O_TRACKCOND_START = 4000
+                                                               MMI_O_TRACKCOND_START = 40000
                                                              } };
             EVC32_MMITrackConditions.Send();
 
@@ -135,7 +135,7 @@ namespace Testcase.DMITestCases
             /*
             Test Step 6
             Action: Perform action step4-5 for sub-area C3 and C4
-            Expected Result: See the expected result of step 4-5
+            Expected Result: See the expected result of step 4-5sy
             Test Step Comment: MMI_gen 9488 (partly: toggle, C3, C4);MMI_gen 9489 (partly: C3,C4);
             */
             // Repeat Step 4 for sub-area C3
@@ -147,6 +147,9 @@ namespace Testcase.DMITestCases
             // Repeat Step 5 for sub-area C3
             DmiActions.ShowInstruction(this, @"Press in sub-area C3");
 
+            // Re-send the tunnel stopping symbol
+            EVC32_MMITrackConditions.Send();
+            
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays symbol TC37 in sub-area C2." + Environment.NewLine +
                                 "2. The remaining distance = 150m (40000 - 25000 cm) is displayed in sub-area C4 (as in Step 2).");
@@ -159,6 +162,8 @@ namespace Testcase.DMITestCases
 
             // Repeat Step 5 for sub-area C4
             DmiActions.ShowInstruction(this, @"Press in sub-area C4");
+            // Re-send the tunnel stopping symbol
+            EVC32_MMITrackConditions.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays symbol TC37 in sub-area C2." + Environment.NewLine +
@@ -200,6 +205,8 @@ namespace Testcase.DMITestCases
 
             // Repeat Step 5 for sub-area C2
             DmiActions.ShowInstruction(this, @"Press in sub-area C2");
+            // Re-send the tunnel stopping symbol
+            EVC32_MMITrackConditions.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays symbol TC36 in sub-area C2.");
@@ -212,6 +219,8 @@ namespace Testcase.DMITestCases
 
             // Repeat Step 5 for sub-area C3
             DmiActions.ShowInstruction(this, @"Press in sub-area C3");
+            // Re-send the tunnel stopping symbol
+            EVC32_MMITrackConditions.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays symbol TC36 in sub-area C2.");
@@ -224,6 +233,8 @@ namespace Testcase.DMITestCases
 
             // Repeat Step 5 for sub-area C4
             DmiActions.ShowInstruction(this, @"Press in sub-area C4");
+            // Re-send the tunnel stopping symbol
+            EVC32_MMITrackConditions.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays symbol TC36 in sub-area C2.");
@@ -234,7 +245,15 @@ namespace Testcase.DMITestCases
             Expected Result: DMI display symbol TC36 with the remaining distance to tunnel stopping area is display in sub-area C4.Verify the following information,(1)   The remaining distance is show up to 5 digits with resolution 1m. Note: Use the equation in expected result no.4 of step 3 to verify the resolution.(2)  The colour of remaining distance is grey. (3)  The remaining distance is right aligned and vertically center
             Test Step Comment: (1) MMI_gen 9493 (partly: 5 digits with resolution 1m);(2) MMI_gen 9493 (partly: grey);(3) MMI_gen 9493 (partly: right aligned and vertically center);
             */
+            EVC32_MMITrackConditions.TrackConditions.Clear();
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 40000;
+            EVC32_MMITrackConditions.TrackConditions.Add(new TrackCondition
+                                                         {
+                                                            MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Tunnel_Stopping_Area,
+                                                            MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.InsideArea_Active,
+                                                            MMI_O_TRACKCOND_START = 30000
+                                                         });
+            EVC32_MMITrackConditions.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays symbol TC36 in sub-area C2." + Environment.NewLine +
@@ -249,7 +268,16 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 10476 (partly: more track condition with symbol TC37); 
             */
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 60000;
-
+            TrackCondition trackCondition = new TrackCondition
+            {
+                MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Tunnel_Stopping_Area,
+                MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea,
+                MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction /*,
+                                            MMI_O_TRACKCOND_START = 40000 */
+            };
+            EVC32_MMITrackConditions.TrackConditions = new List<TrackCondition> { trackCondition };
+            EVC32_MMITrackConditions.Send();
+       
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays symbol TC37 in sub-area C2 with a yellow flashing frame." + Environment.NewLine +
                                 "2. The remaining distance is not displayed in sub-area C4.");
@@ -274,6 +302,7 @@ namespace Testcase.DMITestCases
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 65000;
             
             DmiActions.Re_establish_communication_EVC_DMI(this);
+            EVC32_MMITrackConditions.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays symbol TC37 in sub-area C2.");
@@ -296,6 +325,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 10473 (partly: Note under MMI_gen 668);
             */
             DmiActions.Activate_Cabin_1(this);
+            EVC32_MMITrackConditions.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays symbol TC37 in sub-area C2.");

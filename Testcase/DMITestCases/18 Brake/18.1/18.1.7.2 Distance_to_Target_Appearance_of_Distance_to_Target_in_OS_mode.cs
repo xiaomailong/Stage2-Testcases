@@ -72,15 +72,23 @@ namespace Testcase.DMITestCases
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 0;       // just starting off
 
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.OnSight;
 
             EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 20;
             EVC1_MMIDynamic.MMI_V_TARGET_KMH = 15;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 10;
 
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 10000;       // 100m
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 259;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+            EVC8_MMIDriverMessage.Send();
 
-            DmiActions.ShowInstruction(this, "Press in sub-area C1 to acknowledge. Press on sub-area B to toggle the basic speed hook so that is is displayed");
+            DmiActions.ShowInstruction(this, "Press in sub-area C1 to acknowledge");
+
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.OnSight;
+
+            DmiActions.ShowInstruction(this, "Press on sub-area B to toggle the basic speed hook so that is is displayed");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Does the DMI delete the SR mode symbol (MO09) and replace it with the OS mode symbol (MO07) in area B7" + Environment.NewLine +

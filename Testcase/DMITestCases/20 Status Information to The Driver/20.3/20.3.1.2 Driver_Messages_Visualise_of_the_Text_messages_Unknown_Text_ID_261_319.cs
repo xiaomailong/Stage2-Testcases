@@ -605,7 +605,7 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                     "1. The text message ‘Fixed Text Message 304’ is displayed in area E5." + Environment.NewLine +
+                                     "1. The text message ‘Fixed Text Message 309’ is displayed in area E5." + Environment.NewLine +
                                      "2. No flashing frame is displayed" + Environment.NewLine +
                                      "3. No sound is played.");
 
