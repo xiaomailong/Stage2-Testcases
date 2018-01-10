@@ -27,118 +27,6 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
-        /// Check that the expected DMI-EVC telegram is received by confirming that SMDStat flag has been set
-        /// </summary>
-        /// <param name="pool"></param>
-        /// <param name="mmiMPacket"> Id of the telegram out of the DMI to check</param>
-        /// <param name="timeOut"> Time (in second) to spend checking that the telegram is received from telegram</param>
-        public static void DMItoEVC_Telegram_Received(SignalPool pool, DMItoEVCTelegram mmiMPacket, double timeOut)
-        {
-            var msgReceived = false;
-            var timeOutMs = timeOut * 1000; // time (in milliseconds) to check if the SMDStat flag is set
-
-            switch ((byte) mmiMPacket)
-            {
-                case 100:
-                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1StartMmi.WaitForCondition(Is.Equal, 1, timeOutMs, 100);
-                    break;
-                case 101:
-                    msgReceived =
-                        pool.SITR.SMDStat.CCUO.ETCS1DriverRequest.WaitForCondition(Is.Equal, 1, timeOutMs, 100);
-                    break;
-                case 102:
-                    break;
-                case 104:
-                    msgReceived =
-                        pool.SITR.SMDStat.CCUO.ETCS1NewDriverData.WaitForCondition(Is.Equal, 1, timeOutMs, 100);
-                    break;
-                case 106:
-                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1NewSrRules.WaitForCondition(Is.Equal, 1, timeOutMs, 100);
-                    break;
-                case 107:
-                    msgReceived =
-                        pool.SITR.SMDStat.CCUO.ETCS1NewTrainData.WaitForCondition(Is.Equal, 1, timeOutMs, 100);
-                    break;
-                case 109:
-                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1SetTimeMmi.WaitForCondition(Is.Equal, 1, timeOutMs, 100);
-                    break;
-                case 110:
-                    msgReceived =
-                        pool.SITR.SMDStat.CCUO.ETCS1ConfirmedTrainData.WaitForCondition(Is.Equal, 1, timeOutMs, 100);
-                    break;
-                case 111:
-                    msgReceived =
-                        pool.SITR.SMDStat.CCUO.ETCS1DriverMessageAck.WaitForCondition(Is.Equal, 1, timeOutMs, 100);
-                    break;
-                case 112:
-                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1NewRbcData.WaitForCondition(Is.Equal, 1, timeOutMs, 100);
-                    break;
-                case 116:
-                    msgReceived =
-                        pool.SITR.SMDStat.CCUO.ETCS1NewTrainNumber.WaitForCondition(Is.Equal, 1, timeOutMs, 100);
-                    break;
-                case 118:
-                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1NewSetVbc.WaitForCondition(Is.Equal, 1, timeOutMs, 100);
-                    break;
-                case 119:
-                    msgReceived =
-                        pool.SITR.SMDStat.CCUO.ETCS1NewRemoveVbc.WaitForCondition(Is.Equal, 1, timeOutMs, 100);
-                    break;
-                case 121:
-                    msgReceived = pool.SITR.SMDStat.CCUO.ETCS1NewLevel.WaitForCondition(Is.Equal, 1, timeOutMs, 100);
-                    break;
-                case 122:
-                    msgReceived =
-                        pool.SITR.SMDStat.CCUO.ETCS1NewLanguage.WaitForCondition(Is.Equal, 1, timeOutMs, 100);
-                    break;
-                case 123:
-                    msgReceived =
-                        pool.SITR.SMDStat.CCUO.ETCS1SpecificStmDataToStm.WaitForCondition(Is.Equal, 1, timeOutMs, 100);
-                    break;
-                case 128:
-                    msgReceived =
-                        pool.SITR.SMDStat.CCUO.ETCS1ConfirmedSetVbc.WaitForCondition(Is.Equal, 1, timeOutMs, 100);
-                    break;
-                case 129:
-                    msgReceived =
-                        pool.SITR.SMDStat.CCUO.ETCS1ConfirmedRemoveVbc.WaitForCondition(Is.Equal, 1, timeOutMs, 100);
-                    break;
-                case 140:
-                    msgReceived =
-                        pool.SITR.SMDStat.CCUO.ETCS1NewMaintenanceData.WaitForCondition(Is.Equal, 1, timeOutMs, 100);
-                    break;
-                case 141:
-                    msgReceived =
-                        pool.SITR.SMDStat.CCUO.ETCS1ConfirmedMaintenanceData.WaitForCondition(Is.Equal, 1, timeOutMs,
-                            100);
-                    break;
-                case 150:
-                    msgReceived =
-                        pool.SITR.SMDStat.CCUO.ETCS1NewBrakePercentage.WaitForCondition(Is.Equal, 1, timeOutMs, 100);
-                    break;
-                case 151:
-                    msgReceived =
-                        pool.SITR.SMDStat.CCUO.ETCS1ConfirmedBrakePercentage.WaitForCondition(Is.Equal, 1, timeOutMs,
-                            100);
-                    break;
-                case 152:
-                    msgReceived =
-                        pool.SITR.SMDStat.CCUO.ETCS1DriverAction.WaitForCondition(Is.Equal, 1, timeOutMs, 100);
-                    break;
-            }
-
-            if (msgReceived)
-            {
-                pool.TraceReport($"DMI->ETCS: EVC-{(byte) mmiMPacket}[{mmiMPacket.ToString()}] is received.");
-            }
-
-            else
-            {
-                pool.TraceError($"DMI->ETCS: EVC-{(byte) mmiMPacket}[{mmiMPacket.ToString()}] is NOT received.");
-            }
-        }
-
-        /// <summary>
         /// Used when TC is not needed since it tests the same interfaces as another test case.
         /// </summary>
         /// <param name="pool">The SignalPool</param>
@@ -1172,7 +1060,10 @@ namespace Testcase.DMITestCases
         {
             DmiActions.ShowInstruction(pool,
                 @"Enter the new value of Offset time. Then presses ‘Yes’ and closes the window");
-            DMItoEVC_Telegram_Received(pool, DMItoEVCTelegram.ETCS1SetTimeMmi, 1000);
+            //TODO
+            // Need to implement a flexible way to check for the time entered by the user.
+            // Use the below method with some clever trick.
+                //  EVC109_MMISetTimeMMI.Check_MMI_Set_Time(DateTime.Now,1);
         }
 
         /// <summary>
