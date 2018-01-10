@@ -46,20 +46,21 @@ namespace Testcase.Telegrams.DMItoEVC
                 if (_checkResult)
                 {
                     _pool.TraceReport($"{BaseString} - MMI_X_DRIVER_ID = {xDriverId}" + Environment.NewLine +
-                                        "Result = PASSED.");
+                                      "Result = PASSED.");
                 }
                 // Else display the real value extracted from EVC-104
                 else
                 {
-                    _pool.TraceError($"{BaseString} - MMI_X_DRIVER_ID = " + _pool.SITR.CCUO.ETCS1NewDriverData.MmiXDriverId.Value +
-                                        Environment.NewLine + "Result: FAILED");
+                    _pool.TraceError($"{BaseString} - MMI_X_DRIVER_ID = " +
+                                     _pool.SITR.CCUO.ETCS1NewDriverData.MmiXDriverId.Value +
+                                     Environment.NewLine + "Result: FAILED");
                 }
             }
             // Show generic DMI -> EVC telegram failure
             else
             {
                 DmiExpectedResults.DMItoEVC_Telegram_Not_Received(_pool, BaseString);
-            }           
+            }
         }
 
         /// <summary>
@@ -102,14 +103,14 @@ namespace Testcase.Telegrams.DMItoEVC
 
                 if (_pool.SITR.SMDStat.CCUO.ETCS1NewDriverData.WaitForCondition(Is.Equal, 1, 20000, 100))
                 {
-                    _xDriverId = _pool.SITR.CCUO.ETCS1NewDriverData.MmiXDriverId.Value;                   
-                    return _xDriverId;                   
+                    _xDriverId = _pool.SITR.CCUO.ETCS1NewDriverData.MmiXDriverId.Value;
+                    return _xDriverId;
                 }
                 else
                 {
                     DmiExpectedResults.DMItoEVC_Telegram_Not_Received(_pool, BaseString);
                     return null;
-                }                              
+                }
             }
         }
     }

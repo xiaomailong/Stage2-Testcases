@@ -58,7 +58,8 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            TraceInfo("This test case requires a DMI configuration change; See Precondition requirements. If this is not done manually, the test may fail!");
+            TraceInfo(
+                "This test case requires a DMI configuration change; See Precondition requirements. If this is not done manually, the test may fail!");
 
             /*
             Test Step 1
@@ -70,7 +71,7 @@ namespace Testcase.DMITestCases
             DmiActions.Set_Driver_ID(this, "1234");
             // Call generic Check Results Method
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                     "1. Is the Driver ID window displayed.");
+                                "1. Is the Driver ID window displayed.");
 
             /*
             Test Step 2
@@ -80,7 +81,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.Complete_SoM_L1_SR(this);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                     "1. Does the DMI show Staff Responsible Mode.");
+                                "1. Does the DMI show Staff Responsible Mode.");
 
 
             // Test Step 3
@@ -89,8 +90,8 @@ namespace Testcase.DMITestCases
             // Call Generic Method and Confirm result
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                     "1. Does the DMI show Full Supervision Mode." + Environment.NewLine +
-                     "2. Planning Area is displayed");
+                                "1. Does the DMI show Full Supervision Mode." + Environment.NewLine +
+                                "2. Planning Area is displayed");
 
 
             // Test Step 4
@@ -99,7 +100,7 @@ namespace Testcase.DMITestCases
             // Test Step Comment: MMI_gen 7102;
             // Call generic Check Results Method
             WaitForVerification("Touch main area D and please confirm:" + Environment.NewLine + Environment.NewLine +
-                    "1. Planning area is NOT displayed.");
+                                "1. Planning area is NOT displayed.");
 
             /*
             Test Step 5
@@ -120,8 +121,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             WaitForVerification("Touch main area D and please confirm:" + Environment.NewLine + Environment.NewLine +
-                        "1. Mode has changed to On Sight." + Environment.NewLine +
-                        "2. Planning Area is NOT displayed");
+                                "1. Mode has changed to On Sight." + Environment.NewLine +
+                                "2. Planning Area is NOT displayed");
 
             // Test Step 7
             // Action: End of test

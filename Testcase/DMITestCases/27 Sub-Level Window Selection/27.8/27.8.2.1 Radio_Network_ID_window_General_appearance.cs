@@ -114,27 +114,39 @@ namespace Testcase.DMITestCases
             EVC22_MMICurrentRBC.Send();
 
             DmiActions.ShowInstruction(this, "Press the ‘Radio Network ID’ button");
-            
+
             EVC22_MMICurrentRBC.MMI_NID_WINDOW = 9;
-            EVC22_MMICurrentRBC.NetworkCaptions = new List<string> { "GSMR-A", "GSMR-B" };
-            EVC22_MMICurrentRBC.DataElements = new List<DataElement> { new DataElement { Identifier = 0, QDataCheck = 23, EchoText = "23" },
-                                                                       new DataElement { Identifier = 1, QDataCheck = 24, EchoText = "24" } };
+            EVC22_MMICurrentRBC.NetworkCaptions = new List<string> {"GSMR-A", "GSMR-B"};
+            EVC22_MMICurrentRBC.DataElements = new List<DataElement>
+            {
+                new DataElement {Identifier = 0, QDataCheck = 23, EchoText = "23"},
+                new DataElement {Identifier = 1, QDataCheck = 24, EchoText = "24"}
+            };
             EVC22_MMICurrentRBC.Send();
 
 
-            WaitForVerification("Check the following (* indicates sub-areas drawn as one area):" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the Radio Network ID window with the title ‘Radio Network ID’." + Environment.NewLine +
-                                "2. The window is displayed as a half-grid array in areas D, F and G, with 3 layers." + Environment.NewLine +
+            WaitForVerification("Check the following (* indicates sub-areas drawn as one area):" + Environment.NewLine +
+                                Environment.NewLine +
+                                "1. DMI displays the Radio Network ID window with the title ‘Radio Network ID’." +
+                                Environment.NewLine +
+                                "2. The window is displayed as a half-grid array in areas D, F and G, with 3 layers." +
+                                Environment.NewLine +
                                 "3. Layer 0 comprises areas D, F, G, Y and Z." + Environment.NewLine +
-                                "4. Layer 1 comprises areas (A1 + A2 + A3)*, A4, B*, C1, (C2 + C3 + C4)*, C5, C6, C7, C8, C9, E1, E2, E3, E4, (E5 - E9)*." + Environment.NewLine +
+                                "4. Layer 1 comprises areas (A1 + A2 + A3)*, A4, B*, C1, (C2 + C3 + C4)*, C5, C6, C7, C8, C9, E1, E2, E3, E4, (E5 - E9)*." +
+                                Environment.NewLine +
                                 "5. Layer 2 comprises areas B3, B4, B5, B6, B7." + Environment.NewLine +
-                                "6. A data entry window containing one data input field in areas D, F and G." + Environment.NewLine +
-                                "7. The window displays an enabled ‘Close’ button (symbol NA11)." + Environment.NewLine +
+                                "6. A data entry window containing one data input field in areas D, F and G." +
+                                Environment.NewLine +
+                                "7. The window displays an enabled ‘Close’ button (symbol NA11)." +
+                                Environment.NewLine +
                                 "8. The input field is displayed in areas D and F." + Environment.NewLine +
                                 "9. The data input field only has a data part." + Environment.NewLine +
-                                "10. A dedicated keypad is displayed below the data input field." + Environment.NewLine +
-                                "11. Two Network ID buttons are displayed with labels ‘GSMR-A’ and ‘GSMR-B’." + Environment.NewLine +
-                                "12. All objects, text messages and buttons are displayed in the same layer." + Environment.NewLine +
+                                "10. A dedicated keypad is displayed below the data input field." +
+                                Environment.NewLine +
+                                "11. Two Network ID buttons are displayed with labels ‘GSMR-A’ and ‘GSMR-B’." +
+                                Environment.NewLine +
+                                "12. All objects, text messages and buttons are displayed in the same layer." +
+                                Environment.NewLine +
                                 "13. The Default window is not covering the current window.");
 
             /*
@@ -146,7 +158,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press and hold a key on the keypad");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                "1. The key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 "3. The data input field displays the text of the key in black on a Medium-grey background.");
 
@@ -158,11 +171,11 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Release the pressed key");
-            
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The key is displayed enabled." + Environment.NewLine +
                                 "2. The data input field displays the text of the key in black on a Medium-grey background.");
-            
+
             /*
             Test Step 7
             Action: Press and hold an input field
@@ -180,10 +193,12 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)    The state of an input field is changed to ‘Enabled, the border of button is shown without a sound
             Test Step Comment: (1) MMI_gen 9390 (partly: Radio Network ID window);
             */
-            DmiActions.ShowInstruction(this, "Whilst keeping the first data input field pressed, drag it out of its area");
+            DmiActions.ShowInstruction(this,
+                "Whilst keeping the first data input field pressed, drag it out of its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The first data input field is displayed enabled, with a border." + Environment.NewLine +
+                                "1. The first data input field is displayed enabled, with a border." +
+                                Environment.NewLine +
                                 "2. No sound is played.");
 
             /*
@@ -192,11 +207,12 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)    The state of an input field is changed to ‘Pressed’, the border of button is removed
             Test Step Comment: (1) MMI_gen 9390 (partly: Radio Network ID window);
             */
-            DmiActions.ShowInstruction(this, "Whilst keeping the first data input field pressed, drag it back inside its area");
+            DmiActions.ShowInstruction(this,
+                "Whilst keeping the first data input field pressed, drag it back inside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The first data input field is displayed pressed, without a border.");
-            
+
             /*
             Test Step 10
             Action: Release the pressed area
@@ -206,7 +222,7 @@ namespace Testcase.DMITestCases
             // ?? Confirm
             DmiActions.ShowInstruction(this, @"Release the first data input field");
 
-            EVC112_MMINewRbcData.MMI_NID_DATA = new List<byte> { 3 };
+            EVC112_MMINewRbcData.MMI_NID_DATA = new List<byte> {3};
             EVC112_MMINewRbcData.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_RBC_DATA.BTN_ENTER;
             EVC112_MMINewRbcData.MMI_NID_RBC = 6996969;
             EVC112_MMINewRbcData.CheckPacketContent();
@@ -222,7 +238,7 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Press ‘Radio Network ID’ button");
 
-            EVC22_MMICurrentRBC.Send();     // hopefully, the same as before
+            EVC22_MMICurrentRBC.Send(); // hopefully, the same as before
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field displays the value ‘GSMR-A’ for validation.");
@@ -235,7 +251,7 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, "Confirm the current data without re-entering the Radio Network ID");
 
-            EVC112_MMINewRbcData.MMI_NID_DATA = new List<byte> { 3 };
+            EVC112_MMINewRbcData.MMI_NID_DATA = new List<byte> {3};
             EVC112_MMINewRbcData.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_RBC_DATA.BTN_ENTER;
             EVC112_MMINewRbcData.MMI_NID_RBC = 6996969;
             EVC112_MMINewRbcData.CheckPacketContent();
@@ -250,7 +266,7 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Press ‘Radio Network ID’ button. Press the second key.");
 
-            EVC22_MMICurrentRBC.Send();     // hopefully, the same as before
+            EVC22_MMICurrentRBC.Send(); // hopefully, the same as before
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field displays the value ‘GSMR-B’.");
@@ -275,7 +291,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press the ‘Radio Network ID’ button");
 
             EVC22_MMICurrentRBC.MMI_NID_WINDOW = 9;
-            EVC22_MMICurrentRBC.NetworkCaptions = new List<string> { "GSMR-A", "GSMR-B" };
+            EVC22_MMICurrentRBC.NetworkCaptions = new List<string> {"GSMR-A", "GSMR-B"};
             EVC22_MMICurrentRBC.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -299,7 +315,7 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Press the ‘Radio Network ID’ button");
 
-            EVC22_MMICurrentRBC.Send();     // hopefully, the same as before
+            EVC22_MMICurrentRBC.Send(); // hopefully, the same as before
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Two keys are displayed on the keypad in the Radio Network ID window (for ‘GSMR-A’ and ‘GSMR-B’).");
@@ -326,7 +342,9 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
+
         #region Send_XML_22_8_2_1_DMI_Test_Specification
+
         enum msgType
         {
             typea,
@@ -339,7 +357,7 @@ namespace Testcase.DMITestCases
             switch (type)
             {
                 case msgType.typea:
-                    EVC22_MMICurrentRBC.NetworkCaptions = new List<string> { "GSMR-A", "GSMR-B" };
+                    EVC22_MMICurrentRBC.NetworkCaptions = new List<string> {"GSMR-A", "GSMR-B"};
                     break;
                 case msgType.typeb:
                     EVC22_MMICurrentRBC.NetworkCaptions.Clear();
@@ -347,6 +365,7 @@ namespace Testcase.DMITestCases
             }
             EVC22_MMICurrentRBC.Send();
         }
+
         #endregion
     }
 }

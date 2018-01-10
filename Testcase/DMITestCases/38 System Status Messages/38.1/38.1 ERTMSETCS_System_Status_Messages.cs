@@ -81,6 +81,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the display message in sub-area E5-E9 are correct refer to following message respectively,Balise read errorTrackside malfunctionCommunication errorEntering FSEntering OSSH refusedSH request failedTrackside not compatibleTrain data changedTrain is rejectedUnauthorized passing of EOA / LOANo MA received at level transitionSR distance exceededSH stop orderSR stop orderEmergency stopRV distance exceededNo Track DescriptionRoute unsuitable – axle load categoryRoute unsuitable – loading gaugeRoute unsuitable – traction systemRadio network registration failedNote: Use the <Up> and <Down> button to scroll the list of message in sub-area E5-E9
             Test Step Comment: MMI_gen 9522 (partly: Table 76);
             */
+
             #region Send_XML_35_1_DMI_Test_Specification
 
             EVC8_MMIDriverMessage.MMI_I_TEXT = 1;

@@ -87,7 +87,7 @@ namespace Testcase.DMITestCases
 
             EVC22_MMICurrentRBC.MMI_NID_WINDOW = 5;
             EVC22_MMICurrentRBC.Send();
-            
+
             DmiActions.ShowInstruction(this, @"Press the ‘RBC Data’ button in the RBC Contact window");
 
             EVC22_MMICurrentRBC.MMI_NID_WINDOW = 10;
@@ -129,17 +129,18 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Close_current_return_to_parent;
             EVC30_MMIRequestEnable.Send();
 
-            DmiActions.ShowInstruction(this, @"Press and hold the ‘Radio network ID’ button for at least 2 seconds, then release the button");
+            DmiActions.ShowInstruction(this,
+                @"Press and hold the ‘Radio network ID’ button for at least 2 seconds, then release the button");
 
             EVC22_MMICurrentRBC.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
             EVC22_MMICurrentRBC.MMI_NID_WINDOW = 9;
-            EVC22_MMICurrentRBC.NetworkCaptions = new List<string> { "Network 1" };
+            EVC22_MMICurrentRBC.NetworkCaptions = new List<string> {"Network 1"};
             EVC22_MMICurrentRBC.Send();
 
             XML_10_4_1_5_a_b(msgType.typea);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The hourglass symbol ST05 is displayed in the window title area.");
-            
+
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
             EVC8_MMIDriverMessage.Send();
             EVC30_MMIRequestEnable.SendBlank();
@@ -156,10 +157,12 @@ namespace Testcase.DMITestCases
             Action: End of test
             Expected Result: 
             */
-            
+
             return GlobalTestResult;
         }
+
         #region Send_XML_10_4_1_5_a_b_DMI_Test_Specification
+
         enum msgType
         {
             typea,
@@ -180,20 +183,20 @@ namespace Testcase.DMITestCases
             else if (type == msgType.typeb)
             {
                 EVC24_MMISystemInfo.MMI_NID_ENGINE_1 = 1234;
-                EVC24_MMISystemInfo.MMI_T_TIMEOUT_BRAKE = 0x5695224c;         // 1452614220
-                EVC24_MMISystemInfo.MMI_T_TIMEOUT_BTM = 0x54b3eecc;            // 1421078220
-                EVC24_MMISystemInfo.MMI_T_TIMEOUT_TBSW = 0x538b4d4c;           // 1401638220
-                EVC24_MMISystemInfo.MMI_M_ETC_VER = 0xffaa0f;                    // 16755215
-                EVC24_MMISystemInfo.MMI_M_AVAIL_SERVICES = 0xffff;             // 65535 
+                EVC24_MMISystemInfo.MMI_T_TIMEOUT_BRAKE = 0x5695224c; // 1452614220
+                EVC24_MMISystemInfo.MMI_T_TIMEOUT_BTM = 0x54b3eecc; // 1421078220
+                EVC24_MMISystemInfo.MMI_T_TIMEOUT_TBSW = 0x538b4d4c; // 1401638220
+                EVC24_MMISystemInfo.MMI_M_ETC_VER = 0xffaa0f; // 16755215
+                EVC24_MMISystemInfo.MMI_M_AVAIL_SERVICES = 0xffff; // 65535 
 
                 // Discrepancy betwee spec (config = 55)
-                EVC24_MMISystemInfo.MMI_M_BRAKE_CONFIG = 55;                   // 236 in xml
+                EVC24_MMISystemInfo.MMI_M_BRAKE_CONFIG = 55; // 236 in xml
                 EVC24_MMISystemInfo.MMI_M_LEVEL_INST = 248;
 
                 EVC24_MMISystemInfo.Send();
             }
         }
-        #endregion
 
+        #endregion
     }
 }

@@ -114,7 +114,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press the ‘Main’ button");
 
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;  
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;
             EVC30_MMIRequestEnable.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -133,13 +133,16 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the TAF Question box in area D, (partly) covering the Main window." + Environment.NewLine +
-                                "2. The TAF Question has a Question part to the left of an Answer part." + Environment.NewLine +
-                                "3. The symbol DR02 is displayed centred in the Question part." + 
+                                "1. DMI displays the TAF Question box in area D, (partly) covering the Main window." +
+                                Environment.NewLine +
+                                "2. The TAF Question has a Question part to the left of an Answer part." +
+                                Environment.NewLine +
+                                "3. The symbol DR02 is displayed centred in the Question part." +
                                 "4. The Question part background is Dark-grey." + Environment.NewLine +
                                 "5. A black ‘Yes’ label is displayed in the Answer part." + Environment.NewLine +
                                 "6. The Answer part background is Medium-grey." + Environment.NewLine +
-                                "7. The Main window is in the background and area D has a blank background." + Environment.NewLine +
+                                "7. The Main window is in the background and area D has a blank background." +
+                                Environment.NewLine +
                                 "8. Area G displays the content of the Default window" + Environment.NewLine +
                                 "9. Area F is displayed in the foreground with its buttons" + Environment.NewLine +
                                 "10. Both the Question and Answer parts have a Medium-grey border");
@@ -241,10 +244,12 @@ namespace Testcase.DMITestCases
             Action: End of test
             Expected Result: 
             */
-            
+
             return GlobalTestResult;
         }
+
         #region Send_XML_16_1_DMI_Test_Specification
+
         private void XML_16_1()
         {
             // Step 2/1
@@ -255,6 +260,7 @@ namespace Testcase.DMITestCases
 
             EVC8_MMIDriverMessage.Send();
         }
+
         #endregion
     }
 }

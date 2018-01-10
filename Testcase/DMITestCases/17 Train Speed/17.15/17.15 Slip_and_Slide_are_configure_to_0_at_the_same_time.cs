@@ -61,7 +61,7 @@ namespace Testcase.DMITestCases
             // Testcase entrypoint
             TraceInfo("This test case requires an ATP configuration change - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");
-            
+
             /*
             Test Step 1
             Action: Driver the train forward
@@ -125,7 +125,9 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
+
         #region Send_XML_12_15_DMI_Test_Specification
+
         enum msgType
         {
             typea,
@@ -142,7 +144,7 @@ namespace Testcase.DMITestCases
             {
                 EVC1_MMIDynamic.MMI_M_SLIDE = 0;
                 EVC1_MMIDynamic.MMI_M_SLIP = 1;
-                EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring;   // 0
+                EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring; // 0
                 EVC1_MMIDynamic.MMI_A_TRAIN = 0;
                 EVC1_MMIDynamic.MMI_V_TRAIN = 3888;
                 EVC1_MMIDynamic.MMI_V_TARGET = 1111;
@@ -151,13 +153,12 @@ namespace Testcase.DMITestCases
                 EVC1_MMIDynamic.MMI_O_BRAKETARGET = 0;
                 EVC1_MMIDynamic.MMI_O_IML = 0;
                 EVC1_MMIDynamic.MMI_V_INTERVENTION = 0;
-
             }
             else if (type == msgType.typeb)
             {
                 EVC1_MMIDynamic.MMI_M_SLIDE = 1;
                 EVC1_MMIDynamic.MMI_M_SLIP = 0;
-                EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring;   // 0
+                EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring; // 0
                 EVC1_MMIDynamic.MMI_A_TRAIN = 0;
                 EVC1_MMIDynamic.MMI_V_TRAIN = 3888;
                 EVC1_MMIDynamic.MMI_V_TARGET = 1111;
@@ -166,13 +167,12 @@ namespace Testcase.DMITestCases
                 EVC1_MMIDynamic.MMI_O_BRAKETARGET = 0;
                 EVC1_MMIDynamic.MMI_O_IML = 0;
                 EVC1_MMIDynamic.MMI_V_INTERVENTION = 0;
-
             }
             else if (type == msgType.typec)
             {
                 EVC1_MMIDynamic.MMI_M_SLIDE = 1;
                 EVC1_MMIDynamic.MMI_M_SLIP = 1;
-                EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring;   // 0
+                EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring; // 0
                 EVC1_MMIDynamic.MMI_A_TRAIN = 0;
                 EVC1_MMIDynamic.MMI_V_TRAIN = 3888;
                 EVC1_MMIDynamic.MMI_V_TARGET = 1111;
@@ -183,7 +183,7 @@ namespace Testcase.DMITestCases
                 EVC1_MMIDynamic.MMI_V_INTERVENTION = 0;
             }
         }
-        #endregion
 
+        #endregion
     }
 }

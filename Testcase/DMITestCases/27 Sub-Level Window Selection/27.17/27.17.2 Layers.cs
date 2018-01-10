@@ -46,7 +46,6 @@ namespace Testcase.DMITestCases
 
             // System is power on.
             DmiActions.Start_ATP();
-
         }
 
         public override void PostExecution()
@@ -61,7 +60,7 @@ namespace Testcase.DMITestCases
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint
-            
+
             /*
             Test Step 1
             Action: Activate cabin A
@@ -81,7 +80,7 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.Send();
 
             EVC14_MMICurrentDriverID.MMI_X_DRIVER_ID = "4444";
-            EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE = (EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE_BUTTONS)0;
+            EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE = (EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE_BUTTONS) 0;
             EVC14_MMICurrentDriverID.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
             EVC14_MMICurrentDriverID.Send();
 
@@ -97,10 +96,13 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, "Enter ‘1234’ for the Driver ID");
 
-            WaitForVerification("Check the following (* indicates sub-areas drawn as one area):" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the Driver ID window with 3 layers as a half-grid array." + Environment.NewLine +
+            WaitForVerification("Check the following (* indicates sub-areas drawn as one area):" + Environment.NewLine +
+                                Environment.NewLine +
+                                "1. DMI displays the Driver ID window with 3 layers as a half-grid array." +
+                                Environment.NewLine +
                                 "2. Layer 0 is displayed in areas D, F and G." + Environment.NewLine +
-                                "3. Layer 1 is displayed in areas A1, (A2 + A3)*, A4, B*, C1, (C2 + C3 + C4)*, C5, C6, C7, C8, C9, E1, E2, E3, E4, (E5 - E9)*." + Environment.NewLine +
+                                "3. Layer 1 is displayed in areas A1, (A2 + A3)*, A4, B*, C1, (C2 + C3 + C4)*, C5, C6, C7, C8, C9, E1, E2, E3, E4, (E5 - E9)*." +
+                                Environment.NewLine +
                                 "4. Layer 2 is displayed in areas B3, B4, B5, B6, B7." + Environment.NewLine +
                                 "5. Refer to DMI_RS_ETCS_R4.docx for the presentation of the window.");
             /*
@@ -108,7 +110,8 @@ namespace Testcase.DMITestCases
             Action: Confirm the Driver ID and perform brake test
             Expected Result: DMI displays the message ‘Brake test in progress’
             */
-            DmiActions.ShowInstruction(this, "Confirm the Driver ID by pressing in the data input field, then press the ‘Brake test’ button");
+            DmiActions.ShowInstruction(this,
+                "Confirm the Driver ID by pressing in the data input field, then press the ‘Brake test’ button");
 
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 2;

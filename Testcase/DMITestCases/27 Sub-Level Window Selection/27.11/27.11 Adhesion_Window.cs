@@ -18,7 +18,6 @@ using Testcase.Telegrams.DMItoEVC;
 using static Testcase.Telegrams.EVCtoDMI.Variables;
 
 
-
 namespace Testcase.DMITestCases
 {
     /// <summary>
@@ -47,7 +46,6 @@ namespace Testcase.DMITestCases
 
             // Test system is powered ONCabin is activeSoM is completed in SR mode, Level 1
             DmiActions.Complete_SoM_L1_SR(this);
-
         }
 
         public override void PostExecution()
@@ -86,19 +84,28 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Press the ‘Adhesion’ button");
 
-            WaitForVerification("Check the following (* indicates sub-areas drawn as one area):" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the Adhesion window as a half-grid array in the right half of the window with 3 layers, with the title ‘Adhesion’." + Environment.NewLine +
+            WaitForVerification("Check the following (* indicates sub-areas drawn as one area):" + Environment.NewLine +
+                                Environment.NewLine +
+                                "1. DMI displays the Adhesion window as a half-grid array in the right half of the window with 3 layers, with the title ‘Adhesion’." +
+                                Environment.NewLine +
                                 "2. Layer 0 is displayed in areas D, F, G, Y and Z." + Environment.NewLine +
-                                "3. Layer 1 is displayed in areas A1, (A2 + A3)*, A4, B*, C1, (C2 + C3 + C4)*, C5, C6, C7, C8, C9, E1, E2, E3, E4, (E5 - E9)*." + Environment.NewLine +
-                                "4. Layer 2 is displayed in areas B3, B4, B5, B6, B7."  + 
-                                "5. A data entry window (containing one data input field) covers areas D, F and G." + Environment.NewLine +
-                                "6. The Adhesion window also contains an enabled Close button (symbol NA11)" + Environment.NewLine +
+                                "3. Layer 1 is displayed in areas A1, (A2 + A3)*, A4, B*, C1, (C2 + C3 + C4)*, C5, C6, C7, C8, C9, E1, E2, E3, E4, (E5 - E9)*." +
+                                Environment.NewLine +
+                                "4. Layer 2 is displayed in areas B3, B4, B5, B6, B7." +
+                                "5. A data entry window (containing one data input field) covers areas D, F and G." +
+                                Environment.NewLine +
+                                "6. The Adhesion window also contains an enabled Close button (symbol NA11)" +
+                                Environment.NewLine +
                                 "7. A data input field is displayed in areas D and F." + Environment.NewLine +
-                                "8. The Adhesion window displays one data input field with only a data part." + Environment.NewLine +
-                                "9  The Adhesion window displays a dedicated keypad with ‘Non slippery rail’ and ‘Slippery rail’ keys." + Environment.NewLine +
+                                "8. The Adhesion window displays one data input field with only a data part." +
+                                Environment.NewLine +
+                                "9  The Adhesion window displays a dedicated keypad with ‘Non slippery rail’ and ‘Slippery rail’ keys." +
+                                Environment.NewLine +
                                 "10. The keypad is displayed below the data input field." + Environment.NewLine +
-                                "11. Objects, text messages and buttons can be displayed in several levels. Within a level they are allocated to areas." + Environment.NewLine +
-                                "12. All objects, text messages and buttons are displayed in the same layer." + Environment.NewLine +
+                                "11. Objects, text messages and buttons can be displayed in several levels. Within a level they are allocated to areas." +
+                                Environment.NewLine +
+                                "12. All objects, text messages and buttons are displayed in the same layer." +
+                                Environment.NewLine +
                                 "13.  The Default window not displayed covering the current window.");
 
             /*
@@ -110,17 +117,21 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘Non slippery rail’ key on the dedicated keypad");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘Non slippery rail’ key is displayed pressed and immediately displayed enabled." + Environment.NewLine +
+                                @"1. The ‘Non slippery rail’ key is displayed pressed and immediately displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The data input field displays ‘Non slippery rail’ in black on a Medium-grey background." + Environment.NewLine +
+                                "3. The data input field displays ‘Non slippery rail’ in black on a Medium-grey background." +
+                                Environment.NewLine +
                                 "4. The data input field is used to display the adhesion status.");
 
             DmiActions.ShowInstruction(this, @"Press and hold the ‘Slippery rail’ key on the dedicated keypad");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘Slippery rail’ key is displayed pressed and immediately displayed enabled." + Environment.NewLine +
+                                @"1. The ‘Slippery rail’ key is displayed pressed and immediately displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The data input field displays ‘Slippery rail’ in black on a Medium-grey background." + Environment.NewLine +
+                                "3. The data input field displays ‘Slippery rail’ in black on a Medium-grey background." +
+                                Environment.NewLine +
                                 "4. The data input field is used to display the adhesion status.");
             /*
             Test Step 4
@@ -142,9 +153,10 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Select the ‘Slippery rail’ key and confirm the value");
 
             EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.SetAdhesionCoefficientToSlipperyRail;
-            
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI closes the Adhesion window and displays the Special window." + Environment.NewLine +
+                                "1. DMI closes the Adhesion window and displays the Special window." +
+                                Environment.NewLine +
                                 "2. DMI displays the adhesion symbol ST02 in sub-area A4");
 
             /*
@@ -173,7 +185,8 @@ namespace Testcase.DMITestCases
             EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.RestoreAdhesionCoefficientToNonSlipperyRail;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI closes the Adhesion window and displays the Special window." + Environment.NewLine +
+                                "1. DMI closes the Adhesion window and displays the Special window." +
+                                Environment.NewLine +
                                 "2. DMI does not display the adhesion symbol ST02");
 
             /*
@@ -197,7 +210,8 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,Use the log file to confirm that DMI sends out the packet [MMI_DRIVER_REQUEST (EVC-101)] with variable [MMI_DRIVER_REQUEST (EVC-101).MMI_Q_BUTTON] =  1 and MMI_T_BUTTONEVENT is not blank.The sound ‘Click’ played once
             Test Step Comment: (1) MMI_gen 11449-1 (THR) (partly: MMI_gen 11387 (partly: send events of Pressed independently to ETCS, MMI_gen 11907 (partly: EVC-101, timestamp))); MMI_gen 3375;(2) MMI_gen 11449-1 (THR) (partly: up-type button, MMI_gen 4381 (partly: the sound for Up-Type button), MMI_gen 9512, MMI_gen 968);
             */
-            DmiActions.ShowInstruction(this, @"Select the ‘Non Slippery rail’ key, then press and hold the data input field");
+            DmiActions.ShowInstruction(this,
+                @"Select the ‘Non Slippery rail’ key, then press and hold the data input field");
 
             // This will not work: DMI only sends the packet when the button has been released
             //EVC101_MMIDriverRequest.CheckMRequestPressed = MMI_M_REQUEST.RestoreAdhesionCoefficientToNonSlipperyRail;
@@ -222,7 +236,8 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,No sound ‘Click’ is played
             Test Step Comment: (1) MMI_gen 11449-1 (THR) (partly: safe-up type, MMI_gen 11387 (partly: button Up-Type, MMI_gen 4382 (partly: when slide back, no sound)));
             */
-            DmiActions.ShowInstruction(this, @"Whilst keeping the data input field pressed, drag it back inside its area");
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the data input field pressed, drag it back inside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. No sound is played.");
@@ -236,7 +251,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Release the data input field");
 
             EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.RestoreAdhesionCoefficientToNonSlipperyRail;
-           
+
             /*
             Test Step 13
             Action: Press the ‘Adhesion’ button.Then, press the ‘Close’ button

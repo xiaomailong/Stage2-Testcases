@@ -132,7 +132,7 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI stops displaying the message ‘2 - Brakes are not operated’ in sub-area E5 with a yellow flashing frame surrounding sub-areas (E5+E6+E7+E8+E9).");
-            
+
             /*
             Test Step 7
             Action: End of test
@@ -143,6 +143,7 @@ namespace Testcase.DMITestCases
         }
 
         #region Send_XML_6_7_DMI_Test_Specification
+
         private void XML_6_7()
         {
             // STM-38 parts??
@@ -159,8 +160,9 @@ namespace Testcase.DMITestCases
             */
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                      "1. DMI displays the message ‘2 - Brakes are not operated’ in sub-area E5 with a yellow flashing frame surrounding sub-areas (E5+E6+E7+E8+E9)." + Environment.NewLine +
-                                      "2. ‘Sinfo’ sound is not played.");
+                                "1. DMI displays the message ‘2 - Brakes are not operated’ in sub-area E5 with a yellow flashing frame surrounding sub-areas (E5+E6+E7+E8+E9)." +
+                                Environment.NewLine +
+                                "2. ‘Sinfo’ sound is not played.");
 
             Wait_Realtime(5000);
 
@@ -172,8 +174,9 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                      "1. After 5s, DMI displays the message ‘Communication error’ in sub-area E5 with a yellow flashing frame surrounding sub-areas (E5+E6+E7+E8+E9)." + Environment.NewLine +
-                                      "2. ‘Sinfo’ sound is played once.");
+                                "1. After 5s, DMI displays the message ‘Communication error’ in sub-area E5 with a yellow flashing frame surrounding sub-areas (E5+E6+E7+E8+E9)." +
+                                Environment.NewLine +
+                                "2. ‘Sinfo’ sound is played once.");
 
             Wait_Realtime(5000);
 
@@ -189,8 +192,9 @@ namespace Testcase.DMITestCases
             */
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                      "1. After 5s, DMI displays the message ‘4 - Brake feedback fault’ in sub-area E5 with a yellow flashing frame surrounding sub-areas (E5+E6+E7+E8+E9)." + Environment.NewLine +
-                                      "2. ‘Sinfo’ sound is not played.");
+                                "1. After 5s, DMI displays the message ‘4 - Brake feedback fault’ in sub-area E5 with a yellow flashing frame surrounding sub-areas (E5+E6+E7+E8+E9)." +
+                                Environment.NewLine +
+                                "2. ‘Sinfo’ sound is not played.");
 
             Wait_Realtime(5000);
 
@@ -199,11 +203,11 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.MMI_I_TEXT = 4;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                      "1. After 5s, DMI displays the message ‘Train divided’ in sub-area E5 with a yellow flashing frame surrounding sub-areas (E5+E6+E7+E8+E9)." + Environment.NewLine +
-                                      "2. ‘Sinfo’ sound is played once.");
-
-
+                                "1. After 5s, DMI displays the message ‘Train divided’ in sub-area E5 with a yellow flashing frame surrounding sub-areas (E5+E6+E7+E8+E9)." +
+                                Environment.NewLine +
+                                "2. ‘Sinfo’ sound is played once.");
         }
+
         #endregion
     }
 }

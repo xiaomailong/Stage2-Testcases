@@ -80,8 +80,10 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SR mode, Level 1" + Environment.NewLine +
-                                "2. The local time is displayed in sub-area G13 in hh:mm:ss format." + Environment.NewLine +
-                                "3. Local time is displayed on one line in grey on a Dark-blue background." + Environment.NewLine +
+                                "2. The local time is displayed in sub-area G13 in hh:mm:ss format." +
+                                Environment.NewLine +
+                                "3. Local time is displayed on one line in grey on a Dark-blue background." +
+                                Environment.NewLine +
                                 "4. The colons in the time are displayed flashing (shown/hidden).");
 
             /*

@@ -1,5 +1,7 @@
 ﻿#region usings
+
 using CL345;
+
 #endregion
 
 namespace Testcase.Telegrams.EVCtoDMI
@@ -59,7 +61,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// 10 = "DMI reboot. Indication error"
         /// 11..255 = "Spare"
         /// </summary>
-        public enum EVC0Type: byte
+        public enum EVC0Type : byte
         {
             VersionInfo = 0,
             GoToIdle = 1,

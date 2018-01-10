@@ -1,8 +1,10 @@
 ﻿#region usings
+
 using CL345;
 using System;
 using System.Collections.Generic;
 using System.Text;
+
 #endregion
 
 namespace Testcase.Telegrams.EVCtoDMI
@@ -28,9 +30,9 @@ namespace Testcase.Telegrams.EVCtoDMI
         private const int MaximumPacketLength = BasicPacketLength +
                                                 StmMaximumIterations *
                                                 (StmXValueMaximumLength + StmCaptionMaximumLength +
-                                                    4 * sizeof(ushort) + 2 * sizeof(byte) +
-                                                    StmXValueMaximumIterations *
-                                                    (StmPickupXValueMaximumLength + sizeof(ushort)));
+                                                 4 * sizeof(ushort) + 2 * sizeof(byte) +
+                                                 StmXValueMaximumIterations *
+                                                 (StmPickupXValueMaximumLength + sizeof(ushort)));
 
         public class EVC25_StmData
         {
@@ -61,14 +63,14 @@ namespace Testcase.Telegrams.EVCtoDMI
 
         private static uint FindPacketSize()
         {
-            int sizeCalculated = BasicPacketLength;       // Up to MMI_N_ITER
+            int sizeCalculated = BasicPacketLength; // Up to MMI_N_ITER
 
             foreach (var stmElement in StmData)
             {
                 // MMI_NTC + MMI_STM_NID_DATA + MMI_EVC_ATTRIBUTE + MMI_L_CAPTION + MMI_L_VALUE 
                 sizeCalculated += (2 * sizeof(byte)) + (2 * sizeof(ushort));
-                
-                                    //MMI_STM_X_CAPTION[k] chars MMI_STM_X_VALUE chars
+
+                //MMI_STM_X_CAPTION[k] chars MMI_STM_X_VALUE chars
                 sizeCalculated += (stmElement.stmCaption.Length + stmElement.stmXValue.Length) * sizeof(byte);
 
                 // MMI_N_ITER2
@@ -76,12 +78,12 @@ namespace Testcase.Telegrams.EVCtoDMI
 
                 for (int l = 0; l < stmElement.stmPickupList.Count; l++)
                 {
-                                        // MMI_STM_L_VALUE[l] + MMI_STM_X_VALUE chars.
+                    // MMI_STM_L_VALUE[l] + MMI_STM_X_VALUE chars.
                     sizeCalculated += sizeof(ushort) + (stmElement.stmPickupList[l].Length * sizeof(byte));
                 }
             }
 
-            return (uint)sizeCalculated;
+            return (uint) sizeCalculated;
         }
 
         /// <summary>
@@ -91,7 +93,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         {
             _pool.SITR.ETCS1.SpecificStmDeRequest.EVC25alias1.Value = _evc25Alias1;
 
-            ushort numberOfDataUnits = (ushort)StmData.Count;
+            ushort numberOfDataUnits = (ushort) StmData.Count;
 
             // Limit number of data units to 5
             if (numberOfDataUnits > 5)
@@ -158,10 +160,10 @@ namespace Testcase.Telegrams.EVCtoDMI
 
                 for (int l = 0; l < caption.Length; l++)
                 {
-                        requestName = $"{tagName2}{l.ToString("00")}_MmiStmXCaption";
+                    requestName = $"{tagName2}{l.ToString("00")}_MmiStmXCaption";
 
-                        _pool.SITR.Client.Write(requestName, caption[l]);
-                        totalSizeCounter += sizeof(byte);
+                    _pool.SITR.Client.Write(requestName, caption[l]);
+                    totalSizeCounter += sizeof(byte);
                 }
 
                 var xValue = StmData[k].stmXValue.ToCharArray();
@@ -191,7 +193,7 @@ namespace Testcase.Telegrams.EVCtoDMI
                 }
 
                 // Pick-up list repeats additional captions
-                ushort numberInPickupList = (ushort)StmData[k].stmPickupList.Count;
+                ushort numberInPickupList = (ushort) StmData[k].stmPickupList.Count;
 
                 if (numberInPickupList > StmXValueMaximumIterations)
                 {
@@ -199,7 +201,7 @@ namespace Testcase.Telegrams.EVCtoDMI
                 }
                 else
                 {
-                        requestName = $"{tagName1}MmiNIter2";
+                    requestName = $"{tagName1}MmiNIter2";
 
                     _pool.SITR.Client.Write(requestName, numberInPickupList);
                     totalSizeCounter += sizeof(ushort);
@@ -212,7 +214,8 @@ namespace Testcase.Telegrams.EVCtoDMI
 
                         if (pickUpXValue.Length > StmPickupXValueMaximumLength)
                         {
-                            throw new ArgumentOutOfRangeException("Too many characters in pick-up list x value string!");
+                            throw new ArgumentOutOfRangeException(
+                                "Too many characters in pick-up list x value string!");
                         }
                         else
                         {
@@ -238,7 +241,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             _pool.SITR.ETCS1.SpecificStmDeRequest.MmiLPacket.Value = totalSizeCounter;
 
             // Send dynamic packet
-            _pool.SITR.SMDCtrl.ETCS1.SpecificStmDeRequest.Value = 0x0009;           
+            _pool.SITR.SMDCtrl.ETCS1.SpecificStmDeRequest.Value = 0x0009;
         }
 
         /// <summary>
@@ -311,6 +314,5 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// List of STM elements.
         /// /// </summary>
         public static List<EVC25_StmData> StmData { get; set; }
-      
     }
 }

@@ -93,7 +93,8 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The Wheel diameter button is enabled.The Radar button is disabled
             Test Step Comment: (1) MMI_gen 11746 (partly: enable wheel diameter);(2) MMI_gen 11746 (partly: disable doppler);
             */
-            DmiActions.ShowInstruction(this, @"Press the ‘Maintenance’ button, enter the password from the PASS_CODE_MTN tag in the configuration and confirm the password");
+            DmiActions.ShowInstruction(this,
+                @"Press the ‘Maintenance’ button, enter the password from the PASS_CODE_MTN tag in the configuration and confirm the password");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Wheel diameter’ button is enabled" + Environment.NewLine +
@@ -128,7 +129,8 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The Wheel diameter button is disabled.The Radar button is enabled
             Test Step Comment: (1) MMI_gen 11746 (partly: disable wheel diameter);(2) MMI_gen 11746 (partly: enable doppler);          
             */
-            DmiActions.ShowInstruction(this, @"Press the ‘Maintenance’ button, enter the password from the PASS_CODE_MTN tag in the configuration and confirm the password");
+            DmiActions.ShowInstruction(this,
+                @"Press the ‘Maintenance’ button, enter the password from the PASS_CODE_MTN tag in the configuration and confirm the password");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Wheel diameter’ button is disabled" + Environment.NewLine +
@@ -163,18 +165,26 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,Menu windowThe window title is ‘Maintenance’.The Maintenance window is in the D, F and G area.The following objects are display in Maintenance window. Enabled Close button (NA11)Window TitleButton 1 with label ‘Wheel diameter’Button 2 with label ‘Radar’Note: See the position of buttons in picture below,The state of each button in Brake window are displayed correctly as follows,Wheel diameter = EnableRadar = EnableLayersThe level of layers in each area of window as follows,Layer 0: Area D, F, G, E10, E11, Y, and ZLayer -1: Area A1, (A2+A3)*, A4, B*, C1, (C2+C3+C4)*, C5, C6, C7, C8, C9, E1, E2, E3, E4, (E5-E9)*.Layer -2: Area B3, B4, B5, B6 and B7.Note: ‘*’ symbol is mean that specified area are drawn as one area.General property of windowThe Maintenance window is presented with objects and buttons which is the one of several levels and allocated to areas of DMI. All objects, text messages and buttons are presented within the same layer.The Default window is not displayed and covered the current window
             Test Step Comment: (1) MMI_gen 11744; MMI_gen 4360 (partly: window title);(2) MMI_gen 11743 (partly: MMI_gen 7909);(3) MMI_gen 11743 (MMI_gen 4556 (partly: Close button, Window Title, Button 1, Button 2)); MMI_gen 11745; MMI_gen 4392 (partly: [Close] NA11);(4) MMI_gen 11746;(5) MMI_gen 11743 (partly: MMI_gen 4630, MMI gen 5944 (partly: touch screen));        (6) MMI_gen 4350;(7) MMI_gen 4351;(8) MMI_gen 4353;     
             */
-            DmiActions.ShowInstruction(this, @"Press the ‘Maintenance’ button, enter the password from the PASS_CODE_MTN tag in the configuration and confirm the password");
+            DmiActions.ShowInstruction(this,
+                @"Press the ‘Maintenance’ button, enter the password from the PASS_CODE_MTN tag in the configuration and confirm the password");
 
-            WaitForVerification("Check the following (* indicates sub-areas drawn as one area):" + Environment.NewLine + Environment.NewLine +
+            WaitForVerification("Check the following (* indicates sub-areas drawn as one area):" + Environment.NewLine +
+                                Environment.NewLine +
                                 "1. The window title is ‘Maintenance’." + Environment.NewLine +
-                                "2. The Maintenance window is in areas D, F and G." + Environment.NewLine + 
-                                "3. The following screen areas are in Layer 0: D, F, G, E10, E11, Z and Y." + Environment.NewLine +
-                                "4. The following screen areas are in Layer 1: A1, (A2 + A3)*, A4, B, C1, (C2 + C3 + C4)*, C5, C6, C7, C8, C9, E1, E2, E3, E4, (E5-E9)*." + Environment.NewLine +
-                                "5. The following screen areas are in Layer 2: B3, B4, B5, B6, B7." + Environment.NewLine +
-                                "8. 2 buttons, ‘Wheel diameter’, ‘Radar’ are displayed enabled on the keypad." + Environment.NewLine +
+                                "2. The Maintenance window is in areas D, F and G." + Environment.NewLine +
+                                "3. The following screen areas are in Layer 0: D, F, G, E10, E11, Z and Y." +
+                                Environment.NewLine +
+                                "4. The following screen areas are in Layer 1: A1, (A2 + A3)*, A4, B, C1, (C2 + C3 + C4)*, C5, C6, C7, C8, C9, E1, E2, E3, E4, (E5-E9)*." +
+                                Environment.NewLine +
+                                "5. The following screen areas are in Layer 2: B3, B4, B5, B6, B7." +
+                                Environment.NewLine +
+                                "8. 2 buttons, ‘Wheel diameter’, ‘Radar’ are displayed enabled on the keypad." +
+                                Environment.NewLine +
                                 "9. The ‘Close’ button, symbol NA11, is displayed enabled." + Environment.NewLine +
-                                "10. Objects and buttons can be displayed in several levels. Within a level they are allocated to areas." + Environment.NewLine +
-                                "11. All objects, text messages and buttons are displayed in the same layer." + Environment.NewLine +
+                                "10. Objects and buttons can be displayed in several levels. Within a level they are allocated to areas." +
+                                Environment.NewLine +
+                                "11. All objects, text messages and buttons are displayed in the same layer." +
+                                Environment.NewLine +
                                 "12. The Default window is not displayed covering the Maintenance window.");
 
             /*
@@ -186,7 +196,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘Wheel diameter’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘Wheel diameter’ button is displayed pressed, without a border." + Environment.NewLine +
+                                "1. The ‘Wheel diameter’ button is displayed pressed, without a border." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once.");
 
             /*
@@ -195,7 +206,8 @@ namespace Testcase.DMITestCases
             Expected Result: The border of the button is shown (state ‘Enabled’) without a sound
             Test Step Comment: MMI_gen 11743 (partly: MMI_gen 4557 (partly: button ‘Wheel diameter’, MMI_gen 4382 (partly: state ‘Enabled’ when slide out with force applied, no sound))); MMI_gen 4374;
             */
-            DmiActions.ShowInstruction(this, @"Drag the ‘Wheel diameter’ button outside of its area, keeping the button pressed");
+            DmiActions.ShowInstruction(this,
+                @"Drag the ‘Wheel diameter’ button outside of its area, keeping the button pressed");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Wheel diameter’ button is displayed enabled." + Environment.NewLine +
@@ -207,8 +219,9 @@ namespace Testcase.DMITestCases
             Expected Result: The button is back to state ‘Pressed’ without a sound
             Test Step Comment: MMI_gen 11743 (partly: MMI_gen 4557 (partly: button ‘Wheel diameter’, MMI_gen 4382 (partly: state ‘Pressed’ when slide back, no sound))); MMI_gen 4375;
             */
-            DmiActions.ShowInstruction(this, @"Whilst keeping the ‘Wheel diameter’ button pressed, drag it back inside its area");
-                         
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the ‘Wheel diameter’ button pressed, drag it back inside its area");
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Wheel diameter’ button is displayed pressed." + Environment.NewLine +
                                 "2. No sound is played.");
@@ -221,14 +234,15 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Release the ‘Wheel diameter’ button");
 
-            EVC101_MMIDriverRequest.CheckMRequestReleased = Telegrams.EVCtoDMI.Variables.MMI_M_REQUEST.ChangeWheelDiameter;
+            EVC101_MMIDriverRequest.CheckMRequestReleased =
+                Telegrams.EVCtoDMI.Variables.MMI_M_REQUEST.ChangeWheelDiameter;
 
             EVC40_MMICurrentMaintenanceData.MMI_Q_MD_DATASET = Variables.MMI_Q_MD_DATASET.WheelDiameter;
             EVC40_MMICurrentMaintenanceData.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Wheel diameter window.");
-            
+
             /*
             Test Step 14
             Action: Press ‘Close’ button
@@ -254,14 +268,16 @@ namespace Testcase.DMITestCases
                                 "2. The ‘Click’ sound is played once.");
 
             // Repeat Step 11 for Radar button
-            DmiActions.ShowInstruction(this, @"Drag the ‘Radar’ button outside of its area, keeping the button pressed");
+            DmiActions.ShowInstruction(this,
+                @"Drag the ‘Radar’ button outside of its area, keeping the button pressed");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Radar’ button is displayed enabled." + Environment.NewLine +
                                 "2. No sound is played.");
 
             // Repeat Step 12 for Radar button
-            DmiActions.ShowInstruction(this, @"Whilst keeping the ‘Radar’ button pressed, drag it back inside its area");
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the ‘Radar’ button pressed, drag it back inside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Radar’ button is displayed pressed." + Environment.NewLine +
@@ -283,7 +299,7 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Maintenance window.");
-            
+
             /*
             Test Step 16
             Action: Press ‘Close’ button
@@ -303,7 +319,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11743 (partly: MMI_gen 4557 (partly: button ‘Close’));
             */
             DmiActions.ShowInstruction(this, @"Press the ‘Maintenance’ button");
-            
+
             // Repeat Step 10 for ‘Close’ button 
             DmiActions.ShowInstruction(this, @"Press and hold the ‘Close’ button");
 
@@ -312,14 +328,16 @@ namespace Testcase.DMITestCases
                                 "2. The ‘Click’ sound is played once.");
 
             // Repeat Step 11 for ‘Close’ button
-            DmiActions.ShowInstruction(this, @"Drag the ‘Close’ button outside of its area, keeping the button pressed");
+            DmiActions.ShowInstruction(this,
+                @"Drag the ‘Close’ button outside of its area, keeping the button pressed");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Close’ button is displayed enabled." + Environment.NewLine +
                                 "2. No sound is played.");
 
             // Repeat Step 12 for ‘Close’ button
-            DmiActions.ShowInstruction(this, @"Whilst keeping the ‘Close’ button pressed, drag it back inside its area");
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the ‘Close’ button pressed, drag it back inside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Close’ button is displayed pressed." + Environment.NewLine +
@@ -327,7 +345,7 @@ namespace Testcase.DMITestCases
 
             // Repeat Step 13 for ‘Close’ button
             DmiActions.ShowInstruction(this, @"Release the ‘Close’ button");
-            
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window.");
             /*
@@ -338,7 +356,9 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
+
         #region Send_XML_22_6_2_DMI_Test_Specification
+
         enum msgType
         {
             typea,
@@ -394,7 +414,8 @@ namespace Testcase.DMITestCases
                     break;
                 case msgType.typeb:
                     // The state here should be that all flags are disabled
-                    EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter;
+                    EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH =
+                        EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter;
 
                     // This step just wants wheel diameter enabled: nothing is said about the others so they might as well be disabled
                     /*
@@ -434,7 +455,8 @@ namespace Testcase.DMITestCases
                     break;
                 case msgType.typec:
                     // The state here should be that all flags are disabled
-                    EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.EnableDoppler;
+                    EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH =
+                        EVC30_MMIRequestEnable.EnabledRequests.EnableDoppler;
 
                     // This step just wants wheel diameter enabled: nothing is said about the others so they might as well be disabled
                     /*
@@ -474,8 +496,9 @@ namespace Testcase.DMITestCases
                     break;
                 case msgType.typed:
                     // The state here should be that all flags are disabled
-                    EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter |
-                                                                       EVC30_MMIRequestEnable.EnabledRequests.EnableDoppler;
+                    EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH =
+                        EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter |
+                        EVC30_MMIRequestEnable.EnabledRequests.EnableDoppler;
 
                     // This step just wants wheel diameter enabled: nothing is said about the others so they might as well be disabled
                     /*
@@ -516,6 +539,7 @@ namespace Testcase.DMITestCases
             }
             EVC30_MMIRequestEnable.Send();
         }
+
         #endregion
     }
 }

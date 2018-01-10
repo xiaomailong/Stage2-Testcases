@@ -73,7 +73,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press the ‘Spec’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays Default window until Special window is displayed." + Environment.NewLine +
+                                "1. DMI displays Default window until Special window is displayed." +
+                                Environment.NewLine +
                                 "2. ‘Close’ button is always enabled.");
 
             /*
@@ -93,18 +94,19 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Close the Special window then press the ‘Spec’ button");
 
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Special;      // Special window
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Special; // Special window
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.SRSpeedDistance |
                                                                EVC30_MMIRequestEnable.EnabledRequests.Adhesion;
             EVC30_MMIRequestEnable.Send();
 
             DmiActions.ShowInstruction(this, @"Press ‘S/R speed distance’ button.");
-            
+
             EVC11_MMICurrentSRRules.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS.BTN_YES_DATA_ENTRY_COMPLETE;
             EVC11_MMICurrentSRRules.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays Special window until SR speed/distance window is displayed." + Environment.NewLine +
+                                "1. DMI displays Special window until SR speed/distance window is displayed." +
+                                Environment.NewLine +
                                 "2. ‘Close’ button is always enabled.");
 
             /*
@@ -117,31 +119,32 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                      "1. DMI is in the entry state of ‘ST05’." + Environment.NewLine +
-                                      "2. The hourglass symbol ST05 is displayed." + Environment.NewLine +
-                                      "3. All buttons and the ‘Close’ button are disabled." + Environment.NewLine +
-                                      "4. ‘Close’ button NA12 is displayed disabled in area G." + Environment.NewLine +
-                                      "5. All Input Fields are not selected");
+                                "1. DMI is in the entry state of ‘ST05’." + Environment.NewLine +
+                                "2. The hourglass symbol ST05 is displayed." + Environment.NewLine +
+                                "3. All buttons and the ‘Close’ button are disabled." + Environment.NewLine +
+                                "4. ‘Close’ button NA12 is displayed disabled in area G." + Environment.NewLine +
+                                "5. All Input Fields are not selected");
 
             this.Wait_Realtime(10000);
-            
+
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                      "1. DMI is in the exit state of ‘ST05’." + Environment.NewLine +
-                                      "2. The hourglass symbol ST05 is removed." + Environment.NewLine +
-                                      "3. All buttons are enabled." + Environment.NewLine +
-                                      "4. ‘Close’ button NA11 is displayed enabled in area G." + Environment.NewLine +
-                                      "5. The first Input Field is selected" + Environment.NewLine +
-                                      "6. All other Input Fields are not selected");
+                                "1. DMI is in the exit state of ‘ST05’." + Environment.NewLine +
+                                "2. The hourglass symbol ST05 is removed." + Environment.NewLine +
+                                "3. All buttons are enabled." + Environment.NewLine +
+                                "4. ‘Close’ button NA11 is displayed enabled in area G." + Environment.NewLine +
+                                "5. The first Input Field is selected" + Environment.NewLine +
+                                "6. All other Input Fields are not selected");
 
             /*
             Test Step 5
             Action: Perform the following procedure;Press ‘close’ button (SR speed/distance window) Press ‘close’ button (Special window)
             Expected Result: DMI displays default window
             */
-            DmiActions.ShowInstruction(this, @"Press ‘Close’ button in SR speed/distance window. Press ‘Close’ button in Special  window.");
+            DmiActions.ShowInstruction(this,
+                @"Press ‘Close’ button in SR speed/distance window. Press ‘Close’ button in Special  window.");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays default window.");
@@ -186,11 +189,12 @@ namespace Testcase.DMITestCases
             // Call generic Check Results Method
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Special;      // Special window
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Special; // Special window
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Adhesion;
             EVC30_MMIRequestEnable.Send();
 
-            WaitForVerification(@"Press the ‘Spec’ button and check the following:" + Environment.NewLine + Environment.NewLine +
+            WaitForVerification(@"Press the ‘Spec’ button and check the following:" + Environment.NewLine +
+                                Environment.NewLine +
                                 "1. DMI displays the Special window with the Adhesion button enabled.");
 
             /*
@@ -202,7 +206,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press the ‘Adhesion’ button in the Special window.");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays Special window until Adhesion window is displayed." + Environment.NewLine +
+                                "1. DMI displays Special window until Adhesion window is displayed." +
+                                Environment.NewLine +
                                 "2. ‘Close’ button is always enabled.");
 
             /*
@@ -222,7 +227,7 @@ namespace Testcase.DMITestCases
                                 "5. The Input Field is not selected");
 
             this.Wait_Realtime(10000);
-            
+
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
             EVC8_MMIDriverMessage.Send();
 
@@ -243,6 +248,7 @@ namespace Testcase.DMITestCases
         }
 
         #region Send_XML_10_5_a_DMI_Test_Specification
+
         private void XML_10_5_a()
         {
             // Step 2/1
@@ -271,8 +277,8 @@ namespace Testcase.DMITestCases
                                 "2. The hourglass symbol ST05 is removed." + Environment.NewLine +
                                 "3. All buttons are enabled." + Environment.NewLine +
                                 "4. ‘Close’ button NA11 is displayed enabled in area G.");
-
         }
+
         #endregion
     }
 }

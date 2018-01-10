@@ -56,7 +56,7 @@ namespace Testcase.DMITestCases
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint
-            
+
             /*
             Test Step 1
             Action: Activate cabin A
@@ -79,7 +79,8 @@ namespace Testcase.DMITestCases
 
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
 
-            WaitForVerification("Check that only the following objects are displayed:" + Environment.NewLine + Environment.NewLine +
+            WaitForVerification("Check that only the following objects are displayed:" + Environment.NewLine +
+                                Environment.NewLine +
                                 "1. PA Distance Scale." + Environment.NewLine +
                                 "2. PASP (in the PASP-dark-colour");
 

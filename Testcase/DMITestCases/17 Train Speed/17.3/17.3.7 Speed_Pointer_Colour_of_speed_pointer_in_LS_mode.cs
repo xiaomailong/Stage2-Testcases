@@ -60,7 +60,7 @@ namespace Testcase.DMITestCases
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint
-            
+
 
             EVC1_MMIDynamic.Initialise(this);
 
@@ -80,7 +80,8 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, "Acknowledgement of LS mode is requested. Press button to accept");
 
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.LimitedSupervision;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode =
+                EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.LimitedSupervision;
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in LS mode, level 1.");
 
@@ -94,8 +95,8 @@ namespace Testcase.DMITestCases
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 100;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                 "1. DMI displays in LS mode, level 1." + Environment.NewLine + 
-                                 "2. Is the speed pointer grey?");
+                                "1. DMI displays in LS mode, level 1." + Environment.NewLine +
+                                "2. Is the speed pointer grey?");
 
             /*
             Test Step 3
@@ -107,7 +108,7 @@ namespace Testcase.DMITestCases
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 101;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                 "1. Is the speed pointer orange?");
+                                "1. Is the speed pointer orange?");
 
             /*
             Test Step 4
@@ -119,8 +120,8 @@ namespace Testcase.DMITestCases
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 105;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                 "1. Is the speed pointer orange?");
-            
+                                "1. Is the speed pointer orange?");
+
             /*
             Test Step 5 
             Action: Increase the train speed to 106 km/h
@@ -130,16 +131,16 @@ namespace Testcase.DMITestCases
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Ceiling_Speed_Monitoring;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 106;
             EVC1_MMIDynamic.MMI_V_INTERVENTION_KMH = 105;
-             
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                 "1. Is the speed pointer red?");
+                                "1. Is the speed pointer red?");
 
             DmiActions.Apply_Brakes(this);
-            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 99;  
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 99;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                 "1. Has the speed decreased to 99 km/h?" + Environment.NewLine +
-                                 "2. Is the speed pointer grey?");
+                                "1. Has the speed decreased to 99 km/h?" + Environment.NewLine +
+                                "2. Is the speed pointer grey?");
             /*
             Test Step 6 indicated also as 5
             Action: Stop the train.Then, use the test script file 12_3_7_a.xml to send the following packets,EVC-1MMI_M_WARNING = 2MMI_V_PERMITTED = 1111MMI_V_TARGET = 1083MMI_V_INTERVENTION = 1250MMI_V_TRAIN = 972EVC-7OBU_TR_M_MODE = 12
@@ -149,13 +150,13 @@ namespace Testcase.DMITestCases
             EVC1_MMIDynamic.MMI_V_TRAIN = 0;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                 "1. DMI displays in LS mode, level 1.");
+                                "1. DMI displays in LS mode, level 1.");
 
             XML_12_3_7(msgType.typea);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                 "1. DMI displays in LS mode, level 1." + Environment.NewLine +
-                                 "2. Is the speed pointer grey?");
+                                "1. DMI displays in LS mode, level 1." + Environment.NewLine +
+                                "2. Is the speed pointer grey?");
 
             /*
             Test Step 7 indicated as 6
@@ -166,8 +167,8 @@ namespace Testcase.DMITestCases
             XML_12_3_7(msgType.typeb);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                 "1. DMI displays in LS mode, level 1." + Environment.NewLine +
-                                 "2. Is the speed pointer grey?");
+                                "1. DMI displays in LS mode, level 1." + Environment.NewLine +
+                                "2. Is the speed pointer grey?");
 
             /*
             Test Step 8 indicated as 7
@@ -178,8 +179,8 @@ namespace Testcase.DMITestCases
             XML_12_3_7(msgType.typec);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                 "1. DMI displays in LS mode, level 1." + Environment.NewLine +
-                                 "2. Is the speed pointer orange?");
+                                "1. DMI displays in LS mode, level 1." + Environment.NewLine +
+                                "2. Is the speed pointer orange?");
 
             /*
             Test Step 9 indicated as 8
@@ -190,8 +191,8 @@ namespace Testcase.DMITestCases
             XML_12_3_7(msgType.typed);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                 "1. DMI displays in LS mode, level 1." + Environment.NewLine +
-                                 "2. Is the speed pointer orange?");
+                                "1. DMI displays in LS mode, level 1." + Environment.NewLine +
+                                "2. Is the speed pointer orange?");
 
             /*
             Test Step 10 indicated as 9
@@ -202,8 +203,8 @@ namespace Testcase.DMITestCases
             XML_12_3_7(msgType.typee);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                 "1. DMI displays in LS mode, level 1." + Environment.NewLine +
-                                 "2. Is the speed pointer red?");
+                                "1. DMI displays in LS mode, level 1." + Environment.NewLine +
+                                "2. Is the speed pointer red?");
 
             /*
             Test Step 11 indicated as 10
@@ -214,8 +215,8 @@ namespace Testcase.DMITestCases
             XML_12_3_7(msgType.typef);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                 "1. DMI displays in LS mode, level 1." + Environment.NewLine +
-                                 "2. Is the speed pointer grey?");
+                                "1. DMI displays in LS mode, level 1." + Environment.NewLine +
+                                "2. Is the speed pointer grey?");
 
 
             /*
@@ -227,8 +228,8 @@ namespace Testcase.DMITestCases
             XML_12_3_7(msgType.typeg);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                 "1. DMI displays in LS mode, level 1." + Environment.NewLine +
-                                 "2. Is the speed pointer grey?");
+                                "1. DMI displays in LS mode, level 1." + Environment.NewLine +
+                                "2. Is the speed pointer grey?");
 
             /*
             Test Step 13 indicated as 12
@@ -239,8 +240,8 @@ namespace Testcase.DMITestCases
             XML_12_3_7(msgType.typeh);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                 "1. DMI displays in LS mode, level 1." + Environment.NewLine +
-                                 "2. Is the speed pointer grey?");
+                                "1. DMI displays in LS mode, level 1." + Environment.NewLine +
+                                "2. Is the speed pointer grey?");
 
             /*
             Test Step 14 indicated as 13
@@ -251,8 +252,8 @@ namespace Testcase.DMITestCases
             XML_12_3_7(msgType.typei);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                 "1. DMI displays in LS mode, level 1." + Environment.NewLine +
-                                 "2. Is the speed pointer grey?");
+                                "1. DMI displays in LS mode, level 1." + Environment.NewLine +
+                                "2. Is the speed pointer grey?");
 
             /*
             Test Step 15 indicated as 14
@@ -263,8 +264,8 @@ namespace Testcase.DMITestCases
             XML_12_3_7(msgType.typej);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                 "1. DMI displays in LS mode, level 1." + Environment.NewLine +
-                                 "2. Is the speed pointer grey?");
+                                "1. DMI displays in LS mode, level 1." + Environment.NewLine +
+                                "2. Is the speed pointer grey?");
 
             /*
             Test Step 16 indicated as 15
@@ -275,8 +276,8 @@ namespace Testcase.DMITestCases
             XML_12_3_7(msgType.typek);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                 "1. DMI displays in LS mode, level 1." + Environment.NewLine +
-                                 "2. Is the speed pointer orange?");
+                                "1. DMI displays in LS mode, level 1." + Environment.NewLine +
+                                "2. Is the speed pointer orange?");
 
             /*
             Test Step 17 indicated as 16
@@ -287,8 +288,8 @@ namespace Testcase.DMITestCases
             XML_12_3_7(msgType.typel);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                 "1. DMI displays in LS mode, level 1." + Environment.NewLine +
-                                 "2. Is the speed pointer orange?");
+                                "1. DMI displays in LS mode, level 1." + Environment.NewLine +
+                                "2. Is the speed pointer orange?");
 
             /*
             Test Step 18 indicated as 17
@@ -299,8 +300,8 @@ namespace Testcase.DMITestCases
             XML_12_3_7(msgType.typem);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                 "1. DMI displays in LS mode, level 1." + Environment.NewLine +
-                                 "2. Is the speed pointer red?");
+                                "1. DMI displays in LS mode, level 1." + Environment.NewLine +
+                                "2. Is the speed pointer red?");
 
             /*
             Test Step 19 indicated as 18
@@ -311,8 +312,8 @@ namespace Testcase.DMITestCases
             XML_12_3_7(msgType.typen);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                 "1. DMI displays in LS mode, level 1." + Environment.NewLine +
-                                 "2. Is the speed pointer grey?");
+                                "1. DMI displays in LS mode, level 1." + Environment.NewLine +
+                                "2. Is the speed pointer grey?");
 
             /*
             Test Step 20 indicated as 19
@@ -323,8 +324,8 @@ namespace Testcase.DMITestCases
             XML_12_3_7(msgType.typeo);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                 "1. DMI displays in LS mode, level 1." + Environment.NewLine +
-                                 "2. Is the speed pointer grey?");
+                                "1. DMI displays in LS mode, level 1." + Environment.NewLine +
+                                "2. Is the speed pointer grey?");
 
             /*
             Test Step 21 indicated as 20
@@ -335,8 +336,8 @@ namespace Testcase.DMITestCases
             XML_12_3_7(msgType.typep);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                 "1. DMI displays in LS mode, level 1." + Environment.NewLine +
-                                 "2. Is the speed pointer yellow?");
+                                "1. DMI displays in LS mode, level 1." + Environment.NewLine +
+                                "2. Is the speed pointer yellow?");
 
             /*
             Test Step 22 indicated as 21
@@ -347,8 +348,8 @@ namespace Testcase.DMITestCases
             XML_12_3_7(msgType.typeq);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                 "1. DMI displays in LS mode, level 1." + Environment.NewLine +
-                                 "2. Is the speed pointer yellow?");
+                                "1. DMI displays in LS mode, level 1." + Environment.NewLine +
+                                "2. Is the speed pointer yellow?");
 
             /*
             Test Step 23 indicated as 22
@@ -359,8 +360,8 @@ namespace Testcase.DMITestCases
             XML_12_3_7(msgType.typer);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                 "1. DMI displays in LS mode, level 1." + Environment.NewLine +
-                                 "2. Is the speed pointer yellow?");
+                                "1. DMI displays in LS mode, level 1." + Environment.NewLine +
+                                "2. Is the speed pointer yellow?");
 
             /*
             Test Step 24 indicated as 23
@@ -371,8 +372,8 @@ namespace Testcase.DMITestCases
             XML_12_3_7(msgType.types);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                 "1. DMI displays in LS mode, level 1." + Environment.NewLine +
-                                 "2. Is the speed pointer red?");
+                                "1. DMI displays in LS mode, level 1." + Environment.NewLine +
+                                "2. Is the speed pointer red?");
 
             /*
             Test Step 25
@@ -382,7 +383,9 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
+
         #region Send_XML_12_3_7_DMI_Test_Specification
+
         enum msgType
         {
             typea,
@@ -424,9 +427,10 @@ namespace Testcase.DMITestCases
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_STM_HS_ENABLED = 0;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_STM_DA_ENABLED = 0;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_BrakeTest_Status =
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_BRAKETEST_STATUS.BrakeTestNotInProgress;
+                EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_BRAKETEST_STATUS.BrakeTestNotInProgress;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.LimitedSupervision;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode =
+                EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.LimitedSupervision;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_ADHESION = 100; // "Spare"
             EVC7_MMIEtcsMiscOutSignals.OBU_TR_NID_STM_HS = 255;
             EVC7_MMIEtcsMiscOutSignals.OBU_TR_NID_STM_DA = 255;
@@ -437,102 +441,111 @@ namespace Testcase.DMITestCases
             switch (type)
             {
                 case msgType.typea:
-                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_PreIndication_Monitoring;   // 2
+                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_PreIndication_Monitoring; // 2
                     EVC1_MMIDynamic.MMI_V_TRAIN = 972;
 
                     break;
                 case msgType.typeb:
-                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_PreIndication_Monitoring;   // 2
+                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_PreIndication_Monitoring; // 2
                     EVC1_MMIDynamic.MMI_V_TRAIN = 1111;
 
                     break;
                 case msgType.typec:
-                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Overspeed_Status_PreIndication_Monitoring;   // 10
+                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Overspeed_Status_PreIndication_Monitoring; // 10
                     EVC1_MMIDynamic.MMI_V_TRAIN = 1139;
 
                     break;
                 case msgType.typed:
-                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Warning_Status_PreIndication_Monitoring;   // 6
+                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Warning_Status_PreIndication_Monitoring; // 6
                     EVC1_MMIDynamic.MMI_V_TRAIN = 1250;
 
                     break;
                 case msgType.typee:
-                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_PreIndication_Monitoring;   // 14
+                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_PreIndication_Monitoring; // 14
                     EVC1_MMIDynamic.MMI_V_TRAIN = 1277;
 
                     break;
                 case msgType.typef:
-                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_PreIndication_Monitoring;   // 14
+                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_PreIndication_Monitoring; // 14
                     EVC1_MMIDynamic.MMI_V_TRAIN = 1111;
 
                     break;
                 case msgType.typeg:
-                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_PreIndication_Monitoring;   // 14    
+                    EVC1_MMIDynamic.MMI_M_WARNING =
+                        MMI_M_WARNING.Intervention_Status_PreIndication_Monitoring; // 14    
                     EVC1_MMIDynamic.MMI_V_TRAIN = 1000;
 
                     break;
                 case msgType.typeh:
-                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Target_Speed_Monitoring;   // 11
+                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Target_Speed_Monitoring; // 11
                     EVC1_MMIDynamic.MMI_V_TRAIN = 1000;
 
                     break;
                 case msgType.typei:
-                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Target_Speed_Monitoring;   // 11
+                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Target_Speed_Monitoring; // 11
                     EVC1_MMIDynamic.MMI_V_TRAIN = 1111;
 
                     break;
                 case msgType.typej:
-                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Target_Speed_Monitoring;   // 1
+                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Target_Speed_Monitoring; // 1
                     EVC1_MMIDynamic.MMI_V_TRAIN = 1111;
 
                     break;
                 case msgType.typek:
-                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Overspeed_Status_Indication_Status_Target_Speed_Monitoring;   // 9
+                    EVC1_MMIDynamic.MMI_M_WARNING =
+                        MMI_M_WARNING.Overspeed_Status_Indication_Status_Target_Speed_Monitoring; // 9
                     EVC1_MMIDynamic.MMI_V_TRAIN = 1139;
 
                     break;
                 case msgType.typel:
-                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Warning_Status_Indication_Status_Target_Speed_Monitoring;   // 5
+                    EVC1_MMIDynamic.MMI_M_WARNING =
+                        MMI_M_WARNING.Warning_Status_Indication_Status_Target_Speed_Monitoring; // 5
                     EVC1_MMIDynamic.MMI_V_TRAIN = 1250;
 
                     break;
                 case msgType.typem:
-                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Indication_Status_Target_Speed_Monitoring;   // 13
+                    EVC1_MMIDynamic.MMI_M_WARNING =
+                        MMI_M_WARNING.Intervention_Status_Indication_Status_Target_Speed_Monitoring; // 13
                     EVC1_MMIDynamic.MMI_V_TRAIN = 1277;
 
                     break;
                 case msgType.typen:
-                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Indication_Status_Target_Speed_Monitoring;   // 13
+                    EVC1_MMIDynamic.MMI_M_WARNING =
+                        MMI_M_WARNING.Intervention_Status_Indication_Status_Target_Speed_Monitoring; // 13
                     EVC1_MMIDynamic.MMI_V_TRAIN = 1111;
 
                     break;
                 case msgType.typeo:
-                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Indication_Status_Target_Speed_Monitoring;   // 13
+                    EVC1_MMIDynamic.MMI_M_WARNING =
+                        MMI_M_WARNING.Intervention_Status_Indication_Status_Target_Speed_Monitoring; // 13
                     EVC1_MMIDynamic.MMI_V_TRAIN = 1083;
 
                     break;
                 case msgType.typep:
-                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Release_Speed_Monitoring;   // 3
+                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Release_Speed_Monitoring; // 3
                     EVC1_MMIDynamic.MMI_V_TRAIN = 0;
 
                     break;
                 case msgType.typeq:
-                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Release_Speed_Monitoring;   // 3
+                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Release_Speed_Monitoring; // 3
                     EVC1_MMIDynamic.MMI_V_TRAIN = 1083;
 
                     break;
                 case msgType.typer:
-                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Indication_Status_Release_Speed_Monitoring;   // 15
+                    EVC1_MMIDynamic.MMI_M_WARNING =
+                        MMI_M_WARNING.Intervention_Status_Indication_Status_Release_Speed_Monitoring; // 15
                     EVC1_MMIDynamic.MMI_V_TRAIN = 0;
 
                     break;
                 case msgType.types:
-                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Indication_Status_Release_Speed_Monitoring;   // 15
+                    EVC1_MMIDynamic.MMI_M_WARNING =
+                        MMI_M_WARNING.Intervention_Status_Indication_Status_Release_Speed_Monitoring; // 15
                     EVC1_MMIDynamic.MMI_V_TRAIN = 1111;
 
                     break;
             }
         }
+
         #endregion
     }
 }

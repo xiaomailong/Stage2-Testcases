@@ -71,7 +71,8 @@ namespace Testcase.DMITestCases
             Action: Open the ‘Set VBC’ data entry window from the Settings menu
             Expected Result: The ‘Set VBC’ data entry window appears on ETCS-DMI screen instead of the ‘Settings’ menu window
             */
-            DmiActions.ShowInstruction(this, "Press the ‘Settings’ button, then press the ‘Set VBC’ button in the Settings window");
+            DmiActions.ShowInstruction(this,
+                "Press the ‘Settings’ button, then press the ‘Set VBC’ button in the Settings window");
 
             EVC18_MMISetVBC.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_VBC.BTN_YES_DATA_ENTRY_COMPLETE;
             EVC18_MMISetVBC.MMI_N_VBC = 0;
@@ -87,19 +88,20 @@ namespace Testcase.DMITestCases
             Test Step Comment: Requirements:(1) MMI_gen 9888 (partly: reactions to failing, EVC-18, MMI_gen 12147);(2) MMI_gen 9901;(3) MMI_gen 9888 (partly: reactions to failing, MMI_gen 4714 (partly: state 'Selected IF/data value')); MMI_gen 9310 (partly: accept data);(4) MMI_gen 9888 (partly: reactions to failing, MMI_gen 4714 (partly: previously entered (faulty) value)); MMI_gen 4699 (partly: technical range);(5) MMI_gen 8328 (partly: MMI_gen 4713 (partly: indication)), MMI_gen 9888 (partly: reactions to failing, MMI_gen 4713 (partly: indication)); MMI_gen 9310 (partly: [technical range, failed], [echo text]); (6) MMI_gen 9898 (partly: MMI_gen 4713 (partly: red)), MMI_gen 9888 (partly: reactions to failing, MMI_gen 4713 (partly: red));
             */
             DmiActions.ShowInstruction(this, @"Enter and confirm the value ‘1’");
-              
+
             // to make this work properly with a 'dumb' DMI in integration the EVC118 should be sent to provoke the correct EVC18 response
 
             EVC18_MMISetVBC.MMI_Q_DATA_CHECK = Variables.Q_DATA_CHECK.Technical_Range_Check_failed;
             EVC18_MMISetVBC.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_VBC.NoButton;
             // at this time EVC18 throws on non-empty ECHOTEXT so this must be changed...
-            EVC18_MMISetVBC.ECHO_TEXT = "";         // should be 1
+            EVC18_MMISetVBC.ECHO_TEXT = ""; // should be 1
             EVC18_MMISetVBC.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Yes’ button is disabled." + Environment.NewLine +
-                                "2. The data input field ‘Enter’ button displays ‘1’ in black on a grey background." + Environment.NewLine +
-                                "3. The echo text displays ‘++++’ in red.");      
+                                "2. The data input field ‘Enter’ button displays ‘1’ in black on a grey background." +
+                                Environment.NewLine +
+                                "3. The echo text displays ‘++++’ in red.");
 
             /*
             Test Step 3
@@ -110,7 +112,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press the data input field again (Accept)");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The data input field ‘Enter’ button still displays ‘1’ in black on a grey background." + Environment.NewLine +
+                                "1. The data input field ‘Enter’ button still displays ‘1’ in black on a grey background." +
+                                Environment.NewLine +
                                 "3. The echo text still displays ‘++++’ in red.");
 
             /*
@@ -151,7 +154,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press the data input field once again (Accept) in the same screen");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The data input field ‘Enter’ button still displays ‘1’ in black on a grey background." + Environment.NewLine +
+                                "1. The data input field ‘Enter’ button still displays ‘1’ in black on a grey background." +
+                                Environment.NewLine +
                                 "3. The echo text still displays ‘++++’ in red.");
 
             /*
@@ -213,7 +217,8 @@ namespace Testcase.DMITestCases
             Expected Result: Input Field(1) The ‘Enter’ button associated to the data area of the input field displays previously entered value.Echo Texts(2) The data part of the echo text displays “++++”
             Test Step Comment: (1) MMI_gen 9888 (partly: reactions to failing, MMI_gen 4714 (partly: previously entered (faulty) value)); MMI_gen 4699 (partly: technical range);(2) MMI_gen 8328 (partly: MMI_gen  (MMI_gen 4713 (partly: indication))), MMI_gen 9888 (partly: reactions to failing, MMI_gen 12148 (MMI_gen 4713 (partly: indication)));Note: This is a temporary approach for non-support test environment on the data checks.
             */
-       #region Send_XML_22_27_3_DMI_Test_Specification
+
+            #region Send_XML_22_27_3_DMI_Test_Specification
 
             EVC18_MMISetVBC.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_VBC.NoButton;
             EVC18_MMISetVBC.MMI_Q_DATA_CHECK = Variables.Q_DATA_CHECK.Technical_Range_Check_failed;
@@ -224,13 +229,14 @@ namespace Testcase.DMITestCases
                                 "1. The data input field ‘Enter’ button displays ‘65535’." + Environment.NewLine +
                                 "2. The echo text displays ‘++++’ in red.");
 
-        #endregion
+            #endregion
+
             /*
             Test Step 11
             Action: End of test
             Expected Result: 
             */
-            
+
             return GlobalTestResult;
         }
     }

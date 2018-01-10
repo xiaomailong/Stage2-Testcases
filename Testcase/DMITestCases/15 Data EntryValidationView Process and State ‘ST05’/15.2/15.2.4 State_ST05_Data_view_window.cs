@@ -69,21 +69,23 @@ namespace Testcase.DMITestCases
             //DmiActions.ShowInstruction(this, @"Press the ‘Data View’ button.");            
             EVC13_MMIDataView.MMI_X_DRIVER_ID = "";
             EVC13_MMIDataView.MMI_NID_OPERATION = 0xffffffff;
-            EVC13_MMIDataView.MMI_M_DATA_ENABLE = (Variables.MMI_M_DATA_ENABLE)0x0080;     // 128
+            EVC13_MMIDataView.MMI_M_DATA_ENABLE = (Variables.MMI_M_DATA_ENABLE) 0x0080; // 128
             EVC13_MMIDataView.MMI_L_TRAIN = 4096;
             EVC13_MMIDataView.MMI_V_MAXTRAIN = 601;
             EVC13_MMIDataView.MMI_M_BRAKE_PERC = 9;
-            EVC13_MMIDataView.MMI_NID_KEY_AXLE_LOAD = Variables.MMI_NID_KEY.FG4;       // 20
-            EVC13_MMIDataView.MMI_NID_RADIO = 0xffffffffffffffff;          // 4294967295 (= 0xffffffff) hi, 4294967295 (= 0xffffffff) lo
+            EVC13_MMIDataView.MMI_NID_KEY_AXLE_LOAD = Variables.MMI_NID_KEY.FG4; // 20
+            EVC13_MMIDataView.MMI_NID_RADIO =
+                0xffffffffffffffff; // 4294967295 (= 0xffffffff) hi, 4294967295 (= 0xffffffff) lo
             EVC13_MMIDataView.MMI_M_AIRTIGHT = 3;
             EVC13_MMIDataView.MMI_NID_KEY_LOAD_GAUGE = Variables.MMI_NID_KEY.CATE5;
             EVC13_MMIDataView.Trainset_Caption = "";
             EVC13_MMIDataView.Network_Caption = "";
-            EVC13_MMIDataView.MMI_NID_KEY_TRAIN_CAT = Variables.MMI_NID_KEY.CATA;  // 21
+            EVC13_MMIDataView.MMI_NID_KEY_TRAIN_CAT = Variables.MMI_NID_KEY.CATA; // 21
             EVC13_MMIDataView.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays Default window until Data View window is displayed." + Environment.NewLine +
+                                "1. DMI displays Default window until Data View window is displayed." +
+                                Environment.NewLine +
                                 "2. ‘Close’ button is always enabled.");
 
             /*
@@ -106,6 +108,7 @@ namespace Testcase.DMITestCases
         }
 
         #region Send_XML_10_2_4_a_DMI_Test_Specification
+
         private void XML_10_2_4_a()
         {
             // Step 2/1
@@ -134,9 +137,8 @@ namespace Testcase.DMITestCases
                                 "2. The hourglass symbol ST05 is removed." + Environment.NewLine +
                                 "3. All buttons are enabled." + Environment.NewLine +
                                 "4. ‘Close’ button NA11 is displayed enabled in area G.");
-
         }
-        #endregion
 
+        #endregion
     }
 }

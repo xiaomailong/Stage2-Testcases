@@ -42,7 +42,6 @@ namespace Testcase.DMITestCases
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
-            
         }
 
         public override void PostExecution()
@@ -68,7 +67,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press the ‘Main’ button");
 
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;      // Main
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main; // Main
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.TrainData;
             EVC30_MMIRequestEnable.Send();
 
@@ -91,14 +90,14 @@ namespace Testcase.DMITestCases
                                                      Variables.MMI_M_DATA_ENABLE.AxleLoadCategory |
                                                      Variables.MMI_M_DATA_ENABLE.Airtightness |
                                                      Variables.MMI_M_DATA_ENABLE.LoadingGauge,
-                                                     100, 200,
-                                                     Variables.MMI_NID_KEY.PASS1,
-                                                     70,
-                                                     Variables.MMI_NID_KEY.CATA,
-                                                     1,
-                                                     Variables.MMI_NID_KEY_Load_Gauge.G1,
-                                                     EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE,
-                                                     0, 0, new[] { "FLU", "RLU", "Rescue" }, null);
+                100, 200,
+                Variables.MMI_NID_KEY.PASS1,
+                70,
+                Variables.MMI_NID_KEY.CATA,
+                1,
+                Variables.MMI_NID_KEY_Load_Gauge.G1,
+                EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE,
+                0, 0, new[] {"FLU", "RLU", "Rescue"}, null);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Train data window" + Environment.NewLine +
@@ -109,26 +108,40 @@ namespace Testcase.DMITestCases
             Action: Modify and confirm an valid value for each following input field,Train category = ‘TILT1’Train length = ‘4000’Brake percentage = ‘100’Maximum speed = ‘120’Axel load category = ‘B1’Airtight = ‘No’Loading gauge = ‘Out of GC’
             Expected Result: Verifies that the value of each input field are changed refer to specifies entered data
             */
-            WaitForVerification("Modify the value for the Train Category Input Field to ‘TILT1’, confirm the value and check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The Input Field value changes according to the data entered.");
+            WaitForVerification(
+                "Modify the value for the Train Category Input Field to ‘TILT1’, confirm the value and check the following:" +
+                Environment.NewLine + Environment.NewLine +
+                "1. The Input Field value changes according to the data entered.");
 
-            WaitForVerification("Modify the value for the Train length Input Field to ‘4000’, confirm the value and check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The Input Field value changes according to the data entered.");
+            WaitForVerification(
+                "Modify the value for the Train length Input Field to ‘4000’, confirm the value and check the following:" +
+                Environment.NewLine + Environment.NewLine +
+                "1. The Input Field value changes according to the data entered.");
 
-            WaitForVerification("Modify the value for the Brake percentage Input Field to ‘100’, confirm the value and check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The Input Field value changes according to the data entered.");
+            WaitForVerification(
+                "Modify the value for the Brake percentage Input Field to ‘100’, confirm the value and check the following:" +
+                Environment.NewLine + Environment.NewLine +
+                "1. The Input Field value changes according to the data entered.");
 
-            WaitForVerification("Modify the value for the Maximum speed  Input Field to ‘120’, confirm the value and check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The Input Field value changes according to the data entered.");
+            WaitForVerification(
+                "Modify the value for the Maximum speed  Input Field to ‘120’, confirm the value and check the following:" +
+                Environment.NewLine + Environment.NewLine +
+                "1. The Input Field value changes according to the data entered.");
 
-            WaitForVerification("Modify the value for the Axle load category Input Field to ‘B1’, confirm the value and check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The Input Field value changes according to the data entered.");
+            WaitForVerification(
+                "Modify the value for the Axle load category Input Field to ‘B1’, confirm the value and check the following:" +
+                Environment.NewLine + Environment.NewLine +
+                "1. The Input Field value changes according to the data entered.");
 
-            WaitForVerification("Modify the value for the Airtight Input Field to ‘No’, confirm the value and check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The Input Field value changes according to the data entered.");
+            WaitForVerification(
+                "Modify the value for the Airtight Input Field to ‘No’, confirm the value and check the following:" +
+                Environment.NewLine + Environment.NewLine +
+                "1. The Input Field value changes according to the data entered.");
 
-            WaitForVerification("Modify the value for the Loading gauge  Input Field to ‘Out of GC’, confirm the value and check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The Input Field value changes according to the data entered.");
+            WaitForVerification(
+                "Modify the value for the Loading gauge  Input Field to ‘Out of GC’, confirm the value and check the following:" +
+                Environment.NewLine + Environment.NewLine +
+                "1. The Input Field value changes according to the data entered.");
 
             /*
             Test Step 4
@@ -146,14 +159,14 @@ namespace Testcase.DMITestCases
                                                      Variables.MMI_M_DATA_ENABLE.AxleLoadCategory |
                                                      Variables.MMI_M_DATA_ENABLE.Airtightness |
                                                      Variables.MMI_M_DATA_ENABLE.LoadingGauge,
-                                                     100, 200,
-                                                     Variables.MMI_NID_KEY.PASS1,
-                                                     70,
-                                                     Variables.MMI_NID_KEY.CATA,
-                                                     1,
-                                                     Variables.MMI_NID_KEY_Load_Gauge.G1,
-                                                     EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE,
-                                                     0, 0, new[] { "FLU", "RLU", "Rescue" }, null);
+                100, 200,
+                Variables.MMI_NID_KEY.PASS1,
+                70,
+                Variables.MMI_NID_KEY.CATA,
+                1,
+                Variables.MMI_NID_KEY_Load_Gauge.G1,
+                EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE,
+                0, 0, new[] {"FLU", "RLU", "Rescue"}, null);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Train data window" + Environment.NewLine +
@@ -164,26 +177,40 @@ namespace Testcase.DMITestCases
             Action: Repeat action step 3.Then, press ‘Yes’ button
             Expected Result: DMI displays Train data validation window
             */
-            WaitForVerification("Modify the value for the Train Category Input Field to ‘TILT1’, confirm the value and check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The Input Field value changes according to the data entered.");
+            WaitForVerification(
+                "Modify the value for the Train Category Input Field to ‘TILT1’, confirm the value and check the following:" +
+                Environment.NewLine + Environment.NewLine +
+                "1. The Input Field value changes according to the data entered.");
 
-            WaitForVerification("Modify the value for the Train length Input Field to ‘4000’, confirm the value and check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The Input Field value changes according to the data entered.");
+            WaitForVerification(
+                "Modify the value for the Train length Input Field to ‘4000’, confirm the value and check the following:" +
+                Environment.NewLine + Environment.NewLine +
+                "1. The Input Field value changes according to the data entered.");
 
-            WaitForVerification("Modify the value for the Brake percentage Input Field to ‘100’, confirm the value and check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The Input Field value changes according to the data entered.");
+            WaitForVerification(
+                "Modify the value for the Brake percentage Input Field to ‘100’, confirm the value and check the following:" +
+                Environment.NewLine + Environment.NewLine +
+                "1. The Input Field value changes according to the data entered.");
 
-            WaitForVerification("Modify the value for the Maximum speed  Input Field to ‘120’, confirm the value and check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The Input Field value changes according to the data entered.");
+            WaitForVerification(
+                "Modify the value for the Maximum speed  Input Field to ‘120’, confirm the value and check the following:" +
+                Environment.NewLine + Environment.NewLine +
+                "1. The Input Field value changes according to the data entered.");
 
-            WaitForVerification("Modify the value for the Axle load category Input Field to ‘B1’, confirm the value and check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The Input Field value changes according to the data entered.");
+            WaitForVerification(
+                "Modify the value for the Axle load category Input Field to ‘B1’, confirm the value and check the following:" +
+                Environment.NewLine + Environment.NewLine +
+                "1. The Input Field value changes according to the data entered.");
 
-            WaitForVerification("Modify the value for the Airtight Input Field to ‘No’, confirm the value and check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The Input Field value changes according to the data entered.");
+            WaitForVerification(
+                "Modify the value for the Airtight Input Field to ‘No’, confirm the value and check the following:" +
+                Environment.NewLine + Environment.NewLine +
+                "1. The Input Field value changes according to the data entered.");
 
-            WaitForVerification("Modify the value for the Loading gauge  Input Field to ‘Out of GC’, confirm the value and check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The Input Field value changes according to the data entered.");
+            WaitForVerification(
+                "Modify the value for the Loading gauge  Input Field to ‘Out of GC’, confirm the value and check the following:" +
+                Environment.NewLine + Environment.NewLine +
+                "1. The Input Field value changes according to the data entered.");
 
             DmiActions.ShowInstruction(this, @"Press ‘Yes’ button");
 
@@ -227,14 +254,14 @@ namespace Testcase.DMITestCases
                                                      Variables.MMI_M_DATA_ENABLE.AxleLoadCategory |
                                                      Variables.MMI_M_DATA_ENABLE.Airtightness |
                                                      Variables.MMI_M_DATA_ENABLE.LoadingGauge,
-                                                     100, 200,
-                                                     Variables.MMI_NID_KEY.PASS1,
-                                                     70,
-                                                     Variables.MMI_NID_KEY.CATA,
-                                                     1,
-                                                     Variables.MMI_NID_KEY_Load_Gauge.G1,
-                                                     EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE,
-                                                     0, 0, new[] { "FLU", "RLU", "Rescue" }, null);
+                100, 200,
+                Variables.MMI_NID_KEY.PASS1,
+                70,
+                Variables.MMI_NID_KEY.CATA,
+                1,
+                Variables.MMI_NID_KEY_Load_Gauge.G1,
+                EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE,
+                0, 0, new[] {"FLU", "RLU", "Rescue"}, null);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Train data window." + Environment.NewLine +
@@ -245,26 +272,40 @@ namespace Testcase.DMITestCases
             Action: Repeat action step 3.Then, press ‘Yes’ button
             Expected Result: DMI displays Train data validation window
             */
-            WaitForVerification("Modify the value for the Train Category Input Field to ‘TILT1’, confirm the value and check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The Input Field value changes according to the data entered.");
+            WaitForVerification(
+                "Modify the value for the Train Category Input Field to ‘TILT1’, confirm the value and check the following:" +
+                Environment.NewLine + Environment.NewLine +
+                "1. The Input Field value changes according to the data entered.");
 
-            WaitForVerification("Modify the value for the Train length Input Field to ‘4000’, confirm the value and check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The Input Field value changes according to the data entered.");
+            WaitForVerification(
+                "Modify the value for the Train length Input Field to ‘4000’, confirm the value and check the following:" +
+                Environment.NewLine + Environment.NewLine +
+                "1. The Input Field value changes according to the data entered.");
 
-            WaitForVerification("Modify the value for the Brake percentage Input Field to ‘100’, confirm the value and check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The Input Field value changes according to the data entered.");
+            WaitForVerification(
+                "Modify the value for the Brake percentage Input Field to ‘100’, confirm the value and check the following:" +
+                Environment.NewLine + Environment.NewLine +
+                "1. The Input Field value changes according to the data entered.");
 
-            WaitForVerification("Modify the value for the Maximum speed  Input Field to ‘120’, confirm the value and check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The Input Field value changes according to the data entered.");
+            WaitForVerification(
+                "Modify the value for the Maximum speed  Input Field to ‘120’, confirm the value and check the following:" +
+                Environment.NewLine + Environment.NewLine +
+                "1. The Input Field value changes according to the data entered.");
 
-            WaitForVerification("Modify the value for the Axle load category Input Field to ‘B1’, confirm the value and check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The Input Field value changes according to the data entered.");
+            WaitForVerification(
+                "Modify the value for the Axle load category Input Field to ‘B1’, confirm the value and check the following:" +
+                Environment.NewLine + Environment.NewLine +
+                "1. The Input Field value changes according to the data entered.");
 
-            WaitForVerification("Modify the value for the Airtight Input Field to ‘No’, confirm the value and check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The Input Field value changes according to the data entered.");
+            WaitForVerification(
+                "Modify the value for the Airtight Input Field to ‘No’, confirm the value and check the following:" +
+                Environment.NewLine + Environment.NewLine +
+                "1. The Input Field value changes according to the data entered.");
 
-            WaitForVerification("Modify the value for the Loading gauge  Input Field to ‘Out of GC’, confirm the value and check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The Input Field value changes according to the data entered.");
+            WaitForVerification(
+                "Modify the value for the Loading gauge  Input Field to ‘Out of GC’, confirm the value and check the following:" +
+                Environment.NewLine + Environment.NewLine +
+                "1. The Input Field value changes according to the data entered.");
 
             DmiActions.ShowInstruction(this, @"Press ‘Yes’ button");
 
@@ -297,7 +338,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Main window
             */
             DmiActions.ShowInstruction(this, @"Press and confirm ‘Yes’ button in Train data validation window");
-            
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Train data window.");
 
@@ -317,17 +358,17 @@ namespace Testcase.DMITestCases
                                                      Variables.MMI_M_DATA_ENABLE.AxleLoadCategory |
                                                      Variables.MMI_M_DATA_ENABLE.Airtightness |
                                                      Variables.MMI_M_DATA_ENABLE.LoadingGauge,
-                                                     4000,
-                                                     120,
-                                                     Variables.MMI_NID_KEY.TILT1,
-                                                     100,
-                                                     Variables.MMI_NID_KEY.CATB1,
-                                                     0,
-                                                     Variables.MMI_NID_KEY_Load_Gauge.G1,
-                                                     EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE,
-                                                     0,
-                                                     0,
-                                                     new[] { "FLU", "RLU", "Rescue" }, null);
+                4000,
+                120,
+                Variables.MMI_NID_KEY.TILT1,
+                100,
+                Variables.MMI_NID_KEY.CATB1,
+                0,
+                Variables.MMI_NID_KEY_Load_Gauge.G1,
+                EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE,
+                0,
+                0,
+                new[] {"FLU", "RLU", "Rescue"}, null);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Train data window." + Environment.NewLine +

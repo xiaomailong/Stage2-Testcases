@@ -61,6 +61,7 @@ namespace Testcase.DMITestCases
             // Testcase entrypoint
 
             #region Test Step 1
+
             /*           
             Action: Activate cabin A
             Expected Result: DMI displays in SB mode. The Driver ID window is displayed
@@ -79,6 +80,7 @@ namespace Testcase.DMITestCases
             #endregion
 
             #region Test Step 2
+
             /*           
             Action: Enter Driver ID and perform brake test
             Expected Result: DMI displays Level window
@@ -103,6 +105,7 @@ namespace Testcase.DMITestCases
             #endregion
 
             #region Test Step 3
+
             /*
             Action: Select and confirm Level 0
             Expected Result: DMI displays Main window.
@@ -115,9 +118,10 @@ namespace Testcase.DMITestCases
 
             DmiActions.Display_Main_Window_with_Start_button_not_enabled(this);
 
-            #endregion           
+            #endregion
 
             #region Test Step 4
+
             /*
             Test Step 4
             Action: Press ‘Train data’ button
@@ -132,6 +136,7 @@ namespace Testcase.DMITestCases
             #endregion
 
             #region Test Step 5
+
             /*
             Test Step 5
             Action: Enter and confirm value in each input field.Then, press ‘Yes’ button
@@ -153,6 +158,7 @@ namespace Testcase.DMITestCases
             #endregion
 
             #region Test Step 6
+
             /*
             Test Step 6
             Action: Press ‘Yes’ button.Then, confirmed selected value by pressing an input field
@@ -166,9 +172,10 @@ namespace Testcase.DMITestCases
             DmiActions.Display_TRN_Window(this);
             DmiExpectedResults.TRN_window_displayed(this);
 
-            #endregion                        
+            #endregion
 
             #region Test Step 7
+
             /*
             Test Step 7
             Action: Enter and confirm Train running number
@@ -183,6 +190,7 @@ namespace Testcase.DMITestCases
             #endregion
 
             #region Test Step 8
+
             /*
             Test Step 8
             Action: Press ‘Start’ button
@@ -205,6 +213,7 @@ namespace Testcase.DMITestCases
             #endregion
 
             #region Test Step 9
+
             /*
             Test Step 9
             Action: Acknowledge UN mode
@@ -229,9 +238,10 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.UN_Mode_displayed(this);
             DmiExpectedResults.Driver_symbol_displayed(this, "Level 0", "LE01", "C8", true);
 
-            #endregion                        
+            #endregion
 
             #region Test Step 10
+
             /*
             Test Step 10
             Action: Perform the following procedure:
@@ -254,59 +264,71 @@ namespace Testcase.DMITestCases
             DmiActions.Display_Driver_ID_Window(this);
             DmiActions.Set_Driver_ID(this, "1234");
             DmiActions.Send_SB_Mode(this);
-            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
-                                "1. Enter and confirm Driver ID." + Environment.NewLine +
-                                "2. Press OK on THIS window.");
+            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine +
+                                             Environment.NewLine +
+                                             "1. Enter and confirm Driver ID." + Environment.NewLine +
+                                             "2. Press OK on THIS window.");
 
             DmiActions.Request_Brake_Test(this);
-            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
-                                "1. Perform Brake Test" + Environment.NewLine +
-                                "2. Press OK on THIS window.");
+            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine +
+                                             Environment.NewLine +
+                                             "1. Perform Brake Test" + Environment.NewLine +
+                                             "2. Press OK on THIS window.");
             DmiActions.Perform_Brake_Test(this, 2);
             Wait_Realtime(5000);
             DmiActions.Display_Brake_Test_Successful(this, 3);
 
             DmiActions.Display_Level_Window(this);
             DmiActions.Delete_Brake_Test_Successful(this, 3);
-            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
-                                "1. Select and enter Level 1" + Environment.NewLine +
-                                "2. Press OK on THIS window.");
+            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine +
+                                             Environment.NewLine +
+                                             "1. Select and enter Level 1" + Environment.NewLine +
+                                             "2. Press OK on THIS window.");
 
             DmiActions.Display_Main_Window_with_Start_button_not_enabled(this);
-            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
-                                "1. Press ‘Train data’ button." + Environment.NewLine +
-                                "2. Press OK on THIS window.");
+            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine +
+                                             Environment.NewLine +
+                                             "1. Press ‘Train data’ button." + Environment.NewLine +
+                                             "2. Press OK on THIS window.");
 
             DmiActions.Display_Fixed_Train_Data_Window(this);
-            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
-                                "1. Enter FLU and confirm value in each input field." + Environment.NewLine +
-                                "2. Press OK on THIS window.");
+            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine +
+                                             Environment.NewLine +
+                                             "1. Enter FLU and confirm value in each input field." +
+                                             Environment.NewLine +
+                                             "2. Press OK on THIS window.");
 
             DmiActions.Enable_Fixed_Train_Data_Validation(this, Fixed_Trainset_Captions.FLU);
-            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
-                                "1. Press ‘Yes’ button." + Environment.NewLine +
-                                "2. Press OK on THIS window.");
+            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine +
+                                             Environment.NewLine +
+                                             "1. Press ‘Yes’ button." + Environment.NewLine +
+                                             "2. Press OK on THIS window.");
 
             DmiActions.Complete_Fixed_Train_Data_Entry(this, Fixed_Trainset_Captions.FLU);
             DmiActions.Display_Train_data_validation_Window(this);
-            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
-                                "1. Press ‘Yes’ button." + Environment.NewLine +
-                                "2. Confirmed the selected value by pressing the input field." + Environment.NewLine +
-                                "3. Press OK on THIS window.");
+            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine +
+                                             Environment.NewLine +
+                                             "1. Press ‘Yes’ button." + Environment.NewLine +
+                                             "2. Confirmed the selected value by pressing the input field." +
+                                             Environment.NewLine +
+                                             "3. Press OK on THIS window.");
 
             DmiActions.Display_TRN_Window(this);
-            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
-                                "1. Enter and confirm Train Running Number." + Environment.NewLine +
-                                "2. Press OK on THIS window.");
+            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine +
+                                             Environment.NewLine +
+                                             "1. Enter and confirm Train Running Number." + Environment.NewLine +
+                                             "2. Press OK on THIS window.");
 
             DmiActions.Display_Main_Window_with_Start_button_enabled(this);
-            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
-                                "1. Press ‘Start’ button." + Environment.NewLine +
-                                "2. Press OK on THIS window.");
+            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine +
+                                             Environment.NewLine +
+                                             "1. Press ‘Start’ button." + Environment.NewLine +
+                                             "2. Press OK on THIS window.");
 
             DmiActions.Send_SR_Mode_Ack(this);
-            DmiActions.ShowInstruction(this, @"Perform the following action after pressing OK: " + Environment.NewLine + Environment.NewLine +
-                                "1. Press DMI Sub Area C1.");
+            DmiActions.ShowInstruction(this, @"Perform the following action after pressing OK: " + Environment.NewLine +
+                                             Environment.NewLine +
+                                             "1. Press DMI Sub Area C1.");
             DmiExpectedResults.SR_Mode_Ack_pressed_and_hold(this);
 
             DmiActions.Send_SR_Mode(this);
@@ -318,6 +340,7 @@ namespace Testcase.DMITestCases
             #endregion
 
             #region Test Step 11
+
             /*
             Test Step 11
             Action: Drive the train forward passing BG1
@@ -342,6 +365,7 @@ namespace Testcase.DMITestCases
             #endregion
 
             #region Test Step 12
+
             /*
             Test Step 12
             Action: Acknowledge OS mode
@@ -362,6 +386,7 @@ namespace Testcase.DMITestCases
             #endregion
 
             #region Test Step 13
+
             /*
             Test Step 13
             Action: Stop the train.Then, press ‘Over-ride’ button
@@ -372,15 +397,18 @@ namespace Testcase.DMITestCases
 
             Wait_Realtime(5000);
 
-            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
-                                "1. Press the \"Override\" Button on Default Window Area F2." + Environment.NewLine +
-                                "2. Press OK on THIS window.");
+            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine +
+                                             Environment.NewLine +
+                                             "1. Press the \"Override\" Button on Default Window Area F2." +
+                                             Environment.NewLine +
+                                             "2. Press OK on THIS window.");
             DmiActions.Display_Override_Window(this);
             DmiExpectedResults.Override_window_displayed(this);
 
             #endregion
 
             #region Test Step 14
+
             /*
             Test Step 14
             Action: Press ‘EOA’ button
@@ -391,8 +419,9 @@ namespace Testcase.DMITestCases
                                (2) MMI_gen 11231 (partly: EVC-2);
             */
 
-            DmiActions.ShowInstruction(this, @"Perform the following action after pressing OK: " + Environment.NewLine + Environment.NewLine +
-                                "1. Press ‘EOA’ button.");
+            DmiActions.ShowInstruction(this, @"Perform the following action after pressing OK: " + Environment.NewLine +
+                                             Environment.NewLine +
+                                             "1. Press ‘EOA’ button.");
 
             DmiExpectedResults.EOA_Button_pressed(this);
 
@@ -402,15 +431,16 @@ namespace Testcase.DMITestCases
             #endregion
 
             #region Test Step 15
+
             /*
             Test Step 15
             Action: End of test
             Expected Result: 
             */
+
             #endregion
 
             return GlobalTestResult;
-
         }
     }
 }

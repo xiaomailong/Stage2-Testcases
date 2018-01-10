@@ -1,8 +1,10 @@
 ﻿#region usings
+
 using System;
 using System.Collections.Generic;
 using CL345;
 using static Testcase.Telegrams.EVCtoDMI.Variables;
+
 #endregion
 
 namespace Testcase.Telegrams.EVCtoDMI
@@ -43,9 +45,9 @@ namespace Testcase.Telegrams.EVCtoDMI
         {
             if (DataElements.Count > 3)
                 throw new ArgumentOutOfRangeException();
-            
+
             ushort totalSizeCounter = 96;
-        
+
             // Set number of train data elements
             _pool.SITR.ETCS1.CurrentSrRules.MmiNDataElements.Value = (ushort) DataElements.Count;
 
@@ -53,7 +55,7 @@ namespace Testcase.Telegrams.EVCtoDMI
                 totalSizeCounter, DataElements, _pool);
 
             // Set the total length of the packet (adding MMI_M_BUTTONS length)
-            _pool.SITR.ETCS1.CurrentSrRules.MmiLPacket.Value = Convert.ToUInt16((int)totalSizeCounter + 8);
+            _pool.SITR.ETCS1.CurrentSrRules.MmiLPacket.Value = Convert.ToUInt16((int) totalSizeCounter + 8);
 
             _pool.SITR.SMDCtrl.ETCS1.CurrentSrRules.Value = 0x09;
         }
@@ -85,7 +87,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         {
             get => _pool.SITR.ETCS1.CurrentSrRules.MmiVStff.Value;
             set => _pool.SITR.ETCS1.CurrentSrRules.MmiVStff.Value = value;
-        }        
+        }
 
         /// <summary>
         /// Identifier of MMI Buttons.

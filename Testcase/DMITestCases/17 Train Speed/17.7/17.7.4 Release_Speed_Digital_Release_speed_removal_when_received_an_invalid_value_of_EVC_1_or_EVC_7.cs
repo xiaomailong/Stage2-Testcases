@@ -114,7 +114,9 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
+
         #region Send_XML_12_7_4_DMI_Test_Specification
+
         enum msgType
         {
             typea,
@@ -125,12 +127,11 @@ namespace Testcase.DMITestCases
         {
             switch (type)
             {
-
                 case msgType.typea:
 
                     EVC1_MMIDynamic.MMI_M_SLIDE = 0;
                     EVC1_MMIDynamic.MMI_M_SLIP = 1;
-                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Spare;   // 7
+                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Spare; // 7
                     EVC1_MMIDynamic.MMI_A_TRAIN = 0;
                     EVC1_MMIDynamic.MMI_V_TRAIN = 100;
                     EVC1_MMIDynamic.MMI_V_TARGET = 1111;
@@ -154,7 +155,7 @@ namespace Testcase.DMITestCases
                     EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_STM_HS_ENABLED = 0;
                     EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_STM_DA_ENABLED = 0;
                     EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_BrakeTest_Status =
-                    EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_BRAKETEST_STATUS.BrakeTestNotInProgress;
+                        EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_BRAKETEST_STATUS.BrakeTestNotInProgress;
                     EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L0;
                     EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Invalid;
                     EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_ADHESION = 100; // "Spare"
@@ -164,12 +165,12 @@ namespace Testcase.DMITestCases
                     EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 10000000;
 
                     SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity1.Value = 0x1000;
-                    SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity2.Value = 0x1;   // All validity bits set
+                    SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity2.Value = 0x1; // All validity bits set
 
                     break;
-
             }
         }
+
         #endregion
     }
 }

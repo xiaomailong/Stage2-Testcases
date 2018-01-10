@@ -60,7 +60,7 @@ namespace Testcase.DMITestCases
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint
-            
+
             /*
             Test Step 1
             Action: Drive the train forward pass BG1 with speed = 30km/h.Then, stop the train
@@ -81,13 +81,13 @@ namespace Testcase.DMITestCases
             */
             XML_12_5_4(msgType.typea);
 
-            Wait_Realtime(500);     // this was not working each time
+            Wait_Realtime(500); // this was not working each time
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1.The Circular Speed Gauge is removed from sub-area B2.");
 
             // correct the invalid item:
-            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Overspeed_Status_Ceiling_Speed_Monitoring;    
+            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Overspeed_Status_Ceiling_Speed_Monitoring;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1.The Circular Speed Gauge re-appears in sub-area B2.");
@@ -117,7 +117,7 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1.The Circular Speed Gauge is removed from sub-area B2.");
-            
+
             // correct the invalid item:
             EVC1_MMIDynamic.MMI_V_PERMITTED = 1111;
 
@@ -154,7 +154,7 @@ namespace Testcase.DMITestCases
 
 
             // correct the invalid item:
-            EVC1_MMIDynamic.MMI_V_RELEASE = 1111; 
+            EVC1_MMIDynamic.MMI_V_RELEASE = 1111;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1.The Circular Speed Gauge re-appears in sub-area B2.");
@@ -170,7 +170,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1.The Circular Speed Gauge is removed from sub-area B2.");
 
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision; 
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1.The Circular Speed Gauge re-appears in sub-area B2.");
@@ -185,6 +185,7 @@ namespace Testcase.DMITestCases
         }
 
         #region Send_XML_12_5_4_DMI_Test_Specification
+
         enum msgType
         {
             typea,
@@ -218,31 +219,31 @@ namespace Testcase.DMITestCases
             switch (type)
             {
                 case msgType.typea:
-                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Spare;   // 7
+                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Spare; // 7
                     EVC1_MMIDynamic.MMI_V_TRAIN = 0;
 
                     break;
                 case msgType.typeb:
-                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Warning_Status_Ceiling_Speed_Monitoring;   // 4
-                    EVC1_MMIDynamic.MMI_V_TARGET = 11112;           // invalid
+                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Warning_Status_Ceiling_Speed_Monitoring; // 4
+                    EVC1_MMIDynamic.MMI_V_TARGET = 11112; // invalid
                     EVC1_MMIDynamic.MMI_V_TRAIN = 0;
 
                     break;
                 case msgType.typec:
-                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring;   // 0
-                    EVC1_MMIDynamic.MMI_V_PERMITTED = 11112;        //invalid
+                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring; // 0
+                    EVC1_MMIDynamic.MMI_V_PERMITTED = 11112; //invalid
                     EVC1_MMIDynamic.MMI_V_TRAIN = 0;
 
                     break;
                 case msgType.typed:
-                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring;   // 0
-                    EVC1_MMIDynamic.MMI_V_INTERVENTION = 11112;     // invalid
+                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring; // 0
+                    EVC1_MMIDynamic.MMI_V_INTERVENTION = 11112; // invalid
                     EVC1_MMIDynamic.MMI_V_TRAIN = 0;
 
                     break;
                 case msgType.typee:
-                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring;   // 0
-                    EVC1_MMIDynamic.MMI_V_RELEASE = 11112;      // invalid
+                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring; // 0
+                    EVC1_MMIDynamic.MMI_V_RELEASE = 11112; // invalid
                     EVC1_MMIDynamic.MMI_V_TRAIN = 0;
 
                     break;
@@ -252,7 +253,8 @@ namespace Testcase.DMITestCases
                     EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_RadioStatus = 0;
                     EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_STM_HS_ENABLED = 0;
                     EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_STM_DA_ENABLED = 0;
-                    EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_BrakeTest_Status = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_BRAKETEST_STATUS.BrakeTestNotInProgress;
+                    EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_BrakeTest_Status = EVC7_MMIEtcsMiscOutSignals
+                        .MMI_OBU_TR_BRAKETEST_STATUS.BrakeTestNotInProgress;
                     EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
                     EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Invalid;
                     EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_ADHESION = 100; // "Spare"
@@ -262,13 +264,12 @@ namespace Testcase.DMITestCases
                     EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 1000010000;
 
                     SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity1.Value = 0x113f; // All validity bits set
-                    SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity2.Value = 0x3f;   // All validity bits set
+                    SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity2.Value = 0x3f; // All validity bits set
 
                     break;
-
             }
         }
-        #endregion
 
+        #endregion
     }
 }

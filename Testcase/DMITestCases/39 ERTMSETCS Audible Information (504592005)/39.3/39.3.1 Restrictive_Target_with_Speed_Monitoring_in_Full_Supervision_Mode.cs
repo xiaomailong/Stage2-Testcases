@@ -108,8 +108,10 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI plays the ‘Sinfo’ sound once." + Environment.NewLine +
-                                "2. The permitted speed hook is displayed on the CSG from 60 to 70 km/h in orange." + Environment.NewLine +
-                                "3. The CSG is coloured white from the target speed (50 km/h) up to the permitted speed (100 km/h)" + Environment.NewLine +
+                                "2. The permitted speed hook is displayed on the CSG from 60 to 70 km/h in orange." +
+                                Environment.NewLine +
+                                "3. The CSG is coloured white from the target speed (50 km/h) up to the permitted speed (100 km/h)" +
+                                Environment.NewLine +
                                 "4. The speed pointer displays 40 km/h and is coloured white.");
 
             /*
@@ -143,7 +145,7 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The speed pointer displays 0 km/h.");
-            
+
             /*
             Test Step 8
             Action: End of test

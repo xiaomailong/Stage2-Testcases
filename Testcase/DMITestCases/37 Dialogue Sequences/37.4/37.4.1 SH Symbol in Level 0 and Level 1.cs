@@ -53,10 +53,10 @@ namespace Testcase.DMITestCases
 
             // Enable standard buttons including Start, and display Main window.
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Start | Variables.standardFlags;
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;      // Main window
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH =
+                EVC30_MMIRequestEnable.EnabledRequests.Start | Variables.standardFlags;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main; // Main window
             EVC30_MMIRequestEnable.Send();
-
         }
 
         public override void PostExecution()
@@ -81,7 +81,8 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 11914 (partly: receives SH symbol); MMI_gen 11084 (partly: SH);MMI_gen 11914 (partly: display the symbol when receive SH symbol); MMI_gen 110 (partly: MO10);MMI_gen 11914 (partly: close main window and return to the default window);
             */
 
-            DmiActions.ShowInstruction(this, @"Press and hold the ‘Shunting’ button for at least 2 seconds, then release the button");
+            DmiActions.ShowInstruction(this,
+                @"Press and hold the ‘Shunting’ button for at least 2 seconds, then release the button");
 
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L0;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Shunting;
@@ -110,7 +111,8 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Shunting;
             EVC30_MMIRequestEnable.Send();
 
-            DmiActions.ShowInstruction(this, @"Press and hold ‘Shunting’ button for at least 2 seconds. Release ‘Shunting’ button");
+            DmiActions.ShowInstruction(this,
+                @"Press and hold ‘Shunting’ button for at least 2 seconds. Release ‘Shunting’ button");
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Shunting;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +

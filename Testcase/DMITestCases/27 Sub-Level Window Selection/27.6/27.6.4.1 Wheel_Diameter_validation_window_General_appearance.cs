@@ -17,7 +17,6 @@ using Testcase.Telegrams.EVCtoDMI;
 using Testcase.Telegrams.DMItoEVC;
 
 
-
 namespace Testcase.DMITestCases
 {
     /// <summary>
@@ -48,8 +47,9 @@ namespace Testcase.DMITestCases
             DmiActions.Activate_Cabin_1(this);
             DmiActions.Set_Driver_ID(this, "1234");
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Default; 
-            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Default;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH =
+                EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter;
             EVC30_MMIRequestEnable.Send();
         }
 
@@ -72,38 +72,49 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,Use the log file to confirm that DMI received the packet MMI_ECHOED_MAINTENANCE_DATA (EVC-41) with variable MMI_Q_MD_DATASET = 0. Use the log file to confirm that the following variables in packet EVC-41 are same as entered data,MMI_M_SDU_WHEEL_SIZE_1 = entered Wheel diameter1MMI_M_SDU_WHEEL_SIZE_2 = entered Wheel diameter2MMI_M_WHEEL_SIZE_ERR = entered AccuracyDMI displays Wheel diameter Validation window.The following objects are displayed in Wheel diameter Validation window. Enabled Close button (NA11)Window TitleInput fieldYes buttonNo buttonWindow TitleThe window title is ‘Validate Wheel diameter’.The window title is right aligned.LayerThe window is displayed in main area A/B/C/D/E/F/G.All areas of Data validation window are Layer 0.Input fieldThe window contains a single input field which have only data area.The value of input field is empty.KeyboardThe displayed keyboard type is dedicated keyboard which contain only ‘Yes’ and ‘No’ button.The key #7 is No button.The key #8 is Yes button.Echo TextEcho Text is composed of a Label part and Data part.The Label of echo text is right aligned.The Data part of echo text is left aligned.The order of echo texts are same as of the Wheel diameter window as follows,Wheel diameter 1 (mm)Wheel diameter 2 (mm)Accuracy (mm)The data part of echo texts are display the data value same as of the Wheel diameter window.The echo texts are located in Main area A,B,C and E.The colour of echo texts is white.General property of windowThe Wheel diameter Validation window is presented with objects, text messages and buttons which is the one of several levels and allocated to areas of DMI. All objects, text messages and buttons are presented within the same layer.The Default window is not displayed and covered the current window
             Test Step Comment: (1) MMI_gen 11761 (partly: EVC-41);(2) MMI_gen 11763;(3) MMI_gen 11761 (partly: open Wheel diameter Validation window, touch screen);(4) MMI_gen 11760 (partly: MMI_gen 5215 (partly: Close button, Window title, Input field, No button, Yes button)); MMI_gen 4392 (partly: [Close] NA11);(5) MMI_gen 11701;(6) MMI_gen 11760 (partly: MMI_gen 5216);(7) MMI_gen 11760 (partly: MMI_gen 7943);(8) MMI_gen 11760 (partly: MMI_gen 5303);(9) MMI_gen 11760 (partly: MMI_gen 5214 (partly: single input field));          (10) MMI_gen 11760 (partly: MMI_gen 5484 (partly: empty)); (11) MMI_gen 11760 (partly: MMI_gen 5214 (partly: dedicated keyboard, MMI_gen 5006), MMI_gen 5006);(12) MMI_gen 11760 (partly: MMI_gen 5263 (partly: MMI_gen 4696));(13) MMI_gen 11760 (partly: MMI_gen 5263 (partly: MMI_gen 4702 (partly: right aligned)));(14) MMI_gen 11760 (partly: MMI_gen 5263 (partly: MMI_gen 4704 (partly: left aligned)));(15) MMI_gen 11764;                  MMI_gen 11760 (partly: MMI_gen 5263 (partly: MMI_gen 4701 (partly: same order), MMI_gen 4697));(16) MMI_gen 11760 (partly: MMI_gen 5263 (partly: MMI_gen 4698));(17) MMI_gen 11760 (partly: MMI_gen 5263 (partly: MMI_gen 4701 (partly: Main area A, B, C and E));(18) MMI_gen 11760 (partly: MMI_gen 5263 (partly: MMI_gen 4700 (partly: data validation process)));(19) MMI_gen 4350;(20) MMI_gen 4351;(21) MMI_gen 4353;
             */
-            DmiActions.ShowInstruction(this, "Press the ‘Maintenance’ button and enter the password ‘26728290’ in the Password Maintenance window, then press the ‘Wheel Diameter’ button");
+            DmiActions.ShowInstruction(this,
+                "Press the ‘Maintenance’ button and enter the password ‘26728290’ in the Password Maintenance window, then press the ‘Wheel Diameter’ button");
 
             // spec says this but EVC40 opens the Wheel diameter window
             EVC40_MMICurrentMaintenanceData.MMI_Q_MD_DATASET = Variables.MMI_Q_MD_DATASET.WheelDiameter;
             EVC40_MMICurrentMaintenanceData.Send();
 
-            DmiActions.ShowInstruction(this, "Using the numeric keypad ‘500’ for Wheel Diameter 1 and press its data input field" + Environment.NewLine +
-                                             "Enter ‘500’ for Wheel Diameter 2 and press its data input field" + Environment.NewLine +
-                                             "Enter ‘0’ for Accuracy and press its data input field");
-            
+            DmiActions.ShowInstruction(this,
+                "Using the numeric keypad ‘500’ for Wheel Diameter 1 and press its data input field" +
+                Environment.NewLine +
+                "Enter ‘500’ for Wheel Diameter 2 and press its data input field" + Environment.NewLine +
+                "Enter ‘0’ for Accuracy and press its data input field");
+
             // Open the wheel diameter validation window
-            EVC41_MMIEchoedMaintenanceData.MMI_M_WHEEL_SIZE_ERR_ = (Variables.MMI_M_WHEEL_SIZE_ERR)0;
-            EVC41_MMIEchoedMaintenanceData.MMI_M_SDU_WHEEL_SIZE_2_ = (Variables.MMI_M_SDU_WHEEL_SIZE)500;
-            EVC41_MMIEchoedMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1_ = (Variables.MMI_M_SDU_WHEEL_SIZE)500;
+            EVC41_MMIEchoedMaintenanceData.MMI_M_WHEEL_SIZE_ERR_ = (Variables.MMI_M_WHEEL_SIZE_ERR) 0;
+            EVC41_MMIEchoedMaintenanceData.MMI_M_SDU_WHEEL_SIZE_2_ = (Variables.MMI_M_SDU_WHEEL_SIZE) 500;
+            EVC41_MMIEchoedMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1_ = (Variables.MMI_M_SDU_WHEEL_SIZE) 500;
             EVC41_MMIEchoedMaintenanceData.MMI_Q_MD_DATASET_ = Variables.MMI_Q_MD_DATASET.WheelDiameter;
             EVC41_MMIEchoedMaintenanceData.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the Wheel Diameter Validation window comprising:" + Environment.NewLine +
+                                "1. DMI displays the Wheel Diameter Validation window comprising:" +
+                                Environment.NewLine +
                                 @"   an enabled ‘Close’ button, symbol NA11, a title, an input field, a ‘Yes’ button and a ‘No’ button." +
-                                @"2. The window title is ‘Validate Wheel diameter, right-aligned’." + Environment.NewLine +
+                                @"2. The window title is ‘Validate Wheel diameter, right-aligned’." +
+                                Environment.NewLine +
                                 "3. The window is displayed in areas A, B, C, D, E, F and G." + Environment.NewLine +
                                 "4. All data validation areas are in Layer 0." + Environment.NewLine +
-                                "5. The window displays one data input field which only has a (blank) data part." + Environment.NewLine +
-                                @"6. The window has an associated keypad displaying a ‘Yes’ button (at key #7) and a ‘No’ button (at key #8)." + Environment.NewLine +
-                                "7. Echo texts are displayed with values in white, corresponding to the (three) values previously entered (Wheel diameter 1, Wheel diameter 2 and Accuracy), and in the same order." + Environment.NewLine +
-                                "8. Each echo text has a label, right-aligned and a data part, left-aligned." + Environment.NewLine +
+                                "5. The window displays one data input field which only has a (blank) data part." +
+                                Environment.NewLine +
+                                @"6. The window has an associated keypad displaying a ‘Yes’ button (at key #7) and a ‘No’ button (at key #8)." +
+                                Environment.NewLine +
+                                "7. Echo texts are displayed with values in white, corresponding to the (three) values previously entered (Wheel diameter 1, Wheel diameter 2 and Accuracy), and in the same order." +
+                                Environment.NewLine +
+                                "8. Each echo text has a label, right-aligned and a data part, left-aligned." +
+                                Environment.NewLine +
                                 "9. Echo texts are displayed in areas A, B, C and E." + Environment.NewLine +
-                                "10. Objects, text messages and buttons can be displayed in several levels. Within a level they are allocated to areas." + Environment.NewLine +
-                                "11. Objects, text messages and buttons in a layer form a window." + Environment.NewLine +
+                                "10. Objects, text messages and buttons can be displayed in several levels. Within a level they are allocated to areas." +
+                                Environment.NewLine +
+                                "11. Objects, text messages and buttons in a layer form a window." +
+                                Environment.NewLine +
                                 "12. The Default window is not displayed covering the current window.");
-            
+
             /*
             Test Step 2
             Action: Press ‘No’ button
@@ -144,7 +155,8 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)    The state of an input field is changed to ‘Pressed’, the border of button is removed
             Test Step Comment: (1) MMI_gen 9390 (partly: Wheel Diameter Validation window);
             */
-            DmiActions.ShowInstruction(this, "Whilst keeping the data input field pressed, drag it back inside its area");
+            DmiActions.ShowInstruction(this,
+                "Whilst keeping the data input field pressed, drag it back inside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field is displayed pressed, without a border.");
@@ -160,8 +172,9 @@ namespace Testcase.DMITestCases
             EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.ExitMaintenance;
 
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings;  // settings window
-            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings; // settings window
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH =
+                EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter;
             EVC30_MMIRequestEnable.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -173,17 +186,20 @@ namespace Testcase.DMITestCases
             Action: Perform the following procedure,Press ‘Wheel diameter’ button.Enter and confirm all data in Wheel diameter window.Press ‘Yes’ button
             Expected Result: DMI displays Wheel diameter validation window
             */
-            DmiActions.ShowInstruction(this, "Press the ‘Maintenance’ button and enter the password ‘26728290’ in the Password Maintenance window, then press the ‘Wheel Diameter’ button");
+            DmiActions.ShowInstruction(this,
+                "Press the ‘Maintenance’ button and enter the password ‘26728290’ in the Password Maintenance window, then press the ‘Wheel Diameter’ button");
 
             // spec says this but EVC40 opens the Wheel diameter window
             EVC40_MMICurrentMaintenanceData.MMI_Q_MD_DATASET = Variables.MMI_Q_MD_DATASET.WheelDiameter;
             EVC40_MMICurrentMaintenanceData.Send();
 
-            DmiActions.ShowInstruction(this, "Using the numeric keypad enter a value for Wheel Diameter 1 and press its data input field" + Environment.NewLine +
-                                             "Enter a value for Wheel Diameter 2 and press its data input field" + Environment.NewLine +
-                                             "Enter a value for Accuracy and press its data input field" + Environment.NewLine +
-                                             @"Press the ‘Yes’ button");
-            
+            DmiActions.ShowInstruction(this,
+                "Using the numeric keypad enter a value for Wheel Diameter 1 and press its data input field" +
+                Environment.NewLine +
+                "Enter a value for Wheel Diameter 2 and press its data input field" + Environment.NewLine +
+                "Enter a value for Accuracy and press its data input field" + Environment.NewLine +
+                @"Press the ‘Yes’ button");
+
             EVC41_MMIEchoedMaintenanceData.MMI_Q_MD_DATASET_ = Variables.MMI_Q_MD_DATASET.WheelDiameter;
             EVC41_MMIEchoedMaintenanceData.Send();
 
@@ -210,21 +226,21 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Press the ‘Wheel diameter’ button");
 
-            EVC40_MMICurrentMaintenanceData.MMI_M_WHEEL_SIZE_ERR = (Variables.MMI_M_WHEEL_SIZE_ERR)0;
-            EVC40_MMICurrentMaintenanceData.MMI_M_SDU_WHEEL_SIZE_2 = (Variables.MMI_M_SDU_WHEEL_SIZE)500;
-            EVC40_MMICurrentMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1 = (Variables.MMI_M_SDU_WHEEL_SIZE)500;
+            EVC40_MMICurrentMaintenanceData.MMI_M_WHEEL_SIZE_ERR = (Variables.MMI_M_WHEEL_SIZE_ERR) 0;
+            EVC40_MMICurrentMaintenanceData.MMI_M_SDU_WHEEL_SIZE_2 = (Variables.MMI_M_SDU_WHEEL_SIZE) 500;
+            EVC40_MMICurrentMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1 = (Variables.MMI_M_SDU_WHEEL_SIZE) 500;
             EVC40_MMICurrentMaintenanceData.MMI_Q_MD_DATASET = Variables.MMI_Q_MD_DATASET.WheelDiameter;
             EVC40_MMICurrentMaintenanceData.Send();
 
-            EVC41_MMIEchoedMaintenanceData.MMI_M_WHEEL_SIZE_ERR_ = (Variables.MMI_M_WHEEL_SIZE_ERR)0;
-            EVC41_MMIEchoedMaintenanceData.MMI_M_SDU_WHEEL_SIZE_2_ = (Variables.MMI_M_SDU_WHEEL_SIZE)500;
-            EVC41_MMIEchoedMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1_ = (Variables.MMI_M_SDU_WHEEL_SIZE)500;
+            EVC41_MMIEchoedMaintenanceData.MMI_M_WHEEL_SIZE_ERR_ = (Variables.MMI_M_WHEEL_SIZE_ERR) 0;
+            EVC41_MMIEchoedMaintenanceData.MMI_M_SDU_WHEEL_SIZE_2_ = (Variables.MMI_M_SDU_WHEEL_SIZE) 500;
+            EVC41_MMIEchoedMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1_ = (Variables.MMI_M_SDU_WHEEL_SIZE) 500;
             EVC41_MMIEchoedMaintenanceData.MMI_Q_MD_DATASET_ = Variables.MMI_Q_MD_DATASET.WheelDiameter;
             EVC41_MMIEchoedMaintenanceData.Send();
-            
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Wheel diameter validation window.");
-            
+
             /*
             Test Step 10
             Action: Press ‘Yes’ button
@@ -233,7 +249,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press the ‘Yes’ button");
-            
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field displays ‘Yes’.");
 
@@ -245,9 +261,9 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Press on the data input field to confirm the entered data");
 
-            EVC141_MMIConfirmedMaintenanceData.MMI_M_WHEEL_SIZE_ERR = (Variables.MMI_M_WHEEL_SIZE_ERR)0;
-            EVC141_MMIConfirmedMaintenanceData.MMI_M_SDU_WHEEL_SIZE_2 = (Variables.MMI_M_SDU_WHEEL_SIZE)500;
-            EVC141_MMIConfirmedMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1 = (Variables.MMI_M_SDU_WHEEL_SIZE)500;
+            EVC141_MMIConfirmedMaintenanceData.MMI_M_WHEEL_SIZE_ERR = (Variables.MMI_M_WHEEL_SIZE_ERR) 0;
+            EVC141_MMIConfirmedMaintenanceData.MMI_M_SDU_WHEEL_SIZE_2 = (Variables.MMI_M_SDU_WHEEL_SIZE) 500;
+            EVC141_MMIConfirmedMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1 = (Variables.MMI_M_SDU_WHEEL_SIZE) 500;
             EVC141_MMIConfirmedMaintenanceData.MMI_Q_MD_DATASET = Variables.MMI_Q_MD_DATASET.WheelDiameter;
             EVC141_MMIConfirmedMaintenanceData.CheckTelegram();
 
@@ -261,24 +277,26 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Press the ‘Wheel diameter’ button");
 
-            EVC40_MMICurrentMaintenanceData.MMI_M_WHEEL_SIZE_ERR = (Variables.MMI_M_WHEEL_SIZE_ERR)0;
-            EVC40_MMICurrentMaintenanceData.MMI_M_SDU_WHEEL_SIZE_2 = (Variables.MMI_M_SDU_WHEEL_SIZE)500;
-            EVC40_MMICurrentMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1 = (Variables.MMI_M_SDU_WHEEL_SIZE)500;
+            EVC40_MMICurrentMaintenanceData.MMI_M_WHEEL_SIZE_ERR = (Variables.MMI_M_WHEEL_SIZE_ERR) 0;
+            EVC40_MMICurrentMaintenanceData.MMI_M_SDU_WHEEL_SIZE_2 = (Variables.MMI_M_SDU_WHEEL_SIZE) 500;
+            EVC40_MMICurrentMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1 = (Variables.MMI_M_SDU_WHEEL_SIZE) 500;
             EVC40_MMICurrentMaintenanceData.MMI_Q_MD_DATASET = Variables.MMI_Q_MD_DATASET.WheelDiameter;
             EVC40_MMICurrentMaintenanceData.Send();
 
-            DmiActions.ShowInstruction(this, @"Enter and confirm all data in the Wheel diameter window, then press the ‘Yes’ button.");
-            
-            EVC41_MMIEchoedMaintenanceData.MMI_M_WHEEL_SIZE_ERR_ = (Variables.MMI_M_WHEEL_SIZE_ERR)0;
-            EVC41_MMIEchoedMaintenanceData.MMI_M_SDU_WHEEL_SIZE_2_ = (Variables.MMI_M_SDU_WHEEL_SIZE)500;
-            EVC41_MMIEchoedMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1_ = (Variables.MMI_M_SDU_WHEEL_SIZE)500;
+            DmiActions.ShowInstruction(this,
+                @"Enter and confirm all data in the Wheel diameter window, then press the ‘Yes’ button.");
+
+            EVC41_MMIEchoedMaintenanceData.MMI_M_WHEEL_SIZE_ERR_ = (Variables.MMI_M_WHEEL_SIZE_ERR) 0;
+            EVC41_MMIEchoedMaintenanceData.MMI_M_SDU_WHEEL_SIZE_2_ = (Variables.MMI_M_SDU_WHEEL_SIZE) 500;
+            EVC41_MMIEchoedMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1_ = (Variables.MMI_M_SDU_WHEEL_SIZE) 500;
             EVC41_MMIEchoedMaintenanceData.MMI_Q_MD_DATASET_ = Variables.MMI_Q_MD_DATASET.WheelDiameter;
             EVC41_MMIEchoedMaintenanceData.Send();
-            
+
             DmiActions.Simulate_communication_loss_EVC_DMI(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. DMI displays the Default window with the message ‘ATPDown Alarm’." + Environment.NewLine +
+                                @"1. DMI displays the Default window with the message ‘ATPDown Alarm’." +
+                                Environment.NewLine +
                                 "2. An alarm sound is played.");
 
             /*
@@ -289,9 +307,9 @@ namespace Testcase.DMITestCases
             */
             DmiActions.Re_establish_communication_EVC_DMI(this);
 
-            EVC41_MMIEchoedMaintenanceData.MMI_M_WHEEL_SIZE_ERR_ = (Variables.MMI_M_WHEEL_SIZE_ERR)0;
-            EVC41_MMIEchoedMaintenanceData.MMI_M_SDU_WHEEL_SIZE_2_ = (Variables.MMI_M_SDU_WHEEL_SIZE)500;
-            EVC41_MMIEchoedMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1_ = (Variables.MMI_M_SDU_WHEEL_SIZE)500;
+            EVC41_MMIEchoedMaintenanceData.MMI_M_WHEEL_SIZE_ERR_ = (Variables.MMI_M_WHEEL_SIZE_ERR) 0;
+            EVC41_MMIEchoedMaintenanceData.MMI_M_SDU_WHEEL_SIZE_2_ = (Variables.MMI_M_SDU_WHEEL_SIZE) 500;
+            EVC41_MMIEchoedMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1_ = (Variables.MMI_M_SDU_WHEEL_SIZE) 500;
             EVC41_MMIEchoedMaintenanceData.MMI_Q_MD_DATASET_ = Variables.MMI_Q_MD_DATASET.WheelDiameter;
             EVC41_MMIEchoedMaintenanceData.Send();
 

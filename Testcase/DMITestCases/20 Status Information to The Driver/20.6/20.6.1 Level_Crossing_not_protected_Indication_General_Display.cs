@@ -132,7 +132,7 @@ namespace Testcase.DMITestCases
             Expected Result: All LX01 symbols have reappeared in sub-area B3-B5
             Test Step Comment: (1) Note under MMI_gen 10486;
             */
-            DmiActions.Re_establish_communication_EVC_DMI(this);            
+            DmiActions.Re_establish_communication_EVC_DMI(this);
             EVC33_MMIAdditionalOrder.MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Level_Crossing;
             EVC33_MMIAdditionalOrder.MMI_NID_TRACKCOND = 1;
             EVC33_MMIAdditionalOrder.MMI_Q_TRACKCOND_ACTION = Variables.MMI_Q_TRACKCOND_ACTION.WithoutDriverAction;

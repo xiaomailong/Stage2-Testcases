@@ -64,7 +64,7 @@ namespace Testcase.DMITestCases
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint
-            
+
             /*
             Test Step 1
             Action: Perform the following procedure,a)   Press the ‘Settings’ button.b)  Press the ‘System version’ button.c)   Press the ‘Close’ button. Then, press the ‘System info’ button.d)   Press the ‘Close’ button. Then, press the ‘Brake’ button and ‘Brake test’ button respectively.e)   Press the ‘Close’ button. Then, press the ‘Set VBC’ button.f)    Press the ‘Close’ button
@@ -73,19 +73,21 @@ namespace Testcase.DMITestCases
             */
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Default;
-            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_LOW = true;     // System info enabled
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_LOW = true; // System info enabled
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.SystemVersion |
                                                                EVC30_MMIRequestEnable.EnabledRequests.SetVBC |
                                                                EVC30_MMIRequestEnable.EnabledRequests.StartBrakeTest |
-                                                               EVC30_MMIRequestEnable.EnabledRequests.EnableBrakePercentage |
+                                                               EVC30_MMIRequestEnable.EnabledRequests
+                                                                   .EnableBrakePercentage |
                                                                EVC30_MMIRequestEnable.EnabledRequests.RemoveVBC |
-                                                               EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter |
+                                                               EVC30_MMIRequestEnable.EnabledRequests
+                                                                   .EnableWheelDiameter |
                                                                EVC30_MMIRequestEnable.EnabledRequests.EnableDoppler;
             EVC30_MMIRequestEnable.Send();
 
             DmiActions.ShowInstruction(this, "Press the ‘Settings’ button");
 
-            EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.Settings; 
+            EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.Settings;
 
             DmiActions.ShowInstruction(this, "Press the ‘System version’ button");
 
@@ -100,19 +102,19 @@ namespace Testcase.DMITestCases
             EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.SystemInfoRequest;
 
             EVC24_MMISystemInfo.MMI_NID_ENGINE_1 = 1234;
-            EVC24_MMISystemInfo.MMI_T_TIMEOUT_BRAKE = 0x5695224c;         // 1452614220
-            EVC24_MMISystemInfo.MMI_T_TIMEOUT_BTM = 0x54b3eecc;            // 1421078220
-            EVC24_MMISystemInfo.MMI_T_TIMEOUT_TBSW = 0x538b4d4c;           // 1401638220
-            EVC24_MMISystemInfo.MMI_M_ETC_VER = 0xffaa0f;                    // 16755215
-            EVC24_MMISystemInfo.MMI_M_AVAIL_SERVICES = 0xffff;             // 65535 
-            EVC24_MMISystemInfo.MMI_M_BRAKE_CONFIG = 55;      
+            EVC24_MMISystemInfo.MMI_T_TIMEOUT_BRAKE = 0x5695224c; // 1452614220
+            EVC24_MMISystemInfo.MMI_T_TIMEOUT_BTM = 0x54b3eecc; // 1421078220
+            EVC24_MMISystemInfo.MMI_T_TIMEOUT_TBSW = 0x538b4d4c; // 1401638220
+            EVC24_MMISystemInfo.MMI_M_ETC_VER = 0xffaa0f; // 16755215
+            EVC24_MMISystemInfo.MMI_M_AVAIL_SERVICES = 0xffff; // 65535 
+            EVC24_MMISystemInfo.MMI_M_BRAKE_CONFIG = 55;
             EVC24_MMISystemInfo.MMI_M_LEVEL_INST = 248;
             EVC24_MMISystemInfo.Send();
 
             DmiActions.ShowInstruction(this, "Press the ‘Close’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                    "1. DMI closes the System info window.");
+                                "1. DMI closes the System info window.");
 
             DmiActions.ShowInstruction(this, "Press the ‘Brake’ button, then press the  ‘Brake test’ button");
 
@@ -122,7 +124,7 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Brake test window.");
-                                             
+
             DmiActions.ShowInstruction(this, "Press the ‘Set VBC’ button");
 
             EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.StartSetVBC;
@@ -130,7 +132,6 @@ namespace Testcase.DMITestCases
             EVC18_MMISetVBC.Send();
 
             DmiActions.ShowInstruction(this, "Press the ‘Close’ button");
-
 
 
             EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.ExitSetVBC;
@@ -155,7 +156,8 @@ namespace Testcase.DMITestCases
             EVC18_MMISetVBC.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_VBC.BTN_YES_DATA_ENTRY_COMPLETE;
             EVC18_MMISetVBC.Send();
 
-            DmiActions.ShowInstruction(this, "Enter and confirm the value ‘65536’ in the data input field, then press the ‘Yes’ button");
+            DmiActions.ShowInstruction(this,
+                "Enter and confirm the value ‘65536’ in the data input field, then press the ‘Yes’ button");
 
             EVC28_MMIEchoedSetVBCData.MMI_M_VBC_CODE_ = 65536;
             EVC28_MMIEchoedSetVBCData.Send();
@@ -169,7 +171,7 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, "Press the ‘Remove VBC’ button");
             EVC19_MMIRemoveVBC.MMI_N_VBC = 0;
-            EVC19_MMIRemoveVBC.Send(); 
+            EVC19_MMIRemoveVBC.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Remove VBC window.");
@@ -204,7 +206,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Maintenance window.");
 
-            DmiActions.ShowInstruction(this, @"Enter the password (as in the ‘PASS_CODE_MTN’ tag of the configuration file), then confirm");
+            DmiActions.ShowInstruction(this,
+                @"Enter the password (as in the ‘PASS_CODE_MTN’ tag of the configuration file), then confirm");
 
             /*
             Test Step 5
@@ -278,20 +281,22 @@ namespace Testcase.DMITestCases
             Action: End of test
             Expected Result: 
             */
-            
+
             return GlobalTestResult;
         }
 
-        
+
         #region Send_XML_20_4_DMI_Test_Specification
 
         private void XML_20_4_a()
         {
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings;
-            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.EnableBrakePercentage;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH =
+                EVC30_MMIRequestEnable.EnabledRequests.EnableBrakePercentage;
             EVC30_MMIRequestEnable.Send();
         }
+
         #endregion
     }
 }

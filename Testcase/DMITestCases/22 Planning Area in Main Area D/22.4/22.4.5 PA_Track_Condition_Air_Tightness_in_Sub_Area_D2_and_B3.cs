@@ -119,7 +119,7 @@ namespace Testcase.DMITestCases
                 MMI_Q_TRACKCOND_ACTION_END = 0
             };
 
-            EVC32_MMITrackConditions.TrackConditions = new List<TrackCondition> { { trackCondition } };
+            EVC32_MMITrackConditions.TrackConditions = new List<TrackCondition> {{trackCondition}};
             EVC32_MMITrackConditions.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +

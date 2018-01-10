@@ -88,7 +88,8 @@ namespace Testcase.DMITestCases
             */
             // Enable all buttons and (test) system info
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Start | Variables.standardFlags;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH =
+                EVC30_MMIRequestEnable.EnabledRequests.Start | Variables.standardFlags;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_LOW = true;
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Default;
             EVC30_MMIRequestEnable.Send();
@@ -96,7 +97,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press the ‘Settings’ button. Press the ‘Maintenance’ button.");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the Settings window until the Maintenance password window is displayed." + Environment.NewLine +
+                                "1. DMI displays the Settings window until the Maintenance password window is displayed." +
+                                Environment.NewLine +
                                 "2. The ‘Close’ button is always enabled.");
 
             /*
@@ -116,7 +118,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Enter and accept the password.");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the Maintenance password window until the  Maintenance window is displayed." + Environment.NewLine +
+                                "1. DMI displays the Maintenance password window until the  Maintenance window is displayed." +
+                                Environment.NewLine +
                                 "2. The ‘Close’ button is always enabled.");
 
             /*
@@ -136,7 +139,7 @@ namespace Testcase.DMITestCases
                                 "4. The ‘Close’ button NA12 is displayed disabled in area G.");
 
             Wait_Realtime(10000);
-            
+
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
             EVC8_MMIDriverMessage.Send();
 
@@ -156,13 +159,14 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press the ‘Wheel diameter’ button");
 
             EVC40_MMICurrentMaintenanceData.MMI_Q_MD_DATASET = Variables.MMI_Q_MD_DATASET.WheelDiameter;
-            EVC40_MMICurrentMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1 = (Variables.MMI_M_SDU_WHEEL_SIZE)500;
-            EVC40_MMICurrentMaintenanceData.MMI_M_SDU_WHEEL_SIZE_2 = (Variables.MMI_M_SDU_WHEEL_SIZE)500;
-            EVC40_MMICurrentMaintenanceData.MMI_M_WHEEL_SIZE_ERR = (Variables.MMI_M_WHEEL_SIZE_ERR)10;
+            EVC40_MMICurrentMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1 = (Variables.MMI_M_SDU_WHEEL_SIZE) 500;
+            EVC40_MMICurrentMaintenanceData.MMI_M_SDU_WHEEL_SIZE_2 = (Variables.MMI_M_SDU_WHEEL_SIZE) 500;
+            EVC40_MMICurrentMaintenanceData.MMI_M_WHEEL_SIZE_ERR = (Variables.MMI_M_WHEEL_SIZE_ERR) 10;
             EVC40_MMICurrentMaintenanceData.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the Maintenance password window until the Wheel diameter window is displayed." + Environment.NewLine +
+                                "1. DMI displays the Maintenance password window until the Wheel diameter window is displayed." +
+                                Environment.NewLine +
                                 "2. The ‘Close’ button is always enabled.");
 
             /*
@@ -183,7 +187,7 @@ namespace Testcase.DMITestCases
                                 "5. All Input Fields are not selected.");
 
             Wait_Realtime(10000);
-            
+
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
             EVC8_MMIDriverMessage.Send();
 
@@ -191,7 +195,7 @@ namespace Testcase.DMITestCases
                                 "1. DMI is in the exit state of ‘ST05’." + Environment.NewLine +
                                 "2. The hourglass symbol ST05 is removed." + Environment.NewLine +
                                 "3. All buttons are enabled." + Environment.NewLine +
-                                "4. The ‘Close’ button NA11 is displayed enabled in area G." + Environment.NewLine +                                
+                                "4. The ‘Close’ button NA11 is displayed enabled in area G." + Environment.NewLine +
                                 "5. The first Input Field is selected" + Environment.NewLine +
                                 "6. All other Input Fields are not selected.");
 
@@ -201,18 +205,20 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information;(1)   Verify DMI still displays Wheel diameter window until Validate wheel diameter window is displayed.(2)   Verify the close button is always enable. (3)   Verify the <Yes> button is always enable
             Test Step Comment: (1) MMI_gen 8859 (partly: windows in setting menu);(2) MMI_gen 5646 (partly: always enable, windows in setting menu);(3) MMI_gen 5719 (partly: always enable, windows in setting menu);
             */
-            DmiActions.ShowInstruction(this, @"Accept all values in the ‘Wheel diameter’ window, then press the ‘Yes’ button");
+            DmiActions.ShowInstruction(this,
+                @"Accept all values in the ‘Wheel diameter’ window, then press the ‘Yes’ button");
 
             EVC41_MMIEchoedMaintenanceData.MMI_Q_MD_DATASET_ = Variables.MMI_Q_MD_DATASET.WheelDiameter;
-            EVC41_MMIEchoedMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1_ = (Variables.MMI_M_SDU_WHEEL_SIZE)500;
-            EVC41_MMIEchoedMaintenanceData.MMI_M_SDU_WHEEL_SIZE_2_ = (Variables.MMI_M_SDU_WHEEL_SIZE)500;
-            EVC41_MMIEchoedMaintenanceData.MMI_M_WHEEL_SIZE_ERR_ = (Variables.MMI_M_WHEEL_SIZE_ERR)10;
+            EVC41_MMIEchoedMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1_ = (Variables.MMI_M_SDU_WHEEL_SIZE) 500;
+            EVC41_MMIEchoedMaintenanceData.MMI_M_SDU_WHEEL_SIZE_2_ = (Variables.MMI_M_SDU_WHEEL_SIZE) 500;
+            EVC41_MMIEchoedMaintenanceData.MMI_M_WHEEL_SIZE_ERR_ = (Variables.MMI_M_WHEEL_SIZE_ERR) 10;
             EVC41_MMIEchoedMaintenanceData.Send();
 
             DmiActions.ShowInstruction(this, @"Press the ‘Yes’ button on the keypad.");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the Wheel diameter window until the Validate wheel diameter window is displayed." + Environment.NewLine +
+                                "1. DMI displays the Wheel diameter window until the Validate wheel diameter window is displayed." +
+                                Environment.NewLine +
                                 @"2. The ‘Close’ button is always enabled." + Environment.NewLine +
                                 @"3. <Yes> button is always enabled.");
 
@@ -251,15 +257,17 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information;(1)   Verify DMI still displays Validate wheel diameter window until Radar window is displayed.(2)   Verify the close button is always enable
             Test Step Comment: (1) MMI_gen 8859 (partly: windows in setting menu);(2) MMI_gen 5646 (partly: always enable, windows in setting menu);
             */
-            DmiActions.ShowInstruction(this, @"Accept the entered data by pressing an Input Field, then press the ‘Radar’ button");
+            DmiActions.ShowInstruction(this,
+                @"Accept the entered data by pressing an Input Field, then press the ‘Radar’ button");
 
             EVC40_MMICurrentMaintenanceData.MMI_Q_MD_DATASET = Variables.MMI_Q_MD_DATASET.Doppler;
-            EVC40_MMICurrentMaintenanceData.MMI_M_PULSE_PER_KM_1 = (Variables.MMI_M_PULSE_PER_KM)20001;
-            EVC40_MMICurrentMaintenanceData.MMI_M_PULSE_PER_KM_2 = (Variables.MMI_M_PULSE_PER_KM)20001;
+            EVC40_MMICurrentMaintenanceData.MMI_M_PULSE_PER_KM_1 = (Variables.MMI_M_PULSE_PER_KM) 20001;
+            EVC40_MMICurrentMaintenanceData.MMI_M_PULSE_PER_KM_2 = (Variables.MMI_M_PULSE_PER_KM) 20001;
             EVC40_MMICurrentMaintenanceData.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the Validate wheel diameter window until the Radar window is displayed." + Environment.NewLine +
+                                "1. DMI displays the Validate wheel diameter window until the Radar window is displayed." +
+                                Environment.NewLine +
                                 @"2. The ‘Close’ button is always enabled." + Environment.NewLine +
                                 @"3. <Yes> button is always enabled.");
 
@@ -301,14 +309,15 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Accept the value in ‘Radar’ window, then press the ‘Yes’ button");
 
             EVC41_MMIEchoedMaintenanceData.MMI_Q_MD_DATASET_ = Variables.MMI_Q_MD_DATASET.Doppler;
-            EVC41_MMIEchoedMaintenanceData.MMI_M_PULSE_PER_KM_1_ = (Variables.MMI_M_PULSE_PER_KM)20001;
-            EVC41_MMIEchoedMaintenanceData.MMI_M_PULSE_PER_KM_2_ = (Variables.MMI_M_PULSE_PER_KM)20001;
+            EVC41_MMIEchoedMaintenanceData.MMI_M_PULSE_PER_KM_1_ = (Variables.MMI_M_PULSE_PER_KM) 20001;
+            EVC41_MMIEchoedMaintenanceData.MMI_M_PULSE_PER_KM_2_ = (Variables.MMI_M_PULSE_PER_KM) 20001;
             EVC41_MMIEchoedMaintenanceData.Send();
-            
+
             DmiActions.ShowInstruction(this, @"Press the ‘Yes’ button on the keypad.");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the Radar window until the Validate Radar window is displayed." + Environment.NewLine +
+                                "1. DMI displays the Radar window until the Validate Radar window is displayed." +
+                                Environment.NewLine +
                                 @"2. The ‘Close’ button is always enabled." + Environment.NewLine +
                                 @"3. The <Yes> key is always enabled.");
 
@@ -347,8 +356,10 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SR mode, level 1
             */
             // Call generic Check Results Method
-            DmiActions.ShowInstruction(this, @"Accept the entered data by pressing an Input Field. Press the ‘Close’ button in the Maintenance window." + Environment.NewLine +
-                                             @"Press the ‘Close’ button in the Settings window");
+            DmiActions.ShowInstruction(this,
+                @"Accept the entered data by pressing an Input Field. Press the ‘Close’ button in the Maintenance window." +
+                Environment.NewLine +
+                @"Press the ‘Close’ button in the Settings window");
             DmiActions.Complete_SoM_L1_SR(this);
 
             DmiExpectedResults.SR_Mode_displayed(this);
@@ -363,7 +374,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press the ‘Settings’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays Default window until Setting window is displayed." + Environment.NewLine +
+                                "1. DMI displays Default window until Setting window is displayed." +
+                                Environment.NewLine +
                                 @"2. The ‘Close’ button is always enabled.");
 
             /*
@@ -403,7 +415,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press the ‘Language’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the Settings window until the Language window is displayed." + Environment.NewLine +
+                                "1. DMI displays the Settings window until the Language window is displayed." +
+                                Environment.NewLine +
                                 @"2. The ‘Close’ button is always enabled.");
 
             /*
@@ -424,7 +437,7 @@ namespace Testcase.DMITestCases
                                 "5. The Input Field is not selected.");
 
             Wait_Realtime(10000);
-            
+
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
             EVC8_MMIDriverMessage.Send();
 
@@ -441,10 +454,12 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information;(1)   Verify DMI still displays Setting window until Volume window is displayed.(2)   Verify the close button is always enable
             Test Step Comment: (1) MMI_gen 8859 (partly: windows in setting menu);(2) MMI_gen 5646 (partly: always enable, windows in setting menu);
             */
-            DmiActions.ShowInstruction(this, @"Press the ‘Close’ button in the Language window. Press the ‘Volume’ button");
+            DmiActions.ShowInstruction(this,
+                @"Press the ‘Close’ button in the Language window. Press the ‘Volume’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the Settings window until the Volume window is displayed." + Environment.NewLine +
+                                "1. DMI displays the Settings window until the Volume window is displayed." +
+                                Environment.NewLine +
                                 @"2. The ‘Close’ button is always enabled.");
 
             /*
@@ -482,10 +497,12 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information;(1)   Verify DMI still displays Setting window until Brightness window is displayed.(2)   Verify the close button is always enable
             Test Step Comment: (1) MMI_gen 8859 (partly: windows in setting menu);(2) MMI_gen 5646 (partly: always enable, windows in setting menu);
             */
-            DmiActions.ShowInstruction(this, @"Press the ‘Close’ button in the Volume window. Press the ‘Brightness’ button");
+            DmiActions.ShowInstruction(this,
+                @"Press the ‘Close’ button in the Volume window. Press the ‘Brightness’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the Settings window until the Brightness window is displayed." + Environment.NewLine +
+                                "1. DMI displays the Settings window until the Brightness window is displayed." +
+                                Environment.NewLine +
                                 @"2. The ‘Close’ button is always enabled.");
 
             /*
@@ -523,14 +540,16 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information;(1)   Verify DMI still displays Setting window until System Version window is displayed.(2)   Verify the close button is always enable
             Test Step Comment: (1) MMI_gen 8859 (partly: windows in setting menu);(2) MMI_gen 5646 (partly: always enable, windows in setting menu);
             */
-            DmiActions.ShowInstruction(this, @"Press the  ‘Close’ button in the Brightness window. Press the ‘System Version’ button");
+            DmiActions.ShowInstruction(this,
+                @"Press the  ‘Close’ button in the Brightness window. Press the ‘System Version’ button");
 
             EVC34_MMISystemVersion.SYSTEM_VERSION_X = 255;
             EVC34_MMISystemVersion.SYSTEM_VERSION_Y = 255;
             EVC34_MMISystemVersion.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the Brightness window until the System Version window is displayed." + Environment.NewLine +
+                                "1. DMI displays the Brightness window until the System Version window is displayed." +
+                                Environment.NewLine +
                                 @"2. The ‘Close’ button is always enabled.");
 
             /*
@@ -564,13 +583,15 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information;(1)   Verify DMI still displays Setting window until Set VBC window is displayed.(2)   Verify the close button is always enable
             Test Step Comment: (1) MMI_gen 8859 (partly: windows in setting menu);(2) MMI_gen 5646 (partly: always enable, windows in setting menu);
             */
-            DmiActions.ShowInstruction(this, @"Press ‘Close’ button in the System Version window. Press ‘Set VBC’ button");
+            DmiActions.ShowInstruction(this,
+                @"Press ‘Close’ button in the System Version window. Press ‘Set VBC’ button");
 
             EVC18_MMISetVBC.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_VBC.BTN_YES_DATA_ENTRY_COMPLETE;
             EVC18_MMISetVBC.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the Settings window until the Set VBC window is displayed." + Environment.NewLine +
+                                "1. DMI displays the Settings window until the Set VBC window is displayed." +
+                                Environment.NewLine +
                                 @"2. The ‘Close’ button is always enabled.");
 
             /*
@@ -608,13 +629,15 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information;(1)   Verify DMI still displays Set VBC window until Validate Set VBC window is displayed.(2)   Verify the close button is always enable. (3)   Verify the <Yes> button is always enable
             Test Step Comment: (1) MMI_gen 8859 (partly: windows in setting menu);(2) MMI_gen 5646 (partly: always enable, windows in setting menu);(3) MMI_gen 5719 (partly: always enable, windows in setting menu);
             */
-            DmiActions.ShowInstruction(this, @"Enter VBC Code ‘65536’ and accept entered data by pressing an input field. Press ‘Yes’ button. Press ‘Yes’ button on keypad");
+            DmiActions.ShowInstruction(this,
+                @"Enter VBC Code ‘65536’ and accept entered data by pressing an input field. Press ‘Yes’ button. Press ‘Yes’ button on keypad");
 
             EVC28_MMIEchoedSetVBCData.MMI_M_VBC_CODE_ = 65536;
             EVC28_MMIEchoedSetVBCData.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays Set VBC window until Validate Set VBC window is displayed." + Environment.NewLine +
+                                "1. DMI displays Set VBC window until Validate Set VBC window is displayed." +
+                                Environment.NewLine +
                                 @"2. The ‘Close’ button is always enabled." + Environment.NewLine +
                                 @"3. <Yes> button is always enabled.");
 
@@ -653,13 +676,15 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information;(1)   Verify DMI still displays Setting window until Remove VBC window is displayed.(2)   Verify the close button is always enable
             Test Step Comment: (1) MMI_gen 8859 (partly: windows in setting menu);(2) MMI_gen 5646 (partly: always enable, windows in setting menu);
             */
-            DmiActions.ShowInstruction(this, @"Accept the entered data by pressing an input field. Press the ‘Remove VBC’ button");
+            DmiActions.ShowInstruction(this,
+                @"Accept the entered data by pressing an input field. Press the ‘Remove VBC’ button");
 
             EVC19_MMIRemoveVBC.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_VBC.BTN_YES_DATA_ENTRY_COMPLETE;
             EVC19_MMIRemoveVBC.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the Settings window until the Remove VBC window is displayed." + Environment.NewLine +
+                                "1. DMI displays the Settings window until the Remove VBC window is displayed." +
+                                Environment.NewLine +
                                 @"2. The ‘Close’ button is always enabled.");
 
             /*
@@ -676,14 +701,16 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information;(1)   Verify DMI still displays Remove VBC window until Validate Remove VBC window is displayed.(2)   Verify the close button is always enable. (3)   Verify the <Yes> button is always enable
             Test Step Comment: (1) MMI_gen 8859 (partly: windows in setting menu);(2) MMI_gen 5646 (partly: always enable, windows in setting menu);(3) MMI_gen 5719 (partly: always enable, windows in setting menu);
             */
-            DmiActions.ShowInstruction(this, @"Enter VBC Code ‘65536’ and accept entered data by pressing an input field. Press ‘Yes’ button. Press ‘Yes’ button on keypad");
+            DmiActions.ShowInstruction(this,
+                @"Enter VBC Code ‘65536’ and accept entered data by pressing an input field. Press ‘Yes’ button. Press ‘Yes’ button on keypad");
 
-            
+
             EVC29_MMIEchoedRemoveVBCData.MMI_M_VBC_CODE_ = 65536;
             EVC29_MMIEchoedRemoveVBCData.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the Remove VBC window until the Validate Remove VBC window is displayed." + Environment.NewLine +
+                                "1. DMI displays the Remove VBC window until the Validate Remove VBC window is displayed." +
+                                Environment.NewLine +
                                 @"2. The ‘Close’ button is always enabled." + Environment.NewLine +
                                 @"3. <Yes> button is always enabled.");
 
@@ -722,10 +749,12 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information;(1)   Verify DMI still displays Setting window until Set Clock window is displayed.(2)   Verify the close button is always enable
             Test Step Comment: (1) MMI_gen 8859 (partly: windows in setting menu);(2) MMI_gen 5646 (partly: always enable, windows in setting menu);
             */
-            DmiActions.ShowInstruction(this, @"Accept entered data by pressing an input field. Press ‘Set Clock’ button");
+            DmiActions.ShowInstruction(this,
+                @"Accept entered data by pressing an input field. Press ‘Set Clock’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays Setting window until Set Clock window is displayed." + Environment.NewLine +
+                                "1. DMI displays Setting window until Set Clock window is displayed." +
+                                Environment.NewLine +
                                 @"2. The ‘Close’ button is always enabled.");
 
             /*
@@ -740,7 +769,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI is in the entry state of ‘ST05’." + Environment.NewLine +
                                 "2. The hourglass symbol ST05 is displayed." + Environment.NewLine +
-                                "3. All buttons and the ‘Close’ button are disabled except ‘Navigator’ button." + Environment.NewLine +
+                                "3. All buttons and the ‘Close’ button are disabled except ‘Navigator’ button." +
+                                Environment.NewLine +
                                 "4. The ‘Close’ button NA12 is displayed disabled in area G." + Environment.NewLine +
                                 "5. All Input Fields are not selected.");
 
@@ -766,7 +796,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press ‘Close’ button in Set Clock Window. Press ‘Brake’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays Setting window until Brake window is displayed." + Environment.NewLine +
+                                "1. DMI displays Setting window until Brake window is displayed." +
+                                Environment.NewLine +
                                 @"2. The ‘Close’ button is always enabled.");
 
             /*
@@ -806,7 +837,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press ‘Test’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays Brake window until Brake test window is displayed." + Environment.NewLine +
+                                "1. DMI displays Brake window until Brake test window is displayed." +
+                                Environment.NewLine +
                                 @"2. The ‘Close’ button is always enabled.");
 
             /*
@@ -847,7 +879,8 @@ namespace Testcase.DMITestCases
             EVC50_MMICurrentBrakePercentage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays Brake window until Brake percentage window is displayed." + Environment.NewLine +
+                                "1. DMI displays Brake window until Brake percentage window is displayed." +
+                                Environment.NewLine +
                                 @"2. The ‘Close’ button is always enabled.");
 
             /*
@@ -868,7 +901,7 @@ namespace Testcase.DMITestCases
                                 "5. The Input Field is not selected.");
 
             Wait_Realtime(10000);
-            
+
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
             EVC8_MMIDriverMessage.Send();
 
@@ -885,13 +918,15 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information;(1)   Verify DMI still displays Brake percentage window until Validate Brake percentage window is displayed.(2)   Verify the close button is always enable. (3)   Verify the <Yes> button is always enable
             Test Step Comment: (1) MMI_gen 8859 (partly: windows in setting menu);(2) MMI_gen 5646 (partly: always enable, windows in setting menu);(3) MMI_gen 5719 (partly: always enable, windows in setting menu);
             */
-            DmiActions.ShowInstruction(this, @"Enter Brake percentage ‘80’ and accept entered data by pressing an input field. Press ‘Yes’ button on keypad");
+            DmiActions.ShowInstruction(this,
+                @"Enter Brake percentage ‘80’ and accept entered data by pressing an input field. Press ‘Yes’ button on keypad");
 
             EVC51_MMIEchoedBrakePercentage.MMI_M_BP_CURRENT_ = 80;
             EVC51_MMIEchoedBrakePercentage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays Brake percentage window until Validate Brake percentage window is displayed." + Environment.NewLine +
+                                "1. DMI displays Brake percentage window until Validate Brake percentage window is displayed." +
+                                Environment.NewLine +
                                 @"2. The ‘Close’ button is always enabled." + Environment.NewLine +
                                 @"3. <Yes> button is always enabled.");
 
@@ -935,12 +970,14 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_LOW = true;
             EVC30_MMIRequestEnable.Send();
 
-            DmiActions.ShowInstruction(this, @"Accept entered data by pressing an input field. Press ‘Close’ button in Brake window. Press ‘System Info’ button");
+            DmiActions.ShowInstruction(this,
+                @"Accept entered data by pressing an input field. Press ‘Close’ button in Brake window. Press ‘System Info’ button");
 
-            EVC24_MMISystemInfo.Send(); 
+            EVC24_MMISystemInfo.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays Setting window until System Info window is displayed." + Environment.NewLine +
+                                "1. DMI displays Setting window until System Info window is displayed." +
+                                Environment.NewLine +
                                 @"2. The ‘Close’ button is always enabled.");
 
             /*
@@ -976,7 +1013,9 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
+
         #region Send_XML_10_2_6_a_DMI_Test_Specification
+
         private void XML_10_2_6_a()
         {
             // Step 2/1
@@ -1008,7 +1047,7 @@ namespace Testcase.DMITestCases
                                 "4. ‘Close’ button NA11 is displayed enabled in area G." + Environment.NewLine +
                                 "5. The Input Field is selected.");
         }
-        #endregion
 
+        #endregion
     }
 }

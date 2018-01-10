@@ -32,7 +32,6 @@ namespace Testcase.DMITestCases
     /// 2.Verify the safe up-type button of each acknowledgement button.
     /// 3.Use the test script file to send EVC-8. Then, verify that configured colour is not effect when there is no acknowledgement button display.
     /// 4.Verify the safe up-type button of text acknowledgement.Then, verify the display of text message. 
-
     /// 
     /// Used files:
     /// 6_4_a.xml, 6_4_b.xml
@@ -76,8 +75,10 @@ namespace Testcase.DMITestCases
             XML_6_4(msgType.typea);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the message ‘Brake test aborted, perform new Test?’ with acknowledgement buttons in sub-areas E5-E9." + Environment.NewLine +
-                                "2. The ‘ACK’ button has text ‘ACK’ in yellow on a red background" + Environment.NewLine +
+                                "1. DMI displays the message ‘Brake test aborted, perform new Test?’ with acknowledgement buttons in sub-areas E5-E9." +
+                                Environment.NewLine +
+                                "2. The ‘ACK’ button has text ‘ACK’ in yellow on a red background" +
+                                Environment.NewLine +
                                 "3. The ‘NACK’ button has text ‘NACK’ in yellow on a red background");
 
             /*
@@ -88,7 +89,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 4470 (partly: 'NACK', MMI_gen 4381 (partly: the sound for Up-Type button)); MMI_gen 4256 (partly: Click sound);(2) MMI_gen 4470 (partly: 'NACK', MMI_gen 4381 (partly: change to state ‘Pressed’ as long as remain actuated));(3) MMI_gen 4470 (partly: MMI_gen 11387 (partly: send events of Pressed independently to ETCS), MMI_gen 11907 (partly: EVC-111, timestamp)); MMI_gen 3375; MMI_gen 3200 (partly: NACK button, pressed);
             */
             DmiActions.ShowInstruction(this, "Press and hold the ‘NACK’ button");
-            
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Click’ sound is played once." + Environment.NewLine +
                                 "2. The ‘NACK’ button is displayed pressed, with the border removed.");
@@ -228,7 +229,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Release sub-area E5");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI still displays the message ‘Brake test aborted. Perform new Test?’" + Environment.NewLine +
+                                "1. DMI still displays the message ‘Brake test aborted. Perform new Test?’" +
+                                Environment.NewLine +
                                 "2. The flashing yellow frame around sub-areas E5-E9 is removed.");
 
             /*
@@ -241,6 +243,7 @@ namespace Testcase.DMITestCases
         }
 
         #region Send_XML_6_4_DMI_Test_Specification
+
         enum msgType
         {
             typea,
@@ -264,6 +267,7 @@ namespace Testcase.DMITestCases
             }
             EVC8_MMIDriverMessage.Send();
         }
+
         #endregion
     }
 }

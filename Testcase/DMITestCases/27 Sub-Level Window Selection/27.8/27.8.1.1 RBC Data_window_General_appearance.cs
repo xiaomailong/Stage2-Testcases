@@ -101,20 +101,31 @@ namespace Testcase.DMITestCases
             EVC22_MMICurrentRBC.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the RBC data window with the title ‘RBC data’, right-aligned." + Environment.NewLine +
-                                "2. The window displays an Enabled Close button, symbol NA11, two data input fields, a ‘Yes’ button and a label with ‘RBC data entry complete?’." + Environment.NewLine +
-                                "3. The ‘Yes’ button is displayed disabled with black text label on a Dark-grey Background with a Medium-grey border." + Environment.NewLine +
+                                "1. DMI displays the RBC data window with the title ‘RBC data’, right-aligned." +
+                                Environment.NewLine +
+                                "2. The window displays an Enabled Close button, symbol NA11, two data input fields, a ‘Yes’ button and a label with ‘RBC data entry complete?’." +
+                                Environment.NewLine +
+                                "3. The ‘Yes’ button is displayed disabled with black text label on a Dark-grey Background with a Medium-grey border." +
+                                Environment.NewLine +
                                 "4. The data input field has a Medium-grey border." + Environment.NewLine +
-                                "5. The sensitive area of Yes button extends from the label ‘RBC data entry complete?’." + Environment.NewLine +
-                                "6.	The data input fields are displayed in areas D and F and contain a Label Area and a Data Area." + Environment.NewLine +
-                                "7. The Label Area is displayed to the left of The Data Area with right-aligned text in grey on a Dark-grey background." + Environment.NewLine +
+                                "5. The sensitive area of Yes button extends from the label ‘RBC data entry complete?’." +
+                                Environment.NewLine +
+                                "6.	The data input fields are displayed in areas D and F and contain a Label Area and a Data Area." +
+                                Environment.NewLine +
+                                "7. The Label Area is displayed to the left of The Data Area with right-aligned text in grey on a Dark-grey background." +
+                                Environment.NewLine +
                                 "8. The value of the data input field is left-aligned." + Environment.NewLine +
-                                "9. The first data input field is ‘Selected’, with the value in black on a Medium-grey background." + Environment.NewLine +
-                                "10. The other data input field is ‘Not selected’ with the value in grey on a Dark-grey background." + Environment.NewLine +
-                                "11. A numeric keypad is displayed for the (‘Selected’) ‘RBC ID’ data input field." + Environment.NewLine +
-                                "12. The keypad contains enabled keys for the numbers <1> to <9>, a <Delete> button, symbol NA21, a <0> and a (disabled) <Decimal_Separator>." + Environment.NewLine +
+                                "9. The first data input field is ‘Selected’, with the value in black on a Medium-grey background." +
+                                Environment.NewLine +
+                                "10. The other data input field is ‘Not selected’ with the value in grey on a Dark-grey background." +
+                                Environment.NewLine +
+                                "11. A numeric keypad is displayed for the (‘Selected’) ‘RBC ID’ data input field." +
+                                Environment.NewLine +
+                                "12. The keypad contains enabled keys for the numbers <1> to <9>, a <Delete> button, symbol NA21, a <0> and a (disabled) <Decimal_Separator>." +
+                                Environment.NewLine +
                                 "13. All areas in the window are in Layer 0." + Environment.NewLine +
-                                "14. A flashing (visible/invisible) underscore is displayed as a cursor, at the position of the next character to be entered." + Environment.NewLine +
+                                "14. A flashing (visible/invisible) underscore is displayed as a cursor, at the position of the next character to be entered." +
+                                Environment.NewLine +
                                 "15. The data input fields display ‘1234’ for RBC ID and ‘3054632954294967295’ for RBC Phone number.");
 
             /*
@@ -127,9 +138,11 @@ namespace Testcase.DMITestCases
 
             // Spec says cursor is underneath the character entered but gen 4690 says under the next character to be entered...
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The button is displayed pressed and immedately re-displayed enabled." + Environment.NewLine +
+                                "1. The button is displayed pressed and immedately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The RBC ID data input field displays the value of the button pressed." + Environment.NewLine +
+                                "3. The RBC ID data input field displays the value of the button pressed." +
+                                Environment.NewLine +
                                 "4. A cursor is displayed after the character just added to the data input field.");
 
 
@@ -155,9 +168,11 @@ namespace Testcase.DMITestCases
 
             // Spec says cursor is underneath the character entered but gen 4690 says under the next character to be entered...
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The button is displayed pressed and immedately re-displayed enabled." + Environment.NewLine +
+                                "1. The button is displayed pressed and immedately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The RBC ID data input field displays the value of the button pressed." + Environment.NewLine +
+                                "3. The RBC ID data input field displays the value of the button pressed." +
+                                Environment.NewLine +
                                 "4. A cursor is displayed after the character just added to the data input field.");
 
             DmiActions.ShowInstruction(this, @"Release the pressed button");
@@ -170,9 +185,11 @@ namespace Testcase.DMITestCases
 
             // Spec says cursor is underneath the character entered but gen 4690 says under the next character to be entered...
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The button is displayed pressed and immedately re-displayed enabled." + Environment.NewLine +
+                                "1. The button is displayed pressed and immedately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The RBC ID data input field displays the value of the button pressed." + Environment.NewLine +
+                                "3. The RBC ID data input field displays the value of the button pressed." +
+                                Environment.NewLine +
                                 "4. A cursor is displayed after the character just added to the data input field.");
 
             DmiActions.ShowInstruction(this, @"Release the pressed button");
@@ -185,9 +202,11 @@ namespace Testcase.DMITestCases
 
             // Spec says cursor is underneath the character entered but gen 4690 says under the next character to be entered...
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The button is displayed pressed and immedately re-displayed enabled." + Environment.NewLine +
+                                "1. The button is displayed pressed and immedately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The RBC ID data input field displays the value of the button pressed." + Environment.NewLine +
+                                "3. The RBC ID data input field displays the value of the button pressed." +
+                                Environment.NewLine +
                                 "4. A cursor is displayed after the character just added to the data input field.");
 
             DmiActions.ShowInstruction(this, @"Release the pressed button");
@@ -199,9 +218,11 @@ namespace Testcase.DMITestCases
 
             // Spec says cursor is underneath the character entered but gen 4690 says under the next character to be entered...
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The button is displayed pressed and immedately re-displayed enabled." + Environment.NewLine +
+                                "1. The button is displayed pressed and immedately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The RBC ID data input field displays the value of the button pressed." + Environment.NewLine +
+                                "3. The RBC ID data input field displays the value of the button pressed." +
+                                Environment.NewLine +
                                 "4. A cursor is displayed after the character just added to the data input field.");
 
             DmiActions.ShowInstruction(this, @"Release the pressed button");
@@ -214,9 +235,11 @@ namespace Testcase.DMITestCases
 
             // Spec says cursor is underneath the character entered but gen 4690 says under the next character to be entered...
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The button is displayed pressed and immedately re-displayed enabled." + Environment.NewLine +
+                                "1. The button is displayed pressed and immedately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The RBC ID data input field displays the value of the button pressed." + Environment.NewLine +
+                                "3. The RBC ID data input field displays the value of the button pressed." +
+                                Environment.NewLine +
                                 "4. A cursor is displayed after the character just added to the data input field.");
 
             DmiActions.ShowInstruction(this, @"Release the pressed button");
@@ -229,9 +252,11 @@ namespace Testcase.DMITestCases
 
             // Spec says cursor is underneath the character entered but gen 4690 says under the next character to be entered...
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The button is displayed pressed and immedately re-displayed enabled." + Environment.NewLine +
+                                "1. The button is displayed pressed and immedately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The RBC ID data input field displays the value of the button pressed." + Environment.NewLine +
+                                "3. The RBC ID data input field displays the value of the button pressed." +
+                                Environment.NewLine +
                                 "4. A cursor is displayed after the character just added to the data input field.");
 
             DmiActions.ShowInstruction(this, @"Release the pressed button");
@@ -244,9 +269,11 @@ namespace Testcase.DMITestCases
 
             // Spec says cursor is underneath the character entered but gen 4690 says under the next character to be entered...
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The button is displayed pressed and immedately re-displayed enabled." + Environment.NewLine +
+                                "1. The button is displayed pressed and immedately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The RBC ID data input field displays the value of the button pressed." + Environment.NewLine +
+                                "3. The RBC ID data input field displays the value of the button pressed." +
+                                Environment.NewLine +
                                 "4. A cursor is displayed after the character just added to the data input field.");
 
             DmiActions.ShowInstruction(this, @"Release the pressed button");
@@ -259,9 +286,11 @@ namespace Testcase.DMITestCases
 
             // Spec says cursor is underneath the character entered but gen 4690 says under the next character to be entered...
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The button is displayed pressed and immedately re-displayed enabled." + Environment.NewLine +
+                                "1. The button is displayed pressed and immedately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The RBC ID data input field displays the value of the button pressed." + Environment.NewLine +
+                                "3. The RBC ID data input field displays the value of the button pressed." +
+                                Environment.NewLine +
                                 "4. A cursor is displayed after the character just added to the data input field.");
 
             DmiActions.ShowInstruction(this, @"Release the pressed button");
@@ -274,9 +303,11 @@ namespace Testcase.DMITestCases
 
             // Spec says cursor is underneath the character entered but gen 4690 says under the next character to be entered...
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The button is displayed pressed and immedately re-displayed enabled." + Environment.NewLine +
+                                "1. The button is displayed pressed and immedately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The RBC ID data input field displays the value of the button pressed." + Environment.NewLine +
+                                "3. The RBC ID data input field displays the value of the button pressed." +
+                                Environment.NewLine +
                                 "4. A cursor is displayed after the character just added to the data input field.");
 
             DmiActions.ShowInstruction(this, @"Release the pressed button");
@@ -293,10 +324,12 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘Del’ button. Note: Stopwatch is required");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The button is displayed pressed and immedately re-displayed enabled." + Environment.NewLine +
+                                "1. The button is displayed pressed and immedately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 "3. The last character in the data input field is deleted." +
-                                "4. After the button has been pressed for 1.5s, the button changes repeatedly between pressed and enabled." + Environment.NewLine +
+                                "4. After the button has been pressed for 1.5s, the button changes repeatedly between pressed and enabled." +
+                                Environment.NewLine +
                                 "5. The ‘Click’ sound is played repeatedly." + Environment.NewLine +
                                 "6. The last character in the data input field is deleted repeatedly.");
 
@@ -310,7 +343,7 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Characters in the data input field are not deleted.");
-            
+
             /*
             Test Step 8
             Action: Enter the data value with 5 characters
@@ -354,9 +387,10 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,Input fieldsThe associated ‘Enter’ button is data field itself.An input field is used to allow the driver to enter data.The state of ‘RBC ID’ input field is changed to ‘accepted’ as follows,The background colour of the Data Area is dark-grey.The colour of data value is white.The next input field ‘RBC Phone number’ is in state ‘selected’ as follows,The background colour of the Data Area is medium-grey.The colour of data value is black.Entering CharactersThe cursor is displayed as a horizontal line below the position of the next character to be entered.The cursor is flashed by changing from visible to not visible.KeyboardThe keyboard associated to selected input field ‘RBC Phone number’ is Numeric keyboard.The keyboard contains enabled button for the number <1> to <9>, <Delete>(NA21) , <0> and disabled <Decimal_Separator>. NA21, Delete button.Packet transmissionUse the log file to confirm that DMI sent out packet [MMI_NEW_RBC_DATA (EVC-112)] with following variables,MMI_N_DATA_ELEMENTS = 1MMI_NID_DATA = 4 (RBC ID)MMI_M_BUTTONS = 254MMI_NID_RBC = 6996969
             Test Step Comment: (1) MMI_gen 8053 (partly: MMI_gen 4682 (partly: RBC ID));(2) MMI_gen 8053 (partly: MMI_gen 4634 (partly: RBC ID));(3) MMI_gen 8053 (partly: MMI_gen 4652 (partly: RBC ID), MMI_gen 4684 (partly: accepted, RBC ID), MMI_gen 4681 (partly: RBC ID));(4) MMI_gen 8053 (partly: MMI_gen 4684 (partly: RBC Phone number, selected automatically), MMI_gen 4651 (partly: RBC Phone number));(5) MMI_gen 8053 (partly: MMI_gen 4689, MMI_gen 4690);(6) MMI_gen 8053 (partly: MMI_gen 4691 (partly: flash, RBC Phone number));(7) MMI_gen 8058 (partly: RBC Phone number); MMI_gen 8053 (partly: MMI_gen 4912 (partly: RBC Phone number), MMI_gen 4678 (partly: RBC Phone number));(8) MMI_gen 8053 (partly: MMI_gen 5003 (partly: RBC Phone number)); MMI_gen 4392 (partly: [Delete] NA21);(9) MMI_gen 9458 (partly: [Enter] EVC-112, RBC ID, touch screen);  
             */
-            DmiActions.ShowInstruction(this, @"Delete the old value and enter ‘6996969’ for RBC ID, then confirm by pressing in the data input field");
+            DmiActions.ShowInstruction(this,
+                @"Delete the old value and enter ‘6996969’ for RBC ID, then confirm by pressing in the data input field");
 
-            EVC112_MMINewRbcData.MMI_NID_DATA = new List<byte> { 4 };
+            EVC112_MMINewRbcData.MMI_NID_DATA = new List<byte> {4};
             EVC112_MMINewRbcData.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_RBC_DATA.BTN_ENTER;
             EVC112_MMINewRbcData.MMI_NID_RBC = 6996969;
             EVC112_MMINewRbcData.CheckPacketContent();
@@ -364,7 +398,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field acts as an ‘Enter’ button." + Environment.NewLine +
                                 "2. Data can be entered in the data input field" + Environment.NewLine +
-                                "3. The data input field is displayed with the value in white on a Dark-grey background." + Environment.NewLine +
+                                "3. The data input field is displayed with the value in white on a Dark-grey background." +
+                                Environment.NewLine +
                                 "4. The next data input field is displayed ‘Selected’ with the value in black on a Medium-grey background.");
 
             /*
@@ -378,9 +413,11 @@ namespace Testcase.DMITestCases
 
             // Spec says cursor is underneath the character entered but gen 4690 says under the next character to be entered...
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The button is displayed pressed and immedately re-displayed enabled." + Environment.NewLine +
+                                "1. The button is displayed pressed and immedately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The RBC Phone number data input field displays the value of the button pressed." + Environment.NewLine +
+                                "3. The RBC Phone number data input field displays the value of the button pressed." +
+                                Environment.NewLine +
                                 "4. A cursor is displayed after the character just added to the data input field.");
             DmiActions.ShowInstruction(this, @"Release the pressed button");
 
@@ -391,9 +428,11 @@ namespace Testcase.DMITestCases
 
             // Spec says cursor is underneath the character entered but gen 4690 says under the next character to be entered...
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The button is displayed pressed and immedately re-displayed enabled." + Environment.NewLine +
+                                "1. The button is displayed pressed and immedately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The RBC Phone number data input field displays the value of the button pressed." + Environment.NewLine +
+                                "3. The RBC Phone number data input field displays the value of the button pressed." +
+                                Environment.NewLine +
                                 "4. A cursor is displayed after the character just added to the data input field.");
 
             DmiActions.ShowInstruction(this, @"Release the pressed button");
@@ -406,9 +445,11 @@ namespace Testcase.DMITestCases
 
             // Spec says cursor is underneath the character entered but gen 4690 says under the next character to be entered...
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The button is displayed pressed and immedately re-displayed enabled." + Environment.NewLine +
+                                "1. The button is displayed pressed and immedately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The RBC Phone number data input field displays the value of the button pressed." + Environment.NewLine +
+                                "3. The RBC Phone number data input field displays the value of the button pressed." +
+                                Environment.NewLine +
                                 "4. A cursor is displayed after the character just added to the data input field.");
 
             DmiActions.ShowInstruction(this, @"Release the pressed button");
@@ -421,9 +462,11 @@ namespace Testcase.DMITestCases
 
             // Spec says cursor is underneath the character entered but gen 4690 says under the next character to be entered...
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The button is displayed pressed and immedately re-displayed enabled." + Environment.NewLine +
+                                "1. The button is displayed pressed and immedately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The RBC Phone number data input field displays the value of the button pressed." + Environment.NewLine +
+                                "3. The RBC Phone number data input field displays the value of the button pressed." +
+                                Environment.NewLine +
                                 "4. A cursor is displayed after the character just added to the data input field.");
 
             DmiActions.ShowInstruction(this, @"Release the pressed button");
@@ -435,9 +478,11 @@ namespace Testcase.DMITestCases
 
             // Spec says cursor is underneath the character entered but gen 4690 says under the next character to be entered...
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The button is displayed pressed and immedately re-displayed enabled." + Environment.NewLine +
+                                "1. The button is displayed pressed and immedately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The RBC Phone number data input field displays the value of the button pressed." + Environment.NewLine +
+                                "3. The RBC Phone number data input field displays the value of the button pressed." +
+                                Environment.NewLine +
                                 "4. A cursor is displayed after the character just added to the data input field.");
 
             DmiActions.ShowInstruction(this, @"Release the pressed button");
@@ -450,9 +495,11 @@ namespace Testcase.DMITestCases
 
             // Spec says cursor is underneath the character entered but gen 4690 says under the next character to be entered...
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The button is displayed pressed and immedately re-displayed enabled." + Environment.NewLine +
+                                "1. The button is displayed pressed and immedately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The RBC Phone number data input field displays the value of the button pressed." + Environment.NewLine +
+                                "3. The RBC Phone number data input field displays the value of the button pressed." +
+                                Environment.NewLine +
                                 "4. A cursor is displayed after the character just added to the data input field.");
 
             DmiActions.ShowInstruction(this, @"Release the pressed button");
@@ -465,9 +512,11 @@ namespace Testcase.DMITestCases
 
             // Spec says cursor is underneath the character entered but gen 4690 says under the next character to be entered...
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The button is displayed pressed and immedately re-displayed enabled." + Environment.NewLine +
+                                "1. The button is displayed pressed and immedately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The RBC Phone number data input field displays the value of the button pressed." + Environment.NewLine +
+                                "3. The RBC Phone number data input field displays the value of the button pressed." +
+                                Environment.NewLine +
                                 "4. A cursor is displayed after the character just added to the data input field.");
 
             DmiActions.ShowInstruction(this, @"Release the pressed button");
@@ -480,9 +529,11 @@ namespace Testcase.DMITestCases
 
             // Spec says cursor is underneath the character entered but gen 4690 says under the next character to be entered...
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The button is displayed pressed and immedately re-displayed enabled." + Environment.NewLine +
+                                "1. The button is displayed pressed and immedately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The RBC Phone number data input field displays the value of the button pressed." + Environment.NewLine +
+                                "3. The RBC Phone number data input field displays the value of the button pressed." +
+                                Environment.NewLine +
                                 "4. A cursor is displayed after the character just added to the data input field.");
 
             DmiActions.ShowInstruction(this, @"Release the pressed button");
@@ -495,9 +546,11 @@ namespace Testcase.DMITestCases
 
             // Spec says cursor is underneath the character entered but gen 4690 says under the next character to be entered...
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The button is displayed pressed and immedately re-displayed enabled." + Environment.NewLine +
+                                "1. The button is displayed pressed and immedately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The RBC Phone number data input field displays the value of the button pressed." + Environment.NewLine +
+                                "3. The RBC Phone number data input field displays the value of the button pressed." +
+                                Environment.NewLine +
                                 "4. A cursor is displayed after the character just added to the data input field.");
 
             DmiActions.ShowInstruction(this, @"Release the pressed button");
@@ -510,9 +563,11 @@ namespace Testcase.DMITestCases
 
             // Spec says cursor is underneath the character entered but gen 4690 says under the next character to be entered...
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The button is displayed pressed and immedately re-displayed enabled." + Environment.NewLine +
+                                "1. The button is displayed pressed and immedately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The RBC Phone number data input field displays the value of the button pressed." + Environment.NewLine +
+                                "3. The RBC Phone number data input field displays the value of the button pressed." +
+                                Environment.NewLine +
                                 "4. A cursor is displayed after the character just added to the data input field.");
 
             DmiActions.ShowInstruction(this, @"Release the pressed button");
@@ -522,10 +577,12 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘Del’ button. Note: Stopwatch is required");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The button is displayed pressed and immedately re-displayed enabled." + Environment.NewLine +
+                                "1. The button is displayed pressed and immedately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 "3. The last character in the data input field is deleted." +
-                                "4. After the button has been pressed for 1.5s, the button changes repeatedly between pressed and enabled." + Environment.NewLine +
+                                "4. After the button has been pressed for 1.5s, the button changes repeatedly between pressed and enabled." +
+                                Environment.NewLine +
                                 "5. The ‘Click’ sound is played repeatedly." + Environment.NewLine +
                                 "6. The last character in the data input field is deleted repeatedly.");
 
@@ -576,12 +633,14 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,Input fieldsThe associated ‘Enter’ button is data field itself.An input field is used to allow the driver to enter data.The state of ‘RBC Phone number’ input field is changed to ‘accepted’ as follows,The background colour of the Data Area is dark-grey.The colour of data value is white.There is no input field selected.Data Entry windowThe state of ‘Yes’ button below text label ‘Train data Entry is complete?’ is enabled as follows,The background colour of the Data Area is medium-grey.The colour of data value is black.The border colour is medium-grey.Packet transmissionUse the log file to confirm that DMI sent out packet [MMI_NEW_RBC_DATA (EVC-112)] with following variables,MMI_N_DATA_ELEMENTS = 1MMI_NID_DATA = 5 (RBC Phone number)MMI_M_BUTTONS = 254MMI_NID_RADIO = 0x0031840880100FFFUse the log file to confirm that DMI sent out packet [MMI_CURRENT_RBC_DATA (EVC-22)] with variable MMI_M_BUTTONS = 36
             Test Step Comment: (1) MMI_gen 8053 (partly: MMI_gen 4682 (partly: RBC Phone number));(2) MMI_gen 8053 (partly: MMI_gen 4634 (partly: RBC Phone number));(3) MMI_gen 8053 (partly: MMI_gen 4652 (partly: RBC Phone number), MMI_gen 4684 (partly: accepted, RBC Phone number), MMI_gen 4681 (partly: RBC Phone number));(4) MMI_gen 8053 (partly: MMI_gen 4684 (partly: No next input field, data entry process terminated));(5) MMI_gen 8053 (partly: MMI_gen 4909 (partly: Enabled), MMI_gen 4910 (partly: Enabled, MMI_gen 4211 (partly: colour))); MMI_gen 4374;(6) MMI_gen 9458 (partly: [Enter] EVC-112, RBC Phone number, touch screen, MMI_gen 1623, MMI_gen 1625); MMI_gen 1623; MMI_gen 1625 (partly: data field is not empty);(7) MMI_gen 9468;
             */
-            DmiActions.ShowInstruction(this, @"Delete the old value and enter ‘0031840880100’ for RBC Phone number, then confirm by pressing in the data input field");
+            DmiActions.ShowInstruction(this,
+                @"Delete the old value and enter ‘0031840880100’ for RBC Phone number, then confirm by pressing in the data input field");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field acts as an ‘Enter’ button." + Environment.NewLine +
                                 "2. Data can be entered in the data input field" + Environment.NewLine +
-                                "3. The data input field is displayed with the value in white on a Dark-grey background." + Environment.NewLine +
+                                "3. The data input field is displayed with the value in white on a Dark-grey background." +
+                                Environment.NewLine +
                                 "4. The next data input field is displayed ‘Selected’ with the value in black on a Medium-grey background.");
 
             /*
@@ -590,10 +649,12 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The state of ‘Yes’ button below text label ‘RBC data entry is complete?’ is disabled. The state of input field ‘RBC ID’ is changed to ‘Not selected’ as follows,The value of ‘RBC ID’ input field is removed, display as blank.The background colour of the input field is dark-grey
             Test Step Comment: (1) MMI_gen 8053 (partly: MMI_gen 4909 (partly: state selected and with recently entered key), MMI_gen 4680 (partly: value has been modified));(2) MMI_gen 8053 (partly: MMI_gen 4680 (partly: RBC ID, Not selected, Data area is blank), MMI_gen 4649 (partly: data entry, background colour));
             */
-            DmiActions.ShowInstruction(this, @"Select the ‘RBC ID’ data input field and enter a new value for ‘RBC ID’, then select the ‘RBC Phone number’ data input field");
+            DmiActions.ShowInstruction(this,
+                @"Select the ‘RBC ID’ data input field and enter a new value for ‘RBC ID’, then select the ‘RBC Phone number’ data input field");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘Yes’ button below the label label ‘RBC data entry is complete?’ is displayed disabled." + Environment.NewLine +
+                                "1. The ‘Yes’ button below the label label ‘RBC data entry is complete?’ is displayed disabled." +
+                                Environment.NewLine +
                                 "2. The RBC ID data input field is displayed ‘Not Selected’, with a blank value on a Dark-grey background.");
 
             /*
@@ -613,7 +674,8 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The state of button is changed to ‘Pressed’, the border of button is removed.The sound ‘Click’ is played once
             Test Step Comment: (1) MMI_gen 8053 (partly: MMI_gen 4911 (partly: MMI_gen 4381 (partly: change to state ‘Pressed’ as long as remain actuated)); MMI_gen 4375;(2) MMI_gen 8053 (partly: MMI_gen 4911 (partly: MMI_gen 4381 (partly: sound ‘Click’))); MMI_gen 9512; MMI_gen 968;
             */
-            DmiActions.ShowInstruction(this, @"Enter the value ‘6996969’ for RBC ID, then, press and hold the ‘Yes’ button");
+            DmiActions.ShowInstruction(this,
+                @"Enter the value ‘6996969’ for RBC ID, then, press and hold the ‘Yes’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The button is displayed pressed, without a border." + Environment.NewLine +
@@ -652,7 +714,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Release the ‘Yes’ button");
 
-            EVC112_MMINewRbcData.MMI_NID_DATA = new List<byte> { 4 };
+            EVC112_MMINewRbcData.MMI_NID_DATA = new List<byte> {4};
             EVC112_MMINewRbcData.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_RBC_DATA.BTN_YES_DATA_ENTRY_COMPLETE;
             EVC112_MMINewRbcData.MMI_NID_RBC = 6996969;
             EVC112_MMINewRbcData.MMI_NID_RADIO = 0x0031840880100FFF;
@@ -687,7 +749,8 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,An input field is used to revalidation RBC ID and RBC Phone number, DMI displays Main window
             Test Step Comment: (1) MMI_gen 8055 (partly: revalidation); MMI_gen 8057 (partly: revalidation);
             */
-            DmiActions.ShowInstruction(this, "Confirm the data displayed without re-entering RBC ID or RBC Phone number, by pressing on their data input fields, then, press the ‘Yes’ button");
+            DmiActions.ShowInstruction(this,
+                "Confirm the data displayed without re-entering RBC ID or RBC Phone number, by pressing on their data input fields, then, press the ‘Yes’ button");
 
             // Need to close RBC Contact window
             EVC22_MMICurrentRBC.MMI_NID_WINDOW = 9;
@@ -695,7 +758,8 @@ namespace Testcase.DMITestCases
             EVC22_MMICurrentRBC.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The data input fields can be used to re-validate the data values" + Environment.NewLine +
+                                "1. The data input fields can be used to re-validate the data values" +
+                                Environment.NewLine +
                                 "2. DMI displays the Main window.");
 
             /*
@@ -730,11 +794,14 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The state of ‘RBC Phone number’ input field is changed to ‘Pressed’, the border of button is removed.The state of ‘RBC Phone number’ input field remains ‘not selected’. The state of ‘RBC ID’ input field remains ‘selected’.The sound ‘Click’ is played once
             Test Step Comment: (1) MMI_gen 8053 (partly: MMI_gen 4686 (partly: Label area, RBC Phone number), MMI_gen 4381 (partly: change to state ‘Pressed’ as long as remain actuated))); MMI_gen 4392 (partly: [Enter], touch screen); MMI_gen 4375;(2) MMI_gen 8053 (partly: MMI_gen 4686 (partly: Label area, RBC Phone number), MMI_gen 4381 (partly: the sound for Up-Type button));
             */
-            DmiActions.ShowInstruction(this, @"Press and hold the label part of the ‘RBC Phone number’ data input field");
+            DmiActions.ShowInstruction(this,
+                @"Press and hold the label part of the ‘RBC Phone number’ data input field");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘RBC Phone number’ data input field is displayed pressed, without a border." + Environment.NewLine +
-                                "2. The ‘RBC Phone number’ data input field stays ‘Not Selected’." + Environment.NewLine +
+                                "1. The ‘RBC Phone number’ data input field is displayed pressed, without a border." +
+                                Environment.NewLine +
+                                "2. The ‘RBC Phone number’ data input field stays ‘Not Selected’." +
+                                Environment.NewLine +
                                 "3. The ‘Click’ sound is played once.");
 
             /*
@@ -743,11 +810,14 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The border of ‘RBC Phone number’ input field is shown (state ‘Enabled’) without a sound.The state of ‘RBC Phone number’ input field remains ‘not selected’. The state of ‘RBC ID’ input field remains ‘selected’
             Test Step Comment: (1) MMI_gen 8053 (partly: MMI_gen 4686 (partly: Label area, RBC Phone number), MMI_gen 4382 (partly: state ‘Enabled’ when slide out with force applied, no sound); MMI_gen 4374;
             */
-            DmiActions.ShowInstruction(this, "Whilst keeping the ‘RBC Phone number’ data input field pressed, drag it out of its area");
+            DmiActions.ShowInstruction(this,
+                "Whilst keeping the ‘RBC Phone number’ data input field pressed, drag it out of its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘RBC Phone number’ data input field is displayed enabled, with a border." + Environment.NewLine +
-                                "2. The ‘RBC Phone number’ data input field stays ‘Not Selected’." + Environment.NewLine +
+                                "1. The ‘RBC Phone number’ data input field is displayed enabled, with a border." +
+                                Environment.NewLine +
+                                "2. The ‘RBC Phone number’ data input field stays ‘Not Selected’." +
+                                Environment.NewLine +
                                 "3. The ‘RBC ID’ data input field stays ‘Selected’." + Environment.NewLine +
                                 "4. No sound is played.");
 
@@ -757,13 +827,16 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The state of ‘RBC Phone number’ input field is changed to ‘Pressed’, the border of button is removed.The state of ‘RBC Phone number’ input field remains ‘not selected’. The state of ‘RBC ID’ input field remains ‘selected’
             Test Step Comment: (1) MMI_gen 8053 (partly: MMI_gen 4686 (partly: Label area, RBC Phone number), MMI_gen 4382 (partly: state ‘Pressed’ when slide back, no sound); MMI_gen 4375;
             */
-            DmiActions.ShowInstruction(this, "Whilst keeping the ‘RBC Phone number’ data input field pressed, drag it back inside its area");
+            DmiActions.ShowInstruction(this,
+                "Whilst keeping the ‘RBC Phone number’ data input field pressed, drag it back inside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘RBC Phone number’ data input field is displayed pressed, without a border." + Environment.NewLine + 
-                                "2. The ‘RBC Phone number’ data input field stays ‘Not Selected’." + Environment.NewLine +
+                                "1. The ‘RBC Phone number’ data input field is displayed pressed, without a border." +
+                                Environment.NewLine +
+                                "2. The ‘RBC Phone number’ data input field stays ‘Not Selected’." +
+                                Environment.NewLine +
                                 "3. The ‘RBC ID’ data input field stays ‘Selected’.");
-            
+
             /*
             Test Step 29
             Action: Release the pressed area
@@ -782,10 +855,12 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8053 (partly: MMI_gen 4686 (partly: Label area, Up-Type button));
             */
             DmiActions.ShowInstruction(this, @"Press and hold the label part of the ‘RBC ID’ data input field");
-            
-            DmiActions.ShowInstruction(this, "Whilst keeping the ‘RBC ID’ data input field pressed, drag it out of its area");
-            
-            DmiActions.ShowInstruction(this, "Whilst keeping the ‘RBC ID’ data input field pressed, drag it back inside its area");
+
+            DmiActions.ShowInstruction(this,
+                "Whilst keeping the ‘RBC ID’ data input field pressed, drag it out of its area");
+
+            DmiActions.ShowInstruction(this,
+                "Whilst keeping the ‘RBC ID’ data input field pressed, drag it back inside its area");
 
             DmiActions.ShowInstruction(this, @"Release the pressed area");
 
@@ -798,11 +873,14 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The state of an input field is changed to ‘selected’ when release the pressed area at the Data part of input field
             Test Step Comment: (1) MMI_gen 8053 (partly: MMI_gen 4686 (partly: Data area, Up-Type button)); MMI_gen 9390 (partly: RBC Data window);
             */
-            DmiActions.ShowInstruction(this, @"Press and hold the data part of the ‘RBC Phone number’ data input field");
+            DmiActions.ShowInstruction(this,
+                @"Press and hold the data part of the ‘RBC Phone number’ data input field");
 
-            DmiActions.ShowInstruction(this, "Whilst keeping the ‘RBC Phone number’ data input field pressed, drag it out of its area");
+            DmiActions.ShowInstruction(this,
+                "Whilst keeping the ‘RBC Phone number’ data input field pressed, drag it out of its area");
 
-            DmiActions.ShowInstruction(this, "Whilst keeping the ‘RBC Phone number’ data input field pressed, drag it back inside its area");
+            DmiActions.ShowInstruction(this,
+                "Whilst keeping the ‘RBC Phone number’ data input field pressed, drag it back inside its area");
 
             DmiActions.ShowInstruction(this, @"Release the pressed area");
 
@@ -812,9 +890,11 @@ namespace Testcase.DMITestCases
             // Repeat for RBC ID
             DmiActions.ShowInstruction(this, @"Press and hold the data part of the ‘RBC ID’ data input field");
 
-            DmiActions.ShowInstruction(this, "Whilst keeping the ‘RBC ID’ data input field pressed, drag it out of its area");
+            DmiActions.ShowInstruction(this,
+                "Whilst keeping the ‘RBC ID’ data input field pressed, drag it out of its area");
 
-            DmiActions.ShowInstruction(this, "Whilst keeping the ‘RBC ID’ data input field pressed, drag it back inside its area");
+            DmiActions.ShowInstruction(this,
+                "Whilst keeping the ‘RBC ID’ data input field pressed, drag it back inside its area");
 
             DmiActions.ShowInstruction(this, @"Release the pressed area");
 
@@ -830,7 +910,8 @@ namespace Testcase.DMITestCases
 
             // Spec says phone number and ID are 1234, surely what was saved before would be expected?
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘RBC Phone number’ data input field displays ‘0031840880100’." + Environment.NewLine +
+                                "1. The ‘RBC Phone number’ data input field displays ‘0031840880100’." +
+                                Environment.NewLine +
                                 "2. The ‘RBC ID’ data input field displays ‘6996969’.");
 
             /*
@@ -861,9 +942,10 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,Use the log file to confirm that DMI sent out packet [MMI_NEW_RBC_DATA (EVC-112)] with following variables,MMI_NID_DATA = 5 (RBC Phone number)MMI_NID_RADIO = 0xFFFFFFFFFFFFFFFF
             Test Step Comment: (1) MMI_gen 9458 (partly: MMI_gen 1625); MMI_gen 1625 (partly: unknown);
             */
-            DmiActions.ShowInstruction(this, @"Confirm the (blank) value of RBC Phone number by pressing its data input field");
-            
-            EVC112_MMINewRbcData.MMI_NID_DATA = new List<byte> { 5 };
+            DmiActions.ShowInstruction(this,
+                @"Confirm the (blank) value of RBC Phone number by pressing its data input field");
+
+            EVC112_MMINewRbcData.MMI_NID_DATA = new List<byte> {5};
             EVC112_MMINewRbcData.MMI_NID_RADIO = 0xffffffffffffffff;
             EVC112_MMINewRbcData.CheckPacketContent();
 
@@ -902,6 +984,7 @@ namespace Testcase.DMITestCases
         }
 
         #region Send_XML_8_1_1_DMI_Test_Specification
+
         enum msgType
         {
             typea,
@@ -933,14 +1016,16 @@ namespace Testcase.DMITestCases
                     EVC22_MMICurrentRBC.NID_RBC = 5648;
                     // spec says 5678ef....
                     EVC22_MMICurrentRBC.MMI_NID_RADIO = 0x5678ffffffffffff;
-                    EVC22_MMICurrentRBC.DataElements = new List<DataElement> { new DataElement { Identifier = 0, QDataCheck = 4, EchoText = "\0x1\0x30" },
-                        new DataElement { Identifier = 1, QDataCheck = 5, EchoText = "\0x1\0x30"} };
+                    EVC22_MMICurrentRBC.DataElements = new List<DataElement>
+                    {
+                        new DataElement {Identifier = 0, QDataCheck = 4, EchoText = "\0x1\0x30"},
+                        new DataElement {Identifier = 1, QDataCheck = 5, EchoText = "\0x1\0x30"}
+                    };
                     break;
             }
             EVC22_MMICurrentRBC.Send();
         }
+
         #endregion
-
-
     }
 }

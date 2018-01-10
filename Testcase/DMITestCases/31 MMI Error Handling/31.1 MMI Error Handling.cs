@@ -82,7 +82,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SR mode, Level 1.");
 
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 0;      // at start
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 0; // at start
 
             /*
             Test Step 2
@@ -91,13 +91,14 @@ namespace Testcase.DMITestCases
             Test Step Comment:
             */
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 10;
-            EVC1_MMIDynamic.MMI_O_BRAKETARGET = 50000;                  // EOA 500m
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 25000;      // at 250m
+            EVC1_MMIDynamic.MMI_O_BRAKETARGET = 50000; // EOA 500m
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 25000; // at 250m
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
-            
+
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI removes the SR mode symbol (MO09) and displays the FS symbol (MO11) in area B7." + Environment.NewLine +
+                                "1. DMI removes the SR mode symbol (MO09) and displays the FS symbol (MO11) in area B7." +
+                                Environment.NewLine +
                                 "2. DMI displays the planning area");
 
             /*
@@ -108,7 +109,7 @@ namespace Testcase.DMITestCases
             */
             EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 15;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 16;
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 25500;      // at 255m
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 25500; // at 255m
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The warning sound is played");
@@ -119,15 +120,17 @@ namespace Testcase.DMITestCases
             Expected Result: DMI enters ‘ATP-down’ state. Verify that all information on DMI’s screen is disappeared.The continuous 1000Hz sound is play.DMI displays message ‘ATP Down Alarm’ with yellow flashing frame.Use log file to confirm that DMI sends out [MMI_STATUS_REPORT (EVC-102).MMI_M_MMI_STATUS] = 5 only once.         
             Test Step Comment:MMI_gen 244 (partly: 1st bullet);MMI_gen 244 (partly: 2nd bullet);MMI_gen 244 (partly: 3rd bullet);MMI_gen 157 (partly: sound);MMI_gen 244 (partly: 4th bullet);
             */
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 40000;      // at 400m
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 40000; // at 400m
             DmiActions.Simulate_communication_loss_EVC_DMI(this);
 
             // Spec says EVC102 packet sent every 250 ms so wait and then check
             Wait_Realtime(250);
-            EVC102_MMIStatusReport.Check_MMI_M_MMI_STATUS = EVC102_MMIStatusReport.MMI_M_MMI_STATUS.StatusATPDownNACK;          // 5
+            EVC102_MMIStatusReport.Check_MMI_M_MMI_STATUS =
+                EVC102_MMIStatusReport.MMI_M_MMI_STATUS.StatusATPDownNACK; // 5
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI enters ‘ATP-down’ state, displaying the message ‘ATP Down Alarm’ in a yellow flashing frame." + Environment.NewLine +
+                                "1. DMI enters ‘ATP-down’ state, displaying the message ‘ATP Down Alarm’ in a yellow flashing frame." +
+                                Environment.NewLine +
                                 "2. All information on the DMI screen is disappears." + Environment.NewLine +
                                 "3. The 1000Hz sound is played continuously.");
 
@@ -141,7 +144,8 @@ namespace Testcase.DMITestCases
 
             // Spec says EVC102 packet sent every 250 ms so wait and then check
             Wait_Realtime(250);
-            EVC102_MMIStatusReport.Check_MMI_M_MMI_STATUS = EVC102_MMIStatusReport.MMI_M_MMI_STATUS.StatusATPDownACK;       // 6
+            EVC102_MMIStatusReport.Check_MMI_M_MMI_STATUS =
+                EVC102_MMIStatusReport.MMI_M_MMI_STATUS.StatusATPDownACK; // 6
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI stops playing the 1000Hz sound." + Environment.NewLine +
@@ -157,7 +161,7 @@ namespace Testcase.DMITestCases
 
             // Spec says EVC102 packet sent every 250 ms so wait and then check
             Wait_Realtime(250);
-            EVC102_MMIStatusReport.Check_MMI_M_MMI_STATUS = EVC102_MMIStatusReport.MMI_M_MMI_STATUS.StatusActive;       // 3
+            EVC102_MMIStatusReport.Check_MMI_M_MMI_STATUS = EVC102_MMIStatusReport.MMI_M_MMI_STATUS.StatusActive; // 3
 
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -195,7 +199,8 @@ namespace Testcase.DMITestCases
             */
             DmiActions.Re_establish_communication_EVC_DMI(this);
 
-            WaitForVerification("When ‘ATP-Down’ has not been acknowledged yet, check the following :" + Environment.NewLine + Environment.NewLine +
+            WaitForVerification("When ‘ATP-Down’ has not been acknowledged yet, check the following :" +
+                                Environment.NewLine + Environment.NewLine +
                                 "1. The confirmation button is cleared." + Environment.NewLine +
                                 "2. DMI stops playing the 1000Hz sound.");
 

@@ -76,35 +76,49 @@ namespace Testcase.DMITestCases
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Default;      // Default window
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Default; // Default window
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_LOW = true;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = (EVC30_MMIRequestEnable.EnabledRequests.Language |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.Volume |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.Brightness |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.SystemVersion |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.SetVBC |
-                                                                EVC30_MMIRequestEnable.EnabledRequests.SetLocalTimeDateAndOffset |
-                                                                EVC30_MMIRequestEnable.EnabledRequests.EnableBrakePercentage |
-                                                                EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter) &
+                                                                EVC30_MMIRequestEnable.EnabledRequests
+                                                                    .SetLocalTimeDateAndOffset |
+                                                                EVC30_MMIRequestEnable.EnabledRequests
+                                                                    .EnableBrakePercentage |
+                                                                EVC30_MMIRequestEnable.EnabledRequests
+                                                                    .EnableWheelDiameter) &
                                                                ~EVC30_MMIRequestEnable.EnabledRequests.RemoveVBC;
             EVC30_MMIRequestEnable.Send();
 
             DmiActions.ShowInstruction(this, @"Press the ‘Settings’ button");
 
-            WaitForVerification("Check the following (* indicates sub-areas drawn as one area):" + Environment.NewLine + Environment.NewLine +
-                                @"1. DMI displays the Settings window with 3 layers, with the title ‘Settings’." + Environment.NewLine +
+            WaitForVerification("Check the following (* indicates sub-areas drawn as one area):" + Environment.NewLine +
+                                Environment.NewLine +
+                                @"1. DMI displays the Settings window with 3 layers, with the title ‘Settings’." +
+                                Environment.NewLine +
                                 "2. The Settings window is displayed in areas D, F, G." + Environment.NewLine +
                                 "3. Layer 0 comprises areas D, F, G, E10, E11, Y and Z." + Environment.NewLine +
-                                "4. Layer 1 comprises areas A1, (A2+A3)*, A4, B, C1, (C2+C3+c4)*, C5, C6, C7, C8, C9, E1, E2, E3, E4, (E5-E9)*." + Environment.NewLine +
+                                "4. Layer 1 comprises areas A1, (A2+A3)*, A4, B, C1, (C2+C3+c4)*, C5, C6, C7, C8, C9, E1, E2, E3, E4, (E5-E9)*." +
+                                Environment.NewLine +
                                 "5. Layer 2 comprises areas B3, B4, B5, B6 and B7." + Environment.NewLine +
-                                @"6. The Override window displays Settings buttons (as described) and an ‘Enabled Close’ button (symbol NA11)." + Environment.NewLine +
-                                "7. The first row of buttons displayed is: ‘Language’ (enabled), ‘Volume’ (enabled);" + Environment.NewLine +
-                                "8. The second row of buttons displayed is: ‘Brightness’ (enabled), ‘System version’ (enabled);" + Environment.NewLine +
-                                "9. The third row of buttons displayed is: ‘Set VBC’ (enabled), ‘Remove VBC’ (disabled);" + Environment.NewLine +
-                                "10. The first buttons in the next row displayed is: ‘Language’ (enabled), ‘Volume’ (enabled);" + Environment.NewLine +
-                                "11. Other buttons such as ‘Maintenance’, ‘Brake’ are also displayed." + Environment.NewLine +
-                                "12. Objects, text messages and buttons can be displayed in several levels. Within a level they are allocated to areas." + Environment.NewLine +
-                                "13. Objects, text messages and buttons in a layer form a window." + Environment.NewLine +
+                                @"6. The Override window displays Settings buttons (as described) and an ‘Enabled Close’ button (symbol NA11)." +
+                                Environment.NewLine +
+                                "7. The first row of buttons displayed is: ‘Language’ (enabled), ‘Volume’ (enabled);" +
+                                Environment.NewLine +
+                                "8. The second row of buttons displayed is: ‘Brightness’ (enabled), ‘System version’ (enabled);" +
+                                Environment.NewLine +
+                                "9. The third row of buttons displayed is: ‘Set VBC’ (enabled), ‘Remove VBC’ (disabled);" +
+                                Environment.NewLine +
+                                "10. The first buttons in the next row displayed is: ‘Language’ (enabled), ‘Volume’ (enabled);" +
+                                Environment.NewLine +
+                                "11. Other buttons such as ‘Maintenance’, ‘Brake’ are also displayed." +
+                                Environment.NewLine +
+                                "12. Objects, text messages and buttons can be displayed in several levels. Within a level they are allocated to areas." +
+                                Environment.NewLine +
+                                "13. Objects, text messages and buttons in a layer form a window." +
+                                Environment.NewLine +
                                 "14. The Default window does not cover the current window." + Environment.NewLine +
                                 "15. A sub-level window can partially cover another window, depending on its size.Another window cannot be displayed and activated at the same time.");
 
@@ -117,7 +131,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘Language’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘Language’ button is displayed pressed, without a border." + Environment.NewLine +
+                                "1. The ‘Language’ button is displayed pressed, without a border." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once.");
 
             /*
@@ -138,7 +153,8 @@ namespace Testcase.DMITestCases
             Expected Result: The button is back to state ‘Pressed’ without a sound
             Test Step Comment: (1) MMI_gen 8465 (partly: MMI_gen 4557 (partly: Language button, MMI_gen 4382 (partly: state ‘Pressed’ when slide back, no sound)));  
             */
-            DmiActions.ShowInstruction(this, @"Whilst keeping the ‘Language’ button pressed, drag it back inside its area");
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the ‘Language’ button pressed, drag it back inside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The ‘Language’ button is displayed pressed." + Environment.NewLine +
@@ -186,7 +202,8 @@ namespace Testcase.DMITestCases
                                 "2. No sound is played.");
 
             // Repeat Step 4 for Volume
-            DmiActions.ShowInstruction(this, @"Whilst keeping the ‘Volume’ button pressed, drag it back inside its area");
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the ‘Volume’ button pressed, drag it back inside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The ‘Volume’ button is displayed pressed." + Environment.NewLine +
@@ -208,18 +225,22 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘Brightness’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘Brightness’ button is displayed pressed, without a border." + Environment.NewLine +
+                                "1. The ‘Brightness’ button is displayed pressed, without a border." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once.");
 
             // Repeat Step 3 for Brightness
-            DmiActions.ShowInstruction(this, @"Whilst keeping the ‘Brightness’ button pressed, drag it out of its area");
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the ‘Brightness’ button pressed, drag it out of its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘Brightness’ button is displayed enabled, with a border." + Environment.NewLine +
+                                @"1. The ‘Brightness’ button is displayed enabled, with a border." +
+                                Environment.NewLine +
                                 "2. No sound is played.");
 
             // Repeat Step 4 for Brightness
-            DmiActions.ShowInstruction(this, @"Whilst keeping the ‘Brightness’ button pressed, drag it back inside its area");
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the ‘Brightness’ button pressed, drag it back inside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The ‘Brightness’ button is displayed pressed." + Environment.NewLine +
@@ -241,18 +262,22 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘System version’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘System version’ button is displayed pressed, without a border." + Environment.NewLine +
+                                "1. The ‘System version’ button is displayed pressed, without a border." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once.");
 
             // Repeat Step 3 for System version
-            DmiActions.ShowInstruction(this, @"Whilst keeping the ‘System version’ button pressed, drag it out of its area");
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the ‘System version’ button pressed, drag it out of its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘System version’ button is displayed enabled, with a border." + Environment.NewLine +
+                                @"1. The ‘System version’ button is displayed enabled, with a border." +
+                                Environment.NewLine +
                                 "2. No sound is played.");
 
             // Repeat Step 4 for System version
-            DmiActions.ShowInstruction(this, @"Whilst keeping the ‘System version’ button pressed, drag it back inside its area");
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the ‘System version’ button pressed, drag it back inside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The ‘System version’ button is displayed pressed." + Environment.NewLine +
@@ -277,7 +302,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘Set VBC’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘Set VBC’ button is displayed pressed, without a border." + Environment.NewLine +
+                                "1. The ‘Set VBC’ button is displayed pressed, without a border." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once.");
 
             // Repeat Step 3 for Set VBC
@@ -288,7 +314,8 @@ namespace Testcase.DMITestCases
                                 "2. No sound is played.");
 
             // Repeat Step 4 for Set VBC
-            DmiActions.ShowInstruction(this, @"Whilst keeping the ‘Set VBC’ button pressed, drag it back inside its area");
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the ‘Set VBC’ button pressed, drag it back inside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The ‘Set VBC’ button is displayed pressed." + Environment.NewLine +
@@ -323,7 +350,8 @@ namespace Testcase.DMITestCases
                                 "2. No sound is played.");
 
             // Repeat Step 4 for Brake button
-            DmiActions.ShowInstruction(this, @"Whilst keeping the ‘Brake’ button pressed, drag it back inside its area");
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the ‘Brake’ button pressed, drag it back inside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The ‘Brake button’ button is displayed pressed." + Environment.NewLine +
@@ -342,23 +370,28 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Settings window.");
 
             // Repeat Step 2 for System info
-            TraceInfo("If the System info button has not been configured correctly the test will fail - Ignore and pass the test");
+            TraceInfo(
+                "If the System info button has not been configured correctly the test will fail - Ignore and pass the test");
 
             DmiActions.ShowInstruction(this, @"Press and hold the ‘System info’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘System info’ button is displayed pressed, without a border." + Environment.NewLine +
+                                "1. The ‘System info’ button is displayed pressed, without a border." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once.");
 
             // Repeat Step 3 for System info
-            DmiActions.ShowInstruction(this, @"Whilst keeping the ‘System info’ button pressed, drag it out of its area");
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the ‘System info’ button pressed, drag it out of its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘System info’ button is displayed enabled, with a border." + Environment.NewLine +
+                                @"1. The ‘System info’ button is displayed enabled, with a border." +
+                                Environment.NewLine +
                                 "2. No sound is played.");
 
             // Repeat Step 4 for System info
-            DmiActions.ShowInstruction(this, @"Whilst keeping the ‘System info’ button pressed, drag it back inside its area");
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the ‘System info’ button pressed, drag it back inside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The ‘System info’ button is displayed pressed." + Environment.NewLine +
@@ -382,18 +415,21 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘Set Clock’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘Set Clock’ button is displayed pressed, without a border." + Environment.NewLine +
+                                "1. The ‘Set Clock’ button is displayed pressed, without a border." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once.");
 
             // Repeat Step 3 for Set Clock
             DmiActions.ShowInstruction(this, @"Whilst keeping the ‘Set Clock’ button pressed, drag it out of its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘Set Clock’ button is displayed enabled, with a border." + Environment.NewLine +
+                                @"1. The ‘Set Clock’ button is displayed enabled, with a border." +
+                                Environment.NewLine +
                                 "2. No sound is played.");
 
             // Repeat Step 4 for Set Clock
-            DmiActions.ShowInstruction(this, @"Whilst keeping the ‘Set Clock’ button pressed, drag it back inside its area");
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the ‘Set Clock’ button pressed, drag it back inside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The ‘Set Clock’ button is displayed pressed." + Environment.NewLine +
@@ -415,18 +451,22 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘Maintenance’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘Maintenance’ button is displayed pressed, without a border." + Environment.NewLine +
+                                "1. The ‘Maintenance’ button is displayed pressed, without a border." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once.");
 
             // Repeat Step 3 for Maintenance
-            DmiActions.ShowInstruction(this, @"Whilst keeping the ‘Maintenance’ button pressed, drag it out of its area");
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the ‘Maintenance’ button pressed, drag it out of its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘Maintenance’ button is displayed enabled, with a border." + Environment.NewLine +
+                                @"1. The ‘Maintenance’ button is displayed enabled, with a border." +
+                                Environment.NewLine +
                                 "2. No sound is played.");
 
             // Repeat Step 4 for Maintenance
-            DmiActions.ShowInstruction(this, @"Whilst keeping the ‘Maintenance’ button pressed, drag it back inside its area");
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the ‘Maintenance’ button pressed, drag it back inside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The ‘Maintenance’ button is displayed pressed." + Environment.NewLine +
@@ -453,9 +493,10 @@ namespace Testcase.DMITestCases
             EVC18_MMISetVBC.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_VBC.BTN_YES_DATA_ENTRY_COMPLETE;
             EVC18_MMISetVBC.Send();
 
-            DmiActions.ShowInstruction(this, @"Enter ‘65536’ for the VBC code and confirm the value, then press the ‘Yes’ button");
+            DmiActions.ShowInstruction(this,
+                @"Enter ‘65536’ for the VBC code and confirm the value, then press the ‘Yes’ button");
 
-            EVC28_MMIEchoedSetVBCData.MMI_M_VBC_CODE_ = 65536;     // 65536 bit-inverted
+            EVC28_MMIEchoedSetVBCData.MMI_M_VBC_CODE_ = 65536; // 65536 bit-inverted
             EVC28_MMIEchoedSetVBCData.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -467,16 +508,18 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Settings window.Verify the following information,Use the log file to confirm that DMI receives EVC-30 with variable MMI_Q_REQUEST_ENABLE_64 (#18) = 1 and the ‘Remove VBC’ button is enabled
             Test Step Comment: (1) MMI_gen 11545 (partly: enable #18, EVC-30)
             */
-            DmiActions.ShowInstruction(this, @"Press the ‘Yes’ button and confirm the value by pressing a data input field");
+            DmiActions.ShowInstruction(this,
+                @"Press the ‘Yes’ button and confirm the value by pressing a data input field");
 
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Default;      // Main window
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Default; // Main window
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Language |
                                                                EVC30_MMIRequestEnable.EnabledRequests.Volume |
                                                                EVC30_MMIRequestEnable.EnabledRequests.Brightness |
                                                                EVC30_MMIRequestEnable.EnabledRequests.SystemVersion |
-                                                               EVC30_MMIRequestEnable.EnabledRequests.RemoveVBC | 
-                                                               EVC30_MMIRequestEnable.EnabledRequests.SetLocalTimeDateAndOffset |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.RemoveVBC |
+                                                               EVC30_MMIRequestEnable.EnabledRequests
+                                                                   .SetLocalTimeDateAndOffset |
                                                                EVC30_MMIRequestEnable.EnabledRequests.StartBrakeTest |
                                                                EVC30_MMIRequestEnable.EnabledRequests.SetVBC;
             EVC30_MMIRequestEnable.Send();
@@ -494,18 +537,22 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘Remove VBC’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘Remove VBC’ button is displayed pressed, without a border." + Environment.NewLine +
+                                "1. The ‘Remove VBC’ button is displayed pressed, without a border." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once.");
 
             // Repeat Step 3 for Remove VBC
-            DmiActions.ShowInstruction(this, @"Whilst keeping the ‘Remove VBC’ button pressed, drag it out of its area");
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the ‘Remove VBC’ button pressed, drag it out of its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘Remove VBC’ button is displayed enabled, with a border." + Environment.NewLine +
+                                @"1. The ‘Remove VBC’ button is displayed enabled, with a border." +
+                                Environment.NewLine +
                                 "2. No sound is played.");
 
             // Repeat Step 4 for Remove VBC
-            DmiActions.ShowInstruction(this, @"Whilst keeping the ‘Remove VBC’ button pressed, drag it back inside its area");
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the ‘Remove VBC’ button pressed, drag it back inside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The ‘Remove VBC’ button is displayed pressed." + Environment.NewLine +
@@ -531,7 +578,7 @@ namespace Testcase.DMITestCases
 
             EVC19_MMIRemoveVBC.MMI_N_VBC = 1;
             EVC19_MMIRemoveVBC.MMI_Q_DATA_CHECK = Variables.Q_DATA_CHECK.All_checks_passed;
-            EVC19_MMIRemoveVBC.Send(); 
+            EVC19_MMIRemoveVBC.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window.");
@@ -543,10 +590,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11545 (partly: Disabling, #13, #14, #15, #16, #17, #18);(2) MMI_gen 11545 (partly: EVC-30, Disabling, #13, #14, #15, #16, #17, #18);
             */
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings;      // Settings window
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings; // Settings window
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.None;
             EVC30_MMIRequestEnable.Send();
-            
+
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 1;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 260;
@@ -575,13 +622,14 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings;      // Settings window
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings; // Settings window
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Language |
                                                                EVC30_MMIRequestEnable.EnabledRequests.Volume |
                                                                EVC30_MMIRequestEnable.EnabledRequests.Brightness |
                                                                EVC30_MMIRequestEnable.EnabledRequests.SystemVersion |
                                                                EVC30_MMIRequestEnable.EnabledRequests.RemoveVBC |
-                                                               EVC30_MMIRequestEnable.EnabledRequests.SetLocalTimeDateAndOffset |
+                                                               EVC30_MMIRequestEnable.EnabledRequests
+                                                                   .SetLocalTimeDateAndOffset |
                                                                EVC30_MMIRequestEnable.EnabledRequests.StartBrakeTest |
                                                                EVC30_MMIRequestEnable.EnabledRequests.SetVBC;
             EVC30_MMIRequestEnable.Send();
@@ -599,7 +647,7 @@ namespace Testcase.DMITestCases
             XML_22_21(msgType.typea);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                          "1. The following ‘Set Clock’ button is disabled.");
+                                "1. The following ‘Set Clock’ button is disabled.");
 
             /*
             Test Step 15
@@ -610,7 +658,7 @@ namespace Testcase.DMITestCases
             XML_22_21(msgType.typeb);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                          "1. The following ‘Set Clock’ button is enabled.");
+                                "1. The following ‘Set Clock’ button is enabled.");
 
             /*
             Test Step 16
@@ -620,7 +668,7 @@ namespace Testcase.DMITestCases
             XML_22_21(msgType.typea);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                          "1. The following ‘Set Clock’ button is disabled.");
+                                "1. The following ‘Set Clock’ button is disabled.");
 
             /*
             Test Step 17
@@ -631,7 +679,7 @@ namespace Testcase.DMITestCases
             XML_22_21(msgType.typec);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                          "1. The following ‘Set Clock’ button is enabled.");
+                                "1. The following ‘Set Clock’ button is enabled.");
 
             /*
             Test Step 18
@@ -641,7 +689,7 @@ namespace Testcase.DMITestCases
             XML_22_21(msgType.typea);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                          "1. The following ‘Set Clock’ button is disabled.");
+                                "1. The following ‘Set Clock’ button is disabled.");
 
             /*
             Test Step 19
@@ -652,7 +700,7 @@ namespace Testcase.DMITestCases
             XML_22_21(msgType.typed);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                          "1. The following ‘Set Clock’ button is enabled.");
+                                "1. The following ‘Set Clock’ button is enabled.");
 
             /*
             Test Step 20
@@ -675,7 +723,8 @@ namespace Testcase.DMITestCases
                                 "2. No sound is played.");
 
             // Repeat Step 4 for Close
-            DmiActions.ShowInstruction(this, @"Whilst keeping the ‘Close’ button pressed, drag it back inside its area");
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the ‘Close’ button pressed, drag it back inside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The ‘Close’ button is displayed pressed." + Environment.NewLine +
@@ -703,6 +752,7 @@ namespace Testcase.DMITestCases
         }
 
         #region Send_XML_22_21_DMI_Test_Specification
+
         enum msgType
         {
             typea,
@@ -719,39 +769,51 @@ namespace Testcase.DMITestCases
                 case msgType.typea:
                     EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Language |
                                                                        EVC30_MMIRequestEnable.EnabledRequests.Volume |
-                                                                       EVC30_MMIRequestEnable.EnabledRequests.Brightness |
-                                                                       EVC30_MMIRequestEnable.EnabledRequests.SystemVersion |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests
+                                                                           .Brightness |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests
+                                                                           .SystemVersion |
                                                                        EVC30_MMIRequestEnable.EnabledRequests.SetVBC;
                     break;
                 case msgType.typeb:
                     EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Language |
                                                                        EVC30_MMIRequestEnable.EnabledRequests.Volume |
-                                                                       EVC30_MMIRequestEnable.EnabledRequests.Brightness |
-                                                                       EVC30_MMIRequestEnable.EnabledRequests.SystemVersion |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests
+                                                                           .Brightness |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests
+                                                                           .SystemVersion |
                                                                        EVC30_MMIRequestEnable.EnabledRequests.SetVBC |
-                                                                       EVC30_MMIRequestEnable.EnabledRequests.SetLocalTimeDateAndOffset;
+                                                                       EVC30_MMIRequestEnable.EnabledRequests
+                                                                           .SetLocalTimeDateAndOffset;
                     break;
                 case msgType.typec:
                     EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Language |
                                                                        EVC30_MMIRequestEnable.EnabledRequests.Volume |
-                                                                       EVC30_MMIRequestEnable.EnabledRequests.Brightness |
-                                                                       EVC30_MMIRequestEnable.EnabledRequests.SystemVersion |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests
+                                                                           .Brightness |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests
+                                                                           .SystemVersion |
                                                                        EVC30_MMIRequestEnable.EnabledRequests.SetVBC |
-                                                                       EVC30_MMIRequestEnable.EnabledRequests.SetLocalTimeDateAndOffset |
-                                                                       EVC30_MMIRequestEnable.EnabledRequests.SetLocalOffset;
+                                                                       EVC30_MMIRequestEnable.EnabledRequests
+                                                                           .SetLocalTimeDateAndOffset |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests
+                                                                           .SetLocalOffset;
                     break;
                 case msgType.typed:
                     EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Language |
                                                                        EVC30_MMIRequestEnable.EnabledRequests.Volume |
-                                                                       EVC30_MMIRequestEnable.EnabledRequests.Brightness |
-                                                                       EVC30_MMIRequestEnable.EnabledRequests.SystemVersion |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests
+                                                                           .Brightness |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests
+                                                                           .SystemVersion |
                                                                        EVC30_MMIRequestEnable.EnabledRequests.SetVBC |
-                                                                       EVC30_MMIRequestEnable.EnabledRequests.SetLocalOffset;
+                                                                       EVC30_MMIRequestEnable.EnabledRequests
+                                                                           .SetLocalOffset;
                     break;
             }
             EVC20_MMISelectLevel.Send();
         }
-        #endregion
 
+        #endregion
     }
 }

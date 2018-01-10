@@ -45,15 +45,15 @@ namespace Testcase.DMITestCases
             // Pre-conditions from TestSpec:
             // Train length is 100 m
             // Configure atpcu configuration file as following:
-			// TC_T_Panto_Down = 100
-			// TC_T_MainSwitch_Off = 100
-			// TC_T_Airtight_Close =100
-			// TC_T_Inhib_RBBrake = 100
-			// TC_T_ Inhib_ECBrake = 100
-			// TC_T_ Inhib_MSBrake = 100
-			// TC_T_Change_TractionSyst = 100
-			// TC_T_Allowed_CurrentConsump = 100 
-			// TC_T_StationPlatform = 100
+            // TC_T_Panto_Down = 100
+            // TC_T_MainSwitch_Off = 100
+            // TC_T_Airtight_Close =100
+            // TC_T_Inhib_RBBrake = 100
+            // TC_T_ Inhib_ECBrake = 100
+            // TC_T_ Inhib_MSBrake = 100
+            // TC_T_Change_TractionSyst = 100
+            // TC_T_Allowed_CurrentConsump = 100 
+            // TC_T_StationPlatform = 100
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
@@ -97,7 +97,8 @@ namespace Testcase.DMITestCases
             // Testing to SR mode is done elsewhere: force...
             DmiActions.Set_Driver_ID(this, "1234");
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode =
+                EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
             DmiActions.Finished_SoM_Default_Window(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -133,18 +134,34 @@ namespace Testcase.DMITestCases
             EVC32_MMITrackConditions.TrackConditions =
                 new List<TrackCondition>
                 {
-            /* 0 */ new TrackCondition { MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Non_Stopping_Area,
-                                         MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea,
-                                         MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithoutDriverAction },
-            /* 1 */ new TrackCondition { MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Sound_Horn,
-                                         MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea,
-                                         MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithoutDriverAction },
-            /* 2 */ new TrackCondition { MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Radio_hole,
-                                         MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea,
-                                         MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithoutDriverAction},
-            /* 3 */ new TrackCondition { MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Non_Stopping_Area,
-                                         MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea,
-                                         MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithoutDriverAction }
+                    /* 0 */
+                    new TrackCondition
+                    {
+                        MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Non_Stopping_Area,
+                        MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea,
+                        MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithoutDriverAction
+                    },
+                    /* 1 */
+                    new TrackCondition
+                    {
+                        MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Sound_Horn,
+                        MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea,
+                        MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithoutDriverAction
+                    },
+                    /* 2 */
+                    new TrackCondition
+                    {
+                        MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Radio_hole,
+                        MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea,
+                        MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithoutDriverAction
+                    },
+                    /* 3 */
+                    new TrackCondition
+                    {
+                        MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Non_Stopping_Area,
+                        MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea,
+                        MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithoutDriverAction
+                    }
                 };
 
             EVC32_MMITrackConditions.Send();

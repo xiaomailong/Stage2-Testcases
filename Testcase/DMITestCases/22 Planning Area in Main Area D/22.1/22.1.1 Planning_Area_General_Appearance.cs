@@ -77,7 +77,7 @@ namespace Testcase.DMITestCases
             DmiActions.Set_Driver_ID(this, "1234");
             // Call generic Check Results Method
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                     "1. Is the Driver ID window displayed.");
+                                "1. Is the Driver ID window displayed.");
 
             /*
             Test Step 2
@@ -85,12 +85,13 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SR mode, level 1
             */
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode =
+                EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
             DmiActions.Finished_SoM_Default_Window(this);
 
             // Call generic Check Results Method
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                     "1. Does the DMI show Staff Responsible Mode.");
+                                "1. Does the DMI show Staff Responsible Mode.");
 
             /*
             Test Step 3
@@ -100,8 +101,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                     "1. Does the DMI show Staff Responsible Mode." + Environment.NewLine +
-                     "2. Confirm that the planning area IS NOT displayed.");
+                                "1. Does the DMI show Staff Responsible Mode." + Environment.NewLine +
+                                "2. Confirm that the planning area IS NOT displayed.");
 
             /*
             Test Step 4
@@ -122,8 +123,8 @@ namespace Testcase.DMITestCases
             // Force train into Full Supervision Mode
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                     "1. Does the DMI show Full Supervision Mode." + Environment.NewLine +
-                     "2. Confirm that the planning area IS displayed.");
+                                "1. Does the DMI show Full Supervision Mode." + Environment.NewLine +
+                                "2. Confirm that the planning area IS displayed.");
 
             /*
             Test Step 5

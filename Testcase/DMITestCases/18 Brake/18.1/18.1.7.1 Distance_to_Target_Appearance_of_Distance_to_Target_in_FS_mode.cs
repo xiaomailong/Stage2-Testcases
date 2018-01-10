@@ -71,13 +71,13 @@ namespace Testcase.DMITestCases
             */
             EVC1_MMIDynamic.MMI_O_BRAKETARGET = -1;
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring;
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 0;       // just starting off
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 0; // just starting off
 
             // Set the permitted speed so the current speed is allowed
             EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 10;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
 
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 10000;   // 100m
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 10000; // 100m
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -91,7 +91,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)    Use the log file to confirm that DMI receives the packet information EVC-1 with following variables,MMI_M_WARNING = 2 (Status = NoS, Supervision = PIM)MMI_O_BRAKETARGET > -1(2)    The distance to target bar is display in sub-area A3.(3)   The sound 'Sinfo' is played once.(4)    The distance to target digital is display in sub-area A2
             Test Step Comment: (1) MMI_gen 107 (partly: MMI_M_WARNING, FS mode PIM); MMI_gen 6658 (partly: NEGATIVE, MMI_O_BRAKETARGET is more than zero); MMI_gen 2567 (partly: MMI_M_WARNING, FS mode PIM);(2) MMI_gen 6658 (partly: NEGATIVE, shown); MMI_gen 107 (partly: Table 37, FS mode, PIM); MMI_gen 5817 (partly: MMI_M_WARNING = 2);(3) MMI_gen 5817 (partly: sound Sinfo); MMI_gen 9516 (partly: PIM supervision); MMI_gen 12025 (partly: PIM supervision);(4) MMI_gen 2567 (partly: Table 38, FS mode PIM);
             */
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 61000;   // 610m
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 61000; // 610m
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
             EVC1_MMIDynamic.MMI_O_BRAKETARGET = 100000;
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_PreIndication_Monitoring;
@@ -107,9 +107,9 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)    Use the log file to confirm that DMI receives the packet information EVC-1 with following variables,MMI_M_WARNING = 11 (Status = NoS, Supervision = TSM)MMI_O_BRAKETARGET > -1(2)    The distance to target bar is display in sub-area A3.(3)    The distance to target digital is display in sub-area A2
             Test Step Comment: (1) MMI_gen 107 (partly: MMI_M_WARNING, FS mode TSM); MMI_gen 6658 (partly: NEGATIVE, MMI_O_BRAKETARGET is more than zero); MMI_gen 2567 (partly: MMI_M_WARNING, FS mode TSM);(2) MMI_gen 6658 (partly: NEGATIVE, shown); MMI_gen 107 (partly: Table 37, FS mode, TSM);(3) MMI_gen 2567 (partly: Table 38, FS mode TSM);
             */
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 90000;   // 910m
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 90000; // 910m
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 91000;   // 910m
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 91000; // 910m
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Target_Speed_Monitoring;
 
@@ -133,7 +133,8 @@ namespace Testcase.DMITestCases
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Target_Speed_Monitoring;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The distance to target bar is re-displayed in sub-area A3 after 2s." + Environment.NewLine +
+                                "1. The distance to target bar is re-displayed in sub-area A3 after 2s." +
+                                Environment.NewLine +
                                 "2. The digital distance to target is re-displayed in sub-area A2 after 2s.");
 
             /*
@@ -154,7 +155,8 @@ namespace Testcase.DMITestCases
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The distance to target bar is re-displayed in sub-area A3 after 2s." + Environment.NewLine +
+                                "1. The distance to target bar is re-displayed in sub-area A3 after 2s." +
+                                Environment.NewLine +
                                 "2. The digital distance to target is re-displayed in sub-area A2 after 2s.");
 
             /*
@@ -164,7 +166,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 107 (partly: MMI_M_WARNING, OBU_TR_M_MODE, FS mode RSM); MMI_gen 6658 (partly: NEGATIVE, MMI_O_BRAKETARGET is more than zero); MMI_gen 2567 (partly: MMI_M_WARNING, OBU_TR_M_MODE, FS mode RSM);(2) MMI_gen 6658 (partly: NEGATIVE, shown); MMI_gen 107 (partly: Table 37, FS mode, RSM);(3) MMI_gen 2567 (partly: Table 38, FS mode RSM);
             */
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 410000;   // 4.1 km
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 410000; // 4.1 km
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Release_Speed_Monitoring;
 
@@ -179,7 +181,9 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
+
         #region Send_XML_13_1_7_DMI_Test_Specification
+
         enum msgType
         {
             typea,
@@ -190,7 +194,6 @@ namespace Testcase.DMITestCases
         {
             switch (type)
             {
-
                 case msgType.typea:
 
                     EVC1_MMIDynamic.MMI_M_SLIDE = 0;
@@ -220,22 +223,22 @@ namespace Testcase.DMITestCases
                     EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_BrakeTest_Status =
                         EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_BRAKETEST_STATUS.BrakeTestNotInProgress;
                     EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L0;
-                    EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Invalid;    // 17
+                    EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode =
+                        EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Invalid; // 17
                     EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_ADHESION = 0;
                     EVC7_MMIEtcsMiscOutSignals.OBU_TR_NID_STM_HS = 0;
                     EVC7_MMIEtcsMiscOutSignals.OBU_TR_NID_STM_DA = 0;
                     EVC7_MMIEtcsMiscOutSignals.BRAKE_TEST_TIMEOUT = 0;
                     EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 1000000000;
 
-                    SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity1.Value = 4096;         // bit 12 MMI_OBU_TR_M_Level
-                    SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity2.Value = 1;            // bit 0  MMI_OBU_TR_M_Mode
+                    SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity1.Value = 4096; // bit 12 MMI_OBU_TR_M_Level
+                    SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity2.Value = 1; // bit 0  MMI_OBU_TR_M_Mode
 
 
                     break;
-
             }
         }
-        #endregion
 
+        #endregion
     }
 }

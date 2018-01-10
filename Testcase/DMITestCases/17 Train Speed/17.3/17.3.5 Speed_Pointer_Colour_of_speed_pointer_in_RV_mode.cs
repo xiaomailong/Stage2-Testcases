@@ -79,7 +79,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1.DMI displays in FS mode, Level 1 with the ST06 symbol at sub-area C6.");
 
-            EVC1_MMIDynamic.MMI_V_TRAIN = 0;    // Set speed to zero
+            EVC1_MMIDynamic.MMI_V_TRAIN = 0; // Set speed to zero
 
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -97,9 +97,11 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Reversing;
 
-            WaitForVerification("Change the train direction to reverse and acknowledge RV mode by pressing the symbol in sub-area C1." + Environment.NewLine +
-                                "Then check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1.DMI displays in RV mode, Level 1.");
+            WaitForVerification(
+                "Change the train direction to reverse and acknowledge RV mode by pressing the symbol in sub-area C1." +
+                Environment.NewLine +
+                "Then check the following:" + Environment.NewLine + Environment.NewLine +
+                "1.DMI displays in RV mode, Level 1.");
 
             /*
             Test Step 3
@@ -109,7 +111,7 @@ namespace Testcase.DMITestCases
             */
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
             EVC1_MMIDynamic.MMI_V_PERMITTED = 139;
-            
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer grey?");
 
@@ -121,7 +123,7 @@ namespace Testcase.DMITestCases
             */
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Overspeed_Status_Ceiling_Speed_Monitoring;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 6;
-            
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer orange?");
 
@@ -133,7 +135,7 @@ namespace Testcase.DMITestCases
             */
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Warning_Status_Ceiling_Speed_Monitoring;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 10;
-            
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer orange?");
 

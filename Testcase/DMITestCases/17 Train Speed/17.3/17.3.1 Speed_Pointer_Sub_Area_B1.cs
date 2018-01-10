@@ -59,7 +59,7 @@ namespace Testcase.DMITestCases
             // Testcase entrypoint
 
             TraceInfo("This is a repeat of TC_12_1_Display_of_Speed_Pointer_and_Speed_Digital." +
-                        "Please see results of this test case.");
+                      "Please see results of this test case.");
 
             GlobalTestResult = true;
 

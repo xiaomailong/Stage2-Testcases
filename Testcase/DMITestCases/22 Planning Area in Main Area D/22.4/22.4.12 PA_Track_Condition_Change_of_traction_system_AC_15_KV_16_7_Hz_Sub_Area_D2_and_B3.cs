@@ -35,21 +35,22 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 17_4_12.tdg
     /// </summary>
-    public class TC_ID_17_4_12_PA_Track_Condition_Change_of_traction_system_AC_15_KV_16_7_Hz_Sub_Area_D2_and_B3 : TestcaseBase
+    public class
+        TC_ID_17_4_12_PA_Track_Condition_Change_of_traction_system_AC_15_KV_16_7_Hz_Sub_Area_D2_and_B3 : TestcaseBase
     {
         public override void PreExecution()
         {
             // Pre-conditions from TestSpec:
             // Configure atpcu configuration file as following:
-			// TC_T_Panto_Down = 100
-			// TC_T_MainSwitch_Off = 100
-			// TC_T_Airtight_Close =100
-			// TC_T_Inhib_RBBrake = 100
-			// TC_T_ Inhib_ECBrake = 100
-			// TC_T_ Inhib_MSBrake = 100
-			// TC_T_Change_TractionSyst = 100
-			// TC_T_Allowed_CurrentConsump = 100 
-			// TC_T_StationPlatform = 100
+            // TC_T_Panto_Down = 100
+            // TC_T_MainSwitch_Off = 100
+            // TC_T_Airtight_Close =100
+            // TC_T_Inhib_RBBrake = 100
+            // TC_T_ Inhib_ECBrake = 100
+            // TC_T_ Inhib_MSBrake = 100
+            // TC_T_Change_TractionSyst = 100
+            // TC_T_Allowed_CurrentConsump = 100 
+            // TC_T_StationPlatform = 100
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
@@ -119,7 +120,7 @@ namespace Testcase.DMITestCases
                 MMI_Q_TRACKCOND_ACTION_END = 0
             };
 
-            EVC32_MMITrackConditions.TrackConditions = new List<TrackCondition> { trackCondition };
+            EVC32_MMITrackConditions.TrackConditions = new List<TrackCondition> {trackCondition};
             EVC32_MMITrackConditions.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +

@@ -28,7 +28,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             _pool = pool;
 
             // Set default values
-            _pool.SITR.ETCS1.EchoedMaintenanceData.MmiMPacket.Value = 41;  // Packet ID
+            _pool.SITR.ETCS1.EchoedMaintenanceData.MmiMPacket.Value = 41; // Packet ID
             _pool.SITR.ETCS1.EchoedMaintenanceData.MmiLPacket.Value = 144; // Packet length
         }
 
@@ -61,7 +61,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         {
             set
             {
-                uint pulsesPerKm = (uint)value;
+                uint pulsesPerKm = (uint) value;
                 pulsesPerKm = ~pulsesPerKm;
 
                 _pool.SITR.ETCS1.EchoedMaintenanceData.MmiMPulsePerKm1R.Value = BitReverser32(pulsesPerKm);
@@ -89,7 +89,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         {
             set
             {
-                uint pulsesPerKm = (uint)value;
+                uint pulsesPerKm = (uint) value;
                 pulsesPerKm = ~pulsesPerKm;
 
                 _pool.SITR.ETCS1.EchoedMaintenanceData.MmiMPulsePerKm2R.Value = BitReverser32(pulsesPerKm);
@@ -115,8 +115,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         {
             set
             {
-                ushort wheelSize = (ushort)value;
-                wheelSize = (ushort)~wheelSize;
+                ushort wheelSize = (ushort) value;
+                wheelSize = (ushort) ~wheelSize;
 
                 _pool.SITR.ETCS1.EchoedMaintenanceData.MmiMSduWheelSize1R.Value = BitReverser16(wheelSize);
             }
@@ -141,8 +141,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         {
             set
             {
-                ushort wheelSize = (ushort)value;
-                wheelSize = (ushort)~wheelSize;
+                ushort wheelSize = (ushort) value;
+                wheelSize = (ushort) ~wheelSize;
 
                 _pool.SITR.ETCS1.EchoedMaintenanceData.MmiMSduWheelSize2R.Value = BitReverser16(wheelSize);
             }
@@ -159,10 +159,10 @@ namespace Testcase.Telegrams.EVCtoDMI
         {
             set
             {
-                int mmiQMdDataset = (int)value;
+                int mmiQMdDataset = (int) value;
                 mmiQMdDataset = ~mmiQMdDataset;
 
-                _pool.SITR.ETCS1.EchoedMaintenanceData.MmiQMdDatasetR.Value = BitReverser8((byte)mmiQMdDataset);
+                _pool.SITR.ETCS1.EchoedMaintenanceData.MmiQMdDatasetR.Value = BitReverser8((byte) mmiQMdDataset);
             }
         }
 
@@ -184,8 +184,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         {
             set
             {
-                byte wheelSizeError = (byte)value;
-                wheelSizeError = (byte)~wheelSizeError;
+                byte wheelSizeError = (byte) value;
+                wheelSizeError = (byte) ~wheelSizeError;
 
                 _pool.SITR.ETCS1.EchoedMaintenanceData.MmiMWheelSizeErrR.Value = BitReverser8(wheelSizeError);
             }

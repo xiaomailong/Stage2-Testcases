@@ -83,7 +83,7 @@ namespace Testcase.DMITestCases
 
             List<TrackDescription> descriptionsList = new List<TrackDescription>()
             {
-                new TrackDescription { MMI_G_GRADIENT = 10, MMI_O_GRADIENT = 200000 },
+                new TrackDescription {MMI_G_GRADIENT = 10, MMI_O_GRADIENT = 200000},
             };
 
             EVC4_MMITrackDescription.TrackDescriptions = descriptionsList;
@@ -93,7 +93,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in FS mode, Level 1." + Environment.NewLine +
                                 "2. The Planning Area is displayed in area D." + Environment.NewLine +
-                                "3. A Gradient Profile is displayed in grey, with a value (Uphill) of 10." + Environment.NewLine +
+                                "3. A Gradient Profile is displayed in grey, with a value (Uphill) of 10." +
+                                Environment.NewLine +
                                 "4. The upper boundary of the PA Gradient Profile is at 2000m.");
 
             /*
@@ -104,8 +105,8 @@ namespace Testcase.DMITestCases
             */
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 20000;
             descriptionsList.Clear();
-            descriptionsList.Add(new TrackDescription { MMI_G_GRADIENT = 20, MMI_O_GRADIENT = 250 });
-            descriptionsList.Add(new TrackDescription { MMI_G_GRADIENT = 25, MMI_O_GRADIENT = 500 });
+            descriptionsList.Add(new TrackDescription {MMI_G_GRADIENT = 20, MMI_O_GRADIENT = 250});
+            descriptionsList.Add(new TrackDescription {MMI_G_GRADIENT = 25, MMI_O_GRADIENT = 500});
             // Not needed?
             //descriptionsList.Add(new TrackDescription { MMI_G_GRADIENT = 0, MMI_O_GRADIENT = 2000 });
 
@@ -114,7 +115,8 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in FS mode, Level 1." + Environment.NewLine +
-                                "2. Two Gradient Profiles are displayed in grey, with values (Uphill) of 20 and 25." + Environment.NewLine +
+                                "2. Two Gradient Profiles are displayed in grey, with values (Uphill) of 20 and 25." +
+                                Environment.NewLine +
                                 "3. The first profile extends from the zero line to 250 and the second from 251 to 500 (m).");
 
             /*

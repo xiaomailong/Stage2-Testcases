@@ -81,29 +81,46 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, @"Press the ‘Train Data’ button");
 
-            DmiActions.Send_EVC6_MMICurrentTrainData_FixedDataEntry(this, new[] { "FLU", "RLU", "Rescue" }, 2);
+            DmiActions.Send_EVC6_MMICurrentTrainData_FixedDataEntry(this, new[] {"FLU", "RLU", "Rescue"}, 2);
 
-            WaitForVerification("Check the following (* indicates sub-areas drawn as one area):" + Environment.NewLine + Environment.NewLine +
-                                @"1. DMI displays the Train data window, with the title ‘Train data’ (right-aligned)." + Environment.NewLine +
-                                @"2. The window contains an enabled ‘Close’ button, symbol NA11, and one data input field," + Environment.NewLine +
-                                @"   a ‘Yes’ button (disabled) and a ‘Train data entry complete?’ label." + Environment.NewLine +
-                                @"3. The ‘Yes’ button has black test on a Dark-grey background with a Medium-grey border." + Environment.NewLine +
-                                @"4. The ‘Train data entry complete?’ label and the ‘Yes’ button form a touch-sensitive area." + Environment.NewLine +
+            WaitForVerification("Check the following (* indicates sub-areas drawn as one area):" + Environment.NewLine +
+                                Environment.NewLine +
+                                @"1. DMI displays the Train data window, with the title ‘Train data’ (right-aligned)." +
+                                Environment.NewLine +
+                                @"2. The window contains an enabled ‘Close’ button, symbol NA11, and one data input field," +
+                                Environment.NewLine +
+                                @"   a ‘Yes’ button (disabled) and a ‘Train data entry complete?’ label." +
+                                Environment.NewLine +
+                                @"3. The ‘Yes’ button has black test on a Dark-grey background with a Medium-grey border." +
+                                Environment.NewLine +
+                                @"4. The ‘Train data entry complete?’ label and the ‘Yes’ button form a touch-sensitive area." +
+                                Environment.NewLine +
                                 "5. The data input field is displayed in areas D and F." + Environment.NewLine +
-                                "6. The data input fields has a label, with right-aligned text, and a data area, with left-aligned text." + Environment.NewLine +
-                                "7. The data input field label is displayed to the left of the data area." + Environment.NewLine +
-                                "8. The data input field label has grey text on a Dark-grey background." + Environment.NewLine +
-                                "9. The data input field is ‘Selected’ with black test on Medium-grey background." + Environment.NewLine +
+                                "6. The data input fields has a label, with right-aligned text, and a data area, with left-aligned text." +
+                                Environment.NewLine +
+                                "7. The data input field label is displayed to the left of the data area." +
+                                Environment.NewLine +
+                                "8. The data input field label has grey text on a Dark-grey background." +
+                                Environment.NewLine +
+                                "9. The data input field is ‘Selected’ with black test on Medium-grey background." +
+                                Environment.NewLine +
                                 "10. The areas in the window are in Layer 0." + Environment.NewLine +
-                                "11. An echo text is dispayed in areas A, B, C, and E with a value corresponding to the data input field." + Environment.NewLine +
-                                "12. The echo text has a label part, with right-aligned text, and a data part, with left-aligned text." + Environment.NewLine +
+                                "11. An echo text is dispayed in areas A, B, C, and E with a value corresponding to the data input field." +
+                                Environment.NewLine +
+                                "12. The echo text has a label part, with right-aligned text, and a data part, with left-aligned text." +
+                                Environment.NewLine +
                                 "13. The echo text is grey." + Environment.NewLine +
-                                "14. A flashing underscore character is displayed as a cursor in the data input field at the position of the next character to be entered." + Environment.NewLine +
+                                "14. A flashing underscore character is displayed as a cursor in the data input field at the position of the next character to be entered." +
+                                Environment.NewLine +
                                 @"15. The data input field displays ‘Train Type’ data." + Environment.NewLine +
-                                "16. The keypad displays keys for each of the available train types." + Environment.NewLine +
-                                @"17. The (pre-selected) value of the data input field is ‘Rescue’." + Environment.NewLine +
-                                "18. Objects, text messages and buttons in a layer form a window." + Environment.NewLine +
-                                "19. Objects, text messages and buttons can be displayed in several levels. Within a level they are allocated to areas." + Environment.NewLine +
+                                "16. The keypad displays keys for each of the available train types." +
+                                Environment.NewLine +
+                                @"17. The (pre-selected) value of the data input field is ‘Rescue’." +
+                                Environment.NewLine +
+                                "18. Objects, text messages and buttons in a layer form a window." +
+                                Environment.NewLine +
+                                "19. Objects, text messages and buttons can be displayed in several levels. Within a level they are allocated to areas." +
+                                Environment.NewLine +
                                 "20. The Default window does not cover the current window.");
 
             /*
@@ -116,7 +133,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press and hold key #1 on the keypad");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                "1. The key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 "3. The data input field displays the value for key #1" + Environment.NewLine +
                                 "4. The cursor is displayed after the value in the data input field");
@@ -142,7 +160,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press and hold key #2 on the keypad");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                "1. The key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 "3. The data input field displays the value for key #2" + Environment.NewLine +
                                 "4. The cursor is displayed after the value in the data input field");
@@ -157,7 +176,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press and hold key #3 on the keypad");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                "1. The key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 "3. The data input field displays the value for key #2" + Environment.NewLine +
                                 "4. The cursor is displayed after the value in the data input field");
@@ -174,12 +194,14 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,Input fields(1) The associated ‘Enter’ button is data field itself.(2) An input field is used to allow the driver to enter data.(3) The state of ‘Train Set’ input field is changed to ‘accepted’ as follows,The background colour of the Data Area is dark-grey.The colour of data value is white.(4) There is no input field selected.Echo Texts(5) The echo text of ‘Train Set’ is changed to white colour.(6) The value of echo text is changed refer to entered data.Data Entry window(7) The state of ‘Yes’ button below text label ‘Train data Entry is complete?’ is enabled as follows,The background colour of the Data Area is medium-grey.The colour of data value is black.The colour of border is medium-grey.Packet transmission(8) Use the log file to confirm that DMI sent out packet [MMI_NEW_TRAIN_DATA (EVC-107)] with following variablesMMI_M_TRAINSET_ID = 1MMI_N_DATA_ELEMENTS = 1MMI_M_BUTTONS = 254(9) The data part of the echo text of train category is displayed according to [MMI_CURRENT_TRAIN_DATA  (EVC-6)] with the following variables,MMI_NID_DATA = 6 (Train Data Set Identifier)MMI_N_TEXT = Character lengthMMI_X_TEXT = Selected button(10)   Use the log file to confirm that DMI received packet EVC-6 with variable MMI_M_BUTTONS = 36 (BTN_YES_DATA_ENTRY_COMPLETE)
             Test Step Comment: (1) MMI_gen 8086 (partly: MMI_gen 4682 (partly: Train Set));(2) MMI_gen 8086 (partly: MMI_gen 4634 (partly: Train Set));(3) MMI_gen 8086 (partly: MMI_gen 4652 (partly: Train Set), MMI_gen 4684 (partly: accepted, Train Set));(4) MMI_gen 8086 (partly: MMI_gen 4684 (partly: No next input field, data entry process terminated));(5) MMI_gen 8086 (partly: MMI_gen 4700 (partly: Train Set));(6) MMI_gen 8086 (partly: MMI_gen 4681 (partly: Train Set), MMI_gen 4698, MMI_gen 4890);(7) MMI_gen 8086 (partly: MMI_gen 4909 (partly: Enabled), MMI_gen 4910 (partly: Enabled, MMI_gen 4211 (partly: colour))); MMI_gen 4374;(8) MMI_gen 9460 (partly: [Enter] EVC-107); MMI_gen 11385; (9) MMI_gen 9405 (partly:Train Set);(10) MMI_gen 9409;
             */
-            DmiActions.ShowInstruction(this, "Press key #1 on the keypad and confirm the value by pressing on the data input field");
+            DmiActions.ShowInstruction(this,
+                "Press key #1 on the keypad and confirm the value by pressing on the data input field");
 
             // Calls a value check
             EVC107_MMINewTrainData.TrainsetSelected = Variables.Fixed_Trainset_Captions.FLU;
 
-            EVC6_MMICurrentTrainData.MMI_M_BUTTONS = EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE;
+            EVC6_MMICurrentTrainData.MMI_M_BUTTONS = EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA
+                .BTN_YES_DATA_ENTRY_COMPLETE;
             EVC6_MMICurrentTrainData.MMI_M_TRAINSET_ID = 1;
             EVC6_MMICurrentTrainData.TrainSetCaptions.Clear();
             EVC6_MMICurrentTrainData.TrainSetCaptions.Add("FLU");
@@ -188,7 +210,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The data input field acts as an ‘Enter’ button." + Environment.NewLine +
                                 "2. The data input field accepts data to be entered." + Environment.NewLine +
-                                @"3. The data input field is displayed ‘Accepted’, with text in white on a Dark-grey background." + Environment.NewLine +
+                                @"3. The data input field is displayed ‘Accepted’, with text in white on a Dark-grey background." +
+                                Environment.NewLine +
                                 @"4. The data input field is not displayed ‘Selected’." + Environment.NewLine +
                                 "5. The echo text is displayed in white." + Environment.NewLine +
                                 "6. The echo text displays the value in the data input field." + Environment.NewLine +
@@ -260,7 +283,8 @@ namespace Testcase.DMITestCases
             Action: Confirm the current data without re-entry by pressing an input field
             Expected Result: The state of train type input field is changed to ‘Selected’
             */
-            DmiActions.ShowInstruction(this, "Confirm the current data by pressing in the data input field, without changing the data");
+            DmiActions.ShowInstruction(this,
+                "Confirm the current data by pressing in the data input field, without changing the data");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field is displayed ‘Selected’.");
@@ -271,10 +295,12 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   The state of ‘Train type’ input field is changed to ‘Pressed’, the border of button is removed.The state of ‘Train type’ input field remains ‘accepted’. (2)   The sound ‘Click’ is played once
             Test Step Comment: (1) MMI_gen 8086 (partly: MMI_gen 4686 (partly: Label area, Train type), MMI_gen 4381 (partly: change to state ‘Pressed’ as long as remain actuated))); MMI_gen 4392 (partly: [Enter], touch screen); MMI_gen 4375;(2) MMI_gen 8086 (partly: MMI_gen 4686 (partly: Label area, Train type), MMI_gen 4381 (partly: the sound for Up-Type button));
             */
-            DmiActions.ShowInstruction(this, "Press and hold the label area of the data input field, without changing the data");
+            DmiActions.ShowInstruction(this,
+                "Press and hold the label area of the data input field, without changing the data");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The data input field is displayed pressed, without a border." + Environment.NewLine +
+                                "1. The data input field is displayed pressed, without a border." +
+                                Environment.NewLine +
                                 @"2. The data input field stays ‘Accepted’." + Environment.NewLine +
                                 @"3. The ‘Click’ sound is played once.");
 
@@ -297,10 +323,12 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   The state of ‘Train type’ input field is changed to ‘Pressed’, the border of button is removed.The state of ‘Train type’ input field remains ‘accepted’
             Test Step Comment: (1) MMI_gen 8086 (partly: MMI_gen 4686 (partly: Label area, Train type), MMI_gen 4382 (partly: state ‘Pressed’ when slide back, no sound)); MMI_gen 4375;
             */
-            DmiActions.ShowInstruction(this, @"Whilst keeping the data input field  pressed, drag back inside its area");
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the data input field  pressed, drag back inside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The data input field  is displayed pressed, without a border." + Environment.NewLine +
+                                "1. The data input field  is displayed pressed, without a border." +
+                                Environment.NewLine +
                                 @"2. The data input field stays ‘Accepted’.");
 
             /*
@@ -325,7 +353,8 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   The state of an input field is changed to ‘selected’ when release the pressed area at the Data area of input field
             Test Step Comment: (1) MMI_gen 8086 (partly: MMI_gen 4686 (partly: Data area, Up-Type button)); MMI_gen 9390 (partly: Fixed Train data window);
             */
-            DmiActions.ShowInstruction(this, "Confirm the current data by pressing in the data input field, without changing the data then release the area");
+            DmiActions.ShowInstruction(this,
+                "Confirm the current data by pressing in the data input field, without changing the data then release the area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field is displayed ‘Selected’.");
@@ -418,25 +447,38 @@ namespace Testcase.DMITestCases
             EVC6_MMICurrentTrainData.MMI_NID_KEY_LOAD_GAUGE = Variables.MMI_NID_KEY_Load_Gauge.NoDedicatedKey;
             EVC6_MMICurrentTrainData.MMI_M_TRAINSET_ID = 0;
             EVC6_MMICurrentTrainData.MMI_M_ALT_DEM = 0;
-            EVC6_MMICurrentTrainData.TrainSetCaptions = new List<string> { "\0x01", "\0x01", "\0x01", "\0x01", "\0x01",
-                                                                           "\0x01", "\0x01", "\0x01", "\0x01", "\0x01" };
+            EVC6_MMICurrentTrainData.TrainSetCaptions = new List<string>
+            {
+                "\0x01",
+                "\0x01",
+                "\0x01",
+                "\0x01",
+                "\0x01",
+                "\0x01",
+                "\0x01",
+                "\0x01",
+                "\0x01",
+                "\0x01"
+            };
             // If/when flexible data is used, ensures data elements are empty
             EVC6_MMICurrentTrainData.DataElements = new List<Variables.DataElement>();
 
             switch (packetSelector)
             {
-            case msgType.typeA:
-                EVC6_MMICurrentTrainData.MMI_M_BUTTONS = (EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA)0;
-                break;
-            case msgType.typeB:
-                EVC6_MMICurrentTrainData.MMI_M_BUTTONS = EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE;
-                EVC6_MMICurrentTrainData.TrainSetCaptions = new List<string> { "A" };
-                break;
+                case msgType.typeA:
+                    EVC6_MMICurrentTrainData.MMI_M_BUTTONS =
+                        (EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA) 0;
+                    break;
+                case msgType.typeB:
+                    EVC6_MMICurrentTrainData.MMI_M_BUTTONS = EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA
+                        .BTN_YES_DATA_ENTRY_COMPLETE;
+                    EVC6_MMICurrentTrainData.TrainSetCaptions = new List<string> {"A"};
+                    break;
             }
 
             EVC6_MMICurrentTrainData.Send();
         }
-        #endregion  
 
+        #endregion
     }
 }

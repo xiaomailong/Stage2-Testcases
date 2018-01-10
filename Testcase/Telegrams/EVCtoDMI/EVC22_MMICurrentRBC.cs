@@ -1,10 +1,12 @@
 ﻿#region usings
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using CL345;
 using static Testcase.Telegrams.EVCtoDMI.Variables;
+
 #endregion
 
 namespace Testcase.Telegrams.EVCtoDMI
@@ -46,7 +48,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static void Send()
         {
-            ushort numberOfNetworks = (ushort)NetworkCaptions.Count;
+            ushort numberOfNetworks = (ushort) NetworkCaptions.Count;
 
             if (numberOfNetworks > 10)
                 throw new ArgumentOutOfRangeException("Too many RBC networks!");
@@ -63,7 +65,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             {
                 var caption = NetworkCaptions[k].ToCharArray();
 
-                ushort numberNetworkCaptionChars = (ushort)caption.Length;
+                ushort numberNetworkCaptionChars = (ushort) caption.Length;
 
                 string varnamestring = $"{BaseString}1{k}_";
 
@@ -90,7 +92,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             }
 
             // Number of data elements to enter
-            _pool.SITR.ETCS1.CurrentRbcData.MmiNDataElements.Value = (ushort)DataElements.Count;
+            _pool.SITR.ETCS1.CurrentRbcData.MmiNDataElements.Value = (ushort) DataElements.Count;
 
             totalSizeCounter = PopulateDataElements($"{BaseString}2", totalSizeCounter, DataElements, _pool);
 
@@ -152,7 +154,10 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// 14 bit unsigned int for NID_RBC)
         ///
         /// </summary>
-        private static uint MMI_NID_RBC { set => _pool.SITR.ETCS1.CurrentRbcData.MmiNidRbc.Value = value; }
+        private static uint MMI_NID_RBC
+        {
+            set => _pool.SITR.ETCS1.CurrentRbcData.MmiNidRbc.Value = value;
+        }
 
         /// <summary>
         /// RBC phone number
@@ -171,7 +176,8 @@ namespace Testcase.Telegrams.EVCtoDMI
             set
             {
                 var bytes = BitConverter.GetBytes(value);
-                _pool.SITR.ETCS1.CurrentRbcData.MmiNidRadio.Value = new[] { BitConverter.ToUInt32(bytes, 2), BitConverter.ToUInt32(bytes, 0) };
+                _pool.SITR.ETCS1.CurrentRbcData.MmiNidRadio.Value = new[]
+                    {BitConverter.ToUInt32(bytes, 2), BitConverter.ToUInt32(bytes, 0)};
             }
         }
 
@@ -218,7 +224,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static ushort MMI_NID_WINDOW
         {
-            set => _pool.SITR.ETCS1.CurrentRbcData.MmiNidWindow.Value = (byte)value;
+            set => _pool.SITR.ETCS1.CurrentRbcData.MmiNidWindow.Value = (byte) value;
         }
 
         /// <summary>
@@ -232,7 +238,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static MMI_Q_CLOSE_ENABLE MMI_Q_CLOSE_ENABLE
         {
-            set => _pool.SITR.ETCS1.CurrentRbcData.MmiQCloseEnable.Value = (byte)value;
+            set => _pool.SITR.ETCS1.CurrentRbcData.MmiQCloseEnable.Value = (byte) value;
         }
 
         /// <summary>
@@ -244,7 +250,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static EVC22BUTTONS MMI_M_BUTTONS
         {
-            set => _pool.SITR.ETCS1.CurrentRbcData.MmiMButtons.Value = (byte)value;
+            set => _pool.SITR.ETCS1.CurrentRbcData.MmiMButtons.Value = (byte) value;
         }
 
         /// <summary>

@@ -38,7 +38,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static void Send()
         {
-            ushort numberOfTrackDescriptions = (ushort)TrackDescriptions.Count;
+            ushort numberOfTrackDescriptions = (ushort) TrackDescriptions.Count;
 
             // Only 31 track descriptions allowed in telegram
             if (numberOfTrackDescriptions > 31)
@@ -118,10 +118,10 @@ namespace Testcase.Telegrams.EVCtoDMI
                     throw new ArgumentOutOfRangeException("Speed must be less than 400 km/h!");
 
                 else
-                    _pool.SITR.ETCS1.TrackDescription.MmiVMrspCurr.Value = (short)(value / Variables.CmSToKmH);
+                    _pool.SITR.ETCS1.TrackDescription.MmiVMrspCurr.Value = (short) (value / Variables.CmSToKmH);
             }
-            
-            get => (short)(_pool.SITR.ETCS1.TrackDescription.MmiVMrspCurr.Value * Variables.CmSToKmH);
+
+            get => (short) (_pool.SITR.ETCS1.TrackDescription.MmiVMrspCurr.Value * Variables.CmSToKmH);
         }
 
         /// <summary>
@@ -136,12 +136,12 @@ namespace Testcase.Telegrams.EVCtoDMI
             {
                 if (value > 248)
                     throw new ArgumentOutOfRangeException("Speed must be less than 248 mph!");
-                
+
                 else
-                    _pool.SITR.ETCS1.TrackDescription.MmiVMrspCurr.Value = (short)(value / Variables.CmSToMph);
+                    _pool.SITR.ETCS1.TrackDescription.MmiVMrspCurr.Value = (short) (value / Variables.CmSToMph);
             }
 
-            get => (short)(_pool.SITR.ETCS1.TrackDescription.MmiVMrspCurr.Value * Variables.CmSToMph);
+            get => (short) (_pool.SITR.ETCS1.TrackDescription.MmiVMrspCurr.Value * Variables.CmSToMph);
         }
 
         /// <summary>
@@ -227,7 +227,7 @@ namespace Testcase.Telegrams.EVCtoDMI
                     _mmiVMrsp = value;
 
                 else
-                    _mmiVMrsp = (short)(value / Variables.CmSToKmH);
+                    _mmiVMrsp = (short) (value / Variables.CmSToKmH);
             }
 
             get
@@ -236,7 +236,7 @@ namespace Testcase.Telegrams.EVCtoDMI
                     return _mmiVMrsp;
 
                 else
-                    return (short)(_mmiVMrsp * Variables.CmSToKmH);
+                    return (short) (_mmiVMrsp * Variables.CmSToKmH);
             }
         }
 
@@ -261,7 +261,7 @@ namespace Testcase.Telegrams.EVCtoDMI
                     _mmiVMrsp = value;
 
                 else
-                    _mmiVMrsp = (short)(value / Variables.CmSToMph);
+                    _mmiVMrsp = (short) (value / Variables.CmSToMph);
             }
 
             get
@@ -270,7 +270,7 @@ namespace Testcase.Telegrams.EVCtoDMI
                     return _mmiVMrsp;
 
                 else
-                    return (short)(_mmiVMrsp * Variables.CmSToMph);
+                    return (short) (_mmiVMrsp * Variables.CmSToMph);
             }
         }
 

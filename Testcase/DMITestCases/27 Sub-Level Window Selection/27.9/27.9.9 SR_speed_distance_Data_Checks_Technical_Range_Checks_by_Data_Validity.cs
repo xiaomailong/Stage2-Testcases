@@ -80,24 +80,27 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the SR/speed distance window.");
-            
+
             /*
             Test Step 2
             Action: Enter “1” (invalid value) for SR speed with the numeric keypad and press the data input field (Accept) in the same screen.Then, observe the echo texts on the left hand side
             Expected Result: EVC-11Use the log file to verify that DMI receives packet EVC-11 with variable:(1) MMI_Q_DATA_CHECK = 1 in order to indicate the technical range check failure.(2) MMI_M_BUTTONS = 255 (no button) and the 'Yes' button is disabled.(3) MMI_NID_DATA = 15 (SR Speed)Input Field(4) The ‘Enter’ button associated to the data area of the input field is coloured grey and its text is black (state ‘Selected IF/Data value’).(5) The ‘Enter’ button associated to the data area of the input field displays “1” (previously entered value).Echo Texts of SR Speed(6) The data part of the echo text displays “++++”.(7) The data part of the echo text is coloured red
             Test Step Comment: Requirements:(1) MMI_gen 8297 (partly: EVC-11, MMI_gen 12147);(2) MMI_gen 9892;(3) MMI_gen 9509 (partly: MMI_NID_DATA);(4) MMI_gen 8297 (partly: MMI_gen 4714 (partly: state 'Selected IF/data value')); MMI_gen 9310 (partly: accept data);(5) MMI_gen 8297 (partly: MMI_gen 4714 (partly: previously entered (faulty) value)); MMI_gen 4699 (technical range);(6) MMI_gen 8297 (partly: MMI_gen 4713 (partly: indication)); MMI_gen 9310 (partly: [technical range, No OK, echo text]);(7) MMI_gen 9889 (partly: MMI_gen 4713 (partly: red)), MMI_gen 8297 (partly: MMI_gen 4713 (partly: red));
             */
-            DmiActions.ShowInstruction(this, @"Enter the (invalid) value ‘1’ in the SR speed data input field and press in the data input field to accept the valu.");
+            DmiActions.ShowInstruction(this,
+                @"Enter the (invalid) value ‘1’ in the SR speed data input field and press in the data input field to accept the valu.");
 
             EVC11_MMICurrentSRRules.MMI_M_BUTTONS = MMI_M_BUTTONS.No_Button;
-            DataElement dataElement = new DataElement { Identifier = 15, EchoText = "1", QDataCheck = 1 };
-            List<DataElement> dataElements = new List<DataElement> { dataElement };
+            DataElement dataElement = new DataElement {Identifier = 15, EchoText = "1", QDataCheck = 1};
+            List<DataElement> dataElements = new List<DataElement> {dataElement};
             EVC11_MMICurrentSRRules.DataElements = dataElements;
             EVC11_MMICurrentSRRules.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘Enter’ button for the data area of the SR speed data input field is displayed ‘Selected’ with black text on a grey background." + Environment.NewLine +
-                                @"2. The ‘Enter’ button for the data area of the SR distance data input field displays ‘1’." + Environment.NewLine +
+                                @"1. The ‘Enter’ button for the data area of the SR speed data input field is displayed ‘Selected’ with black text on a grey background." +
+                                Environment.NewLine +
+                                @"2. The ‘Enter’ button for the data area of the SR distance data input field displays ‘1’." +
+                                Environment.NewLine +
                                 @"3. The echo text for SR speed displays ‘++++’ in red." + Environment.NewLine +
                                 @"4. The ‘Yes’ button is disabled.");
 
@@ -110,8 +113,10 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press again in the data input field to accept the value");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘Enter’ button for the data area of the SR speed data input field is stays ‘Selected’ with black text on a grey background." + Environment.NewLine +
-                                @"2. The ‘Enter’ button for the data area of the SR distance data input field still displays ‘1’." + Environment.NewLine +
+                                @"1. The ‘Enter’ button for the data area of the SR speed data input field is stays ‘Selected’ with black text on a grey background." +
+                                Environment.NewLine +
+                                @"2. The ‘Enter’ button for the data area of the SR distance data input field still displays ‘1’." +
+                                Environment.NewLine +
                                 @"3. The echo text for SR speed still displays ‘++++’ in red." + Environment.NewLine +
                                 @"4. The ‘Yes’ button is disabled.");
 
@@ -133,7 +138,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: Requirements:(1) MMI_gen 8297 (partly: EVC-11, MMI_gen 12147); MMI_gen 9310 (partly: [Up-Type enabled button ‘Enter’], accept data);(2) MMI_gen 9892; (3) MMI_gen 8297 (partly: MMI_gen 4714 (partly: state 'Selected IF/data value'));
             */
             DmiActions.ShowInstruction(this, "Press in the SR speed data input field to accept the value");
-            
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The ‘Enter’ button has black text on a grey background." + Environment.NewLine +
                                 @"2. The ‘Yes’ button is disabled.");
@@ -147,7 +152,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press in the SR speed data input field again");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘Enter’ button still has black text on a grey background." + Environment.NewLine +
+                                @"1. The ‘Enter’ button still has black text on a grey background." +
+                                Environment.NewLine +
                                 @"2. The ‘Enter’ button displays ‘1’.");
 
             /*
@@ -173,7 +179,7 @@ namespace Testcase.DMITestCases
             dataElement.EchoText = "40";
 
             EVC106_MMINewSrRules.MMI_V_STFF = 40;
-            EVC106_MMINewSrRules.MMI_NID_DATA = new List<byte> { 15 };
+            EVC106_MMINewSrRules.MMI_NID_DATA = new List<byte> {15};
             EVC106_MMINewSrRules.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_SR_RULES.BTN_ENTER;
             EVC106_MMINewSrRules.CheckPacketContent();
 
@@ -189,15 +195,18 @@ namespace Testcase.DMITestCases
             Test Step Comment: See step 2 – step 8Requirements:(1) MMI_gen 8297 (partly: MMI_gen 9286 (partly: enabled)), MMI_gen 9896 (partly: enabled), MMI_gen 9510 (partly: EVC-106, the ‘Enter’ button, accepted data complied with data checks, driver action, only affect the object indicated in MMI_NID_DATE);(2) MMI_gen 8297 (partly: EVC-11) MMI_gen 9310 (partly: [technical range, Yes OK]);
             */
             // Repeat Step 2 for SR distance
-            DmiActions.ShowInstruction(this, @"Enter the (invalid) value ‘1’ in the SR distance data input field and press in the data input field to accept the valu.");
+            DmiActions.ShowInstruction(this,
+                @"Enter the (invalid) value ‘1’ in the SR distance data input field and press in the data input field to accept the valu.");
 
             EVC11_MMICurrentSRRules.MMI_M_BUTTONS = MMI_M_BUTTONS.No_Button;
             dataElement.Identifier = 16;
             EVC11_MMICurrentSRRules.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘Enter’ button for the data area of the SR distance data input field is displayed ‘Selected’ with black text on a grey background." + Environment.NewLine +
-                                @"2. The ‘Enter’ button for the data area of the SR speed data input field displays ‘1’." + Environment.NewLine +
+                                @"1. The ‘Enter’ button for the data area of the SR distance data input field is displayed ‘Selected’ with black text on a grey background." +
+                                Environment.NewLine +
+                                @"2. The ‘Enter’ button for the data area of the SR speed data input field displays ‘1’." +
+                                Environment.NewLine +
                                 @"3. The echo text for SR distance displays ‘++++’ in red." + Environment.NewLine +
                                 @"4. The ‘Yes’ button is disabled.");
 
@@ -205,9 +214,12 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press again in the data input field to accept the value");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘Enter’ button for the data area of the SR distance data input field is stays ‘Selected’ with black text on a grey background." + Environment.NewLine +
-                                @"2. The ‘Enter’ button for the data area of the SR speed data input field still displays ‘1’." + Environment.NewLine +
-                                @"3. The echo text for SR distance still displays ‘++++’ in red." + Environment.NewLine +
+                                @"1. The ‘Enter’ button for the data area of the SR distance data input field is stays ‘Selected’ with black text on a grey background." +
+                                Environment.NewLine +
+                                @"2. The ‘Enter’ button for the data area of the SR speed data input field still displays ‘1’." +
+                                Environment.NewLine +
+                                @"3. The echo text for SR distance still displays ‘++++’ in red." +
+                                Environment.NewLine +
                                 @"4. The ‘Yes’ button is disabled.");
 
             // Repeat Step 4 for SR distance
@@ -229,7 +241,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press in the SR distance data input field again");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘Enter’ button still has black text on a grey background." + Environment.NewLine +
+                                @"1. The ‘Enter’ button still has black text on a grey background." +
+                                Environment.NewLine +
                                 @"2. The ‘Enter’ button displays ‘1’.");
 
             // Repeat Step 7 for SR distance
@@ -247,7 +260,7 @@ namespace Testcase.DMITestCases
 
 
             EVC106_MMINewSrRules.MMI_V_STFF = 10000;
-            EVC106_MMINewSrRules.MMI_NID_DATA = new List<byte> { 16 };
+            EVC106_MMINewSrRules.MMI_NID_DATA = new List<byte> {16};
             EVC106_MMINewSrRules.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_SR_RULES.BTN_ENTER;
             EVC106_MMINewSrRules.CheckPacketContent();
 
@@ -260,17 +273,18 @@ namespace Testcase.DMITestCases
             Expected Result: 1. After pressing the ‘Yes’ button, the data validation window (‘Validate SR speed / distance’) appears instead of the ‘SR speed / distance’ data entry window. The data part of echo text displays in white:SR Speed: 40SR Distance: 100002. After the data area of the input field containing “Yes” is pressed, the data validation window disappears and returns to the parent window (‘Special’ window) of ‘SR speed / distance’ window with enabled ‘SR speed / distance’ button
             */
             DmiActions.ShowInstruction(this, "Press the ‘Yes’ button");
-            
+
             // Add a data element for correct SR speed
-            dataElements.Add(new DataElement {Identifier = 15, EchoText = "40", QDataCheck = 1 });
+            dataElements.Add(new DataElement {Identifier = 15, EchoText = "40", QDataCheck = 1});
             EVC11_MMICurrentSRRules.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The echo text for the data area of the SR speed data input field displays ‘40’ in white." + Environment.NewLine +
+                                @"1. The echo text for the data area of the SR speed data input field displays ‘40’ in white." +
+                                Environment.NewLine +
                                 @"2. The echo text for the data area of the SR distance data input field displays ‘10000’ in white.");
 
             DmiActions.ShowInstruction(this, "Press the data area of the ‘Yes’ button");
-            
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. DMI displays the SR speed/distance window with the ‘SR speed / distance’ button enabled.");
 
@@ -296,10 +310,12 @@ namespace Testcase.DMITestCases
             XML_22_9_9(msgType.typeb);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘Enter’ button for the data area of the SR speed data input field  still displays ‘40’." + Environment.NewLine +
-                                @"2. The ‘Enter’ button for the data area of the SR distance data input field still displays ‘10000’." + Environment.NewLine +
+                                @"1. The ‘Enter’ button for the data area of the SR speed data input field  still displays ‘40’." +
+                                Environment.NewLine +
+                                @"2. The ‘Enter’ button for the data area of the SR distance data input field still displays ‘10000’." +
+                                Environment.NewLine +
                                 @"3. The echo text for SR speed still displays ‘++++’.");
-        
+
             /*
             Test Step 13
             Action: End of test
@@ -308,7 +324,9 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
+
         #region Send_XML_22_9_9_DMI_Test_Specification
+
         enum msgType
         {
             typea,
@@ -321,7 +339,10 @@ namespace Testcase.DMITestCases
             {
                 case msgType.typea:
                     //some values taken from xml file not spec where different
-                    EVC11_MMICurrentSRRules.DataElements = new List<Variables.DataElement> { new Variables.DataElement { Identifier = 16, EchoText = "", QDataCheck = 1 } };
+                    EVC11_MMICurrentSRRules.DataElements = new List<Variables.DataElement>
+                    {
+                        new Variables.DataElement {Identifier = 16, EchoText = "", QDataCheck = 1}
+                    };
                     EVC11_MMICurrentSRRules.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS.No_Button;
                     break;
                 case msgType.typeb:
@@ -329,11 +350,13 @@ namespace Testcase.DMITestCases
                     EVC11_MMICurrentSRRules.MMI_L_STFF = 100000;
                     EVC11_MMICurrentSRRules.MMI_V_STFF = 100;
                     EVC11_MMICurrentSRRules.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS.BTN_LEVEL;
-                    EVC11_MMICurrentSRRules.DataElements = new List<Variables.DataElement> { new Variables.DataElement { Identifier = 15, QDataCheck = 1 } };
+                    EVC11_MMICurrentSRRules.DataElements =
+                        new List<Variables.DataElement> {new Variables.DataElement {Identifier = 15, QDataCheck = 1}};
                     break;
             }
             EVC11_MMICurrentSRRules.Send();
         }
+
         #endregion
     }
 }

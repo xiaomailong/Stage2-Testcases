@@ -41,7 +41,7 @@ namespace Testcase.DMITestCases
             // Pre-conditions from TestSpec:
             // Set the following tags name in configuration file (See the instruction in Appendix 1)
             // SLIP_SPEEDMETER = ; SLIDE_SPEEDMETER = 1;
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
             DmiActions.Complete_SoM_L1_SR(this);
@@ -83,7 +83,7 @@ namespace Testcase.DMITestCases
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 140;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                 "1. The speed pointer is displayed with speed = 140.");
+                                "1. The speed pointer is displayed with speed = 140.");
 
             /*
             Test Step 3
@@ -94,9 +94,11 @@ namespace Testcase.DMITestCases
             XML_12_13(msgType.typea);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The Slide indication is displayed and shown as arrow pointing counterclockwise." + Environment.NewLine +
+                                "1. The Slide indication is displayed and shown as arrow pointing counterclockwise." +
+                                Environment.NewLine +
                                 "2. The Slide indication and digital speed are in black." + Environment.NewLine +
-                                "3. The Slide indication is displayed on the speed hub of the speed pointer." + Environment.NewLine +
+                                "3. The Slide indication is displayed on the speed hub of the speed pointer." +
+                                Environment.NewLine +
                                 "4. DMI plays sound Sinfo once.");
 
             /*
@@ -107,7 +109,8 @@ namespace Testcase.DMITestCases
             */
             XML_12_13(msgType.typeb);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘Slip / Slide’ indication is not displayed on the speed hub." + Environment.NewLine +
+                                "1. The ‘Slip / Slide’ indication is not displayed on the speed hub." +
+                                Environment.NewLine +
                                 "2. Sound Sinfo is not played.");
 
             /*
@@ -120,7 +123,8 @@ namespace Testcase.DMITestCases
 
             // Test spec says this:
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘Slip / Slide’ indication is not displayed on the speed hub." + Environment.NewLine +
+                                "1. The ‘Slip / Slide’ indication is not displayed on the speed hub." +
+                                Environment.NewLine +
                                 "2. Sound Sinfo is not played.");
 
             // ?? according to reference RS_ETC_R4 conditions are met for displaying slide indication and sounding Sinfo because slide is displayed
@@ -133,7 +137,9 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
+
         #region Send_XML_12_13_DMI_Test_Specification
+
         enum msgType
         {
             typea,
@@ -150,7 +156,7 @@ namespace Testcase.DMITestCases
             {
                 EVC1_MMIDynamic.MMI_M_SLIDE = 1;
                 EVC1_MMIDynamic.MMI_M_SLIP = 0;
-                EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring;   // 0
+                EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring; // 0
                 EVC1_MMIDynamic.MMI_A_TRAIN = 0;
                 EVC1_MMIDynamic.MMI_V_TRAIN = 100;
                 EVC1_MMIDynamic.MMI_V_TARGET = 1111;
@@ -159,13 +165,12 @@ namespace Testcase.DMITestCases
                 EVC1_MMIDynamic.MMI_O_BRAKETARGET = 0;
                 EVC1_MMIDynamic.MMI_O_IML = 0;
                 EVC1_MMIDynamic.MMI_V_INTERVENTION = 0;
-
             }
             else if (type == msgType.typeb)
             {
                 EVC1_MMIDynamic.MMI_M_SLIDE = 0;
                 EVC1_MMIDynamic.MMI_M_SLIP = 1;
-                EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring;   // 0
+                EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring; // 0
                 EVC1_MMIDynamic.MMI_A_TRAIN = 0;
                 EVC1_MMIDynamic.MMI_V_TRAIN = 100;
                 EVC1_MMIDynamic.MMI_V_TARGET = 1111;
@@ -179,7 +184,7 @@ namespace Testcase.DMITestCases
             {
                 EVC1_MMIDynamic.MMI_M_SLIDE = 1;
                 EVC1_MMIDynamic.MMI_M_SLIP = 1;
-                EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring;   // 0
+                EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring; // 0
                 EVC1_MMIDynamic.MMI_A_TRAIN = 0;
                 EVC1_MMIDynamic.MMI_V_TRAIN = 3888;
                 EVC1_MMIDynamic.MMI_V_TARGET = 1111;
@@ -190,7 +195,7 @@ namespace Testcase.DMITestCases
                 EVC1_MMIDynamic.MMI_V_INTERVENTION = 0;
             }
         }
-        #endregion
 
+        #endregion
     }
 }

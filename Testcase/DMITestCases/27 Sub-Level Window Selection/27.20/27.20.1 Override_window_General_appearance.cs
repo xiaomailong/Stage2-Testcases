@@ -51,7 +51,6 @@ namespace Testcase.DMITestCases
 
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
-
         }
 
         public override void PostExecution()
@@ -86,12 +85,12 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.None;
             EVC30_MMIRequestEnable.Send();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Default;      // Default window
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Default; // Default window
             EVC30_MMIRequestEnable.Send();
-            
+
             // The test says Close a window (presumably the Main window was displayed so closing it returns to the Default window
             // Just display the default window (which has the override button) so disabling options stops EOA being available
-          
+
             DmiActions.ShowInstruction(this, "Press the ‘Override’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -106,7 +105,8 @@ namespace Testcase.DMITestCases
 
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;
-            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Start | Variables.standardFlags;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH =
+                EVC30_MMIRequestEnable.EnabledRequests.Start | Variables.standardFlags;
             EVC30_MMIRequestEnable.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -123,7 +123,7 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
-            EVC8_MMIDriverMessage.MMI_Q_TEXT = 263;     // Ack SR
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 263; // Ack SR
             EVC8_MMIDriverMessage.Send();
 
             DmiActions.ShowInstruction(this, "Acknowledge SR mode");
@@ -132,8 +132,9 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
             EVC8_MMIDriverMessage.Send();
 
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
-            
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode =
+                EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
+
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.EOA;
             EVC30_MMIRequestEnable.Send();
@@ -149,15 +150,21 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Press the ‘Override’ button");
 
-            WaitForVerification("Check the following (* indicates sub-areas drawn as one area):" + Environment.NewLine + Environment.NewLine +
-                                @"1. DMI displays the Override window with 3 layers, with the title ‘Override’." + Environment.NewLine +
+            WaitForVerification("Check the following (* indicates sub-areas drawn as one area):" + Environment.NewLine +
+                                Environment.NewLine +
+                                @"1. DMI displays the Override window with 3 layers, with the title ‘Override’." +
+                                Environment.NewLine +
                                 "2. The Override window is displayed in areas D, F, G." + Environment.NewLine +
                                 "3. Layer 0 comprises areas D, F, G, E10, E11, Y and Z." + Environment.NewLine +
-                                "4. Layer 1 comprises areas A1, (A2+A3)*, A4, B, C1, (C2+C3+c4)*, C5, C6, C7, C8, C9, E1, E2, E3, E4, (E5-E9)*." + Environment.NewLine +
+                                "4. Layer 1 comprises areas A1, (A2+A3)*, A4, B, C1, (C2+C3+c4)*, C5, C6, C7, C8, C9, E1, E2, E3, E4, (E5-E9)*." +
+                                Environment.NewLine +
                                 "5. Layer 2 comprises areas B3, B4, B5, B6 and B7." + Environment.NewLine +
-                                @"6. The Override window displays an enabled button labelled ‘EOA’ and an ‘Enabled Close’ button (symbol NA11)." + Environment.NewLine +
-                                "7. Objects, text messages and buttons can be displayed in several levels. Within a level they are allocated to areas." + Environment.NewLine +
-                                "8. Objects, text messages and buttons in a layer form a window." + Environment.NewLine +
+                                @"6. The Override window displays an enabled button labelled ‘EOA’ and an ‘Enabled Close’ button (symbol NA11)." +
+                                Environment.NewLine +
+                                "7. Objects, text messages and buttons can be displayed in several levels. Within a level they are allocated to areas." +
+                                Environment.NewLine +
+                                "8. Objects, text messages and buttons in a layer form a window." +
+                                Environment.NewLine +
                                 "9. The Default window does not cover the current window." + Environment.NewLine +
                                 "10. A sub-level window can partially cover another window, depending on its size.Another window cannot be displayed and activated at the same time.");
 
@@ -170,9 +177,10 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘EOA’ button");
 
             EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.StartOverrideEOA;
-            
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The data input field is displayed pressed, without a border." + Environment.NewLine +
+                                "1. The data input field is displayed pressed, without a border." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once.");
 
             /*
@@ -182,7 +190,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 11415 (partly: MMI_gen 11387 (partly: button Up-Type, MMI_gen 4382 (partly: state ‘Enabled’ when slide out with force applied, no sound))); MMI_gen 4374;
             */
             DmiActions.ShowInstruction(this, @"Whilst keeping the ‘EOA’ button pressed, drag it out of its area");
-            
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The ‘EOA’ button is displayed enabled, with a border." + Environment.NewLine +
                                 "2. No sound is played.");
@@ -230,7 +238,8 @@ namespace Testcase.DMITestCases
                                                                EVC30_MMIRequestEnable.EnabledRequests.ExitShunting;
             EVC30_MMIRequestEnable.Send();
 
-            DmiActions.ShowInstruction(this, @"Press the ‘Main’ button. In the main window press and hold the ‘Shunting’ button for 2 second, then release the button");
+            DmiActions.ShowInstruction(this,
+                @"Press the ‘Main’ button. In the main window press and hold the ‘Shunting’ button for 2 second, then release the button");
 
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Shunting;
 
@@ -242,11 +251,12 @@ namespace Testcase.DMITestCases
             Action: Perform the following procedure,Press ‘Main’ buttonPress and hold ‘Exit Shunting’ button up to 2 secondRelease ‘Exit Shunting’ buttonEnter Driver IDClose the ‘Main’ window
             Expected Result: DMI displays Default window in SB mode, Level 1
             */
-            DmiActions.ShowInstruction(this, @"Press the ‘Main’ button. In the main window press and hold the ‘Exit Shunting’ button for 2 second, then release the button." +
-                                              "Enter the Driver ID, then close the Main window");
+            DmiActions.ShowInstruction(this,
+                @"Press the ‘Main’ button. In the main window press and hold the ‘Exit Shunting’ button for 2 second, then release the button." +
+                "Enter the Driver ID, then close the Main window");
 
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
-            EVC2_MMIStatus.MMI_M_OVERRIDE_EOA = false;      // Remove the override symbol in the default window
+            EVC2_MMIStatus.MMI_M_OVERRIDE_EOA = false; // Remove the override symbol in the default window
             EVC2_MMIStatus.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +

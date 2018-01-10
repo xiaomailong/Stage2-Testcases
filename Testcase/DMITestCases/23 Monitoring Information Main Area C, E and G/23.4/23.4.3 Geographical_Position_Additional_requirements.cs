@@ -67,10 +67,12 @@ namespace Testcase.DMITestCases
             // Testcase entrypoint
 
             TraceInfo("This test case requires a DMI configuration change;" + Environment.NewLine +
-                      "GEOPOS_REQ_PERIOD = 0 (Send only one request via EVC-101) as opposed default of 1." + Environment.NewLine +
+                      "GEOPOS_REQ_PERIOD = 0 (Send only one request via EVC-101) as opposed default of 1." +
+                      Environment.NewLine +
                       "If this is not done manually, the test will fail!");
 
             #region Skipped due to repeated test steps of TC_18_4_1_Geographical_Position
+
             /*
             Test Step 1
             Action: Drive the train forward past BG1
@@ -86,6 +88,7 @@ namespace Testcase.DMITestCases
             Expected Result: Use the log file to confirm that DMI sent out only one packet of EVC-101 with variable MMI_M_REQUEST = 8 (Geographical position request)
             Test Step Comment: (1) MMI_gen 656 (partly: press symbol DR03, cycle time is configured as 0);
             */
+
             #endregion
 
             /*
@@ -113,7 +116,8 @@ namespace Testcase.DMITestCases
 
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.No_window_specified;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = Variables.standardFlags |
-                                                                EVC30_MMIRequestEnable.EnabledRequests.GeographicalPosition;
+                                                               EVC30_MMIRequestEnable.EnabledRequests
+                                                                   .GeographicalPosition;
             EVC30_MMIRequestEnable.Send();
 
             // Call generic Check Results Method
@@ -132,7 +136,8 @@ namespace Testcase.DMITestCases
             EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.GeographicalPositionRequest;
             EVC5_MMIGeoPosition.Send();
 
-            DmiActions.ShowInstruction(this, "Once you click ok, observe the Geographical Position indicator for approximately five seconds.");
+            DmiActions.ShowInstruction(this,
+                "Once you click ok, observe the Geographical Position indicator for approximately five seconds.");
 
             Wait_Realtime(1100);
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 9000000;
@@ -155,6 +160,7 @@ namespace Testcase.DMITestCases
                                 $"1. Did the Geographical Position value reduce by 1000000 approximately every second?");
 
             #region Skipped due to repeated cycle times not required
+
             /*
             Test Step 6
             Action: Repeat action step 3-5 for the remaining configuration of cycle time (GEOPOS_REQ_PERIOD = 2 to 10)
@@ -165,6 +171,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 656 (partly: cyclically transmit a request, configurable 2-10s);
                                 (2) Information under MMI_gen 656;
             */
+
             #endregion
 
             /*
@@ -231,7 +238,8 @@ namespace Testcase.DMITestCases
             Expected Result: 
             */
 
-            TraceInfo("Make sure to revert the configuration file of the DMI back to the default." + Environment.NewLine +
+            TraceInfo("Make sure to revert the configuration file of the DMI back to the default." +
+                      Environment.NewLine +
                       "GEOPOS_REQ_PERIOD = 0 (Send only one request via EVC - 101.");
 
             return GlobalTestResult;

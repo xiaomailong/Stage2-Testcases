@@ -95,18 +95,27 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 716;
             EVC8_MMIDriverMessage.Send();
-            
-            WaitForVerification("Check the following (* indicates sub-areas drawn as one area):" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the RBC Contact window in areas D, F and G, with 3 layers, with the title ‘RBC Contact’." + Environment.NewLine +
-                                "2. The hour-glass, symbol ST05, is displayed vertically-centred in the window title, moving to the right each second and " + Environment.NewLine +
-                                "   returning to its original position after reaching the end of the window title area then continuing to move to the right." + Environment.NewLine +
-                                "3. Layer 0 comprises areas D, F, G, Y and Z." + Environment.NewLine + 
-                                "4. Layer 1 comprises areas (A1 + A2 + A3)*, A4, B*, C1, (C2 + C3 + C4)*, C5, C6, C7, C8, C9, E1, E2, E3, E4, (E5 - E9)*." + Environment.NewLine +
+
+            WaitForVerification("Check the following (* indicates sub-areas drawn as one area):" + Environment.NewLine +
+                                Environment.NewLine +
+                                "1. DMI displays the RBC Contact window in areas D, F and G, with 3 layers, with the title ‘RBC Contact’." +
+                                Environment.NewLine +
+                                "2. The hour-glass, symbol ST05, is displayed vertically-centred in the window title, moving to the right each second and " +
+                                Environment.NewLine +
+                                "   returning to its original position after reaching the end of the window title area then continuing to move to the right." +
+                                Environment.NewLine +
+                                "3. Layer 0 comprises areas D, F, G, Y and Z." + Environment.NewLine +
+                                "4. Layer 1 comprises areas (A1 + A2 + A3)*, A4, B*, C1, (C2 + C3 + C4)*, C5, C6, C7, C8, C9, E1, E2, E3, E4, (E5 - E9)*." +
+                                Environment.NewLine +
                                 "5. Layer 2 comprises areas B3, B4, B5, B6, B7." + Environment.NewLine +
-                                "6. The window displays a disabled ‘Close’ button (symbol NA12) and 4 buttons on a keypad in a 2 x 2 grid." + Environment.NewLine +
-                                @"7. Button #1 (disabled) has the label ‘Contact last RBC’, Button #2 (disabled) has the label ‘Use short number,’" + Environment.NewLine +
-                                @"   Button #3 (enabled) has the label ‘Enter RBC data’, Button #4 has the label ‘Radio Network ID’" + Environment.NewLine +
-                                "8. All objects, text messages and buttons are displayed in the same layer." + Environment.NewLine +
+                                "6. The window displays a disabled ‘Close’ button (symbol NA12) and 4 buttons on a keypad in a 2 x 2 grid." +
+                                Environment.NewLine +
+                                @"7. Button #1 (disabled) has the label ‘Contact last RBC’, Button #2 (disabled) has the label ‘Use short number,’" +
+                                Environment.NewLine +
+                                @"   Button #3 (enabled) has the label ‘Enter RBC data’, Button #4 has the label ‘Radio Network ID’" +
+                                Environment.NewLine +
+                                "8. All objects, text messages and buttons are displayed in the same layer." +
+                                Environment.NewLine +
                                 "9. The Default window is not covering the current window.");
 
             /*
@@ -122,7 +131,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press and hold the ‘Enter RBC data’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘Enter RBC data’ button is displayed pressed, without a border." + Environment.NewLine +
+                                @"1. The ‘Enter RBC data’ button is displayed pressed, without a border." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once.");
 
             /*
@@ -131,7 +141,8 @@ namespace Testcase.DMITestCases
             Expected Result: The border of the button is shown (state ‘Enabled’) without a sound
             Test Step Comment: MMI_gen 8516 (partly: MMI_gen 4557 (partly: button ‘Enter RBC data’, MMI_gen 4382 (partly: state ‘Enabled’ when slide out with force applied, no sound))); MMI_gen 4374;
             */
-            DmiActions.ShowInstruction(this, @"Whilst keeping the ‘Enter RBC data’ button pressed, drag it out of its area");
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the ‘Enter RBC data’ button pressed, drag it out of its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The ‘Enter RBC data’ button field is displayed enabled." + Environment.NewLine +
@@ -143,7 +154,8 @@ namespace Testcase.DMITestCases
             Expected Result: The button is back to state ‘Pressed’ without a sound
             Test Step Comment: MMI_gen 8516 (partly: MMI_gen 4557 (partly: button ‘Enter RBC data’, MMI_gen 4382 (partly: state ‘Pressed’ when slide back, no sound))); MMI_gen 4375;
             */
-            DmiActions.ShowInstruction(this, @"Whilst keeping the ‘Enter RBC data’ button pressed, drag it back inside its area");
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the ‘Enter RBC data’ button pressed, drag it back inside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The ‘Enter RBC data’ button is displayed pressed." + Environment.NewLine +
@@ -196,7 +208,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press and immediately release the ‘Radio Network ID’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘Radio Network ID’ button is displayed pressed, then enabled when released." + Environment.NewLine +
+                                @"1. The ‘Radio Network ID’ button is displayed pressed, then enabled when released." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 "3. DMI still displays the RBC contact window");
 
@@ -219,7 +232,8 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The ‘‘Radio Network ID’ button turns to the ‘Enabled’ state without a sound
             Test Step Comment: (1) MMI_gen 8520 (partly: button ‘Radio Network ID’, MMI_gen 4389 (partly: state ‘Enabled’ when slide out with force applied, stop toggling state ‘Pressed’ and ‘Enabled’, no sound)));
             */
-            DmiActions.ShowInstruction(this, "Whilst keeping the ‘Radio Network ID’ button pressed, drag it out of its area");
+            DmiActions.ShowInstruction(this,
+                "Whilst keeping the ‘Radio Network ID’ button pressed, drag it out of its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The ‘Radio Network ID’ button is displayed enabled." + Environment.NewLine +
@@ -231,7 +245,8 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,  (1)  The ‘Radio Network ID’ button turns to the ‘Enabled’ state without a sound
             Test Step Comment: (1) MMI_gen 8520 (partly: button ‘Radio Network ID’, MMI_gen 4388 (partly: to reset toggling state ‘Pressed’ and ‘Enabled’, no sound), MMI_gen 4389 (partly: to reset toggling state ‘Pressed’ and ‘Enabled’, no sound, Slide back));
             */
-            DmiActions.ShowInstruction(this, @"Whilst keeping the ‘Radio Network ID’ button pressed, drag it back inside its area for 1s, then drag it outside again");
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the ‘Radio Network ID’ button pressed, drag it back inside its area for 1s, then drag it outside again");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Radio Network ID’ button is displayed enabled." + Environment.NewLine +
@@ -243,7 +258,8 @@ namespace Testcase.DMITestCases
             Expected Result: While press and hold button less than 2 secThe state ‘pressed’ and ‘enabled’ are switched repeatly while button is pressed without a sound. While press and hold button over 2 secThe state of button is changed to ‘Pressed’ and without toggle
             Test Step Comment: (1) MMI_gen 8520 (partly: button ‘Radio Network ID’, MMI_gen 4389 (partly: start toggling state ‘Pressed’ and ‘Enabled’ when slide back, no sound));(2) MMI_gen 8520 (partly: button ‘Radio Network ID’, MMI_gen 4388 (partly: after 2 seconds, the button is change again to the state ‘Pressed’)); MMI_gen 4389 (partly: RBC contact window, 2 seconds timer);
             */
-            DmiActions.ShowInstruction(this, @"Whilst keeping the ‘Radio Network ID’ button pressed, drag it back inside its area for more than 2s");
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the ‘Radio Network ID’ button pressed, drag it back inside its area for more than 2s");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. While the button has been pressed for less than 2s it repeatedly changes between being displayed pressed and enabled;" +
@@ -264,7 +280,7 @@ namespace Testcase.DMITestCases
             EVC112_MMINewRbcData.CheckPacketContent();
 
             EVC22_MMICurrentRBC.MMI_NID_WINDOW = 9;
-            EVC22_MMICurrentRBC.NetworkCaptions = new List<string> { "GSMR-A", "GSMR-B" };
+            EVC22_MMICurrentRBC.NetworkCaptions = new List<string> {"GSMR-A", "GSMR-B"};
             EVC22_MMICurrentRBC.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
             EVC22_MMICurrentRBC.Send();
 
@@ -290,7 +306,8 @@ namespace Testcase.DMITestCases
             EVC22_MMICurrentRBC.MMI_M_BUTTONS = EVC22_MMICurrentRBC.EVC22BUTTONS.BTN_YES_DATA_ENTRY_COMPLETE;
             EVC22_MMICurrentRBC.Send();
 
-            DmiActions.ShowInstruction(this, "Enter ‘6996969RBC’ for RBC ID and confirm it and ‘0031840880100’ for Phone number and confirm it");
+            DmiActions.ShowInstruction(this,
+                "Enter ‘6996969RBC’ for RBC ID and confirm it and ‘0031840880100’ for Phone number and confirm it");
 
             EVC22_MMICurrentRBC.MMI_NID_WINDOW = 9;
             EVC22_MMICurrentRBC.NetworkCaptions.Clear();
@@ -323,38 +340,50 @@ namespace Testcase.DMITestCases
             Expected Result: See the expected results of Step 2 – Step 6 and the following additional information,DMI close the RBC Contact window.Use the log file to confirm that DMI sends out the packet [MMI_NEW_RBC_DATA (EVC-112)] with variable [MMI_NEW_RBC_DATA (EVC-112). MMI_M_BUTTONS] = 21 (BTN_CONTACT_LAST_RBC) and [MMI_NEW_RBC_DATA (EVC-112). MMI_N_DATA_ELEMENTS] = 0.Use the log file to confirm that DMI sends out the packet [MMI_DRIVER_REQUEST (EVC-101)] with variable [MMI_DRIVER_REQUEST (EVC-101).MMI_M_REQUEST] = 57 (Contact last RBC)
             Test Step Comment: (1) MMI_gen 8516 (partly: MMI_gen 4557 (partly: button ‘Contact last RBC’)); MMI_gen 11928 (partly: close the Radio contact window);(2) MMI_gen 9450 (partly: Contact last RBC);(3) MMI_gen 11928 (partly: EVC-101);
             */
-            WaitForVerification("Check the following (* indicates sub-areas drawn as one area):" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the RBC Contact window in areas D, F and G, with 3 layers, with the title ‘RBC Contact’." + Environment.NewLine +
-                                "2. The hour-glass, symbol ST05, is displayed vertically-centred in the window title, moving to the right each second and " + Environment.NewLine +
-                                "   returning to its original position after reaching the end of the window title area then continuing to move to the right." + Environment.NewLine +
+            WaitForVerification("Check the following (* indicates sub-areas drawn as one area):" + Environment.NewLine +
+                                Environment.NewLine +
+                                "1. DMI displays the RBC Contact window in areas D, F and G, with 3 layers, with the title ‘RBC Contact’." +
+                                Environment.NewLine +
+                                "2. The hour-glass, symbol ST05, is displayed vertically-centred in the window title, moving to the right each second and " +
+                                Environment.NewLine +
+                                "   returning to its original position after reaching the end of the window title area then continuing to move to the right." +
+                                Environment.NewLine +
                                 "3. Layer 0 comprises areas D, F, G, Y and Z." + Environment.NewLine +
-                                "4. Layer 1 comprises areas (A1 + A2 + A3)*, A4, B*, C1, (C2 + C3 + C4)*, C5, C6, C7, C8, C9, E1, E2, E3, E4, (E5 - E9)*." + Environment.NewLine +
+                                "4. Layer 1 comprises areas (A1 + A2 + A3)*, A4, B*, C1, (C2 + C3 + C4)*, C5, C6, C7, C8, C9, E1, E2, E3, E4, (E5 - E9)*." +
+                                Environment.NewLine +
                                 "5. Layer 2 comprises areas B3, B4, B5, B6, B7." + Environment.NewLine +
-                                "6. The window displays a disabled ‘Close’ button (symbol NA12) and 1 buttons on a keypad." + Environment.NewLine +
+                                "6. The window displays a disabled ‘Close’ button (symbol NA12) and 1 buttons on a keypad." +
+                                Environment.NewLine +
                                 @"7. Button #1 (enabled) has the label ‘Contact last RBC’" + Environment.NewLine +
-                                "8. All objects, text messages and buttons are displayed in the same layer." + Environment.NewLine +
+                                "8. All objects, text messages and buttons are displayed in the same layer." +
+                                Environment.NewLine +
                                 "9. The Default window is not covering the current window.");
 
             DmiActions.ShowInstruction(this, "Press and hold the ‘Contact last RBC’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘Contact last RBC’ button is displayed pressed, without a border." + Environment.NewLine +
+                                @"1. The ‘Contact last RBC’ button is displayed pressed, without a border." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once.");
 
-            DmiActions.ShowInstruction(this, @"Whilst keeping the ‘Contact last RBC’ button pressed, drag it out of its area");
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the ‘Contact last RBC’ button pressed, drag it out of its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘Contact last RBC’ button field is displayed enabled, with a border." + Environment.NewLine +
+                                @"1. The ‘Contact last RBC’ button field is displayed enabled, with a border." +
+                                Environment.NewLine +
                                 "2. No sound is played.");
 
-            DmiActions.ShowInstruction(this, @"Whilst keeping the ‘Contact last RBC’ button pressed, drag it back inside its area");
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the ‘Contact last RBC’ button pressed, drag it back inside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘Contact last RBC’ button is displayed pressed, without a border." + Environment.NewLine +
+                                @"1. The ‘Contact last RBC’ button is displayed pressed, without a border." +
+                                Environment.NewLine +
                                 "2. No sound is played.");
 
             DmiActions.ShowInstruction(this, @"Release the ‘Contact last RBC’ button");
-            
+
             EVC112_MMINewRbcData.MMI_NID_DATA = new List<byte>();
             EVC112_MMINewRbcData.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_RBC_DATA.BTN_ENTER;
             EVC112_MMINewRbcData.CheckPacketContent();
@@ -383,12 +412,18 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press the ‘Level’ button");
 
             EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Disabled;
-            EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new Variables.MMI_Q_LEVEL_NTC_ID[] { Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level };
-            EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new Variables.MMI_M_CURRENT_LEVEL[] { Variables.MMI_M_CURRENT_LEVEL.LastUsedLevel };
-            EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = new Variables.MMI_M_LEVEL_FLAG[] { Variables.MMI_M_LEVEL_FLAG.MarkedLevel };
-            EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = new Variables.MMI_M_INHIBITED_LEVEL[] { Variables.MMI_M_INHIBITED_LEVEL.NotInhibited };
-            EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = new Variables.MMI_M_INHIBIT_ENABLE[] { Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting };
-            EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new Variables.MMI_M_LEVEL_NTC_ID[] { Variables.MMI_M_LEVEL_NTC_ID.L2 };
+            EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new Variables.MMI_Q_LEVEL_NTC_ID[]
+                {Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level};
+            EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new Variables.MMI_M_CURRENT_LEVEL[]
+                {Variables.MMI_M_CURRENT_LEVEL.LastUsedLevel};
+            EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = new Variables.MMI_M_LEVEL_FLAG[]
+                {Variables.MMI_M_LEVEL_FLAG.MarkedLevel};
+            EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = new Variables.MMI_M_INHIBITED_LEVEL[]
+                {Variables.MMI_M_INHIBITED_LEVEL.NotInhibited};
+            EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = new Variables.MMI_M_INHIBIT_ENABLE[]
+                {Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting};
+            EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new Variables.MMI_M_LEVEL_NTC_ID[]
+                {Variables.MMI_M_LEVEL_NTC_ID.L2};
             EVC20_MMISelectLevel.Send();
 
             DmiActions.ShowInstruction(this, @"Select and confirm ‘Level 2’");
@@ -401,7 +436,7 @@ namespace Testcase.DMITestCases
             EVC22_MMICurrentRBC.MMI_NID_WINDOW = 5;
             EVC22_MMICurrentRBC.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
             EVC22_MMICurrentRBC.Send();
-            
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the RBC Contact window with an enabled close button, symbol NA211, in area G");
 
@@ -432,16 +467,23 @@ namespace Testcase.DMITestCases
             Expected Result: See the expected results of Step 2 – Step 6 and the following additional information,The RBC Contact window is closed, DMI displays Main window.Use the log file to confirm that DMI sends out the packet [MMI_DRIVER_REQUEST (EVC-101)])  with variable MMI_M_REQUEST] = 39 (Exit RBC contact)
             Test Step Comment: (1) MMI_gen 11239 (partly: close the window);(2) MMI_gen 8516 (partly: EVC-101, MMI_gen 4381 (partly: exit state ‘Pressed’, execute function associated to the button)); MMI_gen 11239 (partly: EVC-101);
             */
-            WaitForVerification("Check the following (* indicates sub-areas drawn as one area):" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the RBC Contact window in areas D, F and G, with 3 layers, with the title ‘RBC Contact’." + Environment.NewLine +
-                                "2. The hour-glass, symbol ST05, is displayed vertically-centred in the window title, moving to the right each second and " + Environment.NewLine +
-                                "   returning to its original position after reaching the end of the window title area then continuing to move to the right." + Environment.NewLine +
+            WaitForVerification("Check the following (* indicates sub-areas drawn as one area):" + Environment.NewLine +
+                                Environment.NewLine +
+                                "1. DMI displays the RBC Contact window in areas D, F and G, with 3 layers, with the title ‘RBC Contact’." +
+                                Environment.NewLine +
+                                "2. The hour-glass, symbol ST05, is displayed vertically-centred in the window title, moving to the right each second and " +
+                                Environment.NewLine +
+                                "   returning to its original position after reaching the end of the window title area then continuing to move to the right." +
+                                Environment.NewLine +
                                 "3. Layer 0 comprises areas D, F, G, Y and Z." + Environment.NewLine +
-                                "4. Layer 1 comprises areas (A1 + A2 + A3)*, A4, B*, C1, (C2 + C3 + C4)*, C5, C6, C7, C8, C9, E1, E2, E3, E4, (E5 - E9)*." + Environment.NewLine +
+                                "4. Layer 1 comprises areas (A1 + A2 + A3)*, A4, B*, C1, (C2 + C3 + C4)*, C5, C6, C7, C8, C9, E1, E2, E3, E4, (E5 - E9)*." +
+                                Environment.NewLine +
                                 "5. Layer 2 comprises areas B3, B4, B5, B6, B7." + Environment.NewLine +
-                                "6. The window displays an enabled ‘Close’ button (symbol NA12) and 1 buttons on a keypad." + Environment.NewLine +
+                                "6. The window displays an enabled ‘Close’ button (symbol NA12) and 1 buttons on a keypad." +
+                                Environment.NewLine +
                                 @"7. Button #1 (enabled) has the label ‘Contact last RBC’" + Environment.NewLine +
-                                "8. All objects, text messages and buttons are displayed in the same layer." + Environment.NewLine +
+                                "8. All objects, text messages and buttons are displayed in the same layer." +
+                                Environment.NewLine +
                                 "9. The Default window is not covering the current window.");
 
             DmiActions.ShowInstruction(this, "Press and hold the ‘Close’ button");
@@ -453,17 +495,19 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Whilst keeping the ‘Close’ button pressed, drag it out of its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘Close’ button field is displayed enabled, with a border." + Environment.NewLine +
+                                @"1. The ‘Close’ button field is displayed enabled, with a border." +
+                                Environment.NewLine +
                                 "2. No sound is played.");
 
-            DmiActions.ShowInstruction(this, @"Whilst keeping the ‘Close’ button pressed, drag it back inside its area");
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the ‘Close’ button pressed, drag it back inside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The ‘Close’ button is displayed pressed, without a border." + Environment.NewLine +
                                 "2. No sound is played.");
 
             DmiActions.ShowInstruction(this, @"Release the ‘Close’ button");
-            
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Main window");
 
@@ -512,7 +556,9 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
+
         #region Send_XML_22_8_3_1_DMI_Test_Specification
+
         enum msgType
         {
             typea,
@@ -521,7 +567,6 @@ namespace Testcase.DMITestCases
 
         private void XML_22_8_3_1(msgType type)
         {
-
             EVC22_MMICurrentRBC.NID_RBC = 0;
             EVC22_MMICurrentRBC.MMI_NID_RADIO = 0;
             EVC22_MMICurrentRBC.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Disabled;
@@ -533,11 +578,13 @@ namespace Testcase.DMITestCases
                     break;
                 case msgType.typeb:
                     EVC22_MMICurrentRBC.MMI_NID_WINDOW = 9;
-                    EVC22_MMICurrentRBC.NetworkCaptions = new List<string>();           // empty list so count now 0 to close window
+                    EVC22_MMICurrentRBC.NetworkCaptions =
+                        new List<string>(); // empty list so count now 0 to close window
                     break;
             }
             EVC22_MMICurrentRBC.Send();
         }
+
         #endregion
     }
 }

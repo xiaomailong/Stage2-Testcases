@@ -68,7 +68,7 @@ namespace Testcase.DMITestCases
             DmiActions.Activate_Cabin_1(this);
 
             EVC14_MMICurrentDriverID.MMI_X_DRIVER_ID = "";
-            EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE = (EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE_BUTTONS)0;
+            EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE = (EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE_BUTTONS) 0;
             EVC14_MMICurrentDriverID.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Disabled;
             EVC14_MMICurrentDriverID.Send();
 
@@ -103,14 +103,16 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press and hold the <1> key for more than 1.5s");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                "1. The key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 "3. The data input field displays ‘101’." + Environment.NewLine +
-                                "4. After 1.5s, the data input field accepts another ‘1’ repeatedly, displaying ‘1011’, then 1011 1 and so on." + Environment.NewLine +
+                                "4. After 1.5s, the data input field accepts another ‘1’ repeatedly, displaying ‘1011’, then 1011 1 and so on." +
+                                Environment.NewLine +
                                 "5. When the data input field has displayed ‘1011 1111’ and ‘1111 1111’ (over 2 lines) no more characters are accepted.");
 
             DmiActions.ShowInstruction(this, "Press the <Del> key until the input field is blank");
-            
+
             /*
             Test Step 4
             Action: Released the pressed button
@@ -129,13 +131,16 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,While press and hold button less than 1.5 secSound ‘Click’ is played once.The state of button is changed to ‘Pressed’ and immediately back to ‘Enabled’ state.The last character is removed from an input field after pressing the button.While press and hold button over 1.5 secThe state ‘pressed’ and ‘released’ are switched repeatly while button is pressed and the characters are removed from an input field repeatly refer to pressed state.The sound ‘Click’ is played repeatly while button is pressed
             Test Step Comment: (1) MMI_gen 8033 (partly: MMI_gen 4913 (partly: MMI_gen 4384 (partly: sound ‘Click)));(2) MMI_gen 8033 (partly: MMI_gen 4913 (partly: MMI_gen 4384 (partly: Change to state ‘Pressed’ and immediately back to state ‘Enabled’))); MMI_gen 4393 (partly: [Delete]);(3) MMI_gen 8033 (partly: MMI_gen 4913 (partly:MMI_gen 4384 (partly: ETCS-MMI’s function associated to the button)));(4) MMI_gen 8033 (partly: MMI_gen 4913 (partly:  MMI_gen 4386 (partly: visual of repeat function)));(5) MMI_gen 8033 (partly: MMI_gen 4913 (partly: MMI_gen 4386 (partly: audible of repeat function)));
             */
-            DmiActions.ShowInstruction(this, @"Press and hold the ‘Del’ key for more than 1.5s. Note: Stopwatch is required");
+            DmiActions.ShowInstruction(this,
+                @"Press and hold the ‘Del’ key for more than 1.5s. Note: Stopwatch is required");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "2. The key is displayed pressed then immediately re-displayed enabled." + Environment.NewLine +
+                                "2. The key is displayed pressed then immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "3. The last character is deleted from the data input field." + Environment.NewLine +
-                                "4. After the key has been pressed for more than 1.5 s, the key is repeatedly displayed pressed and re-displayed enabled;" + Environment.NewLine +
+                                "4. After the key has been pressed for more than 1.5 s, the key is repeatedly displayed pressed and re-displayed enabled;" +
+                                Environment.NewLine +
                                 "5. The ‘Click’ sound is played repeatedly while the key is pressed and characters are deleted repeatedly from the end of the data input field.");
 
             /*
@@ -155,12 +160,14 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The first character of the data key is added on an input field immediately. The cursor is jumped to next position after entered the character after 2 seconds
             Test Step Comment: (1) MMI_gen 8033 (parly: MMI_gen 4693 (a));(2) MMI_gen 8033 (parly: MMI_gen 4693 (b));
             */
-            DmiActions.ShowInstruction(this, "Delete the value in the data input field, then press (and release) the <2> key");
+            DmiActions.ShowInstruction(this,
+                "Delete the value in the data input field, then press (and release) the <2> key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The data input field immediately displays ‘2’." + Environment.NewLine +
                                 @"2. After 2s the cursor is re-displayed after the ‘2’");
-            DmiActions.ShowInstruction(this, @"Delete the value in the data input field, then press (and release) the <2> key");
+            DmiActions.ShowInstruction(this,
+                @"Delete the value in the data input field, then press (and release) the <2> key");
 
             // Repeat for the <3> key
             DmiActions.ShowInstruction(this, "Press (and release) the <3> key");
@@ -217,67 +224,83 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The next character of the same data key is selected and displayed on an input field refer to the label of pressed button and wrap-around.For example, the single character is displayed at input field with following step ‘2’ -> ‘a’ -> ‘b’ -> ‘c’ -> ‘2’
             Test Step Comment: (1) MMI_gen 8033 (partly: MMI_gen 4693 (partly: (c), pressing the same data key));
             */
-            DmiActions.ShowInstruction(this, "Delete the value in the data input field, then press the <2> key and press it again repeatedly within 2s");
+            DmiActions.ShowInstruction(this,
+                "Delete the value in the data input field, then press the <2> key and press it again repeatedly within 2s");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "2. The key is displayed pressed then immediately re-displayed enabled." + Environment.NewLine +
+                                "2. The key is displayed pressed then immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "3. The data input field displays ‘2’, ‘a’, ‘b’, ‘c’, then ‘2’, ‘a’, and so on, as the key is re-pressed.");
 
             // Repeat for the <3> key
-            DmiActions.ShowInstruction(this, "Delete the value in the data input field, then press the <3> key and press it again repeatedly within 2s");
+            DmiActions.ShowInstruction(this,
+                "Delete the value in the data input field, then press the <3> key and press it again repeatedly within 2s");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "2. The key is displayed pressed then immediately re-displayed enabled." + Environment.NewLine +
+                                "2. The key is displayed pressed then immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "3. The data input field displays ‘3’, ‘d’, ‘e’, ‘f’, then ‘3’, ‘d’, and so on, as the key is re-pressed.");
 
             // Repeat for the <4> key
-            DmiActions.ShowInstruction(this, "Delete the value in the data input field, then press the <4> key and press it again repeatedly within 2s");
+            DmiActions.ShowInstruction(this,
+                "Delete the value in the data input field, then press the <4> key and press it again repeatedly within 2s");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "2. The key is displayed pressed then immediately re-displayed enabled." + Environment.NewLine +
+                                "2. The key is displayed pressed then immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "3. The data input field displays ‘4’, ‘g’, ‘h’, ‘i’, then ‘4’, ‘g’, and so on, as the key is re-pressed.");
 
             // Repeat for the <5> key
-            DmiActions.ShowInstruction(this, "Delete the value in the data input field, then press the <5> key and press it again repeatedly within 2s");
+            DmiActions.ShowInstruction(this,
+                "Delete the value in the data input field, then press the <5> key and press it again repeatedly within 2s");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "2. The key is displayed pressed then immediately re-displayed enabled." + Environment.NewLine +
+                                "2. The key is displayed pressed then immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "3. The data input field displays ‘5’, ‘j’, ‘k’, ‘l’, then ‘5’, ‘j’, and so on, as the key is re-pressed.");
 
             // Repeat for the <6> key
-            DmiActions.ShowInstruction(this, "Delete the value in the data input field, then press the <6> key and press it again repeatedly within 2s");
+            DmiActions.ShowInstruction(this,
+                "Delete the value in the data input field, then press the <6> key and press it again repeatedly within 2s");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "2. The key is displayed pressed then immediately re-displayed enabled." + Environment.NewLine +
+                                "2. The key is displayed pressed then immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "3. The data input field displays ‘6’, ‘m’, ‘n’, ‘o’, then ‘6’, ‘m’, and so on, as the key is re-pressed.");
 
             // Repeat for the <7> key
-            DmiActions.ShowInstruction(this, "Delete the value in the data input field, then press the <7> key and press it again repeatedly within 2s");
+            DmiActions.ShowInstruction(this,
+                "Delete the value in the data input field, then press the <7> key and press it again repeatedly within 2s");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "2. The key is displayed pressed then immediately re-displayed enabled." + Environment.NewLine +
+                                "2. The key is displayed pressed then immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "3. The data input field displays ‘7’, ‘p’, ‘q’, ‘r’, ‘s’,then ‘7’, ‘p’, and so on, as the key is re-pressed.");
 
             // Repeat for the <8> key
-            DmiActions.ShowInstruction(this, "Delete the value in the data input field, then press the <8> key and press it again repeatedly within 2s");
+            DmiActions.ShowInstruction(this,
+                "Delete the value in the data input field, then press the <8> key and press it again repeatedly within 2s");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "2. The key is displayed pressed then immediately re-displayed enabled." + Environment.NewLine +
+                                "2. The key is displayed pressed then immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "3. The data input field displays ‘8’, ‘t’, ‘u’, ‘v’, then ‘8’, ‘t’, and so on, as the key is re-pressed.");
 
             // Repeat for the <9> key
-            DmiActions.ShowInstruction(this, "Delete the value in the data input field, then press the <9> key and press it again repeatedly within 2s");
+            DmiActions.ShowInstruction(this,
+                "Delete the value in the data input field, then press the <9> key and press it again repeatedly within 2s");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "2. The key is displayed pressed then immediately re-displayed enabled." + Environment.NewLine +
+                                "2. The key is displayed pressed then immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "3. The data input field displays ‘9’, ‘w’, ‘x’, ‘y’, ‘z’, then ‘9’, ‘w’, and so on, as the key is re-pressed.");
 
             /*
@@ -286,70 +309,86 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,While press and hold button less than 1.5 secSound ‘Click’ is played once.The state of button is changed to ‘Pressed’ and immediately back to ‘Enabled’ state.Pressed key is added in an input field after pressing the button.While press and hold button over 1.5 secThe next character of the same data key is selected and displayed on an input field refer to the label ot pressed button and wrap-around.For example, the single character is displayed at input field with following step ‘2’ -> ‘a’ -> ‘b’ -> ‘c’ -> ‘2’
             Test Step Comment: (1) MMI_gen 8033  (partly: MMI_gen 4913 (partly: MMI_gen 4384 (partly: sound ‘Click)));(2) MMI_gen 8033 (partly: MMI_gen 4913 (partly: MMI_gen 4384 (partly: Change to state ‘Pressed’ and immediately back to state ‘Enabled’)));   (3) MMI_gen 8033 (partly: MMI_gen 4913 (partly: MMI_gen 4384 (partly: ETCS-MMI’s function associated to the button)));(4) MMI_gen 8033 (partly: MMI_gen 4693 (partly: (c), hoding for some time));
             */
-            DmiActions.ShowInstruction(this, "Delete the value in the data input field, then press the <2> key and hold it for more than 1.5s");
+            DmiActions.ShowInstruction(this,
+                "Delete the value in the data input field, then press the <2> key and hold it for more than 1.5s");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "2. The key is displayed pressed then immediately re-displayed enabled." + Environment.NewLine +
+                                "2. The key is displayed pressed then immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "3. The data input field immediately displays ‘2’." + Environment.NewLine +
                                 "4. After 1.5s with the key still pressed the data input field displays ‘2’, ‘a’, ‘b’, ‘c’, then ‘2’, ‘a’, and so on, as the key is held.");
 
             // Repeat for the <3> key
-            DmiActions.ShowInstruction(this, "Delete the value in the data input field, then press the <3> key and hold it for more than 1.5s");
+            DmiActions.ShowInstruction(this,
+                "Delete the value in the data input field, then press the <3> key and hold it for more than 1.5s");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "2. The key is displayed pressed then immediately re-displayed enabled." + Environment.NewLine +
+                                "2. The key is displayed pressed then immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "3. The data input field immediately displays ‘3’." + Environment.NewLine +
                                 "4. After 1.5s with the key still pressed the data input field displays ‘3’, ‘d’, ‘e’, ‘f’, then ‘3’, ‘d’, and so on, as the key is held.");
 
             // Repeat for the <4> key
-            DmiActions.ShowInstruction(this, "Delete the value in the data input field, then press the <4> key and hold it for more than 1.5s");
+            DmiActions.ShowInstruction(this,
+                "Delete the value in the data input field, then press the <4> key and hold it for more than 1.5s");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "2. The key is displayed pressed then immediately re-displayed enabled." + Environment.NewLine +
+                                "2. The key is displayed pressed then immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "3. The data input field immediately displays ‘4’." + Environment.NewLine +
                                 "4. After 1.5s with the key still pressed the data input field displays ‘4’, ‘g’, ‘h’, ‘i’, then ‘4’, ‘g’, and so on, as the key is held.");
-            
+
             // Repeat for the <5> key
-            DmiActions.ShowInstruction(this, "Delete the value in the data input field, then press the <5> key and hold it for more than 1.5s");
+            DmiActions.ShowInstruction(this,
+                "Delete the value in the data input field, then press the <5> key and hold it for more than 1.5s");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "2. The key is displayed pressed then immediately re-displayed enabled." + Environment.NewLine +
+                                "2. The key is displayed pressed then immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "3. The data input field displays ‘5’, ‘j’, ‘k’, ‘l’, then ‘5’, ‘j’, and so on, as the key is re-pressed.");
 
             // Repeat for the <6> key
-            DmiActions.ShowInstruction(this, "Delete the value in the data input field, then press the <6> key and hold it for more than 1.5s");
+            DmiActions.ShowInstruction(this,
+                "Delete the value in the data input field, then press the <6> key and hold it for more than 1.5s");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "2. The key is displayed pressed then immediately re-displayed enabled." + Environment.NewLine +
+                                "2. The key is displayed pressed then immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "3. The data input field displays ‘6’, ‘m’, ‘n’, ‘o’, then ‘6’, ‘m’, and so on, as the key is re-pressed.");
 
             // Repeat for the <7> key
-            DmiActions.ShowInstruction(this, "Delete the value in the data input field, then press the <7> key and hold it for more than 1.5s");
+            DmiActions.ShowInstruction(this,
+                "Delete the value in the data input field, then press the <7> key and hold it for more than 1.5s");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "2. The key is displayed pressed then immediately re-displayed enabled." + Environment.NewLine +
+                                "2. The key is displayed pressed then immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "3. The data input field displays ‘7’, ‘p’, ‘q’, ‘r’, ‘s’,then ‘7’, ‘p’, and so on, as the key is re-pressed.");
 
             // Repeat for the <8> key
-            DmiActions.ShowInstruction(this, "Delete the value in the data input field, then press the <8> key and hold it for more than 1.5s");
+            DmiActions.ShowInstruction(this,
+                "Delete the value in the data input field, then press the <8> key and hold it for more than 1.5s");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "2. The key is displayed pressed then immediately re-displayed enabled." + Environment.NewLine +
+                                "2. The key is displayed pressed then immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "3. The data input field displays ‘8’, ‘t’, ‘u’, ‘v’, then ‘8’, ‘t’, and so on, as the key is re-pressed.");
 
             // Repeat for the <9> key
-            DmiActions.ShowInstruction(this, "Delete the value in the data input field, then press the <9> key and hold it for more than 1.5s");
+            DmiActions.ShowInstruction(this,
+                "Delete the value in the data input field, then press the <9> key and hold it for more than 1.5s");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "2. The key is displayed pressed then immediately re-displayed enabled." + Environment.NewLine +
+                                "2. The key is displayed pressed then immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "3. The data input field displays ‘9’, ‘w’, ‘x’, ‘y’, ‘z’, then ‘9’, ‘w’, and so on, as the key is re-pressed.");
 
             /*
@@ -369,49 +408,57 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information, An entered data are separated as 2 characters, for example ‘22’
             Test Step Comment: (1) MMI_gen 8033 (partly: MMI_gen 4693 (partly: (c), NEGATIVE, exceed 2 second delay time));
             */
-            DmiActions.ShowInstruction(this, "Delete the value in the data input field, then press the <2> key. After 2s, press the key again");
+            DmiActions.ShowInstruction(this,
+                "Delete the value in the data input field, then press the <2> key. After 2s, press the key again");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field displays ‘22’.");
 
             // Repeat for the <3> key
-            DmiActions.ShowInstruction(this, "Delete the value in the data input field, then press the <3> key. After 2s, press the key again");
+            DmiActions.ShowInstruction(this,
+                "Delete the value in the data input field, then press the <3> key. After 2s, press the key again");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field displays ‘33’.");
 
             // Repeat for the <4> key
-            DmiActions.ShowInstruction(this, "Delete the value in the data input field, then press the <4> key. After 2s, press the key again");
+            DmiActions.ShowInstruction(this,
+                "Delete the value in the data input field, then press the <4> key. After 2s, press the key again");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field displays ‘44’.");
 
             // Repeat for the <5> key
-            DmiActions.ShowInstruction(this, "Delete the value in the data input field, then press the <5> key. After 2s, press the key again");
+            DmiActions.ShowInstruction(this,
+                "Delete the value in the data input field, then press the <5> key. After 2s, press the key again");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field displays ‘55’.");
 
             // Repeat for the <6> key
-            DmiActions.ShowInstruction(this, "Delete the value in the data input field, then press the <6> key. After 2s, press the key again");
+            DmiActions.ShowInstruction(this,
+                "Delete the value in the data input field, then press the <6> key. After 2s, press the key again");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field displays ‘66’.");
 
             // Repeat for the <7> key
-            DmiActions.ShowInstruction(this, "Delete the value in the data input field, then press the <7> key. After 2s, press the key again");
+            DmiActions.ShowInstruction(this,
+                "Delete the value in the data input field, then press the <7> key. After 2s, press the key again");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field displays ‘77’.");
 
             // Repeat for the <8> key
-            DmiActions.ShowInstruction(this, "Delete the value in the data input field, then press the <8> key. After 2s, press the key again");
+            DmiActions.ShowInstruction(this,
+                "Delete the value in the data input field, then press the <8> key. After 2s, press the key again");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field displays ‘88’.");
 
             // Repeat for the <9> key
-            DmiActions.ShowInstruction(this, "Delete the value in the data input field, then press the <9> key. After 2s, press the key again");
+            DmiActions.ShowInstruction(this,
+                "Delete the value in the data input field, then press the <9> key. After 2s, press the key again");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field displays ‘99’.");
@@ -422,7 +469,8 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information, The selected characters are added on an input field.The horizontal line cursor is forced to jump to next position directly
             Test Step Comment: (1) MMI_gen 8033 (partly: MMI_gen 4693 (a));(2) MMI_gen 8033 (partly: MMI_gen 4693 (d));
             */
-            DmiActions.ShowInstruction(this, "Delete the value in the data input field, then press the <2> key. After less than 2s press the <4> key again");
+            DmiActions.ShowInstruction(this,
+                "Delete the value in the data input field, then press the <2> key. After less than 2s press the <4> key again");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field displays ‘24’." + Environment.NewLine +
@@ -434,7 +482,8 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The 5 characters are added on an input field as one group. (e.g. ‘12345')
             Test Step Comment: (1) MMI_gen 8033 (partly: MMI_gen 4694 (partly: NEGATIVE, 6th character));
             */
-            DmiActions.ShowInstruction(this, "Delete the value in the data input field, then enter ‘12345’ for the Driver ID");
+            DmiActions.ShowInstruction(this,
+                "Delete the value in the data input field, then enter ‘12345’ for the Driver ID");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field displays ‘12345’.");

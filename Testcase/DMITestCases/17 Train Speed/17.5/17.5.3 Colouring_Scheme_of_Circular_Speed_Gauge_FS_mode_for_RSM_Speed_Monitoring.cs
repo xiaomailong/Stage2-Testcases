@@ -57,7 +57,7 @@ namespace Testcase.DMITestCases
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint
-            
+
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
 
             /*
@@ -72,7 +72,7 @@ namespace Testcase.DMITestCases
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 30;
             EVC1_MMIDynamic.MMI_V_RELEASE = 1388;
             EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 40;
-            
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in FS mode, level 1." + Environment.NewLine +
                                 "2. All sections of CSG are in yellow");
@@ -84,7 +84,8 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 972 (partly: MMI_V_RELEASE); MMI_gen 6310 (partly: release speed); MMI_gen 5902 (partly: MMI_M_WARNING = 15);(2) MMI_gen 972 (partly: FS mode, RSM, IntS, Vtarget <= CSG <= Vperm); MMI_gen 1182 (partly: Vrelease);
             */
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 51;
-            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Indication_Status_Release_Speed_Monitoring;
+            EVC1_MMIDynamic.MMI_M_WARNING =
+                MMI_M_WARNING.Intervention_Status_Indication_Status_Release_Speed_Monitoring;
             // ?? Send
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. All sections of CSG are in yellow");

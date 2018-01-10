@@ -63,7 +63,7 @@ namespace Testcase.DMITestCases
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint
-            
+
             /*
             Test Step 1
             Action: Press ‘Settings menu’ button
@@ -240,12 +240,12 @@ namespace Testcase.DMITestCases
 
             EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = MMI_Q_CLOSE_ENABLE.Disabled;
 
-            EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new [] { MMI_Q_LEVEL_NTC_ID.ETCS_Level };
-            EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new [] { MMI_M_CURRENT_LEVEL.LastUsedLevel };
-            EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = new [] { MMI_M_LEVEL_FLAG.MarkedLevel };
-            EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = new [] { MMI_M_INHIBITED_LEVEL.NotInhibited };
-            EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = new [] { MMI_M_INHIBIT_ENABLE.AllowedForInhibiting };
-            EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new [] { MMI_M_LEVEL_NTC_ID.L2 };
+            EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new[] {MMI_Q_LEVEL_NTC_ID.ETCS_Level};
+            EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new[] {MMI_M_CURRENT_LEVEL.LastUsedLevel};
+            EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = new[] {MMI_M_LEVEL_FLAG.MarkedLevel};
+            EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = new[] {MMI_M_INHIBITED_LEVEL.NotInhibited};
+            EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = new[] {MMI_M_INHIBIT_ENABLE.AllowedForInhibiting};
+            EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new[] {MMI_M_LEVEL_NTC_ID.L2};
             EVC20_MMISelectLevel.Send();
 
             DmiActions.ShowInstruction(this, "Select and confirm Level 2");
@@ -281,24 +281,28 @@ namespace Testcase.DMITestCases
         }
 
         #region Send_XML_10_1_a_DMI_Test_Specification
+
         private void XML_10_1_a(string windowName, bool showLock = true)
-        { 
+        {
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.No_window_specified;   // No window specified
-            
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW =
+                EVC30_MMIRequestEnable.WindowID.No_window_specified; // No window specified
+
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.None;
             EVC30_MMIRequestEnable.Send();
 
             if (showLock)
             {
-                WaitForVerification($"Check that all but one of the buttons in the {windowName} window are disabled (displayed " +
-                                    $"with a border with dark-grey text) and the following:" + Environment.NewLine + Environment.NewLine +
-                                    @"1. The ‘Lock screen for cleaning’ button is not disabled.");
+                WaitForVerification(
+                    $"Check that all but one of the buttons in the {windowName} window are disabled (displayed " +
+                    $"with a border with dark-grey text) and the following:" + Environment.NewLine +
+                    Environment.NewLine +
+                    @"1. The ‘Lock screen for cleaning’ button is not disabled.");
             }
             else
             {
                 WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                     $"All the buttons in the {windowName} window are disabled (displayed with a border with dark-grey text).");
+                                    $"All the buttons in the {windowName} window are disabled (displayed with a border with dark-grey text).");
             }
 
             // Reduced waiting time to speed up testing
@@ -311,72 +315,8 @@ namespace Testcase.DMITestCases
                                                                EVC30_MMIRequestEnable.EnabledRequests.DriverID |
                                                                EVC30_MMIRequestEnable.EnabledRequests.TrainData |
                                                                EVC30_MMIRequestEnable.EnabledRequests.Level |
-                                                               EVC30_MMIRequestEnable.EnabledRequests.TrainRunningNumber |
-                                                               EVC30_MMIRequestEnable.EnabledRequests.Shunting |
-                                                               EVC30_MMIRequestEnable.EnabledRequests.ExitShunting |
-                                                               EVC30_MMIRequestEnable.EnabledRequests.NonLeading |
-                                                               EVC30_MMIRequestEnable.EnabledRequests.MaintainShunting | 
-                                                               EVC30_MMIRequestEnable.EnabledRequests.EOA |
-                                                               EVC30_MMIRequestEnable.EnabledRequests.Adhesion |
-                                                               EVC30_MMIRequestEnable.EnabledRequests.SRSpeedDistance |
-                                                               EVC30_MMIRequestEnable.EnabledRequests.TrainIntegrity |
-                                                               EVC30_MMIRequestEnable.EnabledRequests.Language |
-                                                               EVC30_MMIRequestEnable.EnabledRequests.Volume |
-                                                               EVC30_MMIRequestEnable.EnabledRequests.Brightness |
-                                                               EVC30_MMIRequestEnable.EnabledRequests.SystemVersion |
-                                                               EVC30_MMIRequestEnable.EnabledRequests.SetVBC |
-                                                               EVC30_MMIRequestEnable.EnabledRequests.RemoveVBC |
-                                                               EVC30_MMIRequestEnable.EnabledRequests.ContactLastRBC |
-                                                               EVC30_MMIRequestEnable.EnabledRequests.UseShortNumber |
-                                                               EVC30_MMIRequestEnable.EnabledRequests.EnterRBCData |
-                                                               EVC30_MMIRequestEnable.EnabledRequests.RadioNetworkID |
-                                                               EVC30_MMIRequestEnable.EnabledRequests.GeographicalPosition |
-                                                               EVC30_MMIRequestEnable.EnabledRequests.EndOfDataEntryNTC |
-                                                               EVC30_MMIRequestEnable.EnabledRequests.SetLocalTimeDateAndOffset |
-                                                               EVC30_MMIRequestEnable.EnabledRequests.SetLocalOffset |
-                                                               EVC30_MMIRequestEnable.EnabledRequests.Reserved |
-                                                               EVC30_MMIRequestEnable.EnabledRequests.StartBrakeTest |
-                                                               EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter |
-                                                               EVC30_MMIRequestEnable.EnabledRequests.EnableDoppler |
-                                                               EVC30_MMIRequestEnable.EnabledRequests.EnableBrakePercentage;
-            EVC30_MMIRequestEnable.Send();
-
-            if (showLock)
-            {
-                WaitForVerification($"Check that all but one of the buttons in the {windowName} window are enabled with " +
-                                    $"the exception of the following:" + Environment.NewLine + Environment.NewLine +
-                                    @"1. The ‘Lock screen for cleaning’ button.");
-            }
-            else
-            {
-                WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                     $"1. All the buttons in the {windowName} window are enabled.");
-            }
-        }
-        #endregion
-
-        #region Send_XML_10_1_b_DMI_Test_Specification
-        private void XML_10_1_b()
-        {
-            EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;   // Enable Main window
-
-            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.None;
-            EVC30_MMIRequestEnable.Send();
-
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. All the buttons in the Main menu window are disabled (displayed with a border with dark-grey text).");
-
-            // Reduced waiting time to speed up testing
-            Wait_Realtime(3000);
-
-            EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;   // Enable Main window
-            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Start |
-                                                               EVC30_MMIRequestEnable.EnabledRequests.DriverID |
-                                                               EVC30_MMIRequestEnable.EnabledRequests.TrainData |
-                                                               EVC30_MMIRequestEnable.EnabledRequests.Level |
-                                                               EVC30_MMIRequestEnable.EnabledRequests.TrainRunningNumber |
+                                                               EVC30_MMIRequestEnable.EnabledRequests
+                                                                   .TrainRunningNumber |
                                                                EVC30_MMIRequestEnable.EnabledRequests.Shunting |
                                                                EVC30_MMIRequestEnable.EnabledRequests.ExitShunting |
                                                                EVC30_MMIRequestEnable.EnabledRequests.NonLeading |
@@ -395,21 +335,100 @@ namespace Testcase.DMITestCases
                                                                EVC30_MMIRequestEnable.EnabledRequests.UseShortNumber |
                                                                EVC30_MMIRequestEnable.EnabledRequests.EnterRBCData |
                                                                EVC30_MMIRequestEnable.EnabledRequests.RadioNetworkID |
-                                                               EVC30_MMIRequestEnable.EnabledRequests.GeographicalPosition |
-                                                               EVC30_MMIRequestEnable.EnabledRequests.EndOfDataEntryNTC |
-                                                               EVC30_MMIRequestEnable.EnabledRequests.SetLocalTimeDateAndOffset |
+                                                               EVC30_MMIRequestEnable.EnabledRequests
+                                                                   .GeographicalPosition |
+                                                               EVC30_MMIRequestEnable.EnabledRequests
+                                                                   .EndOfDataEntryNTC |
+                                                               EVC30_MMIRequestEnable.EnabledRequests
+                                                                   .SetLocalTimeDateAndOffset |
                                                                EVC30_MMIRequestEnable.EnabledRequests.SetLocalOffset |
                                                                EVC30_MMIRequestEnable.EnabledRequests.Reserved |
                                                                EVC30_MMIRequestEnable.EnabledRequests.StartBrakeTest |
-                                                               EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter |
+                                                               EVC30_MMIRequestEnable.EnabledRequests
+                                                                   .EnableWheelDiameter |
                                                                EVC30_MMIRequestEnable.EnabledRequests.EnableDoppler |
-                                                               EVC30_MMIRequestEnable.EnabledRequests.EnableBrakePercentage;
+                                                               EVC30_MMIRequestEnable.EnabledRequests
+                                                                   .EnableBrakePercentage;
+            EVC30_MMIRequestEnable.Send();
+
+            if (showLock)
+            {
+                WaitForVerification(
+                    $"Check that all but one of the buttons in the {windowName} window are enabled with " +
+                    $"the exception of the following:" + Environment.NewLine + Environment.NewLine +
+                    @"1. The ‘Lock screen for cleaning’ button.");
+            }
+            else
+            {
+                WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                    $"1. All the buttons in the {windowName} window are enabled.");
+            }
+        }
+
+        #endregion
+
+        #region Send_XML_10_1_b_DMI_Test_Specification
+
+        private void XML_10_1_b()
+        {
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main; // Enable Main window
+
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.None;
+            EVC30_MMIRequestEnable.Send();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. All the buttons in the Main menu window are disabled (displayed with a border with dark-grey text).");
+
+            // Reduced waiting time to speed up testing
+            Wait_Realtime(3000);
+
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main; // Enable Main window
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Start |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.DriverID |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.TrainData |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.Level |
+                                                               EVC30_MMIRequestEnable.EnabledRequests
+                                                                   .TrainRunningNumber |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.Shunting |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.ExitShunting |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.NonLeading |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.MaintainShunting |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.EOA |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.Adhesion |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.SRSpeedDistance |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.TrainIntegrity |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.Language |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.Volume |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.Brightness |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.SystemVersion |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.SetVBC |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.RemoveVBC |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.ContactLastRBC |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.UseShortNumber |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.EnterRBCData |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.RadioNetworkID |
+                                                               EVC30_MMIRequestEnable.EnabledRequests
+                                                                   .GeographicalPosition |
+                                                               EVC30_MMIRequestEnable.EnabledRequests
+                                                                   .EndOfDataEntryNTC |
+                                                               EVC30_MMIRequestEnable.EnabledRequests
+                                                                   .SetLocalTimeDateAndOffset |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.SetLocalOffset |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.Reserved |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.StartBrakeTest |
+                                                               EVC30_MMIRequestEnable.EnabledRequests
+                                                                   .EnableWheelDiameter |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.EnableDoppler |
+                                                               EVC30_MMIRequestEnable.EnabledRequests
+                                                                   .EnableBrakePercentage;
             EVC30_MMIRequestEnable.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. All the buttons in the Main window are enabled.");
-
         }
+
         #endregion
     }
 }

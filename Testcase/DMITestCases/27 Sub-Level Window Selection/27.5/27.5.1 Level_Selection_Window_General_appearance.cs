@@ -18,7 +18,6 @@ using Testcase.Telegrams.DMItoEVC;
 using static Testcase.Telegrams.EVCtoDMI.Variables;
 
 
-
 namespace Testcase.DMITestCases
 {
     /// <summary>
@@ -64,7 +63,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
             TraceInfo("This test case requires an ATP configuration change - " +
-                        "See Precondition requirements. If this is not done manually, the test may fail!");
+                      "See Precondition requirements. If this is not done manually, the test may fail!");
 
             /*
             Test Step 1
@@ -74,7 +73,8 @@ namespace Testcase.DMITestCases
             */
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;
-            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.DriverID | EVC30_MMIRequestEnable.EnabledRequests.Level;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH =
+                EVC30_MMIRequestEnable.EnabledRequests.DriverID | EVC30_MMIRequestEnable.EnabledRequests.Level;
             EVC30_MMIRequestEnable.Send();
 
             EVC14_MMICurrentDriverID.Send();
@@ -82,47 +82,59 @@ namespace Testcase.DMITestCases
 
             EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = MMI_Q_CLOSE_ENABLE.Disabled;
             Variables.MMI_Q_LEVEL_NTC_ID[] paramEvc20MmiQLevelNtcId =
-                { MMI_Q_LEVEL_NTC_ID.ETCS_Level,
+            {
+                MMI_Q_LEVEL_NTC_ID.ETCS_Level,
                 MMI_Q_LEVEL_NTC_ID.ETCS_Level,
                 MMI_Q_LEVEL_NTC_ID.ETCS_Level,
                 MMI_Q_LEVEL_NTC_ID.ETCS_Level,
                 MMI_Q_LEVEL_NTC_ID.STM_ID,
-                MMI_Q_LEVEL_NTC_ID.STM_ID };
+                MMI_Q_LEVEL_NTC_ID.STM_ID
+            };
             Variables.MMI_M_CURRENT_LEVEL[] paramEvc20MmiMCurrentLevel =
-                { MMI_M_CURRENT_LEVEL.NotLastUsedLevel,
+            {
                 MMI_M_CURRENT_LEVEL.NotLastUsedLevel,
                 MMI_M_CURRENT_LEVEL.NotLastUsedLevel,
                 MMI_M_CURRENT_LEVEL.NotLastUsedLevel,
                 MMI_M_CURRENT_LEVEL.NotLastUsedLevel,
-                MMI_M_CURRENT_LEVEL.NotLastUsedLevel };
+                MMI_M_CURRENT_LEVEL.NotLastUsedLevel,
+                MMI_M_CURRENT_LEVEL.NotLastUsedLevel
+            };
             Variables.MMI_M_LEVEL_FLAG[] paramEvc20MmiMLevelFlag =
-                { MMI_M_LEVEL_FLAG.MarkedLevel,
+            {
                 MMI_M_LEVEL_FLAG.MarkedLevel,
                 MMI_M_LEVEL_FLAG.MarkedLevel,
                 MMI_M_LEVEL_FLAG.MarkedLevel,
                 MMI_M_LEVEL_FLAG.MarkedLevel,
-                MMI_M_LEVEL_FLAG.MarkedLevel };
+                MMI_M_LEVEL_FLAG.MarkedLevel,
+                MMI_M_LEVEL_FLAG.MarkedLevel
+            };
             Variables.MMI_M_INHIBITED_LEVEL[] paramEvc20MmiMInhibitedLevel =
-                { MMI_M_INHIBITED_LEVEL.NotInhibited,
+            {
                 MMI_M_INHIBITED_LEVEL.NotInhibited,
                 MMI_M_INHIBITED_LEVEL.NotInhibited,
                 MMI_M_INHIBITED_LEVEL.NotInhibited,
                 MMI_M_INHIBITED_LEVEL.NotInhibited,
-                MMI_M_INHIBITED_LEVEL.NotInhibited };
+                MMI_M_INHIBITED_LEVEL.NotInhibited,
+                MMI_M_INHIBITED_LEVEL.NotInhibited
+            };
             Variables.MMI_M_INHIBIT_ENABLE[] paramEvc20MmiMInhibitEnable =
-                { MMI_M_INHIBIT_ENABLE.AllowedForInhibiting,
+            {
                 MMI_M_INHIBIT_ENABLE.AllowedForInhibiting,
                 MMI_M_INHIBIT_ENABLE.AllowedForInhibiting,
                 MMI_M_INHIBIT_ENABLE.AllowedForInhibiting,
                 MMI_M_INHIBIT_ENABLE.AllowedForInhibiting,
-                MMI_M_INHIBIT_ENABLE.AllowedForInhibiting };
+                MMI_M_INHIBIT_ENABLE.AllowedForInhibiting,
+                MMI_M_INHIBIT_ENABLE.AllowedForInhibiting
+            };
             Variables.MMI_M_LEVEL_NTC_ID[] paramEvc20MmiMLevelNtcId =
-                { MMI_M_LEVEL_NTC_ID.L1,
+            {
+                MMI_M_LEVEL_NTC_ID.L1,
                 MMI_M_LEVEL_NTC_ID.L2,
                 MMI_M_LEVEL_NTC_ID.L3,
-                MMI_M_LEVEL_NTC_ID.L0,                
+                MMI_M_LEVEL_NTC_ID.L0,
                 MMI_M_LEVEL_NTC_ID.CBTC,
-                MMI_M_LEVEL_NTC_ID.AWS_TPWS };
+                MMI_M_LEVEL_NTC_ID.AWS_TPWS
+            };
 
             EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = paramEvc20MmiQLevelNtcId;
             EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = paramEvc20MmiMCurrentLevel;
@@ -132,21 +144,31 @@ namespace Testcase.DMITestCases
             EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = paramEvc20MmiMLevelNtcId;
             EVC20_MMISelectLevel.Send();
 
-            WaitForVerification("Check the following (* indicates sub-areas drawn as one area):" + Environment.NewLine + Environment.NewLine +
+            WaitForVerification("Check the following (* indicates sub-areas drawn as one area):" + Environment.NewLine +
+                                Environment.NewLine +
                                 "1. DMI displays the Level window in the right half of the screen." +
-                                "2. The following screen areas are in Layer 0: D, F, G, Z and Y." + Environment.NewLine +
-                                "3. The following screen areas are in Layer 1: A1, (A2 + A3)*, A4, B*, C1, (C2 + C3 + C4)*, C5, C6, C7, C8, C9, E1, E2, E3, E4, (E5-E9)." + Environment.NewLine +
-                                "4. The following screen areas are in Layer 2: B3, B4, B5, B6, B7" + Environment.NewLine +
+                                "2. The following screen areas are in Layer 0: D, F, G, Z and Y." +
+                                Environment.NewLine +
+                                "3. The following screen areas are in Layer 1: A1, (A2 + A3)*, A4, B*, C1, (C2 + C3 + C4)*, C5, C6, C7, C8, C9, E1, E2, E3, E4, (E5-E9)." +
+                                Environment.NewLine +
+                                "4. The following screen areas are in Layer 2: B3, B4, B5, B6, B7" +
+                                Environment.NewLine +
                                 "5. The window title is ‘Level’." + Environment.NewLine +
-                                "6. The Level window comprises areas D, F and G as a half-grid array." + Environment.NewLine +
-                                "7. A data entry window with one input field covers areas D, F and G in the Level window." + Environment.NewLine +
-                                "8. The Level window contains a disabled ‘Close’ button (symbol NA12)." + Environment.NewLine +
+                                "6. The Level window comprises areas D, F and G as a half-grid array." +
+                                Environment.NewLine +
+                                "7. A data entry window with one input field covers areas D, F and G in the Level window." +
+                                Environment.NewLine +
+                                "8. The Level window contains a disabled ‘Close’ button (symbol NA12)." +
+                                Environment.NewLine +
                                 "9. The data entry field is in areas D and F." + Environment.NewLine +
                                 "10. The window title describes the single input field." + Environment.NewLine +
-                                "11. The level window displays one data entry field containing only a data part." + Environment.NewLine +
+                                "11. The level window displays one data entry field containing only a data part." +
+                                Environment.NewLine +
                                 "13. The data entry field is blank." + Environment.NewLine +
-                                "14. A keyboard is displayed below the data entry field which operates only on the Level window." + Environment.NewLine +
-                                "15. The keyboard has a 3 x 2 array of buttons with the following buttons (left to right):" +  Environment.NewLine +
+                                "14. A keyboard is displayed below the data entry field which operates only on the Level window." +
+                                Environment.NewLine +
+                                "15. The keyboard has a 3 x 2 array of buttons with the following buttons (left to right):" +
+                                Environment.NewLine +
                                 "16. ‘Level 1’, ‘Level 2’, ‘Level3’ in the top row; ‘Level 0’, ‘CBTC’, ‘AWS_TPWS’ in the bottom row.");
 
             /*
@@ -160,9 +182,11 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The input field displays ‘Level 0’." + Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The ‘Level 0’ button is displayed pressed and immediately re-displayed enabled" + Environment.NewLine +
+                                "3. The ‘Level 0’ button is displayed pressed and immediately re-displayed enabled" +
+                                Environment.NewLine +
                                 "4. The input field can be used to enter data (enabled)." + Environment.NewLine +
-                                "5. The input field data are in black on a Medium-grey background." + Environment.NewLine +
+                                "5. The input field data are in black on a Medium-grey background." +
+                                Environment.NewLine +
                                 "6. The input field data are left-aligned in the data area.");
             /*
             Test Step 3
@@ -174,18 +198,21 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Level 0’ button is displayed enabled.");
-            
-            DmiActions.ShowInstruction(this, "For each of the other buttons displayed on the keyboard, repeat these steps: " + Environment.NewLine +
-                                             "1. Press and hold the button");     
+
+            DmiActions.ShowInstruction(this,
+                "For each of the other buttons displayed on the keyboard, repeat these steps: " + Environment.NewLine +
+                "1. Press and hold the button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The input field displays the value of the pressed button’." + Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The button is displayed pressed and immediately re-displayed enabled" + Environment.NewLine +
+                                "3. The button is displayed pressed and immediately re-displayed enabled" +
+                                Environment.NewLine +
                                 "4. The input field can be used to enter data (enabled)." + Environment.NewLine +
-                                "5. The input field data are in black on a Medium-grey background." + Environment.NewLine +
-                                "6. The input field data are left-aligned in the data area.");                                       
-            
+                                "5. The input field data are in black on a Medium-grey background." +
+                                Environment.NewLine +
+                                "6. The input field data are left-aligned in the data area.");
+
             DmiActions.ShowInstruction(this, "2. Release the button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -239,7 +266,7 @@ namespace Testcase.DMITestCases
             EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.LevelEntered;
 
             EVC121_MMINewLevel.LevelSelected = MMI_M_LEVEL_NTC_ID.L1;
-            
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Level window and displays the Main window" + Environment.NewLine +
                                 "2. DMI displays in SB mode, Level 1.");
@@ -271,7 +298,8 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information, Use the log file to confirm that DMI sends out the packet EVC-101 with variable MMI_M_REQUEST = 40 (Level entered) and MMI_Q_BUTTON = 1 and = 0 respectively
             Test Step Comment: (1) MMI_gen 7987 (partly: revalidation); MMI_gen 2205-1 (THR); MMI_gen 11450-1 (THR) (partly: safe, send events of Pressed and Released independently to ETCS), MMI_gen 11907 (partly: EVC-101, timestamp));
             */
-            DmiActions.ShowInstruction(this, @"Press the input field to confirm the current value (without entering data)");
+            DmiActions.ShowInstruction(this,
+                @"Press the input field to confirm the current value (without entering data)");
 
             EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.LevelEntered;
 
@@ -285,7 +313,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press the ‘Level 2’ button, then press and hold the input field");
 
             EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.LevelEntered;
-            
+
             DmiActions.ShowInstruction(this, "Whilst keeping the input field pressed, drag it out of its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -319,7 +347,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The input field displays ‘Level 2’.");
 
-            DmiActions.ShowInstruction(this, @"Press the input field to confirm the current value (without entering data)");
+            DmiActions.ShowInstruction(this,
+                @"Press the input field to confirm the current value (without entering data)");
 
             EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.LevelEntered;
 
@@ -327,7 +356,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press the ‘Level 3’ button, then press and hold the input field");
 
             EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.LevelEntered;
-            
+
             DmiActions.ShowInstruction(this, "Whilst keeping the input field pressed, drag it out of its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -362,7 +391,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The input field displays ‘Level 3’.");
 
-            DmiActions.ShowInstruction(this, @"Press the input field to confirm the current value (without entering data)");
+            DmiActions.ShowInstruction(this,
+                @"Press the input field to confirm the current value (without entering data)");
 
             EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.LevelEntered;
 
@@ -380,8 +410,8 @@ namespace Testcase.DMITestCases
                                 @"2. The ‘Click’ sound is not played.");
 
             //EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.LevelEntered;
-            
-            
+
+
             DmiActions.ShowInstruction(this, "Release the input field");
 
             EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.LevelEntered;
@@ -403,7 +433,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The input field displays ‘Level 0’.");
 
-            DmiActions.ShowInstruction(this, @"Press the input field to confirm the current value (without entering data)");
+            DmiActions.ShowInstruction(this,
+                @"Press the input field to confirm the current value (without entering data)");
 
             EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.LevelEntered;
 
@@ -411,7 +442,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press the ‘CBTC’ button, then press and hold the input field");
 
             EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.LevelEntered;
-            
+
             DmiActions.ShowInstruction(this, "Whilst keeping the input field pressed, drag it out of its area");
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI still displays the Level window." + Environment.NewLine +
@@ -421,7 +452,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI still displays the Level window." + Environment.NewLine +
                                 @"2. The ‘Click’ sound is not played.");
-                        
+
             DmiActions.ShowInstruction(this, "Release the input field");
 
             EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.LevelEntered;
@@ -443,7 +474,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The input field displays ‘CBTC’.");
 
-            DmiActions.ShowInstruction(this, @"Press the input field to confirm the current value (without entering data)");
+            DmiActions.ShowInstruction(this,
+                @"Press the input field to confirm the current value (without entering data)");
 
             EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.LevelEntered;
 
@@ -451,7 +483,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press the ‘AWS_TPWS’ button, then press and hold the input field");
 
             EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.LevelEntered;
-            
+
             DmiActions.ShowInstruction(this, "Whilst keeping the input field pressed, drag it out of its area");
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI still displays the Level window." + Environment.NewLine +
@@ -481,7 +513,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The input field displays ‘AWS_TPWS’.");
 
-            DmiActions.ShowInstruction(this, @"Press the input field to confirm the current value (without entering data)");
+            DmiActions.ShowInstruction(this,
+                @"Press the input field to confirm the current value (without entering data)");
 
             EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.LevelEntered;
 
@@ -544,10 +577,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11383 (partly: discarded);
             */
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;      // Main
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main; // Main
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Level;
             EVC30_MMIRequestEnable.Send();
-            
+
             DmiActions.ShowInstruction(this, @"Press the ‘Level’ button");
 
             EVC20_MMISelectLevel.Send();
@@ -564,7 +597,8 @@ namespace Testcase.DMITestCases
             XML_22_5_1(msgType.typea);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The Level window displays only one button (‘Level 3’) on the keypad." + Environment.NewLine +
+                                "1. The Level window displays only one button (‘Level 3’) on the keypad." +
+                                Environment.NewLine +
                                 "2. The data input field displays ‘Level 3’.");
 
             /*
@@ -587,7 +621,9 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
+
         #region Send_XML_22_5_1_DMI_Test_Specification
+
         enum msgType
         {
             typea,
@@ -600,12 +636,18 @@ namespace Testcase.DMITestCases
             switch (type)
             {
                 case msgType.typea:
-                    EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new Variables.MMI_Q_LEVEL_NTC_ID[] { Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level };
-                    EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new Variables.MMI_M_CURRENT_LEVEL[] { Variables.MMI_M_CURRENT_LEVEL.LastUsedLevel };
-                    EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = new Variables.MMI_M_LEVEL_FLAG[] { Variables.MMI_M_LEVEL_FLAG.MarkedLevel };
-                    EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = new Variables.MMI_M_INHIBITED_LEVEL[] { Variables.MMI_M_INHIBITED_LEVEL.NotInhibited };
-                    EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = new Variables.MMI_M_INHIBIT_ENABLE[] { Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting };
-                    EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new Variables.MMI_M_LEVEL_NTC_ID[] { Variables.MMI_M_LEVEL_NTC_ID.L3 };
+                    EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new Variables.MMI_Q_LEVEL_NTC_ID[]
+                        {Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level};
+                    EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new Variables.MMI_M_CURRENT_LEVEL[]
+                        {Variables.MMI_M_CURRENT_LEVEL.LastUsedLevel};
+                    EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = new Variables.MMI_M_LEVEL_FLAG[]
+                        {Variables.MMI_M_LEVEL_FLAG.MarkedLevel};
+                    EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = new Variables.MMI_M_INHIBITED_LEVEL[]
+                        {Variables.MMI_M_INHIBITED_LEVEL.NotInhibited};
+                    EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = new Variables.MMI_M_INHIBIT_ENABLE[]
+                        {Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting};
+                    EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new Variables.MMI_M_LEVEL_NTC_ID[]
+                        {Variables.MMI_M_LEVEL_NTC_ID.L3};
                     break;
                 case msgType.typeb:
                     EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new MMI_Q_LEVEL_NTC_ID[0];
@@ -618,6 +660,7 @@ namespace Testcase.DMITestCases
             }
             EVC20_MMISelectLevel.Send();
         }
+
         #endregion
     }
 }

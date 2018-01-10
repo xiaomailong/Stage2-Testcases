@@ -73,8 +73,8 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Default window." + Environment.NewLine +
-                                "2. The current train speed is displayed in sub-area B1." + Environment.NewLine + 
-                                "3. The speed number (0) is in black." + Environment.NewLine + 
+                                "2. The current train speed is displayed in sub-area B1." + Environment.NewLine +
+                                "3. The speed number (0) is in black." + Environment.NewLine +
                                 "3. The single integer number is aligned right.");
 
             /*
@@ -85,12 +85,14 @@ namespace Testcase.DMITestCases
             */
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Ceiling_Speed_Monitoring;
             //EVC1_MMIDynamic.MMI_V_INTERVENTION_KMH = 45;
-            EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 40;       // Implied but not stated
+            EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 40; // Implied but not stated
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 50;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The current train speed number is coloured white with the speed pointer in red." + Environment.NewLine + 
-                                "2. The 2-digit speed number is aligned right without leading zeroes." + Environment.NewLine + 
+                                "1. The current train speed number is coloured white with the speed pointer in red." +
+                                Environment.NewLine +
+                                "2. The 2-digit speed number is aligned right without leading zeroes." +
+                                Environment.NewLine +
                                 "3. The current train speed numbers on the Speed hub are displayed with no leading zeroes.");
 
             /*
@@ -104,7 +106,7 @@ namespace Testcase.DMITestCases
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 40;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The current train speed number is in black." + Environment.NewLine + 
+                                "1. The current train speed number is in black." + Environment.NewLine +
                                 "2. The 2-digit speed number is aligned right without leading zeroes.");
 
             /*
@@ -211,7 +213,9 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
+
         #region Send_XML_12_4_DMI_Test_Specification
+
         enum msgType
         {
             typea,
@@ -223,7 +227,7 @@ namespace Testcase.DMITestCases
         {
             EVC1_MMIDynamic.MMI_M_SLIDE = 0;
             EVC1_MMIDynamic.MMI_M_SLIP = 0;
-            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring;   // 0
+            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring; // 0
             EVC1_MMIDynamic.MMI_A_TRAIN = 0;
             EVC1_MMIDynamic.MMI_V_TARGET = 1111;
             EVC1_MMIDynamic.MMI_V_PERMITTED = 1111;
@@ -247,9 +251,8 @@ namespace Testcase.DMITestCases
 
                     break;
             }
-         
         }
-        #endregion
 
+        #endregion
     }
 }

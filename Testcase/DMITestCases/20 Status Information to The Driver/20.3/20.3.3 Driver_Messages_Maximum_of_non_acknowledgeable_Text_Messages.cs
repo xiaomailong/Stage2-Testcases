@@ -111,7 +111,8 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press <Down> button until it is disabled");
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The text message ‘Emergency Brake Failure’ is removed from sub-area E9." + Environment.NewLine +
+                                "1. The text message ‘Emergency Brake Failure’ is removed from sub-area E9." +
+                                Environment.NewLine +
                                 "2. DMI displays the text message ‘Acknowledgement’ instead.");
 
             /*
@@ -135,7 +136,7 @@ namespace Testcase.DMITestCases
             */
             DmiActions.Re_establish_communication_EVC_DMI(this);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                              "1. DMI re-displays driver messages in areas E5-E9.");
+                                "1. DMI re-displays driver messages in areas E5-E9.");
 
             /*
             Test Step 9
@@ -162,8 +163,8 @@ namespace Testcase.DMITestCases
         }
 
 
-
         #region Send_XML_15_3_3_DMI_Test_Specification
+
         enum msgType
         {
             typea,
@@ -175,7 +176,6 @@ namespace Testcase.DMITestCases
         {
             switch (type)
             {
-
                 case msgType.typea:
 
                     // Step 1/1
@@ -186,9 +186,10 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                             "1. The text message ‘Level crossing not protected’ is displayed in area E5." + Environment.NewLine +
-                                             "2. Sound Sinfo is played." + Environment.NewLine +
-                                             "3. All older messages are moved down one line");
+                                        "1. The text message ‘Level crossing not protected’ is displayed in area E5." +
+                                        Environment.NewLine +
+                                        "2. Sound Sinfo is played." + Environment.NewLine +
+                                        "3. All older messages are moved down one line");
 
 
                     // Step 1/2
@@ -199,8 +200,9 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                             "1. The text message ‘Acknowledgement’ is displayed in area E5." + Environment.NewLine +
-                                             "2. Sound Sinfo is played.");
+                                        "1. The text message ‘Acknowledgement’ is displayed in area E5." +
+                                        Environment.NewLine +
+                                        "2. Sound Sinfo is played.");
 
                     // Step 1/3
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -210,9 +212,10 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                             "1. The text message ‘Balise read error’ is displayed in area E5." + Environment.NewLine +
-                                             "2. Sound Sinfo is played." + Environment.NewLine +
-                                             "3. All older messages are moved down one line");
+                                        "1. The text message ‘Balise read error’ is displayed in area E5." +
+                                        Environment.NewLine +
+                                        "2. Sound Sinfo is played." + Environment.NewLine +
+                                        "3. All older messages are moved down one line");
 
                     // Step 1/4
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -222,9 +225,10 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                             "1. The text message ‘Communication error’ is displayed in area E5." + Environment.NewLine +
-                                             "2. Sound Sinfo is played." + Environment.NewLine +
-                                             "3. All older messages are moved down one line");
+                                        "1. The text message ‘Communication error’ is displayed in area E5." +
+                                        Environment.NewLine +
+                                        "2. Sound Sinfo is played." + Environment.NewLine +
+                                        "3. All older messages are moved down one line");
 
                     // Step 1/5
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -234,9 +238,10 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                             "1. The text message ‘Runaway movement’ is displayed in area E5." + Environment.NewLine +
-                                             "2. Sound Sinfo is played." + Environment.NewLine +
-                                             "3. All older messages are moved down one line");
+                                        "1. The text message ‘Runaway movement’ is displayed in area E5." +
+                                        Environment.NewLine +
+                                        "2. Sound Sinfo is played." + Environment.NewLine +
+                                        "3. All older messages are moved down one line");
 
                     // Step 1/6
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -246,8 +251,9 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                             "1. The text message ‘Entering FS’ is displayed in area E5." + Environment.NewLine +
-                                             "2. Sound Sinfo is played.");
+                                        "1. The text message ‘Entering FS’ is displayed in area E5." +
+                                        Environment.NewLine +
+                                        "2. Sound Sinfo is played.");
 
                     // Step 1/7
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -257,9 +263,10 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                             "1. The text message ‘Entering OS’ is displayed in area E5." + Environment.NewLine +
-                                             "2. Sound Sinfo is played." + Environment.NewLine +
-                                             "3. All older messages are moved down one line");
+                                        "1. The text message ‘Entering OS’ is displayed in area E5." +
+                                        Environment.NewLine +
+                                        "2. Sound Sinfo is played." + Environment.NewLine +
+                                        "3. All older messages are moved down one line");
 
                     // Step 1/8
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -269,9 +276,10 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                             "1. The text message ‘Emergency stop’ is displayed in area E5." + Environment.NewLine +
-                                             "2. Sound Sinfo is played." + Environment.NewLine +
-                                             "3. All older messages are moved down one line");
+                                        "1. The text message ‘Emergency stop’ is displayed in area E5." +
+                                        Environment.NewLine +
+                                        "2. Sound Sinfo is played." + Environment.NewLine +
+                                        "3. All older messages are moved down one line");
 
                     // Step 1/9
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -281,9 +289,10 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                             "1. The text message ‘SH refused’ is displayed in area E5." + Environment.NewLine +
-                                             "2. Sound Sinfo is played." + Environment.NewLine +
-                                             "3. All older messages are moved down one line");
+                                        "1. The text message ‘SH refused’ is displayed in area E5." +
+                                        Environment.NewLine +
+                                        "2. Sound Sinfo is played." + Environment.NewLine +
+                                        "3. All older messages are moved down one line");
 
                     // Step 1/10
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -293,9 +302,10 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                             "1. The text message ‘SH request failed’ is displayed in area E5." + Environment.NewLine +
-                                             "2. Sound Sinfo is played." + Environment.NewLine +
-                                             "3. All older messages are moved down one line");
+                                        "1. The text message ‘SH request failed’ is displayed in area E5." +
+                                        Environment.NewLine +
+                                        "2. Sound Sinfo is played." + Environment.NewLine +
+                                        "3. All older messages are moved down one line");
 
                     // Step 1/11
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -305,9 +315,10 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                             "1. The text message ‘Trackside not compatible’ is displayed in area E5." + Environment.NewLine +
-                                             "2. Sound Sinfo is played." + Environment.NewLine +
-                                             "3. All older messages are moved down one line");
+                                        "1. The text message ‘Trackside not compatible’ is displayed in area E5." +
+                                        Environment.NewLine +
+                                        "2. Sound Sinfo is played." + Environment.NewLine +
+                                        "3. All older messages are moved down one line");
 
                     // Step 1/12
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -317,9 +328,10 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                             "1. The text message ‘Train is rejected’ is displayed in area E5." + Environment.NewLine +
-                                             "2. Sound Sinfo is played." + Environment.NewLine +
-                                             "3. All older messages are moved down one line");
+                                        "1. The text message ‘Train is rejected’ is displayed in area E5." +
+                                        Environment.NewLine +
+                                        "2. Sound Sinfo is played." + Environment.NewLine +
+                                        "3. All older messages are moved down one line");
 
                     // Step 1/13
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -329,8 +341,9 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                             "1. The text message ‘Train divided’ is displayed in area E5." + Environment.NewLine +
-                                             "2. Sound Sinfo is played.");
+                                        "1. The text message ‘Train divided’ is displayed in area E5." +
+                                        Environment.NewLine +
+                                        "2. Sound Sinfo is played.");
 
                     // Step 1/14
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -340,9 +353,10 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                             "1. The text message ‘Train data changed’ is displayed in area E5." + Environment.NewLine +
-                                             "2. Sound Sinfo is played." + Environment.NewLine +
-                                             "3. All older messages are moved down one line");
+                                        "1. The text message ‘Train data changed’ is displayed in area E5." +
+                                        Environment.NewLine +
+                                        "2. Sound Sinfo is played." + Environment.NewLine +
+                                        "3. All older messages are moved down one line");
 
                     // Step 1/15
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -352,9 +366,10 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                             "1. The text message ‘SR Distance exceeded’ is displayed in area E5." + Environment.NewLine +
-                                             "2. Sound Sinfo is played." + Environment.NewLine +
-                                             "3. All older messages are moved down one line");
+                                        "1. The text message ‘SR Distance exceeded’ is displayed in area E5." +
+                                        Environment.NewLine +
+                                        "2. Sound Sinfo is played." + Environment.NewLine +
+                                        "3. All older messages are moved down one line");
 
                     // Step 1/16
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -364,8 +379,9 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                             "1. The text message ‘SR stop order’ is displayed in area E5." + Environment.NewLine +
-                                             "2. Sound Sinfo is played.");
+                                        "1. The text message ‘SR stop order’ is displayed in area E5." +
+                                        Environment.NewLine +
+                                        "2. Sound Sinfo is played.");
 
                     // Step 1/17
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -375,9 +391,10 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                             "1. The text message ‘RV distance exceeded’ is displayed in area E5." + Environment.NewLine +
-                                             "2. Sound Sinfo is played." + Environment.NewLine +
-                                             "3. All older messages are moved down one line");
+                                        "1. The text message ‘RV distance exceeded’ is displayed in area E5." +
+                                        Environment.NewLine +
+                                        "2. Sound Sinfo is played." + Environment.NewLine +
+                                        "3. All older messages are moved down one line");
 
                     // Step 1/18
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -387,8 +404,9 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                             "1. The text message ‘ETCS Isolated’ is displayed in area E5." + Environment.NewLine +
-                                             "2. Sound Sinfo is played.");
+                                        "1. The text message ‘ETCS Isolated’ is displayed in area E5." +
+                                        Environment.NewLine +
+                                        "2. Sound Sinfo is played.");
 
                     // Step 1/19
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -398,9 +416,10 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                             "1. The text message ‘Perform Brake Test!’ is displayed in area E5." + Environment.NewLine +
-                                             "2. Sound Sinfo is played." + Environment.NewLine +
-                                             "3. All older messages are moved down one line");
+                                        "1. The text message ‘Perform Brake Test!’ is displayed in area E5." +
+                                        Environment.NewLine +
+                                        "2. Sound Sinfo is played." + Environment.NewLine +
+                                        "3. All older messages are moved down one line");
 
                     // Step 1/20
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -410,9 +429,10 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                             "1. The text message ‘Unable to start Brake Test’ is displayed in area E5." + Environment.NewLine +
-                                             "2. Sound Sinfo is played." + Environment.NewLine +
-                                             "3. All older messages are moved down one line");
+                                        "1. The text message ‘Unable to start Brake Test’ is displayed in area E5." +
+                                        Environment.NewLine +
+                                        "2. Sound Sinfo is played." + Environment.NewLine +
+                                        "3. All older messages are moved down one line");
 
                     // Step 1/21
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -422,8 +442,9 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                             "1. The text message ‘Brake Test in Progress’ is displayed in area E5." + Environment.NewLine +
-                                             "2. Sound Sinfo is played.");
+                                        "1. The text message ‘Brake Test in Progress’ is displayed in area E5." +
+                                        Environment.NewLine +
+                                        "2. Sound Sinfo is played.");
 
                     // Step 1/22
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -433,9 +454,10 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                             "1. The text message ‘LZB Partial Block Mode’ is displayed in area E5." + Environment.NewLine +
-                                             "2. Sound Sinfo is played." + Environment.NewLine +
-                                             "3. All older messages are moved down one line");
+                                        "1. The text message ‘LZB Partial Block Mode’ is displayed in area E5." +
+                                        Environment.NewLine +
+                                        "2. Sound Sinfo is played." + Environment.NewLine +
+                                        "3. All older messages are moved down one line");
 
                     // Step 1/23
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -445,9 +467,10 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                             "1. The text message ‘Override LZB Partial Block Mode’ is displayed in area E5." + Environment.NewLine +
-                                             "2. Sound Sinfo is played." + Environment.NewLine +
-                                             "3. All older messages are moved down one line");
+                                        "1. The text message ‘Override LZB Partial Block Mode’ is displayed in area E5." +
+                                        Environment.NewLine +
+                                        "2. Sound Sinfo is played." + Environment.NewLine +
+                                        "3. All older messages are moved down one line");
 
                     // Step 1/24
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -457,9 +480,10 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                             "1. The text message ‘Brake Test successful’ is displayed in area E5." + Environment.NewLine +
-                                             "2. Sound Sinfo is played." + Environment.NewLine +
-                                             "3. All older messages are moved down one line");
+                                        "1. The text message ‘Brake Test successful’ is displayed in area E5." +
+                                        Environment.NewLine +
+                                        "2. Sound Sinfo is played." + Environment.NewLine +
+                                        "3. All older messages are moved down one line");
 
                     // Step 1/25
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -469,9 +493,10 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                             "1. The text message ‘Brake Test Timeout’ is displayed in area E5." + Environment.NewLine +
-                                             "2. Sound Sinfo is played." + Environment.NewLine +
-                                             "3. All older messages are moved down one line");
+                                        "1. The text message ‘Brake Test Timeout’ is displayed in area E5." +
+                                        Environment.NewLine +
+                                        "2. Sound Sinfo is played." + Environment.NewLine +
+                                        "3. All older messages are moved down one line");
 
                     // Step 1/26
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -481,9 +506,10 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                             "1. The text message ‘Brake Test aborted, perform new Test?’ is displayed in area E5." + Environment.NewLine +
-                                             "2. Sound Sinfo is played." + Environment.NewLine +
-                                             "3. All older messages are moved down one line");
+                                        "1. The text message ‘Brake Test aborted, perform new Test?’ is displayed in area E5." +
+                                        Environment.NewLine +
+                                        "2. Sound Sinfo is played." + Environment.NewLine +
+                                        "3. All older messages are moved down one line");
 
                     // Step 1/27
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -493,9 +519,10 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                             "1. The text message ‘BTM Test in Progress’ is displayed in area E5." + Environment.NewLine +
-                                             "2. Sound Sinfo is played." + Environment.NewLine +
-                                             "3. All older messages are moved down one line");
+                                        "1. The text message ‘BTM Test in Progress’ is displayed in area E5." +
+                                        Environment.NewLine +
+                                        "2. Sound Sinfo is played." + Environment.NewLine +
+                                        "3. All older messages are moved down one line");
 
                     // Step 1/28
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -505,9 +532,10 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                             "1. The text message ‘BTM Test Failure’ is displayed in area E5." + Environment.NewLine +
-                                             "2. Sound Sinfo is played." + Environment.NewLine +
-                                             "3. All older messages are moved down one line");
+                                        "1. The text message ‘BTM Test Failure’ is displayed in area E5." +
+                                        Environment.NewLine +
+                                        "2. Sound Sinfo is played." + Environment.NewLine +
+                                        "3. All older messages are moved down one line");
 
                     // Step 1/29
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -517,9 +545,10 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                             "1. The text message ‘BTM Test Timeout’ is displayed in area E5." + Environment.NewLine +
-                                             "2. Sound Sinfo is played." + Environment.NewLine +
-                                             "3. All older messages are moved down one line");
+                                        "1. The text message ‘BTM Test Timeout’ is displayed in area E5." +
+                                        Environment.NewLine +
+                                        "2. Sound Sinfo is played." + Environment.NewLine +
+                                        "3. All older messages are moved down one line");
 
                     // Step 1/30
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -529,9 +558,10 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                             "1. The text message ‘Restart ATP!’ is displayed in area E5." + Environment.NewLine +
-                                             "2. Sound Sinfo is played." + Environment.NewLine +
-                                             "3. All older messages are moved down one line");
+                                        "1. The text message ‘Restart ATP!’ is displayed in area E5." +
+                                        Environment.NewLine +
+                                        "2. Sound Sinfo is played." + Environment.NewLine +
+                                        "3. All older messages are moved down one line");
 
                     // Step 1/31
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -541,9 +571,10 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                             "1. The text message ‘No Level available Onboard’ is displayed in area E5." + Environment.NewLine +
-                                             "2. Sound Sinfo is played." + Environment.NewLine +
-                                             "3. All older messages are moved down one line");
+                                        "1. The text message ‘No Level available Onboard’ is displayed in area E5." +
+                                        Environment.NewLine +
+                                        "2. Sound Sinfo is played." + Environment.NewLine +
+                                        "3. All older messages are moved down one line");
 
                     // Step 1/32
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -553,9 +584,10 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                             "1. The text message ‘Announced levels(s) not supported Onboard’ is displayed in area E5." + Environment.NewLine +
-                                             "2. Sound Sinfo is played." + Environment.NewLine +
-                                             "3. All older messages are moved down one line");
+                                        "1. The text message ‘Announced levels(s) not supported Onboard’ is displayed in area E5." +
+                                        Environment.NewLine +
+                                        "2. Sound Sinfo is played." + Environment.NewLine +
+                                        "3. All older messages are moved down one line");
 
                     // Step 1/33
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -565,9 +597,10 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                             "1. The text message ‘Reactivate the Cabin!’ is displayed in area E5." + Environment.NewLine +
-                                             "2. Sound Sinfo is played." + Environment.NewLine +
-                                             "3. All older messages are moved down one line");
+                                        "1. The text message ‘Reactivate the Cabin!’ is displayed in area E5." +
+                                        Environment.NewLine +
+                                        "2. Sound Sinfo is played." + Environment.NewLine +
+                                        "3. All older messages are moved down one line");
 
                     // Step 1/34
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -577,9 +610,10 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                             "1. The text message ‘Trackside malfunction’ is displayed in area E5." + Environment.NewLine +
-                                             "2. Sound Sinfo is played." + Environment.NewLine +
-                                             "3. All older messages are moved down one line");
+                                        "1. The text message ‘Trackside malfunction’ is displayed in area E5." +
+                                        Environment.NewLine +
+                                        "2. Sound Sinfo is played." + Environment.NewLine +
+                                        "3. All older messages are moved down one line");
 
                     // Step 1/35
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -589,9 +623,10 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                             "1. The text message ‘Trackside Level(s) not supported Onboard’ is displayed in area E5." + Environment.NewLine +
-                                             "2. Sound Sinfo is played." + Environment.NewLine +
-                                             "3. All older messages are moved down one line");
+                                        "1. The text message ‘Trackside Level(s) not supported Onboard’ is displayed in area E5." +
+                                        Environment.NewLine +
+                                        "2. Sound Sinfo is played." + Environment.NewLine +
+                                        "3. All older messages are moved down one line");
 
                     // Step 1/36
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -601,9 +636,10 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                             "1. The text message ‘No Track Description’ is displayed in area E5." + Environment.NewLine +
-                                             "2. Sound Sinfo is played." + Environment.NewLine +
-                                             "3. All older messages are moved down one line");
+                                        "1. The text message ‘No Track Description’ is displayed in area E5." +
+                                        Environment.NewLine +
+                                        "2. Sound Sinfo is played." + Environment.NewLine +
+                                        "3. All older messages are moved down one line");
 
                     // Step 1/37
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -613,9 +649,10 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                             "1. The text message ‘SH Stop Order’ is displayed in area E5." + Environment.NewLine +
-                                             "2. Sound Sinfo is played." + Environment.NewLine +
-                                             "3. All older messages are moved down one line");
+                                        "1. The text message ‘SH Stop Order’ is displayed in area E5." +
+                                        Environment.NewLine +
+                                        "2. Sound Sinfo is played." + Environment.NewLine +
+                                        "3. All older messages are moved down one line");
 
                     // Step 1/38
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -625,9 +662,10 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                             "1. The text message ‘Procedure Brake Percentage Entry terminated by ATP’ is displayed in area E5." + Environment.NewLine +
-                                             "2. Sound Sinfo is played." + Environment.NewLine +
-                                             "3. All older messages are moved down one line");
+                                        "1. The text message ‘Procedure Brake Percentage Entry terminated by ATP’ is displayed in area E5." +
+                                        Environment.NewLine +
+                                        "2. Sound Sinfo is played." + Environment.NewLine +
+                                        "3. All older messages are moved down one line");
 
                     // Step 1/39
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -637,9 +675,10 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                             "1. The text message ‘Procedure Wheel Diameter Entry terminated by ATP’ is displayed in area E5." + Environment.NewLine +
-                                             "2. Sound Sinfo is played." + Environment.NewLine +
-                                             "3. All older messages are moved down one line");
+                                        "1. The text message ‘Procedure Wheel Diameter Entry terminated by ATP’ is displayed in area E5." +
+                                        Environment.NewLine +
+                                        "2. Sound Sinfo is played." + Environment.NewLine +
+                                        "3. All older messages are moved down one line");
 
                     // Step 1/40
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -649,9 +688,10 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                             "1. The text message ‘Procedure Doppler Radar Entry terminated by ATP’ is displayed in area E5." + Environment.NewLine +
-                                             "2. Sound Sinfo is played." + Environment.NewLine +
-                                             "3. All older messages are moved down one line");
+                                        "1. The text message ‘Procedure Doppler Radar Entry terminated by ATP’ is displayed in area E5." +
+                                        Environment.NewLine +
+                                        "2. Sound Sinfo is played." + Environment.NewLine +
+                                        "3. All older messages are moved down one line");
 
                     // Step 1/41
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -661,9 +701,10 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                             "1. The text message ‘Unable to start Brake Test, vehicle not ready’ is displayed in area E5." + Environment.NewLine +
-                                             "2. Sound Sinfo is played." + Environment.NewLine +
-                                             "3. All older messages are moved down one line");
+                                        "1. The text message ‘Unable to start Brake Test, vehicle not ready’ is displayed in area E5." +
+                                        Environment.NewLine +
+                                        "2. Sound Sinfo is played." + Environment.NewLine +
+                                        "3. All older messages are moved down one line");
 
                     // Step 1/42
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -673,9 +714,10 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                             "1. The text message ‘Unblock EB’ is displayed in area E5." + Environment.NewLine +
-                                             "2. Sound Sinfo is played." + Environment.NewLine +
-                                             "3. All older messages are moved down one line");
+                                        "1. The text message ‘Unblock EB’ is displayed in area E5." +
+                                        Environment.NewLine +
+                                        "2. Sound Sinfo is played." + Environment.NewLine +
+                                        "3. All older messages are moved down one line");
 
                     // Step 1/43
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -685,9 +727,10 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                             "1. The text message ‘Route unsuitable – axle load category’ is displayed in area E5." + Environment.NewLine +
-                                             "2. Sound Sinfo is played." + Environment.NewLine +
-                                             "3. All older messages are moved down one line");
+                                        "1. The text message ‘Route unsuitable – axle load category’ is displayed in area E5." +
+                                        Environment.NewLine +
+                                        "2. Sound Sinfo is played." + Environment.NewLine +
+                                        "3. All older messages are moved down one line");
                     // Step 1/44
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
@@ -696,9 +739,10 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                             "1. The text message ‘Route unsuitable – loading gauge’ is displayed in area E5." + Environment.NewLine +
-                                             "2. Sound Sinfo is played." + Environment.NewLine +
-                                             "3. All older messages are moved down one line");
+                                        "1. The text message ‘Route unsuitable – loading gauge’ is displayed in area E5." +
+                                        Environment.NewLine +
+                                        "2. Sound Sinfo is played." + Environment.NewLine +
+                                        "3. All older messages are moved down one line");
                     // Step 1/45
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
@@ -707,9 +751,10 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                             "1. The text message ‘Route unsuitable – traction system’ is displayed in area E5." + Environment.NewLine +
-                                             "2. Sound Sinfo is played." + Environment.NewLine +
-                                             "3. All older messages are moved down one line");
+                                        "1. The text message ‘Route unsuitable – traction system’ is displayed in area E5." +
+                                        Environment.NewLine +
+                                        "2. Sound Sinfo is played." + Environment.NewLine +
+                                        "3. All older messages are moved down one line");
                     // Step 1/46
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
@@ -718,9 +763,10 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                             "1. The text message ‘No valid authentication key’ is displayed in area E5." + Environment.NewLine +
-                                             "2. Sound Sinfo is played." + Environment.NewLine +
-                                             "3. All older messages are moved down one line");
+                                        "1. The text message ‘No valid authentication key’ is displayed in area E5." +
+                                        Environment.NewLine +
+                                        "2. Sound Sinfo is played." + Environment.NewLine +
+                                        "3. All older messages are moved down one line");
                     // Step 1/47
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
@@ -729,9 +775,10 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                             "1. The text message ‘NL-input signal is withdrawn’ is displayed in area E5." + Environment.NewLine +
-                                             "2. Sound Sinfo is played." + Environment.NewLine +
-                                             "3. All older messages are moved down one line");
+                                        "1. The text message ‘NL-input signal is withdrawn’ is displayed in area E5." +
+                                        Environment.NewLine +
+                                        "2. Sound Sinfo is played." + Environment.NewLine +
+                                        "3. All older messages are moved down one line");
                     // Step 1/48
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
@@ -740,9 +787,10 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                             "1. The text message ‘Wheel data settings were successfully changed’ is displayed in area E5." + Environment.NewLine +
-                                             "2. Sound Sinfo is played." + Environment.NewLine +
-                                             "3. All older messages are moved down one line");
+                                        "1. The text message ‘Wheel data settings were successfully changed’ is displayed in area E5." +
+                                        Environment.NewLine +
+                                        "2. Sound Sinfo is played." + Environment.NewLine +
+                                        "3. All older messages are moved down one line");
                     // Step 1/49
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
@@ -751,9 +799,10 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                             "1. The text message ‘Doppler radar settings were successfully changed’ is displayed in area E5." + Environment.NewLine +
-                                             "2. Sound Sinfo is played." + Environment.NewLine +
-                                             "3. All older messages are moved down one line");
+                                        "1. The text message ‘Doppler radar settings were successfully changed’ is displayed in area E5." +
+                                        Environment.NewLine +
+                                        "2. Sound Sinfo is played." + Environment.NewLine +
+                                        "3. All older messages are moved down one line");
                     // Step 1/50
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
@@ -762,9 +811,10 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                             "1. The text message ‘Brake percentage was successfully changed’ is displayed in area E5." + Environment.NewLine +
-                                             "2. Sound Sinfo is played." + Environment.NewLine +
-                                             "3. All older messages are moved down one line");
+                                        "1. The text message ‘Brake percentage was successfully changed’ is displayed in area E5." +
+                                        Environment.NewLine +
+                                        "2. Sound Sinfo is played." + Environment.NewLine +
+                                        "3. All older messages are moved down one line");
 
 
                     break;
@@ -778,9 +828,9 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                             "1. The text messages in areas E5-9 are unchanged." + Environment.NewLine +
-                                             "2. No sound Sinfo is played." + Environment.NewLine +
-                                             "3. All older messages are moved down one line");
+                                        "1. The text messages in areas E5-9 are unchanged." + Environment.NewLine +
+                                        "2. No sound Sinfo is played." + Environment.NewLine +
+                                        "3. All older messages are moved down one line");
 
 
                     break;
@@ -794,9 +844,10 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                             "1. The visibility window is not moved." + Environment.NewLine +
-                                             "2. The text message ‘No Country Selection in LZB PB Mode’ is changed to ‘Emergency Brake Failure’." + Environment.NewLine +
-                                             "3. No sound ‘Sinfo’ is played.");
+                                        "1. The visibility window is not moved." + Environment.NewLine +
+                                        "2. The text message ‘No Country Selection in LZB PB Mode’ is changed to ‘Emergency Brake Failure’." +
+                                        Environment.NewLine +
+                                        "3. No sound ‘Sinfo’ is played.");
 
 
                     // Step 5
@@ -807,14 +858,15 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                             "1. The visibility window is moved on top of the message list." + Environment.NewLine +
-                                             "2. <Up> button is disabled." + Environment.NewLine +
-                                             "3. DMI displays text message ‘Unauthorized passing of EOA/LOA’ in sub-area E5.");
+                                        "1. The visibility window is moved on top of the message list." +
+                                        Environment.NewLine +
+                                        "2. <Up> button is disabled." + Environment.NewLine +
+                                        "3. DMI displays text message ‘Unauthorized passing of EOA/LOA’ in sub-area E5.");
 
                     break;
-
             }
         }
+
         #endregion
     }
 }

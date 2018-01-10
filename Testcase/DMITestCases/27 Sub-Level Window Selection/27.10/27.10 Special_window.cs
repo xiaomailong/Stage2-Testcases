@@ -71,27 +71,33 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Default;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.None;
-            EVC30_MMIRequestEnable.Send();      // Just to make sure that all are disabled
+            EVC30_MMIRequestEnable.Send(); // Just to make sure that all are disabled
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = (EVC30_MMIRequestEnable.EnabledRequests.SRSpeedDistance |
-                                                                EVC30_MMIRequestEnable.EnabledRequests.TrainIntegrity) & 
+                                                                EVC30_MMIRequestEnable.EnabledRequests.TrainIntegrity) &
                                                                ~EVC30_MMIRequestEnable.EnabledRequests.Adhesion;
             EVC30_MMIRequestEnable.Send();
 
             DmiActions.ShowInstruction(this, @"Press ‘Spec’ button");
 
             // Spec says some objects are displayed in the Main window. Doh!
-            WaitForVerification("Check the following  (* indicates sub-areas drawn as one area):" + Environment.NewLine + Environment.NewLine +
+            WaitForVerification("Check the following  (* indicates sub-areas drawn as one area):" +
+                                Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Special window with the title ‘Special’." + Environment.NewLine +
-                                "2. The Special window is displayed in areas D, F and G with 3 layers." + Environment.NewLine +
-                                "3. The window displays an enabled ‘Close’ button, symbol NA11, and three buttons (in two lines)." + Environment.NewLine +
+                                "2. The Special window is displayed in areas D, F and G with 3 layers." +
+                                Environment.NewLine +
+                                "3. The window displays an enabled ‘Close’ button, symbol NA11, and three buttons (in two lines)." +
+                                Environment.NewLine +
                                 "4. Button #1 (disabled) is labeled ‘Adhesion’" + Environment.NewLine +
                                 "5. Button #2 (enabled) is labeled ‘SR speed / distance’" + Environment.NewLine +
                                 "6. Button #3 (enabled) is labeled ‘Train integrity’" + Environment.NewLine +
                                 "7. Layer 0 comprises areas D, F, G, E10, E11, Y, and Z" + Environment.NewLine +
-                                "8. Layer 1 comprises area A1, (A2 + A3)*, A4, B*, C1, (C2 + C3 + C4)*, C5, C6, C7, C8, C9, E1, E2, E3, E4, (E5 - E9)*." + Environment.NewLine +
+                                "8. Layer 1 comprises area A1, (A2 + A3)*, A4, B*, C1, (C2 + C3 + C4)*, C5, C6, C7, C8, C9, E1, E2, E3, E4, (E5 - E9)*." +
+                                Environment.NewLine +
                                 "9. Layer 2 comprises areas B3, B4, B5, B6 and B7." + Environment.NewLine +
-                                "10. Objects, text messages and buttons can be displayed in several levels. Within a level they are allocated to areas." + Environment.NewLine +
-                                "11. Objects, text messages and buttons in a layer form a window." + Environment.NewLine +
+                                "10. Objects, text messages and buttons can be displayed in several levels. Within a level they are allocated to areas." +
+                                Environment.NewLine +
+                                "11. Objects, text messages and buttons in a layer form a window." +
+                                Environment.NewLine +
                                 "12. The Default window does not cover the current window." + Environment.NewLine +
                                 "13. A sub-level window can partially cover another window, depending on its size. Another window cannot be displayed and activated at the same time.");
 
@@ -106,7 +112,8 @@ namespace Testcase.DMITestCases
             EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.StartProcedureTrainIntegrity;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The button is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                "1. The button is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "2. DMI still displays the Special window." + Environment.NewLine +
                                 "3. The ‘Click’ sound is played once." + Environment.NewLine);
 
@@ -119,7 +126,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘Train integrity’ button for more than 2s");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. Whilst the button has been pressed for less than 2s, the button is repeatedly displayed pressed then immediately re-displayed enabled;" + Environment.NewLine +
+                                "1. Whilst the button has been pressed for less than 2s, the button is repeatedly displayed pressed then immediately re-displayed enabled;" +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 "3. When the button has been pressed for more than 2s, it is displayed pressed (without toggling).");
 
@@ -129,7 +137,8 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The ‘Train Integrity’ button turns to the ‘Enabled’ state without a sound
             Test Step Comment: (1) MMI_gen 8438-1 (THR) (partly: button ‘Train Integrity’, MMI_gen 11450-1 (THR) (partly: Delay-Type button, MMI_gen 4389 (partly: state ‘Enabled’ when slide out with force applied (stop toggling state ‘Pressed’ and ‘Enabled’), no sound)))
             */
-            DmiActions.ShowInstruction(this, @"Whilst keeping the ‘Train Integrity’ button pressed, drag it out of its area");
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the ‘Train Integrity’ button pressed, drag it out of its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The ‘Train Integrity’ button is displayed enabled." + Environment.NewLine +
@@ -141,7 +150,8 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information, (1)  The ‘Train Integrity’ button turns to the ‘Enabled’ state without a sound
             Test Step Comment: (1) MMI_gen 8438-1 (THR) (partly: button ‘Train nintegrity’, MMI_gen 11450-1 (THR) (partly: Delay-Type button, MMI_gen 4388 (partly: to reset toggling state ‘Pressed’ and ‘Enabled’, no sound), MMI_gen 4389 (partly: to reset toggling state ‘Pressed’ and ‘Enabled’, no sound)));
             */
-            DmiActions.ShowInstruction(this, @"Whilst keeping the ‘Train Integrity’ button pressed, drag it back inside its area for 1s, then drag it outside again");
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the ‘Train Integrity’ button pressed, drag it back inside its area for 1s, then drag it outside again");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The ‘Train Integrity’ button is displayed enabled." + Environment.NewLine +
@@ -153,10 +163,12 @@ namespace Testcase.DMITestCases
             Expected Result: While press and hold button less than 2 secThe state ‘pressed’ and ‘enabled’ are switched repeatly while button is pressed without a sound. While press and hold button over 2 secThe state of button is changed to ‘Pressed’ and without toggle
             Test Step Comment: (1) MMI_gen 8438-1 (THR) (partly: button ‘Train Integrity’, MMI_gen 11450-1 (THR) (partly: Delay-Type button, MMI_gen 4389 (partly: start toggling state ‘Pressed’ and ‘Enabled’ when slide back, no sound)));(2) MMI_gen 8438-1 (THR) (partly: button ‘Train Integrity’, MMI_gen 11450-1 (THR) (partly: Delay-Type button, MMI_gen 4388 (partly: after 2 seconds, the button is change again to the state ‘Pressed’)));
             */
-            DmiActions.ShowInstruction(this, @"Whilst keeping the ‘Train Integrity’ button pressed, drag it back inside its area for more than 2s");
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the ‘Train Integrity’ button pressed, drag it back inside its area for more than 2s");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. Whilst The ‘Train Integrity’ button has been held pressed in its area for less than 2s it is repeatedly displayed pressed then immediately re-displayed enabled;" + Environment.NewLine +
+                                @"1. Whilst The ‘Train Integrity’ button has been held pressed in its area for less than 2s it is repeatedly displayed pressed then immediately re-displayed enabled;" +
+                                Environment.NewLine +
                                 "2. No sound is played." + Environment.NewLine +
                                 "3. When the button has been pressed for more than 2s, it is displayed pressed (without toggling).");
 
@@ -183,7 +195,7 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.None;
-            EVC30_MMIRequestEnable.Send();      // Just to make sure that all are disabled
+            EVC30_MMIRequestEnable.Send(); // Just to make sure that all are disabled
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = (EVC30_MMIRequestEnable.EnabledRequests.SRSpeedDistance |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.TrainIntegrity) &
                                                                ~EVC30_MMIRequestEnable.EnabledRequests.Adhesion;
@@ -210,10 +222,12 @@ namespace Testcase.DMITestCases
             Expected Result: The border of the button is shown (state ‘Enabled’) without a sound
             Test Step Comment: MMI_gen 8434 (partly: MMI_gen 4557 (partly: SR speed/distance), MMI_gen 4382 (partly: state ‘Enabled’ when slide out with force applied, no sound))); MMI_gen 4374;
             */
-            DmiActions.ShowInstruction(this, @"Whilst keeping the ‘SR speed/distance’ button pressed, drag it out of its area");
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the ‘SR speed/distance’ button pressed, drag it out of its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘SR speed/distance’ button is displayed enabled, with a border." + Environment.NewLine + 
+                                @"1. The ‘SR speed/distance’ button is displayed enabled, with a border." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once.");
 
             /*
@@ -222,7 +236,8 @@ namespace Testcase.DMITestCases
             Expected Result: The button is back to state ‘Pressed’ without a sound
             Test Step Comment: MMI_gen 8434 (partly: MMI_gen 4557 (partly: SR speed/distance), MMI_gen 4382 (partly: state ‘Pressed’ when slide back, no sound))); MMI_gen 4375;
             */
-            DmiActions.ShowInstruction(this, @"Whilst keeping the ‘SR speed/distance’ button pressed, drag it back inside its area");
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the ‘SR speed/distance’ button pressed, drag it back inside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The ‘SR speed/distance’ button is displayed pressed." + Environment.NewLine +
@@ -265,7 +280,8 @@ namespace Testcase.DMITestCases
                                 "2. The ‘Click’ sound is played once.");
 
             // Repeat Step 11 for the Close button
-            DmiActions.ShowInstruction(this, @"Whilst keeping the ‘Close’ button pressed, drag it back inside its area");
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the ‘Close’ button pressed, drag it back inside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The ‘Close’ button is displayed pressed." + Environment.NewLine +
@@ -288,7 +304,7 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.No_window_specified;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.None;
-            EVC30_MMIRequestEnable.Send();      // Just to make sure that all are disabled
+            EVC30_MMIRequestEnable.Send(); // Just to make sure that all are disabled
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.SRSpeedDistance |
                                                                EVC30_MMIRequestEnable.EnabledRequests.TrainIntegrity |
                                                                EVC30_MMIRequestEnable.EnabledRequests.Adhesion;
@@ -318,7 +334,8 @@ namespace Testcase.DMITestCases
                                 "2. The ‘Click’ sound is played once.");
 
             // Repeat Step 11 for the Adhesion button
-            DmiActions.ShowInstruction(this, @"Whilst keeping the ‘Adhesion’ button pressed, drag it back inside its area");
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the ‘Adhesion’ button pressed, drag it back inside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The ‘Adhesion’ button is displayed pressed." + Environment.NewLine +
@@ -352,7 +369,7 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.None;
-            EVC30_MMIRequestEnable.Send();      // Just to make sure that all are disabled
+            EVC30_MMIRequestEnable.Send(); // Just to make sure that all are disabled
             // Spec not clear whether adhesion is enabled
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Adhesion;
             EVC30_MMIRequestEnable.Send();
@@ -370,7 +387,7 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.None;
-            EVC30_MMIRequestEnable.Send();      // Just to make sure that all are disabled
+            EVC30_MMIRequestEnable.Send(); // Just to make sure that all are disabled
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Adhesion |
                                                                EVC30_MMIRequestEnable.EnabledRequests.SRSpeedDistance |
                                                                EVC30_MMIRequestEnable.EnabledRequests.TrainIntegrity;

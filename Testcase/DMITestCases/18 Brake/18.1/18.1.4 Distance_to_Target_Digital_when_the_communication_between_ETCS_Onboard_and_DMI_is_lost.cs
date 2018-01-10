@@ -86,7 +86,8 @@ namespace Testcase.DMITestCases
             //DmiActions.ShowInstruction(this, "Perform SoM to SR mode, level 1");
 
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode =
+                EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
 
             // Call generic Check Results Method
             DmiExpectedResults.SR_Mode_displayed(this);
@@ -97,22 +98,23 @@ namespace Testcase.DMITestCases
             Expected Result: DMI changes from SR to FS mode.Verify that the distance to target bar is displayed in sub-area A2.The distance to target digital is displayed as numeric in Metric units
             */
             // ?? Set an EOA so the DMI can display a target
-            EVC1_MMIDynamic.MMI_O_BRAKETARGET = 300000;              // 3 km: will cause the target display to show a white arrow on top;
+            EVC1_MMIDynamic.MMI_O_BRAKETARGET =
+                300000; // 3 km: will cause the target display to show a white arrow on top;
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_PreIndication_Monitoring;
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 0;       // just starting off
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 0; // just starting off
 
             // Set the permitted speed so the current speed is allowed
             EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 10;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
 
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 25000;   // 250m
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 25000; // 250m
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
 
             DmiExpectedResults.FS_mode_displayed(this);
 
             EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 70;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 60;
-            
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "2. The distance to target bar is displayed in sub-area A2." + Environment.NewLine +
                                 "3. The digital distance to target is displayed as a number in metric units.");
@@ -122,7 +124,7 @@ namespace Testcase.DMITestCases
             Action: Drive the train forward passing BG2
             Expected Result: DMI remains displays in FS mode
             */
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 25000;   // 250m
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 25000; // 250m
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI still displays the FS mode symbol (MO11) in area B7");

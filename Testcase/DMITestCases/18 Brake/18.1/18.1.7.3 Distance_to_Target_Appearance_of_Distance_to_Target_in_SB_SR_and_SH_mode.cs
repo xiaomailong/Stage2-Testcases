@@ -76,14 +76,20 @@ namespace Testcase.DMITestCases
             EVC14_MMICurrentDriverID.Send();
 
             DmiActions.ShowInstruction(this, "Enter Driver ID. Skip brake test");
-            
+
             EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Disabled;
-            EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new Variables.MMI_Q_LEVEL_NTC_ID[] { Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level };
-            EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new Variables.MMI_M_CURRENT_LEVEL[] { Variables.MMI_M_CURRENT_LEVEL.NotLastUsedLevel };
-            EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = new Variables.MMI_M_LEVEL_FLAG[] { Variables.MMI_M_LEVEL_FLAG.MarkedLevel };
-            EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = new Variables.MMI_M_INHIBITED_LEVEL[] { Variables.MMI_M_INHIBITED_LEVEL.NotInhibited };
-            EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = new Variables.MMI_M_INHIBIT_ENABLE[] { Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting };
-            EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new Variables.MMI_M_LEVEL_NTC_ID[] { Variables.MMI_M_LEVEL_NTC_ID.L1 };
+            EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new Variables.MMI_Q_LEVEL_NTC_ID[]
+                {Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level};
+            EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new Variables.MMI_M_CURRENT_LEVEL[]
+                {Variables.MMI_M_CURRENT_LEVEL.NotLastUsedLevel};
+            EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = new Variables.MMI_M_LEVEL_FLAG[]
+                {Variables.MMI_M_LEVEL_FLAG.MarkedLevel};
+            EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = new Variables.MMI_M_INHIBITED_LEVEL[]
+                {Variables.MMI_M_INHIBITED_LEVEL.NotInhibited};
+            EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = new Variables.MMI_M_INHIBIT_ENABLE[]
+                {Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting};
+            EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new Variables.MMI_M_LEVEL_NTC_ID[]
+                {Variables.MMI_M_LEVEL_NTC_ID.L1};
             EVC20_MMISelectLevel.Send();
 
             DmiActions.ShowInstruction(this, "Select and confirm ‘Level 1’");
@@ -102,18 +108,20 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SR mode, level 1Verify the following information(1)    Use the log file to confirm that DMI receives the following packets information with a specific value,  EVC-1: MMI_M_WARNING = 0 (Status = NoS, Supervision = CSM) EVC-7: OBU_TR_M_MODE = 2 (SR mode) (2)   The distance to target bar is not display in sub-area A3. (3)   The distance to target digital is not display in sub-area A2.(4)   Use the log file to confirm that DMI receives the packet EVC-1 with variable MMI_O_BRAKETARGET = -1 (Default)
             Test Step Comment: (1) MMI_gen 107 (partly: MMI_M_WARNING, OBU_TR_M_MODE, SR mode CSM); MMI_gen 2567 (partly: MMI_M_WARNING, OBU_TR_M_MODE, SR mode CSM);(2) MMI_gen 6658 (partly: not be shown); MMI_gen 107 (partly: Table 37, SR mode);(3) MMI_gen 2567 (partly: Table 38, SR mode CSM); MMI_gen 6774 (partly: not be shown);(4) MMI_gen 6658 (partly: MMI_O_BRAKETARGET is less than zero); MMI_gen 6774 (partly: MMI_O_BRAKETARGET is less than zero);
             */
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 0;       // 0m
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 0; // 0m
 
             // SoM is tested elsewhere: set SR mode
             /*
             DmiActions.ShowInstruction(this, "Perform SoM in SR mode, level 1. Press ‘Special’ button. Press ‘SR speed / distance’ button. Enter the value of SR speed = 40 km/h " + Environment.NewLine +
                                              "and SR distance = 500m. Press ‘Yes’ button. Press on sub-area B to toggle the basic speed hook so that is is displayed");
             */
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode =
+                EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
 
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Close_current_return_to_parent;            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.SRSpeedDistance;
-        
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Close_current_return_to_parent;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.SRSpeedDistance;
+
             EVC30_MMIRequestEnable.Send();
 
             DmiActions.ShowInstruction(this, "Press the ‘Special’ button, then press the ‘SR speed / distance’ button");
@@ -121,16 +129,22 @@ namespace Testcase.DMITestCases
             EVC11_MMICurrentSRRules.MMI_M_BUTTONS = MMI_M_BUTTONS.BTN_YES_DATA_ENTRY_COMPLETE;
             EVC11_MMICurrentSRRules.Send();
 
-            DmiActions.ShowInstruction(this, "Enter the value of SR speed = 40 km/h and SR distance = 500m. Press the ‘Yes’ button");
+            DmiActions.ShowInstruction(this,
+                "Enter the value of SR speed = 40 km/h and SR distance = 500m. Press the ‘Yes’ button");
 
-            EVC11_MMICurrentSRRules.DataElements = new List<DataElement> 
-            { new DataElement {Identifier = 15, EchoText = "40", QDataCheck =  0}, new DataElement {Identifier = 16, EchoText = "500", QDataCheck =  0} };
+            EVC11_MMICurrentSRRules.DataElements = new List<DataElement>
+            {
+                new DataElement {Identifier = 15, EchoText = "40", QDataCheck = 0},
+                new DataElement {Identifier = 16, EchoText = "500", QDataCheck = 0}
+            };
             EVC11_MMICurrentSRRules.Send();
 
-            DmiActions.ShowInstruction(this, "Press on sub-area B to toggle the basic speed hook so that is is displayed");
+            DmiActions.ShowInstruction(this,
+                "Press on sub-area B to toggle the basic speed hook so that is is displayed");
 
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring;
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode =
+                EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SR mode, level 1." + Environment.NewLine +
@@ -143,9 +157,9 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)    Use the log file to confirm that DMI receives the packet information EVC-1 with following variables,MMI_M_WARNING = 2 (Status = NoS, Supervision = PIM)(2)    The distance to target bar is not display in sub-area A3.(3)   The distance to target digital is display in sub-area A2
             Test Step Comment: (1) MMI_gen 107 (partly: MMI_M_WARNING, OBU_TR_M_MODE, SR mode); MMI_gen 2567 (partly: MMI_M_WARNING, OBU_TR_M_MODE, SR mode PIM);(2) MMI_gen 107 (partly: Table 37, SR mode);(3) MMI_gen 2567 (partly: Table 38, SR mode PIM);
             */
-            EVC1_MMIDynamic.MMI_V_TARGET_KMH = 10;                      // drive on
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 2500;       // 25m
-            EVC1_MMIDynamic.MMI_V_TARGET_KMH = 0;                       // stop
+            EVC1_MMIDynamic.MMI_V_TARGET_KMH = 10; // drive on
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 2500; // 25m
+            EVC1_MMIDynamic.MMI_V_TARGET_KMH = 0; // stop
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_PreIndication_Monitoring;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -158,9 +172,9 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)    Use the log file to confirm that DMI receives the packet information EVC-1 with following variables,MMI_M_WARNING = 11 (Status = NoS, Supervision = TSM)(2)    The distance to target bar is not display in sub-area A3.(3)    The distance to target digital is display in sub-area A2
             Test Step Comment: (1) MMI_gen 107 (partly: MMI_M_WARNING, OBU_TR_M_MODE, SR mode); MMI_gen 2567 (partly: MMI_M_WARNING, OBU_TR_M_MODE, SR mode TSM);(2) MMI_gen 107 (partly: Table 37, SR mode);(3) MMI_gen 2567 (partly: Table 38, SR mode TSM);
             */
-            EVC1_MMIDynamic.MMI_V_TARGET_KMH = 10;                      // drive on
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 10500;       // 105m
-            EVC1_MMIDynamic.MMI_V_TARGET_KMH = 0;                       // stop
+            EVC1_MMIDynamic.MMI_V_TARGET_KMH = 10; // drive on
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 10500; // 105m
+            EVC1_MMIDynamic.MMI_V_TARGET_KMH = 0; // stop
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Target_Speed_Monitoring;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -179,12 +193,14 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Shunting;
             EVC30_MMIRequestEnable.Send();
 
-            DmiActions.ShowInstruction(this, "Press ‘Main’ button.	Press and hold ‘Shunting’ button for at least 2s. Release the ‘Shunting’ button.");
+            DmiActions.ShowInstruction(this,
+                "Press ‘Main’ button.	Press and hold ‘Shunting’ button for at least 2s. Release the ‘Shunting’ button.");
 
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Shunting;
 
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine + 
-                                "1. Does the DMI delete the SR mode symbol (MO09) and replace it with the SH mode symbol (MO01) in area B7" + Environment.NewLine +
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. Does the DMI delete the SR mode symbol (MO09) and replace it with the SH mode symbol (MO01) in area B7" +
+                                Environment.NewLine +
                                 "2. The distance to target bar is not displayed in sub-area A3." + Environment.NewLine +
                                 "3. The digital distance to target is not displayed in sub-area A2.");
 

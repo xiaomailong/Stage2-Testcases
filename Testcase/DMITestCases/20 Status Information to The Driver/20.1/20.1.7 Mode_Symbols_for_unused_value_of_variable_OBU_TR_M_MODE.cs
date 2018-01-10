@@ -43,7 +43,6 @@ namespace Testcase.DMITestCases
             base.PreExecution();
             DmiActions.Complete_SoM_L1_SB(this);
             //EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L2;
-
         }
 
         public override void PostExecution()
@@ -140,7 +139,9 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
+
         #region Send_XML_15_1_7_DMI_Test_Specification
+
         enum msgType
         {
             typea,
@@ -163,10 +164,10 @@ namespace Testcase.DMITestCases
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_STM_DA_ENABLED = 0;
 
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_BrakeTest_Status =
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_BRAKETEST_STATUS.BrakeTestNotInProgress;
+                EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_BRAKETEST_STATUS.BrakeTestNotInProgress;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level =
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L0;
-            
+                EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L0;
+
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_ADHESION = 0;
             EVC7_MMIEtcsMiscOutSignals.OBU_TR_NID_STM_HS = 0;
             EVC7_MMIEtcsMiscOutSignals.OBU_TR_NID_STM_DA = 0;
@@ -207,9 +208,9 @@ namespace Testcase.DMITestCases
                     break;
             }
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                      "There is no symbol displayed on sub-area B7.");
-
+                                "There is no symbol displayed on sub-area B7.");
         }
+
         #endregion
     }
 }

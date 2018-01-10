@@ -63,20 +63,21 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Data View window
             */
             DmiActions.ShowInstruction(this, @"Press ‘Data View’ button");
-            
+
             EVC13_MMIDataView.MMI_X_DRIVER_ID = "";
             EVC13_MMIDataView.MMI_NID_OPERATION = 0xffffffff;
-            EVC13_MMIDataView.MMI_M_DATA_ENABLE = (Variables.MMI_M_DATA_ENABLE)0x0080;     // 128
+            EVC13_MMIDataView.MMI_M_DATA_ENABLE = (Variables.MMI_M_DATA_ENABLE) 0x0080; // 128
             EVC13_MMIDataView.MMI_L_TRAIN = 4096;
             EVC13_MMIDataView.MMI_V_MAXTRAIN = 601;
             EVC13_MMIDataView.MMI_M_BRAKE_PERC = 9;
-            EVC13_MMIDataView.MMI_NID_KEY_AXLE_LOAD = Variables.MMI_NID_KEY.FG4;       // 20
-            EVC13_MMIDataView.MMI_NID_RADIO = 0xffffffffffffffff;          // 4294967295 (= 0xffffffff) hi, 4294967295 (= 0xffffffff) lo
+            EVC13_MMIDataView.MMI_NID_KEY_AXLE_LOAD = Variables.MMI_NID_KEY.FG4; // 20
+            EVC13_MMIDataView.MMI_NID_RADIO =
+                0xffffffffffffffff; // 4294967295 (= 0xffffffff) hi, 4294967295 (= 0xffffffff) lo
             EVC13_MMIDataView.MMI_M_AIRTIGHT = 3;
             EVC13_MMIDataView.MMI_NID_KEY_LOAD_GAUGE = Variables.MMI_NID_KEY.CATE5;
             EVC13_MMIDataView.Trainset_Caption = "";
             EVC13_MMIDataView.Network_Caption = "";
-            EVC13_MMIDataView.MMI_NID_KEY_TRAIN_CAT = Variables.MMI_NID_KEY.CATA;  // 21
+            EVC13_MMIDataView.MMI_NID_KEY_TRAIN_CAT = Variables.MMI_NID_KEY.CATA; // 21
             EVC13_MMIDataView.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -126,7 +127,7 @@ namespace Testcase.DMITestCases
 
             XML_10_4_1_2_a_b(msgType.typea);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The hourglass symbol ST05 is displayed in the window title area."); 
+                                "1. The hourglass symbol ST05 is displayed in the window title area.");
 
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
             EVC8_MMIDriverMessage.Send();
@@ -147,12 +148,12 @@ namespace Testcase.DMITestCases
             */
 
             DmiActions.ShowInstruction(this, @"Press the ‘Close’ button in the Driver ID window");
-            
+
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.SystemVersion;
             EVC30_MMIRequestEnable.Send();
-            
+
             DmiActions.ShowInstruction(this, "Open the System version window");
 
             EVC34_MMISystemVersion.SYSTEM_VERSION_X = 123;
@@ -179,7 +180,9 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
+
         #region Send_XML_10_4_1_2_a_b_DMI_Test_Specification
+
         enum msgType
         {
             typea,
@@ -190,7 +193,6 @@ namespace Testcase.DMITestCases
         {
             if (type == msgType.typea)
             {
-
                 EVC8_MMIDriverMessage.MMI_Q_TEXT = 716;
                 EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
                 EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
@@ -204,7 +206,7 @@ namespace Testcase.DMITestCases
                 EVC14_MMICurrentDriverID.Send();
             }
         }
-        #endregion
 
+        #endregion
     }
 }

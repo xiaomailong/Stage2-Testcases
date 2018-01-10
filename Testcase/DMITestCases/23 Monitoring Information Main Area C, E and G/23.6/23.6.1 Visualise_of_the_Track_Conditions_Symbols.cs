@@ -151,6 +151,7 @@ namespace Testcase.DMITestCases
         }
 
         #region Send_XML_18_6_1_DMI_Test_Specification
+
         private void XML_18_6_1()
         {
             // Step 1
@@ -168,14 +169,14 @@ namespace Testcase.DMITestCases
                 MMI_Q_TRACKCOND_ACTION_END = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction
             };
 
-            List<TrackCondition> trackConditionList = new List<TrackCondition> { trackCondition };
+            List<TrackCondition> trackConditionList = new List<TrackCondition> {trackCondition};
 
             EVC32_MMITrackConditions.TrackConditions = trackConditionList;
 
             EVC32_MMITrackConditions.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                      "1. DMI displays no symbol in sub-areas B3-B5.");
+                                "1. DMI displays no symbol in sub-areas B3-B5.");
 
             // Step 2
             trackCondition.MMI_NID_TRACKCOND = 1;
@@ -186,7 +187,7 @@ namespace Testcase.DMITestCases
             EVC32_MMITrackConditions.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                      "1. DMI displays no symbol in sub-areas B3-B5.");
+                                "1. DMI displays no symbol in sub-areas B3-B5.");
 
             // Step 3
             trackCondition.MMI_NID_TRACKCOND = 2;
@@ -196,7 +197,7 @@ namespace Testcase.DMITestCases
             EVC32_MMITrackConditions.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                      "1. DMI displays symbol TC02 in sub-area B3 without a flashing yellow frame.");
+                                "1. DMI displays symbol TC02 in sub-area B3 without a flashing yellow frame.");
 
             // Step 4
             EVC32_MMITrackConditions.MMI_Q_TRACKCOND_UPDATE = 1;
@@ -207,8 +208,9 @@ namespace Testcase.DMITestCases
             EVC32_MMITrackConditions.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                      "1. DMI displays symbol TC03 in sub-area B4 with a flashing yellow frame." + Environment.NewLine +
-                                      "2. The ‘Sinfo’ sound is played.");
+                                "1. DMI displays symbol TC03 in sub-area B4 with a flashing yellow frame." +
+                                Environment.NewLine +
+                                "2. The ‘Sinfo’ sound is played.");
 
             // Step 5
             trackCondition.MMI_NID_TRACKCOND = 4;
@@ -218,7 +220,7 @@ namespace Testcase.DMITestCases
             EVC32_MMITrackConditions.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                      "1. DMI displays symbol TC01 in sub-area B5.");
+                                "1. DMI displays symbol TC01 in sub-area B5.");
 
             // Step 6
             trackCondition.MMI_NID_TRACKCOND = 5;
@@ -229,7 +231,7 @@ namespace Testcase.DMITestCases
             EVC32_MMITrackConditions.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                      "1. DMI does not change sub-areas B3-B5 (all areas are already displaying symbols.");
+                                "1. DMI does not change sub-areas B3-B5 (all areas are already displaying symbols.");
 
             // Step 7
             trackCondition.MMI_NID_TRACKCOND = 3;
@@ -240,9 +242,10 @@ namespace Testcase.DMITestCases
             EVC32_MMITrackConditions.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                      "1. DMI removes symbol TC03 in sub-area B4." + Environment.NewLine +
-                                      "2. DMI removes symbol TC01 from sub-area B5 and displays it in sub-area B4" + Environment.NewLine +
-                                      "2. DMI displays symbol TC04 in sub-area B5");
+                                "1. DMI removes symbol TC03 in sub-area B4." + Environment.NewLine +
+                                "2. DMI removes symbol TC01 from sub-area B5 and displays it in sub-area B4" +
+                                Environment.NewLine +
+                                "2. DMI displays symbol TC04 in sub-area B5");
 
             // Step 8
             trackCondition.MMI_NID_TRACKCOND = 6;
@@ -253,7 +256,7 @@ namespace Testcase.DMITestCases
             EVC32_MMITrackConditions.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                      "1. DMI does not change sub-areas B3-B5 (all areas are already displaying symbols.");
+                                "1. DMI does not change sub-areas B3-B5 (all areas are already displaying symbols.");
 
             // Step 9
             EVC32_MMITrackConditions.MMI_Q_TRACKCOND_UPDATE = 0;
@@ -265,13 +268,13 @@ namespace Testcase.DMITestCases
 
             EVC32_MMITrackConditions.Send();
 
-            WaitForVerification("Check the following (TC-03 is not displayed because stored track conditions are deleted):" + Environment.NewLine + Environment.NewLine +
-                                      "1. DMI removes symbols TC02, TC01 and TC04 from sub-areas B3-B5." + Environment.NewLine +
-                                      "2. DMI displays symbol TC05 in sub-area B3");
-
-
+            WaitForVerification(
+                "Check the following (TC-03 is not displayed because stored track conditions are deleted):" +
+                Environment.NewLine + Environment.NewLine +
+                "1. DMI removes symbols TC02, TC01 and TC04 from sub-areas B3-B5." + Environment.NewLine +
+                "2. DMI displays symbol TC05 in sub-area B3");
         }
-        #endregion
 
+        #endregion
     }
 }

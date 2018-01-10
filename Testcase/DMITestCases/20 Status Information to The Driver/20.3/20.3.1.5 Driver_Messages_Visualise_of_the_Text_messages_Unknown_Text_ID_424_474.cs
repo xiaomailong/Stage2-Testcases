@@ -476,7 +476,9 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
+
         #region Send_XML_15_3_1_5_DMI_Test_Specification
+
         private void XML_15_3_1_5()
         {
             /// *************** Discrepancy between 15_3_1_5.xml and spec in MMI_Q_TEXT_CRITERIA
@@ -490,9 +492,10 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                     "1. The text message ‘Fixed Text Message 373’ is displayed in area E5." + Environment.NewLine +
-                                     "2. No flashing frame is displayed" + Environment.NewLine +
-                                     "3. No sound is played.");
+                                "1. The text message ‘Fixed Text Message 373’ is displayed in area E5." +
+                                Environment.NewLine +
+                                "2. No flashing frame is displayed" + Environment.NewLine +
+                                "3. No sound is played.");
 
             // Step 2
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -502,9 +505,10 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                     "1. The text message ‘Fixed Text Message 374’ is displayed in area E5." + Environment.NewLine +
-                                     "2. No flashing frame is displayed" + Environment.NewLine +
-                                     "3. No sound is played.");
+                                "1. The text message ‘Fixed Text Message 374’ is displayed in area E5." +
+                                Environment.NewLine +
+                                "2. No flashing frame is displayed" + Environment.NewLine +
+                                "3. No sound is played.");
 
             // Step 3
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -514,9 +518,10 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                     "1. The text message ‘Fixed Text Message 375’ is displayed in area E5." + Environment.NewLine +
-                                     "2. No flashing frame is displayed" + Environment.NewLine +
-                                     "3. No sound is played.");
+                                "1. The text message ‘Fixed Text Message 375’ is displayed in area E5." +
+                                Environment.NewLine +
+                                "2. No flashing frame is displayed" + Environment.NewLine +
+                                "3. No sound is played.");
 
             // Step 4
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -526,9 +531,10 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                     "1. The text message ‘Fixed Text Message 376’ is displayed in area E5." + Environment.NewLine +
-                                     "2. No flashing frame is displayed" + Environment.NewLine +
-                                     "3. No sound is played.");
+                                "1. The text message ‘Fixed Text Message 376’ is displayed in area E5." +
+                                Environment.NewLine +
+                                "2. No flashing frame is displayed" + Environment.NewLine +
+                                "3. No sound is played.");
 
             // Step 5
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -538,9 +544,10 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                     "1. The text message ‘Fixed Text Message 377’ is displayed in area E5." + Environment.NewLine +
-                                     "2. No flashing frame is displayed" + Environment.NewLine +
-                                     "3. No sound is played.");
+                                "1. The text message ‘Fixed Text Message 377’ is displayed in area E5." +
+                                Environment.NewLine +
+                                "2. No flashing frame is displayed" + Environment.NewLine +
+                                "3. No sound is played.");
 
             // Step 6
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -550,9 +557,10 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                     "1. The text message ‘Fixed Text Message 378’ is displayed in area E5." + Environment.NewLine +
-                                     "2. No flashing frame is displayed" + Environment.NewLine +
-                                     "3. No sound is played.");
+                                "1. The text message ‘Fixed Text Message 378’ is displayed in area E5." +
+                                Environment.NewLine +
+                                "2. No flashing frame is displayed" + Environment.NewLine +
+                                "3. No sound is played.");
 
             // Step 7
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -562,9 +570,10 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                     "1. The text message ‘Fixed Text Message 379’ is displayed in area E5." + Environment.NewLine +
-                                     "2. No flashing frame is displayed" + Environment.NewLine +
-                                     "3. No sound is played.");
+                                "1. The text message ‘Fixed Text Message 379’ is displayed in area E5." +
+                                Environment.NewLine +
+                                "2. No flashing frame is displayed" + Environment.NewLine +
+                                "3. No sound is played.");
 
             // Step 8
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -574,9 +583,10 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                     "1. The text message ‘Fixed Text Message 380’ is displayed in area E5." + Environment.NewLine +
-                                     "2. No flashing frame is displayed" + Environment.NewLine +
-                                     "3. No sound is played.");
+                                "1. The text message ‘Fixed Text Message 380’ is displayed in area E5." +
+                                Environment.NewLine +
+                                "2. No flashing frame is displayed" + Environment.NewLine +
+                                "3. No sound is played.");
 
             // Step 9
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -586,9 +596,10 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                     "1. The text message ‘Fixed Text Message 381’ is displayed in area E5." + Environment.NewLine +
-                                     "2. No flashing frame is displayed" + Environment.NewLine +
-                                     "3. No sound is played.");
+                                "1. The text message ‘Fixed Text Message 381’ is displayed in area E5." +
+                                Environment.NewLine +
+                                "2. No flashing frame is displayed" + Environment.NewLine +
+                                "3. No sound is played.");
 
             // Step 10
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -598,9 +609,10 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                     "1. The text message ‘Fixed Text Message 382’ is displayed in area E5." + Environment.NewLine +
-                                     "2. No flashing frame is displayed" + Environment.NewLine +
-                                     "3. No sound is played.");
+                                "1. The text message ‘Fixed Text Message 382’ is displayed in area E5." +
+                                Environment.NewLine +
+                                "2. No flashing frame is displayed" + Environment.NewLine +
+                                "3. No sound is played.");
 
             // Step 11
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -610,9 +622,10 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                     "1. The text message ‘Fixed Text Message 383’ is displayed in area E5." + Environment.NewLine +
-                                     "2. No flashing frame is displayed" + Environment.NewLine +
-                                     "3. No sound is played.");
+                                "1. The text message ‘Fixed Text Message 383’ is displayed in area E5." +
+                                Environment.NewLine +
+                                "2. No flashing frame is displayed" + Environment.NewLine +
+                                "3. No sound is played.");
 
             // Step 12
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -622,9 +635,10 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                     "1. The text message ‘Fixed Text Message 384’ is displayed in area E5." + Environment.NewLine +
-                                     "2. No flashing frame is displayed" + Environment.NewLine +
-                                     "3. No sound is played.");
+                                "1. The text message ‘Fixed Text Message 384’ is displayed in area E5." +
+                                Environment.NewLine +
+                                "2. No flashing frame is displayed" + Environment.NewLine +
+                                "3. No sound is played.");
 
             // Step 13
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -634,9 +648,10 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                     "1. The text message ‘Fixed Text Message 385’ is displayed in area E5." + Environment.NewLine +
-                                     "2. No flashing frame is displayed" + Environment.NewLine +
-                                     "3. No sound is played.");
+                                "1. The text message ‘Fixed Text Message 385’ is displayed in area E5." +
+                                Environment.NewLine +
+                                "2. No flashing frame is displayed" + Environment.NewLine +
+                                "3. No sound is played.");
 
             // Step 14
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -646,9 +661,10 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                     "1. The text message ‘Fixed Text Message 386’ is displayed in area E5." + Environment.NewLine +
-                                     "2. No flashing frame is displayed" + Environment.NewLine +
-                                     "3. No sound is played.");
+                                "1. The text message ‘Fixed Text Message 386’ is displayed in area E5." +
+                                Environment.NewLine +
+                                "2. No flashing frame is displayed" + Environment.NewLine +
+                                "3. No sound is played.");
 
             // Step 15
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -658,9 +674,10 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                     "1. The text message ‘Fixed Text Message 387’ is displayed in area E5." + Environment.NewLine +
-                                     "2. No flashing frame is displayed" + Environment.NewLine +
-                                     "3. No sound is played.");
+                                "1. The text message ‘Fixed Text Message 387’ is displayed in area E5." +
+                                Environment.NewLine +
+                                "2. No flashing frame is displayed" + Environment.NewLine +
+                                "3. No sound is played.");
 
             // Step 16
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -670,9 +687,10 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                     "1. The text message ‘Fixed Text Message 388’ is displayed in area E5." + Environment.NewLine +
-                                     "2. No flashing frame is displayed" + Environment.NewLine +
-                                     "3. No sound is played.");
+                                "1. The text message ‘Fixed Text Message 388’ is displayed in area E5." +
+                                Environment.NewLine +
+                                "2. No flashing frame is displayed" + Environment.NewLine +
+                                "3. No sound is played.");
 
             // Step 17
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -682,9 +700,10 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                     "1. The text message ‘Fixed Text Message 389’ is displayed in area E5." + Environment.NewLine +
-                                     "2. No flashing frame is displayed" + Environment.NewLine +
-                                     "3. No sound is played.");
+                                "1. The text message ‘Fixed Text Message 389’ is displayed in area E5." +
+                                Environment.NewLine +
+                                "2. No flashing frame is displayed" + Environment.NewLine +
+                                "3. No sound is played.");
 
             // Step 18
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -694,9 +713,10 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                     "1. The text message ‘Fixed Text Message 390’ is displayed in area E5." + Environment.NewLine +
-                                     "2. No flashing frame is displayed" + Environment.NewLine +
-                                     "3. No sound is played.");
+                                "1. The text message ‘Fixed Text Message 390’ is displayed in area E5." +
+                                Environment.NewLine +
+                                "2. No flashing frame is displayed" + Environment.NewLine +
+                                "3. No sound is played.");
 
             // Step 19
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -706,9 +726,10 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                     "1. The text message ‘Fixed Text Message 391’ is displayed in area E5." + Environment.NewLine +
-                                     "2. No flashing frame is displayed" + Environment.NewLine +
-                                     "3. No sound is played.");
+                                "1. The text message ‘Fixed Text Message 391’ is displayed in area E5." +
+                                Environment.NewLine +
+                                "2. No flashing frame is displayed" + Environment.NewLine +
+                                "3. No sound is played.");
 
             // Step 20
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -718,9 +739,10 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                     "1. The text message ‘Fixed Text Message 392’ is displayed in area E5." + Environment.NewLine +
-                                     "2. No flashing frame is displayed" + Environment.NewLine +
-                                     "3. No sound is played.");
+                                "1. The text message ‘Fixed Text Message 392’ is displayed in area E5." +
+                                Environment.NewLine +
+                                "2. No flashing frame is displayed" + Environment.NewLine +
+                                "3. No sound is played.");
 
             // Step 21
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -730,9 +752,10 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                     "1. The text message ‘Fixed Text Message 393’ is displayed in area E5." + Environment.NewLine +
-                                     "2. No flashing frame is displayed" + Environment.NewLine +
-                                     "3. No sound is played.");
+                                "1. The text message ‘Fixed Text Message 393’ is displayed in area E5." +
+                                Environment.NewLine +
+                                "2. No flashing frame is displayed" + Environment.NewLine +
+                                "3. No sound is played.");
 
             // Step 22
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -742,9 +765,10 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                     "1. The text message ‘Fixed Text Message 394’ is displayed in area E5." + Environment.NewLine +
-                                     "2. No flashing frame is displayed" + Environment.NewLine +
-                                     "3. No sound is played.");
+                                "1. The text message ‘Fixed Text Message 394’ is displayed in area E5." +
+                                Environment.NewLine +
+                                "2. No flashing frame is displayed" + Environment.NewLine +
+                                "3. No sound is played.");
 
             // Step 23
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -754,9 +778,10 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                     "1. The text message ‘Fixed Text Message 395’ is displayed in area E5." + Environment.NewLine +
-                                     "2. No flashing frame is displayed" + Environment.NewLine +
-                                     "3. No sound is played.");
+                                "1. The text message ‘Fixed Text Message 395’ is displayed in area E5." +
+                                Environment.NewLine +
+                                "2. No flashing frame is displayed" + Environment.NewLine +
+                                "3. No sound is played.");
 
             // Step 24
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -766,9 +791,10 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                     "1. The text message ‘Fixed Text Message 396’ is displayed in area E5." + Environment.NewLine +
-                                     "2. No flashing frame is displayed" + Environment.NewLine +
-                                     "3. No sound is played.");
+                                "1. The text message ‘Fixed Text Message 396’ is displayed in area E5." +
+                                Environment.NewLine +
+                                "2. No flashing frame is displayed" + Environment.NewLine +
+                                "3. No sound is played.");
 
             // Step 25
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -778,9 +804,10 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                     "1. The text message ‘Fixed Text Message 397’ is displayed in area E5." + Environment.NewLine +
-                                     "2. No flashing frame is displayed" + Environment.NewLine +
-                                     "3. No sound is played.");
+                                "1. The text message ‘Fixed Text Message 397’ is displayed in area E5." +
+                                Environment.NewLine +
+                                "2. No flashing frame is displayed" + Environment.NewLine +
+                                "3. No sound is played.");
 
             // Step 26
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -790,9 +817,10 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                     "1. The text message ‘Fixed Text Message 398’ is displayed in area E5." + Environment.NewLine +
-                                     "2. No flashing frame is displayed" + Environment.NewLine +
-                                     "3. No sound is played.");
+                                "1. The text message ‘Fixed Text Message 398’ is displayed in area E5." +
+                                Environment.NewLine +
+                                "2. No flashing frame is displayed" + Environment.NewLine +
+                                "3. No sound is played.");
 
             // Step 27
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -802,9 +830,10 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                     "1. The text message ‘Fixed Text Message 399’ is displayed in area E5." + Environment.NewLine +
-                                     "2. No flashing frame is displayed" + Environment.NewLine +
-                                     "3. No sound is played.");
+                                "1. The text message ‘Fixed Text Message 399’ is displayed in area E5." +
+                                Environment.NewLine +
+                                "2. No flashing frame is displayed" + Environment.NewLine +
+                                "3. No sound is played.");
 
             // Step 28
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -814,9 +843,10 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                     "1. The text message ‘Fixed Text Message 400’ is displayed in area E5." + Environment.NewLine +
-                                     "2. No flashing frame is displayed" + Environment.NewLine +
-                                     "3. No sound is played.");
+                                "1. The text message ‘Fixed Text Message 400’ is displayed in area E5." +
+                                Environment.NewLine +
+                                "2. No flashing frame is displayed" + Environment.NewLine +
+                                "3. No sound is played.");
 
             // Step 29
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -826,9 +856,10 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                     "1. The text message ‘Fixed Text Message 401’ is displayed in area E5." + Environment.NewLine +
-                                     "2. No flashing frame is displayed" + Environment.NewLine +
-                                     "3. No sound is played.");
+                                "1. The text message ‘Fixed Text Message 401’ is displayed in area E5." +
+                                Environment.NewLine +
+                                "2. No flashing frame is displayed" + Environment.NewLine +
+                                "3. No sound is played.");
 
             // Step 30
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -838,9 +869,10 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                     "1. The text message ‘Fixed Text Message 402’ is displayed in area E5." + Environment.NewLine +
-                                     "2. No flashing frame is displayed" + Environment.NewLine +
-                                     "3. No sound is played.");
+                                "1. The text message ‘Fixed Text Message 402’ is displayed in area E5." +
+                                Environment.NewLine +
+                                "2. No flashing frame is displayed" + Environment.NewLine +
+                                "3. No sound is played.");
 
             // Step 31
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -850,9 +882,10 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                     "1. The text message ‘Fixed Text Message 403’ is displayed in area E5." + Environment.NewLine +
-                                     "2. No flashing frame is displayed" + Environment.NewLine +
-                                     "3. No sound is played.");
+                                "1. The text message ‘Fixed Text Message 403’ is displayed in area E5." +
+                                Environment.NewLine +
+                                "2. No flashing frame is displayed" + Environment.NewLine +
+                                "3. No sound is played.");
 
             // Step 32
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -862,9 +895,10 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                     "1. The text message ‘Fixed Text Message 404’ is displayed in area E5." + Environment.NewLine +
-                                     "2. No flashing frame is displayed" + Environment.NewLine +
-                                     "3. No sound is played.");
+                                "1. The text message ‘Fixed Text Message 404’ is displayed in area E5." +
+                                Environment.NewLine +
+                                "2. No flashing frame is displayed" + Environment.NewLine +
+                                "3. No sound is played.");
 
             // Step 33
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -874,9 +908,10 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                     "1. The text message ‘Fixed Text Message 405’ is displayed in area E5." + Environment.NewLine +
-                                     "2. No flashing frame is displayed" + Environment.NewLine +
-                                     "3. No sound is played.");
+                                "1. The text message ‘Fixed Text Message 405’ is displayed in area E5." +
+                                Environment.NewLine +
+                                "2. No flashing frame is displayed" + Environment.NewLine +
+                                "3. No sound is played.");
 
             // Step 34
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -886,9 +921,10 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                     "1. The text message ‘Fixed Text Message 406’ is displayed in area E5." + Environment.NewLine +
-                                     "2. No flashing frame is displayed" + Environment.NewLine +
-                                     "3. No sound is played.");
+                                "1. The text message ‘Fixed Text Message 406’ is displayed in area E5." +
+                                Environment.NewLine +
+                                "2. No flashing frame is displayed" + Environment.NewLine +
+                                "3. No sound is played.");
 
             // Step 35
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -898,9 +934,10 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                     "1. The text message ‘Fixed Text Message 407’ is displayed in area E5." + Environment.NewLine +
-                                     "2. No flashing frame is displayed" + Environment.NewLine +
-                                     "3. No sound is played.");
+                                "1. The text message ‘Fixed Text Message 407’ is displayed in area E5." +
+                                Environment.NewLine +
+                                "2. No flashing frame is displayed" + Environment.NewLine +
+                                "3. No sound is played.");
 
             // Step 36
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -910,9 +947,10 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                     "1. The text message ‘Fixed Text Message 408’ is displayed in area E5." + Environment.NewLine +
-                                     "2. No flashing frame is displayed" + Environment.NewLine +
-                                     "3. No sound is played.");
+                                "1. The text message ‘Fixed Text Message 408’ is displayed in area E5." +
+                                Environment.NewLine +
+                                "2. No flashing frame is displayed" + Environment.NewLine +
+                                "3. No sound is played.");
 
             // Step 37
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -922,9 +960,10 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                     "1. The text message ‘Fixed Text Message 409’ is displayed in area E5." + Environment.NewLine +
-                                     "2. No flashing frame is displayed" + Environment.NewLine +
-                                     "3. No sound is played.");
+                                "1. The text message ‘Fixed Text Message 409’ is displayed in area E5." +
+                                Environment.NewLine +
+                                "2. No flashing frame is displayed" + Environment.NewLine +
+                                "3. No sound is played.");
 
             // Step 38
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -934,9 +973,10 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                     "1. The text message ‘Fixed Text Message 410’ is displayed in area E5." + Environment.NewLine +
-                                     "2. No flashing frame is displayed" + Environment.NewLine +
-                                     "3. No sound is played.");
+                                "1. The text message ‘Fixed Text Message 410’ is displayed in area E5." +
+                                Environment.NewLine +
+                                "2. No flashing frame is displayed" + Environment.NewLine +
+                                "3. No sound is played.");
 
             // Step 39
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -946,9 +986,10 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                     "1. The text message ‘Fixed Text Message 411’ is displayed in area E5." + Environment.NewLine +
-                                     "2. No flashing frame is displayed" + Environment.NewLine +
-                                     "3. No sound is played.");
+                                "1. The text message ‘Fixed Text Message 411’ is displayed in area E5." +
+                                Environment.NewLine +
+                                "2. No flashing frame is displayed" + Environment.NewLine +
+                                "3. No sound is played.");
 
             // Step 40
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -958,9 +999,10 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                     "1. The text message ‘Fixed Text Message 412’ is displayed in area E5." + Environment.NewLine +
-                                     "2. No flashing frame is displayed" + Environment.NewLine +
-                                     "3. No sound is played.");
+                                "1. The text message ‘Fixed Text Message 412’ is displayed in area E5." +
+                                Environment.NewLine +
+                                "2. No flashing frame is displayed" + Environment.NewLine +
+                                "3. No sound is played.");
 
             // Step 41
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -970,9 +1012,10 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                     "1. The text message ‘Fixed Text Message 413’ is displayed in area E5." + Environment.NewLine +
-                                     "2. No flashing frame is displayed" + Environment.NewLine +
-                                     "3. No sound is played.");
+                                "1. The text message ‘Fixed Text Message 413’ is displayed in area E5." +
+                                Environment.NewLine +
+                                "2. No flashing frame is displayed" + Environment.NewLine +
+                                "3. No sound is played.");
 
             // Step 42
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -982,9 +1025,10 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                     "1. The text message ‘Fixed Text Message 414’ is displayed in area E5." + Environment.NewLine +
-                                     "2. No flashing frame is displayed" + Environment.NewLine +
-                                     "3. No sound is played.");
+                                "1. The text message ‘Fixed Text Message 414’ is displayed in area E5." +
+                                Environment.NewLine +
+                                "2. No flashing frame is displayed" + Environment.NewLine +
+                                "3. No sound is played.");
 
             // Step 43
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -994,9 +1038,10 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                     "1. The text message ‘Fixed Text Message 415’ is displayed in area E5." + Environment.NewLine +
-                                     "2. No flashing frame is displayed" + Environment.NewLine +
-                                     "3. No sound is played.");
+                                "1. The text message ‘Fixed Text Message 415’ is displayed in area E5." +
+                                Environment.NewLine +
+                                "2. No flashing frame is displayed" + Environment.NewLine +
+                                "3. No sound is played.");
 
             // Step 44
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -1006,9 +1051,10 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                     "1. The text message ‘Fixed Text Message 416’ is displayed in area E5." + Environment.NewLine +
-                                     "2. No flashing frame is displayed" + Environment.NewLine +
-                                     "3. No sound is played.");
+                                "1. The text message ‘Fixed Text Message 416’ is displayed in area E5." +
+                                Environment.NewLine +
+                                "2. No flashing frame is displayed" + Environment.NewLine +
+                                "3. No sound is played.");
 
             // Step 45
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -1018,9 +1064,10 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                     "1. The text message ‘Fixed Text Message 417’ is displayed in area E5." + Environment.NewLine +
-                                     "2. No flashing frame is displayed" + Environment.NewLine +
-                                     "3. No sound is played.");
+                                "1. The text message ‘Fixed Text Message 417’ is displayed in area E5." +
+                                Environment.NewLine +
+                                "2. No flashing frame is displayed" + Environment.NewLine +
+                                "3. No sound is played.");
 
             // Step 46
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -1030,9 +1077,10 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                     "1. The text message ‘Fixed Text Message 418’ is displayed in area E5." + Environment.NewLine +
-                                     "2. No flashing frame is displayed" + Environment.NewLine +
-                                     "3. No sound is played.");
+                                "1. The text message ‘Fixed Text Message 418’ is displayed in area E5." +
+                                Environment.NewLine +
+                                "2. No flashing frame is displayed" + Environment.NewLine +
+                                "3. No sound is played.");
 
             // Step 47
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -1042,9 +1090,10 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                     "1. The text message ‘Fixed Text Message 419’ is displayed in area E5." + Environment.NewLine +
-                                     "2. No flashing frame is displayed" + Environment.NewLine +
-                                     "3. No sound is played.");
+                                "1. The text message ‘Fixed Text Message 419’ is displayed in area E5." +
+                                Environment.NewLine +
+                                "2. No flashing frame is displayed" + Environment.NewLine +
+                                "3. No sound is played.");
 
             // Step 48
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -1054,9 +1103,10 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                     "1. The text message ‘Fixed Text Message 420’ is displayed in area E5." + Environment.NewLine +
-                                     "2. No flashing frame is displayed" + Environment.NewLine +
-                                     "3. No sound is played.");
+                                "1. The text message ‘Fixed Text Message 420’ is displayed in area E5." +
+                                Environment.NewLine +
+                                "2. No flashing frame is displayed" + Environment.NewLine +
+                                "3. No sound is played.");
 
             // Step 49
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -1066,9 +1116,10 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                     "1. The text message ‘Fixed Text Message 421’ is displayed in area E5." + Environment.NewLine +
-                                     "2. No flashing frame is displayed" + Environment.NewLine +
-                                     "3. No sound is played.");
+                                "1. The text message ‘Fixed Text Message 421’ is displayed in area E5." +
+                                Environment.NewLine +
+                                "2. No flashing frame is displayed" + Environment.NewLine +
+                                "3. No sound is played.");
 
             // Step 50
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -1078,9 +1129,10 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                     "1. The text message ‘Fixed Text Message 422’ is displayed in area E5." + Environment.NewLine +
-                                     "2. No flashing frame is displayed" + Environment.NewLine +
-                                     "3. No sound is played.");
+                                "1. The text message ‘Fixed Text Message 422’ is displayed in area E5." +
+                                Environment.NewLine +
+                                "2. No flashing frame is displayed" + Environment.NewLine +
+                                "3. No sound is played.");
 
             // Step 51
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -1090,12 +1142,12 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                     "1. The text message ‘Fixed Text Message 423’ is displayed in area E5." + Environment.NewLine +
-                                     "2. No flashing frame is displayed" + Environment.NewLine +
-                                     "3. No sound is played.");
-
-
+                                "1. The text message ‘Fixed Text Message 423’ is displayed in area E5." +
+                                Environment.NewLine +
+                                "2. No flashing frame is displayed" + Environment.NewLine +
+                                "3. No sound is played.");
         }
+
         #endregion
     }
 }

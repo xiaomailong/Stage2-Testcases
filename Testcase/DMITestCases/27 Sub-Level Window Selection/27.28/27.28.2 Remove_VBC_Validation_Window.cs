@@ -39,7 +39,7 @@ namespace Testcase.DMITestCases
         public override void PreExecution()
         {
             // Pre-conditions from TestSpec:
-          
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
 
@@ -76,7 +76,7 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.Send();
 
             DmiActions.ShowInstruction(this, "Press the ‘Remove VBC’ button");
-            
+
             EVC19_MMIRemoveVBC.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_VBC.BTN_ENTER;
             EVC19_MMIRemoveVBC.MMI_N_VBC = 0;
             EVC19_MMIRemoveVBC.Send();
@@ -87,19 +87,27 @@ namespace Testcase.DMITestCases
             EVC29_MMIEchoedRemoveVBCData.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the Remove VBC validation window with the right-aligned title ‘Validate Remove VBC’." + Environment.NewLine +
-                                "2. The window contains a data input field, an enabled Close button, symbol NA11, and ‘Yes’ and ‘No’ buttons." + Environment.NewLine +
+                                "1. DMI displays the Remove VBC validation window with the right-aligned title ‘Validate Remove VBC’." +
+                                Environment.NewLine +
+                                "2. The window contains a data input field, an enabled Close button, symbol NA11, and ‘Yes’ and ‘No’ buttons." +
+                                Environment.NewLine +
                                 "3. The window is displayed in areas A, B, C, D, E, F and G." + Environment.NewLine +
-                                "4. The data input field has only a data part with a blank value." + Environment.NewLine +
-                                "5. A dedicated keypad is displayed with <Yes> (#7) and <No> (#8) keys." + Environment.NewLine +
+                                "4. The data input field has only a data part with a blank value." +
+                                Environment.NewLine +
+                                "5. A dedicated keypad is displayed with <Yes> (#7) and <No> (#8) keys." +
+                                Environment.NewLine +
                                 "6. An echo text is displayed with a label and a data part." + Environment.NewLine +
-                                "7. The echo text label is right-aligned, the data part is left-aligned." + Environment.NewLine +
-                                "8. The data part of the echo text displays the same value as the data input field." + Environment.NewLine +
+                                "7. The echo text label is right-aligned, the data part is left-aligned." +
+                                Environment.NewLine +
+                                "8. The data part of the echo text displays the same value as the data input field." +
+                                Environment.NewLine +
                                 "9. The echo text is in areas A, B, C and E." + Environment.NewLine +
                                 "10. The echo text displays ‘65536’ in white." + Environment.NewLine +
-                                "11. Objects, text messages and buttons can be displayed in several levels. Within a level they are allocated to areas." + Environment.NewLine +
-                                "12. Objects, text messages and buttons in a layer form a window." + Environment.NewLine +
-                                "13. The Default window does not cover the current window.");                                  
+                                "11. Objects, text messages and buttons can be displayed in several levels. Within a level they are allocated to areas." +
+                                Environment.NewLine +
+                                "12. Objects, text messages and buttons in a layer form a window." +
+                                Environment.NewLine +
+                                "13. The Default window does not cover the current window.");
 
             /*
             Test Step 2
@@ -173,7 +181,7 @@ namespace Testcase.DMITestCases
             EVC19_MMIRemoveVBC.Send();
 
             DmiActions.ShowInstruction(this, "Press the ‘Yes’ button");
-            
+
             EVC29_MMIEchoedRemoveVBCData.MMI_M_VBC_CODE_ = 65536;
             EVC29_MMIEchoedRemoveVBCData.Send();
 
@@ -198,7 +206,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9390 (partly: Remove VBC Validation window);
             */
             DmiActions.ShowInstruction(this, @"Press and hold the data input field");
-            
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field is displayed pressed, without a border.");
 
@@ -220,11 +228,12 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)     The state of an input field is changed to ‘Pressed’, the border of button is removed
             Test Step Comment: (1) MMI_gen 9390 (partly: Remove VBC Validation window);
             */
-            DmiActions.ShowInstruction(this, @"Whilst keeping the data input field pressed, drag it back inside its area");
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the data input field pressed, drag it back inside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field is displayed pressed, without a border.");
-            
+
             /*
             Test Step 11
             Action: Release the pressed area
@@ -234,7 +243,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Release the data input field");
 
             EVC129_MMIConfirmedRemoveVBC.Check_VBC_Code = 65536;
-            
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Remove VBC validation window and displays the Settings window.");
 
@@ -282,7 +291,8 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. All buttons except the ‘No’ button are disabled." + Environment.NewLine +
-                                "2. The disabled buttons are displayed with the labels in Dark-grey." + Environment.NewLine +
+                                "2. The disabled buttons are displayed with the labels in Dark-grey." +
+                                Environment.NewLine +
                                 "3. The ‘No’ button is displayed enabled.");
 
             /*

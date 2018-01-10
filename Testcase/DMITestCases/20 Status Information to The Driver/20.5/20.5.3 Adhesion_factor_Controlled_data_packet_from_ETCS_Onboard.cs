@@ -70,35 +70,35 @@ namespace Testcase.DMITestCases
             Action: Driver drives the train forward passing BG1.Then, press ‘Special’ button
             Expected Result: DMI still displays in SR mode.Verify that ‘Adhesion’ button is enabled
             */
-            
+
             /*
             Test Step 2
             Action: Press ‘Adhesion’ button.Then, press ‘Slippery rail’ button
             Expected Result: Verify the following information,Use the log file to confirm that DMI receives EVC-2 with variable MMI_M_ADHESION (#0) = 1, bit ‘Low Adhesion by Driver’ is set.DMI displays symbol ST02 in sub-area A4, by driver
             Test Step Comment: (1) MMI_gen 7088 (partly: EVC-2, ‘Low Adhesion by Driver’)(2) MMI_gen 111;     
             */
-            
+
             /*
             Test Step 3
             Action: Drive the train forward passing BG2
             Expected Result: Verify the following information,Use the log file to confirm that DMI receives EVC-2 with variable MMI_M_ADHESION (#1) = 1, bit ‘Low Adhesion from Trackside’ is set.DMI displays symbol ST02 in sub-area A4
             Test Step Comment: (1) MMI_gen 7088 (partly: EVC-2, ‘Low Adhesion from Trackside’, ‘Low Adhesion by Driver’);(2) MMI_gen 111;
             */
-            
+
             /*
             Test Step 4
             Action: Drive the train forward
             Expected Result: Verify the following information,Use the log file to confirm that DMI receives EVC-2 with following variable,MMI_M_ADHESION (#1) = 0, bit ‘Low Adhesion from Trackside’ is not set.DMI displays symbol ST02 in sub-area A4, by driver
             Test Step Comment: (1) MMI_gen 7088 (partly: EVC-2, ‘Low Adhesion by Driver’)(2) MMI_gen 111;     
             */
-            
+
             /*
             Test Step 5
             Action: Perform the following procedure,Press ‘Special’ button.Press ‘Adhesion’ button.Select and confirm ‘Non slippery rail’ button
             Expected Result: No adhesion factor indication is displayed.Verify the following information,Use the log file to confirm that DMI receives EVC-2 with following variable,MMI_M_ADHESION (#0) = 0, bit ‘Low Adhesion by Driver’ is not set
             Test Step Comment: (1) MMI_gen 7088 (partly: No symbol displayed);    
             */
-            
+
             /*
             Test Step 6
             Action: End of test

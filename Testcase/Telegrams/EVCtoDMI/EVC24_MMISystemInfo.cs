@@ -1,10 +1,12 @@
 ﻿#region usings
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using CL345;
 using static Testcase.Telegrams.EVCtoDMI.Variables;
+
 #endregion
 
 namespace Testcase.Telegrams.EVCtoDMI
@@ -45,7 +47,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             if (MMI_NID_NTC.Count != MMI_NID_STMSTATE.Count)
                 throw new Exception("Number of MMI_NID_NTC and MMI_NID_STMSTATE do not match!");
 
-            _pool.SITR.ETCS1.SystemInfo.MmiNNidntc.Value = (ushort)MMI_NID_NTC.Count;
+            _pool.SITR.ETCS1.SystemInfo.MmiNNidntc.Value = (ushort) MMI_NID_NTC.Count;
 
             // For each element of the list
             for (var nidNtcIndex = 0; nidNtcIndex < MMI_NID_NTC.Count; nidNtcIndex++)
@@ -68,7 +70,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             }
 
             // Set the total length of the packet
-            _pool.SITR.ETCS1.SystemInfo.MmiLPacket.Value = (ushort)(240 + MMI_NID_NTC.Count * 16);
+            _pool.SITR.ETCS1.SystemInfo.MmiLPacket.Value = (ushort) (240 + MMI_NID_NTC.Count * 16);
 
             // Send telegram
             _pool.SITR.SMDCtrl.ETCS1.SystemInfo.Value = 0x0009;

@@ -89,46 +89,48 @@ namespace Testcase.DMITestCases
                                                      Variables.MMI_M_DATA_ENABLE.MaxTrainSpeed |
                                                      Variables.MMI_M_DATA_ENABLE.AxleLoadCategory |
                                                      Variables.MMI_M_DATA_ENABLE.Airtightness,
-                                                     100, 200,
-                                                     Variables.MMI_NID_KEY.PASS2,
-                                                     70,
-                                                     Variables.MMI_NID_KEY.CATA,
-                                                     0,
-                                                     Variables.MMI_NID_KEY_Load_Gauge.G1,
-                                                     EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE,
-                                                     0, 0, new[] { "FLU", "RLU", "Rescue" });
+                100, 200,
+                Variables.MMI_NID_KEY.PASS2,
+                70,
+                Variables.MMI_NID_KEY.CATA,
+                0,
+                Variables.MMI_NID_KEY_Load_Gauge.G1,
+                EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE,
+                0, 0, new[] {"FLU", "RLU", "Rescue"});
 
-            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
-                                "1. Confirm value in each input field." + Environment.NewLine +
-                                "2. Press ‘Yes’ button.");
+            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine +
+                                             Environment.NewLine +
+                                             "1. Confirm value in each input field." + Environment.NewLine +
+                                             "2. Press ‘Yes’ button.");
 
             DmiActions.Send_EVC10_MMIEchoedTrainData(this,
-                                                     Variables.MMI_M_DATA_ENABLE.TrainSetID |
-                                                     Variables.MMI_M_DATA_ENABLE.TrainCategory |
-                                                     Variables.MMI_M_DATA_ENABLE.TrainLength |
-                                                     Variables.MMI_M_DATA_ENABLE.BrakePercentage |
-                                                     Variables.MMI_M_DATA_ENABLE.MaxTrainSpeed |
-                                                     Variables.MMI_M_DATA_ENABLE.AxleLoadCategory |
-                                                     Variables.MMI_M_DATA_ENABLE.Airtightness,
-                                                     100, 200,
-                                                     Variables.MMI_NID_KEY.PASS2,
-                                                     70, 
-                                                     Variables.MMI_NID_KEY.CATA,
-                                                     0,
-                                                     Variables.MMI_NID_KEY.G1,
-                                                     new[] { "FLU", "RLU", "Rescue" });
+                Variables.MMI_M_DATA_ENABLE.TrainSetID |
+                Variables.MMI_M_DATA_ENABLE.TrainCategory |
+                Variables.MMI_M_DATA_ENABLE.TrainLength |
+                Variables.MMI_M_DATA_ENABLE.BrakePercentage |
+                Variables.MMI_M_DATA_ENABLE.MaxTrainSpeed |
+                Variables.MMI_M_DATA_ENABLE.AxleLoadCategory |
+                Variables.MMI_M_DATA_ENABLE.Airtightness,
+                100, 200,
+                Variables.MMI_NID_KEY.PASS2,
+                70,
+                Variables.MMI_NID_KEY.CATA,
+                0,
+                Variables.MMI_NID_KEY.G1,
+                new[] {"FLU", "RLU", "Rescue"});
 
             // test wrong: pressing Yes button confirms the data?
-            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
-                                "1. Press ‘Yes’ button." + Environment.NewLine +
-                                "2. Confirmed the selected values by pressing  a data input field.");
+            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine +
+                                             Environment.NewLine +
+                                             "1. Press ‘Yes’ button." + Environment.NewLine +
+                                             "2. Confirmed the selected values by pressing  a data input field.");
 
             DmiActions.Display_TRN_Window(this);
             DmiActions.ShowInstruction(this, "Enter and confirm Train Running Number and press the ‘Close’ button");
-            
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SB mode, Level 1.");
-            
+
             /*
             Test Step 2
             Action: The train is at standstill. Press ’Settings’ button
@@ -151,9 +153,12 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press the ‘Lock Screen’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘Lock Screen’ function is activated and displays ‘Screen locked for 10’." + Environment.NewLine +
-                                "2. After each second the number displayed in ‘Screen locked for ..’ decreases by 1." + Environment.NewLine +
-                                "3. When the screen displays ‘Screen locked for 1’ DMI plays the Sinfo sound." + Environment.NewLine +
+                                "1. The ‘Lock Screen’ function is activated and displays ‘Screen locked for 10’." +
+                                Environment.NewLine +
+                                "2. After each second the number displayed in ‘Screen locked for ..’ decreases by 1." +
+                                Environment.NewLine +
+                                "3. When the screen displays ‘Screen locked for 1’ DMI plays the Sinfo sound." +
+                                Environment.NewLine +
                                 "4. After 10s the Lock Screen function is deactivated and DMI displays the Settings window");
 
             /*
@@ -164,7 +169,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press the ‘Close’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                               "1. DMI displays the Default window");
+                                "1. DMI displays the Default window");
 
             /*
             Test Step 5
@@ -176,11 +181,12 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
-            EVC8_MMIDriverMessage.MMI_Q_TEXT = 263;            // Ack SR mode
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 263; // Ack SR mode
             EVC8_MMIDriverMessage.Send();
 
             DmiActions.ShowInstruction(this, "Acknowledge SR mode");
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode =
+                EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SR mode and Level 1.");
@@ -207,10 +213,11 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 2520 (partly: train starts moving);     (2) MMI_gen 2520 (partly: sound Sinfo); MMI_gen 4256 (partly: Sinfo sound); MMI_gen 9516 (partly: activation of lock screen function); MMI_gen 12025 (partly: activation of lock screen function);    
             */
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 40;
-            
+
             // Will this work?
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. Note that the speed registered is 40 km/h and after 1s DMI displays the Default window." + Environment.NewLine +
+                                "1. Note that the speed registered is 40 km/h and after 1s DMI displays the Default window." +
+                                Environment.NewLine +
                                 "2. DMI plays the Sinfo sound.");
 
             /*

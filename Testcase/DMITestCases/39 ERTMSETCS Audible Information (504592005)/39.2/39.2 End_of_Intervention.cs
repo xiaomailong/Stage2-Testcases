@@ -118,8 +118,10 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The permitted speed hook is displayed on the CSG at from 100 to 107 km/h in red." + Environment.NewLine +
-                                "2. The CSG is coloured Dark-grey up to the permitted speed (100 km/h)" + Environment.NewLine +
+                                "1. The permitted speed hook is displayed on the CSG at from 100 to 107 km/h in red." +
+                                Environment.NewLine +
+                                "2. The CSG is coloured Dark-grey up to the permitted speed (100 km/h)" +
+                                Environment.NewLine +
                                 "3. The speed pointer displays 107 km/h and is coloured red." + Environment.NewLine +
                                 "4. DMI displays the ‘Emergency brake’ symbol, ST01, in sub-area C9.");
 
@@ -161,7 +163,8 @@ namespace Testcase.DMITestCases
             Action: Power on the system and perform SoM to Level 1 in SR mode.
             Expected Result: ETCS OB enters SR mode in Level 1.
             */
-            DmiActions.ShowInstruction(this, "Wait for at least 10s after powering off the system, then power on the system");
+            DmiActions.ShowInstruction(this,
+                "Wait for at least 10s after powering off the system, then power on the system");
 
             DmiActions.Complete_SoM_L1_SR(this);
 
@@ -199,7 +202,7 @@ namespace Testcase.DMITestCases
             EVC1_MMIDynamic.MMI_V_TARGET_KMH = 70;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 80;
             // In Intervention_Status_Indication_Status_Target_Speed_Monitoring
-            
+
             // Display ST01
             EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -211,7 +214,8 @@ namespace Testcase.DMITestCases
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Warning_Status_Indication_Status_Target_Speed_Monitoring;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The permitted speed hook is displayed on the CSG from 70 to 80 km/h in red." + Environment.NewLine +
+                                "1. The permitted speed hook is displayed on the CSG from 70 to 80 km/h in red." +
+                                Environment.NewLine +
                                 "2. The CSG is coloured yellow up to the speed hook 70 km/h" + Environment.NewLine +
                                 "3. The speed pointer displays 80 km/h and is coloured red." + Environment.NewLine +
                                 "4. DMI displays the ‘Emergency brake’ symbol, ST01, in sub-area C9.");
@@ -233,7 +237,7 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The speed pointer displays 0 km/h.");
-            
+
             /*
             Test Step 12
             Action: End of test
@@ -242,6 +246,5 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
-        
     }
 }

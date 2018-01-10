@@ -81,14 +81,17 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The ‘click’ sound is played once." + Environment.NewLine +
-                                @"2. The ‘Down’ button is displayed pressed and immediately changed to enabled." + Environment.NewLine +
+                                @"2. The ‘Down’ button is displayed pressed and immediately changed to enabled." +
+                                Environment.NewLine +
                                 "3. The messages in sub-areas E5-E9 move down by one line");
-            
+
             DmiActions.ShowInstruction(this, @"Press and hold the ‘Down’ button for at least 2 seconds.");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘Down’ button is displayed pressed and immediately changed to enabled repeatedly." + Environment.NewLine +
-                                "2. The text message in sub-areas E5-E9 move down by one line each time the ‘Down’ button becomes enabled again." + Environment.NewLine +
+                                @"1. The ‘Down’ button is displayed pressed and immediately changed to enabled repeatedly." +
+                                Environment.NewLine +
+                                "2. The text message in sub-areas E5-E9 move down by one line each time the ‘Down’ button becomes enabled again." +
+                                Environment.NewLine +
                                 @"3. The ‘click’ sound is played repeatedly while the ‘Down’ button is pressed.");
 
             /*
@@ -97,12 +100,15 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)  The disabled ‘Down’ button is displayed as NA16 symbol in sub-area E11.(2)   The enabled ‘Up’ button is displayed as NA13 symbol in sub-area E10.(4)   Use the log file to confirm that DMI sends out packet [MMI_DRIVER_ACTION (EVC-152)] with the value of variable MMI_M_DRIVER_ACTION refer to sequence below,a)   MMI_M_DRIVER_ACTION = 42 (Scroll down button activated)
             Test Step Comment: (1) MMI_gen 4393 (partly: down, MMI_gen 4384 (partly: ETCS-MMI’s function associated to the button));(2) MMI_gen 4394 (partly: down, disabled); MMI_gen 4396 (partly: down, NA16);(3) MMI_gen 4394 (partly: up, enabled); MMI_gen 4396 (partly: up, NA13);(4) MMI_gen 11470 (partly: Bit # 42);
             */
-            DmiActions.ShowInstruction(this, @"Press and hold the ‘Down’ button until the message ‘Balise read error’ is displayed on sub-area E9. Release the ‘Down’ button");
+            DmiActions.ShowInstruction(this,
+                @"Press and hold the ‘Down’ button until the message ‘Balise read error’ is displayed on sub-area E9. Release the ‘Down’ button");
 
-            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.ScrollDownButtonActivated;
+            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION =
+                EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.ScrollDownButtonActivated;
 
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +                  
-                                @"1. The ‘Down’ button NA16 symbol is displayed disabled in sub-area E11." + Environment.NewLine +
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                @"1. The ‘Down’ button NA16 symbol is displayed disabled in sub-area E11." +
+                                Environment.NewLine +
                                 @"2. The  ‘Up’ button NA13 symbol is displayed as enabled in sub-area E10.");
 
             /*
@@ -113,17 +119,21 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Press and release the ‘Up’ button.");
 
-            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.ScrollUpButtonActivated;
+            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION =
+                EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.ScrollUpButtonActivated;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The ‘click’ sound is played once." + Environment.NewLine +
-                                @"2. The ‘Up’ button is displayed pressed and immediately changed to enabled." + Environment.NewLine +
+                                @"2. The ‘Up’ button is displayed pressed and immediately changed to enabled." +
+                                Environment.NewLine +
                                 "3. The messages in sub-areas E5-E9 move up by one line");
 
             DmiActions.ShowInstruction(this, @"Press and hold the ‘Up’ button for at least 2 seconds");
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘Up’ button is displayed pressed and immediately changed to enabled repeatedly." + Environment.NewLine +
-                                "2. The text message in sub-areas E5-E9 move up by one line each time the ‘Up’ button becomse enabled again." + Environment.NewLine +
+                                @"1. The ‘Up’ button is displayed pressed and immediately changed to enabled repeatedly." +
+                                Environment.NewLine +
+                                "2. The text message in sub-areas E5-E9 move up by one line each time the ‘Up’ button becomse enabled again." +
+                                Environment.NewLine +
                                 @"3. The ‘click’ sound is played repeatedly while the ‘Up’ button is pressed.");
 
             /*
@@ -136,9 +146,9 @@ namespace Testcase.DMITestCases
         }
 
         #region Send_XML_5_12_3_DMI_Test_Specification
+
         private void XML_5_12_3()
         {
-
             // Step 1/1
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 267;
             EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
@@ -193,12 +203,14 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                      @"1. DMI displays the message ‘Train is rejected’ in sub-areas E5." + Environment.NewLine +
-                                      "2. The older text messages are moved down." + Environment.NewLine +
-                                      @"3. The ‘Up’ button NA15 symbol is displayed disabled in sub-area E10" + Environment.NewLine +
-                                      @"4. The ‘Down’ button  NA14 symbol is displayed enabled in sub-area E11.");
-
+                                @"1. DMI displays the message ‘Train is rejected’ in sub-areas E5." +
+                                Environment.NewLine +
+                                "2. The older text messages are moved down." + Environment.NewLine +
+                                @"3. The ‘Up’ button NA15 symbol is displayed disabled in sub-area E10" +
+                                Environment.NewLine +
+                                @"4. The ‘Down’ button  NA14 symbol is displayed enabled in sub-area E11.");
         }
+
         #endregion
     }
 }

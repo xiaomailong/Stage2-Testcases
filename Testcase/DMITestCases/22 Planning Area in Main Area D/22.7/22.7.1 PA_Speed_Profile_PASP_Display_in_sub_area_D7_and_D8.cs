@@ -70,7 +70,8 @@ namespace Testcase.DMITestCases
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 10000;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI changes display from SR to FS mode, Level 1." + Environment.NewLine + Environment.NewLine +
+                                "1. DMI changes display from SR to FS mode, Level 1." + Environment.NewLine +
+                                Environment.NewLine +
                                 "2. DMI displays the Planning Area.");
 
             /*
@@ -100,9 +101,11 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI still displays the Planning Area." + Environment.NewLine +
                                 "2. The PA Speed Profile (PASP) is displayed in sub-area D7." + Environment.NewLine +
-                                "3. The resolution of all PASP segments is 1/4 of the width of sub-area D7." + Environment.NewLine +
+                                "3. The resolution of all PASP segments is 1/4 of the width of sub-area D7." +
+                                Environment.NewLine +
                                 "4. All PASP segments are displayed in the PASP-Light colour." + Environment.NewLine +
-                                "5. The whole width of sub-area D7 is displayed in the PASP-Light colour at position 500m." + Environment.NewLine +
+                                "5. The whole width of sub-area D7 is displayed in the PASP-Light colour at position 500m." +
+                                Environment.NewLine +
                                 "6. The permitted speed = 100 km/h." + Environment.NewLine +
                                 "7. Three speed discontinuities are displayed in sub-area D7:");
 
@@ -115,27 +118,34 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press the ‘Scale Down’ button");
 
             trackDescriptions.Clear();
-            trackDescriptions.Add(new TrackDescription { MMI_O_MRSP = 70000, MMI_V_MRSP_KMH = 95 });
-            trackDescriptions.Add(new TrackDescription { MMI_O_MRSP = 120000, MMI_V_MRSP_KMH = 75 });
-            trackDescriptions.Add(new TrackDescription { MMI_O_MRSP = 210000, MMI_V_MRSP_KMH = 60 });
-            trackDescriptions.Add(new TrackDescription { MMI_O_MRSP = 420000, MMI_V_MRSP_KMH = 25 });
-            trackDescriptions.Add(new TrackDescription { MMI_O_MRSP = 610000, MMI_V_MRSP_KMH = 35 });            
+            trackDescriptions.Add(new TrackDescription {MMI_O_MRSP = 70000, MMI_V_MRSP_KMH = 95});
+            trackDescriptions.Add(new TrackDescription {MMI_O_MRSP = 120000, MMI_V_MRSP_KMH = 75});
+            trackDescriptions.Add(new TrackDescription {MMI_O_MRSP = 210000, MMI_V_MRSP_KMH = 60});
+            trackDescriptions.Add(new TrackDescription {MMI_O_MRSP = 420000, MMI_V_MRSP_KMH = 25});
+            trackDescriptions.Add(new TrackDescription {MMI_O_MRSP = 610000, MMI_V_MRSP_KMH = 35});
             EVC4_MMITrackDescription.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI still displays the Planning Area." + Environment.NewLine + 
+                                "1. DMI still displays the Planning Area." + Environment.NewLine +
                                 "2. The PA Speed Profile (PASP) is displayed in sub-area D7." + Environment.NewLine +
-                                "3. The resolution of all PASP segments is 1/4 of the width of sub-area D7." + Environment.NewLine +
+                                "3. The resolution of all PASP segments is 1/4 of the width of sub-area D7." +
+                                Environment.NewLine +
                                 "4. All PASP segments are displayed in the PASP-Light colour." + Environment.NewLine +
-                                "5. The whole width of sub-area D7 is displayed in the PASP-Light colour at position 500m." + Environment.NewLine +
-                                "6. The permitted speed = 100 km/h." + Environment.NewLine + 
+                                "5. The whole width of sub-area D7 is displayed in the PASP-Light colour at position 500m." +
+                                Environment.NewLine +
+                                "6. The permitted speed = 100 km/h." + Environment.NewLine +
                                 "7. Three speed discontinuities are displayed in sub-area D7:" + Environment.NewLine +
                                 "8. From 0-500m the whole width of sub-area D7 is included;" + Environment.NewLine +
-                                "9. From 501-1000m, 3/4 of the width of sub-area D7 is included;" + Environment.NewLine +
-                                "10. From 1001-2000m, 1/2 of the width of sub-area D7 is included;" + Environment.NewLine +
-                                "11. From 2000-8000m, 1/4 of the width of sub-area D7 is included." + Environment.NewLine +
-                                "12. Speed decrease symbols (PL22) are displayed at positions ~600m, ~1100m, ~2100m and ~4100m." + Environment.NewLine +
-                                "13. The speed increase symbol (PL21) is displayed at position 6000m." + Environment.NewLine +
+                                "9. From 501-1000m, 3/4 of the width of sub-area D7 is included;" +
+                                Environment.NewLine +
+                                "10. From 1001-2000m, 1/2 of the width of sub-area D7 is included;" +
+                                Environment.NewLine +
+                                "11. From 2000-8000m, 1/4 of the width of sub-area D7 is included." +
+                                Environment.NewLine +
+                                "12. Speed decrease symbols (PL22) are displayed at positions ~600m, ~1100m, ~2100m and ~4100m." +
+                                Environment.NewLine +
+                                "13. The speed increase symbol (PL21) is displayed at position 6000m." +
+                                Environment.NewLine +
                                 "14. The speed decrease to zero target symbol (PL23) is displayed at position 8000m.");
             /*
             Test Step 4
@@ -162,8 +172,10 @@ namespace Testcase.DMITestCases
             EVC4_MMITrackDescription.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The first (nearest to the zero line) PASP segment is removed from sub-area D7 (past zero line)." + Environment.NewLine +
-                                "2. Four discontinuities are displayed in sub-area D7 with the following proportions:" + Environment.NewLine +
+                                "1. The first (nearest to the zero line) PASP segment is removed from sub-area D7 (past zero line)." +
+                                Environment.NewLine +
+                                "2. Four discontinuities are displayed in sub-area D7 with the following proportions:" +
+                                Environment.NewLine +
                                 "3. Segment #1 has the full width of sub-area D7;" + Environment.NewLine +
                                 "4. Segment #2 has 3/4 of the width of sub-area D7;" + Environment.NewLine +
                                 "5. Segment #3 has 1/2 of the width of sub-area D7;" + Environment.NewLine +
@@ -180,8 +192,10 @@ namespace Testcase.DMITestCases
             EVC4_MMITrackDescription.MMI_V_MRSP_CURR_KMH = 60;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The first (nearest to the zero line) PASP segment is removed from sub-area D7 (past zero line)." + Environment.NewLine +
-                                "2. Three discontinuities are displayed in sub-area D7 with the following proportions:" + Environment.NewLine +
+                                "1. The first (nearest to the zero line) PASP segment is removed from sub-area D7 (past zero line)." +
+                                Environment.NewLine +
+                                "2. Three discontinuities are displayed in sub-area D7 with the following proportions:" +
+                                Environment.NewLine +
                                 "3. Segment #1 has the full width of sub-area D7;" + Environment.NewLine +
                                 "4. Segment #2 has 3/4 of the width of sub-area D7;" + Environment.NewLine +
                                 "5. Segment #3 has 1/2 of the width of sub-area D7.");
@@ -197,8 +211,10 @@ namespace Testcase.DMITestCases
             EVC4_MMITrackDescription.MMI_V_MRSP_CURR_KMH = 45;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The first (nearest to the zero line) PASP segment is removed from sub-area D7 (past zero line)." + Environment.NewLine +
-                                "2. Two discontinuities are displayed in sub-area D7 with the following proportions:" + Environment.NewLine +
+                                "1. The first (nearest to the zero line) PASP segment is removed from sub-area D7 (past zero line)." +
+                                Environment.NewLine +
+                                "2. Two discontinuities are displayed in sub-area D7 with the following proportions:" +
+                                Environment.NewLine +
                                 "3. Segment #1 has the full width of sub-area D7;" + Environment.NewLine +
                                 "4. Segment #2 has 3/4 of the width of sub-area D7.");
 
@@ -213,10 +229,13 @@ namespace Testcase.DMITestCases
             EVC4_MMITrackDescription.MMI_V_MRSP_CURR_KMH = 35;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The first (nearest to the zero line) PASP segment is removed from sub-area D7 (past zero line)." + Environment.NewLine +
-                                "2. One discontinuity is displayed in sub-area D7 with the following proportions:" + Environment.NewLine +
+                                "1. The first (nearest to the zero line) PASP segment is removed from sub-area D7 (past zero line)." +
+                                Environment.NewLine +
+                                "2. One discontinuity is displayed in sub-area D7 with the following proportions:" +
+                                Environment.NewLine +
                                 "3. The segment has the full width of sub-area D7." + Environment.NewLine +
-                                "4. No speed decrease symbol (PL22) is displayed between symbols PL21 and PL23." + Environment.NewLine +
+                                "4. No speed decrease symbol (PL22) is displayed between symbols PL21 and PL23." +
+                                Environment.NewLine +
                                 "4. The Speed increase symbol (PL21) is displayed at position 2000m.");
 
             /*

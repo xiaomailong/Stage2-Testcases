@@ -73,7 +73,7 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 274;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
             EVC8_MMIDriverMessage.Send();
-            
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the message ‘Entering FS’.");
 
@@ -84,10 +84,12 @@ namespace Testcase.DMITestCases
             //EVC8_MMIDriverMessage.Send();
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
 
-            WaitForVerification("Check the following and the planning information in the planning area:" + Environment.NewLine + Environment.NewLine +
+            WaitForVerification("Check the following and the planning information in the planning area:" +
+                                Environment.NewLine + Environment.NewLine +
                                 "1. Scale Up button NA03 is displayed enabled in sub-area D9." + Environment.NewLine +
-                                "2. Scale Down button NA04 is displayed enabled in sub-area D12." + Environment.NewLine +
-                                "3. Show/Hide PA button NA01 is enabled in Sub-area D14");            
+                                "2. Scale Down button NA04 is displayed enabled in sub-area D12." +
+                                Environment.NewLine +
+                                "3. Show/Hide PA button NA01 is enabled in Sub-area D14");
 
             /*
             Test Step 2
@@ -95,7 +97,8 @@ namespace Testcase.DMITestCases
             Expected Result: The distance range on the Planning area is not changed.The sound ‘click’ is played once
             Test Step Comment: (1) MMI_gen 9391 (partly: MMI_gen 4381 (partly: the sound for Up-Type button));
             */
-            WaitForVerification("Press and keep the Scale Up button pressed and check the following:" + Environment.NewLine + Environment.NewLine +
+            WaitForVerification("Press and keep the Scale Up button pressed and check the following:" +
+                                Environment.NewLine + Environment.NewLine +
                                 "1. The distance range in the planning area does not change." + Environment.NewLine +
                                 "2. The ‘click’ sound is played once.");
 
@@ -105,9 +108,11 @@ namespace Testcase.DMITestCases
             Expected Result: The distance range on the Planning area is not changed.The sound ‘click’ is not played
             Test Step Comment: (1) MMI_gen 9391 (partly: MMI_gen 4382 (partly: when slide out with force applied, no sound));
             */
-            WaitForVerification("Drag the Scale Up button outside of its area, keeping the button pressed, and check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The distance range in the planning area does not change." + Environment.NewLine +
-                                "2. The ‘click’ sound is not played.");
+            WaitForVerification(
+                "Drag the Scale Up button outside of its area, keeping the button pressed, and check the following:" +
+                Environment.NewLine + Environment.NewLine +
+                "1. The distance range in the planning area does not change." + Environment.NewLine +
+                "2. The ‘click’ sound is not played.");
 
             /*
             Test Step 4
@@ -115,9 +120,11 @@ namespace Testcase.DMITestCases
             Expected Result: The distance range on the Planning area is not changed.The sound ‘click’ is not played
             Test Step Comment: (1) MMI_gen 9391 (partly: MMI_gen 4382 (partly: when slide back, no sound));
             */
-            WaitForVerification("Whilst keeping the Scale Up button pressed, drag it back inside its area and check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The distance range in the planning area does not change." + Environment.NewLine +
-                                "2. The ‘click’ sound is not played.");
+            WaitForVerification(
+                "Whilst keeping the Scale Up button pressed, drag it back inside its area and check the following:" +
+                Environment.NewLine + Environment.NewLine +
+                "1. The distance range in the planning area does not change." + Environment.NewLine +
+                "2. The ‘click’ sound is not played.");
 
             /*
             Test Step 5
@@ -125,7 +132,8 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The distance range on the planning area is shifted to the next lower range
             Test Step Comment: (1) MMI_gen 9391 (partly: MMI_gen 4381 (partly: exit state ‘Pressed’, execute function associated to the button)); 
             */
-            WaitForVerification("Release the Scale Up button and check the following:" + Environment.NewLine + Environment.NewLine +
+            WaitForVerification("Release the Scale Up button and check the following:" + Environment.NewLine +
+                                Environment.NewLine +
                                 "1. The distance range in the planning area changes to the next lower range.");
 
             /*
@@ -134,9 +142,11 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The scale up button is changed to disabled state, The disabled scale up button NA05 symbol is replace in Sub-area D9
             Test Step Comment: (1) MMI_gen 4394 (partly: Scale up);(2) MMI_gen 4396 (partly: Scale Up, NA05); MMI_gen 4440 (partly: other navigation buttons);
             */
-            WaitForVerification("Press and release the Scale Up button until the distance range is [0..1000] and check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The Scale Up button is displayed disabled." + Environment.NewLine +
-                                "2. The disabled Scale Up button symbol NA05 is displayed in sub-area D9");
+            WaitForVerification(
+                "Press and release the Scale Up button until the distance range is [0..1000] and check the following:" +
+                Environment.NewLine + Environment.NewLine +
+                "1. The Scale Up button is displayed disabled." + Environment.NewLine +
+                "2. The disabled Scale Up button symbol NA05 is displayed in sub-area D9");
 
             /*
             Test Step 7
@@ -144,7 +154,8 @@ namespace Testcase.DMITestCases
             Expected Result: The distance range on the Planning range is not changed.The sound ‘click’ is played once
             Test Step Comment: (1) MMI_gen 9391 (partly: MMI_gen 4381 (partly: the sound for Up-Type button));
             */
-            WaitForVerification("Press and keep the Scale Down button pressed and check the following:" + Environment.NewLine + Environment.NewLine +
+            WaitForVerification("Press and keep the Scale Down button pressed and check the following:" +
+                                Environment.NewLine + Environment.NewLine +
                                 "1. The distance range in the planning area does not change." + Environment.NewLine +
                                 "2. The ‘click’ sound is played once.");
 
@@ -154,9 +165,11 @@ namespace Testcase.DMITestCases
             Expected Result: The distance range on the Planning range is not changed.The sound ‘click’ is not played
             Test Step Comment: (1) MMI_gen 9391 (partly: MMI_gen 4382 (partly: when slide out with force applied, no sound));
             */
-            WaitForVerification("Drag the Scale Down button outside of its area, keeping the button pressed, and check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The distance range in the planning area does not change." + Environment.NewLine +
-                                "2. The ‘click’ sound is not played.");
+            WaitForVerification(
+                "Drag the Scale Down button outside of its area, keeping the button pressed, and check the following:" +
+                Environment.NewLine + Environment.NewLine +
+                "1. The distance range in the planning area does not change." + Environment.NewLine +
+                "2. The ‘click’ sound is not played.");
 
             /*
             Test Step 9
@@ -164,9 +177,11 @@ namespace Testcase.DMITestCases
             Expected Result: The distance range on the Planning range is not changed.The sound ‘click’ is not played
             Test Step Comment: (1) MMI_gen 9391 (partly: MMI_gen 4382 (partly: when slide back, no sound));
             */
-            WaitForVerification("Whilst keeping the Scale Down button pressed, drag it back inside its area and check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The distance range in the planning area does not change." + Environment.NewLine +
-                                "2. The ‘click’ sound is not played.");
+            WaitForVerification(
+                "Whilst keeping the Scale Down button pressed, drag it back inside its area and check the following:" +
+                Environment.NewLine + Environment.NewLine +
+                "1. The distance range in the planning area does not change." + Environment.NewLine +
+                "2. The ‘click’ sound is not played.");
 
             /*
             Test Step 10
@@ -174,7 +189,8 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The distance range on the planning area is shifted to the next higher range.The eanbled scale up button NA03 symbol is replace in Sub-area D9
             Test Step Comment: (1) MMI_gen 9391 (partly: MMI_gen 4381 (partly: exit state ‘Pressed’, execute function associated to the button));(2) MMI_gen 4396 (partly: Scale Up, NA03);
             */
-            WaitForVerification("Release the Scale Down button and check the following:" + Environment.NewLine + Environment.NewLine +
+            WaitForVerification("Release the Scale Down button and check the following:" + Environment.NewLine +
+                                Environment.NewLine +
                                 "1. The distance range in the planning area changes to the next higher range.");
 
             /*
@@ -184,9 +200,11 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 4394 (partly: Scale down);(2) MMI_gen 4396 (partly: Scale down, NA06); MMI_gen 4440 (partly: other navigation buttons);
             */
             // spec says up button but down is displayed
-            WaitForVerification("Press and release the Scale Down button until the distance range is [0..32000] and check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The Scale Down button is displayed disabled." + Environment.NewLine +
-                                "2. The disabled Scale Down button symbol NA06 is displayed in sub-area D12");
+            WaitForVerification(
+                "Press and release the Scale Down button until the distance range is [0..32000] and check the following:" +
+                Environment.NewLine + Environment.NewLine +
+                "1. The Scale Down button is displayed disabled." + Environment.NewLine +
+                "2. The disabled Scale Down button symbol NA06 is displayed in sub-area D12");
 
             /*
             Test Step 12
@@ -194,7 +212,8 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The enabled scale up button NA04 symbol is replace in Sub-area D12
             Test Step Comment: (1) MMI_gen 4396 (partly: Scale Down, NA04);
             */
-            WaitForVerification("Press Scale Up button and check the following:" + Environment.NewLine + Environment.NewLine +
+            WaitForVerification("Press Scale Up button and check the following:" + Environment.NewLine +
+                                Environment.NewLine +
                                 "1. The enabled Scale Down button symbol NA04 is displayed in sub-area D12.");
 
             /*
@@ -203,7 +222,8 @@ namespace Testcase.DMITestCases
             Expected Result: DMI still displays the planning area.The sound ‘click’ is played once
             Test Step Comment: (1) MMI_gen 9391 (partly: MMI_gen 4381 (partly: the sound for Up-Type button));
             */
-            WaitForVerification("Press and keep the hide PA button pressed and check the following:" + Environment.NewLine + Environment.NewLine +
+            WaitForVerification("Press and keep the hide PA button pressed and check the following:" +
+                                Environment.NewLine + Environment.NewLine +
                                 "1. DMI still displays the planning area." + Environment.NewLine +
                                 "2. The ‘click’ sound is played once.");
 
@@ -213,9 +233,11 @@ namespace Testcase.DMITestCases
             Expected Result: DMI still displays the planning area.The sound ‘click’ is not played
             Test Step Comment: (1) MMI_gen 9391 (partly: MMI_gen 4382 (partly: when slide out with force applied, no sound));
             */
-            WaitForVerification("Drag the hide PA button outside of its area, keeping the button pressed, and check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI still displays the planning area." + Environment.NewLine +
-                                "2. The ‘click’ sound is not played.");
+            WaitForVerification(
+                "Drag the hide PA button outside of its area, keeping the button pressed, and check the following:" +
+                Environment.NewLine + Environment.NewLine +
+                "1. DMI still displays the planning area." + Environment.NewLine +
+                "2. The ‘click’ sound is not played.");
 
             /*
             Test Step 15
@@ -223,9 +245,11 @@ namespace Testcase.DMITestCases
             Expected Result: DMI still displays the planning area.The sound ‘click’ is not played
             Test Step Comment: (1) MMI_gen 9391 (partly: MMI_gen 4382 (partly: when slide back, no sound));
             */
-            WaitForVerification("Whilst keeping the hide PA button pressed, drag it back inside its area and check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI still displays the planning area." + Environment.NewLine +
-                                "2. The ‘click’ sound is not played.");
+            WaitForVerification(
+                "Whilst keeping the hide PA button pressed, drag it back inside its area and check the following:" +
+                Environment.NewLine + Environment.NewLine +
+                "1. DMI still displays the planning area." + Environment.NewLine +
+                "2. The ‘click’ sound is not played.");
 
             /*
             Test Step 16
@@ -233,7 +257,8 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The planning area is hidden. The main area D is empty.The NA01 symbol is still display in Sub-area D14
             Test Step Comment: (1) MMI_gen 9391 (partly: MMI_gen 4381 (partly: exit state ‘Pressed’, execute function associated to the button));(2) MMI_gen 4404 (partly: show, enabled); 
             */
-            WaitForVerification("Release the hide PA button and check the following:" + Environment.NewLine + Environment.NewLine +
+            WaitForVerification("Release the hide PA button and check the following:" + Environment.NewLine +
+                                Environment.NewLine +
                                 "1. The planning area is hidden." + Environment.NewLine +
                                 "2. The main area D is empty." + Environment.NewLine +
                                 "3. The NA01 symbol is still displayed in sub-area D14");
@@ -244,7 +269,8 @@ namespace Testcase.DMITestCases
             Expected Result: The planning area is still hidden. The sound ‘click’ is played once
             Test Step Comment: (1) MMI_gen 9391 (partly: MMI_gen 4381 (partly: the sound for Up-Type button));
             */
-            WaitForVerification("Press and keep the planning area pressed and check the following:" + Environment.NewLine + Environment.NewLine +
+            WaitForVerification("Press and keep the planning area pressed and check the following:" +
+                                Environment.NewLine + Environment.NewLine +
                                 "1. The planning area is still hidden." + Environment.NewLine +
                                 "2. The ‘click’ sound is played once.");
 
@@ -254,9 +280,11 @@ namespace Testcase.DMITestCases
             Expected Result: The planning area still hidden.The sound ‘click’ is not played
             Test Step Comment: (1) MMI_gen 9391 (partly: MMI_gen 4382 (partly: when slide out with force applied, no sound));
             */
-            WaitForVerification("Whilst still pressing on the screen, drag outside the planning area and check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The planning area is still hidden." + Environment.NewLine +
-                                "2. The ‘click’ sound is not played.");
+            WaitForVerification(
+                "Whilst still pressing on the screen, drag outside the planning area and check the following:" +
+                Environment.NewLine + Environment.NewLine +
+                "1. The planning area is still hidden." + Environment.NewLine +
+                "2. The ‘click’ sound is not played.");
 
             /*
             Test Step 19
@@ -264,9 +292,11 @@ namespace Testcase.DMITestCases
             Expected Result: The planning area still hidden.The sound ‘click’ is not played
             Test Step Comment: (1) MMI_gen 9391 (partly: MMI_gen 4382 (partly: when slide back, no sound));
             */
-            WaitForVerification("Whilst still pressing on the screen, drag back inside the planning area and check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The planning area is still hidden." + Environment.NewLine +
-                                "2. The ‘click’ sound is not played.");
+            WaitForVerification(
+                "Whilst still pressing on the screen, drag back inside the planning area and check the following:" +
+                Environment.NewLine + Environment.NewLine +
+                "1. The planning area is still hidden." + Environment.NewLine +
+                "2. The ‘click’ sound is not played.");
 
             /*
             Test Step 20
@@ -274,7 +304,8 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,DMI displays the planning area
             Test Step Comment: (1) MMI_gen 9391 (partly: MMI_gen 4381 (partly: exit state ‘Pressed’, execute function associated to the button));
             */
-            WaitForVerification("Release the planning area and check the following:" + Environment.NewLine + Environment.NewLine +
+            WaitForVerification("Release the planning area and check the following:" + Environment.NewLine +
+                                Environment.NewLine +
                                 "1. The planning area is displayed.");
 
             /*

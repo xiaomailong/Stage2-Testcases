@@ -75,7 +75,7 @@ namespace Testcase.DMITestCases
             DmiActions.Start_ATP();
             DmiActions.Activate_Cabin_1(this);
             DmiActions.Set_Driver_ID(this, "1234");
-            
+
             DmiExpectedResults.Driver_ID_window_displayed(this);
 
 
@@ -128,7 +128,7 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.UTC_time_changed(this);
 
             // Possible send EVC-3 MMI_SET_TIME_ATP packet
-            EVC3_MMISetTimeATP.MMI_T_UTC = (uint)(DateTime.UtcNow - new DateTime(1970, 1, 1)).TotalSeconds;
+            EVC3_MMISetTimeATP.MMI_T_UTC = (uint) (DateTime.UtcNow - new DateTime(1970, 1, 1)).TotalSeconds;
             EVC3_MMISetTimeATP.MMI_T_ZONE_OFFSET = 0;
             EVC3_MMISetTimeATP.Send();
 

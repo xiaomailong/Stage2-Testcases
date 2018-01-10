@@ -82,13 +82,14 @@ namespace Testcase.DMITestCases
             DmiActions.Complete_SoM_L1_SR(this);
 
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Default;      // Default window
-            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.SetLocalTimeDateAndOffset;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Default; // Default window
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH =
+                EVC30_MMIRequestEnable.EnabledRequests.SetLocalTimeDateAndOffset;
             EVC30_MMIRequestEnable.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SR mode, Level 1.");
-            
+
             /*
             Test Step 3
             Action: Use the test script file 29_2_a.xml to send EVC-3 with,MMI_T_UTC = 946728000(2000-01-01,12:00:00)MMI_T_Zone_OFFSET = 4Note: The resolution of MMI_T_Zone_OFFSET is 0.25 hour
@@ -166,10 +167,10 @@ namespace Testcase.DMITestCases
                     break;
                 case msgType.msgTypeB:
                     EVC3_MMISetTimeATP.MMI_T_UTC = 946771200;
-                    EVC3_MMISetTimeATP.MMI_T_ZONE_OFFSET = -4;      // 252 is 0xfc - as sbyte == -0x80 + 0x7c (-128 + 124)
+                    EVC3_MMISetTimeATP.MMI_T_ZONE_OFFSET = -4; // 252 is 0xfc - as sbyte == -0x80 + 0x7c (-128 + 124)
                     break;
-            }   
-            
+            }
+
             EVC3_MMISetTimeATP.Send();
         }
 

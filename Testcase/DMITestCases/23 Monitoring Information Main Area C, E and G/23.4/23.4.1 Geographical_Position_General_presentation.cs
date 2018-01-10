@@ -129,8 +129,9 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.SendBlank();
 
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.No_window_specified;
-            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = Variables.standardFlags | 
-                                                                EVC30_MMIRequestEnable.EnabledRequests.GeographicalPosition;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = Variables.standardFlags |
+                                                               EVC30_MMIRequestEnable.EnabledRequests
+                                                                   .GeographicalPosition;
             EVC30_MMIRequestEnable.Send();
 
             // Call generic Check Results Method
@@ -162,7 +163,7 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 $"1. The sub-area G12 displays a grey background with black text showing numbers " +
-                                    "in the correct format." + Environment.NewLine +
+                                "in the correct format." + Environment.NewLine +
                                 $"2. The geographical position value = {EVC5_MMIGeoPosition.MMI_M_ABSOLUTPOS}.");
 
             /*
@@ -196,7 +197,7 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 $"1. The sub-area G12 displays a grey background with black text showing numbers " +
-                                    "in the correct format." + Environment.NewLine +
+                                "in the correct format." + Environment.NewLine +
                                 $"2. The geographical position value = {EVC5_MMIGeoPosition.MMI_M_ABSOLUTPOS}.");
 
             /*

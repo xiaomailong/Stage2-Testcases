@@ -59,7 +59,7 @@ namespace Testcase.DMITestCases
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint
-            TraceInfo("This test case requires an ATP configuration change - " + 
+            TraceInfo("This test case requires an ATP configuration change - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");
 
             /*
@@ -109,15 +109,17 @@ namespace Testcase.DMITestCases
             */
 
             #region Send_XML_15_2_9_DMI_Test_Specification
+
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
             EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 257;
             EVC8_MMIDriverMessage.PlainTextMessage = "0";
             EVC8_MMIDriverMessage.Send();
-            
+
             WaitForVerification("Check the following: + " + Environment.NewLine + Environment.NewLine +
                                 "1. DMI still displays symbol M020 in sub-area C1.");
+
             #endregion
 
             /*

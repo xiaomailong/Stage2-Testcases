@@ -57,7 +57,8 @@ namespace Testcase.DMITestCases
         }
 
         public override bool TestcaseEntryPoint()
-        {            // Testcase entrypoint
+        {
+            // Testcase entrypoint
 
 
             /*
@@ -93,7 +94,8 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, "Acknowledge by pressing in sub-area E5");
 
-            Telegrams.DMItoEVC.EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = Telegrams.DMItoEVC.EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.FixedTextInformationAck;
+            Telegrams.DMItoEVC.EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = Telegrams.DMItoEVC
+                .EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.FixedTextInformationAck;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The message in area sub-area E5 is removed.");
@@ -146,7 +148,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Acknowledge by pressing in sub-area C9");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI still displays symbol ST01 but removes the yellow flashing frame" + Environment.NewLine +
+                                "1. DMI still displays symbol ST01 but removes the yellow flashing frame" +
+                                Environment.NewLine +
                                 "2. DMI displays the message ‘Runaway movement’ with a yellow flashing frame in sub-area E5");
             /*
             Test Step 8
@@ -156,7 +159,9 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
+
         #region Send_XML_6_2_DMI_Test_Specification
+
         enum msgType
         {
             typea,
@@ -184,7 +189,7 @@ namespace Testcase.DMITestCases
             }
             EVC8_MMIDriverMessage.Send();
         }
-        #endregion
 
+        #endregion
     }
 }

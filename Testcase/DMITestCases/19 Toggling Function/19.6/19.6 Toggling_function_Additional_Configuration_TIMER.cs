@@ -47,7 +47,6 @@ namespace Testcase.DMITestCases
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
-            
         }
 
         public override void PostExecution()
@@ -74,7 +73,7 @@ namespace Testcase.DMITestCases
 
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Target_Speed_Monitoring;
             EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 20;
-            Wait_Realtime(10000);            
+            Wait_Realtime(10000);
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Ceiling_Speed_Monitoring;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -96,10 +95,14 @@ namespace Testcase.DMITestCases
             EVC11_MMICurrentSRRules.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS.BTN_YES_DATA_ENTRY_COMPLETE;
             EVC11_MMICurrentSRRules.Send();
 
-            DmiActions.ShowInstruction(this, "Enter and confirm the following data, SR speed = 40 km/h, SR distance = 300 m");
-            
+            DmiActions.ShowInstruction(this,
+                "Enter and confirm the following data, SR speed = 40 km/h, SR distance = 300 m");
+
             EVC11_MMICurrentSRRules.DataElements = new List<Variables.DataElement>
-            { new Variables.DataElement { Identifier = 15, EchoText = "40", QDataCheck = 0}, new Variables.DataElement { Identifier = 16, EchoText = "300", QDataCheck = 0} };
+            {
+                new Variables.DataElement {Identifier = 15, EchoText = "40", QDataCheck = 0},
+                new Variables.DataElement {Identifier = 16, EchoText = "300", QDataCheck = 0}
+            };
             EVC11_MMICurrentSRRules.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -112,17 +115,19 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 6897 (partly: switch on the affected ETCS-objects for the configured duration);
             */
             DmiActions.ShowInstruction(this, "Press the ‘Close’ button. Press in sub-area A1");
-            
+
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Target_Speed_Monitoring;
             EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 20;
             EVC1_MMIDynamic.MMI_V_TARGET_KMH = 15;
             EVC1_MMIDynamic.MMI_O_BRAKETARGET = 200000;
-            Wait_Realtime(10000);            
+            Wait_Realtime(10000);
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Ceiling_Speed_Monitoring;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the White basic speed hook for 10s then removes it." + Environment.NewLine +
-                                "2. DMI displays the Medium-grey basic speed hook for 10s then removes it." + Environment.NewLine +
+                                "1. DMI displays the White basic speed hook for 10s then removes it." +
+                                Environment.NewLine +
+                                "2. DMI displays the Medium-grey basic speed hook for 10s then removes it." +
+                                Environment.NewLine +
                                 "3. DMI displays the Digital distance to target for 10s then removes it.");
 
             /*
@@ -131,55 +136,63 @@ namespace Testcase.DMITestCases
             Expected Result: See expected result of step 3
             */
             DmiActions.ShowInstruction(this, "Press the ‘Close’ button. Press in sub-area A2");
-            
+
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Target_Speed_Monitoring;
             EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 20;
-            Wait_Realtime(10000);            
+            Wait_Realtime(10000);
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Ceiling_Speed_Monitoring;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the White basic speed hook for 10s then removes it." + Environment.NewLine +
-                                "2. DMI displays the Medium-grey basic speed hook for 10s then removes it." + Environment.NewLine +
+                                "1. DMI displays the White basic speed hook for 10s then removes it." +
+                                Environment.NewLine +
+                                "2. DMI displays the Medium-grey basic speed hook for 10s then removes it." +
+                                Environment.NewLine +
                                 "3. DMI displays the Digital distance to target for 10s then removes it.");
 
             DmiActions.ShowInstruction(this, "Press the ‘Close’ button. Press in sub-area A3");
-            
+
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Target_Speed_Monitoring;
             EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 20;
             EVC1_MMIDynamic.MMI_V_TARGET_KMH = 15;
             EVC1_MMIDynamic.MMI_O_BRAKETARGET = 200000;
-            Wait_Realtime(10000);            
+            Wait_Realtime(10000);
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Ceiling_Speed_Monitoring;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the White basic speed hook for 10s then removes it." + Environment.NewLine +
-                                "2. DMI displays the Medium-grey basic speed hook for 10s then removes it." + Environment.NewLine +
+                                "1. DMI displays the White basic speed hook for 10s then removes it." +
+                                Environment.NewLine +
+                                "2. DMI displays the Medium-grey basic speed hook for 10s then removes it." +
+                                Environment.NewLine +
                                 "3. DMI displays the Digital distance to target for 10s then removes it.");
 
             DmiActions.ShowInstruction(this, "Press the ‘Close’ button. Press in sub-area A4");
-            
+
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Target_Speed_Monitoring;
             EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 20;
-            Wait_Realtime(10000);            
+            Wait_Realtime(10000);
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Ceiling_Speed_Monitoring;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the White basic speed hook for 10s then removes it." + Environment.NewLine +
-                                "2. DMI displays the Medium-grey basic speed hook for 10s then removes it." + Environment.NewLine +
+                                "1. DMI displays the White basic speed hook for 10s then removes it." +
+                                Environment.NewLine +
+                                "2. DMI displays the Medium-grey basic speed hook for 10s then removes it." +
+                                Environment.NewLine +
                                 "3. DMI displays the Digital distance to target for 10s then removes it.");
 
             DmiActions.ShowInstruction(this, "Press the ‘Close’ button. Press in area B");
-            
+
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Target_Speed_Monitoring;
             EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 20;
             EVC1_MMIDynamic.MMI_V_TARGET_KMH = 15;
             EVC1_MMIDynamic.MMI_O_BRAKETARGET = 200000;
-            Wait_Realtime(10000);            
+            Wait_Realtime(10000);
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Ceiling_Speed_Monitoring;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the White basic speed hook for 10s then removes it." + Environment.NewLine +
-                                "2. DMI displays the Medium-grey basic speed hook for 10s then removes it." + Environment.NewLine +
+                                "1. DMI displays the White basic speed hook for 10s then removes it." +
+                                Environment.NewLine +
+                                "2. DMI displays the Medium-grey basic speed hook for 10s then removes it." +
+                                Environment.NewLine +
                                 "3. DMI displays the Digital distance to target for 10s then removes it.");
 
             /*
@@ -189,17 +202,19 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 6897 (partly: retriggerable);
             */
             DmiActions.ShowInstruction(this, "Press in sub-area A1. Wait 5s, then press in sub-area A1 again");
-            
+
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Target_Speed_Monitoring;
             EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 20;
             EVC1_MMIDynamic.MMI_V_TARGET_KMH = 15;
             EVC1_MMIDynamic.MMI_O_BRAKETARGET = 200000;
-            Wait_Realtime(10000);            
+            Wait_Realtime(10000);
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Ceiling_Speed_Monitoring;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the White basic speed hook for 10s then removes it." + Environment.NewLine +
-                                "2. DMI displays the Medium-grey basic speed hook for 10s then removes it." + Environment.NewLine +
+                                "1. DMI displays the White basic speed hook for 10s then removes it." +
+                                Environment.NewLine +
+                                "2. DMI displays the Medium-grey basic speed hook for 10s then removes it." +
+                                Environment.NewLine +
                                 "3. DMI displays the Digital distance to target for 10s then removes it.");
 
             /*
@@ -208,52 +223,60 @@ namespace Testcase.DMITestCases
             Expected Result: See expected result of step 5
             */
             DmiActions.ShowInstruction(this, "Press in sub-area A2. Wait 5s, then press in sub-area A2 again");
-            
+
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Target_Speed_Monitoring;
             EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 20;
             EVC1_MMIDynamic.MMI_V_TARGET_KMH = 15;
             EVC1_MMIDynamic.MMI_O_BRAKETARGET = 200000;
-            Wait_Realtime(10000);            
+            Wait_Realtime(10000);
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Ceiling_Speed_Monitoring;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the White basic speed hook for 10s then removes it." + Environment.NewLine +
-                                "2. DMI displays the Medium-grey basic speed hook for 10s then removes it." + Environment.NewLine +
+                                "1. DMI displays the White basic speed hook for 10s then removes it." +
+                                Environment.NewLine +
+                                "2. DMI displays the Medium-grey basic speed hook for 10s then removes it." +
+                                Environment.NewLine +
                                 "3. DMI displays the Digital distance to target for 10s then removes it.");
 
             DmiActions.ShowInstruction(this, "Press in sub-area A3. Wait 5s, then press in sub-area A3 again");
-            
+
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Target_Speed_Monitoring;
             EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 20;
             EVC1_MMIDynamic.MMI_V_TARGET_KMH = 15;
             EVC1_MMIDynamic.MMI_O_BRAKETARGET = 200000;
-            Wait_Realtime(10000);            
+            Wait_Realtime(10000);
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Ceiling_Speed_Monitoring;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the White basic speed hook for 10s then removes it." + Environment.NewLine +
-                                "2. DMI displays the Medium-grey basic speed hook for 10s then removes it." + Environment.NewLine +
+                                "1. DMI displays the White basic speed hook for 10s then removes it." +
+                                Environment.NewLine +
+                                "2. DMI displays the Medium-grey basic speed hook for 10s then removes it." +
+                                Environment.NewLine +
                                 "3. DMI displays the Digital distance to target for 10s then removes it.");
 
             DmiActions.ShowInstruction(this, "Press in sub-area A4. Wait 5s, then press in sub-area A4 again");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the White basic speed hook for 10s then removes it." + Environment.NewLine +
-                                "2. DMI displays the Medium-grey basic speed hook for 10s then removes it." + Environment.NewLine +
+                                "1. DMI displays the White basic speed hook for 10s then removes it." +
+                                Environment.NewLine +
+                                "2. DMI displays the Medium-grey basic speed hook for 10s then removes it." +
+                                Environment.NewLine +
                                 "3. DMI displays the Digital distance to target for 10s then removes it.");
 
             DmiActions.ShowInstruction(this, "Press in area B. Wait 5s, then press in area B again");
-            
+
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Target_Speed_Monitoring;
             EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 20;
             EVC1_MMIDynamic.MMI_V_TARGET_KMH = 15;
             EVC1_MMIDynamic.MMI_O_BRAKETARGET = 200000;
-            Wait_Realtime(10000);            
+            Wait_Realtime(10000);
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Ceiling_Speed_Monitoring;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the White basic speed hook for 10s then removes it." + Environment.NewLine +
-                                "2. DMI displays the Medium-grey basic speed hook for 10s then removes it." + Environment.NewLine +
+                                "1. DMI displays the White basic speed hook for 10s then removes it." +
+                                Environment.NewLine +
+                                "2. DMI displays the Medium-grey basic speed hook for 10s then removes it." +
+                                Environment.NewLine +
                                 "3. DMI displays the Digital distance to target for 10s then removes it.");
 
             /*
@@ -272,11 +295,11 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in OS mode, level 1.Note: The basic speed hook is appear for 10 seconds
             */
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.OnSight;
-            
+
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Target_Speed_Monitoring;
             EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 20;
             EVC1_MMIDynamic.MMI_O_BRAKETARGET = 200000;
-            Wait_Realtime(10000);            
+            Wait_Realtime(10000);
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Ceiling_Speed_Monitoring;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -297,76 +320,94 @@ namespace Testcase.DMITestCases
             EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 20;
             EVC1_MMIDynamic.MMI_V_TARGET_KMH = 30;
             EVC1_MMIDynamic.MMI_O_BRAKETARGET = 200000;
-            Wait_Realtime(10000);            
+            Wait_Realtime(10000);
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Ceiling_Speed_Monitoring;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the White basic speed hook for 10s then removes it." + Environment.NewLine +
-                                "2. DMI displays the Medium-grey basic speed hook for 10s then removes it." + Environment.NewLine +
-                                "3. DMI displays the Digital distance to target for 10s then removes it." + Environment.NewLine +
+                                "1. DMI displays the White basic speed hook for 10s then removes it." +
+                                Environment.NewLine +
+                                "2. DMI displays the Medium-grey basic speed hook for 10s then removes it." +
+                                Environment.NewLine +
+                                "3. DMI displays the Digital distance to target for 10s then removes it." +
+                                Environment.NewLine +
                                 "4. DMI does not display the Digital release speed");
 
             DmiActions.ShowInstruction(this, "Press the ‘Close’ button. Press in sub-area A2");
-            
+
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Target_Speed_Monitoring;
             EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 20;
             EVC1_MMIDynamic.MMI_V_TARGET_KMH = 30;
             EVC1_MMIDynamic.MMI_O_BRAKETARGET = 200000;
-            Wait_Realtime(10000);            
+            Wait_Realtime(10000);
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Ceiling_Speed_Monitoring;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the White basic speed hook for 10s then removes it." + Environment.NewLine +
-                                "2. DMI displays the Medium-grey basic speed hook for 10s then removes it." + Environment.NewLine +
-                                "3. DMI displays the Digital distance to target for 10s then removes it." + Environment.NewLine +
+                                "1. DMI displays the White basic speed hook for 10s then removes it." +
+                                Environment.NewLine +
+                                "2. DMI displays the Medium-grey basic speed hook for 10s then removes it." +
+                                Environment.NewLine +
+                                "3. DMI displays the Digital distance to target for 10s then removes it." +
+                                Environment.NewLine +
                                 "4. DMI does not display the Digital release speed");
 
             DmiActions.ShowInstruction(this, "Press the ‘Close’ button. Press in sub-area A3");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the White basic speed hook for 10s then removes it." + Environment.NewLine +
-                                "2. DMI displays the Medium-grey basic speed hook for 10s then removes it." + Environment.NewLine +
-                                "3. DMI displays the Digital distance to target for 10s then removes it." + Environment.NewLine +
+                                "1. DMI displays the White basic speed hook for 10s then removes it." +
+                                Environment.NewLine +
+                                "2. DMI displays the Medium-grey basic speed hook for 10s then removes it." +
+                                Environment.NewLine +
+                                "3. DMI displays the Digital distance to target for 10s then removes it." +
+                                Environment.NewLine +
                                 "4. DMI does not display the Digital release speed");
-            
+
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Target_Speed_Monitoring;
             EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 20;
             EVC1_MMIDynamic.MMI_V_TARGET_KMH = 30;
             EVC1_MMIDynamic.MMI_O_BRAKETARGET = 200000;
-            Wait_Realtime(10000);            
+            Wait_Realtime(10000);
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Ceiling_Speed_Monitoring;
 
             DmiActions.ShowInstruction(this, "Press the ‘Close’ button. Press in sub-area A4");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the White basic speed hook for 10s then removes it." + Environment.NewLine +
-                                "2. DMI displays the Medium-grey basic speed hook for 10s then removes it." + Environment.NewLine +
-                                "3. DMI displays the Digital distance to target for 10s then removes it." + Environment.NewLine +
+                                "1. DMI displays the White basic speed hook for 10s then removes it." +
+                                Environment.NewLine +
+                                "2. DMI displays the Medium-grey basic speed hook for 10s then removes it." +
+                                Environment.NewLine +
+                                "3. DMI displays the Digital distance to target for 10s then removes it." +
+                                Environment.NewLine +
                                 "4. DMI does not display the Digital release speed");
 
             DmiActions.ShowInstruction(this, "Press the ‘Close’ button. Press in area B");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the White basic speed hook for 10s then removes it." + Environment.NewLine +
-                                "2. DMI displays the Medium-grey basic speed hook for 10s then removes it." + Environment.NewLine +
-                                "3. DMI displays the Digital distance to target for 10s then removes it." + Environment.NewLine +
+                                "1. DMI displays the White basic speed hook for 10s then removes it." +
+                                Environment.NewLine +
+                                "2. DMI displays the Medium-grey basic speed hook for 10s then removes it." +
+                                Environment.NewLine +
+                                "3. DMI displays the Digital distance to target for 10s then removes it." +
+                                Environment.NewLine +
                                 "4. DMI does not display the Digital release speed");
 
             DmiActions.ShowInstruction(this, "Press in sub-area A1. Wait 5s, then press in sub-area A1 again");
-            
+
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Target_Speed_Monitoring;
             EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 20;
             EVC1_MMIDynamic.MMI_V_TARGET_KMH = 30;
             EVC1_MMIDynamic.MMI_O_BRAKETARGET = 200000;
-            Wait_Realtime(10000);            
+            Wait_Realtime(10000);
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Ceiling_Speed_Monitoring;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the White basic speed hook for 10s then removes it." + Environment.NewLine +
-                                "2. DMI displays the Medium-grey basic speed hook for 10s then removes it." + Environment.NewLine +
-                                "3. DMI displays the Digital distance to target for 10s then removes it." + Environment.NewLine +
+                                "1. DMI displays the White basic speed hook for 10s then removes it." +
+                                Environment.NewLine +
+                                "2. DMI displays the Medium-grey basic speed hook for 10s then removes it." +
+                                Environment.NewLine +
+                                "3. DMI displays the Digital distance to target for 10s then removes it." +
+                                Environment.NewLine +
                                 "4. DMI does not display the Digital release speed");
-                        
+
             /*
             Test Step 10
             Action: Perform the following procedure,Press ‘Main’ button.Press and hold ‘Shunting’ button at least 2 seconds.Release the pressed button
@@ -377,16 +418,17 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Shunting;
             EVC30_MMIRequestEnable.Send();
 
-            DmiActions.ShowInstruction(this, "Press the ‘Main’ button. Press and hold the ‘Shunting’ button at least 2 seconds. Release the ‘Shunting’ button");
+            DmiActions.ShowInstruction(this,
+                "Press the ‘Main’ button. Press and hold the ‘Shunting’ button at least 2 seconds. Release the ‘Shunting’ button");
 
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Shunting;
-            
+
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Ceiling_Speed_Monitoring;
             EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 20;
             EVC1_MMIDynamic.MMI_V_TARGET_KMH = -1;
             EVC1_MMIDynamic.MMI_O_BRAKETARGET = 200000;
-            Wait_Realtime(10000);         
-            
+            Wait_Realtime(10000);
+
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Target_Speed_Monitoring;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -400,80 +442,86 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 6897;
             */
             DmiActions.ShowInstruction(this, "Press the ‘Close’ button. Press in sub-area A1");
-                  
+
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Ceiling_Speed_Monitoring;
             EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 20;
             EVC1_MMIDynamic.MMI_V_TARGET_KMH = 10;
-            Wait_Realtime(10000);     
+            Wait_Realtime(10000);
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Target_Speed_Monitoring;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the White basic speed hook for 10s then removes it." + Environment.NewLine +
+                                "1. DMI displays the White basic speed hook for 10s then removes it." +
+                                Environment.NewLine +
                                 "2. DMI displays the Medium-grey basic speed hook for 10s then removes it.");
-            
+
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Ceiling_Speed_Monitoring;
             EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 20;
-            Wait_Realtime(10000);     
+            Wait_Realtime(10000);
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Target_Speed_Monitoring;
 
             DmiActions.ShowInstruction(this, "Press the ‘Close’ button. Press in sub-area A2");
-            
+
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Ceiling_Speed_Monitoring;
             EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 20;
             EVC1_MMIDynamic.MMI_V_TARGET_KMH = 10;
-            Wait_Realtime(10000);     
+            Wait_Realtime(10000);
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Target_Speed_Monitoring;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the White basic speed hook for 10s then removes it." + Environment.NewLine +
+                                "1. DMI displays the White basic speed hook for 10s then removes it." +
+                                Environment.NewLine +
                                 "2. DMI displays the Medium-grey basic speed hook for 10s then removes it.");
 
             DmiActions.ShowInstruction(this, "Press the ‘Close’ button. Press in sub-area A3");
-            
+
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Ceiling_Speed_Monitoring;
             EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 20;
             EVC1_MMIDynamic.MMI_V_TARGET_KMH = 10;
-            Wait_Realtime(10000);     
+            Wait_Realtime(10000);
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Target_Speed_Monitoring;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the White basic speed hook for 10s then removes it." + Environment.NewLine +
+                                "1. DMI displays the White basic speed hook for 10s then removes it." +
+                                Environment.NewLine +
                                 "2. DMI displays the Medium-grey basic speed hook for 10s then removes it.");
-            
+
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Ceiling_Speed_Monitoring;
             EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 20;
             EVC1_MMIDynamic.MMI_V_TARGET_KMH = 10;
-            Wait_Realtime(10000);     
+            Wait_Realtime(10000);
 
             DmiActions.ShowInstruction(this, "Press the ‘Close’ button. Press in sub-area A4");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the White basic speed hook for 10s then removes it." + Environment.NewLine +
+                                "1. DMI displays the White basic speed hook for 10s then removes it." +
+                                Environment.NewLine +
                                 "2. DMI displays the Medium-grey basic speed hook for 10s then removes it.");
 
             DmiActions.ShowInstruction(this, "Press the ‘Close’ button. Press in area B");
-            
+
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Ceiling_Speed_Monitoring;
             EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 20;
             EVC1_MMIDynamic.MMI_V_TARGET_KMH = 10;
-            Wait_Realtime(10000);     
+            Wait_Realtime(10000);
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Target_Speed_Monitoring;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the White basic speed hook for 10s then removes it." + Environment.NewLine +
+                                "1. DMI displays the White basic speed hook for 10s then removes it." +
+                                Environment.NewLine +
                                 "2. DMI displays the Medium-grey basic speed hook for 10s then removes it.");
 
             DmiActions.ShowInstruction(this, "Press in sub-area A1. Wait 5s, then press in sub-area A1 again");
-            
+
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Ceiling_Speed_Monitoring;
             EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 20;
             EVC1_MMIDynamic.MMI_V_TARGET_KMH = 10;
-            Wait_Realtime(10000);     
+            Wait_Realtime(10000);
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Target_Speed_Monitoring;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the White basic speed hook for 10s then removes it." + Environment.NewLine +
-                                "2. DMI displays the Medium-grey basic speed hook for 10s then removes it.");            
+                                "1. DMI displays the White basic speed hook for 10s then removes it." +
+                                Environment.NewLine +
+                                "2. DMI displays the Medium-grey basic speed hook for 10s then removes it.");
 
             /*
             Test Step 12

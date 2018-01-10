@@ -80,7 +80,7 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in OS mode, level 1.");
-            
+
             /*
             Test Step 2
             Action: Drive the train forward with speed = 30 km/h
@@ -353,7 +353,9 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
+
         #region Send_XML_12_3_8_DMI_Test_Specification
+
         enum msgType
         {
             typea,
@@ -395,7 +397,7 @@ namespace Testcase.DMITestCases
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_STM_HS_ENABLED = 0;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_STM_DA_ENABLED = 0;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_BrakeTest_Status =
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_BRAKETEST_STATUS.BrakeTestNotInProgress;
+                EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_BRAKETEST_STATUS.BrakeTestNotInProgress;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.OnSight;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_ADHESION = 100; // "Spare"
@@ -409,102 +411,110 @@ namespace Testcase.DMITestCases
             switch (type)
             {
                 case msgType.typea:
-                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_PreIndication_Monitoring;   // 2
+                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_PreIndication_Monitoring; // 2
                     EVC1_MMIDynamic.MMI_V_TRAIN = 972;
 
                     break;
                 case msgType.typeb:
-                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_PreIndication_Monitoring;   // 2
+                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_PreIndication_Monitoring; // 2
                     EVC1_MMIDynamic.MMI_V_TRAIN = 1111;
 
                     break;
                 case msgType.typec:
-                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Overspeed_Status_PreIndication_Monitoring;   // 10
+                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Overspeed_Status_PreIndication_Monitoring; // 10
                     EVC1_MMIDynamic.MMI_V_TRAIN = 1139;
 
                     break;
                 case msgType.typed:
-                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Warning_Status_PreIndication_Monitoring;   // 6
+                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Warning_Status_PreIndication_Monitoring; // 6
                     EVC1_MMIDynamic.MMI_V_TRAIN = 1250;
 
                     break;
                 case msgType.typee:
-                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_PreIndication_Monitoring;   // 14
+                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_PreIndication_Monitoring; // 14
                     EVC1_MMIDynamic.MMI_V_TRAIN = 1277;
 
                     break;
                 case msgType.typef:
-                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_PreIndication_Monitoring;   // 14
+                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_PreIndication_Monitoring; // 14
                     EVC1_MMIDynamic.MMI_V_TRAIN = 1111;
 
                     break;
                 case msgType.typeg:
-                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_PreIndication_Monitoring;   // 14
+                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_PreIndication_Monitoring; // 14
                     EVC1_MMIDynamic.MMI_V_TRAIN = 1000;
 
                     break;
                 case msgType.typeh:
-                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Target_Speed_Monitoring;   // 11
+                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Target_Speed_Monitoring; // 11
                     EVC1_MMIDynamic.MMI_V_TRAIN = 1000;
 
                     break;
                 case msgType.typei:
-                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Target_Speed_Monitoring;   // 11
+                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Target_Speed_Monitoring; // 11
                     EVC1_MMIDynamic.MMI_V_TRAIN = 1111;
 
                     break;
                 case msgType.typej:
-                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Target_Speed_Monitoring;   // 1
+                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Target_Speed_Monitoring; // 1
                     EVC1_MMIDynamic.MMI_V_TRAIN = 1111;
 
                     break;
                 case msgType.typek:
-                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Target_Speed_Monitoring;   // 1
+                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Target_Speed_Monitoring; // 1
                     EVC1_MMIDynamic.MMI_V_TRAIN = 1083;
 
                     break;
                 case msgType.typel:
-                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Overspeed_Status_Indication_Status_Target_Speed_Monitoring;   // 9
+                    EVC1_MMIDynamic.MMI_M_WARNING =
+                        MMI_M_WARNING.Overspeed_Status_Indication_Status_Target_Speed_Monitoring; // 9
                     EVC1_MMIDynamic.MMI_V_TRAIN = 1139;
 
                     break;
                 case msgType.typem:
-                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Warning_Status_Indication_Status_Target_Speed_Monitoring;   // 5
+                    EVC1_MMIDynamic.MMI_M_WARNING =
+                        MMI_M_WARNING.Warning_Status_Indication_Status_Target_Speed_Monitoring; // 5
                     EVC1_MMIDynamic.MMI_V_TRAIN = 1250;
 
                     break;
                 case msgType.typen:
-                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Indication_Status_Target_Speed_Monitoring;   // 13
+                    EVC1_MMIDynamic.MMI_M_WARNING =
+                        MMI_M_WARNING.Intervention_Status_Indication_Status_Target_Speed_Monitoring; // 13
                     EVC1_MMIDynamic.MMI_V_TRAIN = 1277;
 
                     break;
                 case msgType.typeo:
-                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Indication_Status_Target_Speed_Monitoring;   // 13
+                    EVC1_MMIDynamic.MMI_M_WARNING =
+                        MMI_M_WARNING.Intervention_Status_Indication_Status_Target_Speed_Monitoring; // 13
                     EVC1_MMIDynamic.MMI_V_TRAIN = 1111;
 
                     break;
                 case msgType.typep:
-                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Indication_Status_Target_Speed_Monitoring;   // 13
+                    EVC1_MMIDynamic.MMI_M_WARNING =
+                        MMI_M_WARNING.Intervention_Status_Indication_Status_Target_Speed_Monitoring; // 13
                     EVC1_MMIDynamic.MMI_V_TRAIN = 1083;
 
                     break;
                 case msgType.typeq:
-                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Release_Speed_Monitoring;   // 3
+                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Release_Speed_Monitoring; // 3
                     EVC1_MMIDynamic.MMI_V_TRAIN = 0;
 
                     break;
                 case msgType.typer:
-                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Indication_Status_Release_Speed_Monitoring;   // 15
+                    EVC1_MMIDynamic.MMI_M_WARNING =
+                        MMI_M_WARNING.Intervention_Status_Indication_Status_Release_Speed_Monitoring; // 15
                     EVC1_MMIDynamic.MMI_V_TRAIN = 0;
 
                     break;
                 case msgType.types:
-                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Indication_Status_Release_Speed_Monitoring;   // 15
+                    EVC1_MMIDynamic.MMI_M_WARNING =
+                        MMI_M_WARNING.Intervention_Status_Indication_Status_Release_Speed_Monitoring; // 15
                     EVC1_MMIDynamic.MMI_V_TRAIN = 1111;
 
                     break;
             }
         }
+
         #endregion
     }
 }

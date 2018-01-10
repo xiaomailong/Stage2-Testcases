@@ -88,7 +88,8 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, "Press in sub-area E1");
 
-            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.BrakeReleaseAck;
+            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION =
+                EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.BrakeReleaseAck;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Sub-area E1 can be acknowledged as sensitive area." + Environment.NewLine +
@@ -104,7 +105,8 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
             EVC8_MMIDriverMessage.Send();
 
-            DmiActions.ShowInstruction(this, "When the symbol ST01 is displayed again, press in sub-area C8 (above ST01 symbol)");
+            DmiActions.ShowInstruction(this,
+                "When the symbol ST01 is displayed again, press in sub-area C8 (above ST01 symbol)");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Sub-area C8 can be acknowledged as sensitive area." + Environment.NewLine +
@@ -141,7 +143,8 @@ namespace Testcase.DMITestCases
             XML_13_2_1(msgType.typea);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the symbol ST01 in sub-area C9 surrounded by a yellow flashing frame." + Environment.NewLine +
+                                "1. DMI displays the symbol ST01 in sub-area C9 surrounded by a yellow flashing frame." +
+                                Environment.NewLine +
                                 "2. DMI plays sound ‘Sinfo’");
 
             /*
@@ -156,14 +159,15 @@ namespace Testcase.DMITestCases
             EVC111_MMIDriverMessageAck.MMI_I_TEXT = 1;
             EVC111_MMIDriverMessageAck.MMI_Q_ACK = MMI_Q_ACK.AcknowledgeYES;
             EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
-            
+
             EVC111_MMIDriverMessageAck.MMI_I_TEXT = 1;
             EVC111_MMIDriverMessageAck.MMI_Q_ACK = MMI_Q_ACK.AcknowledgeYES;
             EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Sub-area E1 can be acknowledged as sensitive area." + Environment.NewLine +
-                                "2. The yellow flashing frame surrounding the ST01 symbol is removed." + Environment.NewLine +
+                                "2. The yellow flashing frame surrounding the ST01 symbol is removed." +
+                                Environment.NewLine +
                                 "3. DMI still displays symbol ST01");
 
             /*
@@ -218,7 +222,8 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Sub-area C8 can be acknowledged as sensitive area." + Environment.NewLine +
-                                "2. The yellow flashing frame surrounding the ST01 symbol is removed." + Environment.NewLine +
+                                "2. The yellow flashing frame surrounding the ST01 symbol is removed." +
+                                Environment.NewLine +
                                 "3. DMI still displays symbol ST01");
 
             /*
@@ -250,7 +255,8 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Sub-area C9 can be acknowledged as sensitive area." + Environment.NewLine +
-                                "2. The yellow flashing frame surrounding the ST01 symbol is removed." + Environment.NewLine +
+                                "2. The yellow flashing frame surrounding the ST01 symbol is removed." +
+                                Environment.NewLine +
                                 "3. DMI still displays symbol ST01");
 
             /*
@@ -261,7 +267,9 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
+
         #region Send_XML_13_2_1_DMI_Test_Specification
+
         enum msgType
         {
             typea,
@@ -272,7 +280,6 @@ namespace Testcase.DMITestCases
         {
             switch (type)
             {
-
                 case msgType.typea:
                     // Step 2/1
                     EVC8_MMIDriverMessage.MMI_Q_TEXT = 260;
@@ -291,9 +298,9 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     break;
-
             }
         }
+
         #endregion
     }
 }

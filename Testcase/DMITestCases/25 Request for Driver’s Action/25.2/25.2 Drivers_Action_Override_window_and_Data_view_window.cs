@@ -75,13 +75,15 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press the ‘Override’ button");
             DmiActions.ShowInstruction(this, "Press the ‘EOA’ button");
 
-            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.OverrideSelected;
+            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION =
+                EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.OverrideSelected;
             EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.StartOverrideEOA;
             EVC2_MMIStatus.MMI_M_OVERRIDE_EOA = true;
             EVC2_MMIStatus.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI closes the Override window and displays the Default window in SR mode, Level 1." + Environment.NewLine +
+                                "1. DMI closes the Override window and displays the Default window in SR mode, Level 1." +
+                                Environment.NewLine +
                                 "2. DMI displays symbol MO03 in sub-area C7.");
 
             /*
@@ -95,17 +97,18 @@ namespace Testcase.DMITestCases
             EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.StartTrainDataView;
             EVC13_MMIDataView.MMI_X_DRIVER_ID = "1234";
             EVC13_MMIDataView.MMI_NID_OPERATION = 0xffffffff;
-            EVC13_MMIDataView.MMI_M_DATA_ENABLE = (Variables.MMI_M_DATA_ENABLE)0x0080;     // 128
+            EVC13_MMIDataView.MMI_M_DATA_ENABLE = (Variables.MMI_M_DATA_ENABLE) 0x0080; // 128
             EVC13_MMIDataView.MMI_L_TRAIN = 4096;
             EVC13_MMIDataView.MMI_V_MAXTRAIN = 601;
             EVC13_MMIDataView.MMI_M_BRAKE_PERC = 9;
-            EVC13_MMIDataView.MMI_NID_KEY_AXLE_LOAD = Variables.MMI_NID_KEY.FG4;       // 20
-            EVC13_MMIDataView.MMI_NID_RADIO = 0xffffffffffffffff;          // 4294967295 (= 0xffffffff) hi, 4294967295 (= 0xffffffff) lo
+            EVC13_MMIDataView.MMI_NID_KEY_AXLE_LOAD = Variables.MMI_NID_KEY.FG4; // 20
+            EVC13_MMIDataView.MMI_NID_RADIO =
+                0xffffffffffffffff; // 4294967295 (= 0xffffffff) hi, 4294967295 (= 0xffffffff) lo
             EVC13_MMIDataView.MMI_M_AIRTIGHT = 3;
             EVC13_MMIDataView.MMI_NID_KEY_LOAD_GAUGE = Variables.MMI_NID_KEY.CATE5;
             EVC13_MMIDataView.Trainset_Caption = "";
             EVC13_MMIDataView.Network_Caption = "";
-            EVC13_MMIDataView.MMI_NID_KEY_TRAIN_CAT = Variables.MMI_NID_KEY.CATA;  // 21
+            EVC13_MMIDataView.MMI_NID_KEY_TRAIN_CAT = Variables.MMI_NID_KEY.CATA; // 21
             EVC13_MMIDataView.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -116,7 +119,7 @@ namespace Testcase.DMITestCases
             Action: End of test
             Expected Result: 
             */
-            
+
             return GlobalTestResult;
         }
     }

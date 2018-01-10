@@ -55,12 +55,14 @@ namespace Testcase.DMITestCases
             DmiActions.Display_Driver_ID_Window(this);
             DmiActions.Set_Driver_ID(this, "1234");
             DmiActions.Send_SB_Mode(this);
-            DmiActions.ShowInstruction(this, @"Perform the following action within 3 seconds after pressing OK : " + Environment.NewLine + Environment.NewLine +
-                                "1. Enter and confirm Driver ID on the DMI." );
+            DmiActions.ShowInstruction(this, @"Perform the following action within 3 seconds after pressing OK : " +
+                                             Environment.NewLine + Environment.NewLine +
+                                             "1. Enter and confirm Driver ID on the DMI.");
 
             DmiActions.Request_Brake_Test(this);
-            DmiActions.ShowInstruction(this, @"Perform the following action within 3 seconds after pressing OK : " + Environment.NewLine + Environment.NewLine +
-                                "1. Perform Brake Test" );
+            DmiActions.ShowInstruction(this, @"Perform the following action within 3 seconds after pressing OK : " +
+                                             Environment.NewLine + Environment.NewLine +
+                                             "1. Perform Brake Test");
 
             DmiActions.Display_Level_Window(this);
         }
@@ -79,6 +81,7 @@ namespace Testcase.DMITestCases
             // Testcase entrypoint
 
             #region Test Step 1
+
             /*
             Test Step 1
             Action: Select and confirm Level 0
@@ -91,8 +94,9 @@ namespace Testcase.DMITestCases
                                (2) MMI_gen 577 (partly: Level is valid, Derived from variable,Level 0);
             */
 
-            DmiActions.ShowInstruction(this, @"Perform the following action within 3 seconds after pressing OK : " + Environment.NewLine + Environment.NewLine +
-                                "1. Select and enter Level 0");
+            DmiActions.ShowInstruction(this, @"Perform the following action within 3 seconds after pressing OK : " +
+                                             Environment.NewLine + Environment.NewLine +
+                                             "1. Select and enter Level 0");
 
             DmiExpectedResults.Level_0_Selected(this);
 
@@ -107,6 +111,7 @@ namespace Testcase.DMITestCases
             #endregion
 
             #region Test Step 2
+
             /*
             Test Step 2
             Action: Press ‘Level’ button.Then, select and confirm Level 1
@@ -118,11 +123,13 @@ namespace Testcase.DMITestCases
                                (2) MMI_gen 577 (partly: Level is valid, Derived from variable,Level 1);
             */
 
-            DmiActions.ShowInstruction(this, @"Perform the following action: " + Environment.NewLine + Environment.NewLine +
-                                "1. Press 'Level' button.");
+            DmiActions.ShowInstruction(this, @"Perform the following action: " + Environment.NewLine +
+                                             Environment.NewLine +
+                                             "1. Press 'Level' button.");
             DmiActions.Display_Level_Window(this);
-            DmiActions.ShowInstruction(this, @"Perform the following action within 3 seconds after pressing OK : " + Environment.NewLine + Environment.NewLine +
-                                "1. Select and enter Level 1");
+            DmiActions.ShowInstruction(this, @"Perform the following action within 3 seconds after pressing OK : " +
+                                             Environment.NewLine + Environment.NewLine +
+                                             "1. Select and enter Level 1");
 
             DmiExpectedResults.Level_1_Selected(this);
 
@@ -137,6 +144,7 @@ namespace Testcase.DMITestCases
             #endregion
 
             #region Test Step 3
+
             /*
             Test Step 3
             Action: End of test

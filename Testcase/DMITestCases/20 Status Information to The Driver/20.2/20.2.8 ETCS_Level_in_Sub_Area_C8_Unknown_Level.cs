@@ -68,23 +68,26 @@ namespace Testcase.DMITestCases
             */
 
             #region Send_XML_15_2_8_DMI_Test_Specification
-                EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_EBTestInProgress = 0;
-                EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_EB_Status = 0;
-                EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_RadioStatus = 0;
-                EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_STM_HS_ENABLED = 0;
-                EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_STM_DA_ENABLED = 0;
-                EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_BrakeTest_Status = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_BRAKETEST_STATUS.BrakeTestNotInProgress;
-                EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.Unknown;
-                EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
-                EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_ADHESION = 0;
-                EVC7_MMIEtcsMiscOutSignals.BRAKE_TEST_TIMEOUT = 0;
-                EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 10000000;
 
-                // XML has validity1 0x1000 (4096) which is bit 12 (MMI_OBU_TR_EBTestInProgress) and validity2 0x0001; (MMI_OBU_TR_M_Mode)
-                this.SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity1.Value = 0x0100;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_EBTestInProgress = 0;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_EB_Status = 0;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_RadioStatus = 0;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_STM_HS_ENABLED = 0;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_STM_DA_ENABLED = 0;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_BrakeTest_Status =
+                EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_BRAKETEST_STATUS.BrakeTestNotInProgress;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.Unknown;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_ADHESION = 0;
+            EVC7_MMIEtcsMiscOutSignals.BRAKE_TEST_TIMEOUT = 0;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 10000000;
 
-                WaitForVerification("Check the following: + " + Environment.NewLine + Environment.NewLine +
-                                    "1. DMI does not display a symbol in sub-area C8.");
+            // XML has validity1 0x1000 (4096) which is bit 12 (MMI_OBU_TR_EBTestInProgress) and validity2 0x0001; (MMI_OBU_TR_M_Mode)
+            this.SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity1.Value = 0x0100;
+
+            WaitForVerification("Check the following: + " + Environment.NewLine + Environment.NewLine +
+                                "1. DMI does not display a symbol in sub-area C8.");
+
             #endregion
 
             /*

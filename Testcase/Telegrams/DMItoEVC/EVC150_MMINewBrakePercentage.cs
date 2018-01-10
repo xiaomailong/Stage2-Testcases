@@ -66,11 +66,15 @@ namespace Testcase.Telegrams.DMItoEVC
                 // Else display the real value extracted from EVC-118
                 else
                 {
-          
                     _pool.TraceError(BASE_STRING + Environment.NewLine +
-                                     "MMI_M_BP_ORIG = \"" + _pool.SITR.CCUO.ETCS1NewBrakePercentage.MmiMBpOrig.Value + "\"" + Environment.NewLine +
-                                     "MMI_M_BP_CURRENT = \"" + _pool.SITR.CCUO.ETCS1NewBrakePercentage.MmiMBpCurrent.Value + "\"" + Environment.NewLine +
-                                     "MMI_M_BP_MEASURED = \"" + _pool.SITR.CCUO.ETCS1NewBrakePercentage.MmiMBpMeasured.Value + "\"" + Environment.NewLine +
+                                     "MMI_M_BP_ORIG = \"" + _pool.SITR.CCUO.ETCS1NewBrakePercentage.MmiMBpOrig.Value +
+                                     "\"" + Environment.NewLine +
+                                     "MMI_M_BP_CURRENT = \"" +
+                                     _pool.SITR.CCUO.ETCS1NewBrakePercentage.MmiMBpCurrent.Value + "\"" +
+                                     Environment.NewLine +
+                                     "MMI_M_BP_MEASURED = \"" +
+                                     _pool.SITR.CCUO.ETCS1NewBrakePercentage.MmiMBpMeasured.Value + "\"" +
+                                     Environment.NewLine +
                                      "Result: FAILED!");
                 }
             }

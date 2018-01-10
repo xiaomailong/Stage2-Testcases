@@ -56,12 +56,14 @@ namespace Testcase.DMITestCases
             DmiActions.Display_Driver_ID_Window(this);
             DmiActions.Set_Driver_ID(this, "1234");
             DmiActions.Send_SB_Mode(this);
-            DmiActions.ShowInstruction(this, @"Perform the following action within 3 seconds after pressing OK : " + Environment.NewLine + Environment.NewLine +
-                                "1. Enter and confirm Driver ID on the DMI.");
+            DmiActions.ShowInstruction(this, @"Perform the following action within 3 seconds after pressing OK : " +
+                                             Environment.NewLine + Environment.NewLine +
+                                             "1. Enter and confirm Driver ID on the DMI.");
 
             DmiActions.Request_Brake_Test(this);
-            DmiActions.ShowInstruction(this, @"Perform the following action within 3 seconds after pressing OK : " + Environment.NewLine + Environment.NewLine +
-                                "1. Perform Brake Test");
+            DmiActions.ShowInstruction(this, @"Perform the following action within 3 seconds after pressing OK : " +
+                                             Environment.NewLine + Environment.NewLine +
+                                             "1. Perform Brake Test");
 
             DmiActions.Display_Level_Window(this);
         }
@@ -80,6 +82,7 @@ namespace Testcase.DMITestCases
             // Testcase entrypoint
 
             #region Test step 1
+
             /*
             Test Step 1
             Action: Select and confirm Level 2
@@ -93,8 +96,9 @@ namespace Testcase.DMITestCases
                                (3) MMI_gen 11470 (partly: Bit # 36);
             */
 
-            DmiActions.ShowInstruction(this, @"Perform the following action within 3 seconds after pressing OK : " + Environment.NewLine + Environment.NewLine +
-                                "1. Select and enter Level 2");
+            DmiActions.ShowInstruction(this, @"Perform the following action within 3 seconds after pressing OK : " +
+                                             Environment.NewLine + Environment.NewLine +
+                                             "1. Select and enter Level 2");
 
             DmiExpectedResults.Level_2_Selected(this);
 
@@ -107,6 +111,7 @@ namespace Testcase.DMITestCases
             #endregion
 
             #region Test Step 2
+
             /*
             Test Step 2
             Action: Restart OTE and RBC Simulator.
@@ -127,6 +132,7 @@ namespace Testcase.DMITestCases
             #endregion
 
             #region Test Step 3
+
             /*
             Test Step 3
             Action: End of test

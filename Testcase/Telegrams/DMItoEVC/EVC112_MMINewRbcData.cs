@@ -49,28 +49,34 @@ namespace Testcase.Telegrams.DMItoEVC
                                _pool.SITR.CCUO.ETCS1NewRbcData.MmiNidRadio.GetValueAtIndex(0).Equals(_nidRadio[0]) &
                                _pool.SITR.CCUO.ETCS1NewRbcData.MmiNidRadio.GetValueAtIndex(1).Equals(_nidRadio[1]) &
                                _pool.SITR.CCUO.ETCS1NewRbcData.MmiNidMn.Value.Equals(MMI_NID_MN) &
-                               _pool.SITR.CCUO.ETCS1NewRbcData.MmiMButtons.Value.Equals((byte)MMI_M_BUTTONS);
+                               _pool.SITR.CCUO.ETCS1NewRbcData.MmiMButtons.Value.Equals((byte) MMI_M_BUTTONS);
 
                 // If check passes
                 if (_checkResult)
                 {
                     _pool.TraceReport(baseString0 + Environment.NewLine +
-                        "MMI_NID_RBC = " + MMI_NID_RBC + Environment.NewLine +
-                        "MMI_NID_RADIO = " + _nidRadio[0] + _nidRadio[1] + Environment.NewLine +
-                        "MMI_NID_MN = " + MMI_NID_MN + Environment.NewLine +
-                        "MMI_M_BUTTONS = \"" + MMI_M_BUTTONS + "\"" + Environment.NewLine +                       
-                        "Result: PASSED.");
+                                      "MMI_NID_RBC = " + MMI_NID_RBC + Environment.NewLine +
+                                      "MMI_NID_RADIO = " + _nidRadio[0] + _nidRadio[1] + Environment.NewLine +
+                                      "MMI_NID_MN = " + MMI_NID_MN + Environment.NewLine +
+                                      "MMI_M_BUTTONS = \"" + MMI_M_BUTTONS + "\"" + Environment.NewLine +
+                                      "Result: PASSED.");
                 }
                 // Else display the real value extracted from EVC-106
                 else
                 {
                     _pool.TraceError(baseString0 + Environment.NewLine +
-                        "MMI_NID_RBC = \"" + _pool.SITR.CCUO.ETCS1NewRbcData.MmiNidRbc.Value + "\"" + Environment.NewLine +
-                        "MMI_NID_RADIO = " + _pool.SITR.CCUO.ETCS1NewRbcData.MmiNidRadio.GetValueAtIndex(0).ToString() +
-                                             _pool.SITR.CCUO.ETCS1NewRbcData.MmiNidRadio.GetValueAtIndex(1).ToString() + Environment.NewLine +
-                        "MMI_NID_MN = \"" + _pool.SITR.CCUO.ETCS1NewRbcData.MmiNidMn.Value + "\"" + Environment.NewLine +
-                        "MMI_M_BUTTONS = \"" + Enum.GetName(typeof(MMI_M_BUTTONS_RBC_DATA), _pool.SITR.CCUO.ETCS1NewRbcData.MmiMButtons.Value) + Environment.NewLine +
-                        "Result: FAILED!");
+                                     "MMI_NID_RBC = \"" + _pool.SITR.CCUO.ETCS1NewRbcData.MmiNidRbc.Value + "\"" +
+                                     Environment.NewLine +
+                                     "MMI_NID_RADIO = " +
+                                     _pool.SITR.CCUO.ETCS1NewRbcData.MmiNidRadio.GetValueAtIndex(0).ToString() +
+                                     _pool.SITR.CCUO.ETCS1NewRbcData.MmiNidRadio.GetValueAtIndex(1).ToString() +
+                                     Environment.NewLine +
+                                     "MMI_NID_MN = \"" + _pool.SITR.CCUO.ETCS1NewRbcData.MmiNidMn.Value + "\"" +
+                                     Environment.NewLine +
+                                     "MMI_M_BUTTONS = \"" +
+                                     Enum.GetName(typeof(MMI_M_BUTTONS_RBC_DATA),
+                                         _pool.SITR.CCUO.ETCS1NewRbcData.MmiMButtons.Value) + Environment.NewLine +
+                                     "Result: FAILED!");
                 }
 
                 // Compare number of data element.                
@@ -81,34 +87,38 @@ namespace Testcase.Telegrams.DMItoEVC
 
                     for (var _nidDataIndex = 0; _nidDataIndex < MMI_NID_DATA.Count; _nidDataIndex++)
                     {
-                        _nidData = (byte)_pool.SITR.Client.Read($"{baseString1}{_nidDataIndex}_MmiNidData");
+                        _nidData = (byte) _pool.SITR.Client.Read($"{baseString1}{_nidDataIndex}_MmiNidData");
                         // Compare each data element
                         _checkResult = _nidData.Equals(MMI_NID_DATA[_nidDataIndex]);
 
                         //if comparaison matches
                         if (_checkResult)
                         {
-                            _pool.TraceReport($"MMI_NID_DATA{_nidDataIndex} = \"{MMI_NID_DATA[_nidDataIndex]}\" Result: PASSED!");
+                            _pool.TraceReport(
+                                $"MMI_NID_DATA{_nidDataIndex} = \"{MMI_NID_DATA[_nidDataIndex]}\" Result: PASSED!");
                         }
                         // Else display the real value extracted from EVC-112
                         else
                         {
                             _pool.TraceError($"MMI_NID_DATA{_nidDataIndex} = \"{_nidData}\" Result: FAILED!");
-                        }                        
+                        }
                     }
                 }
                 else
                 {
                     // Else display the real value extracted from EVC-112
                     _pool.TraceError(baseString0 + Environment.NewLine +
-                       "MMI_N_DATA_ELEMENTS = \"" + _pool.SITR.CCUO.ETCS1NewRbcData.MmiNDataElements.Value + "\" Result: FAILED!");
+                                     "MMI_N_DATA_ELEMENTS = \"" +
+                                     _pool.SITR.CCUO.ETCS1NewRbcData.MmiNDataElements.Value + "\" Result: FAILED!");
 
                     // Display data elements value indicating that the test has failed
-                    for (var _nidDataIndex = 0; _nidDataIndex < _pool.SITR.CCUO.ETCS1NewRbcData.MmiNDataElements.Value; _nidDataIndex++)
+                    for (var _nidDataIndex = 0;
+                        _nidDataIndex < _pool.SITR.CCUO.ETCS1NewRbcData.MmiNDataElements.Value;
+                        _nidDataIndex++)
                     {
-                        _nidData = (byte)_pool.SITR.Client.Read($"{baseString1}{_nidDataIndex}_MmiNidData");
+                        _nidData = (byte) _pool.SITR.Client.Read($"{baseString1}{_nidDataIndex}_MmiNidData");
                         _pool.TraceError($"{baseString0}" + Environment.NewLine +
-                            $"MMI_NID_DATA{_nidDataIndex} = \"{_nidData}\" Result: FAILED!");
+                                         $"MMI_NID_DATA{_nidDataIndex} = \"{_nidData}\" Result: FAILED!");
                     }
                 }
             }
@@ -145,7 +155,7 @@ namespace Testcase.Telegrams.DMItoEVC
             set
             {
                 var bytes = BitConverter.GetBytes(value);
-                _nidRadio = new[] { BitConverter.ToUInt32(bytes, 2), BitConverter.ToUInt32(bytes, 0) };
+                _nidRadio = new[] {BitConverter.ToUInt32(bytes, 2), BitConverter.ToUInt32(bytes, 0)};
             }
         }
 
@@ -202,6 +212,5 @@ namespace Testcase.Telegrams.DMItoEVC
         /// Note: the definition is according to preliminary SubSet-121 'NID_DATA' definition.
         /// </summary>
         public static List<byte> MMI_NID_DATA { get; set; }
-       
     }
 }

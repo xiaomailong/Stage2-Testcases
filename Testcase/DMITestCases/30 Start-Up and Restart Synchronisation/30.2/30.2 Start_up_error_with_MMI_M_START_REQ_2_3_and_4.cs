@@ -123,7 +123,7 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays removes the message ‘Starting up’ and displays ‘Incompatible SW versions’ in area E5.");
-            
+
             /*
             Test Step 6
             Action: End of test
@@ -164,9 +164,8 @@ namespace Testcase.DMITestCases
             }
 
             EVC0_MMIStartATP.Send();
-
         }
-        #endregion
 
+        #endregion
     }
 }

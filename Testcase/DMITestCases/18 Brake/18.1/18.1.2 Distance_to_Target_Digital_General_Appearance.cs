@@ -69,8 +69,8 @@ namespace Testcase.DMITestCases
             EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 10;
 
             // ?? Set an EOA so the DMI can display a target
-            EVC1_MMIDynamic.MMI_O_BRAKETARGET = 60000;              // 600m
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 1000;   // 100m
+            EVC1_MMIDynamic.MMI_O_BRAKETARGET = 60000; // 600m
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 1000; // 100m
 
             // Does the DMI automatically switch to FS mode??
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
@@ -82,7 +82,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The distance to target digital is not shown in sub-area A2.Use the log file to confirm that DMI received packet information EVC-1 with vairable MMI_O_BRAKETARGET < 0.Use the log file to confirm that DMI received packet information EVC-7 with following variables,OBU_TR_M_MODE (EVC-7) = 7 (Trip)
             Test Step Comment: (1) MMI_gen 6774 (partly: when MMI_O_BRAKETARGET less than zero);(2) MMI_gen 6774 (partly: received MMI_O_BRAKETARGET less than zero);(3) MMI_gen 2567 (partly: Table 38 ‘TR mode’);
             */
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 70000;   // 700m
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 70000; // 700m
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Trip;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -102,10 +102,11 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             DmiActions.ShowInstruction(this, "Acknowledge Trip mode by pressing sub-area C1");
-            
+
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.PostTrip;
-            WaitForVerification("Is the Trip mode symbol (M004)deleted and replaced by Post Trip mode symbol (MO06) in DMI area B7");
-            
+            WaitForVerification(
+                "Is the Trip mode symbol (M004)deleted and replaced by Post Trip mode symbol (MO06) in DMI area B7");
+
             /*
             Test Step 4
             Action: End of test

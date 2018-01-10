@@ -114,7 +114,8 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI plays the ‘S1_toofast.wav’ sound once." + Environment.NewLine +
-                                "2. The permitted speed hook is displayed on the CSG from 60 to 70 km/h in orange." + Environment.NewLine +
+                                "2. The permitted speed hook is displayed on the CSG from 60 to 70 km/h in orange." +
+                                Environment.NewLine +
                                 "3. The CSG is coloured Dark-grey up to the speed hook" + Environment.NewLine +
                                 "4. The speed pointer displays 70 km/h and is coloured orange.");
 
@@ -157,7 +158,8 @@ namespace Testcase.DMITestCases
             Action: Power on the system and perform SoM to Level 1 in SR mode.
             Expected Result: ETCS OB enters SR mode in Level 1.
             */
-            DmiActions.ShowInstruction(this, "Wait for at least 10s after powering off the system, then power on the system");
+            DmiActions.ShowInstruction(this,
+                "Wait for at least 10s after powering off the system, then power on the system");
 
             DmiActions.Complete_SoM_L1_SR(this);
 
@@ -195,12 +197,13 @@ namespace Testcase.DMITestCases
             EVC1_MMIDynamic.MMI_V_INTERVENTION_KMH = 102;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 95;
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Overspeed_Status_PreIndication_Monitoring;
-            
+
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 102;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI plays the ‘S1_toofast.wav’ sound once." + Environment.NewLine +
-                                "2. The permitted speed hook is displayed on the CSG from 100 to 102 km/h in orange." + Environment.NewLine +
+                                "2. The permitted speed hook is displayed on the CSG from 100 to 102 km/h in orange." +
+                                Environment.NewLine +
                                 "3. The CSG is coloured white up to the speed hook" + Environment.NewLine +
                                 "4. The speed pointer displays 102 km/h and is coloured orange.");
 
@@ -241,7 +244,7 @@ namespace Testcase.DMITestCases
             typeA,
             typeB
         }
-        
+
         private void XM_36_1(msgType packetSelector)
         {
             EVC1_MMIDynamic.MMI_A_TRAIN = 100;
@@ -251,27 +254,27 @@ namespace Testcase.DMITestCases
 
             switch (packetSelector)
             {
-            case msgType.typeA:
-                EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Overspeed_Status_Ceiling_Speed_Monitoring;
-                EVC1_MMIDynamic.MMI_V_TRAIN = 2800;
-                EVC1_MMIDynamic.MMI_V_TARGET = 1;
-                EVC1_MMIDynamic.MMI_V_PERMITTED = 2777;
-                EVC1_MMIDynamic.MMI_O_BRAKETARGET = 1;
-                EVC1_MMIDynamic.MMI_O_IML = 1000153908;
-                EVC1_MMIDynamic.MMI_V_INTERVENTION = 2929;
-                break;
-            case msgType.typeB:
-                EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Overspeed_Status_Ceiling_Speed_Monitoring;
-                EVC1_MMIDynamic.MMI_V_TRAIN = 2806;
-                EVC1_MMIDynamic.MMI_V_TARGET = 0;
-                EVC1_MMIDynamic.MMI_V_PERMITTED = 2687;
-                EVC1_MMIDynamic.MMI_O_BRAKETARGET = 1000310017;
-                EVC1_MMIDynamic.MMI_O_IML = 1000152624;
-                EVC1_MMIDynamic.MMI_V_INTERVENTION = 2882;
-                break;
+                case msgType.typeA:
+                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Overspeed_Status_Ceiling_Speed_Monitoring;
+                    EVC1_MMIDynamic.MMI_V_TRAIN = 2800;
+                    EVC1_MMIDynamic.MMI_V_TARGET = 1;
+                    EVC1_MMIDynamic.MMI_V_PERMITTED = 2777;
+                    EVC1_MMIDynamic.MMI_O_BRAKETARGET = 1;
+                    EVC1_MMIDynamic.MMI_O_IML = 1000153908;
+                    EVC1_MMIDynamic.MMI_V_INTERVENTION = 2929;
+                    break;
+                case msgType.typeB:
+                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Overspeed_Status_Ceiling_Speed_Monitoring;
+                    EVC1_MMIDynamic.MMI_V_TRAIN = 2806;
+                    EVC1_MMIDynamic.MMI_V_TARGET = 0;
+                    EVC1_MMIDynamic.MMI_V_PERMITTED = 2687;
+                    EVC1_MMIDynamic.MMI_O_BRAKETARGET = 1000310017;
+                    EVC1_MMIDynamic.MMI_O_IML = 1000152624;
+                    EVC1_MMIDynamic.MMI_V_INTERVENTION = 2882;
+                    break;
             }
         }
-        #endregion
 
+        #endregion
     }
 }

@@ -1,7 +1,9 @@
 ﻿#region usings
+
 using CL345;
 using System;
 using static Testcase.Telegrams.EVCtoDMI.Variables;
+
 #endregion
 
 namespace Testcase.Telegrams.EVCtoDMI
@@ -16,10 +18,10 @@ namespace Testcase.Telegrams.EVCtoDMI
     /// </summary>
     public static class EVC1_MMIDynamic
     {
-        private static SignalPool _pool;            // Signal pool
-        private static byte _mmiMSlip;              // Slip status
-        private static byte _mmiMSlide;             // Slide status
-        private static MMI_M_WARNING _mmiMWarning;  // Warning/indication status
+        private static SignalPool _pool; // Signal pool
+        private static byte _mmiMSlip; // Slip status
+        private static byte _mmiMSlide; // Slide status
+        private static MMI_M_WARNING _mmiMWarning; // Warning/indication status
 
         /// <summary>
         /// Initialise EVC-1 MMI Dynamic telegram.
@@ -30,27 +32,28 @@ namespace Testcase.Telegrams.EVCtoDMI
             _pool = pool;
 
             // Set default values
-            _pool.SITR.ETCS1.Dynamic.EVC1alias1.Value = 0;          // No slip/slide, normal indication, ceiling speed monitoring
-            _pool.SITR.ETCS1.Dynamic.MmiVTrain.Value = 0;           // Speed = 0
-            _pool.SITR.ETCS1.Dynamic.MmiATrain.Value = 0;           // Acceleration = 0
-            _pool.SITR.ETCS1.Dynamic.MmiVTarget.Value = -1;         // No target speed         
-            _pool.SITR.ETCS1.Dynamic.MmiVPermitted.Value = 0;       // Permitted speed = 0
-            _pool.SITR.ETCS1.Dynamic.MmiVIntervention.Value = -1;   // No intervention speed
-            _pool.SITR.ETCS1.Dynamic.MmiVRelease.Value = -1;        // No release speed
-            _pool.SITR.ETCS1.Dynamic.MmiOBraketarget.Value = -1;    // No restrictive discontinuity of the static speed profile
-            _pool.SITR.ETCS1.Dynamic.MmiOIml.Value = -1;            // Spare
+            _pool.SITR.ETCS1.Dynamic.EVC1alias1.Value = 0; // No slip/slide, normal indication, ceiling speed monitoring
+            _pool.SITR.ETCS1.Dynamic.MmiVTrain.Value = 0; // Speed = 0
+            _pool.SITR.ETCS1.Dynamic.MmiATrain.Value = 0; // Acceleration = 0
+            _pool.SITR.ETCS1.Dynamic.MmiVTarget.Value = -1; // No target speed         
+            _pool.SITR.ETCS1.Dynamic.MmiVPermitted.Value = 0; // Permitted speed = 0
+            _pool.SITR.ETCS1.Dynamic.MmiVIntervention.Value = -1; // No intervention speed
+            _pool.SITR.ETCS1.Dynamic.MmiVRelease.Value = -1; // No release speed
+            _pool.SITR.ETCS1.Dynamic.MmiOBraketarget.Value =
+                -1; // No restrictive discontinuity of the static speed profile
+            _pool.SITR.ETCS1.Dynamic.MmiOIml.Value = -1; // Spare
             _pool.SITR.ETCS1.Dynamic.EVC01Validity1.Value = 0xc800; // 51200 in decimal
             _pool.SITR.ETCS1.Dynamic.EVC01Validity2.Value = 0xff00; // 65280 in decimal
-            _pool.SITR.ETCS1.Dynamic.EVC01SSW1.Value = 0x8000;      // 32768 in decimal
-            _pool.SITR.ETCS1.Dynamic.EVC01SSW2.Value = 0x8000;      // 32768 in decimal
-            _pool.SITR.ETCS1.Dynamic.EVC01SSW3.Value = 0x8000;      // 32768 in decimal
+            _pool.SITR.ETCS1.Dynamic.EVC01SSW1.Value = 0x8000; // 32768 in decimal
+            _pool.SITR.ETCS1.Dynamic.EVC01SSW2.Value = 0x8000; // 32768 in decimal
+            _pool.SITR.ETCS1.Dynamic.EVC01SSW3.Value = 0x8000; // 32768 in decimal
         }
 
         private static void SetAlias()
         {
-            byte mmiMWarning = (byte)_mmiMWarning;
+            byte mmiMWarning = (byte) _mmiMWarning;
 
-            _pool.SITR.ETCS1.Dynamic.EVC1alias1.Value = (byte)(_mmiMSlip << 7 | _mmiMSlide << 6 | mmiMWarning);
+            _pool.SITR.ETCS1.Dynamic.EVC1alias1.Value = (byte) (_mmiMSlip << 7 | _mmiMSlide << 6 | mmiMWarning);
         }
 
         /// <summary>
@@ -180,7 +183,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static short MMI_A_TRAIN_M
         {
-            get => Convert.ToInt16 (_pool.SITR.ETCS1.Dynamic.MmiATrain.Value * 0.01);
+            get => Convert.ToInt16(_pool.SITR.ETCS1.Dynamic.MmiATrain.Value * 0.01);
             set => _pool.SITR.ETCS1.Dynamic.MmiATrain.Value = Convert.ToInt16(value / 0.01);
         }
 

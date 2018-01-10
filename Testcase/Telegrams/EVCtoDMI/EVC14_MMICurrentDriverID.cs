@@ -1,10 +1,12 @@
 ﻿#region usings
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using CL345;
 using static Testcase.Telegrams.EVCtoDMI.Variables;
+
 #endregion
 
 namespace Testcase.Telegrams.EVCtoDMI
@@ -60,7 +62,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         public enum MMI_Q_ADD_ENABLE_BUTTONS : byte
         {
             Settings = 0x40,
-            TRN = 0x80            
+            TRN = 0x80
         }
 
         /// <summary>

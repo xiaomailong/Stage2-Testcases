@@ -111,34 +111,53 @@ namespace Testcase.DMITestCases
 
             // gen 4690 says the cursor is to the right of the characters
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the Set clock window with the title (right-aligned) which includes the sequence number of the current window, e.g ‘Set clock(1/2)’" + Environment.NewLine +
+                                "1. DMI displays the Set clock window with the title (right-aligned) which includes the sequence number of the current window, e.g ‘Set clock(1/2)’" +
+                                Environment.NewLine +
                                 "2. The window title  (e.g. )." + Environment.NewLine +
-                                "3. The Set Clock window displays: an enabled Close button (symbol NA11), a disabled Previous button (symbol NA19); " + Environment.NewLine +
-                                @"                                  data input fields, a ‘Yes’ button, and a ‘Clock set ?’ label." + Environment.NewLine +
-                                @"4. The Yes’ button is displayed disabled state with black text on a Dark-grey background, with a Medium-grey border." + Environment.NewLine +
-                                @"5. The sensitive area of the Yes’ button is extends from the ‘Clock set ?’ label." + Environment.NewLine +
+                                "3. The Set Clock window displays: an enabled Close button (symbol NA11), a disabled Previous button (symbol NA19); " +
+                                Environment.NewLine +
+                                @"                                  data input fields, a ‘Yes’ button, and a ‘Clock set ?’ label." +
+                                Environment.NewLine +
+                                @"4. The Yes’ button is displayed disabled state with black text on a Dark-grey background, with a Medium-grey border." +
+                                Environment.NewLine +
+                                @"5. The sensitive area of the Yes’ button is extends from the ‘Clock set ?’ label." +
+                                Environment.NewLine +
                                 "6. The data input fields are displayed in areas D and F." + Environment.NewLine +
                                 "7. Data input fields have a Label Area and a Data Area." + Environment.NewLine +
-                                "8. The Label Area text is displayed with its corresponding data input field i.e. Year, Month and Day." + Environment.NewLine +
-                                "9. The Label Area is displayed to the left of The Data Area with right-aligned text in grey on a Dark-grey background." + Environment.NewLine +
+                                "8. The Label Area text is displayed with its corresponding data input field i.e. Year, Month and Day." +
+                                Environment.NewLine +
+                                "9. The Label Area is displayed to the left of The Data Area with right-aligned text in grey on a Dark-grey background." +
+                                Environment.NewLine +
                                 "10. The value in the Data Area is left-aligned in black." + Environment.NewLine +
-                                "11. 3 data input fields are displayed in the first page of the window." + Environment.NewLine +
-                                @"12. The first input field is ‘Selected’ with black text on a Meduium-grey background." + Environment.NewLine +
-                                @"13. The other input fields are ‘Not selected’ with data values in grey on a Dark-grey background." + Environment.NewLine +
+                                "11. 3 data input fields are displayed in the first page of the window." +
+                                Environment.NewLine +
+                                @"12. The first input field is ‘Selected’ with black text on a Meduium-grey background." +
+                                Environment.NewLine +
+                                @"13. The other input fields are ‘Not selected’ with data values in grey on a Dark-grey background." +
+                                Environment.NewLine +
                                 @"14. The 1st data input field is labelled ‘Year’." + Environment.NewLine +
                                 @"15. The 2nd data input field label of is ‘Month’." + Environment.NewLine +
                                 @"16. The 3rd data input fieldlabel of  is ‘Day’." + Environment.NewLine +
-                                @"16. A numeric keypad is displayed for the ‘Year’ data input field." + Environment.NewLine +
-                                "17. The keypad contains enabled keys for the numbers <1> to <9>, <Delete> (symbol NA21), <0> and a disabled <Decimal_Separator> key." + Environment.NewLine +
+                                @"16. A numeric keypad is displayed for the ‘Year’ data input field." +
+                                Environment.NewLine +
+                                "17. The keypad contains enabled keys for the numbers <1> to <9>, <Delete> (symbol NA21), <0> and a disabled <Decimal_Separator> key." +
+                                Environment.NewLine +
                                 "18. All areas of the window are in Layer 0." + Environment.NewLine +
-                                "19. Echo texts are displayed in areas A, B, C and E in the same order as their corresponding data input fields." + Environment.NewLine +
-                                "20. Echo texts have a Label Part with right-aligned text and a Data Part with left-aligned text in grey." + Environment.NewLine +
-                                "21. The UTC Time and date is in ‘UTC YYYY - MM - DD hh:mm:ss’ format." + Environment.NewLine +
-                                "22. The Local time and date is in ‘Local YYYY - MM - DD hh:mm:ss’ format." + Environment.NewLine +
+                                "19. Echo texts are displayed in areas A, B, C and E in the same order as their corresponding data input fields." +
+                                Environment.NewLine +
+                                "20. Echo texts have a Label Part with right-aligned text and a Data Part with left-aligned text in grey." +
+                                Environment.NewLine +
+                                "21. The UTC Time and date is in ‘UTC YYYY - MM - DD hh:mm:ss’ format." +
+                                Environment.NewLine +
+                                "22. The Local time and date is in ‘Local YYYY - MM - DD hh:mm:ss’ format." +
+                                Environment.NewLine +
                                 "23. The date and time are updated every second." + Environment.NewLine +
-                                "24. A flashing (visible/invisible) underscore is displayed as a cursor to the right of the last character entered in the data input field." +  Environment.NewLine +
-                                "26. Objects, text messages and buttons can be displayed in several levels. Within a level they are allocated to areas." + Environment.NewLine +
-                                "27. All objects, text messages and buttons are displayed in the same layer." + Environment.NewLine +
+                                "24. A flashing (visible/invisible) underscore is displayed as a cursor to the right of the last character entered in the data input field." +
+                                Environment.NewLine +
+                                "26. Objects, text messages and buttons can be displayed in several levels. Within a level they are allocated to areas." +
+                                Environment.NewLine +
+                                "27. All objects, text messages and buttons are displayed in the same layer." +
+                                Environment.NewLine +
                                 "28. The Default window is not displayed covering the current window.");
 
             /*
@@ -151,7 +170,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘0’ key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘0’ key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                @"1. The ‘0’ key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 @"3. The ‘Year’ data input field displays ‘0’." + Environment.NewLine +
                                 "4. The cursor is displayed after the ‘0’." + Environment.NewLine +
@@ -182,7 +202,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘1’ key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘0’ key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                @"1. The ‘0’ key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 @"3. The ‘Year’ data input field displays ‘01’." + Environment.NewLine +
                                 "4. The cursor is displayed after the ‘1’." + Environment.NewLine +
@@ -198,7 +219,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘2’ key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘2’ key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                @"1. The ‘2’ key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 @"3. The ‘Year’ data input field displays ‘012’." + Environment.NewLine +
                                 "4. The cursor is displayed after the ‘2’." + Environment.NewLine +
@@ -215,7 +237,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘3’ key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘3’ key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                @"1. The ‘3’ key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 @"3. The ‘Year’ data input field displays ‘0123’." + Environment.NewLine +
                                 "4. The cursor is displayed after the ‘3’." + Environment.NewLine +
@@ -234,7 +257,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘4’ key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘3’ key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                @"1. The ‘3’ key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 @"3. The ‘Year’ data input field displays ‘0124’." + Environment.NewLine +
                                 "4. The cursor is displayed after the ‘4’." + Environment.NewLine +
@@ -253,7 +277,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘5’ key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘4’ key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                @"1. The ‘4’ key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 @"3. The ‘Year’ data input field displays ‘0125’." + Environment.NewLine +
                                 "4. The cursor is displayed after the ‘5’." + Environment.NewLine +
@@ -272,7 +297,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘6’ key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘6’ key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                @"1. The ‘6’ key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 @"3. The ‘Year’ data input field displays ‘0126’." + Environment.NewLine +
                                 "4. The cursor is displayed after the ‘6’." + Environment.NewLine +
@@ -292,7 +318,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘7’ key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘7’ key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                @"1. The ‘7’ key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 @"3. The ‘Year’ data input field displays ‘0127’." + Environment.NewLine +
                                 "4. The cursor is displayed after the ‘7’." + Environment.NewLine +
@@ -311,7 +338,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘8’ key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘8’ key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                @"1. The ‘8’ key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 @"3. The ‘Year’ data input field displays ‘0128’." + Environment.NewLine +
                                 "4. The cursor is displayed after the ‘8’." + Environment.NewLine +
@@ -330,7 +358,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘9’ key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘9’ key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                @"1. The ‘9’ key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 @"3. The ‘Year’ data input field displays ‘0129’." + Environment.NewLine +
                                 "4. The cursor is displayed after the ‘9’." + Environment.NewLine +
@@ -350,14 +379,19 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11942 (partly: MMI_gen 4913 (partly: Year), MMI_gen 4384 (partly: sound ‘Click’));(2) MMI_gen 11942 (partly: MMI_gen 4913 (partly: Year), MMI_gen 4384 (partly: Change to state ‘Pressed’ and immediately back to state ‘Enabled’));    (3) MMI_gen 11942 (partly: MMI_gen 4913 (partly: Year), MMI_gen 4384 (partly: ETCS-MMI’s function associated to the button)); MMI_gen 4393 (partly: [Delete]);(4) MMI_gen 11942  (partly: MMI_gen 4913 (partly: Year), MMI_gen 4386 (partly: visual of repeat function));(5) MMI_gen 11942 (partly: MMI_gen 4913 (partly: Year), MMI_gen 4386 (partly: audible of repeat function));
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press and hold the ‘Del’ key for more than 1.5s. Note: Stopwatch is required");
+            DmiActions.ShowInstruction(this,
+                @"Press and hold the ‘Del’ key for more than 1.5s. Note: Stopwatch is required");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. Whilst the ‘Del’ key has been pressed for less than 1.5 s, it is displayed pressed and immediately re-displayed enabled;" + Environment.NewLine +
+                                @"1. Whilst the ‘Del’ key has been pressed for less than 1.5 s, it is displayed pressed and immediately re-displayed enabled;" +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once;" + Environment.NewLine +
-                                @"3. ‘9’ is deleted from the ‘Year’ data input field, which displays ‘012’." + Environment.NewLine +
-                                @"4. After the ‘Del’ key has been pressed for more than 1.5s, it is repeatedly displayed pressed and immediately re-displayed enabled;" + Environment.NewLine +
-                                "5. Characters are repeatedly deleted from the end of the data input field;" + Environment.NewLine +
+                                @"3. ‘9’ is deleted from the ‘Year’ data input field, which displays ‘012’." +
+                                Environment.NewLine +
+                                @"4. After the ‘Del’ key has been pressed for more than 1.5s, it is repeatedly displayed pressed and immediately re-displayed enabled;" +
+                                Environment.NewLine +
+                                "5. Characters are repeatedly deleted from the end of the data input field;" +
+                                Environment.NewLine +
                                 @"6. The ‘Click’ sound is played repeatedly.");
 
             /*
@@ -378,15 +412,20 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,Input fields(1)The associated ‘Enter’ button is data field itself.(2)An input field is used to allow the driver to enter data.(3)The state of ‘Year’ input field is changed to ‘accepted’ as follows,The background colour of the Data Area is dark-grey.The colour of data value is white.(4)The next input field ‘Month’ is in state ‘selected’ as follows,The background colour of the Data Area is medium-grey.The colour of data value is black.Echo Texts(5)The echo text of ‘Year‘ is changed to white colour.(6)The value of echo text is changed refer to entered data.Entering Characters (7)The cursor is displayed as a horizontal line below the position of the next character to be entered.(8)The cursor is flashed by changing from visible to not visible.Keyboard(9)The keyboard associated to selected input field ‘Month’ is Numeric keyboard.(10)The keyboard contains enabled button for the number <1> to <9>, <Delete>(NA21) , <0> and disabled <Decimal_Separator>. NA21, Delete button
             Test Step Comment: (1) MMI_gen 11942 (partly: MMI_gen 4682 (partly: Year));(2) MMI_gen 11942 (partly: MMI_gen 4634 (partly: Year));(3) MMI_gen 11942 (partly: MMI_gen 4652 (partly: Year), MMI_gen 4684 (partly: accepted, Year));(4) MMI_gen 11942 (partly: MMI_gen 4684 (partly: Month, selected automatically), MMI_gen 4651 (partly: Month));(5) MMI_gen 11942 (partly: MMI_gen 4700 (partly: Year));(6) MMI_gen 11942 (partly: MMI_gen 4681 (partly: Year), MMI_gen 4890, MMI_gen 4698);(7) MMI_gen 11942 (partly: MMI_gen 4689, MMI_gen 4690);(8) MMI_gen 11942 (partly: MMI_gen 4691 (partly: flash, Month));(9) ) MMI_gen 11944  (partly: Month); MMI_gen 11942 (partly: MMI_gen 4912 (partly: Month), MMI_gen 4678 (partly: Month));(10) MMI_gen 11942 (partly: MMI_gen 5003 (partly: Month)); MMI_gen 4392 (partly: [Delete] NA21);
             */
-            DmiActions.ShowInstruction(this, @"Delete the value in the ‘Year’ data input field and enter ‘2017’, then confirm the value by pressing the ‘Year’ data input field");
+            DmiActions.ShowInstruction(this,
+                @"Delete the value in the ‘Year’ data input field and enter ‘2017’, then confirm the value by pressing the ‘Year’ data input field");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The data input field is an ‘Enter’ button." + Environment.NewLine +
                                 "2. The data input field can be used to enter data." + Environment.NewLine +
-                                @"3. The ‘Year’ data input field is displayed ‘Accepted’, with the value in white on a Dark-grey background." + Environment.NewLine +
-                                @"4. The next data input field (‘Month’) is  ‘Selected’, with the value in black on a Medium-grey background." + Environment.NewLine +
-                                @"5. A corresponding numeric keypad is displayed for the next data input field." + Environment.NewLine +
-                                @"6. The keypad contains enabled keys for the numbers <1> to <9>, <Delete> (symbol NA21), <0> and a disabled <Decimal_Separator> key." + Environment.NewLine +
+                                @"3. The ‘Year’ data input field is displayed ‘Accepted’, with the value in white on a Dark-grey background." +
+                                Environment.NewLine +
+                                @"4. The next data input field (‘Month’) is  ‘Selected’, with the value in black on a Medium-grey background." +
+                                Environment.NewLine +
+                                @"5. A corresponding numeric keypad is displayed for the next data input field." +
+                                Environment.NewLine +
+                                @"6. The keypad contains enabled keys for the numbers <1> to <9>, <Delete> (symbol NA21), <0> and a disabled <Decimal_Separator> key." +
+                                Environment.NewLine +
                                 @"7. The ‘Year’ echo text displays ‘2017’ in white." + Environment.NewLine +
                                 "8. A flashing (visible/invisible) underscore is displayed as a cursor after the last character of the data input field.");
 
@@ -400,7 +439,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘0’ key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘0’ key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                @"1. The ‘0’ key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 @"3. The ‘Month’ data input field displays ‘0’." + Environment.NewLine +
                                 "4. The cursor is displayed after the ‘0’." + Environment.NewLine +
@@ -417,7 +457,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘1’ key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘0’ key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                @"1. The ‘0’ key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 @"3. The ‘Month’ data input field displays ‘01’." + Environment.NewLine +
                                 "4. The cursor is displayed after the ‘1’." + Environment.NewLine +
@@ -435,7 +476,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘2’ key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘2’ key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                @"1. The ‘2’ key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 @"3. The ‘Month’ data input field displays ‘02’." + Environment.NewLine +
                                 "4. The cursor is displayed after the ‘2’." + Environment.NewLine +
@@ -454,7 +496,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘3’ key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘3’ key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                @"1. The ‘3’ key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 @"3. The ‘Month’ data input field displays ‘03’." + Environment.NewLine +
                                 "4. The cursor is displayed after the ‘3’." + Environment.NewLine +
@@ -473,7 +516,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘4’ key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘3’ key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                @"1. The ‘3’ key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 @"3. The ‘Month’ data input field displays ‘04’." + Environment.NewLine +
                                 "4. The cursor is displayed after the ‘4’." + Environment.NewLine +
@@ -492,7 +536,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘5’ key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘4’ key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                @"1. The ‘4’ key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 @"3. The ‘Month’ data input field displays ‘05’." + Environment.NewLine +
                                 "4. The cursor is displayed after the ‘5’." + Environment.NewLine +
@@ -511,7 +556,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘6’ key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘6’ key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                @"1. The ‘6’ key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 @"3. The ‘Month’ data input field displays ‘06’." + Environment.NewLine +
                                 "4. The cursor is displayed after the ‘6’." + Environment.NewLine +
@@ -531,7 +577,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘7’ key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘7’ key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                @"1. The ‘7’ key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 @"3. The ‘Month’ data input field displays ‘07’." + Environment.NewLine +
                                 "4. The cursor is displayed after the ‘7’." + Environment.NewLine +
@@ -550,7 +597,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘8’ key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘8’ key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                @"1. The ‘8’ key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 @"3. The ‘Month’ data input field displays ‘08’." + Environment.NewLine +
                                 "4. The cursor is displayed after the ‘8’." + Environment.NewLine +
@@ -569,7 +617,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘9’ key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘9’ key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                @"1. The ‘9’ key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 @"3. The ‘Month’ data input field displays ‘09’." + Environment.NewLine +
                                 "4. The cursor is displayed after the ‘9’." + Environment.NewLine +
@@ -588,15 +637,20 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,Input fields(1)The associated ‘Enter’ button is data field itself.(2)An input field is used to allow the driver to enter data.(3)The state of ‘Month’ input field is changed to ‘accepted’ as follows,The background colour of the Data Area is dark-grey.The colour of data value is white.(4)The next input field ‘Day’ is in state ‘selected’ as follows,The background colour of the Data Area is medium-grey.The colour of data value is black.Echo Texts(5)The echo text of ‘Month ‘is changed to white colour.(6)The value of echo text is changed refer to entered data.Entering Characters (7)The cursor is displayed as a horizontal line below the position of the next character to be entered.(8)The cursor is flashed by changing from visible to not visible.Keyboard(9)The keyboard associated to selected input field ‘Day’ is Numeric keyboard.(10)The keyboard contains enabled button for the number <1> to <9>, <Delete>(NA21) , <0> and disabled <Decimal_Separator>. NA21, Delete button
             Test Step Comment: (1) MMI_gen 11942 (partly: MMI_gen 4682 (partly: Month));(2) MMI_gen 11942 (partly: MMI_gen 4634 (partly: Month));(3) MMI_gen 11942 (partly: MMI_gen 4652 (partly: Month), MMI_gen 4684 (partly: accepted, Month));(4) MMI_gen 11942 (partly: MMI_gen 4684 (partly: Day, selected automatically), MMI_gen 4651 (partly: Day));(5) MMI_gen 11942 (partly: MMI_gen 4700 (partly: Month));(6) MMI_gen 11942 (partly: MMI_gen 4681 (partly: Month), MMI_gen 4890, MMI_gen 4698);(7) MMI_gen 11942 (partly: MMI_gen 4689, MMI_gen 4690);(8) MMI_gen 11942 (partly: MMI_gen 4691 (partly: flash, Day));(9) ) MMI_gen 11944  (partly: Day); MMI_gen 11942 (partly: MMI_gen 4912 (partly: Day), MMI_gen 4678 (partly: Day));(10) MMI_gen 11942 (partly: MMI_gen 5003 (partly: Day)); MMI_gen 4392 (partly: [Delete] NA21);
             */
-            DmiActions.ShowInstruction(this, @"Delete the value in the ‘Month’ data input field and enter ‘12’, then confirm the value by pressing the ‘Month’ data input field");
+            DmiActions.ShowInstruction(this,
+                @"Delete the value in the ‘Month’ data input field and enter ‘12’, then confirm the value by pressing the ‘Month’ data input field");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The data input field is an ‘Enter’ button." + Environment.NewLine +
                                 "2. The data input field can be used to enter data." + Environment.NewLine +
-                                @"3. The ‘Month’ data input field is displayed ‘Accepted’, with the value in white on a Dark-grey background." + Environment.NewLine +
-                                @"4. The next data input field (‘Day’) is  ‘Selected’, with the value in black on a Medium-grey background." + Environment.NewLine +
-                                @"5. A corresponding numeric keypad is displayed for the next data input field." + Environment.NewLine +
-                                @"6. The keypad contains enabled keys for the numbers <1> to <9>, <Delete> (symbol NA21), <0> and a disabled <Decimal_Separator> key." + Environment.NewLine +
+                                @"3. The ‘Month’ data input field is displayed ‘Accepted’, with the value in white on a Dark-grey background." +
+                                Environment.NewLine +
+                                @"4. The next data input field (‘Day’) is  ‘Selected’, with the value in black on a Medium-grey background." +
+                                Environment.NewLine +
+                                @"5. A corresponding numeric keypad is displayed for the next data input field." +
+                                Environment.NewLine +
+                                @"6. The keypad contains enabled keys for the numbers <1> to <9>, <Delete> (symbol NA21), <0> and a disabled <Decimal_Separator> key." +
+                                Environment.NewLine +
                                 @"7. The ‘Month’ echo text displays ‘12’ in white." + Environment.NewLine +
                                 "8. A flashing (visible/invisible) underscore is displayed as a cursor after the last character of the data input field.");
 
@@ -610,7 +664,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘0’ key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘0’ key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                @"1. The ‘0’ key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 @"3. The ‘Day’ data input field displays ‘0’." + Environment.NewLine +
                                 "4. The cursor is displayed after the ‘0’." + Environment.NewLine +
@@ -627,7 +682,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘1’ key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘0’ key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                @"1. The ‘0’ key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 @"3. The ‘Day’ data input field displays ‘01’." + Environment.NewLine +
                                 "4. The cursor is displayed after the ‘1’." + Environment.NewLine +
@@ -646,7 +702,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘2’ key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘2’ key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                @"1. The ‘2’ key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 @"3. The ‘Day’ data input field displays ‘02’." + Environment.NewLine +
                                 "4. The cursor is displayed after the ‘2’." + Environment.NewLine +
@@ -663,7 +720,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘3’ key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘3’ key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                @"1. The ‘3’ key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 @"3. The ‘Day’ data input field displays ‘03’." + Environment.NewLine +
                                 "4. The cursor is displayed after the ‘3’." + Environment.NewLine +
@@ -682,7 +740,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘4’ key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘3’ key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                @"1. The ‘3’ key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 @"3. The ‘Day’ data input field displays ‘04’." + Environment.NewLine +
                                 "4. The cursor is displayed after the ‘4’." + Environment.NewLine +
@@ -701,7 +760,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘5’ key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘4’ key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                @"1. The ‘4’ key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 @"3. The ‘Day’ data input field displays ‘05’." + Environment.NewLine +
                                 "4. The cursor is displayed after the ‘5’." + Environment.NewLine +
@@ -720,7 +780,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘6’ key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘6’ key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                @"1. The ‘6’ key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 @"3. The ‘Day’ data input field displays ‘06’." + Environment.NewLine +
                                 "4. The cursor is displayed after the ‘6’." + Environment.NewLine +
@@ -740,7 +801,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘7’ key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘7’ key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                @"1. The ‘7’ key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 @"3. The ‘Day’ data input field displays ‘07’." + Environment.NewLine +
                                 "4. The cursor is displayed after the ‘7’." + Environment.NewLine +
@@ -759,7 +821,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘8’ key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘8’ key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                @"1. The ‘8’ key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 @"3. The ‘Day’ data input field displays ‘08’." + Environment.NewLine +
                                 "4. The cursor is displayed after the ‘8’." + Environment.NewLine +
@@ -778,7 +841,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘9’ key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘9’ key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                @"1. The ‘9’ key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 @"3. The ‘Day’ data input field displays ‘09’." + Environment.NewLine +
                                 "4. The cursor is displayed after the ‘9’." + Environment.NewLine +
@@ -789,7 +853,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Release the key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘9’ key is displayed enabled.");            
+                                @"1. The ‘9’ key is displayed enabled.");
 
             /*
             Test Step 14
@@ -798,18 +862,26 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11942 (partly: MMI_gen 4682 (partly: Day));(2) MMI_gen 11942 (partly: MMI_gen 4634 (partly: Day));(3) MMI_gen 11942 (partly: MMI_gen 4652 (partly: Day), MMI_gen 4684 (partly: accepted, Day));(4) MMI_gen 11942 (partly: MMI_gen 4684 (partly: Hour, selected automatically), MMI_gen 4651 (partly: Hour));(5) MMI_gen 12125 (partly: second page);(6) MMI_gen 11956 (partly: label);(7) MMI_gen 11957 (partly: label);(8) MMI_gen 11958 (partly: label);(9) MMI_gen 11954 (partly: label);(10) MMI_gen 11942 (partly: MMI_gen 4700 (partly: Day));(11) MMI_gen 11942 (partly: MMI_gen 4681 (partly: Day), MMI_gen 4890, MMI_gen 4698);(12 )MMI_gen 11942 (partly: MMI_gen 4689, MMI_gen 4690);(13) MMI_gen 11942 (partly: MMI_gen 4691 (partly: flash, Hour));(14) MMI_gen 11944  (partly: Hour); MMI_gen 11942 (partly: MMI_gen 4912 (partly: Hour), MMI_gen 4678 (partly: Hour));(15) MMI_gen 11942 (partly: MMI_gen 5003 (partly: Hour)); MMI_gen 4392 (partly: [Delete] NA21); (16)  MMI_gen 4394 (partly: enabled [previous], disabled [next]); MMI_gen 4358;(17) MMI_gen 4360 (partly: total number of window);
             */
             // This test is brain-dead. After confirming the day value the second window should be displayed so the Day fields are not visible. Doh!
-            DmiActions.ShowInstruction(this, @"Delete the value in the ‘Day’ data input field and enter ‘31’, then confirm the value by pressing the ‘Day’ data input field");
+            DmiActions.ShowInstruction(this,
+                @"Delete the value in the ‘Day’ data input field and enter ‘31’, then confirm the value by pressing the ‘Day’ data input field");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The data input field is an ‘Enter’ button." + Environment.NewLine +
                                 "2. The data input field can be used to enter data." + Environment.NewLine +
-                                @"3. The ‘Day’ data input field is displayed ‘Accepted’, with the value in white on a Dark-grey background." + Environment.NewLine +
-                                "4. The next page of the window, with title ‘Set clock(2/2)’, is displayed with 4 data input fields." + Environment.NewLine +
-                                "5. The data fields are labelled ‘Hour’, ‘Minute’, ‘Second’, and ‘Offset’." + Environment.NewLine +
-                                @"6. The data input field (‘Hour’) is ‘Selected’, with the value in black on a Medium-grey background." + Environment.NewLine +
-                                @"7. A corresponding numeric keypad is displayed for the next data input field." + Environment.NewLine +
-                                @"8. The keypad contains enabled keys for the numbers <1> to <9>, <Delete> (symbol NA21), <0> and a disabled <Decimal_Separator> key." + Environment.NewLine +
-                                @"9. A flashing (visible/invisible) underscore is displayed as a cursor after the last character of the data input field." + Environment.NewLine +
+                                @"3. The ‘Day’ data input field is displayed ‘Accepted’, with the value in white on a Dark-grey background." +
+                                Environment.NewLine +
+                                "4. The next page of the window, with title ‘Set clock(2/2)’, is displayed with 4 data input fields." +
+                                Environment.NewLine +
+                                "5. The data fields are labelled ‘Hour’, ‘Minute’, ‘Second’, and ‘Offset’." +
+                                Environment.NewLine +
+                                @"6. The data input field (‘Hour’) is ‘Selected’, with the value in black on a Medium-grey background." +
+                                Environment.NewLine +
+                                @"7. A corresponding numeric keypad is displayed for the next data input field." +
+                                Environment.NewLine +
+                                @"8. The keypad contains enabled keys for the numbers <1> to <9>, <Delete> (symbol NA21), <0> and a disabled <Decimal_Separator> key." +
+                                Environment.NewLine +
+                                @"9. A flashing (visible/invisible) underscore is displayed as a cursor after the last character of the data input field." +
+                                Environment.NewLine +
                                 @"10. The ‘Next’ button is displayed disabled (symbol NA18.2) and the ‘Previous’ button is displayed enabled (symbol 18).");
 
             /*
@@ -822,7 +894,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘0’ key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘0’ key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                @"1. The ‘0’ key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 @"3. The ‘Hour’ data input field displays ‘0’." + Environment.NewLine +
                                 "4. The cursor is displayed after the ‘0’." + Environment.NewLine +
@@ -839,7 +912,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘1’ key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘0’ key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                @"1. The ‘0’ key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 @"3. The ‘Hour’ data input field displays ‘01’." + Environment.NewLine +
                                 "4. The cursor is displayed after the ‘1’." + Environment.NewLine +
@@ -858,7 +932,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘2’ key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘2’ key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                @"1. The ‘2’ key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 @"3. The ‘Hour’ data input field displays ‘02’." + Environment.NewLine +
                                 "4. The cursor is displayed after the ‘2’." + Environment.NewLine +
@@ -875,7 +950,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘3’ key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘3’ key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                @"1. The ‘3’ key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 @"3. The ‘Hour’ data input field displays ‘03’." + Environment.NewLine +
                                 "4. The cursor is displayed after the ‘3’." + Environment.NewLine +
@@ -894,7 +970,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘4’ key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘3’ key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                @"1. The ‘3’ key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 @"3. The ‘Hour’ data input field displays ‘04’." + Environment.NewLine +
                                 "4. The cursor is displayed after the ‘4’." + Environment.NewLine +
@@ -913,7 +990,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘5’ key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘4’ key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                @"1. The ‘4’ key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 @"3. The ‘Hour’ data input field displays ‘05’." + Environment.NewLine +
                                 "4. The cursor is displayed after the ‘5’." + Environment.NewLine +
@@ -932,7 +1010,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘6’ key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘6’ key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                @"1. The ‘6’ key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 @"3. The ‘Hour’ data input field displays ‘06’." + Environment.NewLine +
                                 "4. The cursor is displayed after the ‘6’." + Environment.NewLine +
@@ -952,7 +1031,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘7’ key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘7’ key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                @"1. The ‘7’ key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 @"3. The ‘Hour’ data input field displays ‘07’." + Environment.NewLine +
                                 "4. The cursor is displayed after the ‘7’." + Environment.NewLine +
@@ -971,7 +1051,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘8’ key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘8’ key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                @"1. The ‘8’ key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 @"3. The ‘Hour’ data input field displays ‘08’." + Environment.NewLine +
                                 "4. The cursor is displayed after the ‘8’." + Environment.NewLine +
@@ -990,7 +1071,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘9’ key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘9’ key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                @"1. The ‘9’ key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 @"3. The ‘Hour’ data input field displays ‘09’." + Environment.NewLine +
                                 "4. The cursor is displayed after the ‘9’." + Environment.NewLine +
@@ -1009,15 +1091,20 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,Input fields(1)The associated ‘Enter’ button is data field itself.(2)An input field is used to allow the driver to enter data.(3)The state of ‘Hour’ input field is changed to ‘accepted’ as follows,The background colour of the Data Area is dark-grey.The colour of data value is white.(4)The next input field ‘Minute’ is in state ‘selected’ as follows,The background colour of the Data Area is medium-grey.The colour of data value is black.Echo Texts(5)The echo text of ‘Hour ‘is changed to white colour.(6)The value of echo text is changed refer to entered data.Entering Characters (7)The cursor is displayed as a horizontal line below the position of the next character to be entered.(8)The cursor is flashed by changing from visible to not visible.Keyboard(9)The keyboard associated to selected input field ‘Minute’ is Numeric keyboard.(10)The keyboard contains enabled button for the number <1> to <9>, <Delete>(NA21) , <0> and disabled <Decimal_Separator>. NA21, Delete button
             Test Step Comment: (1) MMI_gen 11942 (partly: MMI_gen 4682 (partly: Hour));(2) MMI_gen 11942 (partly: MMI_gen 4634 (partly: Hour));(3) MMI_gen 11942 (partly: MMI_gen 4652 (partly: Hour), MMI_gen 4684 (partly: accepted, Hour));(4) MMI_gen 11942 (partly: MMI_gen 4684 (partly: Minute, selected automatically), MMI_gen 4651 (partly: Minute));(5) MMI_gen 11942 (partly: MMI_gen 4700 (partly: Hour));(6) MMI_gen 11942 (partly: MMI_gen 4681 (partly: Hour), MMI_gen 4890, MMI_gen 4698);(7) MMI_gen 11942 (partly: MMI_gen 4689, MMI_gen 4690);(8) MMI_gen 11942 (partly: MMI_gen 4691 (partly: flash, Minute));(9) ) MMI_gen 11944  (partly: Minute); MMI_gen 11942 (partly: MMI_gen 4912 (partly: Minute), MMI_gen 4678 (partly: Minute));(10) MMI_gen 11942 (partly: MMI_gen 5003 (partly: Minute)); MMI_gen 4392 (partly: [Delete] NA21);
             */
-            DmiActions.ShowInstruction(this, @"Delete the value in the ‘Hour’ data input field and enter ‘11’, then confirm the value by pressing the ‘Day’ data input field");
+            DmiActions.ShowInstruction(this,
+                @"Delete the value in the ‘Hour’ data input field and enter ‘11’, then confirm the value by pressing the ‘Day’ data input field");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The data input field is an ‘Enter’ button." + Environment.NewLine +
                                 "2. The data input field can be used to enter data." + Environment.NewLine +
-                                @"3. The ‘Hour’ data input field is displayed ‘Accepted’, with the value in white on a Dark-grey background." + Environment.NewLine +
-                                @"4. The next data input field (‘Minute’) is  ‘Selected’, with the value in black on a Medium-grey background." + Environment.NewLine +
-                                @"5. A corresponding numeric keypad is displayed for the next data input field." + Environment.NewLine +
-                                @"6. The keypad contains enabled keys for the numbers <1> to <9>, <Delete> (symbol NA21), <0> and a disabled <Decimal_Separator> key." + Environment.NewLine +
+                                @"3. The ‘Hour’ data input field is displayed ‘Accepted’, with the value in white on a Dark-grey background." +
+                                Environment.NewLine +
+                                @"4. The next data input field (‘Minute’) is  ‘Selected’, with the value in black on a Medium-grey background." +
+                                Environment.NewLine +
+                                @"5. A corresponding numeric keypad is displayed for the next data input field." +
+                                Environment.NewLine +
+                                @"6. The keypad contains enabled keys for the numbers <1> to <9>, <Delete> (symbol NA21), <0> and a disabled <Decimal_Separator> key." +
+                                Environment.NewLine +
                                 @"7. The ‘Hour’ echo text displays ‘12’ in white." + Environment.NewLine +
                                 "8. A flashing (visible/invisible) underscore is displayed as a cursor after the last character of the data input field.");
 
@@ -1031,7 +1118,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘0’ key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘0’ key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                @"1. The ‘0’ key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 @"3. The ‘Minute’ data input field displays ‘0’." + Environment.NewLine +
                                 "4. The cursor is displayed after the ‘0’." + Environment.NewLine +
@@ -1048,7 +1136,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘1’ key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘0’ key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                @"1. The ‘0’ key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 @"3. The ‘Minute’ data input field displays ‘01’." + Environment.NewLine +
                                 "4. The cursor is displayed after the ‘1’." + Environment.NewLine +
@@ -1067,7 +1156,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘2’ key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘2’ key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                @"1. The ‘2’ key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 @"3. The ‘Minute’ data input field displays ‘02’." + Environment.NewLine +
                                 "4. The cursor is displayed after the ‘2’." + Environment.NewLine +
@@ -1084,7 +1174,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘3’ key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘3’ key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                @"1. The ‘3’ key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 @"3. The ‘Minute’ data input field displays ‘03’." + Environment.NewLine +
                                 "4. The cursor is displayed after the ‘3’." + Environment.NewLine +
@@ -1103,7 +1194,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘4’ key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘3’ key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                @"1. The ‘3’ key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 @"3. The ‘Minute’ data input field displays ‘04’." + Environment.NewLine +
                                 "4. The cursor is displayed after the ‘4’." + Environment.NewLine +
@@ -1122,7 +1214,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘5’ key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘4’ key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                @"1. The ‘4’ key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 @"3. The ‘Minute’ data input field displays ‘05’." + Environment.NewLine +
                                 "4. The cursor is displayed after the ‘5’." + Environment.NewLine +
@@ -1141,7 +1234,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘6’ key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘6’ key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                @"1. The ‘6’ key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 @"3. The ‘Minute’ data input field displays ‘06’." + Environment.NewLine +
                                 "4. The cursor is displayed after the ‘6’." + Environment.NewLine +
@@ -1161,7 +1255,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘7’ key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘7’ key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                @"1. The ‘7’ key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 @"3. The ‘Minute’ data input field displays ‘07’." + Environment.NewLine +
                                 "4. The cursor is displayed after the ‘7’." + Environment.NewLine +
@@ -1180,7 +1275,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘8’ key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘8’ key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                @"1. The ‘8’ key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 @"3. The ‘Minute’ data input field displays ‘08’." + Environment.NewLine +
                                 "4. The cursor is displayed after the ‘8’." + Environment.NewLine +
@@ -1199,7 +1295,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘9’ key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘9’ key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                @"1. The ‘9’ key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 @"3. The ‘Minute’ data input field displays ‘09’." + Environment.NewLine +
                                 "4. The cursor is displayed after the ‘9’." + Environment.NewLine +
@@ -1218,15 +1315,20 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,Input fields(1)The associated ‘Enter’ button is data field itself.(2)An input field is used to allow the driver to enter data.(3)The state of ‘Minute’ input field is changed to ‘accepted’ as follows,The background colour of the Data Area is dark-grey.The colour of data value is white.(4)The next input field ‘Second’ is in state ‘selected’ as follows,The background colour of the Data Area is medium-grey.The colour of data value is black.Echo Texts(5)The echo text of ‘Minute ‘is changed to white colour.(6)The value of echo text is changed refer to entered data.Entering Characters (7)The cursor is displayed as a horizontal line below the position of the next character to be entered.(8)The cursor is flashed by changing from visible to not visible.Keyboard(9)The keyboard associated to selected input field ‘Second’ is Numeric keyboard.(10)The keyboard contains enabled button for the number <1> to <9>, <Delete>(NA21) , <0> and disabled <Decimal_Separator>. NA21, Delete button
             Test Step Comment: (1) MMI_gen 11942 (partly: MMI_gen 4682 (partly: Minute));(2) MMI_gen 11942 (partly: MMI_gen 4634 (partly: Minute));(3) MMI_gen 11942 (partly: MMI_gen 4652 (partly: Minute), MMI_gen 4684 (partly: accepted, Minute));(4) MMI_gen 11942 (partly: MMI_gen 4684 (partly: Second, selected automatically), MMI_gen 4651 (partly: Second));(5) MMI_gen 11942 (partly: MMI_gen 4700 (partly: Minute));(6) MMI_gen 11942 (partly: MMI_gen 4681 (partly: Minute), MMI_gen 4890, MMI_gen 4698);(7) MMI_gen 11942 (partly: MMI_gen 4689, MMI_gen 4690);(8) MMI_gen 11942 (partly: MMI_gen 4691 (partly: flash, Second));(9) ) MMI_gen 11944  (partly: Second); MMI_gen 11942 (partly: MMI_gen 4912 (partly: Second), MMI_gen 4678 (partly: Second));(10) MMI_gen 11942 (partly: MMI_gen 5003 (partly: Second)); MMI_gen 4392 (partly: [Delete] NA21);
             */
-            DmiActions.ShowInstruction(this, @"Delete the value in the ‘Minute’ data input field and enter ‘11’, then confirm the value by pressing the ‘Day’ data input field");
+            DmiActions.ShowInstruction(this,
+                @"Delete the value in the ‘Minute’ data input field and enter ‘11’, then confirm the value by pressing the ‘Day’ data input field");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The data input field is an ‘Enter’ button." + Environment.NewLine +
                                 "2. The data input field can be used to enter data." + Environment.NewLine +
-                                @"3. The ‘Minute’ data input field is displayed ‘Accepted’, with the value in white on a Dark-grey background." + Environment.NewLine +
-                                @"4. The next data input field (‘Second’) is  ‘Selected’, with the value in black on a Medium-grey background." + Environment.NewLine +
-                                @"5. A corresponding numeric keypad is displayed for the next data input field." + Environment.NewLine +
-                                @"6. The keypad contains enabled keys for the numbers <1> to <9>, <Delete> (symbol NA21), <0> and a disabled <Decimal_Separator> key." + Environment.NewLine +
+                                @"3. The ‘Minute’ data input field is displayed ‘Accepted’, with the value in white on a Dark-grey background." +
+                                Environment.NewLine +
+                                @"4. The next data input field (‘Second’) is  ‘Selected’, with the value in black on a Medium-grey background." +
+                                Environment.NewLine +
+                                @"5. A corresponding numeric keypad is displayed for the next data input field." +
+                                Environment.NewLine +
+                                @"6. The keypad contains enabled keys for the numbers <1> to <9>, <Delete> (symbol NA21), <0> and a disabled <Decimal_Separator> key." +
+                                Environment.NewLine +
                                 @"7. The ‘Minute’ echo text displays ‘12’ in white." + Environment.NewLine +
                                 "8. A flashing (visible/invisible) underscore is displayed as a cursor after the last character of the data input field.");
 
@@ -1240,7 +1342,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘0’ key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘0’ key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                @"1. The ‘0’ key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 @"3. The ‘Second’ data input field displays ‘0’." + Environment.NewLine +
                                 "4. The cursor is displayed after the ‘0’." + Environment.NewLine +
@@ -1257,7 +1360,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘1’ key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘0’ key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                @"1. The ‘0’ key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 @"3. The ‘Second’ data input field displays ‘01’." + Environment.NewLine +
                                 "4. The cursor is displayed after the ‘1’." + Environment.NewLine +
@@ -1276,7 +1380,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘2’ key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘2’ key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                @"1. The ‘2’ key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 @"3. The ‘Second’ data input field displays ‘02’." + Environment.NewLine +
                                 "4. The cursor is displayed after the ‘2’." + Environment.NewLine +
@@ -1293,7 +1398,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘3’ key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘3’ key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                @"1. The ‘3’ key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 @"3. The ‘Second’ data input field displays ‘03’." + Environment.NewLine +
                                 "4. The cursor is displayed after the ‘3’." + Environment.NewLine +
@@ -1312,7 +1418,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘4’ key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘3’ key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                @"1. The ‘3’ key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 @"3. The ‘Second’ data input field displays ‘04’." + Environment.NewLine +
                                 "4. The cursor is displayed after the ‘4’." + Environment.NewLine +
@@ -1331,7 +1438,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘5’ key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘4’ key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                @"1. The ‘4’ key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 @"3. The ‘Second’ data input field displays ‘05’." + Environment.NewLine +
                                 "4. The cursor is displayed after the ‘5’." + Environment.NewLine +
@@ -1350,7 +1458,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘6’ key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘6’ key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                @"1. The ‘6’ key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 @"3. The ‘Second’ data input field displays ‘06’." + Environment.NewLine +
                                 "4. The cursor is displayed after the ‘6’." + Environment.NewLine +
@@ -1370,7 +1479,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘7’ key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘7’ key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                @"1. The ‘7’ key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 @"3. The ‘Second’ data input field displays ‘07’." + Environment.NewLine +
                                 "4. The cursor is displayed after the ‘7’." + Environment.NewLine +
@@ -1389,7 +1499,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘8’ key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘8’ key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                @"1. The ‘8’ key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 @"3. The ‘Second’ data input field displays ‘08’." + Environment.NewLine +
                                 "4. The cursor is displayed after the ‘8’." + Environment.NewLine +
@@ -1408,7 +1519,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘9’ key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘9’ key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                @"1. The ‘9’ key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 @"3. The ‘Second’ data input field displays ‘09’." + Environment.NewLine +
                                 "4. The cursor is displayed after the ‘9’." + Environment.NewLine +
@@ -1427,14 +1539,18 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,Input fields(1)The associated ‘Enter’ button is data field itself.(2)An input field is used to allow the driver to enter data.(3)The state of ‘Second’ input field is changed to ‘accepted’ as follows,The background colour of the Data Area is dark-grey.The colour of data value is white.(4)The next input field ‘Offset’ is in state ‘selected’ as follows,The background colour of the Data Area is medium-grey.The colour of data value is black.Echo Texts(5)The echo text of ‘Second ‘is changed to white colour.(6)The value of echo text is changed refer to entered data.Entering Characters (7)The cursor is displayed as a horizontal line below the position of the next character to be entered.(8)The cursor is flashed by changing from visible to not visible.Keyboard(9)The keyboard associated to selected input field ‘Offset’ is Dedicated keyboard. (10)The label of key#1 is ‘+’ and the label of key#2 is ‘-‘
             Test Step Comment: (1) MMI_gen 11942 (partly: MMI_gen 4682 (partly: Second));(2) MMI_gen 11942 (partly: MMI_gen 4634 (partly: Second));(3) MMI_gen 11942 (partly: MMI_gen 4652 (partly: Second), MMI_gen 4684 (partly: accepted, Second));(4) MMI_gen 11942 (partly: MMI_gen 4684 (partly: Offset, selected automatically), MMI_gen 4651 (partly: Offset));(5) MMI_gen 11942 (partly: MMI_gen 4700 (partly: Second));(6) MMI_gen 11942 (partly: MMI_gen 4681 (partly: Second), MMI_gen 4890, MMI_gen 4698);(7) MMI_gen 11942 (partly: MMI_gen 4689, MMI_gen 4690);(8) MMI_gen 11942 (partly: MMI_gen 4691 (partly: flash, Offset));(9) MMI_gen 11944  (partly: Offset); MMI_gen 11942 (partly: MMI_gen 4912 (partly: except Offset), MMI_gen 4678 (partly: Offset)); MMI_gen 11945 (partly: dedicated keyboard);(10) MMI_gen 11945 (partly: ‘+’ and ‘-‘ keys);
             */
-            DmiActions.ShowInstruction(this, @"Delete the value in the ‘Second’ data input field and enter ‘11’, then confirm the value by pressing the ‘Day’ data input field");
+            DmiActions.ShowInstruction(this,
+                @"Delete the value in the ‘Second’ data input field and enter ‘11’, then confirm the value by pressing the ‘Day’ data input field");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The data input field is an ‘Enter’ button." + Environment.NewLine +
                                 "2. The data input field can be used to enter data." + Environment.NewLine +
-                                @"3. The ‘Second’ data input field is displayed ‘Accepted’, with the value in white on a Dark-grey background." + Environment.NewLine +
-                                @"4. The next data input field (‘Offset’) is  ‘Selected’, with the value in black on a Medium-grey background." + Environment.NewLine +
-                                @"5. A corresponding numeric keypad is displayed for the next data input field." + Environment.NewLine +
+                                @"3. The ‘Second’ data input field is displayed ‘Accepted’, with the value in white on a Dark-grey background." +
+                                Environment.NewLine +
+                                @"4. The next data input field (‘Offset’) is  ‘Selected’, with the value in black on a Medium-grey background." +
+                                Environment.NewLine +
+                                @"5. A corresponding numeric keypad is displayed for the next data input field." +
+                                Environment.NewLine +
                                 @"6. The keypad contains enabled keys <+> and <->." + Environment.NewLine +
                                 @"7. The ‘Second’ echo text displays ‘12’ in white." + Environment.NewLine +
                                 "8. A flashing (visible/invisible) underscore is displayed as a cursor after the last character of the data input field.");
@@ -1462,7 +1578,8 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1) The value of offset time still not changes and display as ‘+12:00’
             Test Step Comment: (1) MMI_gen 11945 (partly: offset range +12:00);
             */
-            DmiActions.ShowInstruction(this, @"Press the ‘+’ key repeatedly until the offset is displayed as ‘+12:00’, then press the ‘+’ key again.");
+            DmiActions.ShowInstruction(this,
+                @"Press the ‘+’ key repeatedly until the offset is displayed as ‘+12:00’, then press the ‘+’ key again.");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The offset time stays displayed as ‘+12:00’.");
@@ -1478,7 +1595,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The previous time displayed is decremented by 15 minutes." + Environment.NewLine +
                                 "2. The data input fields are used to enter the Offset.");
-            
+
             DmiActions.ShowInstruction(this, @"Release the key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -1491,7 +1608,8 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11945 (partly: offset range -12:00);
             */
             // Test says press - key (Doh!)
-            DmiActions.ShowInstruction(this, @"Press the ‘-’ key repeatedly until the offset is displayed as ‘-012:00’, then press the ‘-’ key again.");
+            DmiActions.ShowInstruction(this,
+                @"Press the ‘-’ key repeatedly until the offset is displayed as ‘-012:00’, then press the ‘-’ key again.");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The offset time stays displayed as ‘-12:00’.");
@@ -1507,9 +1625,11 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The data input field is an ‘Enter’ button." + Environment.NewLine +
                                 "2. The data input field can be used to enter data." + Environment.NewLine +
-                                @"3. The ‘Offset’ data input field is displayed ‘Accepted’, with white text on a Dark-grey background." + Environment.NewLine +
+                                @"3. The ‘Offset’ data input field is displayed ‘Accepted’, with white text on a Dark-grey background." +
+                                Environment.NewLine +
                                 @"4. No data input field is displayed ‘Selected’." + Environment.NewLine +
-                                @"5. The echo text of the ‘Offset’ data input field displays ‘-12:00’ in white." + Environment.NewLine +
+                                @"5. The echo text of the ‘Offset’ data input field displays ‘-12:00’ in white." +
+                                Environment.NewLine +
                                 "6. The ‘Yes’ button below the label ‘Clock set?’ is displayed enabled, with black text on a Medium-grey background and a Medium-grey border.");
 
             /*
@@ -1521,7 +1641,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘Previous’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘Previous’ button is displayed pressed, with no border." + Environment.NewLine +
+                                @"1. The ‘Previous’ button is displayed pressed, with no border." +
+                                Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once.");
 
             /*
@@ -1530,7 +1651,8 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)The border of the button is shown (state ‘Enabled’) without a sound
             Test Step Comment: (1) MMI_gen 11942 (partly: MMI_gen 9391 (partly: [Previous], MMI_gen 4382 (partly: state ‘Enabled’ when slide out with force applied, no sound))); MMI_gen 4374;
             */
-            DmiActions.ShowInstruction(this, @"Whilst keeping the ‘Previous’ button pressed, drag it back inside its area");
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the ‘Previous’ button pressed, drag it back inside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Previous’ button is displayed enabled, with a border." + Environment.NewLine +
@@ -1542,7 +1664,8 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)The border of the button is back to state ‘Pressed’ without a sound
             Test Step Comment: (1) MMI_gen 11942 (partly: MMI_gen 9391 (partly: [Previous], MMI_gen 4382 (partly: state ‘Pressed’ when slide back, no sound))); MMI_gen 4375;
             */
-            DmiActions.ShowInstruction(this, @"Whilst keeping the ‘Previous’ button pressed, drag it back inside its area");
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the ‘Previous’ button pressed, drag it back inside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Previous’ button is displayed pressed, without a border." +
@@ -1579,11 +1702,14 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1) The state of ‘Yes’ button below text label ‘Clock set?’ is disabled. (2) The state of input field ‘Year’ is changed to ‘Not selected’ as follows,The value of ‘Year’ input field is removed and displayed as blank.The background colour of the input field is dark-grey
             Test Step Comment: (1) MMI_gen 11942 (partly: MMI_gen 4909 (partly: state selected and with recently entered key), MMI_gen 4680 (partly: value has been modified));(2) MMI_gen 11942 (partly: MMI_gen 4680 (partly: Year, Not selected, Data area is blank), MMI_gen 4649 (partly: data entry, background colour));
             */
-            DmiActions.ShowInstruction(this, @"Press and release the ‘Previous’ button. Select the ‘Year’ data input field, then enter ‘12’ " + Environment.NewLine +
-                                             @"and select the ‘Day’ data input field without accepting the data (pressing a data input field)");
+            DmiActions.ShowInstruction(this,
+                @"Press and release the ‘Previous’ button. Select the ‘Year’ data input field, then enter ‘12’ " +
+                Environment.NewLine +
+                @"and select the ‘Day’ data input field without accepting the data (pressing a data input field)");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘Yes’ button below the label ‘Clock set?’ is displayed disabled." + Environment.NewLine +
+                                "1. The ‘Yes’ button below the label ‘Clock set?’ is displayed disabled." +
+                                Environment.NewLine +
                                 "2. The ‘Year’ data input field is displayed ‘Not Selected’ with a blank value on a Dark-grey background.");
 
             /*
@@ -1592,7 +1718,8 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1) The state of input field ‘Year’ is changed to ‘selected’
             Test Step Comment: (1) MMI_gen 11942 (partly: MMI_gen 4685);
             */
-            DmiActions.ShowInstruction(this, @"Press and release the ‘Next’ button. Select the ‘Minute’ data input field and confirm by pressing a data input field)");
+            DmiActions.ShowInstruction(this,
+                @"Press and release the ‘Next’ button. Select the ‘Minute’ data input field and confirm by pressing a data input field)");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Year’  data input field is displayed ‘Selected’.");
@@ -1602,7 +1729,8 @@ namespace Testcase.DMITestCases
             Action: Enter the value ‘2016’ for ‘Year’.Then, confirm an entered data by pressing an input field
             Expected Result: The state of ‘Yes’ button is changed to enabled
             */
-            DmiActions.ShowInstruction(this, @"Enter the value ‘2016’ for ‘Year’, then confirm the entered value by pressing an input field");
+            DmiActions.ShowInstruction(this,
+                @"Enter the value ‘2016’ for ‘Year’, then confirm the entered value by pressing an input field");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Yes’ button below the label ‘Clock set?’ is displayed enabled.");
@@ -1654,10 +1782,11 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.Send();
 
             // The language is changed later...
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings;      // Settings
-            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.SetLocalTimeDateAndOffset |
-                                                               EVC30_MMIRequestEnable.EnabledRequests.SetLocalOffset |
-                                                               EVC30_MMIRequestEnable.EnabledRequests.Language;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings; // Settings
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH =
+                EVC30_MMIRequestEnable.EnabledRequests.SetLocalTimeDateAndOffset |
+                EVC30_MMIRequestEnable.EnabledRequests.SetLocalOffset |
+                EVC30_MMIRequestEnable.EnabledRequests.Language;
 
             EVC30_MMIRequestEnable.Send();
 
@@ -1675,7 +1804,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @" Press and hold the Label area of the ‘Month’ data input field");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘Month’ data input field is displayed pressed, without a border." + Environment.NewLine +
+                                @"1. The ‘Month’ data input field is displayed pressed, without a border." +
+                                Environment.NewLine +
                                 @"2. The ‘Month’ data input field stays ‘Not Selected’." + Environment.NewLine +
                                 @"3. The ‘Year’ data input field stays ‘Selected’.");
 
@@ -1685,10 +1815,12 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)    The border of ‘Month’ input field is shown (state ‘Enabled’) without a sound.The state of ‘Month’ input field remains ‘not selected’. The state of ‘Year’ input field remains ‘selected’
             Test Step Comment: (1) MMI_gen 11942 (partly: MMI_gen 4686 (partly: Label area, Month), MMI_gen 4382 (partly: state ‘Enabled’ when slide out with force applied, no sound); MMI_gen 4374;
             */
-            DmiActions.ShowInstruction(this, @"Whilst keeping the Label area of the ‘Month’ data input field pressed, drag it back inside its area");
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the Label area of the ‘Month’ data input field pressed, drag it back inside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘Month’ data input field is displayed enabled, with a border." + Environment.NewLine +
+                                @"1. The ‘Month’ data input field is displayed enabled, with a border." +
+                                Environment.NewLine +
                                 @"2. The ‘Month’ data input field stays ‘Not Selected’." + Environment.NewLine +
                                 @"3. The ‘Year’ data input field stays ‘Selected’.");
 
@@ -1698,10 +1830,12 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)    The state of ‘Month’ input field is changed to ‘Pressed’, the border of button is removed.The state of ‘Month’ input field remains ‘not selected’. The state of ‘Year’ input field remains ‘selected’
             Test Step Comment: (1) MMI_gen 11942 (partly: MMI_gen 4686 (partly: Label area, Month), MMI_gen 4382 (partly: state ‘Pressed’ when slide back, no sound); MMI_gen 4375;
             */
-            DmiActions.ShowInstruction(this, @"Whilst keeping the Label area of the ‘Month’ data input field pressed, drag it back inside its area");
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the Label area of the ‘Month’ data input field pressed, drag it back inside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘Month’ data input field is displayed pressed, without a border." + Environment.NewLine + 
+                                "1. The ‘Month’ data input field is displayed pressed, without a border." +
+                                Environment.NewLine +
                                 @"2. The ‘Month’ data input field stays ‘Not Selected’." + Environment.NewLine +
                                 @"3. The ‘Year’ data input field stays ‘Selected’.");
 
@@ -1727,23 +1861,28 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @" Press and hold the Label area of the ‘Day’ data input field");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘Day’ data input field is displayed pressed, without a border." + Environment.NewLine +
+                                @"1. The ‘Day’ data input field is displayed pressed, without a border." +
+                                Environment.NewLine +
                                 @"2. The ‘Day’ data input field stays ‘Not Selected’." + Environment.NewLine +
                                 @"3. The ‘Month’ data input field stays ‘Selected’.");
 
             // Repeat Step 37 for the Day field
-            DmiActions.ShowInstruction(this, @"Whilst keeping the Label area of the ‘Day’ data input field pressed, drag it back inside its area");
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the Label area of the ‘Day’ data input field pressed, drag it back inside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘Day’ data input field is displayed enabled, with a border." + Environment.NewLine +
+                                @"1. The ‘Day’ data input field is displayed enabled, with a border." +
+                                Environment.NewLine +
                                 @"2. The ‘Day’ data input field stays ‘Not Selected’." + Environment.NewLine +
                                 @"3. The ‘Month’ data input field stays ‘Selected’.");
 
             // Repeat Step 38 for the Day field
-            DmiActions.ShowInstruction(this, @"Whilst keeping the Label area of the ‘Day’ data input field pressed, drag it back inside its area");
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the Label area of the ‘Day’ data input field pressed, drag it back inside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘Day’ data input field is displayed pressed, without a border." + Environment.NewLine +
+                                "1. The ‘Day’ data input field is displayed pressed, without a border." +
+                                Environment.NewLine +
                                 @"2. The ‘Day’ data input field stays ‘Not Selected’." + Environment.NewLine +
                                 @"3. The ‘Month’ data input field stays ‘Selected’.");
 
@@ -1757,23 +1896,28 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @" Press and hold the Label area of the ‘Hour’ data input field");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘Hour’ data input field is displayed pressed, without a border." + Environment.NewLine +
+                                @"1. The ‘Hour’ data input field is displayed pressed, without a border." +
+                                Environment.NewLine +
                                 @"2. The ‘Hour’ data input field stays ‘Not Selected’." + Environment.NewLine +
                                 @"3. The ‘Day’ data input field stays ‘Selected’.");
 
             // Repeat Step 37 for the Hour field
-            DmiActions.ShowInstruction(this, @"Whilst keeping the Label area of the ‘Hour’ data input field pressed, drag it back inside its area");
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the Label area of the ‘Hour’ data input field pressed, drag it back inside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘Hour’ data input field is displayed enabled, with a border." + Environment.NewLine +
+                                @"1. The ‘Hour’ data input field is displayed enabled, with a border." +
+                                Environment.NewLine +
                                 @"2. The ‘Hour’ data input field stays ‘Not Selected’." + Environment.NewLine +
                                 @"3. The ‘Day’ data input field stays ‘Selected’.");
 
             // Repeat Step 38 for the Hour field
-            DmiActions.ShowInstruction(this, @"Whilst keeping the Label area of the ‘Hour’ data input field pressed, drag it back inside its area");
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the Label area of the ‘Hour’ data input field pressed, drag it back inside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘Hour’ data input field is displayed pressed, without a border." + Environment.NewLine +
+                                "1. The ‘Hour’ data input field is displayed pressed, without a border." +
+                                Environment.NewLine +
                                 @"2. The ‘Hour’ data input field stays ‘Not Selected’." + Environment.NewLine +
                                 @"3. The ‘Day’ data input field stays ‘Selected’.");
 
@@ -1794,23 +1938,28 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @" Press and hold the Data area of the ‘Month’ data input field");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘Month’ data input field is displayed pressed, without a border." + Environment.NewLine +
+                                @"1. The ‘Month’ data input field is displayed pressed, without a border." +
+                                Environment.NewLine +
                                 @"2. The ‘Month’ data input field stays ‘Not Selected’." + Environment.NewLine +
                                 @"3. The ‘Year’ data input field stays ‘Selected’.");
 
             // Repeat Step 37 for the Month field data area
-            DmiActions.ShowInstruction(this, @"Whilst keeping the Data area of the ‘Month’ data input field pressed, drag it back inside its area");
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the Data area of the ‘Month’ data input field pressed, drag it back inside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘Month’ data input field is displayed enabled, with a border." + Environment.NewLine +
+                                @"1. The ‘Month’ data input field is displayed enabled, with a border." +
+                                Environment.NewLine +
                                 @"2. The ‘Month’ data input field stays ‘Not Selected’." + Environment.NewLine +
                                 @"3. The ‘Year’ data input field stays ‘Selected’.");
 
             // Repeat Step 38 for the Month field data area
-            DmiActions.ShowInstruction(this, @"Whilst keeping the Data area of the ‘Month’ data input field pressed, drag it back inside its area");
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the Data area of the ‘Month’ data input field pressed, drag it back inside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘Month’ data input field is displayed pressed, without a border." + Environment.NewLine +
+                                "1. The ‘Month’ data input field is displayed pressed, without a border." +
+                                Environment.NewLine +
                                 @"2. The ‘Month’ data input field stays ‘Not Selected’." + Environment.NewLine +
                                 @"3. The ‘Year’ data input field stays ‘Selected’.");
 
@@ -1819,29 +1968,34 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Month’ data input field is displayed ‘Selected’.");
-            
+
             // Should be Steps 36-39...
             // Repeat Step 36 for the Day field data area
             DmiActions.ShowInstruction(this, @" Press and hold the Data area of the ‘Day’ data input field");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘Day’ data input field is displayed pressed, without a border." + Environment.NewLine +
+                                @"1. The ‘Day’ data input field is displayed pressed, without a border." +
+                                Environment.NewLine +
                                 @"2. The ‘Day’ data input field stays ‘Not Selected’." + Environment.NewLine +
                                 @"3. The ‘Month’ data input field stays ‘Selected’.");
 
             // Repeat Step 37 for the Day field field data area
-            DmiActions.ShowInstruction(this, @"Whilst keeping the Data area of the ‘Day’ data input field pressed, drag it back inside its area");
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the Data area of the ‘Day’ data input field pressed, drag it back inside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘Day’ data input field is displayed enabled, with a border." + Environment.NewLine +
+                                @"1. The ‘Day’ data input field is displayed enabled, with a border." +
+                                Environment.NewLine +
                                 @"2. The ‘Day’ data input field stays ‘Not Selected’." + Environment.NewLine +
                                 @"3. The ‘Month’ data input field stays ‘Selected’.");
 
             // Repeat Step 38 for the Day field field data area
-            DmiActions.ShowInstruction(this, @"Whilst keeping the Data area of the ‘Day’ data input field pressed, drag it back inside its area");
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the Data area of the ‘Day’ data input field pressed, drag it back inside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘Day’ data input field is displayed pressed, without a border." + Environment.NewLine +
+                                "1. The ‘Day’ data input field is displayed pressed, without a border." +
+                                Environment.NewLine +
                                 @"2. The ‘Day’ data input field stays ‘Not Selected’." + Environment.NewLine +
                                 @"3. The ‘Month’ data input field stays ‘Selected’.");
 
@@ -1855,23 +2009,28 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @" Press and hold the Data area of the ‘Hour’ data input field");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘Hour’ data input field is displayed pressed, without a border." + Environment.NewLine +
+                                @"1. The ‘Hour’ data input field is displayed pressed, without a border." +
+                                Environment.NewLine +
                                 @"2. The ‘Hour’ data input field stays ‘Not Selected’." + Environment.NewLine +
                                 @"3. The ‘Day’ data input field stays ‘Selected’.");
 
             // Repeat Step 37 for the Hour field data area
-            DmiActions.ShowInstruction(this, @"Whilst keeping the Data area of the ‘Hour’ data input field pressed, drag it back inside its area");
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the Data area of the ‘Hour’ data input field pressed, drag it back inside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘Hour’ data input field is displayed enabled, with a border." + Environment.NewLine +
+                                @"1. The ‘Hour’ data input field is displayed enabled, with a border." +
+                                Environment.NewLine +
                                 @"2. The ‘Hour’ data input field stays ‘Not Selected’." + Environment.NewLine +
                                 @"3. The ‘Day’ data input field stays ‘Selected’.");
 
             // Repeat Step 38 for the Hour field data area
-            DmiActions.ShowInstruction(this, @"Whilst keeping the Data area of the ‘Hour’ data input field pressed, drag it back inside its area");
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the Data area of the ‘Hour’ data input field pressed, drag it back inside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘Hour’ data input field is displayed pressed, without a border." + Environment.NewLine +
+                                "1. The ‘Hour’ data input field is displayed pressed, without a border." +
+                                Environment.NewLine +
                                 @"2. The ‘Hour’ data input field stays ‘Not Selected’." + Environment.NewLine +
                                 @"3. The ‘Day’ data input field stays ‘Selected’.");
 
@@ -1887,8 +2046,10 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Set clock window.Verify the following information,The labels are updated refer to selected language
             Test Step Comment: (1) MMI_gen 11943;
             */
-            DmiActions.ShowInstruction(this, @"Press a data input field to confirm the data and press the ‘Yes’ button, then press the ‘Language button’;" + Environment.NewLine +
-                                             @"in the language window select ‘Deutsch’ and confirm the selection, then press the ‘Set clock’ button in the Settings window");
+            DmiActions.ShowInstruction(this,
+                @"Press a data input field to confirm the data and press the ‘Yes’ button, then press the ‘Language button’;" +
+                Environment.NewLine +
+                @"in the language window select ‘Deutsch’ and confirm the selection, then press the ‘Set clock’ button in the Settings window");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. All the labels are displayed in German.");
@@ -1898,8 +2059,10 @@ namespace Testcase.DMITestCases
             Action: Perform the following procedure,Press ‘Close’ button.Press ‘Language’ button.Select and confirm English language
             Expected Result: The labels are updated refer to selected language
             */
-            DmiActions.ShowInstruction(this, @"Press the ‘Close’ button. Press the ‘Language’ button, then select and confirm English language;" + Environment.NewLine +
-                                             @"in the Settings window, press the ‘Set clock’ button");
+            DmiActions.ShowInstruction(this,
+                @"Press the ‘Close’ button. Press the ‘Language’ button, then select and confirm English language;" +
+                Environment.NewLine +
+                @"in the Settings window, press the ‘Set clock’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. All the labels are displayed in English.");
@@ -1931,8 +2094,10 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information, (1)   The Offset time is editable refer to received packet EVC-30 with variable MMI_Q_REQUEST_ENABLE_64 #26 = 1(2)   All other input fields except Offset time are non-editable refer to received packet EVC-30 with variable MMI_Q_REQUEST_ENABLE_64 #25 = 0
             Test Step Comment: (1) MMI_gen 2450 (partly: bit #26);(2) MMI_gen 1563 (partly: disabled bit #25);
             */
-            DmiActions.ShowInstruction(this, @"Press the ‘Set clock’ button and press the ‘Next’ button in the Set clock window, " + Environment.NewLine +
-                                             "then select the Offset data input field (on the second page)");
+            DmiActions.ShowInstruction(this,
+                @"Press the ‘Set clock’ button and press the ‘Next’ button in the Set clock window, " +
+                Environment.NewLine +
+                "then select the Offset data input field (on the second page)");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Offset’ data input field can be edited." + Environment.NewLine +
@@ -1944,7 +2109,8 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)  Use the log file to confirm that DMI sent out packet [MMI_SET_TIME_MMI (EVC-109)] with,MMI_T_ZONE_OFFSET = 48MMI_T_UTC = current UTC time calculated from current UTC time
             Test Step Comment: (1) MMI_gen 2452;
             */
-            DmiActions.ShowInstruction(this, @"Change the ‘Offset’ value to ‘+12:00’ and confirm the value by pressing the data input field, then press the ‘Yes’ button");
+            DmiActions.ShowInstruction(this,
+                @"Change the ‘Offset’ value to ‘+12:00’ and confirm the value by pressing the data input field, then press the ‘Yes’ button");
 
             //EVC109_MmiSetTimeMmi.CheckMmiTZoneOffset = -48;
             //EVC109_MmiSetTimeMmi.CheckMmiTUTC = 1481429471;   // ??
@@ -1959,14 +2125,15 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Set clock’ button is enabled");
-            
+
             /*
             Test Step 49
             Action: Press ‘Set Clock’ button. Then, select an input field ‘Offset’ at second page
             Expected Result: Verify the following information, (1)   The Offset time is editable  refer to received packet EVC-30 with variable MMI_Q_REQUEST_ENABLE_64 #25 = 1
             Test Step Comment: (1) MMI_gen 2450 (partly: bit #25);
             */
-            DmiActions.ShowInstruction(this, @"Press the ‘Set Clock’ button, then press the ‘Next’ button and select the ‘Offset’ data input field");
+            DmiActions.ShowInstruction(this,
+                @"Press the ‘Set Clock’ button, then press the ‘Next’ button and select the ‘Offset’ data input field");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Offset’ data input field can be edited.");
@@ -1990,7 +2157,9 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
+
         #region Send_XML_22_13_1_DMI_Test_Specification
+
         enum msgType
         {
             typea,
@@ -2002,24 +2171,28 @@ namespace Testcase.DMITestCases
         private void XML_22_13_1(msgType type)
         {
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.No_window_specified;      // Settings
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.No_window_specified; // Settings
             switch (type)
             {
                 case msgType.typea:
                     break;
                 case msgType.typeb:
-                    EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.SetLocalTimeDateAndOffset;
+                    EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH =
+                        EVC30_MMIRequestEnable.EnabledRequests.SetLocalTimeDateAndOffset;
                     break;
                 case msgType.typec:
-                    EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.SetLocalOffset;
+                    EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH =
+                        EVC30_MMIRequestEnable.EnabledRequests.SetLocalOffset;
                     break;
                 case msgType.typed:
-                    EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.SetLocalTimeDateAndOffset |
-                                                                       EVC30_MMIRequestEnable.EnabledRequests.SetLocalOffset;
+                    EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH =
+                        EVC30_MMIRequestEnable.EnabledRequests.SetLocalTimeDateAndOffset |
+                        EVC30_MMIRequestEnable.EnabledRequests.SetLocalOffset;
                     break;
             }
             EVC30_MMIRequestEnable.Send();
         }
+
         #endregion
     }
 }

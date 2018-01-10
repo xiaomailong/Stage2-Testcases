@@ -74,15 +74,22 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Press the ‘Language’ button");
 
-            WaitForVerification("Check the following (* indicates sub-areas drawn as one area):" + Environment.NewLine + Environment.NewLine +
-                                @"1. DMI displays the Language window with 3 layers in a half-grid array with the title ‘Language’." + Environment.NewLine +
-                                "2. The Language window is displayed in areas D, F and G with a data entry window with one data input field covering these areas." + Environment.NewLine +
+            WaitForVerification("Check the following (* indicates sub-areas drawn as one area):" + Environment.NewLine +
+                                Environment.NewLine +
+                                @"1. DMI displays the Language window with 3 layers in a half-grid array with the title ‘Language’." +
+                                Environment.NewLine +
+                                "2. The Language window is displayed in areas D, F and G with a data entry window with one data input field covering these areas." +
+                                Environment.NewLine +
                                 "3. Layer 0 comprises areas D, F, G, Z and Y." + Environment.NewLine +
-                                "4. Layer 1 comprises areas A1, (A2+A3)*, A4, B, C1, (C2+C3+c4)*, C5, C6, C7, C8, C9, E1, E2, E3, E4, (E5-E9)*." + Environment.NewLine +
+                                "4. Layer 1 comprises areas A1, (A2+A3)*, A4, B, C1, (C2+C3+c4)*, C5, C6, C7, C8, C9, E1, E2, E3, E4, (E5-E9)*." +
+                                Environment.NewLine +
                                 "5. Layer 2 comprises areas B3, B4, B5, B6 and B7." + Environment.NewLine +
-                                @"6. The Language window displayes a data input field, with only a Data part, in areas D and F and an ‘Enabled Close’ button (symbol NA11)." + Environment.NewLine +
-                                "7. A keypad is displayed below the data input field containing enabled keys for the various languages available for selection." + Environment.NewLine +
-                                "8. All objects, text messages and buttons are in the same layer." + Environment.NewLine +
+                                @"6. The Language window displayes a data input field, with only a Data part, in areas D and F and an ‘Enabled Close’ button (symbol NA11)." +
+                                Environment.NewLine +
+                                "7. A keypad is displayed below the data input field containing enabled keys for the various languages available for selection." +
+                                Environment.NewLine +
+                                "8. All objects, text messages and buttons are in the same layer." +
+                                Environment.NewLine +
                                 "9. The Default window does not cover the current window.");
 
             /*
@@ -94,11 +101,13 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold each language key in turn");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                "1. The key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The data input field displays the language label text in black on a Medium-grey background, left-aligned in the Data part." + Environment.NewLine +
+                                "3. The data input field displays the language label text in black on a Medium-grey background, left-aligned in the Data part." +
+                                Environment.NewLine +
                                 "4. The data input field accepts the value according to the key pressed.");
-                        
+
             /*
             Test Step 3
             Action: Released the pressed button
@@ -139,11 +148,12 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)    The state of an input field is changed to ‘Pressed’, the border of button is removed
             Test Step Comment: (1) MMI_gen 9390 (partly: Language window);
             */
-            DmiActions.ShowInstruction(this, @"Whilst keeping the data input field pressed, drag it back inside its area");
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the data input field pressed, drag it back inside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The data input field is displayed pressed, without a border.");
-            
+
             /*
             Test Step 7
             Action: Release the pressed area
@@ -161,7 +171,8 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,Use the log file to confirm that DMI sends out the packet [MMI_NEW_LANGUAGE (EVC-122)] with variable [MMI_NEW_LANGUAGE (EVC-122).MMI_NID_LANGUAGE].Note: The correctness of value cannot verify because it’s not specify in the [GenVSIS].The language is updated, DMI displays all texts and button labeled as English language
             Test Step Comment: (1) MMI_gen 11286;              MMI_gen 8064 (partly: MMI_gen 4682); MMI_gen 4392 (partly: [Enter], touch screen);                           (2) MMI_gen 8064 (partly: MMI_gen 4681);
             */
-            DmiActions.ShowInstruction(this, @"Press the ‘Language’ button, then press the <English> key and confirm the selection");
+            DmiActions.ShowInstruction(this,
+                @"Press the ‘Language’ button, then press the <English> key and confirm the selection");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. All texts and buttons are displayed in English.");

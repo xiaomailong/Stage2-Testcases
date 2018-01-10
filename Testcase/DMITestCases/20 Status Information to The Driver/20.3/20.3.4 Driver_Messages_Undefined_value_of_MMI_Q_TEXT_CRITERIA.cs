@@ -42,7 +42,7 @@ namespace Testcase.DMITestCases
             // Pre-conditions from TestSpec:
             // Call the TestCaseBase PreExecution
             base.PreExecution();
-          
+
             // Test system is power onSoM is perform until Level 1 is selected and confirmed.Main window is closed.
             DmiActions.Complete_SoM_L1_SB(this);
         }
@@ -94,7 +94,9 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
+
         #region Send_XML_15_3_4_DMI_Test_Specification
+
         private void XML_15_3_4()
         {
             // Step 1
@@ -105,7 +107,7 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                      "1. DMI displays the driver message ‘Brake Test aborted, perform new Test?’ in sub-area E5 without yellow flashing frame");
+                                "1. DMI displays the driver message ‘Brake Test aborted, perform new Test?’ in sub-area E5 without yellow flashing frame");
 
             // Step 2
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -115,7 +117,7 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                     "1. DMI displays the Symbol MO08 in sub-area C1 without yellow flashing frame");
+                                "1. DMI displays the Symbol MO08 in sub-area C1 without yellow flashing frame");
 
             // Step 3
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -125,11 +127,9 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                     "1. DMI displays the Symbol MO10 in sub-area C1 without yellow flashing frame");
-
-
+                                "1. DMI displays the Symbol MO10 in sub-area C1 without yellow flashing frame");
         }
-        #endregion
 
+        #endregion
     }
 }

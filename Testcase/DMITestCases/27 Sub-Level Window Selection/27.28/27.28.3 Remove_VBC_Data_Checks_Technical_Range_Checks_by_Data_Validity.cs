@@ -89,11 +89,14 @@ namespace Testcase.DMITestCases
             EVC19_MMIRemoveVBC.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the Remove VBC window, with the title ‘Remove VBC’, instead of the Settings window." + Environment.NewLine +
-                                "2. One data input field (and a corresponding echo text) labelled ‘VBC code’ are displayed." + Environment.NewLine +
-                                "3. A dedicated numeric keypad is displayed below the data input field with an enabled ‘Close’ button below it." + Environment.NewLine +
+                                "1. DMI displays the Remove VBC window, with the title ‘Remove VBC’, instead of the Settings window." +
+                                Environment.NewLine +
+                                "2. One data input field (and a corresponding echo text) labelled ‘VBC code’ are displayed." +
+                                Environment.NewLine +
+                                "3. A dedicated numeric keypad is displayed below the data input field with an enabled ‘Close’ button below it." +
+                                Environment.NewLine +
                                 "4. A ‘Remove VBC entry complete?’ label is displayed in the bottom left-hand corner with an enabled ‘Yes’ button below it.");
-            
+
             /*
             Test Step 2
             Action: Enter “1” (invalid value) with the numeric keypad and press the data input field (Accept) in the same screen
@@ -109,7 +112,8 @@ namespace Testcase.DMITestCases
             EVC19_MMIRemoveVBC.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The data input field ‘Enter’ button displays ‘1’ in black on a grey background." + Environment.NewLine +
+                                "1. The data input field ‘Enter’ button displays ‘1’ in black on a grey background." +
+                                Environment.NewLine +
                                 "2. The echo text data part displays ‘++++’ in red." + Environment.NewLine +
                                 "3. The ‘Yes’ button is disabled.");
 
@@ -120,9 +124,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: Requirements:(1) MMI_gen 9912 (partly: MMI_gen 4714 (partly: state 'Selected IF/data value');(2) MMI_gen 9912 (partly: reactions to failing, MMI_gen 4714 (partly: previously entered (faulty) value)); MMI_gen 4699 (technical range);(3) MMI_gen 9912 (partly: MMI_gen 9286 (partly: button ‘Enter’, disabled), MMI_gen 12148 (partly: not send packets)), MMI_gen 9920 (partly: disabled), MMI_gen 9924 (partly: EVC-119); MMI_gen 9310 (partly: [technical range, No OK, button ‘Enter’ disabled]);(4) MMI_gen 8339 (partly: MMI_gen 12148 (MMI_gen 4713 (partly: indication))), MMI_gen 9912 (partly: reactions to failing, MMI_gen 12148 (MMI_gen 4713 (partly: indication)));(5) MMI_gen 9913 (partly: MMI_gen 12148 (MMI_gen 4713 (partly: red))), MMI_gen 9912 (partly: reactions to failing, MMI_gen 12148 (MMI_gen 4713 (partly: red)));
             */
             DmiActions.ShowInstruction(this, @"Press the data input field again (Accept) in the same screen");
-            
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The data input field ‘Enter’ button still displays ‘1’ in black on a grey background." + Environment.NewLine +
+                                "1. The data input field ‘Enter’ button still displays ‘1’ in black on a grey background." +
+                                Environment.NewLine +
                                 "2. The echo text data part displays ‘++++’ in red.");
 
             /*
@@ -138,7 +143,8 @@ namespace Testcase.DMITestCases
             EVC19_MMIRemoveVBC.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The data input field ‘Enter’ button displays ‘1’ in black on a grey background." + Environment.NewLine +
+                                "1. The data input field ‘Enter’ button displays ‘1’ in black on a grey background." +
+                                Environment.NewLine +
                                 "2. The echo text data part displays ‘++++’ in red.");
 
             /*
@@ -156,7 +162,7 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field ‘Enter’ button still displays ‘1’ in black on a grey background.");
-            
+
             /*
             Test Step 6
             Action: Press the data input field once again (Accept) in the same screen
@@ -167,7 +173,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press the data input field once again (Accept) in the same screen");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The data input field ‘Enter’ button still displays ‘1’ in black on a grey background." + Environment.NewLine +
+                                "1. The data input field ‘Enter’ button still displays ‘1’ in black on a grey background." +
+                                Environment.NewLine +
                                 "2. The echo text data part displays ‘++++’ in red.");
 
             /*
@@ -213,7 +220,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Remove VBC validation window." + Environment.NewLine +
                                 "2. The data part of the echo text displays ‘65536’ in white");
-            
+
             DmiActions.ShowInstruction(this, @"Press the data input field containing ‘Yes’");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -228,7 +235,7 @@ namespace Testcase.DMITestCases
 
             #region Send_XML_22_28_3_DMI_Test_Specification
 
-            EVC19_MMIRemoveVBC.MMI_M_BUTTONS = (Variables.MMI_M_BUTTONS_VBC)0;
+            EVC19_MMIRemoveVBC.MMI_M_BUTTONS = (Variables.MMI_M_BUTTONS_VBC) 0;
             EVC19_MMIRemoveVBC.MMI_N_VBC = 123;
             EVC19_MMIRemoveVBC.ECHO_TEXT = "123";
             EVC19_MMIRemoveVBC.MMI_Q_DATA_CHECK = Variables.Q_DATA_CHECK.Technical_Range_Check_failed;

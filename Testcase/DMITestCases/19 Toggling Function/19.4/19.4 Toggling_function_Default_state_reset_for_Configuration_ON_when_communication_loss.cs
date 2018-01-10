@@ -90,13 +90,15 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays the  message “ATP Down Alarm” with sound alarm.Verify the following information,The objects below are not displayed on DMI,White Basic speed HookMedium-grey basic speed hookDistance to target (digital)Release Speed Digital
             Test Step Comment: (1) Information (paragraph 1) under, MMI_gen 6898 (inoperable); MMI_gen 6588 (partly: configuration “ON”, mode OS); MMI_gen 6878 (partly: configuration “ON”, mode OS); MMI_gen 6453;
             */
-            DmiActions.ShowInstruction(this, "Press in a sensitivity area (areas A1-A4 or B) to remove the Basic speed hook");
-            
+            DmiActions.ShowInstruction(this,
+                "Press in a sensitivity area (areas A1-A4 or B) to remove the Basic speed hook");
+
             this.Wait_Realtime(1000);
             DmiActions.Simulate_communication_loss_EVC_DMI(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the message ‘ATP Down Alarm’ and plays a sound alarm." + Environment.NewLine +
+                                "1. DMI displays the message ‘ATP Down Alarm’ and plays a sound alarm." +
+                                Environment.NewLine +
                                 "2. DMI does not display the White basic speed hook." + Environment.NewLine +
                                 "3. DMI does not display the Medium-grey basic speed hook." + Environment.NewLine +
                                 "4. DMI does not display the Digital distance to target." + Environment.NewLine +

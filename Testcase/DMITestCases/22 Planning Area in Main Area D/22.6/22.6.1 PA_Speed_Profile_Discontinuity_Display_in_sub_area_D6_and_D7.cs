@@ -72,7 +72,13 @@ namespace Testcase.DMITestCases
             List<TrackDescription> trackDescriptions = new List<TrackDescription>()
             {
                 // to position symbol: O_MRSP - OBU_TR_O_TRAIN = position, so 5OOOO (5OOm) + 5000 => 55000
-                new TrackDescription {MMI_G_GRADIENT = 0, MMI_O_GRADIENT = 200000, MMI_O_MRSP = 55000, MMI_V_MRSP_KMH = 40},
+                new TrackDescription
+                {
+                    MMI_G_GRADIENT = 0,
+                    MMI_O_GRADIENT = 200000,
+                    MMI_O_MRSP = 55000,
+                    MMI_V_MRSP_KMH = 40
+                },
                 new TrackDescription {MMI_O_MRSP = 15000, MMI_V_MRSP_KMH = 45},
                 new TrackDescription {MMI_O_MRSP = 25000, MMI_V_MRSP_KMH = 0}
             };
@@ -82,12 +88,18 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in FS mode, Level 1." + Environment.NewLine + Environment.NewLine +
-                                "2. PA Speed Profile Discontinuities are displayed in sub-areas C6 and C7." + Environment.NewLine +
-                                "3. The right half of each discontinuity extends into sub-area C7, the rest displayed in sub-area C6." + Environment.NewLine +
-                                "4. DMI displays the decrease speed symbol, PL22, at the 500m position." + Environment.NewLine +
-                                "5. DMI displays the increase speed symbol, PL21, at the 1000m position." + Environment.NewLine +
-                                "6. No discontinuity symbol is displayed beyond the 2000m position." + Environment.NewLine +
-                                "7. One PA Speed Gradient Profile is displayed with value 0 in grey, extending to the 2000m position." + Environment.NewLine +
+                                "2. PA Speed Profile Discontinuities are displayed in sub-areas C6 and C7." +
+                                Environment.NewLine +
+                                "3. The right half of each discontinuity extends into sub-area C7, the rest displayed in sub-area C6." +
+                                Environment.NewLine +
+                                "4. DMI displays the decrease speed symbol, PL22, at the 500m position." +
+                                Environment.NewLine +
+                                "5. DMI displays the increase speed symbol, PL21, at the 1000m position." +
+                                Environment.NewLine +
+                                "6. No discontinuity symbol is displayed beyond the 2000m position." +
+                                Environment.NewLine +
+                                "7. One PA Speed Gradient Profile is displayed with value 0 in grey, extending to the 2000m position." +
+                                Environment.NewLine +
                                 "8. DMI displays the decrease to zero target symbol, PL23, at the 2000m position.");
 
             /*
@@ -121,8 +133,10 @@ namespace Testcase.DMITestCases
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 60500;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays displays the decrease to zero target symbol, PL23, at the 600m position." + Environment.NewLine +
-                                "2. No other discontinuity symbol is displayeed beyond the the 600m position." + Environment.NewLine +
+                                "1. DMI displays displays the decrease to zero target symbol, PL23, at the 600m position." +
+                                Environment.NewLine +
+                                "2. No other discontinuity symbol is displayeed beyond the the 600m position." +
+                                Environment.NewLine +
                                 "3. The PL22 symbols are displayed at position 200-210m, the nearer one to the zero line is drawn on top of the other.");
 
             /*
@@ -145,7 +159,8 @@ namespace Testcase.DMITestCases
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 105000;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The PL22 symbol is drawn on top of the PL21 symbol at position 200-210m. (Note: use the scale up/down buttons to help.)" + Environment.NewLine +
+                                "1. The PL22 symbol is drawn on top of the PL21 symbol at position 200-210m. (Note: use the scale up/down buttons to help.)" +
+                                Environment.NewLine +
                                 "2. The two PL21 symbols are displayed at position 1000-1010m (that closer to the zero line is drawn on top of the other).");
 
             /*

@@ -68,13 +68,13 @@ namespace Testcase.DMITestCases
             Test Step 1
             Action: Activate cabin A
             Expected Result: DMI displays Driver ID window
-            */            
-            DmiActions.Activate_Cabin_1(this);            
+            */
+            DmiActions.Activate_Cabin_1(this);
             DmiActions.Set_Driver_ID(this, "1234");
 
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine + 
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Driver ID window .");
-            
+
             /*
             Test Step 2
             Action: Perform SoM to SR mode, level 1
@@ -82,7 +82,8 @@ namespace Testcase.DMITestCases
             */
             // Tested elsewhere: force to SR mode/Level 1
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode =
+                EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
             DmiActions.Finished_SoM_Default_Window(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -109,7 +110,7 @@ namespace Testcase.DMITestCases
             */
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 20000;
             DmiActions.ShowInstruction(this, @"Press the Hide planning information symbol, ‘NA01’, in sub-area D14");
-            
+
             // Need to show that when hidden DMI is not responsive to EVC4
             EVC4_MMITrackDescription.MMI_G_GRADIENT_CURR = 0;
             EVC4_MMITrackDescription.MMI_V_MRSP_CURR_KMH = 40;
@@ -128,12 +129,13 @@ namespace Testcase.DMITestCases
 
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 30000;
             EVC4_MMITrackDescription.TrackDescriptions = new List<TrackDescription>
-            { new TrackDescription {MMI_O_MRSP =  40000, MMI_O_GRADIENT = 20000, MMI_V_MRSP_KMH = 35} };
+                {new TrackDescription {MMI_O_MRSP = 40000, MMI_O_GRADIENT = 20000, MMI_V_MRSP_KMH = 35}};
             EVC4_MMITrackDescription.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Planning Area is re-displayed in area D." + Environment.NewLine +
-                                "2. The Hide planning information symbol, ‘NA01’, is still displayed in sub-area D14"  + Environment.NewLine +
+                                "2. The Hide planning information symbol, ‘NA01’, is still displayed in sub-area D14" +
+                                Environment.NewLine +
                                 "3. The PA is updated.");
 
             /*
@@ -157,8 +159,9 @@ namespace Testcase.DMITestCases
             Expected Result: The Planning area is reappeared in area D.Verify the following information, (1)   Use the log file to confirm that all objects on the Planning area are updated according to the received packet EVC-4 from ETCS Onboard
             Test Step Comment: (1) MMI_gen 6962;
             */
-            DmiActions.ShowInstruction(this, @"Press in the sensitive area in main area D to re-display the Planning Area.");
-            
+            DmiActions.ShowInstruction(this,
+                @"Press in the sensitive area in main area D to re-display the Planning Area.");
+
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 30200;
             EVC4_MMITrackDescription.Send();
 

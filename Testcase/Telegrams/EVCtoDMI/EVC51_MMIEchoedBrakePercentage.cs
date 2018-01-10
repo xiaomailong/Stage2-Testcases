@@ -23,8 +23,8 @@ namespace Testcase.Telegrams.EVCtoDMI
             _pool = pool;
 
             // Set default values
-            _pool.SITR.ETCS1.EchoedBrakePercentage.MmiMPacket.Value = 51;  // Packet ID
-            _pool.SITR.ETCS1.EchoedBrakePercentage.MmiLPacket.Value = 56;  // Packet length
+            _pool.SITR.ETCS1.EchoedBrakePercentage.MmiMPacket.Value = 51; // Packet ID
+            _pool.SITR.ETCS1.EchoedBrakePercentage.MmiLPacket.Value = 56; // Packet length
         }
 
         /// <summary>
@@ -53,7 +53,6 @@ namespace Testcase.Telegrams.EVCtoDMI
                 bpOrig_ = (byte) ~bpOrig_;
                 _pool.SITR.ETCS1.EchoedBrakePercentage.MmiMBpOrigR.Value = BitReverser8(bpOrig_);
             }
-
         }
 
         /// <summary>
@@ -90,7 +89,6 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// 255 = "No last measured brake percentage available, i.e. this will be displayed as '_ _ _ _' in grey in Data Field 'Last measured BP'."
         /// 
         /// Note: All special values are only used in packet EVC-50.
-
         /// </summary>
         public static byte MMI_M_BP_MEASURED_
         {
@@ -98,9 +96,9 @@ namespace Testcase.Telegrams.EVCtoDMI
             {
                 byte bpMmeasured_ = value;
 
-                bpMmeasured_ = (byte)~bpMmeasured_;
+                bpMmeasured_ = (byte) ~bpMmeasured_;
                 _pool.SITR.ETCS1.EchoedBrakePercentage.MmiMBpMeasuredR.Value = BitReverser8(bpMmeasured_);
             }
-        }        
+        }
     }
 }

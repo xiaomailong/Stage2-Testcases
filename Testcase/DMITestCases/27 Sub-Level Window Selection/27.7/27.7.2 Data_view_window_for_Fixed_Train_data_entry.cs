@@ -75,8 +75,9 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press the ‘Data view’ button");
 
             //EVC101_MMIDriverRequest.CheckMRequestPressed = Telegrams.EVCtoDMI.Variables.MMI_M_REQUEST.StartTrainDataView;
-            
-            EVC101_MMIDriverRequest.CheckMRequestReleased = Telegrams.EVCtoDMI.Variables.MMI_M_REQUEST.StartTrainDataView;
+
+            EVC101_MMIDriverRequest.CheckMRequestReleased =
+                Telegrams.EVCtoDMI.Variables.MMI_M_REQUEST.StartTrainDataView;
 
             EVC13_MMIDataView.MMI_M_DATA_ENABLE = MMI_M_DATA_ENABLE.TrainCategory |
                                                   MMI_M_DATA_ENABLE.TrainLength |
@@ -101,25 +102,34 @@ namespace Testcase.DMITestCases
 
             // Spec says display Train Running number which is in EVC6...
             //
-            WaitForVerification("Check the following (* indicates sub-areas drawn as one area):" + Environment.NewLine + Environment.NewLine +
+            WaitForVerification("Check the following (* indicates sub-areas drawn as one area):" + Environment.NewLine +
+                                Environment.NewLine +
                                 "1. DMI displays the Data view window." + Environment.NewLine +
                                 "2. The Data view window covers (Main) areas D, F and G." + Environment.NewLine +
                                 "3. Layer 0 comprises Areas D, F, G, E10, E11, Z, Y." + Environment.NewLine +
-                                "4. Layer 1 comprises Areas A1 (A2+A3)*, A4, B, C1, (C2+C3+C4)*, C5-C9, E1-E4, (E5-E9*)." + Environment.NewLine +
+                                "4. Layer 1 comprises Areas A1 (A2+A3)*, A4, B, C1, (C2+C3+C4)*, C5-C9, E1-E4, (E5-E9*)." +
+                                Environment.NewLine +
                                 "5. Layer 2 comprises Areas B3-B7." + Environment.NewLine +
-                                "6. Data view texts have a label, right-aligned, and a data part, left-aligned." + Environment.NewLine +
+                                "6. Data view texts have a label, right-aligned, and a data part, left-aligned." +
+                                Environment.NewLine +
                                 "7. Data view text is in grey." + Environment.NewLine +
-                                "8. Different topics such as Train running number and Train data entry are separated by an empty line" + Environment.NewLine +
+                                "8. Different topics such as Train running number and Train data entry are separated by an empty line" +
+                                Environment.NewLine +
                                 "9. Data parts only display valid values" + Environment.NewLine +
                                 "10. The window title is labelled with text ‘Data view(1/2)’." + Environment.NewLine +
-                                "11. DMI displays information about Driver ID, Train running number, Train type, Train category, Length (m), Brake percentage, " + Environment.NewLine +
-                                "                                   Maximum speed (km/h), Axle load category, Airtightness, Loading gauge." + Environment.NewLine +
-                                "12. DMI displays the ‘Enabled Close button’ (symbol NA11), the ‘Disabled Previous’ button (symbol NA19), the ‘Enabled Next’ button" + Environment.NewLine +
-                                "13. Objects, text messages and buttons can be displayed in several levels. Within a level they are allocated to areas." + Environment.NewLine +
-                                "14. Objects, text messages and buttons in a layer form a window." + Environment.NewLine +
+                                "11. DMI displays information about Driver ID, Train running number, Train type, Train category, Length (m), Brake percentage, " +
+                                Environment.NewLine +
+                                "                                   Maximum speed (km/h), Axle load category, Airtightness, Loading gauge." +
+                                Environment.NewLine +
+                                "12. DMI displays the ‘Enabled Close button’ (symbol NA11), the ‘Disabled Previous’ button (symbol NA19), the ‘Enabled Next’ button" +
+                                Environment.NewLine +
+                                "13. Objects, text messages and buttons can be displayed in several levels. Within a level they are allocated to areas." +
+                                Environment.NewLine +
+                                "14. Objects, text messages and buttons in a layer form a window." +
+                                Environment.NewLine +
                                 "15. The Default window does not cover the current window." + Environment.NewLine +
                                 "16. A sub-level window can partially cover another window, depending on its size. Another window cannot be displayed and activated at the same time.");
-           
+
             /*
             Test Step 2
             Action: Press and hold ‘Next’ button
@@ -165,10 +175,14 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Release the ‘Next’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. DMI displays the next page of the Train data, with the window title being displayed with the text ‘Data view (2/2)’." + Environment.NewLine +
-                                @"2. The data view items ‘RBC ID’, ‘RBC phone number’, ‘VBC set code’ (if any) are displayed correctly." + Environment.NewLine +
-                                @"3. The data part of the RBC phone number is displayed on two lines." + Environment.NewLine +
-                                @"3. The ‘Next’ button is disabled (DMI displays symbol NA18.2)." + Environment.NewLine +
+                                @"1. DMI displays the next page of the Train data, with the window title being displayed with the text ‘Data view (2/2)’." +
+                                Environment.NewLine +
+                                @"2. The data view items ‘RBC ID’, ‘RBC phone number’, ‘VBC set code’ (if any) are displayed correctly." +
+                                Environment.NewLine +
+                                @"3. The data part of the RBC phone number is displayed on two lines." +
+                                Environment.NewLine +
+                                @"3. The ‘Next’ button is disabled (DMI displays symbol NA18.2)." +
+                                Environment.NewLine +
                                 @"4. The ‘Previous’ button is enabled (DMI displays symbol NA18).");
 
             /*
@@ -176,7 +190,7 @@ namespace Testcase.DMITestCases
             Action: Perform action step 2-5 for ‘Previous’ button
             Expected Result: See the expected result of step 2-5 and the following points,(1)   The state of ‘Previous’ and ‘Next’ button are displayed as follows,‘Next’ button is enabled, displays as symbol NA17  ‘Previous’ button is enabled, displays as symbol NA19
             Test Step Comment: (1) MMI_gen 4394 (partly: enabled [next], disabled [previous]); MMI_gen 4396 (partly: Next, NA17, Previous, NA19); MMI_gen 4358; 
-            */   
+            */
             // Repeat Step 2          
             DmiActions.ShowInstruction(this, @"Press and hold ‘Previous’ button");
 
@@ -192,7 +206,8 @@ namespace Testcase.DMITestCases
                                 "2. No sound is played.");
 
             // Repeat Step 4
-            DmiActions.ShowInstruction(this, @"Whilst keeping the ‘Previous’ button pressed, drag it back inside its area");
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the ‘Previous’ button pressed, drag it back inside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Previous’ button is displayed pressed." + Environment.NewLine +
@@ -203,9 +218,12 @@ namespace Testcase.DMITestCases
 
             // Spec is incorrect: NA19 is disabled previous button (not enabled)
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. DMI displays the previous page of the Train data, with the window title being displayed with the text ‘Data view (1/2)’." + Environment.NewLine +
-                                @"2. The data view items ‘RBC ID’, ‘RBC phone number’, ‘VBC set code’ (if any) are displayed correctly." + Environment.NewLine +
-                                @"3. The data part of the RBC phone number is displayed on two lines." + Environment.NewLine +
+                                @"1. DMI displays the previous page of the Train data, with the window title being displayed with the text ‘Data view (1/2)’." +
+                                Environment.NewLine +
+                                @"2. The data view items ‘RBC ID’, ‘RBC phone number’, ‘VBC set code’ (if any) are displayed correctly." +
+                                Environment.NewLine +
+                                @"3. The data part of the RBC phone number is displayed on two lines." +
+                                Environment.NewLine +
                                 @"3. The ‘Next’ button is enabled (DMI displays symbol NA17)." + Environment.NewLine +
                                 @"4. The ‘Previous’ button is disabled (DMI displays symbol NA19).");
 
@@ -217,10 +235,12 @@ namespace Testcase.DMITestCases
             */
             XML_22_7_2(msgType.typea);
 
-            WaitForVerification("Check the following (scrolling the window to see both pages):" + Environment.NewLine + Environment.NewLine +
-                                "1. On page 1, DMI displays information on Driver ID and Train running number with blank values." + Environment.NewLine +
+            WaitForVerification("Check the following (scrolling the window to see both pages):" + Environment.NewLine +
+                                Environment.NewLine +
+                                "1. On page 1, DMI displays information on Driver ID and Train running number with blank values." +
+                                Environment.NewLine +
                                 "2. On page 2, DMI displays information on Radio Network ID, RBC ID and Train running number with blank values.");
-            
+
             /*
             Test Step 8
             Action: Use the test script file 22_7_2_b.xml to send EVC-13 with,MMI_X_DRIVER_ID = 0x31323334363738393132333436373839MMI_M_DATA_ENABLE = 255MMI_N_CAPTION_NETWORK = 16MMI_X_CAPTION_TRAINSET[0] = 65MMI_X_CAPTION_TRAINSET[1] = 66MMI_X_CAPTION_TRAINSET[2] = 67MMI_X_CAPTION_TRAINSET[3] = 68MMI_X_CAPTION_TRAINSET[4] = 69MMI_X_CAPTION_TRAINSET[5] = 70MMI_X_CAPTION_TRAINSET[6] = 71MMI_X_CAPTION_TRAINSET[7] = 72MMI_X_CAPTION_TRAINSET[8] = 73MMI_X_CAPTION_TRAINSET[9] = 74MMI_X_CAPTION_TRAINSET[10] = 75MMI_X_CAPTION_TRAINSET[11] = 76MMI_X_CAPTION_TRAINSET[12] =77MMI_X_CAPTION_TRAINSET[13] = 78MMI_X_CAPTION_TRAINSET[14] = 79MMI_X_CAPTION_TRAINSET[15] = 80MMI_NID_RADIO = 0x9999999999999999
@@ -229,10 +249,13 @@ namespace Testcase.DMITestCases
             */
             XML_22_7_2(msgType.typeb);
 
-            WaitForVerification("Check the following information is displayed with a line break inserted after the first line so that the data" + Environment.NewLine +
-                                "are displayed over two lines (scrolling the window to see both pages):" + Environment.NewLine + Environment.NewLine +
-                                "1. On page 1, DMI displays information on Driver ID." + Environment.NewLine +
-                                "2. On page 2, DMI displays information on Radio Network ID and RBC Phone Number.");
+            WaitForVerification(
+                "Check the following information is displayed with a line break inserted after the first line so that the data" +
+                Environment.NewLine +
+                "are displayed over two lines (scrolling the window to see both pages):" + Environment.NewLine +
+                Environment.NewLine +
+                "1. On page 1, DMI displays information on Driver ID." + Environment.NewLine +
+                "2. On page 2, DMI displays information on Radio Network ID and RBC Phone Number.");
 
             /*
             Test Step 9
@@ -244,6 +267,7 @@ namespace Testcase.DMITestCases
         }
 
         #region Send_XML_22_7_2_DMI_Test_Specification
+
         enum msgType
         {
             typea,
@@ -258,16 +282,16 @@ namespace Testcase.DMITestCases
                     //values taken from xml file not spec where different
                     EVC13_MMIDataView.MMI_X_DRIVER_ID = "";
 
-                    EVC13_MMIDataView.MMI_NID_OPERATION = 0xffffffff;         // 4294967295
-                    EVC13_MMIDataView.MMI_M_DATA_ENABLE = (Variables.MMI_M_DATA_ENABLE)0x80;               // 128
-                    EVC13_MMIDataView.MMI_NID_KEY_TRAIN_CAT = Variables.MMI_NID_KEY.CATA;             // 21
-                    EVC13_MMIDataView.MMI_L_TRAIN = 0x1000;                   // 4096
+                    EVC13_MMIDataView.MMI_NID_OPERATION = 0xffffffff; // 4294967295
+                    EVC13_MMIDataView.MMI_M_DATA_ENABLE = (Variables.MMI_M_DATA_ENABLE) 0x80; // 128
+                    EVC13_MMIDataView.MMI_NID_KEY_TRAIN_CAT = Variables.MMI_NID_KEY.CATA; // 21
+                    EVC13_MMIDataView.MMI_L_TRAIN = 0x1000; // 4096
                     EVC13_MMIDataView.MMI_V_MAXTRAIN = 601;
                     EVC13_MMIDataView.MMI_M_BRAKE_PERC = 9;
-                    EVC13_MMIDataView.MMI_NID_KEY_AXLE_LOAD = Variables.MMI_NID_KEY.FG4;          // 20
-                    EVC13_MMIDataView.MMI_NID_RADIO = 0xffffffffffffffff;          // 4294967295 (hi and lo)z`
+                    EVC13_MMIDataView.MMI_NID_KEY_AXLE_LOAD = Variables.MMI_NID_KEY.FG4; // 20
+                    EVC13_MMIDataView.MMI_NID_RADIO = 0xffffffffffffffff; // 4294967295 (hi and lo)z`
                     EVC13_MMIDataView.MMI_M_AIRTIGHT = 3;
-                    EVC13_MMIDataView.MMI_NID_KEY_LOAD_GAUGE = Variables.MMI_NID_KEY.CATE5;      // 33
+                    EVC13_MMIDataView.MMI_NID_KEY_LOAD_GAUGE = Variables.MMI_NID_KEY.CATE5; // 33
 
                     // EVC13 incorrect at present: only send null strings...
                     //EVC13_MMIDataView.Trainset_Caption = "000000000000";
@@ -280,17 +304,17 @@ namespace Testcase.DMITestCases
                     // config incorrect at present, driver id limited to 12 (not 16 chars as in VSIS)...
                     // EVC13_MMIDataView.MMI_X_DRIVER_ID = "1234678912346789"; 
                     EVC13_MMIDataView.MMI_X_DRIVER_ID = "12346789012";
-                    EVC13_MMIDataView.MMI_NID_OPERATION = 0xffffffff;         // 4294967295
+                    EVC13_MMIDataView.MMI_NID_OPERATION = 0xffffffff; // 4294967295
 
-                    EVC13_MMIDataView.MMI_M_DATA_ENABLE = (Variables.MMI_M_DATA_ENABLE)0xff00;               // 65280
-                    EVC13_MMIDataView.MMI_NID_KEY_TRAIN_CAT = Variables.MMI_NID_KEY.CATA;             // 21
+                    EVC13_MMIDataView.MMI_M_DATA_ENABLE = (Variables.MMI_M_DATA_ENABLE) 0xff00; // 65280
+                    EVC13_MMIDataView.MMI_NID_KEY_TRAIN_CAT = Variables.MMI_NID_KEY.CATA; // 21
                     EVC13_MMIDataView.MMI_L_TRAIN = 4095;
                     EVC13_MMIDataView.MMI_V_MAXTRAIN = 600;
                     EVC13_MMIDataView.MMI_M_BRAKE_PERC = 250;
-                    EVC13_MMIDataView.MMI_NID_KEY_AXLE_LOAD = Variables.MMI_NID_KEY.CATA;          // 21
-                    EVC13_MMIDataView.MMI_NID_RADIO = 0x9999999999999999;          // 2576980377 (hi and lo)
+                    EVC13_MMIDataView.MMI_NID_KEY_AXLE_LOAD = Variables.MMI_NID_KEY.CATA; // 21
+                    EVC13_MMIDataView.MMI_NID_RADIO = 0x9999999999999999; // 2576980377 (hi and lo)
                     EVC13_MMIDataView.MMI_M_AIRTIGHT = 0;
-                    EVC13_MMIDataView.MMI_NID_KEY_LOAD_GAUGE = Variables.MMI_NID_KEY.G1;      // 34
+                    EVC13_MMIDataView.MMI_NID_KEY_LOAD_GAUGE = Variables.MMI_NID_KEY.G1; // 34
 
                     // EVC13 incorrect at present: only send null strings...
                     //EVC13_MMIDataView.Trainset_Caption = "ABCFGHIJKLMN";  
@@ -301,7 +325,7 @@ namespace Testcase.DMITestCases
 
             EVC13_MMIDataView.Send();
         }
-        #endregion
 
+        #endregion
     }
 }

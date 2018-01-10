@@ -82,10 +82,28 @@ namespace Testcase.DMITestCases
 
             List<TrackDescription> descriptionsList = new List<TrackDescription>()
             {
-                new TrackDescription { MMI_G_GRADIENT = 10, MMI_O_GRADIENT = 10000, MMI_O_MRSP = 10500, MMI_V_MRSP = 800},
-                new TrackDescription { MMI_G_GRADIENT = 15, MMI_O_GRADIENT = 20000, MMI_O_MRSP = 15000, MMI_V_MRSP = 700},
-                new TrackDescription { MMI_G_GRADIENT = 20, MMI_O_GRADIENT = 30000, MMI_O_MRSP = 20500, MMI_V_MRSP = 600},
-                new TrackDescription { MMI_G_GRADIENT = -5, MMI_O_GRADIENT = 40000, MMI_O_MRSP = 30000, MMI_V_MRSP = 400}                
+                new TrackDescription
+                {
+                    MMI_G_GRADIENT = 10,
+                    MMI_O_GRADIENT = 10000,
+                    MMI_O_MRSP = 10500,
+                    MMI_V_MRSP = 800
+                },
+                new TrackDescription
+                {
+                    MMI_G_GRADIENT = 15,
+                    MMI_O_GRADIENT = 20000,
+                    MMI_O_MRSP = 15000,
+                    MMI_V_MRSP = 700
+                },
+                new TrackDescription
+                {
+                    MMI_G_GRADIENT = 20,
+                    MMI_O_GRADIENT = 30000,
+                    MMI_O_MRSP = 20500,
+                    MMI_V_MRSP = 600
+                },
+                new TrackDescription {MMI_G_GRADIENT = -5, MMI_O_GRADIENT = 40000, MMI_O_MRSP = 30000, MMI_V_MRSP = 400}
             };
 
             EVC4_MMITrackDescription.TrackDescriptions = descriptionsList;
@@ -93,14 +111,21 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in FS mode, Level 1." + Environment.NewLine +
-                                "2. The Gradient Profile displays in sub-area D5, shown as a set of bars with different gradients." + Environment.NewLine +
-                                "3. The Gradient Profile segment bar displays two ‘+’ signs for uphill gradient," + Environment.NewLine +
-                                "   two ‘-’ signs for downhill gradient and no sign for zero gradient." + Environment.NewLine +
+                                "2. The Gradient Profile displays in sub-area D5, shown as a set of bars with different gradients." +
+                                Environment.NewLine +
+                                "3. The Gradient Profile segment bar displays two ‘+’ signs for uphill gradient," +
+                                Environment.NewLine +
+                                "   two ‘-’ signs for downhill gradient and no sign for zero gradient." +
+                                Environment.NewLine +
                                 "4. The gradient value is displayed in the centre of the bar." + Environment.NewLine +
-                                "5. The Downhill PA Gradient Profile segment bars have values in white on a Dark-grey background." + Environment.NewLine +
-                                "6. The Uphill and zero PA Gradient Profile segment bars have values (and the signs) in black on a grey background." + Environment.NewLine +
-                                "7. The Uphill and zero PA Gradient Profiles have  white upper and left borders." + Environment.NewLine +
-                                "8. The Downhill PA Gradient Profiles have grey upper and left borders." + Environment.NewLine +
+                                "5. The Downhill PA Gradient Profile segment bars have values in white on a Dark-grey background." +
+                                Environment.NewLine +
+                                "6. The Uphill and zero PA Gradient Profile segment bars have values (and the signs) in black on a grey background." +
+                                Environment.NewLine +
+                                "7. The Uphill and zero PA Gradient Profiles have  white upper and left borders." +
+                                Environment.NewLine +
+                                "8. The Downhill PA Gradient Profiles have grey upper and left borders." +
+                                Environment.NewLine +
                                 "9. The lower borders of all PA Gradient Profiles are black");
 
             /*

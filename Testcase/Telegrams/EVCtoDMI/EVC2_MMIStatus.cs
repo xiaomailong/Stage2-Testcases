@@ -1,4 +1,5 @@
 ﻿#region usings
+
 using CL345;
 using System;
 using System.Diagnostics;
@@ -12,6 +13,7 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using System.Windows.Forms;
+
 #endregion
 
 namespace Testcase.Telegrams.EVCtoDMI
@@ -22,7 +24,7 @@ namespace Testcase.Telegrams.EVCtoDMI
     public static class EVC2_MMIStatus
     {
         private static SignalPool _pool;
-        private static byte _mmiMAdhesion;              // Adhesion can only be set by trackside for Crossrail project
+        private static byte _mmiMAdhesion; // Adhesion can only be set by trackside for Crossrail project
         private static Variables.MMI_M_ACTIVE_CABIN _mmiMActiveCabin;
         private static bool _mmiMOverrideEoa;
 

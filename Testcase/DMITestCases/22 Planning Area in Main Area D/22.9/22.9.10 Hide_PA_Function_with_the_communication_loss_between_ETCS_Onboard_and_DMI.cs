@@ -94,7 +94,7 @@ namespace Testcase.DMITestCases
             // Remove the message
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
             EVC8_MMIDriverMessage.Send();
-            
+
             /*
             Test Step 3
             Action: Simulate the communication loss between ETCS onboard and DMI
@@ -150,7 +150,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press in Main area D");
-            
+
             /*
             Test Step 8
             Action: Press Hide PA button

@@ -62,6 +62,7 @@ namespace Testcase.DMITestCases
             // Testcase entrypoint
 
             #region Test Step 1
+
             /*           
             Action: Verify mode symbol in sub-area B7
             Expected Result: Verify the following information,Use the log file to verify that DMI received the EVC-7 with [MMI_ETCS_MISC_OUT_SIGNALS.OBU_TR_M_MODE] = 6 
@@ -81,6 +82,7 @@ namespace Testcase.DMITestCases
             #endregion
 
             #region Test Step 2
+
             /*
             Action: Perform SoM in Level1 until the ‘Start’ button is pressed
             Expected Result: Verify the following information,The acknowledgement for Staff Responsible symbol (MO10) is displayed in area C1.
@@ -97,6 +99,7 @@ namespace Testcase.DMITestCases
             #endregion
 
             #region Test Step 3
+
             /*
             Action: Press the symbol MO10 in sub-area C1
             Expected Result: Verify the following information,The symbol MO10 is disappear from sub-area C1 and re-appear again.
@@ -109,13 +112,14 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press and release DMI sub area C1.");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                 "1. The M010 symbol briefly is removed and then displayed again (with a flashing border).");
-            
+                                "1. The M010 symbol briefly is removed and then displayed again (with a flashing border).");
+
             DmiExpectedResults.SB_Mode_displayed(this);
 
             #endregion
 
             #region Test Step 4
+
             /*
             Action: Press the symbol MO10 in sub-area C1 for 2 second or upper.Then, release the pressed area
             Expected Result: Verify the following information,While the MO10 is pressed, the opacity of the symbol is decreased to 50%
@@ -131,7 +135,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press and hold DMI sub area C1.");
             DmiExpectedResults.SR_Mode_Ack_pressed_and_hold(this);
 
-            DmiActions.Send_SR_Mode(this);           
+            DmiActions.Send_SR_Mode(this);
             DmiExpectedResults.SR_Mode_displayed(this);
 
             DmiActions.Finished_SoM_Default_Window(this);
@@ -139,6 +143,7 @@ namespace Testcase.DMITestCases
             #endregion
 
             #region Test Step 5
+
             /*
             Action: Force the train into FS mode by moving the train forward passing BG1
             Expected Result: Verify the following information, 
@@ -156,6 +161,7 @@ namespace Testcase.DMITestCases
             #endregion
 
             #region Test Step 6
+
             /*
             Action: Force the train into TR mode by moving the train forward to position of EOA
             Expected Result: Verify the following information,
@@ -164,8 +170,8 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11084 (partly: current ETCS mode);                            
                                (2) MMI_gen 110 (partly: MO04);
             */
-            
-            DmiActions.Force_train_forward_overpassing_EOA(this);          
+
+            DmiActions.Force_train_forward_overpassing_EOA(this);
             DmiActions.Apply_Brakes(this);
             DmiActions.Send_EB_Intervention(this);
 
@@ -175,6 +181,7 @@ namespace Testcase.DMITestCases
             #endregion
 
             #region Test Step 7
+
             /*
             Action: Perform the following procedure,
             Wait until the train is stopped. Stop the train (set speed to 0 and set direction to neutral)
@@ -197,6 +204,7 @@ namespace Testcase.DMITestCases
             #endregion
 
             #region Test Step 8
+
             /*
             Action: Press the symbol ‘MO05’ in sub-area C1
             Expected Result: Verify the following information,
@@ -215,6 +223,7 @@ namespace Testcase.DMITestCases
             #endregion
 
             #region Test Step 9
+
             /*
             Action: Force the train into SR mode by the steps below:
             Press ‘Main’ button.      
@@ -224,7 +233,7 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, "Press \"Main\" button.");
             DmiActions.Display_Main_Window_with_Start_button_enabled(this);
-            DmiExpectedResults.Main_Window_displayed(this,true);
+            DmiExpectedResults.Main_Window_displayed(this, true);
 
             DmiActions.ShowInstruction(this, "Press \"Start\" button.");
             DmiExpectedResults.Start_Button_pressed_and_released(this);
@@ -241,6 +250,7 @@ namespace Testcase.DMITestCases
             #endregion
 
             #region Test Step 10
+
             /*
             Test Step 10
             Action: Force the train into SH mode by the steps below:
@@ -256,7 +266,7 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, "Press \"Main\" button");
             DmiActions.Display_Main_Window_with_Start_button_enabled(this);
-            DmiExpectedResults.Main_Window_displayed(this,true);
+            DmiExpectedResults.Main_Window_displayed(this, true);
 
             DmiActions.ShowInstruction(this, "Press and hold \"Shunting\" button for at least 2 seconds.");
             DmiExpectedResults.Shunting_button_pressed_and_hold(this);
@@ -267,6 +277,7 @@ namespace Testcase.DMITestCases
             #endregion
 
             #region Test Step 11
+
             /*
             Test Step 11
             Action: Force the train into NL mode by the steps below:
@@ -288,7 +299,8 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, "Press \"Main\" button");
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = Variables.standardFlags |
-                EVC30_MMIRequestEnable.EnabledRequests.Start | EVC30_MMIRequestEnable.EnabledRequests.ExitShunting;
+                                                               EVC30_MMIRequestEnable.EnabledRequests.Start |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.ExitShunting;
             EVC30_MMIRequestEnable.Send();
             WaitForVerification("Is the Main windows displayed, with \"Exit Shunting\" button available?");
 
@@ -309,6 +321,7 @@ namespace Testcase.DMITestCases
             #endregion
 
             #region Test Step 12
+
             /*
             Test Step 12
             Action: Force the train into SF mode by the steps below:
@@ -338,6 +351,7 @@ namespace Testcase.DMITestCases
             #endregion
 
             #region Test Step 13
+
             /*
             Action: End of test
             Expected Result: 

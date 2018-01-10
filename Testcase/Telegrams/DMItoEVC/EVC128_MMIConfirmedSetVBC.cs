@@ -42,16 +42,18 @@ namespace Testcase.Telegrams.DMItoEVC
             if (_pool.SITR.SMDStat.CCUO.ETCS1ConfirmedSetVbc.WaitForCondition(Is.Equal, 1, 20000, 100))
             {
                 // Check if Driver ID matches
-                if ( _pool.SITR.CCUO.ETCS1ConfirmedSetVbc.MmiMVbcCodeR.Value.Equals(invertedVBCCode) )
+                if (_pool.SITR.CCUO.ETCS1ConfirmedSetVbc.MmiMVbcCodeR.Value.Equals(invertedVBCCode))
                 {
-                    _pool.TraceReport($"{BaseString} - MMI_M_VBC_CODE_ = {invertedVBCCode} - echoes value {_vbcCode}" + Environment.NewLine +
-                                        "Result = PASSED.");
+                    _pool.TraceReport($"{BaseString} - MMI_M_VBC_CODE_ = {invertedVBCCode} - echoes value {_vbcCode}" +
+                                      Environment.NewLine +
+                                      "Result = PASSED.");
                 }
                 // Else display the real value extracted from EVC-104
                 else
                 {
-                    _pool.TraceError($"{BaseString} - MMI_M_VBC_CODE_ = " + _pool.SITR.CCUO.ETCS1ConfirmedSetVbc.MmiMVbcCodeR.Value +
-                                     $" - should echo {_vbcCode}" + Environment.NewLine + 
+                    _pool.TraceError($"{BaseString} - MMI_M_VBC_CODE_ = " +
+                                     _pool.SITR.CCUO.ETCS1ConfirmedSetVbc.MmiMVbcCodeR.Value +
+                                     $" - should echo {_vbcCode}" + Environment.NewLine +
                                      "Result: FAILED");
                 }
             }
@@ -70,7 +72,6 @@ namespace Testcase.Telegrams.DMItoEVC
         /// 10..15 = "NID_VBCMK"
         /// 16..23 = "T_VBC"
         /// 24..31 = "spare"
-
         /// 
         /// </summary>
         public static uint Check_VBC_Code

@@ -84,7 +84,7 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
             EVC8_MMIDriverMessage.MMI_I_TEXT = 2;
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 257;
-            EVC8_MMIDriverMessage.PlainTextMessage = "0";        // MMI_N_TEXT (length) 1
+            EVC8_MMIDriverMessage.PlainTextMessage = "0"; // MMI_N_TEXT (length) 1
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -103,7 +103,7 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
             EVC8_MMIDriverMessage.MMI_I_TEXT = 3;
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 257;
-            EVC8_MMIDriverMessage.PlainTextMessage = "1";        // MMI_N_TEXT (length) 1
+            EVC8_MMIDriverMessage.PlainTextMessage = "1"; // MMI_N_TEXT (length) 1
             EVC8_MMIDriverMessage.Send();
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays symbol LE11 in sub-area C1 with a flashing yellow frame.");
@@ -258,7 +258,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 4486 (partly: mode acknowledgement); MMI_gen 4482 (moveable focus);
             */
             DmiActions.ShowInstruction(this, "Acknowledge TAF by pressing in area D");
-            
+
             EVC8_MMIDriverMessage.MMI_I_TEXT = 12;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
             EVC8_MMIDriverMessage.Send();
@@ -276,7 +276,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays MO17 symbol on sub-area C1
             */
             DmiActions.ShowInstruction(this, @"Acknowledge by pressing in sub-area C1");
-            
+
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.OnSight;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
             EVC8_MMIDriverMessage.MMI_I_TEXT = 12;
@@ -292,11 +292,11 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 4486 (partly: level acknowledgement); MMI_gen 4482 (partly: moveable focus);
             */
             DmiActions.ShowInstruction(this, @"Acknowledge by pressing in sub-area C1");
-            
+
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
             EVC8_MMIDriverMessage.MMI_I_TEXT = 12;
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 257;
-            EVC8_MMIDriverMessage.PlainTextMessage = "0";        // MMI_N_TEXT (length) 1
+            EVC8_MMIDriverMessage.PlainTextMessage = "0"; // MMI_N_TEXT (length) 1
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -309,7 +309,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 4486 (partly: other acknowledgement);(2) MMI_gen 4482 (partly: overflow);
             */
             DmiActions.ShowInstruction(this, @"Acknowledge by pressing in sub-area C1");
-            
+
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 269;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
             EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
@@ -325,7 +325,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 4486 (partly: the oldest entry);
             */
             DmiActions.ShowInstruction(this, @"Acknowledge by pressing in sub-area E5");
-            
+
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 268;
             EVC8_MMIDriverMessage.Send();
 
@@ -339,7 +339,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 4486 (partly: the oldest entry);
             */
             DmiActions.ShowInstruction(this, @"Acknowledge by pressing in sub-area E5");
-            
+
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 267;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
             EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
@@ -355,7 +355,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 4486 (partly: the oldest entry); MMI_gen 4482 (partly: 10 pending acknowledgements);
             */
             DmiActions.ShowInstruction(this, @"Acknowledge by pressing in sub-area E5");
-            
+
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 554;
             EVC8_MMIDriverMessage.Send();
 
@@ -384,7 +384,8 @@ namespace Testcase.DMITestCases
             DmiActions.Simulate_communication_loss_EVC_DMI(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the Default window with the message ‘ATP Down Alarm’ in sub-area E5." + Environment.NewLine +
+                                "1. DMI displays the Default window with the message ‘ATP Down Alarm’ in sub-area E5." +
+                                Environment.NewLine +
                                 "2. The ‘Alarm’ sound is played");
 
             /*
@@ -409,6 +410,7 @@ namespace Testcase.DMITestCases
         }
 
         #region Send_XML_6_3_DMI_Test_Specification
+
         enum msgType
         {
             typea,
@@ -446,8 +448,7 @@ namespace Testcase.DMITestCases
             }
             EVC8_MMIDriverMessage.Send();
         }
+
         #endregion
-
-
     }
 }

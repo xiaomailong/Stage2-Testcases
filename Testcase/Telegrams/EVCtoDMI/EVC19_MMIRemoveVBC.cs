@@ -1,9 +1,11 @@
 ﻿#region usings
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using CL345;
+
 #endregion
 
 namespace Testcase.Telegrams.EVCtoDMI
@@ -83,7 +85,7 @@ namespace Testcase.Telegrams.EVCtoDMI
 
                 // Send dynamic packet.
                 _pool.SITR.SMDCtrl.ETCS1.RemoveVbc.Value = 0x0009;
-            }           
+            }
         }
 
         /// <summary>
@@ -129,7 +131,8 @@ namespace Testcase.Telegrams.EVCtoDMI
             {
                 if (value > 63)
                 {
-                    throw new ArgumentOutOfRangeException("NID_VBCMK", "Virtual Balise Cover marker must be less than 64.");
+                    throw new ArgumentOutOfRangeException("NID_VBCMK",
+                        "Virtual Balise Cover marker must be less than 64.");
                 }
                 else
                 {
@@ -152,10 +155,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static Variables.Q_DATA_CHECK MMI_Q_DATA_CHECK
         {
-            set
-            {
-                _pool.SITR.Client.Write(Basestring + "_MmiQDataCheck", (byte)value);
-            }
+            set { _pool.SITR.Client.Write(Basestring + "_MmiQDataCheck", (byte) value); }
         }
 
         /// <summary>
@@ -206,7 +206,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static Variables.MMI_M_BUTTONS_VBC MMI_M_BUTTONS
         {
-            set => _pool.SITR.ETCS1.SetVbc.MmiMButtons.Value = (byte)value;
+            set => _pool.SITR.ETCS1.SetVbc.MmiMButtons.Value = (byte) value;
         }
     }
 }

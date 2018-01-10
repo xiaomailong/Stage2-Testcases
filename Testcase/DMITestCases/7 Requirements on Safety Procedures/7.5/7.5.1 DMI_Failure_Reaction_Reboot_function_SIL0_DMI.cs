@@ -67,13 +67,15 @@ namespace Testcase.DMITestCases
             */
 
             #region Send_XML_5_5_1_10_DMI_Test_Specification
+
             // XML indicates MMI_M_START_REQ property with value of 10
             Testcase.Telegrams.EVCtoDMI.EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.DMIRebootIndicationError;
             Testcase.Telegrams.EVCtoDMI.EVC0_MMIStartATP.Send();
+
             #endregion
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                               "1. DMI is rebooted.");
+                                "1. DMI is rebooted.");
 
             /*
             Test Step 2

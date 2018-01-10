@@ -74,7 +74,8 @@ namespace Testcase.DMITestCases
 
             // Set to level 1 and SR mode
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode =
+                EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
 
             // Enable standard buttons including Start, and display Default window.
             DmiActions.Finished_SoM_Default_Window(this);
@@ -101,7 +102,8 @@ namespace Testcase.DMITestCases
             Expected Result: The Default window is displayed.Verify the following information,The local time is displayed in form of ‘hh:mm:ss’ with flashing colons at sub-area G13
             Test Step Comment: (1) MMI_gen 3204-1 (THR); MMI_gen 3852 (partly: flashing colons);
             */
-            DmiActions.ShowInstruction(this, @"Press the ‘Settings’ button. Press ‘Close’ button in the Settings window");
+            DmiActions.ShowInstruction(this,
+                @"Press the ‘Settings’ button. Press ‘Close’ button in the Settings window");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Default window." + Environment.NewLine +
@@ -119,7 +121,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Default window." + Environment.NewLine +
                                 "2. The local time is displayed in ‘hh:mm:ss’ format with flashing colons at sub-area G13");
-                      
+
             /*
             Test Step 5
             Action: End of test

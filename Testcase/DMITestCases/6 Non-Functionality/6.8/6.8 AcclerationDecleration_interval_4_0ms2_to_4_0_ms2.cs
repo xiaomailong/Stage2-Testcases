@@ -71,7 +71,6 @@ namespace Testcase.DMITestCases
             */
 
 
-
             /*
             Test Step 2
             Action: Perform Start of Mission to SR mode , eevel 1

@@ -100,8 +100,10 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.NonLeading;
             EVC30_MMIRequestEnable.Send();
 
-            DmiActions.ShowInstruction(this, "Press on sub-area B7. Press ‘Main’ button. Force the simulation to ‘Non-leading’" + Environment.NewLine +
-                                             "Press and hold ‘Non - Leading’ button at least 2 second. Release the pressed button");
+            DmiActions.ShowInstruction(this,
+                "Press on sub-area B7. Press ‘Main’ button. Force the simulation to ‘Non-leading’" +
+                Environment.NewLine +
+                "Press and hold ‘Non - Leading’ button at least 2 second. Release the pressed button");
 
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.NonLeading;
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +

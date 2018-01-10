@@ -72,7 +72,8 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.TrainData |
-                                                               EVC30_MMIRequestEnable.EnabledRequests.TrainRunningNumber |
+                                                               EVC30_MMIRequestEnable.EnabledRequests
+                                                                   .TrainRunningNumber |
                                                                EVC30_MMIRequestEnable.EnabledRequests.Start;
             EVC30_MMIRequestEnable.Send();
 
@@ -80,25 +81,29 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays Main window in SB mode, Level 1.");
 
             DmiActions.ShowInstruction(this, @"Press the ‘Train data’ button");
-          
-            MMI_M_DATA_ENABLE enableOption = MMI_M_DATA_ENABLE.Airtightness | MMI_M_DATA_ENABLE.AxleLoadCategory | MMI_M_DATA_ENABLE.BrakePercentage |
-                                             MMI_M_DATA_ENABLE.LoadingGauge | MMI_M_DATA_ENABLE.MaxTrainSpeed | MMI_M_DATA_ENABLE.TrainCategory |
-                                             MMI_M_DATA_ENABLE.TrainLength | MMI_M_DATA_ENABLE.TrainSetID;
-            string[] trainSetCaptions = new string[3] {"FLU", "RLU", "Rescue" };
 
-            DmiActions.Send_EVC6_MMICurrentTrainData(enableOption,100, 120, MMI_NID_KEY.TILT1, 120, MMI_NID_KEY.G1, 1, MMI_NID_KEY_Load_Gauge.G1, 
-                                                     EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE,
-                                                     1, 1, 
-                                                     trainSetCaptions,
-                                                     new DataElement[0]);
-            
+            MMI_M_DATA_ENABLE enableOption = MMI_M_DATA_ENABLE.Airtightness | MMI_M_DATA_ENABLE.AxleLoadCategory |
+                                             MMI_M_DATA_ENABLE.BrakePercentage |
+                                             MMI_M_DATA_ENABLE.LoadingGauge | MMI_M_DATA_ENABLE.MaxTrainSpeed |
+                                             MMI_M_DATA_ENABLE.TrainCategory |
+                                             MMI_M_DATA_ENABLE.TrainLength | MMI_M_DATA_ENABLE.TrainSetID;
+            string[] trainSetCaptions = new string[3] {"FLU", "RLU", "Rescue"};
+
+            DmiActions.Send_EVC6_MMICurrentTrainData(enableOption, 100, 120, MMI_NID_KEY.TILT1, 120, MMI_NID_KEY.G1, 1,
+                MMI_NID_KEY_Load_Gauge.G1,
+                EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE,
+                1, 1,
+                trainSetCaptions,
+                new DataElement[0]);
+
             DmiActions.ShowInstruction(this, "Enter and validate all train data");
-            
-            DmiActions.Send_EVC10_MMIEchoedTrainData(this, enableOption, 100, 120, MMI_NID_KEY.TILT1, 120, MMI_NID_KEY.G1, 1, MMI_NID_KEY.CATA, 
-                                                           trainSetCaptions);
-            
+
+            DmiActions.Send_EVC10_MMIEchoedTrainData(this, enableOption, 100, 120, MMI_NID_KEY.TILT1, 120,
+                MMI_NID_KEY.G1, 1, MMI_NID_KEY.CATA,
+                trainSetCaptions);
+
             DmiActions.ShowInstruction(this, @"Press the ‘Train running number’ button");
-            
+
             EVC16_CurrentTrainNumber.Send();
 
             DmiActions.ShowInstruction(this, "Enter the train running number");
@@ -114,7 +119,8 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Press the ‘Start’ button.");
 
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode =
+                EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Default window in SR mode, Level 1.");
@@ -136,8 +142,9 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in FS mode, Level 1." + Environment.NewLine +
-                                "2. The CSG is displayed in sub-area B2." + Environment.NewLine + 
-                                "3. All sections of CSG(0 km/h – 150 km/h) are dark-grey in colour." + Environment.NewLine +
+                                "2. The CSG is displayed in sub-area B2." + Environment.NewLine +
+                                "3. All sections of CSG(0 km/h – 150 km/h) are dark-grey in colour." +
+                                Environment.NewLine +
                                 "4. The CSG displays a Hook covering the outer border of Speed Dial and the upper limit of the Hook is placed at 150 km/h.");
 
             /*
@@ -169,7 +176,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The CSG at 0-150 km/h is dark-grey in colour." + Environment.NewLine +
                                 "2. The CSG beyond 150 km/h is orange in colour." + Environment.NewLine +
-                                "3. The CSG between the hook (Vperm = 150 km/h) and Vsbi has a hook of the same width." + Environment.NewLine +
+                                "3. The CSG between the hook (Vperm = 150 km/h) and Vsbi has a hook of the same width." +
+                                Environment.NewLine +
                                 "4. Sound S2 is played continuously while the Warning Status is active.");
 
             /*
@@ -182,10 +190,11 @@ namespace Testcase.DMITestCases
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Ceiling_Speed_Monitoring;
             // ?? Send
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                               "1. The CSG at 0-150 km/h is dark-grey in colour." + Environment.NewLine +
-                               "2. The CSG beyond 150 km/h is red in colour." + Environment.NewLine +
-                               "3. The CSG between the hook (Vperm = 150 km/h) and Vsbi has a hook of the same width." + Environment.NewLine +
-                               "4. Sound S2 is muted because Warning Status is deactivated.");
+                                "1. The CSG at 0-150 km/h is dark-grey in colour." + Environment.NewLine +
+                                "2. The CSG beyond 150 km/h is red in colour." + Environment.NewLine +
+                                "3. The CSG between the hook (Vperm = 150 km/h) and Vsbi has a hook of the same width." +
+                                Environment.NewLine +
+                                "4. Sound S2 is muted because Warning Status is deactivated.");
 
             /*
             Test Step 7

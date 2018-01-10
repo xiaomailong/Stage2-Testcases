@@ -1,7 +1,9 @@
 ﻿#region usings
+
 using CL345;
 using System;
 using System.Collections.Generic;
+
 #endregion
 
 namespace Testcase.Telegrams.EVCtoDMI
@@ -26,11 +28,12 @@ namespace Testcase.Telegrams.EVCtoDMI
         private const ushort StmMaxIterations = 5;
         private const ushort StmCaptionMaxLength = 20;
         private const ushort StmXValueMaxLength = 10;
+
         private const ushort BasicPacketLength = MMI_M_PACKET_bits +
-                                                    MMI_L_PACKET_bits +
-                                                    MMI_NID_NTC_bits +
-                                                    EVC26_alias_1_bits +
-                                                    MMI_N_ITER_bits;
+                                                 MMI_L_PACKET_bits +
+                                                 MMI_NID_NTC_bits +
+                                                 EVC26_alias_1_bits +
+                                                 MMI_N_ITER_bits;
 
         /// <summary>
         /// List of STM elements.
@@ -58,7 +61,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             _pool = pool;
             _evc26Alias1 = 0x00;
             StmData = new List<EVC26_StmData>();
-            
+
             // Activate dynamic array
             _pool.SITR.SMDCtrl.ETCS1.SpecificStmDwValue.Value = 0x0008;
 
@@ -73,7 +76,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         {
             _pool.SITR.ETCS1.SpecificStmDwValue.EVC26alias1.Value = _evc26Alias1;
 
-            ushort numberOfDataUnits = (ushort)StmData.Count;
+            ushort numberOfDataUnits = (ushort) StmData.Count;
 
             if (numberOfDataUnits > StmMaxIterations)
             {
@@ -123,7 +126,7 @@ namespace Testcase.Telegrams.EVCtoDMI
                     // Write out the MMI_L_CAPTION value (length)
                     requestName = tagName1 + "MmiLCaption";
 
-                    _pool.SITR.Client.Write(requestName, (ushort)caption.Length);
+                    _pool.SITR.Client.Write(requestName, (ushort) caption.Length);
                     totalSizeCounter += sizeof(ushort);
                 }
 

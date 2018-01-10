@@ -1,29 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
 <TestInfoXml>
-  <Project>PROJECT</Project>
   <Asv>ASV</Asv>
-  <Configuration>CONFIG</Configuration>
-  <Rack>RACK</Rack>
+  <Project>PROJECT</Project>
   <Tester>TESTER</Tester>
+  <Rack>RACK</Rack>
   <Logpath>C:\01_Projects\05_RefDMI\02_testing\01_laboratory_testing\08_logs</Logpath>
   <Logwindow>True</Logwindow>
   <LogWindowAutoClose>True</LogWindowAutoClose>
   <LogSizeMaximum>200MB</LogSizeMaximum>
   <LogEntriesMaximum>20000</LogEntriesMaximum>
-  <LogDirectlyToDisk>False</LogDirectlyToDisk>
-  <HideConsoleWindow>False</HideConsoleWindow>
   <UCpath>c:\</UCpath>
+  <Configuration>CONFIG</Configuration>
   <ManualTest>True</ManualTest>
   <DefaultResult>Yes</DefaultResult>
+  <HideConsoleWindow>False</HideConsoleWindow>
+  <LogDirectlyToDisk>False</LogDirectlyToDisk>
   <ValidationMode>False</ValidationMode>
-  <CustomProperties>
-    <!-- 
-    <XSLFile>C:\FILE\TO\CUSTOM.xsl</XSLFile>    
-    <DisableKeepAlive>False</DisableKeepAlive>
-    <FailedTestcaseRetryCount>3</FailedTestcaseRetryCount>
-    <TraceReferencedAssemblyVersions>False</TraceReferencedAssemblyVersions>
-    <TraceUnReferencedAssemblyVersions>False</TraceUnReferencedAssemblyVersions>
-    -->
-  </CustomProperties>
 </TestInfoXml>

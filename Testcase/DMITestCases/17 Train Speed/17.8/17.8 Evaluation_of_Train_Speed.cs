@@ -64,7 +64,7 @@ namespace Testcase.DMITestCases
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint
-            
+
             /*
             Test Step 1
             Action: Start ATP without cabin activation
@@ -73,10 +73,11 @@ namespace Testcase.DMITestCases
             */
             EVC1_MMIDynamic.MMI_V_TRAIN = -1;
 
-            WaitForVerification("Check that the following objects are not displayed on the DMI:" + Environment.NewLine + Environment.NewLine +
+            WaitForVerification("Check that the following objects are not displayed on the DMI:" + Environment.NewLine +
+                                Environment.NewLine +
                                 "1. Speed Pointer." + Environment.NewLine +
-                                "2. Speed Digital" + Environment.NewLine + 
-                                "3. CSG" + Environment.NewLine + 
+                                "2. Speed Digital" + Environment.NewLine +
+                                "3. CSG" + Environment.NewLine +
                                 "4. CSG - Extension" + Environment.NewLine +
                                 "5. All hooks" + Environment.NewLine +
                                 "6. Target Distance Bar");
@@ -95,7 +96,8 @@ namespace Testcase.DMITestCases
 
             // Set to level 1 and SR mode
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode =
+                EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
 
             // Enable standard buttons including Start, and display Default window.
             DmiActions.Finished_SoM_Default_Window(this);
@@ -104,8 +106,9 @@ namespace Testcase.DMITestCases
             EVC1_MMIDynamic.MMI_V_TARGET = 200;
             EVC1_MMIDynamic.MMI_V_RELEASE = 250;
             EVC1_MMIDynamic.MMI_V_PERMITTED = 300;
-            
-            WaitForVerification("Check that the following objects are displayed on the DMI with speed = 0:" + Environment.NewLine + Environment.NewLine +
+
+            WaitForVerification("Check that the following objects are displayed on the DMI with speed = 0:" +
+                                Environment.NewLine + Environment.NewLine +
                                 "1. The Speed pointer" + Environment.NewLine +
                                 "2. Speed digital" + Environment.NewLine +
                                 "3. CSG" + Environment.NewLine +
@@ -121,7 +124,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 1086 (partly: negative case - received MMI_V_TRAIN not equal -1); MMI_gen 1268 (partly: received MMI_V_TRAIN greater than -1); MMI_gen 1275 (partly: negative case - received valid MMI_V_TRAIN);(2) MMI_gen 1086 (partly: negative case - when MMI_V_TRAIN not equal -1); MMI_gen 1268 (partly: when MMI_DYNAMIC not elder than 600ms and MMI_V_TRAIN greater than -1); MMI_gen 1275 (partly: negative case - when MMI_V_TRAIN is valid);(3) MMI_gen 1277;
             */
             EVC1_MMIDynamic.MMI_V_TRAIN = 694;
-            
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Speed pointer and Speed digital are displayed." + Environment.NewLine +
                                 "2. The Speed Pointer and Digital Speed on DMI screen show speed at 25 km/h.");
@@ -134,7 +137,8 @@ namespace Testcase.DMITestCases
             */
             XML_12_8();
 
-            WaitForVerification("Check that the following objects are not displayed" + Environment.NewLine + Environment.NewLine +
+            WaitForVerification("Check that the following objects are not displayed" + Environment.NewLine +
+                                Environment.NewLine +
                                 "1. The Speed pointer" + Environment.NewLine +
                                 "2. Speed digital" + Environment.NewLine +
                                 "3. CSG" + Environment.NewLine +
@@ -151,15 +155,16 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
+
         #region Send_XML_12_8_DMI_Test_Specification
 
         private void XML_12_8()
         {
             EVC1_MMIDynamic.MMI_M_SLIDE = 1;
             EVC1_MMIDynamic.MMI_M_SLIP = 1;
-            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring;   // 0
+            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring; // 0
             EVC1_MMIDynamic.MMI_A_TRAIN = 0;
-            EVC1_MMIDynamic.MMI_V_TRAIN = -1;    // value in xml file is out of range so send this
+            EVC1_MMIDynamic.MMI_V_TRAIN = -1; // value in xml file is out of range so send this
             EVC1_MMIDynamic.MMI_V_TARGET = 1111;
             EVC1_MMIDynamic.MMI_V_PERMITTED = 1111;
             EVC1_MMIDynamic.MMI_V_RELEASE = 555;
@@ -169,9 +174,8 @@ namespace Testcase.DMITestCases
 
             //SITR.ETCS1.Dynamic.EVC01Validity1.Value = 0x0;
             //SITR.ETCS1.Dynamic.EVC01Validity2.Value = 0x0;
-
         }
-        #endregion
 
+        #endregion
     }
 }

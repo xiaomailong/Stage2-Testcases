@@ -49,7 +49,6 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Default;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.SystemVersion;
             EVC30_MMIRequestEnable.Send();
-
         }
 
         public override void PostExecution()
@@ -75,21 +74,25 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press the ‘System version’ button");
 
-            EVC34_MMISystemVersion.SYSTEM_VERSION_X = 1;        // No idea
+            EVC34_MMISystemVersion.SYSTEM_VERSION_X = 1; // No idea
             EVC34_MMISystemVersion.SYSTEM_VERSION_Y = 1;
             EVC34_MMISystemVersion.Send();
 
-            WaitForVerification("Check the following (* indicates sub-areas drawn as one area):" + Environment.NewLine + Environment.NewLine +
+            WaitForVerification("Check the following (* indicates sub-areas drawn as one area):" + Environment.NewLine +
+                                Environment.NewLine +
                                 "1. DMI displays the System version window with 3 layers, ." + Environment.NewLine +
                                 "2. Layer 0 is displayed in areas D, F, G, E10, E11, Y and Z." + Environment.NewLine +
-                                "3. Layer 1 is displayed in areas A1, (A2 + A3)*, A4, B*, C1, (C2 + C3 + C4)*, C5, C6, C7, C8, C9, E1, E2, E3, E4, (E5 - E9)*." + Environment.NewLine +
+                                "3. Layer 1 is displayed in areas A1, (A2 + A3)*, A4, B*, C1, (C2 + C3 + C4)*, C5, C6, C7, C8, C9, E1, E2, E3, E4, (E5 - E9)*." +
+                                Environment.NewLine +
                                 "4. Layer 2 is displayed in areas B3, B4, B5, B6, B7." + Environment.NewLine +
                                 "5. A data view window covers areas D, F and G." + Environment.NewLine +
                                 "6. An enabled Close button (symbol NA11) is displayed." + Environment.NewLine +
                                 "7. The data view text has a Label part and a Data part." + Environment.NewLine +
                                 "8. The window displays the Operating system version." + Environment.NewLine +
-                                "9. Objects, text messages and buttons can be displayed in several levels. Within a level they are allocated to areas." + Environment.NewLine +
-                                "10. All objects, text messages and buttons are displayed in the same layer." + Environment.NewLine +
+                                "9. Objects, text messages and buttons can be displayed in several levels. Within a level they are allocated to areas." +
+                                Environment.NewLine +
+                                "10. All objects, text messages and buttons are displayed in the same layer." +
+                                Environment.NewLine +
                                 "11. The Default window not displayed covering the current window.");
 
             /*
@@ -128,7 +131,7 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data view displays ‘111.222’ for the Operating system version.");
-            
+
             /*
             Test Step 5
             Action: Press the ‘Close’ button
@@ -148,7 +151,9 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
+
         #region Send_XML_22_14_DMI_Test_Specification
+
         private void XML_22_14()
         {
             EVC34_MMISystemVersion.SYSTEM_VERSION_X = 0xff;
@@ -165,6 +170,7 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.Send();
             */
         }
+
         #endregion
     }
 }

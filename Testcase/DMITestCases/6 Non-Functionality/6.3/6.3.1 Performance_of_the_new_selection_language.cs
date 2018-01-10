@@ -48,8 +48,9 @@ namespace Testcase.DMITestCases
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
-            DmiActions.ShowInstruction(this, "This test need to be done with the real EVC" + Environment.NewLine + Environment.NewLine +
-                                       "The aim of this test is to check that the text on sub windows and buttons are presented in Engilsh language. ");
+            DmiActions.ShowInstruction(this, "This test need to be done with the real EVC" + Environment.NewLine +
+                                             Environment.NewLine +
+                                             "The aim of this test is to check that the text on sub windows and buttons are presented in Engilsh language. ");
         }
 
         public override void PostExecution()

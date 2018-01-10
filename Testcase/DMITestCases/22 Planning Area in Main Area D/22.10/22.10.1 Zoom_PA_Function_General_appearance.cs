@@ -85,7 +85,7 @@ namespace Testcase.DMITestCases
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in FS mode, Level 2." + Environment.NewLine + 
+                                "1. DMI displays in FS mode, Level 2." + Environment.NewLine +
                                 "2. Planning Information is displayed." + Environment.NewLine +
                                 "3. The Zoom PA function is enabled.");
 
@@ -118,17 +118,18 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The PA distance scale does not change.");
-            
+
             DmiActions.ShowInstruction(this, @"Whilst keeping the ‘Scale Up’ button pressed, drag it out of its area.");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The PA distance scale does not change.");
 
-            DmiActions.ShowInstruction(this, @"Whilst keeping the ‘Scale Up’ button pressed, drag it back inside its area.");
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the ‘Scale Up’ button pressed, drag it back inside its area.");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The PA distance scale does not change.");
-            
+
             DmiActions.ShowInstruction(this, @"Release the ‘Scale Up’ button.");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -145,12 +146,14 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The PA distance scale does not change.");
 
-            DmiActions.ShowInstruction(this, @"Whilst keeping the ‘Scale Down’ button pressed, drag it out of its area.");
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the ‘Scale Down’ button pressed, drag it out of its area.");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The PA distance scale does not change.");
 
-            DmiActions.ShowInstruction(this, @"Whilst keeping the ‘Scale Down’ button pressed, drag it back inside its area.");
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the ‘Scale Down’ button pressed, drag it back inside its area.");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The PA distance scale does not change.");
@@ -183,7 +186,8 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the ‘Track Ahead Free’ symbol, DR02, in area D." + Environment.NewLine +
+                                "1. DMI displays the ‘Track Ahead Free’ symbol, DR02, in area D." +
+                                Environment.NewLine +
                                 "2. The ‘Scale Up’ and ‘Scale Down’ buttons in sub-areas D9 and D12 are not displayed.");
 
             /*
@@ -225,7 +229,8 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in PT mode." + Environment.NewLine +
-                                "2. The Brake Intervention symbol, ST01 is displayed in sub-area C9." + Environment.NewLine +
+                                "2. The Brake Intervention symbol, ST01 is displayed in sub-area C9." +
+                                Environment.NewLine +
                                 "3. Planning Information is removed." + Environment.NewLine +
                                 "4. The Zoom PA function is disabled.");
 
@@ -243,7 +248,7 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The speed displayed is 0 km/h.");
-            
+
             /*
             Test Step 11
             Action: End of test

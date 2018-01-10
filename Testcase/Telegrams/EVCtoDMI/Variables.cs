@@ -32,13 +32,14 @@ namespace Testcase.Telegrams.EVCtoDMI
                 var charArray = trainDataElement.EchoText.ToCharArray();
 
                 if (charArray.Length > 10)
-                    throw new ArgumentOutOfRangeException(charArray.ToString(), "Too many characters in the caption string!");
+                    throw new ArgumentOutOfRangeException(charArray.ToString(),
+                        "Too many characters in the caption string!");
 
                 // Set identifier
-                _pool.SITR.Client.Write(varNamestring + "MmiNidData", (byte)trainDataElement.Identifier);
+                _pool.SITR.Client.Write(varNamestring + "MmiNidData", (byte) trainDataElement.Identifier);
 
                 // Set data check result
-                _pool.SITR.Client.Write(varNamestring + "MmiQDataCheck", (byte)trainDataElement.QDataCheck);
+                _pool.SITR.Client.Write(varNamestring + "MmiQDataCheck", (byte) trainDataElement.QDataCheck);
 
                 // Set number of chars
                 _pool.SITR.Client.Write(varNamestring + "MmiNText", (ushort) charArray.Length);
@@ -52,11 +53,15 @@ namespace Testcase.Telegrams.EVCtoDMI
 
                     if (charIndex < 10 && charArray.Length > 10)
                     {
-                        _pool.SITR.Client.Write(varNamestring + baseString.Substring( baseString.LastIndexOf('_') + 1 ) + $"10{charIndex}_MmiXText", character);
+                        _pool.SITR.Client.Write(
+                            varNamestring + baseString.Substring(baseString.LastIndexOf('_') + 1) +
+                            $"10{charIndex}_MmiXText", character);
                     }
                     else
                     {
-                        _pool.SITR.Client.Write(varNamestring + baseString.Substring( baseString.LastIndexOf('_') + 1 ) + $"1{charIndex}_MmiXText", character);
+                        _pool.SITR.Client.Write(
+                            varNamestring + baseString.Substring(baseString.LastIndexOf('_') + 1) +
+                            $"1{charIndex}_MmiXText", character);
                     }
 
                     // Increment packet by size of one character
@@ -72,9 +77,9 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public class DataElement
         {
-            public ushort Identifier { get; set; }      // Identifier of a data set
-            public ushort QDataCheck { get; set; }      // Result of data check
-            public string EchoText { get; set; }        // Echo text of data
+            public ushort Identifier { get; set; } // Identifier of a data set
+            public ushort QDataCheck { get; set; } // Result of data check
+            public string EchoText { get; set; } // Echo text of data
         }
 
         /// <summary>
@@ -440,70 +445,86 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// EVC20 and EVC121 parameters. This configuration will display all levels used for 
         /// Crossrail project (+ Level3)
         /// </summary>
-        #region EVC20 and EVC121 parameters
 
+        #region EVC20 and EVC121 parameters
         public static MMI_Q_LEVEL_NTC_ID[] paramEvc20MmiQLevelNtcId =
-                { MMI_Q_LEVEL_NTC_ID.ETCS_Level,
-                MMI_Q_LEVEL_NTC_ID.ETCS_Level,
-                MMI_Q_LEVEL_NTC_ID.ETCS_Level,
-                MMI_Q_LEVEL_NTC_ID.ETCS_Level,
-                MMI_Q_LEVEL_NTC_ID.STM_ID,
-                MMI_Q_LEVEL_NTC_ID.STM_ID };
+        {
+            MMI_Q_LEVEL_NTC_ID.ETCS_Level,
+            MMI_Q_LEVEL_NTC_ID.ETCS_Level,
+            MMI_Q_LEVEL_NTC_ID.ETCS_Level,
+            MMI_Q_LEVEL_NTC_ID.ETCS_Level,
+            MMI_Q_LEVEL_NTC_ID.STM_ID,
+            MMI_Q_LEVEL_NTC_ID.STM_ID
+        };
 
         public static MMI_M_CURRENT_LEVEL[] paramEvc20MmiMCurrentLevel =
-                { MMI_M_CURRENT_LEVEL.NotLastUsedLevel,
-                MMI_M_CURRENT_LEVEL.NotLastUsedLevel,
-                MMI_M_CURRENT_LEVEL.NotLastUsedLevel,
-                MMI_M_CURRENT_LEVEL.NotLastUsedLevel,
-                MMI_M_CURRENT_LEVEL.NotLastUsedLevel,
-                MMI_M_CURRENT_LEVEL.NotLastUsedLevel };
+        {
+            MMI_M_CURRENT_LEVEL.NotLastUsedLevel,
+            MMI_M_CURRENT_LEVEL.NotLastUsedLevel,
+            MMI_M_CURRENT_LEVEL.NotLastUsedLevel,
+            MMI_M_CURRENT_LEVEL.NotLastUsedLevel,
+            MMI_M_CURRENT_LEVEL.NotLastUsedLevel,
+            MMI_M_CURRENT_LEVEL.NotLastUsedLevel
+        };
 
         public static MMI_M_LEVEL_FLAG[] paramEvc20MmiMLevelFlag =
-                { MMI_M_LEVEL_FLAG.MarkedLevel,
-                MMI_M_LEVEL_FLAG.MarkedLevel,
-                MMI_M_LEVEL_FLAG.MarkedLevel,
-                MMI_M_LEVEL_FLAG.MarkedLevel,
-                MMI_M_LEVEL_FLAG.MarkedLevel,
-                MMI_M_LEVEL_FLAG.MarkedLevel };
+        {
+            MMI_M_LEVEL_FLAG.MarkedLevel,
+            MMI_M_LEVEL_FLAG.MarkedLevel,
+            MMI_M_LEVEL_FLAG.MarkedLevel,
+            MMI_M_LEVEL_FLAG.MarkedLevel,
+            MMI_M_LEVEL_FLAG.MarkedLevel,
+            MMI_M_LEVEL_FLAG.MarkedLevel
+        };
 
         public static MMI_M_INHIBITED_LEVEL[] paramEvc20MmiMInhibitedLevel =
-                { MMI_M_INHIBITED_LEVEL.NotInhibited,
-                MMI_M_INHIBITED_LEVEL.NotInhibited,
-                MMI_M_INHIBITED_LEVEL.NotInhibited,
-                MMI_M_INHIBITED_LEVEL.NotInhibited,
-                MMI_M_INHIBITED_LEVEL.NotInhibited,
-                MMI_M_INHIBITED_LEVEL.NotInhibited };
+        {
+            MMI_M_INHIBITED_LEVEL.NotInhibited,
+            MMI_M_INHIBITED_LEVEL.NotInhibited,
+            MMI_M_INHIBITED_LEVEL.NotInhibited,
+            MMI_M_INHIBITED_LEVEL.NotInhibited,
+            MMI_M_INHIBITED_LEVEL.NotInhibited,
+            MMI_M_INHIBITED_LEVEL.NotInhibited
+        };
 
         public static MMI_M_INHIBIT_ENABLE[] paramEvc20MmiMInhibitEnable =
-                { MMI_M_INHIBIT_ENABLE.AllowedForInhibiting,
-                MMI_M_INHIBIT_ENABLE.AllowedForInhibiting,
-                MMI_M_INHIBIT_ENABLE.AllowedForInhibiting,
-                MMI_M_INHIBIT_ENABLE.AllowedForInhibiting,
-                MMI_M_INHIBIT_ENABLE.AllowedForInhibiting,
-                MMI_M_INHIBIT_ENABLE.AllowedForInhibiting };
+        {
+            MMI_M_INHIBIT_ENABLE.AllowedForInhibiting,
+            MMI_M_INHIBIT_ENABLE.AllowedForInhibiting,
+            MMI_M_INHIBIT_ENABLE.AllowedForInhibiting,
+            MMI_M_INHIBIT_ENABLE.AllowedForInhibiting,
+            MMI_M_INHIBIT_ENABLE.AllowedForInhibiting,
+            MMI_M_INHIBIT_ENABLE.AllowedForInhibiting
+        };
 
         public static MMI_M_LEVEL_NTC_ID[] paramEvc20MmiMLevelNtcId =
-                { MMI_M_LEVEL_NTC_ID.L0,
-                MMI_M_LEVEL_NTC_ID.L1,
-                MMI_M_LEVEL_NTC_ID.L2,
-                MMI_M_LEVEL_NTC_ID.L3,
-                MMI_M_LEVEL_NTC_ID.CBTC,
-                MMI_M_LEVEL_NTC_ID.AWS_TPWS };
+        {
+            MMI_M_LEVEL_NTC_ID.L0,
+            MMI_M_LEVEL_NTC_ID.L1,
+            MMI_M_LEVEL_NTC_ID.L2,
+            MMI_M_LEVEL_NTC_ID.L3,
+            MMI_M_LEVEL_NTC_ID.CBTC,
+            MMI_M_LEVEL_NTC_ID.AWS_TPWS
+        };
+
         #endregion
 
 
         #region EVC6 parameters
 
-        public static string[] paramEvc6FixedTrainsetCaptions = new string[] { Enum.GetName(typeof(Fixed_Trainset_Captions), 1),
-                                                                               Enum.GetName(typeof(Fixed_Trainset_Captions), 2),
-                                                                               Enum.GetName(typeof(Fixed_Trainset_Captions), 3)};  
-        
+        public static string[] paramEvc6FixedTrainsetCaptions = new string[]
+        {
+            Enum.GetName(typeof(Fixed_Trainset_Captions), 1),
+            Enum.GetName(typeof(Fixed_Trainset_Captions), 2),
+            Enum.GetName(typeof(Fixed_Trainset_Captions), 3)
+        };
+
         #endregion
 
         /// <summary>
         /// Collection of flags used to enable standard buttons on DMI.
         /// </summary>
-        public static EVC30_MMIRequestEnable.EnabledRequests standardFlags = 
+        public static EVC30_MMIRequestEnable.EnabledRequests standardFlags =
             EVC30_MMIRequestEnable.EnabledRequests.EnableDoppler |
             EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter |
             EVC30_MMIRequestEnable.EnabledRequests.StartBrakeTest |
@@ -513,7 +534,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             EVC30_MMIRequestEnable.EnabledRequests.SystemVersion |
             EVC30_MMIRequestEnable.EnabledRequests.Brightness |
             EVC30_MMIRequestEnable.EnabledRequests.Volume |
-            EVC30_MMIRequestEnable.EnabledRequests.NonLeading |        
+            EVC30_MMIRequestEnable.EnabledRequests.NonLeading |
             EVC30_MMIRequestEnable.EnabledRequests.Shunting |
             EVC30_MMIRequestEnable.EnabledRequests.TrainData |
             EVC30_MMIRequestEnable.EnabledRequests.TrainRunningNumber |
@@ -595,8 +616,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public enum MMI_Q_TRACKCOND_ACTION : byte
         {
-            WithDriverAction = 0,       // Manual
-            WithoutDriverAction = 1     // Automatic
+            WithDriverAction = 0, // Manual
+            WithoutDriverAction = 1 // Automatic
         }
 
         /// <summary>
@@ -963,7 +984,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         {
             FLU = 1,
             RLU = 2,
-            Rescue = 3           
+            Rescue = 3
         }
 
         /// <summary>

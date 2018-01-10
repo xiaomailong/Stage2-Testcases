@@ -86,7 +86,8 @@ namespace Testcase.DMITestCases
 
             DmiActions.Set_Driver_ID(this, "1234");
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode =
+                EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
             DmiActions.Finished_SoM_Default_Window(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -125,7 +126,8 @@ namespace Testcase.DMITestCases
             DmiActions.Simulate_communication_loss_EVC_DMI(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the  message “ATP Down Alarm” with sound alarm." + Environment.NewLine +
+                                "1. DMI displays the  message “ATP Down Alarm” with sound alarm." +
+                                Environment.NewLine +
                                 "2. Digital Release Speed is not displayed. " +
                                 "3. The toggling function is inactive (symbol DR01 is not displayed in area F7.");
 
@@ -137,7 +139,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Re_establish_communication_EVC_DMI(this);
-            
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in FS mode." + Environment.NewLine +
                                 "2. Digital Release Speed is re-displayed" + Environment.NewLine +
