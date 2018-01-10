@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -84,7 +84,7 @@ if exist "$(TargetPath)" if not exist "$(TargetPath).locked" move "$(TargetPath)
       <HintPath>libs\BT_CSB_Tools.dll</HintPath>
     </Reference>
     <Reference Include="CL345">
-      <HintPath>libs\CL345.dll</HintPath>
+      <HintPath>.\libs\CL345.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
