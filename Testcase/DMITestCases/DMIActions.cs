@@ -444,6 +444,8 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void Activate_Cabin_1(SignalPool pool)
         {
+            RigControl.ActivateCab1(pool);
+
             EVC2_MMIStatus.TrainRunningNumber = 1;
             EVC2_MMIStatus.MMI_M_ACTIVE_CABIN = MMI_M_ACTIVE_CABIN.Cabin1Active;
             EVC2_MMIStatus.MMI_M_ADHESION = 0x0;
@@ -458,6 +460,8 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void Activate_Cabin_2(SignalPool pool)
         {
+            RigControl.ActivateCab2(pool);
+
             EVC2_MMIStatus.TrainRunningNumber = 1;
             EVC2_MMIStatus.MMI_M_ACTIVE_CABIN = MMI_M_ACTIVE_CABIN.Cabin2Active;
             EVC2_MMIStatus.MMI_M_ADHESION = 0x0;
@@ -473,6 +477,8 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void Deactivate_Cabin(SignalPool pool)
         {
+            RigControl.DeActivateBothCabs(pool);
+
             EVC2_MMIStatus.MMI_M_ACTIVE_CABIN = MMI_M_ACTIVE_CABIN.NoCabinActive;
             EVC2_MMIStatus.Send();
         }
