@@ -385,6 +385,7 @@ if exist "$(TargetPath)" if not exist "$(TargetPath).locked" move "$(TargetPath)
     <Compile Include="DMITestCases\DMIActions.cs" />
     <Compile Include="DMITestCases\DmiActionsUnused.cs" />
     <Compile Include="DMITestCases\DMIResults.cs" />
+    <Compile Include="DMITestCases\DMIResultsUnused.cs" />
     <Compile Include="DMITestCases\UnknownChapter\1 Introduction.cs" />
     <Compile Include="DMITestCases\UnknownChapter\at_least_31_PA_Gradient_Profile_Segments.cs" />
     <Compile Include="DMITestCases\UnknownChapter\NACKACK_Buttons.cs" />
