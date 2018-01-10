@@ -38,7 +38,7 @@ namespace Testcase.Telegrams.DMItoEVC
         {
             _pool = pool;
             _pool.SITR.SMDCtrl.CCUO.ETCS1NewTrainData.Value = 0x0009;
-            _pool.SITR.SMDStat.CCUO.ETCS1NewTrainData.Value = 0x00;            
+            _pool.SITR.SMDStat.CCUO.ETCS1NewTrainData.Value = 0x00;
         }
 
         private static void CheckFixedTrainDataEntered(Fixed_Trainset_Captions mmiMTrainsetId)
@@ -49,49 +49,76 @@ namespace Testcase.Telegrams.DMItoEVC
             // Check if telegram received flag has been set. Allows 20 seconds to enter train data.
             if (_pool.SITR.SMDStat.CCUO.ETCS1NewTrainData.WaitForCondition(Is.Equal, 1, 20000, 100))
             {
-                
                 // Check all static fields
                 _checkResult = _pool.SITR.CCUO.ETCS1NewTrainData.MmiLTrain.Value.Equals(0) &
                                _pool.SITR.CCUO.ETCS1NewTrainData.MmiVMaxtrain.Value.Equals(0) &
-                               _pool.SITR.CCUO.ETCS1NewTrainData.MmiNidKeyTrainCat.Value.Equals((byte)MMI_NID_KEY.NoDedicatedKey) &
+                               _pool.SITR.CCUO.ETCS1NewTrainData.MmiNidKeyTrainCat.Value.Equals(
+                                   (byte) MMI_NID_KEY.NoDedicatedKey) &
                                _pool.SITR.CCUO.ETCS1NewTrainData.MmiMBrakePerc.Value.Equals(0) &
-                               _pool.SITR.CCUO.ETCS1NewTrainData.MmiNidKeyAxleLoad.Value.Equals((byte)MMI_NID_KEY.NoDedicatedKey) &
+                               _pool.SITR.CCUO.ETCS1NewTrainData.MmiNidKeyAxleLoad.Value.Equals(
+                                   (byte) MMI_NID_KEY.NoDedicatedKey) &
                                _pool.SITR.CCUO.ETCS1NewTrainData.MmiMAirtight.Value.Equals(0) &
-                               _pool.SITR.CCUO.ETCS1NewTrainData.MmiNidKeyLoadGauge.Value.Equals((byte)MMI_NID_KEY.NoDedicatedKey) &
-                               _pool.SITR.CCUO.ETCS1NewTrainData.EVC107alias1.Value.Equals((byte)((byte)mmiMTrainsetId << 4)) &
-                               _pool.SITR.CCUO.ETCS1NewTrainData.MmiMButtons.Value.Equals((byte)_mButtons);
-                            
+                               _pool.SITR.CCUO.ETCS1NewTrainData.MmiNidKeyLoadGauge.Value.Equals(
+                                   (byte) MMI_NID_KEY.NoDedicatedKey) &
+                               _pool.SITR.CCUO.ETCS1NewTrainData.EVC107alias1.Value.Equals(
+                                   (byte) ((byte) mmiMTrainsetId << 4)) &
+                               _pool.SITR.CCUO.ETCS1NewTrainData.MmiMButtons.Value.Equals((byte) _mButtons);
+
                 // If check passes
                 if (_checkResult)
                 {
                     _pool.TraceReport(BaseString0 + Environment.NewLine +
-                                    "MMI_L_TRAIN = 0" + Environment.NewLine +
-                                    "MMI_V_MAXTRAIN = 0" + Environment.NewLine +
-                                    "MMI_NID_KEY_TRAIN_CAT = \"" + MMI_NID_KEY.NoDedicatedKey + "\"" + Environment.NewLine +
-                                    "MMI_M_BRAKE_PERC = 0" + Environment.NewLine +
-                                    "MMI_NID_KEY_AXLE_LOAD = \"" + MMI_NID_KEY.NoDedicatedKey + "\"" + Environment.NewLine +
-                                    "MMI_M_AIRTIGHT = 0" + Environment.NewLine +
-                                    "MMI_NID_KEY_LOAD_GAUGE = \"" + MMI_NID_KEY.NoDedicatedKey + "\"" + Environment.NewLine +
-                                    "MMI_M_TRAINSET_ID = " + mmiMTrainsetId + Environment.NewLine +
-                                    "MMI_M_ALT_DEM = 0" + Environment.NewLine +
-                                    "MMI_M_BUTTONS = \"" + _mButtons + "\"" + Environment.NewLine +
-                                    "Result = PASSED.");
+                                      "MMI_L_TRAIN = 0" + Environment.NewLine +
+                                      "MMI_V_MAXTRAIN = 0" + Environment.NewLine +
+                                      "MMI_NID_KEY_TRAIN_CAT = \"" + MMI_NID_KEY.NoDedicatedKey + "\"" +
+                                      Environment.NewLine +
+                                      "MMI_M_BRAKE_PERC = 0" + Environment.NewLine +
+                                      "MMI_NID_KEY_AXLE_LOAD = \"" + MMI_NID_KEY.NoDedicatedKey + "\"" +
+                                      Environment.NewLine +
+                                      "MMI_M_AIRTIGHT = 0" + Environment.NewLine +
+                                      "MMI_NID_KEY_LOAD_GAUGE = \"" + MMI_NID_KEY.NoDedicatedKey + "\"" +
+                                      Environment.NewLine +
+                                      "MMI_M_TRAINSET_ID = " + mmiMTrainsetId + Environment.NewLine +
+                                      "MMI_M_ALT_DEM = 0" + Environment.NewLine +
+                                      "MMI_M_BUTTONS = \"" + _mButtons + "\"" + Environment.NewLine +
+                                      "Result = PASSED.");
                 }
                 // Else display the real value extracted from EVC-107
                 else
                 {
                     _pool.TraceError(BaseString0 + Environment.NewLine +
-                        "MMI_L_TRAIN = \"" + _pool.SITR.CCUO.ETCS1NewTrainData.MmiLTrain.Value + "\"" + Environment.NewLine +
-                        "MMI_V_MAXTRAIN = \"" + _pool.SITR.CCUO.ETCS1NewTrainData.MmiLTrain.Value + "\"" + Environment.NewLine +
-                        "MMI_NID_KEY_TRAIN_CAT = \"" + Enum.GetName(typeof(MMI_NID_KEY), _pool.SITR.CCUO.ETCS1NewTrainData.MmiNidKeyTrainCat.Value) + "\"" + Environment.NewLine +
-                        "MMI_M_BRAKE_PERC = \"" + _pool.SITR.CCUO.ETCS1NewTrainData.MmiLTrain.Value + "\"" + Environment.NewLine +
-                        "MMI_NID_KEY_AXLE_LOAD = \"" + Enum.GetName(typeof(MMI_NID_KEY), _pool.SITR.CCUO.ETCS1NewTrainData.MmiNidKeyAxleLoad.Value) + "\"" + Environment.NewLine +
-                        "MMI_M_AIRTIGHT = \"" + _pool.SITR.CCUO.ETCS1NewTrainData.MmiLTrain.Value + "\"" + Environment.NewLine +
-                        "MMI_NID_KEY_LOAD_GAUGE = \"" + Enum.GetName(typeof(MMI_NID_KEY), _pool.SITR.CCUO.ETCS1NewTrainData.MmiNidKeyLoadGauge.Value) + "\"" + Environment.NewLine +
-                        "MMI_M_TRAINSET_ID = \"" + Enum.GetName(typeof(Fixed_Trainset_Captions), (_pool.SITR.CCUO.ETCS1NewTrainData.EVC107alias1.Value & 0xF0) >> 4) + "\"" + Environment.NewLine +
-                        "MMI_M_ALT_DEM = \"" + ((_pool.SITR.CCUO.ETCS1NewTrainData.EVC107alias1.Value & 0x0C) >> 2) + "\"" + Environment.NewLine +
-                        "MMI_M_BUTTONS = \"" + Enum.GetName(typeof(MMI_M_BUTTONS), _pool.SITR.CCUO.ETCS1NewTrainData.MmiMButtons.Value) + "\"" + Environment.NewLine +
-                        "Result: FAILED!");
+                                     "MMI_L_TRAIN = \"" + _pool.SITR.CCUO.ETCS1NewTrainData.MmiLTrain.Value + "\"" +
+                                     Environment.NewLine +
+                                     "MMI_V_MAXTRAIN = \"" + _pool.SITR.CCUO.ETCS1NewTrainData.MmiLTrain.Value + "\"" +
+                                     Environment.NewLine +
+                                     "MMI_NID_KEY_TRAIN_CAT = \"" +
+                                     Enum.GetName(typeof(MMI_NID_KEY),
+                                         _pool.SITR.CCUO.ETCS1NewTrainData.MmiNidKeyTrainCat.Value) + "\"" +
+                                     Environment.NewLine +
+                                     "MMI_M_BRAKE_PERC = \"" + _pool.SITR.CCUO.ETCS1NewTrainData.MmiLTrain.Value +
+                                     "\"" + Environment.NewLine +
+                                     "MMI_NID_KEY_AXLE_LOAD = \"" +
+                                     Enum.GetName(typeof(MMI_NID_KEY),
+                                         _pool.SITR.CCUO.ETCS1NewTrainData.MmiNidKeyAxleLoad.Value) + "\"" +
+                                     Environment.NewLine +
+                                     "MMI_M_AIRTIGHT = \"" + _pool.SITR.CCUO.ETCS1NewTrainData.MmiLTrain.Value + "\"" +
+                                     Environment.NewLine +
+                                     "MMI_NID_KEY_LOAD_GAUGE = \"" +
+                                     Enum.GetName(typeof(MMI_NID_KEY),
+                                         _pool.SITR.CCUO.ETCS1NewTrainData.MmiNidKeyLoadGauge.Value) + "\"" +
+                                     Environment.NewLine +
+                                     "MMI_M_TRAINSET_ID = \"" +
+                                     Enum.GetName(typeof(Fixed_Trainset_Captions),
+                                         (_pool.SITR.CCUO.ETCS1NewTrainData.EVC107alias1.Value & 0xF0) >> 4) + "\"" +
+                                     Environment.NewLine +
+                                     "MMI_M_ALT_DEM = \"" +
+                                     ((_pool.SITR.CCUO.ETCS1NewTrainData.EVC107alias1.Value & 0x0C) >> 2) + "\"" +
+                                     Environment.NewLine +
+                                     "MMI_M_BUTTONS = \"" +
+                                     Enum.GetName(typeof(MMI_M_BUTTONS),
+                                         _pool.SITR.CCUO.ETCS1NewTrainData.MmiMButtons.Value) + "\"" +
+                                     Environment.NewLine +
+                                     "Result: FAILED!");
                 }
 
                 // Get number of data elements                
@@ -99,29 +126,30 @@ namespace Testcase.Telegrams.DMItoEVC
 
                 // MMI_gen 9460: "In case of [Enter] | [Enter_Delay_Type] the [MMI_NEW_TRAIN_DATA (EVC-107)].MMI_N_DATA_ELEMENTS
                 // shall be set to '1', as the driver is only allowed to accept one data at a time."
-                if (_pool.SITR.CCUO.ETCS1NewTrainData.MmiMButtons.Value.Equals((byte)MMI_M_BUTTONS_TRAIN_DATA.BTN_ENTER))
-                {                
+                if (_pool.SITR.CCUO.ETCS1NewTrainData.MmiMButtons.Value.Equals(
+                    (byte) MMI_M_BUTTONS_TRAIN_DATA.BTN_ENTER))
+                {
                     if (_nDataElements == 1)
                     {
                         // Get MMI_NID_DATA
-                        _nidData = (byte)_pool.SITR.Client.Read($"{BaseString1}0_MmiNidData"); 
+                        _nidData = (byte) _pool.SITR.Client.Read($"{BaseString1}0_MmiNidData");
 
                         // For Trainset selection, MMI_NID_DATA should be equal to 6 (= Train Type)
-                        _checkResult = _nidData.Equals(6); 
-                        
+                        _checkResult = _nidData.Equals(6);
+
                         // If check passes
                         if (_checkResult)
                         {
                             _pool.TraceReport("MMI_N_DATA_ELEMENTS = 1" + Environment.NewLine +
-                                            "MMI_NID_DATA[0] = 6" + Environment.NewLine +
-                                            "Result = PASSED.");
+                                              "MMI_NID_DATA[0] = 6" + Environment.NewLine +
+                                              "Result = PASSED.");
                         }
                         // Else display the real value extracted
                         else
                         {
                             _pool.TraceError("MMI_N_DATA_ELEMENTS = 1" + Environment.NewLine +
-                                            $"MMI_NID_DATA[0] = {_nidData}" + Environment.NewLine +
-                                            "Result = FAILED!");
+                                             $"MMI_NID_DATA[0] = {_nidData}" + Environment.NewLine +
+                                             "Result = FAILED!");
                         }
                     }
                     else
@@ -131,17 +159,18 @@ namespace Testcase.Telegrams.DMItoEVC
 
                         for (int k = 0; k < _nDataElements; k++)
                         {
-                            _nidData = (byte)_pool.SITR.Client.Read($"{BaseString1}{k}_MmiNidData");
+                            _nidData = (byte) _pool.SITR.Client.Read($"{BaseString1}{k}_MmiNidData");
 
                             _pool.TraceError($"MMI_NID_DATA[{k}] = {_nidData}" + Environment.NewLine +
-                                            "Result = FAILED!");
+                                             "Result = FAILED!");
                         }
                     }
                 }
 
                 // MMI_gen 9460 "In case of [Yes] | [Yes_Delay_Type] the [MMI_NEW_TRAIN_DATA (EVC-107)].MMI_N_DATA_ELEMENTS
                 // shall be set to '0', as the [MMI_NEW_TRAIN_DATA (EVC-107)].MMI_M_BUTTONS clearly indicates that all data are affected. 
-                else if (_pool.SITR.CCUO.ETCS1NewTrainData.MmiMButtons.Value.Equals((byte)MMI_M_BUTTONS_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE))
+                else if (_pool.SITR.CCUO.ETCS1NewTrainData.MmiMButtons.Value.Equals(
+                    (byte) MMI_M_BUTTONS_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE))
                 {
                     // If check passes
                     if (_nDataElements == 0)
@@ -156,21 +185,21 @@ namespace Testcase.Telegrams.DMItoEVC
 
                         for (int k = 0; k < _nDataElements; k++)
                         {
-                            _nidData = (byte)_pool.SITR.Client.Read($"{BaseString1}0{k}_MmiNidData");
+                            _nidData = (byte) _pool.SITR.Client.Read($"{BaseString1}0{k}_MmiNidData");
 
                             _pool.TraceError($"MMI_NID_DATA[{k}] = {_nidData}" + Environment.NewLine +
-                                            "Result = FAILED!");
+                                             "Result = FAILED!");
                         }
                     }
                 }
                 else
                 {
                     _pool.TraceError("Unexpected Result!" + Environment.NewLine +
-                                    $"MMI_N_DATA_ELEMENTS = {_nDataElements}");
+                                     $"MMI_N_DATA_ELEMENTS = {_nDataElements}");
 
                     for (int k = 0; k < _nDataElements; k++)
                     {
-                        _nidData = (byte)_pool.SITR.Client.Read($"{BaseString1}0{k}_MmiNidData");
+                        _nidData = (byte) _pool.SITR.Client.Read($"{BaseString1}0{k}_MmiNidData");
 
                         _pool.TraceError($"MMI_NID_DATA[{k}] = {_nidData}");
                     }

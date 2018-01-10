@@ -39,7 +39,7 @@ namespace Testcase.DMITestCases
             // Test system is powered onSoM is performed in SR mode, Level 1.
 
             // Call the TestCaseBase PreExecution
-            
+
             base.PreExecution();
             DmiActions.Complete_SoM_L1_SR(this);
         }
@@ -58,6 +58,7 @@ namespace Testcase.DMITestCases
             // Testcase entrypoint
 
             #region Test Step 1
+
             /*
             Test Step 1
             Action: Drive the train forward passing BG1
@@ -78,6 +79,7 @@ namespace Testcase.DMITestCases
             #endregion
 
             #region Test Step 2
+
             /*
             Test Step 2
             Action: Press an acknowledgement of LS mode in sub-area C1 and stop the train
@@ -104,8 +106,10 @@ namespace Testcase.DMITestCases
                                (8) MMI_gen 11470 (partly: Bit # 13);
             */
 
-            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI within 3 seconds after pressing 'OK': " + Environment.NewLine + Environment.NewLine +
-                                "1. Press DMI Sub Area C1." + Environment.NewLine);
+            DmiActions.ShowInstruction(this,
+                @"Perform the following actions on the DMI within 3 seconds after pressing 'OK': " +
+                Environment.NewLine + Environment.NewLine +
+                "1. Press DMI Sub Area C1." + Environment.NewLine);
             DmiExpectedResults.LS_Mode_Ack_pressed_and_released(this);
 
             DmiActions.Send_LS_Mode(this);
@@ -119,6 +123,7 @@ namespace Testcase.DMITestCases
             #endregion
 
             #region Test Step 3
+
             /*
             Test Step 3
             Action: Drive the train forward pass the position 250m.
@@ -144,6 +149,7 @@ namespace Testcase.DMITestCases
             #endregion
 
             #region Test Step 4
+
             /*
             Test Step 4
             Action: Drive the train forward pass BG2.
@@ -162,8 +168,10 @@ namespace Testcase.DMITestCases
             DmiActions.Send_OS_Mode_Ack(this);
             DmiExpectedResults.OS_Mode_Ack_Requested(this);
 
-            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI within 3 seconds after pression 'OK': " + Environment.NewLine + Environment.NewLine +
-                               "1. Press DMI Sub Area C1." + Environment.NewLine);
+            DmiActions.ShowInstruction(this,
+                @"Perform the following actions on the DMI within 3 seconds after pression 'OK': " +
+                Environment.NewLine + Environment.NewLine +
+                "1. Press DMI Sub Area C1." + Environment.NewLine);
             DmiExpectedResults.OS_Mode_Ack_pressed_and_released(this);
 
             DmiActions.Send_OS_Mode(this);
@@ -175,11 +183,13 @@ namespace Testcase.DMITestCases
             #endregion
 
             #region Test Step 5
+
             /*
             Test Step 5
             Action: End of test
             Expected Result: 
             */
+
             #endregion
 
             return GlobalTestResult;

@@ -30,7 +30,7 @@ namespace Testcase.Telegrams.DMItoEVC
             _pool = pool;
 
             _pool.SITR.SMDCtrl.CCUO.ETCS1SpecificStmDataToStm.Value = 0x00;
-            _pool.SITR.SMDStat.CCUO.ETCS1SpecificStmDataToStm.Value = 0x01;            
+            _pool.SITR.SMDStat.CCUO.ETCS1SpecificStmDataToStm.Value = 0x01;
         }
 
         private static void CheckStmDataEntered()
@@ -64,7 +64,7 @@ namespace Testcase.Telegrams.DMItoEVC
                             string tagName = $"{baseString1}{k}_";
 
                             string requestName = tagName + "MmiNidNtc";
-                            byte nidNtc = (byte)_pool.SITR.Client.Read(requestName);
+                            byte nidNtc = (byte) _pool.SITR.Client.Read(requestName);
 
                             requestName = tagName + "MMiNidData";
                             byte nidData = (byte) _pool.SITR.Client.Read(requestName);
@@ -73,20 +73,20 @@ namespace Testcase.Telegrams.DMItoEVC
                             ushort stmLValue = (ushort) _pool.SITR.Client.Read(requestName);
 
                             string tagSubName1 = tagName + "EVC123SpecificStmDataToStmSub10";
-                            
+
                             StringBuilder stmcharArray = new StringBuilder();
 
                             for (int l = 0; l < stmLValue; l++)
                             {
                                 requestName = $"{tagSubName1}{l}_MmiStmXValue";
-                                stmcharArray.Append((char)_pool.SITR.Client.Read(requestName));
+                                stmcharArray.Append((char) _pool.SITR.Client.Read(requestName));
                             }
 
                             EVC123_StmDataElement stmElement = _stmData.elements[k];
                             checkProperties = ((nidNtc == stmElement.stmNidNtc) &&
                                                (nidData == stmElement.stmNidData) &&
                                                (stmcharArray.ToString() == stmElement.stmXValue));
-                            if ( checkProperties == false )
+                            if (checkProperties == false)
                             {
                                 // Print out the offending element's values
                                 _pool.TraceReport(baseString0 + Environment.NewLine +
@@ -103,13 +103,13 @@ namespace Testcase.Telegrams.DMItoEVC
                         if (checkProperties)
                         {
                             _pool.TraceReport(baseString0 + Environment.NewLine + "Result = PASSED.");
-
                         }
                     }
                     else
                     {
                         _pool.TraceError(baseString0 + Environment.NewLine +
-                                         "MMI_NID_N_ITER = \"" + _pool.SITR.CCUO.ETCS1SpecificStmDataToStm.MmiNIter.Value +
+                                         "MMI_NID_N_ITER = \"" +
+                                         _pool.SITR.CCUO.ETCS1SpecificStmDataToStm.MmiNIter.Value +
                                          "\"" + Environment.NewLine +
                                          "Result: FAILED!");
                     }
@@ -122,15 +122,13 @@ namespace Testcase.Telegrams.DMItoEVC
                                      "\"" + Environment.NewLine +
                                      "Result: FAILED!");
                 }
-                
-            }            
-            
+            }
+
             // Show generic DMI -> EVC telegram failure
             else
             {
                 DmiExpectedResults.DMItoEVC_Telegram_Not_Received(_pool, baseString0);
             }
-            
         }
 
         /// <summary>
@@ -145,6 +143,5 @@ namespace Testcase.Telegrams.DMItoEVC
                 CheckStmDataEntered();
             }
         }
-
     }
 }

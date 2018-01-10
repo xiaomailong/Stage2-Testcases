@@ -67,7 +67,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8095;   (2) MMI_gen 8098; MMI_gen 8099 (partly: bottom right corner);(3) MMI_gen 8097; (4) MMI_gen 9402 (partly:  MMI_M_ALT_DEM, switchable);
             */
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;      // Main
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main; // Main
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.TrainData;
             EVC30_MMIRequestEnable.Send();
 
@@ -79,7 +79,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Train data entry window." + Environment.NewLine +
                                 "2. An enabled ‘switch’ button is displayed in the bottom right-hand corner of areas D, F and G." +
-                                "3. If the Train data entry window is in ‘Flexible Train Data’ mode the label of the ‘switch’ button displays ‘Select type’." + Environment.NewLine +
+                                "3. If the Train data entry window is in ‘Flexible Train Data’ mode the label of the ‘switch’ button displays ‘Select type’." +
+                                Environment.NewLine +
                                 "4. If the Train data entry window is in ‘Fixed Train Data’ mode the label of the ‘switch’ button displays ‘Enter data’.");
 
             /*
@@ -93,9 +94,10 @@ namespace Testcase.DMITestCases
             EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.Switch;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. If the ‘switch’ button displayed ‘Select type’ before being pressed it now displays ‘Enter data’." + Environment.NewLine +
+                                @"1. If the ‘switch’ button displayed ‘Select type’ before being pressed it now displays ‘Enter data’." +
+                                Environment.NewLine +
                                 @"2. If the ‘switch’ button displayed ‘Enter data’ before being pressed it now displays ‘Select type’.");
-                                 
+
             /*
             Test Step 3
             Action: End of test

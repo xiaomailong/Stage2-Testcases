@@ -48,7 +48,7 @@ namespace Testcase.DMITestCases
             DmiActions.Activate_Cabin_1(this);
             DmiActions.Set_Driver_ID(this, "1234");
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Default; 
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Default;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.EnableDoppler;
             EVC30_MMIRequestEnable.Send();
         }
@@ -72,33 +72,42 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,Use the log file to confirm that DMI received the packet MMI_ECHOED_MAINTENANCE_DATA (EVC-41) with variable MMI_Q_MD_DATASET = 1. Use the log file to confirm that the following variables in packet EVC-41 are same as the entered data,MMI_M_PULSE_PER_KM_1 = entered radar 1DMI displays Radar Validation window.The following objects are displayed in Radar Validation window. Enabled Close button (NA11)Window TitleInput fieldYes buttonNo buttonWindow TitleThe window title is ‘Validate radar’.The window title is right aligned.LayerThe window is displayed in main area A/B/C/D/E/F/G.All areas of Data validation window are Layer 0.Input fieldThe window contains a single input field which have only data area.The value of input field is empty.KeyboardThe displayed keyboard type is dedicated keyboard which contain only ‘Yes’ and ‘No’ button.The key #7 is No button.The key #8 is Yes button.Echo TextEcho Text is composed of a Label part and Data part.The Label of echo text is right aligned.The Data part of echo text is left aligned.The order of echo texts are same as of the Radar window as follows,Radar 1 (mm)Radar 2 (mm)The data part of echo texts is displayed the data value same as of the Radar window.The echo texts are located in Main area A,B,C and E.The colour of echo texts is white.General property of windowThe Radar Validation window is presented with objects, text messages and buttons which is the one of several levels and allocated to areas of DMI. All objects, text messages and buttons are presented within the same layer.The Default window is not displayed and covered the current window
             Test Step Comment: (1) MMI_gen 11792 (partly: EVC-41);(2) MMI_gen 11797;(3) MMI_gen 11792 (partly: open Radar Validation window, touch screen);(4) MMI_gen 11791 (partly: MMI_gen 5215 (partly: Close button, Window title, Input field, No button, Yes button)); MMI_gen 4392 (partly: [Close] NA11);(5) MMI_gen 11795;(6) MMI_gen 11791 (partly: MMI_gen 5216);(7) MMI_gen 11791 (partly: MMI_gen 7943);(8) MMI_gen 11791 (partly: MMI_gen 5303);(9) MMI_gen 11791 (partly: MMI_gen 5214 (partly: single input field));          (10) MMI_gen 11791 (partly: MMI_gen 5484 (partly: empty)); (11) MMI_gen 11791 (partly: MMI_gen 5214 (partly: dedicated keyboard, MMI_gen 5006), MMI_gen 5006);(12) MMI_gen 11791 (partly: MMI_gen 5263 (partly: MMI_gen 4696));(13) MMI_gen 11791 (partly: MMI_gen 5263 (partly: MMI_gen 4702 (partly: right aligned)));(14) MMI_gen 11791 (partly: MMI_gen 5263 (partly: MMI_gen 4704 (partly: left aligned)));(15) MMI_gen 11796;                  MMI_gen 11791 (partly: MMI_gen 5263 (partly: MMI_gen 4701 (partly: same order), MMI_gen 4697));(16) MMI_gen 11791 (partly: MMI_gen 5263 (partly: MMI_gen 4698));(17) MMI_gen 11791 (partly: MMI_gen 5263 (partly: MMI_gen 4701 (partly: Main area A, B, C and E));(18) MMI_gen 11791 (partly: MMI_gen 5263 (partly: MMI_gen 4700 (partly: data validation process)));(19) MMI_gen 4350;(20) MMI_gen 4351;(21) MMI_gen 4353;
             */
-            DmiActions.ShowInstruction(this, "Press the ‘Radar’ button to open the Radar window, enter and confirm all data, then press the ‘Yes’ button");
+            DmiActions.ShowInstruction(this,
+                "Press the ‘Radar’ button to open the Radar window, enter and confirm all data, then press the ‘Yes’ button");
 
             EVC40_MMICurrentMaintenanceData.MMI_Q_MD_DATASET = Variables.MMI_Q_MD_DATASET.Doppler;
-            EVC40_MMICurrentMaintenanceData.MMI_M_PULSE_PER_KM_1 = (Variables.MMI_M_PULSE_PER_KM)20001;
-            EVC40_MMICurrentMaintenanceData.MMI_M_PULSE_PER_KM_2 = (Variables.MMI_M_PULSE_PER_KM)20001;
+            EVC40_MMICurrentMaintenanceData.MMI_M_PULSE_PER_KM_1 = (Variables.MMI_M_PULSE_PER_KM) 20001;
+            EVC40_MMICurrentMaintenanceData.MMI_M_PULSE_PER_KM_2 = (Variables.MMI_M_PULSE_PER_KM) 20001;
             EVC40_MMICurrentMaintenanceData.Send();
             EVC41_MMIEchoedMaintenanceData.MMI_Q_MD_DATASET_ = Variables.MMI_Q_MD_DATASET.Doppler;
-            EVC41_MMIEchoedMaintenanceData.MMI_M_PULSE_PER_KM_1_ = (Variables.MMI_M_PULSE_PER_KM)20001;
-            EVC41_MMIEchoedMaintenanceData.MMI_M_PULSE_PER_KM_2_ = (Variables.MMI_M_PULSE_PER_KM)20001;
+            EVC41_MMIEchoedMaintenanceData.MMI_M_PULSE_PER_KM_1_ = (Variables.MMI_M_PULSE_PER_KM) 20001;
+            EVC41_MMIEchoedMaintenanceData.MMI_M_PULSE_PER_KM_2_ = (Variables.MMI_M_PULSE_PER_KM) 20001;
             EVC41_MMIEchoedMaintenanceData.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. DMI displays the Radar validation window with the title ‘Validate radar’, rightaligned." + Environment.NewLine +
-                                @"2. The Radar Validation window displays an enabled Close button(symbol NA11), a data input field, a ‘Yes’ button and a ‘No’ button." + Environment.NewLine +
+                                @"1. DMI displays the Radar validation window with the title ‘Validate radar’, rightaligned." +
+                                Environment.NewLine +
+                                @"2. The Radar Validation window displays an enabled Close button(symbol NA11), a data input field, a ‘Yes’ button and a ‘No’ button." +
+                                Environment.NewLine +
                                 "3. The window is displayed in areas A, B, C, D, E, F and G." + Environment.NewLine +
-                                "4. All areas of the data validation window are Layer 0." + Environment.NewLine +                              
+                                "4. All areas of the data validation window are Layer 0." + Environment.NewLine +
                                 "5. The data input field only has a data area." + Environment.NewLine +
                                 "6. The data input field is blank." + Environment.NewLine +
-                                "7. The window displays a dedicated keypad type which contain only a ‘Yes’ button (key #7) and a ‘No’ button (key #8)." + Environment.NewLine +
-                                "8. Echo texts are displayed in white and comprise a Label part, right-aligned and a Data part, left-aligned." + Environment.NewLine +
-                                "9. Echo texts are in the same order as in the Radar window (Radar 1(mm), Radar 2(mm))." + Environment.NewLine +
-                                "10. Echo texts data parts displays the same values as in the Radar window." + Environment.NewLine +
+                                "7. The window displays a dedicated keypad type which contain only a ‘Yes’ button (key #7) and a ‘No’ button (key #8)." +
+                                Environment.NewLine +
+                                "8. Echo texts are displayed in white and comprise a Label part, right-aligned and a Data part, left-aligned." +
+                                Environment.NewLine +
+                                "9. Echo texts are in the same order as in the Radar window (Radar 1(mm), Radar 2(mm))." +
+                                Environment.NewLine +
+                                "10. Echo texts data parts displays the same values as in the Radar window." +
+                                Environment.NewLine +
                                 "11. Echo texts are displayed in areas A, B, C and E." + Environment.NewLine +
-                                "12. Objects and buttons can be displayed in several levels. Within a level they are allocated to areas." + Environment.NewLine +
-                                "13. All objects, text messages and buttons are presented within the same layer" + Environment.NewLine +
+                                "12. Objects and buttons can be displayed in several levels. Within a level they are allocated to areas." +
+                                Environment.NewLine +
+                                "13. All objects, text messages and buttons are presented within the same layer" +
+                                Environment.NewLine +
                                 "14. The Default window is not displayed covering the current window.");
-            
+
             /*
             Test Step 2
             Action: Press ‘No’ button
@@ -140,11 +149,12 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)    The state of an input field is changed to ‘Pressed’, the border of button is removed
             Test Step Comment: (1) MMI_gen 9390 (partly: Radar Validation window);
             */
-            DmiActions.ShowInstruction(this, "Whilst keeping the data input field pressed, drag it back inside its area");
+            DmiActions.ShowInstruction(this,
+                "Whilst keeping the data input field pressed, drag it back inside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field is displayed pressed, without a border.");
-            
+
             /*
             Test Step 6
             Action: Release the pressed area
@@ -165,16 +175,16 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press the ‘Radar’ button");
 
             EVC40_MMICurrentMaintenanceData.MMI_Q_MD_DATASET = Variables.MMI_Q_MD_DATASET.Doppler;
-            EVC40_MMICurrentMaintenanceData.MMI_M_PULSE_PER_KM_1 = (Variables.MMI_M_PULSE_PER_KM)20001;
-            EVC40_MMICurrentMaintenanceData.MMI_M_PULSE_PER_KM_2 = (Variables.MMI_M_PULSE_PER_KM)20001;
+            EVC40_MMICurrentMaintenanceData.MMI_M_PULSE_PER_KM_1 = (Variables.MMI_M_PULSE_PER_KM) 20001;
+            EVC40_MMICurrentMaintenanceData.MMI_M_PULSE_PER_KM_2 = (Variables.MMI_M_PULSE_PER_KM) 20001;
             EVC40_MMICurrentMaintenanceData.Send();
 
             DmiActions.ShowInstruction(this, "Confirm all data, then press the ‘Yes’ button");
 
             // Open the Radar validation window
             EVC41_MMIEchoedMaintenanceData.MMI_Q_MD_DATASET_ = Variables.MMI_Q_MD_DATASET.Doppler;
-            EVC41_MMIEchoedMaintenanceData.MMI_M_PULSE_PER_KM_1_ = (Variables.MMI_M_PULSE_PER_KM)20001;
-            EVC41_MMIEchoedMaintenanceData.MMI_M_PULSE_PER_KM_2_ = (Variables.MMI_M_PULSE_PER_KM)20001;
+            EVC41_MMIEchoedMaintenanceData.MMI_M_PULSE_PER_KM_1_ = (Variables.MMI_M_PULSE_PER_KM) 20001;
+            EVC41_MMIEchoedMaintenanceData.MMI_M_PULSE_PER_KM_2_ = (Variables.MMI_M_PULSE_PER_KM) 20001;
             EVC41_MMIEchoedMaintenanceData.Send();
             EVC41_MMIEchoedMaintenanceData.MMI_Q_MD_DATASET_ = Variables.MMI_Q_MD_DATASET.Doppler;
 
@@ -203,15 +213,15 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press the ‘Radar’ button");
 
             EVC40_MMICurrentMaintenanceData.MMI_Q_MD_DATASET = Variables.MMI_Q_MD_DATASET.Doppler;
-            EVC40_MMICurrentMaintenanceData.MMI_M_PULSE_PER_KM_1 = (Variables.MMI_M_PULSE_PER_KM)20001;
-            EVC40_MMICurrentMaintenanceData.MMI_M_PULSE_PER_KM_2 = (Variables.MMI_M_PULSE_PER_KM)20001;
+            EVC40_MMICurrentMaintenanceData.MMI_M_PULSE_PER_KM_1 = (Variables.MMI_M_PULSE_PER_KM) 20001;
+            EVC40_MMICurrentMaintenanceData.MMI_M_PULSE_PER_KM_2 = (Variables.MMI_M_PULSE_PER_KM) 20001;
             EVC40_MMICurrentMaintenanceData.Send();
 
             DmiActions.ShowInstruction(this, "Confirm all data, then press the ‘Yes’ button");
 
             EVC41_MMIEchoedMaintenanceData.MMI_Q_MD_DATASET_ = Variables.MMI_Q_MD_DATASET.Doppler;
-            EVC41_MMIEchoedMaintenanceData.MMI_M_PULSE_PER_KM_1_ = (Variables.MMI_M_PULSE_PER_KM)20001;
-            EVC41_MMIEchoedMaintenanceData.MMI_M_PULSE_PER_KM_2_ = (Variables.MMI_M_PULSE_PER_KM)20001;
+            EVC41_MMIEchoedMaintenanceData.MMI_M_PULSE_PER_KM_1_ = (Variables.MMI_M_PULSE_PER_KM) 20001;
+            EVC41_MMIEchoedMaintenanceData.MMI_M_PULSE_PER_KM_2_ = (Variables.MMI_M_PULSE_PER_KM) 20001;
             EVC41_MMIEchoedMaintenanceData.Send();
             EVC41_MMIEchoedMaintenanceData.MMI_Q_MD_DATASET_ = Variables.MMI_Q_MD_DATASET.Doppler;
 
@@ -238,8 +248,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press the data input field to confirm the data entered");
 
             EVC141_MMIConfirmedMaintenanceData.MMI_Q_MD_DATASET = Variables.MMI_Q_MD_DATASET.Doppler;
-            EVC141_MMIConfirmedMaintenanceData.MMI_M_PULSE_PER_KM_1 = (Variables.MMI_M_PULSE_PER_KM)20001;
-            EVC141_MMIConfirmedMaintenanceData.MMI_M_PULSE_PER_KM_2 = (Variables.MMI_M_PULSE_PER_KM)20001;
+            EVC141_MMIConfirmedMaintenanceData.MMI_M_PULSE_PER_KM_1 = (Variables.MMI_M_PULSE_PER_KM) 20001;
+            EVC141_MMIConfirmedMaintenanceData.MMI_M_PULSE_PER_KM_2 = (Variables.MMI_M_PULSE_PER_KM) 20001;
             EVC141_MMIConfirmedMaintenanceData.CheckTelegram();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -252,15 +262,15 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press the ‘Radar’ button");
 
             EVC40_MMICurrentMaintenanceData.MMI_Q_MD_DATASET = Variables.MMI_Q_MD_DATASET.Doppler;
-            EVC40_MMICurrentMaintenanceData.MMI_M_PULSE_PER_KM_1 = (Variables.MMI_M_PULSE_PER_KM)20001;
-            EVC40_MMICurrentMaintenanceData.MMI_M_PULSE_PER_KM_2 = (Variables.MMI_M_PULSE_PER_KM)20001;
+            EVC40_MMICurrentMaintenanceData.MMI_M_PULSE_PER_KM_1 = (Variables.MMI_M_PULSE_PER_KM) 20001;
+            EVC40_MMICurrentMaintenanceData.MMI_M_PULSE_PER_KM_2 = (Variables.MMI_M_PULSE_PER_KM) 20001;
             EVC40_MMICurrentMaintenanceData.Send();
 
             DmiActions.ShowInstruction(this, "Confirm all data, then press the ‘Yes’ button");
 
             EVC41_MMIEchoedMaintenanceData.MMI_Q_MD_DATASET_ = Variables.MMI_Q_MD_DATASET.Doppler;
-            EVC41_MMIEchoedMaintenanceData.MMI_M_PULSE_PER_KM_1_ = (Variables.MMI_M_PULSE_PER_KM)20001;
-            EVC41_MMIEchoedMaintenanceData.MMI_M_PULSE_PER_KM_2_ = (Variables.MMI_M_PULSE_PER_KM)20001;
+            EVC41_MMIEchoedMaintenanceData.MMI_M_PULSE_PER_KM_1_ = (Variables.MMI_M_PULSE_PER_KM) 20001;
+            EVC41_MMIEchoedMaintenanceData.MMI_M_PULSE_PER_KM_2_ = (Variables.MMI_M_PULSE_PER_KM) 20001;
             EVC41_MMIEchoedMaintenanceData.Send();
             EVC41_MMIEchoedMaintenanceData.MMI_Q_MD_DATASET_ = Variables.MMI_Q_MD_DATASET.Doppler;
 
@@ -280,7 +290,8 @@ namespace Testcase.DMITestCases
             DmiActions.Re_establish_communication_EVC_DMI(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. All buttons are displayed disabled, with the label text in Dark-grey, except the ‘No’ button." + Environment.NewLine +
+                                @"1. All buttons are displayed disabled, with the label text in Dark-grey, except the ‘No’ button." +
+                                Environment.NewLine +
                                 @"2. The ‘No’ button is displayed enabled.");
 
             /*

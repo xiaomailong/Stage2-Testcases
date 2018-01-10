@@ -74,7 +74,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;      // Main window
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main; // Main window
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Start;
             EVC30_MMIRequestEnable.Send();
 
@@ -87,7 +87,8 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the acknowledge Staff Responsible mode symbol, MO10, in sub-area C1 in a yellow flashing frame." + Environment.NewLine +
+                                "1. DMI displays the acknowledge Staff Responsible mode symbol, MO10, in sub-area C1 in a yellow flashing frame." +
+                                Environment.NewLine +
                                 "2. The ‘Sinfo’ sound is played once.");
 
             /*
@@ -105,7 +106,8 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the symbol ST01 in sub-area C9 in a yellow flashing frame." + Environment.NewLine +
+                                "1. DMI displays the symbol ST01 in sub-area C9 in a yellow flashing frame." +
+                                Environment.NewLine +
                                 "2. The ‘Sinfo’ sound is played once.");
 
             /*
@@ -118,7 +120,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press and hold sub-area C9");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the symbol ST01 pressed without the yellow flashing frame." + Environment.NewLine +
+                                "1. DMI displays the symbol ST01 pressed without the yellow flashing frame." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once.");
 
             /*
@@ -151,14 +154,14 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   Use the log file to confirm that DMI sends out packet information of EVC-111 with variables:MMI_I_TEXT = the same value related to the value of MMI_I_TEXT in EVC-8 (in test step2)MMI_Q_ACK = 1MMI_Q_BUTTON = 0MMI_T_BUTTONEVENT is not blank(2)   The symbol ST01 with yellow flashing frame is removed from sub-area C9.(3)   After 1 second, the symbol MO10 with yellow flashing frame re-appears in sub-area C1
             Test Step Comment: (1) MMI_gen 146; MMI_gen 11232 (partly: MMI_gen 146 (partly: released)); MMI_gen 3200 (partly: Brake Intervention, released);(2) MMI_gen 4499 (partly: driver's action 'ACK', flashing frame and button disappear, the symbol shall be removed); MMI_gen 9394 (partly: object); MMI_gen 4485 (partly: action of the driver); MMI_gen 11232 (partly: MMI_gen 4499 (partly: driver's action 'ACK', flashing frame and button disappear, the symbol shall be removed), MMI_gen 9394 (partly: object), MMI_gen 4485 (partly: action of the driver));(3) MMI_gen 4499 (partly: next pending acknowledgement pointed out); MMI_gen 11232 (partly: MMI_gen 4499 (partly: next pending acknowledgement pointed out));
             */
-            DmiActions.ShowInstruction(this, "Release the pressed area");                     
+            DmiActions.ShowInstruction(this, "Release the pressed area");
 
             EVC111_MMIDriverMessageAck.MMI_Q_ACK = MMI_Q_ACK.AcknowledgeYES;
             EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI stops displaying the symbol ST01 with a yellow flashing frame in sub-area C1.");
-          
+
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 260;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
@@ -188,7 +191,6 @@ namespace Testcase.DMITestCases
             */
             XML_6_1(msgType.typea);
 
-            
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the symbol MO17 (with a yellow flashing frame) in sub-area C1.");
@@ -198,10 +200,12 @@ namespace Testcase.DMITestCases
             Action: Perform the following procedure,Press an acknowledgement on sub-area C1.Press and hold sub-area C1 at least 2 seconds.Release the pressed area
             Expected Result: DMI displays in SR mode, Level 1
             */
-            DmiActions.ShowInstruction(this, "Acknowledge by pressing on sub-area C1. Press and hold sub-area C1 for at least 2s, then release the pressed area.");
-            
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
-            
+            DmiActions.ShowInstruction(this,
+                "Acknowledge by pressing on sub-area C1. Press and hold sub-area C1 for at least 2s, then release the pressed area.");
+
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode =
+                EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SR mode, Level 1.");
 
@@ -214,10 +218,13 @@ namespace Testcase.DMITestCases
             XML_6_1(msgType.typeb);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the message ‘Brake test aborted, perform new Test?’ in sub-area E5 with ‘Yes’/‘No’ buttons." + Environment.NewLine +
+                                "1. DMI displays the message ‘Brake test aborted, perform new Test?’ in sub-area E5 with ‘Yes’/‘No’ buttons." +
+                                Environment.NewLine +
                                 "2. The ‘Yes’/‘No’ buttons are displayed in sub-areas E5-E9." + Environment.NewLine +
-                                "3. The ‘Yes’/‘No’ buttons are clearly separated and placed below the text to be acknowledged." + Environment.NewLine +
-                                "4. The ‘Yes’/‘No’ buttons are displayed with yellow flashing frames" + Environment.NewLine +
+                                "3. The ‘Yes’/‘No’ buttons are clearly separated and placed below the text to be acknowledged." +
+                                Environment.NewLine +
+                                "4. The ‘Yes’/‘No’ buttons are displayed with yellow flashing frames" +
+                                Environment.NewLine +
                                 "5. The message is displayed on two lines as ‘Brake test aborted,<New line>perform new Test?’.");
 
             /*
@@ -226,7 +233,8 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)    The DMI’s display does not change. DMI still displays text message 'Brake test aborted, perform new Test?' in sub-area E5 with ‘ACK’ and ‘NACK’ buttons.Note: DMI will not send the packet [MMI_DRIVER_MESSAGE_ACK (EVC-111)] when there is no detection of acknowledgement
             Test Step Comment: (1) MMI_gen 4505 (partly: text message not form a button);
             */
-            DmiActions.ShowInstruction(this, "Press several times on area E5 without touching the ‘Yes’ or ‘No’ button");
+            DmiActions.ShowInstruction(this,
+                "Press several times on area E5 without touching the ‘Yes’ or ‘No’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The DMI display does not change" + Environment.NewLine +
@@ -253,7 +261,8 @@ namespace Testcase.DMITestCases
             EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The message and ‘Yes’ and ‘No’ buttons in sub-areas E5-E9 are removed." + Environment.NewLine +
+                                "1. The message and ‘Yes’ and ‘No’ buttons in sub-areas E5-E9 are removed." +
+                                Environment.NewLine +
                                 "2. DMI re-displays the message ‘Brake test aborted, perform new Test?’ in sub-areas E5-E9.");
 
             /*
@@ -265,7 +274,8 @@ namespace Testcase.DMITestCases
             XML_6_1(msgType.typec);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the message ‘Perform Brake Test!’ with a flashing yellow frame around sub-areas E5-E9." + Environment.NewLine +
+                                "1. DMI displays the message ‘Perform Brake Test!’ with a flashing yellow frame around sub-areas E5-E9." +
+                                Environment.NewLine +
                                 "2. Sound ‘Sinfo’ is played once." + Environment.NewLine +
                                 "3. A ‘No’ button is not displayed.");
 
@@ -290,14 +300,18 @@ namespace Testcase.DMITestCases
             XML_6_1(msgType.typeb);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the message ‘Brake test aborted, perform new Test?’ in sub-area E5 with ‘Yes’/‘No’ buttons." + Environment.NewLine +
+                                "1. DMI displays the message ‘Brake test aborted, perform new Test?’ in sub-area E5 with ‘Yes’/‘No’ buttons." +
+                                Environment.NewLine +
                                 "2. The ‘Yes’/‘No’ buttons are displayed in sub-areas E5-E9." + Environment.NewLine +
-                                "3. The ‘Yes’/‘No’ buttons are clearly separated and placed below the text to be acknowledged." + Environment.NewLine +
-                                "4. The ‘Yes’/‘No’ buttons are displayed with yellow flashing frames" + Environment.NewLine +
+                                "3. The ‘Yes’/‘No’ buttons are clearly separated and placed below the text to be acknowledged." +
+                                Environment.NewLine +
+                                "4. The ‘Yes’/‘No’ buttons are displayed with yellow flashing frames" +
+                                Environment.NewLine +
                                 "5. The message is displayed on two lines as ‘Brake test aborted,<New line>perform new Test?’.");
 
             // repeat 11 for sub-area E6
-            DmiActions.ShowInstruction(this, "Press several times on area E6 without touching the ‘Yes’ or ‘No’ button");
+            DmiActions.ShowInstruction(this,
+                "Press several times on area E6 without touching the ‘Yes’ or ‘No’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The DMI display does not change" + Environment.NewLine +
@@ -307,14 +321,18 @@ namespace Testcase.DMITestCases
             XML_6_1(msgType.typeb);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the message ‘Brake test aborted, perform new Test?’ in sub-area E5 with ‘Yes’/‘No’ buttons." + Environment.NewLine +
+                                "1. DMI displays the message ‘Brake test aborted, perform new Test?’ in sub-area E5 with ‘Yes’/‘No’ buttons." +
+                                Environment.NewLine +
                                 "2. The ‘Yes’/‘No’ buttons are displayed in sub-areas E5-E9." + Environment.NewLine +
-                                "3. The ‘Yes’/‘No’ buttons are clearly separated and placed below the text to be acknowledged." + Environment.NewLine +
-                                "4. The ‘Yes’/‘No’ buttons are displayed with yellow flashing frames" + Environment.NewLine +
+                                "3. The ‘Yes’/‘No’ buttons are clearly separated and placed below the text to be acknowledged." +
+                                Environment.NewLine +
+                                "4. The ‘Yes’/‘No’ buttons are displayed with yellow flashing frames" +
+                                Environment.NewLine +
                                 "5. The message is displayed on two lines as ‘Brake test aborted,<New line>perform new Test?’.");
 
             // repeat 11 for sub - area E6
-            DmiActions.ShowInstruction(this, "Press several times on area E7 without touching the ‘Yes’ or ‘No’ button");
+            DmiActions.ShowInstruction(this,
+                "Press several times on area E7 without touching the ‘Yes’ or ‘No’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The DMI display does not change" + Environment.NewLine +
@@ -324,14 +342,18 @@ namespace Testcase.DMITestCases
             XML_6_1(msgType.typeb);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the message ‘Brake test aborted, perform new Test?’ in sub-area E5 with ‘Yes’/‘No’ buttons." + Environment.NewLine +
+                                "1. DMI displays the message ‘Brake test aborted, perform new Test?’ in sub-area E5 with ‘Yes’/‘No’ buttons." +
+                                Environment.NewLine +
                                 "2. The ‘Yes’/‘No’ buttons are displayed in sub-areas E5-E9." + Environment.NewLine +
-                                "3. The ‘Yes’/‘No’ buttons are clearly separated and placed below the text to be acknowledged." + Environment.NewLine +
-                                "4. The ‘Yes’/‘No’ buttons are displayed with yellow flashing frames" + Environment.NewLine +
+                                "3. The ‘Yes’/‘No’ buttons are clearly separated and placed below the text to be acknowledged." +
+                                Environment.NewLine +
+                                "4. The ‘Yes’/‘No’ buttons are displayed with yellow flashing frames" +
+                                Environment.NewLine +
                                 "5. The message is displayed on two lines as ‘Brake test aborted,<New line>perform new Test?’.");
 
             // repeat 11 for sub - area E8
-            DmiActions.ShowInstruction(this, "Press several times on area E8 without touching the ‘Yes’ or ‘No’ button");
+            DmiActions.ShowInstruction(this,
+                "Press several times on area E8 without touching the ‘Yes’ or ‘No’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The DMI display does not change" + Environment.NewLine +
@@ -341,14 +363,18 @@ namespace Testcase.DMITestCases
             XML_6_1(msgType.typeb);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the message ‘Brake test aborted, perform new Test?’ in sub-area E5 with ‘Yes’/‘No’ buttons." + Environment.NewLine +
+                                "1. DMI displays the message ‘Brake test aborted, perform new Test?’ in sub-area E5 with ‘Yes’/‘No’ buttons." +
+                                Environment.NewLine +
                                 "2. The ‘Yes’/‘No’ buttons are displayed in sub-areas E5-E9." + Environment.NewLine +
-                                "3. The ‘Yes’/‘No’ buttons are clearly separated and placed below the text to be acknowledged." + Environment.NewLine +
-                                "4. The ‘Yes’/‘No’ buttons are displayed with yellow flashing frames" + Environment.NewLine +
+                                "3. The ‘Yes’/‘No’ buttons are clearly separated and placed below the text to be acknowledged." +
+                                Environment.NewLine +
+                                "4. The ‘Yes’/‘No’ buttons are displayed with yellow flashing frames" +
+                                Environment.NewLine +
                                 "5. The message is displayed on two lines as ‘Brake test aborted,<New line>perform new Test?’.");
 
             // repeat 11 for sub - area E9
-            DmiActions.ShowInstruction(this, "Press several times on area E9 without touching the ‘Yes’ or ‘No’ button");
+            DmiActions.ShowInstruction(this,
+                "Press several times on area E9 without touching the ‘Yes’ or ‘No’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The DMI display does not change." + Environment.NewLine +
@@ -379,7 +405,7 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The border of sub-area C1 is displayed enabled." + Environment.NewLine +
-                                "2. No sound is played.");            
+                                "2. No sound is played.");
 
             /*
             Test Step 18
@@ -451,7 +477,8 @@ namespace Testcase.DMITestCases
                                 "2. No sound is played.");
 
             // Repeat 19
-            DmiActions.ShowInstruction(this, @"Release the pressed area and check the log file for packet EVC-101 from DMI with MMI_Q_BUTTON = 0 (Released) and MMI_T_BUTTONEVENT non-blank");
+            DmiActions.ShowInstruction(this,
+                @"Release the pressed area and check the log file for packet EVC-101 from DMI with MMI_Q_BUTTON = 0 (Released) and MMI_T_BUTTONEVENT non-blank");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI stops displaying symbol MO17 in sub-area C1.");
@@ -464,7 +491,9 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
+
         #region Send_XML_6_1_DMI_Test_Specification
+
         enum msgType
         {
             typea,
@@ -478,7 +507,6 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
             switch (type)
             {
-
                 case msgType.typea:
                     EVC8_MMIDriverMessage.MMI_Q_TEXT = 264;
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
@@ -503,6 +531,7 @@ namespace Testcase.DMITestCases
             }
             EVC8_MMIDriverMessage.Send();
         }
+
         #endregion
     }
 }

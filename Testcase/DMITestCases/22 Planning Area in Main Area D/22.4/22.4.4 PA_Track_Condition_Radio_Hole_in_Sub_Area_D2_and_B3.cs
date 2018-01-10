@@ -50,7 +50,7 @@ namespace Testcase.DMITestCases
             // TC_T_Change_TractionSyst = 100
             // TC_T_Allowed_CurrentConsump = 100 
             // TC_T_StationPlatform = 100
-            
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
 
@@ -118,7 +118,7 @@ namespace Testcase.DMITestCases
                 MMI_Q_TRACKCOND_ACTION_END = 0
             };
 
-            EVC32_MMITrackConditions.TrackConditions = new List<TrackCondition> { trackCondition };
+            EVC32_MMITrackConditions.TrackConditions = new List<TrackCondition> {trackCondition};
             EVC32_MMITrackConditions.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -194,7 +194,7 @@ namespace Testcase.DMITestCases
             Action: End of test
             Expected Result: 
             */
-            
+
             return GlobalTestResult;
         }
     }

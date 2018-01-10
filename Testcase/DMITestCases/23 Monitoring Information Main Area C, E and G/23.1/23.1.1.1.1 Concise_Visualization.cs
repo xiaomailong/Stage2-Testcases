@@ -234,7 +234,7 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine +
                                 "1. DMI does not display a symbol in sub-area E1.");
-            
+
             /*
             Test Step 11
             Action: Use the test script file 18_1_1_1_1_b.xml to send EVC-8 with,MMI_Q_TEXT_CLASS = 1 MMI_Q_TEXT_CRITERIA = 3MMI_Q_TEXT = 614

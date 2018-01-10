@@ -79,7 +79,8 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SR mode, level 1
             */
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode =
+                EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
             DmiActions.Finished_SoM_Default_Window(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -136,7 +137,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Planning Area is re-displayed." + Environment.NewLine +
                                 "2. The distance scale is 0..1000.");
-                    
+
             /*
             Test Step 7
             Action: Press ‘Scale Down’ button
@@ -164,7 +165,7 @@ namespace Testcase.DMITestCases
             Action: End of test
             Expected Result: 
             */
-            
+
             return GlobalTestResult;
         }
     }

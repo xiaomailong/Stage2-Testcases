@@ -71,7 +71,7 @@ namespace Testcase.DMITestCases
             */
             DmiActions.Start_ATP();
             DmiActions.Activate_Cabin_1(this);
-            DmiActions.Set_Driver_ID(this,"1234");
+            DmiActions.Set_Driver_ID(this, "1234");
             // Skip brake test...
             // Set to level 0 and UN mode
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L0;
@@ -116,7 +116,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 9431 (partly: LE08);
             */
             DmiActions.ShowInstruction(this, "Press in sub-area C1 to confirm the level");
-            
+
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 277;
             EVC8_MMIDriverMessage.Send();
 

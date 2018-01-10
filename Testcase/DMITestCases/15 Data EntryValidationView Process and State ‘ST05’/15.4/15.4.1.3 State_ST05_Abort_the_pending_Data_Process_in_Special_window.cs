@@ -65,7 +65,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays SR speed/distance window
             */
             DmiActions.ShowInstruction(this, @"Open the Special window, then press the ‘SR speed/distance’ button");
-            
+
             EVC11_MMICurrentSRRules.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS.BTN_ENTER;
             EVC11_MMICurrentSRRules.Send();
 
@@ -89,11 +89,13 @@ namespace Testcase.DMITestCases
             */
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
             EVC8_MMIDriverMessage.Send();
-            
-            EVC11_MMICurrentSRRules.DataElements = new List<DataElement> 
-            { new DataElement { Identifier = 0, EchoText = "0", QDataCheck = (ushort)Q_DATA_CHECK.All_checks_passed }, 
-              new DataElement { Identifier = 1, EchoText = "0", QDataCheck = (ushort)Q_DATA_CHECK.All_checks_passed } };
-              
+
+            EVC11_MMICurrentSRRules.DataElements = new List<DataElement>
+            {
+                new DataElement {Identifier = 0, EchoText = "0", QDataCheck = (ushort) Q_DATA_CHECK.All_checks_passed},
+                new DataElement {Identifier = 1, EchoText = "0", QDataCheck = (ushort) Q_DATA_CHECK.All_checks_passed}
+            };
+
             EVC11_MMICurrentSRRules.Send();
 
             // DMI is not closing the window as it should
@@ -115,12 +117,13 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the followin information,(1)     The Adhesion window is closed, DMI displays System info window after received packet EVC-24
             Test Step Comment: (1) MMI_gen 5507 (partly: Adhesion window, abort an already pending data entry process, received packet of different window from ETCS onboard);
             */
-            DmiActions.ShowInstruction(this, @" Press the ‘Close’ button in the System info window. Open the Special window, then press the ‘Adhesion’ button");
+            DmiActions.ShowInstruction(this,
+                @" Press the ‘Close’ button in the System info window. Open the Special window, then press the ‘Adhesion’ button");
 
             XML_10_4_1_3_a_b(msgType.typea);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The hourglass symbol ST05 is displayed in the window title area.");
-            
+
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
             EVC8_MMIDriverMessage.Send();
             EVC30_MMIRequestEnable.Send();
@@ -137,7 +140,9 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
+
         #region Send_XML_10_4_1_3_a_b_DMI_Test_Specification
+
         enum msgType
         {
             typea,
@@ -148,7 +153,6 @@ namespace Testcase.DMITestCases
         {
             if (type == msgType.typea)
             {
-
                 EVC8_MMIDriverMessage.MMI_Q_TEXT = 716;
                 EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
                 EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
@@ -159,20 +163,20 @@ namespace Testcase.DMITestCases
             else if (type == msgType.typeb)
             {
                 EVC24_MMISystemInfo.MMI_NID_ENGINE_1 = 1234;
-                EVC24_MMISystemInfo.MMI_T_TIMEOUT_BRAKE = 0x5695224c;         // 1452614220
-                EVC24_MMISystemInfo.MMI_T_TIMEOUT_BTM = 0x54b3eecc;            // 1421078220
-                EVC24_MMISystemInfo.MMI_T_TIMEOUT_TBSW = 0x538b4d4c;           // 1401638220
-                EVC24_MMISystemInfo.MMI_M_ETC_VER = 0xffaa0f;                    // 16755215
-                EVC24_MMISystemInfo.MMI_M_AVAIL_SERVICES = 0xffff;             // 65535 
+                EVC24_MMISystemInfo.MMI_T_TIMEOUT_BRAKE = 0x5695224c; // 1452614220
+                EVC24_MMISystemInfo.MMI_T_TIMEOUT_BTM = 0x54b3eecc; // 1421078220
+                EVC24_MMISystemInfo.MMI_T_TIMEOUT_TBSW = 0x538b4d4c; // 1401638220
+                EVC24_MMISystemInfo.MMI_M_ETC_VER = 0xffaa0f; // 16755215
+                EVC24_MMISystemInfo.MMI_M_AVAIL_SERVICES = 0xffff; // 65535 
 
                 // Discrepancy betwee spec (config = 55)
-                EVC24_MMISystemInfo.MMI_M_BRAKE_CONFIG = 55;                   // 236 in xml
+                EVC24_MMISystemInfo.MMI_M_BRAKE_CONFIG = 55; // 236 in xml
                 EVC24_MMISystemInfo.MMI_M_LEVEL_INST = 248;
 
                 EVC24_MMISystemInfo.Send();
             }
         }
-        #endregion
 
+        #endregion
     }
 }

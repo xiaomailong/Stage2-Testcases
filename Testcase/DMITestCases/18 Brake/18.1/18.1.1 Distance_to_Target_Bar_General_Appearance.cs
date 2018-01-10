@@ -39,7 +39,7 @@ namespace Testcase.DMITestCases
         {
             // Pre-conditions from TestSpec:
             // Set the following tags name in configuration file (See the instruction in Appendix 1)   SPEED_UNIT_TYPE = 0 (meter)System is power on.
-         
+
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
@@ -59,7 +59,7 @@ namespace Testcase.DMITestCases
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint
-            
+
             /*
             Test Step 1
             Action: Activate cabin A
@@ -85,9 +85,10 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Perform SoM to SR mode");
 
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode =
+                EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
             DmiActions.Finished_SoM_Default_Window(this);
-            
+
             // Call generic Check Results Method
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Does the DMI delete the SB mode symbol (MO13) and replace it with the SR mode symbol (MO09) in area B7");
@@ -99,7 +100,7 @@ namespace Testcase.DMITestCases
             */
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
-            
+
             // Call generic Check Results Method
             DmiExpectedResults.FS_mode_displayed(this);
 
@@ -114,22 +115,28 @@ namespace Testcase.DMITestCases
             EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 10;
 
             // ?? Set an EOA so the DMI can display a target
-            EVC1_MMIDynamic.MMI_O_BRAKETARGET = 200000;             // 2 km
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 5000;   // 50m
+            EVC1_MMIDynamic.MMI_O_BRAKETARGET = 200000; // 2 km
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 5000; // 50m
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_PreIndication_Monitoring;
 
             // Check log for 7.
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The distance to target bar is displayed in sub-area A3." + Environment.NewLine +
-                                "2. The distance scale is displayed in left column of sub-area A3." + Environment.NewLine +
-                                "3. The distance to target bar is displayed distance from zero to a maximum of 1000m according to the distance scale. " + Environment.NewLine +
-                                    "Distances above 1000m are limited to the distance scale’s upper boundary." + Environment.NewLine +
-                                "4. The distance to target bar has a white arrow on top. (see the Spec.)." + Environment.NewLine +
-                                "5. The distance to target bar and distance scale are displayed in grey." + Environment.NewLine +
-                                "6. The distance to target is indicated by a vertical rectangular bar left aligned in the right-hand column of sub-area A3." + Environment.NewLine +
+                                "2. The distance scale is displayed in left column of sub-area A3." +
+                                Environment.NewLine +
+                                "3. The distance to target bar is displayed distance from zero to a maximum of 1000m according to the distance scale. " +
+                                Environment.NewLine +
+                                "Distances above 1000m are limited to the distance scale’s upper boundary." +
+                                Environment.NewLine +
+                                "4. The distance to target bar has a white arrow on top. (see the Spec.)." +
+                                Environment.NewLine +
+                                "5. The distance to target bar and distance scale are displayed in grey." +
+                                Environment.NewLine +
+                                "6. The distance to target is indicated by a vertical rectangular bar left aligned in the right-hand column of sub-area A3." +
+                                Environment.NewLine +
                                 "7. The digital distance to target displayed in sub-area A2 = 1950m (2000 - 50)");
 
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 250000;   // 2.5 km
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 250000; // 2.5 km
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The distance to target bar is not displayed in sub-area A3.");
@@ -141,12 +148,12 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,Use the log file to check the different of the following received packets is less than zero(EVC-1) MMI_O_BRAKETARGET – (EVC-7) OBU_TR_O_TRAIN < 0If the result of calculation data is less than 0, The distance to target bar is not display in sub-area A3
             Test Step Comment: (1) MMI_gen 1261 (partly: If not positive distance, distance to target bar not be displayed);
             */
-            EVC1_MMIDynamic.MMI_V_TRAIN = 0;    // Set speed to zero
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 250000;   // 2.5 km
+            EVC1_MMIDynamic.MMI_V_TRAIN = 0; // Set speed to zero
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 250000; // 2.5 km
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The distance to target bar is not displayed in sub-area A3.");
-            
+
             /*
             Test Step 6
             Action: End of test

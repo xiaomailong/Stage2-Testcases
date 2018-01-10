@@ -22,10 +22,10 @@ namespace Testcase.Telegrams.EVCtoDMI
             _pool = pool;
 
             // Set default values
-            _pool.SITR.ETCS1.GeoPosition.MmiMPacket.Value = 5;  // Packet ID
+            _pool.SITR.ETCS1.GeoPosition.MmiMPacket.Value = 5; // Packet ID
             _pool.SITR.ETCS1.GeoPosition.MmiLPacket.Value = 80; // Packet length
-            EVC5_MMIGeoPosition.MMI_M_ABSOLUTPOS = -1;          // No initial position
-            EVC5_MMIGeoPosition.MMI_M_RELATIVPOS = -1;          // Not applicable
+            EVC5_MMIGeoPosition.MMI_M_ABSOLUTPOS = -1; // No initial position
+            EVC5_MMIGeoPosition.MMI_M_RELATIVPOS = -1; // Not applicable
         }
 
         /// <summary>

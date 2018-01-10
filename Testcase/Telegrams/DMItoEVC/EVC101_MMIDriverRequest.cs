@@ -13,7 +13,7 @@ namespace Testcase.Telegrams.DMItoEVC
     /// <summary>
     /// This packet shall be sent when the driver requests for an action from the ATP, typically by pressing a button.
     /// </summary>
-    public static class EVC101_MMIDriverRequest 
+    public static class EVC101_MMIDriverRequest
     {
         private static SignalPool _pool;
         private static bool _checkResult;
@@ -47,12 +47,12 @@ namespace Testcase.Telegrams.DMItoEVC
             {
                 // Convert qButton to a Byte value. All alignment bits in evc101alias1 should
                 // be set to 0 automatically hence bit-shifting is no problem.
-                _qButton = Convert.ToByte((byte)qButton << 7);
+                _qButton = Convert.ToByte((byte) qButton << 7);
 
                 // List containing button type and pressed/released state
                 var list = new List<Atomic>
                 {
-                    _pool.SITR.CCUO.ETCS1DriverRequest.MmiMRequest.Atomic.WaitForCondition(Is.Equal, (byte)mRequest),
+                    _pool.SITR.CCUO.ETCS1DriverRequest.MmiMRequest.Atomic.WaitForCondition(Is.Equal, (byte) mRequest),
                     _pool.SITR.CCUO.ETCS1DriverRequest.EVC101alias1.Atomic.WaitForCondition(Is.Equal, _qButton)
                 };
 
@@ -61,20 +61,24 @@ namespace Testcase.Telegrams.DMItoEVC
                 // If check passes
                 if (_checkResult)
                 {
-                    _pool.TraceReport(BaseString + Environment.NewLine + 
-                                        "MMI_M_REQUEST = \"" + mRequest + "\"" + Environment.NewLine +
-                                        "MMI_Q_BUTTON = \"" + qButton + "\"" + Environment.NewLine +
-                                        "Time stamp = " + _pool.SITR.CCUO.ETCS1DriverRequest.MmiTButtonevent + Environment.NewLine +
-                                        "Result: PASSED.");
+                    _pool.TraceReport(BaseString + Environment.NewLine +
+                                      "MMI_M_REQUEST = \"" + mRequest + "\"" + Environment.NewLine +
+                                      "MMI_Q_BUTTON = \"" + qButton + "\"" + Environment.NewLine +
+                                      "Time stamp = " + _pool.SITR.CCUO.ETCS1DriverRequest.MmiTButtonevent +
+                                      Environment.NewLine +
+                                      "Result: PASSED.");
                 }
                 // Else display the real values extracted from EVC-101
                 else
                 {
                     _pool.TraceError(BaseString + Environment.NewLine +
-                                        "MMI_M_REQUEST = \"" + Enum.GetName(typeof(Variables.MMI_M_REQUEST), mRequest) + "\"" + Environment.NewLine +
-                                        "MMI_Q_BUTTON = \"" + Enum.GetName(typeof(Variables.MMI_Q_BUTTON), qButton) + "\"" + Environment.NewLine +
-                                        "Time stamp = " + _pool.SITR.CCUO.ETCS1DriverRequest.MmiTButtonevent + Environment.NewLine +
-                                        "Result: FAILED!");
+                                     "MMI_M_REQUEST = \"" + Enum.GetName(typeof(Variables.MMI_M_REQUEST), mRequest) +
+                                     "\"" + Environment.NewLine +
+                                     "MMI_Q_BUTTON = \"" + Enum.GetName(typeof(Variables.MMI_Q_BUTTON), qButton) +
+                                     "\"" + Environment.NewLine +
+                                     "Time stamp = " + _pool.SITR.CCUO.ETCS1DriverRequest.MmiTButtonevent +
+                                     Environment.NewLine +
+                                     "Result: FAILED!");
                 }
             }
             // Show generic DMI -> EVC telegram failure

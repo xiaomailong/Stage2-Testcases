@@ -70,14 +70,14 @@ namespace Testcase.DMITestCases
 
             EVC1_MMIDynamic.MMI_O_BRAKETARGET = -1;
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring;
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 0;       // just starting off
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 0; // just starting off
 
 
             EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 20;
             EVC1_MMIDynamic.MMI_V_TARGET_KMH = 15;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 10;
 
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 10000;       // 100m
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 10000; // 100m
             EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 259;
@@ -88,10 +88,12 @@ namespace Testcase.DMITestCases
 
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.OnSight;
 
-            DmiActions.ShowInstruction(this, "Press on sub-area B to toggle the basic speed hook so that is is displayed");
+            DmiActions.ShowInstruction(this,
+                "Press on sub-area B to toggle the basic speed hook so that is is displayed");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. Does the DMI delete the SR mode symbol (MO09) and replace it with the OS mode symbol (MO07) in area B7" + Environment.NewLine +
+                                "1. Does the DMI delete the SR mode symbol (MO09) and replace it with the OS mode symbol (MO07) in area B7" +
+                                Environment.NewLine +
                                 "2. The distance to target bar is not displayed in sub-area A3." + Environment.NewLine +
                                 "3. The digital distance to target is not displayed in sub-area A2.");
 
@@ -101,8 +103,8 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)    Use the log file to confirm that DMI receives the packet information EVC-1 with following variables,MMI_M_WARNING = 2 (Status = NoS, Supervision = PIM)(2)    The distance to target bar is not display in sub-area A3.(3)   The distance to target digital is display in sub-area A2
             Test Step Comment: (1) MMI_gen 107 (partly: MMI_M_WARNING, OS mode); MMI_gen 2567 (partly: MMI_M_WARNING, OS mode PIM); (2) MMI_gen 107 (partly: Table 37, OS mode);(3) MMI_gen 2567 (partly: Table 38, OS mode PIM);
             */
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 81000;      // 810m
-            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;                       // stop
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 81000; // 810m
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0; // stop
 
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_PreIndication_Monitoring;
 
@@ -116,10 +118,10 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)    Use the log file to confirm that DMI receives the packet information EVC-1 with following variables,MMI_M_WARNING = 11 (Status = NoS, Supervision = TSM)(2)     The distance to target bar is not display in sub-area A3.(3)    The distance to target digital is display in sub-area A2
             Test Step Comment: (1) MMI_gen 107 (partly: MMI_M_WARNING, OS mode); MMI_gen 2567 (partly: MMI_M_WARNING, OS mode TSM);(2) MMI_gen 107 (partly: Table 37, OS mode);(3) MMI_gen 2567 (partly: Table 38, OS mode TSM);
             */
-            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 10;                       // drive on
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 86000;      // 860m
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 10; // drive on
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 86000; // 860m
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Target_Speed_Monitoring;
-            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;                        // stop
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0; // stop
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The distance to target bar is not displayed in sub-area A3." + Environment.NewLine +
@@ -131,10 +133,10 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)    Use the log file to confirm that DMI receives the packet information EVC-1 with following variables,MMI_M_WARNING = 3 (Status = Inds, Supervision = RSM)(2)     The distance to target bar is not display in sub-area A3.(3)    The distance to target digital is display in sub-area A2
             Test Step Comment: (1) MMI_gen 107 (partly: MMI_M_WARNING, OS mode); MMI_gen 2567 (partly: MMI_M_WARNING, OS mode RSM); (2) MMI_gen 107 (partly: Table 37, OS mode);(3) MMI_gen 2567 (partly: Table 38, OS mode RSM);
             */
-            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 10;                       // drive on
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 106000;      // 1060m                   // stop
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 10; // drive on
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 106000; // 1060m                   // stop
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Release_Speed_Monitoring;
-            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;                        // stop
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0; // stop
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The distance to target bar is not displayed in sub-area A3." + Environment.NewLine +

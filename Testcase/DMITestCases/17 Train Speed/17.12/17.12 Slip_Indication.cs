@@ -94,9 +94,12 @@ namespace Testcase.DMITestCases
             XML_12_12(msgType.typea);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The Slip indication is displayed and shown as arrow pointing clockwise." + Environment.NewLine +
-                                "2. The Slip indication and digital speed are displayed in the same colour." + Environment.NewLine +
-                                "3. The Slip indication is displayed on the speed hub of the speed pointer." + Environment.NewLine +
+                                "1. The Slip indication is displayed and shown as arrow pointing clockwise." +
+                                Environment.NewLine +
+                                "2. The Slip indication and digital speed are displayed in the same colour." +
+                                Environment.NewLine +
+                                "3. The Slip indication is displayed on the speed hub of the speed pointer." +
+                                Environment.NewLine +
                                 "4. DMI plays sound Sinfo once.");
 
             /*
@@ -141,6 +144,7 @@ namespace Testcase.DMITestCases
         }
 
         #region Send_XML_12_12_DMI_Test_Specification
+
         enum msgType
         {
             typea,
@@ -150,7 +154,6 @@ namespace Testcase.DMITestCases
 
         private void XML_12_12(msgType type)
         {
-
             //SITR.ETCS1.Dynamic.EVC01Validity1.Value = 0x0;
             //SITR.ETCS1.Dynamic.EVC01Validity2.Value = 0x0;
             SITR.ETCS1.Dynamic.EVC01Validity1.Value = 0xc800;
@@ -160,7 +163,7 @@ namespace Testcase.DMITestCases
             {
                 EVC1_MMIDynamic.MMI_M_SLIDE = 0;
                 EVC1_MMIDynamic.MMI_M_SLIP = 1;
-                EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring;   // 0
+                EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring; // 0
                 EVC1_MMIDynamic.MMI_A_TRAIN = 0;
                 EVC1_MMIDynamic.MMI_V_TRAIN = 100;
                 EVC1_MMIDynamic.MMI_V_TARGET = 1111;
@@ -168,13 +171,13 @@ namespace Testcase.DMITestCases
                 EVC1_MMIDynamic.MMI_V_RELEASE = 555;
                 EVC1_MMIDynamic.MMI_O_BRAKETARGET = 0;
                 EVC1_MMIDynamic.MMI_O_IML = 0;
-                EVC1_MMIDynamic.MMI_V_INTERVENTION = 0;                
+                EVC1_MMIDynamic.MMI_V_INTERVENTION = 0;
             }
             else if (type == msgType.typeb)
             {
                 EVC1_MMIDynamic.MMI_M_SLIDE = 1;
                 EVC1_MMIDynamic.MMI_M_SLIP = 0;
-                EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring;   // 0
+                EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring; // 0
                 EVC1_MMIDynamic.MMI_A_TRAIN = 0;
                 EVC1_MMIDynamic.MMI_V_TRAIN = 100;
                 EVC1_MMIDynamic.MMI_V_TARGET = 1111;
@@ -188,7 +191,7 @@ namespace Testcase.DMITestCases
             {
                 EVC1_MMIDynamic.MMI_M_SLIDE = 1;
                 EVC1_MMIDynamic.MMI_M_SLIP = 1;
-                EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring;   // 0
+                EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring; // 0
                 EVC1_MMIDynamic.MMI_A_TRAIN = 0;
                 EVC1_MMIDynamic.MMI_V_TRAIN = 100;
                 EVC1_MMIDynamic.MMI_V_TARGET = 1111;
@@ -199,7 +202,7 @@ namespace Testcase.DMITestCases
                 EVC1_MMIDynamic.MMI_V_INTERVENTION = 0;
             }
         }
-        #endregion
 
+        #endregion
     }
 }

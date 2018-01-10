@@ -55,7 +55,8 @@ namespace Testcase.DMITestCases
 
             // Set to level 1 and SR mode
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L2;
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode =
+                EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
 
             // Enable standard buttons including Start, and display Default window.
             DmiActions.Finished_SoM_Default_Window(this);
@@ -88,7 +89,8 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Shunting;
             EVC30_MMIRequestEnable.Send();
 
-            DmiActions.ShowInstruction(this, @"Press and hold the ‘Shunting’ button at least 2 seconds.Release ‘Shunting’ button");
+            DmiActions.ShowInstruction(this,
+                @"Press and hold the ‘Shunting’ button at least 2 seconds.Release ‘Shunting’ button");
 
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 716;
             EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
@@ -98,14 +100,16 @@ namespace Testcase.DMITestCases
 
             // DMI_RS_ETCS doc says that main window is re-displayed with all buttons disabled
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;      // Main window
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main; // Main window
             EVC30_MMIRequestEnable.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI is in the entry state of ‘ST05’." + Environment.NewLine +
-                                "2. The hourglass symbol ST05 is displayed vertically aligned in the center of the window title area." + Environment.NewLine +
+                                "2. The hourglass symbol ST05 is displayed vertically aligned in the center of the window title area." +
+                                Environment.NewLine +
                                 "3. The hourglass symbol ST05 moves to the right every second." + Environment.NewLine +
-                                "4. When the hourglass symbol ST05 has reached the edge of the window title area it is re-displayed on the lefthand side of the window title area and continues to move to the right." + Environment.NewLine +
+                                "4. When the hourglass symbol ST05 has reached the edge of the window title area it is re-displayed on the lefthand side of the window title area and continues to move to the right." +
+                                Environment.NewLine +
                                 "5. All buttons and the ‘Close’ button are disabled." + Environment.NewLine +
                                 "6. ‘Close’ button NA12 is displayed disabled in area G.");
 
@@ -133,13 +137,14 @@ namespace Testcase.DMITestCases
             // Set to level 1 and SH mode
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L3;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Shunting;
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;      // Main window
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main; // Main window
             EVC30_MMIRequestEnable.Send();
 
             // RTSim doesn't seem to restore EVC30 on restart (at least reliably) so make sure that buttons are enabled
             DmiActions.Finished_SoM_Default_Window(this);
 
-            DmiActions.ShowInstruction(this, @"Press ‘Main’ button. Press and hold ‘Shunting’ button at least 2 seconds.Release ‘Shunting’ button");
+            DmiActions.ShowInstruction(this,
+                @"Press ‘Main’ button. Press and hold ‘Shunting’ button at least 2 seconds.Release ‘Shunting’ button");
 
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 716;
             EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
@@ -149,14 +154,16 @@ namespace Testcase.DMITestCases
 
             // DMI_RS_ETCS doc says that main window is re-displayed with all buttons disabled
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;      // Main window
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main; // Main window
             EVC30_MMIRequestEnable.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI is in the entry state of ‘ST05’." + Environment.NewLine +
-                                "2. The hourglass symbol ST05 is displayed vertically aligned in the center of the window title area." + Environment.NewLine +
+                                "2. The hourglass symbol ST05 is displayed vertically aligned in the center of the window title area." +
+                                Environment.NewLine +
                                 "3. The hourglass symbol ST05 moves to the right every second." + Environment.NewLine +
-                                "4. When the hourglass symbol ST05 has reached the edge of the window title area it is re-displayed on the lefthand side of the window title area and continues to move to the right." + Environment.NewLine +
+                                "4. When the hourglass symbol ST05 has reached the edge of the window title area it is re-displayed on the lefthand side of the window title area and continues to move to the right." +
+                                Environment.NewLine +
                                 "5. All buttons and the ‘Close’ button are disabled." + Environment.NewLine +
                                 "6. ‘Close’ button NA12 is displayed disabled in area G.");
 

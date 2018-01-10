@@ -79,12 +79,12 @@ namespace Testcase.DMITestCases
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 5000;
             EVC4_MMITrackDescription.MMI_G_GRADIENT_CURR = 0;
-            EVC4_MMITrackDescription.MMI_V_MRSP_CURR = 833;         // 30 km/h
+            EVC4_MMITrackDescription.MMI_V_MRSP_CURR = 833; // 30 km/h
 
             TrackDescriptions = new List<TrackDescription>
             {
-                new TrackDescription { MMI_O_MRSP = 105000},
-                new TrackDescription { MMI_V_MRSP = 0, MMI_O_MRSP = 205000}
+                new TrackDescription {MMI_O_MRSP = 105000},
+                new TrackDescription {MMI_V_MRSP = 0, MMI_O_MRSP = 205000}
             };
             EVC4_MMITrackDescription.TrackDescriptions = TrackDescriptions;
             EVC4_MMITrackDescription.Send();
@@ -92,9 +92,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in FS Mode, Level 1." + Environment.NewLine +
                                 "2. DMI displays the Planning Area." + Environment.NewLine +
-                                "3. From the zero line to position 1000m the whole width of sub-area D7 is in PASP-light." + Environment.NewLine +
-                                "4. From 1001m to position 2000m the PASP segment covers 1/4 of the width of sub-area D7." + Environment.NewLine +
-                                "5. Beyond 2000m the whole width of sub-area D7 is in PASP-dark." + Environment.NewLine +
+                                "3. From the zero line to position 1000m the whole width of sub-area D7 is in PASP-light." +
+                                Environment.NewLine +
+                                "4. From 1001m to position 2000m the PASP segment covers 1/4 of the width of sub-area D7." +
+                                Environment.NewLine +
+                                "5. Beyond 2000m the whole width of sub-area D7 is in PASP-dark." +
+                                Environment.NewLine +
                                 "6. (No PASP segments are displayed beyond 2000m.)");
 
             /*
@@ -106,7 +109,8 @@ namespace Testcase.DMITestCases
             XML_17_7_2(msgPart.part1);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The PASP segment covering 1/4 of the width of sub-area D7 is removed." + Environment.NewLine +
+                                "1. The PASP segment covering 1/4 of the width of sub-area D7 is removed." +
+                                Environment.NewLine +
                                 "2. The PA Gradient Profile value displayed is ‘20’." + Environment.NewLine +
                                 "3. The current PASP segment ends at infinity (displayed from 0 to beyond 4000m).");
 
@@ -132,31 +136,32 @@ namespace Testcase.DMITestCases
             return GlobalTestResult;
         }
 
-    #region Send_XML_17_7_2_DMI_Test_Specification
+        #region Send_XML_17_7_2_DMI_Test_Specification
 
         private enum msgPart : byte
         {
             part1,
             part2
         }
-    
+
         private void XML_17_7_2(msgPart packetSelector)
         {
-            switch ( packetSelector )
+            switch (packetSelector)
             {
-            case msgPart.part1:
-                TrackDescriptions.Clear();
-                EVC4_MMITrackDescription.MMI_G_GRADIENT_CURR = 20;
-                EVC4_MMITrackDescription.MMI_V_MRSP_CURR = 2777;
-                EVC4_MMITrackDescription.Send();
-                break;
-           case msgPart.part2:
-                EVC4_MMITrackDescription.MMI_V_MRSP_CURR = 0;
-                EVC4_MMITrackDescription.MMI_G_GRADIENT_CURR = 10;
-                EVC4_MMITrackDescription.Send();
-                break;
-            }                  
+                case msgPart.part1:
+                    TrackDescriptions.Clear();
+                    EVC4_MMITrackDescription.MMI_G_GRADIENT_CURR = 20;
+                    EVC4_MMITrackDescription.MMI_V_MRSP_CURR = 2777;
+                    EVC4_MMITrackDescription.Send();
+                    break;
+                case msgPart.part2:
+                    EVC4_MMITrackDescription.MMI_V_MRSP_CURR = 0;
+                    EVC4_MMITrackDescription.MMI_G_GRADIENT_CURR = 10;
+                    EVC4_MMITrackDescription.Send();
+                    break;
+            }
         }
-    #endregion
+
+        #endregion
     }
 }

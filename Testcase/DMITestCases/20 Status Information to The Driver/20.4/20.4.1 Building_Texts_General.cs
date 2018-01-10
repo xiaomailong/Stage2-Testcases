@@ -67,7 +67,7 @@ namespace Testcase.DMITestCases
             */
             // Don't understand this part of the test!
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
-            
+
             // ETCS must be supplying the time: DMI does not prepend it to the message
 
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -80,9 +80,12 @@ namespace Testcase.DMITestCases
 
             // spec says 'indent' is separator ??
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The plain text message ‘TEST 15.4’ is displayed in white on sub-area E5." + Environment.NewLine +
-                                "2. The local time of arrival of the message is displayed on the first line in front of the plain text message" + Environment.NewLine +
-                                "3. The local time is separated from the text message by a space" + Environment.NewLine +
+                                "1. The plain text message ‘TEST 15.4’ is displayed in white on sub-area E5." +
+                                Environment.NewLine +
+                                "2. The local time of arrival of the message is displayed on the first line in front of the plain text message" +
+                                Environment.NewLine +
+                                "3. The local time is separated from the text message by a space" +
+                                Environment.NewLine +
                                 "4. The local time format is ‘hh:mm’ with hh in range 0..23");
 
             /*
@@ -93,7 +96,8 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, "Acknowledge the plain test message");
 
-            Telegrams.DMItoEVC.EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = Telegrams.DMItoEVC.EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.PlainTextInformationAck;
+            Telegrams.DMItoEVC.EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = Telegrams.DMItoEVC
+                .EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.PlainTextInformationAck;
 
             /*
             Test Step 3
@@ -163,7 +167,8 @@ namespace Testcase.DMITestCases
 
             XML_15_4(msgType.typec);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. DMI displays ‘ABCDEFGHIJ BCDEFGHIJ XXXXXXXXX’ in white in sub-areas E5 and E6." + Environment.NewLine +
+                                @"1. DMI displays ‘ABCDEFGHIJ BCDEFGHIJ XXXXXXXXX’ in white in sub-areas E5 and E6." +
+                                Environment.NewLine +
                                 "2. The text message is displayed in two lines in both sub-areas E5 and E6.");
 
             /*
@@ -216,6 +221,7 @@ namespace Testcase.DMITestCases
         }
 
         #region Send_XML_15_4_DMI_Test_Specification
+
         enum msgType
         {
             typea,
@@ -235,7 +241,6 @@ namespace Testcase.DMITestCases
         {
             switch (type)
             {
-
                 case msgType.typea:
                     // Step 3/1
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -300,7 +305,7 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                              @"1. DMI displays ‘TPWS Failed’ in areas E5-E9.");
+                                        @"1. DMI displays ‘TPWS Failed’ in areas E5-E9.");
 
                     // Step 9/2         
                     // spec says I_TEXT = 1 (fixed) but xml 'increments' in each message
@@ -310,7 +315,7 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                               @"1. DMI displays ‘Confirm change of inhibit STM TPWS’ in areas E5-E9.");
+                                        @"1. DMI displays ‘Confirm change of inhibit STM TPWS’ in areas E5-E9.");
 
                     // Step 9/3
                     EVC8_MMIDriverMessage.MMI_I_TEXT = 3;
@@ -318,7 +323,7 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                               @"1. DMI displays ‘Shunting rejected due to TPWS Trip’ in areas E5-E9.");
+                                        @"1. DMI displays ‘Shunting rejected due to TPWS Trip’ in areas E5-E9.");
 
                     // Step 9/4
                     EVC8_MMIDriverMessage.MMI_I_TEXT = 4;
@@ -326,7 +331,7 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                               @"1. DMI displays ‘TPWS needs data’ in areas E5-E9.");
+                                        @"1. DMI displays ‘TPWS needs data’ in areas E5-E9.");
 
                     // Step 9/5
                     EVC8_MMIDriverMessage.MMI_I_TEXT = 5;
@@ -334,7 +339,7 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                               @"1. DMI displays ‘TPWS brake demand’ in areas E5-E9.");
+                                        @"1. DMI displays ‘TPWS brake demand’ in areas E5-E9.");
 
                     // Step 9/6
                     EVC8_MMIDriverMessage.MMI_I_TEXT = 6;
@@ -342,15 +347,17 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                               @"1. DMI displays ‘TPWS is not available’ in areas E5-E9.");
+                                        @"1. DMI displays ‘TPWS is not available’ in areas E5-E9.");
 
-                    WaitForVerification(@"Using the <Up> and <Down> buttons, check that the order of all messages top to bottom is:" + Environment.NewLine + Environment.NewLine +
-                                              @"1. DMI displays ‘TPWS is not available’ in areas E5-E9." + Environment.NewLine +
-                                              @"2. DMI displays ‘TPWS brake demand’ in areas E5-E9." + Environment.NewLine +
-                                              @"3. DMI displays ‘TPWS needs data’ in areas E5-E9." + Environment.NewLine +
-                                              @"4. DMI displays ‘Shunting rejected due to TPWS Trip’ in areas E5-E9." + Environment.NewLine +
-                                              @"5. DMI displays ‘Confirm change of inhibit STM TPWS’ in areas E5-E9." + Environment.NewLine +
-                                              @"6. DMI displays ‘TPWS Failed’ in areas E5 - E9.");
+                    WaitForVerification(
+                        @"Using the <Up> and <Down> buttons, check that the order of all messages top to bottom is:" +
+                        Environment.NewLine + Environment.NewLine +
+                        @"1. DMI displays ‘TPWS is not available’ in areas E5-E9." + Environment.NewLine +
+                        @"2. DMI displays ‘TPWS brake demand’ in areas E5-E9." + Environment.NewLine +
+                        @"3. DMI displays ‘TPWS needs data’ in areas E5-E9." + Environment.NewLine +
+                        @"4. DMI displays ‘Shunting rejected due to TPWS Trip’ in areas E5-E9." + Environment.NewLine +
+                        @"5. DMI displays ‘Confirm change of inhibit STM TPWS’ in areas E5-E9." + Environment.NewLine +
+                        @"6. DMI displays ‘TPWS Failed’ in areas E5 - E9.");
 
 
                     break;
@@ -365,7 +372,7 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                              @"1. DMI displays ‘<Unknown> Failed’ in areas E5-E9.");
+                                        @"1. DMI displays ‘<Unknown> Failed’ in areas E5-E9.");
 
                     // Step 10/2         
                     // spec says I_TEXT = 1 (fixed) but xml 'increments' in each message
@@ -375,7 +382,7 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                               @"1. DMI displays ‘Confirm change of inhibit STM <Unknown>’ in areas E5-E9.");
+                                        @"1. DMI displays ‘Confirm change of inhibit STM <Unknown>’ in areas E5-E9.");
 
                     // Step 10/3
                     EVC8_MMIDriverMessage.MMI_I_TEXT = 3;
@@ -383,7 +390,7 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                               @"1. DMI displays ‘Shunting rejected due to <Unknown> Trip’ in areas E5-E9.");
+                                        @"1. DMI displays ‘Shunting rejected due to <Unknown> Trip’ in areas E5-E9.");
 
                     // Step 10/4
                     EVC8_MMIDriverMessage.MMI_I_TEXT = 4;
@@ -391,7 +398,7 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                               @"1. DMI displays ‘<Unknown> needs data’ in areas E5-E9.");
+                                        @"1. DMI displays ‘<Unknown> needs data’ in areas E5-E9.");
 
                     // Step 10/5
                     EVC8_MMIDriverMessage.MMI_I_TEXT = 5;
@@ -399,7 +406,7 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                               @"1. DMI displays ‘<Unknown> brake demand’ in areas E5-E9.");
+                                        @"1. DMI displays ‘<Unknown> brake demand’ in areas E5-E9.");
 
                     // Step 10/6
                     EVC8_MMIDriverMessage.MMI_I_TEXT = 6;
@@ -407,15 +414,19 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                               @"1. DMI displays ‘<Unknown> is not available’ in areas E5-E9.");
+                                        @"1. DMI displays ‘<Unknown> is not available’ in areas E5-E9.");
 
-                    WaitForVerification(@"Using the <Up> and <Down> buttons, check that the order of all messages top to bottom is:" + Environment.NewLine + Environment.NewLine +
-                                              @"1. DMI displays ‘<Unknown> is not available’ in areas E5-E9." + Environment.NewLine +
-                                              @"2. DMI displays ‘<Unknown> brake demand’ in areas E5-E9." + Environment.NewLine +
-                                              @"3. DMI displays ‘<Unknown> needs data’ in areas E5-E9." + Environment.NewLine +
-                                              @"4. DMI displays ‘Shunting rejected due to <Unknown> Trip’ in areas E5-E9." + Environment.NewLine +
-                                              @"5. DMI displays ‘Confirm change of inhibit STM <Unknown>’ in areas E5-E9." + Environment.NewLine +
-                                              @"6. DMI displays ‘<Unknown> Failed’ in areas E5 - E9.");
+                    WaitForVerification(
+                        @"Using the <Up> and <Down> buttons, check that the order of all messages top to bottom is:" +
+                        Environment.NewLine + Environment.NewLine +
+                        @"1. DMI displays ‘<Unknown> is not available’ in areas E5-E9." + Environment.NewLine +
+                        @"2. DMI displays ‘<Unknown> brake demand’ in areas E5-E9." + Environment.NewLine +
+                        @"3. DMI displays ‘<Unknown> needs data’ in areas E5-E9." + Environment.NewLine +
+                        @"4. DMI displays ‘Shunting rejected due to <Unknown> Trip’ in areas E5-E9." +
+                        Environment.NewLine +
+                        @"5. DMI displays ‘Confirm change of inhibit STM <Unknown>’ in areas E5-E9." +
+                        Environment.NewLine +
+                        @"6. DMI displays ‘<Unknown> Failed’ in areas E5 - E9.");
 
                     break;
                 case msgType.typef:
@@ -429,7 +440,7 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                              @"1. DMI displays ‘Restriction 1 km/h in Release Speed Area’ in areas E5-E9.");
+                                        @"1. DMI displays ‘Restriction 1 km/h in Release Speed Area’ in areas E5-E9.");
 
                     // Step 11/2         
                     // spec says I_TEXT = 1 (fixed) but xml 'increments' in each message
@@ -439,7 +450,7 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                               @"1. DMI displays ‘Brake Test timeout in 1 Hours’ in areas E5-E9.");
+                                        @"1. DMI displays ‘Brake Test timeout in 1 Hours’ in areas E5-E9.");
 
                     // Step 11/3
                     EVC8_MMIDriverMessage.MMI_I_TEXT = 3;
@@ -447,7 +458,7 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                               @"1. DMI displays ‘BTM Test Timeout in 1 hours’ in areas E5-E9.");
+                                        @"1. DMI displays ‘BTM Test Timeout in 1 hours’ in areas E5-E9.");
 
                     // Step 11/4
                     EVC8_MMIDriverMessage.MMI_I_TEXT = 4;
@@ -455,7 +466,7 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                               @"1. DMI displays ‘ATP Restart required in 1 Hours’ in areas E5-E9.");
+                                        @"1. DMI displays ‘ATP Restart required in 1 Hours’ in areas E5-E9.");
 
                     // Step 11/5
                     EVC8_MMIDriverMessage.MMI_I_TEXT = 5;
@@ -463,7 +474,7 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                               @"1. DMI displays ‘Confirm change of inhibit Level 1’ in areas E5-E9.");
+                                        @"1. DMI displays ‘Confirm change of inhibit Level 1’ in areas E5-E9.");
 
                     // Step 11/6
                     EVC8_MMIDriverMessage.MMI_I_TEXT = 6;
@@ -471,7 +482,7 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                               @"1. DMI displays ‘Cabin Reactivation required in 1 hours’ in areas E5-E9.");
+                                        @"1. DMI displays ‘Cabin Reactivation required in 1 hours’ in areas E5-E9.");
 
                     // Step 11/7
                     EVC8_MMIDriverMessage.MMI_I_TEXT = 7;
@@ -479,16 +490,19 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                               @"1. DMI displays ‘New power-up required in 1 hours’ in areas E5-E9.");
+                                        @"1. DMI displays ‘New power-up required in 1 hours’ in areas E5-E9.");
 
-                    WaitForVerification(@"Using the <Up> and <Down> buttons, check that the order of all messages top to bottom is:" + Environment.NewLine + Environment.NewLine +
-                                              @"1. DMI displays ‘New power-up required in 1 hours’ in areas E5-E9." + Environment.NewLine +
-                                              @"2. DMI displays Cabin Reactivation required in 1 hours’ in areas E5-E9." + Environment.NewLine +
-                                              @"3. DMI displays ‘Confirm change of inhibit Level 1’ in areas E5-E9." + Environment.NewLine +
-                                              @"4. DMI displays ‘ATP Restart required in 1 Hours’ in areas E5-E9." + Environment.NewLine +
-                                              @"5. DMI displays ‘BTM Test Timeout in 1 hours’ in areas E5-E9." + Environment.NewLine +
-                                              @"6. DMI displays ‘Brake Test timeout in 1 Hours’ in areas E5 - E9." + Environment.NewLine +
-                                              @"7. DMI displays ‘Restriction 1 km/h in Release Speed Area’ in areas E5 - E9.");
+                    WaitForVerification(
+                        @"Using the <Up> and <Down> buttons, check that the order of all messages top to bottom is:" +
+                        Environment.NewLine + Environment.NewLine +
+                        @"1. DMI displays ‘New power-up required in 1 hours’ in areas E5-E9." + Environment.NewLine +
+                        @"2. DMI displays Cabin Reactivation required in 1 hours’ in areas E5-E9." +
+                        Environment.NewLine +
+                        @"3. DMI displays ‘Confirm change of inhibit Level 1’ in areas E5-E9." + Environment.NewLine +
+                        @"4. DMI displays ‘ATP Restart required in 1 Hours’ in areas E5-E9." + Environment.NewLine +
+                        @"5. DMI displays ‘BTM Test Timeout in 1 hours’ in areas E5-E9." + Environment.NewLine +
+                        @"6. DMI displays ‘Brake Test timeout in 1 Hours’ in areas E5 - E9." + Environment.NewLine +
+                        @"7. DMI displays ‘Restriction 1 km/h in Release Speed Area’ in areas E5 - E9.");
 
                     break;
                 case msgType.typeg:
@@ -501,8 +515,9 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.PlainTextMessage = "0";
                     EVC8_MMIDriverMessage.Send();
 
-                    WaitForVerification("Check the following where [@] is a solid white rectangular symbol:" + Environment.NewLine + Environment.NewLine +
-                                              @"1. DMI displays ‘Restriction [@] km/h in Release Speed Area’ in areas E5-E9.");
+                    WaitForVerification("Check the following where [@] is a solid white rectangular symbol:" +
+                                        Environment.NewLine + Environment.NewLine +
+                                        @"1. DMI displays ‘Restriction [@] km/h in Release Speed Area’ in areas E5-E9.");
 
                     // Step 12/2         
                     // spec says I_TEXT = 1 (fixed) but xml 'increments' in each message
@@ -511,57 +526,66 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.MMI_Q_TEXT = 525;
                     EVC8_MMIDriverMessage.Send();
 
-                    WaitForVerification("Check the following where [@] is a solid white rectangular symbol:" + Environment.NewLine + Environment.NewLine +
-                                               @"1. DMI displays ‘Brake Test timeout in [@] Hours’ in areas E5-E9.");
+                    WaitForVerification("Check the following where [@] is a solid white rectangular symbol:" +
+                                        Environment.NewLine + Environment.NewLine +
+                                        @"1. DMI displays ‘Brake Test timeout in [@] Hours’ in areas E5-E9.");
 
                     // Step 12/3
                     EVC8_MMIDriverMessage.MMI_I_TEXT = 3;
                     EVC8_MMIDriverMessage.MMI_Q_TEXT = 534;
                     EVC8_MMIDriverMessage.Send();
 
-                    WaitForVerification("Check the following where [@] is a solid white rectangular symbol:" + Environment.NewLine + Environment.NewLine +
-                                               @"1. DMI displays ‘BTM Test Timeout in [@] hours’ in areas E5-E9.");
+                    WaitForVerification("Check the following where [@] is a solid white rectangular symbol:" +
+                                        Environment.NewLine + Environment.NewLine +
+                                        @"1. DMI displays ‘BTM Test Timeout in [@] hours’ in areas E5-E9.");
 
                     // Step 12/4
                     EVC8_MMIDriverMessage.MMI_I_TEXT = 4;
                     EVC8_MMIDriverMessage.MMI_Q_TEXT = 535;
                     EVC8_MMIDriverMessage.Send();
 
-                    WaitForVerification("Check the following where [@] is a solid white rectangular symbol:" + Environment.NewLine + Environment.NewLine +
-                                               @"1. DMI displays ‘ATP Restart required in [@] Hours’ in areas E5-E9.");
+                    WaitForVerification("Check the following where [@] is a solid white rectangular symbol:" +
+                                        Environment.NewLine + Environment.NewLine +
+                                        @"1. DMI displays ‘ATP Restart required in [@] Hours’ in areas E5-E9.");
 
                     // Step 12/5
                     EVC8_MMIDriverMessage.MMI_I_TEXT = 5;
                     EVC8_MMIDriverMessage.MMI_Q_TEXT = 564;
                     EVC8_MMIDriverMessage.Send();
 
-                    WaitForVerification("Check the following where [@] is a solid white rectangular symbol:" + Environment.NewLine + Environment.NewLine +
-                                               @"1. DMI displays ‘Confirm change of inhibit Level [@]’ in areas E5-E9.");
+                    WaitForVerification("Check the following where [@] is a solid white rectangular symbol:" +
+                                        Environment.NewLine + Environment.NewLine +
+                                        @"1. DMI displays ‘Confirm change of inhibit Level [@]’ in areas E5-E9.");
 
                     // Step 12/6
                     EVC8_MMIDriverMessage.MMI_I_TEXT = 6;
                     EVC8_MMIDriverMessage.MMI_Q_TEXT = 574;
                     EVC8_MMIDriverMessage.Send();
 
-                    WaitForVerification("Check the following where [@] is a solid white rectangular symbol:" + Environment.NewLine + Environment.NewLine +
-                                               @"1. DMI displays ‘Cabin Reactivation required in [@] hours’ in areas E5-E9.");
+                    WaitForVerification("Check the following where [@] is a solid white rectangular symbol:" +
+                                        Environment.NewLine + Environment.NewLine +
+                                        @"1. DMI displays ‘Cabin Reactivation required in [@] hours’ in areas E5-E9.");
 
                     // Step 12/7
                     EVC8_MMIDriverMessage.MMI_I_TEXT = 7;
                     EVC8_MMIDriverMessage.MMI_Q_TEXT = 705;
                     EVC8_MMIDriverMessage.Send();
 
-                    WaitForVerification("Check the following where [@] is a solid white rectangular symbol:" + Environment.NewLine + Environment.NewLine +
-                                               @"1. DMI displays ‘New power-up required in [@] hours’ in areas E5-E9.");
+                    WaitForVerification("Check the following where [@] is a solid white rectangular symbol:" +
+                                        Environment.NewLine + Environment.NewLine +
+                                        @"1. DMI displays ‘New power-up required in [@] hours’ in areas E5-E9.");
 
-                    WaitForVerification(@"Using the <Up> and <Down> buttons, check that the order of all messages top to bottom is:" + Environment.NewLine + Environment.NewLine +
-                                              @"1. DMI displays ‘New power-up required in [@] hours’ in areas E5-E9." + Environment.NewLine +
-                                              @"2. DMI displays Cabin Reactivation required in [@] hours’ in areas E5-E9." + Environment.NewLine +
-                                              @"3. DMI displays ‘Confirm change of inhibit Level [@]’ in areas E5-E9." + Environment.NewLine +
-                                              @"4. DMI displays ‘ATP Restart required in [@] Hours’ in areas E5-E9." + Environment.NewLine +
-                                              @"5. DMI displays ‘BTM Test Timeout in [@] hours’ in areas E5-E9." + Environment.NewLine +
-                                              @"6. DMI displays ‘Brake Test timeout in [@] Hours’ in areas E5 - E9." + Environment.NewLine +
-                                              @"7. DMI displays ‘Restriction [@] km/h in Release Speed Area’ in areas E5 - E9.");
+                    WaitForVerification(
+                        @"Using the <Up> and <Down> buttons, check that the order of all messages top to bottom is:" +
+                        Environment.NewLine + Environment.NewLine +
+                        @"1. DMI displays ‘New power-up required in [@] hours’ in areas E5-E9." + Environment.NewLine +
+                        @"2. DMI displays Cabin Reactivation required in [@] hours’ in areas E5-E9." +
+                        Environment.NewLine +
+                        @"3. DMI displays ‘Confirm change of inhibit Level [@]’ in areas E5-E9." + Environment.NewLine +
+                        @"4. DMI displays ‘ATP Restart required in [@] Hours’ in areas E5-E9." + Environment.NewLine +
+                        @"5. DMI displays ‘BTM Test Timeout in [@] hours’ in areas E5-E9." + Environment.NewLine +
+                        @"6. DMI displays ‘Brake Test timeout in [@] Hours’ in areas E5 - E9." + Environment.NewLine +
+                        @"7. DMI displays ‘Restriction [@] km/h in Release Speed Area’ in areas E5 - E9.");
 
                     break;
                 case msgType.typeh:
@@ -575,7 +599,7 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                              @"1. DMI displays BTM Test Timeout’ in sub-area E5.");
+                                        @"1. DMI displays BTM Test Timeout’ in sub-area E5.");
 
                     // Step 13/2         
                     // spec says I_TEXT = 1 (fixed) but xml 'incremented' in next message
@@ -586,7 +610,7 @@ namespace Testcase.DMITestCases
 
                     // Spec says ST02 but the symbol displayed is ST01!
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                              "1. DMI displays ST01 symbol in area C9.");
+                                        "1. DMI displays ST01 symbol in area C9.");
 
                     break;
                 case msgType.typei:
@@ -663,7 +687,7 @@ namespace Testcase.DMITestCases
                     break;
             }
         }
-        #endregion
 
+        #endregion
     }
 }

@@ -94,7 +94,8 @@ namespace Testcase.Telegrams.DMItoEVC
                 }
                 else
                 {
-                    _pool.TraceError("EVC-111 error. Make sure MMI_I_TEXT, MMI_Q_BUTTON, and MMI_Q_ACK are set to valid values.");
+                    _pool.TraceError(
+                        "EVC-111 error. Make sure MMI_I_TEXT, MMI_Q_BUTTON, and MMI_Q_ACK are set to valid values.");
                 }
             }
         }
@@ -112,7 +113,7 @@ namespace Testcase.Telegrams.DMItoEVC
             {
                 _pool.SITR.SMDStat.CCUO.ETCS1DriverMessageAck.Atomic.WaitForCondition(Is.Equal, 1),
                 _pool.SITR.CCUO.ETCS1DriverMessageAck.MmiIText.Atomic.WaitForCondition(Is.Equal, _mmiIText),
-                
+
                 // EVC111_alias_1: MMI_Q_ACK bits = 00xx 0000
                 // EVC111_alias_1: MMI_Q_BUTTON bit = 0000 x000
                 _pool.SITR.CCUO.ETCS1DriverMessageAck.EVC111alias1.Atomic.WaitForCondition(Is.Equal, 0x18)
@@ -127,16 +128,16 @@ namespace Testcase.Telegrams.DMItoEVC
             if (_checkResult)
             {
                 _pool.TraceReport(baseString + _mmiIText + Environment.NewLine +
-                                    "Time stamp = " + _timeStamp + Environment.NewLine +
-                                    "Result: Acknowledge Pressed PASSED.");
+                                  "Time stamp = " + _timeStamp + Environment.NewLine +
+                                  "Result: Acknowledge Pressed PASSED.");
             }
 
             // Else display failure
             else
             {
                 _pool.TraceError(baseString + _mmiIText + Environment.NewLine +
-                                    "Time stamp = " + _timeStamp + Environment.NewLine +
-                                    "Result: Acknowledge Pressed FAILED.");
+                                 "Time stamp = " + _timeStamp + Environment.NewLine +
+                                 "Result: Acknowledge Pressed FAILED.");
             }
         }
 
@@ -153,7 +154,7 @@ namespace Testcase.Telegrams.DMItoEVC
             {
                 _pool.SITR.SMDStat.CCUO.ETCS1DriverMessageAck.Atomic.WaitForCondition(Is.Equal, 1),
                 _pool.SITR.CCUO.ETCS1DriverMessageAck.MmiIText.Atomic.WaitForCondition(Is.Equal, _mmiIText),
-                
+
                 // EVC111_alias_1: MMI_Q_ACK bits = 00xx 0000
                 // EVC111_alias_1: MMI_Q_BUTTON bit = 0000 x000
                 _pool.SITR.CCUO.ETCS1DriverMessageAck.EVC111alias1.Atomic.WaitForCondition(Is.Equal, 0x10)
@@ -168,16 +169,16 @@ namespace Testcase.Telegrams.DMItoEVC
             if (_checkResult)
             {
                 _pool.TraceReport(baseString + _mmiIText + Environment.NewLine +
-                                    "Time stamp = " + _timeStamp + Environment.NewLine +
-                                    "Result: Acknowledge Released PASSED.");
+                                  "Time stamp = " + _timeStamp + Environment.NewLine +
+                                  "Result: Acknowledge Released PASSED.");
             }
 
             // Else display failure
             else
             {
                 _pool.TraceError(baseString + _mmiIText + Environment.NewLine +
-                                    "Time stamp = " + _timeStamp + Environment.NewLine + 
-                                    "Result: Acknowledge Released FAILED.");
+                                 "Time stamp = " + _timeStamp + Environment.NewLine +
+                                 "Result: Acknowledge Released FAILED.");
             }
         }
 
@@ -194,7 +195,7 @@ namespace Testcase.Telegrams.DMItoEVC
             {
                 _pool.SITR.SMDStat.CCUO.ETCS1DriverMessageAck.Atomic.WaitForCondition(Is.Equal, 1),
                 _pool.SITR.CCUO.ETCS1DriverMessageAck.MmiIText.Atomic.WaitForCondition(Is.Equal, _mmiIText),
-                
+
                 // EVC111_alias_1: MMI_Q_ACK bits = 00xx 0000
                 // EVC111_alias_1: MMI_Q_BUTTON bit = 0000 x000
                 _pool.SITR.CCUO.ETCS1DriverMessageAck.EVC111alias1.Atomic.WaitForCondition(Is.Equal, 0x28)
@@ -209,16 +210,16 @@ namespace Testcase.Telegrams.DMItoEVC
             if (_checkResult)
             {
                 _pool.TraceReport(baseString + _mmiIText + Environment.NewLine +
-                                    "Time stamp = " + _timeStamp + Environment.NewLine +
-                                    "Result: NOT Acknowledge Pressed PASSED.");
+                                  "Time stamp = " + _timeStamp + Environment.NewLine +
+                                  "Result: NOT Acknowledge Pressed PASSED.");
             }
 
             // Else display failure
             else
             {
                 _pool.TraceError(baseString + _mmiIText + Environment.NewLine +
-                                    "Time stamp = " + _timeStamp + Environment.NewLine +
-                                    "Result: NOT Acknowledge Pressed FAILED.");
+                                 "Time stamp = " + _timeStamp + Environment.NewLine +
+                                 "Result: NOT Acknowledge Pressed FAILED.");
             }
         }
 
@@ -235,7 +236,7 @@ namespace Testcase.Telegrams.DMItoEVC
             {
                 _pool.SITR.SMDStat.CCUO.ETCS1DriverMessageAck.Atomic.WaitForCondition(Is.Equal, 1),
                 _pool.SITR.CCUO.ETCS1DriverMessageAck.MmiIText.Atomic.WaitForCondition(Is.Equal, _mmiIText),
-                
+
                 // EVC111_alias_1: MMI_Q_ACK bits = 00xx 0000
                 // EVC111_alias_1: MMI_Q_BUTTON bit = 0000 x000
                 _pool.SITR.CCUO.ETCS1DriverMessageAck.EVC111alias1.Atomic.WaitForCondition(Is.Equal, 0x20)
@@ -250,16 +251,16 @@ namespace Testcase.Telegrams.DMItoEVC
             if (_checkResult)
             {
                 _pool.TraceReport(baseString + _mmiIText + Environment.NewLine +
-                                    "Time stamp = " + _timeStamp + Environment.NewLine +
-                                    "Result: NOT Acknowledge Released PASSED.");
+                                  "Time stamp = " + _timeStamp + Environment.NewLine +
+                                  "Result: NOT Acknowledge Released PASSED.");
             }
 
             // Else display failure
             else
             {
                 _pool.TraceError(baseString + _mmiIText + Environment.NewLine +
-                                    "Time stamp = " + _timeStamp + Environment.NewLine +
-                                    "Result: NOT Acknowledge Released FAILED.");
+                                 "Time stamp = " + _timeStamp + Environment.NewLine +
+                                 "Result: NOT Acknowledge Released FAILED.");
             }
         }
     }

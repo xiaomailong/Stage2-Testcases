@@ -63,7 +63,7 @@ namespace Testcase.DMITestCases
             // Testcase entrypoint
             TraceInfo("This test case requires a DMI configuration change; See Precondition requirements. " +
                       "If this is not done manually, the test may fail!");
-            
+
             /*
             Test Step 1
             Action: Press ‘Data view’ button
@@ -96,8 +96,10 @@ namespace Testcase.DMITestCases
 
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The label of Data view item #3 is ‘For Test Data View truncated by long text’, truncated at the maximum width of the label part." + Environment.NewLine +
-                                "2. The data part of Data view item #3 is ‘For Test Data View truncated by long text’, displayed on two lines" + Environment.NewLine +
+                                "1. The label of Data view item #3 is ‘For Test Data View truncated by long text’, truncated at the maximum width of the label part." +
+                                Environment.NewLine +
+                                "2. The data part of Data view item #3 is ‘For Test Data View truncated by long text’, displayed on two lines" +
+                                Environment.NewLine +
                                 "   with the second line truncated at the maximum width of the data part.");
 
             /*

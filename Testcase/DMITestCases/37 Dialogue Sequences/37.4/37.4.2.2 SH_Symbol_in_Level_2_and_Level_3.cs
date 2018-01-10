@@ -82,7 +82,8 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11914 (partly: receives SH symbol, Level 2/3); MMI_gen 11084 (partly: SH);(2) MMI_gen 11914 (partly: display the symbol when receive SH symbol); MMI_gen 110 (partly: MO10);(3) MMI_gen 11914 (partly: close main window and return to the default window);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press ‘Main’ button, then press and hold ‘Shunting’ button at least 2 seconds. Release ‘Shunting’ button");
+            DmiActions.ShowInstruction(this,
+                @"Press ‘Main’ button, then press and hold ‘Shunting’ button at least 2 seconds. Release ‘Shunting’ button");
 
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Shunting;
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -108,7 +109,8 @@ namespace Testcase.DMITestCases
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L3;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Shunting;
 
-            DmiActions.ShowInstruction(this, @"Press and hold ‘Shunting’ button for at least 2 seconds. Release ‘Shunting’ button");
+            DmiActions.ShowInstruction(this,
+                @"Press and hold ‘Shunting’ button for at least 2 seconds. Release ‘Shunting’ button");
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the symbol M001 in area B7." + Environment.NewLine +
                                 "2. DMI closes Main window and displays the Default window.");

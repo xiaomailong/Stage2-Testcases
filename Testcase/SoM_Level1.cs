@@ -49,7 +49,7 @@ namespace Testcase
             EVC0_MMIStartATP.Send();
 
             // Possible send EVC-3 MMI_SET_TIME_ATP packet
-            EVC3_MMISetTimeATP.MMI_T_UTC = (uint)(DateTime.UtcNow - new DateTime(1970, 1, 1)).TotalSeconds;
+            EVC3_MMISetTimeATP.MMI_T_UTC = (uint) (DateTime.UtcNow - new DateTime(1970, 1, 1)).TotalSeconds;
             EVC3_MMISetTimeATP.MMI_T_ZONE_OFFSET = 0;
             EVC3_MMISetTimeATP.Send();
 
@@ -107,7 +107,7 @@ namespace Testcase
             EVC22_MMICurrentRBC.NID_RBC = 1234;
             EVC22_MMICurrentRBC.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
 
-            EVC22_MMICurrentRBC.NetworkCaptions = new List<string> { "RBC1", "RBC2", "RBC3" };
+            EVC22_MMICurrentRBC.NetworkCaptions = new List<string> {"RBC1", "RBC2", "RBC3"};
             EVC22_MMICurrentRBC.Send();
 
             //EVC22_MMICurrentRBC.DataElements = new List<Variables.DataElement>{
@@ -146,7 +146,7 @@ namespace Testcase
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
             EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
-            EVC8_MMIDriverMessage.MMI_Q_TEXT = 263;     // "#3 MO10 (Ack Staff Responsible Mode)"
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 263; // "#3 MO10 (Ack Staff Responsible Mode)"
             EVC8_MMIDriverMessage.Send();
 
             // Receive packet EVC-111 MMI_DRIVER_MESSAGE_ACK (Driver acknowledges SR Mode)

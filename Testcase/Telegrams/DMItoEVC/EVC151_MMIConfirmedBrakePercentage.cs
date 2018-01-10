@@ -10,7 +10,6 @@ namespace Testcase.Telegrams.DMItoEVC
 {
     public static class EVC151_MMIConfirmedBrakePercentage
     {
-
         private const string BASE_STRING = "DMI->ETCS: EVC-151 [MMI_CONFIRMED_BRAKE_PERCENTAGE]";
 
         private static SignalPool _pool;
@@ -45,8 +44,10 @@ namespace Testcase.Telegrams.DMItoEVC
                 // Check all static fields
 
                 _checkResult = _pool.SITR.CCUO.ETCS1ConfirmedBrakePercentage.MmiMBpOrigR.Value.Equals(MMI_M_BP_ORIG) &&
-                               _pool.SITR.CCUO.ETCS1ConfirmedBrakePercentage.MmiMBpCurrentR.Value.Equals(MMI_M_BP_CURRENT) &&
-                               _pool.SITR.CCUO.ETCS1ConfirmedBrakePercentage.MmiMBpMeasuredR.Value.Equals(MMI_M_BP_MEASURED);
+                               _pool.SITR.CCUO.ETCS1ConfirmedBrakePercentage.MmiMBpCurrentR.Value.Equals(
+                                   MMI_M_BP_CURRENT) &&
+                               _pool.SITR.CCUO.ETCS1ConfirmedBrakePercentage.MmiMBpMeasuredR.Value.Equals(
+                                   MMI_M_BP_MEASURED);
 
 
                 // Check if values match
@@ -62,11 +63,16 @@ namespace Testcase.Telegrams.DMItoEVC
                 // Else display the real value extracted from EVC-118
                 else
                 {
-
                     _pool.TraceError(BASE_STRING + Environment.NewLine +
-                                     "MMI_M_BP_ORIG = \"" + _pool.SITR.CCUO.ETCS1ConfirmedBrakePercentage.MmiMBpOrigR.Value + "\"" + Environment.NewLine +
-                                     "MMI_M_BP_CURRENT = \"" + _pool.SITR.CCUO.ETCS1ConfirmedBrakePercentage.MmiMBpCurrentR.Value + "\"" + Environment.NewLine +
-                                     "MMI_M_BP_MEASURED = \"" + _pool.SITR.CCUO.ETCS1ConfirmedBrakePercentage.MmiMBpMeasuredR.Value + "\"" + Environment.NewLine +
+                                     "MMI_M_BP_ORIG = \"" +
+                                     _pool.SITR.CCUO.ETCS1ConfirmedBrakePercentage.MmiMBpOrigR.Value + "\"" +
+                                     Environment.NewLine +
+                                     "MMI_M_BP_CURRENT = \"" +
+                                     _pool.SITR.CCUO.ETCS1ConfirmedBrakePercentage.MmiMBpCurrentR.Value + "\"" +
+                                     Environment.NewLine +
+                                     "MMI_M_BP_MEASURED = \"" +
+                                     _pool.SITR.CCUO.ETCS1ConfirmedBrakePercentage.MmiMBpMeasuredR.Value + "\"" +
+                                     Environment.NewLine +
                                      "Result: FAILED!");
                 }
             }

@@ -31,7 +31,6 @@ namespace Testcase.DMITestCases
     /// 1.Drive the train forward pass BG0 at position 10m.BG0: pkt 12, 21 and 27 (Entering FS) 
     /// 2.Drive the train forward pass BG1 at position 100m. Then,verify the display of PA track condition based on received packet EVC-32.BG1: pkt 68 (M_TRACKCOND = 7) (Switch off eddy current brake)
     /// 3.Verify the Track condition symbol in sub-Area D2 and B3
-
     /// 
     /// Used files:
     /// 17_4_7.tdg
@@ -119,7 +118,7 @@ namespace Testcase.DMITestCases
                 MMI_Q_TRACKCOND_ACTION_END = 0
             };
 
-            EVC32_MMITrackConditions.TrackConditions = new List<TrackCondition> { { trackCondition } };
+            EVC32_MMITrackConditions.TrackConditions = new List<TrackCondition> {{trackCondition}};
             EVC32_MMITrackConditions.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -135,7 +134,7 @@ namespace Testcase.DMITestCases
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 11000;
             // In diagram first scale line is at 125, bottom of symbol at ~75 (m)
             // O_TRACKCOND_ANNOUNCE - MMI_OBU_TR_O_TRAIN should == 7500
-            
+
             trackCondition.MMI_O_TRACKCOND_ANNOUNCE = 18500;
             EVC32_MMITrackConditions.Send();
 
@@ -196,7 +195,7 @@ namespace Testcase.DMITestCases
             Action: End of test
             Expected Result: 
             */
-            
+
             return GlobalTestResult;
         }
     }

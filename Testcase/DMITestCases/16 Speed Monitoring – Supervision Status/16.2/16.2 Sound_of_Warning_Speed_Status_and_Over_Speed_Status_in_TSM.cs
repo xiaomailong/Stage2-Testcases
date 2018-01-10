@@ -81,7 +81,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 5839 (partly: play sound S1 once); MMI_gen 4256 (partly: Sound S1 sound);(2) MM MMI_gen 5839 (partly: MMI_M_WARNING);
             */
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Overspeed_Status_Indication_Status_Target_Speed_Monitoring;
-            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 41;   //  increase speed    
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 41; //  increase speed    
             // Send??          
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer displaying 41 km/h?" + Environment.NewLine +
@@ -94,7 +94,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 5843 (partly: continuously play sound S2); MMI_gen 4256 (partly: Sound S2 sound); MMI_gen 11921 (partly: MMI_M_WARNING = 5);(2) MM MMI_gen 5843 (partly: MMI_M_WARNING);
             */
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Warning_Status_Indication_Status_Target_Speed_Monitoring;
-            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 45;   // increase speed  
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 45; // increase speed  
             // Send??
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer displaying 45 km/h?" + Environment.NewLine +
@@ -106,7 +106,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)     The sound ‘S2’ is muted
             Test Step Comment: (1) MMI_gen 11921 (partly: NEGATIVE, MMI_M_WARNING ≠ 5);
             */
-            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 40;   // decrease speed to 40 kmh  
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 40; // decrease speed to 40 kmh  
             // Send??
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer displaying 40 km/h?" + Environment.NewLine +

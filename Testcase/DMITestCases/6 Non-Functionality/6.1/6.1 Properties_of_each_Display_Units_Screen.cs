@@ -96,17 +96,20 @@ namespace Testcase.DMITestCases
                                (2) MMI_gen 258 (partly: defined minimum level);  
             */
 
-            DmiActions.ShowInstruction(this, @"Press and hold ‘-‘ button in order to decreasing brightness to defined minimum level");
+            DmiActions.ShowInstruction(this,
+                @"Press and hold ‘-‘ button in order to decreasing brightness to defined minimum level");
 
-            WaitForVerification("Verify that value of an input field is decreasing while button is pressed and the brightness is dimmer than before pressing button." + Environment.NewLine +
-                                "Verify that the minimum level of bightness is defined as 10.");
+            WaitForVerification(
+                "Verify that value of an input field is decreasing while button is pressed and the brightness is dimmer than before pressing button." +
+                Environment.NewLine +
+                "Verify that the minimum level of bightness is defined as 10.");
 
             /*
             Test Step 4
             Action: Press ‘Close’ button
             Expected Result: DMI displays Settings window
             */
-     
+
             DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
 
             DmiExpectedResults.DMI_displays_Settings_window(this);
@@ -142,10 +145,12 @@ namespace Testcase.DMITestCases
             The maximum level of bightness is defined as 100
             */
 
-            DmiActions.ShowInstruction(this, @"Press and hold ‘+‘ button in order to increasing brightness to defined maximum level");
+            DmiActions.ShowInstruction(this,
+                @"Press and hold ‘+‘ button in order to increasing brightness to defined maximum level");
 
             WaitForVerification("Verify the following:" + Environment.NewLine + Environment.NewLine +
-                                "- The value of an input field is increasing while button is pressed and the brightness is brighter than before pressing button." + Environment.NewLine +
+                                "- The value of an input field is increasing while button is pressed and the brightness is brighter than before pressing button." +
+                                Environment.NewLine +
                                 "- The maximum level of bightness is defined as 100.");
 
             /*
@@ -176,10 +181,13 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Settings window with luminance increased refer to entered data
             */
 
-            DmiActions.ShowInstruction(this, "Press and hold ‘+‘ button in order to increasing brightness to defined maximum level." + Environment.NewLine +
-                                             "Then, confirm entered data by pressing an input field");
+            DmiActions.ShowInstruction(this,
+                "Press and hold ‘+‘ button in order to increasing brightness to defined maximum level." +
+                Environment.NewLine +
+                "Then, confirm entered data by pressing an input field");
 
-            WaitForVerification(@"Confirm that DMI displays Settings window with luminance increased refer to entered data");
+            WaitForVerification(
+                @"Confirm that DMI displays Settings window with luminance increased refer to entered data");
 
             /*
             Test Step 10

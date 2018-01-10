@@ -80,7 +80,7 @@ namespace Testcase.DMITestCases
 
             DescriptionsList = new List<TrackDescription>()
             {
-                new TrackDescription { MMI_G_GRADIENT = 2, MMI_O_GRADIENT = 25000 }
+                new TrackDescription {MMI_G_GRADIENT = 2, MMI_O_GRADIENT = 25000}
             };
 
             EVC4_MMITrackDescription.TrackDescriptions = DescriptionsList;
@@ -197,8 +197,7 @@ namespace Testcase.DMITestCases
             return GlobalTestResult;
         }
 
-#region Send_XML_17_5_4_DMI_Test_Specification
-            
+        #region Send_XML_17_5_4_DMI_Test_Specification
 
         private void XML_17_5_4_a()
         {
@@ -235,7 +234,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Gradient Profile is removed from area D.");
         }
-        
+
         private void XML_17_5_4_b()
         {
             // Step 7
@@ -260,8 +259,8 @@ namespace Testcase.DMITestCases
         {
             // Step 9
             DescriptionsList.Clear();
-            DescriptionsList.Add(new TrackDescription { MMI_G_GRADIENT = 22, MMI_O_GRADIENT = 16176 });
-            DescriptionsList.Add(new TrackDescription { MMI_G_GRADIENT = 11, MMI_O_GRADIENT = 15259 });
+            DescriptionsList.Add(new TrackDescription {MMI_G_GRADIENT = 22, MMI_O_GRADIENT = 16176});
+            DescriptionsList.Add(new TrackDescription {MMI_G_GRADIENT = 11, MMI_O_GRADIENT = 15259});
 
             EVC4_MMITrackDescription.MMI_G_GRADIENT_CURR = 22;
             EVC4_MMITrackDescription.MMI_V_MRSP_CURR = 11111;
@@ -275,7 +274,7 @@ namespace Testcase.DMITestCases
             // 32 descriptions: invalid list
             for (int dl = 0; dl < 30; dl++)
             {
-                DescriptionsList.Add(new TrackDescription { MMI_G_GRADIENT = 22, MMI_O_GRADIENT = 15259 });
+                DescriptionsList.Add(new TrackDescription {MMI_G_GRADIENT = 22, MMI_O_GRADIENT = 15259});
             }
 
             EVC4_MMITrackDescription.MMI_G_GRADIENT_CURR = 10;
@@ -283,7 +282,6 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Gradient Profile values displayed are still 11 and 22.");
-
         }
 
         // Incomplete: spec and xml files area at variance with DMI_RS_ETCS and VSIS documents
@@ -296,7 +294,7 @@ namespace Testcase.DMITestCases
             descriptionElement = DescriptionsList[1];
             descriptionElement.MMI_G_GRADIENT = 1;
             descriptionElement.MMI_O_GRADIENT = 51712;
-            
+
             EVC4_MMITrackDescription.MMI_G_GRADIENT_CURR = 20;
             EVC4_MMITrackDescription.MMI_V_MRSP_CURR = 11111;
             EVC4_MMITrackDescription.Send();
@@ -314,7 +312,7 @@ namespace Testcase.DMITestCases
             EVC4_MMITrackDescription.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The Gradient Profile values displayed are still 11 and 22.");            
+                                "1. The Gradient Profile values displayed are still 11 and 22.");
         }
 
         // Incomplete?: spec and xml files area at variance with DMI_RS_ETCS and VSIS documents
@@ -334,7 +332,7 @@ namespace Testcase.DMITestCases
             // Add another 31 speed discontinuities => invalid set
             for (int dl = 0; dl < 31; dl++)
             {
-                DescriptionsList.Add(new TrackDescription {MMI_V_MRSP = 3000, MMI_O_MRSP = 16176 });
+                DescriptionsList.Add(new TrackDescription {MMI_V_MRSP = 3000, MMI_O_MRSP = 16176});
             }
 
             EVC4_MMITrackDescription.MMI_G_GRADIENT_CURR = 2;
@@ -342,10 +340,8 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. One Gradient Profile is still displayed in grey, with value (Uphill) of 20.");
-
         }
 
         #endregion
-
     }
 }

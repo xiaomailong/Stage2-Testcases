@@ -97,15 +97,18 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The ‘click’ sound is played once." + Environment.NewLine +
-                                @"2. The ‘Delete’ button is displayed pressed and immediately changed to enabled." + Environment.NewLine +
+                                @"2. The ‘Delete’ button is displayed pressed and immediately changed to enabled." +
+                                Environment.NewLine +
                                 @"3. The last character (‘8’) of the Driver ID is deleted from the Input field");
 
 
             DmiActions.ShowInstruction(this, @"Press and hold the ‘Delete’ button for 2s");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘Delete’ button is displayed pressed and immediately changed to enabled repeatedly." + Environment.NewLine +
-                                "2. Characters are repeatedly deleted from the end of the Input field" + Environment.NewLine +
+                                @"1. The ‘Delete’ button is displayed pressed and immediately changed to enabled repeatedly." +
+                                Environment.NewLine +
+                                "2. Characters are repeatedly deleted from the end of the Input field" +
+                                Environment.NewLine +
                                 @"3. The ‘click’ sound is played repeatedly while the ‘Delete’ button is pressed.");
 
             /*
@@ -127,19 +130,26 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Enter and accept Driver ID");
 
             EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Disabled;
-            EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new Variables.MMI_Q_LEVEL_NTC_ID[] { Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level };
-            EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new Variables.MMI_M_CURRENT_LEVEL[] { Variables.MMI_M_CURRENT_LEVEL.NotLastUsedLevel };
-            EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = new Variables.MMI_M_LEVEL_FLAG[] { Variables.MMI_M_LEVEL_FLAG.MarkedLevel };
-            EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = new Variables.MMI_M_INHIBITED_LEVEL[] { Variables.MMI_M_INHIBITED_LEVEL.NotInhibited };
-            EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = new Variables.MMI_M_INHIBIT_ENABLE[] { Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting };
-            EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new Variables.MMI_M_LEVEL_NTC_ID[] { Variables.MMI_M_LEVEL_NTC_ID.L1 };
+            EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new Variables.MMI_Q_LEVEL_NTC_ID[]
+                {Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level};
+            EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new Variables.MMI_M_CURRENT_LEVEL[]
+                {Variables.MMI_M_CURRENT_LEVEL.NotLastUsedLevel};
+            EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = new Variables.MMI_M_LEVEL_FLAG[]
+                {Variables.MMI_M_LEVEL_FLAG.MarkedLevel};
+            EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = new Variables.MMI_M_INHIBITED_LEVEL[]
+                {Variables.MMI_M_INHIBITED_LEVEL.NotInhibited};
+            EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = new Variables.MMI_M_INHIBIT_ENABLE[]
+                {Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting};
+            EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new Variables.MMI_M_LEVEL_NTC_ID[]
+                {Variables.MMI_M_LEVEL_NTC_ID.L1};
             EVC20_MMISelectLevel.Send();
 
             DmiActions.ShowInstruction(this, " Select and accept Level 1");
 
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;
-            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Start | Variables.standardFlags;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH =
+                EVC30_MMIRequestEnable.EnabledRequests.Start | Variables.standardFlags;
             EVC30_MMIRequestEnable.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -233,7 +243,8 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays the last page of Train data window.Verify the following information,The disabled Next button NA18.2 is display in area G. The enalbed Previous button NA18 is display in area G
             Test Step Comment: (1) MMI_gen 4394 (partly: next, disabled); MMI_gen 4396 (partly: next, NA18.2);(2) MMI_gen 4392 (partly: bullet d, previous button, NA18); MMI_gen 4396 (partly: previous, NA18);
             */
-            DmiActions.ShowInstruction(this, @"Press the ‘Next’ button repeatedly until the Train data window does not change");
+            DmiActions.ShowInstruction(this,
+                @"Press the ‘Next’ button repeatedly until the Train data window does not change");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the last page of the Train data window." + Environment.NewLine +
@@ -270,7 +281,8 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The Previous button is shown as pressed state and no sound ‘Click’ is played
             Test Step Comment: (1) MMI_gen 9391 (partly: Previous, MMI_gen 4382 (partly: state ‘Pressed’ when slide back, no sound));
             */
-            DmiActions.ShowInstruction(this, @"Whilst keeping the ‘Previous’ button pressed, drag it back inside its area");
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the ‘Previous’ button pressed, drag it back inside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Previous’ button is displayed pressed." + Environment.NewLine +
@@ -304,7 +316,7 @@ namespace Testcase.DMITestCases
             Action: End of test
             Expected Result: 
             */
-            
+
             return GlobalTestResult;
         }
     }

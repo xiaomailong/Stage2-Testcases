@@ -82,21 +82,25 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.Send();
 
             EVC22_MMICurrentRBC.MMI_NID_WINDOW = 5;
-            EVC22_MMICurrentRBC.Send(); 
+            EVC22_MMICurrentRBC.Send();
 
-            DmiActions.ShowInstruction(this, @"Press and hold the ‘Radio Network ID’ button for at least 2s, then release the button");
+            DmiActions.ShowInstruction(this,
+                @"Press and hold the ‘Radio Network ID’ button for at least 2s, then release the button");
 
             EVC101_MMIDriverRequest.CheckMRequestPressed = MMI_M_REQUEST.StartNetworkID;
 
             EVC22_MMICurrentRBC.MMI_NID_WINDOW = 9;
-            EVC22_MMICurrentRBC.NetworkCaptions = new List<string> { "GSMR-A", "GSMR-B" };
-            EVC22_MMICurrentRBC.DataElements = new List<DataElement> { new DataElement { Identifier = 0, QDataCheck = 23, EchoText = "" },
-                                                                       new DataElement { Identifier = 1, QDataCheck = 24, EchoText = "" } };
+            EVC22_MMICurrentRBC.NetworkCaptions = new List<string> {"GSMR-A", "GSMR-B"};
+            EVC22_MMICurrentRBC.DataElements = new List<DataElement>
+            {
+                new DataElement {Identifier = 0, QDataCheck = 23, EchoText = ""},
+                new DataElement {Identifier = 1, QDataCheck = 24, EchoText = ""}
+            };
             EVC22_MMICurrentRBC.Send();
 
             DmiActions.ShowInstruction(this, @"Press the ‘Close’ button");
 
-            EVC101_MMIDriverRequest.CheckMRequestPressed = MMI_M_REQUEST.ExitRBCNetworkID; 
+            EVC101_MMIDriverRequest.CheckMRequestPressed = MMI_M_REQUEST.ExitRBCNetworkID;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Radio network ID window.");
@@ -111,7 +115,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press the ‘Close’ button");
 
             EVC101_MMIDriverRequest.CheckMRequestPressed = MMI_M_REQUEST.ExitRBCdataEntry;
-            
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the RBC data window.");
 
@@ -126,7 +130,8 @@ namespace Testcase.DMITestCases
             EVC22_MMICurrentRBC.MMI_M_BUTTONS = EVC22_MMICurrentRBC.EVC22BUTTONS.BTN_YES_DATA_ENTRY_COMPLETE;
             EVC22_MMICurrentRBC.Send();
 
-            DmiActions.ShowInstruction(this, @"Enter ‘6996969’ for RBC ID, ‘0031840880100’ for RBC Phone and press the 'Yes' button");
+            DmiActions.ShowInstruction(this,
+                @"Enter ‘6996969’ for RBC ID, ‘0031840880100’ for RBC Phone and press the 'Yes' button");
 
             // DMI_RS_ETCS says if 0 network items this packet closes RBC Contact window
             EVC22_MMICurrentRBC.MMI_NID_WINDOW = 9;
@@ -146,12 +151,18 @@ namespace Testcase.DMITestCases
 
             EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Disabled;
 
-            EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new Variables.MMI_Q_LEVEL_NTC_ID[] { Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level };
-            EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new Variables.MMI_M_CURRENT_LEVEL[] { Variables.MMI_M_CURRENT_LEVEL.NotLastUsedLevel };
-            EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = new Variables.MMI_M_LEVEL_FLAG[] { Variables.MMI_M_LEVEL_FLAG.MarkedLevel };
-            EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = new Variables.MMI_M_INHIBITED_LEVEL[] { Variables.MMI_M_INHIBITED_LEVEL.NotInhibited };
-            EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = new Variables.MMI_M_INHIBIT_ENABLE[] { Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting };
-            EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new Variables.MMI_M_LEVEL_NTC_ID[] { Variables.MMI_M_LEVEL_NTC_ID.L2 };
+            EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new Variables.MMI_Q_LEVEL_NTC_ID[]
+                {Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level};
+            EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new Variables.MMI_M_CURRENT_LEVEL[]
+                {Variables.MMI_M_CURRENT_LEVEL.NotLastUsedLevel};
+            EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = new Variables.MMI_M_LEVEL_FLAG[]
+                {Variables.MMI_M_LEVEL_FLAG.MarkedLevel};
+            EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = new Variables.MMI_M_INHIBITED_LEVEL[]
+                {Variables.MMI_M_INHIBITED_LEVEL.NotInhibited};
+            EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = new Variables.MMI_M_INHIBIT_ENABLE[]
+                {Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting};
+            EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new Variables.MMI_M_LEVEL_NTC_ID[]
+                {Variables.MMI_M_LEVEL_NTC_ID.L2};
             EVC20_MMISelectLevel.Send();
 
             DmiActions.ShowInstruction(this, @"Select and confirm Level 2");
@@ -176,12 +187,18 @@ namespace Testcase.DMITestCases
 
             EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Disabled;
 
-            EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new Variables.MMI_Q_LEVEL_NTC_ID[] { Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level };
-            EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new Variables.MMI_M_CURRENT_LEVEL[] { Variables.MMI_M_CURRENT_LEVEL.NotLastUsedLevel };
-            EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = new Variables.MMI_M_LEVEL_FLAG[] { Variables.MMI_M_LEVEL_FLAG.MarkedLevel };
-            EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = new Variables.MMI_M_INHIBITED_LEVEL[] { Variables.MMI_M_INHIBITED_LEVEL.NotInhibited };
-            EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = new Variables.MMI_M_INHIBIT_ENABLE[] { Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting };
-            EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new Variables.MMI_M_LEVEL_NTC_ID[] { Variables.MMI_M_LEVEL_NTC_ID.L2 };
+            EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new Variables.MMI_Q_LEVEL_NTC_ID[]
+                {Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level};
+            EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new Variables.MMI_M_CURRENT_LEVEL[]
+                {Variables.MMI_M_CURRENT_LEVEL.NotLastUsedLevel};
+            EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = new Variables.MMI_M_LEVEL_FLAG[]
+                {Variables.MMI_M_LEVEL_FLAG.MarkedLevel};
+            EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = new Variables.MMI_M_INHIBITED_LEVEL[]
+                {Variables.MMI_M_INHIBITED_LEVEL.NotInhibited};
+            EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = new Variables.MMI_M_INHIBIT_ENABLE[]
+                {Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting};
+            EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new Variables.MMI_M_LEVEL_NTC_ID[]
+                {Variables.MMI_M_LEVEL_NTC_ID.L2};
             EVC20_MMISelectLevel.Send();
 
             DmiActions.ShowInstruction(this, @"Select and confirm Level 2");

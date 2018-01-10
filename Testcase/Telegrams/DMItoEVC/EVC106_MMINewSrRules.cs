@@ -46,25 +46,29 @@ namespace Testcase.Telegrams.DMItoEVC
                 // Check all static fields
                 _checkResult = _pool.SITR.CCUO.ETCS1NewSrRules.MmiLStff.Value.Equals(MMI_L_STFF) &
                                _pool.SITR.CCUO.ETCS1NewSrRules.MmiVStff.Value.Equals(MMI_V_STFF) &
-                               _pool.SITR.CCUO.ETCS1NewSrRules.MmiMButtons.Value.Equals((byte)MMI_M_BUTTONS);
+                               _pool.SITR.CCUO.ETCS1NewSrRules.MmiMButtons.Value.Equals((byte) MMI_M_BUTTONS);
 
                 // If check passes
                 if (_checkResult)
                 {
                     _pool.TraceReport(baseString0 + Environment.NewLine +
-                        "MMI_L_STFF = " + MMI_L_STFF + Environment.NewLine +
-                        "MMI_V_STFF = " + MMI_V_STFF + Environment.NewLine +
-                        "MMI_M_BUTTONS = \"" + MMI_M_BUTTONS + "\"" + Environment.NewLine +                       
-                        "Result: PASSED.");
+                                      "MMI_L_STFF = " + MMI_L_STFF + Environment.NewLine +
+                                      "MMI_V_STFF = " + MMI_V_STFF + Environment.NewLine +
+                                      "MMI_M_BUTTONS = \"" + MMI_M_BUTTONS + "\"" + Environment.NewLine +
+                                      "Result: PASSED.");
                 }
                 // Else display the real value extracted from EVC-106
                 else
                 {
                     _pool.TraceError(baseString0 + Environment.NewLine +
-                        "MMI_L_STFF = \"" + _pool.SITR.CCUO.ETCS1NewSrRules.MmiLStff.Value + "\"" + Environment.NewLine +
-                        "MMI_V_STFF = \"" + _pool.SITR.CCUO.ETCS1NewSrRules.MmiVStff.Value + "\"" + Environment.NewLine +
-                        "MMI_M_BUTTONS = \"" + Enum.GetName(typeof(MMI_M_BUTTONS_SR_RULES), _pool.SITR.CCUO.ETCS1NewSrRules.MmiMButtons.Value) + Environment.NewLine +
-                        "Result: FAILED!");
+                                     "MMI_L_STFF = \"" + _pool.SITR.CCUO.ETCS1NewSrRules.MmiLStff.Value + "\"" +
+                                     Environment.NewLine +
+                                     "MMI_V_STFF = \"" + _pool.SITR.CCUO.ETCS1NewSrRules.MmiVStff.Value + "\"" +
+                                     Environment.NewLine +
+                                     "MMI_M_BUTTONS = \"" +
+                                     Enum.GetName(typeof(MMI_M_BUTTONS_SR_RULES),
+                                         _pool.SITR.CCUO.ETCS1NewSrRules.MmiMButtons.Value) + Environment.NewLine +
+                                     "Result: FAILED!");
                 }
 
                 // Compare number of data element.                
@@ -75,34 +79,38 @@ namespace Testcase.Telegrams.DMItoEVC
 
                     for (var _nidDataIndex = 0; _nidDataIndex < MMI_NID_DATA.Count; _nidDataIndex++)
                     {
-                        _nidData = (byte)_pool.SITR.Client.Read($"{baseString1}{_nidDataIndex}_MmiNidData");
+                        _nidData = (byte) _pool.SITR.Client.Read($"{baseString1}{_nidDataIndex}_MmiNidData");
                         // Compare each data element
                         _checkResult = _nidData.Equals(MMI_NID_DATA[_nidDataIndex]);
 
                         //if comparaison matches
                         if (_checkResult)
                         {
-                            _pool.TraceReport($"MMI_NID_DATA{_nidDataIndex} = \"{MMI_NID_DATA[_nidDataIndex]}\" Result: PASSED!");
+                            _pool.TraceReport(
+                                $"MMI_NID_DATA{_nidDataIndex} = \"{MMI_NID_DATA[_nidDataIndex]}\" Result: PASSED!");
                         }
                         // Else display the real value extracted from EVC-106
                         else
                         {
                             _pool.TraceError($"MMI_NID_DATA{_nidDataIndex} = \"{_nidData}\" Result: FAILED!");
-                        }                        
+                        }
                     }
                 }
                 else
                 {
                     // Else display the real value extracted from EVC-106
                     _pool.TraceError(baseString0 + Environment.NewLine +
-                       "MMI_N_DATA_ELEMENTS = \"" + _pool.SITR.CCUO.ETCS1NewSrRules.MmiNDataElements.Value + "\" Result: FAILED!");
+                                     "MMI_N_DATA_ELEMENTS = \"" +
+                                     _pool.SITR.CCUO.ETCS1NewSrRules.MmiNDataElements.Value + "\" Result: FAILED!");
 
                     // Display data elements value indicating that the test has failed
-                    for (var _nidDataIndex = 0; _nidDataIndex < _pool.SITR.CCUO.ETCS1NewSrRules.MmiNDataElements.Value; _nidDataIndex++)
+                    for (var _nidDataIndex = 0;
+                        _nidDataIndex < _pool.SITR.CCUO.ETCS1NewSrRules.MmiNDataElements.Value;
+                        _nidDataIndex++)
                     {
-                        _nidData = (byte)_pool.SITR.Client.Read($"{baseString1}{_nidDataIndex}_MmiNidData");
+                        _nidData = (byte) _pool.SITR.Client.Read($"{baseString1}{_nidDataIndex}_MmiNidData");
                         _pool.TraceError($"{baseString0}" + Environment.NewLine +
-                            $"MMI_NID_DATA{_nidDataIndex} = \"{_nidData}\" Result: FAILED!");
+                                         $"MMI_NID_DATA{_nidDataIndex} = \"{_nidData}\" Result: FAILED!");
                     }
                 }
             }
@@ -177,6 +185,5 @@ namespace Testcase.Telegrams.DMItoEVC
         /// Note: the definition is according to preliminary SubSet-121 'NID_DATA' definition.
         /// </summary>
         public static List<byte> MMI_NID_DATA { get; set; }
-       
     }
 }

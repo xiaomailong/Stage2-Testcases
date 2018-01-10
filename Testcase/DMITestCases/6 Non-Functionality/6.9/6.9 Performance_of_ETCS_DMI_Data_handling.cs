@@ -76,7 +76,7 @@ namespace Testcase.DMITestCases
             Action: Perform SoM in SR mode, Level 2
             Expected Result: RCI logs the concerned activities as specified in the precondition
             */
-            
+
             DmiActions.Perform_SoM_in_SR_mode_Level_2(this);
 
 

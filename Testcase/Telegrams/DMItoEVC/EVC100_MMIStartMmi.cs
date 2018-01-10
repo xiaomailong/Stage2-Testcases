@@ -53,8 +53,10 @@ namespace Testcase.Telegrams.DMItoEVC
                 if (_checkResult)
                 {
                     _pool.TraceReport($"{BaseString}:" + Environment.NewLine +
-                                      $"MMI_M_IF_VER = {(_mIfVer & 0xFF000000) >> 24}.{(_mIfVer & 0x00FF0000) >> 16}.{(_mIfVer & 0x0000FF00) >> 8} " + Environment.NewLine +
-                                      $"MMI_M_SW_VER = {(_mSwVer & 0xFF000000) >> 24}.{(_mSwVer & 0x00FF0000) >> 16}.{(_mSwVer & 0x0000FF00) >> 8} " + Environment.NewLine +
+                                      $"MMI_M_IF_VER = {(_mIfVer & 0xFF000000) >> 24}.{(_mIfVer & 0x00FF0000) >> 16}.{(_mIfVer & 0x0000FF00) >> 8} " +
+                                      Environment.NewLine +
+                                      $"MMI_M_SW_VER = {(_mSwVer & 0xFF000000) >> 24}.{(_mSwVer & 0x00FF0000) >> 16}.{(_mSwVer & 0x0000FF00) >> 8} " +
+                                      Environment.NewLine +
                                       $"MMI_START_STATUS = {_mStartStatus} " + Environment.NewLine +
                                       "Result = PASSED.");
                 }
@@ -62,10 +64,13 @@ namespace Testcase.Telegrams.DMItoEVC
                 else
                 {
                     _pool.TraceError($"{BaseString}:" + Environment.NewLine +
-                                      $"MMI_M_IF_VER = {(_pool.SITR.CCUO.ETCS1StartMmi.MmiMIfVer.Value & 0xFF000000) >> 24}.{(_pool.SITR.CCUO.ETCS1StartMmi.MmiMIfVer.Value & 0x00FF0000) >> 16}.{(_pool.SITR.CCUO.ETCS1StartMmi.MmiMIfVer.Value & 0x0000FF00) >> 8} " + Environment.NewLine +
-                                      $"MMI_M_SW_VER = {(_pool.SITR.CCUO.ETCS1StartMmi.MmiMSwVer.Value & 0xFF000000) >> 24}.{(_pool.SITR.CCUO.ETCS1StartMmi.MmiMSwVer.Value & 0x00FF0000) >> 16}.{(_pool.SITR.CCUO.ETCS1StartMmi.MmiMSwVer.Value & 0x0000FF00) >> 8} " + Environment.NewLine +
-                                      $"MMI_START_STATUS = {_pool.SITR.CCUO.ETCS1StartMmi.MmiMStartStatus.Value} " + Environment.NewLine +
-                                      "Result: FAILED.");
+                                     $"MMI_M_IF_VER = {(_pool.SITR.CCUO.ETCS1StartMmi.MmiMIfVer.Value & 0xFF000000) >> 24}.{(_pool.SITR.CCUO.ETCS1StartMmi.MmiMIfVer.Value & 0x00FF0000) >> 16}.{(_pool.SITR.CCUO.ETCS1StartMmi.MmiMIfVer.Value & 0x0000FF00) >> 8} " +
+                                     Environment.NewLine +
+                                     $"MMI_M_SW_VER = {(_pool.SITR.CCUO.ETCS1StartMmi.MmiMSwVer.Value & 0xFF000000) >> 24}.{(_pool.SITR.CCUO.ETCS1StartMmi.MmiMSwVer.Value & 0x00FF0000) >> 16}.{(_pool.SITR.CCUO.ETCS1StartMmi.MmiMSwVer.Value & 0x0000FF00) >> 8} " +
+                                     Environment.NewLine +
+                                     $"MMI_START_STATUS = {_pool.SITR.CCUO.ETCS1StartMmi.MmiMStartStatus.Value} " +
+                                     Environment.NewLine +
+                                     "Result: FAILED.");
                 }
             }
             // Show generic DMI -> EVC telegram failure

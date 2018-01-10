@@ -57,7 +57,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
             TraceInfo("This test case requires a specific configuration - " +
-                        "See Precondition requirements. If this is not done manually, the test may fail!");
+                      "See Precondition requirements. If this is not done manually, the test may fail!");
             /*
             Test Step 1
             Action: Activate Cabin AEnter Driver ID and perform brake testSelect and confirm Level 1
@@ -68,7 +68,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press the ‘Main’ button");
 
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;       // Main window
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main; // Main window
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.TrainData;
             EVC30_MMIRequestEnable.Send();
 
@@ -82,9 +82,9 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press ‘Train data’ button");
 
             DmiActions.Send_EVC6_MMICurrentTrainData_FixedDataEntry(this,
-                                                                    new[] { "FLU", "RLU", "Rescue" },
-                                                                    1);
-                
+                new[] {"FLU", "RLU", "Rescue"},
+                1);
+
             DmiExpectedResults.Train_data_window_displayed(this);
 
             /*
@@ -92,7 +92,8 @@ namespace Testcase.DMITestCases
             Action: Select dedicated keyboard button which have different label from an input field without confirmation
             Expected Result: The value of input field is changed refer to pressed button
             */
-            DmiActions.ShowInstruction(this, "Press the <type 2> key on the dedicated keyboard without confirming the value");
+            DmiActions.ShowInstruction(this,
+                "Press the <type 2> key on the dedicated keyboard without confirming the value");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field displays the value pressed.");
@@ -106,8 +107,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press the ‘Close’ button, then press Train data button");
 
             DmiActions.Send_EVC6_MMICurrentTrainData_FixedDataEntry(this,
-                                                                    new[] { "FLU", "RLU", "Rescue" },
-                                                                    1);
+                new[] {"FLU", "RLU", "Rescue"},
+                1);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Train data window." + Environment.NewLine +
@@ -118,7 +119,8 @@ namespace Testcase.DMITestCases
             Action: Select and confirm dedicated keyboard button which have different label from an input field. Then, press ‘Yes’ button
             Expected Result: DMI displays Train data validation window
             */
-            DmiActions.ShowInstruction(this, @"Press the <type 2> key on the dedicated keyboard, then press ‘Yes’ button");
+            DmiActions.ShowInstruction(this,
+                @"Press the <type 2> key on the dedicated keyboard, then press ‘Yes’ button");
 
             DmiActions.Send_EVC10_MMIEchoedTrainData_FixedDataEntry(this, Variables.paramEvc6FixedTrainsetCaptions);
 
@@ -145,8 +147,8 @@ namespace Testcase.DMITestCases
 
 
             DmiActions.Send_EVC6_MMICurrentTrainData_FixedDataEntry(this,
-                                                                    new[] { "FLU", "RLU", "Rescue" },
-                                                                    1);
+                new[] {"FLU", "RLU", "Rescue"},
+                1);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Train data window." + Environment.NewLine +
@@ -158,7 +160,8 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Main window.
             Test Step Comment:
             */
-            DmiActions.ShowInstruction(this, @"Press the ‘type 2’ key on the dedicated keyboard, then press ‘Yes’ button");
+            DmiActions.ShowInstruction(this,
+                @"Press the ‘type 2’ key on the dedicated keyboard, then press ‘Yes’ button");
 
             DmiActions.Send_EVC10_MMIEchoedTrainData_FixedDataEntry(this, Variables.paramEvc6FixedTrainsetCaptions);
 
@@ -176,8 +179,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press ‘Train data’ button");
 
             DmiActions.Send_EVC6_MMICurrentTrainData_FixedDataEntry(this,
-                                                                    new[] { "FLU", "RLU", "Rescue" },
-                                                                    2);
+                new[] {"FLU", "RLU", "Rescue"},
+                2);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Train data window." + Environment.NewLine +
@@ -190,7 +193,6 @@ namespace Testcase.DMITestCases
             */
 
             return GlobalTestResult;
-
         }
     }
 }

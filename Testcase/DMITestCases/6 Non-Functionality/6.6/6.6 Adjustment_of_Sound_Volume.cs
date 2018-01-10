@@ -72,7 +72,7 @@ namespace Testcase.DMITestCases
 
             DmiActions.Activate_Cabin_1(this);
             DmiActions.Set_Driver_ID(this, "1234");
-      
+
             DmiExpectedResults.Driver_ID_window_displayed(this);
 
 
@@ -96,7 +96,8 @@ namespace Testcase.DMITestCases
             */
 
             DmiActions.ShowInstruction(this, @"Press ‘Volume’ button");
-            WaitForVerification("The Volume window is presented to the driver to adjust the DMI acoustic and the Volume window is displayed with the default volume as 70.");
+            WaitForVerification(
+                "The Volume window is presented to the driver to adjust the DMI acoustic and the Volume window is displayed with the default volume as 70.");
 
             /*
             Test Step 4
@@ -109,7 +110,8 @@ namespace Testcase.DMITestCases
                                    MMI_gen 3094 (partly: 2nd bullet); 
             */
 
-            DmiActions.ShowInstruction(this, @"Adjust acoustic volume by press and hold ‘-‘ button to the minimum level in order to decrease the acoustic volume");
+            DmiActions.ShowInstruction(this,
+                @"Adjust acoustic volume by press and hold ‘-‘ button to the minimum level in order to decrease the acoustic volume");
             WaitForVerification("The adjusted acoustic volume is used by DMI." + Environment.NewLine +
                                 "Verify that the minimum level of the volume is 10, as defined in the precondition and the ‘Click’ sound is lower and lower(never quiet)");
 
@@ -126,7 +128,8 @@ namespace Testcase.DMITestCases
             DmiActions.Open_the_Settings_window(this);
 
             DmiExpectedResults.DMI_displays_Settings_window(this);
-            WaitForVerification("Verify that the acoustic sound from driver clicking button remains as a minimum level that was adjusted.");
+            WaitForVerification(
+                "Verify that the acoustic sound from driver clicking button remains as a minimum level that was adjusted.");
 
             /*
             Test Step 6
@@ -138,7 +141,8 @@ namespace Testcase.DMITestCases
             */
 
             DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
-            WaitForVerification("The acoustic sound from driver clicking button remains as a minimum level that was adjusted");
+            WaitForVerification(
+                "The acoustic sound from driver clicking button remains as a minimum level that was adjusted");
 
             /*
             Test Step 7
@@ -173,7 +177,8 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 3094 (partly: recommended range 0..100 percentage) MMI_gen 257 (partly: driver’s adjustment of the volume);               MMI_gen 3093 (partly: sound ‘Click’);(2) MMI_gen 257 (partly: adjusted (after saved));               MMI_gen 3093 (partly: sound ‘Click’);     
             */
 
-            DmiActions.ShowInstruction(this, @"Repeat step 1-8 with press and hold ‘+’ button to the maximum level instead");
+            DmiActions.ShowInstruction(this,
+                @"Repeat step 1-8 with press and hold ‘+’ button to the maximum level instead");
 
             /*
             Test Step 10

@@ -1,9 +1,11 @@
 ﻿#region usings
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using CL345;
+
 #endregion
 
 namespace Testcase.Telegrams.EVCtoDMI
@@ -56,7 +58,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             set
             {
                 uint vbcCode = value;
-                
+
                 _pool.SITR.ETCS1.EchoedRemoveVbcData.MmiMVbcCodeR.Value = ~vbcCode;
             }
         }

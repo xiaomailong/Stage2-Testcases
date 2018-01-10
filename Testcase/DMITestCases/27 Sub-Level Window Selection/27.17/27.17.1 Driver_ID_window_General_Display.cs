@@ -70,7 +70,7 @@ namespace Testcase.DMITestCases
 
             // Wait 10s
             this.Wait_Realtime(10000);
-            
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI does not display the Driver ID window");
 
@@ -85,18 +85,28 @@ namespace Testcase.DMITestCases
             // Force display of the DriverID window
             XML_22_17(msgType.typea);
 
-            WaitForVerification("Check the following (* indicates sub-areas drawn as one area):" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the Main window and, after a pause, the Driver ID window with the title ‘Driver ID’." + Environment.NewLine +
-                                "   as a half-grid array (with 4 rows of 3 keys) in areas D, F and G, with 3 layers on the right side of the screen." + Environment.NewLine +
+            WaitForVerification("Check the following (* indicates sub-areas drawn as one area):" + Environment.NewLine +
+                                Environment.NewLine +
+                                "1. DMI displays the Main window and, after a pause, the Driver ID window with the title ‘Driver ID’." +
+                                Environment.NewLine +
+                                "   as a half-grid array (with 4 rows of 3 keys) in areas D, F and G, with 3 layers on the right side of the screen." +
+                                Environment.NewLine +
                                 "2. Layer 0 is displayed in areas D, F, G, Y and Z." + Environment.NewLine +
-                                "3. Layer 1 is displayed in areas A1, (A2 + A3)*, A4, B*, C1, (C2 + C3 + C4)*, C5, C6, C7, C8, C9, E1, E2, E3, E4, (E5 - E9)*." + Environment.NewLine +
+                                "3. Layer 1 is displayed in areas A1, (A2 + A3)*, A4, B*, C1, (C2 + C3 + C4)*, C5, C6, C7, C8, C9, E1, E2, E3, E4, (E5 - E9)*." +
+                                Environment.NewLine +
                                 "4. Layer 2 is displayed in areas B3, B4, B5, B6, B7." + Environment.NewLine +
-                                "5. The Driver ID window displays a ‘Settings’ button, symbol SE04, and a ‘Train running number’ button with the label ‘TRN’." + Environment.NewLine +
-                                "6. A data entry window with one data entry field covers areas D, F and G." + Environment.NewLine +
-                                @"7. The ‘Settings’ button is displayed in the bottom right-hand corner of areas D, F & G." + Environment.NewLine +
-                                @"8. The ‘Train running number’ button is displayed to the left of the ‘Settings’ button." + Environment.NewLine +
-                                "9. The data input field is displayed in areas D & F with only a Data part." + Environment.NewLine +
-                                "10. A keypad is displayed below the data input field with (enabled) keys <1>, <2 abc> to <9 wxyz>, <Del> (symbol NA21), <0> and a (disabled) <Decimal_Separator> key." + Environment.NewLine +
+                                "5. The Driver ID window displays a ‘Settings’ button, symbol SE04, and a ‘Train running number’ button with the label ‘TRN’." +
+                                Environment.NewLine +
+                                "6. A data entry window with one data entry field covers areas D, F and G." +
+                                Environment.NewLine +
+                                @"7. The ‘Settings’ button is displayed in the bottom right-hand corner of areas D, F & G." +
+                                Environment.NewLine +
+                                @"8. The ‘Train running number’ button is displayed to the left of the ‘Settings’ button." +
+                                Environment.NewLine +
+                                "9. The data input field is displayed in areas D & F with only a Data part." +
+                                Environment.NewLine +
+                                "10. A keypad is displayed below the data input field with (enabled) keys <1>, <2 abc> to <9 wxyz>, <Del> (symbol NA21), <0> and a (disabled) <Decimal_Separator> key." +
+                                Environment.NewLine +
                                 @"11. The Driver ID window displays a (disabled) ‘Close’ button, symbol NA12, in the bottom left corner of areas D, F & G.");
 
             /*
@@ -107,7 +117,8 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Press the ‘TRN’ button in the Driver ID window");
 
-            EVC101_MMIDriverRequest.CheckMRequestReleased = Telegrams.EVCtoDMI.Variables.MMI_M_REQUEST.ChangeTrainRunningNumber;
+            EVC101_MMIDriverRequest.CheckMRequestReleased =
+                Telegrams.EVCtoDMI.Variables.MMI_M_REQUEST.ChangeTrainRunningNumber;
 
             EVC16_CurrentTrainNumber.TrainRunningNumber = 1;
             EVC16_CurrentTrainNumber.Send();
@@ -130,8 +141,9 @@ namespace Testcase.DMITestCases
             Expected Result: The input field displays the number associated to the data key according to the pressings in state Pressed
             Test Step Comment: (1) MMI_gen 8033 (partly: MMI_gen 4913);
             */
-            DmiActions.ShowInstruction(this, "Press the <1> key, the <2> key, the <3> key, <4> key, <5> key, <6> key, " + Environment.NewLine +
-                                             "          <7> key, <8> key, and then the <9> key in that order");
+            DmiActions.ShowInstruction(this,
+                "Press the <1> key, the <2> key, the <3> key, <4> key, <5> key, <6> key, " + Environment.NewLine +
+                "          <7> key, <8> key, and then the <9> key in that order");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field displays ‘1234 5678 9’.");
@@ -155,10 +167,14 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Enter ‘1234567’ for the Driver ID");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. As each key is pressed, the corresponding number is added to the data input field." + Environment.NewLine +
-                                "2. The data input field displays ‘1234 567’ in black (with a space after the 1st 4 digits) on a Medium-grey background." + Environment.NewLine +
-                                "3. A flashing underscore is displayed as a cursor after the last character displayed in the data input field,  " + Environment.NewLine +
-                                "4. each character is added at the cursor position and the cursor is then re-displayed after the character added." + Environment.NewLine +
+                                "1. As each key is pressed, the corresponding number is added to the data input field." +
+                                Environment.NewLine +
+                                "2. The data input field displays ‘1234 567’ in black (with a space after the 1st 4 digits) on a Medium-grey background." +
+                                Environment.NewLine +
+                                "3. A flashing underscore is displayed as a cursor after the last character displayed in the data input field,  " +
+                                Environment.NewLine +
+                                "4. each character is added at the cursor position and the cursor is then re-displayed after the character added." +
+                                Environment.NewLine +
                                 "5. The data input field is used to enter the Driver ID." + Environment.NewLine +
                                 "6. The value in the data input field is left-aligned.");
 
@@ -180,7 +196,8 @@ namespace Testcase.DMITestCases
             Action: Perform the remaining part of SoM to enter mode SR, ETCS level 1 and then open the Main window
             Expected Result: DMI displays the Main window.Verify that the Driver ID button is enabled
             */
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode =
+                EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
 
             EVC30_MMIRequestEnable.SendBlank();
@@ -201,22 +218,29 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 183 (partly: active);(2) MMI_gen 8035 (partly: revalidation);(3) MMI_gen 8033 (party: MMI_gen 4722 (partly: Table 12 <Close> button, Window title, Input field)) MMI_gen 4392 (partly: [Close] NA11); MMI_gen 4396 (partly: Close, NA11);
             */
             DmiActions.ShowInstruction(this, @"Press the ‘Driver ID’ button");
-            
+
             EVC14_MMICurrentDriverID.MMI_X_DRIVER_ID = "1234567";
             EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE = EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE_BUTTONS.Settings &
                                                         ~EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE_BUTTONS.TRN;
             EVC14_MMICurrentDriverID.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Disabled;
             EVC14_MMICurrentDriverID.Send();
 
-            WaitForVerification("Check the following (* indicates sub-areas drawn as one area):" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the Driver ID window as a half-grid array with the title ‘Driver ID’ (with a keypad of 4 rows of 3 keys)." + Environment.NewLine +
-                                "2. The keypad is displayed below the data input field with (enabled) keys <1>, <2 abc> to <9 wxyz>, <Del> (symbol NA21), <0> and a (disabled) <Decimal_Separator> key." + Environment.NewLine +
-                                "3. A data entry window with one data entry field covers areas D, F and G." + Environment.NewLine +
-                                @"4. The ‘Settings’ button is displayed enabled in the bottom right-hand corner of areas D, F & G." + Environment.NewLine +
-                                @"5. The ‘Train running number’ button is displayed disabled to the left of the ‘Settings’ button." + Environment.NewLine +
-                                "6. The data input field displays ‘1234 567’ in areas D & F with only a Data part for re-validation of the Driver ID." + Environment.NewLine +
+            WaitForVerification("Check the following (* indicates sub-areas drawn as one area):" + Environment.NewLine +
+                                Environment.NewLine +
+                                "1. DMI displays the Driver ID window as a half-grid array with the title ‘Driver ID’ (with a keypad of 4 rows of 3 keys)." +
+                                Environment.NewLine +
+                                "2. The keypad is displayed below the data input field with (enabled) keys <1>, <2 abc> to <9 wxyz>, <Del> (symbol NA21), <0> and a (disabled) <Decimal_Separator> key." +
+                                Environment.NewLine +
+                                "3. A data entry window with one data entry field covers areas D, F and G." +
+                                Environment.NewLine +
+                                @"4. The ‘Settings’ button is displayed enabled in the bottom right-hand corner of areas D, F & G." +
+                                Environment.NewLine +
+                                @"5. The ‘Train running number’ button is displayed disabled to the left of the ‘Settings’ button." +
+                                Environment.NewLine +
+                                "6. The data input field displays ‘1234 567’ in areas D & F with only a Data part for re-validation of the Driver ID." +
+                                Environment.NewLine +
                                 @"7. The Driver ID window displays a (disabled) ‘Close’ button, symbol NA12, in the bottom left corner of areas D, F & G.");
-            
+
             /*
             Test Step 10
             Action: Press and hold an input field
@@ -245,12 +269,14 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)    The state of an input field is changed to ‘Pressed’, the border of button is removed
             Test Step Comment: (1) MMI_gen 9390 (partly: Driver ID window);
             */
-            DmiActions.ShowInstruction(this, @"Whilst keeping the data input field pressed, drag it back inside its area");
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the data input field pressed, drag it back inside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The data input field is displayed pressed, without a border." + Environment.NewLine +
+                                "1. The data input field is displayed pressed, without a border." +
+                                Environment.NewLine +
                                 "2. No sound is played.");
-            
+
             /*
             Test Step 13
             Action: Release the pressed area
@@ -402,7 +428,9 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
+
         #region Send_XML_22_17_DMI_Test_Specification
+
         enum msgType
         {
             typea,
@@ -418,24 +446,27 @@ namespace Testcase.DMITestCases
             {
                 case msgType.typea:
                     EVC14_MMICurrentDriverID.MMI_X_DRIVER_ID = "4444";
-                    EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE = EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE_BUTTONS.Settings |
-                                                                EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE_BUTTONS.TRN;
+                    EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE =
+                        EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE_BUTTONS.Settings |
+                        EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE_BUTTONS.TRN;
                     EVC14_MMICurrentDriverID.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Disabled;
                     break;
                 case msgType.typeb:
                     EVC14_MMICurrentDriverID.MMI_X_DRIVER_ID = "";
-                    EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE = EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE_BUTTONS.Settings |
-                                                                EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE_BUTTONS.TRN;
+                    EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE =
+                        EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE_BUTTONS.Settings |
+                        EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE_BUTTONS.TRN;
                     EVC14_MMICurrentDriverID.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
                     break;
                 case msgType.typec:
                     EVC14_MMICurrentDriverID.MMI_X_DRIVER_ID = "";
-                    EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE = (EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE_BUTTONS)0;
+                    EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE = (EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE_BUTTONS) 0;
                     EVC14_MMICurrentDriverID.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
                     break;
                 case msgType.typed:
                     EVC14_MMICurrentDriverID.MMI_X_DRIVER_ID = "";
-                    EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE = EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE_BUTTONS.Settings;
+                    EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE =
+                        EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE_BUTTONS.Settings;
                     EVC14_MMICurrentDriverID.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
                     break;
                 case msgType.typee:
@@ -446,6 +477,7 @@ namespace Testcase.DMITestCases
             }
             EVC14_MMICurrentDriverID.Send();
         }
+
         #endregion
     }
 }

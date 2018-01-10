@@ -53,11 +53,13 @@ namespace Testcase.DMITestCases
             DmiActions.Start_ATP();
             DmiActions.Activate_Cabin_1(this);
             DmiActions.Set_Driver_ID(this, "1234");
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode =
+                EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L2;
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings;      // Settings
-            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.EnableBrakePercentage;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings; // Settings
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH =
+                EVC30_MMIRequestEnable.EnabledRequests.EnableBrakePercentage;
         }
 
         public override void PostExecution()
@@ -78,10 +80,11 @@ namespace Testcase.DMITestCases
             Action: Open the ‘Brake percentage’ data entry window from the Special menu
             Expected Result: The ‘Brake percentage’ data entry window appears on ETCS-DMI screen instead of the ‘Special’ menu window
             */
-            DmiActions.ShowInstruction(this, "Press the ‘Brake’ button, then the ‘Brake percentage’ button in the Brake percentage window");
-            
+            DmiActions.ShowInstruction(this,
+                "Press the ‘Brake’ button, then the ‘Brake percentage’ button in the Brake percentage window");
+
             EVC50_MMICurrentBrakePercentage.Send();
-            
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. DMI displays the Brake percentage window");
 
@@ -91,13 +94,15 @@ namespace Testcase.DMITestCases
             Expected Result: EVC-50Use the log file to verify that DMI receives packet EVC-50 with variable:(1) MMI_M_BP_CURRENT = 251 in order to indicate the technical range check failure.Input Field(2) The ‘Enter’ button associated to the data area of the input field is coloured grey and its text is black (state ‘Selected IF/Data value’).(3) The ‘Enter’ button associated to the data area of the input field displays “10” (previously entered value).Echo Text(4) The data part of the echo text displays “++++”.(5) The data part of the echo text is coloured red
             Test Step Comment: Requirements:(1) MMI_gen 11823 (partly: data checks, MMI_gen 12147); MMI_gen 11832 (partly: EVC-50),(2) MMI_gen 11823 (partly: MMI_gen 4714 (partly: state 'Selected IF/data value')); MMI_gen 9310 (partly: accept data);(3) MMI_gen 11823 (partly: MMI_gen 4714 (partly: previously entered (faulty) value)); MMI_gen 4699 (technical range);(4) MMI_gen 11823 (partly: MMI_gen 4713 (partly: indication)); MMI_gen 9310 (partly: [technical range, No OK, echo text]);(5) MMI_gen 11832 (partly: red); MMI_gen 11823 (partly: MMI_gen 4713 (partly: red));
             */
-            DmiActions.ShowInstruction(this, "Enter the (invalid) value ‘10’ for Brake percentage and confirm by pressing in the data input field");
+            DmiActions.ShowInstruction(this,
+                "Enter the (invalid) value ‘10’ for Brake percentage and confirm by pressing in the data input field");
 
             EVC50_MMICurrentBrakePercentage.MMI_M_BP_CURRENT = 251;
             EVC50_MMICurrentBrakePercentage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘Enter’ button of the data input field displays ‘10’ in black text on a grey background." + Environment.NewLine +
+                                "1. The ‘Enter’ button of the data input field displays ‘10’ in black text on a grey background." +
+                                Environment.NewLine +
                                 "2. The ‘Brake percentage’ echo text displays ‘++++’ in red.");
 
             /*
@@ -109,7 +114,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press the data input field again (accept)");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘Enter’ button of the data input field still displays ‘10’ in black text on a grey background." + Environment.NewLine +
+                                "1. The ‘Enter’ button of the data input field still displays ‘10’ in black text on a grey background." +
+                                Environment.NewLine +
                                 "2. The ‘Brake percentage’ echo text displays ‘++++’ in red.");
 
             /*
@@ -143,7 +149,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press the data input field again (accept)");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘Enter’ button of the data input field displays ‘10’ in black text on a grey background." + Environment.NewLine +
+                                "1. The ‘Enter’ button of the data input field displays ‘10’ in black text on a grey background." +
+                                Environment.NewLine +
                                 "2. The ‘Brake percentage’ echo text displays ‘++++’ in red.");
 
             /*
@@ -167,7 +174,7 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Press the data input field (accept)");
 
-            EVC51_MMIEchoedBrakePercentage.MMI_M_BP_ORIG_ = 40;  
+            EVC51_MMIEchoedBrakePercentage.MMI_M_BP_ORIG_ = 40;
             EVC51_MMIEchoedBrakePercentage.Send();
 
             /*
@@ -192,16 +199,19 @@ namespace Testcase.DMITestCases
             Expected Result: Input Field(1) The ‘Enter’ button associated to the data area of the input field displays the previously entered value.Echo Text(2) The data part of the echo text displays “++++”
             Test Step Comment: Requirements:(1) MMI_gen 11823 (partly: technical range, MMI_gen 4714 (partly: previously entered (faulty) value)); MMI_gen 4699 (technical range);(2) MMI_gen 11823 (partly: technical range, MMI_gen 12148 (MMI_gen 4713 (partly: indication))); MMI_gen 11832 (partly: EVC-50),Note: This is a temporary approach for non-support test environment on the data checks.
             */
-            DmiActions.ShowInstruction(this, "Press the ‘Brake’ button, then the ‘Brake percentage’ button in the Brake percentage window");
-            
+            DmiActions.ShowInstruction(this,
+                "Press the ‘Brake’ button, then the ‘Brake percentage’ button in the Brake percentage window");
+
             EVC50_MMICurrentBrakePercentage.MMI_M_BP_CURRENT = 40;
             EVC50_MMICurrentBrakePercentage.Send();
 
             #region Send_XML_22_22_5_DMI_Test_Specification
+
             EVC50_MMICurrentBrakePercentage.MMI_M_BP_ORIG = 50;
             EVC50_MMICurrentBrakePercentage.MMI_M_BP_MEASURED = 255;
             EVC50_MMICurrentBrakePercentage.MMI_M_BP_CURRENT = 251;
             EVC20_MMISelectLevel.Send();
+
             #endregion
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +

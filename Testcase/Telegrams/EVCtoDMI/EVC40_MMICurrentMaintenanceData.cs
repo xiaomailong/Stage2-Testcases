@@ -25,7 +25,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             _pool = pool;
 
             // Set default values
-            _pool.SITR.ETCS1.CurrentMaintenanceData.MmiMPacket.Value = 40;  // Packet ID
+            _pool.SITR.ETCS1.CurrentMaintenanceData.MmiMPacket.Value = 40; // Packet ID
             _pool.SITR.ETCS1.CurrentMaintenanceData.MmiLPacket.Value = 144; // Packet length
         }
 

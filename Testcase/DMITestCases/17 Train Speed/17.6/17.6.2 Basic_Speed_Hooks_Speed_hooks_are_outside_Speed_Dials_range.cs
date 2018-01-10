@@ -83,7 +83,7 @@ namespace Testcase.DMITestCases
             */
 
             EVC1_MMIDynamic.MMI_V_PERMITTED = 4166;
-            EVC1_MMIDynamic.MMI_V_TARGET = 4027;            
+            EVC1_MMIDynamic.MMI_V_TARGET = 4027;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
 
             EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
@@ -109,8 +109,10 @@ namespace Testcase.DMITestCases
             // These tests use speed values [65535] outside the range of short
             XML_12_6_2(msgType.typea);
 
-            WaitForVerification("Acknowledgement of OS mode is requested. Press button to accept and then check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. Only a white basic speed hook is displayed at 0 km/h.");
+            WaitForVerification(
+                "Acknowledgement of OS mode is requested. Press button to accept and then check the following:" +
+                Environment.NewLine + Environment.NewLine +
+                "1. Only a white basic speed hook is displayed at 0 km/h.");
 
             /*
             Test Step 3
@@ -128,10 +130,12 @@ namespace Testcase.DMITestCases
             Action: End of test
             Expected Result: 
             */
-            
+
             return GlobalTestResult;
         }
+
         #region Send_XML_12_6_2_DMI_Test_Specification
+
         enum msgType
         {
             typea,
@@ -142,7 +146,7 @@ namespace Testcase.DMITestCases
         {
             EVC1_MMIDynamic.MMI_M_SLIDE = 0;
             EVC1_MMIDynamic.MMI_M_SLIP = 0;
-            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Target_Speed_Monitoring;   // 1
+            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Target_Speed_Monitoring; // 1
             EVC1_MMIDynamic.MMI_A_TRAIN = 0;
             EVC1_MMIDynamic.MMI_V_TRAIN = 100;
             EVC1_MMIDynamic.MMI_V_RELEASE = 555;
@@ -154,26 +158,26 @@ namespace Testcase.DMITestCases
             SITR.ETCS1.Dynamic.EVC01Validity2.Value = 0x0;
             switch (type)
             {
-
                 case msgType.typea:
-                    EVC1_MMIDynamic.MMI_V_TARGET = 11112;       // unsigned short value in xml is 65535 => -1 short : breaks in EVC1..Send(); using high value instead 
+                    EVC1_MMIDynamic.MMI_V_TARGET =
+                        11112; // unsigned short value in xml is 65535 => -1 short : breaks in EVC1..Send(); using high value instead 
                     EVC1_MMIDynamic.MMI_V_PERMITTED = 0;
 
                     SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity1.Value = 4415; // All validity bits set
-                    SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity2.Value = 63;   // All validity bits set
+                    SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity2.Value = 63; // All validity bits set
 
                     break;
                 case msgType.typeb:
 
                     EVC1_MMIDynamic.MMI_V_TARGET = 0;
-                    EVC1_MMIDynamic.MMI_V_PERMITTED = 11112;       // unsigned short value in xml is 65535 => -1 short : breaks in EVC1..Send(); using high value instead 
-                    
+                    EVC1_MMIDynamic.MMI_V_PERMITTED =
+                        11112; // unsigned short value in xml is 65535 => -1 short : breaks in EVC1..Send(); using high value instead 
+
 
                     break;
-
             }
         }
-        #endregion
 
+        #endregion
     }
 }

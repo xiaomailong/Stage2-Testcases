@@ -1,8 +1,10 @@
 ﻿#region usings
+
 using System;
 using System.Collections.Generic;
 using System.Xml.Schema;
 using CL345;
+
 #endregion
 
 namespace Testcase.Telegrams.EVCtoDMI
@@ -92,11 +94,11 @@ namespace Testcase.Telegrams.EVCtoDMI
         public static void Send()
         {
             int messageSize = MMI_M_PACKET_SZ + MMI_L_PACKET_SZ + MMI_EVC_M_XATTRIBUTE_SZ +
-                                 MMI_NID_NTC_SZ + SPARE_SZ + MMI_STM_L_TEXT_IPT_SZ +
-                                 _stmXTextList.Count * MMI_STM_X_TEXT_SZ;
+                              MMI_NID_NTC_SZ + SPARE_SZ + MMI_STM_L_TEXT_IPT_SZ +
+                              _stmXTextList.Count * MMI_STM_X_TEXT_SZ;
 
             // Cannot exceed maximum number of messages due to restriction in add method
-            _pool.SITR.ETCS1.SpecificStmTestRequest.MmiStmLTextIpt.Value = (ushort)_stmXTextList.Count;
+            _pool.SITR.ETCS1.SpecificStmTestRequest.MmiStmLTextIpt.Value = (ushort) _stmXTextList.Count;
 
             // Write out the MMI_NID_NTC value
             _pool.SITR.ETCS1.SpecificStmTestRequest.MmiNidNtc.Value = MMI_NID_NTC;
@@ -115,10 +117,10 @@ namespace Testcase.Telegrams.EVCtoDMI
             }
 
             // Set packet length
-            _pool.SITR.ETCS1.SpecificStmTestRequest.MmiLPacket.Value = (ushort)messageSize;
+            _pool.SITR.ETCS1.SpecificStmTestRequest.MmiLPacket.Value = (ushort) messageSize;
 
             // Send dynamic packet
-            _pool.SITR.SMDCtrl.ETCS1.SpecificStmTestRequest.Value = 0x0009;            
+            _pool.SITR.SMDCtrl.ETCS1.SpecificStmTestRequest.Value = 0x0009;
         }
 
         /// <summary>
@@ -148,6 +150,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// Constant size definitions for EVC-27
         /// /// </summary>
         private const UInt16 MMI_M_PACKET_SZ = 16;
+
         private const UInt16 MMI_L_PACKET_SZ = 16;
         private const UInt16 MMI_EVC_M_XATTRIBUTE_SZ = 16;
         private const UInt16 MMI_NID_NTC_SZ = 8;

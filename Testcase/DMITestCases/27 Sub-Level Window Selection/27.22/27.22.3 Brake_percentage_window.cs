@@ -51,7 +51,8 @@ namespace Testcase.DMITestCases
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L2;
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings;      // Settings window: no buttons enabled
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW =
+                EVC30_MMIRequestEnable.WindowID.Settings; // Settings window: no buttons enabled
             EVC30_MMIRequestEnable.Send();
         }
 
@@ -68,7 +69,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
             TraceInfo("This test case requires an ATP configuration change - " +
-                        "See Precondition requirements. If this is not done manually, the test may fail!");
+                      "See Precondition requirements. If this is not done manually, the test may fail!");
 
             /*
             Test Step 1
@@ -98,22 +99,34 @@ namespace Testcase.DMITestCases
 
             // Spec refers to Maintenance password window instead of Brake Percentage: ignored;
             // Echo texts are described in areas A, B, C, D, E but in DMI_RS_ETCS doc they are displayed at top of area D
-            WaitForVerification("Check the following (* indicates sub-areas drawn as one area):" + Environment.NewLine + Environment.NewLine +
-                                @"1. DMI displays the Brake percentage window with 3 layers in a half-grid array with the title ‘Brake percentage’ in the right half of the screen." + Environment.NewLine +
-                                "2. The Brake  percentage window is displayed in areas D, F, G, Y and Z." + Environment.NewLine +
+            WaitForVerification("Check the following (* indicates sub-areas drawn as one area):" + Environment.NewLine +
+                                Environment.NewLine +
+                                @"1. DMI displays the Brake percentage window with 3 layers in a half-grid array with the title ‘Brake percentage’ in the right half of the screen." +
+                                Environment.NewLine +
+                                "2. The Brake  percentage window is displayed in areas D, F, G, Y and Z." +
+                                Environment.NewLine +
                                 "3. Layer 0 comprises areas D, F, G, Y and Z." + Environment.NewLine +
-                                "4. Layer 1 comprises areas A1, (A2+A3)*, A4, B, C1, (C2+C3+C4)*, C5, C6, C7, C8, C9, E1, E2, E3, E4, (E5-E9)*." + Environment.NewLine +
+                                "4. Layer 1 comprises areas A1, (A2+A3)*, A4, B, C1, (C2+C3+C4)*, C5, C6, C7, C8, C9, E1, E2, E3, E4, (E5-E9)*." +
+                                Environment.NewLine +
                                 "5. Layer 2 comprises areas B3, B4, B5, B6 and B7." + Environment.NewLine +
-                                @"6. The Brake percentage window displays a data entry window covering areas D, F and G and an ‘Enabled Close’ button (symbol NA11)." + Environment.NewLine +
-                                "7. A data input field, with a Label Area (‘Brake percentage’) and a Data Area (with value ‘90’), is displayed in areas D and F." + Environment.NewLine +
-                                "8. A numeric keypad is displayed below the data input field, containing enabled keys for the numbers <1> to <9>, <Del> (symbol NA21), <0> and (disabled) <Decimal_Separator>." + Environment.NewLine + 
-                                "7. 3 echo texts are displayed in areas A, B, C and E [????] with a Label Part (right-aligned) and a Data Part (left-aligned) with grey text." + Environment.NewLine +
-                                "8. The echo texts in order (top to bottom) are labelled ‘Original BP’, ‘Last measured BP’ and ‘Brake percentage’." + Environment.NewLine +
-                                "9. The echo texts (in the same order) display ‘85’, ‘92’ and ‘90’, respectively." + Environment.NewLine +
-                                "8. Objects, text messages and buttons can be displayed in several levels. Within a level they are allocated to areas." + Environment.NewLine +
-                                "9. Objects, text messages and buttons in a layer form a window." + Environment.NewLine +
-                                "10. The Default window does not cover the current window."); 
-            
+                                @"6. The Brake percentage window displays a data entry window covering areas D, F and G and an ‘Enabled Close’ button (symbol NA11)." +
+                                Environment.NewLine +
+                                "7. A data input field, with a Label Area (‘Brake percentage’) and a Data Area (with value ‘90’), is displayed in areas D and F." +
+                                Environment.NewLine +
+                                "8. A numeric keypad is displayed below the data input field, containing enabled keys for the numbers <1> to <9>, <Del> (symbol NA21), <0> and (disabled) <Decimal_Separator>." +
+                                Environment.NewLine +
+                                "7. 3 echo texts are displayed in areas A, B, C and E [????] with a Label Part (right-aligned) and a Data Part (left-aligned) with grey text." +
+                                Environment.NewLine +
+                                "8. The echo texts in order (top to bottom) are labelled ‘Original BP’, ‘Last measured BP’ and ‘Brake percentage’." +
+                                Environment.NewLine +
+                                "9. The echo texts (in the same order) display ‘85’, ‘92’ and ‘90’, respectively." +
+                                Environment.NewLine +
+                                "8. Objects, text messages and buttons can be displayed in several levels. Within a level they are allocated to areas." +
+                                Environment.NewLine +
+                                "9. Objects, text messages and buttons in a layer form a window." +
+                                Environment.NewLine +
+                                "10. The Default window does not cover the current window.");
+
             /*
             Test Step 3
             Action: Press and hold ‘0’ button
@@ -123,10 +136,12 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press and hold the <0> key for less than 1.5s");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The <0> key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                "1. The <0> key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 "3. The data input field displays ‘0’." + Environment.NewLine +
-                                "4. The value is displayed in black on a Medium-grey background, left aligned in the data area." + Environment.NewLine +
+                                "4. The value is displayed in black on a Medium-grey background, left aligned in the data area." +
+                                Environment.NewLine +
                                 "5. Only the data input field can be edited.");
 
             /*
@@ -150,10 +165,12 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press the <Del> key, then press and hold the <1> key for less than 1.5s");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The <1> key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                "1. The <1> key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 "3. The data input field displays ‘1’." + Environment.NewLine +
-                                "4. The value is displayed in black on a Medium-grey background, left aligned in the data area." + Environment.NewLine +
+                                "4. The value is displayed in black on a Medium-grey background, left aligned in the data area." +
+                                Environment.NewLine +
                                 "5. Only the data input field can be edited.");
 
             // Repeat Step 4 for <1>
@@ -166,10 +183,12 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press and hold the <2> key for less than 1.5s");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The <2> key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                "1. The <2> key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 "3. The data input field displays ‘12’." + Environment.NewLine +
-                                "4. The value is displayed in black on a Medium-grey background, left aligned in the data area." + Environment.NewLine +
+                                "4. The value is displayed in black on a Medium-grey background, left aligned in the data area." +
+                                Environment.NewLine +
                                 "5. Only the data input field can be edited.");
 
             // Repeat Step 4 for <2>
@@ -182,10 +201,12 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press and hold the <3> key for less than 1.5s");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The <2> key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                "1. The <2> key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 "3. The data input field displays ‘123’." + Environment.NewLine +
-                                "4. The value is displayed in black on a Medium-grey background, left aligned in the data area." + Environment.NewLine +
+                                "4. The value is displayed in black on a Medium-grey background, left aligned in the data area." +
+                                Environment.NewLine +
                                 "5. Only the data input field can be edited.");
 
             // Repeat Step 4 for <3>
@@ -198,10 +219,12 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press the <Del> key, then press and hold the <3> key for less than 1.5s");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The <1> key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                "1. The <1> key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 "3. The data input field displays ‘124’." + Environment.NewLine +
-                                "4. The value is displayed in black on a Medium-grey background, left aligned in the data area." + Environment.NewLine +
+                                "4. The value is displayed in black on a Medium-grey background, left aligned in the data area." +
+                                Environment.NewLine +
                                 "5. Only the data input field can be edited.");
 
             // Repeat Step 4 for <4>
@@ -214,10 +237,12 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press the <Del> key, then press and hold the <5> key for less than 1.5s");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The <4> key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                "1. The <4> key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 "3. The data input field displays ‘125’." + Environment.NewLine +
-                                "4. The value is displayed in black on a Medium-grey background, left aligned in the data area." + Environment.NewLine +
+                                "4. The value is displayed in black on a Medium-grey background, left aligned in the data area." +
+                                Environment.NewLine +
                                 "5. Only the data input field can be edited.");
 
             // Repeat Step 4 for <5>
@@ -230,10 +255,12 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press the <Del> key, then press and hold the <6> key for less than 1.5s");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The <1> key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                "1. The <1> key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 "3. The data input field displays ‘126’." + Environment.NewLine +
-                                "4. The value is displayed in black on a Medium-grey background, left aligned in the data area." + Environment.NewLine +
+                                "4. The value is displayed in black on a Medium-grey background, left aligned in the data area." +
+                                Environment.NewLine +
                                 "5. Only the data input field can be edited.");
 
             // Repeat Step 4 for <6>
@@ -246,10 +273,12 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press the <Del> key, then press and hold the <7> key for less than 1.5s");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The <1> key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                "1. The <1> key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 "3. The data input field displays ‘127’." + Environment.NewLine +
-                                "4. The value is displayed in black on a Medium-grey background, left aligned in the data area." + Environment.NewLine +
+                                "4. The value is displayed in black on a Medium-grey background, left aligned in the data area." +
+                                Environment.NewLine +
                                 "5. Only the data input field can be edited.");
 
             // Repeat Step 4 for <7>
@@ -262,10 +291,12 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press the <Del> key, then press and hold the <8> key for less than 1.5s");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The <1> key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                "1. The <1> key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 "3. The data input field displays ‘128’." + Environment.NewLine +
-                                "4. The value is displayed in black on a Medium-grey background, left aligned in the data area." + Environment.NewLine +
+                                "4. The value is displayed in black on a Medium-grey background, left aligned in the data area." +
+                                Environment.NewLine +
                                 "5. Only the data input field can be edited.");
 
             // Repeat Step 4 for <8>
@@ -278,10 +309,12 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press the <Del> key, then press and hold the <9> key for less than 1.5s");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The <1> key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                "1. The <1> key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 "3. The data input field displays ‘129’." + Environment.NewLine +
-                                "4. The value is displayed in black on a Medium-grey background, left aligned in the data area." + Environment.NewLine +
+                                "4. The value is displayed in black on a Medium-grey background, left aligned in the data area." +
+                                Environment.NewLine +
                                 "5. Only the data input field can be edited.");
 
             // Repeat Step 4 for <9>
@@ -289,7 +322,7 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The <9> key is displayed enabled.");
-            
+
             /*
             Test Step 6
             Action: Press and hold ‘Del’ button.Note: Stopwatch is required
@@ -299,11 +332,15 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the <Del> key. Note: Stopwatch is required");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The <Del> key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                "1. The <Del> key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The data input field displays ‘8’ (‘9’ deleted from the end of the data input field)." + Environment.NewLine +
-                                "4. When the key has been pressed for more than 1.5s, it is displayed pressed and immediately re-displayed enabled, repeatedly;" + Environment.NewLine +
-                                "5. The ‘Click’ sound is played repeatedly while the key is pressed;" + Environment.NewLine + 
+                                "3. The data input field displays ‘8’ (‘9’ deleted from the end of the data input field)." +
+                                Environment.NewLine +
+                                "4. When the key has been pressed for more than 1.5s, it is displayed pressed and immediately re-displayed enabled, repeatedly;" +
+                                Environment.NewLine +
+                                "5. The ‘Click’ sound is played repeatedly while the key is pressed;" +
+                                Environment.NewLine +
                                 "6. Characters are repeatedly deleted from the end of the data input field while the key is pressed.");
 
             /*
@@ -334,8 +371,10 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field displays ‘2’, then ‘20’, then ‘205’." + Environment.NewLine +
-                                "2. The value is displayed in black on a Medium-grey background." + Environment.NewLine +
-                                "3. A flashing underscore is displayed as a cursor to the right of the character last entered." + Environment.NewLine +
+                                "2. The value is displayed in black on a Medium-grey background." +
+                                Environment.NewLine +
+                                "3. A flashing underscore is displayed as a cursor to the right of the character last entered." +
+                                Environment.NewLine +
                                 "4. The value is displayed left-aligned in the data area of the data input field.");
 
             /*
@@ -344,12 +383,13 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,Packet TransmissionUse the log file to confirm that DMI sent out packet [MMI_NEW_BRAKE_PERCENTAGE (EVC-150)] with following variables,MMI_M_BP_CURRENT = 100Use the log file to confirm that the Brake percentage window is closed because of DMI received packet information [MMI_ECHOED_BRAKE_PERCENTAGE (EVC-51)]
             Test Step Comment: (1) MMI_gen 11823; MMI_gen 4392 (partly: [Enter], touch screen); MMI_gen 4681 (partly: accept the entered value in the input field); MMI_gen 8864 (partly: replace the data value by pressing the input field);(2) MMI_gen 11825;
             */
-            DmiActions.ShowInstruction(this, @"Delete the old value, enter the value ‘100’ and confirm by pressing in the data input field");
+            DmiActions.ShowInstruction(this,
+                @"Delete the old value, enter the value ‘100’ and confirm by pressing in the data input field");
 
             EVC150_MMINewBrakePercentage.MMI_M_BP_CURRENT = 100;
             EVC150_MMINewBrakePercentage.CheckTelegram();
 
-            EVC51_MMIEchoedBrakePercentage.MMI_M_BP_ORIG_ = 100; 
+            EVC51_MMIEchoedBrakePercentage.MMI_M_BP_ORIG_ = 100;
             EVC51_MMIEchoedBrakePercentage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -378,7 +418,8 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)    The state of an input field is changed to ‘Pressed’, the border of button is removed
             Test Step Comment: (1) MMI_gen 9390 (partly: Brake percentage window);
             */
-            DmiActions.ShowInstruction(this, @"Delete the old value, enter the value ‘99’. Press in and hold the data input field");
+            DmiActions.ShowInstruction(this,
+                @"Delete the old value, enter the value ‘99’. Press in and hold the data input field");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field is displayed pressed, without a border.");
@@ -394,14 +435,15 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The data input field is displayed enabled, with a border." + Environment.NewLine +
                                 "2. No sound is played.");
-            
+
             /*
             Test Step 14
             Action: Slide back into an input field
             Expected Result: Verify the following information,(1)    The state of an input field is changed to ‘Pressed’, the border of button is removed
             Test Step Comment: (1) MMI_gen 9390 (partly: Brake percentage window);
             */
-            DmiActions.ShowInstruction(this, @"Whilst keeping the data input field pressed, drag it back inside its area");
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the data input field pressed, drag it back inside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The data input field is displayed pressed, without a border.");
@@ -415,7 +457,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Release the data input field");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The data input field is re-validated." + 
+                                @"1. The data input field is re-validated." +
                                 "2. DMI displays the Brake window.");
 
             /*
@@ -464,10 +506,12 @@ namespace Testcase.DMITestCases
             Action: End of test
             Expected Result: 
             */
-            
+
             return GlobalTestResult;
         }
+
         #region Send_XML_22_22_3_DMI_Test_Specification
+
         enum msgType
         {
             typea,
@@ -481,7 +525,8 @@ namespace Testcase.DMITestCases
                 case msgType.typea:
                     EVC30_MMIRequestEnable.SendBlank();
                     EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings;
-                    EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.EnableBrakePercentage;
+                    EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH =
+                        EVC30_MMIRequestEnable.EnabledRequests.EnableBrakePercentage;
                     EVC30_MMIRequestEnable.Send();
                     break;
                 case msgType.typeb:
@@ -492,6 +537,7 @@ namespace Testcase.DMITestCases
                     break;
             }
         }
+
         #endregion
     }
 }

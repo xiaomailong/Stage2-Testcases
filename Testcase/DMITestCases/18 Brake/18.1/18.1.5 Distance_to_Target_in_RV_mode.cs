@@ -81,9 +81,11 @@ namespace Testcase.DMITestCases
             Action: Driver performs SoM to SR mode, Level 1.Note: Please set Train length = 100m during train data entry process
             Expected Result: DMI displays in SR mode, level 1
             */
-            DmiActions.ShowInstruction(this, "Perform SoM to SR mode, level 1: setting Train Length = 100m in train data entry");
+            DmiActions.ShowInstruction(this,
+                "Perform SoM to SR mode, level 1: setting Train Length = 100m in train data entry");
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode =
+                EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
             DmiActions.Finished_SoM_Default_Window(this);
 
             // Call generic Check Results Method
@@ -96,18 +98,19 @@ namespace Testcase.DMITestCases
             */
 
             // ?? Set an EOA so the DMI can display a target
-            EVC1_MMIDynamic.MMI_O_BRAKETARGET = 300000;              // 3 km: will cause the target display to show a white arrow on top
+            EVC1_MMIDynamic.MMI_O_BRAKETARGET =
+                300000; // 3 km: will cause the target display to show a white arrow on top
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_PreIndication_Monitoring;
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 0;       // just starting off
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 0; // just starting off
 
             // Set the permitted speed so the current speed is allowed
             EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 10;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
-            
+
             EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 70;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 40;
 
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 5000;   // 50m
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 5000; // 50m
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
 
             // Call generic Check Results Method
@@ -118,7 +121,7 @@ namespace Testcase.DMITestCases
             Action: Driving forward passing BG2
             Expected Result: 
             */
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 20000;   // 200m
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 20000; // 200m
 
             // ??? No observation: still in FS mode maybe
 
@@ -127,8 +130,8 @@ namespace Testcase.DMITestCases
             Action: The train is in reversing area
             Expected Result: DMI remains displays in FS mode
             */
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 30000;   // 300m
-            EVC1_MMIDynamic.MMI_O_BRAKETARGET = 70000;               // in reversing area can travel 400m further ??
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 30000; // 300m
+            EVC1_MMIDynamic.MMI_O_BRAKETARGET = 70000; // in reversing area can travel 400m further ??
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI still displays the FS mode symbol (MO11) in area B7");
@@ -141,7 +144,7 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
             EVC8_MMIDriverMessage.MMI_I_TEXT = 5;
-            EVC8_MMIDriverMessage.MMI_Q_TEXT = 286;    // Reversing possible
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 286; // Reversing possible
             EVC8_MMIDriverMessage.Send();
 
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;

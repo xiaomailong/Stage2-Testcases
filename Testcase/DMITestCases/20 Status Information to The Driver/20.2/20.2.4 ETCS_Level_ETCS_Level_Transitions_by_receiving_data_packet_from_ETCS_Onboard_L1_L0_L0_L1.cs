@@ -135,8 +135,9 @@ namespace Testcase.DMITestCases
                                (2) MMI_gen 7025 (partly: 2nd bullet, #4, non-Ack Level 0 transition);
             */
 
-            DmiActions.ShowInstruction(this, @"Perform the following action after pressing OK:" + Environment.NewLine + Environment.NewLine +
-                                "1. Acknowledge L0 annoucement by pressing DMI area C1");
+            DmiActions.ShowInstruction(this, @"Perform the following action after pressing OK:" + Environment.NewLine +
+                                             Environment.NewLine +
+                                             "1. Acknowledge L0 annoucement by pressing DMI area C1");
 
             DmiExpectedResults.L0_Announcement_Ack_pressed_and_released(this);
 

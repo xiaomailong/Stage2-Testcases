@@ -1,6 +1,8 @@
 ﻿#region usings
+
 using System;
 using CL345;
+
 #endregion
 
 namespace Testcase.Telegrams.EVCtoDMI
@@ -137,7 +139,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             set
             {
                 uint[] enableRequest = new uint[2];
-                enableRequest[1] =  _pool.SITR.ETCS1.EnableRequest.MmiQRequestEnable.Value[1];
+                enableRequest[1] = _pool.SITR.ETCS1.EnableRequest.MmiQRequestEnable.Value[1];
                 enableRequest[0] = Convert.ToUInt32(value);
                 _pool.SITR.Client.Write("ETCS1_EnableRequest_MmiQRequestEnable", enableRequest);
                 /*
@@ -154,6 +156,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         }
 
         #region System Info enabling test
+
         // TODO To implement properly at some point
         ///// <summary>
         ///// This variable controls which generic driver requests shall be accessible by the driver
@@ -169,7 +172,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             set
             {
                 uint[] enableRequest = new uint[2];
-                enableRequest[0] =  _pool.SITR.ETCS1.EnableRequest.MmiQRequestEnable.Value[0];
+                enableRequest[0] = _pool.SITR.ETCS1.EnableRequest.MmiQRequestEnable.Value[0];
                 enableRequest[1] = value ? 0x80000000 : 0x00000000;
                 _pool.SITR.Client.Write("ETCS1_EnableRequest_MmiQRequestEnable", enableRequest);
                 /*
@@ -181,6 +184,7 @@ namespace Testcase.Telegrams.EVCtoDMI
                 */
             }
         }
+
         #endregion
 
         /// <summary>
@@ -188,35 +192,35 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public enum WindowID : byte
         {
-             Default = 0,
-             Main = 1,
-             Override = 2,
-             Special = 3,
-             Settings = 4,
-             RBC_contact = 5,
-             Train_running_number = 6,
-             Level = 7,
-             Driver_ID = 8,
-             Radio_network_ID = 9, 
-             RBC_data = 10,
-             Train_data = 11,
-             SR_speed_distance = 12,
-             Adhesion = 13,
-             Set_VBC = 14,
-             Remove_VBC = 15,
-             Train_data_validation = 16,
-             Set_VBC_validation = 17,
-             Remove_VBC_validation = 18,
-             Data_View = 19,
-             System_version = 20,
-             NTC_data_entry_selection = 21,
-             NTC_X_data = 22,
-             NTC_X_data_validation = 23,
-             NTC_X_data_view = 24,
-             Spare = 25,
-             Language = 253,
-             Close_current_return_to_parent = 254,
-             No_window_specified = 255
+            Default = 0,
+            Main = 1,
+            Override = 2,
+            Special = 3,
+            Settings = 4,
+            RBC_contact = 5,
+            Train_running_number = 6,
+            Level = 7,
+            Driver_ID = 8,
+            Radio_network_ID = 9,
+            RBC_data = 10,
+            Train_data = 11,
+            SR_speed_distance = 12,
+            Adhesion = 13,
+            Set_VBC = 14,
+            Remove_VBC = 15,
+            Train_data_validation = 16,
+            Set_VBC_validation = 17,
+            Remove_VBC_validation = 18,
+            Data_View = 19,
+            System_version = 20,
+            NTC_data_entry_selection = 21,
+            NTC_X_data = 22,
+            NTC_X_data_validation = 23,
+            NTC_X_data_view = 24,
+            Spare = 25,
+            Language = 253,
+            Close_current_return_to_parent = 254,
+            No_window_specified = 255
         }
 
         [Flags]

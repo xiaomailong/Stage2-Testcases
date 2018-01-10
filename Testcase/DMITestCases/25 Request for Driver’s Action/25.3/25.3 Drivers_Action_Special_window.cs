@@ -96,8 +96,8 @@ namespace Testcase.DMITestCases
             EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.ExitChangeSRrules;
             EVC11_MMICurrentSRRules.DataElements = new List<Variables.DataElement>
             {
-                new Variables.DataElement{ Identifier = 15, EchoText = "0", QDataCheck = 0 },
-                new Variables.DataElement{ Identifier = 16, EchoText = "0", QDataCheck = 0 }
+                new Variables.DataElement {Identifier = 15, EchoText = "0", QDataCheck = 0},
+                new Variables.DataElement {Identifier = 16, EchoText = "0", QDataCheck = 0}
             };
             EVC11_MMICurrentSRRules.Send();
 
@@ -125,7 +125,8 @@ namespace Testcase.DMITestCases
             // DMI_RS_ETCS says mode should be SB if National value does not allow other modes
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
 
-            DmiActions.ShowInstruction(this, @"Press the ‘Adhesion’ button, then select and confirm the ‘Slippery rail’ button");
+            DmiActions.ShowInstruction(this,
+                @"Press the ‘Adhesion’ button, then select and confirm the ‘Slippery rail’ button");
 
             EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.SetAdhesionCoefficientToSlipperyRail;
 
@@ -137,9 +138,12 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Special window.Verify the following information,(1)    Use the log file to confirm that DMI sends out packet [MMI_DRIVER_REQUEST (EVC-101)] with variable MMI_M_REQUEST = 10 (Restore adhesion coefficient to ‘non-slippery rail’)(2)   The Adhesion window is closed, DMI displays Special window
             Test Step Comment: (1) MMI_gen 151 (partly: MMI_M_REQUEST = 10);(2) MMI_gen 151 (partly: close opened menu);
             */
-            DmiActions.ShowInstruction(this, @"Press the ‘Adhesion’ button, then select and confirm the ‘Non slippery rail’ button");
+            DmiActions.ShowInstruction(this,
+                @"Press the ‘Adhesion’ button, then select and confirm the ‘Non slippery rail’ button");
 
-            EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.RestoreAdhesionCoefficientToNonSlipperyRail; ;
+            EVC101_MMIDriverRequest.CheckMRequestPressed =
+                Variables.MMI_M_REQUEST.RestoreAdhesionCoefficientToNonSlipperyRail;
+            ;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Adhesion window and displays the Special window.");
@@ -150,14 +154,15 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)    Use the log file to confirm that DMI sends out packet [MMI_DRIVER_REQUEST (EVC-101)] with variable MMI_M_REQUEST = 38 (Start procedure ‘Train Integrity’)(2)   The Special window is closed, DMI displays Default window
             Test Step Comment: (1) MMI_gen 151 (partly: MMI_M_REQUEST = 38);(2) MMI_gen 151 (partly: close opened menu);
             */
-            DmiActions.ShowInstruction(this, @"Press and hold the ‘Train integrity’ button for at least 2s, then release the pressed button");
+            DmiActions.ShowInstruction(this,
+                @"Press and hold the ‘Train integrity’ button for at least 2s, then release the pressed button");
 
             EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.StartProcedureTrainIntegrity;
 
             // DMI_RS_ETCS says two packets for the separate button events need to be sent...
             Wait_Realtime(300);
             EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.StartProcedureTrainIntegrity;
-            
+
             /*
             Test Step 7
             Action: End of test

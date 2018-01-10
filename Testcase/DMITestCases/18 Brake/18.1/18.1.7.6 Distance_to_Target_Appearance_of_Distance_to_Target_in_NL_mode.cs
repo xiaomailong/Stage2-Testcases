@@ -75,14 +75,16 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in NL mode, level 0Verify the following information(1)    Use the log file to confirm that DMI receives the following packets information with a specific value,  EVC-7: OBU_TR_M_MODE = 11 (NL mode) (2)   The distance to target bar is not display in sub-area A3. (3)   The distance to target digital is not display in sub-area A2.(4)   Use the log file to confirm that DMI receives the packet EVC-1 with variable MMI_O_BRAKETARGET = -1 (Default)
             Test Step Comment: (1) MMI_gen 107 (partly: OBU_TR_M_MODE, NL mode); MMI_gen 2567 (partly: OBU_TR_M_MODE, NL mode);(2) MMI_gen 6658 (partly: not be shown); MMI_gen 107 (partly: Table 37, NL mode);(3) MMI_gen 2567 (partly: Table 38, NL mode); MMI_gen 6774 (partly: not be shown);(4) MMI_gen 6658 (partly: MMI_O_BRAKETARGET is less than zero); MMI_gen 6774 (partly: MMI_O_BRAKETARGET is less than zero);
             */
-            DmiActions.ShowInstruction(this, "Force the simulation to ‘Non-leading’. Press and hold ‘Non-leading’ button at least 2s. Release the ‘Non-leading’ button.");
+            DmiActions.ShowInstruction(this,
+                "Force the simulation to ‘Non-leading’. Press and hold ‘Non-leading’ button at least 2s. Release the ‘Non-leading’ button.");
 
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.NonLeading;
             EVC1_MMIDynamic.MMI_O_BRAKETARGET = -1;
 
             // Test spec says level 0 but pre-condition says level 1
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in NL mode, level 1 (Symbol MO12 is displayed in area B7)." + Environment.NewLine +
+                                "1. DMI displays in NL mode, level 1 (Symbol MO12 is displayed in area B7)." +
+                                Environment.NewLine +
                                 "2. The distance to target bar is not displayed in sub-area A3." + Environment.NewLine +
                                 "3. The digital distance to target is not displayed in sub-area A2.");
 

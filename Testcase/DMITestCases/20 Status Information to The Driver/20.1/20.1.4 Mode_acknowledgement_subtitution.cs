@@ -43,7 +43,7 @@ namespace Testcase.DMITestCases
             // System is power ON.SoM is perform in SR mode, Level 1.
 
             // Call the TestCaseBase PreExecution
-            
+
             base.PreExecution();
             DmiActions.Complete_SoM_L1_SR(this);
         }
@@ -62,6 +62,7 @@ namespace Testcase.DMITestCases
             // Testcase entrypoint
 
             #region Test Step 1
+
             /*
             Test Step 1
             Action: Drive the train forward passing BG1.
@@ -74,19 +75,21 @@ namespace Testcase.DMITestCases
             DmiActions.Send_L0_Announcement_Ack(this);
             DmiExpectedResults.L0_Announcement_Ack_Requested(this);
 
-            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
-                                "1. Press DMI Sub Area C1." + Environment.NewLine +
-                                "2. Press OK on THIS window within 3 seconds.");
+            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine +
+                                             Environment.NewLine +
+                                             "1. Press DMI Sub Area C1." + Environment.NewLine +
+                                             "2. Press OK on THIS window within 3 seconds.");
 
             // Spec displays LE06... (following ack of LE07")
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L0;
-            
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMi displays symbol LE06 in sub-area C1.");
 
             #endregion
 
             #region Test Step 2
+
             /*
             Test Step 2
             Action: Continue to drive the train forward pass BG2.Then, stop the train
@@ -105,6 +108,7 @@ namespace Testcase.DMITestCases
             #endregion
 
             #region Test Step 3
+
             /*
             Test Step 3
             Action: Press an area C1 for acknowledgement
@@ -112,9 +116,10 @@ namespace Testcase.DMITestCases
             (1)   The symbol MO08 is disappear and DMI displays LE07 symbol instead
             Test Step Comment: (1) MMI_gen 11234 (partly: driver acknowledge);
             */
-            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
-                                "1. Press DMI Sub Area C1." + Environment.NewLine +
-                                "2. Press OK on THIS window within 3 seconds.");
+            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine +
+                                             Environment.NewLine +
+                                             "1. Press DMI Sub Area C1." + Environment.NewLine +
+                                             "2. Press OK on THIS window within 3 seconds.");
 
             WaitForVerification("Check the following: " + Environment.NewLine +
                                 "1. Has the MO08 symbol disappeared from sub-area C1?" + Environment.NewLine +
@@ -123,6 +128,7 @@ namespace Testcase.DMITestCases
             #endregion
 
             #region Test Step 4
+
             /*
             Test Step 4
             Action: End of test

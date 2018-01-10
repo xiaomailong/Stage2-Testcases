@@ -57,7 +57,8 @@ namespace Testcase.DMITestCases
                                                                EVC30_MMIRequestEnable.EnabledRequests.DriverID |
                                                                EVC30_MMIRequestEnable.EnabledRequests.TrainData |
                                                                EVC30_MMIRequestEnable.EnabledRequests.Level |
-                                                               EVC30_MMIRequestEnable.EnabledRequests.TrainRunningNumber |
+                                                               EVC30_MMIRequestEnable.EnabledRequests
+                                                                   .TrainRunningNumber |
                                                                EVC30_MMIRequestEnable.EnabledRequests.Shunting |
                                                                EVC30_MMIRequestEnable.EnabledRequests.MaintainShunting |
                                                                EVC30_MMIRequestEnable.EnabledRequests.NonLeading;
@@ -66,8 +67,6 @@ namespace Testcase.DMITestCases
             // Set to level 1 and SH mode
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Shunting;
-            
-
         }
 
         public override void PostExecution()
@@ -97,7 +96,8 @@ namespace Testcase.DMITestCases
             Action: Perform the following procedure,Press and hold ‘Shunting’ button at least 2 seconds.Release the pressed button
             Expected Result: DMI displays in SH mode, level 1
             */
-            DmiActions.ShowInstruction(this, "Press and hold the ‘Shunting’ button for at least 2 seconds. Release the pressed button.");
+            DmiActions.ShowInstruction(this,
+                "Press and hold the ‘Shunting’ button for at least 2 seconds. Release the pressed button.");
 
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Shunting;
 
@@ -158,7 +158,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Has the speed decreased to 30 km/h" + Environment.NewLine +
                                 "2. Is the speed pointer grey?");
-            
+
             /*
             Test Step 6
             Action: End of test

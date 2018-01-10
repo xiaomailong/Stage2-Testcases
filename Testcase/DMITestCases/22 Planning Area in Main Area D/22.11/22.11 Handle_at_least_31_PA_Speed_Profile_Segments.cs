@@ -79,7 +79,8 @@ namespace Testcase.DMITestCases
             Expected Result: DMI is displayed in SR mode, level 1
             */
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode =
+                EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
             DmiActions.Finished_SoM_Default_Window(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -132,21 +133,21 @@ namespace Testcase.DMITestCases
             */
             trackDescriptions.AddRange(new List<TrackDescription>
             {
-              new TrackDescription {MMI_V_MRSP_KMH = 125, MMI_O_MRSP = 860000},
-              new TrackDescription {MMI_V_MRSP_KMH = 130, MMI_O_MRSP = 910000},
-              new TrackDescription {MMI_V_MRSP_KMH = 135, MMI_O_MRSP = 960000},
-              new TrackDescription {MMI_V_MRSP_KMH = 140, MMI_O_MRSP = 1100000},
-              new TrackDescription {MMI_V_MRSP_KMH = 145, MMI_O_MRSP = 1160000},
-              new TrackDescription {MMI_V_MRSP_KMH = 150, MMI_O_MRSP = 1210000},
-              new TrackDescription {MMI_V_MRSP_KMH = 145, MMI_O_MRSP = 1260000},
-              new TrackDescription {MMI_V_MRSP_KMH = 140, MMI_O_MRSP = 1310000},
-              new TrackDescription {MMI_V_MRSP_KMH = 135, MMI_O_MRSP = 1360000},
-              new TrackDescription {MMI_V_MRSP_KMH = 130, MMI_O_MRSP = 1410000},
-              new TrackDescription {MMI_V_MRSP_KMH = 125, MMI_O_MRSP = 1460000},
-              new TrackDescription {MMI_V_MRSP_KMH = 120, MMI_O_MRSP = 1510000},
-              new TrackDescription {MMI_V_MRSP_KMH = 115, MMI_O_MRSP = 1560000},
-              new TrackDescription {MMI_V_MRSP_KMH = 110, MMI_O_MRSP = 1610000},
-              new TrackDescription {MMI_V_MRSP_KMH = 105, MMI_O_MRSP = 1660000}
+                new TrackDescription {MMI_V_MRSP_KMH = 125, MMI_O_MRSP = 860000},
+                new TrackDescription {MMI_V_MRSP_KMH = 130, MMI_O_MRSP = 910000},
+                new TrackDescription {MMI_V_MRSP_KMH = 135, MMI_O_MRSP = 960000},
+                new TrackDescription {MMI_V_MRSP_KMH = 140, MMI_O_MRSP = 1100000},
+                new TrackDescription {MMI_V_MRSP_KMH = 145, MMI_O_MRSP = 1160000},
+                new TrackDescription {MMI_V_MRSP_KMH = 150, MMI_O_MRSP = 1210000},
+                new TrackDescription {MMI_V_MRSP_KMH = 145, MMI_O_MRSP = 1260000},
+                new TrackDescription {MMI_V_MRSP_KMH = 140, MMI_O_MRSP = 1310000},
+                new TrackDescription {MMI_V_MRSP_KMH = 135, MMI_O_MRSP = 1360000},
+                new TrackDescription {MMI_V_MRSP_KMH = 130, MMI_O_MRSP = 1410000},
+                new TrackDescription {MMI_V_MRSP_KMH = 125, MMI_O_MRSP = 1460000},
+                new TrackDescription {MMI_V_MRSP_KMH = 120, MMI_O_MRSP = 1510000},
+                new TrackDescription {MMI_V_MRSP_KMH = 115, MMI_O_MRSP = 1560000},
+                new TrackDescription {MMI_V_MRSP_KMH = 110, MMI_O_MRSP = 1610000},
+                new TrackDescription {MMI_V_MRSP_KMH = 105, MMI_O_MRSP = 1660000}
             });
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -195,7 +196,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The speed increases to that of the nearest discontinuity." + Environment.NewLine +
                                 "2. The speed increase symbol, PL21, is displayed in the Planning Area.");
-            
+
             /*
             Test Step 9
             Action: SSP in Pkt27 of BG1 iteration 4 is supervised
@@ -207,7 +208,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The speed increases to that of the nearest discontinuity." + Environment.NewLine +
                                 "2. The speed increase symbol, PL21, is displayed in the Planning Area.");
-            
+
             /*
             Test Step 10
             Action: SSP in Pkt27 of BG1 iteration 5 is supervised
@@ -231,7 +232,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The speed increases to that of the nearest discontinuity." + Environment.NewLine +
                                 "2. The speed increase symbol, PL21, is displayed in the Planning Area.");
-            
+
             /*
             Test Step 12
             Action: SSP in Pkt27 of BG1 iteration 7 is supervised

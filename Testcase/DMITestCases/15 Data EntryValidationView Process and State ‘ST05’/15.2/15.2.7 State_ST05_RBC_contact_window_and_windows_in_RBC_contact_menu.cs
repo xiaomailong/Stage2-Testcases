@@ -78,12 +78,18 @@ namespace Testcase.DMITestCases
 
             EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Disabled;
 
-            EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new Variables.MMI_Q_LEVEL_NTC_ID[] { Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level };
-            EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new Variables.MMI_M_CURRENT_LEVEL[] { Variables.MMI_M_CURRENT_LEVEL.NotLastUsedLevel };
-            EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = new Variables.MMI_M_LEVEL_FLAG[] { Variables.MMI_M_LEVEL_FLAG.MarkedLevel };
-            EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = new Variables.MMI_M_INHIBITED_LEVEL[] { Variables.MMI_M_INHIBITED_LEVEL.NotInhibited };
-            EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = new Variables.MMI_M_INHIBIT_ENABLE[] { Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting };
-            EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new Variables.MMI_M_LEVEL_NTC_ID[] { Variables.MMI_M_LEVEL_NTC_ID.L2 };
+            EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new Variables.MMI_Q_LEVEL_NTC_ID[]
+                {Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level};
+            EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new Variables.MMI_M_CURRENT_LEVEL[]
+                {Variables.MMI_M_CURRENT_LEVEL.NotLastUsedLevel};
+            EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = new Variables.MMI_M_LEVEL_FLAG[]
+                {Variables.MMI_M_LEVEL_FLAG.MarkedLevel};
+            EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = new Variables.MMI_M_INHIBITED_LEVEL[]
+                {Variables.MMI_M_INHIBITED_LEVEL.NotInhibited};
+            EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = new Variables.MMI_M_INHIBIT_ENABLE[]
+                {Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting};
+            EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new Variables.MMI_M_LEVEL_NTC_ID[]
+                {Variables.MMI_M_LEVEL_NTC_ID.L2};
             EVC20_MMISelectLevel.Send();
 
             DmiActions.ShowInstruction(this, "Confirm Level 2");
@@ -102,7 +108,7 @@ namespace Testcase.DMITestCases
                                                                EVC30_MMIRequestEnable.EnabledRequests.RadioNetworkID |
                                                                EVC30_MMIRequestEnable.EnabledRequests.UseShortNumber;
             EVC30_MMIRequestEnable.Send();
-            
+
             EVC22_MMICurrentRBC.MMI_NID_WINDOW = 5;
             EVC22_MMICurrentRBC.MMI_M_BUTTONS = EVC22_MMICurrentRBC.EVC22BUTTONS.BTN_YES_DATA_ENTRY_COMPLETE;
             EVC22_MMICurrentRBC.Send();
@@ -132,16 +138,18 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information;(1)   Verify DMI still displays RBC contact window until Radio network ID window is displayed.(2)   Verify the close button is always enable
             Test Step Comment: (1) MMI_gen 8859 (partly: windows in RBC contact menu);(2) MMI_gen 5646 (partly: always enable, windows in RBC contact menu);
             */
-            DmiActions.ShowInstruction(this, @"Press and hold the ‘Radio Network ID’ button for at least two seconds. Release ‘Radio network ID’ button");
+            DmiActions.ShowInstruction(this,
+                @"Press and hold the ‘Radio Network ID’ button for at least two seconds. Release ‘Radio network ID’ button");
 
             EVC22_MMICurrentRBC.MMI_NID_WINDOW = 9;
             EVC22_MMICurrentRBC.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
             EVC22_MMICurrentRBC.MMI_M_BUTTONS = EVC22_MMICurrentRBC.EVC22BUTTONS.BTN_YES_DATA_ENTRY_COMPLETE;
-            EVC22_MMICurrentRBC.NetworkCaptions = new List<string> { "GSMR-A", "GSMR-B" };
+            EVC22_MMICurrentRBC.NetworkCaptions = new List<string> {"GSMR-A", "GSMR-B"};
             EVC22_MMICurrentRBC.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the RBC contact window until the Radio network ID window is displayed." + Environment.NewLine +
+                                "1. DMI displays the RBC contact window until the Radio network ID window is displayed." +
+                                Environment.NewLine +
                                 @"2. ‘Close’ button is always enabled.");
 
             /*
@@ -180,7 +188,8 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information;(1)   Verify DMI still displays RBC contact window until RBC data window is displayed.(2)   Verify the close button is always enable
             Test Step Comment: (1) MMI_gen 8859 (partly: windows in RBC contact menu);(2) MMI_gen 5646 (partly: always enable, windows in RBC contact menu);
             */
-            DmiActions.ShowInstruction(this, @"Press ‘Close’ button in the Radio network ID window. Press ‘Enter RBC data’ button");
+            DmiActions.ShowInstruction(this,
+                @"Press ‘Close’ button in the Radio network ID window. Press ‘Enter RBC data’ button");
 
             EVC22_MMICurrentRBC.MMI_M_BUTTONS = EVC22_MMICurrentRBC.EVC22BUTTONS.BTN_YES_DATA_ENTRY_COMPLETE;
             EVC22_MMICurrentRBC.MMI_NID_WINDOW = 10;
@@ -189,7 +198,8 @@ namespace Testcase.DMITestCases
             EVC22_MMICurrentRBC.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the RBC contact window until the RBC data window is displayed." + Environment.NewLine +
+                                "1. DMI displays the RBC contact window until the RBC data window is displayed." +
+                                Environment.NewLine +
                                 @"2. ‘Close’ button is always enabled.");
 
             /*
@@ -231,7 +241,9 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
+
         #region Send_XML_10_7_a_b_DMI_Test_Specification
+
         enum msgType
         {
             typea,
@@ -252,9 +264,12 @@ namespace Testcase.DMITestCases
 
                 WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                     "1. DMI is in the entry state of ‘ST05’." + Environment.NewLine +
-                                    "2. The hourglass symbol ST05 is displayed vertically aligned in the center of the window title area." + Environment.NewLine +
-                                    "3. The hourglass symbol ST05 moves to the right every second." + Environment.NewLine +
-                                    "4. When the hourglass symbol ST05 has reached the edge of the window title area it is re-displayed on the lefthand side of the window title area and continues to move to the right." + Environment.NewLine +
+                                    "2. The hourglass symbol ST05 is displayed vertically aligned in the center of the window title area." +
+                                    Environment.NewLine +
+                                    "3. The hourglass symbol ST05 moves to the right every second." +
+                                    Environment.NewLine +
+                                    "4. When the hourglass symbol ST05 has reached the edge of the window title area it is re-displayed on the lefthand side of the window title area and continues to move to the right." +
+                                    Environment.NewLine +
                                     "5. All buttons and the ‘Close’ button are disabled." + Environment.NewLine +
                                     "6. ‘Close’ button NA12 is displayed disabled in area G.");
 
@@ -288,7 +303,7 @@ namespace Testcase.DMITestCases
                                     "1. ‘Close’ button in RBC contact window is disabled.");
             }
         }
-        #endregion
 
+        #endregion
     }
 }

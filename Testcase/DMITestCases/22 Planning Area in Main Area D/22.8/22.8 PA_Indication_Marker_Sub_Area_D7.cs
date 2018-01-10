@@ -109,8 +109,10 @@ namespace Testcase.DMITestCases
             }
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. A yellow horizontal line is displayed as an Indication Marker." + Environment.NewLine +
-                                "2. The PA Indication Marker length is equal to the sub-area D7 width." + Environment.NewLine +
+                                "1. A yellow horizontal line is displayed as an Indication Marker." +
+                                Environment.NewLine +
+                                "2. The PA Indication Marker length is equal to the sub-area D7 width." +
+                                Environment.NewLine +
                                 "3. The PA Indication Marker is positioned (with the lower edge of the line) at 1000m with respsect to the zero line.");
 
             /*
@@ -119,7 +121,8 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the Indication Marker shall be shown at position 10000 (between PA distance scale line 8000 and 16000)
             Test Step Comment: MMI_gen 650 (Partly: result of calculation, Y-coordinate);
             */
-            DmiActions.ShowInstruction(this, "Press the ‘Scale Down’ button in area D12 to adjust the PA Distance Scale range to 0-32000");
+            DmiActions.ShowInstruction(this,
+                "Press the ‘Scale Down’ button in area D12 to adjust the PA Distance Scale range to 0-32000");
 
             // Set packet 4 times and wait
             for (int w = 0; w < 4; ++w)
@@ -136,7 +139,8 @@ namespace Testcase.DMITestCases
             Action: Perform the following procedure,Press <Scale Up> button in area D9 to set PA Distance Scale range to 0-1000Drive the train forward with speed 40km/h
             Expected Result: 
             */
-            DmiActions.ShowInstruction(this, "Press the ‘Scale Up’ button in area D12 to adjust the PA Distance Scale range to 0-1000");
+            DmiActions.ShowInstruction(this,
+                "Press the ‘Scale Up’ button in area D12 to adjust the PA Distance Scale range to 0-1000");
 
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 40;
 
@@ -161,7 +165,7 @@ namespace Testcase.DMITestCases
             Action: Use the test script file 17_8_d.xml to send EVC-1 with,MMI_O_IML = 1000120000 (1200m)Note: The result of test script file may interrupted by ATP-CU, need to execute test script file repeatly to see the result
             Expected Result: The PA Indication Marker is display at the position lower than the PA distance scale line 1000m confirm the result of calculation between EVC-1 and EVC-7 as follows,(EVC-1) MMI_O_IML – (EVC-7) OBU_TR_O_TRAINExample: The train is stopped at position 500m. Result of calculation is [EVC-1.MMI_O_IML = 1000120000] – [EVC-7.OBU_TR_O_TRAIN = 1000050000] = 70000 (700m)
             Test Step Comment: MMI_gen 650;
-            */                                              
+            */
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 1000120000;
 
             // Set packet 4 times and wait
@@ -220,19 +224,20 @@ namespace Testcase.DMITestCases
             typeC,
             typeD
         };
-    
+
         private void XML_22_8(msgType packetSelector)
         {
             EVC1_MMIDynamic.MMI_M_SLIP = EVC1_MMIDynamic.MMI_M_SLIDE = 0;
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring;
             EVC1_MMIDynamic.MMI_A_TRAIN = 0;
-            EVC1_MMIDynamic.MMI_V_TRAIN = EVC1_MMIDynamic.MMI_V_TARGET = EVC1_MMIDynamic.MMI_V_RELEASE = EVC1_MMIDynamic.MMI_V_INTERVENTION = 0;
+            EVC1_MMIDynamic.MMI_V_TRAIN = EVC1_MMIDynamic.MMI_V_TARGET =
+                EVC1_MMIDynamic.MMI_V_RELEASE = EVC1_MMIDynamic.MMI_V_INTERVENTION = 0;
             EVC1_MMIDynamic.MMI_V_PERMITTED = 0;
             EVC1_MMIDynamic.MMI_O_BRAKETARGET = 0;
-            SITR.ETCS1.Dynamic.EVC01Validity1.Value = 0x01; 
+            SITR.ETCS1.Dynamic.EVC01Validity1.Value = 0x01;
             SITR.ETCS1.Dynamic.EVC01Validity2.Value = 0x01;
 
-            switch ( packetSelector )
+            switch (packetSelector)
             {
                 case msgType.typeA:
                     EVC1_MMIDynamic.MMI_O_IML = -1;
@@ -249,6 +254,6 @@ namespace Testcase.DMITestCases
             }
         }
 
-    #endregion
+        #endregion
     };
 }

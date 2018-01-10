@@ -95,8 +95,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static Variables.MMI_M_TRACKCOND_TYPE MMI_M_TRACKCOND_TYPE
         {
-            get => (Variables.MMI_M_TRACKCOND_TYPE)_pool.SITR.ETCS1.AdditionalOrder.MmiMTrackcondType.Value;
-            set => _pool.SITR.ETCS1.AdditionalOrder.MmiMTrackcondType.Value = (byte)value;
+            get => (Variables.MMI_M_TRACKCOND_TYPE) _pool.SITR.ETCS1.AdditionalOrder.MmiMTrackcondType.Value;
+            set => _pool.SITR.ETCS1.AdditionalOrder.MmiMTrackcondType.Value = (byte) value;
         }
 
         /// <summary>
@@ -114,7 +114,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         {
             set
             {
-                _mmiQTrackCondStep = (byte)value;
+                _mmiQTrackCondStep = (byte) value;
                 SetAlias();
             }
         }
@@ -128,14 +128,11 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static Variables.MMI_Q_TRACKCOND_ACTION MMI_Q_TRACKCOND_ACTION
         {
-            get
-            {
-                return (Variables.MMI_Q_TRACKCOND_ACTION)_mmiQTrackCondAction;
-            }
+            get { return (Variables.MMI_Q_TRACKCOND_ACTION) _mmiQTrackCondAction; }
 
             set
             {
-                _mmiQTrackCondAction = (byte)value;
+                _mmiQTrackCondAction = (byte) value;
                 SetAlias();
             }
         }

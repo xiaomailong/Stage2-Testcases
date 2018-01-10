@@ -64,8 +64,8 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
             TraceInfo("This test case requires an ATP configuration change - " +
-                        "See Precondition requirements. If this is not done manually, the test may fail!");
-            
+                      "See Precondition requirements. If this is not done manually, the test may fail!");
+
             /*
             Test Step 1
             Action: At Maintenance password window, use the test script file 10_4_1_4_a.xml to send EVC-8 withMMI_Q_TEXT_CRITERIA = 3 MMI_Q_TEXT = 716
@@ -73,7 +73,8 @@ namespace Testcase.DMITestCases
             */
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Default;
-            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH =
+                EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter;
             EVC30_MMIRequestEnable.Send();
 
             DmiActions.ShowInstruction(this, @"Press the ‘Settings’ button, then press the ‘Maintenance’ button");
@@ -81,12 +82,13 @@ namespace Testcase.DMITestCases
             XML_10_4_1_4_a_b(msgType.typea);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The hourglass symbol ST05 is displayed in the window title area.");
-            
-            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
-            EVC8_MMIDriverMessage.Send();        
 
-            DmiActions.ShowInstruction(this, @"Enter the maintenance password (as in the system configuration) and confirm");
-    
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
+            EVC8_MMIDriverMessage.Send();
+
+            DmiActions.ShowInstruction(this,
+                @"Enter the maintenance password (as in the system configuration) and confirm");
+
             /*
             Test Step 2
             Action: Use the test script file 10_4_1_4_b.xml to send EVC-24 withMMI_NID_ENGINE_1 = 1234MMI_M_BRAKE_CONFIG = 55MMI_M_AVAIL_SERVICES = 65535MMI_M_ETC_VER = 16755215
@@ -95,7 +97,8 @@ namespace Testcase.DMITestCases
             */
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.No_window_specified;
-            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH =
+                EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter;
             EVC30_MMIRequestEnable.Send();
 
             XML_10_4_1_4_a_b(msgType.typeb);
@@ -109,22 +112,24 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the followin information,(1)    The Wheel diameter Number window is closed, DMI displays System info window after received packet EVC-24
             Test Step Comment: (1) MMI_gen 5507 (partly: Wheel diameter window, abort an already pending data entry process, received packet of different window from ETCS onboard);
             */
-            DmiActions.ShowInstruction(this, @"Press the ‘Close’ button in the System info window. Open the Wheel diameter window");
+            DmiActions.ShowInstruction(this,
+                @"Press the ‘Close’ button in the System info window. Open the Wheel diameter window");
 
-            EVC40_MMICurrentMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1 = (Variables.MMI_M_SDU_WHEEL_SIZE)100;
-            EVC40_MMICurrentMaintenanceData.MMI_M_SDU_WHEEL_SIZE_2 = (Variables.MMI_M_SDU_WHEEL_SIZE)40;
-            EVC40_MMICurrentMaintenanceData.MMI_M_WHEEL_SIZE_ERR = (Variables.MMI_M_WHEEL_SIZE_ERR)1;
+            EVC40_MMICurrentMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1 = (Variables.MMI_M_SDU_WHEEL_SIZE) 100;
+            EVC40_MMICurrentMaintenanceData.MMI_M_SDU_WHEEL_SIZE_2 = (Variables.MMI_M_SDU_WHEEL_SIZE) 40;
+            EVC40_MMICurrentMaintenanceData.MMI_M_WHEEL_SIZE_ERR = (Variables.MMI_M_WHEEL_SIZE_ERR) 1;
             EVC40_MMICurrentMaintenanceData.Send();
 
             XML_10_4_1_4_a_b(msgType.typea);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The hourglass symbol ST05 is displayed in the window title area.");
-            
+
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
             EVC8_MMIDriverMessage.Send();
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Close_current_return_to_parent;
-            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH =
+                EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter;
             EVC30_MMIRequestEnable.Send();
 
             XML_10_4_1_4_a_b(msgType.typeb);
@@ -138,29 +143,30 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 5507 (partly: Wheel diameter validation window, abort an already pending data validation process, received packet of different window from ETCS onboard);
             */
             DmiActions.ShowInstruction(this, @"Press the ‘Close’ button in the System info window");
-            
-            EVC40_MMICurrentMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1 = (Variables.MMI_M_SDU_WHEEL_SIZE)100;
-            EVC40_MMICurrentMaintenanceData.MMI_M_SDU_WHEEL_SIZE_2 = (Variables.MMI_M_SDU_WHEEL_SIZE)40;
-            EVC40_MMICurrentMaintenanceData.MMI_M_WHEEL_SIZE_ERR = (Variables.MMI_M_WHEEL_SIZE_ERR)1;
+
+            EVC40_MMICurrentMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1 = (Variables.MMI_M_SDU_WHEEL_SIZE) 100;
+            EVC40_MMICurrentMaintenanceData.MMI_M_SDU_WHEEL_SIZE_2 = (Variables.MMI_M_SDU_WHEEL_SIZE) 40;
+            EVC40_MMICurrentMaintenanceData.MMI_M_WHEEL_SIZE_ERR = (Variables.MMI_M_WHEEL_SIZE_ERR) 1;
             EVC40_MMICurrentMaintenanceData.Send();
 
             XML_10_4_1_4_a_b(msgType.typea);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The hourglass symbol ST05 is displayed in the window title area.");
-            
+
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
-            EVC8_MMIDriverMessage.Send();             
-           
-            EVC41_MMIEchoedMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1_ = (Variables.MMI_M_SDU_WHEEL_SIZE)100;
-            EVC41_MMIEchoedMaintenanceData.MMI_M_SDU_WHEEL_SIZE_2_ = (Variables.MMI_M_SDU_WHEEL_SIZE)40;
-            EVC41_MMIEchoedMaintenanceData.MMI_M_WHEEL_SIZE_ERR_ = (Variables.MMI_M_WHEEL_SIZE_ERR)1;
+            EVC8_MMIDriverMessage.Send();
+
+            EVC41_MMIEchoedMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1_ = (Variables.MMI_M_SDU_WHEEL_SIZE) 100;
+            EVC41_MMIEchoedMaintenanceData.MMI_M_SDU_WHEEL_SIZE_2_ = (Variables.MMI_M_SDU_WHEEL_SIZE) 40;
+            EVC41_MMIEchoedMaintenanceData.MMI_M_WHEEL_SIZE_ERR_ = (Variables.MMI_M_WHEEL_SIZE_ERR) 1;
             EVC41_MMIEchoedMaintenanceData.Send();
 
             DmiActions.ShowInstruction(this, "Confirm the values in the Wheel diameter window");
-            
+
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Close_current_return_to_parent;
-            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH =
+                EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter;
             EVC30_MMIRequestEnable.Send();
 
             XML_10_4_1_4_a_b(msgType.typeb);
@@ -180,8 +186,9 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.EnableDoppler;
             EVC30_MMIRequestEnable.Send();
 
-            DmiActions.ShowInstruction(this, "Press the ‘Maintenance’ button, enter the maintenance password, then open the Radar window");
-            
+            DmiActions.ShowInstruction(this,
+                "Press the ‘Maintenance’ button, enter the maintenance password, then open the Radar window");
+
             EVC40_MMICurrentMaintenanceData.MMI_Q_MD_DATASET = Variables.MMI_Q_MD_DATASET.Doppler;
             EVC40_MMICurrentMaintenanceData.Send();
 
@@ -204,16 +211,16 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 5507 (partly: Radar validation window, abort an already pending data validation process, received packet of different window from ETCS onboard);
             */
             DmiActions.ShowInstruction(this, @"Press the ‘Close’ button in the System info window");
- 
+
             EVC40_MMICurrentMaintenanceData.MMI_Q_MD_DATASET = Variables.MMI_Q_MD_DATASET.Doppler;
             EVC40_MMICurrentMaintenanceData.Send();
-            
+
             DmiActions.ShowInstruction(this, "Confirm the Radar data to open the validation window");
-            
+
             EVC41_MMIEchoedMaintenanceData.MMI_Q_MD_DATASET_ = Variables.MMI_Q_MD_DATASET.Doppler;
-            EVC41_MMIEchoedMaintenanceData.MMI_M_PULSE_PER_KM_1_ = (Variables.MMI_M_PULSE_PER_KM)980;
-            EVC41_MMIEchoedMaintenanceData.MMI_M_PULSE_PER_KM_2_ = (Variables.MMI_M_PULSE_PER_KM)980;
-            EVC41_MMIEchoedMaintenanceData.Send();            
+            EVC41_MMIEchoedMaintenanceData.MMI_M_PULSE_PER_KM_1_ = (Variables.MMI_M_PULSE_PER_KM) 980;
+            EVC41_MMIEchoedMaintenanceData.MMI_M_PULSE_PER_KM_2_ = (Variables.MMI_M_PULSE_PER_KM) 980;
+            EVC41_MMIEchoedMaintenanceData.Send();
 
             XML_10_4_1_4_a_b(msgType.typea);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -275,7 +282,7 @@ namespace Testcase.DMITestCases
             XML_10_4_1_4_a_b(msgType.typea);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The hourglass symbol ST05 is displayed in the window title area.");
-            
+
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
             EVC8_MMIDriverMessage.Send();
             EVC30_MMIRequestEnable.SendBlank();
@@ -297,12 +304,13 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Brightness;
             EVC30_MMIRequestEnable.Send();
 
-            DmiActions.ShowInstruction(this, @"Press the ‘Close’ button in the System info window. Open the Settings window, then press the ‘Brightness’ button");
+            DmiActions.ShowInstruction(this,
+                @"Press the ‘Close’ button in the System info window. Open the Settings window, then press the ‘Brightness’ button");
 
             XML_10_4_1_4_a_b(msgType.typea);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The hourglass symbol ST05 is displayed in the window title area.");
-            
+
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
             EVC8_MMIDriverMessage.Send();
             EVC30_MMIRequestEnable.SendBlank();
@@ -326,7 +334,8 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.SetVBC;
             EVC30_MMIRequestEnable.Send();
 
-            DmiActions.ShowInstruction(this, @"Press the ‘Close’ button in the System info window. Open the Settings window, then press the ‘Set VBC’ button");
+            DmiActions.ShowInstruction(this,
+                @"Press the ‘Close’ button in the System info window. Open the Settings window, then press the ‘Set VBC’ button");
 
             EVC18_MMISetVBC.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_VBC.BTN_YES_DATA_ENTRY_COMPLETE;
             EVC18_MMISetVBC.MMI_N_VBC = 0;
@@ -335,7 +344,7 @@ namespace Testcase.DMITestCases
             XML_10_4_1_4_a_b(msgType.typea);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The hourglass symbol ST05 is displayed in the window title area.");
-            
+
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
             EVC8_MMIDriverMessage.Send();
             EVC30_MMIRequestEnable.SendBlank();
@@ -352,7 +361,8 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the followin information,(1)    The Set VBC validation window is closed, DMI displays System info window after received packet EVC-24
             Test Step Comment: (1) MMI_gen 5507 (partly: Set VBC validation window, abort an already pending data validation process, received packet of different window from ETCS onboard);
             */
-            DmiActions.ShowInstruction(this, @"Press the ‘Close’ button in the System info window, then press the ‘Set VBC’ button");
+            DmiActions.ShowInstruction(this,
+                @"Press the ‘Close’ button in the System info window, then press the ‘Set VBC’ button");
 
             //EVC30_MMIRequestEnable.SendBlank();
             //EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.No_window_specified;
@@ -393,7 +403,8 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.RemoveVBC;
             EVC30_MMIRequestEnable.Send();
 
-            DmiActions.ShowInstruction(this, @"Press the ‘Close’ button in the System info window. Open the Settings window, then press the ‘Remove VBC’ button");
+            DmiActions.ShowInstruction(this,
+                @"Press the ‘Close’ button in the System info window. Open the Settings window, then press the ‘Remove VBC’ button");
 
             EVC19_MMIRemoveVBC.MMI_N_VBC = 0;
             EVC19_MMIRemoveVBC.ECHO_TEXT = "";
@@ -402,7 +413,7 @@ namespace Testcase.DMITestCases
             XML_10_4_1_4_a_b(msgType.typea);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The hourglass symbol ST05 is displayed in the window title area.");
-            
+
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
             EVC8_MMIDriverMessage.Send();
             EVC19_MMIRemoveVBC.MMI_N_VBC = 1;
@@ -420,8 +431,9 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the followin information,(1)    The Remove VBC validation window is closed, DMI displays System info window after received packet EVC-24
             Test Step Comment: (1) MMI_gen 5507 (partly: Remove VBC validation window, abort an already pending data validation process, received packet of different window from ETCS onboard);
             */
-            DmiActions.ShowInstruction(this, @"Press the ‘Close’ button in the System info window. Open the Settings window, then press the ‘Remove VBC’ button");
-            
+            DmiActions.ShowInstruction(this,
+                @"Press the ‘Close’ button in the System info window. Open the Settings window, then press the ‘Remove VBC’ button");
+
             EVC19_MMIRemoveVBC.MMI_N_VBC = 0;
             EVC19_MMIRemoveVBC.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_VBC.BTN_YES_DATA_ENTRY_COMPLETE_DELAY_TYPE;
             EVC19_MMIRemoveVBC.Send();
@@ -434,16 +446,16 @@ namespace Testcase.DMITestCases
             XML_10_4_1_4_a_b(msgType.typea);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The hourglass symbol ST05 is displayed in the window title area.");
-            
+
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
             EVC8_MMIDriverMessage.Send();
-            
+
             DmiActions.ShowInstruction(this, @"Confirm the data");
 
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Close_current_return_to_parent;
             EVC30_MMIRequestEnable.Send();
-            
+
             XML_10_4_1_4_a_b(msgType.typeb);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Remove VBC validation window is closed and DMI displays the System info window.");
@@ -453,13 +465,15 @@ namespace Testcase.DMITestCases
             Action: Perform the following procedure,At System info window, press ‘close’ button.Open Brake Percentage windowRepeat action step 1-2
             Expected Result: Verify the followin information,(1)    The Brake Percentage window is closed, DMI displays System info window after received packet EVC-24
             Test Step Comment: (1) MMI_gen 5507 (partly: Brake Percentage window, abort an already pending data entry process, received packet of different window from ETCS onboard);
-            */            
+            */
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings;
-            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.EnableBrakePercentage;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH =
+                EVC30_MMIRequestEnable.EnabledRequests.EnableBrakePercentage;
             EVC30_MMIRequestEnable.Send();
 
-            DmiActions.ShowInstruction(this, @"Press the ‘Close’ button in the System info window. Open the Brake window and press the ‘Brake Percentage’ button");
+            DmiActions.ShowInstruction(this,
+                @"Press the ‘Close’ button in the System info window. Open the Brake window and press the ‘Brake Percentage’ button");
 
             EVC50_MMICurrentBrakePercentage.MMI_M_BP_CURRENT = 70;
             EVC50_MMICurrentBrakePercentage.Send();
@@ -467,10 +481,10 @@ namespace Testcase.DMITestCases
             XML_10_4_1_4_a_b(msgType.typea);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The hourglass symbol ST05 is displayed in the window title area.");
-            
+
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
             EVC8_MMIDriverMessage.Send();
-            
+
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Close_current_return_to_parent;
             EVC30_MMIRequestEnable.Send();
 
@@ -491,7 +505,8 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.No_window_specified;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.StartBrakeTest |
-                                                               EVC30_MMIRequestEnable.EnabledRequests.EnableBrakePercentage;
+                                                               EVC30_MMIRequestEnable.EnabledRequests
+                                                                   .EnableBrakePercentage;
             EVC30_MMIRequestEnable.Send();
 
             DmiActions.ShowInstruction(this, @"Press the ‘Close’ button in the System info window");
@@ -499,14 +514,14 @@ namespace Testcase.DMITestCases
             // The test is invalid, the work flow is to do brake percentage and either press Exit or continue and validate
             //EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Close_current_return_to_parent;
             //EVC30_MMIRequestEnable.Send();
-            
+
             DmiActions.ShowInstruction(this, @"Press ‘Brake percentage’ button.");
 
             EVC50_MMICurrentBrakePercentage.MMI_M_BP_CURRENT = 90;
             EVC50_MMICurrentBrakePercentage.MMI_M_BP_ORIG = 95;
             EVC50_MMICurrentBrakePercentage.MMI_M_BP_MEASURED = 92;
             EVC50_MMICurrentBrakePercentage.Send();
-            
+
             DmiActions.ShowInstruction(this, @"Validate the data");
 
             EVC51_MMIEchoedBrakePercentage.MMI_M_BP_CURRENT_ = 90;
@@ -515,7 +530,7 @@ namespace Testcase.DMITestCases
             XML_10_4_1_4_a_b(msgType.typea);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The hourglass symbol ST05 is displayed in the window title area.");
-            
+
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
             EVC8_MMIDriverMessage.Send();
 
@@ -533,7 +548,9 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
+
         #region Send_XML_10_4_1_4_a_b_DMI_Test_Specification
+
         enum msgType
         {
             typea,
@@ -554,20 +571,20 @@ namespace Testcase.DMITestCases
             else if (type == msgType.typeb)
             {
                 EVC24_MMISystemInfo.MMI_NID_ENGINE_1 = 1234;
-                EVC24_MMISystemInfo.MMI_T_TIMEOUT_BRAKE = 0x5695224c;         // 1452614220
-                EVC24_MMISystemInfo.MMI_T_TIMEOUT_BTM = 0x54b3eecc;            // 1421078220
-                EVC24_MMISystemInfo.MMI_T_TIMEOUT_TBSW = 0x538b4d4c;           // 1401638220
-                EVC24_MMISystemInfo.MMI_M_ETC_VER = 0xffaa0f;                    // 16755215
-                EVC24_MMISystemInfo.MMI_M_AVAIL_SERVICES = 0xffff;             // 65535 
+                EVC24_MMISystemInfo.MMI_T_TIMEOUT_BRAKE = 0x5695224c; // 1452614220
+                EVC24_MMISystemInfo.MMI_T_TIMEOUT_BTM = 0x54b3eecc; // 1421078220
+                EVC24_MMISystemInfo.MMI_T_TIMEOUT_TBSW = 0x538b4d4c; // 1401638220
+                EVC24_MMISystemInfo.MMI_M_ETC_VER = 0xffaa0f; // 16755215
+                EVC24_MMISystemInfo.MMI_M_AVAIL_SERVICES = 0xffff; // 65535 
 
                 // Discrepancy between spec (config = 55)
-                EVC24_MMISystemInfo.MMI_M_BRAKE_CONFIG = 55;                   // 236 in xml
+                EVC24_MMISystemInfo.MMI_M_BRAKE_CONFIG = 55; // 236 in xml
                 EVC24_MMISystemInfo.MMI_M_LEVEL_INST = 248;
 
                 EVC24_MMISystemInfo.Send();
             }
         }
-        #endregion
 
+        #endregion
     }
 }

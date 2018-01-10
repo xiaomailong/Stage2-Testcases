@@ -51,7 +51,7 @@ namespace Testcase.DMITestCases
         public override void PostExecution()
         {
             // Post-conditions from TestSpec
- 
+
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
@@ -67,27 +67,27 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays the default window. The Driver ID window is displayed
             */
             // Call generic Action Method
-            
+
             // Call generic Check Results Method
-            
+
             /*
             Test Step 2
             Action: Enter the Driver ID. Perform brake test and then select Level 0
             Expected Result: ATP enters level 0.DMI displays the symbol of Level 0 in sub-area C8
             */
-           
+
             /*
             Test Step 3
             Action: Select ‘Train data’ button
             Expected Result: The Train data window is displayed
             */
-            
+
             /*
             Test Step 4
             Action: Enter and confirm the train data
             Expected Result: The Train data validation window is displayed
             */
-            
+
             /*
             Test Step 5
             Expected Result: DMI displays the Train running window
@@ -104,7 +104,7 @@ namespace Testcase.DMITestCases
             Action: Press ‘Start’ button and confirm UN mode
             Expected Result: DMI displays in UN mode, level 0
             */
-            
+
             DmiActions.Complete_SoM_L0_UN(this);
 
             /*
@@ -115,7 +115,8 @@ namespace Testcase.DMITestCases
             */
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
 
-            WaitForVerification("Observe all the objects on the DMI screen and check the following:" + Environment.NewLine + Environment.NewLine +
+            WaitForVerification("Observe all the objects on the DMI screen and check the following:" +
+                                Environment.NewLine + Environment.NewLine +
                                 "1. Supervision status is not presented to the driver." + Environment.NewLine +
                                 "2. DMI does not display a release speed." + Environment.NewLine +
                                 "3. UN (Unfitted) mode is displayed.");
@@ -137,8 +138,10 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI removes the level 0 symbol from sub-area C8 and displays the level 1 symbol." + Environment.NewLine +
-                                "2. DMI displays the train trip announcement symbol requiring driver action." + Environment.NewLine +
+                                "1. DMI removes the level 0 symbol from sub-area C8 and displays the level 1 symbol." +
+                                Environment.NewLine +
+                                "2. DMI displays the train trip announcement symbol requiring driver action." +
+                                Environment.NewLine +
                                 "3. The train trip symbol is displayed with a yellow flashing frame.");
 
             /*

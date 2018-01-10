@@ -1,4 +1,5 @@
 ﻿#region usings
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ using Testcase.Telegrams.EVCtoDMI;
 using Testcase.DMITestCases;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using static Testcase.Telegrams.EVCtoDMI.Variables;
+
 #endregion
 
 namespace Testcase.Telegrams.DMItoEVC
@@ -59,9 +61,9 @@ namespace Testcase.Telegrams.DMItoEVC
                 else
                 {
                     _pool.TraceError($"{BaseString} - MMI_T_UTC = {_pool.SITR.CCUO.ETCS1SetTimeMmi.MmiTUTC.Value}" +
-                                        Environment.NewLine +
+                                     Environment.NewLine +
                                      $"MMI_T_ZONE_OFFSET = {_pool.SITR.CCUO.ETCS1SetTimeMmi.MmiTZoneOffset.Value}" +
-                                        Environment.NewLine +
+                                     Environment.NewLine +
                                      "Result: FAILED");
                 }
             }
@@ -80,7 +82,7 @@ namespace Testcase.Telegrams.DMItoEVC
         public static void Check_MMI_Set_Time(DateTime T_UTC, sbyte T_Zone_Offset)
         {
             {
-                uint seconds = (uint)(T_UTC - new DateTime(1970, 1, 1)).TotalSeconds;
+                uint seconds = (uint) (T_UTC - new DateTime(1970, 1, 1)).TotalSeconds;
 
                 CheckTimeAndZone(seconds, T_Zone_Offset);
             }

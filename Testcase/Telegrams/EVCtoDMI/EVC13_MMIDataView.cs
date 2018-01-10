@@ -1,8 +1,10 @@
 ﻿#region usings
+
 using System;
 using System.Collections.Generic;
 using CL345;
 using static Testcase.Telegrams.EVCtoDMI.Variables;
+
 #endregion
 
 namespace Testcase.Telegrams.EVCtoDMI
@@ -39,9 +41,9 @@ namespace Testcase.Telegrams.EVCtoDMI
             // Check the size of the list
             if (MMI_M_VBC_CODE.Count > 30)
                 throw new ArgumentOutOfRangeException("Too many VBC code entered!");
-            
+
             // Set the value on EVC-13 packet
-            _pool.SITR.ETCS1.DataView.MmiNVbc.Value = (ushort) MMI_M_VBC_CODE.Count;           
+            _pool.SITR.ETCS1.DataView.MmiNVbc.Value = (ushort) MMI_M_VBC_CODE.Count;
 
             // For each element of the list
             for (int vbcIndex = 0; vbcIndex < MMI_M_VBC_CODE.Count; vbcIndex++)
@@ -63,7 +65,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             // Check the length of the string
             if (Trainset_Caption.Length > 12)
                 throw new ArgumentOutOfRangeException("Too many characters in Train Data Set name!");
-            
+
             // Set the value on EVC-13 packet
             _pool.SITR.ETCS1.DataView.MmiNCaptionTrainset.Value = (ushort) Trainset_Caption.Length;
 
@@ -87,7 +89,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             // Check the length of the string
             if (Network_Caption.Length > 16)
                 throw new ArgumentOutOfRangeException("Too many characters in Network Id!");
-            
+
             // Set the value on EVC-13 packet
             _pool.SITR.ETCS1.DataView.MmiNCaptionNetwork.Value = (ushort) Network_Caption.Length;
 
@@ -109,7 +111,8 @@ namespace Testcase.Telegrams.EVCtoDMI
             }
 
             // Set the total length of the packet
-            _pool.SITR.ETCS1.DataView.MmiLPacket.Value = (ushort)(424 + MMI_M_VBC_CODE.Count * 32 + Trainset_Caption.Length * 16 + Network_Caption.Length + 8);
+            _pool.SITR.ETCS1.DataView.MmiLPacket.Value =
+                (ushort) (424 + MMI_M_VBC_CODE.Count * 32 + Trainset_Caption.Length * 16 + Network_Caption.Length + 8);
 
             // Send dynamic telegram
             _pool.SITR.SMDCtrl.ETCS1.DataView.Value = 0x0009;
@@ -171,7 +174,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         public static MMI_M_DATA_ENABLE MMI_M_DATA_ENABLE
         {
             get => (MMI_M_DATA_ENABLE) _pool.SITR.ETCS1.DataView.MmiMDataEnable.Value;
-            set => _pool.SITR.ETCS1.DataView.MmiMDataEnable.Value = (ushort)value;
+            set => _pool.SITR.ETCS1.DataView.MmiMDataEnable.Value = (ushort) value;
         }
 
         /// <summary>
@@ -214,7 +217,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         public static ushort MMI_M_BRAKE_PERC
         {
             get => _pool.SITR.ETCS1.DataView.MmiMBrakePerc.Value;
-            set => _pool.SITR.ETCS1.DataView.MmiMBrakePerc.Value = (byte)value;
+            set => _pool.SITR.ETCS1.DataView.MmiMBrakePerc.Value = (byte) value;
         }
 
         /// <summary>
@@ -239,7 +242,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         public static MMI_NID_KEY MMI_NID_KEY_AXLE_LOAD
         {
             get => (MMI_NID_KEY) _pool.SITR.ETCS1.DataView.MmiNidKeyAxleLoad.Value;
-            set => _pool.SITR.ETCS1.DataView.MmiNidKeyAxleLoad.Value = (byte)value;
+            set => _pool.SITR.ETCS1.DataView.MmiNidKeyAxleLoad.Value = (byte) value;
         }
 
         /// <summary>
@@ -259,7 +262,8 @@ namespace Testcase.Telegrams.EVCtoDMI
             set
             {
                 var bytes = BitConverter.GetBytes(value);
-                _pool.SITR.ETCS1.DataView.MmiNidRadio.Value = new[] { BitConverter.ToUInt32(bytes, 2), BitConverter.ToUInt32(bytes, 0) };
+                _pool.SITR.ETCS1.DataView.MmiNidRadio.Value = new[]
+                    {BitConverter.ToUInt32(bytes, 2), BitConverter.ToUInt32(bytes, 0)};
             }
         }
 
@@ -297,7 +301,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         public static ushort MMI_M_AIRTIGHT
         {
             get => _pool.SITR.ETCS1.DataView.MmiMAirtight.Value;
-            set => _pool.SITR.ETCS1.DataView.MmiMAirtight.Value = (byte)value;
+            set => _pool.SITR.ETCS1.DataView.MmiMAirtight.Value = (byte) value;
         }
 
         /// <summary>
@@ -314,7 +318,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         public static MMI_NID_KEY MMI_NID_KEY_LOAD_GAUGE
         {
             get => (MMI_NID_KEY) _pool.SITR.ETCS1.DataView.MmiNidKeyLoadGauge.Value;
-            set => _pool.SITR.ETCS1.DataView.MmiNidKeyLoadGauge.Value = (byte)value;
+            set => _pool.SITR.ETCS1.DataView.MmiNidKeyLoadGauge.Value = (byte) value;
         }
 
         /// <summary>
@@ -325,12 +329,12 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// <summary>
         /// Train data set caption string name
         /// </summary>
-        public static string Trainset_Caption { get; set; }        
+        public static string Trainset_Caption { get; set; }
 
         /// <summary>
         /// Name of the preconfigured Network ID
         /// </summary>
-        public static string Network_Caption { get; set; }        
+        public static string Network_Caption { get; set; }
 
         /// <summary>
         /// Identifies the train category related subset of MMI_NID_KEY.
@@ -359,7 +363,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         public static MMI_NID_KEY MMI_NID_KEY_TRAIN_CAT
         {
             get => (MMI_NID_KEY) _pool.SITR.ETCS1.DataView.MmiNidKeyTrainCat.Value;
-            set => _pool.SITR.ETCS1.DataView.MmiNidKeyTrainCat.Value = (byte)value;
+            set => _pool.SITR.ETCS1.DataView.MmiNidKeyTrainCat.Value = (byte) value;
         }
     }
 }

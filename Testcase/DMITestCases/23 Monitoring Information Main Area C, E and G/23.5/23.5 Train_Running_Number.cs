@@ -54,7 +54,6 @@ namespace Testcase.DMITestCases
 
             // Call the TestCaseBase PostExecution
             base.PostExecution();
-
         }
 
         public override bool TestcaseEntryPoint()
@@ -67,12 +66,14 @@ namespace Testcase.DMITestCases
             Expected Result: The Train Running Number window is displayed
             */
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;      // Main
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main; // Main
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.DriverID |
                                                                EVC30_MMIRequestEnable.EnabledRequests.Level |
-                                                               EVC30_MMIRequestEnable.EnabledRequests.TrainRunningNumber |
+                                                               EVC30_MMIRequestEnable.EnabledRequests
+                                                                   .TrainRunningNumber |
                                                                EVC30_MMIRequestEnable.EnabledRequests.StartBrakeTest |
-                                                               EVC30_MMIRequestEnable.EnabledRequests.EnableBrakePercentage |
+                                                               EVC30_MMIRequestEnable.EnabledRequests
+                                                                   .EnableBrakePercentage |
                                                                EVC30_MMIRequestEnable.EnabledRequests.TrainData;
             EVC30_MMIRequestEnable.Send();
             EVC14_MMICurrentDriverID.Send();
@@ -82,14 +83,20 @@ namespace Testcase.DMITestCases
             DmiActions.Request_Brake_Test(this);
 
             DmiActions.ShowInstruction(this, "Perform the brake test");
-            
+
             EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Disabled;
-            EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new Variables.MMI_Q_LEVEL_NTC_ID[] { Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level };
-            EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new Variables.MMI_M_CURRENT_LEVEL[] { Variables.MMI_M_CURRENT_LEVEL.NotLastUsedLevel };
-            EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = new Variables.MMI_M_LEVEL_FLAG[] { Variables.MMI_M_LEVEL_FLAG.MarkedLevel };
-            EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = new Variables.MMI_M_INHIBITED_LEVEL[] { Variables.MMI_M_INHIBITED_LEVEL.NotInhibited };
-            EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = new Variables.MMI_M_INHIBIT_ENABLE[] { Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting };
-            EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new Variables.MMI_M_LEVEL_NTC_ID[] { Variables.MMI_M_LEVEL_NTC_ID.L1 };
+            EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new Variables.MMI_Q_LEVEL_NTC_ID[]
+                {Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level};
+            EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new Variables.MMI_M_CURRENT_LEVEL[]
+                {Variables.MMI_M_CURRENT_LEVEL.NotLastUsedLevel};
+            EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = new Variables.MMI_M_LEVEL_FLAG[]
+                {Variables.MMI_M_LEVEL_FLAG.MarkedLevel};
+            EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = new Variables.MMI_M_INHIBITED_LEVEL[]
+                {Variables.MMI_M_INHIBITED_LEVEL.NotInhibited};
+            EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = new Variables.MMI_M_INHIBIT_ENABLE[]
+                {Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting};
+            EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new Variables.MMI_M_LEVEL_NTC_ID[]
+                {Variables.MMI_M_LEVEL_NTC_ID.L1};
             EVC20_MMISelectLevel.Send();
 
             DmiActions.ShowInstruction(this, "Select and confirm Level 1.");
@@ -97,26 +104,26 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press the ‘Train data’ button");
 
 
-                DmiActions.Send_EVC6_MMICurrentTrainData(Variables.MMI_M_DATA_ENABLE.TrainCategory |
+            DmiActions.Send_EVC6_MMICurrentTrainData(Variables.MMI_M_DATA_ENABLE.TrainCategory |
                                                      Variables.MMI_M_DATA_ENABLE.TrainLength |
                                                      Variables.MMI_M_DATA_ENABLE.BrakePercentage |
                                                      Variables.MMI_M_DATA_ENABLE.MaxTrainSpeed |
                                                      Variables.MMI_M_DATA_ENABLE.AxleLoadCategory |
                                                      Variables.MMI_M_DATA_ENABLE.Airtightness |
                                                      Variables.MMI_M_DATA_ENABLE.LoadingGauge,
-                                                     100, 200, 
-                                                     Variables.MMI_NID_KEY.PASS1,
-                                                     70,
-                                                     Variables.MMI_NID_KEY.CATA,
-                                                     1,
-                                                     Variables.MMI_NID_KEY_Load_Gauge.G1,
-                                                     EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE,
-                                                     0, 0, new[] { "FLU", "RLU", "Rescue" },
-                                                     new Variables.DataElement[0]);
+                100, 200,
+                Variables.MMI_NID_KEY.PASS1,
+                70,
+                Variables.MMI_NID_KEY.CATA,
+                1,
+                Variables.MMI_NID_KEY_Load_Gauge.G1,
+                EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE,
+                0, 0, new[] {"FLU", "RLU", "Rescue"},
+                new Variables.DataElement[0]);
 
             DmiActions.ShowInstruction(this, " Enter and confirm the data");
 
-            DmiActions.Send_EVC10_MMIEchoedTrainData_FixedDataEntry(this, new[] { "FLU", "RLU", "Rescue" });
+            DmiActions.Send_EVC10_MMIEchoedTrainData_FixedDataEntry(this, new[] {"FLU", "RLU", "Rescue"});
 
             DmiActions.ShowInstruction(this, "Validate the train data.");
 
@@ -130,7 +137,8 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Default window.Verify the following information,DMI displays the train running number in sub-area G11.The displayed train running number is taken from [MMI_STATUS (EVC-2).MMI_NID_OPERATION].Note: The hexadecimal value ‘F’ is mean ‘No digit’.(i.e. ‘123456’ = 0x123456FF).The text of displayed train running number is coloured grey
             Test Step Comment: (1) MMI_gen 1043 (partly: valid, G11);   (2) MMI_gen 1044;  (3)MMI_gen 11905 (partly: text is grey);
             */
-            DmiActions.ShowInstruction(this, "Enter and confirm the train running number (‘234’). Then press the ‘Close’ button in the Main window");
+            DmiActions.ShowInstruction(this,
+                "Enter and confirm the train running number (‘234’). Then press the ‘Close’ button in the Main window");
 
             EVC2_MMIStatus.TrainRunningNumber = 0x234FFFFF;
             EVC2_MMIStatus.Send();
@@ -158,11 +166,12 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
+
         #region Send_XML_18_5_DMI_Test_Specification
+
         private void XML_18_5()
         {
-
-            EVC2_MMIStatus.TrainRunningNumber = 0xa12f;         // an invalid number
+            EVC2_MMIStatus.TrainRunningNumber = 0xa12f; // an invalid number
             EVC2_MMIStatus.MMI_M_ADHESION = 0;
             EVC2_MMIStatus.MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.Cabin1Active;
             EVC2_MMIStatus.MMI_M_OVERRIDE_EOA = false;
@@ -180,9 +189,8 @@ namespace Testcase.DMITestCases
 
             Wait_Realtime(500);
             EVC2_MMIStatus.Send();
-
         }
-        #endregion
 
+        #endregion
     }
 }

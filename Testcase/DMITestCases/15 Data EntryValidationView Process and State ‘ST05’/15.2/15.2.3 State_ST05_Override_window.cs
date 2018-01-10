@@ -68,7 +68,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press ‘Close’ button in the Main window. Press ‘Override’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays Default window until Override window is displayed." + Environment.NewLine +
+                                "1. DMI displays Default window until Override window is displayed." +
+                                Environment.NewLine +
                                 "2. ‘Close’ button is always enabled.");
 
             /*
@@ -89,6 +90,7 @@ namespace Testcase.DMITestCases
         }
 
         #region Send_XML_10_2_3_a_DMI_Test_Specification
+
         private void XML_10_2_3_a()
         {
             // Step 2/1

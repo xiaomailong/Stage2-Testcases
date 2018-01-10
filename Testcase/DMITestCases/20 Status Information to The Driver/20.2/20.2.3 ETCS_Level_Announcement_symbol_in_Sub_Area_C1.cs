@@ -56,7 +56,8 @@ namespace Testcase.DMITestCases
 
             // Set to level 1 and SR mode
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode =
+                EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
 
             DmiActions.Display_Main_Window_with_Start_button_enabled(this);
         }
@@ -75,6 +76,7 @@ namespace Testcase.DMITestCases
             // Testcase entrypoint
 
             #region Test Step 1
+
             /*
             Test Step 1
             Action: Press the 'Start' button
@@ -83,9 +85,10 @@ namespace Testcase.DMITestCases
 
             DmiExpectedResults.Main_Window_displayed(this, true);
 
-            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
-                                "1. Press ‘Start’ button." + Environment.NewLine +
-                                "2. Press OK on THIS window within 3 seconds.");
+            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine +
+                                             Environment.NewLine +
+                                             "1. Press ‘Start’ button." + Environment.NewLine +
+                                             "2. Press OK on THIS window within 3 seconds.");
             DmiExpectedResults.Start_Button_pressed_and_released(this);
 
             DmiActions.Send_SR_Mode_Ack(this);
@@ -94,6 +97,7 @@ namespace Testcase.DMITestCases
             #endregion
 
             #region Test Step 2
+
             /*
             Test Step 2
             Action: Use the test script file 15_2_3_a.xml to send EVC-8 with,
@@ -113,11 +117,13 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.PlainTextMessage = "0";
             EVC8_MMIDriverMessage.Send();
 
-            DmiExpectedResults.Driver_symbol_displayed(this, "Acknowledgement for Staff Responsible mode", "MO10", "C1", true);
+            DmiExpectedResults.Driver_symbol_displayed(this, "Acknowledgement for Staff Responsible mode", "MO10", "C1",
+                true);
 
             #endregion
 
             #region Test Step 3
+
             /*
             Test Step 3
             Action: Perform the following procedure,
@@ -144,7 +150,7 @@ namespace Testcase.DMITestCases
             DmiActions.Request_Brake_Test(this);
             DmiExpectedResults.Brake_Test_Perform_Order(this, false);
 
-            DmiActions.Display_Level_Window(this,true);
+            DmiActions.Display_Level_Window(this, true);
             DmiExpectedResults.Level_window_displayed(this);
 
             DmiExpectedResults.Level_1_Selected(this);
@@ -153,6 +159,7 @@ namespace Testcase.DMITestCases
             #endregion
 
             #region Test Step 4
+
             /*
             Test Step 4
             Action: Use the test script file 15_2_3_b.xml to send EVC-8 with,
@@ -177,6 +184,7 @@ namespace Testcase.DMITestCases
             #endregion
 
             #region Test Step 5
+
             /*
             Test Step 5
             Action: (Continue from step 4) Send EVC-8 with,
@@ -201,6 +209,7 @@ namespace Testcase.DMITestCases
             #endregion
 
             #region Test Step 6
+
             /*
             Test Step 6
             Action: (Continue from step 5) Send EVC-8 with,
@@ -225,6 +234,7 @@ namespace Testcase.DMITestCases
             #endregion
 
             #region Test Step 7
+
             /*
             Test Step 7
             Action: (Continue from step 6)Send EVC-8 with,
@@ -249,6 +259,7 @@ namespace Testcase.DMITestCases
             #endregion
 
             #region Test Step 8
+
             /*
             Test Step 8
             Action: (Continue from step 7) Send EVC-8 with,
@@ -273,6 +284,7 @@ namespace Testcase.DMITestCases
             #endregion
 
             #region Test Step 9
+
             /*
             Test Step 9
             Action: (Continue from step 8) Send EVC-8 with,
@@ -297,6 +309,7 @@ namespace Testcase.DMITestCases
             #endregion
 
             #region Test Step 10
+
             /*
             Test Step 10
             Action: (Continue from step 9) Send EVC-8 with,
@@ -321,6 +334,7 @@ namespace Testcase.DMITestCases
             #endregion
 
             #region Test step 11
+
             /*
             Test Step 11
             Action: (Continue from step 10)Send EVC-8 with,
@@ -345,6 +359,7 @@ namespace Testcase.DMITestCases
             #endregion
 
             #region Test step 12
+
             /*
             Test Step 12
             Action: (Continue from step 11)Send EVC-8 with,
@@ -369,6 +384,7 @@ namespace Testcase.DMITestCases
             #endregion
 
             #region Test step 13
+
             /*
             Test Step 13
             Action: (Continue from step 12)Send EVC-8 with,
@@ -393,6 +409,7 @@ namespace Testcase.DMITestCases
             #endregion
 
             #region Test step 14
+
             /*
             Test Step 14
             Action: (Continue from step 13)Send EVC-8 with,
@@ -417,6 +434,7 @@ namespace Testcase.DMITestCases
             #endregion
 
             #region Test step 15
+
             /*
             Test Step 15
             Action: (Continue from step 14)Send EVC-8 with,
@@ -441,14 +459,16 @@ namespace Testcase.DMITestCases
             #endregion
 
             #region Test step 16
+
             /*
             Test Step 16
             Action: End of test
             Expected Result: 
             */
+
             #endregion
 
             return GlobalTestResult;
-        }       
+        }
     }
 }

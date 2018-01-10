@@ -1,9 +1,11 @@
 ﻿#region usings
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using CL345;
+
 #endregion
 
 namespace Testcase.Telegrams.EVCtoDMI
@@ -60,7 +62,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static void Send()
         {
-            _pool.TraceInfo($"ETCS->DMI: EVC-3 (MMI_SET_TIME_ATP) UTC Time = {MMI_T_UTC}, Time offset = {MMI_T_ZONE_OFFSET}");
+            _pool.TraceInfo(
+                $"ETCS->DMI: EVC-3 (MMI_SET_TIME_ATP) UTC Time = {MMI_T_UTC}, Time offset = {MMI_T_ZONE_OFFSET}");
             _pool.SITR.SMDCtrl.ETCS1.SetTimeATP.Value = 0x0001;
         }
     }

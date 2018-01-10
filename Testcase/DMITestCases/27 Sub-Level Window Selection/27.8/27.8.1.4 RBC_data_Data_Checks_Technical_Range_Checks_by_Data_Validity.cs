@@ -85,8 +85,10 @@ namespace Testcase.DMITestCases
             EVC22_MMICurrentRBC.MMI_NID_WINDOW = 10;
             EVC22_MMICurrentRBC.Send();
 
-            DmiActions.ShowInstruction(this, "On the numeric keypad: enter the value ‘6996969’ for ‘RBC ID’ and confirm the entered data by pressing the data input field;" + Environment.NewLine +
-                                             "                       enter the value ‘0031840880100’ for ‘RBC phone number’ and confirm the entered data by pressing the data input field");
+            DmiActions.ShowInstruction(this,
+                "On the numeric keypad: enter the value ‘6996969’ for ‘RBC ID’ and confirm the entered data by pressing the data input field;" +
+                Environment.NewLine +
+                "                       enter the value ‘0031840880100’ for ‘RBC phone number’ and confirm the entered data by pressing the data input field");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Yes’ button is displayed enabled");
@@ -97,7 +99,8 @@ namespace Testcase.DMITestCases
             Expected Result: EVC-22(1) Use the log file to verify that DMI receives packet EVC-22 with variable MMI_M_BUTTONS = 255 (no button) and the 'Yes' button is disabled
             Test Step Comment: Requirements:(1) MMI_gen 9467;
             */
-            DmiActions.ShowInstruction(this, "On the numeric keypad, enter the (invalid) value ‘1’ for ‘RBC ID’ and confirm the entered data by pressing the data input field");
+            DmiActions.ShowInstruction(this,
+                "On the numeric keypad, enter the (invalid) value ‘1’ for ‘RBC ID’ and confirm the entered data by pressing the data input field");
 
             EVC22_MMICurrentRBC.MMI_NID_WINDOW = 10;
             EVC22_MMICurrentRBC.MMI_M_BUTTONS = EVC22_MMICurrentRBC.EVC22BUTTONS.NoButton;
@@ -111,7 +114,8 @@ namespace Testcase.DMITestCases
             Action: Enter “6996969” (valid value) for RBC ID with the numeric keypad and press the data input field (Accept) in the same screen
             Expected Result: The ‘Yes’ button is enabled
             */
-            DmiActions.ShowInstruction(this, "Using the numeric keypad, enter the (valid) value ‘6996969’ for ‘RBC ID’ and confirm the entered data by pressing the data input field");
+            DmiActions.ShowInstruction(this,
+                "Using the numeric keypad, enter the (valid) value ‘6996969’ for ‘RBC ID’ and confirm the entered data by pressing the data input field");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Yes’ button is displayed enabled");
@@ -122,7 +126,8 @@ namespace Testcase.DMITestCases
             Expected Result: EVC-22(1) Use the log file to verify that DMI receives packet EVC-22 with variable MMI_M_BUTTONS = 255 (no button) and the 'Yes' button is disabled
             Test Step Comment: Requirements:(1) MMI_gen 9467;
             */
-            DmiActions.ShowInstruction(this, "Using the numeric keypad, enter the (invalid) value ‘1’ for ‘RBC phone number’ and confirm the entered data by pressing the data input field");
+            DmiActions.ShowInstruction(this,
+                "Using the numeric keypad, enter the (invalid) value ‘1’ for ‘RBC phone number’ and confirm the entered data by pressing the data input field");
 
             EVC22_MMICurrentRBC.MMI_NID_WINDOW = 10;
             EVC22_MMICurrentRBC.MMI_M_BUTTONS = EVC22_MMICurrentRBC.EVC22BUTTONS.NoButton;
@@ -136,7 +141,8 @@ namespace Testcase.DMITestCases
             Action: Enter “0031840880100” (valid value) for RBC phone number with the numeric keypad and press the data input field (Accept) in the same screen
             Expected Result: The ‘Yes’ button is enabled
             */
-            DmiActions.ShowInstruction(this, "Using the numeric keypad, enter the (valid) value ‘0031840880100’ for ‘RBC phone number’ and confirm the entered data by pressing the data input field");
+            DmiActions.ShowInstruction(this,
+                "Using the numeric keypad, enter the (valid) value ‘0031840880100’ for ‘RBC phone number’ and confirm the entered data by pressing the data input field");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Yes’ button is displayed enabled");
@@ -164,8 +170,10 @@ namespace Testcase.DMITestCases
             EVC22_MMICurrentRBC.MMI_NID_WINDOW = 10;
             EVC22_MMICurrentRBC.Send();
 
-            DmiActions.ShowInstruction(this, "On the numeric keypad: enter the value ‘6996969’ for ‘RBC ID’ and confirm the entered data by pressing the data input field;" + Environment.NewLine +
-                                             "                       enter the value ‘0031840880100’ for ‘RBC phone number’ and confirm the entered data by pressing the data input field");
+            DmiActions.ShowInstruction(this,
+                "On the numeric keypad: enter the value ‘6996969’ for ‘RBC ID’ and confirm the entered data by pressing the data input field;" +
+                Environment.NewLine +
+                "                       enter the value ‘0031840880100’ for ‘RBC phone number’ and confirm the entered data by pressing the data input field");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Yes’ button is displayed enabled");
@@ -176,7 +184,9 @@ namespace Testcase.DMITestCases
             Expected Result: EVC-22(1) The 'Yes' button is disabled
             Test Step Comment: Requirements:MMI_gen 9467;Note: This is a temporary approach for non-support test environment on the data checks.
             */
+
             #region Send_XML_22_8_1_4_DMI_Test_Specification
+
             EVC22_MMICurrentRBC.MMI_NID_WINDOW = 10;
             EVC22_MMICurrentRBC.NID_RBC = 1234;
             EVC22_MMICurrentRBC.MMI_NID_RADIO = 0xffffffffffffffff;
@@ -184,6 +194,7 @@ namespace Testcase.DMITestCases
             EVC22_MMICurrentRBC.MMI_M_BUTTONS = EVC22_MMICurrentRBC.EVC22BUTTONS.NoButton;
 
             EVC22_MMICurrentRBC.Send();
+
             #endregion
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +

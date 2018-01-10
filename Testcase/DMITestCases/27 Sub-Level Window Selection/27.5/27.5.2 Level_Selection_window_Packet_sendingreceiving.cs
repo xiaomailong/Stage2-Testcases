@@ -61,7 +61,7 @@ namespace Testcase.DMITestCases
             // Testcase entrypoint
 
             TraceInfo("This test case requires an ATP configuration change - " +
-                        "See Precondition requirements. If this is not done manually, the test may fail!");
+                      "See Precondition requirements. If this is not done manually, the test may fail!");
             /*
             Test Step 1
             Action: Use the test script file 22_5_2_a.xml to send EVC-20 with,MMI_N_LEVELS = 2MMI_Q_LEVEL_NTC_ID[0] = 1MMI_M_CURRENT_LEVEL[0]  = 0MMI_M_LEVEL_FLAG[0] = 1MMI_M_INHIBITED_LEVEL[0] = 0MMI_M_INHIBIT_ENABLE[0] = 1MMI_M_LEVEL_NTC_ID[0] = 0MMI_Q_LEVEL_NTC_ID[1] = 1MMI_M_CURRENT_LEVEL[1]  = 0MMI_M_LEVEL_FLAG[1] = 1MMI_M_INHIBITED_LEVEL[1] = 1MMI_M_INHIBIT_ENABLE[1] = 1MMI_M_LEVEL_NTC_ID[1] = 2
@@ -106,12 +106,18 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Enter and confirm Driver ID");
 
             EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Disabled;
-            EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new Variables.MMI_Q_LEVEL_NTC_ID[] { Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level };
-            EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new Variables.MMI_M_CURRENT_LEVEL[] { Variables.MMI_M_CURRENT_LEVEL.LastUsedLevel };
-            EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = new Variables.MMI_M_LEVEL_FLAG[] { Variables.MMI_M_LEVEL_FLAG.MarkedLevel };
-            EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = new Variables.MMI_M_INHIBITED_LEVEL[] { Variables.MMI_M_INHIBITED_LEVEL.NotInhibited };
-            EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = new Variables.MMI_M_INHIBIT_ENABLE[] { Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting };
-            EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new Variables.MMI_M_LEVEL_NTC_ID[] { Variables.MMI_M_LEVEL_NTC_ID.L1 };
+            EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new Variables.MMI_Q_LEVEL_NTC_ID[]
+                {Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level};
+            EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new Variables.MMI_M_CURRENT_LEVEL[]
+                {Variables.MMI_M_CURRENT_LEVEL.LastUsedLevel};
+            EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = new Variables.MMI_M_LEVEL_FLAG[]
+                {Variables.MMI_M_LEVEL_FLAG.MarkedLevel};
+            EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = new Variables.MMI_M_INHIBITED_LEVEL[]
+                {Variables.MMI_M_INHIBITED_LEVEL.NotInhibited};
+            EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = new Variables.MMI_M_INHIBIT_ENABLE[]
+                {Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting};
+            EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new Variables.MMI_M_LEVEL_NTC_ID[]
+                {Variables.MMI_M_LEVEL_NTC_ID.L1};
             EVC20_MMISelectLevel.Send();
 
             DmiActions.ShowInstruction(this, "Select and confirm Level 1");
@@ -122,47 +128,59 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press the ‘Level’ button");
 
             Variables.MMI_Q_LEVEL_NTC_ID[] paramEvc20MmiQLevelNtcId =
-                { MMI_Q_LEVEL_NTC_ID.ETCS_Level,
+            {
                 MMI_Q_LEVEL_NTC_ID.ETCS_Level,
-                MMI_Q_LEVEL_NTC_ID.ETCS_Level, 
+                MMI_Q_LEVEL_NTC_ID.ETCS_Level,
+                MMI_Q_LEVEL_NTC_ID.ETCS_Level,
                 MMI_Q_LEVEL_NTC_ID.ETCS_Level,
                 MMI_Q_LEVEL_NTC_ID.STM_ID,
-                MMI_Q_LEVEL_NTC_ID.STM_ID };
+                MMI_Q_LEVEL_NTC_ID.STM_ID
+            };
             Variables.MMI_M_CURRENT_LEVEL[] paramEvc20MmiMCurrentLevel =
-                { MMI_M_CURRENT_LEVEL.LastUsedLevel,
+            {
+                MMI_M_CURRENT_LEVEL.LastUsedLevel,
                 MMI_M_CURRENT_LEVEL.NotLastUsedLevel,
                 MMI_M_CURRENT_LEVEL.NotLastUsedLevel,
                 MMI_M_CURRENT_LEVEL.NotLastUsedLevel,
                 MMI_M_CURRENT_LEVEL.NotLastUsedLevel,
-                MMI_M_CURRENT_LEVEL.NotLastUsedLevel };
+                MMI_M_CURRENT_LEVEL.NotLastUsedLevel
+            };
             Variables.MMI_M_LEVEL_FLAG[] paramEvc20MmiMLevelFlag =
-                { MMI_M_LEVEL_FLAG.MarkedLevel,
+            {
                 MMI_M_LEVEL_FLAG.MarkedLevel,
                 MMI_M_LEVEL_FLAG.MarkedLevel,
                 MMI_M_LEVEL_FLAG.MarkedLevel,
                 MMI_M_LEVEL_FLAG.MarkedLevel,
-                MMI_M_LEVEL_FLAG.MarkedLevel };
+                MMI_M_LEVEL_FLAG.MarkedLevel,
+                MMI_M_LEVEL_FLAG.MarkedLevel
+            };
             Variables.MMI_M_INHIBITED_LEVEL[] paramEvc20MmiMInhibitedLevel =
-                { MMI_M_INHIBITED_LEVEL.NotInhibited,
+            {
                 MMI_M_INHIBITED_LEVEL.NotInhibited,
                 MMI_M_INHIBITED_LEVEL.NotInhibited,
                 MMI_M_INHIBITED_LEVEL.NotInhibited,
                 MMI_M_INHIBITED_LEVEL.NotInhibited,
-                MMI_M_INHIBITED_LEVEL.NotInhibited };
+                MMI_M_INHIBITED_LEVEL.NotInhibited,
+                MMI_M_INHIBITED_LEVEL.NotInhibited
+            };
             Variables.MMI_M_INHIBIT_ENABLE[] paramEvc20MmiMInhibitEnable =
-                { MMI_M_INHIBIT_ENABLE.AllowedForInhibiting,
+            {
                 MMI_M_INHIBIT_ENABLE.AllowedForInhibiting,
                 MMI_M_INHIBIT_ENABLE.AllowedForInhibiting,
                 MMI_M_INHIBIT_ENABLE.AllowedForInhibiting,
                 MMI_M_INHIBIT_ENABLE.AllowedForInhibiting,
-                MMI_M_INHIBIT_ENABLE.AllowedForInhibiting };
+                MMI_M_INHIBIT_ENABLE.AllowedForInhibiting,
+                MMI_M_INHIBIT_ENABLE.AllowedForInhibiting
+            };
             Variables.MMI_M_LEVEL_NTC_ID[] paramEvc20MmiMLevelNtcId =
-                { MMI_M_LEVEL_NTC_ID.L1,
+            {
+                MMI_M_LEVEL_NTC_ID.L1,
                 MMI_M_LEVEL_NTC_ID.L2,
                 MMI_M_LEVEL_NTC_ID.L3,
                 MMI_M_LEVEL_NTC_ID.L0,
                 MMI_M_LEVEL_NTC_ID.CBTC,
-                MMI_M_LEVEL_NTC_ID.AWS_TPWS };
+                MMI_M_LEVEL_NTC_ID.AWS_TPWS
+            };
 
             EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = paramEvc20MmiQLevelNtcId;
             EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = paramEvc20MmiMCurrentLevel;
@@ -174,8 +192,10 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Level window." + Environment.NewLine +
-                                "2. A keyboard with a 3 x 2 array of buttons is displayed with the following buttons (left to right):" + Environment.NewLine +
-                                "3. ‘Level 1’, ‘Level 2’, ‘Level3’ in the top row; ‘Level 0’, ‘CBTC’, ‘AWS_TPWS’ in the bottom row." + Environment.NewLine +
+                                "2. A keyboard with a 3 x 2 array of buttons is displayed with the following buttons (left to right):" +
+                                Environment.NewLine +
+                                "3. ‘Level 1’, ‘Level 2’, ‘Level3’ in the top row; ‘Level 0’, ‘CBTC’, ‘AWS_TPWS’ in the bottom row." +
+                                Environment.NewLine +
                                 "4. The button text is grey." + Environment.NewLine +
                                 "5. The buttons are displayed enabled.");
 
@@ -188,7 +208,8 @@ namespace Testcase.DMITestCases
             XML_22_5_2(msgType.typec);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. A keyboard with a 3 x 1 array of buttons is displayed with the following buttons(left to right):" + Environment.NewLine +
+                                "1. A keyboard with a 3 x 1 array of buttons is displayed with the following buttons(left to right):" +
+                                Environment.NewLine +
                                 "2. ‘Level 0’, ‘Level 2’, ‘AWS_TPWS’.");
 
             /*
@@ -210,7 +231,9 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
+
         #region Send_XML_22_5_2_DMI_Test_Specification
+
         enum msgType
         {
             typea,
@@ -225,23 +248,35 @@ namespace Testcase.DMITestCases
             {
                 case msgType.typea:
                     EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new Variables.MMI_Q_LEVEL_NTC_ID[]
-                    { Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level,
-                        Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level };
+                    {
+                        Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level,
+                        Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level
+                    };
                     EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new Variables.MMI_M_CURRENT_LEVEL[]
-                    { Variables.MMI_M_CURRENT_LEVEL.NotLastUsedLevel,
-                        Variables.MMI_M_CURRENT_LEVEL.NotLastUsedLevel };
+                    {
+                        Variables.MMI_M_CURRENT_LEVEL.NotLastUsedLevel,
+                        Variables.MMI_M_CURRENT_LEVEL.NotLastUsedLevel
+                    };
                     EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = new Variables.MMI_M_LEVEL_FLAG[]
-                    { Variables.MMI_M_LEVEL_FLAG.MarkedLevel,
-                        Variables.MMI_M_LEVEL_FLAG.MarkedLevel };
+                    {
+                        Variables.MMI_M_LEVEL_FLAG.MarkedLevel,
+                        Variables.MMI_M_LEVEL_FLAG.MarkedLevel
+                    };
                     EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = new Variables.MMI_M_INHIBITED_LEVEL[]
-                    { Variables.MMI_M_INHIBITED_LEVEL.NotInhibited,
-                        Variables.MMI_M_INHIBITED_LEVEL.Inhibited };
+                    {
+                        Variables.MMI_M_INHIBITED_LEVEL.NotInhibited,
+                        Variables.MMI_M_INHIBITED_LEVEL.Inhibited
+                    };
                     EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = new Variables.MMI_M_INHIBIT_ENABLE[]
-                    { Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting,
-                        Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting };
+                    {
+                        Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting,
+                        Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting
+                    };
                     EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new Variables.MMI_M_LEVEL_NTC_ID[]
-                    { Variables.MMI_M_LEVEL_NTC_ID.L0,
-                        Variables.MMI_M_LEVEL_NTC_ID.L2 };
+                    {
+                        Variables.MMI_M_LEVEL_NTC_ID.L0,
+                        Variables.MMI_M_LEVEL_NTC_ID.L2
+                    };
                     break;
                 case msgType.typeb:
 
@@ -259,29 +294,41 @@ namespace Testcase.DMITestCases
                     EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = MMI_Q_CLOSE_ENABLE.Disabled;
 
                     Variables.MMI_Q_LEVEL_NTC_ID[] paramEvc20MmiQLevelNtcId =
-                        { MMI_Q_LEVEL_NTC_ID.ETCS_Level,
-                          MMI_Q_LEVEL_NTC_ID.ETCS_Level,
-                          MMI_Q_LEVEL_NTC_ID.STM_ID };
+                    {
+                        MMI_Q_LEVEL_NTC_ID.ETCS_Level,
+                        MMI_Q_LEVEL_NTC_ID.ETCS_Level,
+                        MMI_Q_LEVEL_NTC_ID.STM_ID
+                    };
                     Variables.MMI_M_CURRENT_LEVEL[] paramEvc20MmiMCurrentLevel =
-                        { MMI_M_CURRENT_LEVEL.LastUsedLevel,
-                          MMI_M_CURRENT_LEVEL.NotLastUsedLevel,
-                          MMI_M_CURRENT_LEVEL.NotLastUsedLevel };
+                    {
+                        MMI_M_CURRENT_LEVEL.LastUsedLevel,
+                        MMI_M_CURRENT_LEVEL.NotLastUsedLevel,
+                        MMI_M_CURRENT_LEVEL.NotLastUsedLevel
+                    };
                     Variables.MMI_M_LEVEL_FLAG[] paramEvc20MmiMLevelFlag =
-                        { MMI_M_LEVEL_FLAG.MarkedLevel,
-                         MMI_M_LEVEL_FLAG.MarkedLevel,
-                         MMI_M_LEVEL_FLAG.MarkedLevel };
+                    {
+                        MMI_M_LEVEL_FLAG.MarkedLevel,
+                        MMI_M_LEVEL_FLAG.MarkedLevel,
+                        MMI_M_LEVEL_FLAG.MarkedLevel
+                    };
                     Variables.MMI_M_INHIBITED_LEVEL[] paramEvc20MmiMInhibitedLevel =
-                        { MMI_M_INHIBITED_LEVEL.NotInhibited,
-                          MMI_M_INHIBITED_LEVEL.NotInhibited,
-                          MMI_M_INHIBITED_LEVEL.NotInhibited };
+                    {
+                        MMI_M_INHIBITED_LEVEL.NotInhibited,
+                        MMI_M_INHIBITED_LEVEL.NotInhibited,
+                        MMI_M_INHIBITED_LEVEL.NotInhibited
+                    };
                     Variables.MMI_M_INHIBIT_ENABLE[] paramEvc20MmiMInhibitEnable =
-                        { MMI_M_INHIBIT_ENABLE.AllowedForInhibiting,
-                          MMI_M_INHIBIT_ENABLE.AllowedForInhibiting,
-                          MMI_M_INHIBIT_ENABLE.AllowedForInhibiting };
+                    {
+                        MMI_M_INHIBIT_ENABLE.AllowedForInhibiting,
+                        MMI_M_INHIBIT_ENABLE.AllowedForInhibiting,
+                        MMI_M_INHIBIT_ENABLE.AllowedForInhibiting
+                    };
                     Variables.MMI_M_LEVEL_NTC_ID[] paramEvc20MmiMLevelNtcId =
-                        { MMI_M_LEVEL_NTC_ID.L0,
-                          MMI_M_LEVEL_NTC_ID.L2,
-                          MMI_M_LEVEL_NTC_ID.AWS_TPWS };
+                    {
+                        MMI_M_LEVEL_NTC_ID.L0,
+                        MMI_M_LEVEL_NTC_ID.L2,
+                        MMI_M_LEVEL_NTC_ID.AWS_TPWS
+                    };
 
                     EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = paramEvc20MmiQLevelNtcId;
                     EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = paramEvc20MmiMCurrentLevel;
@@ -293,6 +340,7 @@ namespace Testcase.DMITestCases
             }
             EVC20_MMISelectLevel.Send();
         }
+
         #endregion
     }
 }

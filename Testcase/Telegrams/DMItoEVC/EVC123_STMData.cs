@@ -7,9 +7,9 @@ using static Testcase.Telegrams.EVCtoDMI.Variables;
 
 namespace Testcase.Telegrams.DMItoEVC
 {
-/// <summary>
-/// This structure collects the repeated data for the EVC25 packet
-/// </summary>
+    /// <summary>
+    /// This structure collects the repeated data for the EVC25 packet
+    /// </summary>
     public class EVC123_StmDataElement
     {
         public byte stmNidNtc;
@@ -22,6 +22,4 @@ namespace Testcase.Telegrams.DMItoEVC
         public byte nidNtc;
         public List<EVC123_StmDataElement> elements;
     }
-
 }
-

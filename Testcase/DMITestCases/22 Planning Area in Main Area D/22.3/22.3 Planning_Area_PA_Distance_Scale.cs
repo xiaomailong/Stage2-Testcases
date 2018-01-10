@@ -87,27 +87,44 @@ namespace Testcase.DMITestCases
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
 
             // Need to set track descriptions for scale to display correctly
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 20000;  // 200m
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 20000; // 200m
 
             List<TrackDescription> descriptionsList = new List<TrackDescription>()
             {
-                new TrackDescription { MMI_G_GRADIENT = 10, MMI_O_GRADIENT = 10000, MMI_O_MRSP = 10500, MMI_V_MRSP = 800},
-                new TrackDescription { MMI_G_GRADIENT = 15, MMI_O_GRADIENT = 20000, MMI_O_MRSP = 15000, MMI_V_MRSP = 700},
-                new TrackDescription { MMI_G_GRADIENT = 20, MMI_O_GRADIENT = 30000, MMI_O_MRSP = 20500, MMI_V_MRSP = 600}
+                new TrackDescription
+                {
+                    MMI_G_GRADIENT = 10,
+                    MMI_O_GRADIENT = 10000,
+                    MMI_O_MRSP = 10500,
+                    MMI_V_MRSP = 800
+                },
+                new TrackDescription
+                {
+                    MMI_G_GRADIENT = 15,
+                    MMI_O_GRADIENT = 20000,
+                    MMI_O_MRSP = 15000,
+                    MMI_V_MRSP = 700
+                },
+                new TrackDescription {MMI_G_GRADIENT = 20, MMI_O_GRADIENT = 30000, MMI_O_MRSP = 20500, MMI_V_MRSP = 600}
             };
 
             EVC4_MMITrackDescription.TrackDescriptions = descriptionsList;
-            EVC4_MMITrackDescription.Send(); 
+            EVC4_MMITrackDescription.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Planning Area in area D" + Environment.NewLine +
-                                "2. Scale numbers are displayed in Medium-grey, vertically centred on the distance scale lines and aligned to the right of sub-area D1." + Environment.NewLine +
-                                "3. 9 distance scale lines are displayed crossing sub-areas D2 – D7." + Environment.NewLine +
-                                "4. From the bottom to top the 1st, 6th and 9th distance scale lines are in Medium-grey" + Environment.NewLine +
+                                "2. Scale numbers are displayed in Medium-grey, vertically centred on the distance scale lines and aligned to the right of sub-area D1." +
+                                Environment.NewLine +
+                                "3. 9 distance scale lines are displayed crossing sub-areas D2 – D7." +
+                                Environment.NewLine +
+                                "4. From the bottom to top the 1st, 6th and 9th distance scale lines are in Medium-grey" +
+                                Environment.NewLine +
                                 "5. All other distance scale lines are in Dark-grey." + Environment.NewLine +
                                 "6. DMI displays the distance range 0 to 4000 m by default." + Environment.NewLine +
-                                "7. The PA distance scale values 0, 500, 1000, 2000 and 4000 are displayed in m" + Environment.NewLine +
-                                "8. Distance scale lines are displayed at PA distance scale values 0, 100, 200, 300, 400, 500, 1000, 2000, 4000" + Environment.NewLine +
+                                "7. The PA distance scale values 0, 500, 1000, 2000 and 4000 are displayed in m" +
+                                Environment.NewLine +
+                                "8. Distance scale lines are displayed at PA distance scale values 0, 100, 200, 300, 400, 500, 1000, 2000, 4000" +
+                                Environment.NewLine +
                                 "9. The position of PASP is consistent with the train position, PA distance scale value and distance scale lines.");
 
             /*
@@ -120,13 +137,19 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press the ‘Scale up’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. Verify that the DMI displays the distance ranges from 0 to 2000." + Environment.NewLine +
-                                "2. Scale numbers are in Medium-grey, vertically centred on the distance scale lines and aligned to the right of sub-area D1." + Environment.NewLine +
-                                "3. 9 distance scale lines are displayed crossing sub-areas D2 – D7." + Environment.NewLine +
-                                "4. From the bottom to top the 1st, 6th and 9th distance scale lines are in Medium-grey." + Environment.NewLine +
+                                "1. Verify that the DMI displays the distance ranges from 0 to 2000." +
+                                Environment.NewLine +
+                                "2. Scale numbers are in Medium-grey, vertically centred on the distance scale lines and aligned to the right of sub-area D1." +
+                                Environment.NewLine +
+                                "3. 9 distance scale lines are displayed crossing sub-areas D2 – D7." +
+                                Environment.NewLine +
+                                "4. From the bottom to top the 1st, 6th and 9th distance scale lines are in Medium-grey." +
+                                Environment.NewLine +
                                 "5. All other distance scale lines are in Dark-grey" + Environment.NewLine +
-                                "6. The PA distance scale values 0, 250, 500, 1000, 2000 are displayed in m." + Environment.NewLine +
-                                "7. Distance scale lines are displayed at PA distance scale values 0, 50, 100, 150, 200, 250, 500, 1000, 2000." + Environment.NewLine +
+                                "6. The PA distance scale values 0, 250, 500, 1000, 2000 are displayed in m." +
+                                Environment.NewLine +
+                                "7. Distance scale lines are displayed at PA distance scale values 0, 50, 100, 150, 200, 250, 500, 1000, 2000." +
+                                Environment.NewLine +
                                 "8. The position of PASP is consistent with the train position, PA distance scale value and distance scale lines.");
 
             /*
@@ -139,15 +162,21 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press the ‘Scale up’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. Verify that the DMI displays the distance ranges from 0 to 1000." + Environment.NewLine +
-                                "2. Scale numbers are in Medium-grey, vertically centred on the distance scale lines and aligned to the right of sub-area D1." + Environment.NewLine +
-                                "3. 9 distance scale lines are displayed crossing sub-areas D2 – D7." + Environment.NewLine +
-                                "4. From the bottom to top the 1st, 6th and 9th distance scale lines are in Medium-grey" + Environment.NewLine +
+                                "1. Verify that the DMI displays the distance ranges from 0 to 1000." +
+                                Environment.NewLine +
+                                "2. Scale numbers are in Medium-grey, vertically centred on the distance scale lines and aligned to the right of sub-area D1." +
+                                Environment.NewLine +
+                                "3. 9 distance scale lines are displayed crossing sub-areas D2 – D7." +
+                                Environment.NewLine +
+                                "4. From the bottom to top the 1st, 6th and 9th distance scale lines are in Medium-grey" +
+                                Environment.NewLine +
                                 "5. All other distance scale lines are in Dark-grey" + Environment.NewLine +
-                                "6. The PA distance scale values 0, 125, 250, 500, 1000 are displayed in m." + Environment.NewLine +
-                                "7. Distance scale lines are displayed at PA distance scale values 0, 25, 50, 75, 100, 125, 250, 500, 1000." + Environment.NewLine +
+                                "6. The PA distance scale values 0, 125, 250, 500, 1000 are displayed in m." +
+                                Environment.NewLine +
+                                "7. Distance scale lines are displayed at PA distance scale values 0, 25, 50, 75, 100, 125, 250, 500, 1000." +
+                                Environment.NewLine +
                                 "8. The position of PASP is consistent with the train position, PA distance scale value and distance scale lines.");
-            
+
             /*
             Test Step 6
             Action: Press ‘Scale down’ button three times
@@ -157,13 +186,19 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press the ‘Scale down’ button three times");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. Verify that the DMI displays the distance ranges from 0 to 8000." + Environment.NewLine +
-                                "2. Scale numbers are in Medium-grey, vertically centred on the distance scale lines and aligned to the right of sub-area D1." + Environment.NewLine +
-                                "3. 9 distance scale lines are displayed crossing sub-areas D2 – D7." + Environment.NewLine +
-                                "4. From the bottom to top the 1st, 6th and 9th distance scale lines are in Medium-grey" + Environment.NewLine +
+                                "1. Verify that the DMI displays the distance ranges from 0 to 8000." +
+                                Environment.NewLine +
+                                "2. Scale numbers are in Medium-grey, vertically centred on the distance scale lines and aligned to the right of sub-area D1." +
+                                Environment.NewLine +
+                                "3. 9 distance scale lines are displayed crossing sub-areas D2 – D7." +
+                                Environment.NewLine +
+                                "4. From the bottom to top the 1st, 6th and 9th distance scale lines are in Medium-grey" +
+                                Environment.NewLine +
                                 "5. All other distance scale lines are in Dark-grey" + Environment.NewLine +
-                                "6. The PA distance scale values 0, 1000, 2000, 4000, 8000 are displayed in m." + Environment.NewLine +
-                                "7. Distance scale lines are displayed at PA distance scale values 0, 200, 400, 600, 800, 1000, 2000, 4000, 8000." + Environment.NewLine +
+                                "6. The PA distance scale values 0, 1000, 2000, 4000, 8000 are displayed in m." +
+                                Environment.NewLine +
+                                "7. Distance scale lines are displayed at PA distance scale values 0, 200, 400, 600, 800, 1000, 2000, 4000, 8000." +
+                                Environment.NewLine +
                                 "8. The position of PASP is consistent with the train position, PA distance scale value and distance scale lines.");
 
             /*
@@ -176,13 +211,19 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press the ‘Scale down’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. Verify that the DMI displays the distance ranges from 0 to 16000." + Environment.NewLine +
-                                "2. Scale numbers are in Medium-grey, vertically centred on the distance scale lines and aligned to the right of sub-area D1." + Environment.NewLine +
-                                "3. 9 distance scale lines are displayed crossing sub-areas D2 – D7." + Environment.NewLine +
-                                "4. From the bottom to top the 1st, 6th and 9th distance scale lines are in Medium-grey" + Environment.NewLine +
+                                "1. Verify that the DMI displays the distance ranges from 0 to 16000." +
+                                Environment.NewLine +
+                                "2. Scale numbers are in Medium-grey, vertically centred on the distance scale lines and aligned to the right of sub-area D1." +
+                                Environment.NewLine +
+                                "3. 9 distance scale lines are displayed crossing sub-areas D2 – D7." +
+                                Environment.NewLine +
+                                "4. From the bottom to top the 1st, 6th and 9th distance scale lines are in Medium-grey" +
+                                Environment.NewLine +
                                 "5. All other distance scale lines are in Dark-grey" + Environment.NewLine +
-                                "6. The PA distance scale values 0, 2000, 4000, 8000, 16000 are displayed in m." + Environment.NewLine +
-                                "7. Distance scale lines are displayed at PA distance scale values 0, 400, 800, 1200, 1600, 2000, 4000, 8000, 16000." + Environment.NewLine +
+                                "6. The PA distance scale values 0, 2000, 4000, 8000, 16000 are displayed in m." +
+                                Environment.NewLine +
+                                "7. Distance scale lines are displayed at PA distance scale values 0, 400, 800, 1200, 1600, 2000, 4000, 8000, 16000." +
+                                Environment.NewLine +
                                 "8. The position of PASP is consistent with the train position, PA distance scale value and distance scale lines.");
 
             /*
@@ -195,14 +236,20 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press the ‘Scale down’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. Verify that the DMI displays the distance ranges from 0 to 32000." + Environment.NewLine +
-                                "2. Scale numbers are in Medium-grey, vertically centred on the distance scale lines and aligned to the right of sub-area D1." + Environment.NewLine +
-                                "3. 9 distance scale lines are displayed crossing sub-areas D2 – D7." + Environment.NewLine +
-                                "4. From the bottom to top the 1st, 6th and 9th distance scale lines are in Medium-grey" + Environment.NewLine +
+                                "1. Verify that the DMI displays the distance ranges from 0 to 32000." +
+                                Environment.NewLine +
+                                "2. Scale numbers are in Medium-grey, vertically centred on the distance scale lines and aligned to the right of sub-area D1." +
+                                Environment.NewLine +
+                                "3. 9 distance scale lines are displayed crossing sub-areas D2 – D7." +
+                                Environment.NewLine +
+                                "4. From the bottom to top the 1st, 6th and 9th distance scale lines are in Medium-grey" +
+                                Environment.NewLine +
                                 "5. All other distance scale lines are in Dark-grey" + Environment.NewLine +
-                                "6. The PA distance scale values 0, 4000, 8000, 16000, 32000 are displayed in m." + Environment.NewLine +
-                                "7. Distance scale lines are displayed at PA distance scale values 0, 800, 1600, 2400, 3200, 4000, 8000, 16000, 32000." + Environment.NewLine +
-                                "8. The position of PASP is consistent with the train position, PA distance scale value and distance scale lines.");            
+                                "6. The PA distance scale values 0, 4000, 8000, 16000, 32000 are displayed in m." +
+                                Environment.NewLine +
+                                "7. Distance scale lines are displayed at PA distance scale values 0, 800, 1600, 2400, 3200, 4000, 8000, 16000, 32000." +
+                                Environment.NewLine +
+                                "8. The position of PASP is consistent with the train position, PA distance scale value and distance scale lines.");
             /*
             Test Step 9
             Action: Simulate the communication loss between ETCS Onboard and DMI
@@ -223,7 +270,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 7147 (partly: Communication loss);
             */
             DmiActions.Re_establish_communication_EVC_DMI(this);
-            EVC4_MMITrackDescription.Send(); 
+            EVC4_MMITrackDescription.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Planning Area" + Environment.NewLine +
@@ -238,19 +285,19 @@ namespace Testcase.DMITestCases
             // ?? Does this re-boot
             // Repeat Step 1
             DmiActions.Complete_SoM_L1_SR(this);
-        
+
             // Repeat Step 2
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
 
             // Repeat Step 3       
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 20000;  // 200m
-            
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 20000; // 200m
+
             EVC4_MMITrackDescription.TrackDescriptions = descriptionsList;
             EVC4_MMITrackDescription.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the distance range 0 to 4000 m by default.");
-            
+
             /*
             Test Step 12
             Action: End of test

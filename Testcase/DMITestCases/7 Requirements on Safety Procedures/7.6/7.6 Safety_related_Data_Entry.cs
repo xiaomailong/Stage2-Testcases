@@ -42,7 +42,7 @@ namespace Testcase.DMITestCases
         public override void PreExecution()
         {
             // Pre-conditions from TestSpec:
-        
+
             // Call the TestCaseBase PreExecution
             base.PreExecution();
             // System is power on.Cabin is activated.Settings window is opened.Maintenance password window is opened.The correct password is entered, the Maintenance window is opened.
@@ -53,10 +53,10 @@ namespace Testcase.DMITestCases
 
             // force the window
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings;      // Settings window
-            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings; // Settings window
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH =
+                EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter;
             EVC30_MMIRequestEnable.Send();
-            
         }
 
         public override void PostExecution()
@@ -79,18 +79,20 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 3226 (partly: Maintenance Data Entry);(2)  MMI_gen 3390 (partly: Maintenance Data entry);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press the ‘Maintenance’ button, enter and confirm the maintenance password (as in the configuration file)," + Environment.NewLine +
-                                             @"then press the ‘Wheel diameter’ button in the Maintenance window");
-                                          
+            DmiActions.ShowInstruction(this,
+                @"Press the ‘Maintenance’ button, enter and confirm the maintenance password (as in the configuration file)," +
+                Environment.NewLine +
+                @"then press the ‘Wheel diameter’ button in the Maintenance window");
+
             EVC40_MMICurrentMaintenanceData.MMI_Q_MD_DATASET = Variables.MMI_Q_MD_DATASET.WheelDiameter;
-            EVC40_MMICurrentMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1 = (Variables.MMI_M_SDU_WHEEL_SIZE)20001;
-            EVC40_MMICurrentMaintenanceData.MMI_M_SDU_WHEEL_SIZE_2 = (Variables.MMI_M_SDU_WHEEL_SIZE)20001;
-            EVC40_MMICurrentMaintenanceData.MMI_M_WHEEL_SIZE_ERR = (Variables.MMI_M_WHEEL_SIZE_ERR)200;
+            EVC40_MMICurrentMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1 = (Variables.MMI_M_SDU_WHEEL_SIZE) 20001;
+            EVC40_MMICurrentMaintenanceData.MMI_M_SDU_WHEEL_SIZE_2 = (Variables.MMI_M_SDU_WHEEL_SIZE) 20001;
+            EVC40_MMICurrentMaintenanceData.MMI_M_WHEEL_SIZE_ERR = (Variables.MMI_M_WHEEL_SIZE_ERR) 200;
             EVC40_MMICurrentMaintenanceData.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                               "1. DMI displays the Wheel Diameter window." + Environment.NewLine +
-                               "2. The Wheel diameter present its contents as Input Fields.");
+                                "1. DMI displays the Wheel Diameter window." + Environment.NewLine +
+                                "2. The Wheel diameter present its contents as Input Fields.");
 
             /*
             Test Step 2
@@ -101,22 +103,24 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Accept the values of all Input Fields as shown. Press the ‘Yes’ button");
 
             EVC140_MMINewMaintenanceData.MMI_Q_MD_DATASET = Variables.MMI_Q_MD_DATASET.WheelDiameter;
-            EVC140_MMINewMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1 = (Variables.MMI_M_SDU_WHEEL_SIZE)1000;
-            EVC140_MMINewMaintenanceData.MMI_M_SDU_WHEEL_SIZE_2 = (Variables.MMI_M_SDU_WHEEL_SIZE)100;
+            EVC140_MMINewMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1 = (Variables.MMI_M_SDU_WHEEL_SIZE) 1000;
+            EVC140_MMINewMaintenanceData.MMI_M_SDU_WHEEL_SIZE_2 = (Variables.MMI_M_SDU_WHEEL_SIZE) 100;
             EVC140_MMINewMaintenanceData.MMI_M_WHEEL_SIZE_ERR = (Variables.MMI_M_WHEEL_SIZE_ERR) 30;
             EVC140_MMINewMaintenanceData.CheckTelegram();
 
             EVC41_MMIEchoedMaintenanceData.MMI_Q_MD_DATASET_ = Variables.MMI_Q_MD_DATASET.WheelDiameter;
-            EVC41_MMIEchoedMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1_ = (Variables.MMI_M_SDU_WHEEL_SIZE)1000;
-            EVC41_MMIEchoedMaintenanceData.MMI_M_SDU_WHEEL_SIZE_2_ = (Variables.MMI_M_SDU_WHEEL_SIZE)100;
-            EVC41_MMIEchoedMaintenanceData.MMI_M_WHEEL_SIZE_ERR_ = (Variables.MMI_M_WHEEL_SIZE_ERR)30;
-            EVC41_MMIEchoedMaintenanceData.Send(); 
-            
+            EVC41_MMIEchoedMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1_ = (Variables.MMI_M_SDU_WHEEL_SIZE) 1000;
+            EVC41_MMIEchoedMaintenanceData.MMI_M_SDU_WHEEL_SIZE_2_ = (Variables.MMI_M_SDU_WHEEL_SIZE) 100;
+            EVC41_MMIEchoedMaintenanceData.MMI_M_WHEEL_SIZE_ERR_ = (Variables.MMI_M_WHEEL_SIZE_ERR) 30;
+            EVC41_MMIEchoedMaintenanceData.Send();
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                               "1. DMI displays the Wheel Diameter validation window." + Environment.NewLine +
-                               @"2. The ‘Yes’ button in the Wheel diameter validation window is at a different location from the ‘Yes’ button in the Wheel diameter window." + Environment.NewLine +
-                               "3. Data pending confirmation in the Wheel diameter validation window is presented as echo text." + Environment.NewLine +
-                               "4. The echo text in the Wheel diameter validation window is placed at a different location from the Input Fields in the Wheel diameter window.");
+                                "1. DMI displays the Wheel Diameter validation window." + Environment.NewLine +
+                                @"2. The ‘Yes’ button in the Wheel diameter validation window is at a different location from the ‘Yes’ button in the Wheel diameter window." +
+                                Environment.NewLine +
+                                "3. Data pending confirmation in the Wheel diameter validation window is presented as echo text." +
+                                Environment.NewLine +
+                                "4. The echo text in the Wheel diameter validation window is placed at a different location from the Input Fields in the Wheel diameter window.");
 
             /*
             Test Step 3
@@ -125,10 +129,11 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 3203 (partly: Maintenance Data Validation);
             */
             // EVC141_MMIConfirmedMaintenanceData.MMI_Q_MD_DATASET_ ?? 
-            DmiActions.ShowInstruction(this, "@Press the ‘Yes’ button. Accept entered data by pressing an Input Field and check the log file for packet EVC-141 from DMI with variables reflecting the accepted data");
+            DmiActions.ShowInstruction(this,
+                "@Press the ‘Yes’ button. Accept entered data by pressing an Input Field and check the log file for packet EVC-141 from DMI with variables reflecting the accepted data");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                               "1. DMI displays the Settings window.");
+                                "1. DMI displays the Settings window.");
 
             /*
             Test Step 4
@@ -141,12 +146,12 @@ namespace Testcase.DMITestCases
 
             EVC40_MMICurrentMaintenanceData.MMI_Q_MD_DATASET = Variables.MMI_Q_MD_DATASET.Doppler;
             EVC40_MMICurrentMaintenanceData.MMI_M_PULSE_PER_KM_1 = (Variables.MMI_M_PULSE_PER_KM) 20001;
-            EVC40_MMICurrentMaintenanceData.MMI_M_PULSE_PER_KM_2 = (Variables.MMI_M_PULSE_PER_KM)20001;
+            EVC40_MMICurrentMaintenanceData.MMI_M_PULSE_PER_KM_2 = (Variables.MMI_M_PULSE_PER_KM) 20001;
             EVC40_MMICurrentMaintenanceData.Send();
-            
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                               "1. DMI displays the Radar window." + Environment.NewLine +
-                               "2. The Radar window displays its contents as Input Fields.");
+                                "1. DMI displays the Radar window." + Environment.NewLine +
+                                "2. The Radar window displays its contents as Input Fields.");
 
             /*
             Test Step 5
@@ -157,20 +162,22 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Accept the values of all Input Fields as shown. Press the ‘Yes’ button");
 
             EVC140_MMINewMaintenanceData.MMI_Q_MD_DATASET = Variables.MMI_Q_MD_DATASET.Doppler;
-            EVC140_MMINewMaintenanceData.MMI_M_PULSE_PER_KM_1 = (Variables.MMI_M_PULSE_PER_KM)20001;
-            EVC140_MMINewMaintenanceData.MMI_M_PULSE_PER_KM_2 = (Variables.MMI_M_PULSE_PER_KM)20001;
+            EVC140_MMINewMaintenanceData.MMI_M_PULSE_PER_KM_1 = (Variables.MMI_M_PULSE_PER_KM) 20001;
+            EVC140_MMINewMaintenanceData.MMI_M_PULSE_PER_KM_2 = (Variables.MMI_M_PULSE_PER_KM) 20001;
             EVC140_MMINewMaintenanceData.CheckTelegram();
 
             EVC41_MMIEchoedMaintenanceData.MMI_Q_MD_DATASET_ = Variables.MMI_Q_MD_DATASET.Doppler;
-            EVC41_MMIEchoedMaintenanceData.MMI_M_PULSE_PER_KM_1_ = (Variables.MMI_M_PULSE_PER_KM)20001;
-            EVC41_MMIEchoedMaintenanceData.MMI_M_PULSE_PER_KM_2_ = (Variables.MMI_M_PULSE_PER_KM)20001;
+            EVC41_MMIEchoedMaintenanceData.MMI_M_PULSE_PER_KM_1_ = (Variables.MMI_M_PULSE_PER_KM) 20001;
+            EVC41_MMIEchoedMaintenanceData.MMI_M_PULSE_PER_KM_2_ = (Variables.MMI_M_PULSE_PER_KM) 20001;
             EVC41_MMIEchoedMaintenanceData.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                               "1. DMI displays the Radar validation window." + Environment.NewLine +
-                               @"2. The ‘Yes’ button in the Radar validation window is at a different location from the ‘Yes’ button in the Radar window." + Environment.NewLine +
-                               "3. Data pending confirmation in the Radar validation window is presented as echo text." + Environment.NewLine +
-                               "4. The echo text in the Radar validation window is at a different location from the Input Fields in the Radar window.");
+                                "1. DMI displays the Radar validation window." + Environment.NewLine +
+                                @"2. The ‘Yes’ button in the Radar validation window is at a different location from the ‘Yes’ button in the Radar window." +
+                                Environment.NewLine +
+                                "3. Data pending confirmation in the Radar validation window is presented as echo text." +
+                                Environment.NewLine +
+                                "4. The echo text in the Radar validation window is at a different location from the Input Fields in the Radar window.");
 
             /*
             Test Step 6
@@ -178,11 +185,12 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Settings window.Verify the following information,(1)    Use the log file to confirm that DMI sent out packet EVC-141 with variable based on confirmed data to ETCS Onboard
             Test Step Comment: (1) MMI_gen 3203 (partly: Maintenance Data Validation);
             */
-            DmiActions.ShowInstruction(this, @"Press the ‘Yes’ button. Accept entered data by pressing an Input Field" + Environment.NewLine +
+            DmiActions.ShowInstruction(this, @"Press the ‘Yes’ button. Accept entered data by pressing an Input Field" +
+                                             Environment.NewLine +
                                              @"Press the ‘Yes’ button in the Maintenance windows and check the log file for packet EVC-141 from DMI with variables reflecting the accepted data");
-            
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                               "1. DMI displays the Settings window.");
+                                "1. DMI displays the Settings window.");
 
             /*
             Test Step 7
@@ -195,10 +203,10 @@ namespace Testcase.DMITestCases
             EVC18_MMISetVBC.Send();
 
             DmiActions.ShowInstruction(this, @"Press ‘Set VBC’ button");
-            
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                               "1. DMI displays the Set VBC window." + Environment.NewLine +
-                               "2. The Set VBC window displays its contents as Input Fields.");
+                                "1. DMI displays the Set VBC window." + Environment.NewLine +
+                                "2. The Set VBC window displays its contents as Input Fields.");
 
             /*
             Test Step 8
@@ -209,15 +217,18 @@ namespace Testcase.DMITestCases
 
             // Test spec says Radar validation window but message means that Set RBC Validation window would be displayed...
             // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Enter and confirm the value ‘65536’ in an Input Field, then press the ‘Yes’ button");
-            
+            DmiActions.ShowInstruction(this,
+                @"Enter and confirm the value ‘65536’ in an Input Field, then press the ‘Yes’ button");
+
             EVC28_MMIEchoedSetVBCData.MMI_M_VBC_CODE_ = 65536;
             EVC28_MMIEchoedSetVBCData.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Set VBC validation window." + Environment.NewLine +
-                                @"2. The ‘Yes’ button in the Set VBC validation validation window is at a different location from the ‘Yes’ button in the Set VBC window." + Environment.NewLine +
-                                "3. Data pending confirmation in the Set VBC validation window is presented as echo text." + Environment.NewLine +
+                                @"2. The ‘Yes’ button in the Set VBC validation validation window is at a different location from the ‘Yes’ button in the Set VBC window." +
+                                Environment.NewLine +
+                                "3. Data pending confirmation in the Set VBC validation window is presented as echo text." +
+                                Environment.NewLine +
                                 "4. The echo text in the Set VBC validation window is at a different location from the Input Fields in the Set VBC window.");
 
             /*
@@ -232,7 +243,7 @@ namespace Testcase.DMITestCases
             EVC128_MMIConfirmedSetVBC.Check_VBC_Code = 65536;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                               "1. DMI displays the Settings window.");
+                                "1. DMI displays the Settings window.");
 
             /*
             Test Step 10
@@ -246,8 +257,8 @@ namespace Testcase.DMITestCases
             EVC19_MMIRemoveVBC.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                               "1. DMI displays the Remove VBC window." + Environment.NewLine +
-                               "2. The Remove VBC window displays its contents as Input Fields."); 
+                                "1. DMI displays the Remove VBC window." + Environment.NewLine +
+                                "2. The Remove VBC window displays its contents as Input Fields.");
 
             /*
             Test Step 11
@@ -256,15 +267,18 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 3203 (Remove VBC Data Entry);(2) MMI_gen 3226 (partly: Remove VBC Data Validation);(3) MMI_gen 3205 (partly: Remove VBC Data Entry and Validation);(4) MMI_gen 3390 (partly: Remove VBC Validation);(5) MMI_gen 3391 (partly: Remove VBC Data Entry and Validation);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Enter and confirm the value ‘65536’ at an Input Field.Then, press ‘Yes’ button and check the log file for packet EVC-119 from DMI");
+            DmiActions.ShowInstruction(this,
+                @"Enter and confirm the value ‘65536’ at an Input Field.Then, press ‘Yes’ button and check the log file for packet EVC-119 from DMI");
 
             EVC29_MMIEchoedRemoveVBCData.MMI_M_VBC_CODE_ = 66536;
             EVC29_MMIEchoedRemoveVBCData.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                               "1. DMI displays the Remove VBC validation window." + Environment.NewLine +
-                                @"2. The ‘Yes’ button in the Remove VBC validation  window is at a different location from the ‘Yes’ button in the Remove VBC window." + Environment.NewLine +
-                                "3. Data pending confirmation in the Set VBC validation window is presented as echo text." + Environment.NewLine +
+                                "1. DMI displays the Remove VBC validation window." + Environment.NewLine +
+                                @"2. The ‘Yes’ button in the Remove VBC validation  window is at a different location from the ‘Yes’ button in the Remove VBC window." +
+                                Environment.NewLine +
+                                "3. Data pending confirmation in the Set VBC validation window is presented as echo text." +
+                                Environment.NewLine +
                                 "4. The echo text in the Remove VBC validation window is at a different location from the Input Fields in the Remove VBC window.");
 
             /*
@@ -274,11 +288,12 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 3203 (partly: Remove VBC Data Validation);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press ‘Yes’ button.Then, confirm an entered value by pressing  an Input Field");
+            DmiActions.ShowInstruction(this,
+                @"Press ‘Yes’ button.Then, confirm an entered value by pressing  an Input Field");
 
             EVC129_MMIConfirmedRemoveVBC.Check_VBC_Code = 65536;
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                               "1. DMI displays the Settings window.");
+                                "1. DMI displays the Settings window.");
 
             /*
             Test Step 13
@@ -286,13 +301,14 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Train data window.Verify the following information,(1)    Use the log file to confirm that DMI received packet EVC-6 from ETCS Onboard.(2)   The format of presentation in Train data window is presented as an Input Fields
             Test Step Comment: (1) MMI_gen 3226 (partly: Train Data Entry);(2)  MMI_gen 3390 (partly: Train Data entry);
             */
-            DmiActions.ShowInstruction(this, @"Press the ‘Close’ button. Enter Driver ID and skip the brake test. Select and confirm ‘Level 1’.	Press the ‘Train data’ button");
+            DmiActions.ShowInstruction(this,
+                @"Press the ‘Close’ button. Enter Driver ID and skip the brake test. Select and confirm ‘Level 1’.	Press the ‘Train data’ button");
 
-            DmiActions.Send_EVC6_MMICurrentTrainData_FixedDataEntry(this, new[] { "FLU" }, 2);
+            DmiActions.Send_EVC6_MMICurrentTrainData_FixedDataEntry(this, new[] {"FLU"}, 2);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                               "1. DMI displays the Train data window." + Environment.NewLine +
-                               "2. The Train data window displays its contents as Input Fields.");
+                                "1. DMI displays the Train data window." + Environment.NewLine +
+                                "2. The Train data window displays its contents as Input Fields.");
 
             /*
             Test Step 14
@@ -304,12 +320,14 @@ namespace Testcase.DMITestCases
 
             EVC107_MMINewTrainData.TrainsetSelected = Variables.Fixed_Trainset_Captions.FLU;
 
-            DmiActions.Send_EVC10_MMIEchoedTrainData_FixedDataEntry(this, new[] { "FLU" });
+            DmiActions.Send_EVC10_MMIEchoedTrainData_FixedDataEntry(this, new[] {"FLU"});
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Train Data validation window." + Environment.NewLine +
-                                @"2. The ‘Yes’ button in the Train Data validation validation window is at a different location from the ‘Yes’ button in the Train Data window." + Environment.NewLine +
-                                "3. Data pending confirmation in the Train Data validation window is presented as echo text." + Environment.NewLine +
+                                @"2. The ‘Yes’ button in the Train Data validation validation window is at a different location from the ‘Yes’ button in the Train Data window." +
+                                Environment.NewLine +
+                                "3. Data pending confirmation in the Train Data validation window is presented as echo text." +
+                                Environment.NewLine +
                                 "4. The echo text in the Train Data validation window is at a different location from the Input Fields in the Train Data window.");
 
             /*
@@ -319,10 +337,11 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 3203 (partly: Train Data Validation);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press ‘Yes’ button.Then, confirm an entered value by pressing an Input Field and check the log file for packet EVC-110 from DMI with variables reflecting the accepted data");
+            DmiActions.ShowInstruction(this,
+                @"Press ‘Yes’ button.Then, confirm an entered value by pressing an Input Field and check the log file for packet EVC-110 from DMI with variables reflecting the accepted data");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                               "1. DMI displays the Train Running number window.");
+                                "1. DMI displays the Train Running number window.");
 
             /*
             Test Step 16
@@ -330,14 +349,18 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Brake percentage window.Verify the following information,(1)    Use the log file to confirm that DMI received packet EVC-50 from ETCS Onboard.(2)   The format of presentation in Brake Percentage window is presented as an Input Field
             Test Step Comment: (1) MMI_gen 3226 (partly: Brake Percentage Data Entry);(2)  MMI_gen 3390 (partly: Brake Percentage Data Entry);
             */
-            DmiActions.ShowInstruction(this, @"Enter and confirm the train running number. Press ‘Close’ button. Press ‘Settings’ button. Press ‘Brake’ button");
+            DmiActions.ShowInstruction(this,
+                @"Enter and confirm the train running number. Press ‘Close’ button. Press ‘Settings’ button. Press ‘Brake’ button");
 
             #region Send_XML_2_6_DMI_Test_Specification
+
             // Does this display Train Running window (expect Brake Percentage)
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings;
-            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.EnableBrakePercentage;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH =
+                EVC30_MMIRequestEnable.EnabledRequests.EnableBrakePercentage;
             EVC30_MMIRequestEnable.Send();
+
             #endregion
 
             // Need to send set of data for the input values ??
@@ -349,8 +372,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press the enabled ‘Brake Percentage’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                               "1. DMI displays the Brake Percentage window." + Environment.NewLine +
-                               "2. The Brake Percentage window displays its contents as an Input Field.");
+                                "1. DMI displays the Brake Percentage window." + Environment.NewLine +
+                                "2. The Brake Percentage window displays its contents as an Input Field.");
 
             /*
             Test Step 17
@@ -358,18 +381,21 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Brake percentage validation window.Verify the following information,(1)    Use the log file to confirm that DMI sent out packet EVC-150 with variable based on confirmed data to ETCS Onboard.(2)    Use the log file to confirm that DMI received packet EVC-51 from ETCS Onboard.(3)   The position of ‘Yes’ button on Brake percentage validation window is located at the different location of ‘Yes’ button on Brake percentage window.(4)   The format of presentation in Brake percentage validation window is difference from Brake percentage window as follows,           -   The data pending for confirmation of Brake percentage validation window is presented as echo texts.(5)   The presentation of echo text in Brake percentage validation window is located at the difference location of an Input Fields in Brake percentage window
             Test Step Comment: (1) MMI_gen 3203 (partly: Brake Percentage Data Entry);(2)MMI_gen 3226 (partly: Brake percentage Validation);(3) MMI_gen 3205 (partly: Brake percentage Entry and Validation);(4) MMI_gen 3390 (partly: Brake percentage Validation);(5) MMI_gen 3391 (partly: Brake percentage Data Entry and Validation);
             */
-            DmiActions.ShowInstruction(this, @"Confirm the brake percentage value by pressing an Input Field and check the log file for packet EVC-150 from DMI with variables reflecting the accepted data");
+            DmiActions.ShowInstruction(this,
+                @"Confirm the brake percentage value by pressing an Input Field and check the log file for packet EVC-150 from DMI with variables reflecting the accepted data");
 
             // Need to send set of data for the input values ??
             EVC51_MMIEchoedBrakePercentage.MMI_M_BP_CURRENT_ = 92;
             EVC51_MMIEchoedBrakePercentage.Send();
-            
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Brake percentage validation window." + Environment.NewLine +
-                                @"2. The ‘Yes’ button in the Brake percentage validation validation window is at a different location from the ‘Yes’ button in the Brake percentage window." + Environment.NewLine +
-                                "3. Data pending confirmation in the Brake percentage validation window is presented as echo text." + Environment.NewLine +
+                                @"2. The ‘Yes’ button in the Brake percentage validation validation window is at a different location from the ‘Yes’ button in the Brake percentage window." +
+                                Environment.NewLine +
+                                "3. Data pending confirmation in the Brake percentage validation window is presented as echo text." +
+                                Environment.NewLine +
                                 "4. The echo text in the Brake percentage validation window is at a different location from the Input Field in the Brake percentage window.");
-            
+
             /*
             Test Step 18
             Action: Press ‘Yes’ button.Then, confirm an entered value by pressing at an Input Field
@@ -377,10 +403,11 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 3203 (partly: Brake percentage Validation);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press ‘Yes’ button. Confirm the entered value by pressing an Input Field and check the log file for packet EVC-151 from DMI with variables reflecting the accepted data");
+            DmiActions.ShowInstruction(this,
+                @"Press ‘Yes’ button. Confirm the entered value by pressing an Input Field and check the log file for packet EVC-151 from DMI with variables reflecting the accepted data");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                               "1. DMI displays the Brake window.");
+                                "1. DMI displays the Brake window.");
 
             /*
             Test Step 19

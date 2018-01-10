@@ -25,8 +25,8 @@ namespace Testcase.Telegrams.EVCtoDMI
             _pool = pool;
 
             // Set default values
-            _pool.SITR.ETCS1.CurrentBrakePercentage.MmiMPacket.Value = 50;  // Packet ID
-            _pool.SITR.ETCS1.CurrentBrakePercentage.MmiLPacket.Value = 56;  // Packet length
+            _pool.SITR.ETCS1.CurrentBrakePercentage.MmiMPacket.Value = 50; // Packet ID
+            _pool.SITR.ETCS1.CurrentBrakePercentage.MmiLPacket.Value = 56; // Packet length
         }
 
         /// <summary>
@@ -81,11 +81,10 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// 255 = "No last measured brake percentage available, i.e. this will be displayed as '_ _ _ _' in grey in Data Field 'Last measured BP'."
         /// 
         /// Note: All special values are only used in packet EVC-50.
-
         /// </summary>
         public static byte MMI_M_BP_MEASURED
         {
             set => _pool.SITR.ETCS1.CurrentBrakePercentage.MmiMBpMeasured.Value = value;
-        }        
+        }
     }
 }

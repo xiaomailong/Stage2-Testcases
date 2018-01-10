@@ -59,7 +59,7 @@ namespace Testcase.DMITestCases
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint
-                        
+
             /*
             Test Step 1
             Action: Drive the train forward with speed = 40 km/h
@@ -71,7 +71,7 @@ namespace Testcase.DMITestCases
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in SR mode, level 1." + Environment.NewLine + 
+                                "1. DMI displays in SR mode, level 1." + Environment.NewLine +
                                 "2. Is the speed pointer grey?");
 
             /*
@@ -310,7 +310,9 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
+
         #region Send_XML_12_3_3_DMI_Test_Specification
+
         enum msgType
         {
             typea,
@@ -368,7 +370,7 @@ namespace Testcase.DMITestCases
                     EVC1_MMIDynamic.MMI_V_TRAIN = 972;
 
                     break;
-                case msgType.typeb :
+                case msgType.typeb:
 
                     EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_PreIndication_Monitoring; // 2
                     EVC1_MMIDynamic.MMI_V_TRAIN = 1111;
@@ -458,7 +460,7 @@ namespace Testcase.DMITestCases
                     break;
             }
         }
-        #endregion
 
+        #endregion
     }
 }

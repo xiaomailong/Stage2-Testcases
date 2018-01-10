@@ -33,7 +33,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static void Send()
         {
-            ushort numberOfTrackConditions = (ushort)TrackConditions.Count;
+            ushort numberOfTrackConditions = (ushort) TrackConditions.Count;
 
             // Only 31 track conditions allowed in telegram
             if (numberOfTrackConditions > 31)
@@ -54,21 +54,29 @@ namespace Testcase.Telegrams.EVCtoDMI
                 // Write SignalPool signals
                 if (k < 10)
                 {
-                    _pool.SITR.Client.Write($"{baseString}0{k}_MmiOTrackcondAnnounce", TrackConditions[k].MMI_O_TRACKCOND_ANNOUNCE);
-                    _pool.SITR.Client.Write($"{baseString}0{k}_MmiOTrackcondStart", TrackConditions[k].MMI_O_TRACKCOND_START);
-                    _pool.SITR.Client.Write($"{baseString}0{k}_MmiOTrackcondEnd", TrackConditions[k].MMI_O_TRACKCOND_END);
+                    _pool.SITR.Client.Write($"{baseString}0{k}_MmiOTrackcondAnnounce",
+                        TrackConditions[k].MMI_O_TRACKCOND_ANNOUNCE);
+                    _pool.SITR.Client.Write($"{baseString}0{k}_MmiOTrackcondStart",
+                        TrackConditions[k].MMI_O_TRACKCOND_START);
+                    _pool.SITR.Client.Write($"{baseString}0{k}_MmiOTrackcondEnd",
+                        TrackConditions[k].MMI_O_TRACKCOND_END);
                     _pool.SITR.Client.Write($"{baseString}0{k}_MmiNidTrackcond", TrackConditions[k].MMI_NID_TRACKCOND);
-                    _pool.SITR.Client.Write($"{baseString}0{k}_MmiMTrackcondType", TrackConditions[k].MMI_M_TRACKCOND_TYPE);
+                    _pool.SITR.Client.Write($"{baseString}0{k}_MmiMTrackcondType",
+                        TrackConditions[k].MMI_M_TRACKCOND_TYPE);
                     _pool.SITR.Client.Write($"{baseString}0{k}_EVC32alias2", TrackConditions[k].EVC_32_ALIAS_2);
                 }
 
                 else
                 {
-                    _pool.SITR.Client.Write($"{baseString}{k}_MmiOTrackcondAnnounce", TrackConditions[k].MMI_O_TRACKCOND_ANNOUNCE);
-                    _pool.SITR.Client.Write($"{baseString}{k}_MmiOTrackcondStart", TrackConditions[k].MMI_O_TRACKCOND_START);
-                    _pool.SITR.Client.Write($"{baseString}{k}_MmiOTrackcondEnd", TrackConditions[k].MMI_O_TRACKCOND_END);
+                    _pool.SITR.Client.Write($"{baseString}{k}_MmiOTrackcondAnnounce",
+                        TrackConditions[k].MMI_O_TRACKCOND_ANNOUNCE);
+                    _pool.SITR.Client.Write($"{baseString}{k}_MmiOTrackcondStart",
+                        TrackConditions[k].MMI_O_TRACKCOND_START);
+                    _pool.SITR.Client.Write($"{baseString}{k}_MmiOTrackcondEnd",
+                        TrackConditions[k].MMI_O_TRACKCOND_END);
                     _pool.SITR.Client.Write($"{baseString}{k}_MmiNidTrackcond", TrackConditions[k].MMI_NID_TRACKCOND);
-                    _pool.SITR.Client.Write($"{baseString}{k}_MmiMTrackcondType", TrackConditions[k].MMI_M_TRACKCOND_TYPE);
+                    _pool.SITR.Client.Write($"{baseString}{k}_MmiMTrackcondType",
+                        TrackConditions[k].MMI_M_TRACKCOND_TYPE);
                     _pool.SITR.Client.Write($"{baseString}{k}_EVC32alias2", TrackConditions[k].EVC_32_ALIAS_2);
                 }
 
@@ -95,7 +103,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         private static void SetAlias1()
         {
             _pool.SITR.ETCS1.TrackConditions.EVC32alias1.Value =
-                (byte)(_evc32Alias1 << 7);
+                (byte) (_evc32Alias1 << 7);
         }
 
         /// <summary>
@@ -110,7 +118,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             get
             {
                 byte evc32Alias1 = _pool.SITR.ETCS1.TrackConditions.EVC32alias1.Value;
-                return (byte)(evc32Alias1 >> 7);
+                return (byte) (evc32Alias1 >> 7);
             }
 
             set
@@ -144,7 +152,8 @@ namespace Testcase.Telegrams.EVCtoDMI
 
         private static void SetAlias2()
         {
-            _evc32Alias2 = (byte)(_mmiQTrackcondStep << 4 | _mmiQTrackcondActionStart << 3 | _mmiQTrackcondActionEnd << 2);
+            _evc32Alias2 = (byte) (_mmiQTrackcondStep << 4 | _mmiQTrackcondActionStart << 3 |
+                                   _mmiQTrackcondActionEnd << 2);
         }
 
         /// <summary>
@@ -224,8 +233,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public Variables.MMI_M_TRACKCOND_TYPE MMI_M_TRACKCOND_TYPE
         {
-            set => _mmiMTrackcondType = (byte)value;
-            get => (Variables.MMI_M_TRACKCOND_TYPE)_mmiMTrackcondType;
+            set => _mmiMTrackcondType = (byte) value;
+            get => (Variables.MMI_M_TRACKCOND_TYPE) _mmiMTrackcondType;
         }
 
         /// <summary>
@@ -257,14 +266,11 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public Variables.MMI_Q_TRACKCOND_STEP MMI_Q_TRACKCOND_STEP
         {
-            get
-            {
-                return (Variables.MMI_Q_TRACKCOND_STEP)_mmiQTrackcondStep;
-            }
+            get { return (Variables.MMI_Q_TRACKCOND_STEP) _mmiQTrackcondStep; }
 
             set
             {
-                _mmiQTrackcondStep = (byte)value;
+                _mmiQTrackcondStep = (byte) value;
                 SetAlias2();
             }
         }
@@ -278,14 +284,11 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public Variables.MMI_Q_TRACKCOND_ACTION MMI_Q_TRACKCOND_ACTION_START
         {
-            get
-            {
-                return (Variables.MMI_Q_TRACKCOND_ACTION)_mmiQTrackcondActionStart;
-            }
+            get { return (Variables.MMI_Q_TRACKCOND_ACTION) _mmiQTrackcondActionStart; }
 
             set
             {
-                _mmiQTrackcondActionStart = (byte)value;
+                _mmiQTrackcondActionStart = (byte) value;
                 SetAlias2();
             }
         }
@@ -299,16 +302,13 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public Variables.MMI_Q_TRACKCOND_ACTION MMI_Q_TRACKCOND_ACTION_END
         {
-            get
-            {
-                return (Variables.MMI_Q_TRACKCOND_ACTION)_mmiQTrackcondActionEnd;
-            }
+            get { return (Variables.MMI_Q_TRACKCOND_ACTION) _mmiQTrackcondActionEnd; }
 
             set
             {
-                _mmiQTrackcondActionEnd = (byte)value;
+                _mmiQTrackcondActionEnd = (byte) value;
                 SetAlias2();
             }
-        } 
+        }
     }
 }

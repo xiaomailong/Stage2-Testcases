@@ -48,36 +48,40 @@ namespace Testcase.Telegrams.DMItoEVC
             // Check if telegram received flag has been set. Allows 10 seconds.
             if (_pool.SITR.SMDStat.CCUO.ETCS1NewMaintenanceData.WaitForCondition(Is.Equal, 1, 10000, 100))
             {
-                bool valuesMatch = (_mdDataset == Variables.MMI_Q_MD_DATASET.WheelDiameter ) ?
-                                        (_pool.SITR.CCUO.ETCS1NewMaintenanceData.MmiMSduWheelSize1.Value.Equals(_wheelSize1) &&
-                                         _pool.SITR.CCUO.ETCS1NewMaintenanceData.MmiMSduWheelSize2.Value.Equals(_wheelSize2) &&
-                                         _pool.SITR.CCUO.ETCS1NewMaintenanceData.MmiMWheelSizeErr.Value.Equals(_wheelSizeError)) :
-                                        (_pool.SITR.CCUO.ETCS1NewMaintenanceData.MmiMPulsePerKm1.Value.Equals(_pulsePerKm1) &&
-                                         _pool.SITR.CCUO.ETCS1NewMaintenanceData.MmiMPulsePerKm2.Value.Equals(_pulsePerKm2));
+                bool valuesMatch = (_mdDataset == Variables.MMI_Q_MD_DATASET.WheelDiameter)
+                    ? (_pool.SITR.CCUO.ETCS1NewMaintenanceData.MmiMSduWheelSize1.Value.Equals(_wheelSize1) &&
+                       _pool.SITR.CCUO.ETCS1NewMaintenanceData.MmiMSduWheelSize2.Value.Equals(_wheelSize2) &&
+                       _pool.SITR.CCUO.ETCS1NewMaintenanceData.MmiMWheelSizeErr.Value.Equals(_wheelSizeError))
+                    : (_pool.SITR.CCUO.ETCS1NewMaintenanceData.MmiMPulsePerKm1.Value.Equals(_pulsePerKm1) &&
+                       _pool.SITR.CCUO.ETCS1NewMaintenanceData.MmiMPulsePerKm2.Value.Equals(_pulsePerKm2));
 
                 // Check if values match
-                if ( valuesMatch )
+                if (valuesMatch)
                 {
                     _pool.TraceReport($"{BaseString}:" + Environment.NewLine +
-                                        ((_mdDataset == Variables.MMI_Q_MD_DATASET.WheelDiameter) ?
-                                            $"MMI_M_WHEEL_SIZE_1 = {_wheelSize1} " + Environment.NewLine +
+                                      ((_mdDataset == Variables.MMI_Q_MD_DATASET.WheelDiameter)
+                                          ? $"MMI_M_WHEEL_SIZE_1 = {_wheelSize1} " + Environment.NewLine +
                                             $"MMI_M_WHEEL_SIZE_2 = {_wheelSize2} " + Environment.NewLine +
-                                            $"MMI_M_WHEEL_SIZE_ERR = {_wheelSizeError} " :
-                                            $"MMI_M_PULSE_PER_KM_1 = {_pulsePerKm1} " + Environment.NewLine +
-                                           $"MMI_M_PULSE_PER_KM_2 = {_pulsePerKm2} ")
+                                            $"MMI_M_WHEEL_SIZE_ERR = {_wheelSizeError} "
+                                          : $"MMI_M_PULSE_PER_KM_1 = {_pulsePerKm1} " + Environment.NewLine +
+                                            $"MMI_M_PULSE_PER_KM_2 = {_pulsePerKm2} ")
                                       + Environment.NewLine + "Result = PASSED.");
                 }
                 // Else display the real value extracted from EVC-100
                 else
                 {
                     _pool.TraceError($"{BaseString}:" + Environment.NewLine +
-                                     ((_mdDataset == Variables.MMI_Q_MD_DATASET.WheelDiameter) ?
-                                      $"MMI_M_WHEEL_SIZE_1 = {_pool.SITR.CCUO.ETCS1NewMaintenanceData.MmiMSduWheelSize1} " + Environment.NewLine +
-                                      $"MMI_M_WHEEL_SIZE_2 = {_pool.SITR.CCUO.ETCS1NewMaintenanceData.MmiMSduWheelSize2} " + Environment.NewLine +
-                                      $"MMI_M_WHEEL_SIZE_ERR = {_pool.SITR.CCUO.ETCS1NewMaintenanceData.MmiMWheelSizeErr} " :
-                                      $"MMI_M_PULSE_PER_KM_1 = {_pool.SITR.CCUO.ETCS1NewMaintenanceData.MmiMPulsePerKm1} " + Environment.NewLine +
-                                      $"MMI_M_PULSE_PER_KM_2 = {_pool.SITR.CCUO.ETCS1NewMaintenanceData.MmiMPulsePerKm2} ") +
-                                      Environment.NewLine + "Result: FAILED.");
+                                     ((_mdDataset == Variables.MMI_Q_MD_DATASET.WheelDiameter)
+                                         ? $"MMI_M_WHEEL_SIZE_1 = {_pool.SITR.CCUO.ETCS1NewMaintenanceData.MmiMSduWheelSize1} " +
+                                           Environment.NewLine +
+                                           $"MMI_M_WHEEL_SIZE_2 = {_pool.SITR.CCUO.ETCS1NewMaintenanceData.MmiMSduWheelSize2} " +
+                                           Environment.NewLine +
+                                           $"MMI_M_WHEEL_SIZE_ERR = {_pool.SITR.CCUO.ETCS1NewMaintenanceData.MmiMWheelSizeErr} "
+                                         : $"MMI_M_PULSE_PER_KM_1 = {_pool.SITR.CCUO.ETCS1NewMaintenanceData.MmiMPulsePerKm1} " +
+                                           Environment.NewLine +
+                                           $"MMI_M_PULSE_PER_KM_2 = {_pool.SITR.CCUO.ETCS1NewMaintenanceData.MmiMPulsePerKm2} "
+                                     ) +
+                                     Environment.NewLine + "Result: FAILED.");
                 }
             }
             // Show generic DMI -> EVC telegram failure
@@ -103,7 +107,7 @@ namespace Testcase.Telegrams.DMItoEVC
         /// </summary>
         public static Variables.MMI_M_SDU_WHEEL_SIZE MMI_M_SDU_WHEEL_SIZE_1
         {
-            set => _wheelSize1 = (ushort)value;
+            set => _wheelSize1 = (ushort) value;
         }
 
         /// <summary>
@@ -123,7 +127,7 @@ namespace Testcase.Telegrams.DMItoEVC
         public static Variables.MMI_M_SDU_WHEEL_SIZE MMI_M_SDU_WHEEL_SIZE_2
 
         {
-            set => _wheelSize2 = (ushort)value;
+            set => _wheelSize2 = (ushort) value;
         }
 
         /// <summary>
@@ -138,11 +142,10 @@ namespace Testcase.Telegrams.DMItoEVC
         /// 254 = "Operational Cross Check failed"
         /// 255 = "Reserved"
         /// Note: All special values concerning cross/range checks are only used in packets EVC-40 and EVC-41.
-
         /// </summary>
         public static Variables.MMI_M_WHEEL_SIZE_ERR MMI_M_WHEEL_SIZE_ERR
         {
-            set => _wheelSizeError = (byte)value;
+            set => _wheelSizeError = (byte) value;
         }
 
         /// <summary>
@@ -162,7 +165,7 @@ namespace Testcase.Telegrams.DMItoEVC
         /// </summary>
         public static Variables.MMI_M_PULSE_PER_KM MMI_M_PULSE_PER_KM_1
         {
-            set => _pulsePerKm1 = (uint)value;
+            set => _pulsePerKm1 = (uint) value;
         }
 
         /// <summary>
@@ -183,7 +186,7 @@ namespace Testcase.Telegrams.DMItoEVC
         public static Variables.MMI_M_PULSE_PER_KM MMI_M_PULSE_PER_KM_2
 
         {
-            set => _pulsePerKm2 = (uint)value;
+            set => _pulsePerKm2 = (uint) value;
         }
 
         /// <summary>
@@ -197,6 +200,5 @@ namespace Testcase.Telegrams.DMItoEVC
         {
             set => _mdDataset = value;
         }
-
     }
 }

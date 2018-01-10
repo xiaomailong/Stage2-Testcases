@@ -66,9 +66,12 @@ namespace Testcase.DMITestCases
             Expected Result: Train Running Number window is not displayed.
             Test Step Comment: (1) MMI_gen 9958 (partly: inactive);
             */
+
             #region Send_XML_22_18_DMI_Test_Specification
+
             EVC16_CurrentTrainNumber.TrainRunningNumber = 1;
             EVC16_CurrentTrainNumber.Send();
+
             #endregion
 
             Wait_Realtime(10000);
@@ -97,22 +100,30 @@ namespace Testcase.DMITestCases
             EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE = EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE_BUTTONS.TRN;
             EVC14_MMICurrentDriverID.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Disabled;
             EVC14_MMICurrentDriverID.Send();
-            
+
             DmiActions.ShowInstruction(this, @"Press the ‘TRN’ button in the Driver ID window");
 
             EVC16_CurrentTrainNumber.TrainRunningNumber = 1;
             EVC16_CurrentTrainNumber.Send();
 
-            WaitForVerification("Check the following (* indicates sub-areas drawn as one area):" + Environment.NewLine + Environment.NewLine +
-                                @"1. DMI displays the Train running number window with 3 layers in a half-grid array with the title ‘Train running number’." + Environment.NewLine +
-                                "2. The Train running number window is displayed in areas D, F and G with a data entry window with one data input field covering these areas." + Environment.NewLine +
+            WaitForVerification("Check the following (* indicates sub-areas drawn as one area):" + Environment.NewLine +
+                                Environment.NewLine +
+                                @"1. DMI displays the Train running number window with 3 layers in a half-grid array with the title ‘Train running number’." +
+                                Environment.NewLine +
+                                "2. The Train running number window is displayed in areas D, F and G with a data entry window with one data input field covering these areas." +
+                                Environment.NewLine +
                                 "3. Layer 0 comprises areas D, F, G, Y and Z." + Environment.NewLine +
-                                "4. Layer 1 comprises areas A1, (A2+A3)*, A4, B, C1, (C2+C3+c4)*, C5, C6, C7, C8, C9, E1, E2, E3, E4, (E5-E9)*." + Environment.NewLine +
+                                "4. Layer 1 comprises areas A1, (A2+A3)*, A4, B, C1, (C2+C3+c4)*, C5, C6, C7, C8, C9, E1, E2, E3, E4, (E5-E9)*." +
+                                Environment.NewLine +
                                 "5. Layer 2 comprises areas B3, B4, B5, B6 and B7." + Environment.NewLine +
-                                @"6. The Train running number window displays a data input field, with only a Data part, in areas D and F and an ‘Enabled Close’ button (symbol NA11)." + Environment.NewLine +
-                                "7. A keypad is displayed below the data input field, containing enabled keys for the numbers <1> to <9>, <Del> (symbol NA21), <0> and (disabled) <Decimal_Separator>." + Environment.NewLine +
-                                "8. Objects, text messages and buttons can be displayed in several levels. Within a level they are allocated to areas." + Environment.NewLine +
-                                "9. Objects, text messages and buttons in a layer form a window." + Environment.NewLine +
+                                @"6. The Train running number window displays a data input field, with only a Data part, in areas D and F and an ‘Enabled Close’ button (symbol NA11)." +
+                                Environment.NewLine +
+                                "7. A keypad is displayed below the data input field, containing enabled keys for the numbers <1> to <9>, <Del> (symbol NA21), <0> and (disabled) <Decimal_Separator>." +
+                                Environment.NewLine +
+                                "8. Objects, text messages and buttons can be displayed in several levels. Within a level they are allocated to areas." +
+                                Environment.NewLine +
+                                "9. Objects, text messages and buttons in a layer form a window." +
+                                Environment.NewLine +
                                 "10. The Default window does not cover the current window.");
 
             /*
@@ -124,10 +135,13 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press and hold the <0> key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                "1. The key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The data input field displays ‘0’ in black on a Medium-grey background, left-aligned in the Data part." + Environment.NewLine +
-                                "4. The data input field accepts the value according to the key pressed." + Environment.NewLine +
+                                "3. The data input field displays ‘0’ in black on a Medium-grey background, left-aligned in the Data part." +
+                                Environment.NewLine +
+                                "4. The data input field accepts the value according to the key pressed." +
+                                Environment.NewLine +
                                 "5. A flashing underscore is displayed as a cursor after the ‘0’ entered.");
 
             DmiActions.ShowInstruction(this, "Press the <Del> key until the input field is blank");
@@ -136,82 +150,109 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press and hold the <1> key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                "1. The key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The data input field displays ‘01’ in black on a Medium-grey background, left-aligned in the Data part." + Environment.NewLine +
-                                "4. The data input field accepts the value according to the key pressed." + Environment.NewLine +
+                                "3. The data input field displays ‘01’ in black on a Medium-grey background, left-aligned in the Data part." +
+                                Environment.NewLine +
+                                "4. The data input field accepts the value according to the key pressed." +
+                                Environment.NewLine +
                                 "5. A flashing underscore is displayed as a cursor after the ‘1’ entered.");
 
             // Repeat for the <2> key
             DmiActions.ShowInstruction(this, "Press and hold the <2> key");
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                "1. The key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The data input field displays ‘012’ in black on a Medium-grey background, left-aligned in the Data part." + Environment.NewLine +
-                                "4. The data input field accepts the value according to the key pressed." + Environment.NewLine +
+                                "3. The data input field displays ‘012’ in black on a Medium-grey background, left-aligned in the Data part." +
+                                Environment.NewLine +
+                                "4. The data input field accepts the value according to the key pressed." +
+                                Environment.NewLine +
                                 "5. A flashing underscore is displayed as a cursor after the ‘2’ entered.");
 
             // Repeat for the <3> key
             DmiActions.ShowInstruction(this, "Press and hold the <3> key");
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                "1. The key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The data input field displays ‘0123’ in black on a Medium-grey background, left-aligned in the Data part." + Environment.NewLine +
-                                "4. The data input field accepts the value according to the key pressed." + Environment.NewLine +
+                                "3. The data input field displays ‘0123’ in black on a Medium-grey background, left-aligned in the Data part." +
+                                Environment.NewLine +
+                                "4. The data input field accepts the value according to the key pressed." +
+                                Environment.NewLine +
                                 "5. A flashing underscore is displayed as a cursor after the ‘3’ entered.");
 
             // Repeat for the <4> key
             DmiActions.ShowInstruction(this, "Press and hold the <4> key");
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                "1. The key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The data input field displays ‘01234’ in black on a Medium-grey background, left-aligned in the Data part." + Environment.NewLine +
-                                "4. The data input field accepts the value according to the key pressed." + Environment.NewLine +
+                                "3. The data input field displays ‘01234’ in black on a Medium-grey background, left-aligned in the Data part." +
+                                Environment.NewLine +
+                                "4. The data input field accepts the value according to the key pressed." +
+                                Environment.NewLine +
                                 "5. A flashing underscore is displayed as a cursor after the ‘4’ entered.");
 
             // Repeat for the <5> key
             DmiActions.ShowInstruction(this, "Press and hold the <5> key");
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                "1. The key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The data input field displays ‘012345’ in black on a Medium-grey background, left-aligned in the Data part." + Environment.NewLine +
-                                "4. The data input field accepts the value according to the key pressed." + Environment.NewLine +
+                                "3. The data input field displays ‘012345’ in black on a Medium-grey background, left-aligned in the Data part." +
+                                Environment.NewLine +
+                                "4. The data input field accepts the value according to the key pressed." +
+                                Environment.NewLine +
                                 "5. A flashing underscore is displayed as a cursor after the ‘5’ entered.");
 
             // Repeat for the <6> key
             DmiActions.ShowInstruction(this, "Press and hold the <6> key");
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                "1. The key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The data input field displays ‘01234 56’ in black on a Medium-grey background, left-aligned in the Data part." + Environment.NewLine +
-                                "4. The data input field accepts the value according to the key pressed." + Environment.NewLine +
+                                "3. The data input field displays ‘01234 56’ in black on a Medium-grey background, left-aligned in the Data part." +
+                                Environment.NewLine +
+                                "4. The data input field accepts the value according to the key pressed." +
+                                Environment.NewLine +
                                 "5. A flashing underscore is displayed as a cursor after the ‘6’ entered.");
 
             // Repeat for the <7> key
             DmiActions.ShowInstruction(this, "Press and hold the <7> key");
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                "1. The key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The data input field displays ‘01234 567’ in black on a Medium-grey background, left-aligned in the Data part." + Environment.NewLine +
-                                "4. The data input field accepts the value according to the key pressed." + Environment.NewLine +
+                                "3. The data input field displays ‘01234 567’ in black on a Medium-grey background, left-aligned in the Data part." +
+                                Environment.NewLine +
+                                "4. The data input field accepts the value according to the key pressed." +
+                                Environment.NewLine +
                                 "5. A flashing underscore is displayed as a cursor after the ‘7’ entered.");
 
             // Repeat for the <8> key
             DmiActions.ShowInstruction(this, "Press and hold the <8> key");
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                "1. The key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The data input field displays ‘01234 5678’ in black on a Medium-grey background, left-aligned in the Data part." + Environment.NewLine +
-                                "4. The data input field accepts the value according to the key pressed." + Environment.NewLine +
+                                "3. The data input field displays ‘01234 5678’ in black on a Medium-grey background, left-aligned in the Data part." +
+                                Environment.NewLine +
+                                "4. The data input field accepts the value according to the key pressed." +
+                                Environment.NewLine +
                                 "5. A flashing underscore is displayed as a cursor after the ‘8’ entered.");
 
             // Repeat for the <9> key
             DmiActions.ShowInstruction(this, "Press and hold the <9> key");
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                "1. The key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The data input field displays ‘01234 5678 9’ in black on a Medium-grey background, left-aligned in the Data part." + Environment.NewLine +
-                                "4. The data input field accepts the value according to the key pressed." + Environment.NewLine +
+                                "3. The data input field displays ‘01234 5678 9’ in black on a Medium-grey background, left-aligned in the Data part." +
+                                Environment.NewLine +
+                                "4. The data input field accepts the value according to the key pressed." +
+                                Environment.NewLine +
                                 "5. A flashing underscore is displayed as a cursor after the ‘9’ entered.");
 
             /*
@@ -231,14 +272,17 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,While press and hold button less than 1.5 sec(1)	Sound ‘Click’ is played once.(2)	The state of button is changed to ‘Pressed’ and immediately back to ‘Enabled’ state.(3)	The last character is removed from an input field after pressing the button.While press and hold button over 1.5 sec(4)	The state ‘pressed’ and ‘released’ are switched repeatly while button is pressed and the characters are removed from an input field repeatly refer to pressed state.(5)	The sound ‘Click’ is played repeatly while button is pressed.
             Test Step Comment: (1) MMI_gen 7977 (partly: MMI_gen 4913 (partly: MMI_gen 4384 (partly: sound ‘Click’)));(2) MMI_gen 7977 (partly: MMI_gen 4913 (partly: MMI_gen 4384 (partly: Change to state ‘Pressed’ and immediately back to state ‘Enabled’)));(3) MMI_gen 7977 (partly: MMI_gen 4913 (partly: MMI_gen 4384 (partly: ETCS-MMI’s function associated to the button))); MMI_gen 4393 (partly: [Delete]);(4) MMI_gen 7977 (partly: MMI_gen 4913 (partly: MMI_gen 4386 (partly: visual of repeat function)));(5) MMI_gen 7977 (partly: MMI_gen 4913 (partly: MMI_gen 4386 (partly: audible of repeat function)));
             */
-            DmiActions.ShowInstruction(this, @"Press and hold the ‘Del’ key for more than 1.5s. Note: Stopwatch is required");
+            DmiActions.ShowInstruction(this,
+                @"Press and hold the ‘Del’ key for more than 1.5s. Note: Stopwatch is required");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "2. The key is displayed pressed then immediately re-displayed enabled." + Environment.NewLine +
+                                "2. The key is displayed pressed then immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "3. The last character is deleted from the data input field." + Environment.NewLine +
-                                "4. After the key has been pressed for more than 1.5 s, the key is repeatedly displayed pressed and re-displayed enabled;" + Environment.NewLine +
-                               "5. The ‘Click’ sound is played repeatedly while the key is pressed and characters are deleted repeatedly from the end of the data input field.");
+                                "4. After the key has been pressed for more than 1.5 s, the key is repeatedly displayed pressed and re-displayed enabled;" +
+                                Environment.NewLine +
+                                "5. The ‘Click’ sound is played repeatedly while the key is pressed and characters are deleted repeatedly from the end of the data input field.");
 
             /*
             Test Step 6
@@ -257,8 +301,9 @@ namespace Testcase.DMITestCases
             Expected Result: No number is displayed on the Input Field.
             Test Step Comment:
             */
-            DmiActions.ShowInstruction(this, "Press and hold the <Del> key until the value in the data input field is blank");
-            
+            DmiActions.ShowInstruction(this,
+                "Press and hold the <Del> key until the value in the data input field is blank");
+
             /*
             Test Step 8
             Action: Enter the data value with 5 characters.
@@ -280,7 +325,7 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field displays ‘1234 56’ (as two groups of digits).");
-            
+
             /*
             Test Step 10
             Action: Press and hold an input field.
@@ -310,7 +355,8 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information, The state of an input field is changed to ‘Pressed’, the border of button is removed.
             Test Step Comment: (1) MMI_gen 9390 (partly: Train Running Number window);
             */
-            DmiActions.ShowInstruction(this, @"Whilst keeping the data input field pressed, drag it back inside its area");
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the data input field pressed, drag it back inside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The data input field is displayed pressed, without a border.");
@@ -324,7 +370,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Release the data input field");
 
             EVC116_MMINewTrainNumber.Check_NID_OPERATION = 123456;
-            
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Train running number window and displays the Driver ID window.");
 
@@ -346,7 +392,8 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1)MMI_gen 7979 (partly: revalidation);
             */
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.TrainRunningNumber;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH =
+                EVC30_MMIRequestEnable.EnabledRequests.TrainRunningNumber;
             EVC30_MMIRequestEnable.Send();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;
             EVC30_MMIRequestEnable.Send();
@@ -378,7 +425,8 @@ namespace Testcase.DMITestCases
             Test Step Comment: 
             */
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.TrainRunningNumber;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH =
+                EVC30_MMIRequestEnable.EnabledRequests.TrainRunningNumber;
             EVC30_MMIRequestEnable.Send();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;
             EVC30_MMIRequestEnable.Send();
@@ -420,7 +468,8 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7977 (partly: MMI_gen 4681 (partly: entered data is replaced)); MMI_gen 8864 (partly: Train Running Number window);
             */
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.TrainRunningNumber;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH =
+                EVC30_MMIRequestEnable.EnabledRequests.TrainRunningNumber;
             EVC30_MMIRequestEnable.Send();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;
             EVC30_MMIRequestEnable.Send();

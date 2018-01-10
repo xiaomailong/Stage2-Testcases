@@ -83,7 +83,8 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine +
                                 "1. DMI displays in SR mode, Level 2." + Environment.NewLine +
-                                "2. DMI displays the ‘Connection established’ symbol (ST03) in sub-area E1." + Environment.NewLine +
+                                "2. DMI displays the ‘Connection established’ symbol (ST03) in sub-area E1." +
+                                Environment.NewLine +
                                 "3. DMI displays the ‘Network registered via one modem’ symbol (ST100) in sub-area E1.");
 
             /*
@@ -92,7 +93,8 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SH mode, level 2.When the time is passed 60 seconds ,Verify the following information,(1)    Use the log file to confirm that DMI received multiple packets of EVC-8 with variable MMI_Q_TEXT_CRITERIA = 4 with the same value of MMI_I_TEXT in expected No.1 of test step 1.(2)     No symbol display in sub-area E1
             Test Step Comment: (1) MMI_gen 11441 (partly: removing all related text messages);(2) MMI_gen 11441 (partly: no symbols shall be displayed);
             */
-            DmiActions.ShowInstruction(this, "Press and hold ‘Shunting’ button for at least 2s (Stopwatch is required), then release the button and wait.");
+            DmiActions.ShowInstruction(this,
+                "Press and hold ‘Shunting’ button for at least 2s (Stopwatch is required), then release the button and wait.");
 
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Shunting;
 
@@ -141,7 +143,7 @@ namespace Testcase.DMITestCases
             Action: End of test
             Expected Result: 
             */
-            
+
             return GlobalTestResult;
         }
     }

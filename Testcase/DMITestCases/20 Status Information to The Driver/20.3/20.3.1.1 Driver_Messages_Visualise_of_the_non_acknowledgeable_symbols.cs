@@ -56,7 +56,7 @@ namespace Testcase.DMITestCases
         {
             // Post-conditions from TestSpec
             // DMI displays in SB mode, level 1
-            
+
             // Call the TestCaseBase PostExecution
             base.PostExecution();
         }
@@ -74,7 +74,7 @@ namespace Testcase.DMITestCases
                                 MMI_gen 1699 (partly: non-acknowledgement, symbol);
             */
 
-            XML_15_3_1_1(msgType.typea);      // Continue to step 20 after this. All interim steps are inside the XML class.
+            XML_15_3_1_1(msgType.typea); // Continue to step 20 after this. All interim steps are inside the XML class.
 
             /*
             Test Step 2
@@ -247,7 +247,9 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
+
         #region Send_XML_15_3_1_1_DMI_Test_Specification
+
         enum msgType
         {
             typea,
@@ -259,7 +261,6 @@ namespace Testcase.DMITestCases
         {
             switch (type)
             {
-
                 case msgType.typea:
                     // Step 1
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -302,7 +303,7 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
                     EVC8_MMIDriverMessage.MMI_I_TEXT = 4;
                     EVC8_MMIDriverMessage.MMI_Q_TEXT = 276;
-                    EVC8_MMIDriverMessage.PlainTextMessage = "0";       // Level 0
+                    EVC8_MMIDriverMessage.PlainTextMessage = "0"; // Level 0
                     EVC8_MMIDriverMessage.Send();
 
                     DmiExpectedResults.Driver_symbol_displayed(this, "Level 0 announcement", "LE06", "C1", false);
@@ -312,7 +313,7 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
                     EVC8_MMIDriverMessage.MMI_I_TEXT = 4;
                     EVC8_MMIDriverMessage.MMI_Q_TEXT = 276;
-                    EVC8_MMIDriverMessage.PlainTextMessage = "1";       // Level 1
+                    EVC8_MMIDriverMessage.PlainTextMessage = "1"; // Level 1
                     EVC8_MMIDriverMessage.Send();
 
                     DmiExpectedResults.Driver_symbol_displayed(this, "Level 1 announcement", "LE10", "C1", false);
@@ -322,7 +323,7 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
                     EVC8_MMIDriverMessage.MMI_I_TEXT = 4;
                     EVC8_MMIDriverMessage.MMI_Q_TEXT = 276;
-                    EVC8_MMIDriverMessage.PlainTextMessage = "2";       // Level 2
+                    EVC8_MMIDriverMessage.PlainTextMessage = "2"; // Level 2
                     EVC8_MMIDriverMessage.Send();
 
                     DmiExpectedResults.Driver_symbol_displayed(this, "Level 2 announcement", "LE12", "C1", false);
@@ -332,7 +333,7 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
                     EVC8_MMIDriverMessage.MMI_I_TEXT = 4;
                     EVC8_MMIDriverMessage.MMI_Q_TEXT = 276;
-                    EVC8_MMIDriverMessage.PlainTextMessage = "3";       // Level 3
+                    EVC8_MMIDriverMessage.PlainTextMessage = "3"; // Level 3
                     EVC8_MMIDriverMessage.Send();
 
                     DmiExpectedResults.Driver_symbol_displayed(this, "Level 3 announcement", "LE14", "C1", false);
@@ -344,7 +345,8 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.MMI_Q_TEXT = 259;
                     EVC8_MMIDriverMessage.Send();
 
-                    DmiExpectedResults.Driver_symbol_displayed(this, "Acknowledgement for On Sight", "MO08", "C1", false);
+                    DmiExpectedResults.Driver_symbol_displayed(this, "Acknowledgement for On Sight", "MO08", "C1",
+                        false);
 
                     // Step 10
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -353,7 +355,8 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.MMI_Q_TEXT = 262;
                     EVC8_MMIDriverMessage.Send();
 
-                    DmiExpectedResults.Driver_symbol_displayed(this, "Acknowledgement for Reversing", "MO15", "C1", false);
+                    DmiExpectedResults.Driver_symbol_displayed(this, "Acknowledgement for Reversing", "MO15", "C1",
+                        false);
 
                     // Step 11
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -362,7 +365,8 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.MMI_Q_TEXT = 263;
                     EVC8_MMIDriverMessage.Send();
 
-                    DmiExpectedResults.Driver_symbol_displayed(this, "Acknowledgement for Staff Responsible", "MO10", "C1", false);
+                    DmiExpectedResults.Driver_symbol_displayed(this, "Acknowledgement for Staff Responsible", "MO10",
+                        "C1", false);
 
                     // Step 12
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -371,7 +375,8 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.MMI_Q_TEXT = 264;
                     EVC8_MMIDriverMessage.Send();
 
-                    DmiExpectedResults.Driver_symbol_displayed(this, "Acknowledgement for Unfitted", "MO17", "C1", false);
+                    DmiExpectedResults.Driver_symbol_displayed(this, "Acknowledgement for Unfitted", "MO17", "C1",
+                        false);
 
                     // Step 13
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -380,7 +385,8 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.MMI_Q_TEXT = 265;
                     EVC8_MMIDriverMessage.Send();
 
-                    DmiExpectedResults.Driver_symbol_displayed(this, "Acknowledgement for Shunting", "MO02", "C1", false);
+                    DmiExpectedResults.Driver_symbol_displayed(this, "Acknowledgement for Shunting", "MO02", "C1",
+                        false);
 
                     // Step 14
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -398,14 +404,15 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.MMI_Q_TEXT = 709;
                     EVC8_MMIDriverMessage.Send();
 
-                    DmiExpectedResults.Driver_symbol_displayed(this, "Acknowledgement for Limited Supervision", "MO22", "C1", false);
+                    DmiExpectedResults.Driver_symbol_displayed(this, "Acknowledgement for Limited Supervision", "MO22",
+                        "C1", false);
 
                     // Step 16
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
                     EVC8_MMIDriverMessage.MMI_I_TEXT = 4;
                     EVC8_MMIDriverMessage.MMI_Q_TEXT = 257;
-                    EVC8_MMIDriverMessage.PlainTextMessage = "0";       // Level 0
+                    EVC8_MMIDriverMessage.PlainTextMessage = "0"; // Level 0
                     EVC8_MMIDriverMessage.Send();
 
                     DmiExpectedResults.Driver_symbol_displayed(this, "Level 0 announcement", "LE07", "C1", false);
@@ -415,7 +422,7 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
                     EVC8_MMIDriverMessage.MMI_I_TEXT = 4;
                     EVC8_MMIDriverMessage.MMI_Q_TEXT = 257;
-                    EVC8_MMIDriverMessage.PlainTextMessage = "1";       // Level 1
+                    EVC8_MMIDriverMessage.PlainTextMessage = "1"; // Level 1
                     EVC8_MMIDriverMessage.Send();
 
                     DmiExpectedResults.Driver_symbol_displayed(this, "Level 1 announcement", "LE11", "C1", false);
@@ -425,7 +432,7 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
                     EVC8_MMIDriverMessage.MMI_I_TEXT = 4;
                     EVC8_MMIDriverMessage.MMI_Q_TEXT = 257;
-                    EVC8_MMIDriverMessage.PlainTextMessage = "2";       // Level 2
+                    EVC8_MMIDriverMessage.PlainTextMessage = "2"; // Level 2
                     EVC8_MMIDriverMessage.Send();
 
                     DmiExpectedResults.Driver_symbol_displayed(this, "Level 2 announcement", "LE13", "C1", false);
@@ -435,7 +442,7 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
                     EVC8_MMIDriverMessage.MMI_I_TEXT = 4;
                     EVC8_MMIDriverMessage.MMI_Q_TEXT = 257;
-                    EVC8_MMIDriverMessage.PlainTextMessage = "3";       // Level 3
+                    EVC8_MMIDriverMessage.PlainTextMessage = "3"; // Level 3
                     EVC8_MMIDriverMessage.Send();
 
                     DmiExpectedResults.Driver_symbol_displayed(this, "Level 0 announcement", "LE15", "C1", false);
@@ -448,7 +455,8 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.MMI_Q_TEXT = 716;
                     EVC8_MMIDriverMessage.Send();
 
-                    WaitForVerification("Is the ST05 symbol displayed in the window title area without a flashing yellow frame?");
+                    WaitForVerification(
+                        "Is the ST05 symbol displayed in the window title area without a flashing yellow frame?");
                     break;
                 case msgType.typec:
                     // Step 20
@@ -460,9 +468,9 @@ namespace Testcase.DMITestCases
 
                     WaitForVerification("Has the ST05 symbol been removed from the window title area?");
                     break;
-
             }
         }
+
         #endregion
     }
 }

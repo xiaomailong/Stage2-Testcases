@@ -72,7 +72,8 @@ namespace Testcase.DMITestCases
             */
 
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Adhesion | Variables.standardFlags;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH =
+                EVC30_MMIRequestEnable.EnabledRequests.Adhesion | Variables.standardFlags;
             EVC30_MMIRequestEnable.Send();
 
             DmiActions.ShowInstruction(this, "Select the Special button.");
@@ -86,11 +87,14 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays symbol ST02 in sub-area A4
             Test Step Comment: (1) MMI_gen 7088 (partly: EVC-2, ‘Low Adhesion by Driver’)(2) MMI_gen 111;     
             */
-            DmiActions.ShowInstruction(this, "Perform the following actions" + Environment.NewLine + Environment.NewLine +
-                                            "1. Press \"Adhesion\" button, followed by \"Slippery rail\" button." + Environment.NewLine +
-                                            "2. Confirm \"Slippery rail\" by pressing the input field.");
+            DmiActions.ShowInstruction(this, "Perform the following actions" + Environment.NewLine +
+                                             Environment.NewLine +
+                                             "1. Press \"Adhesion\" button, followed by \"Slippery rail\" button." +
+                                             Environment.NewLine +
+                                             "2. Confirm \"Slippery rail\" by pressing the input field.");
 
-            EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.SetAdhesionCoefficientToSlipperyRail;
+            EVC101_MMIDriverRequest.CheckMRequestReleased =
+                Variables.MMI_M_REQUEST.SetAdhesionCoefficientToSlipperyRail;
 
             EVC2_MMIStatus.MMI_M_ADHESION = 0x1;
             EVC2_MMIStatus.Send();
@@ -123,9 +127,11 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7088 (partly: No symbol displayed);    
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(this, "Perform the following actions" + Environment.NewLine + Environment.NewLine +
-                                           "1. Press \"Adhesion\" button, followed by \"Slippery rail\" button." + Environment.NewLine +
-                                           "2. Confirm \"Non slippery rail\" by pressing the input field.");
+            DmiActions.ShowInstruction(this, "Perform the following actions" + Environment.NewLine +
+                                             Environment.NewLine +
+                                             "1. Press \"Adhesion\" button, followed by \"Slippery rail\" button." +
+                                             Environment.NewLine +
+                                             "2. Confirm \"Non slippery rail\" by pressing the input field.");
 
             EVC2_MMIStatus.MMI_M_ADHESION = 0x00;
             EVC2_MMIStatus.Send();

@@ -30,33 +30,33 @@ namespace Testcase.Telegrams.EVCtoDMI
             _pool = pool;
 
             // Set default values
-            _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7alias1B0.Value = 0x00;              // No EB test in progress, no EB, no radio
-            _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7alias1B1.Value = 0x02;              // Brake test not in progress, Level 1
-            _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrMMode.Value = (byte)MMI_OBU_TR_M_MODE.StandBy;              // Standby mode
-            _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrMAdhesion.Value = 1;            // Non-slippery rail
-            _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrNidStmHs.Value = 255;           // No STM in hot standby
-            _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrNidStmDa.Value = 255;           // No STM
-            _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrBrakeTestTimeOut.Value = 2880;  // 48 hours
-            _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrOTrain.Value = 1000000000;      // Initial position
-            _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity1.Value = 0x7c88;           // All validity bits set
-            _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity2.Value = 0xfc00;           // All validity bits set
-            _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7SSW1.Value = 0x8000;                // 32768 in decimal
-            _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7SSW2.Value = 0x8000;                // 32768 in decimal
-            _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7SSW3.Value = 0x8000;                // 32768 in decimal
+            _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7alias1B0.Value = 0x00; // No EB test in progress, no EB, no radio
+            _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7alias1B1.Value = 0x02; // Brake test not in progress, Level 1
+            _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrMMode.Value = (byte) MMI_OBU_TR_M_MODE.StandBy; // Standby mode
+            _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrMAdhesion.Value = 1; // Non-slippery rail
+            _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrNidStmHs.Value = 255; // No STM in hot standby
+            _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrNidStmDa.Value = 255; // No STM
+            _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrBrakeTestTimeOut.Value = 2880; // 48 hours
+            _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrOTrain.Value = 1000000000; // Initial position
+            _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity1.Value = 0x7c88; // All validity bits set
+            _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity2.Value = 0xfc00; // All validity bits set
+            _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7SSW1.Value = 0x8000; // 32768 in decimal
+            _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7SSW2.Value = 0x8000; // 32768 in decimal
+            _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7SSW3.Value = 0x8000; // 32768 in decimal
         }
 
         private static void SetAlias1B0()
         {
             _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7alias1B0.Value =
-                (byte)(_trainEBTestInProgress << 6 | _trainEBStatus << 5 | _radioStatusInformation << 4 |
+                (byte) (_trainEBTestInProgress << 6 | _trainEBStatus << 5 | _radioStatusInformation << 4 |
                         _stmInHsStateExists << 3 | _stmInDaStateExists << 2);
         }
 
         private static void SetAlias1B1()
         {
-            var etcsBrakeTestStatus = (byte)_etcsBrakeTestStatus;
-            var level = (byte)_level;
-            _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7alias1B1.Value = (byte)(etcsBrakeTestStatus << 4 | level);
+            var etcsBrakeTestStatus = (byte) _etcsBrakeTestStatus;
+            var level = (byte) _level;
+            _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7alias1B1.Value = (byte) (etcsBrakeTestStatus << 4 | level);
         }
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         public static byte MMI_OBU_TR_M_ADHESION
         {
             get => _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrMAdhesion.Value;
-            set => _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrMAdhesion.Value = (byte)value;
+            set => _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrMAdhesion.Value = (byte) value;
         }
 
         /// <summary>
@@ -86,7 +86,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         public static int MMI_OBU_TR_O_TRAIN
         {
             get => _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrOTrain.Value;
-            set => _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrOTrain.Value = (int)value;
+            set => _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrOTrain.Value = (int) value;
         }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         public static ushort BRAKE_TEST_TIMEOUT
         {
             get => _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrBrakeTestTimeOut.Value;
-            set => _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrBrakeTestTimeOut.Value = (ushort)value;
+            set => _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrBrakeTestTimeOut.Value = (ushort) value;
         }
 
         /// <summary>
@@ -116,7 +116,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         public static byte OBU_TR_NID_STM_DA
         {
             get => _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrNidStmDa.Value;
-            set => _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrNidStmDa.Value = (byte)value;
+            set => _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrNidStmDa.Value = (byte) value;
         }
 
         /// <summary>
@@ -131,7 +131,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         public static byte OBU_TR_NID_STM_HS
         {
             get => _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrNidStmHs.Value;
-            set => _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrNidStmHs.Value = (byte)value;
+            set => _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrNidStmHs.Value = (byte) value;
         }
 
         /// <summary>

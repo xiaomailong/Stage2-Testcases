@@ -112,7 +112,9 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
+
         #region Send_XML_6_6_DMI_Test_Specification
+
         enum msgType
         {
             typea,
@@ -141,6 +143,7 @@ namespace Testcase.DMITestCases
             }
             EVC8_MMIDriverMessage.Send();
         }
+
         #endregion
     }
 }

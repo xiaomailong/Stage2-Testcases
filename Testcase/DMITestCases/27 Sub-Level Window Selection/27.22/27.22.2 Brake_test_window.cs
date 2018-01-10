@@ -44,7 +44,7 @@ namespace Testcase.DMITestCases
             // System is powered ON.Cabin is activated.SoM is performed until Level 1 is selcted and confirmed.Settings window is opened.Brake button is enabled.Brake window is opened.
             DmiActions.Complete_SoM_L1_SB(this);
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings;      // Settings window
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings; // Settings window
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.StartBrakeTest;
             EVC30_MMIRequestEnable.Send();
         }
@@ -61,7 +61,7 @@ namespace Testcase.DMITestCases
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint
-            
+
             /*
             Test Step 1
             Action: Press ‘Test’ button
@@ -71,16 +71,23 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press the ‘Brake’ button, then the ‘Test’ button in the Brake window");
 
-            WaitForVerification("Check the following (* indicates sub-areas drawn as one area):" + Environment.NewLine + Environment.NewLine +
-                                @"1. DMI displays the Brake test window with 3 layers in a half-grid array with the title ‘Brake test’." + Environment.NewLine +
+            WaitForVerification("Check the following (* indicates sub-areas drawn as one area):" + Environment.NewLine +
+                                Environment.NewLine +
+                                @"1. DMI displays the Brake test window with 3 layers in a half-grid array with the title ‘Brake test’." +
+                                Environment.NewLine +
                                 "2. The Brake window is displayed in areas D, F and G." + Environment.NewLine +
                                 "3. Layer 0 comprises areas D, F and G." + Environment.NewLine +
-                                "4. Layer 1 comprises areas A1, (A2+A3)*, A4, B, C1, (C2+C3+c4)*, C5, C6, C7, C8, C9, E1, E2, E3, E4, (E5-E9)*." + Environment.NewLine +
+                                "4. Layer 1 comprises areas A1, (A2+A3)*, A4, B, C1, (C2+C3+c4)*, C5, C6, C7, C8, C9, E1, E2, E3, E4, (E5-E9)*." +
+                                Environment.NewLine +
                                 "5. Layer 2 comprises areas B3, B4, B5, B6 and B7." + Environment.NewLine +
-                                @"6. The Brake window displays one button in areas D, F and G labelled ‘ETCS’ and an ‘Enabled Close’ button (symbol NA11)." + Environment.NewLine +
-                                "7. The two buttons are displayed enabled and are  and ‘Percentage’, respectively." + Environment.NewLine +
-                                "8. Objects, text messages and buttons can be displayed in several levels. Within a level they are allocated to areas." + Environment.NewLine +
-                                "9. Objects, text messages and buttons in a layer form a window." + Environment.NewLine +
+                                @"6. The Brake window displays one button in areas D, F and G labelled ‘ETCS’ and an ‘Enabled Close’ button (symbol NA11)." +
+                                Environment.NewLine +
+                                "7. The two buttons are displayed enabled and are  and ‘Percentage’, respectively." +
+                                Environment.NewLine +
+                                "8. Objects, text messages and buttons can be displayed in several levels. Within a level they are allocated to areas." +
+                                Environment.NewLine +
+                                "9. Objects, text messages and buttons in a layer form a window." +
+                                Environment.NewLine +
                                 "10. The Default window does not cover the current window.");
 
             /*
@@ -95,7 +102,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Close’ button is displayed pressed, without a border." + Environment.NewLine +
                                 "2. The ‘Click’ sound is played once.");
-            
+
             /*
             Test Step 3
             Action: Slide out ‘Close’ button
@@ -107,19 +114,20 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The ‘Close’ button is displayed enabled, with a border." + Environment.NewLine +
                                 "2. No sound is played.");
-            
+
             /*
             Test Step 4
             Action: Slide back into ‘Close’ button
             Expected Result: The button is back to state ‘Pressed’ without a sound
             Test Step Comment: MMI_gen 11807 (partly: MMI_gen 4557 (partly: button ‘Close’, MMI_gen 4382 (partly: state ‘Pressed’ when slide back, no sound))); MMI_gen 4375;
             */
-            DmiActions.ShowInstruction(this, @"Whilst keeping the ‘Close’ button pressed, drag it back inside its area");
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the ‘Close’ button pressed, drag it back inside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The ‘Close’ button is displayed pressed." + Environment.NewLine +
-                                "2. No sound is played.");            
-       
+                                "2. No sound is played.");
+
             /*
             Test Step 5
             Action: Release ‘Close’ button
@@ -130,7 +138,7 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Brake window");
-            
+
             /*
             Test Step 6
             Action: Press ‘Test’ button

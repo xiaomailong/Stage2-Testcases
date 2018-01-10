@@ -94,7 +94,7 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 286;
             EVC8_MMIDriverMessage.Send();
-            
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the ‘Reversing permitted’ symbol, ST06, in sub-area C6");
             /*
@@ -121,7 +121,8 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Acknowledge ‘Reversing’ mode by pressing in area C1");
 
-            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.ReversingModeAck;
+            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION =
+                EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.ReversingModeAck;
             EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
             EVC8_MMIDriverMessage.Send();

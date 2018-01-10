@@ -54,14 +54,15 @@ namespace Testcase.DMITestCases
             EVC2_MMIStatus.MMI_M_OVERRIDE_EOA = false;
             EVC2_MMIStatus.Send();
 
-            EVC6_MMICurrentTrainData.MMI_L_TRAIN = 100;             // Set train length (m)
+            EVC6_MMICurrentTrainData.MMI_L_TRAIN = 100; // Set train length (m)
             EVC6_MMICurrentTrainData.Send();
 
             DmiActions.Set_Driver_ID(this, "1234");
 
             // Set to level 1 and SR mode
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode =
+                EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
 
             // Enable standard buttons including Start, and display Default window.
             DmiActions.Finished_SoM_Default_Window(this);
@@ -84,15 +85,16 @@ namespace Testcase.DMITestCases
             Test Step 1
             Action: Drive the train forward passing BG1 with speed = 40 km/h until entering FS mode
             Expected Result: 
-            */  // ?? Set an EOA so the DMI can display a target
+            */ // ?? Set an EOA so the DMI can display a target
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_PreIndication_Monitoring;
-            EVC1_MMIDynamic.MMI_O_BRAKETARGET = 300000;              // 3 km: will cause the target display to show a white arrow on top
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 0;       // just starting off
+            EVC1_MMIDynamic.MMI_O_BRAKETARGET =
+                300000; // 3 km: will cause the target display to show a white arrow on top
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 0; // just starting off
 
             // Set the permitted speed so the current speed is allowed
             EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 70;
-            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 40; 
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 5000;   // 50m
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 40;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 5000; // 50m
 
             /*
             Test Step 2
@@ -107,7 +109,7 @@ namespace Testcase.DMITestCases
             Expected Result: 
             */
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 30000;
-            EVC1_MMIDynamic.MMI_O_BRAKETARGET = 70000;               // in reversing area can travel 400m further ??
+            EVC1_MMIDynamic.MMI_O_BRAKETARGET = 70000; // in reversing area can travel 400m further ??
 
             /*
             Test Step 4
@@ -117,7 +119,7 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
             EVC8_MMIDriverMessage.MMI_I_TEXT = 5;
-            EVC8_MMIDriverMessage.MMI_Q_TEXT = 286;    // Reversing possible
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 286; // Reversing possible
             EVC8_MMIDriverMessage.Send();
 
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
@@ -139,18 +141,18 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
             DmiActions.ShowInstruction(this, "Change the direction of train to reverse. Select and confirm RV mode.");
 
-            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4; 
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
             EVC8_MMIDriverMessage.MMI_I_TEXT = 2;
-            EVC8_MMIDriverMessage.Send(); 
+            EVC8_MMIDriverMessage.Send();
             EVC8_MMIDriverMessage.MMI_I_TEXT = 5;
             EVC8_MMIDriverMessage.Send();
             EVC1_MMIDynamic.MMI_O_BRAKETARGET = 2147483647;
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Reversing;     
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Reversing;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in RV mode, level 1." + Environment.NewLine +
                                 "2. The  infinity symbol ‘∞’ is displayed for digital distance to target in sub-area A2, horizontally and vertically centered.");
-            
+
             /*
             Test Step 6
             Action: End of test

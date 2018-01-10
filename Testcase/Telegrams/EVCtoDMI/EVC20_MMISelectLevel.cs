@@ -1,8 +1,10 @@
 ﻿#region usings
+
 using System;
 using System.Collections.Generic;
 using CL345;
 using static Testcase.Telegrams.EVCtoDMI.Variables;
+
 #endregion
 
 namespace Testcase.Telegrams.EVCtoDMI
@@ -57,7 +59,7 @@ namespace Testcase.Telegrams.EVCtoDMI
 
             // Determine how many levels will be sent
             _nLevels = (ushort) _qLevelNtcId.Length;
-            
+
             // Populate telegram with MMI_N_LEVELS
             _pool.SITR.ETCS1.SelectLevel.MmiNLevels.Value = _nLevels;
 
@@ -66,29 +68,29 @@ namespace Testcase.Telegrams.EVCtoDMI
                 // xxxx xxxx => x000 0000
                 uint uintMmiQLevelNtcId = (uint) _qLevelNtcId[k];
                 uintMmiQLevelNtcId <<= 7;
-                
+
                 // xxxx xxxx => 0x00 0000
                 uint uintMmiMCurrentLevel = (uint) _mCurrentLevel[k];
                 uintMmiMCurrentLevel <<= 6;
-                
+
                 // xxxx xxxx => 00x0 0000
                 uint uintMmiMLevelFlag = (uint) _mLevelFlag[k];
                 uintMmiMLevelFlag <<= 5;
-                
+
                 // xxxx xxxx => 000x 0000
                 uint uintMmiMInhibitedLevel = (uint) _mInhibitedLevel[k];
                 uintMmiMInhibitedLevel <<= 4;
-                
+
                 // xxxx xxxx => 0000 x000
                 uint uintMmiMInhibitEnable = (uint) _mInhibitEnable[k];
                 uintMmiMInhibitEnable <<= 3;
 
                 // Build EVC20_alias_1 
-                byte evc20Alias1 = (byte)(uintMmiQLevelNtcId |
-                                                    uintMmiMCurrentLevel |
-                                                    uintMmiMLevelFlag |
-                                                    uintMmiMInhibitedLevel |
-                                                    uintMmiMInhibitEnable);
+                byte evc20Alias1 = (byte) (uintMmiQLevelNtcId |
+                                           uintMmiMCurrentLevel |
+                                           uintMmiMLevelFlag |
+                                           uintMmiMInhibitedLevel |
+                                           uintMmiMInhibitEnable);
 
                 // Populate telegram with dynamic fields
                 if (k < 10)
@@ -110,7 +112,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         public static void Send()
         {
             SetLevelInfoK();
-            _pool.SITR.ETCS1.SelectLevel.MmiLPacket.Value = (ushort)(56 + (_nLevels * 16));
+            _pool.SITR.ETCS1.SelectLevel.MmiLPacket.Value = (ushort) (56 + (_nLevels * 16));
             _pool.SITR.SMDCtrl.ETCS1.SelectLevel.Value = 0x0009;
         }
 

@@ -93,27 +93,41 @@ namespace Testcase.DMITestCases
             EVC11_MMICurrentSRRules.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the SR/speed distance window with the title ‘SR speed / distance’." + Environment.NewLine +
+                                "1. DMI displays the SR/speed distance window with the title ‘SR speed / distance’." +
+                                Environment.NewLine +
                                 "2. The text of the window title is right-aligned." + Environment.NewLine +
-                                "3. The window displays an enabled ‘Close’ button, symbol NA11, 2 data input fields, a ‘SR speed / distance entry complete?’ label," + Environment.NewLine +
-                                    "a disabled ‘Yes’ button with black text on a Dark-grey background colour with a Medium grey border colour is medium - grey the same as the input field’s colour." + Environment.NewLine +
-                                "4. The sensitive area of the ‘Yes’ button extends from the label ‘SR speed / distance entry complete?’" + Environment.NewLine +
+                                "3. The window displays an enabled ‘Close’ button, symbol NA11, 2 data input fields, a ‘SR speed / distance entry complete?’ label," +
+                                Environment.NewLine +
+                                "a disabled ‘Yes’ button with black text on a Dark-grey background colour with a Medium grey border colour is medium - grey the same as the input field’s colour." +
+                                Environment.NewLine +
+                                "4. The sensitive area of the ‘Yes’ button extends from the label ‘SR speed / distance entry complete?’" +
+                                Environment.NewLine +
                                 "5. The data input fields are displayed in areas D and F." + Environment.NewLine +
                                 "6. Data input fields have a Label Area and a Data Area." + Environment.NewLine +
-                                "7. The Label Area text corresponds to the input field i.e. SR Speed and SR distance." + Environment.NewLine +
-                                "8. The Label Area is displayed to the left of The Data Area with right-aligned text in grey on a Dark-grey background." + Environment.NewLine +
-                                "9. The first data input field is ‘Selected’: the value in the Data Area is left-aligned in black on a Medium-grey background." + Environment.NewLine +
-                                "10. The other input field is ‘Not selected’ with grey text on a Dark-grey background." + Environment.NewLine +
-                                "11. A numeric keypad is displayed for the selected input field ‘SR Speed’." + Environment.NewLine +
-                                "12. The keypad contains enabled buttons for the numbers <1> to <9>, <Del> (symbol NA21), <0> and (disabled) <Decimal_Separator>." + Environment.NewLine +
+                                "7. The Label Area text corresponds to the input field i.e. SR Speed and SR distance." +
+                                Environment.NewLine +
+                                "8. The Label Area is displayed to the left of The Data Area with right-aligned text in grey on a Dark-grey background." +
+                                Environment.NewLine +
+                                "9. The first data input field is ‘Selected’: the value in the Data Area is left-aligned in black on a Medium-grey background." +
+                                Environment.NewLine +
+                                "10. The other input field is ‘Not selected’ with grey text on a Dark-grey background." +
+                                Environment.NewLine +
+                                "11. A numeric keypad is displayed for the selected input field ‘SR Speed’." +
+                                Environment.NewLine +
+                                "12. The keypad contains enabled buttons for the numbers <1> to <9>, <Del> (symbol NA21), <0> and (disabled) <Decimal_Separator>." +
+                                Environment.NewLine +
                                 "13. All areas in the window are in Layer 0." + Environment.NewLine +
-                                "14. Echo texts are displayed in areas A, B, C and E in the same order as their related data input fields." + Environment.NewLine +
+                                "14. Echo texts are displayed in areas A, B, C and E in the same order as their related data input fields." +
+                                Environment.NewLine +
                                 "15. Echo texts comprise a Label Part and a Data Part." + Environment.NewLine +
-                                "16. The Label Part of an echo text has the same text as The Label Area of the related data input field." + Environment.NewLine +
-                                "17. The text of the Label part of an echo text is right-aligned." + Environment.NewLine +
+                                "16. The Label Part of an echo text has the same text as The Label Area of the related data input field." +
+                                Environment.NewLine +
+                                "17. The text of the Label part of an echo text is right-aligned." +
+                                Environment.NewLine +
                                 "18. The Data part of an echo text has left-aligned text." + Environment.NewLine +
                                 "19. The text in an echo texts is grey." + Environment.NewLine +
-                                "20. A flashing (visible/invisible) underscore is displayed as a cursor below the position of the next character to be entered." + Environment.NewLine +
+                                "20. A flashing (visible/invisible) underscore is displayed as a cursor below the position of the next character to be entered." +
+                                Environment.NewLine +
                                 "21. The SR speed data input field displays ‘100’." + Environment.NewLine +
                                 "22. The SR Distance data input field displays ‘100000’.");
 
@@ -127,9 +141,11 @@ namespace Testcase.DMITestCases
 
             // Spec. says cursor under character entered: gen 4690 says under the next character entry position
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The key is displayed pressed and immediately re-displayed enabled" + Environment.NewLine + 
+                                "1. The key is displayed pressed and immediately re-displayed enabled" +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The SR speed data input field displays the value of the key pressed." + Environment.NewLine +
+                                "3. The SR speed data input field displays the value of the key pressed." +
+                                Environment.NewLine +
                                 "4. An underscore character is displayed after the ‘0’ at the end of the SR Speed data input field.");
 
             /*
@@ -155,9 +171,11 @@ namespace Testcase.DMITestCases
 
             // Spec. says cursor under character entered: gen 4690 says under the next character entry position
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The key is displayed pressed and immediately re-displayed enabled" + Environment.NewLine +
+                                "1. The key is displayed pressed and immediately re-displayed enabled" +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The SR speed data input field displays ‘1’ at the end of the data input field." + Environment.NewLine +
+                                "3. The SR speed data input field displays ‘1’ at the end of the data input field." +
+                                Environment.NewLine +
                                 "4. An underscore character is displayed after the ‘1’ at the end of the SR Speed data input field.");
 
             DmiActions.ShowInstruction(this, @"Release the <1> key");
@@ -165,15 +183,17 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The <1> key is displayed enabled");
-            
+
             // Repeat for the <2> key
             DmiActions.ShowInstruction(this, @"Press and hold the <2> key");
 
             // Spec. says cursor under character entered: gen 4690 says under the next character entry position
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The key is displayed pressed and immediately re-displayed enabled" + Environment.NewLine +
+                                "1. The key is displayed pressed and immediately re-displayed enabled" +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The SR speed data input field displays ‘2’ at the end of the data input field." + Environment.NewLine +
+                                "3. The SR speed data input field displays ‘2’ at the end of the data input field." +
+                                Environment.NewLine +
                                 "4. An underscore character is displayed after the ‘2’ at the end of the SR Speed data input field.");
 
             DmiActions.ShowInstruction(this, @"Release the <2> key");
@@ -187,9 +207,11 @@ namespace Testcase.DMITestCases
 
             // Spec. says cursor under character entered: gen 4690 says under the next character entry position
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The key is displayed pressed and immediately re-displayed enabled" + Environment.NewLine +
+                                "1. The key is displayed pressed and immediately re-displayed enabled" +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The SR speed data input field displays ‘3’ at the end of the data input field." + Environment.NewLine +
+                                "3. The SR speed data input field displays ‘3’ at the end of the data input field." +
+                                Environment.NewLine +
                                 "4. An underscore character is displayed after the ‘3’ at the end of the SR Speed data input field.");
 
             DmiActions.ShowInstruction(this, @"Release the <3> key");
@@ -203,9 +225,11 @@ namespace Testcase.DMITestCases
 
             // Spec. says cursor under character entered: gen 4690 says under the next character entry position
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The key is displayed pressed and immediately re-displayed enabled" + Environment.NewLine +
+                                "1. The key is displayed pressed and immediately re-displayed enabled" +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The SR speed data input field displays ‘4’ at the end of the data input field." + Environment.NewLine +
+                                "3. The SR speed data input field displays ‘4’ at the end of the data input field." +
+                                Environment.NewLine +
                                 "4. An underscore character is displayed after the ‘4’ at the end of the SR Speed data input field.");
 
             DmiActions.ShowInstruction(this, @"Release the <4> key");
@@ -219,9 +243,11 @@ namespace Testcase.DMITestCases
 
             // Spec. says cursor under character entered: gen 4690 says under the next character entry position
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The key is displayed pressed and immediately re-displayed enabled" + Environment.NewLine +
+                                "1. The key is displayed pressed and immediately re-displayed enabled" +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The SR speed data input field displays ‘5’ at the end of the data input field." + Environment.NewLine +
+                                "3. The SR speed data input field displays ‘5’ at the end of the data input field." +
+                                Environment.NewLine +
                                 "4. An underscore character is displayed after the ‘5’ at the end of the SR Speed data input field.");
 
             DmiActions.ShowInstruction(this, @"Release the <5> key");
@@ -235,9 +261,11 @@ namespace Testcase.DMITestCases
 
             // Spec. says cursor under character entered: gen 4690 says under the next character entry position
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The key is displayed pressed and immediately re-displayed enabled" + Environment.NewLine +
+                                "1. The key is displayed pressed and immediately re-displayed enabled" +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The SR speed data input field displays ‘6’ at the end of the data input field." + Environment.NewLine +
+                                "3. The SR speed data input field displays ‘6’ at the end of the data input field." +
+                                Environment.NewLine +
                                 "4. An underscore character is displayed after the ‘6’ at the end of the SR Speed data input field.");
 
             DmiActions.ShowInstruction(this, @"Release the <6> key");
@@ -251,9 +279,11 @@ namespace Testcase.DMITestCases
 
             // Spec. says cursor under character entered: gen 4690 says under the next character entry position
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The key is displayed pressed and immediately re-displayed enabled" + Environment.NewLine +
+                                "1. The key is displayed pressed and immediately re-displayed enabled" +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The SR speed data input field displays ‘7’ at the end of the data input field." + Environment.NewLine +
+                                "3. The SR speed data input field displays ‘7’ at the end of the data input field." +
+                                Environment.NewLine +
                                 "4. An underscore character is displayed after the ‘7’ at the end of the SR Speed data input field.");
 
             DmiActions.ShowInstruction(this, @"Release the <7> key");
@@ -267,9 +297,11 @@ namespace Testcase.DMITestCases
 
             // Spec. says cursor under character entered: gen 4690 says under the next character entry position
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The key is displayed pressed and immediately re-displayed enabled" + Environment.NewLine +
+                                "1. The key is displayed pressed and immediately re-displayed enabled" +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The SR speed data input field displays ‘8’ at the end of the data input field." + Environment.NewLine +
+                                "3. The SR speed data input field displays ‘8’ at the end of the data input field." +
+                                Environment.NewLine +
                                 "4. An underscore character is displayed after the ‘8’ at the end of the SR Speed data input field.");
 
             DmiActions.ShowInstruction(this, @"Release the <8> key");
@@ -283,9 +315,11 @@ namespace Testcase.DMITestCases
 
             // Spec. says cursor under character entered: gen 4690 says under the next character entry position
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The key is displayed pressed and immediately re-displayed enabled" + Environment.NewLine +
+                                "1. The key is displayed pressed and immediately re-displayed enabled" +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The SR speed data input field displays ‘9’ at the end of the data input field." + Environment.NewLine +
+                                "3. The SR speed data input field displays ‘9’ at the end of the data input field." +
+                                Environment.NewLine +
                                 "4. An underscore character is displayed after the ‘9’ at the end of the SR Speed data input field.");
 
             DmiActions.ShowInstruction(this, @"Release the <9> key");
@@ -300,13 +334,17 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,While press and hold button less than 1.5 secSound ‘Click’ is played once.The state of button is changed to ‘Pressed’ and immediately back to ‘Enabled’ state.The last character is removed from an input field after pressing the button.While press and hold button over 1.5 secThe state ‘pressed’ and ‘released’ are switched repeatly while button is pressed and the characters are removed from an input field repeatly refer to pressed state.The sound ‘Click’ is played repeatly while button is pressed
             Test Step Comment: (1) MMI_gen 8295 (partly: MMI_gen 4913 (partly: SR Speed), MMI_gen 4384 (partly: sound ‘Click’));(2) MMI_gen 8295 (partly: MMI_gen 4913 (partly: SR Speed), MMI_gen 4384 (partly: Change to state ‘Pressed’ and immediately back to state ‘Enabled’));   (3) MMI_gen 8295 (partly: MMI_gen 4913 (partly: SR Speed), MMI_gen 4384 (partly: ETCS-MMI’s function associated to the button)); MMI_gen 4393 (partly: [Delete]);(4) MMI_gen 8295 (partly: MMI_gen 4913 (partly: SR Speed), MMI_gen 4386 (partly: visual of repeat function));(5) MMI_gen 8295 (partly: MMI_gen 4913 (partly: SR Speed), MMI_gen 4386 (partly: audible of repeat function));
             */
-            DmiActions.ShowInstruction(this, @"Press and hold the ‘Del’ key for more than 1.5s. Note: Stopwatch is required");
+            DmiActions.ShowInstruction(this,
+                @"Press and hold the ‘Del’ key for more than 1.5s. Note: Stopwatch is required");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "2. The key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
-                                "3. The last number entered in the SR speed data input field is deleted." + Environment.NewLine +
-                                "4. When the key has been held pressed for 1.5s the key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                "2. The key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
+                                "3. The last number entered in the SR speed data input field is deleted." +
+                                Environment.NewLine +
+                                "4. When the key has been held pressed for 1.5s the key is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "5. Characters are repeatedly deleted from the end of the SR speed data input field." +
                                 "6. The ‘Click’ sound is played repeatedly.");
 
@@ -349,25 +387,32 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,Input fieldsThe associated ‘Enter’ button is data field itself.An input field is used to allow the driver to enter data.The state of ‘SR Speed’ input field is changed to ‘accepted’ as follows,The background colour of the Data Area is dark-grey.The colour of data value is white.The next input field ‘SR Distance’ is in state ‘selected’ as follows,The background colour of the Data Area is medium-grey.The colour of data value is black.Echo TextsThe echo text of ‘SR Speed’ is changed to white colour.The value of echo text is changed refer to entered data.Entering CharactersThe cursor is displayed as a horizontal line below the position of the next character to be entered.The cursor is flashed by changing from visible to not visible.KeyboardThe keyboard associated to selected input field ‘SR Distance’ is Numeric keyboard.The keyboard contains enabled button for the number <1> to <9>, <Delete>(NA21) , <0> and disabled <Decimal_Separator>. NA21, Delete button.Packet transmissionUse the log file to confirm that DMI sent out packet [MMI_NEW_SR_RULES (EVC-106)] with following variablesMMI_V_STFF = 40 MMI_N_DATA_ELEMENTS = 1MMI_NID_DATA = 15 (SR Speed)MMI_M_BUTTONS = 254Use the log file to confirm that the Data part of echo texts are displayed correspond with each index of variables in received packet EVC-11 as follows,For MMI_NID_DATA= 15 (SR speed)MMI_N_TEXT = number of characters of SR speed value.MMI_X_TEXT[x] = each characters which displayed as value of SR speed.For MMI_NID_DATA = 16 (SR distance)MMI_N_TEXT = number of characters of SR distance value.MMI_X_TEXT[x] = each characters which displayed as value of SR distance.Note: x is index of characters
             Test Step Comment: (1) MMI_gen 8295 (partly: MMI_gen 4682 (partly: SR Speed));(2) MMI_gen 8295 (partly: MMI_gen 4634 (partly: SR Speed));(3) MMI_gen 8295 (partly: MMI_gen 4652 (partly: SR Speed), MMI_gen 4684 (partly: accepted, SR Speed));(4) MMI_gen 8295 (partly: MMI_gen 4684 (partly: SR Distance, selected automatically), MMI_gen 4651 (partly: SR Distance));(5) MMI_gen 8295 (partly: MMI_gen 4700 (partly: SR Speed));(6) MMI_gen 8295 (partly: MMI_gen 4681 (partly: SR Speed), MMI_gen 4890, MMI_gen 4698);(7) MMI_gen 8295 (partly: MMI_gen 4689, MMI_gen 4690);(8) MMI_gen 8295 (partly: MMI_gen 4691 (partly: flash, SR Distance));(9) MMI_gen 8300 (partly: SR Distance); MMI_gen 8295 (partly: MMI_gen 4912 (partly: SR Distance), MMI_gen 4678 (partly: SR Distance));(10) MMI_gen 8295 (partly: MMI_gen 5003 (partly: SR Distance)); MMI_gen 4392 (partly: [Delete] NA21);(11) MMI_gen 9509 (partly: [Enter] EVC-106); (12) MMI_gen 9891;
             */
-            DmiActions.ShowInstruction(this, "Delete the value in the SR speed data input field, enter the value ‘40’ and confirm by pressing in the data input field");
+            DmiActions.ShowInstruction(this,
+                "Delete the value in the SR speed data input field, enter the value ‘40’ and confirm by pressing in the data input field");
 
             EVC106_MMINewSrRules.MMI_V_STFF = 40;
-            EVC106_MMINewSrRules.MMI_NID_DATA = new List<byte> { 15 };
+            EVC106_MMINewSrRules.MMI_NID_DATA = new List<byte> {15};
             EVC106_MMINewSrRules.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_SR_RULES.NoButton;
             EVC106_MMINewSrRules.CheckPacketContent();
 
-            List<DataElement> dataElements = new List<DataElement> { new DataElement { Identifier = 15, EchoText = "40", QDataCheck = 1 },
-                                                                     new DataElement { Identifier = 16, EchoText = "", QDataCheck = 1} };
+            List<DataElement> dataElements = new List<DataElement>
+            {
+                new DataElement {Identifier = 15, EchoText = "40", QDataCheck = 1},
+                new DataElement {Identifier = 16, EchoText = "", QDataCheck = 1}
+            };
             EVC11_MMICurrentSRRules.DataElements = dataElements;
             EVC11_MMICurrentSRRules.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The SR speed data input field acts as an ‘Enter’ button" + Environment.NewLine +
                                 "2. Data can be entered in the SR speed data." + Environment.NewLine +
-                                "3. The SR speed data input field is ‘Accepted’, with the value in white on a Dark-grey background." + Environment.NewLine +
-                                "4. The next data input field (SR Distance) is ‘Selected’, with the value in black on a Medium-grey background." + Environment.NewLine +
+                                "3. The SR speed data input field is ‘Accepted’, with the value in white on a Dark-grey background." +
+                                Environment.NewLine +
+                                "4. The next data input field (SR Distance) is ‘Selected’, with the value in black on a Medium-grey background." +
+                                Environment.NewLine +
                                 "5. The SR speed echo text displays ‘40’ in white." + Environment.NewLine +
-                                "6. A flashing (visible/invisible) underscore cursor is displayed after the value ‘40’ in the SR speed data input field." + Environment.NewLine +
+                                "6. A flashing (visible/invisible) underscore cursor is displayed after the value ‘40’ in the SR speed data input field." +
+                                Environment.NewLine +
                                 "7. A numeric keypad is displayed for SR Distance." + Environment.NewLine +
                                 "8. The keypad contains enabled buttons for the numbers <1> to <9>, <Del> (symbol NA21), <0> and (disabled) <Decimal_Separator>.");
 
@@ -381,9 +426,11 @@ namespace Testcase.DMITestCases
 
             // Spec. says cursor under character entered: gen 4690 says under the next character entry position
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The key is displayed pressed and immediately re-displayed enabled" + Environment.NewLine +
+                                "1. The key is displayed pressed and immediately re-displayed enabled" +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The SR distance data input field displays the value of the key pressed." + Environment.NewLine +
+                                "3. The SR distance data input field displays the value of the key pressed." +
+                                Environment.NewLine +
                                 "4. An underscore character is displayed after the ‘0’ at the end of the SR Speed data input field.");
 
             DmiActions.ShowInstruction(this, @"Release the <0> key");
@@ -396,9 +443,11 @@ namespace Testcase.DMITestCases
 
             // Spec. says cursor under character entered: gen 4690 says under the next character entry position
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The key is displayed pressed and immediately re-displayed enabled" + Environment.NewLine +
+                                "1. The key is displayed pressed and immediately re-displayed enabled" +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The SR distance data input field displays ‘1’ at the end of the data input field." + Environment.NewLine +
+                                "3. The SR distance data input field displays ‘1’ at the end of the data input field." +
+                                Environment.NewLine +
                                 "4. An underscore character is displayed after the ‘1’ at the end of the SR Speed data input field.");
 
             DmiActions.ShowInstruction(this, @"Release the <1> key");
@@ -412,9 +461,11 @@ namespace Testcase.DMITestCases
 
             // Spec. says cursor under character entered: gen 4690 says under the next character entry position
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The key is displayed pressed and immediately re-displayed enabled" + Environment.NewLine +
+                                "1. The key is displayed pressed and immediately re-displayed enabled" +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The SR distance data input field displays ‘2’ at the end of the data input field." + Environment.NewLine +
+                                "3. The SR distance data input field displays ‘2’ at the end of the data input field." +
+                                Environment.NewLine +
                                 "4. An underscore character is displayed after the ‘2’ at the end of the SR Speed data input field.");
 
             DmiActions.ShowInstruction(this, @"Release the <2> key");
@@ -428,9 +479,11 @@ namespace Testcase.DMITestCases
 
             // Spec. says cursor under character entered: gen 4690 says under the next character entry position
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The key is displayed pressed and immediately re-displayed enabled" + Environment.NewLine +
+                                "1. The key is displayed pressed and immediately re-displayed enabled" +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The SR distance data input field displays ‘3’ at the end of the data input field." + Environment.NewLine +
+                                "3. The SR distance data input field displays ‘3’ at the end of the data input field." +
+                                Environment.NewLine +
                                 "4. An underscore character is displayed after the ‘3’ at the end of the SR Speed data input field.");
 
             DmiActions.ShowInstruction(this, @"Release the <3> key");
@@ -444,9 +497,11 @@ namespace Testcase.DMITestCases
 
             // Spec. says cursor under character entered: gen 4690 says under the next character entry position
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The key is displayed pressed and immediately re-displayed enabled" + Environment.NewLine +
+                                "1. The key is displayed pressed and immediately re-displayed enabled" +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The SR distance data input field displays ‘4’ at the end of the data input field." + Environment.NewLine +
+                                "3. The SR distance data input field displays ‘4’ at the end of the data input field." +
+                                Environment.NewLine +
                                 "4. An underscore character is displayed after the ‘4’ at the end of the SR Speed data input field.");
 
             DmiActions.ShowInstruction(this, @"Release the <4> key");
@@ -460,9 +515,11 @@ namespace Testcase.DMITestCases
 
             // Spec. says cursor under character entered: gen 4690 says under the next character entry position
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The key is displayed pressed and immediately re-displayed enabled" + Environment.NewLine +
+                                "1. The key is displayed pressed and immediately re-displayed enabled" +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The SR distance data input field displays ‘5’ at the end of the data input field." + Environment.NewLine +
+                                "3. The SR distance data input field displays ‘5’ at the end of the data input field." +
+                                Environment.NewLine +
                                 "4. An underscore character is displayed after the ‘5’ at the end of the SR Speed data input field.");
 
             DmiActions.ShowInstruction(this, @"Release the <5> key");
@@ -476,9 +533,11 @@ namespace Testcase.DMITestCases
 
             // Spec. says cursor under character entered: gen 4690 says under the next character entry position
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The key is displayed pressed and immediately re-displayed enabled" + Environment.NewLine +
+                                "1. The key is displayed pressed and immediately re-displayed enabled" +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The SR distance data input field displays ‘6’ at the end of the data input field." + Environment.NewLine +
+                                "3. The SR distance data input field displays ‘6’ at the end of the data input field." +
+                                Environment.NewLine +
                                 "4. An underscore character is displayed after the ‘6’ at the end of the SR Speed data input field.");
 
             DmiActions.ShowInstruction(this, @"Release the <6> key");
@@ -492,9 +551,11 @@ namespace Testcase.DMITestCases
 
             // Spec. says cursor under character entered: gen 4690 says under the next character entry position
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The key is displayed pressed and immediately re-displayed enabled" + Environment.NewLine +
+                                "1. The key is displayed pressed and immediately re-displayed enabled" +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The SR distance data input field displays ‘7’ at the end of the data input field." + Environment.NewLine +
+                                "3. The SR distance data input field displays ‘7’ at the end of the data input field." +
+                                Environment.NewLine +
                                 "4. An underscore character is displayed after the ‘7’ at the end of the SR Speed data input field.");
 
             DmiActions.ShowInstruction(this, @"Release the <7> key");
@@ -508,9 +569,11 @@ namespace Testcase.DMITestCases
 
             // Spec. says cursor under character entered: gen 4690 says under the next character entry position
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The key is displayed pressed and immediately re-displayed enabled" + Environment.NewLine +
+                                "1. The key is displayed pressed and immediately re-displayed enabled" +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The SR distance data input field displays ‘8’ at the end of the data input field." + Environment.NewLine +
+                                "3. The SR distance data input field displays ‘8’ at the end of the data input field." +
+                                Environment.NewLine +
                                 "4. An underscore character is displayed after the ‘8’ at the end of the SR Speed data input field.");
 
             DmiActions.ShowInstruction(this, @"Release the <8> key");
@@ -524,9 +587,11 @@ namespace Testcase.DMITestCases
 
             // Spec. says cursor under character entered: gen 4690 says under the next character entry position
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The key is displayed pressed and immediately re-displayed enabled" + Environment.NewLine +
+                                "1. The key is displayed pressed and immediately re-displayed enabled" +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The SR distance data input field displays ‘9’ at the end of the data input field." + Environment.NewLine +
+                                "3. The SR distance data input field displays ‘9’ at the end of the data input field." +
+                                Environment.NewLine +
                                 "4. An underscore character is displayed after the ‘9’ at the end of the SR Speed data input field.");
 
             DmiActions.ShowInstruction(this, @"Release the <9> key");
@@ -559,7 +624,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8295 (partly: MMI_gen 4694 (partly: MMI_gen 4246));
             */
             DmiActions.ShowInstruction(this, @"Press the <0> key");
-            
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The SR speed data input field displays ‘1000 00’ (with a space after the 4th character).");
 
@@ -579,10 +644,11 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,Input fieldsThe associated ‘Enter’ button is data field itself.An input field is used to allow the driver to enter data.The state of ‘SR Distance’ input field is changed to ‘accepted’ as follows,The background colour of the Data Area is dark-grey.The colour of data value is white.There is no input field selected.Echo TextsThe echo text of ‘SR Distance’ is changed to white colour.The value of echo text is changed refer to entered data.Data Entry windowThe state of ‘Yes’ button below text label ‘Train data Entry is complete?’ is enabled as follows,The background colour of the Data Area is medium-grey.The colour of data value is black.The colour of border is medium-grey.Packet transmissionUse the log file to confirm that DMI received packet [MMI_CURRENT_SR_RULES (EVC-11)] with variable MMI_M_BUTTONS = 36.Use the log file to confirm that DMI sent out packet [MMI_NEW_SR_RULES (EVC-106)] with following variablesMMI_L_STFF = 1000 MMI_N_DATA_ELEMENTS = 1MMI_NID_DATA = 16 (SR Distance)MMI_M_BUTTONS = 254
             Test Step Comment: (1) MMI_gen 8295 (partly: MMI_gen 4682 (partly: SR Distance));(2) MMI_gen 8295 (partly: MMI_gen 4634 (partly: SR Distance));(3) MMI_gen 8295 (partly: MMI_gen 4652 (partly: SR Distance), MMI_gen 4684 (partly: accepted, SR Distance));(4) MMI_gen 8295 (partly: MMI_gen 4684 (partly: No next input field, data entry process terminated));(5) MMI_gen 8295 (partly: MMI_gen 4700 (partly: SR Distance));(6) MMI_gen 8295 (partly: MMI_gen 4681 (partly: SR Distance), MMI_gen 4698, MMI_gen 4890);(7) MMI_gen 8295 (partly: MMI_gen 4909 (partly: Enabled), MMI_gen 4910 (partly: Enabled, MMI_gen 4211 (partly: colour))); MMI_gen 4374;(8) MMI_gen 9893;(9) MMI_gen 9510 (partly: [Enter] EVC-106); 
             */
-            DmiActions.ShowInstruction(this, "Delete the value in the SR distance data input field, enter the value ‘1000’ and confirm by pressing in the data input field");
+            DmiActions.ShowInstruction(this,
+                "Delete the value in the SR distance data input field, enter the value ‘1000’ and confirm by pressing in the data input field");
 
             EVC106_MMINewSrRules.MMI_V_STFF = 1000;
-            EVC106_MMINewSrRules.MMI_NID_DATA = new List<byte> { 16 };
+            EVC106_MMINewSrRules.MMI_NID_DATA = new List<byte> {16};
             EVC106_MMINewSrRules.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_SR_RULES.BTN_ENTER;
             EVC106_MMINewSrRules.CheckPacketContent();
 
@@ -593,11 +659,14 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The SR distance data input field acts as an ‘Enter’ button" + Environment.NewLine +
                                 "2. Data can be entered in the SR distance data." + Environment.NewLine +
-                                "3. The SR distance data input field is ‘Accepted’, with the value in white on a Dark-grey background." + Environment.NewLine +
+                                "3. The SR distance data input field is ‘Accepted’, with the value in white on a Dark-grey background." +
+                                Environment.NewLine +
                                 "4. No input field (SR Distance) is ‘Selected’." + Environment.NewLine +
                                 "5. The SR distance echo text displays ‘1000’ in white." + Environment.NewLine +
-                                "6. The button below the ‘SR speed / distance entry complete?’ label is displayed enabled, with black text on a Medium-grey background and a Medium-grey border." + Environment.NewLine +
-                                "7. A flashing (visible/invisible) underscore cursor is displayed after the value ‘40’ in the SR distance data input field." + Environment.NewLine +
+                                "6. The button below the ‘SR speed / distance entry complete?’ label is displayed enabled, with black text on a Medium-grey background and a Medium-grey border." +
+                                Environment.NewLine +
+                                "7. A flashing (visible/invisible) underscore cursor is displayed after the value ‘40’ in the SR distance data input field." +
+                                Environment.NewLine +
                                 "7. A numeric keypad is displayed for SR Distance." + Environment.NewLine +
                                 "8. The keypad contains enabled buttons for the numbers <1> to <9>, <Del> (symbol NA21), <0> and (disabled) <Decimal_Separator>.");
 
@@ -607,10 +676,12 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The state of ‘Yes’ button below text label ‘SR speed/distance entry is complete?’ is disabled. The state of input field ‘SR Speed’ is changed to ‘Not selected’ as follows,The value of ‘SR Speed’ input field is removed, display as blank.The background colour of the input field is dark-grey
             Test Step Comment: (1) MMI_gen 8295 (partly: MMI_gen 4909 (partly: state selected and with recently entered key), MMI_gen 4680 (partly: value has been modified));(2) MMI_gen 8295 (partly: MMI_gen 4680 (partly: SR Speed, Not selected, Data area is blank), MMI_gen 4649 (partly: data entry, background colour));
             */
-            DmiActions.ShowInstruction(this, "Select the SR speed data input field and enter the value ‘50’, then select the SR distance data input field");
+            DmiActions.ShowInstruction(this,
+                "Select the SR speed data input field and enter the value ‘50’, then select the SR distance data input field");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The button below the ‘SR speed / distance entry complete?’ label is displayed disabled." + Environment.NewLine +
+                                "1. The button below the ‘SR speed / distance entry complete?’ label is displayed disabled." +
+                                Environment.NewLine +
                                 "2. The SR speed data input field is displayed ‘Not Selected’." + Environment.NewLine +
                                 "3. The SR speed data input field displays a blank value on a Dark-grey background.");
 
@@ -631,7 +702,8 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The state of button is changed to ‘Pressed’, the border of button is removed.The sound ‘Click’ is played once
             Test Step Comment: (1) MMI_gen 8295 (partly: MMI_gen 4911 (partly: MMI_gen 4381 (partly: change to state ‘Pressed’ as long as remain actuated)); MMI_gen 4375;(2) MMI_gen 8295 (partly: MMI_gen 4911 (partly: MMI_gen 4381 (partly: sound ‘Click’))); MMI_gen 9512; MMI_gen 968;
             */
-            DmiActions.ShowInstruction(this, @"Enter the value ‘40’ for SR Speed, then press and hold the ‘Yes’ button");
+            DmiActions.ShowInstruction(this,
+                @"Enter the value ‘40’ for SR Speed, then press and hold the ‘Yes’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Yes’ button is displayed pressed, without a border." + Environment.NewLine +
@@ -692,10 +764,11 @@ namespace Testcase.DMITestCases
             EVC11_MMICurrentSRRules.MMI_L_STFF = 1000;
             EVC11_MMICurrentSRRules.DataElements = dataElements;
             EVC11_MMICurrentSRRules.Send();
-            
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the SR speed/distance window." + Environment.NewLine +
-                                "2. The SR speed data input field and its echo text display the value ‘40’." + Environment.NewLine +
+                                "2. The SR speed data input field and its echo text display the value ‘40’." +
+                                Environment.NewLine +
                                 "3. The SR distance data input field and its echo text display the value ‘1000’.");
 
             /*
@@ -704,10 +777,12 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,An input field is used to revalidation the SR Speed and SR Distance, DMI displays Special window
             Test Step Comment: (1) MMI_gen 8298 (partly: revalidation); MMI_gen 8299 (partly: revalidation); 
             */
-            DmiActions.ShowInstruction(this, @"Confirm the current data by pressing on the data input fields without re-entering the data, then press the ‘Yes’ button");
+            DmiActions.ShowInstruction(this,
+                @"Confirm the current data by pressing on the data input fields without re-entering the data, then press the ‘Yes’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The data input fields are used to re-validate the SR speed and distance values." + Environment.NewLine +
+                                "1. The data input fields are used to re-validate the SR speed and distance values." +
+                                Environment.NewLine +
                                 "2. DMI displays the Special window.");
 
             /*
@@ -734,7 +809,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the Label area of the SR distance data input field");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The SR distance data input field is displayed enabled, with a border." + Environment.NewLine +
+                                "1. The SR distance data input field is displayed enabled, with a border." +
+                                Environment.NewLine +
                                 "2. The SR distance data input field stays ‘Not Selected’." + Environment.NewLine +
                                 "3. The SR speed data input field stays ‘Selected’.");
 
@@ -744,10 +820,12 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The border of ‘SR Distance’ input field is shown (state ‘Enabled’) without a sound.The state of ‘SR Distance’ input field remains ‘not selected’. The state of ‘SR Speed’ input field remains ‘selected’
             Test Step Comment: (1) MMI_gen 8295 (partly: MMI_gen 4686 (partly: Label area, SR Distance), MMI_gen 4382 (partly: state ‘Enabled’ when slide out with force applied, no sound); MMI_gen 4374;
             */
-            DmiActions.ShowInstruction(this, @"Whilst keeping the SR distance data input field pressed, drag it out of its area");
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the SR distance data input field pressed, drag it out of its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The SR distance data input field is displayed enabled, with a border." + Environment.NewLine +
+                                "1. The SR distance data input field is displayed enabled, with a border." +
+                                Environment.NewLine +
                                 "2. No sound is played." + Environment.NewLine +
                                 "3. The SR distance data input field stays ‘Not Selected’." + Environment.NewLine +
                                 "4. The SR speed data input field stays ‘Selected’.");
@@ -759,13 +837,15 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8295 (partly: MMI_gen 4686 (partly: Label area, SR Distance), MMI_gen 4382 (partly: state ‘Pressed’ when slide back, no sound); MMI_gen 4375;
             */
 
-            DmiActions.ShowInstruction(this, @"Whilst keeping the SR distance data input field pressed, drag it back inside its area");
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the SR distance data input field pressed, drag it back inside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The SR distance data input field is displayed pressed, without a border." + Environment.NewLine +
+                                @"1. The SR distance data input field is displayed pressed, without a border." +
+                                Environment.NewLine +
                                 "2. The SR distance data input field stays ‘Not Selected’." + Environment.NewLine +
                                 "3. The SR speed data input field stays ‘Selected’.");
-            
+
             /*
             Test Step 28
             Action: Release the pressed area
@@ -785,19 +865,21 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8295 (partly: MMI_gen 4686 (partly: Label area, Up-Type button));
             */
             // Done releasing, do steps 22-24
-            DmiActions.ShowInstruction(this, @"Press and release the ‘Yes’ button, then press the ‘SR speed / distance’ button");
+            DmiActions.ShowInstruction(this,
+                @"Press and release the ‘Yes’ button, then press the ‘SR speed / distance’ button");
 
             EVC11_MMICurrentSRRules.MMI_V_STFF = 40;
             EVC11_MMICurrentSRRules.MMI_L_STFF = 1000;
             EVC11_MMICurrentSRRules.DataElements = dataElements;
             EVC11_MMICurrentSRRules.Send();
 
-            DmiActions.ShowInstruction(this, @"Confirm the current data by pressing on the Label area of the SR speed data input field without re-entering the data, then release the Label area");
+            DmiActions.ShowInstruction(this,
+                @"Confirm the current data by pressing on the Label area of the SR speed data input field without re-entering the data, then release the Label area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The SR speed data input field is displayed ‘Selected’.");
 
-            DmiActions.ShowInstruction(this, @" then press the ‘Yes’ button");            
+            DmiActions.ShowInstruction(this, @" then press the ‘Yes’ button");
 
             DmiActions.ShowInstruction(this, @"Press the ‘SR speed / distance’ button");
 
@@ -814,15 +896,17 @@ namespace Testcase.DMITestCases
             */
             // Makes no sense, repeat 29 for each data input field
 
-            DmiActions.ShowInstruction(this, @"Press and release the ‘Yes’ button, then press the ‘SR speed / distance’ button");
-            
+            DmiActions.ShowInstruction(this,
+                @"Press and release the ‘Yes’ button, then press the ‘SR speed / distance’ button");
+
             EVC11_MMICurrentSRRules.MMI_V_STFF = 40;
             EVC11_MMICurrentSRRules.MMI_L_STFF = 1000;
             EVC11_MMICurrentSRRules.DataElements = dataElements;
             EVC11_MMICurrentSRRules.Send();
 
-            DmiActions.ShowInstruction(this, @"Confirm the current data by pressing on the Data area of the SR speed data input field without re-entering the data, then release the Label area");
-            
+            DmiActions.ShowInstruction(this,
+                @"Confirm the current data by pressing on the Data area of the SR speed data input field without re-entering the data, then release the Label area");
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The SR speed data input field is displayed ‘Selected’.");
 
@@ -850,7 +934,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The SR speed data input field is blank." + Environment.NewLine +
                                 "2. The SR distance data input field is blank.");
-            
+
             /*
             Test Step 33
             Action: Press ‘Close’ button
@@ -878,7 +962,9 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
+
         #region Send_XML_22_9_1_DMI_Test_Specification
+
         enum msgType
         {
             typea,
@@ -904,6 +990,7 @@ namespace Testcase.DMITestCases
             }
             EVC11_MMICurrentSRRules.Send();
         }
+
         #endregion
     }
 }

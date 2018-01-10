@@ -69,7 +69,7 @@ namespace Testcase.DMITestCases
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 25;
             EVC1_MMIDynamic.MMI_V_PERMITTED = 30;
 
-            WaitForVerification("1. Is the speed pointer showing 25 km/h?" + Environment.NewLine + 
+            WaitForVerification("1. Is the speed pointer showing 25 km/h?" + Environment.NewLine +
                                 "2. Is the speed digital showing 25?" + Environment.NewLine +
                                 "3. Are the speed pointer and speed digital both coloured light grey?");
             /*
@@ -77,10 +77,10 @@ namespace Testcase.DMITestCases
             Action: Stop the train
             Expected Result: The train is at standstill
             */
-            
+
             // Call generic Action Method
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
-            WaitForVerification("Are the speed pointer and speed digital showing 0?");     
+            WaitForVerification("Are the speed pointer and speed digital showing 0?");
 
             /*
             Test Step 3

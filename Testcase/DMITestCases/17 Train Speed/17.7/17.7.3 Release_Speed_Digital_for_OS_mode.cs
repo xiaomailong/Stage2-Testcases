@@ -70,12 +70,13 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 259;
-            EVC8_MMIDriverMessage.Send();   
+            EVC8_MMIDriverMessage.Send();
 
             DmiActions.ShowInstruction(this, "Acknowledge OS mode in sub-area C1");
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.OnSight;
 
-            WaitForVerification("Acknowledge OS mode in sub-area C1 and check the following:" + Environment.NewLine + Environment.NewLine +
+            WaitForVerification("Acknowledge OS mode in sub-area C1 and check the following:" + Environment.NewLine +
+                                Environment.NewLine +
                                 "1. DMI displays in OS mode, Level 1.");
 
 
@@ -88,12 +89,13 @@ namespace Testcase.DMITestCases
             // EVC7_MMIEtcsMiscOutSignals Send
             EVC1_MMIDynamic.MMI_V_RELEASE = 1111;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 30;
-            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Target_Speed_Monitoring;    // not 0, 4, 8, 12(Not CSM)
+            EVC1_MMIDynamic.MMI_M_WARNING =
+                MMI_M_WARNING.Indication_Status_Target_Speed_Monitoring; // not 0, 4, 8, 12(Not CSM)
             // ?? Send
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                 "1. DMI displays the digital release speed in sub-area B6." + Environment.NewLine +
-                                 "2. Sound 'Sinfo' is played once.");
+                                "1. DMI displays the digital release speed in sub-area B6." + Environment.NewLine +
+                                "2. Sound 'Sinfo' is played once.");
 
             /*
             Test Step 3
@@ -104,7 +106,7 @@ namespace Testcase.DMITestCases
             XML_12_7_3();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                 "1. The digital release speed in sub-area B6 is removed.");
+                                "1. The digital release speed in sub-area B6 is removed.");
 
             /*
             Test Step 4
@@ -114,13 +116,14 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
+
         #region Send_XML_12_7_3_DMI_Test_Specification
 
         private void XML_12_7_3()
         {
             EVC1_MMIDynamic.MMI_M_SLIDE = 0;
             EVC1_MMIDynamic.MMI_M_SLIP = 1;
-            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Spare;   // 7
+            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Spare; // 7
             EVC1_MMIDynamic.MMI_A_TRAIN = 0;
             EVC1_MMIDynamic.MMI_V_TRAIN = 100;
             EVC1_MMIDynamic.MMI_V_TARGET = 1111;
@@ -134,9 +137,8 @@ namespace Testcase.DMITestCases
             SITR.ETCS1.Dynamic.EVC01Validity2.Value = 0x0;
             //SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity1.Value = 4415; // All validity bits set
             //SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity2.Value = 63;   // All validity bits set
-
         }
-        #endregion
 
+        #endregion
     }
 }

@@ -118,7 +118,7 @@ namespace Testcase.DMITestCases
                 MMI_Q_TRACKCOND_ACTION_END = 0
             };
 
-            EVC32_MMITrackConditions.TrackConditions = new List<TrackCondition> { { trackCondition } };
+            EVC32_MMITrackConditions.TrackConditions = new List<TrackCondition> {{trackCondition}};
             EVC32_MMITrackConditions.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -180,7 +180,7 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The speed pointer is displayed with speed = 20 km/h.");
-            
+
             /*
             Test Step 9
             Action: Stop the train when the track condition symbol has been removed from sub-area B3

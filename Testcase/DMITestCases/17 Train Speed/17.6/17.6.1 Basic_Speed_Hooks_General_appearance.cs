@@ -74,14 +74,16 @@ namespace Testcase.DMITestCases
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
             EVC1_MMIDynamic.MMI_V_PERMITTED = 2777;
             EVC1_MMIDynamic.MMI_V_TARGET = 694;
-            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Release_Speed_Monitoring;    // Not 0, 4, 8, 12
-            
+            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Release_Speed_Monitoring; // Not 0, 4, 8, 12
+
 
             WaitForVerification("Check  the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in OS mode, Level 1." + Environment.NewLine +
                                 "2. All basic speed hooks are displayed in sub-area B2." + Environment.NewLine +
-                                "3. The first hook is displayed overlapping the outer border of the speed dial in white colour at 100 km/h." + Environment.NewLine +
-                                "4. The second hook is displayed overlapping the outer border of the speed dial in medium-grey colour at 25 km/h." + Environment.NewLine +
+                                "3. The first hook is displayed overlapping the outer border of the speed dial in white colour at 100 km/h." +
+                                Environment.NewLine +
+                                "4. The second hook is displayed overlapping the outer border of the speed dial in medium-grey colour at 25 km/h." +
+                                Environment.NewLine +
                                 "5. Sound ‘Sinfo’ is played once.");
 
             /*
@@ -92,7 +94,8 @@ namespace Testcase.DMITestCases
             */
             EVC1_MMIDynamic.MMI_V_TARGET = 2777;
 
-            WaitForVerification("Wait until the basic speed hooks overlap, then check the following:" + Environment.NewLine + Environment.NewLine +
+            WaitForVerification("Wait until the basic speed hooks overlap, then check the following:" +
+                                Environment.NewLine + Environment.NewLine +
                                 "1. The Vperm hook (in white) overlays the Vtarget hook (medium-grey)");
 
             /*
@@ -102,7 +105,8 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 6332 (partly: OBU_TR_M_MODE);(2) MMI_gen 6332 (partly: MMI_V_PERMITTED, MMI_M_WARNING);(3) MMI_gen 6322; MMI_gen 6332 (partly: colour and appearance, SH mode, CSM); MMI_gen 6329 (partly: outer border of the speed dial);
             */
 
-            DmiActions.ShowInstruction(this, @"Press the ‘Main’ button. Press and hold 'Shunting' button for at least 2 seconds, then release the button.");
+            DmiActions.ShowInstruction(this,
+                @"Press the ‘Main’ button. Press and hold 'Shunting' button for at least 2 seconds, then release the button.");
 
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Shunting;
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring;
@@ -144,8 +148,8 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The basic speed hook is removed from the DMI.");
-            
-            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Release_Speed_Monitoring;     
+
+            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Release_Speed_Monitoring;
             EVC1_MMIDynamic.MMI_A_TRAIN = 0;
             EVC1_MMIDynamic.MMI_V_TRAIN = 100;
             EVC1_MMIDynamic.MMI_V_TARGET = 1111;
@@ -166,6 +170,7 @@ namespace Testcase.DMITestCases
         }
 
         #region Send_XML_12_6_1_DMI_Test_Specification
+
         enum msgType
         {
             typea,
@@ -179,7 +184,7 @@ namespace Testcase.DMITestCases
                 case msgType.typea:
                     EVC1_MMIDynamic.MMI_M_SLIDE = 0;
                     EVC1_MMIDynamic.MMI_M_SLIP = 1;
-                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Spare;   // 7
+                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Spare; // 7
                     EVC1_MMIDynamic.MMI_A_TRAIN = 0;
                     EVC1_MMIDynamic.MMI_V_TRAIN = 100;
                     EVC1_MMIDynamic.MMI_V_TARGET = 1111;
@@ -202,9 +207,10 @@ namespace Testcase.DMITestCases
                     EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_STM_HS_ENABLED = 0;
                     EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_STM_DA_ENABLED = 0;
                     EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_BrakeTest_Status =
-                    EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_BRAKETEST_STATUS.BrakeTestNotInProgress;
+                        EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_BRAKETEST_STATUS.BrakeTestNotInProgress;
                     EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L0;
-                    EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Invalid;  // "Spare"
+                    EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode =
+                        EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Invalid; // "Spare"
                     EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_ADHESION = 0;
                     EVC7_MMIEtcsMiscOutSignals.OBU_TR_NID_STM_HS = 0;
                     EVC7_MMIEtcsMiscOutSignals.OBU_TR_NID_STM_DA = 0;
@@ -215,10 +221,9 @@ namespace Testcase.DMITestCases
                     SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity2.Value = 0x1;
 
                     break;
-
             }
         }
-        #endregion
 
+        #endregion
     }
 }

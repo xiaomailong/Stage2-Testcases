@@ -91,10 +91,12 @@ namespace Testcase.DMITestCases
             DmiActions.Display_Level_Window(this);
             DmiActions.ShowInstruction(this, "Select and enter Level 1");
 
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;        
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode =
+                EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Default;      // Default window
-            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.SetLocalTimeDateAndOffset;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Default; // Default window
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH =
+                EVC30_MMIRequestEnable.EnabledRequests.SetLocalTimeDateAndOffset;
             EVC30_MMIRequestEnable.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -108,14 +110,21 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press the ‘Settings’ button, then press the ‘Set clock’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the Set clock window with the title ‘Set clock (1/2)’." + Environment.NewLine +
-                                "2. Three data input fields for ‘Year’, ‘Month’ and ‘Day’ are displayed." + Environment.NewLine +
-                                "3. The data input fields have a label part with grey text (right-aligned) on a Dark-grey background." + Environment.NewLine +
-                                "4. The data part of the data input fields has left aligned text, the first field has Medium-grey text on a grey background;" + Environment.NewLine +
-                                "   the other data input fields data have dark-grey text on a Medium-grey background" + Environment.NewLine +
-                                "5. A dedicated numeric keypad is displayed below the data input fields with keys <1> to <9>," + Environment.NewLine +
+                                "1. DMI displays the Set clock window with the title ‘Set clock (1/2)’." +
+                                Environment.NewLine +
+                                "2. Three data input fields for ‘Year’, ‘Month’ and ‘Day’ are displayed." +
+                                Environment.NewLine +
+                                "3. The data input fields have a label part with grey text (right-aligned) on a Dark-grey background." +
+                                Environment.NewLine +
+                                "4. The data part of the data input fields has left aligned text, the first field has Medium-grey text on a grey background;" +
+                                Environment.NewLine +
+                                "   the other data input fields data have dark-grey text on a Medium-grey background" +
+                                Environment.NewLine +
+                                "5. A dedicated numeric keypad is displayed below the data input fields with keys <1> to <9>," +
+                                Environment.NewLine +
                                 "   <Del> and <0>." + Environment.NewLine +
-                                "6. Enabled ‘Close’ and ‘Next’ and a disabled ‘Previous’ button are displayed below the keypad." + Environment.NewLine +
+                                "6. Enabled ‘Close’ and ‘Next’ and a disabled ‘Previous’ button are displayed below the keypad." +
+                                Environment.NewLine +
                                 "7. Echo texts for UTC and local time are displayed to the left of the keypad in white." +
                                 "8. An enabled ‘Yes’ button with the label ‘Clock set?’ is displayed in the bottom-left part of the window");
 
@@ -127,7 +136,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             DmiActions.ShowInstruction(this, "Set the date as follows:" + Environment.NewLine +
-                                             "Year = ‘2018’, Month = ‘12’, Day = ‘30’; then press the ‘Next button’ and set the time as follows:" + Environment.NewLine +
+                                             "Year = ‘2018’, Month = ‘12’, Day = ‘30’; then press the ‘Next button’ and set the time as follows:" +
+                                             Environment.NewLine +
                                              "Hour = ‘12’, Minute = ‘0’, Second = ‘0’ and Offset = ‘+15’");
 
             //EVC109_MMISetTimeMMI.MMI_T_UTC = 1546135200;
@@ -146,7 +156,8 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 2432;MMI_gen 2421 (partly: source by Driver);
             */
             DmiActions.ShowInstruction(this, "Set the date as follows:" + Environment.NewLine +
-                                             "Year = ‘2017’, Month = ‘11’, Day = ‘29’; then press the ‘Next button’ and set the time as follows:" + Environment.NewLine +
+                                             "Year = ‘2017’, Month = ‘11’, Day = ‘29’; then press the ‘Next button’ and set the time as follows:" +
+                                             Environment.NewLine +
                                              "Hour = ‘11’, Minute = ‘59’, Second = ‘59’ and Offset = ‘+9’");
 
             //EVC109_MMISetTimeMMI.MMI_T_UTC = 1511956799;

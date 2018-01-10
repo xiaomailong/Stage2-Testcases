@@ -72,7 +72,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 233; MMI_gen 1074;
             */
             DmiActions.ShowInstruction(this, "Power on the test system");
-            
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI is isolated and all ATP indications are off." + Environment.NewLine +
                                 @"2. The message ‘No contact with ATP’ is displayed in area E5.");
@@ -88,17 +88,17 @@ namespace Testcase.DMITestCases
 
             DmiActions.Re_establish_communication_EVC_DMI(this);
 
-            EVC100_MMIStartMmi.MMI_M_START_STATUS = 0;      // OK
+            EVC100_MMIStartMmi.MMI_M_START_STATUS = 0; // OK
 
             // Checking the EVC100 packet is questionable: the i/f and system version may change. May need to add CheckStatus call
-            
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the message ‘Starting up’ in area E5." + Environment.NewLine +
                                 "2. DMI displays no other information relating to ATP.");
 
             // How to do this?
             DmiActions.ShowInstruction(this, "Select ‘Sleeping’ mode");
-           
+
             /* This is what spec says, but send 0 first seems to be needed
             EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.GoToIdle;
             EVC0_MMIStartATP.Send();
@@ -110,7 +110,8 @@ namespace Testcase.DMITestCases
             EVC102_MMIStatusReport.Check_MMI_M_MMI_STATUS = EVC102_MMIStatusReport.MMI_M_MMI_STATUS.StatusIdle;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI removes the message ‘Starting up’ and displays ‘Driver's cab not active’ in area E5." + Environment.NewLine +
+                                "1. DMI removes the message ‘Starting up’ and displays ‘Driver's cab not active’ in area E5." +
+                                Environment.NewLine +
                                 "2. DMI displays no mode information in area B7." + Environment.NewLine +
                                 "3. No other ETCS information or driver request buttons are displayed.");
 
@@ -134,7 +135,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 238 (partly:  MMI_gen 240);
             */
             DmiActions.Simulate_communication_loss_EVC_DMI(this);
-            
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays ‘No connection to the ATP’ in area E5." + Environment.NewLine +
                                 "2. No other ATP information is displayed.");

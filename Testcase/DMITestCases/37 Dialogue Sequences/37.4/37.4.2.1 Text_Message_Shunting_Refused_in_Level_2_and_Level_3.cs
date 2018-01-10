@@ -81,8 +81,9 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 11915 (partly: SH refused); MMI_gen 134 (partly: E5);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press ‘Main’ button, then press and hold ‘Shunting’ button for at least 2 seconds. Release the ‘Shunting’ button");
-                     
+            DmiActions.ShowInstruction(this,
+                @"Press ‘Main’ button, then press and hold ‘Shunting’ button for at least 2 seconds. Release the ‘Shunting’ button");
+
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 290;
             EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -106,15 +107,16 @@ namespace Testcase.DMITestCases
             // Set to level 3 and SH mode
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L3;
 
-            DmiActions.ShowInstruction(this, @"Press and hold ‘Shunting’ button for at least 2 seconds. Release ‘Shunting’ button");
-           
+            DmiActions.ShowInstruction(this,
+                @"Press and hold ‘Shunting’ button for at least 2 seconds. Release ‘Shunting’ button");
+
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 290;
             EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
 
             EVC8_MMIDriverMessage.Send();
-            
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the main window with text message ‘Shunting refused’ in sub-area E5.");
 

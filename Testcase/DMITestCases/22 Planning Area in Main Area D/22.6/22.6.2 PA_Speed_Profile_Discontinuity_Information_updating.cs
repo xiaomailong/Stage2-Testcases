@@ -81,7 +81,7 @@ namespace Testcase.DMITestCases
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 5500;
             TrackDescriptions = new List<TrackDescription>();
             EVC4_MMITrackDescription.TrackDescriptions = TrackDescriptions;
-            
+
             XML_17_6_2(msgType.typeA);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -96,8 +96,10 @@ namespace Testcase.DMITestCases
             XML_17_6_2(msgType.typeB);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The speed decrease symbol, PL22 is displayed at position 500m." + Environment.NewLine + 
-                                "2. The speed increase symbol, PL21 is displayed at position 1000m." + Environment.NewLine +
+                                "1. The speed decrease symbol, PL22 is displayed at position 500m." +
+                                Environment.NewLine +
+                                "2. The speed increase symbol, PL21 is displayed at position 1000m." +
+                                Environment.NewLine +
                                 "3. No symbol is displayed at position 2000m.");
             /*
             Test Step 4
@@ -141,15 +143,15 @@ namespace Testcase.DMITestCases
             return GlobalTestResult;
         }
 
-    #region Send_XML_17_6_2_DMI_Test_Specification
+        #region Send_XML_17_6_2_DMI_Test_Specification
 
-        private enum msgType: byte
-        { 
+        private enum msgType : byte
+        {
             typeA,
             typeB,
             typeC,
             typeD,
-            typeE   
+            typeE
         }
 
         // Test spec is at odds with EVC4 definitions: values should be checked
@@ -164,27 +166,28 @@ namespace Testcase.DMITestCases
                 case msgType.typeB:
                     // OBU_TR_O_TRAIN was at 5500 (55m) O_MRSP - O_TRAIN => desired position
                     TrackDescriptions.Add(new TrackDescription {MMI_O_MRSP = 55500, MMI_V_MRSP = -1});
-                    TrackDescriptions.Add(new TrackDescription { MMI_O_MRSP = 105500, MMI_V_MRSP = -2 });
-                    TrackDescriptions.Add(new TrackDescription { MMI_O_MRSP = 205500, MMI_V_MRSP = -3 });
+                    TrackDescriptions.Add(new TrackDescription {MMI_O_MRSP = 105500, MMI_V_MRSP = -2});
+                    TrackDescriptions.Add(new TrackDescription {MMI_O_MRSP = 205500, MMI_V_MRSP = -3});
                     break;
                 case msgType.typeC:
                     TrackDescriptions.Clear();
                     EVC4_MMITrackDescription.MMI_V_MRSP_CURR = 11112;
-                    TrackDescriptions.Add(new TrackDescription { MMI_O_MRSP = 55500, MMI_V_MRSP = 1 });
+                    TrackDescriptions.Add(new TrackDescription {MMI_O_MRSP = 55500, MMI_V_MRSP = 1});
                     break;
                 case msgType.typeD:
                     EVC4_MMITrackDescription.MMI_V_MRSP_CURR = 11111;
-                    TrackDescriptions[0].MMI_O_MRSP = -1;  // 1 bigger than the largest signed int: VSIS refers to uint not int
+                    TrackDescriptions[0].MMI_O_MRSP =
+                        -1; // 1 bigger than the largest signed int: VSIS refers to uint not int
                     break;
                 case msgType.typeE:
-                    TrackDescriptions[0].MMI_O_MRSP = 0;        
-                    TrackDescriptions[0].MMI_V_MRSP = 11111;  // both valid
+                    TrackDescriptions[0].MMI_O_MRSP = 0;
+                    TrackDescriptions[0].MMI_V_MRSP = 11111; // both valid
                     break;
             }
 
-            EVC4_MMITrackDescription.Send();        
+            EVC4_MMITrackDescription.Send();
         }
-    #endregion
 
+        #endregion
     }
 }

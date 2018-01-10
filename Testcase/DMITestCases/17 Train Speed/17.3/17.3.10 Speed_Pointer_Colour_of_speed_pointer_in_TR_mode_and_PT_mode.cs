@@ -60,7 +60,7 @@ namespace Testcase.DMITestCases
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint            
-            
+
             /*
             Test Step 1
             Action: Drive the train forward pass BG1
@@ -84,8 +84,8 @@ namespace Testcase.DMITestCases
             // set target distance to 0 to simulate passing EOA??
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                 "1. DMI displays in TR mode, level 1." + Environment.NewLine +
-                                 "2. Is the speed pointer red?");
+                                "1. DMI displays in TR mode, level 1." + Environment.NewLine +
+                                "2. Is the speed pointer red?");
 
             /*
             Test Step 3
@@ -100,21 +100,21 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Press an acknowledgement in sub-area C1. Change the train direction to ‘Reverse’");
-                 
+
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.PostTrip;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 40;
             EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 45;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                 "1. DMI displays in PT mode, level 1." + Environment.NewLine +
-                                 "2. Is the speed pointer grey?");
+                                "1. DMI displays in PT mode, level 1." + Environment.NewLine +
+                                "2. Is the speed pointer grey?");
 
             /*
             Test Step 4
             Action: End of test
             Expected Result: 
             */
-            
+
             return GlobalTestResult;
         }
     }

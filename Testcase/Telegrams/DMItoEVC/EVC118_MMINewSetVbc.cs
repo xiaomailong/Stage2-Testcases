@@ -43,24 +43,27 @@ namespace Testcase.Telegrams.DMItoEVC
             {
                 // Check all static fields
                 _checkResult = _pool.SITR.CCUO.ETCS1NewSetVbc.MmiMVbcCode.Value.Equals(MMI_M_VBC_CODE) &
-                               _pool.SITR.CCUO.ETCS1NewSetVbc.MmiMButtons.Value.Equals((byte)MMI_M_BUTTONS);
+                               _pool.SITR.CCUO.ETCS1NewSetVbc.MmiMButtons.Value.Equals((byte) MMI_M_BUTTONS);
 
                 // If check passes
                 if (_checkResult)
                 {
                     _pool.TraceReport(baseString0 + Environment.NewLine +
-                        "MMI_M_VBC_CODE = " + MMI_M_VBC_CODE + Environment.NewLine +
-                        "MMI_M_BUTTONS = \"" + MMI_M_BUTTONS + "\"" + Environment.NewLine +                       
-                        "Result: PASSED.");
+                                      "MMI_M_VBC_CODE = " + MMI_M_VBC_CODE + Environment.NewLine +
+                                      "MMI_M_BUTTONS = \"" + MMI_M_BUTTONS + "\"" + Environment.NewLine +
+                                      "Result: PASSED.");
                 }
                 // Else display the real value extracted from EVC-118
                 else
                 {
                     _pool.TraceError(baseString0 + Environment.NewLine +
-                        "MMI_M_VBC_CODE = \"" + _pool.SITR.CCUO.ETCS1NewSetVbc.MmiMVbcCode.Value + "\"" + Environment.NewLine +
-                        "MMI_M_BUTTONS = \"" + Enum.GetName(typeof(MMI_M_BUTTONS_VBC), _pool.SITR.CCUO.ETCS1NewSetVbc.MmiMButtons.Value) + Environment.NewLine +
-                        "Result: FAILED!");
-                }               
+                                     "MMI_M_VBC_CODE = \"" + _pool.SITR.CCUO.ETCS1NewSetVbc.MmiMVbcCode.Value + "\"" +
+                                     Environment.NewLine +
+                                     "MMI_M_BUTTONS = \"" +
+                                     Enum.GetName(typeof(MMI_M_BUTTONS_VBC),
+                                         _pool.SITR.CCUO.ETCS1NewSetVbc.MmiMButtons.Value) + Environment.NewLine +
+                                     "Result: FAILED!");
+                }
             }
             // EVC-118 could not be received
             else

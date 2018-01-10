@@ -48,7 +48,7 @@ namespace Testcase.Telegrams.EVCtoDMI
 
             // Determine how many Nid_Ntc will be sent
             _nNidNtc = (ushort) _nidNtc.Length;
-            
+
             // Populate telegram with MMI_N_NIDNTC
             _pool.SITR.ETCS1.NtcDeSelect.MmiNNidntc.Value = _nNidNtc;
 
@@ -89,8 +89,8 @@ namespace Testcase.Telegrams.EVCtoDMI
             {
                 _nidNtc = value;
                 SetNtcInfoK();
-            }    
-    }
+            }
+        }
 
         /// <summary>
         /// Enable bit mask for up to 8 NTCs.
@@ -108,22 +108,20 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static MMI_Q_NTC_ENABLE Mmi_Q_Ntc_Enable
         {
-            set => _pool.SITR.ETCS1.NtcDeSelect.MmiQNtcEnable.Value = (byte) value;               
+            set => _pool.SITR.ETCS1.NtcDeSelect.MmiQNtcEnable.Value = (byte) value;
         }
 
         [Flags]
         public enum MMI_Q_NTC_ENABLE : byte
-        {            
+        {
             NTC1 = 1 << 0,
-            NTC2 = 1 << 1,           
+            NTC2 = 1 << 1,
             NTC3 = 1 << 2,
             NTC4 = 1 << 3,
             NTC5 = 1 << 4,
             NTC6 = 1 << 5,
             NTC7 = 1 << 6,
-            NTC8 = 1 << 7            
+            NTC8 = 1 << 7
         }
     }
-
 }
-

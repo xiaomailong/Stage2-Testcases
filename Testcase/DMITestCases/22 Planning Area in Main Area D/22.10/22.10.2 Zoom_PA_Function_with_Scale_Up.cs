@@ -76,7 +76,8 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SR mode, level 1
             */
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode =
+                EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SR mode, Level 1.");
@@ -117,12 +118,14 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,Verify that the Zoom PA function is switched the PA’s distance range to the next lower range and the visualisation of the PA are updated accordingly.When the distance range is [0…1000], the symbol NA05 is displayed in sub-area D9
             Test Step Comment: (1) MMI_gen 630; (2) MMI_gen 7387;
             */
-            DmiActions.ShowInstruction(this, @"Press the ‘Scale Up’ button until the distance range changes to 0..1000.");
+            DmiActions.ShowInstruction(this,
+                @"Press the ‘Scale Up’ button until the distance range changes to 0..1000.");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The Planning Area scale displays according to the range 0..1000." + Environment.NewLine +
+                                "1. The Planning Area scale displays according to the range 0..1000." +
+                                Environment.NewLine +
                                 "2. The (enabled) ‘Scale Up’ symbol, NA03, is removed and the disabled ‘Scale Up’ symbol, NA05, is displayed in sub-area D9.");
-            
+
             /*
             Test Step 6
             Action: Press ‘Scale Up’ button
@@ -145,7 +148,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press the ‘Scale Down’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The Planning Area scale displays according to the range 0..2000." + Environment.NewLine +
+                                "1. The Planning Area scale displays according to the range 0..2000." +
+                                Environment.NewLine +
                                 "2. The (disabled) ‘Scale Up’ symbol, NA05, is removed and the (enabled) ‘Scale Up’ symbol, NA03, is displayed in sub-area D9.");
 
             /*

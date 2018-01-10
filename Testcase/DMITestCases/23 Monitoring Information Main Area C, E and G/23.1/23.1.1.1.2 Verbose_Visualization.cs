@@ -139,7 +139,8 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine +
-                                "1. DMI displays the ‘Connection Up with two RBCs’ symbol (ST03B) in the left part of sub-area E1." + Environment.NewLine +
+                                "1. DMI displays the ‘Connection Up with two RBCs’ symbol (ST03B) in the left part of sub-area E1." +
+                                Environment.NewLine +
                                 "2. DMI displays the ‘Network registered via two modems’ symbol (ST03B) in the right part of sub-area E1.");
 
             /*
@@ -161,7 +162,8 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine +
-                                "1. DMI displays the ‘Connection Up’ symbol (ST103) in the left part of sub-area E1." + Environment.NewLine +
+                                "1. DMI displays the ‘Connection Up’ symbol (ST103) in the left part of sub-area E1." +
+                                Environment.NewLine +
                                 "2. DMI displays the ‘Network registered via one modem’ symbol (ST100) in the right part of sub-area E1.");
 
             /*

@@ -68,24 +68,27 @@ namespace Testcase.DMITestCases
             */
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Main Window.");
-            
+
             EVC30_MMIRequestEnable.SendBlank();
             // The spec says the least significant bit #32 is on 
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_LOW = true;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = (EVC30_MMIRequestEnable.EnabledRequests.DriverID |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.TrainData |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.Level |
-                                                                EVC30_MMIRequestEnable.EnabledRequests.TrainRunningNumber |
+                                                                EVC30_MMIRequestEnable.EnabledRequests
+                                                                    .TrainRunningNumber |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.Shunting |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.StartBrakeTest) &
                                                                ~(EVC30_MMIRequestEnable.EnabledRequests.Start |
-                                                                EVC30_MMIRequestEnable.EnabledRequests.NonLeading |
-                                                                EVC30_MMIRequestEnable.EnabledRequests.MaintainShunting |
-                                                                EVC30_MMIRequestEnable.EnabledRequests.EOA);
+                                                                 EVC30_MMIRequestEnable.EnabledRequests.NonLeading |
+                                                                 EVC30_MMIRequestEnable.EnabledRequests
+                                                                     .MaintainShunting |
+                                                                 EVC30_MMIRequestEnable.EnabledRequests.EOA);
 
             EVC30_MMIRequestEnable.Send();
 
-            WaitForVerification("Check that DMI displays the following buttons in the state specified:" + Environment.NewLine + Environment.NewLine +
+            WaitForVerification("Check that DMI displays the following buttons in the state specified:" +
+                                Environment.NewLine + Environment.NewLine +
                                 "1. ‘Start’ disabled." + Environment.NewLine +
                                 "2. ‘Driver ID’ enabled." + Environment.NewLine +
                                 "3. ‘Train Data’ enabled." + Environment.NewLine +
@@ -107,7 +110,8 @@ namespace Testcase.DMITestCases
             Send_XML_10_2_a_b(msgType.typea);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the hourglass symbol ST05, vertically aligned, in the centre of the window title area." + Environment.NewLine +
+                                "1. DMI displays the hourglass symbol ST05, vertically aligned, in the centre of the window title area." +
+                                Environment.NewLine +
                                 "2. All buttons and the ‘Close’ button are disabled." + Environment.NewLine +
                                 "3. The ‘Close’ button NA12 is displayed disabled in area G." + Environment.NewLine +
                                 "4. The hourglass symbol ST05 moves to the right each second." + Environment.NewLine +
@@ -120,20 +124,22 @@ namespace Testcase.DMITestCases
             */
             Send_XML_10_2_a_b(msgType.typeb);
 
-            WaitForVerification("Check that DMI displays or hides the following objects in the state specified according to the last received EVC-30 message:" + Environment.NewLine + Environment.NewLine +
-                                "1. The hourglass symbol ST05 is removed." + Environment.NewLine + 
-                                "2. ‘Start’ button is disabled." + Environment.NewLine +
-                                "3. ‘Driver ID’ button is enabled." + Environment.NewLine +
-                                "4. ‘Train Data’ button is enabled." + Environment.NewLine +
-                                "5. ‘Level’ button is  enabled." + Environment.NewLine +
-                                "6. ‘Train Running Number’ button is enabled." + Environment.NewLine +
-                                "7. ‘Shunting’ button is enabled." + Environment.NewLine +
-                                "8. ‘Non Leading’ button is disabled." + Environment.NewLine +
-                                "9. ‘Maintain Shunting’ button is disabled." + Environment.NewLine +
-                                "10. ‘EOA’ button is disabled." + Environment.NewLine +
-                                "11. ‘Start Brake Test’ button is enabled." + Environment.NewLine +
-                                "12. ‘System Info’ button is enabled." + Environment.NewLine +
-                                "13. ‘EOA’ button is displayed enabled in area G");
+            WaitForVerification(
+                "Check that DMI displays or hides the following objects in the state specified according to the last received EVC-30 message:" +
+                Environment.NewLine + Environment.NewLine +
+                "1. The hourglass symbol ST05 is removed." + Environment.NewLine +
+                "2. ‘Start’ button is disabled." + Environment.NewLine +
+                "3. ‘Driver ID’ button is enabled." + Environment.NewLine +
+                "4. ‘Train Data’ button is enabled." + Environment.NewLine +
+                "5. ‘Level’ button is  enabled." + Environment.NewLine +
+                "6. ‘Train Running Number’ button is enabled." + Environment.NewLine +
+                "7. ‘Shunting’ button is enabled." + Environment.NewLine +
+                "8. ‘Non Leading’ button is disabled." + Environment.NewLine +
+                "9. ‘Maintain Shunting’ button is disabled." + Environment.NewLine +
+                "10. ‘EOA’ button is disabled." + Environment.NewLine +
+                "11. ‘Start Brake Test’ button is enabled." + Environment.NewLine +
+                "12. ‘System Info’ button is enabled." + Environment.NewLine +
+                "13. ‘EOA’ button is displayed enabled in area G");
 
             /*
             Test Step 4
@@ -144,11 +150,12 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press ‘Train data’ button");
 
             // Send fixed data first
-            EVC6_MMICurrentTrainData.MMI_M_BUTTONS = EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE;
+            EVC6_MMICurrentTrainData.MMI_M_BUTTONS = EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA
+                .BTN_YES_DATA_ENTRY_COMPLETE;
             DmiActions.Send_EVC6_MMICurrentTrainData_FixedDataEntry(this,
-                                                                    new[] { "FLU", "RLU", "Rescue" },
-                                                                    1);
-     
+                new[] {"FLU", "RLU", "Rescue"},
+                1);
+
             DmiExpectedResults.Train_data_window_displayed(this);
 
             /*
@@ -164,10 +171,11 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, @"Press the ‘Close button");
 
-            EVC6_MMICurrentTrainData.MMI_M_BUTTONS = EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE;
+            EVC6_MMICurrentTrainData.MMI_M_BUTTONS = EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA
+                .BTN_YES_DATA_ENTRY_COMPLETE;
             EVC6_MMICurrentTrainData.MMI_L_TRAIN = 100;
             EVC6_MMICurrentTrainData.MMI_M_DATA_ENABLE = Variables.MMI_M_DATA_ENABLE.TrainLength;
-            EVC6_MMICurrentTrainData.TrainSetCaptions = new List<string> { "FLU", "RLU", "Rescue" };
+            EVC6_MMICurrentTrainData.TrainSetCaptions = new List<string> {"FLU", "RLU", "Rescue"};
             EVC6_MMICurrentTrainData.Send();
 
             DmiActions.ShowInstruction(this, @"Accept the value of ‘Train length’ in the Flexible Train data window");
@@ -210,12 +218,15 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Train data validation window with “Yes” in the input field.Verify the following information,The input field is in ‘Selected’ state (medium-grey background with black text). The buttons are stated as follows:The keypad is enabled.The ‘Close’ button is enabled
             Test Step Comment: (1) MMI_gen 5728 (partly: ‘Train data’ validation window, data validation window, before ST05 state)(2) MMI_gen 5728 (partly: ‘Train data’ validation window, data validation window, before ST05 state, state of buttons)
             */
-            DmiActions.ShowInstruction(this, @"Accept all values in the Train data window. Press ‘Yes’ button. Press ‘Yes’ button (on keypad)");
-            DmiActions.Send_EVC10_MMIEchoedTrainData_FixedDataEntry(this, new[] { "FLU", "RLU", "Rescue" });
+            DmiActions.ShowInstruction(this,
+                @"Accept all values in the Train data window. Press ‘Yes’ button. Press ‘Yes’ button (on keypad)");
+            DmiActions.Send_EVC10_MMIEchoedTrainData_FixedDataEntry(this, new[] {"FLU", "RLU", "Rescue"});
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays Train data validation window with ‘Yes’ in the input field." + Environment.NewLine +
-                                "2. The input field is in ‘Selected’ state (black text on medium-grey background)." + Environment.NewLine +
+                                "1. DMI displays Train data validation window with ‘Yes’ in the input field." +
+                                Environment.NewLine +
+                                "2. The input field is in ‘Selected’ state (black text on medium-grey background)." +
+                                Environment.NewLine +
                                 "3. The keypad is enabled." + Environment.NewLine +
                                 "4. The ‘Close’ button is enabled.");
 
@@ -230,7 +241,7 @@ namespace Testcase.DMITestCases
                                 "1. The hourglass symbol ST05 is displayed." + Environment.NewLine +
                                 "2. The ‘Close’ button is disabled." + Environment.NewLine +
                                 "3. The keypad is still enabled." + Environment.NewLine +
-                                "4. The input fields is in the ‘Not Selected’ state (grey text on dark-grey background)"); 
+                                "4. The input fields is in the ‘Not Selected’ state (grey text on dark-grey background)");
 
             /*
             Test Step 10
@@ -270,19 +281,22 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays Main window");
 
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;      // Main window
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main; // Main window
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = (EVC30_MMIRequestEnable.EnabledRequests.Start |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.DriverID |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.TrainData |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.Level |
-                                                                EVC30_MMIRequestEnable.EnabledRequests.TrainRunningNumber |
+                                                                EVC30_MMIRequestEnable.EnabledRequests
+                                                                    .TrainRunningNumber |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.Shunting) &
                                                                (EVC30_MMIRequestEnable.EnabledRequests.NonLeading |
-                                                                EVC30_MMIRequestEnable.EnabledRequests.MaintainShunting);
-                                                                
+                                                                EVC30_MMIRequestEnable.EnabledRequests
+                                                                    .MaintainShunting);
+
             EVC30_MMIRequestEnable.Send();
 
-            WaitForVerification("Check that DMI displays the following buttons in the state specified:" + Environment.NewLine + Environment.NewLine +
+            WaitForVerification("Check that DMI displays the following buttons in the state specified:" +
+                                Environment.NewLine + Environment.NewLine +
                                 "1. ‘Start’ enabled." + Environment.NewLine +
                                 "2. ‘Driver ID’ enabled." + Environment.NewLine +
                                 "3. ‘Train Data’ enabled." + Environment.NewLine +
@@ -318,7 +332,8 @@ namespace Testcase.DMITestCases
             // Is the previous state restored?
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The hourglass symbol ST05 is removed." + Environment.NewLine +
-                                "2. The ‘Main’ window is closed and DMI returns to the default window." + Environment.NewLine +
+                                "2. The ‘Main’ window is closed and DMI returns to the default window." +
+                                Environment.NewLine +
                                 "3. ‘Start’ button is enabled." + Environment.NewLine +
                                 "4. ‘Driver ID’ button is enabled." + Environment.NewLine +
                                 "5. ‘Train Data’ button is enabled." + Environment.NewLine +
@@ -339,7 +354,7 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Data view window." + Environment.NewLine +
-                                "2. The navigation buttons are enabled." + Environment.NewLine + 
+                                "2. The navigation buttons are enabled." + Environment.NewLine +
                                 "3.	The ‘Close’ button is enabled.");
 
             /*
@@ -388,7 +403,8 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The hourglass symbol ST05 is removed." + Environment.NewLine +
-                                "2. The ‘Data view’ window is closed and DMI returns to the default window." + Environment.NewLine +
+                                "2. The ‘Data view’ window is closed and DMI returns to the default window." +
+                                Environment.NewLine +
                                 "3. ‘Start’ button is enabled." + Environment.NewLine +
                                 "4. ‘Driver ID’ button is enabled." + Environment.NewLine +
                                 "5. ‘Train Data’ button is enabled." + Environment.NewLine +
@@ -406,12 +422,15 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
+
         #region Send_XML_10_2_a_b_DMI_Test_Specification
+
         enum msgType
         {
             typea,
             typeb
         }
+
         private void Send_XML_10_2_a_b(msgType type)
         {
             if (type == msgType.typea)
@@ -431,7 +450,7 @@ namespace Testcase.DMITestCases
                 EVC8_MMIDriverMessage.Send();
             }
         }
-        #endregion
 
+        #endregion
     }
 }

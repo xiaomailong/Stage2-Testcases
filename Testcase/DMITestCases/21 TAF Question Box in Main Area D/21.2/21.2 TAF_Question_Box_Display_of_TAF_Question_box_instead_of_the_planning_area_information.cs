@@ -73,7 +73,8 @@ namespace Testcase.DMITestCases
 
             // Set to level 1 and SR mode
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L2;
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode =
+                EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
 
             // Enable standard buttons including Start, and display Default window.
             DmiActions.Finished_SoM_Default_Window(this);
@@ -116,10 +117,12 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the TAF Question box in area D, with PA information in the background." + Environment.NewLine +
+                                "1. DMI displays the TAF Question box in area D, with PA information in the background." +
+                                Environment.NewLine +
                                 "2. DMI displays only the TAF Question box in Area D." + Environment.NewLine +
                                 "3. DMI does not display the ‘Scale Up’ button in sub-area D9." + Environment.NewLine +
-                                "4. DMI does not display the ‘Scale Down’ button in sub-area D12." + Environment.NewLine +
+                                "4. DMI does not display the ‘Scale Down’ button in sub-area D12." +
+                                Environment.NewLine +
                                 "5. DMI does not display the ‘Hide’ button in sub-area D14.");
 
             /*

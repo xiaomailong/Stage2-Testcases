@@ -56,7 +56,6 @@ namespace Testcase.DMITestCases
             // DMI displays in FS mode, Level 1
             // Call the TestCaseBase PostExecution
             base.PostExecution();
-
         }
 
         public override bool TestcaseEntryPoint()
@@ -70,8 +69,8 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 105 (partly: equation, MMI_O_BRAKETARGET – OBU_TR_O_TRAIN); MMI_gen 104 (partly: able to show); MMI_gen 6771;(2) MMI_gen 104 (partly: no leading zero);(3) MMI_gen 104 (partly: right aligned);
             */
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 10;
-            EVC1_MMIDynamic.MMI_O_BRAKETARGET = 30000;                  // EOA 300m
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 10000;      // at 100,
+            EVC1_MMIDynamic.MMI_O_BRAKETARGET = 30000; // EOA 300m
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 10000; // at 100,
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
 
             this.Wait_Realtime(2000);
@@ -79,8 +78,10 @@ namespace Testcase.DMITestCases
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. Does the DMI display the SR mode symbol (MO09) and then replace it with the FS mode symbol (MO11) in area B7 after 2s?" + Environment.NewLine +
-                                "2. The first digit of digital distance to target in sub-area A2 is non-zero." + Environment.NewLine +
+                                "1. Does the DMI display the SR mode symbol (MO09) and then replace it with the FS mode symbol (MO11) in area B7 after 2s?" +
+                                Environment.NewLine +
+                                "2. The first digit of digital distance to target in sub-area A2 is non-zero." +
+                                Environment.NewLine +
                                 "3. The digital distance to target  is right aligned.");
 
             /*
@@ -138,7 +139,9 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
+
         #region Send_XML_13_1_8_DMI_Test_Specification
+
         enum msgType
         {
             typea,
@@ -150,17 +153,16 @@ namespace Testcase.DMITestCases
         {
             switch (type)
             {
-
                 case msgType.typea:
                     //SITR.ETCS1.Dynamic.EVC01Validity1.Value = 0x0;
                     //SITR.ETCS1.Dynamic.EVC01Validity2.Value = 0x0;
 
                     EVC1_MMIDynamic.MMI_M_SLIDE = 0;
                     EVC1_MMIDynamic.MMI_M_SLIP = 1;
-                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Target_Speed_Monitoring;   // 11
+                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Target_Speed_Monitoring; // 11
                     EVC1_MMIDynamic.MMI_A_TRAIN = 0;
                     EVC1_MMIDynamic.MMI_V_TRAIN = 0;
-                    EVC1_MMIDynamic.MMI_V_TARGET = -1;      // 0xff would be 65535 as unsigned short
+                    EVC1_MMIDynamic.MMI_V_TARGET = -1; // 0xff would be 65535 as unsigned short
                     EVC1_MMIDynamic.MMI_V_PERMITTED = 2222;
                     EVC1_MMIDynamic.MMI_V_RELEASE = 0;
                     EVC1_MMIDynamic.MMI_O_BRAKETARGET = 1010500000;
@@ -178,12 +180,12 @@ namespace Testcase.DMITestCases
                     EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Ceiling_Speed_Monitoring;
                     EVC1_MMIDynamic.MMI_A_TRAIN = 0;
                     EVC1_MMIDynamic.MMI_V_TRAIN = 0;
-                    EVC1_MMIDynamic.MMI_V_TARGET = -1;      // 0xff would be 65535 as unsigned short
+                    EVC1_MMIDynamic.MMI_V_TARGET = -1; // 0xff would be 65535 as unsigned short
                     EVC1_MMIDynamic.MMI_V_PERMITTED = 2222;
                     EVC1_MMIDynamic.MMI_V_RELEASE = 0;
                     EVC1_MMIDynamic.MMI_O_BRAKETARGET = 1010500000;
                     EVC1_MMIDynamic.MMI_O_IML = 0;
-                    EVC1_MMIDynamic.MMI_V_INTERVENTION = 0;                
+                    EVC1_MMIDynamic.MMI_V_INTERVENTION = 0;
                     break;
 
                 case msgType.typec:
@@ -195,9 +197,10 @@ namespace Testcase.DMITestCases
                     EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_STM_HS_ENABLED = 0;
                     EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_STM_DA_ENABLED = 0;
                     EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_BrakeTest_Status =
-                    EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_BRAKETEST_STATUS.BrakeTestNotInProgress;
+                        EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_BRAKETEST_STATUS.BrakeTestNotInProgress;
                     EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L0;
-                    EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Invalid;    // 17
+                    EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode =
+                        EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Invalid; // 17
                     EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_ADHESION = 0;
                     EVC7_MMIEtcsMiscOutSignals.OBU_TR_NID_STM_HS = 0;
                     EVC7_MMIEtcsMiscOutSignals.OBU_TR_NID_STM_DA = 0;
@@ -206,6 +209,7 @@ namespace Testcase.DMITestCases
                     break;
             }
         }
+
         #endregion
     }
 }

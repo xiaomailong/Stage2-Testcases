@@ -74,41 +74,59 @@ namespace Testcase.DMITestCases
             EVC14_MMICurrentDriverID.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
             EVC14_MMICurrentDriverID.Send();
 
-            DmiActions.ShowInstruction(this, @"Press the ‘Settings’ button"); 
+            DmiActions.ShowInstruction(this, @"Press the ‘Settings’ button");
 
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings;        // Settings window
-            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings; // Settings window
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH =
+                EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter;
             EVC30_MMIRequestEnable.Send();
 
-            DmiActions.ShowInstruction(this, @"Press the ‘Maintenance’ button, enter the password from the PASS_CODE_MTN tag in the configuration and confirm the password" + Environment.NewLine +
-                                             @"Press the ‘Wheel diameter’ button");
+            DmiActions.ShowInstruction(this,
+                @"Press the ‘Maintenance’ button, enter the password from the PASS_CODE_MTN tag in the configuration and confirm the password" +
+                Environment.NewLine +
+                @"Press the ‘Wheel diameter’ button");
 
             EVC40_MMICurrentMaintenanceData.MMI_Q_MD_DATASET = Variables.MMI_Q_MD_DATASET.WheelDiameter;
             EVC40_MMICurrentMaintenanceData.Send();
-            
-            WaitForVerification("Check the following (* indicates sub-areas drawn as one area):" + Environment.NewLine + Environment.NewLine +
+
+            WaitForVerification("Check the following (* indicates sub-areas drawn as one area):" + Environment.NewLine +
+                                Environment.NewLine +
                                 "1. DMI displays the Wheel diameter window." + Environment.NewLine +
                                 "2. The window title is ‘Wheel diameter’, right-aligned." + Environment.NewLine +
-                                "3. The Wheel diameter window displays the title, an enabled ‘Close’ button, symbol NA11, and data input fields." + Environment.NewLine +
-                                "4. The Wheel diameter window also displays a ‘Yes’ button and the label ‘Wheel diameter entry complete?’." + Environment.NewLine +
-                                "5. The ‘Yes’ button is displayed disabled in black on a Dark-grey background with a Medium-grey border." + Environment.NewLine +
+                                "3. The Wheel diameter window displays the title, an enabled ‘Close’ button, symbol NA11, and data input fields." +
+                                Environment.NewLine +
+                                "4. The Wheel diameter window also displays a ‘Yes’ button and the label ‘Wheel diameter entry complete?’." +
+                                Environment.NewLine +
+                                "5. The ‘Yes’ button is displayed disabled in black on a Dark-grey background with a Medium-grey border." +
+                                Environment.NewLine +
                                 "6. The data input fields are in Medium-grey." + Environment.NewLine +
-                                "7. The touch-sensitive area of the ‘Yes’ button extends from the ‘Wheel diameter entry complete?’ label." + Environment.NewLine +
+                                "7. The touch-sensitive area of the ‘Yes’ button extends from the ‘Wheel diameter entry complete?’ label." +
+                                Environment.NewLine +
                                 "8. The data input fields are displayed in areas D and F." + Environment.NewLine +
                                 "9. Data input fields have a label area and a data part area." + Environment.NewLine +
-                                "10. Data input field ‘Wheel diameter 1 (mm)’ corresponds to the Wheel diameter 1 value, ‘Wheel diameter 2 (mm)’ to the Wheel Diameter 2 value and ‘Accuracy’ to the accuracy value." + Environment.NewLine +
+                                "10. Data input field ‘Wheel diameter 1 (mm)’ corresponds to the Wheel diameter 1 value, ‘Wheel diameter 2 (mm)’ to the Wheel Diameter 2 value and ‘Accuracy’ to the accuracy value." +
+                                Environment.NewLine +
                                 "11. The label areas are to the left of their data parts." + Environment.NewLine +
-                                "12. The label area text is right-aligned in grey on a Dark-grey background and the data part text is left-aligned." + Environment.NewLine +
-                                "13. The first page of the Wheel diameter window contains three data input fields." + Environment.NewLine +
-                                "14. The first data input field is pre-selected with the data part in black on a Medium-grey background." + Environment.NewLine +
-                                "15. All other data input fields are not selected with the data parts in grey on a Dark-grey background." + Environment.NewLine +
-                                "16. A numeric keypad is displayed when data input field ‘Wheel diameter 1 (mm)’ is selected" + Environment.NewLine +
-                                "17. The numeric keypad displays enabled buttons for numbers <1> to <9>, <Delete> (symbol NA21), <0> and the <Decimal_Separator> (disabled)." + Environment.NewLine +
+                                "12. The label area text is right-aligned in grey on a Dark-grey background and the data part text is left-aligned." +
+                                Environment.NewLine +
+                                "13. The first page of the Wheel diameter window contains three data input fields." +
+                                Environment.NewLine +
+                                "14. The first data input field is pre-selected with the data part in black on a Medium-grey background." +
+                                Environment.NewLine +
+                                "15. All other data input fields are not selected with the data parts in grey on a Dark-grey background." +
+                                Environment.NewLine +
+                                "16. A numeric keypad is displayed when data input field ‘Wheel diameter 1 (mm)’ is selected" +
+                                Environment.NewLine +
+                                "17. The numeric keypad displays enabled buttons for numbers <1> to <9>, <Delete> (symbol NA21), <0> and the <Decimal_Separator> (disabled)." +
+                                Environment.NewLine +
                                 "18, All the areas of the window are displayed in Layer 0." + Environment.NewLine +
-                                "19. Echo texts of the data input fields set are displayed in areas A, B, C, D and E in the same order as the related data input fields." + Environment.NewLine +
-                                "20. Echo texts have a label part with right-aligned text and a data part with left-aligned text, both in grey." + Environment.NewLine +
-                                "21. Echo text labels are the same as the related data input field label areas." + Environment.NewLine +
+                                "19. Echo texts of the data input fields set are displayed in areas A, B, C, D and E in the same order as the related data input fields." +
+                                Environment.NewLine +
+                                "20. Echo texts have a label part with right-aligned text and a data part with left-aligned text, both in grey." +
+                                Environment.NewLine +
+                                "21. Echo text labels are the same as the related data input field label areas." +
+                                Environment.NewLine +
                                 "22. A flashing (visible/invisible) underscore character is displayed at the cursor position in the data input field.");
 
             /*
@@ -121,9 +139,11 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘0’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘0’ button is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                "1. The ‘0’ button is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The ‘Wheel diameter 1 (mm)’ data input field displays the value ‘0’." + Environment.NewLine +
+                                "3. The ‘Wheel diameter 1 (mm)’ data input field displays the value ‘0’." +
+                                Environment.NewLine +
                                 "4. The cursor is displayed beneath the ‘0’ in the data input field.");
 
             /*
@@ -147,9 +167,11 @@ namespace Testcase.DMITestCases
             // Repeat Steps 2-3 for the <1> button
             DmiActions.ShowInstruction(this, @"Press and hold the ‘1’ button");
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘0’ button is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                "1. The ‘0’ button is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The value for the button pressed is added to the end of the ‘Wheel diameter 1 (mm)’ data input field." + Environment.NewLine +
+                                "3. The value for the button pressed is added to the end of the ‘Wheel diameter 1 (mm)’ data input field." +
+                                Environment.NewLine +
                                 "4. The cursor is displayed beneath the ‘1’ in the data input field.");
 
             DmiActions.ShowInstruction(this, @"Release the ‘1’ button");
@@ -160,9 +182,11 @@ namespace Testcase.DMITestCases
             // Repeat Steps 2-3 for the <2> button
             DmiActions.ShowInstruction(this, @"Press and hold the ‘2’ button");
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘2’ button is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                "1. The ‘2’ button is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The value for the button pressed is added to the end of the ‘Wheel diameter 1 (mm)’ data input field." + Environment.NewLine +
+                                "3. The value for the button pressed is added to the end of the ‘Wheel diameter 1 (mm)’ data input field." +
+                                Environment.NewLine +
                                 "4. The cursor is displayed beneath the ‘2’ in the data input field.");
 
             DmiActions.ShowInstruction(this, @"Release the ‘2’ button");
@@ -173,9 +197,11 @@ namespace Testcase.DMITestCases
             // Repeat Steps 2-3 for the <3> button
             DmiActions.ShowInstruction(this, @"Press and hold the ‘3’ button");
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘3’ button is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                "1. The ‘3’ button is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The value for the button pressed is added to the end of the ‘Wheel diameter 1 (mm)’ data input field." + Environment.NewLine +
+                                "3. The value for the button pressed is added to the end of the ‘Wheel diameter 1 (mm)’ data input field." +
+                                Environment.NewLine +
                                 "4. The cursor is displayed beneath the ‘3’ in the data input field.");
 
             DmiActions.ShowInstruction(this, @"Release the ‘3’ button");
@@ -186,9 +212,11 @@ namespace Testcase.DMITestCases
             // Repeat Steps 2-3 for the <4> button
             DmiActions.ShowInstruction(this, @"Press and hold the ‘4’ button");
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘4’ button is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                "1. The ‘4’ button is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The value for the button pressed is added to the end of the ‘Wheel diameter 1 (mm)’ data input field." + Environment.NewLine +
+                                "3. The value for the button pressed is added to the end of the ‘Wheel diameter 1 (mm)’ data input field." +
+                                Environment.NewLine +
                                 "4. The cursor is displayed beneath the ‘4’ in the data input field.");
 
             DmiActions.ShowInstruction(this, @"Release the ‘4’ button");
@@ -199,9 +227,11 @@ namespace Testcase.DMITestCases
             // Repeat Steps 2-3 for the <5> button
             DmiActions.ShowInstruction(this, @"Press and hold the ‘5’ button");
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘5’ button is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                "1. The ‘5’ button is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The value for the button pressed is added to the end of the ‘Wheel diameter 1 (mm)’ data input field." + Environment.NewLine +
+                                "3. The value for the button pressed is added to the end of the ‘Wheel diameter 1 (mm)’ data input field." +
+                                Environment.NewLine +
                                 "4. The cursor is displayed beneath the ‘5’ in the data input field.");
 
             DmiActions.ShowInstruction(this, @"Release the ‘5’ button");
@@ -212,9 +242,11 @@ namespace Testcase.DMITestCases
             // Repeat Steps 2-3 for the <6> button
             DmiActions.ShowInstruction(this, @"Press and hold the ‘6’ button");
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘6’ button is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                "1. The ‘6’ button is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The value for the button pressed is added to the end of the ‘Wheel diameter 1 (mm)’ data input field." + Environment.NewLine +
+                                "3. The value for the button pressed is added to the end of the ‘Wheel diameter 1 (mm)’ data input field." +
+                                Environment.NewLine +
                                 "4. The cursor is displayed beneath the ‘6’ in the data input field.");
 
             DmiActions.ShowInstruction(this, @"Release the ‘6’ button");
@@ -225,9 +257,11 @@ namespace Testcase.DMITestCases
             // Repeat Steps 2-3 for the <7> button
             DmiActions.ShowInstruction(this, @"Press and hold the ‘7’ button");
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘7’ button is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                "1. The ‘7’ button is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The value for the button pressed is added to the end of the ‘Wheel diameter 1 (mm)’ data input field." + Environment.NewLine +
+                                "3. The value for the button pressed is added to the end of the ‘Wheel diameter 1 (mm)’ data input field." +
+                                Environment.NewLine +
                                 "4. The cursor is displayed beneath the ‘7’ in the data input field.");
 
             DmiActions.ShowInstruction(this, @"Release the ‘7’ button");
@@ -238,9 +272,11 @@ namespace Testcase.DMITestCases
             // Repeat Steps 2-3 for the <8> button
             DmiActions.ShowInstruction(this, @"Press and hold the ‘8’ button");
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘8’ button is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                "1. The ‘8’ button is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The value for the button pressed is added to the end of the ‘Wheel diameter 1 (mm)’ data input field." + Environment.NewLine +
+                                "3. The value for the button pressed is added to the end of the ‘Wheel diameter 1 (mm)’ data input field." +
+                                Environment.NewLine +
                                 "4. The cursor is displayed beneath the ‘8’ in the data input field.");
 
             DmiActions.ShowInstruction(this, @"Release the ‘8’ button");
@@ -251,9 +287,11 @@ namespace Testcase.DMITestCases
             // Repeat Steps 2-3 for the <9> button
             DmiActions.ShowInstruction(this, @"Press and hold the ‘9’ button");
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘9’ button is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                "1. The ‘9’ button is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The value for the button pressed is added to the end of the ‘Wheel diameter 1 (mm)’ data input field." + Environment.NewLine +
+                                "3. The value for the button pressed is added to the end of the ‘Wheel diameter 1 (mm)’ data input field." +
+                                Environment.NewLine +
                                 "4. The cursor is displayed beneath the ‘9’ in the data input field.");
 
             DmiActions.ShowInstruction(this, @"Release the ‘9’ button");
@@ -272,7 +310,8 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "2. The ‘Del’ button is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                "2. The ‘Del’ button is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "3. The last character in the data input field is deleted." + Environment.NewLine +
                                 "4. After 1.5s the ‘Del’ button repeatedly changes from pressed to released and the last character in the data input field is deleted repeatedly." +
                                 "5. After 1.5s the ‘Click’ sound is played repeatedly while the button is pressed.");
@@ -295,18 +334,24 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,Input fieldsThe associated ‘Enter’ button is data field itself.An input field is used to allow the driver to enter data.The state of ‘Wheel diameter 1’ input field is changed to ‘accepted’ as follows,The background colour of the Data Area is dark-grey.The colour of data value is white.The next input field ‘Wheel diameter 2’ is in state ‘selected’ as follows,The background colour of the Data Area is medium-grey.The colour of data value is black.Echo TextsThe echo text of ‘Wheel diameter 1’ is changed to white colour.The value of echo text is changed refer to entered data.Entering CharactersThe cursor is displayed as a horizontal line below the position of the next character to be entered.The cursor is flashed by changing from visible to not visible.KeyboardThe keyboard associated to selected input field ‘Wheel diameter 2’ is Numeric keyboard.The keyboard contains enabled button for the number <1> to <9>, <Delete>(NA21) , <0> and disabled <Decimal_Separator>. NA21, Delete button
             Test Step Comment: (1) MMI_gen 11716 (partly: MMI_gen 4682 (partly: Wheel diameter 1));(2) MMI_gen 11716 (partly: MMI_gen 4634 (partly: Wheel diameter 1)); MMI_gen 11697 (partly: entry);(3) MMI_gen 11716 (partly: MMI_gen 4652 (partly: Wheel diameter 1), MMI_gen 4684 (partly: accepted, Wheel diameter 1));(4) MMI_gen 11716 (partly: MMI_gen 4684 (partly: Wheel diameter 2, selected automatically), MMI_gen 4651 (partly: Wheel diameter 2));(5) MMI_gen 11716 (partly: MMI_gen 4700 (partly: Wheel diameter 1));(6) MMI_gen 11716 (partly: MMI_gen 4681 (partly: Wheel diameter 1), MMI_gen 4890, MMI_gen 4698);(7) MMI_gen 11716 (partly: MMI_gen 4689, MMI_gen 4690);(8) MMI_gen 11716 (partly: MMI_gen 4691 (partly: flash, Wheel diameter 2));(9) MMI_gen 11700 (partly: Wheel diameter 2); MMI_gen 11716 (partly: MMI_gen 4912 (partly: Wheel diameter 2), MMI_gen 4678 (partly: Wheel diameter 2));(10) MMI_gen 11716 (partly: MMI_gen 5003 (partly: Wheel diameter 2)); MMI_gen 4392 (partly: [Delete] NA21);
             */
-            DmiActions.ShowInstruction(this, @"Delete the value in the ‘Wheel diameter 1 (mm)’ data input field, enter the value ‘1000’ and confirm the value by pressing a data input field");
+            DmiActions.ShowInstruction(this,
+                @"Delete the value in the ‘Wheel diameter 1 (mm)’ data input field, enter the value ‘1000’ and confirm the value by pressing a data input field");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field acts an ‘Enter’ button" + Environment.NewLine +
                                 "2. Data can be entered in the data input field" + Environment.NewLine +
-                                "3. The ‘Wheel diameter 1’ input field is ‘accepted’, with the data value in white on a Dark-grey background." + Environment.NewLine +
-                                "4. The next data input field ‘Wheel diameter 2’ is ‘selected’, with the data value in black on a Medium-grey background." + Environment.NewLine +
+                                "3. The ‘Wheel diameter 1’ input field is ‘accepted’, with the data value in white on a Dark-grey background." +
+                                Environment.NewLine +
+                                "4. The next data input field ‘Wheel diameter 2’ is ‘selected’, with the data value in black on a Medium-grey background." +
+                                Environment.NewLine +
                                 "5. The echo text of ‘Wheel diameter 1’ is displayed in white." + Environment.NewLine +
-                                "6. The echo text value changes to the value entered in the data input field." + Environment.NewLine +
-                                "7. The cursor is displayed as a horizontal line below the position of the next character to be entered." + Environment.NewLine +
+                                "6. The echo text value changes to the value entered in the data input field." +
+                                Environment.NewLine +
+                                "7. The cursor is displayed as a horizontal line below the position of the next character to be entered." +
+                                Environment.NewLine +
                                 "8. The cursor flashes by changing from visible to invisible." + Environment.NewLine +
-                                "9. The keypad for the ‘Wheel diameter 2’ data input field is numeric." + Environment.NewLine +
+                                "9. The keypad for the ‘Wheel diameter 2’ data input field is numeric." +
+                                Environment.NewLine +
                                 "10. The keypad contains enabled buttons for the number <1> to <9>, <Delete> (symbol NA21), <0> and a disabled <Decimal_Separator> button.");
 
             /*
@@ -318,9 +363,11 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘0’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘0’ button is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                "1. The ‘0’ button is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The ‘Wheel diameter 2 (mm)’ data input field displays the value ‘0’." + Environment.NewLine +
+                                "3. The ‘Wheel diameter 2 (mm)’ data input field displays the value ‘0’." +
+                                Environment.NewLine +
                                 "4. The cursor is displayed after the ‘0’ in the data input field.");
 
             DmiActions.ShowInstruction(this, @"Release the ‘0’ button");
@@ -331,9 +378,11 @@ namespace Testcase.DMITestCases
             // Repeat Steps 2-3 for the <1> button
             DmiActions.ShowInstruction(this, @"Press and hold the ‘1’ button");
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘0’ button is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                "1. The ‘0’ button is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The value for the button pressed is added to the end of the ‘Wheel diameter 2 (mm)’ data input field." + Environment.NewLine +
+                                "3. The value for the button pressed is added to the end of the ‘Wheel diameter 2 (mm)’ data input field." +
+                                Environment.NewLine +
                                 "4. The cursor is displayed after the ‘1’ in the data input field.");
 
             DmiActions.ShowInstruction(this, @"Release the ‘1’ button");
@@ -344,9 +393,11 @@ namespace Testcase.DMITestCases
             // Repeat Steps 2-3 for the <2> button
             DmiActions.ShowInstruction(this, @"Press and hold the ‘2’ button");
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘2’ button is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                "1. The ‘2’ button is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The value for the button pressed is added to the end of the ‘Wheel diameter 2 (mm)’ data input field." + Environment.NewLine +
+                                "3. The value for the button pressed is added to the end of the ‘Wheel diameter 2 (mm)’ data input field." +
+                                Environment.NewLine +
                                 "4. The cursor is displayed after the ‘2’ in the data input field.");
 
             DmiActions.ShowInstruction(this, @"Release the ‘2’ button");
@@ -357,9 +408,11 @@ namespace Testcase.DMITestCases
             // Repeat Steps 2-3 for the <3> button
             DmiActions.ShowInstruction(this, @"Press and hold the ‘3’ button");
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘3’ button is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                "1. The ‘3’ button is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The value for the button pressed is added to the end of the ‘Wheel diameter 2 (mm)’ data input field." + Environment.NewLine +
+                                "3. The value for the button pressed is added to the end of the ‘Wheel diameter 2 (mm)’ data input field." +
+                                Environment.NewLine +
                                 "4. The cursor is displayed after the ‘3’ in the data input field.");
 
             DmiActions.ShowInstruction(this, @"Release the ‘3’ button");
@@ -370,9 +423,11 @@ namespace Testcase.DMITestCases
             // Repeat Steps 2-3 for the <4> button
             DmiActions.ShowInstruction(this, @"Press and hold the ‘4’ button");
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘4’ button is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                "1. The ‘4’ button is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The value for the button pressed is added to the end of the ‘Wheel diameter 2 (mm)’ data input field." + Environment.NewLine +
+                                "3. The value for the button pressed is added to the end of the ‘Wheel diameter 2 (mm)’ data input field." +
+                                Environment.NewLine +
                                 "4. The cursor is displayed after the ‘4’ in the data input field.");
 
             DmiActions.ShowInstruction(this, @"Release the ‘4’ button");
@@ -383,9 +438,11 @@ namespace Testcase.DMITestCases
             // Repeat Steps 2-3 for the <5> button
             DmiActions.ShowInstruction(this, @"Press and hold the ‘5’ button");
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘5’ button is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                "1. The ‘5’ button is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The value for the button pressed is added to the end of the ‘Wheel diameter 2 (mm)’ data input field." + Environment.NewLine +
+                                "3. The value for the button pressed is added to the end of the ‘Wheel diameter 2 (mm)’ data input field." +
+                                Environment.NewLine +
                                 "4. The cursor is displayed after the ‘5’ in the data input field.");
 
             DmiActions.ShowInstruction(this, @"Release the ‘5’ button");
@@ -396,9 +453,11 @@ namespace Testcase.DMITestCases
             // Repeat Steps 2-3 for the <6> button
             DmiActions.ShowInstruction(this, @"Press and hold the ‘6’ button");
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘6’ button is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                "1. The ‘6’ button is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The value for the button pressed is added to the end of the ‘Wheel diameter 2 (mm)’ data input field." + Environment.NewLine +
+                                "3. The value for the button pressed is added to the end of the ‘Wheel diameter 2 (mm)’ data input field." +
+                                Environment.NewLine +
                                 "4. The cursor is displayed after the ‘6’ in the data input field.");
 
             DmiActions.ShowInstruction(this, @"Release the ‘6’ button");
@@ -409,9 +468,11 @@ namespace Testcase.DMITestCases
             // Repeat Steps 2-3 for the <7> button
             DmiActions.ShowInstruction(this, @"Press and hold the ‘7’ button");
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘7’ button is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                "1. The ‘7’ button is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The value for the button pressed is added to the end of the ‘Wheel diameter 2 (mm)’ data input field." + Environment.NewLine +
+                                "3. The value for the button pressed is added to the end of the ‘Wheel diameter 2 (mm)’ data input field." +
+                                Environment.NewLine +
                                 "4. The cursor is displayed after the ‘7’ in the data input field.");
 
             DmiActions.ShowInstruction(this, @"Release the ‘7’ button");
@@ -422,9 +483,11 @@ namespace Testcase.DMITestCases
             // Repeat Steps 2-3 for the <8> button
             DmiActions.ShowInstruction(this, @"Press and hold the ‘8’ button");
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘8’ button is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                "1. The ‘8’ button is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The value for the button pressed is added to the end of the ‘Wheel diameter 2 (mm)’ data input field." + Environment.NewLine +
+                                "3. The value for the button pressed is added to the end of the ‘Wheel diameter 2 (mm)’ data input field." +
+                                Environment.NewLine +
                                 "4. The cursor is displayed after the ‘8’ in the data input field.");
 
             DmiActions.ShowInstruction(this, @"Release the ‘8’ button");
@@ -435,9 +498,11 @@ namespace Testcase.DMITestCases
             // Repeat Steps 2-3 for the <9> button
             DmiActions.ShowInstruction(this, @"Press and hold the ‘9’ button");
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘9’ button is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                "1. The ‘9’ button is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The value for the button pressed is added to the end of the ‘Wheel diameter 2 (mm)’ data input field." + Environment.NewLine +
+                                "3. The value for the button pressed is added to the end of the ‘Wheel diameter 2 (mm)’ data input field." +
+                                Environment.NewLine +
                                 "4. The cursor is displayed after the ‘9’ in the data input field.");
 
             DmiActions.ShowInstruction(this, @"Release the ‘9’ button");
@@ -450,7 +515,8 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "2. The ‘Del’ button is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                "2. The ‘Del’ button is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "3. The last character in the data input field is deleted." + Environment.NewLine +
                                 "4. After 1.5s the ‘Del’ button repeatedly changes from pressed to released and the last character in the data input field is deleted repeatedly." +
                                 "5. After 1.5s the ‘Click’ sound is played repeatedly while the button is pressed.");
@@ -467,16 +533,21 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,Input fieldsThe associated ‘Enter’ button is data field itself.An input field is used to allow the driver to enter data.The state of ‘Wheel diameter 2’ input field is changed to ‘accepted’ as follows,The background colour of the Data Area is dark-grey.The colour of data value is white.The next input field ‘Accuracy’ is in state ‘selected’ as follows,The background colour of the Data Area is medium-grey.The colour of data value is black.Echo TextsThe echo text of ‘Wheel diameter 2’ is changed to white colour.The value of echo text is changed refer to entered data.Entering CharactersThe cursor is displayed as a horizontal line below the position of the next character to be entered.The cursor is flashed by changing from visible to not visible.KeyboardThe keyboard associated to selected input field ‘Accuracy’ is Numeric keyboard.The keyboard contains enabled button for the number <1> to <9>, <Delete>(NA21) , <0> and disabled <Decimal_Separator>. NA21, Delete button
             Test Step Comment: (1) MMI_gen 11716 (partly: MMI_gen 4682 (partly: Wheel diameter 2));(2) MMI_gen 11716 (partly: MMI_gen 4634 (partly: Wheel diameter 2)); MMI_gen 11696 (partly: entry);(3) MMI_gen 11716 (partly: MMI_gen 4652 (partly: Wheel diameter 2), MMI_gen 4684 (partly: accepted, Wheel diameter 2));(4) MMI_gen 11716 (partly: MMI_gen 4684 (partly: Accuracy, selected automatically), MMI_gen 4651 (partly: Accuracy));(5) MMI_gen 11716 (partly: MMI_gen 4700 (partly: Wheel diameter 2));(6) MMI_gen 11716 (partly: MMI_gen 4681 (partly: Wheel diameter 2), MMI_gen 4890, MMI_gen 4698);(7) MMI_gen 11716 (partly: MMI_gen 4689, MMI_gen 4690);(8) MMI_gen 11716 (partly: MMI_gen 4691 (partly: flash, Accuracy));(9) MMI_gen 11700 (partly: Accuracy); MMI_gen 11716 (partly: MMI_gen 4912 (partly: Accuracy), MMI_gen 4678 (partly: Accuracy));(10) MMI_gen 11716 (partly: MMI_gen 5003 (partly: Accuracy)); MMI_gen 4392 (partly: [Delete] NA21);
             */
-            DmiActions.ShowInstruction(this, @"Delete the value in the ‘Wheel diameter 2 (mm)’ data input field, enter the value ‘1000’ and confirm the value by pressing a data input field");
+            DmiActions.ShowInstruction(this,
+                @"Delete the value in the ‘Wheel diameter 2 (mm)’ data input field, enter the value ‘1000’ and confirm the value by pressing a data input field");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field acts an ‘Enter’ button" + Environment.NewLine +
                                 "2. Data can be entered in the data input field" + Environment.NewLine +
-                                "3. The ‘Wheel diameter 2’ input field is ‘accepted’, with the data value in white on a Dark-grey background." + Environment.NewLine +
-                                "4. The next data input field ‘Accuracy’ is ‘selected’, with the data value in black on a Medium-grey background." + Environment.NewLine +
+                                "3. The ‘Wheel diameter 2’ input field is ‘accepted’, with the data value in white on a Dark-grey background." +
+                                Environment.NewLine +
+                                "4. The next data input field ‘Accuracy’ is ‘selected’, with the data value in black on a Medium-grey background." +
+                                Environment.NewLine +
                                 "5. The echo text of ‘Wheel diameter 2’ is displayed in white." + Environment.NewLine +
-                                "6. The echo text value changes to the value entered in the data input field." + Environment.NewLine +
-                                "7. The cursor is displayed as a horizontal line below the position of the next character to be entered." + Environment.NewLine +
+                                "6. The echo text value changes to the value entered in the data input field." +
+                                Environment.NewLine +
+                                "7. The cursor is displayed as a horizontal line below the position of the next character to be entered." +
+                                Environment.NewLine +
                                 "8. The cursor flashes by changing from visible to invisible." + Environment.NewLine +
                                 "9. The keypad for the ‘Accuracy’ data input field is numeric." + Environment.NewLine +
                                 "10. The keypad contains enabled buttons for the number <1> to <9>, <Delete> (symbol NA21), <0> and a disabled <Decimal_Separator> button.");
@@ -490,7 +561,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the ‘0’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘0’ button is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                "1. The ‘0’ button is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 "3. The ‘Accuracy’ data input field displays the value ‘0’." + Environment.NewLine +
                                 "4. The cursor is displayed after the ‘0’ in the data input field.");
@@ -503,9 +575,11 @@ namespace Testcase.DMITestCases
             // Repeat Steps 2-3 for the <1> button
             DmiActions.ShowInstruction(this, @"Press and hold the ‘1’ button");
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘0’ button is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                "1. The ‘0’ button is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The value for the button pressed is added to the end of the ‘Accuracy’ data input field." + Environment.NewLine +
+                                "3. The value for the button pressed is added to the end of the ‘Accuracy’ data input field." +
+                                Environment.NewLine +
                                 "4. The cursor is displayed after the ‘1’ in the data input field.");
 
             DmiActions.ShowInstruction(this, @"Release the ‘1’ button");
@@ -516,9 +590,11 @@ namespace Testcase.DMITestCases
             // Repeat Steps 2-3 for the <2> button
             DmiActions.ShowInstruction(this, @"Press and hold the ‘2’ button");
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘2’ button is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                "1. The ‘2’ button is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The value for the button pressed is added to the end of the ‘Accuracy’ data input field." + Environment.NewLine +
+                                "3. The value for the button pressed is added to the end of the ‘Accuracy’ data input field." +
+                                Environment.NewLine +
                                 "4. The cursor is displayed after the ‘2’ in the data input field.");
 
             DmiActions.ShowInstruction(this, @"Release the ‘2’ button");
@@ -529,9 +605,11 @@ namespace Testcase.DMITestCases
             // Repeat Steps 2-3 for the <3> button
             DmiActions.ShowInstruction(this, @"Press and hold the ‘3’ button");
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘3’ button is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                "1. The ‘3’ button is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The value for the button pressed is added to the end of the ‘Accuracy’ data input field." + Environment.NewLine +
+                                "3. The value for the button pressed is added to the end of the ‘Accuracy’ data input field." +
+                                Environment.NewLine +
                                 "4. The cursor is displayed after the ‘3’ in the data input field.");
 
             DmiActions.ShowInstruction(this, @"Release the ‘3’ button");
@@ -542,9 +620,11 @@ namespace Testcase.DMITestCases
             // Repeat Steps 2-3 for the <4> button
             DmiActions.ShowInstruction(this, @"Press and hold the ‘4’ button");
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘4’ button is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                "1. The ‘4’ button is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The value for the button pressed is added to the end of the ‘Accuracy’ data input field." + Environment.NewLine +
+                                "3. The value for the button pressed is added to the end of the ‘Accuracy’ data input field." +
+                                Environment.NewLine +
                                 "4. The cursor is displayed after the ‘4’ in the data input field.");
 
             DmiActions.ShowInstruction(this, @"Release the ‘4’ button");
@@ -555,9 +635,11 @@ namespace Testcase.DMITestCases
             // Repeat Steps 2-3 for the <5> button
             DmiActions.ShowInstruction(this, @"Press and hold the ‘5’ button");
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘5’ button is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                "1. The ‘5’ button is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The value for the button pressed is added to the end of the ‘Accuracy’ data input field." + Environment.NewLine +
+                                "3. The value for the button pressed is added to the end of the ‘Accuracy’ data input field." +
+                                Environment.NewLine +
                                 "4. The cursor is displayed after the ‘5’ in the data input field.");
 
             DmiActions.ShowInstruction(this, @"Release the ‘5’ button");
@@ -568,9 +650,11 @@ namespace Testcase.DMITestCases
             // Repeat Steps 2-3 for the <6> button
             DmiActions.ShowInstruction(this, @"Press and hold the ‘6’ button");
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘6’ button is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                "1. The ‘6’ button is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The value for the button pressed is added to the end of the ‘Accuracy’ data input field." + Environment.NewLine +
+                                "3. The value for the button pressed is added to the end of the ‘Accuracy’ data input field." +
+                                Environment.NewLine +
                                 "4. The cursor is displayed after the ‘6’ in the data input field.");
 
             DmiActions.ShowInstruction(this, @"Release the ‘6’ button");
@@ -581,9 +665,11 @@ namespace Testcase.DMITestCases
             // Repeat Steps 2-3 for the <7> button
             DmiActions.ShowInstruction(this, @"Press and hold the ‘7’ button");
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘7’ button is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                "1. The ‘7’ button is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The value for the button pressed is added to the end of the ‘Accuracy’ data input field." + Environment.NewLine +
+                                "3. The value for the button pressed is added to the end of the ‘Accuracy’ data input field." +
+                                Environment.NewLine +
                                 "4. The cursor is displayed after the ‘7’ in the data input field.");
 
             DmiActions.ShowInstruction(this, @"Release the ‘7’ button");
@@ -594,9 +680,11 @@ namespace Testcase.DMITestCases
             // Repeat Steps 2-3 for the <8> button
             DmiActions.ShowInstruction(this, @"Press and hold the ‘8’ button");
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘8’ button is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                "1. The ‘8’ button is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The value for the button pressed is added to the end of the ‘Accuracy’ data input field." + Environment.NewLine +
+                                "3. The value for the button pressed is added to the end of the ‘Accuracy’ data input field." +
+                                Environment.NewLine +
                                 "4. The cursor is displayed after the ‘8’ in the data input field.");
 
             DmiActions.ShowInstruction(this, @"Release the ‘8’ button");
@@ -607,9 +695,11 @@ namespace Testcase.DMITestCases
             // Repeat Steps 2-3 for the <9> button
             DmiActions.ShowInstruction(this, @"Press and hold the ‘9’ button");
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘9’ button is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                "1. The ‘9’ button is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "3. The value for the button pressed is added to the end of the ‘Accuracy’ data input field." + Environment.NewLine +
+                                "3. The value for the button pressed is added to the end of the ‘Accuracy’ data input field." +
+                                Environment.NewLine +
                                 "4. The cursor is displayed after the ‘9’ in the data input field.");
 
             DmiActions.ShowInstruction(this, @"Release the ‘9’ button");
@@ -622,7 +712,8 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Click’ sound is played once." + Environment.NewLine +
-                                "2. The ‘Del’ button is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
+                                "2. The ‘Del’ button is displayed pressed and immediately re-displayed enabled." +
+                                Environment.NewLine +
                                 "3. The last character in the data input field is deleted." + Environment.NewLine +
                                 "4. After 1.5s the ‘Del’ button repeatedly changes from pressed to released and the last character in the data input field is deleted repeatedly." +
                                 "5. After 1.5s the ‘Click’ sound is played repeatedly while the button is pressed.");
@@ -639,16 +730,20 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,Input fieldsThe associated ‘Enter’ button is data field itself.An input field is used to allow the driver to enter data.The state of ‘Accuracy’ input field is changed to ‘accepted’ as follows,The background colour of the Data Area is dark-grey.The colour of data value is white.There is no input field selected.Echo TextsThe echo text of ‘Accuracy’ is changed to white colour.The value of echo text is changed refer to entered data.Data Entry windowThe state of ‘Yes’ button below text label ‘Train data Entry is complete?’ is enabled as follows,The background colour of the Data Area is medium-grey.The colour of data value is black.The border colour is medium-grey
             Test Step Comment: (1) MMI_gen 11716 (partly: MMI_gen 4682 (partly: Accuracy));(2) MMI_gen 11716 (partly: MMI_gen 4634 (partly: Accuracy)); MMI_gen 11698 (partly: entry);(3) MMI_gen 11716 (partly: MMI_gen 4652 (partly: Accuracy), MMI_gen 4684 (partly: accepted, Accuracy));(4) MMI_gen 11716 (partly: MMI_gen 4684 (partly: No next input field, data entry process terminated));(5) MMI_gen 11716 (partly: MMI_gen 4700 (partly: Accuracy));(6) MMI_gen 11716 (partly: MMI_gen 4681 (partly: Accuracy), MMI_gen 4698, MMI_gen 4890);(7) MMI_gen 11716 (partly: MMI_gen 4909 (partly:Enabled), MMI_gen 4910 (partly: Enabled, MMI_gen 4211 (partly: colour))); MMI_gen 4374; 
             */
-            DmiActions.ShowInstruction(this, @"Delete the value in the ‘Accuracy’ data input field, enter the value ‘30’ and confirm the value by pressing a data input field");
+            DmiActions.ShowInstruction(this,
+                @"Delete the value in the ‘Accuracy’ data input field, enter the value ‘30’ and confirm the value by pressing a data input field");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field acts an ‘Enter’ button" + Environment.NewLine +
                                 "2. Data can be entered in the data input field" + Environment.NewLine +
-                                "3. The ‘Accuracy’ input field is ‘accepted’, with the data value in white on a Dark-grey background." + Environment.NewLine +
+                                "3. The ‘Accuracy’ input field is ‘accepted’, with the data value in white on a Dark-grey background." +
+                                Environment.NewLine +
                                 "4. No data input field is ‘selected’." + Environment.NewLine +
                                 "5. The echo text of ‘Accuracy’ is displayed in white." + Environment.NewLine +
-                                "6. The echo text value changes to the value entered in the data input field." + Environment.NewLine +
-                                "7. The ‘Yes’ button below the label ‘Train data entry is complete’ is displayed enabled." + Environment.NewLine +
+                                "6. The echo text value changes to the value entered in the data input field." +
+                                Environment.NewLine +
+                                "7. The ‘Yes’ button below the label ‘Train data entry is complete’ is displayed enabled." +
+                                Environment.NewLine +
                                 "8. The data input field value is in black  on a Medium-grey background with a Medium-grey border.");
 
             /*
@@ -657,11 +752,14 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The state of ‘Yes’ button below text label ‘Wheel diameter entry is complete?’ is disabled. The state of input field ‘Wheel diameter 1’ is changed to ‘Not selected’ as follows,The value of ‘Wheel diameter 1’ input field is removed, display as blank.The background colour of the input field is dark-grey
             Test Step Comment: (1) MMI_gen 11716 (partly: MMI_gen 4909 (partly: state selected and with recently entered key), MMI_gen 4680 (partly: value has been modified));(2) MMI_gen 11716 (partly: MMI_gen 4680 (partly: Wheel diameter 1, Not selected, Data area is blank), MMI_gen 4649 (partly: data entry, background colour));
             */
-            DmiActions.ShowInstruction(this, @"Select the ‘Wheel diameter 1’ data input field and enter a new value for ‘Wheel diameter 1’, then select the ‘Accuracy’ data input field");
+            DmiActions.ShowInstruction(this,
+                @"Select the ‘Wheel diameter 1’ data input field and enter a new value for ‘Wheel diameter 1’, then select the ‘Accuracy’ data input field");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘Yes’ button below the label ‘Train data entry is complete’ is displayed disabled." + Environment.NewLine +
-                                "2. The ‘Wheel diameter 1’ data input field value is not selected." + Environment.NewLine +
+                                "1. The ‘Yes’ button below the label ‘Train data entry is complete’ is displayed disabled." +
+                                Environment.NewLine +
+                                "2. The ‘Wheel diameter 1’ data input field value is not selected." +
+                                Environment.NewLine +
                                 "3. The ‘Wheel diameter 1’ data input field value is blank." + Environment.NewLine +
                                 "4. The data input field value background is Dark-grey.");
 
@@ -682,8 +780,9 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The state of button is changed to ‘Pressed’, the border of button is removed.The sound ‘Click’ is played once
             Test Step Comment: (1) MMI_gen 11716 (partly: MMI_gen 4911 (partly: MMI_gen 4381 (partly: change to state ‘Pressed’ as long as remain actuated)); MMI_gen 4375;(2) MMI_gen 11716 (partly: MMI_gen 4911 (partly: MMI_gen 4381 (partly: sound ‘Click’))); MMI_gen 9512; MMI_gen 968;
             */
-            DmiActions.ShowInstruction(this, @"Enter and confirm the value ‘1000’ in the ‘Wheel diameter 1’ data input field, then press and hold the ‘Yes’ button");
-            
+            DmiActions.ShowInstruction(this,
+                @"Enter and confirm the value ‘1000’ in the ‘Wheel diameter 1’ data input field, then press and hold the ‘Yes’ button");
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Yes’ button is displayed pressed, without a border.");
 
@@ -720,19 +819,22 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Release the ‘Yes’ button");
 
             EVC140_MMINewMaintenanceData.MMI_Q_MD_DATASET = Variables.MMI_Q_MD_DATASET.WheelDiameter;
-            EVC140_MMINewMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1 = (Telegrams.EVCtoDMI.Variables.MMI_M_SDU_WHEEL_SIZE)0x3e8;
-            EVC140_MMINewMaintenanceData.MMI_M_SDU_WHEEL_SIZE_2 =  (Telegrams.EVCtoDMI.Variables.MMI_M_SDU_WHEEL_SIZE)0x3e8;
-            EVC140_MMINewMaintenanceData.MMI_M_WHEEL_SIZE_ERR = (Telegrams.EVCtoDMI.Variables.MMI_M_WHEEL_SIZE_ERR)0x1d;
+            EVC140_MMINewMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1 =
+                (Telegrams.EVCtoDMI.Variables.MMI_M_SDU_WHEEL_SIZE) 0x3e8;
+            EVC140_MMINewMaintenanceData.MMI_M_SDU_WHEEL_SIZE_2 =
+                (Telegrams.EVCtoDMI.Variables.MMI_M_SDU_WHEEL_SIZE) 0x3e8;
+            EVC140_MMINewMaintenanceData.MMI_M_WHEEL_SIZE_ERR =
+                (Telegrams.EVCtoDMI.Variables.MMI_M_WHEEL_SIZE_ERR) 0x1d;
             EVC140_MMINewMaintenanceData.CheckTelegram();
 
 
             // assume that EVC41 will invert the values
-            EVC41_MMIEchoedMaintenanceData.MMI_M_WHEEL_SIZE_ERR_ = (Variables.MMI_M_WHEEL_SIZE_ERR)0x1d;
-            EVC41_MMIEchoedMaintenanceData.MMI_M_SDU_WHEEL_SIZE_2_ = (Variables.MMI_M_SDU_WHEEL_SIZE)0x03e8;
-            EVC41_MMIEchoedMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1_ = (Variables.MMI_M_SDU_WHEEL_SIZE)0x03e8;
+            EVC41_MMIEchoedMaintenanceData.MMI_M_WHEEL_SIZE_ERR_ = (Variables.MMI_M_WHEEL_SIZE_ERR) 0x1d;
+            EVC41_MMIEchoedMaintenanceData.MMI_M_SDU_WHEEL_SIZE_2_ = (Variables.MMI_M_SDU_WHEEL_SIZE) 0x03e8;
+            EVC41_MMIEchoedMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1_ = (Variables.MMI_M_SDU_WHEEL_SIZE) 0x03e8;
             EVC41_MMIEchoedMaintenanceData.MMI_Q_MD_DATASET_ = Variables.MMI_Q_MD_DATASET.WheelDiameter;
             EVC41_MMIEchoedMaintenanceData.Send();
-           
+
             // Spec says EVC41 closes the validation window: it displays it...
             /*
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -748,7 +850,8 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays the Maintenance window
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press the ‘Yes’ button and confirm the entered data by pressing a data input field");
+            DmiActions.ShowInstruction(this,
+                @"Press the ‘Yes’ button and confirm the entered data by pressing a data input field");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Maintenance window.");
@@ -761,25 +864,28 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Press the ‘Wheel diameter’ button");
 
-            EVC40_MMICurrentMaintenanceData.MMI_M_WHEEL_SIZE_ERR = (Variables.MMI_M_WHEEL_SIZE_ERR)0x1d;
-            EVC40_MMICurrentMaintenanceData.MMI_M_SDU_WHEEL_SIZE_2 = (Variables.MMI_M_SDU_WHEEL_SIZE)0x03e8;
-            EVC40_MMICurrentMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1 = (Variables.MMI_M_SDU_WHEEL_SIZE)0x03e8;
+            EVC40_MMICurrentMaintenanceData.MMI_M_WHEEL_SIZE_ERR = (Variables.MMI_M_WHEEL_SIZE_ERR) 0x1d;
+            EVC40_MMICurrentMaintenanceData.MMI_M_SDU_WHEEL_SIZE_2 = (Variables.MMI_M_SDU_WHEEL_SIZE) 0x03e8;
+            EVC40_MMICurrentMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1 = (Variables.MMI_M_SDU_WHEEL_SIZE) 0x03e8;
             EVC40_MMICurrentMaintenanceData.MMI_Q_MD_DATASET = Variables.MMI_Q_MD_DATASET.WheelDiameter;
             EVC40_MMICurrentMaintenanceData.Send();
 
-            DmiActions.ShowInstruction(this, @"Confirm the current value of all data input fields, then press the ‘Yes button");
+            DmiActions.ShowInstruction(this,
+                @"Confirm the current value of all data input fields, then press the ‘Yes button");
 
-            EVC41_MMIEchoedMaintenanceData.MMI_M_WHEEL_SIZE_ERR_ = (Variables.MMI_M_WHEEL_SIZE_ERR)0x1d;
-            EVC41_MMIEchoedMaintenanceData.MMI_M_SDU_WHEEL_SIZE_2_ = (Variables.MMI_M_SDU_WHEEL_SIZE)0x03e8;
-            EVC41_MMIEchoedMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1_ = (Variables.MMI_M_SDU_WHEEL_SIZE)0x03e8;
+            EVC41_MMIEchoedMaintenanceData.MMI_M_WHEEL_SIZE_ERR_ = (Variables.MMI_M_WHEEL_SIZE_ERR) 0x1d;
+            EVC41_MMIEchoedMaintenanceData.MMI_M_SDU_WHEEL_SIZE_2_ = (Variables.MMI_M_SDU_WHEEL_SIZE) 0x03e8;
+            EVC41_MMIEchoedMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1_ = (Variables.MMI_M_SDU_WHEEL_SIZE) 0x03e8;
             EVC41_MMIEchoedMaintenanceData.MMI_Q_MD_DATASET_ = Variables.MMI_Q_MD_DATASET.WheelDiameter;
             EVC41_MMIEchoedMaintenanceData.Send();
 
             DmiActions.ShowInstruction(this, @"Confirm the entered data in the Wheel diameter validation window");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The first data input field displays the value entered for ‘Wheel diameter 1’ for validation." + Environment.NewLine +
-                                "2. The second data input field displays the value entered for ‘Wheel diameter 2’ for validation." + Environment.NewLine +
+                                "1. The first data input field displays the value entered for ‘Wheel diameter 1’ for validation." +
+                                Environment.NewLine +
+                                "2. The second data input field displays the value entered for ‘Wheel diameter 2’ for validation." +
+                                Environment.NewLine +
                                 "3. The third data input field displays the value entered for ‘Accuracy’ for validation.");
 
             /*
@@ -790,9 +896,9 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press the ‘Wheel diameter’ button");
 
-            EVC40_MMICurrentMaintenanceData.MMI_M_WHEEL_SIZE_ERR = (Variables.MMI_M_WHEEL_SIZE_ERR)0x1d;
-            EVC40_MMICurrentMaintenanceData.MMI_M_SDU_WHEEL_SIZE_2 = (Variables.MMI_M_SDU_WHEEL_SIZE)0x03e8;
-            EVC40_MMICurrentMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1 = (Variables.MMI_M_SDU_WHEEL_SIZE)0x03e8;
+            EVC40_MMICurrentMaintenanceData.MMI_M_WHEEL_SIZE_ERR = (Variables.MMI_M_WHEEL_SIZE_ERR) 0x1d;
+            EVC40_MMICurrentMaintenanceData.MMI_M_SDU_WHEEL_SIZE_2 = (Variables.MMI_M_SDU_WHEEL_SIZE) 0x03e8;
+            EVC40_MMICurrentMaintenanceData.MMI_M_SDU_WHEEL_SIZE_1 = (Variables.MMI_M_SDU_WHEEL_SIZE) 0x03e8;
             EVC40_MMICurrentMaintenanceData.MMI_Q_MD_DATASET = Variables.MMI_Q_MD_DATASET.WheelDiameter;
             EVC40_MMICurrentMaintenanceData.Send();
 
@@ -805,10 +911,12 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The state of ‘Wheel diameter 2’ input field is changed to ‘Pressed’, the border of button is removed.The state of ‘Wheel diameter 2’ input field remains ‘not selected’. The state of ‘Wheel diameter 1’ input field remains ‘selected’.The sound ‘Click’ is played once
             Test Step Comment: (1) MMI_gen 11716 (partly: MMI_gen 4686 (partly: Label part, Wheel diameter 2), MMI_gen 4381 (partly: change to state ‘Pressed’ as long as remain actuated))); MMI_gen 4392 (partly: [Enter], touch screen); MMI_gen 4375;(2) MMI_gen 11716 (partly: MMI_gen 4686 (partly: Label part, Wheel diameter 2), MMI_gen 4381 (partly: the sound for Up-Type button));
             */
-            DmiActions.ShowInstruction(this, @"Press in and hold the label part of the ‘Wheel diameter 2’ data input field");
+            DmiActions.ShowInstruction(this,
+                @"Press in and hold the label part of the ‘Wheel diameter 2’ data input field");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘Wheel diameter 2’ data input field is displayed entered, without a border." + Environment.NewLine +
+                                "1. The ‘Wheel diameter 2’ data input field is displayed entered, without a border." +
+                                Environment.NewLine +
                                 "2. The ‘Wheel diameter 2’ data input field is not selected." + Environment.NewLine +
                                 "3. The ‘Wheel diameter 1’ data input field stays selected." + Environment.NewLine +
                                 "4. The ‘Click’ sound is played once.");
@@ -819,23 +927,27 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The border of ‘Wheel diameter 2’ input field is shown (state ‘Enabled’) without a sound.The state of ‘Wheel diameter 2’ input field remains ‘not selected’. The state of ‘Wheel diameter 1’ input field remains ‘selected’
             Test Step Comment: (1) MMI_gen 11716 (partly: MMI_gen 4686 (partly: Label part, Wheel diameter 2), MMI_gen 4382 (partly: state ‘Enabled’ when slide out with force applied, no sound); MMI_gen 4374;
             */
-            DmiActions.ShowInstruction(this, @"Drag the label part of the ‘Wheel diameter 2’ data input field outside of its area, keeping the area pressed");
+            DmiActions.ShowInstruction(this,
+                @"Drag the label part of the ‘Wheel diameter 2’ data input field outside of its area, keeping the area pressed");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘Wheel diameter 2’ data input field is displayed with a border." + Environment.NewLine +
+                                "1. The ‘Wheel diameter 2’ data input field is displayed with a border." +
+                                Environment.NewLine +
                                 "2. No sound is played." + Environment.NewLine +
                                 "3. The ‘Wheel diameter 2’ data input field stays not selected.");
-            
+
             /*
             Test Step 23
             Action: Slide back into the Label part of ‘Wheel diameter 2’ input field
             Expected Result: Verify the following information,The state of ‘Wheel diameter 2’ input field is changed to ‘Pressed’, the border of button is removed.The state of ‘Wheel diameter 2’ input field remains ‘not selected’. The state of ‘Wheel diameter 1’ input field remains ‘selected’
             Test Step Comment: (1) MMI_gen 11716 (partly: MMI_gen 4686 (partly: Label part, Wheel diameter 2), MMI_gen 4382 (partly: state ‘Pressed’ when slide back, no sound); MMI_gen 4375;
             */
-            DmiActions.ShowInstruction(this, @"Whilst keeping the label part of the ‘Wheel diameter 2’ data input field pressed, drag it back inside its area");
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the label part of the ‘Wheel diameter 2’ data input field pressed, drag it back inside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘Wheel diameter 2’ data input field button is displayed pressed without a border." + Environment.NewLine +
+                                "1. The ‘Wheel diameter 2’ data input field button is displayed pressed without a border." +
+                                Environment.NewLine +
                                 "2. The ‘Wheel diameter 2’ data input field stays not selected." + Environment.NewLine +
                                 "3. The ‘Wheel diameter 1’ data input field stays selected.");
 
@@ -856,23 +968,29 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The state of an input field is changed to ‘selected’ when release the pressed area at the Label part of input field
             Test Step Comment: (1) MMI_gen 11716 (partly: MMI_gen 4686 (partly: Label part));
             */
-            DmiActions.ShowInstruction(this, @"Press in and hold the label part of the ‘Wheel diameter 1’ data input field");
+            DmiActions.ShowInstruction(this,
+                @"Press in and hold the label part of the ‘Wheel diameter 1’ data input field");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘Wheel diameter 1’ data input field is displayed entered, without a border." + Environment.NewLine +
+                                "1. The ‘Wheel diameter 1’ data input field is displayed entered, without a border." +
+                                Environment.NewLine +
                                 "2. The ‘Wheel diameter 1’ data input field is not selected." + Environment.NewLine +
                                 "3. The ‘Accuracy’ data input field stays selected." + Environment.NewLine +
                                 "4. The ‘Click’ sound is played once.");
-            DmiActions.ShowInstruction(this, @"Drag the label part of the ‘Wheel diameter 2’ data input field outside of its area, keeping the area pressed");
+            DmiActions.ShowInstruction(this,
+                @"Drag the label part of the ‘Wheel diameter 2’ data input field outside of its area, keeping the area pressed");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘Wheel diameter 1’ data input field is displayed with a border." + Environment.NewLine +
+                                "1. The ‘Wheel diameter 1’ data input field is displayed with a border." +
+                                Environment.NewLine +
                                 "2. No sound is played." + Environment.NewLine +
                                 "3. The ‘Wheel diameter 1’ data input field stays not selected.");
-            DmiActions.ShowInstruction(this, @"Whilst keeping the label part of the ‘Wheel diameter 2’ data input field pressed, drag it back inside its area");
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the label part of the ‘Wheel diameter 2’ data input field pressed, drag it back inside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘Wheel diameter 1’ data input field button is displayed pressed without a border." + Environment.NewLine +
+                                "1. The ‘Wheel diameter 1’ data input field button is displayed pressed without a border." +
+                                Environment.NewLine +
                                 "2. The ‘Wheel diameter 1’ data input field stays not selected." + Environment.NewLine +
                                 "3. The ‘Accuracy’ data input field stays selected.");
 
@@ -888,26 +1006,34 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11716 (partly: MMI_gen 4686 (partly: Data part)); MMI_gen 9390 (partly: Wheel diameter window);
             */
             // Wheel diameter 1
-            DmiActions.ShowInstruction(this, @"Press in and hold the data part of the ‘Wheel diameter 1’ data input field");
-            DmiActions.ShowInstruction(this, @"Drag the data part of the ‘Wheel diameter 1’ data input field outside of its area, keeping the area pressed");
-            DmiActions.ShowInstruction(this, @"Whilst keeping the label part of the ‘Wheel diameter 1’ data input field pressed, drag it back inside its area");
+            DmiActions.ShowInstruction(this,
+                @"Press in and hold the data part of the ‘Wheel diameter 1’ data input field");
+            DmiActions.ShowInstruction(this,
+                @"Drag the data part of the ‘Wheel diameter 1’ data input field outside of its area, keeping the area pressed");
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the label part of the ‘Wheel diameter 1’ data input field pressed, drag it back inside its area");
             DmiActions.ShowInstruction(this, @"Release the label part of the ‘Wheel diameter 1’ data input field");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Wheel diameter 2’ data input field becomes selected.");
 
             // Wheel diameter 2
-            DmiActions.ShowInstruction(this, @"Press in and hold the data part of the ‘Wheel diameter 2’ data input field");
-            DmiActions.ShowInstruction(this, @"Drag the data part of the ‘Wheel diameter 2’ data input field outside of its area, keeping the area pressed");
-            DmiActions.ShowInstruction(this, @"Whilst keeping the label part of the ‘Wheel diameter 2’ data input field pressed, drag it back inside its area");
+            DmiActions.ShowInstruction(this,
+                @"Press in and hold the data part of the ‘Wheel diameter 2’ data input field");
+            DmiActions.ShowInstruction(this,
+                @"Drag the data part of the ‘Wheel diameter 2’ data input field outside of its area, keeping the area pressed");
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the label part of the ‘Wheel diameter 2’ data input field pressed, drag it back inside its area");
             DmiActions.ShowInstruction(this, @"Release the label part of the ‘Wheel diameter 2’ data input field");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Wheel diameter 2’ data input field becomes selected.");
             // Wheel diameter 3
             DmiActions.ShowInstruction(this, @"Press in and hold the data part of the ‘Accuracy’ data input field");
-            DmiActions.ShowInstruction(this, @"Drag the data part of the ‘Accuracy’ data input field outside of its area, keeping the area pressed");
-            DmiActions.ShowInstruction(this, @"Whilst keeping the label part of the ‘Accuracy’ data input field pressed, drag it back inside its area");
+            DmiActions.ShowInstruction(this,
+                @"Drag the data part of the ‘Accuracy’ data input field outside of its area, keeping the area pressed");
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the label part of the ‘Accuracy’ data input field pressed, drag it back inside its area");
             DmiActions.ShowInstruction(this, @"Release the label part of the ‘WAccuracy’ data input field");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +

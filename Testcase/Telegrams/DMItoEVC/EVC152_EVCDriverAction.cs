@@ -15,7 +15,7 @@ namespace Testcase.Telegrams.DMItoEVC
     /// </summary>
     public static class EVC152_MMIDriverAction
     {
-        private static SignalPool _pool;       
+        private static SignalPool _pool;
         private static MMI_M_DRIVER_ACTION _driverAction;
         private static bool _checkResult;
         const string baseString = "DMI->ETCS: EVC-152 [MMI_DRIVER_ACTION] - MMI_M_DRIVER_ACTION";
@@ -39,20 +39,21 @@ namespace Testcase.Telegrams.DMItoEVC
             // Wait 10 seconds for SMDStat to become set
             if (_pool.SITR.SMDStat.CCUO.ETCS1DriverAction.WaitForCondition(Is.Equal, 0x01, 10000, 100))
             {
-                _checkResult = _pool.SITR.CCUO.ETCS1DriverAction.MmiMDriverAction.Value.Equals((byte)driverAction);
+                _checkResult = _pool.SITR.CCUO.ETCS1DriverAction.MmiMDriverAction.Value.Equals((byte) driverAction);
 
                 // If check passes
                 if (_checkResult)
                 {
-                    _pool.TraceReport($"{baseString} = {(byte)driverAction} \"{driverAction}\"" + Environment.NewLine +
-                                    "Result: PASSED.");
+                    _pool.TraceReport($"{baseString} = {(byte) driverAction} \"{driverAction}\"" + Environment.NewLine +
+                                      "Result: PASSED.");
                 }
                 // Else display the real value extracted from EVC-152
                 else
                 {
                     _pool.TraceError($"{baseString} = {_pool.SITR.CCUO.ETCS1DriverAction.MmiMDriverAction.Value} - \"" +
-                            Enum.GetName(typeof(MMI_M_DRIVER_ACTION), _pool.SITR.CCUO.ETCS1DriverAction.MmiMDriverAction.Value) + "\"" +
-                            Environment.NewLine + "Result: FAILED.");
+                                     Enum.GetName(typeof(MMI_M_DRIVER_ACTION),
+                                         _pool.SITR.CCUO.ETCS1DriverAction.MmiMDriverAction.Value) + "\"" +
+                                     Environment.NewLine + "Result: FAILED.");
                 }
             }
             // Show generic DMI -> EVC telegram failure

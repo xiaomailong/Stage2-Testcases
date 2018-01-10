@@ -1,19 +1,20 @@
-<?xml version="1.0" encoding="utf-8" ?>
- <TestInfoXml>
-	<Asv>ASV</Asv>
-	<Project>PROJECT</Project>
-	<Tester>TESTER</Tester>
-	<Rack>RACK</Rack>
-	<Logpath>C:\01_Projects\05_RefDMI\02_testing\01_laboratory_testing\08_logs</Logpath>
-	<Logwindow>True</Logwindow>
-	<LogWindowAutoClose>True</LogWindowAutoClose>
-	<LogSizeMaximum>200MB</LogSizeMaximum>
-	<LogEntriesMaximum>20000</LogEntriesMaximum>
-	<UCpath>c:\</UCpath>
-	<Configuration>CONFIG</Configuration>
-	<ManualTest>True</ManualTest>
-	<DefaultResult>Yes</DefaultResult>
-	<HideConsoleWindow>False</HideConsoleWindow>
-	<LogDirectlyToDisk>False</LogDirectlyToDisk>
-	<ValidationMode>False</ValidationMode>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<TestInfoXml>
+  <Asv>ASV</Asv>
+  <Project>PROJECT</Project>
+  <Tester>TESTER</Tester>
+  <Rack>RACK</Rack>
+  <Logpath>C:\01_Projects\05_RefDMI\02_testing\01_laboratory_testing\08_logs</Logpath>
+  <Logwindow>True</Logwindow>
+  <LogWindowAutoClose>True</LogWindowAutoClose>
+  <LogSizeMaximum>200MB</LogSizeMaximum>
+  <LogEntriesMaximum>20000</LogEntriesMaximum>
+  <UCpath>c:\</UCpath>
+  <Configuration>CONFIG</Configuration>
+  <ManualTest>True</ManualTest>
+  <DefaultResult>Yes</DefaultResult>
+  <HideConsoleWindow>False</HideConsoleWindow>
+  <LogDirectlyToDisk>False</LogDirectlyToDisk>
+  <ValidationMode>False</ValidationMode>
 </TestInfoXml>

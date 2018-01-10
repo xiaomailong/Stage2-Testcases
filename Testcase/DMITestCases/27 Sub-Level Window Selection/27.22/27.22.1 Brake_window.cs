@@ -50,7 +50,8 @@ namespace Testcase.DMITestCases
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Default;      // Settings window: no buttons enabled
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW =
+                EVC30_MMIRequestEnable.WindowID.Default; // Settings window: no buttons enabled
             EVC30_MMIRequestEnable.Send();
         }
 
@@ -132,7 +133,7 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Brake’ button is displayed enabled.");
-            
+
             /*
             Test Step 7
             Action: Press ‘Brake’ button
@@ -185,16 +186,23 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Press ‘Brake’ button");
 
-            WaitForVerification("Check the following (* indicates sub-areas drawn as one area):" + Environment.NewLine + Environment.NewLine +
-                                @"1. DMI displays the Brake window with 3 layers in a half-grid array with the title ‘Brake’." + Environment.NewLine +
+            WaitForVerification("Check the following (* indicates sub-areas drawn as one area):" + Environment.NewLine +
+                                Environment.NewLine +
+                                @"1. DMI displays the Brake window with 3 layers in a half-grid array with the title ‘Brake’." +
+                                Environment.NewLine +
                                 "2. The Brake window is displayed in areas D, F and G." + Environment.NewLine +
                                 "3. Layer 0 comprises areas D, F, G, Y and Z." + Environment.NewLine +
-                                "4. Layer 1 comprises areas A1, (A2+A3)*, A4, B, C1, (C2+C3+c4)*, C5, C6, C7, C8, C9, E1, E2, E3, E4, (E5-E9)*." + Environment.NewLine +
+                                "4. Layer 1 comprises areas A1, (A2+A3)*, A4, B, C1, (C2+C3+c4)*, C5, C6, C7, C8, C9, E1, E2, E3, E4, (E5-E9)*." +
+                                Environment.NewLine +
                                 "5. Layer 2 comprises areas B3, B4, B5, B6 and B7." + Environment.NewLine +
-                                @"6. The Brake window displays two buttons in areas D, F and G and an ‘Enabled Close’ button (symbol NA11)." + Environment.NewLine +
-                                "7. The two buttons are displayed enabled and are labelled ‘Test’ and ‘Percentage’, respectively." + Environment.NewLine +
-                                "8. Objects, text messages and buttons can be displayed in several levels. Within a level they are allocated to areas." + Environment.NewLine +
-                                "9. Objects, text messages and buttons in a layer form a window." + Environment.NewLine +
+                                @"6. The Brake window displays two buttons in areas D, F and G and an ‘Enabled Close’ button (symbol NA11)." +
+                                Environment.NewLine +
+                                "7. The two buttons are displayed enabled and are labelled ‘Test’ and ‘Percentage’, respectively." +
+                                Environment.NewLine +
+                                "8. Objects, text messages and buttons can be displayed in several levels. Within a level they are allocated to areas." +
+                                Environment.NewLine +
+                                "9. Objects, text messages and buttons in a layer form a window." +
+                                Environment.NewLine +
                                 "10. The Default window does not cover the current window.");
 
             /*
@@ -266,18 +274,22 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press in and hold the ‘Percentage’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘Percentage’ button is displayed pressed, without a border." + Environment.NewLine +
+                                "1. The ‘Percentage’ button is displayed pressed, without a border." +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once.");
 
             // Repeat Step 13 for the ‘Percentage’ button
-            DmiActions.ShowInstruction(this, @"Whilst keeping the ‘Percentage’ button pressed, drag it out of its area");
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the ‘Percentage’ button pressed, drag it out of its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘Percentage’ button is displayed enabled, with a border." + Environment.NewLine +
+                                @"1. The ‘Percentage’ button is displayed enabled, with a border." +
+                                Environment.NewLine +
                                 "2. No sound is played.");
 
             // Repeat Step 14 for the ‘Percentage’ button
-            DmiActions.ShowInstruction(this, @"Whilst keeping the ‘Percentage’ button pressed, drag it back inside its area");
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the ‘Percentage’ button pressed, drag it back inside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The ‘Percentage’ button is displayed pressed." + Environment.NewLine +
@@ -286,9 +298,10 @@ namespace Testcase.DMITestCases
             // Repeat Step 15 for the ‘Percentage’ button
             DmiActions.ShowInstruction(this, @"Release the ‘Percentage’ button");
 
-            Telegrams.DMItoEVC.EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.ChangeBrakePercentage;
+            Telegrams.DMItoEVC.EVC101_MMIDriverRequest.CheckMRequestReleased =
+                Variables.MMI_M_REQUEST.ChangeBrakePercentage;
             EVC50_MMICurrentBrakePercentage.Send();
-           
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. DMI displays the Brake percentage window");
 
@@ -313,7 +326,8 @@ namespace Testcase.DMITestCases
                                 "2. No sound is played.");
 
             // Repeat Step 14 for the ‘Close’ button
-            DmiActions.ShowInstruction(this, @"Whilst keeping the ‘Close’ button pressed, drag it back inside its area");
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the ‘Close’ button pressed, drag it back inside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The ‘Close’ button is displayed pressed." + Environment.NewLine +
@@ -324,7 +338,7 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. DMI displays the Settings window");
-            
+
             /*
             Test Step 19
             Action: End of test
@@ -335,6 +349,7 @@ namespace Testcase.DMITestCases
         }
 
         #region Send_XML_22_21_1_DMI_Test_Specification
+
         enum msgType
         {
             typea,
@@ -354,38 +369,44 @@ namespace Testcase.DMITestCases
             {
                 case msgType.typea:
                     // Xml says bit 30 is on (Doppler): irrelevant
-                    EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = (EVC30_MMIRequestEnable.EnabledRequests.Language |
-                                                                        EVC30_MMIRequestEnable.EnabledRequests.Volume |
-                                                                        EVC30_MMIRequestEnable.EnabledRequests.Brightness |
-                                                                        EVC30_MMIRequestEnable.EnabledRequests.SystemVersion |
-                                                                        EVC30_MMIRequestEnable.EnabledRequests.SetVBC /* |
-                                                                EVC30_MMIRequestEnable.EnabledRequests.EnableDoppler */) &
-                                                                       (EVC30_MMIRequestEnable.EnabledRequests.StartBrakeTest |
-                                                                        EVC30_MMIRequestEnable.EnabledRequests.EnableBrakePercentage);
+                    EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH =
+                        (EVC30_MMIRequestEnable.EnabledRequests.Language |
+                         EVC30_MMIRequestEnable.EnabledRequests.Volume |
+                         EVC30_MMIRequestEnable.EnabledRequests.Brightness |
+                         EVC30_MMIRequestEnable.EnabledRequests.SystemVersion |
+                         EVC30_MMIRequestEnable.EnabledRequests.SetVBC /* |
+                                                                EVC30_MMIRequestEnable.EnabledRequests.EnableDoppler */
+                        ) &
+                        (EVC30_MMIRequestEnable.EnabledRequests.StartBrakeTest |
+                         EVC30_MMIRequestEnable.EnabledRequests.EnableBrakePercentage);
                     break;
                 case msgType.typeb:
                     // Xml says bit 30 is on (Doppler) irrelevant for test
-                    EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = (EVC30_MMIRequestEnable.EnabledRequests.Language |
-                                                                        EVC30_MMIRequestEnable.EnabledRequests.Volume |
-                                                                        EVC30_MMIRequestEnable.EnabledRequests.Brightness |
-                                                                        EVC30_MMIRequestEnable.EnabledRequests.SystemVersion |
-                                                                        EVC30_MMIRequestEnable.EnabledRequests.SetVBC /* |
+                    EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH =
+                        (EVC30_MMIRequestEnable.EnabledRequests.Language |
+                         EVC30_MMIRequestEnable.EnabledRequests.Volume |
+                         EVC30_MMIRequestEnable.EnabledRequests.Brightness |
+                         EVC30_MMIRequestEnable.EnabledRequests.SystemVersion |
+                         EVC30_MMIRequestEnable.EnabledRequests.SetVBC /* |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.EnableDoppler */ |
-                                                                        EVC30_MMIRequestEnable.EnabledRequests.EnableBrakePercentage) &
-                                                                       ~EVC30_MMIRequestEnable.EnabledRequests.StartBrakeTest;
+                         EVC30_MMIRequestEnable.EnabledRequests.EnableBrakePercentage) &
+                        ~EVC30_MMIRequestEnable.EnabledRequests.StartBrakeTest;
                     break;
                 case msgType.typec:
                     // Xml indicates that bit 32 should be set: commented out code for enable-low word is correct according to ATP_FE doc.
-                    EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings;          // Xml says 1 (Main window)
+                    EVC30_MMIRequestEnable.MMI_NID_WINDOW =
+                        EVC30_MMIRequestEnable.WindowID.Settings; // Xml says 1 (Main window)
                     // Test says bit 31 off, 28 on, xml says 30 (doppler) is on: irrelevant
-                    EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = (EVC30_MMIRequestEnable.EnabledRequests.Language |
-                                                                        EVC30_MMIRequestEnable.EnabledRequests.Volume |
-                                                                        EVC30_MMIRequestEnable.EnabledRequests.Brightness |
-                                                                        EVC30_MMIRequestEnable.EnabledRequests.SystemVersion |
-                                                                        EVC30_MMIRequestEnable.EnabledRequests.SetVBC |
-                                                                        EVC30_MMIRequestEnable.EnabledRequests.StartBrakeTest /* |
-                                                                EVC30_MMIRequestEnable.EnabledRequests.EnableDoppler */) &
-                                                                       ~EVC30_MMIRequestEnable.EnabledRequests.EnableBrakePercentage;
+                    EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH =
+                        (EVC30_MMIRequestEnable.EnabledRequests.Language |
+                         EVC30_MMIRequestEnable.EnabledRequests.Volume |
+                         EVC30_MMIRequestEnable.EnabledRequests.Brightness |
+                         EVC30_MMIRequestEnable.EnabledRequests.SystemVersion |
+                         EVC30_MMIRequestEnable.EnabledRequests.SetVBC |
+                         EVC30_MMIRequestEnable.EnabledRequests.StartBrakeTest /* |
+                                                                EVC30_MMIRequestEnable.EnabledRequests.EnableDoppler */
+                        ) &
+                        ~EVC30_MMIRequestEnable.EnabledRequests.EnableBrakePercentage;
                     break;
                 case msgType.typed:
 
@@ -394,16 +415,21 @@ namespace Testcase.DMITestCases
                     // Xml says bit 30 (doppler) is on: irrelevant for test
                     EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Language |
                                                                        EVC30_MMIRequestEnable.EnabledRequests.Volume |
-                                                                       EVC30_MMIRequestEnable.EnabledRequests.Brightness |
-                                                                       EVC30_MMIRequestEnable.EnabledRequests.SystemVersion |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests
+                                                                           .Brightness |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests
+                                                                           .SystemVersion |
                                                                        EVC30_MMIRequestEnable.EnabledRequests.SetVBC |
-                                                                       EVC30_MMIRequestEnable.EnabledRequests.StartBrakeTest /* |
+                                                                       EVC30_MMIRequestEnable.EnabledRequests
+                                                                           .StartBrakeTest /* |
                                                                EVC30_MMIRequestEnable.EnabledRequests.EnableDoppler */ |
-                                                                       EVC30_MMIRequestEnable.EnabledRequests.EnableBrakePercentage;
+                                                                       EVC30_MMIRequestEnable.EnabledRequests
+                                                                           .EnableBrakePercentage;
                     break;
             }
             EVC30_MMIRequestEnable.Send();
         }
+
         #endregion
     }
 }

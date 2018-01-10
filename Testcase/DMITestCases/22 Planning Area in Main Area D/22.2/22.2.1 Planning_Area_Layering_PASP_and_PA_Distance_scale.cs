@@ -77,7 +77,8 @@ namespace Testcase.DMITestCases
             */
             // Tested exhaustively elsewhere: force SoM
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode =
+                EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
             DmiActions.Finished_SoM_Default_Window(this);
 
             DmiExpectedResults.SR_Mode_displayed(this);
@@ -91,13 +92,15 @@ namespace Testcase.DMITestCases
             */
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
 
-            WaitForVerification("Check that the following objects are displayed in order (from background to foreground):" + Environment.NewLine + Environment.NewLine +
-                                "1. PASP." + Environment.NewLine +
-                                "2. PA Distance Scale." + Environment.NewLine +
-                                "3. Indication marker." + Environment.NewLine +
-                                "4. PA Track Condition, Gradient Profile and Speed Discontinuities." + Environment.NewLine +
-                                "5. Hide/Show and Zoom PA buttons." + Environment.NewLine +
-                                "6. An object in the background of another object does not overlap it." + Environment.NewLine);
+            WaitForVerification(
+                "Check that the following objects are displayed in order (from background to foreground):" +
+                Environment.NewLine + Environment.NewLine +
+                "1. PASP." + Environment.NewLine +
+                "2. PA Distance Scale." + Environment.NewLine +
+                "3. Indication marker." + Environment.NewLine +
+                "4. PA Track Condition, Gradient Profile and Speed Discontinuities." + Environment.NewLine +
+                "5. Hide/Show and Zoom PA buttons." + Environment.NewLine +
+                "6. An object in the background of another object does not overlap it." + Environment.NewLine);
             /*
             Test Step 4
             Action: End of test

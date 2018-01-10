@@ -62,7 +62,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
             TraceInfo("This test case requires an ATP configuration change - " +
-                        "See Precondition requirements. If this is not done manually, the test may fail!");
+                      "See Precondition requirements. If this is not done manually, the test may fail!");
 
             /*
             Test Step 1
@@ -91,11 +91,12 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 67 (partly:550 km/h);
             */
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode =
+                EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
             DmiActions.Finished_SoM_Default_Window(this);
 
             WaitForVerification("Check the following" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in SR mode, level 1." + Environment.NewLine + 
+                                "1. DMI displays in SR mode, level 1." + Environment.NewLine +
                                 "2. The speed dial displays 550 km/h maximum speed");
 
             /*
@@ -104,8 +105,9 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information:The speed dial displays the maxinum speed accroding to configuration setting
             Test Step Comment: MMI_gen 67 (partly: configure lower values);
             */
-            DmiActions.ShowInstruction(this, "Power down the system and reconfigure speed dial properties, then power up:" + Environment.NewLine +
-                                             "SPEED_DIAL_V_MAX = 200");
+            DmiActions.ShowInstruction(this,
+                "Power down the system and reconfigure speed dial properties, then power up:" + Environment.NewLine +
+                "SPEED_DIAL_V_MAX = 200");
 
             DmiActions.Start_ATP();
 
@@ -121,16 +123,18 @@ namespace Testcase.DMITestCases
 
             // Call generic Check Results Method
             DmiExpectedResults.SB_Mode_displayed(this);
-            
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
+
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode =
+                EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
             DmiActions.Finished_SoM_Default_Window(this);
 
             WaitForVerification("Check the following" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SR mode, level 1." + Environment.NewLine +
                                 "2. The speed dial displays 200 km/h maximum speed");
 
-            DmiActions.ShowInstruction(this, "Power down the system and reconfigure speed dial properties, then power up:" + Environment.NewLine +
-                                             "SPEED_DIAL_V_MAX = 300");
+            DmiActions.ShowInstruction(this,
+                "Power down the system and reconfigure speed dial properties, then power up:" + Environment.NewLine +
+                "SPEED_DIAL_V_MAX = 300");
 
             DmiActions.Start_ATP();
 
@@ -146,16 +150,18 @@ namespace Testcase.DMITestCases
 
             // Call generic Check Results Method
             DmiExpectedResults.SB_Mode_displayed(this);
-            
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
+
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode =
+                EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
             DmiActions.Finished_SoM_Default_Window(this);
 
             WaitForVerification("Check the following" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SR mode, level 1." + Environment.NewLine +
                                 "2. The speed dial displays 300 km/h maximum speed");
-            
-            DmiActions.ShowInstruction(this, "Power down the system and reconfigure speed dial properties, then power up:" + Environment.NewLine +
-                                             "SPEED_DIAL_V_MAX = 400");
+
+            DmiActions.ShowInstruction(this,
+                "Power down the system and reconfigure speed dial properties, then power up:" + Environment.NewLine +
+                "SPEED_DIAL_V_MAX = 400");
 
             DmiActions.Start_ATP();
 
@@ -171,8 +177,9 @@ namespace Testcase.DMITestCases
 
             // Call generic Check Results Method
             DmiExpectedResults.SB_Mode_displayed(this);
-            
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
+
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode =
+                EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
             DmiActions.Finished_SoM_Default_Window(this);
 
             WaitForVerification("Check the following" + Environment.NewLine + Environment.NewLine +

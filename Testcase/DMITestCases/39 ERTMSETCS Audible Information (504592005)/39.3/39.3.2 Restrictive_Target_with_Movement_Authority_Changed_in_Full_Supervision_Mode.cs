@@ -85,7 +85,7 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI does not display the ‘Emergency brake’ symbol, ST01, in sub-area C9.");
-                        
+
             /*
             Test Step 3
             Action: Train runs pass BG1

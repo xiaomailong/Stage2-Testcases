@@ -1,4 +1,4 @@
- using System;
+using System;
 using System.Diagnostics;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,7 +29,6 @@ namespace Testcase.DMITestCases
     /// 
     /// Scenario:
     /// Enter and confirm all data in Train data window. Then, verify the display information and received packet data EVC-10. Press ‘No’ button and verify that the value of an input field is changed refer to pressed button
-
     /// 
     /// Used files:
     /// N/A
@@ -76,47 +75,53 @@ namespace Testcase.DMITestCases
                                                      Variables.MMI_M_DATA_ENABLE.AxleLoadCategory |
                                                      Variables.MMI_M_DATA_ENABLE.Airtightness |
                                                      Variables.MMI_M_DATA_ENABLE.LoadingGauge,
-                                                     100, 200,
-                                                     Variables.MMI_NID_KEY.PASS1,
-                                                     70,
-                                                     Variables.MMI_NID_KEY.CATA,
-                                                     1,
-                                                     Variables.MMI_NID_KEY_Load_Gauge.G1,
-                                                     EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE,
-                                                     0, 0, new[] { "FLU", "RLU", "Rescue" }, null);
+                100, 200,
+                Variables.MMI_NID_KEY.PASS1,
+                70,
+                Variables.MMI_NID_KEY.CATA,
+                1,
+                Variables.MMI_NID_KEY_Load_Gauge.G1,
+                EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE,
+                0, 0, new[] {"FLU", "RLU", "Rescue"}, null);
 
             DmiActions.ShowInstruction(this, @"Enter and confirm all data in Train data window");
 
             DmiActions.Send_EVC10_MMIEchoedTrainData(this,
-                                                     Variables.MMI_M_DATA_ENABLE.TrainSetID |
-                                                         Variables.MMI_M_DATA_ENABLE.TrainCategory |
-                                                         Variables.MMI_M_DATA_ENABLE.TrainLength |
-                                                         Variables.MMI_M_DATA_ENABLE.BrakePercentage |
-                                                         Variables.MMI_M_DATA_ENABLE.MaxTrainSpeed |
-                                                         Variables.MMI_M_DATA_ENABLE.AxleLoadCategory |
-                                                         Variables.MMI_M_DATA_ENABLE.Airtightness |
-                                                         Variables.MMI_M_DATA_ENABLE.LoadingGauge,
-                                                     100,
-                                                     200,
-                                                     Variables.MMI_NID_KEY.PASS1,
-                                                     70,
-                                                     Variables.MMI_NID_KEY.CATA,
-                                                     1,
-                                                     Variables.MMI_NID_KEY.G1,
-                                                     new[] { "FLU", "RLU", "Rescue" });
+                Variables.MMI_M_DATA_ENABLE.TrainSetID |
+                Variables.MMI_M_DATA_ENABLE.TrainCategory |
+                Variables.MMI_M_DATA_ENABLE.TrainLength |
+                Variables.MMI_M_DATA_ENABLE.BrakePercentage |
+                Variables.MMI_M_DATA_ENABLE.MaxTrainSpeed |
+                Variables.MMI_M_DATA_ENABLE.AxleLoadCategory |
+                Variables.MMI_M_DATA_ENABLE.Airtightness |
+                Variables.MMI_M_DATA_ENABLE.LoadingGauge,
+                100,
+                200,
+                Variables.MMI_NID_KEY.PASS1,
+                70,
+                Variables.MMI_NID_KEY.CATA,
+                1,
+                Variables.MMI_NID_KEY.G1,
+                new[] {"FLU", "RLU", "Rescue"});
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. DMI displays the Train data validation window, with the title ‘Validate Train data, right-aligned’." + Environment.NewLine +
-                                @"2. The window contains a single data input field, a ‘Close’ button and a dedicated keypad for the data input field." + Environment.NewLine +
+                                @"1. DMI displays the Train data validation window, with the title ‘Validate Train data, right-aligned’." +
+                                Environment.NewLine +
+                                @"2. The window contains a single data input field, a ‘Close’ button and a dedicated keypad for the data input field." +
+                                Environment.NewLine +
                                 "3. The window is on Layer 0 in areas A, B, C, D, E, F and G" + Environment.NewLine +
-                                "4. The data input field displays a blank value and has only a data area." + Environment.NewLine +
+                                "4. The data input field displays a blank value and has only a data area." +
+                                Environment.NewLine +
                                 "5. The keypad contains <Yes> and <No> keys." + Environment.NewLine +
-                                "6. Echo texts are displayed with the same values as in the Train data window ." + Environment.NewLine +
-                                "7. The echo text has a Label (right-aligned text) and a Data part (left-aligned text) in white." + Environment.NewLine +
+                                "6. Echo texts are displayed with the same values as in the Train data window ." +
+                                Environment.NewLine +
+                                "7. The echo text has a Label (right-aligned text) and a Data part (left-aligned text) in white." +
+                                Environment.NewLine +
                                 "8. The echo text is displayed in areas A, B, C and E." + Environment.NewLine +
-                                "9. The echo texts displayed (in order) are ‘Train category’, ‘Length’, ‘Brake percentage’, ‘Maximum speed’," + Environment.NewLine +
+                                "9. The echo texts displayed (in order) are ‘Train category’, ‘Length’, ‘Brake percentage’, ‘Maximum speed’," +
+                                Environment.NewLine +
                                 "                                           ‘Axle load category’, ‘Airtight’ and ‘Loading gauge’");
-            
+
             /*
             Test Step 2
             Action: Press ‘No’ button
@@ -137,7 +142,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Confirm the value by pressing in the input field");
 
             EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.ExitTrainDataEntry;
-            DmiActions.Send_EVC6_MMICurrentTrainData_FixedDataEntry(this, new[] { "FLU", "RLU", "Rescue" }, 15);
+            DmiActions.Send_EVC6_MMICurrentTrainData_FixedDataEntry(this, new[] {"FLU", "RLU", "Rescue"}, 15);
 
             DmiExpectedResults.Train_data_window_displayed(this);
 
@@ -156,34 +161,34 @@ namespace Testcase.DMITestCases
                                                      Variables.MMI_M_DATA_ENABLE.AxleLoadCategory |
                                                      Variables.MMI_M_DATA_ENABLE.Airtightness |
                                                      Variables.MMI_M_DATA_ENABLE.LoadingGauge,
-                                                     100, 200,
-                                                     Variables.MMI_NID_KEY.PASS1,
-                                                     70,
-                                                     Variables.MMI_NID_KEY.CATA,
-                                                     1,
-                                                     Variables.MMI_NID_KEY_Load_Gauge.G1,
-                                                     EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE,
-                                                     0, 0, new[] { "FLU", "RLU", "Rescue" }, null);
+                100, 200,
+                Variables.MMI_NID_KEY.PASS1,
+                70,
+                Variables.MMI_NID_KEY.CATA,
+                1,
+                Variables.MMI_NID_KEY_Load_Gauge.G1,
+                EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE,
+                0, 0, new[] {"FLU", "RLU", "Rescue"}, null);
 
             DmiActions.ShowInstruction(this, @"Press the ‘Yes’ button");
 
             DmiActions.Send_EVC10_MMIEchoedTrainData(this,
-                                                     Variables.MMI_M_DATA_ENABLE.TrainSetID |
-                                                     Variables.MMI_M_DATA_ENABLE.TrainCategory |
-                                                     Variables.MMI_M_DATA_ENABLE.TrainLength |
-                                                     Variables.MMI_M_DATA_ENABLE.BrakePercentage |
-                                                     Variables.MMI_M_DATA_ENABLE.MaxTrainSpeed |
-                                                     Variables.MMI_M_DATA_ENABLE.AxleLoadCategory |
-                                                     Variables.MMI_M_DATA_ENABLE.Airtightness |
-                                                     Variables.MMI_M_DATA_ENABLE.LoadingGauge,
-                                                     100,
-                                                     200,
-                                                     Variables.MMI_NID_KEY.PASS1,
-                                                     70,
-                                                     Variables.MMI_NID_KEY.CATA,
-                                                     1,
-                                                     Variables.MMI_NID_KEY.G1,
-                                                     new[] { "FLU", "RLU", "Rescue" });
+                Variables.MMI_M_DATA_ENABLE.TrainSetID |
+                Variables.MMI_M_DATA_ENABLE.TrainCategory |
+                Variables.MMI_M_DATA_ENABLE.TrainLength |
+                Variables.MMI_M_DATA_ENABLE.BrakePercentage |
+                Variables.MMI_M_DATA_ENABLE.MaxTrainSpeed |
+                Variables.MMI_M_DATA_ENABLE.AxleLoadCategory |
+                Variables.MMI_M_DATA_ENABLE.Airtightness |
+                Variables.MMI_M_DATA_ENABLE.LoadingGauge,
+                100,
+                200,
+                Variables.MMI_NID_KEY.PASS1,
+                70,
+                Variables.MMI_NID_KEY.CATA,
+                1,
+                Variables.MMI_NID_KEY.G1,
+                new[] {"FLU", "RLU", "Rescue"});
 
             DmiExpectedResults.Train_data_validation_window_displayed(this);
 
@@ -219,34 +224,35 @@ namespace Testcase.DMITestCases
                                                      Variables.MMI_M_DATA_ENABLE.AxleLoadCategory |
                                                      Variables.MMI_M_DATA_ENABLE.Airtightness |
                                                      Variables.MMI_M_DATA_ENABLE.LoadingGauge,
-                                                     100, 200,
-                                                     Variables.MMI_NID_KEY.PASS1,
-                                                     70,
-                                                     Variables.MMI_NID_KEY.CATA,
-                                                     1,
-                                                     Variables.MMI_NID_KEY_Load_Gauge.G1,
-                                                     EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE,
-                                                     0, 0, new[] { "FLU", "RLU", "Rescue" }, null);
+                100, 200,
+                Variables.MMI_NID_KEY.PASS1,
+                70,
+                Variables.MMI_NID_KEY.CATA,
+                1,
+                Variables.MMI_NID_KEY_Load_Gauge.G1,
+                EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE,
+                0, 0, new[] {"FLU", "RLU", "Rescue"}, null);
 
-            DmiActions.ShowInstruction(this, "Enter and confirm all data in the Train data window, then press the ‘Yes’ button");
+            DmiActions.ShowInstruction(this,
+                "Enter and confirm all data in the Train data window, then press the ‘Yes’ button");
 
             DmiActions.Send_EVC10_MMIEchoedTrainData(this,
-                                                     Variables.MMI_M_DATA_ENABLE.TrainSetID |
-                                                     Variables.MMI_M_DATA_ENABLE.TrainCategory |
-                                                     Variables.MMI_M_DATA_ENABLE.TrainLength |
-                                                     Variables.MMI_M_DATA_ENABLE.BrakePercentage |
-                                                     Variables.MMI_M_DATA_ENABLE.MaxTrainSpeed |
-                                                     Variables.MMI_M_DATA_ENABLE.AxleLoadCategory |
-                                                     Variables.MMI_M_DATA_ENABLE.Airtightness |
-                                                     Variables.MMI_M_DATA_ENABLE.LoadingGauge,
-                                                     100,
-                                                     200,
-                                                     Variables.MMI_NID_KEY.PASS1,
-                                                     70,
-                                                     Variables.MMI_NID_KEY.CATA,
-                                                     1,
-                                                     Variables.MMI_NID_KEY.G1,
-                                                     new[] { "FLU", "RLU", "Rescue" });
+                Variables.MMI_M_DATA_ENABLE.TrainSetID |
+                Variables.MMI_M_DATA_ENABLE.TrainCategory |
+                Variables.MMI_M_DATA_ENABLE.TrainLength |
+                Variables.MMI_M_DATA_ENABLE.BrakePercentage |
+                Variables.MMI_M_DATA_ENABLE.MaxTrainSpeed |
+                Variables.MMI_M_DATA_ENABLE.AxleLoadCategory |
+                Variables.MMI_M_DATA_ENABLE.Airtightness |
+                Variables.MMI_M_DATA_ENABLE.LoadingGauge,
+                100,
+                200,
+                Variables.MMI_NID_KEY.PASS1,
+                70,
+                Variables.MMI_NID_KEY.CATA,
+                1,
+                Variables.MMI_NID_KEY.G1,
+                new[] {"FLU", "RLU", "Rescue"});
 
             DmiExpectedResults.Train_data_validation_window_displayed(this);
 
@@ -293,39 +299,41 @@ namespace Testcase.DMITestCases
                                                      Variables.MMI_M_DATA_ENABLE.AxleLoadCategory |
                                                      Variables.MMI_M_DATA_ENABLE.Airtightness |
                                                      Variables.MMI_M_DATA_ENABLE.LoadingGauge,
-                                                     100, 200,
-                                                     Variables.MMI_NID_KEY.PASS1,
-                                                     70,
-                                                     Variables.MMI_NID_KEY.CATA,
-                                                     1,
-                                                     Variables.MMI_NID_KEY_Load_Gauge.G1,
-                                                     EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE,
-                                                     0, 0, new[] { "FLU", "RLU", "Rescue" }, null);
+                100, 200,
+                Variables.MMI_NID_KEY.PASS1,
+                70,
+                Variables.MMI_NID_KEY.CATA,
+                1,
+                Variables.MMI_NID_KEY_Load_Gauge.G1,
+                EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE,
+                0, 0, new[] {"FLU", "RLU", "Rescue"}, null);
 
-            DmiActions.ShowInstruction(this, "Enter and confirm all data in Train data window, then press the ‘Yes’ button");
+            DmiActions.ShowInstruction(this,
+                "Enter and confirm all data in Train data window, then press the ‘Yes’ button");
 
             DmiActions.Send_EVC10_MMIEchoedTrainData(this,
-                                                     Variables.MMI_M_DATA_ENABLE.TrainSetID |
-                                                     Variables.MMI_M_DATA_ENABLE.TrainCategory |
-                                                     Variables.MMI_M_DATA_ENABLE.TrainLength |
-                                                     Variables.MMI_M_DATA_ENABLE.BrakePercentage |
-                                                     Variables.MMI_M_DATA_ENABLE.MaxTrainSpeed |
-                                                     Variables.MMI_M_DATA_ENABLE.AxleLoadCategory |
-                                                     Variables.MMI_M_DATA_ENABLE.Airtightness |
-                                                     Variables.MMI_M_DATA_ENABLE.LoadingGauge,
-                                                     100,
-                                                     200,
-                                                     Variables.MMI_NID_KEY.PASS1,
-                                                     70,
-                                                     Variables.MMI_NID_KEY.CATA,
-                                                     1,
-                                                     Variables.MMI_NID_KEY.G1,
-                                                     new[] { "FLU", "RLU", "Rescue" });
+                Variables.MMI_M_DATA_ENABLE.TrainSetID |
+                Variables.MMI_M_DATA_ENABLE.TrainCategory |
+                Variables.MMI_M_DATA_ENABLE.TrainLength |
+                Variables.MMI_M_DATA_ENABLE.BrakePercentage |
+                Variables.MMI_M_DATA_ENABLE.MaxTrainSpeed |
+                Variables.MMI_M_DATA_ENABLE.AxleLoadCategory |
+                Variables.MMI_M_DATA_ENABLE.Airtightness |
+                Variables.MMI_M_DATA_ENABLE.LoadingGauge,
+                100,
+                200,
+                Variables.MMI_NID_KEY.PASS1,
+                70,
+                Variables.MMI_NID_KEY.CATA,
+                1,
+                Variables.MMI_NID_KEY.G1,
+                new[] {"FLU", "RLU", "Rescue"});
 
             DmiActions.Simulate_communication_loss_EVC_DMI(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. DMI displays the Default window with the message ‘ATP Down Alarm’." + Environment.NewLine +
+                                @"1. DMI displays the Default window with the message ‘ATP Down Alarm’." +
+                                Environment.NewLine +
                                 @"2. The ‘Alarm’ sound is played.");
 
             /*

@@ -51,8 +51,9 @@ namespace Testcase.DMITestCases
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L2;
 
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.EnableBrakePercentage;
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings;      // Settings
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH =
+                EVC30_MMIRequestEnable.EnabledRequests.EnableBrakePercentage;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings; // Settings
             EVC30_MMIRequestEnable.Send();
         }
 
@@ -69,7 +70,7 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
             TraceInfo("This test case requires an ATP configuration change - " +
-                        "See Precondition requirements. If this is not done manually, the test may fail!");
+                      "See Precondition requirements. If this is not done manually, the test may fail!");
 
             /*
             Test Step 1
@@ -77,30 +78,41 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   Use the log file to confirm that DMI received the packet MMI_ECHOED_BRAKE_PERCENTAGE (EVC-51). (2)   Use the log file to confirm that the following variables in packet EVC-51 are same as entered data,MMI_M_BP_CURRENT = entered brake percentageMMI_M_BP_MEASURED = entered Last measured BPMMI_M_BP_ORIG = entered Original BP(3)   DMI displays Brake Percentage Validation window.(4)   The following objects are displayed in Brake Percentage Validation window. Enabled Close button (NA11)Window TitleInput fieldYes buttonNo buttonWindow Title(5)   The window title is ‘Validate brake percentage’.(6)   The window title is right aligned.Layer(7)   The window is displayed in main area A/B/C/D/E/F/G.(8)   All areas of Data validation window are displayed in Layer 0.Input field(9)   The window contains a single input field which has only data area.(10)   The value of input field is empty.Keyboard(11)   The displayed keyboard type is dedicated keyboard which contain only ‘Yes’ and ‘No’ button.The key #7 is No button.The key #8 is Yes button.Echo Text(12)   Echo Text is composed of a Label part and Data part.(13)   The Label of echo text is right aligned.(14)   The Data part of echo text is left aligned.(15)   The order of echo texts are same as of the Brake Percentage window as follows,Original BPLast measured BPBrake percentage(16)   The data part of echo texts are display the data value same as of the Brake percentage window.(17)   The echo texts are located in Main area A,B,C and E.(18)   The echo texts colour is white.General property of window(19)   The Brake percentage validation window is presented with objects and buttons which is the one of several levels and allocated to areas of DMI(20)   All objects, text messages and buttons are presented within the same layer.(21)   The Default window is not displayed and covered the current window
             Test Step Comment: (1) MMI_gen 11834 (partly: EVC-51);(2) MMI_gen 11839;(3) MMI_gen 11834 (partly: open Brake Percentage Validation window, touch screen);(4) MMI_gen 11833 (partly: MMI_gen 5215 (partly: Close button, Window title, Input field, No button, Yes button)); MMI_gen 4392 (partly: [Close] NA11);(5) MMI_gen 11837;(6) MMI_gen 11833 (partly: MMI_gen 5216);(7) MMI_gen 11833 (partly: MMI_gen 7943);(8) MMI_gen 11833 (partly: MMI_gen 5303);(9) MMI_gen 11833 (partly: MMI_gen 5214 (partly: single input field));          (10) MMI_gen 11833 (partly: MMI_gen 5484 (partly: empty)); (11) MMI_gen 11833 (partly: MMI_gen 5214 (partly: dedicated keyboard, MMI_gen 5006), MMI_gen 5006);(12) MMI_gen 11833 (partly: MMI_gen 5263 (partly: MMI_gen 4696));(13) MMI_gen 11833 (partly: MMI_gen 5263 (partly: MMI_gen 4702 (partly: right aligned)));(14) MMI_gen 11833 (partly: MMI_gen 5263 (partly: MMI_gen 4704 (partly: left aligned)));(15) MMI_gen 11838;                  MMI_gen 11833 (partly: MMI_gen 5263 (partly: MMI_gen 4701 (partly: same order), MMI_gen 4697));(16) MMI_gen 11833 (partly: MMI_gen 5263 (partly: MMI_gen 4698));(17) MMI_gen 11833 (partly: MMI_gen 5263 (partly: MMI_gen 4701 (partly: Main area A, B, C and E));(18) MMI_gen 11833 (partly: MMI_gen 5263 (partly: MMI_gen 4700 (partly: data validation process)));(19) MMI_gen 4350;(20) MMI_gen 4351;(21) MMI_gen 4353;
             */
-            DmiActions.ShowInstruction(this, "Press the ‘Brake’ button in the Settings window, then the ‘Brake percentage’ button.");
-            
+            DmiActions.ShowInstruction(this,
+                "Press the ‘Brake’ button in the Settings window, then the ‘Brake percentage’ button.");
+
             EVC50_MMICurrentBrakePercentage.Send();
 
             DmiActions.ShowInstruction(this, "Enter and confirm the value ‘90’ for ‘Brake percentage’");
 
-            EVC51_MMIEchoedBrakePercentage.MMI_M_BP_ORIG_ = 99; 
+            EVC51_MMIEchoedBrakePercentage.MMI_M_BP_ORIG_ = 99;
             EVC51_MMIEchoedBrakePercentage.MMI_M_BP_CURRENT_ = 90;
             EVC51_MMIEchoedBrakePercentage.MMI_M_BP_MEASURED_ = 95;
             EVC51_MMIEchoedBrakePercentage.Send();
 
             // Spec says echo texts are displayed in areas A, B, C and E but DMI_RS_ETCS shows them in area D ??
-            WaitForVerification("Check the following (* indicates sub-areas drawn as one area):" + Environment.NewLine + Environment.NewLine +
-                           @"1. DMI displays the Brake percentage validation window with 3 layers in a half-grid array with the title ‘Validate brake percentage’, right-aligned." + Environment.NewLine +
-                           "2. The Brake percentage validation window is displayed in areas A, B, C, D, F and G in layer 0." + Environment.NewLine +
-                           @"3. The Brake percentage validation window displays one data input field (blank), an ‘Enabled Close’ button (symbol NA11)." + Environment.NewLine +
-                           "4. A dedicated keypad is displayed below the data input field, containing enabled  <No> and <Yes> keys." + Environment.NewLine +
-                           "7. 3 echo texts are displayed in areas A, B, C and E [????] with a Label Part (right-aligned) and a Data Part (left-aligned) with white text." + Environment.NewLine +
-                           "8. The echo texts in order (top to bottom) are labelled ‘Original BP’, ‘Last measured BP’ and ‘Brake percentage’." + Environment.NewLine +
-                           "9. The echo texts (in the same order) display ‘95’, ‘92’ and ‘90’, respectively." + Environment.NewLine +
-                           "8. Objects, text messages and buttons can be displayed in several levels. Within a level they are allocated to areas." + Environment.NewLine +
-                           "9. Objects, text messages and buttons in a layer form a window." + Environment.NewLine +
-                           "10. The Default window does not cover the current window.");
-            
+            WaitForVerification("Check the following (* indicates sub-areas drawn as one area):" + Environment.NewLine +
+                                Environment.NewLine +
+                                @"1. DMI displays the Brake percentage validation window with 3 layers in a half-grid array with the title ‘Validate brake percentage’, right-aligned." +
+                                Environment.NewLine +
+                                "2. The Brake percentage validation window is displayed in areas A, B, C, D, F and G in layer 0." +
+                                Environment.NewLine +
+                                @"3. The Brake percentage validation window displays one data input field (blank), an ‘Enabled Close’ button (symbol NA11)." +
+                                Environment.NewLine +
+                                "4. A dedicated keypad is displayed below the data input field, containing enabled  <No> and <Yes> keys." +
+                                Environment.NewLine +
+                                "7. 3 echo texts are displayed in areas A, B, C and E [????] with a Label Part (right-aligned) and a Data Part (left-aligned) with white text." +
+                                Environment.NewLine +
+                                "8. The echo texts in order (top to bottom) are labelled ‘Original BP’, ‘Last measured BP’ and ‘Brake percentage’." +
+                                Environment.NewLine +
+                                "9. The echo texts (in the same order) display ‘95’, ‘92’ and ‘90’, respectively." +
+                                Environment.NewLine +
+                                "8. Objects, text messages and buttons can be displayed in several levels. Within a level they are allocated to areas." +
+                                Environment.NewLine +
+                                "9. Objects, text messages and buttons in a layer form a window." +
+                                Environment.NewLine +
+                                "10. The Default window does not cover the current window.");
+
             /*
             Test Step 2
             Action: Press ‘No’ button
@@ -121,7 +133,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press in the data input field to confirm the entered data");
 
             EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.ExitBrakePercentage;
-           
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Brake window");
 
@@ -139,7 +151,7 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, "Enter and confirm the value ‘89’ for ‘Brake percentage’");
 
-            EVC51_MMIEchoedBrakePercentage.MMI_M_BP_ORIG_ = 99;       // (99 -> 0x63, bit-inverted)
+            EVC51_MMIEchoedBrakePercentage.MMI_M_BP_ORIG_ = 99; // (99 -> 0x63, bit-inverted)
             EVC51_MMIEchoedBrakePercentage.MMI_M_BP_CURRENT_ = 89;
             EVC51_MMIEchoedBrakePercentage.MMI_M_BP_MEASURED_ = 95;
             EVC51_MMIEchoedBrakePercentage.Send();
@@ -179,7 +191,7 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, "Enter and confirm the value ‘88’ for ‘Brake percentage’");
 
-            EVC51_MMIEchoedBrakePercentage.MMI_M_BP_ORIG_ = 99;  
+            EVC51_MMIEchoedBrakePercentage.MMI_M_BP_ORIG_ = 99;
             EVC51_MMIEchoedBrakePercentage.MMI_M_BP_CURRENT_ = 88;
             EVC51_MMIEchoedBrakePercentage.MMI_M_BP_MEASURED_ = 95;
             EVC51_MMIEchoedBrakePercentage.Send();
@@ -208,7 +220,7 @@ namespace Testcase.DMITestCases
 
             EVC50_MMICurrentBrakePercentage.MMI_M_BP_ORIG = 99;
             EVC50_MMICurrentBrakePercentage.MMI_M_BP_CURRENT = 88;
-            EVC50_MMICurrentBrakePercentage.MMI_M_BP_MEASURED= 95;
+            EVC50_MMICurrentBrakePercentage.MMI_M_BP_MEASURED = 95;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Brake window");
@@ -242,7 +254,8 @@ namespace Testcase.DMITestCases
             DmiActions.Re_establish_communication_EVC_DMI(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. All buttons and keys except the <No> key are displayed disabled." + Environment.NewLine +
+                                "1. All buttons and keys except the <No> key are displayed disabled." +
+                                Environment.NewLine +
                                 "2. The <No> key is displayed enabled." + Environment.NewLine +
                                 "3. The text of all disabled button and keys labels is in dark-grey.");
 

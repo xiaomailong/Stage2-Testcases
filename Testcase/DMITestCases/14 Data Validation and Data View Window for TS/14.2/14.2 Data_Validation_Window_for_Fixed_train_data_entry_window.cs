@@ -1,4 +1,4 @@
- using System;
+using System;
 using System.Diagnostics;
 using System.Collections.Generic;
 using System.Linq;
@@ -68,22 +68,27 @@ namespace Testcase.DMITestCases
             nfirm that DMI received the packet MMI_ECHOED_TRAIN_DATA (EVC-10). DMI displays Train data Validation window.The following objects are display in Train data Validation window.Close buttonWindow TitleInput fieldYes buttonNo buttonWindow TitleThe window title is ‘Validate Train data’.The window title is right aligned.LayerThe window is displayed in main area A/B/C/D/E/F/G.All area of Data validation window are Layer 0.Input fieldThe window contains a single input field which have only data area.The value of input field is empty.KeyboardThe displayed keyboard type is dedicated keyboard which contain only ‘Yes’ and ‘No’ button.The key #7 is No button.The key #8 is Yes button.Echo TextEcho Text is composed of a Label part and Data part.The Label of echo text is right aligned.The Data part of echo text is left aligned.The order of echo texts are same as of the Train data window as follows,Train typeThe data part of echo texts are display the data value same as of the Train data window.The echo texts are located in Main area A,B,C and E.The echo texts colour is white.Use the log file to confirm that the following variable in packet EVC-10 is same as entered data and display in the data part of echo text,MMI_M_DATA_ENABLE =1 (Only bit #0, Train Set ID is set) MMI_M_TRAINSET_ID != 0 and 10-15 (Train data set is chosen)MMI_X_CAPTION_TRAINSET =  entered Train Set
             Test Step Comment: (1) MMI_gen 9461 (partly: EVC-10, Fixed Train data);(2) MMI_gen 9461 (partly: open Train data Validation window, touch screen);(3) MMI_gen 8555 (partly: MMI_gen 5215 (partly: Close button, Window title, Input field, No button, Yes button));(4) MMI_gen 8556;(5) MMI_gen 8555 (partly: MMI_gen 5216);(6) MMI_gen 8555 (partly: MMI_gen 7943);(7) MMI_gen 8555 (partly: MMI_gen 5303);(8) MMI_gen 8555 (partly: MMI_gen 5214 (partly: single input field));          (9) MMI_gen 8555 (partly: MMI_gen 5484 (partly: empty)); (10) MMI_gen 8555 (partly: MMI_gen 5214 (partly: dedicated keyboard, MMI_gen 5006), MMI_gen 5006);(11) MMI_gen 8555 (partly: MMI_gen 5263 (partly: MMI_gen 4696));(12) MMI_gen 8555 (partly: MMI_gen 5263 (partly: MMI_gen 4702 (partly: right aligned)));(13) MMI_gen 8555 (partly: MMI_gen 5263 (partly: MMI_gen 4704 (partly: left aligned)));(14) MMI_gen 8557; MMI_gen 8555 (partly: MMI_gen 5263 (partly: MMI_gen 4701 (partly: same order), MMI_gen 4697));(15) MMI_gen 8555 (partly: MMI_gen 5263 (partly: MMI_gen 4698));(16) MMI_gen 8555 (partly: MMI_gen 5263 (partly: MMI_gen 4701 (partly: Main area A, B, C and E));(17) MMI_gen 8555 (partly: MMI_gen 5263 (partly: MMI_gen 4700 (partly: data validation process)));(18) MMI_gen 9462 (partly: Fixed Train data);
             */
-            DmiActions.Send_EVC6_MMICurrentTrainData_FixedDataEntry(this, new[] { "FLU", "RLU", "Rescue" }, 1);
+            DmiActions.Send_EVC6_MMICurrentTrainData_FixedDataEntry(this, new[] {"FLU", "RLU", "Rescue"}, 1);
 
             DmiActions.ShowInstruction(this, @"Enter and confirm all data in Train data window");
 
-            DmiActions.Send_EVC10_MMIEchoedTrainData_FixedDataEntry(this, new [] { "FLU", "RLU", "Rescue" });
+            DmiActions.Send_EVC10_MMIEchoedTrainData_FixedDataEntry(this, new[] {"FLU", "RLU", "Rescue"});
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. DMI displays the Train data validation window, with the title ‘Validate Train data, right-aligned’." + Environment.NewLine +
-                                @"2. The window contains a single data input field, a ‘Close’ button and a dedicated keypad for the data input field." + Environment.NewLine +
+                                @"1. DMI displays the Train data validation window, with the title ‘Validate Train data, right-aligned’." +
+                                Environment.NewLine +
+                                @"2. The window contains a single data input field, a ‘Close’ button and a dedicated keypad for the data input field." +
+                                Environment.NewLine +
                                 "3. The window is in one layer in areas A, B, C, D, E, F and G" + Environment.NewLine +
-                                "4. The data input field displays a blank value and has only a data area." + Environment.NewLine +
+                                "4. The data input field displays a blank value and has only a data area." +
+                                Environment.NewLine +
                                 "5. The keypad contains <Yes> (#7)and <No> (#8) keys." + Environment.NewLine +
-                                "6. A ‘Train type’ echo text is displayed, with same value as in the Train data window ." + Environment.NewLine +
-                                "7. The echo text has a Label (right-aligned text) and a Data part (left-aligned text) in white." + Environment.NewLine +
+                                "6. A ‘Train type’ echo text is displayed, with same value as in the Train data window ." +
+                                Environment.NewLine +
+                                "7. The echo text has a Label (right-aligned text) and a Data part (left-aligned text) in white." +
+                                Environment.NewLine +
                                 "8. The echo text is displayed in areas A, B, C and E.");
-            
+
             /*
             Test Step 2
             Action: Press ‘No’ button
@@ -104,7 +109,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Confirm the value by pressing in the input field");
 
             EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.ExitTrainDataEntry;
-            DmiActions.Send_EVC6_MMICurrentTrainData_FixedDataEntry(this, new[] { "FLU", "RLU", "Rescue" }, 15);
+            DmiActions.Send_EVC6_MMICurrentTrainData_FixedDataEntry(this, new[] {"FLU", "RLU", "Rescue"}, 15);
 
             DmiExpectedResults.Train_data_window_displayed(this);
 
@@ -113,9 +118,10 @@ namespace Testcase.DMITestCases
             Action: Perform the following procedure,Enter and confirm all data in Train data window.Press ‘Yes’ button
             Expected Result: DMI displays Train data validation window
             */
-            DmiActions.ShowInstruction(this, "Enter and confirm all data in the Train data window, then press the ‘Yes’ button");
+            DmiActions.ShowInstruction(this,
+                "Enter and confirm all data in the Train data window, then press the ‘Yes’ button");
 
-            DmiActions.Send_EVC10_MMIEchoedTrainData_FixedDataEntry(this, new[] { "FLU", "RLU", "Rescue" });
+            DmiActions.Send_EVC10_MMIEchoedTrainData_FixedDataEntry(this, new[] {"FLU", "RLU", "Rescue"});
 
             DmiExpectedResults.Train_data_validation_window_displayed(this);
 
@@ -143,11 +149,12 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, "Press the ‘Train data’ button");
 
-            DmiActions.Send_EVC6_MMICurrentTrainData_FixedDataEntry(this, new[] { "FLU", "RLU", "Rescue" }, 15);
+            DmiActions.Send_EVC6_MMICurrentTrainData_FixedDataEntry(this, new[] {"FLU", "RLU", "Rescue"}, 15);
 
-            DmiActions.ShowInstruction(this, "Enter and confirm all data in the Train data window, then press the ‘Yes’ button");
+            DmiActions.ShowInstruction(this,
+                "Enter and confirm all data in the Train data window, then press the ‘Yes’ button");
 
-            DmiActions.Send_EVC10_MMIEchoedTrainData_FixedDataEntry(this, new[] { "FLU", "RLU", "Rescue" });
+            DmiActions.Send_EVC10_MMIEchoedTrainData_FixedDataEntry(this, new[] {"FLU", "RLU", "Rescue"});
 
             DmiExpectedResults.Train_data_validation_window_displayed(this);
 
@@ -187,14 +194,16 @@ namespace Testcase.DMITestCases
             */
             // Already in train data window...
 
-            DmiActions.ShowInstruction(this, "Enter and confirm all data in Train data window, then press the ‘Yes’ button");
+            DmiActions.ShowInstruction(this,
+                "Enter and confirm all data in Train data window, then press the ‘Yes’ button");
 
-            DmiActions.Send_EVC10_MMIEchoedTrainData_FixedDataEntry(this, new[] { "FLU", "RLU", "Rescue" });
+            DmiActions.Send_EVC10_MMIEchoedTrainData_FixedDataEntry(this, new[] {"FLU", "RLU", "Rescue"});
 
             DmiActions.Simulate_communication_loss_EVC_DMI(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. DMI displays the Default window with the message ‘ATP Down Alarm’." + Environment.NewLine +
+                                @"1. DMI displays the Default window with the message ‘ATP Down Alarm’." +
+                                Environment.NewLine +
                                 @"2. The ‘Alarm’ sound is played.");
 
             /*

@@ -42,14 +42,15 @@ namespace Testcase.Telegrams.DMItoEVC
                 if (_pool.SITR.CCUO.ETCS1NewLanguage.MmiNidLanguage.Value.Equals(MMI_NID_LANGUAGE))
                 {
                     _pool.TraceReport($"{baseString} - [MMI_NID_LANGUAGE] = {MMI_NID_LANGUAGE}" + Environment.NewLine +
-                                        "Result: PASSED.");
+                                      "Result: PASSED.");
                 }
                 // Else display the real value extracted from EVC-122
 
                 else
                 {
-                    _pool.TraceError($"{baseString} - [MMI_NID_LANGUAGE] = " + _pool.SITR.CCUO.ETCS1NewLanguage.MmiNidLanguage.Value +
-                                    Environment.NewLine + "Result: FAILED");
+                    _pool.TraceError($"{baseString} - [MMI_NID_LANGUAGE] = " +
+                                     _pool.SITR.CCUO.ETCS1NewLanguage.MmiNidLanguage.Value +
+                                     Environment.NewLine + "Result: FAILED");
                 }
             }
             // Show generic DMI -> EVC telegram failure
@@ -68,6 +69,5 @@ namespace Testcase.Telegrams.DMItoEVC
         /// Note: No mapping between value and language is required for ETC, only storage and transfer of the value.
         /// </summary>
         public static uint MMI_NID_LANGUAGE { get; set; }
-     
     }
 }

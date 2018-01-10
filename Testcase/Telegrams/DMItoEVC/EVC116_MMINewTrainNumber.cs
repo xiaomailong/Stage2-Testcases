@@ -46,13 +46,14 @@ namespace Testcase.Telegrams.DMItoEVC
                 if (_checkResult)
                 {
                     _pool.TraceReport($"{baseString} - [MMI_NID_OPERATION] = {nidOperation}" + Environment.NewLine +
-                                        "Result: PASSED.");
+                                      "Result: PASSED.");
                 }
                 // Else display the real value extracted from EVC-104
                 else
                 {
-                    _pool.TraceError($"{baseString} - [MMI_NID_OPERATION] = " + _pool.SITR.CCUO.ETCS1NewTrainNumber.MmiNidOperation.Value +
-                                    Environment.NewLine + "Result: FAILED");
+                    _pool.TraceError($"{baseString} - [MMI_NID_OPERATION] = " +
+                                     _pool.SITR.CCUO.ETCS1NewTrainNumber.MmiNidOperation.Value +
+                                     Environment.NewLine + "Result: FAILED");
                 }
             }
             // Show generic DMI -> EVC telegram failure

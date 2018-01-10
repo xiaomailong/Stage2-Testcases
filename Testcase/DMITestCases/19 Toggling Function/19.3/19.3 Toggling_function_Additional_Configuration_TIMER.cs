@@ -73,7 +73,7 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 286; // "#3 ST06 (Reversing is possible)"
             EVC8_MMIDriverMessage.Send();
-            
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays symbol ST06 in sub-area C6 in FS mode, Level 1.");
 
@@ -89,7 +89,8 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
             EVC8_MMIDriverMessage.Send();
 
-            DmiActions.ShowInstruction(this, "Change the train direction to reverse and press the symbol in sub-area C1");
+            DmiActions.ShowInstruction(this,
+                "Change the train direction to reverse and press the symbol in sub-area C1");
 
             EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
@@ -111,11 +112,13 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, "Press on area A1-A4, and area B, respectively, at least twice");
 
-            WaitForVerification("Check that the following objects do not toggle and remain the same as in the previous step:" + Environment.NewLine + Environment.NewLine +
-                                "1. White basic speed hook." + Environment.NewLine +
-                                "2.	Medium-grey basic speed hook." + Environment.NewLine +
-                                "3. Digital distance to target." + Environment.NewLine +
-                                "4. Digital	release speed.");
+            WaitForVerification(
+                "Check that the following objects do not toggle and remain the same as in the previous step:" +
+                Environment.NewLine + Environment.NewLine +
+                "1. White basic speed hook." + Environment.NewLine +
+                "2.	Medium-grey basic speed hook." + Environment.NewLine +
+                "3. Digital distance to target." + Environment.NewLine +
+                "4. Digital	release speed.");
 
             /*
             Test Step 4
@@ -137,18 +140,21 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SR mode, Level 1.The objects below are displayed on DMI for 10 secondsWhite basic speed hookDistance to target (digital)(2) The release speed digital is not displayed
             Test Step Comment: (1) MMI_gen 11868 (partly: SR mode), Table 34 (CSM), Table 38 (CSM), MMI_gen 6450 (partly: 3rd bullet, SR mode), MMI_gen 6898 (partly: configuration ‘TIMER’, SR mode);(2) MMI_gen 6890 (partly: SR mode, un-concerned object), Table 35 (CSM)
             */
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode =
+                EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Target_Speed_Monitoring;
             EVC1_MMIDynamic.MMI_O_BRAKETARGET = 200000;
             DmiActions.Finished_SoM_Default_Window(this);
 
             // ?? Medium-grey speed hook not mentioned
-            Wait_Realtime(10000);            
+            Wait_Realtime(10000);
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Ceiling_Speed_Monitoring;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the White Basic speed hook for 10s then removes it." + Environment.NewLine +
-                                "3.	DMI displays the Digital distance to target for 10s then removes it." + Environment.NewLine +
+                                "1. DMI displays the White Basic speed hook for 10s then removes it." +
+                                Environment.NewLine +
+                                "3.	DMI displays the Digital distance to target for 10s then removes it." +
+                                Environment.NewLine +
                                 "4. DMI does not display the Digital release speed.");
 
             /*
@@ -167,20 +173,27 @@ namespace Testcase.DMITestCases
             EVC11_MMICurrentSRRules.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS.BTN_YES_DATA_ENTRY_COMPLETE;
             EVC11_MMICurrentSRRules.Send();
 
-            DmiActions.ShowInstruction(this, "Enter and confirm the following data, SR speed = 40 km/h, SR distance = 300m");
+            DmiActions.ShowInstruction(this,
+                "Enter and confirm the following data, SR speed = 40 km/h, SR distance = 300m");
 
             EVC11_MMICurrentSRRules.DataElements = new List<DataElement>
-            { new DataElement { Identifier = 15, EchoText = "40", QDataCheck = 0}, new DataElement { Identifier = 16, EchoText = "300", QDataCheck = 0} };
+            {
+                new DataElement {Identifier = 15, EchoText = "40", QDataCheck = 0},
+                new DataElement {Identifier = 16, EchoText = "300", QDataCheck = 0}
+            };
             EVC11_MMICurrentSRRules.Send();
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Target_Speed_Monitoring;
-            Wait_Realtime(10000);            
+            Wait_Realtime(10000);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the White Basic speed hook for 10s then removes it." + Environment.NewLine +
-                                "2.	DMI displays the Medium-grey basic speed hook for 10s then removes it." + Environment.NewLine +
-                                "3. DMI displays the Digital distance to target for 10s then removes it." + Environment.NewLine +
+                                "1. DMI displays the White Basic speed hook for 10s then removes it." +
+                                Environment.NewLine +
+                                "2.	DMI displays the Medium-grey basic speed hook for 10s then removes it." +
+                                Environment.NewLine +
+                                "3. DMI displays the Digital distance to target for 10s then removes it." +
+                                Environment.NewLine +
                                 "4. DMI does not display the Digital release speed.");
-            
+
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Ceiling_Speed_Monitoring;
 
 
@@ -191,15 +204,18 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 6890 (partly: Areas A, SR mode, toggle off), MMI_gen 6896 (partly: configuration ‘TIMER’, SR mode, toggle invisible), MMI_gen 6894 (partly: SR mode);    (2) MMI_gen 6890 (partly: SR mode, un-concerned object, toggle on) , Table 35 (not CSM)
             */
             DmiActions.ShowInstruction(this, @"Press the speedometer once");
-            
+
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Target_Speed_Monitoring;
             EVC1_MMIDynamic.MMI_V_RELEASE_KMH = 15;
-            Wait_Realtime(10000);   
+            Wait_Realtime(10000);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the White Basic speed hook for 10s then removes it." + Environment.NewLine +
-                                "2.	DMI displays the Medium-grey basic speed hook for 10s then removes it." + Environment.NewLine +
-                                "3. DMI displays the Digital distance to target for 10s then removes it." + Environment.NewLine +
+                                "1. DMI displays the White Basic speed hook for 10s then removes it." +
+                                Environment.NewLine +
+                                "2.	DMI displays the Medium-grey basic speed hook for 10s then removes it." +
+                                Environment.NewLine +
+                                "3. DMI displays the Digital distance to target for 10s then removes it." +
+                                Environment.NewLine +
                                 "4. DMI displays the Digital release speed which remains visible.");
 
             /*
@@ -209,20 +225,23 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 6890 (partly: Areas A, Area B, SR mode);                                  MMI_gen 6896 (partly: configuration ‘TIMER’, SR mode); MMI_gen 6894 (partly: SR mode); (2) MMI_gen 6890 (partly: SR mode, un-concerned object, toggle on) , Table 35 (not CSM) 
             */
             DmiActions.ShowInstruction(this, @"Press once on area A1-A4 and area B, respectively");
-            
+
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Target_Speed_Monitoring;
             EVC1_MMIDynamic.MMI_V_RELEASE_KMH = 15;
-            Wait_Realtime(10000);            
+            Wait_Realtime(10000);
 
             WaitForVerification("Check the following: " + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the White Basic speed hook for 10s then removes it." + Environment.NewLine +
-                                "2.	DMI displays the Medium-grey basic speed hook for 10s then removes it." + Environment.NewLine +
-                                "3. DMI displays the Digital distance to target for 10s then removes it." + Environment.NewLine +
+                                "1. DMI displays the White Basic speed hook for 10s then removes it." +
+                                Environment.NewLine +
+                                "2.	DMI displays the Medium-grey basic speed hook for 10s then removes it." +
+                                Environment.NewLine +
+                                "3. DMI displays the Digital distance to target for 10s then removes it." +
+                                Environment.NewLine +
                                 "4. Digital release speed does not change (remains visible).");
-            
+
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Ceiling_Speed_Monitoring;
             EVC1_MMIDynamic.MMI_V_RELEASE_KMH = 15;
-            
+
 
             /*
             Test Step 9
@@ -260,11 +279,13 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, "Press on area A1-A4, and area B, respectively, at least twice");
 
-            WaitForVerification("Check that the following objects do not toggle on (visible) or off (invisible) as the respective area is pressed:" + Environment.NewLine + Environment.NewLine +
-                                "1. White Basic speed hook (remains invisible)." + Environment.NewLine +
-                                "2.	Medium-grey basic speed hook (remains invisible)." + Environment.NewLine +
-                                "3. Digital distance to target (remains invisible)." + Environment.NewLine +
-                                "4. Digital release speed (remains invisible).");
+            WaitForVerification(
+                "Check that the following objects do not toggle on (visible) or off (invisible) as the respective area is pressed:" +
+                Environment.NewLine + Environment.NewLine +
+                "1. White Basic speed hook (remains invisible)." + Environment.NewLine +
+                "2.	Medium-grey basic speed hook (remains invisible)." + Environment.NewLine +
+                "3. Digital distance to target (remains invisible)." + Environment.NewLine +
+                "4. Digital release speed (remains invisible).");
 
             /*
             Test Step 11
@@ -297,7 +318,8 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, "Press on area A1-A4, and area B, respectively, at least twice");
 
-            WaitForVerification("Check that the following objects do not toggle as the respective area is pressed:" + Environment.NewLine + Environment.NewLine +
+            WaitForVerification("Check that the following objects do not toggle as the respective area is pressed:" +
+                                Environment.NewLine + Environment.NewLine +
                                 "1. White Basic speed hook (remains invisible)." + Environment.NewLine +
                                 "2.	Medium-grey basic speed hook (remains invisible)." + Environment.NewLine +
                                 "3. Digital distance to target (remains visible)." + Environment.NewLine +
@@ -311,7 +333,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in OS mode, Level 1.Verify the following information,The objects below are displayed on DMI for 10 secondsBasic speed Hook(s)Distance to target (digital)Release speed digital
             Test Step Comment: (1) MMI_gen 11868 (partly: OS mode), Table 34 (not CSM), Table 35 (not CSM), Table 38 (not CSM), MMI_gen 6450 (partly: 3rd bullet, OS mode), MMI_gen 6898 (configuration ‘TIMER’, OS mode);
             */
-            
+
             EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 259;
@@ -327,10 +349,12 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in OS mode, Level 1." + Environment.NewLine +
-                                "2. DMI displays (both) Basic speed hook for 10s then removes them." + Environment.NewLine +
-                                "3.	DMI displays the Digital distance to target for 10s then removes it." + Environment.NewLine +
+                                "2. DMI displays (both) Basic speed hook for 10s then removes them." +
+                                Environment.NewLine +
+                                "3.	DMI displays the Digital distance to target for 10s then removes it." +
+                                Environment.NewLine +
                                 "4. DMI displays the Digital release speed for 10s then removes it.");
-            
+
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring;
 
             /*
@@ -343,11 +367,13 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, "Press the speedometer once");
 
-            WaitForVerification("Check that the following objects are displayed by the DMI for 10s (toggled off) and then removed:" + Environment.NewLine + Environment.NewLine +
-                                "1. White Basic speed hook." + Environment.NewLine +
-                                "2.	Medium-grey basic speed hook." + Environment.NewLine +
-                                "3. Digital distance to target." + Environment.NewLine +
-                                "4. Digital release speed.");
+            WaitForVerification(
+                "Check that the following objects are displayed by the DMI for 10s (toggled off) and then removed:" +
+                Environment.NewLine + Environment.NewLine +
+                "1. White Basic speed hook." + Environment.NewLine +
+                "2.	Medium-grey basic speed hook." + Environment.NewLine +
+                "3. Digital distance to target." + Environment.NewLine +
+                "4. Digital release speed.");
 
             /*
             Test Step 15
@@ -357,7 +383,8 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, "Press on area A1-A4, and area B, respectively, at least twice");
 
-            WaitForVerification("Check that the following objects are displayed by the DMI for 10s and then removed:" + Environment.NewLine + Environment.NewLine +
+            WaitForVerification("Check that the following objects are displayed by the DMI for 10s and then removed:" +
+                                Environment.NewLine + Environment.NewLine +
                                 "1. White Basic speed hook." + Environment.NewLine +
                                 "2.	Medium-grey basic speed hook." + Environment.NewLine +
                                 "3. Digital distance to target." + Environment.NewLine +
@@ -381,7 +408,8 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, "Acknowledge by pressing in sub-area C1");
 
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.LimitedSupervision;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode =
+                EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.LimitedSupervision;
 
             // Wrong LS mode turns off Digital distance to target!
             WaitForVerification("Check the following :" + Environment.NewLine + Environment.NewLine +
@@ -400,7 +428,8 @@ namespace Testcase.DMITestCases
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
             DmiActions.ShowInstruction(this, "Press on area A1-A4, and area B, respectively, at least twice");
 
-            WaitForVerification("Check that the following objects do not toggle as the respective area is pressed:" + Environment.NewLine + Environment.NewLine +
+            WaitForVerification("Check that the following objects do not toggle as the respective area is pressed:" +
+                                Environment.NewLine + Environment.NewLine +
                                 "1. White Basic speed hook (remains invisible)." + Environment.NewLine +
                                 "2.	Medium-grey basic speed hook (remains invisible)." + Environment.NewLine +
                                 "3. Digital distance to target (remains visible)." + Environment.NewLine +
@@ -434,11 +463,13 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, "Press on area A1-A4, and area B, respectively, at least twice");
 
-            WaitForVerification("Check that the following objects do not toggle on (visible) or off (invisible) as the respective area is pressed:" + Environment.NewLine + Environment.NewLine +
-                                "1. White Basic speed hook (remains invisible)." + Environment.NewLine +
-                                "2.	Medium-grey basic speed hook (remains invisible)." + Environment.NewLine +
-                                "3. Digital distance to target (remains invisible)." + Environment.NewLine +
-                                "4. Digital release speed (remains invisible).");
+            WaitForVerification(
+                "Check that the following objects do not toggle on (visible) or off (invisible) as the respective area is pressed:" +
+                Environment.NewLine + Environment.NewLine +
+                "1. White Basic speed hook (remains invisible)." + Environment.NewLine +
+                "2.	Medium-grey basic speed hook (remains invisible)." + Environment.NewLine +
+                "3. Digital distance to target (remains invisible)." + Environment.NewLine +
+                "4. Digital release speed (remains invisible).");
 
             /*
             Test Step 20
@@ -474,11 +505,13 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, "Press on area A1-A4, and area B, respectively, at least twice");
 
-            WaitForVerification("Check that the following objects do not toggle on (visible) or on (invisible) as the respective area is pressed:" + Environment.NewLine + Environment.NewLine +
-                                "1. White Basic speed hook (remains invisible)." + Environment.NewLine +
-                                "2.	Medium-grey basic speed hook (remains invisible)." + Environment.NewLine +
-                                "3. Digital distance to target (remains invisible)." + Environment.NewLine +
-                                "4. Digital release speed does not change (remains invisible).");
+            WaitForVerification(
+                "Check that the following objects do not toggle on (visible) or on (invisible) as the respective area is pressed:" +
+                Environment.NewLine + Environment.NewLine +
+                "1. White Basic speed hook (remains invisible)." + Environment.NewLine +
+                "2.	Medium-grey basic speed hook (remains invisible)." + Environment.NewLine +
+                "3. Digital distance to target (remains invisible)." + Environment.NewLine +
+                "4. Digital release speed does not change (remains invisible).");
 
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 20;
 
@@ -493,7 +526,8 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Shunting;
             EVC30_MMIRequestEnable.Send();
 
-            DmiActions.ShowInstruction(this, "Press the ‘Main’ button. Press and hold ‘Shunting’ button for up to 2s then release the ‘Shunting’ button");
+            DmiActions.ShowInstruction(this,
+                "Press the ‘Main’ button. Press and hold ‘Shunting’ button for up to 2s then release the ‘Shunting’ button");
 
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Shunting;
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring;
@@ -502,7 +536,8 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SH mode, Level 1." + Environment.NewLine +
-                                "2. DMI displays the White basic speed hook for 10s then removes it." + Environment.NewLine +
+                                "2. DMI displays the White basic speed hook for 10s then removes it." +
+                                Environment.NewLine +
                                 "3. DMI does not display the Medium-grey basic speed hook." + Environment.NewLine +
                                 "4. DMI does not display the Digital distance to target." + Environment.NewLine +
                                 "5. DMI does not display the Digital release speed.");
@@ -515,14 +550,16 @@ namespace Testcase.DMITestCases
             */
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring;
             DmiActions.ShowInstruction(this, @"Press the speedometer once");
-            
+
             Wait_Realtime(10000);
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_PreIndication_Monitoring;
             EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 10;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the White basic speed hook for 10s then removes it." + Environment.NewLine +
-                                "2. DMI still does not display the Medium-grey basic speed hook." + Environment.NewLine +
+                                "1. DMI displays the White basic speed hook for 10s then removes it." +
+                                Environment.NewLine +
+                                "2. DMI still does not display the Medium-grey basic speed hook." +
+                                Environment.NewLine +
                                 "3. DMI still does not display the Digital distance to target." + Environment.NewLine +
                                 "4. DMI still does not display the Digital release speed.");
 
@@ -541,9 +578,12 @@ namespace Testcase.DMITestCases
             EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 10;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the White basic speed hook for 10s then removes it." + Environment.NewLine +
-                                "2. The Medium-grey basic speed hook does not change (stays invisible)." + Environment.NewLine +
-                                "3. The Digital distance to target does not change (stays invisible)." + Environment.NewLine +
+                                "1. DMI displays the White basic speed hook for 10s then removes it." +
+                                Environment.NewLine +
+                                "2. The Medium-grey basic speed hook does not change (stays invisible)." +
+                                Environment.NewLine +
+                                "3. The Digital distance to target does not change (stays invisible)." +
+                                Environment.NewLine +
                                 "4. The Digital release speed does not change (stays invisible)");
 
             /*
@@ -555,13 +595,15 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring;
 
-            DmiActions.ShowInstruction(this, "Press in a sensitivity area (areas A1-A4 or B) to make a Basic Speed Hook appear");
+            DmiActions.ShowInstruction(this,
+                "Press in a sensitivity area (areas A1-A4 or B) to make a Basic Speed Hook appear");
 
             this.Wait_Realtime(1000);
             DmiActions.Simulate_communication_loss_EVC_DMI(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the message ‘ATP Down Alarm’ and plays a sound alarm." + Environment.NewLine +
+                                "1. DMI displays the message ‘ATP Down Alarm’ and plays a sound alarm." +
+                                Environment.NewLine +
                                 "2. DMI does not display the White basic speed hook." + Environment.NewLine +
                                 "3. DMI does not display the Medium-grey basic speed hook." + Environment.NewLine +
                                 "4. DMI does not display the Digital distance to target." + Environment.NewLine +
@@ -580,7 +622,8 @@ namespace Testcase.DMITestCases
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_PreIndication_Monitoring;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the White basic speed hook for 10s (toggled off) then removes it." + Environment.NewLine +
+                                "1. DMI displays the White basic speed hook for 10s (toggled off) then removes it." +
+                                Environment.NewLine +
                                 "2. DMI does not display the Medium-grey basic speed hook." + Environment.NewLine +
                                 "3. DMI does not display the Digital distance to target." + Environment.NewLine +
                                 "4. DMI does not display the Digital release speed.");

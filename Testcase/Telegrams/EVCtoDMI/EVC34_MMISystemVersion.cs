@@ -30,7 +30,8 @@ namespace Testcase.Telegrams.EVCtoDMI
 
         private static void SetOperatedSystemVersion()
         {
-            _pool.SITR.ETCS1.SystemVersion.MmiMOperatedSystemVersion.Value = (ushort) (_systemVersionX << 8 | _systemVersionY);
+            _pool.SITR.ETCS1.SystemVersion.MmiMOperatedSystemVersion.Value =
+                (ushort) (_systemVersionX << 8 | _systemVersionY);
         }
 
         /// <summary>

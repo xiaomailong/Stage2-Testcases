@@ -74,21 +74,35 @@ namespace Testcase.DMITestCases
             EVC19_MMIRemoveVBC.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the Remove VBC window with the right-aligned title ‘Remove VBC’." + Environment.NewLine +
-                                "2. The window contains a data input field, an enabled Close button, symbol NA11, a data input field in areas D and F." + Environment.NewLine +
-                                "3. The window also has a ‘Remove VBC Entry complete?’ label and a ‘Yes’ button." + Environment.NewLine +
-                                "4. The ‘Yes’ button is displayed disabled with black text on a Dark-grey background." + Environment.NewLine +
-                                "5. The sensitive area of the ‘Yes’ button extends from the ‘Remove VBC Entry complete?’ label." + Environment.NewLine +
-                                "6. The data input field has a label to the left with right-aligned text and a data part to the right with right-aligned text," + Environment.NewLine +
-                                "   displaying the ‘VBC Code’. The label area has grey text on a Dark-grey background." + Environment.NewLine +
-                                "7. The data input field is displayed ‘Selected’, with Medium-grey background." + Environment.NewLine +
-                                "8. A dedicated numeric keypad for the data input field is displayed with buttons <1> to <9>, <Del> (NA11), <0> and (disabled) <Decimal_Separator>." + Environment.NewLine +
-                                "9. A echo text is displayed in areas A, B, C and E, with a label, right-aligned, and a data part in grey." + Environment.NewLine +
-                                "10. The label part of the echo text displays the same text as the data input field label." + Environment.NewLine +
+                                "1. DMI displays the Remove VBC window with the right-aligned title ‘Remove VBC’." +
+                                Environment.NewLine +
+                                "2. The window contains a data input field, an enabled Close button, symbol NA11, a data input field in areas D and F." +
+                                Environment.NewLine +
+                                "3. The window also has a ‘Remove VBC Entry complete?’ label and a ‘Yes’ button." +
+                                Environment.NewLine +
+                                "4. The ‘Yes’ button is displayed disabled with black text on a Dark-grey background." +
+                                Environment.NewLine +
+                                "5. The sensitive area of the ‘Yes’ button extends from the ‘Remove VBC Entry complete?’ label." +
+                                Environment.NewLine +
+                                "6. The data input field has a label to the left with right-aligned text and a data part to the right with right-aligned text," +
+                                Environment.NewLine +
+                                "   displaying the ‘VBC Code’. The label area has grey text on a Dark-grey background." +
+                                Environment.NewLine +
+                                "7. The data input field is displayed ‘Selected’, with Medium-grey background." +
+                                Environment.NewLine +
+                                "8. A dedicated numeric keypad for the data input field is displayed with buttons <1> to <9>, <Del> (NA11), <0> and (disabled) <Decimal_Separator>." +
+                                Environment.NewLine +
+                                "9. A echo text is displayed in areas A, B, C and E, with a label, right-aligned, and a data part in grey." +
+                                Environment.NewLine +
+                                "10. The label part of the echo text displays the same text as the data input field label." +
+                                Environment.NewLine +
                                 "11. The echo text is in areas A, B, C and E." + Environment.NewLine +
-                                "12. A flashing (visible/invisible) underscore character is displayed as a cursor at the end of the data input field." + Environment.NewLine +
-                                "13. Objects, text messages and buttons can be displayed in several levels. Within a level they are allocated to areas." + Environment.NewLine +
-                                "14. Objects, text messages and buttons in a layer form a window." + Environment.NewLine +
+                                "12. A flashing (visible/invisible) underscore character is displayed as a cursor at the end of the data input field." +
+                                Environment.NewLine +
+                                "13. Objects, text messages and buttons can be displayed in several levels. Within a level they are allocated to areas." +
+                                Environment.NewLine +
+                                "14. Objects, text messages and buttons in a layer form a window." +
+                                Environment.NewLine +
                                 "15. The Default window does not cover the current window.");
 
             /*
@@ -101,14 +115,15 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press and hold the <0> key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The key is displayed pressed and immediately re-displayed enabled" + Environment.NewLine +
+                                "1. The key is displayed pressed and immediately re-displayed enabled" +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 "3. The data input field displays ‘0’." + Environment.NewLine +
                                 "4. The cursor is displayed at the end of the data input field." + Environment.NewLine +
                                 "5. The data input field is used to enter the VBC code." + Environment.NewLine +
                                 "6. The data value is in black." + Environment.NewLine +
                                 "7. The echo text has a label part and a data part (with left-aligned text).");
-            
+
             /*
             Test Step 3
             Action: Release the pressed button
@@ -131,7 +146,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the <1> key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The key is displayed pressed and immediately re-displayed enabled" + Environment.NewLine +
+                                "1. The key is displayed pressed and immediately re-displayed enabled" +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 "3. The data input field displays ‘01’." + Environment.NewLine +
                                 "4. The cursor is displayed at the end of the data input field." + Environment.NewLine +
@@ -149,7 +165,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press and hold the <2> key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The key is displayed pressed and immediately re-displayed enabled" + Environment.NewLine +
+                                "1. The key is displayed pressed and immediately re-displayed enabled" +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 "3. The data input field displays ‘012’." + Environment.NewLine +
                                 "4. The cursor is displayed at the end of the data input field." + Environment.NewLine +
@@ -167,7 +184,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the <3> key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The key is displayed pressed and immediately re-displayed enabled" + Environment.NewLine +
+                                "1. The key is displayed pressed and immediately re-displayed enabled" +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 "3. The data input field displays ‘0123’." + Environment.NewLine +
                                 "4. The cursor is displayed at the end of the data input field." + Environment.NewLine +
@@ -185,7 +203,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press and hold the <4> key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The key is displayed pressed and immediately re-displayed enabled" + Environment.NewLine +
+                                "1. The key is displayed pressed and immediately re-displayed enabled" +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 "3. The data input field displays ‘01234’." + Environment.NewLine +
                                 "4. The cursor is displayed at the end of the data input field." + Environment.NewLine +
@@ -202,9 +221,11 @@ namespace Testcase.DMITestCases
             // Repeat Step 2 for key <5>
             DmiActions.ShowInstruction(this, "Press the <Del> key once, then press and hold the <5> key");
 
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine + Environment.NewLine +
-                                "1. The key is displayed pressed and immediately re-displayed enabled" + Environment.NewLine +
-                                "2. The ‘Click’ sound is played once." + Environment.NewLine  +
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                Environment.NewLine +
+                                "1. The key is displayed pressed and immediately re-displayed enabled" +
+                                Environment.NewLine +
+                                "2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 "3. The data input field displays ‘01235’." + Environment.NewLine +
                                 "4. The cursor is displayed at the end of the data input field." + Environment.NewLine +
                                 "5. The data input field is used to enter the VBC code." + Environment.NewLine +
@@ -221,7 +242,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press the <Del> key once, then press and hold the <6> key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The key is displayed pressed and immediately re-displayed enabled" + Environment.NewLine +
+                                "1. The key is displayed pressed and immediately re-displayed enabled" +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 "3. The data input field displays ‘01236’." + Environment.NewLine +
                                 "4. The cursor is displayed at the end of the data input field." + Environment.NewLine +
@@ -239,7 +261,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press the <Del> key once, then press and hold the <7> key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The key is displayed pressed and immediately re-displayed enabled" + Environment.NewLine +
+                                "1. The key is displayed pressed and immediately re-displayed enabled" +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 "3. The data input field displays ‘01237’." + Environment.NewLine +
                                 "4. The cursor is displayed at the end of the data input field." + Environment.NewLine +
@@ -275,7 +298,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press the <Del> key once, then press and hold the <9> key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The key is displayed pressed and immediately re-displayed enabled" + Environment.NewLine +
+                                "1. The key is displayed pressed and immediately re-displayed enabled" +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 "3. The data input field displays ‘01239’." + Environment.NewLine +
                                 "4. The cursor is displayed at the end of the data input field." + Environment.NewLine +
@@ -295,14 +319,18 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,While press and hold button less than 1.5 secSound ‘Click’ is played once.The state of button is changed to ‘Pressed’ and immediately back to ‘Enabled’ state.The last character is removed from an input field after pressing the button.While press and hold button over 1.5 secThe state ‘pressed’ and ‘released’ are switched repeatly while button is pressed and the characters are removed from an input field repeatly refer to pressed state.The sound ‘Click’ is played repeatly while button is pressed
             Test Step Comment: (1) MMI_gen 8337 (partly: MMI_gen 4913 (partly: MMI_gen 4384 (partly: sound ‘Click’))); MMI_gen 9512; MMI_gen 968;(2) MMI_gen 8337 (partly: MMI_gen 4913 (partly: MMI_gen 4384 (partly: Change to state ‘Pressed’ and immediately back to state ‘Enabled’)));   (3) MMI_gen 8337 (partly: MMI_gen 4913 (partly: MMI_gen 4384 (partly: ETCS-MMI’s function associated to the button))); MMI_gen 4393 (partly: [Delete]);(4) MMI_gen 8337 (partly: MMI_gen 4913 (partly: MMI_gen 4386 (partly: visual of repeat function)));(5) MMI_gen 8337 (partly: MMI_gen 4913 (partly: MMI_gen 4386 (partly: audible of repeat function)));
             */
-            DmiActions.ShowInstruction(this, @"Press and hold the <Del> key for at least 1.5s. Note: Stopwatch is required");
+            DmiActions.ShowInstruction(this,
+                @"Press and hold the <Del> key for at least 1.5s. Note: Stopwatch is required");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The key is displayed pressed and immediately re-displayed enabled;" + Environment.NewLine +
+                                "1. The key is displayed pressed and immediately re-displayed enabled;" +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once;" + Environment.NewLine +
                                 "3. The ‘9’ is removed from the data input field." + Environment.NewLine +
-                                "4. After the key has been pressed for 1.5s, the button is repeatedly displayed pressed and immediately re-displayed enabled;" + Environment.NewLine +
-                                "5. Characters are repeatedly removed from the end of the data input field." + Environment.NewLine +
+                                "4. After the key has been pressed for 1.5s, the button is repeatedly displayed pressed and immediately re-displayed enabled;" +
+                                Environment.NewLine +
+                                "5. Characters are repeatedly removed from the end of the data input field." +
+                                Environment.NewLine +
                                 "6. The ‘Click’ sound is played repeatedly.");
 
             /*
@@ -314,7 +342,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Release the <Del> key");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. Characters stop being removed from the data input field."); 
+                                "1. Characters stop being removed from the data input field.");
 
             /*
             Test Step 7
@@ -322,7 +350,8 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The 5 characters are added on an input field as one group. (e.g. ‘12345')
             Test Step Comment: (1) MMI_gen 8337 (partly: MMI_gen 4694 (partly: NEGATIVE, 6th character));
             */
-            DmiActions.ShowInstruction(this, "Press and hold the <Del> key until the data input field is blank, then enter the value ‘12345’");
+            DmiActions.ShowInstruction(this,
+                "Press and hold the <Del> key until the data input field is blank, then enter the value ‘12345’");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field displays ‘12345’ (the value is displayed as a group of 5 characters with no spaces).");
@@ -355,8 +384,10 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,Input fieldsThe associated ‘Enter’ button is data field itself.An input field is used to allow the driver to enter data.The state of ‘VBC Code’ input field is changed to ‘accepted’ as follows,The background colour of the Data Area is dark-grey.The colour of data value is white.There is no input field selected.Echo TextsThe echo text of ‘VBC Code’ is changed to white colour.The value of echo text is changed refer to entered data.Data Entry windowThe state of ‘Yes’ button below text label ‘Train data Entry is complete?’ is enabled as follows,The background colour of the Data Area is medium-grey.The colour of data value is black.The colour of border is medium-grey.Packet transmissionUse the log file to confirm that DMI sent out packet [MMI_NEW_REMOVE_VBC (EVC-119)] with following variablesMMI_M_VBC_CODE (bit 16-23) = 65536MMI_M_BUTTONS = 254The data part of the echo text of train category is displayed according to [MMI_REMOVE_VBC (EVC-19)] with the following variables,MMI_N_TEXT = 5MMI_X_TEXT = “65536”
             Test Step Comment: (1) MMI_gen 8337 (partly: MMI_gen 4682);(2) MMI_gen 8337 (partly: MMI_gen 4634);(3) MMI_gen 8337 (partly: MMI_gen 4652 , MMI_gen 4684 (partly: accepted));(4) MMI_gen 8337 (partly: MMI_gen 4684 (partly: No next input field, data entry process terminated));(5) MMI_gen 8337 (partly: MMI_gen 4700);(6) MMI_gen 8337 (partly: MMI_gen 4681 , MMI_gen 4890, MMI_gen 4698);(7) MMI_gen 8337 (partly: MMI_gen 4909 (partly: Enabled), MMI_gen 4910 (partly: Enabled, MMI_gen 4211 (partly: colour))); MMI_gen 4374;(8) MMI_gen 9924 (partly: [enter], EVC-119);(9) MMI_gen 9915;
             */
-            DmiActions.ShowInstruction(this, "Press and hold the <Del> key until the data input field is blank, then enter the value ‘65536’" + Environment.NewLine +
-                                             "and confirm the data by pressing in the data input field");
+            DmiActions.ShowInstruction(this,
+                "Press and hold the <Del> key until the data input field is blank, then enter the value ‘65536’" +
+                Environment.NewLine +
+                "and confirm the data by pressing in the data input field");
 
             EVC119_MMINewRemoveVbc.MMI_M_VBC_CODE = 65535;
             EVC119_MMINewRemoveVbc.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_VBC.BTN_ENTER;
@@ -370,9 +401,11 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field accepts the value." + Environment.NewLine +
                                 "2. The data input field acts as an ‘Enter’ button." + Environment.NewLine +
-                                "3. The data input field is displayed ‘Accepted’, with the value in white on a Dark-grey background." + Environment.NewLine +
+                                "3. The data input field is displayed ‘Accepted’, with the value in white on a Dark-grey background." +
+                                Environment.NewLine +
                                 "4. The data input field is not ‘Selected’." + Environment.NewLine +
-                                "5. The echo text displayes the same value, in white, as the data input field." + Environment.NewLine +
+                                "5. The echo text displayes the same value, in white, as the data input field." +
+                                Environment.NewLine +
                                 "6. The ‘Yes’ button is displayed enabled, with black text on a Medium-grey background and Medium-grey border.");
 
             /*
@@ -404,7 +437,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press and hold the ‘Yes’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘Yes’ button is displayed pressed and immediately re-displayed enabled" + Environment.NewLine +
+                                "1. The ‘Yes’ button is displayed pressed and immediately re-displayed enabled" +
+                                Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 "3. The data input field displays ‘65536’." + Environment.NewLine +
                                 "4. The cursor is displayed at the end of the data input field." + Environment.NewLine +
@@ -422,7 +456,7 @@ namespace Testcase.DMITestCases
             EVC29_MMIEchoedRemoveVBCData.MMI_M_VBC_CODE_ = 65536;
             EVC29_MMIEchoedRemoveVBCData.Send();
 
-           WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Remove RBC validation window.");
 
             /*
@@ -441,7 +475,8 @@ namespace Testcase.DMITestCases
             Expected Result: The state of ‘VBC Code’ input field is changed to ‘accepted’
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Enter the value ‘65536’ for VBC code and confirm  by pressing in the data input field");
+            DmiActions.ShowInstruction(this,
+                @"Enter the value ‘65536’ for VBC code and confirm  by pressing in the data input field");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field is displayed ‘Accepted’.");
@@ -453,7 +488,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8337 (partly: MMI_gen 4686 (partly: Label area, Remove VBC), MMI_gen 4381 (partly: change to state ‘Pressed’ as long as remain actuated))); MMI_gen 4392 (partly: [Enter], touch screen); MMI_gen 4375;(2) MMI_gen 8337 (partly: MMI_gen 4686 (partly: Label area, Remove VBC), MMI_gen 4381 (partly: the sound for Up-Type button)); MMI_gen 9512; MMI_gen 968;
             */
             DmiActions.ShowInstruction(this, @"Press and hold the Label area of the ‘Remove VBC’ data input field");
-            
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field is displayed pressed, without a border, but still ‘Accepted’.");
 
@@ -463,7 +498,8 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The border of ‘Remove VBC’ input field is shown (state ‘Enabled’) without a sound.The state of ‘Remove VBC’ input field remains ‘accecpted’
             Test Step Comment: (1) MMI_gen 8337 (partly: MMI_gen 4686 (partly: Label area, Remove VBC), MMI_gen 4382 (partly: state ‘Enabled’ when slide out with force applied, no sound); MMI_gen 4374;
             */
-            DmiActions.ShowInstruction(this, "Whilst keeping the Label area of the data input field pressed, drag outside its area");
+            DmiActions.ShowInstruction(this,
+                "Whilst keeping the Label area of the data input field pressed, drag outside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The data input field is displayed enabled, with a border." + Environment.NewLine +
@@ -476,10 +512,12 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The state of ‘Remove VBC’ input field is changed to ‘Pressed’, the border of button is removed.The state of ‘Remove VBC’ input field remains ‘accecpted’
             Test Step Comment: (1) MMI_gen 8337 (partly: MMI_gen 4686 (partly: Label area, Remove VBC), MMI_gen 4382 (partly: state ‘Pressed’ when slide back, no sound); MMI_gen 4375;
             */
-            DmiActions.ShowInstruction(this, @"Whilst keeping the Label area of the data input field pressed, drag it back inside its area");
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the Label area of the data input field pressed, drag it back inside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The data input field is displayed pressed, without a border." + Environment.NewLine +
+                                "1. The data input field is displayed pressed, without a border." +
+                                Environment.NewLine +
                                 "2. The data input field stays ‘Accepted’.");
 
             /*
@@ -510,7 +548,8 @@ namespace Testcase.DMITestCases
                                 "1. The data input field is displayed pressed, without a border, but still ‘Accepted’.");
 
             // Repeat Step 16 for the data area of the data input field
-            DmiActions.ShowInstruction(this, "Whilst keeping the Data area of the data input field pressed, drag outside its area");
+            DmiActions.ShowInstruction(this,
+                "Whilst keeping the Data area of the data input field pressed, drag outside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The data input field is displayed enabled, with a border." + Environment.NewLine +
@@ -518,10 +557,12 @@ namespace Testcase.DMITestCases
                                 "3. The data input field stays ‘Accepted’.");
 
             // Repeat Step 17 for the data area of the data input field
-            DmiActions.ShowInstruction(this, @"Whilst keeping the Data area of the data input field pressed, drag it back inside its area");
+            DmiActions.ShowInstruction(this,
+                @"Whilst keeping the Data area of the data input field pressed, drag it back inside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The data input field is displayed pressed, without a border." + Environment.NewLine +
+                                "1. The data input field is displayed pressed, without a border." +
+                                Environment.NewLine +
                                 "2. The data input field stays ‘Accepted’.");
 
             // Repeat Step 18 for the data area of the data input field

@@ -56,15 +56,15 @@ namespace Testcase.DMITestCases
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint
-            
-            
+
+
             /*
             Test Step 1
             Action: Activate cabin A
             Expected Result: DMI displays in SB mode, level 1. The Driver ID window is displayed
             */
             // Call generic Action Method
-            DmiActions.Activate_Cabin_1(this); 
+            DmiActions.Activate_Cabin_1(this);
             DmiActions.Set_Driver_ID(this, "1234");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -78,7 +78,8 @@ namespace Testcase.DMITestCases
             */
             // Driver can't do this properly so force   
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode =
+                EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
             DmiActions.Finished_SoM_Default_Window(this);
 
             WaitForVerification("1. DMI displays in SR mode, level 1.");
@@ -101,15 +102,19 @@ namespace Testcase.DMITestCases
             */
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 45;
             EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 49;
-            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Indication_Status_Release_Speed_Monitoring;
+            EVC1_MMIDynamic.MMI_M_WARNING =
+                MMI_M_WARNING.Intervention_Status_Indication_Status_Release_Speed_Monitoring;
             EVC1_MMIDynamic.MMI_V_RELEASE = 1111;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The digital release speed  is centred in sub-area B6 without leading zeros." + Environment.NewLine +
-                                "2) The graphical presentation of digital release speed  is displayed in area B2. (Refer to specification)" + Environment.NewLine +
+                                "1. The digital release speed  is centred in sub-area B6 without leading zeros." +
+                                Environment.NewLine +
+                                "2) The graphical presentation of digital release speed  is displayed in area B2. (Refer to specification)" +
+                                Environment.NewLine +
                                 "3. The Release speed is displayed at the outer part of CSG." + Environment.NewLine +
                                 "4. The Release speed is separated from the permitted speed." + Environment.NewLine +
-                                "5. When a Release speed exists, the presentation is displayed on the CSG according to table 33 (Speed monitoring is RSM)" + Environment.NewLine +
+                                "5. When a Release speed exists, the presentation is displayed on the CSG according to table 33 (Speed monitoring is RSM)" +
+                                Environment.NewLine +
                                 "6. When a Release speed exists, the release speed digital is displayed as a number in medium-grey");
 
             /*

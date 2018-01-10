@@ -74,14 +74,14 @@ namespace Testcase.DMITestCases
             The speed pointer display in grey colour
             Test Step Comment: (1) MMI_gen 6299 (partly: OBU_TR_M_MODE, MMI_M_WARNING, train speed in relation to permitted speed MMI_V_PERMITTED, FS mode in CSM supervision);(2) MMI_gen 6299 (partly: colour of speed pointer, FS mode in CSM supervision);
             */
-            
+
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 40;
             EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 40;
-            EVC1_MMIDynamic.MMI_V_INTERVENTION_KMH = 45;     
+            EVC1_MMIDynamic.MMI_V_INTERVENTION_KMH = 45;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
-            
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in FS mode, Level 1." + Environment.NewLine + 
+                                "1. DMI displays in FS mode, Level 1." + Environment.NewLine +
                                 "2. Is the speed pointer displaying 40 km/h?" + Environment.NewLine +
                                 "3. Is the speed pointer grey?");
 
@@ -93,7 +93,7 @@ namespace Testcase.DMITestCases
             */
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Overspeed_Status_Ceiling_Speed_Monitoring;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 41;
-           
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer displaying 41 km/h?" + Environment.NewLine +
                                 "2. Is the speed pointer orange?");
@@ -137,15 +137,15 @@ namespace Testcase.DMITestCases
             */
             EVC1_MMIDynamic.MMI_V_TARGET_KMH = 25;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 30;
-            
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                               "1. Is the speed pointer white?");
+                                "1. Is the speed pointer white?");
 
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Target_Speed_Monitoring;
-          
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                               "1. Is the speed pointer grey?");
+                                "1. Is the speed pointer grey?");
             /*
             Test Step 6
             Action: Continue the drive the train forward with speed = 30 km/h
@@ -155,19 +155,19 @@ namespace Testcase.DMITestCases
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Target_Speed_Monitoring;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 30;
             EVC1_MMIDynamic.MMI_V_TARGET_KMH = 25;
-        
+
             // ?? Send
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                               "1. Is the speed pointer yellow?");
+                                "1. Is the speed pointer yellow?");
 
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Overspeed_Status_Indication_Status_Target_Speed_Monitoring;
             EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 25;
-            
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer orange?");
-          
+
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Warning_Status_Indication_Status_Target_Speed_Monitoring;
-            
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer orange?");
 
@@ -190,7 +190,7 @@ namespace Testcase.DMITestCases
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 4;
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Release_Speed_Monitoring;
             EVC1_MMIDynamic.MMI_V_RELEASE_KMH = 5;
-            
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer yellow?");
 
@@ -200,7 +200,8 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   Use the log file to confirm that DMI received the packet information EVC-1 with the following condition,MMI_M_WARNING = 15 (Status = IntS and IndS, Supervision = RSM) while the value of MMI_V_TRAIN is greater than MMI_V_RELEASE(2)   The speed pointer display in yellow colour
             Test Step Comment: (1) MMI_gen 6299 (partly: MMI_M_WARNING, train speed in relation to release speed MMI_V_RELEASE, FS mode in RSM supervision);(2) MMI_gen 6299 (partly: colour of speed pointer, FS mode in CSM supervision);
             */
-            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Indication_Status_Release_Speed_Monitoring;
+            EVC1_MMIDynamic.MMI_M_WARNING =
+                MMI_M_WARNING.Intervention_Status_Indication_Status_Release_Speed_Monitoring;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 6;
             EVC1_MMIDynamic.MMI_V_INTERVENTION_KMH = 20;
             EVC1_MMIDynamic.MMI_V_RELEASE_KMH = 6;
@@ -251,7 +252,7 @@ namespace Testcase.DMITestCases
             XML_12_3_2(msgType.typed);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. Is the speed pointer orange?" + 
+                                "1. Is the speed pointer orange?" +
                                 "2. Is sound S2 played while the warning status is active?");
 
             /*
@@ -276,16 +277,18 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in FS mode, level 1." + Environment.NewLine +
                                 "2. Is the speed pointer grey?");
-            
+
             /*
             Test Step 15
             Action: End of test
             Expected Result: 
             */
-            
+
             return GlobalTestResult;
         }
+
         #region Send_XML_12_3_2_DMI_Test_Specification
+
         enum msgType
         {
             typea,
@@ -299,13 +302,13 @@ namespace Testcase.DMITestCases
         private void XML_12_3_2(msgType type)
         {
             SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity1.Value = 4415; // All validity bits set
-            SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity2.Value = 63;   // All validity bits set
+            SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity2.Value = 63; // All validity bits set
 
             if (type == msgType.typea)
             {
                 EVC1_MMIDynamic.MMI_M_SLIDE = 0;
                 EVC1_MMIDynamic.MMI_M_SLIP = 0;
-                EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_PreIndication_Monitoring;   // 2
+                EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_PreIndication_Monitoring; // 2
                 EVC1_MMIDynamic.MMI_A_TRAIN = 0;
                 EVC1_MMIDynamic.MMI_V_TRAIN = 972;
                 EVC1_MMIDynamic.MMI_V_TARGET = 1083;
@@ -323,7 +326,8 @@ namespace Testcase.DMITestCases
                 EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_BrakeTest_Status =
                     EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_BRAKETEST_STATUS.BrakeTestNotInProgress;
                 EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
-                EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
+                EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode =
+                    EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
                 EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_ADHESION = 100; // "Spare"
                 EVC7_MMIEtcsMiscOutSignals.OBU_TR_NID_STM_HS = 255;
                 EVC7_MMIEtcsMiscOutSignals.OBU_TR_NID_STM_DA = 255;
@@ -334,7 +338,7 @@ namespace Testcase.DMITestCases
             {
                 EVC1_MMIDynamic.MMI_M_SLIDE = 0;
                 EVC1_MMIDynamic.MMI_M_SLIP = 0;
-                EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_PreIndication_Monitoring;   // 2
+                EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_PreIndication_Monitoring; // 2
                 EVC1_MMIDynamic.MMI_A_TRAIN = 0;
                 EVC1_MMIDynamic.MMI_V_TRAIN = 1111;
                 EVC1_MMIDynamic.MMI_V_TARGET = 1083;
@@ -352,24 +356,23 @@ namespace Testcase.DMITestCases
                 EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_BrakeTest_Status =
                     EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_BRAKETEST_STATUS.BrakeTestNotInProgress;
                 EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
-                EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
+                EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode =
+                    EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
                 EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_ADHESION = 100; // "Spare"
                 EVC7_MMIEtcsMiscOutSignals.OBU_TR_NID_STM_HS = 255;
                 EVC7_MMIEtcsMiscOutSignals.OBU_TR_NID_STM_DA = 255;
                 EVC7_MMIEtcsMiscOutSignals.BRAKE_TEST_TIMEOUT = 46;
                 EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 1000000000;
                 SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity1.Value = 4415; // All validity bits set
-                SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity2.Value = 63;   // All validity bits set
-
+                SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity2.Value = 63; // All validity bits set
             }
             else if (type == msgType.typec)
             {
-
                 EVC1_MMIDynamic.MMI_M_SLIDE = 0;
                 EVC1_MMIDynamic.MMI_M_SLIP = 0;
 
                 // Spec says 10: Overspeed_Status_PreIndication_Monitoring, xml 2: Normal_Status_PreIndication_Monitoring: spec preferred
-                EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Overspeed_Status_PreIndication_Monitoring;   // 10
+                EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Overspeed_Status_PreIndication_Monitoring; // 10
                 EVC1_MMIDynamic.MMI_A_TRAIN = 0;
                 EVC1_MMIDynamic.MMI_V_TRAIN = 1139;
                 EVC1_MMIDynamic.MMI_V_TARGET = 1083;
@@ -387,7 +390,8 @@ namespace Testcase.DMITestCases
                 EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_BrakeTest_Status =
                     EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_BRAKETEST_STATUS.BrakeTestNotInProgress;
                 EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
-                EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
+                EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode =
+                    EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
                 EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_ADHESION = 100; // "Spare"
                 EVC7_MMIEtcsMiscOutSignals.OBU_TR_NID_STM_HS = 255;
                 EVC7_MMIEtcsMiscOutSignals.OBU_TR_NID_STM_DA = 255;
@@ -400,7 +404,7 @@ namespace Testcase.DMITestCases
             {
                 EVC1_MMIDynamic.MMI_M_SLIDE = 0;
                 EVC1_MMIDynamic.MMI_M_SLIP = 0;
-                EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Warning_Status_PreIndication_Monitoring;   // 6
+                EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Warning_Status_PreIndication_Monitoring; // 6
                 EVC1_MMIDynamic.MMI_A_TRAIN = 0;
                 EVC1_MMIDynamic.MMI_V_TRAIN = 1250;
                 EVC1_MMIDynamic.MMI_V_TARGET = 1083;
@@ -418,7 +422,8 @@ namespace Testcase.DMITestCases
                 EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_BrakeTest_Status =
                     EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_BRAKETEST_STATUS.BrakeTestNotInProgress;
                 EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
-                EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
+                EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode =
+                    EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
                 EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_ADHESION = 100; // "Spare"
                 EVC7_MMIEtcsMiscOutSignals.OBU_TR_NID_STM_HS = 255;
                 EVC7_MMIEtcsMiscOutSignals.OBU_TR_NID_STM_DA = 255;
@@ -431,7 +436,7 @@ namespace Testcase.DMITestCases
             {
                 EVC1_MMIDynamic.MMI_M_SLIDE = 0;
                 EVC1_MMIDynamic.MMI_M_SLIP = 0;
-                EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_PreIndication_Monitoring;   // 14
+                EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_PreIndication_Monitoring; // 14
                 EVC1_MMIDynamic.MMI_A_TRAIN = 0;
                 EVC1_MMIDynamic.MMI_V_TRAIN = 1277;
                 EVC1_MMIDynamic.MMI_V_TARGET = 1083;
@@ -449,7 +454,8 @@ namespace Testcase.DMITestCases
                 EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_BrakeTest_Status =
                     EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_BRAKETEST_STATUS.BrakeTestNotInProgress;
                 EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
-                EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
+                EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode =
+                    EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
                 EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_ADHESION = 100; // "Spare"
                 EVC7_MMIEtcsMiscOutSignals.OBU_TR_NID_STM_HS = 255;
                 EVC7_MMIEtcsMiscOutSignals.OBU_TR_NID_STM_DA = 255;
@@ -460,10 +466,10 @@ namespace Testcase.DMITestCases
             }
             else if (type == msgType.typef)
             {
-
                 EVC1_MMIDynamic.MMI_M_SLIDE = 0;
                 EVC1_MMIDynamic.MMI_M_SLIP = 0;
-                EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Indication_Status_Target_Speed_Monitoring;   // 13
+                EVC1_MMIDynamic.MMI_M_WARNING =
+                    MMI_M_WARNING.Intervention_Status_Indication_Status_Target_Speed_Monitoring; // 13
                 EVC1_MMIDynamic.MMI_A_TRAIN = 0;
                 EVC1_MMIDynamic.MMI_V_TRAIN = 0;
                 EVC1_MMIDynamic.MMI_V_TARGET = 0;
@@ -481,7 +487,8 @@ namespace Testcase.DMITestCases
                 EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_BrakeTest_Status =
                     EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_BRAKETEST_STATUS.BrakeTestNotInProgress;
                 EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
-                EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
+                EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode =
+                    EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
                 EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_ADHESION = 100; // "Spare"
                 EVC7_MMIEtcsMiscOutSignals.OBU_TR_NID_STM_HS = 255;
                 EVC7_MMIEtcsMiscOutSignals.OBU_TR_NID_STM_DA = 255;
@@ -491,7 +498,7 @@ namespace Testcase.DMITestCases
                 //SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity2.Value = 63;   // All validity bits set
             }
         }
-        #endregion
 
+        #endregion
     }
 }

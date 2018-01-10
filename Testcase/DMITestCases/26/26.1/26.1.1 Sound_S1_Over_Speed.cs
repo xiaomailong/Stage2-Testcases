@@ -33,7 +33,6 @@ namespace Testcase.DMITestCases
     /// 3. Train runs pass BG1 at position 100 m.that contained pkt 12, pkt 21 and pkt 27 to enter FS mode.
     /// 4. Stop the train.
     /// 5. Use XML script to send EVC-1 to the DMI.
-
     /// 
     /// Used files:
     /// 21_1_1.tdg and 21_1_1.xml
@@ -102,7 +101,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 11919 (tested with TDG file)Note Sound file is stored in DMI_ERTMS_BL3 product in database path:/proj/ccmbkk3/mmi_v.
             */
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Overspeed_Status_Indication_Status_Target_Speed_Monitoring;
-            EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 37;   // below current speed
+            EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 37; // below current speed
             EVC1_MMIDynamic.MMI_V_TARGET_KMH = 0;
             EVC1_MMIDynamic.MMI_V_INTERVENTION_KMH = 45;
 
@@ -129,18 +128,20 @@ namespace Testcase.DMITestCases
             Expected Result: Sound ‘S1_toofast.wav’ is played once
             Test Step Comment: MMI_gen 11919 (tested with XML script)
             */
-        #region Send_XML_21_1_1_DMI_Test_Specification
+
+            #region Send_XML_21_1_1_DMI_Test_Specification
 
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Overspeed_Status_Indication_Status_Target_Speed_Monitoring;
             EVC1_MMIDynamic.MMI_V_TRAIN = 1107;
-            EVC1_MMIDynamic.MMI_V_PERMITTED = 1101;   // below current speed
+            EVC1_MMIDynamic.MMI_V_PERMITTED = 1101; // below current speed
             EVC1_MMIDynamic.MMI_V_TARGET_KMH = 0;
             EVC1_MMIDynamic.MMI_V_INTERVENTION = 1242;
-            
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Overspeed’sound (‘S1_toofast.wav’) is played once.");
 
-        #endregion
+            #endregion
+
             /*
             Test Step 7
             Action: End of test

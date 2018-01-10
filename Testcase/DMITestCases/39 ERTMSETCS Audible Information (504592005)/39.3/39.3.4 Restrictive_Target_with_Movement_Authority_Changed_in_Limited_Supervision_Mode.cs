@@ -37,7 +37,8 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 36_3_4.tdg
     /// </summary>
-    public class TC_ID_36_3_4_Restrictive_Target_with_Movement_Authority_Changed_in_Limited_Supervision_Mode : TestcaseBase
+    public class
+        TC_ID_36_3_4_Restrictive_Target_with_Movement_Authority_Changed_in_Limited_Supervision_Mode : TestcaseBase
     {
         public override void PreExecution()
         {
@@ -92,7 +93,8 @@ namespace Testcase.DMITestCases
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 10000;
             EVC1_MMIDynamic.MMI_V_TARGET = -1;
             EVC1_MMIDynamic.MMI_O_BRAKETARGET = -1;
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.LimitedSupervision;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode =
+                EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.LimitedSupervision;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Sinfo’ sound is not played");

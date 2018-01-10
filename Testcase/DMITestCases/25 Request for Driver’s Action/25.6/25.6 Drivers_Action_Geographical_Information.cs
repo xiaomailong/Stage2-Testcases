@@ -50,8 +50,9 @@ namespace Testcase.DMITestCases
             DmiActions.Set_Driver_ID(this, "1234");
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Start | 
-                                                               EVC30_MMIRequestEnable.EnabledRequests.GeographicalPosition |
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Start |
+                                                               EVC30_MMIRequestEnable.EnabledRequests
+                                                                   .GeographicalPosition |
                                                                Variables.standardFlags;
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Default;
             EVC30_MMIRequestEnable.Send();
@@ -89,7 +90,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press on the ‘DR03’ symbol in sub-area G12");
 
             EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.GeographicalPositionRequest;
-            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.RequestToShowGeographicalPosition;
+            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION =
+                EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.RequestToShowGeographicalPosition;
 
             EVC5_MMIGeoPosition.MMI_M_ABSOLUTPOS = 8388609;
             EVC5_MMIGeoPosition.MMI_M_RELATIVPOS = 0;
@@ -106,7 +108,8 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Press the ‘Geographical Position Indicator’ in sub-area G12");
 
-            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.RequestToHideGeographicalPosition;
+            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION =
+                EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.RequestToHideGeographicalPosition;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays symbol DR03 in sub-area G12.");

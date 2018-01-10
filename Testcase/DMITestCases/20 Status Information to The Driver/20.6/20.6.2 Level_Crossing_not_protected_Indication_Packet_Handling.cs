@@ -189,6 +189,7 @@ namespace Testcase.DMITestCases
         }
 
         #region Send_XML_15_6_2_DMI_Test_Specification
+
         enum msgType
         {
             typea,
@@ -201,14 +202,12 @@ namespace Testcase.DMITestCases
             typeh,
             typei,
             typej
-
         }
 
         private void XML_15_6_2(msgType type)
         {
             switch (type)
             {
-
                 case msgType.typea:
 
                     EVC33_MMIAdditionalOrder.MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Level_Crossing;
@@ -223,7 +222,8 @@ namespace Testcase.DMITestCases
                     EVC33_MMIAdditionalOrder.MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Invalid;
                     EVC33_MMIAdditionalOrder.MMI_NID_TRACKCOND = 0;
                     EVC33_MMIAdditionalOrder.MMI_Q_TRACKCOND_ACTION = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction;
-                    EVC33_MMIAdditionalOrder.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea;  // Announce area
+                    EVC33_MMIAdditionalOrder.MMI_Q_TRACKCOND_STEP =
+                        Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea; // Announce area
                     EVC33_MMIAdditionalOrder.Send();
 
                     break;
@@ -251,21 +251,25 @@ namespace Testcase.DMITestCases
                     EVC32_MMITrackConditions.MMI_Q_TRACKCOND_UPDATE = 1;
                     EVC32_MMITrackConditions.TrackConditions = new List<TrackCondition>
                     {
-                        { new TrackCondition { MMI_O_TRACKCOND_ANNOUNCE = 0,
-                            MMI_O_TRACKCOND_START = 0,
-                            MMI_O_TRACKCOND_END = 0,
-                            MMI_NID_TRACKCOND = 29,
-                            MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Pantograph,
-                            MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea,
-                            MMI_Q_TRACKCOND_ACTION_START = 0,
-                            MMI_Q_TRACKCOND_ACTION_END = 0 }
+                        {
+                            new TrackCondition
+                            {
+                                MMI_O_TRACKCOND_ANNOUNCE = 0,
+                                MMI_O_TRACKCOND_START = 0,
+                                MMI_O_TRACKCOND_END = 0,
+                                MMI_NID_TRACKCOND = 29,
+                                MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Pantograph,
+                                MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea,
+                                MMI_Q_TRACKCOND_ACTION_START = 0,
+                                MMI_Q_TRACKCOND_ACTION_END = 0
+                            }
                         }
                     };
 
                     EVC32_MMITrackConditions.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                              "1. DMI displays symbol TC03 in sub-area B3 with a yellow flashing frame.");
+                                        "1. DMI displays symbol TC03 in sub-area B3 with a yellow flashing frame.");
 
                     // Wait a few seconds
                     Wait_Realtime(3000);
@@ -273,11 +277,12 @@ namespace Testcase.DMITestCases
                     EVC33_MMIAdditionalOrder.MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Level_Crossing;
                     EVC33_MMIAdditionalOrder.MMI_NID_TRACKCOND = 0;
                     EVC33_MMIAdditionalOrder.MMI_Q_TRACKCOND_ACTION = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction;
-                    EVC33_MMIAdditionalOrder.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea;  // Announce area
+                    EVC33_MMIAdditionalOrder.MMI_Q_TRACKCOND_STEP =
+                        Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea; // Announce area
                     EVC33_MMIAdditionalOrder.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                              "1. After 3s, DMI displays symbol LX01 in sub-area B4.");
+                                        "1. After 3s, DMI displays symbol LX01 in sub-area B4.");
 
 
                     break;
@@ -286,14 +291,18 @@ namespace Testcase.DMITestCases
                     EVC32_MMITrackConditions.MMI_Q_TRACKCOND_UPDATE = 1;
                     EVC32_MMITrackConditions.TrackConditions = new List<TrackCondition>
                     {
-                        { new TrackCondition { MMI_O_TRACKCOND_ANNOUNCE = 0,
-                            MMI_O_TRACKCOND_START = 0,
-                            MMI_O_TRACKCOND_END = 0,
-                            MMI_NID_TRACKCOND = 30,
-                            MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Pantograph,
-                            MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea,
-                            MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithoutDriverAction,
-                            MMI_Q_TRACKCOND_ACTION_END = 0 }
+                        {
+                            new TrackCondition
+                            {
+                                MMI_O_TRACKCOND_ANNOUNCE = 0,
+                                MMI_O_TRACKCOND_START = 0,
+                                MMI_O_TRACKCOND_END = 0,
+                                MMI_NID_TRACKCOND = 30,
+                                MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Pantograph,
+                                MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea,
+                                MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithoutDriverAction,
+                                MMI_Q_TRACKCOND_ACTION_END = 0
+                            }
                         }
                     };
 
@@ -301,7 +310,7 @@ namespace Testcase.DMITestCases
 
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                              "1. DMI displays symbol TC02 in sub-area B4.");
+                                        "1. DMI displays symbol TC02 in sub-area B4.");
 
                     // Wait a few seconds
                     Wait_Realtime(3000);
@@ -313,7 +322,7 @@ namespace Testcase.DMITestCases
                     EVC33_MMIAdditionalOrder.Send();
 
                     WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                              "1. After 3s, DMI displays symbol LX01 in sub-area B5.");
+                                        "1. After 3s, DMI displays symbol LX01 in sub-area B5.");
 
                     break;
                 case msgType.typeg:
@@ -321,14 +330,18 @@ namespace Testcase.DMITestCases
                     EVC32_MMITrackConditions.MMI_Q_TRACKCOND_UPDATE = 1;
                     EVC32_MMITrackConditions.TrackConditions = new List<TrackCondition>
                     {
-                        { new TrackCondition { MMI_O_TRACKCOND_ANNOUNCE = 0,
-                            MMI_O_TRACKCOND_START = 0,
-                            MMI_O_TRACKCOND_END = 0,
-                            MMI_NID_TRACKCOND = 31,
-                            MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Pantograph,
-                            MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.InsideArea_Active,
-                            MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithoutDriverAction,
-                            MMI_Q_TRACKCOND_ACTION_END = 0 }
+                        {
+                            new TrackCondition
+                            {
+                                MMI_O_TRACKCOND_ANNOUNCE = 0,
+                                MMI_O_TRACKCOND_START = 0,
+                                MMI_O_TRACKCOND_END = 0,
+                                MMI_NID_TRACKCOND = 31,
+                                MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Pantograph,
+                                MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.InsideArea_Active,
+                                MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithoutDriverAction,
+                                MMI_Q_TRACKCOND_ACTION_END = 0
+                            }
                         }
                     };
 
@@ -358,14 +371,18 @@ namespace Testcase.DMITestCases
                     EVC32_MMITrackConditions.MMI_Q_TRACKCOND_UPDATE = 1;
                     EVC32_MMITrackConditions.TrackConditions = new List<TrackCondition>
                     {
-                        { new TrackCondition {  MMI_O_TRACKCOND_ANNOUNCE = 0,
-                            MMI_O_TRACKCOND_START = 0,
-                            MMI_O_TRACKCOND_END = 0,
-                            MMI_NID_TRACKCOND = 31,
-                            MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Pantograph,
-                            MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.RemoveTC,
-                            MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction,
-                            MMI_Q_TRACKCOND_ACTION_END = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction  }
+                        {
+                            new TrackCondition
+                            {
+                                MMI_O_TRACKCOND_ANNOUNCE = 0,
+                                MMI_O_TRACKCOND_START = 0,
+                                MMI_O_TRACKCOND_END = 0,
+                                MMI_NID_TRACKCOND = 31,
+                                MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Pantograph,
+                                MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.RemoveTC,
+                                MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction,
+                                MMI_Q_TRACKCOND_ACTION_END = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction
+                            }
                         }
                     };
 
@@ -376,14 +393,18 @@ namespace Testcase.DMITestCases
                     EVC32_MMITrackConditions.MMI_Q_TRACKCOND_UPDATE = 1;
                     EVC32_MMITrackConditions.TrackConditions = new List<TrackCondition>
                     {
-                        { new TrackCondition {  MMI_O_TRACKCOND_ANNOUNCE = 0,
-                            MMI_O_TRACKCOND_START = 0,
-                            MMI_O_TRACKCOND_END = 0,
-                            MMI_NID_TRACKCOND = 30,
-                            MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Pantograph,
-                            MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.RemoveTC,
-                            MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction,
-                            MMI_Q_TRACKCOND_ACTION_END = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction  }
+                        {
+                            new TrackCondition
+                            {
+                                MMI_O_TRACKCOND_ANNOUNCE = 0,
+                                MMI_O_TRACKCOND_START = 0,
+                                MMI_O_TRACKCOND_END = 0,
+                                MMI_NID_TRACKCOND = 30,
+                                MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Pantograph,
+                                MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.RemoveTC,
+                                MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction,
+                                MMI_Q_TRACKCOND_ACTION_END = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction
+                            }
                         }
                     };
 
@@ -405,14 +426,18 @@ namespace Testcase.DMITestCases
                     EVC32_MMITrackConditions.MMI_Q_TRACKCOND_UPDATE = 1;
                     EVC32_MMITrackConditions.TrackConditions = new List<TrackCondition>
                     {
-                        { new TrackCondition {  MMI_O_TRACKCOND_ANNOUNCE = 0,
-                            MMI_O_TRACKCOND_START = 0,
-                            MMI_O_TRACKCOND_END = 0,
-                            MMI_NID_TRACKCOND = 29,
-                            MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Non_Stopping_Area,
-                            MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.RemoveTC,
-                            MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction,
-                            MMI_Q_TRACKCOND_ACTION_END = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction  }
+                        {
+                            new TrackCondition
+                            {
+                                MMI_O_TRACKCOND_ANNOUNCE = 0,
+                                MMI_O_TRACKCOND_START = 0,
+                                MMI_O_TRACKCOND_END = 0,
+                                MMI_NID_TRACKCOND = 29,
+                                MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Non_Stopping_Area,
+                                MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.RemoveTC,
+                                MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction,
+                                MMI_Q_TRACKCOND_ACTION_END = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction
+                            }
                         }
                     };
 
@@ -421,7 +446,7 @@ namespace Testcase.DMITestCases
                     break;
             }
         }
-        #endregion
 
+        #endregion
     }
 }

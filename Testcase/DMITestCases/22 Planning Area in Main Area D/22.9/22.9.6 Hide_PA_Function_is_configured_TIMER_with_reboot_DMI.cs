@@ -117,7 +117,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press the ‘Hide PA’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The Planning Area is hidden for 20s and then re-displayed in area D." + Environment.NewLine +
+                                "1. The Planning Area is hidden for 20s and then re-displayed in area D." +
+                                Environment.NewLine +
                                 "3. The ‘Hide PA’ button is displayed in area D.");
 
             /*
@@ -148,7 +149,8 @@ namespace Testcase.DMITestCases
             Expected Result: The Planning area is disappeared and hidden from main area D for 30s.After 30s the planning area is displayed.Verify that the Hide PA button is displayed at sub-area D14 on the planning area
             Test Step Comment: MMI_gen 7341;   MMI_gen 2996 (partly: Timer);
             */
-            DmiActions.ShowInstruction(this, @"Power down the system and wait 10s. Set the configuration HIDE_PA_TIMER = 30 and power up the system");
+            DmiActions.ShowInstruction(this,
+                @"Power down the system and wait 10s. Set the configuration HIDE_PA_TIMER = 30 and power up the system");
 
             // Repeat Step 1
             DmiActions.Start_ATP();
@@ -161,7 +163,7 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SR mode, Level 1.");
-            
+
             // Repeat Step 3
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 40;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 10000;
@@ -176,7 +178,7 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the message ‘Entering FS’." + Environment.NewLine +
                                 "2. The Planning Area is displayed in area D." + Environment.NewLine +
                                 "3. The ‘Hide PA’ button is displayed in area D.");
-       
+
             // Remove the message
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
             EVC8_MMIDriverMessage.Send();
@@ -185,7 +187,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press the ‘Hide PA’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The Planning Area is hidden for 30s and then re-displayed in area D." + Environment.NewLine +
+                                "1. The Planning Area is hidden for 30s and then re-displayed in area D." +
+                                Environment.NewLine +
                                 "3. The ‘Hide PA’ button is displayed in sub-area D14.");
 
             // Repeat Step 5
@@ -206,7 +209,8 @@ namespace Testcase.DMITestCases
             Action: Set HIDE PA TIMER configuration as 40s and repeat test step 1-6
             Expected Result: The Planning area is disappeared and hidden from main area D for 40s.After 40s the planning area is displayed.Verify that the Hide PA button is displayed at sub-area D14 on the planning area
             */
-            DmiActions.ShowInstruction(this, @"Power down the system and wait 10s. Set the configuration HIDE_PA_TIMER = 40 and power up the system");
+            DmiActions.ShowInstruction(this,
+                @"Power down the system and wait 10s. Set the configuration HIDE_PA_TIMER = 40 and power up the system");
 
             // Repeat Step 1
             DmiActions.Start_ATP();
@@ -243,7 +247,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press the ‘Hide PA’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The Planning Area is hidden for 40s and then re-displayed in area D." + Environment.NewLine +
+                                "1. The Planning Area is hidden for 40s and then re-displayed in area D." +
+                                Environment.NewLine +
                                 "3. The ‘Hide PA’ button is displayed in sub-area D14.");
 
             // Repeat Step 5
@@ -264,7 +269,8 @@ namespace Testcase.DMITestCases
             Action: Set HIDE PA TIMER configuration as 50s and repeat test step 1-6
             Expected Result: The Planning area is disappeared and hidden from main area D for 50s.After 50s the planning area is displayed.Verify that the Hide PA button is displayed at sub-area D14 on the planning area
             */
-            DmiActions.ShowInstruction(this, @"Power down the system and wait 10s. Set the configuration HIDE_PA_TIMER = 50 and power up the system");
+            DmiActions.ShowInstruction(this,
+                @"Power down the system and wait 10s. Set the configuration HIDE_PA_TIMER = 50 and power up the system");
 
             // Repeat Step 1
             DmiActions.Start_ATP();
@@ -301,7 +307,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press the ‘Hide PA’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The Planning Area is hidden for 50s and then re-displayed in area D." + Environment.NewLine +
+                                "1. The Planning Area is hidden for 50s and then re-displayed in area D." +
+                                Environment.NewLine +
                                 "3. The ‘Hide PA’ button is displayed in sub-area D14.");
 
             // Repeat Step 5
@@ -322,7 +329,8 @@ namespace Testcase.DMITestCases
             Action: Set HIDE PA TIMER configuration as 60s and repeat test step 1-6
             Expected Result: The Planning area is disappeared and hidden from main area D for 60s.After 60s the planning area is displayed.Verify that the Hide PA button is displayed at sub-area D14 on the planning area
             */
-            DmiActions.ShowInstruction(this, @"Power down the system and wait 10s. Set the configuration HIDE_PA_TIMER = 60 and power up the system");
+            DmiActions.ShowInstruction(this,
+                @"Power down the system and wait 10s. Set the configuration HIDE_PA_TIMER = 60 and power up the system");
 
             // Repeat Step 1
             DmiActions.Start_ATP();
@@ -359,7 +367,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press the ‘Hide PA’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The Planning Area is hidden for 60s and then re-displayed in area D." + Environment.NewLine +
+                                "1. The Planning Area is hidden for 60s and then re-displayed in area D." +
+                                Environment.NewLine +
                                 "3. The ‘Hide PA’ button is displayed in sub-area D14.");
 
             // Repeat Step 5
@@ -380,7 +389,8 @@ namespace Testcase.DMITestCases
             Action: Set HIDE PA TIMER configuration as 70s and repeat test step 1-6
             Expected Result: The Planning area is disappeared and hidden from main area D for 60s.After 60s the planning area is displayed.Verify that the Hide PA button is displayed at sub-area D14 on the planning area
             */
-            DmiActions.ShowInstruction(this, @"Power down the system and wait 10s. Set the configuration HIDE_PA_TIMER = 70 and power up the system");
+            DmiActions.ShowInstruction(this,
+                @"Power down the system and wait 10s. Set the configuration HIDE_PA_TIMER = 70 and power up the system");
 
             // Repeat Step 1
             DmiActions.Start_ATP();
@@ -417,7 +427,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press the ‘Hide PA’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The Planning Area is hidden for 70s and then re-displayed in area D." + Environment.NewLine +
+                                "1. The Planning Area is hidden for 70s and then re-displayed in area D." +
+                                Environment.NewLine +
                                 "3. The ‘Hide PA’ button is displayed in sub-area D14.");
 
             // Repeat Step 5
@@ -441,7 +452,8 @@ namespace Testcase.DMITestCases
             Action: Set HIDE PA TIMER configuration as 80s and repeat test step 1-6
             Expected Result: The Planning area is disappeared and hidden from main area D for 60s.After 60s the planning area is displayed.Verify that the Hide PA button is displayed at sub-area D14 on the planning area
             */
-            DmiActions.ShowInstruction(this, @"Power down the system and wait 10s. Set the configuration HIDE_PA_TIMER = 80 and power up the system");
+            DmiActions.ShowInstruction(this,
+                @"Power down the system and wait 10s. Set the configuration HIDE_PA_TIMER = 80 and power up the system");
 
             // Repeat Step 1
             DmiActions.Start_ATP();
@@ -478,7 +490,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press the ‘Hide PA’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The Planning Area is hidden for 80s and then re-displayed in area D." + Environment.NewLine +
+                                "1. The Planning Area is hidden for 80s and then re-displayed in area D." +
+                                Environment.NewLine +
                                 "3. The ‘Hide PA’ button is displayed in sub-area D14.");
 
             // Repeat Step 5
