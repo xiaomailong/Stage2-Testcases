@@ -987,6 +987,32 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
+        /// Description: RBC Data sent to be displayed on th DMI
+        /// Used in:
+        ///     Step 1 in TC-ID: 22.27.1 in 27.27.1
+        /// </summary>
+        /// <param name="pool">Signal pool</param>
+        public static void Display_Data_View_Window(SignalPool pool)
+        {
+            EVC13_MMIDataView.MMI_X_DRIVER_ID = "1234";
+            EVC13_MMIDataView.MMI_NID_OPERATION = 0xFFFFFFFF;
+            EVC13_MMIDataView.MMI_M_DATA_ENABLE = MMI_M_DATA_ENABLE.TrainSetID;      
+            EVC13_MMIDataView.MMI_L_TRAIN = 0;                                       
+            EVC13_MMIDataView.MMI_V_MAXTRAIN = 0;
+            EVC13_MMIDataView.MMI_M_BRAKE_PERC = 0;                                  
+            EVC13_MMIDataView.MMI_NID_KEY_AXLE_LOAD = MMI_NID_KEY.NoDedicatedKey;
+            EVC13_MMIDataView.MMI_NID_RADIO = 0x12345678FFFFFFFF;
+            EVC13_MMIDataView.MMI_NID_RBC = 2;
+            EVC13_MMIDataView.MMI_M_AIRTIGHT = 0;                                 
+            EVC13_MMIDataView.MMI_NID_KEY_LOAD_GAUGE = MMI_NID_KEY.NoDedicatedKey;
+            EVC13_MMIDataView.MMI_M_VBC_CODE = null;           
+            EVC13_MMIDataView.Trainset_Caption = "FLU";
+            EVC13_MMIDataView.Network_Caption = "Network1";
+            EVC13_MMIDataView.MMI_NID_KEY_TRAIN_CAT = MMI_NID_KEY.NoDedicatedKey;
+            EVC13_MMIDataView.Send();
+        }
+
+        /// <summary>
         /// Description: Train Data sent to be displayed on th DMI
         /// Used in:
         ///     Step 6 in TC-ID: 15.1.3 in 20.1.3

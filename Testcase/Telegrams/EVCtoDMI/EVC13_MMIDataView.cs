@@ -283,7 +283,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// 
         /// 24 bit (10 bit unsigned int for NID_C + 14 bit unsigned int for NID_RBC)
         /// </summary>
-        private static uint MMI_NID_RBC
+        public static uint MMI_NID_RBC
         {
             get => _pool.SITR.ETCS1.DataView.MmiNidRbc.Value;
             set => _pool.SITR.ETCS1.DataView.MmiNidRbc.Value = value;
