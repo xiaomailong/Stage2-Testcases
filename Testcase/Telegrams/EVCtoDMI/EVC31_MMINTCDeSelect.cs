@@ -1,9 +1,7 @@
 ﻿#region usings
 
 using System;
-using System.Collections.Generic;
 using CL345;
-using static Testcase.Telegrams.EVCtoDMI.Variables;
 
 #endregion
 

@@ -1,21 +1,8 @@
 ﻿#region usings
 
 using System;
-using System.Diagnostics;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using BT_CSB_Tools;
-using BT_CSB_Tools.Logging;
-using BT_CSB_Tools.Utils.Xml;
-using BT_CSB_Tools.SignalPoolGenerator.Signals;
-using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal;
-using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
-using CL345;
-using System.Windows.Forms;
-using Testcase.Telegrams;
 using Testcase.Telegrams.EVCtoDMI;
-using Testcase.TemporaryFunctions;
 
 #endregion
 

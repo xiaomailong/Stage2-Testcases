@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Collections;
 using CL345;
 using Testcase.Telegrams.EVCtoDMI;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;

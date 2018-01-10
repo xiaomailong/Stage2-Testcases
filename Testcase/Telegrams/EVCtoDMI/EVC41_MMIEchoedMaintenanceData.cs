@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using CL345;
+﻿using CL345;
 using static Testcase.Telegrams.EVCtoDMI.Variables;
 
 namespace Testcase.Telegrams.EVCtoDMI

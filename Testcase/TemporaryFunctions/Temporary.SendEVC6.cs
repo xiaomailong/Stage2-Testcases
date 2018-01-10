@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Testcase.Telegrams;
 using Testcase.Telegrams.EVCtoDMI;
 using static Testcase.Telegrams.EVCtoDMI.Variables;
 

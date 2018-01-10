@@ -1,8 +1,4 @@
-using System;
 using System.Collections.Generic;
-using CL345;
-using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
-using static Testcase.Telegrams.EVCtoDMI.Variables;
 
 
 namespace Testcase.Telegrams.DMItoEVC
