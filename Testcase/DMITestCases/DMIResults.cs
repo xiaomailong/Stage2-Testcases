@@ -196,6 +196,26 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
+        /// Description: OS Mode acknowledgement is requested on DMI area C1
+        /// Used in:
+        ///     Step 13 in TC-ID: 14.1 in 19.1
+        /// </summary>
+        public static void OS_Mode_Ack_requested(SignalPool pool)
+        {
+            Driver_symbol_displayed(pool, "Acknowledgement for On-Sight mode", "MO08", "C1", true);
+        }
+
+        /// <summary>
+        /// Description: LS Mode acknowledgement is requested on DMI area C1
+        /// Used in:
+        ///     Step 16 in TC-ID: 14.1 in 19.1
+        /// </summary>
+        public static void LS_Mode_Ack_requested(SignalPool pool)
+        {
+            Driver_symbol_displayed(pool, "Acknowledgement for Limited Supervision mode", "MO22", "C1", true);
+        }
+
+        /// <summary>
         /// Description: UN mode Acknowledgement symbol on DMI area C1 is pressed and released.
         /// Used in:
         ///     Step 9 in TC-ID: 15.1.3 in 20.1.3
@@ -963,6 +983,23 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
+        /// Description: Driver enters and confirms Fixed Train Data
+        /// Used in:
+        ///     Step 5 in 15.1.3
+        /// </summary>
+        /// <param name="pool">The SignalPool</param>
+        /// <param name="trainsetSelected">Number of the fixed trainset selected</param>
+        public static void SR_speed_distance_entered(SignalPool pool, uint lStff, ushort vStff)
+        {
+            DmiActions.ShowInstruction(pool,
+                $"Enter and confirm the following data, SR speed = {vStff}, SR distance = {lStff}");
+
+            EVC106_MMINewSrRules.MMI_L_STFF = lStff;
+            EVC106_MMINewSrRules.MMI_V_STFF = vStff;
+            EVC106_MMINewSrRules.MMI_M_BUTTONS = MMI_M_BUTTONS_SR_RULES.BTN_ENTER;
+        }
+
+        /// <summary>
         /// Description: DMI displays Special window with enabled Adhesion button
         /// Used in:
         ///     Step 8 in TC-ID: 10.2.5 in 15.2.5 State 'ST05': Special window and windows in the special menu
@@ -1041,6 +1078,30 @@ namespace Testcase.DMITestCases
         public static void DMI_displays_Settings_window(SignalPool pool)
         {
             pool.WaitForVerification("Is the Settings window displayed?");
+        }
+
+        /// <summary>
+        /// Description: DMI displays Special window
+        /// Used in:
+        ///     Step 2 in TC-ID: 14.6 in 19.6 Toggling function: Additional Configuration ‘TIMER’
+        ///     Step 8 in TC-ID: 22.10 in 27.10 Special window
+        ///     Step 16 in TC-ID: 22.10 in 27.10 Special window
+        ///     Step 7 in TC-ID: 34.6 in 37.6 Dialogue Sequence of Special window
+        /// </summary>
+        public static void DMI_displays_Special_window(SignalPool pool)
+        {
+            pool.WaitForVerification("Is the Special window displayed?");
+        }
+
+        /// <summary>
+        /// Description: DMI displays SR speed/distance window
+        /// Used in:
+        ///     Step 1 in TC-ID: 10.4.1.3 in 15.4.1.3 State ‘ST05’: Abort the pending Data Process in Special window
+        ///     Step 24 in TC-ID: 22.9.1 in 27.9.1 SR Speed/Distance window: General appearance
+        /// </summary>
+        public static void DMI_displays_SR_speed_distance_window(SignalPool pool)
+        {
+            pool.WaitForVerification("Is the SR Speed/Distance window displayed?");
         }
 
         /// <summary>

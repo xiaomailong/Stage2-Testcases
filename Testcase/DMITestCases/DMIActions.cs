@@ -168,6 +168,26 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
+        /// Description: Set SR distance/speed window
+        /// Used in:
+        ///     Step 6 in TC-ID: 14.1 in 19.1
+        /// <param name="pool">Signal pool</param>
+        public static void Display_SR_speed_distance_window(SignalPool pool, uint lStff, ushort vStff)
+        {
+
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = standardFlags;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.SR_speed_distance;
+            EVC30_MMIRequestEnable.Send();
+
+            EVC11_MMICurrentSRRules.MMI_L_STFF = lStff;
+            EVC11_MMICurrentSRRules.MMI_V_STFF = vStff;
+            EVC11_MMICurrentSRRules.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS.BTN_YES_DATA_ENTRY_COMPLETE;
+            EVC11_MMICurrentSRRules.Send();
+
+        }
+
+        /// <summary>
         ///     Send EVC6_MMI_Current_Train_Data
         ///     Sends existing Train Data values to the DMI
         ///     <param name="mmiVMaxTrain">Max train speed</param>
@@ -775,6 +795,20 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
+        /// Description: RV mode acknowledgement request sent to the driver
+        /// Used in:
+        ///     Step 2 in TC-ID: 14.1 in 19.1
+        /// </summary>
+        public static void Send_RV_Mode_Ack(SignalPool pool)
+        {
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 262; // "#3 MO15 (Ack Reversing Mode)"
+            EVC8_MMIDriverMessage.Send();
+        }
+
+        /// <summary>
         /// Description: RV mode sent to be displayed on th DMI
         /// Used in:
         ///     Step 4 in TC-ID: 15.1.2 in 20.1.2
@@ -805,7 +839,8 @@ namespace Testcase.DMITestCases
         public static void Display_Main_Window_with_Start_button_enabled(SignalPool pool)
         {
             EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main; //EVC30_MMIRequestEnable.WindowID.No_window_specified
+
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH =
                 standardFlags | EVC30_MMIRequestEnable.EnabledRequests.Start;
             EVC30_MMIRequestEnable.Send();
@@ -1418,6 +1453,19 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = standardFlags;
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings;
+            EVC30_MMIRequestEnable.Send();
+        }
+
+        /// <summary>
+        /// Description: Open the Special window
+        /// Used in:
+        ///     Step 6 in TC-ID: 14.1 in 19.1
+        /// </summary>
+        public static void Open_the_Special_window(SignalPool pool)
+        {
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = standardFlags;
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Special;
             EVC30_MMIRequestEnable.Send();
         }
 

@@ -1735,19 +1735,7 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
         }
 
-        /// <summary>
-        /// Description: RV mode acknowledgement request sent to the driver
-        /// Used in:
-        ///     Step 3 in TC-ID: 15.1.2 in 20.1.2
-        /// </summary>
-        public static void Send_RV_Mode_Ack(SignalPool pool)
-        {
-            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
-            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
-            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
-            EVC8_MMIDriverMessage.MMI_Q_TEXT = 262; // "#3 MO15 (Ack Reversing Mode)"
-            EVC8_MMIDriverMessage.Send();
-        }
+        
 
         /// <summary>
         /// Description: Drive the train forward pass BG1.Then stop the train

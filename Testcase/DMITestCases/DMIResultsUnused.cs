@@ -347,18 +347,7 @@ namespace Testcase.DMITestCases
         public static void The_hourglass_symbol_ST05_is_displayed_at_window_title_area(SignalPool pool)
         {
             throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Description: DMI displays SR speed/distance window
-        /// Used in:
-        ///     Step 1 in TC-ID: 10.4.1.3 in 15.4.1.3 State ‘ST05’: Abort the pending Data Process in Special window
-        ///     Step 24 in TC-ID: 22.9.1 in 27.9.1 SR Speed/Distance window: General appearance
-        /// </summary>
-        public static void DMI_displays_SR_speeddistance_window(SignalPool pool)
-        {
-            throw new NotImplementedException();
-        }
+        }       
 
         /// <summary>
         /// Description: DMI displays RBC Data window
@@ -1071,20 +1060,7 @@ namespace Testcase.DMITestCases
         public static void DMI_displays_in_OS_mode_Level_1(SignalPool pool)
         {
             throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Description: DMI displays Special window
-        /// Used in:
-        ///     Step 2 in TC-ID: 14.6 in 19.6 Toggling function: Additional Configuration ‘TIMER’
-        ///     Step 8 in TC-ID: 22.10 in 27.10 Special window
-        ///     Step 16 in TC-ID: 22.10 in 27.10 Special window
-        ///     Step 7 in TC-ID: 34.6 in 37.6 Dialogue Sequence of Special window
-        /// </summary>
-        public static void DMI_displays_Special_window(SignalPool pool)
-        {
-            throw new NotImplementedException();
-        }
+        }        
 
         /// <summary>
         /// Description: DMI displays in ATB STM mode, Level NTC
