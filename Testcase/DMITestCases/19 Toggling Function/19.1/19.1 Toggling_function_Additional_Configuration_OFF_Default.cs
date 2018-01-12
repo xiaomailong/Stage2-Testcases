@@ -98,6 +98,7 @@ namespace Testcase.DMITestCases
             DmiActions.Send_RV_Mode_Ack(this);
             DmiExpectedResults.RV_Mode_Ack_requested(this);
 
+            DmiActions.ShowInstruction(this, "Press the symbol in sub-area C1");
             DmiExpectedResults.RV_Mode_Ack_pressed_and_released(this);
 
             // Remove RV ACK (MO15)
@@ -343,6 +344,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in OS mode, Level 1.Verify the following information,The objects below are not displays on DMI, (toggle off)Basic speed Hook(s)Distance to target (digital)Release speed digital
             Test Step Comment: (1) MMI_gen 11868 (partly: OS mode), Table 34 (not CSM), Table 35 (not CSM), Table 38 (not CSM), MMI_gen 6450 (partly: 2nd bullet, OS mode), MMI_gen 6898 (configuration ‘OFF’, OS mode);
             */
+
             DmiActions.Send_OS_Mode_Ack(this);
             DmiExpectedResults.OS_Mode_Ack_requested(this);
 
@@ -533,6 +535,10 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.Shunting_button_pressed_and_hold(this);
 
             DmiActions.Send_SH_Mode(this);
+            DmiActions.Send_L1(this);
+
+            DmiExpectedResults.SH_Mode_displayed(this);
+            DmiExpectedResults.Driver_symbol_displayed(this, "Level 1", "LE03", "C8", true);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SH mode, Level 1." + Environment.NewLine +
