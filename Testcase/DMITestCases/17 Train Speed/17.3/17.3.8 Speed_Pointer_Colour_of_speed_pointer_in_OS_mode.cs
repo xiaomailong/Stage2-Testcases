@@ -56,21 +56,22 @@ namespace Testcase.DMITestCases
             */
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.OnSight;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
-            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
-            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
-            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
-            EVC8_MMIDriverMessage.MMI_Q_TEXT = 259;
-            EVC8_MMIDriverMessage.Send();
 
-            DmiActions.ShowInstruction(this, "Acknowledgement of OS mode is requested. Press button to accept");
+            DmiActions.Send_OS_Mode_Ack(this);
+            DmiExpectedResults.OS_Mode_Ack_pressed_and_released(this);
 
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in OS mode, level 1.");
+            DmiActions.Send_OS_Mode(this);
+            DmiExpectedResults.OS_Mode_displayed(this);
 
             /*
             Test Step 2
             Action: Drive the train forward with speed = 30 km/h
-            Expected Result: DMI displays in OS mode, level 1.Verify the following information,(1)   Use the log file to confirm that DMI received the packet information EVC-1 and EVC-7 with following variables,(EVC-7) OBU_TR_M_MODE = 1 (On-sight)(EVC-1) MMI_M_WARNING = 0 (Status = NoS, Supervision = CSM)(EVC-1) MMI_V_PERMITTED = 833 (30km/h)(2)   The speed pointer display in grey colour
+            Expected Result: DMI displays in OS mode, level 1.Verify the following information,
+            (1)   Use the log file to confirm that DMI received the packet information EVC-1 and EVC-7 with following variables,
+                (EVC-7) OBU_TR_M_MODE = 1 (On-sight)
+                (EVC-1) MMI_M_WARNING = 0 (Status = NoS, Supervision = CSM)
+                (EVC-1) MMI_V_PERMITTED = 833 (30km/h)
+            (2)   The speed pointer display in grey colour
             Test Step Comment: (1) MMI_gen 6299 (partly: OBU_TR_M_MODE, MMI_M_WARNING, train speed in relation to permitted speed MMI_V_PERMITTED, OS mode in CSM supervision);(2) MMI_gen 6299 (partly: colour of speed pointer, OS mode in CSM supervision);
             */
             EVC1_MMIDynamic.MMI_V_PERMITTED = 833;
@@ -83,7 +84,10 @@ namespace Testcase.DMITestCases
             /*
             Test Step 3
             Action: Increase the train speed to 31 km/h
-            Expected Result: Verify the following information,(1)   Use the log file to confirm that DMI received the packet information EVC-1 with the following condition,MMI_M_WARNING = 8 (Status = OvS, Supervision = CSM) while the value of MMI_V_TRAIN = 861 (31 km/h) which greater than MMI_V_PERMITTED(2)   The speed pointer display in orange colour
+            Expected Result: Verify the following information,
+            (1)   Use the log file to confirm that DMI received the packet information EVC-1 with the following condition,
+                MMI_M_WARNING = 8 (Status = OvS, Supervision = CSM) while the value of MMI_V_TRAIN = 861 (31 km/h) which greater than MMI_V_PERMITTED
+            (2)   The speed pointer display in orange colour
             Test Step Comment: (1) MMI_gen 6299 (partly: MMI_M_WARNING, train speed in relation to permitted speed MMI_V_PERMITTED, OS mode in CSM supervision);(2) MMI_gen 6299 (partly: colour of speed pointer, OS mode in CSM supervision);
             */
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Overspeed_Status_Ceiling_Speed_Monitoring;
@@ -94,7 +98,10 @@ namespace Testcase.DMITestCases
             /*
             Test Step 4
             Action: Increase the train speed to 35 km/h.Note: dV_warning_max is defined in chapter 3 of [SUBSET-026]
-            Expected Result: Verify the following information,(1)   Use the log file to confirm that DMI received the packet information EVC-1 with the following condition,MMI_M_WARNING = 4 (Status = WaS, Supervision = CSM) while the value of MMI_V_TRAIN = 972 (35 km/h) which greater than MMI_V_PERMITTED but lower than MMI_V_INTERVENTION(2)   The speed pointer display in orange colour
+            Expected Result: Verify the following information,
+            (1)   Use the log file to confirm that DMI received the packet information EVC-1 with the following condition,
+                MMI_M_WARNING = 4 (Status = WaS, Supervision = CSM) while the value of MMI_V_TRAIN = 972 (35 km/h) which greater than MMI_V_PERMITTED but lower than MMI_V_INTERVENTION
+            (2)   The speed pointer display in orange colour
             Test Step Comment: (1) MMI_gen 6299 (partly: MMI_M_WARNING, train speed in relation to permitted speed MMI_V_PERMITTED, OS mode in CSM supervision);(2) MMI_gen 6299 (partly: colour of speed pointer, OS mode in CSM supervision);
             */
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Warning_Status_Ceiling_Speed_Monitoring;
