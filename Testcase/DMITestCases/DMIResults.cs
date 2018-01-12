@@ -36,7 +36,7 @@ namespace Testcase.DMITestCases
         {
             pool.TraceInfo($"This test case is not required since it tests the same interfaces as TC {testcaseId}" +
                            $" in section {sectionNumber} of the specification.");
-        }
+        } 
 
         /// <summary>
         /// Prompt for verification of symbol displayed on the DMI.
