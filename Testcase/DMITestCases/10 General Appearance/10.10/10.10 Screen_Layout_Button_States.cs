@@ -15,7 +15,8 @@ namespace Testcase.DMITestCases
     /// MMI_gen 4377;
     /// 
     /// Scenario:
-    /// 1.Perform SoM until train running number is entered.2      Send XML script (EVC-30) to disable the buttons on Main window, override window, Special window and Setting window
+    /// 1.Perform SoM until train running number is entered.
+    /// 2.Send XML script (EVC-30) to disable the buttons on Main window, override window, Special window and Setting window
     /// 3.Verify that the disable buttons shall be shown as a enable button with text label in dark gray. 
     /// 
     /// Used files:
@@ -55,31 +56,58 @@ namespace Testcase.DMITestCases
             Action: Perform SoM until train running number is entered
             Expected Result: DMI displays Main window with enabled ‘Start’ button
             */
-            // Set train running number, cab 1 active, and other defaults
-            DmiActions.Activate_Cabin_1(this);
 
-            // Set driver ID
             DmiActions.Set_Driver_ID(this, "1234");
+            DmiActions.Send_SB_Mode(this);
+            DmiActions.Send_L1(this);
+            DmiActions.ShowInstruction(this, "Enter and confirm Driver ID");
 
-            // Set to level 1 and SR mode
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
+            DmiActions.Request_Brake_Test(this);
+            DmiActions.ShowInstruction(this, "Perform Brake Test");
 
-            EVC16_CurrentTrainNumber.TrainRunningNumber = 1;
-            EVC16_CurrentTrainNumber.Send();
+            DmiActions.Perform_Brake_Test(this, 2);
+            Wait_Realtime(5000);
+            DmiActions.Display_Brake_Test_Successful(this, 3);
 
-            DmiActions.ShowInstruction(this, "Enter and confirm the train running number");
+            DmiActions.Display_Level_Window(this);
+            DmiActions.Delete_Brake_Test_Successful(this, 3);
+            DmiActions.ShowInstruction(this, "Select and enter Level 1");
 
-            EVC30_MMIRequestEnable.SendBlank();
+            DmiActions.Display_Main_Window_with_Start_button_not_enabled(this);
+            DmiActions.ShowInstruction(this, @"Press ‘Train data’ button");
 
-            // Spec says Start button enabled
-            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH =
-                EVC30_MMIRequestEnable.EnabledRequests.TrainRunningNumber |
-                EVC30_MMIRequestEnable.EnabledRequests.Start;
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main; // Main window
-            EVC30_MMIRequestEnable.Send();
+            DmiActions.Display_Fixed_Train_Data_Window(this);
+            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine +
+                                  Environment.NewLine +
+                                  "1. Enter FLU and confirm value in each input field." + Environment.NewLine +
+                                  "2. Press OK on THIS window.");
 
-            // Call generic Check Results Method
+            DmiActions.Enable_Fixed_Train_Data_Validation(this, Variables.Fixed_Trainset_Captions.FLU);
+            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine +
+                                  Environment.NewLine +
+                                  "1. Press ‘Yes’ button." + Environment.NewLine +
+                                  "2. Press OK on THIS window.");
+
+            DmiActions.Complete_Fixed_Train_Data_Entry(this, Variables.Fixed_Trainset_Captions.FLU);
+            DmiActions.Display_Train_data_validation_Window(this);
+            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine +
+                                  Environment.NewLine +
+                                  "1. Press ‘Yes’ button." + Environment.NewLine +
+                                  "2. Confirmed the selected value by pressing the input field." + Environment.NewLine +
+                                  "3. Press OK on THIS window.");
+
+            DmiActions.Display_Train_data_validation_Window(this);
+            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine +
+                                  Environment.NewLine +
+                                  "1. Press ‘Yes’ button." + Environment.NewLine +
+                                  "2. Confirmed the selected value by pressing the input field.");
+
+            DmiActions.Display_TRN_Window(this);
+            DmiActions.ShowInstruction(this, "Enter and confirm Train Running Number");
+
+            DmiActions.Display_Main_Window_with_Start_button_enabled(this);
+
+
             DmiExpectedResults.Main_Window_displayed(this, true);
 
             // Steps 2 to 22 are in XML_5_10_a.cs
@@ -309,7 +337,7 @@ namespace Testcase.DMITestCases
 
             // Step 3
             DMITestCases.DmiActions.ShowInstruction(this, "Press ‘Exit’ button then select Override menu");
-
+            DmiActions.Display_Override_Window(this);
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = (EVC30_MMIRequestEnable.EnabledRequests.Start |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.DriverID |
@@ -359,7 +387,7 @@ namespace Testcase.DMITestCases
 
             // Step 4
             DMITestCases.DmiActions.ShowInstruction(this, "Press the ‘Exit’ button and select the Special menu");
-
+            DmiActions.Open_the_Special_window(this);
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = (EVC30_MMIRequestEnable.EnabledRequests.Start |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.DriverID |
@@ -411,7 +439,7 @@ namespace Testcase.DMITestCases
 
             // Step 5
             DMITestCases.DmiActions.ShowInstruction(this, "Press the ‘Exit’ button and select the Settings menu");
-
+            DmiActions.Open_the_Settings_window(this);
             // The spec indicates 9 bits to set but only tests 8 buttons: assume the first 6 are correct and Set Clock (#25) is SetLocalTimeDateAndOffset
             // Bit #32 would be in the next word so if MMI_Q_REQUEST_ENABLE_LOW is available and the only button to be set it could be a bool as suggested
             // but being tested
@@ -475,23 +503,20 @@ namespace Testcase.DMITestCases
 
             // Step 6
             // De-activate and activate cabin
-            // More to do??
-            EVC2_MMIStatus.MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.NoCabinActive;
-            EVC2_MMIStatus.Send();
+            // More to do??           
 
-            EVC2_MMIStatus.MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.Cabin1Active;
-            EVC2_MMIStatus.Send();
+            DmiActions.Deactivate_Cabin(this);
+            Wait_Realtime(5000);
+            DmiActions.Activate_Cabin_1(this);
 
-            DMITestCases.DmiActions.Set_Driver_ID(this, "1234");
+            DmiActions.Set_Driver_ID(this, "1234");
 
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
-            DMITestCases.DmiExpectedResults.SB_Mode_displayed(this);
-
+            DmiActions.Send_SB_Mode(this);
+            DmiExpectedResults.SB_Mode_displayed(this);
 
             // Step 7
-            DMITestCases.DmiActions.ShowInstruction(this,
-                "Press Setting menu and select Maintenance button and password");
-
+            DMITestCases.DmiActions.ShowInstruction(this,"Press Setting menu and select Maintenance button and password");
+            DmiActions.Open_the_Settings_window(this);
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = (EVC30_MMIRequestEnable.EnabledRequests.Start |
                                                                 EVC30_MMIRequestEnable.EnabledRequests.DriverID |
@@ -542,25 +567,31 @@ namespace Testcase.DMITestCases
             // Step 8
             // De-activate and activate cabin
             // More to do????
-            EVC2_MMIStatus.MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.NoCabinActive;
-            EVC2_MMIStatus.Send();
+            DmiActions.Deactivate_Cabin(this);
+            Wait_Realtime(5000);
+            DmiActions.Activate_Cabin_1(this);
 
-            EVC2_MMIStatus.MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.Cabin1Active;
-            EVC2_MMIStatus.Send();
+            DmiActions.Set_Driver_ID(this, "1234");
 
-            DMITestCases.DmiActions.Set_Driver_ID(this, "1234");
-
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
-
-            DMITestCases.DmiExpectedResults.SB_Mode_displayed(this);
+            DmiActions.Send_SB_Mode(this);
+            DmiExpectedResults.SB_Mode_displayed(this);
 
             // Step 9
             // Test says this: but level entry and shunting is tested elsewhere
-            //DMITestCases.DmiActions.ShowInstruction(this, "Enter Driver ID. Skip the brake test. Select Level 1 then shunting mode");
-            DMITestCases.DmiActions.ShowInstruction(this, "Enter Driver ID.");
+            
+            DmiActions.ShowInstruction(this, "Enter Driver ID.");
 
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Shunting;
+            DmiActions.Request_Brake_Test(this);
+            DmiActions.ShowInstruction(this, "Skip brake test. ");
+
+            DmiActions.Display_Level_Window(this);
+            DmiActions.ShowInstruction(this, "Select Level 1. ");
+
+            DmiActions.Display_Main_Window_with_Start_button_not_enabled(this);
+            DmiActions.ShowInstruction(this, $"Press and hold ‘Shunting’ button for up to 2s then release the ‘Shunting’ button");
+
+            DmiActions.Send_SH_Mode(this);
+            DmiActions.Send_L1(this);
 
             DMITestCases.DmiExpectedResults.SH_Mode_displayed(this);
 
@@ -613,36 +644,22 @@ namespace Testcase.DMITestCases
 
             // Step 11
             // More to do????
-            EVC2_MMIStatus.MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.NoCabinActive;
-            EVC2_MMIStatus.Send();
+            DmiActions.Deactivate_Cabin(this);
+            Wait_Realtime(5000);
+            DmiActions.Activate_Cabin_1(this);
 
-            EVC2_MMIStatus.MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.Cabin1Active;
-            EVC2_MMIStatus.Send();
-
-            DMITestCases.DmiActions.Set_Driver_ID(this, "1234");
-
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
-            DMITestCases.DmiExpectedResults.SB_Mode_displayed(this);
 
             // Step 12
-            DMITestCases.DmiActions.Complete_SoM_L1_SR(this);
 
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode =
-                EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
-            DMITestCases.DmiExpectedResults.SR_Mode_displayed(this);
+            DMITestCases.DmiActions.Perform_SoM_in_SR_mode_Level_1(this);
+            DmiExpectedResults.SR_Mode_displayed(this);
 
 
             // Step 13
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 40;
 
-            DMITestCases.DmiActions.ShowInstruction(this, "Select Settings menu");
-
-            // this relies on ETCS data so packet required...
-            EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings; // Settings
-            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.None;
-            EVC30_MMIRequestEnable.Send();
+            DmiActions.ShowInstruction(this, "Select Settings menu");
+            DmiActions.Open_the_Settings_window(this);
 
             WaitForVerification("Check that the following buttons are displayed with a border with Dark-Grey text:" +
                                 Environment.NewLine + Environment.NewLine +
@@ -652,9 +669,9 @@ namespace Testcase.DMITestCases
                                 @"4. The ‘Maintenance’ button.");
 
             // Step 14
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
 
-            DMITestCases.DmiExpectedResults.Driver_symbol_displayed(this, "Full Supervision mode", "MO11", "B7", false);
+            DmiActions.Send_FS_Mode(this);
+            DmiExpectedResults.FS_mode_displayed(this);
 
 
             // Step 15
@@ -704,29 +721,48 @@ namespace Testcase.DMITestCases
 
             // Step 16
             // Stop the train
-            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
+
+            DmiActions.Stop_the_train(this);
 
             // Train is at a standstill
-            //WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-            //                          "1. DMI displays speed = 0 km/h.");
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                      "1. DMI displays speed = 0 km/h.");
 
 
             // Step 17
-            EVC2_MMIStatus.MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.NoCabinActive;
-            EVC2_MMIStatus.Send();
 
-            EVC2_MMIStatus.MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.Cabin1Active;
-            EVC2_MMIStatus.Send();
+            DmiActions.Deactivate_Cabin(this);
+            Wait_Realtime(5000);
+            DmiActions.Activate_Cabin_1(this);
 
-            DMITestCases.DmiActions.Set_Driver_ID(this, "1234");
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
+            DmiActions.Set_Driver_ID(this, "1234");
 
-            DMITestCases.DmiExpectedResults.SB_Mode_displayed(this);
+            DmiActions.Send_SB_Mode(this);
+            DmiExpectedResults.SB_Mode_displayed(this);
 
             // Step 18
-            // Test case says brake test, level set: tested elsewhere
-            //DMITestCases.DmiActions.ShowInstruction(this, "Enter Driver ID and perform brake test. Select and confirm Level 2");
-            DMITestCases.DmiActions.ShowInstruction(this, "Enter Driver ID");
+            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine +
+                                  Environment.NewLine +
+                                  "1. Enter and confirm Driver ID." + Environment.NewLine +
+                                  "2. Press OK on THIS window.");
+
+            DmiActions.Request_Brake_Test(this);
+            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine +
+                                  Environment.NewLine +
+                                  "1. Perform Brake Test" + Environment.NewLine +
+                                  "2. Press OK on THIS window.");
+            DmiActions.Perform_Brake_Test(this, 2);
+            Wait_Realtime(5000);
+            DmiActions.Display_Brake_Test_Successful(this, 3);
+
+            DmiActions.Display_Level_Window(this);
+            DmiActions.Delete_Brake_Test_Successful(this, 3);
+            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine +
+                                  Environment.NewLine +
+                                  "1. Select and enter Level 2" + Environment.NewLine +
+                                  "2. Press OK on THIS window.");
+
+            DmiActions.Display_RBC_Contact_Window(this);
 
             // force Level 2
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L2;
@@ -768,12 +804,6 @@ namespace Testcase.DMITestCases
                                                                    .EnableBrakePercentage;
             EVC30_MMIRequestEnable.Send();
 
-            // Need to display RBC Contact window
-            EVC22_MMICurrentRBC.MMI_NID_WINDOW = 5;
-            EVC22_MMICurrentRBC.MMI_M_BUTTONS = EVC22_MMICurrentRBC.EVC22BUTTONS.BTN_YES_DATA_ENTRY_COMPLETE;
-            EVC22_MMICurrentRBC.NetworkCaptions = new List<string> {"Network 1"};
-            EVC22_MMICurrentRBC.Send();
-
             WaitForVerification("Check that the following buttons are displayed with a border with Dark-Grey text:" +
                                 Environment.NewLine + Environment.NewLine +
                                 @"1. The ‘Contract last window’ button." + Environment.NewLine +
@@ -782,45 +812,44 @@ namespace Testcase.DMITestCases
                                 @"4. The ‘Radio Network ID’ button.");
 
             // Step 19
-            // More to do????
-            EVC2_MMIStatus.MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.NoCabinActive;
-            EVC2_MMIStatus.Send();
 
-            EVC2_MMIStatus.MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.Cabin1Active;
-            EVC2_MMIStatus.Send();
+            DmiActions.Deactivate_Cabin(this);
+            Wait_Realtime(5000);
+            DmiActions.Activate_Cabin_1(this);
 
-            // Need to remove RBC Contact window
-            EVC22_MMICurrentRBC.NetworkCaptions = new List<string> { };
-            EVC22_MMICurrentRBC.MMI_NID_WINDOW = 9;
-            EVC22_MMICurrentRBC.Send();
+            DmiActions.Set_Driver_ID(this, "1234");
 
-            DMITestCases.DmiActions.Set_Driver_ID(this, "1234");
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
-
-            DMITestCases.DmiExpectedResults.SB_Mode_displayed(this);
+            DmiActions.Send_SB_Mode(this);
+            DmiExpectedResults.SB_Mode_displayed(this);
 
             // Step 20
             // Test says do all this: but tested elsewhere (activating cabin cannot be done by driver)
 
-            EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Disabled;
-            EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new Variables.MMI_Q_LEVEL_NTC_ID[]
-                {Variables.MMI_Q_LEVEL_NTC_ID.STM_ID};
-            EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new Variables.MMI_M_CURRENT_LEVEL[]
-                {Variables.MMI_M_CURRENT_LEVEL.LastUsedLevel};
-            EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = new Variables.MMI_M_LEVEL_FLAG[]
-                {Variables.MMI_M_LEVEL_FLAG.MarkedLevel};
-            EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = new Variables.MMI_M_INHIBITED_LEVEL[]
-                {Variables.MMI_M_INHIBITED_LEVEL.NotInhibited};
-            EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = new Variables.MMI_M_INHIBIT_ENABLE[]
-                {Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting};
-            EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new Variables.MMI_M_LEVEL_NTC_ID[]
-                {Variables.MMI_M_LEVEL_NTC_ID.AWS_TPWS};
-            EVC20_MMISelectLevel.Send();
+            DmiActions.Set_Driver_ID(this, "1234");
+            DmiActions.Send_SB_Mode(this);
+            DmiActions.ShowInstruction(this, "Enter and confirm Driver ID");
 
-            DMITestCases.DmiActions.ShowInstruction(this, "Select and confirm Level AWS TPWS");
+            DmiActions.Request_Brake_Test(this);
+            DmiActions.ShowInstruction(this, "Perform Brake Test");
 
+            DmiActions.Perform_Brake_Test(this, 2);
+            Wait_Realtime(5000);
+            DmiActions.Display_Brake_Test_Successful(this, 3);
+
+            DmiActions.Display_Level_Window(this);
+            DmiActions.Delete_Brake_Test_Successful(this, 3);
+            DmiActions.ShowInstruction(this, "Select and enter Level AWS/TPWS");
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.LNTC;
 
+            DmiActions.Display_Main_Window_with_Start_button_not_enabled(this);
+            DmiActions.ShowInstruction(this, @"Press ‘Train data’ button");
+
+            DmiActions.Display_Fixed_Train_Data_Window(this);
+            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine +
+                                  Environment.NewLine +
+                                  "1. Enter FLU and confirm value in each input field." + Environment.NewLine +
+                                  "2. Press OK on THIS window.");
+          
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Start |
                                                                EVC30_MMIRequestEnable.EnabledRequests.DriverID |
@@ -872,21 +901,20 @@ namespace Testcase.DMITestCases
                                 @"1. The ‘End of data entry’ button.");
 
             // Step 21
-            EVC2_MMIStatus.MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.NoCabinActive;
-            EVC2_MMIStatus.Send();
-            EVC2_MMIStatus.MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.Cabin1Active;
-            EVC2_MMIStatus.Send();
 
-            DMITestCases.DmiActions.Set_Driver_ID(this, "1234");
+            DmiActions.Deactivate_Cabin(this);
+            Wait_Realtime(5000);
+            DmiActions.Activate_Cabin_1(this);
 
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
+            DmiActions.Set_Driver_ID(this, "1234");
 
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in SB mode");
+            DmiActions.Send_SB_Mode(this);
+            DmiExpectedResults.SB_Mode_displayed(this);
 
             // Step 22
             // Test says active cabin (It is) and do brake test: as before ignore
             DMITestCases.DmiActions.ShowInstruction(this, @"Press the ‘Close’ button in the Main window.");
+
 
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Start |
@@ -930,6 +958,8 @@ namespace Testcase.DMITestCases
 
             DMITestCases.DmiActions.ShowInstruction(this,
                 @"Press the ‘Settings’ button, then press the ‘Brake’ button");
+
+            DmiActions.Open_the_Settings_window(this);
 
             WaitForVerification("Check that the following button is displayed with a border with Dark-Grey text:" +
                                 Environment.NewLine + Environment.NewLine +

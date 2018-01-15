@@ -1293,24 +1293,33 @@ namespace Testcase.DMITestCases
             Send_SB_Mode(pool);
             ShowInstruction(pool, "Enter and confirm Driver ID");
 
-
             Request_Brake_Test(pool);
             ShowInstruction(pool, "Perform Brake Test");
-
+            Perform_Brake_Test(pool, 2);
+            pool.Wait_Realtime(5000);
+            Display_Brake_Test_Successful(pool, 3);
 
             Display_Level_Window(pool);
-            ShowInstruction(pool, "Select and enter Level 1");
+            Delete_Brake_Test_Successful(pool, 3);
 
+            ShowInstruction(pool, "Select and enter Level 1");
 
             Display_Main_Window_with_Start_button_not_enabled(pool);
             ShowInstruction(pool, @"Press ‘Train data’ button");
 
-
             Display_Fixed_Train_Data_Window(pool);
+            ShowInstruction(pool, @"Enter FLU and confirm value in each input field.");
+
+            Enable_Fixed_Train_Data_Validation(pool, Fixed_Trainset_Captions.FLU);
+            ShowInstruction(pool, @"Press ‘Yes’ button.");
+
+            Complete_Fixed_Train_Data_Entry(pool, Fixed_Trainset_Captions.FLU);
+            Display_Train_data_validation_Window(pool);
             ShowInstruction(pool, @"Perform the following actions on the DMI: " + Environment.NewLine +
                                   Environment.NewLine +
-                                  "1. Enter and confirm value in each input field." + Environment.NewLine +
-                                  "2. Press ‘Yes’ button.");
+                                  "1. Press ‘Yes’ button." + Environment.NewLine +
+                                  "2. Confirmed the selected value by pressing the input field." + Environment.NewLine +
+                                  "3. Press OK on THIS window.");
 
             Display_Train_data_validation_Window(pool);
             ShowInstruction(pool, @"Perform the following actions on the DMI: " + Environment.NewLine +
