@@ -197,7 +197,7 @@ namespace Testcase.DMITestCases
 
             DmiExpectedResults.DMI_displays_SR_speed_distance_window(this);
 
-            DmiExpectedResults.SR_speed_distance_entered(this, 400, 30);
+            DmiExpectedResults.SR_speed_distance_entered(this, 300, 40);
 
             EVC11_MMICurrentSRRules.MMI_L_STFF = 0;
             EVC11_MMICurrentSRRules.MMI_V_STFF = 0;
