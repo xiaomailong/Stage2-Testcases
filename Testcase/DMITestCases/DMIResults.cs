@@ -58,6 +58,22 @@ namespace Testcase.DMITestCases
                                          $"displayed in area {symbolArea}?");
         }
 
+        public static void Driver_symbol_deleted(SignalPool pool, string symbolName, string symbolNumber,
+           string symbolArea)
+        {
+
+                pool.WaitForVerification($"Is the {symbolName} symbol ({symbolNumber}) " +
+                                         $"removed from area {symbolArea}?");
+        }
+
+        public static void TAF_ack_pressed_and_released(SignalPool pool)
+        {
+            EVC111_MMIDriverMessageAck.MMI_Q_ACK = MMI_Q_ACK.AcknowledgeYES;
+            EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = MMI_Q_BUTTON.Pressed;
+            EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = MMI_Q_BUTTON.Released;
+            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.TrackAheadFreeConfirmation;
+        }
+
         /// <summary>
         /// Description: Level 0 acknowledgement is requested on DMI area C1
         /// Used in:
@@ -66,7 +82,7 @@ namespace Testcase.DMITestCases
         /// <param name="pool">The SignalPool</param>
         public static void L0_Announcement_Ack_Requested(SignalPool pool)
         {
-            Driver_symbol_displayed(pool, "Acknowledgement for Level 0", "LE07", "C1", true);
+            Driver_symbol_displayed(pool, "Acknowledgement for Level 0 announcement", "LE07", "C1", true);
         }
 
         /// <summary>
@@ -83,6 +99,33 @@ namespace Testcase.DMITestCases
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.Level0Ack;
             pool.WaitForVerification(
                 "Has the LE07 symbol disappeared and been replaced with LE06 symbol in sub-area C1?");
+        }
+
+        /// <summary>
+        /// Description: Level 1 acknowledgement is requested on DMI area C1
+        /// Used in:
+        ///     Step 1 in TC-ID: 15.1.4 in 20.1.4
+        /// </summary>
+        /// <param name="pool">The SignalPool</param>
+        public static void L1_Announcement_Ack_Requested(SignalPool pool)
+        {
+            Driver_symbol_displayed(pool, "Acknowledgement for Level 1 announcement", "LE11", "C1", true);
+        }
+
+        /// <summary>
+        /// Description: Level 1 Acknowledgement symbol on DMI area C1 is pressed and released.
+        /// Used in:
+        ///     Step 1 in TC-ID: 15.1.4 in 20.1.4
+        ///     Step 4 in TC-ID: 15.2.4 in 20.2.4
+        /// </summary>
+        public static void L1_Announcement_Ack_pressed_and_released(SignalPool pool)
+        {
+            EVC111_MMIDriverMessageAck.MMI_Q_ACK = MMI_Q_ACK.AcknowledgeYES;
+            EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = MMI_Q_BUTTON.Pressed;
+            EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = MMI_Q_BUTTON.Released;
+            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.Level1Ack;
+            pool.WaitForVerification(
+                "Has the LE11 symbol disappeared and been replaced with LE10 symbol in sub-area C1?");
         }
 
         /// <summary>

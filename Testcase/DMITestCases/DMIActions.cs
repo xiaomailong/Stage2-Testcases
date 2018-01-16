@@ -628,6 +628,23 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
             EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 257; // "#3 LE07/LE11/LE13/LE15 (Ack Transition to Level #4)"
+            EVC8_MMIDriverMessage.PlainTextMessage = "0";
+            EVC8_MMIDriverMessage.Send();
+        }
+
+        /// <summary>
+        /// Description: Level 1 announcement ack request sent to the driver
+        /// Used in:
+        ///     Step 1 in TC-ID: 15.1.4 in 20.1.4
+        /// </summary>
+        /// <param name="pool">Signal pool</param>
+        public static void Send_L1_Announcement_Ack(SignalPool pool)
+        {
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 257; // "#3 LE07/LE11/LE13/LE15 (Ack Transition to Level #4)"
+            EVC8_MMIDriverMessage.PlainTextMessage = "1";
             EVC8_MMIDriverMessage.Send();
         }
 
