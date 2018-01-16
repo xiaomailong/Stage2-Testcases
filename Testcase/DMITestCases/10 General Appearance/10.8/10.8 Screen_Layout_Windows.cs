@@ -29,6 +29,7 @@ namespace Testcase.DMITestCases
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
+            DmiActions.Start_ATP();
         }
 
         public override void PostExecution()
@@ -48,14 +49,16 @@ namespace Testcase.DMITestCases
 
             /*
             Test Step 1
-            Action: Activate cabin A. Then, observe the appearance of the Driver ID window
-            Expected Result: The Driver ID window is displayed. All objects, text messages and buttons are presented within the same layer
+            Action: Activate cabin A. 
+            Then, observe the appearance of the Driver ID window
+            Expected Result: The Driver ID window is displayed. 
+            All objects, text messages and buttons are presented within the same layer
             Test Step Comment: MMI_gen 4351;
             */
             DmiActions.Activate_Cabin_1(this);
-            EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE = EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE_BUTTONS.Settings;
-            EVC14_MMICurrentDriverID.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
-            EVC14_MMICurrentDriverID.Send();
+            DmiActions.Set_Driver_ID(this, "1234");
+            DmiActions.Send_SB_Mode(this);
+            DmiExpectedResults.Driver_ID_window_displayed_in_SB_mode(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Driver ID window." + Environment.NewLine +
@@ -63,24 +66,29 @@ namespace Testcase.DMITestCases
 
             /*
             Test Step 2
-            Action: Enter the Driver ID. Perform brake test. Then select level 1
-            Expected Result: The Level window is displayed.Verify the following:The Sub-level window covers partially on the screen.When this window is active, driver cannot select anything on the default window underneath e.g. ‘Main menu’ or ‘Settings menu’.All objects, text messages and buttons are presented within the same layer
+            Action: Enter the Driver ID. 
+                    Perform brake test. 
+                    Then select level 1
+            Expected Result: The Level window is displayed.
+            Verify the following:
+            The Sub-level window covers partially on the screen.
+            When this window is active, driver cannot select anything on the default window underneath e.g. ‘Main menu’ or ‘Settings menu’.
+            All objects, text messages and buttons are presented within the same layer
             Test Step Comment: MMI_gen 4354;MMI_gen 4351;
             */
             // Brake test checks are done in section 27.22: irrelevant here
             DmiActions.ShowInstruction(this, "Enter the Driver ID (and confirm).");
 
-            EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = MMI_Q_CLOSE_ENABLE.Disabled;
-            EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new MMI_Q_LEVEL_NTC_ID[] {MMI_Q_LEVEL_NTC_ID.ETCS_Level};
-            EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new MMI_M_CURRENT_LEVEL[] {MMI_M_CURRENT_LEVEL.NotLastUsedLevel};
-            EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = new MMI_M_LEVEL_FLAG[] {MMI_M_LEVEL_FLAG.MarkedLevel};
-            EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = new MMI_M_INHIBITED_LEVEL[]
-                {MMI_M_INHIBITED_LEVEL.NotInhibited};
-            EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = new MMI_M_INHIBIT_ENABLE[]
-                {MMI_M_INHIBIT_ENABLE.AllowedForInhibiting};
-            EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new MMI_M_LEVEL_NTC_ID[] {MMI_M_LEVEL_NTC_ID.L1};
-            EVC20_MMISelectLevel.Send();
-            DmiActions.ShowInstruction(this, "Select level 1");
+            DmiActions.Request_Brake_Test(this);
+            DmiActions.ShowInstruction(this, "Perform Brake Test");
+            DmiActions.Perform_Brake_Test(this, 2);
+            Wait_Realtime(5000);
+            DmiActions.Display_Brake_Test_Successful(this, 3);
+
+            DmiActions.Display_Level_Window(this);
+            DmiActions.Delete_Brake_Test_Successful(this, 3);
+
+            DmiActions.ShowInstruction(this, "Select and enter Level 1");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Level window." + Environment.NewLine +
@@ -92,19 +100,25 @@ namespace Testcase.DMITestCases
             /*
             Test Step 3
             Action: Confirm level 1 and Select ‘Train data’ button
-            Expected Result: The Train data window is displayed.Verify the following:(1)   All objects, text messages and buttons are presented within the same layer.(2)   At the top of the window, it displays title with text ‘Train data’, background is black and text label is displayed as grey colour.(3)   For the title, when the number of DMI objects cannot fit within a window is displayed as (1/2) i.e. in this case it displays Train data (1/2) and Train data (2/2).(4)   The Data entry window contains a maximum of 4 or 3 input field. (5)   A close button is displayed as enabled.(6)   Sub-level window covers totally depending on the size of the Sub-Level window.(7)   ‘Next’ and/or ‘Previous’ button is enabled. The scrolling between various windows is not displayed as circular
+            Expected Result: The Train data window is displayed.
+            Verify the following:
+            (1)   All objects, text messages and buttons are presented within the same layer.
+            (2)   At the top of the window, it displays title with text ‘Train data’, 
+            background is black and text label is displayed as grey colour.
+            (3)   For the title, when the number of DMI objects cannot fit within a window is displayed as (1/2) i.e. in this case it displays Train data (1/2) and Train data (2/2).
+            (4)   The Data entry window contains a maximum of 4 or 3 input field. 
+            (5)   A close button is displayed as enabled.
+            (6)   Sub-level window covers totally depending on the size of the Sub-Level window.
+            (7)   ‘Next’ and/or ‘Previous’ button is enabled. 
+            The scrolling between various windows is not displayed as circular
             Test Step Comment: MMI_gen 4351;MMI_gen 4354;MMI_gen 4355;MMI_gen 4358;MMI_gen 4360;
             */
             DmiActions.ShowInstruction(this, "Accept level 1");
 
-            EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main; // Main window
-            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.TrainData;
-            EVC30_MMIRequestEnable.Send();
+            DmiActions.Display_Main_Window_with_Start_button_not_enabled(this);
+            DmiActions.ShowInstruction(this, @"Press ‘Train data’ button");
 
-            DmiActions.ShowInstruction(this, "Press the ‘Train data’ button");
-
-            DmiActions.Send_EVC6_MMICurrentTrainData_FixedDataEntry(this, new[] {"FLU", "RLU", "Rescue"}, 2);
+            DmiActions.Display_Fixed_Train_Data_Window(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Train data window." + Environment.NewLine +
@@ -120,15 +134,31 @@ namespace Testcase.DMITestCases
 
             /*
             Test Step 4
-            Action: Confirm and Validate Train data.Then, observe the appearance of the Train Running Number window
-            Expected Result: The Train Running Number window is displayed.All objects, text messages and buttons are presented within the same layer
+            Action: Confirm and Validate Train data.
+            Then, observe the appearance of the Train Running Number window
+            Expected Result: The Train Running Number window is displayed.
+            All objects, text messages and buttons are presented within the same layer
             Test Step Comment: MMI_gen 4351;
             */
-            DmiActions.Send_EVC10_MMIEchoedTrainData_FixedDataEntry(this, Variables.paramEvc6FixedTrainsetCaptions);
-            DmiActions.ShowInstruction(this, "Confirm and validate the Train data");
+            DmiActions.ShowInstruction(this, @"Enter FLU and confirm value in each input field.");
 
-            EVC16_CurrentTrainNumber.TrainRunningNumber = 1;
-            EVC16_CurrentTrainNumber.Send();
+            DmiActions.Enable_Fixed_Train_Data_Validation(this, Fixed_Trainset_Captions.FLU);
+            DmiActions.ShowInstruction(this, @"Press ‘Yes’ button.");
+
+            DmiActions.Complete_Fixed_Train_Data_Entry(this, Fixed_Trainset_Captions.FLU);
+            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine +
+                                  Environment.NewLine +
+                                  "1. Press ‘Yes’ button." + Environment.NewLine +
+                                  "2. Confirmed the selected value by pressing the input field." + Environment.NewLine +
+                                  "3. Press OK on THIS window.");
+
+            DmiActions.Display_Train_data_validation_Window(this);
+            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine +
+                                  Environment.NewLine +
+                                  "1. Press ‘Yes’ button." + Environment.NewLine +
+                                  "2. Confirmed the selected value by pressing the input field.");
+
+            DmiActions.Display_TRN_Window(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Train Running Number window." + Environment.NewLine +
@@ -137,10 +167,21 @@ namespace Testcase.DMITestCases
             /*
             Test Step 5
             Action: Enter and confirm the train running number. Then close the Main window
-            Expected Result: The Default window is displayed.Verify the following:The Default window is presented as  ‘Total image’ and displayed area with allocation of objects, text messages, and buttons.The Default window is not composed of title, Input field, Close button, ‘Next’ or ‘Previous’ button, The Default window is not displayed the topic of the window.(4)   The Default window is not covering other windows
+            Expected Result: The Default window is displayed.
+            Verify the following:
+            The Default window is presented as  ‘Total image’ and displayed area with allocation of objects, text messages, and buttons.
+            The Default window is not composed of title, Input field, Close button, ‘Next’ or ‘Previous’ button, 
+            The Default window is not displayed the topic of the window.
+            (4)   The Default window is not covering other windows
             Test Step Comment: MMI_gen 4350;MMI_gen 4352;MMI_gen 4353;MMI_gen 4361;Check more information about ‘Total image’ in [MMI-ETCS-gen]
             */
-            DmiActions.ShowInstruction(this, "Enter and confirm the train running number. Close the Main window");
+            DmiActions.ShowInstruction(this, "Enter and confirm Train Running Number");
+
+            DmiActions.Display_Main_Window_with_Start_button_enabled(this);
+
+            DmiActions.ShowInstruction(this, "Close the Main window");
+
+            //DmiActions.Display_Default_Window(this); (optional)
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Default window." + Environment.NewLine +
@@ -154,10 +195,13 @@ namespace Testcase.DMITestCases
             /*
             Test Step 6
             Action: Then press and hold the Main menu button
-            Expected Result: DMI still displays the default window.The Main menu button is shown as pressed state.The sound ‘click’ is played sound once
+            Expected Result: DMI still displays the default window.
+            The Main menu button is shown as pressed state.
+            The sound ‘click’ is played sound once
             Test Step Comment: MMI_gen 4381;
             */
             DmiActions.ShowInstruction(this, "Press and hold the ‘Main menu’ button");
+            //Telegrams.DMItoEVC.EVC101_MMIDriverRequest.CheckMRequestPressed = ? (Main menu button state)
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI still displays the default window." + Environment.NewLine +
                                 "2. The ‘Main menu’ button is displayed pressed." + Environment.NewLine +
@@ -166,7 +210,8 @@ namespace Testcase.DMITestCases
             /*
             Test Step 7
             Action: Slide out of the ‘Main menu’ button
-            Expected Result: DMI still displays the default windowThe visualisation of Main menu button is displayed as enabled state
+            Expected Result: DMI still displays the default window
+            The visualisation of Main menu button is displayed as enabled state
             Test Step Comment: MMI_gen 4382;
             */
             DmiActions.ShowInstruction(this, "Whilst keeping the ‘Main menu’ button pressed, drag it out of its area");
@@ -178,7 +223,9 @@ namespace Testcase.DMITestCases
             /*
             Test Step 8
             Action: Slide back into the ‘Main menu’ button
-            Expected Result: DMI still displays default windowThe visualisation of Main menu button is displayed as pressed state.The sound ‘click’ is not played
+            Expected Result: DMI still displays default window
+            The visualisation of Main menu button is displayed as pressed state.
+            The sound ‘click’ is not played
             Test Step Comment: MMI_gen 4382;
             */
             DmiActions.ShowInstruction(this,
@@ -197,9 +244,7 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, "Release the ‘Main menu’ button");
 
-            EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;
-            EVC30_MMIRequestEnable.Send();
+            DmiActions.Display_Main_Window_with_Start_button_enabled(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the sub-menu of the Main window.");
@@ -212,6 +257,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press the ‘Close’ button");
+            //DmiActions.Display_Default_Window(this); (optional)
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Default window.");
@@ -219,11 +265,13 @@ namespace Testcase.DMITestCases
             /*
             Test Step 11
             Action: Press and hold the Special button
-            Expected Result: DMI still displays the default windowThe Special button is shown as pressed state.The sound ‘click’ is played once
+            Expected Result: DMI still displays the default window
+            The Special button is shown as pressed state.
+            The sound ‘click’ is played once
             Test Step Comment: MMI_gen 4381;
             */
             DmiActions.ShowInstruction(this, @"Press and hold the ‘Special’ button");
-
+            //Telegrams.DMItoEVC.EVC101_MMIDriverRequest.CheckMRequestPressed = ? (Special button state)
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI still displays the Default window." + Environment.NewLine +
                                 @"2. The ‘Special’ button is displayed pressed" + Environment.NewLine +
@@ -232,7 +280,8 @@ namespace Testcase.DMITestCases
             /*
             Test Step 12
             Action: Slide out of Special button
-            Expected Result: DMI still displays the default windowThe visualisation of Special button is shown as enabled state
+            Expected Result: DMI still displays the default window
+            The visualisation of Special button is shown as enabled state
             Test Step Comment: MMI_gen 4382;
             */
             DmiActions.ShowInstruction(this, "Whilst keeping the ‘Special’ button pressed, drag it out of its area");
@@ -244,7 +293,9 @@ namespace Testcase.DMITestCases
             /*
             Test Step 13
             Action: Slide back into ‘Special menu’ button
-            Expected Result: DMI still displays the default windowThe visualisation of Special button is displayed in pressed stateThe sound ‘click’ is not played
+            Expected Result: DMI still displays the default window
+            The visualisation of Special button is displayed in pressed state
+            The sound ‘click’ is not played
             Test Step Comment: MMI_gen 4382;
             */
             DmiActions.ShowInstruction(this,
@@ -263,9 +314,7 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, "Release the ‘Special’ button");
 
-            EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Special; // Special
-            EVC30_MMIRequestEnable.Send();
+            DmiActions.Open_the_Special_window(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the sub-menu of the Special window.");
@@ -278,6 +327,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press the ‘Close’ button");
+            //DmiActions.Display_Default_Window(this); (optional)
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI  displays the default window.");
@@ -285,10 +335,13 @@ namespace Testcase.DMITestCases
             /*
             Test Step 16
             Action: Press and hold the ‘Settings menu’ button
-            Expected Result: DMI still displays the default windowThe Setting button is displayed as pressed state.The sound ‘click’ is played once
+            Expected Result: DMI still displays the default window
+            The Setting button is displayed as pressed state.
+            The sound ‘click’ is played once
             Test Step Comment: MMI_gen 4381;
             */
             DmiActions.ShowInstruction(this, @"Press and hold the ‘Settings menu’ button");
+            Telegrams.DMItoEVC.EVC101_MMIDriverRequest.CheckMRequestPressed = MMI_M_REQUEST.Settings;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI still displays the default window." + Environment.NewLine +
@@ -298,7 +351,8 @@ namespace Testcase.DMITestCases
             /*
             Test Step 17
             Action: Slide out of the ‘Setting menu’ button
-            Expected Result: DMI still displays the default windowThe Setting button is shown as enabled state
+            Expected Result: DMI still displays the default window
+            The Setting button is shown as enabled state
             Test Step Comment: MMI_gen 4382;
             */
             DmiActions.ShowInstruction(this,
@@ -311,11 +365,15 @@ namespace Testcase.DMITestCases
             /*
             Test Step 18
             Action: Slide back into the ‘Settings menu’ button
-            Expected Result: DMI still displays the default windowThe Setting button is shown as  pressed state.The sound ‘click’ is not played
+            Expected Result: DMI still displays the default window
+            The Setting button is shown as  pressed state.
+            The sound ‘click’ is not played
             Test Step Comment: MMI_gen 4382;
             */
             DmiActions.ShowInstruction(this,
                 "Whilst keeping the ‘Settings menu’ button pressed, drag it back inside its area");
+
+            Telegrams.DMItoEVC.EVC101_MMIDriverRequest.CheckMRequestPressed = MMI_M_REQUEST.Settings;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI still displays the default window." + Environment.NewLine +
@@ -329,10 +387,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 4381;   MMI_gen 4382;
             */
             DmiActions.ShowInstruction(this, "Release the ‘Settings menu’ button");
-
-            EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings; // Settings
-            EVC30_MMIRequestEnable.Send();
+            Telegrams.DMItoEVC.EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.Settings;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays all the sub-menus of the Settings window.");

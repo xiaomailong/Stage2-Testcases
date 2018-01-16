@@ -1331,7 +1331,6 @@ namespace Testcase.DMITestCases
             ShowInstruction(pool, @"Press ‘Yes’ button.");
 
             Complete_Fixed_Train_Data_Entry(pool, Fixed_Trainset_Captions.FLU);
-            Display_Train_data_validation_Window(pool);
             ShowInstruction(pool, @"Perform the following actions on the DMI: " + Environment.NewLine +
                                   Environment.NewLine +
                                   "1. Press ‘Yes’ button." + Environment.NewLine +

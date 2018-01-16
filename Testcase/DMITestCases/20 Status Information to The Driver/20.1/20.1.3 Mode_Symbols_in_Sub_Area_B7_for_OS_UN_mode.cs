@@ -28,6 +28,7 @@ namespace Testcase.DMITestCases
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
+            DmiActions.Start_ATP();
         }
 
         public override void PostExecution()
@@ -49,10 +50,7 @@ namespace Testcase.DMITestCases
             Action: Activate cabin A
             Expected Result: DMI displays in SB mode. The Driver ID window is displayed
             */
-
-            EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.GoToIdle;
-            EVC0_MMIStartATP.Send();
-
+            
             DmiActions.Activate_Cabin_1(this);
             DmiExpectedResults.Cabin_A_is_activated(this);
 
