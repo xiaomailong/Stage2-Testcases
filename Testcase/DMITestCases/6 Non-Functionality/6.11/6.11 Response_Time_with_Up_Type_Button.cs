@@ -13,7 +13,7 @@ using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
 using CL345;
-using static Testcase.Telegrams.EVCtoDMI.Variables;
+using Testcase.Telegrams.EVCtoDMI;
 
 namespace Testcase.DMITestCases
 {
@@ -108,12 +108,12 @@ namespace Testcase.DMITestCases
                                 "1. Enter FLU and confirm value in each input field." + Environment.NewLine +
                                 "2. Press OK on THIS window.");
 
-            DmiActions.Enable_Fixed_Train_Data_Validation(this, Fixed_Trainset_Captions.FLU);
+            DmiActions.Enable_Fixed_Train_Data_Validation(this, Variables.Fixed_Trainset_Captions.FLU);
             DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
                                 "1. Press ‘Yes’ button." + Environment.NewLine +
                                 "2. Press OK on THIS window.");
 
-            DmiActions.Complete_Fixed_Train_Data_Entry(this, Fixed_Trainset_Captions.FLU);
+            DmiActions.Complete_Fixed_Train_Data_Entry(this, Variables.Fixed_Trainset_Captions.FLU);
             DmiActions.Display_Train_data_validation_Window(this);
             DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
                                 "1. Press ‘Yes’ button." + Environment.NewLine +

@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using Testcase.Telegrams.DMItoEVC;
 using Testcase.Telegrams.EVCtoDMI;
-using static Testcase.Telegrams.EVCtoDMI.Variables;
 
 
 namespace Testcase.DMITestCases
@@ -63,7 +62,7 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, "Press the ‘Spec’ button, then press the ‘SR speed/distance’ button");
 
-            EVC11_MMICurrentSRRules.MMI_M_BUTTONS = MMI_M_BUTTONS.BTN_YES_DATA_ENTRY_COMPLETE;
+            EVC11_MMICurrentSRRules.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS.BTN_YES_DATA_ENTRY_COMPLETE;
             EVC11_MMICurrentSRRules.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -82,10 +81,10 @@ namespace Testcase.DMITestCases
             EVC106_MMINewSrRules.MMI_NID_DATA = new List<byte> {15};
             EVC106_MMINewSrRules.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_SR_RULES.BTN_ENTER;
             EVC106_MMINewSrRules.CheckPacketContent();
-            List<DataElement> dataElements = new List<DataElement>
+            List<Variables.DataElement> dataElements = new List<Variables.DataElement>
             {
-                new DataElement {Identifier = 15, EchoText = "0", QDataCheck = 0,},
-                new DataElement {Identifier = 16, EchoText = "", QDataCheck = 0}
+                new Variables.DataElement {Identifier = 15, EchoText = "0", QDataCheck = 0,},
+                new Variables.DataElement {Identifier = 16, EchoText = "", QDataCheck = 0}
             };
             EVC11_MMICurrentSRRules.DataElements = dataElements;
             EVC11_MMICurrentSRRules.Send();
@@ -165,10 +164,10 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Press ‘Yes’ button on the ‘SR speed / distance’ window");
 
-            EVC11_MMICurrentSRRules.DataElements = new List<DataElement>
+            EVC11_MMICurrentSRRules.DataElements = new List<Variables.DataElement>
             {
-                new DataElement {Identifier = 15, EchoText = "600", QDataCheck = 1},
-                new DataElement {Identifier = 16, EchoText = "100000", QDataCheck = 1}
+                new Variables.DataElement {Identifier = 15, EchoText = "600", QDataCheck = 1},
+                new Variables.DataElement {Identifier = 16, EchoText = "100000", QDataCheck = 1}
             };
             EVC11_MMICurrentSRRules.Send();
 

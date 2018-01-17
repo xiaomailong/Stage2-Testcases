@@ -2,7 +2,6 @@
 
 using System;
 using CL345;
-using static Testcase.Telegrams.EVCtoDMI.Variables;
 
 #endregion
 
@@ -19,12 +18,12 @@ namespace Testcase.Telegrams.EVCtoDMI
     public static class EVC20_MMISelectLevel
     {
         private static SignalPool _pool;
-        private static MMI_Q_LEVEL_NTC_ID[] _qLevelNtcId;
-        private static MMI_M_CURRENT_LEVEL[] _mCurrentLevel;
-        private static MMI_M_LEVEL_FLAG[] _mLevelFlag;
-        private static MMI_M_INHIBITED_LEVEL[] _mInhibitedLevel;
-        private static MMI_M_INHIBIT_ENABLE[] _mInhibitEnable;
-        private static MMI_M_LEVEL_NTC_ID[] _mLevelNtcId;
+        private static Variables.MMI_Q_LEVEL_NTC_ID[] _qLevelNtcId;
+        private static Variables.MMI_M_CURRENT_LEVEL[] _mCurrentLevel;
+        private static Variables.MMI_M_LEVEL_FLAG[] _mLevelFlag;
+        private static Variables.MMI_M_INHIBITED_LEVEL[] _mInhibitedLevel;
+        private static Variables.MMI_M_INHIBIT_ENABLE[] _mInhibitEnable;
+        private static Variables.MMI_M_LEVEL_NTC_ID[] _mLevelNtcId;
         private static ushort _nLevels;
         private const string BaseString = "ETCS1_SelectLevel_EVC20SelectLevelSub";
 
@@ -122,9 +121,9 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// 0 = "MMI_M_LEVEL_NTC_ID contains an STM ID (0-255)"
         /// 1 = "MMI_M_LEVEL_NTC_ID contains a level number (0-3)"
         /// </summary>
-        public static MMI_Q_LEVEL_NTC_ID[] MMI_Q_LEVEL_NTC_ID
+        public static Variables.MMI_Q_LEVEL_NTC_ID[] MMI_Q_LEVEL_NTC_ID
         {
-            set => _qLevelNtcId = value;
+            set { _qLevelNtcId = value; }
         }
 
         /// <summary>
@@ -134,9 +133,9 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// 0 = "MMI_M_LEVEL_STM_ID is not the latest used level"
         /// 1 = "MMI_M_LEVEL_STM_ID is the latest used level"
         /// </summary>
-        public static MMI_M_CURRENT_LEVEL[] MMI_M_CURRENT_LEVEL
+        public static Variables.MMI_M_CURRENT_LEVEL[] MMI_M_CURRENT_LEVEL
         {
-            set => _mCurrentLevel = value;
+            set { _mCurrentLevel = value; }
         }
 
         /// <summary>
@@ -149,9 +148,9 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// 0 = "MMI_M_LEVEL_NTC_ID is 'not marked'"
         /// 1 = "MMI_M_LEVEL_NTC_ID is 'marked'"
         /// </summary>
-        public static MMI_M_LEVEL_FLAG[] MMI_M_LEVEL_FLAG
+        public static Variables.MMI_M_LEVEL_FLAG[] MMI_M_LEVEL_FLAG
         {
-            set => _mLevelFlag = value;
+            set { _mLevelFlag = value; }
         }
 
         /// <summary>
@@ -161,9 +160,9 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// 0 = "MMI_M_LEVEL_NTC_ID is not inhibited"
         /// 1 = "MMI_M_LEVEL_NTC_ID is inhibited"
         /// </summary>
-        public static MMI_M_INHIBITED_LEVEL[] MMI_M_INHIBITED_LEVEL
+        public static Variables.MMI_M_INHIBITED_LEVEL[] MMI_M_INHIBITED_LEVEL
         {
-            set => _mInhibitedLevel = value;
+            set { _mInhibitedLevel = value; }
         }
 
         /// <summary>
@@ -173,9 +172,9 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// 0 = "MMI_M_LEVEL_NTC_ID is not allowed for inhibiting"
         /// 1 = "MMI_M_LEVEL_NTC_ID is allowed for inhibiting"
         /// </summary>
-        public static MMI_M_INHIBIT_ENABLE[] MMI_M_INHIBIT_ENABLE
+        public static Variables.MMI_M_INHIBIT_ENABLE[] MMI_M_INHIBIT_ENABLE
         {
-            set => _mInhibitEnable = value;
+            set { _mInhibitEnable = value; }
         }
 
         /// <summary>
@@ -184,9 +183,9 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// Note: If MMI_Q_LEVEL_NTC_ID is 0 the value means NTC Identity 0-255
         /// If MMI_Q_LEVEL_NTC_ID is 1 the value means Level 0-3
         /// </summary>
-        public static MMI_M_LEVEL_NTC_ID[] MMI_M_LEVEL_NTC_ID
+        public static Variables.MMI_M_LEVEL_NTC_ID[] MMI_M_LEVEL_NTC_ID
         {
-            set => _mLevelNtcId = value;
+            set { _mLevelNtcId = value; }
         }
 
         /// <summary>
@@ -198,9 +197,9 @@ namespace Testcase.Telegrams.EVCtoDMI
         ///
         /// Note: Bit0 = 0 -> disable close button, Bit0 = 1 -> enable close button
         /// </summary>
-        public static MMI_Q_CLOSE_ENABLE MMI_Q_CLOSE_ENABLE
+        public static Variables.MMI_Q_CLOSE_ENABLE MMI_Q_CLOSE_ENABLE
         {
-            set => _pool.SITR.ETCS1.SelectLevel.MmiQCloseEnable.Value = (byte) value;
+            set { _pool.SITR.ETCS1.SelectLevel.MmiQCloseEnable.Value = (byte) value; }
         }
     }
 }

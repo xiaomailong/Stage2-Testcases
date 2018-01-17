@@ -143,7 +143,7 @@ namespace Testcase.DMITestCases
             Wait_Realtime(1100);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                $"1. Did the Geographical Position value reduce by 1000000 approximately every second?");
+                                "1. Did the Geographical Position value reduce by 1000000 approximately every second?");
 
             #region Skipped due to repeated cycle times not required
 
@@ -168,7 +168,7 @@ namespace Testcase.DMITestCases
             */
             DmiActions.Deactivate_Cabin(this);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                $"1. There is no symbol displayed in area G12.");
+                                "1. There is no symbol displayed in area G12.");
 
             /*
             Test Step 8
@@ -181,7 +181,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press at sub-area G12");
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                $"1. There is no symbol displayed in area G12.");
+                                "1. There is no symbol displayed in area G12.");
 
             /*
             Test Step 9
@@ -203,7 +203,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.Simulate_communication_loss_EVC_DMI(this);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                $"1. There is no symbol displayed in area G12.");
+                                "1. There is no symbol displayed in area G12.");
 
             /*
             Test Step 11
@@ -216,7 +216,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press at sub-area G12");
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                $"1. There is no symbol displayed in area G12.");
+                                "1. There is no symbol displayed in area G12.");
 
             /*
             Test Step 12

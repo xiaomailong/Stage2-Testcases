@@ -1,6 +1,5 @@
 using System;
 using Testcase.Telegrams.EVCtoDMI;
-using static Testcase.Telegrams.EVCtoDMI.Variables;
 
 
 namespace Testcase.DMITestCases
@@ -68,24 +67,18 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, @"Press the ‘Train data’ button");
 
-            MMI_M_DATA_ENABLE enableOption = MMI_M_DATA_ENABLE.Airtightness | MMI_M_DATA_ENABLE.AxleLoadCategory |
-                                             MMI_M_DATA_ENABLE.BrakePercentage |
-                                             MMI_M_DATA_ENABLE.LoadingGauge | MMI_M_DATA_ENABLE.MaxTrainSpeed |
-                                             MMI_M_DATA_ENABLE.TrainCategory |
-                                             MMI_M_DATA_ENABLE.TrainLength | MMI_M_DATA_ENABLE.TrainSetID;
+            Variables.MMI_M_DATA_ENABLE enableOption = Variables.MMI_M_DATA_ENABLE.Airtightness | Variables.MMI_M_DATA_ENABLE.AxleLoadCategory | Variables.MMI_M_DATA_ENABLE.BrakePercentage | Variables.MMI_M_DATA_ENABLE.LoadingGauge | Variables.MMI_M_DATA_ENABLE.MaxTrainSpeed | Variables.MMI_M_DATA_ENABLE.TrainCategory | Variables.MMI_M_DATA_ENABLE.TrainLength | Variables.MMI_M_DATA_ENABLE.TrainSetID;
             string[] trainSetCaptions = new string[3] {"FLU", "RLU", "Rescue"};
 
-            DmiActions.Send_EVC6_MMICurrentTrainData(enableOption, 100, 120, MMI_NID_KEY.TILT1, 120, MMI_NID_KEY.G1, 1,
-                MMI_NID_KEY_Load_Gauge.G1,
+            DmiActions.Send_EVC6_MMICurrentTrainData(enableOption, 100, 120, Variables.MMI_NID_KEY.TILT1, 120, Variables.MMI_NID_KEY.G1, 1, Variables.MMI_NID_KEY_Load_Gauge.G1,
                 EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE,
                 1, 1,
                 trainSetCaptions,
-                new DataElement[0]);
+                new Variables.DataElement[0]);
 
             DmiActions.ShowInstruction(this, "Enter and validate all train data");
 
-            DmiActions.Send_EVC10_MMIEchoedTrainData(this, enableOption, 100, 120, MMI_NID_KEY.TILT1, 120,
-                MMI_NID_KEY.G1, 1, MMI_NID_KEY.CATA,
+            DmiActions.Send_EVC10_MMIEchoedTrainData(this, enableOption, 100, 120, Variables.MMI_NID_KEY.TILT1, 120, Variables.MMI_NID_KEY.G1, 1, Variables.MMI_NID_KEY.CATA,
                 trainSetCaptions);
 
             DmiActions.ShowInstruction(this, @"Press the ‘Train running number’ button");

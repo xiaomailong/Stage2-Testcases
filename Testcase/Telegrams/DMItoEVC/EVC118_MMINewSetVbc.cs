@@ -2,7 +2,7 @@
 using CL345;
 using Testcase.DMITestCases;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
-using static Testcase.Telegrams.EVCtoDMI.Variables;
+using Testcase.Telegrams.EVCtoDMI;
 
 namespace Testcase.Telegrams.DMItoEVC
 {
@@ -55,7 +55,7 @@ namespace Testcase.Telegrams.DMItoEVC
                                      "MMI_M_VBC_CODE = \"" + _pool.SITR.CCUO.ETCS1NewSetVbc.MmiMVbcCode.Value + "\"" +
                                      Environment.NewLine +
                                      "MMI_M_BUTTONS = \"" +
-                                     Enum.GetName(typeof(MMI_M_BUTTONS_VBC),
+                                     Enum.GetName(typeof(Variables.MMI_M_BUTTONS_VBC),
                                          _pool.SITR.CCUO.ETCS1NewSetVbc.MmiMButtons.Value) + Environment.NewLine +
                                      "Result: FAILED!");
                 }
@@ -89,7 +89,7 @@ namespace Testcase.Telegrams.DMItoEVC
         /// 255 = "no button"
         /// Note: the definition is according to preliminary SubSet-121 'M_BUTTONS' definition.
         /// </summary>
-        public static MMI_M_BUTTONS_VBC MMI_M_BUTTONS { get; set; }
+        public static Variables.MMI_M_BUTTONS_VBC MMI_M_BUTTONS { get; set; }
 
         public static uint Get_M_VBC_CODE
         {

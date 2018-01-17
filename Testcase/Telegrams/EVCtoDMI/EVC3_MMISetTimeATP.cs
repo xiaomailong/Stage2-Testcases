@@ -37,8 +37,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static uint MMI_T_UTC
         {
-            set => _pool.SITR.ETCS1.SetTimeATP.MmiTUtc.Value = value;
-            get => _pool.SITR.ETCS1.SetTimeATP.MmiTUtc.Value;
+            set { _pool.SITR.ETCS1.SetTimeATP.MmiTUtc.Value = value; }
+            get { return _pool.SITR.ETCS1.SetTimeATP.MmiTUtc.Value; }
         }
 
         /// <summary>
@@ -49,8 +49,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static sbyte MMI_T_ZONE_OFFSET
         {
-            set => _pool.SITR.ETCS1.SetTimeATP.MmiTZoneOffset.Value = value;
-            get => _pool.SITR.ETCS1.SetTimeATP.MmiTZoneOffset.Value;
+            set { _pool.SITR.ETCS1.SetTimeATP.MmiTZoneOffset.Value = value; }
+            get { return _pool.SITR.ETCS1.SetTimeATP.MmiTZoneOffset.Value; }
         }
 
         /// <summary>

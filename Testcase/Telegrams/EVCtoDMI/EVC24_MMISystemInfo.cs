@@ -81,8 +81,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static uint MMI_NID_ENGINE_1
         {
-            get => _pool.SITR.ETCS1.SystemInfo.MmiNidEngine1.Value;
-            set => _pool.SITR.ETCS1.SystemInfo.MmiNidEngine1.Value = value;
+            get { return _pool.SITR.ETCS1.SystemInfo.MmiNidEngine1.Value; }
+            set { _pool.SITR.ETCS1.SystemInfo.MmiNidEngine1.Value = value; }
         }
 
         /// <summary>
@@ -93,8 +93,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static uint MMI_T_TIMEOUT_BRAKE
         {
-            get => _pool.SITR.ETCS1.SystemInfo.MmiTTimeoutBrake.Value;
-            set => _pool.SITR.ETCS1.SystemInfo.MmiTTimeoutBrake.Value = value;
+            get { return _pool.SITR.ETCS1.SystemInfo.MmiTTimeoutBrake.Value; }
+            set { _pool.SITR.ETCS1.SystemInfo.MmiTTimeoutBrake.Value = value; }
         }
 
         /// <summary>
@@ -105,8 +105,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static uint MMI_T_TIMEOUT_BTM
         {
-            get => _pool.SITR.ETCS1.SystemInfo.MmiTTimeoutBtm.Value;
-            set => _pool.SITR.ETCS1.SystemInfo.MmiTTimeoutBtm.Value = value;
+            get { return _pool.SITR.ETCS1.SystemInfo.MmiTTimeoutBtm.Value; }
+            set { _pool.SITR.ETCS1.SystemInfo.MmiTTimeoutBtm.Value = value; }
         }
 
         /// <summary>
@@ -117,8 +117,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static uint MMI_T_TIMEOUT_TBSW
         {
-            get => _pool.SITR.ETCS1.SystemInfo.MmiTTimeoutTbsw.Value;
-            set => _pool.SITR.ETCS1.SystemInfo.MmiTTimeoutTbsw.Value = value;
+            get { return _pool.SITR.ETCS1.SystemInfo.MmiTTimeoutTbsw.Value; }
+            set { _pool.SITR.ETCS1.SystemInfo.MmiTTimeoutTbsw.Value = value; }
         }
 
         /// <summary>
@@ -132,8 +132,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static uint MMI_M_ETC_VER
         {
-            get => _pool.SITR.ETCS1.SystemInfo.MmiMEtcVer.Value;
-            set => _pool.SITR.ETCS1.SystemInfo.MmiMEtcVer.Value = value;
+            get { return _pool.SITR.ETCS1.SystemInfo.MmiMEtcVer.Value; }
+            set { _pool.SITR.ETCS1.SystemInfo.MmiMEtcVer.Value = value; }
         }
 
         /// <summary>
@@ -155,8 +155,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static ushort MMI_M_AVAIL_SERVICES
         {
-            get => _pool.SITR.ETCS1.SystemInfo.MmiMAvailServices.Value;
-            set => _pool.SITR.ETCS1.SystemInfo.MmiMAvailServices.Value = value;
+            get { return _pool.SITR.ETCS1.SystemInfo.MmiMAvailServices.Value; }
+            set { _pool.SITR.ETCS1.SystemInfo.MmiMAvailServices.Value = value; }
         }
 
         /// <summary>
@@ -174,8 +174,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static byte MMI_M_BRAKE_CONFIG
         {
-            get => _pool.SITR.ETCS1.SystemInfo.MmiMBrakeConfig.Value;
-            set => _pool.SITR.ETCS1.SystemInfo.MmiMBrakeConfig.Value = value;
+            get { return _pool.SITR.ETCS1.SystemInfo.MmiMBrakeConfig.Value; }
+            set { _pool.SITR.ETCS1.SystemInfo.MmiMBrakeConfig.Value = value; }
         }
 
         /// <summary>
@@ -191,8 +191,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static byte MMI_M_LEVEL_INST
         {
-            get => _pool.SITR.ETCS1.SystemInfo.MmiMLevelInst.Value;
-            set => _pool.SITR.ETCS1.SystemInfo.MmiMLevelInst.Value = value;
+            get { return _pool.SITR.ETCS1.SystemInfo.MmiMLevelInst.Value; }
+            set { _pool.SITR.ETCS1.SystemInfo.MmiMLevelInst.Value = value; }
         }
 
         /// <summary>

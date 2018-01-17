@@ -3,7 +3,6 @@
 using System;
 using System.Collections.Generic;
 using CL345;
-using static Testcase.Telegrams.EVCtoDMI.Variables;
 
 #endregion
 
@@ -19,7 +18,7 @@ namespace Testcase.Telegrams.EVCtoDMI
     public static class EVC22_MMICurrentRBC
     {
         private static SignalPool _pool;
-        private static uint _nidC = NidC;
+        private static uint _nidC = Variables.NidC;
         private static uint _nidRbc;
         private const string BaseString = "ETCS1_CurrentRbcData_EVC22CurrentRbcDataSub";
 
@@ -32,7 +31,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             _pool = pool;
 
             NetworkCaptions = new List<string>();
-            DataElements = new List<DataElement>();
+            DataElements = new List<Variables.DataElement>();
 
             // Activate dynamic array
             _pool.SITR.SMDCtrl.ETCS1.CurrentRbcData.Value = 0x0008;
@@ -92,7 +91,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             // Number of data elements to enter
             _pool.SITR.ETCS1.CurrentRbcData.MmiNDataElements.Value = (ushort) DataElements.Count;
 
-            totalSizeCounter = PopulateDataElements($"{BaseString}2", totalSizeCounter, DataElements, _pool);
+            totalSizeCounter = Variables.PopulateDataElements($"{BaseString}2", totalSizeCounter, DataElements, _pool);
 
             // Set packet length
             _pool.SITR.ETCS1.CurrentRbcData.MmiLPacket.Value = totalSizeCounter;
@@ -106,7 +105,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static uint NID_C
         {
-            get => _nidC;
+            get { return _nidC; }
 
             set
             {
@@ -120,7 +119,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static uint NID_RBC
         {
-            get => _nidRbc;
+            get { return _nidRbc; }
 
             set
             {
@@ -154,7 +153,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         private static uint MMI_NID_RBC
         {
-            set => _pool.SITR.ETCS1.CurrentRbcData.MmiNidRbc.Value = value;
+            set { _pool.SITR.ETCS1.CurrentRbcData.MmiNidRbc.Value = value; }
         }
 
         /// <summary>
@@ -222,7 +221,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static ushort MMI_NID_WINDOW
         {
-            set => _pool.SITR.ETCS1.CurrentRbcData.MmiNidWindow.Value = (byte) value;
+            set { _pool.SITR.ETCS1.CurrentRbcData.MmiNidWindow.Value = (byte) value; }
         }
 
         /// <summary>
@@ -234,9 +233,9 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// 
         /// Note: Bit0 = 0 -> disable close button, Bit0 = 1 -> enable close button
         /// </summary>
-        public static MMI_Q_CLOSE_ENABLE MMI_Q_CLOSE_ENABLE
+        public static Variables.MMI_Q_CLOSE_ENABLE MMI_Q_CLOSE_ENABLE
         {
-            set => _pool.SITR.ETCS1.CurrentRbcData.MmiQCloseEnable.Value = (byte) value;
+            set { _pool.SITR.ETCS1.CurrentRbcData.MmiQCloseEnable.Value = (byte) value; }
         }
 
         /// <summary>
@@ -248,7 +247,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static EVC22BUTTONS MMI_M_BUTTONS
         {
-            set => _pool.SITR.ETCS1.CurrentRbcData.MmiMButtons.Value = (byte) value;
+            set { _pool.SITR.ETCS1.CurrentRbcData.MmiMButtons.Value = (byte) value; }
         }
 
         /// <summary>
@@ -271,6 +270,6 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// <summary>
         /// List of DataElements
         /// </summary>
-        public static List<DataElement> DataElements { get; set; }
+        public static List<Variables.DataElement> DataElements { get; set; }
     }
 }

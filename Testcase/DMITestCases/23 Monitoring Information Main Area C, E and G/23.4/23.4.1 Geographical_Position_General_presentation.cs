@@ -148,7 +148,7 @@ namespace Testcase.DMITestCases
             EVC5_MMIGeoPosition.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                $"1. The sub-area G12 displays a grey background with black text showing numbers " +
+                                "1. The sub-area G12 displays a grey background with black text showing numbers " +
                                 "in the correct format." + Environment.NewLine +
                                 $"2. The geographical position value = {EVC5_MMIGeoPosition.MMI_M_ABSOLUTPOS}.");
 
@@ -182,7 +182,7 @@ namespace Testcase.DMITestCases
             EVC5_MMIGeoPosition.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                $"1. The sub-area G12 displays a grey background with black text showing numbers " +
+                                "1. The sub-area G12 displays a grey background with black text showing numbers " +
                                 "in the correct format." + Environment.NewLine +
                                 $"2. The geographical position value = {EVC5_MMIGeoPosition.MMI_M_ABSOLUTPOS}.");
 
@@ -196,7 +196,7 @@ namespace Testcase.DMITestCases
             */
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 900000;
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                $"1. The geographical position value is still equal to" +
+                                "1. The geographical position value is still equal to" +
                                 $" {EVC5_MMIGeoPosition.MMI_M_ABSOLUTPOS}.");
 
             /*
@@ -261,7 +261,7 @@ namespace Testcase.DMITestCases
             EVC5_MMIGeoPosition.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                $"1. There is no symbol displayed in area G12.");
+                                "1. There is no symbol displayed in area G12.");
 
             /*
             Test Step 12

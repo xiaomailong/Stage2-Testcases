@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using Testcase.Telegrams.EVCtoDMI;
-using static Testcase.Telegrams.EVCtoDMI.Variables;
 
 
 namespace Testcase.DMITestCases
@@ -63,15 +62,15 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, @"Press ‘Level’ button.");
 
-            EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = MMI_Q_CLOSE_ENABLE.Disabled;
-            EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new MMI_Q_LEVEL_NTC_ID[] {MMI_Q_LEVEL_NTC_ID.ETCS_Level};
-            EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new MMI_M_CURRENT_LEVEL[] {MMI_M_CURRENT_LEVEL.NotLastUsedLevel};
-            EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = new MMI_M_LEVEL_FLAG[] {MMI_M_LEVEL_FLAG.MarkedLevel};
-            EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = new MMI_M_INHIBITED_LEVEL[]
-                {MMI_M_INHIBITED_LEVEL.NotInhibited};
-            EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = new MMI_M_INHIBIT_ENABLE[]
-                {MMI_M_INHIBIT_ENABLE.AllowedForInhibiting};
-            EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new MMI_M_LEVEL_NTC_ID[] {MMI_M_LEVEL_NTC_ID.L2};
+            EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Disabled;
+            EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new Variables.MMI_Q_LEVEL_NTC_ID[] {Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level};
+            EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new Variables.MMI_M_CURRENT_LEVEL[] {Variables.MMI_M_CURRENT_LEVEL.NotLastUsedLevel};
+            EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = new Variables.MMI_M_LEVEL_FLAG[] {Variables.MMI_M_LEVEL_FLAG.MarkedLevel};
+            EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = new Variables.MMI_M_INHIBITED_LEVEL[]
+                {Variables.MMI_M_INHIBITED_LEVEL.NotInhibited};
+            EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = new Variables.MMI_M_INHIBIT_ENABLE[]
+                {Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting};
+            EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new Variables.MMI_M_LEVEL_NTC_ID[] {Variables.MMI_M_LEVEL_NTC_ID.L2};
             EVC20_MMISelectLevel.Send();
 
             DmiActions.ShowInstruction(this, @"Enter and confirm Level 2. Press ‘RBC data’ button");

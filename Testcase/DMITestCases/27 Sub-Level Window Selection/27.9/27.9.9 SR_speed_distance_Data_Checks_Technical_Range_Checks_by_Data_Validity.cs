@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using Testcase.Telegrams.EVCtoDMI;
 using Testcase.Telegrams.DMItoEVC;
-using static Testcase.Telegrams.EVCtoDMI.Variables;
 
 
 namespace Testcase.DMITestCases
@@ -62,7 +61,7 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.Send();
 
             DmiActions.ShowInstruction(this, "Press the ‘Spec’ button, then press the ‘SR speed/distance’ button");
-            EVC11_MMICurrentSRRules.MMI_M_BUTTONS = MMI_M_BUTTONS.BTN_YES_DATA_ENTRY_COMPLETE;
+            EVC11_MMICurrentSRRules.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS.BTN_YES_DATA_ENTRY_COMPLETE;
             EVC11_MMICurrentSRRules.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -77,9 +76,9 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this,
                 @"Enter the (invalid) value ‘1’ in the SR speed data input field and press in the data input field to accept the valu.");
 
-            EVC11_MMICurrentSRRules.MMI_M_BUTTONS = MMI_M_BUTTONS.No_Button;
-            DataElement dataElement = new DataElement {Identifier = 15, EchoText = "1", QDataCheck = 1};
-            List<DataElement> dataElements = new List<DataElement> {dataElement};
+            EVC11_MMICurrentSRRules.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS.No_Button;
+            Variables.DataElement dataElement = new Variables.DataElement {Identifier = 15, EchoText = "1", QDataCheck = 1};
+            List<Variables.DataElement> dataElements = new List<Variables.DataElement> {dataElement};
             EVC11_MMICurrentSRRules.DataElements = dataElements;
             EVC11_MMICurrentSRRules.Send();
 
@@ -185,7 +184,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this,
                 @"Enter the (invalid) value ‘1’ in the SR distance data input field and press in the data input field to accept the valu.");
 
-            EVC11_MMICurrentSRRules.MMI_M_BUTTONS = MMI_M_BUTTONS.No_Button;
+            EVC11_MMICurrentSRRules.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS.No_Button;
             dataElement.Identifier = 16;
             EVC11_MMICurrentSRRules.Send();
 
@@ -262,7 +261,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press the ‘Yes’ button");
 
             // Add a data element for correct SR speed
-            dataElements.Add(new DataElement {Identifier = 15, EchoText = "40", QDataCheck = 1});
+            dataElements.Add(new Variables.DataElement {Identifier = 15, EchoText = "40", QDataCheck = 1});
             EVC11_MMICurrentSRRules.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +

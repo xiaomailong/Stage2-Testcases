@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using Testcase.Telegrams.EVCtoDMI;
-using static Testcase.Telegrams.EVCtoDMI.Variables;
 
 
 namespace Testcase.DMITestCases
@@ -77,10 +76,10 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
             EVC8_MMIDriverMessage.Send();
 
-            EVC11_MMICurrentSRRules.DataElements = new List<DataElement>
+            EVC11_MMICurrentSRRules.DataElements = new List<Variables.DataElement>
             {
-                new DataElement {Identifier = 0, EchoText = "0", QDataCheck = (ushort) Q_DATA_CHECK.All_checks_passed},
-                new DataElement {Identifier = 1, EchoText = "0", QDataCheck = (ushort) Q_DATA_CHECK.All_checks_passed}
+                new Variables.DataElement {Identifier = 0, EchoText = "0", QDataCheck = (ushort) Variables.Q_DATA_CHECK.All_checks_passed},
+                new Variables.DataElement {Identifier = 1, EchoText = "0", QDataCheck = (ushort) Variables.Q_DATA_CHECK.All_checks_passed}
             };
 
             EVC11_MMICurrentSRRules.Send();

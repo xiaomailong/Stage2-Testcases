@@ -111,9 +111,9 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static ushort MMI_N_VBC
         {
-            get => _pool.SITR.ETCS1.SetVbc.MmiNVbc.Value;
+            get { return _pool.SITR.ETCS1.SetVbc.MmiNVbc.Value; }
 
-            set => _pool.SITR.ETCS1.SetVbc.MmiNVbc.Value = value;
+            set { _pool.SITR.ETCS1.SetVbc.MmiNVbc.Value = value; }
         }
 
         /// <summary>
@@ -162,7 +162,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static string ECHO_TEXT
         {
-            get => _echoText;
+            get { return _echoText; }
 
             set
             {
@@ -203,7 +203,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static Variables.MMI_M_BUTTONS_VBC MMI_M_BUTTONS
         {
-            set => _pool.SITR.ETCS1.SetVbc.MmiMButtons.Value = (byte) value;
+            set { _pool.SITR.ETCS1.SetVbc.MmiMButtons.Value = (byte) value; }
         }
     }
 }

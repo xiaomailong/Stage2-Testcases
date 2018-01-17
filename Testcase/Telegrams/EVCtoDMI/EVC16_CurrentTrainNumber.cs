@@ -42,8 +42,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static uint TrainRunningNumber
         {
-            get => _pool.SITR.ETCS1.CurrentTrainNumber.MmiNidOperation.Value;
-            set => _pool.SITR.ETCS1.CurrentTrainNumber.MmiNidOperation.Value = value;
+            get { return _pool.SITR.ETCS1.CurrentTrainNumber.MmiNidOperation.Value; }
+            set { _pool.SITR.ETCS1.CurrentTrainNumber.MmiNidOperation.Value = value; }
         }
 
         /// <summary>

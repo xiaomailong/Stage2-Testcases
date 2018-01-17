@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using Testcase.Telegrams.EVCtoDMI;
-using static Testcase.Telegrams.EVCtoDMI.Variables;
 
 namespace Testcase.TemporaryFunctions
 {
@@ -22,12 +21,12 @@ namespace Testcase.TemporaryFunctions
         ///     <param name="mmiMTrainsetId">ID of preconfigured train data set</param>
         ///     <param name="mmiMAltDem">Control variable for alternative train data entry method</param>
         /// </summary>
-        public static void SendEVC6_MMICurrentTrainData(MMI_M_DATA_ENABLE mmiMDataEnable, ushort mmiLTrain,
-            ushort mmiVMaxTrain, MMI_NID_KEY mmiNidKeyTrainCat, byte mmiMBrakePerc, MMI_NID_KEY mmiNidKeyAxleLoad,
-            byte mmiMAirtight, MMI_NID_KEY_Load_Gauge mmiNidKeyLoadGauge,
+        public static void SendEVC6_MMICurrentTrainData(Variables.MMI_M_DATA_ENABLE mmiMDataEnable, ushort mmiLTrain,
+            ushort mmiVMaxTrain, Variables.MMI_NID_KEY mmiNidKeyTrainCat, byte mmiMBrakePerc, Variables.MMI_NID_KEY mmiNidKeyAxleLoad,
+            byte mmiMAirtight, Variables.MMI_NID_KEY_Load_Gauge mmiNidKeyLoadGauge,
             EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA mmiMButtons,
             ushort mmiMTrainsetId,
-            ushort mmiMAltDem, string[] trainSetCaptions, DataElement[] dataElements)
+            ushort mmiMAltDem, string[] trainSetCaptions, Variables.DataElement[] dataElements)
         {
             // Train data enabled
 
@@ -47,7 +46,7 @@ namespace Testcase.TemporaryFunctions
             EVC6_MMICurrentTrainData.MMI_M_ALT_DEM = mmiMAltDem;
 
             EVC6_MMICurrentTrainData.TrainSetCaptions = new List<string>(trainSetCaptions);
-            EVC6_MMICurrentTrainData.DataElements = new List<DataElement>(dataElements);
+            EVC6_MMICurrentTrainData.DataElements = new List<Variables.DataElement>(dataElements);
 
             EVC6_MMICurrentTrainData.Send();
         }
@@ -62,24 +61,23 @@ namespace Testcase.TemporaryFunctions
 
         {
             // Train data enabled
-            EVC6_MMICurrentTrainData.MMI_M_DATA_ENABLE = MMI_M_DATA_ENABLE.TrainSetID; // "Train Set ID" data enabled
+            EVC6_MMICurrentTrainData.MMI_M_DATA_ENABLE = Variables.MMI_M_DATA_ENABLE.TrainSetID; // "Train Set ID" data enabled
 
             EVC6_MMICurrentTrainData.MMI_L_TRAIN = 0; // Train length
             EVC6_MMICurrentTrainData.MMI_V_MAXTRAIN = 0; // Max train speed
 
-            EVC6_MMICurrentTrainData.MMI_NID_KEY_TRAIN_CAT = MMI_NID_KEY.NoDedicatedKey; // Train category
+            EVC6_MMICurrentTrainData.MMI_NID_KEY_TRAIN_CAT = Variables.MMI_NID_KEY.NoDedicatedKey; // Train category
             EVC6_MMICurrentTrainData.MMI_M_BRAKE_PERC = 0; // Brake percentage
-            EVC6_MMICurrentTrainData.MMI_NID_KEY_AXLE_LOAD = MMI_NID_KEY.NoDedicatedKey; // Axle load category
+            EVC6_MMICurrentTrainData.MMI_NID_KEY_AXLE_LOAD = Variables.MMI_NID_KEY.NoDedicatedKey; // Axle load category
             EVC6_MMICurrentTrainData.MMI_M_AIRTIGHT = 0; // Train equipped with airtight system
-            EVC6_MMICurrentTrainData.MMI_NID_KEY_LOAD_GAUGE =
-                MMI_NID_KEY_Load_Gauge.NoDedicatedKey; // Loading gauge type of train 
+            EVC6_MMICurrentTrainData.MMI_NID_KEY_LOAD_GAUGE = Variables.MMI_NID_KEY_Load_Gauge.NoDedicatedKey; // Loading gauge type of train 
             EVC6_MMICurrentTrainData.MMI_M_BUTTONS = 0; // No Buttons available
 
             EVC6_MMICurrentTrainData.MMI_M_TRAINSET_ID = mmiMTrainsetId; // Preselected Trainset ID
             // MMI_Alt_Dem = 0: No alternative train data entry method available
 
             EVC6_MMICurrentTrainData.TrainSetCaptions = new List<string>(fixedTrainsetCaptions);
-            EVC6_MMICurrentTrainData.DataElements = new List<DataElement>(); // no train data elements
+            EVC6_MMICurrentTrainData.DataElements = new List<Variables.DataElement>(); // no train data elements
 
 
             EVC6_MMICurrentTrainData.Send();

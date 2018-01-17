@@ -103,7 +103,7 @@ namespace Testcase.Telegrams.DMItoEVC
         /// </summary>
         public static Variables.MMI_M_SDU_WHEEL_SIZE MMI_M_SDU_WHEEL_SIZE_1
         {
-            set => _wheelSize1 = (ushort) value;
+            set { _wheelSize1 = (ushort) value; }
         }
 
         /// <summary>
@@ -123,7 +123,7 @@ namespace Testcase.Telegrams.DMItoEVC
         public static Variables.MMI_M_SDU_WHEEL_SIZE MMI_M_SDU_WHEEL_SIZE_2
 
         {
-            set => _wheelSize2 = (ushort) value;
+            set { _wheelSize2 = (ushort) value; }
         }
 
         /// <summary>
@@ -141,7 +141,7 @@ namespace Testcase.Telegrams.DMItoEVC
         /// </summary>
         public static Variables.MMI_M_WHEEL_SIZE_ERR MMI_M_WHEEL_SIZE_ERR
         {
-            set => _wheelSizeError = (byte) value;
+            set { _wheelSizeError = (byte) value; }
         }
 
         /// <summary>
@@ -161,7 +161,7 @@ namespace Testcase.Telegrams.DMItoEVC
         /// </summary>
         public static Variables.MMI_M_PULSE_PER_KM MMI_M_PULSE_PER_KM_1
         {
-            set => _pulsePerKm1 = (uint) value;
+            set { _pulsePerKm1 = (uint) value; }
         }
 
         /// <summary>
@@ -182,7 +182,7 @@ namespace Testcase.Telegrams.DMItoEVC
         public static Variables.MMI_M_PULSE_PER_KM MMI_M_PULSE_PER_KM_2
 
         {
-            set => _pulsePerKm2 = (uint) value;
+            set { _pulsePerKm2 = (uint) value; }
         }
 
         /// <summary>
@@ -194,7 +194,7 @@ namespace Testcase.Telegrams.DMItoEVC
         /// </summary>
         public static Variables.MMI_Q_MD_DATASET MMI_Q_MD_DATASET
         {
-            set => _mdDataset = value;
+            set { _mdDataset = value; }
         }
     }
 }

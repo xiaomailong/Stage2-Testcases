@@ -242,7 +242,9 @@ namespace Testcase.DMITestCases
             DmiActions.Finished_SoM_Default_Window(this);
 
             DmiExpectedResults.SR_Mode_displayed(this);
-            DmiExpectedResults.Level_1_displayed(this);
+
+            throw new NotImplementedException("This function doesn't exist, so I commented it out, please review");
+            //DmiExpectedResults.Level_1_displayed(this);
 
             /*
             Test Step 10

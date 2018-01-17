@@ -69,8 +69,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static byte MMI_OBU_TR_M_ADHESION
         {
-            get => _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrMAdhesion.Value;
-            set => _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrMAdhesion.Value = (byte) value;
+            get { return _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrMAdhesion.Value; }
+            set { _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrMAdhesion.Value = (byte) value; }
         }
 
         /// <summary>
@@ -85,8 +85,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static int MMI_OBU_TR_O_TRAIN
         {
-            get => _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrOTrain.Value;
-            set => _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrOTrain.Value = (int) value;
+            get { return _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrOTrain.Value; }
+            set { _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrOTrain.Value = (int) value; }
         }
 
         /// <summary>
@@ -100,8 +100,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static ushort BRAKE_TEST_TIMEOUT
         {
-            get => _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrBrakeTestTimeOut.Value;
-            set => _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrBrakeTestTimeOut.Value = (ushort) value;
+            get { return _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrBrakeTestTimeOut.Value; }
+            set { _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrBrakeTestTimeOut.Value = (ushort) value; }
         }
 
         /// <summary>
@@ -115,8 +115,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static byte OBU_TR_NID_STM_DA
         {
-            get => _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrNidStmDa.Value;
-            set => _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrNidStmDa.Value = (byte) value;
+            get { return _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrNidStmDa.Value; }
+            set { _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrNidStmDa.Value = (byte) value; }
         }
 
         /// <summary>
@@ -130,8 +130,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static byte OBU_TR_NID_STM_HS
         {
-            get => _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrNidStmHs.Value;
-            set => _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrNidStmHs.Value = (byte) value;
+            get { return _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrNidStmHs.Value; }
+            set { _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrNidStmHs.Value = (byte) value; }
         }
 
         /// <summary>
@@ -143,7 +143,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static byte MMI_OBU_TR_EBTestInProgress
         {
-            get => _trainEBTestInProgress;
+            get { return _trainEBTestInProgress; }
 
             set
             {
@@ -161,7 +161,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static byte MMI_OBU_TR_EB_Status
         {
-            get => _trainEBStatus;
+            get { return _trainEBStatus; }
 
             set
             {
@@ -179,7 +179,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static byte MMI_OBU_TR_RadioStatus
         {
-            get => _radioStatusInformation;
+            get { return _radioStatusInformation; }
 
             set
             {
@@ -197,7 +197,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static byte MMI_OBU_TR_STM_HS_ENABLED
         {
-            get => _stmInHsStateExists;
+            get { return _stmInHsStateExists; }
 
             set
             {
@@ -215,7 +215,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static byte MMI_OBU_TR_STM_DA_ENABLED
         {
-            get => _stmInDaStateExists;
+            get { return _stmInDaStateExists; }
 
             set
             {
@@ -238,7 +238,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static MMI_OBU_TR_BRAKETEST_STATUS MMI_OBU_TR_BrakeTest_Status
         {
-            get => _etcsBrakeTestStatus;
+            get { return _etcsBrakeTestStatus; }
 
             set
             {
@@ -261,7 +261,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static MMI_OBU_TR_M_LEVEL MMI_OBU_TR_M_Level
         {
-            get => _level;
+            get { return _level; }
 
             set
             {
@@ -297,7 +297,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static MMI_OBU_TR_M_MODE MMI_OBU_TR_M_Mode
         {
-            set => _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrMMode.Value = (byte) value;
+            set { _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrMMode.Value = (byte) value; }
         }
 
         /// <summary>

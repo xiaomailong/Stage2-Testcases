@@ -191,7 +191,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static byte MMI_NID_NTC
         {
-            set => _pool.SITR.ETCS1.SpecificStmDwValue.MmiNidNtc.Value = value;
+            set { _pool.SITR.ETCS1.SpecificStmDwValue.MmiNidNtc.Value = value; }
         }
 
         /// <summary>

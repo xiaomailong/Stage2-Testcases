@@ -1,7 +1,6 @@
 using System;
 using Testcase.Telegrams.DMItoEVC;
 using Testcase.Telegrams.EVCtoDMI;
-using static Testcase.Telegrams.EVCtoDMI.Variables;
 
 
 namespace Testcase.DMITestCases
@@ -65,13 +64,7 @@ namespace Testcase.DMITestCases
             EVC101_MMIDriverRequest.CheckMRequestReleased =
                 Telegrams.EVCtoDMI.Variables.MMI_M_REQUEST.StartTrainDataView;
 
-            EVC13_MMIDataView.MMI_M_DATA_ENABLE = MMI_M_DATA_ENABLE.TrainCategory |
-                                                  MMI_M_DATA_ENABLE.TrainLength |
-                                                  MMI_M_DATA_ENABLE.BrakePercentage |
-                                                  MMI_M_DATA_ENABLE.MaxTrainSpeed |
-                                                  MMI_M_DATA_ENABLE.AxleLoadCategory |
-                                                  MMI_M_DATA_ENABLE.Airtightness |
-                                                  MMI_M_DATA_ENABLE.LoadingGauge;
+            EVC13_MMIDataView.MMI_M_DATA_ENABLE = Variables.MMI_M_DATA_ENABLE.TrainCategory | Variables.MMI_M_DATA_ENABLE.TrainLength | Variables.MMI_M_DATA_ENABLE.BrakePercentage | Variables.MMI_M_DATA_ENABLE.MaxTrainSpeed | Variables.MMI_M_DATA_ENABLE.AxleLoadCategory | Variables.MMI_M_DATA_ENABLE.Airtightness | Variables.MMI_M_DATA_ENABLE.LoadingGauge;
             //                       &  ~MMI_M_DATA_ENABLE.TrainSetID;
             EVC13_MMIDataView.MMI_X_DRIVER_ID = "1";
             EVC13_MMIDataView.MMI_NID_OPERATION = 0;

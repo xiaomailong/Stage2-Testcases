@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using Testcase.Telegrams.EVCtoDMI;
 using Testcase.Telegrams.DMItoEVC;
-using static Testcase.Telegrams.EVCtoDMI.Variables;
 
 
 namespace Testcase.DMITestCases
@@ -769,7 +768,7 @@ namespace Testcase.DMITestCases
             EVC22_MMICurrentRBC.MMI_NID_WINDOW = 10;
             EVC22_MMICurrentRBC.NID_RBC = 6996969;
             EVC22_MMICurrentRBC.MMI_NID_RADIO = 0x0031840880100FFF;
-            EVC22_MMICurrentRBC.MMI_Q_CLOSE_ENABLE = MMI_Q_CLOSE_ENABLE.Enabled;
+            EVC22_MMICurrentRBC.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
             EVC22_MMICurrentRBC.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -1003,10 +1002,10 @@ namespace Testcase.DMITestCases
                     EVC22_MMICurrentRBC.NID_RBC = 5648;
                     // spec says 5678ef....
                     EVC22_MMICurrentRBC.MMI_NID_RADIO = 0x5678ffffffffffff;
-                    EVC22_MMICurrentRBC.DataElements = new List<DataElement>
+                    EVC22_MMICurrentRBC.DataElements = new List<Variables.DataElement>
                     {
-                        new DataElement {Identifier = 0, QDataCheck = 4, EchoText = "\0x1\0x30"},
-                        new DataElement {Identifier = 1, QDataCheck = 5, EchoText = "\0x1\0x30"}
+                        new Variables.DataElement {Identifier = 0, QDataCheck = 4, EchoText = "\0x1\0x30"},
+                        new Variables.DataElement {Identifier = 1, QDataCheck = 5, EchoText = "\0x1\0x30"}
                     };
                     break;
             }

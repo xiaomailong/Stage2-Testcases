@@ -3,7 +3,6 @@
 using System;
 using System.Collections.Generic;
 using CL345;
-using static Testcase.Telegrams.EVCtoDMI.Variables;
 
 #endregion
 
@@ -29,7 +28,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         public static void Initialise(SignalPool pool)
         {
             _pool = pool;
-            DataElements = new List<DataElement>();
+            DataElements = new List<Variables.DataElement>();
 
             // Set as dynamic
             _pool.SITR.SMDCtrl.ETCS1.CurrentSrRules.Value = 0x0008;
@@ -51,7 +50,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             // Set number of train data elements
             _pool.SITR.ETCS1.CurrentSrRules.MmiNDataElements.Value = (ushort) DataElements.Count;
 
-            totalSizeCounter = PopulateDataElements($"ETCS1_CurrentSrRules_EVC11CurrentSrRulesSub1",
+            totalSizeCounter = Variables.PopulateDataElements("ETCS1_CurrentSrRules_EVC11CurrentSrRulesSub1",
                 totalSizeCounter, DataElements, _pool);
 
             // Set the total length of the packet (adding MMI_M_BUTTONS length)
@@ -69,8 +68,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static uint MMI_L_STFF
         {
-            get => _pool.SITR.ETCS1.CurrentSrRules.MmiLStff.Value;
-            set => _pool.SITR.ETCS1.CurrentSrRules.MmiLStff.Value = value;
+            get { return _pool.SITR.ETCS1.CurrentSrRules.MmiLStff.Value; }
+            set { _pool.SITR.ETCS1.CurrentSrRules.MmiLStff.Value = value; }
         }
 
         /// <summary>
@@ -85,8 +84,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static ushort MMI_V_STFF
         {
-            get => _pool.SITR.ETCS1.CurrentSrRules.MmiVStff.Value;
-            set => _pool.SITR.ETCS1.CurrentSrRules.MmiVStff.Value = value;
+            get { return _pool.SITR.ETCS1.CurrentSrRules.MmiVStff.Value; }
+            set { _pool.SITR.ETCS1.CurrentSrRules.MmiVStff.Value = value; }
         }
 
         /// <summary>
@@ -148,9 +147,9 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static Variables.MMI_M_BUTTONS MMI_M_BUTTONS
         {
-            set => _pool.SITR.ETCS1.CurrentSrRules.MmiMButtons.Value = (byte) value;
+            set { _pool.SITR.ETCS1.CurrentSrRules.MmiMButtons.Value = (byte) value; }
         }
 
-        public static List<DataElement> DataElements { get; set; }
+        public static List<Variables.DataElement> DataElements { get; set; }
     }
 }

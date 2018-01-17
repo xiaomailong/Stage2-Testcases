@@ -96,7 +96,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static ushort MMI_I_TEXT
         {
-            set => _pool.SITR.ETCS1.DriverMessage.MmiIText.Value = (byte) value;
+            set { _pool.SITR.ETCS1.DriverMessage.MmiIText.Value = (byte) value; }
         }
 
         /// <summary>
@@ -254,7 +254,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static ushort MMI_Q_TEXT
         {
-            set => _pool.SITR.ETCS1.DriverMessage.MmiQText.Value = value;
+            set { _pool.SITR.ETCS1.DriverMessage.MmiQText.Value = value; }
         }
 
         /// <summary>

@@ -93,7 +93,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static WindowID MMI_NID_WINDOW
         {
-            set => _pool.SITR.ETCS1.EnableRequest.MmiNidWindow.Value = (byte) value;
+            set { _pool.SITR.ETCS1.EnableRequest.MmiNidWindow.Value = (byte) value; }
         }
 
         /// <summary>

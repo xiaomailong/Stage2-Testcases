@@ -588,7 +588,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Select Level 1. ");
 
             DmiActions.Display_Main_Window_with_Start_button_not_enabled(this);
-            DmiActions.ShowInstruction(this, $"Press and hold ‘Shunting’ button for up to 2s then release the ‘Shunting’ button");
+            DmiActions.ShowInstruction(this, "Press and hold ‘Shunting’ button for up to 2s then release the ‘Shunting’ button");
 
             DmiActions.Send_SH_Mode(this);
             DmiActions.Send_L1(this);

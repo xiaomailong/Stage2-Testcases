@@ -36,8 +36,8 @@ namespace Testcase.Telegrams.DMItoEVC
         /// </summary>
         public static byte MMI_I_TEXT
         {
-            get => _mmiIText;
-            set => _mmiIText = value;
+            get { return _mmiIText; }
+            set { _mmiIText = value; }
         }
 
         /// <summary>
@@ -51,8 +51,8 @@ namespace Testcase.Telegrams.DMItoEVC
         /// </summary>
         public static MMI_Q_ACK MMI_Q_ACK
         {
-            get => _mmiQAck;
-            set => _mmiQAck = value;
+            get { return _mmiQAck; }
+            set { _mmiQAck = value; }
         }
 
         /// <summary>

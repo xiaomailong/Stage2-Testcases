@@ -2,7 +2,6 @@
 
 using System;
 using CL345;
-using static Testcase.Telegrams.EVCtoDMI.Variables;
 
 #endregion
 
@@ -37,9 +36,9 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// 
         /// Note: Bit0 = 0 -> disable close button, Bit0 = 1 -> enable close button
         /// </summary>
-        public static MMI_Q_CLOSE_ENABLE MMI_Q_CLOSE_ENABLE
+        public static Variables.MMI_Q_CLOSE_ENABLE MMI_Q_CLOSE_ENABLE
         {
-            set => _pool.SITR.ETCS1.CurrentDriverId.MmiQCloseEnable.Value = (byte) value;
+            set { _pool.SITR.ETCS1.CurrentDriverId.MmiQCloseEnable.Value = (byte) value; }
         }
 
         /// <summary>
@@ -52,7 +51,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static MMI_Q_ADD_ENABLE_BUTTONS MMI_Q_ADD_ENABLE
         {
-            set => _pool.SITR.ETCS1.CurrentDriverId.MmiQAddEnable.Value = (byte) value;
+            set { _pool.SITR.ETCS1.CurrentDriverId.MmiQAddEnable.Value = (byte) value; }
         }
 
         [Flags]

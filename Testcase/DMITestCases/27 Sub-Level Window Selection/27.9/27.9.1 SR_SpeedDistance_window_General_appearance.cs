@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using Testcase.Telegrams.EVCtoDMI;
 using Testcase.Telegrams.DMItoEVC;
-using static Testcase.Telegrams.EVCtoDMI.Variables;
 
 
 namespace Testcase.DMITestCases
@@ -382,10 +381,10 @@ namespace Testcase.DMITestCases
             EVC106_MMINewSrRules.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_SR_RULES.NoButton;
             EVC106_MMINewSrRules.CheckPacketContent();
 
-            List<DataElement> dataElements = new List<DataElement>
+            List<Variables.DataElement> dataElements = new List<Variables.DataElement>
             {
-                new DataElement {Identifier = 15, EchoText = "40", QDataCheck = 1},
-                new DataElement {Identifier = 16, EchoText = "", QDataCheck = 1}
+                new Variables.DataElement {Identifier = 15, EchoText = "40", QDataCheck = 1},
+                new Variables.DataElement {Identifier = 16, EchoText = "", QDataCheck = 1}
             };
             EVC11_MMICurrentSRRules.DataElements = dataElements;
             EVC11_MMICurrentSRRules.Send();
@@ -639,7 +638,7 @@ namespace Testcase.DMITestCases
             EVC106_MMINewSrRules.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_SR_RULES.BTN_ENTER;
             EVC106_MMINewSrRules.CheckPacketContent();
 
-            EVC11_MMICurrentSRRules.MMI_M_BUTTONS = MMI_M_BUTTONS.BTN_YES_DATA_ENTRY_COMPLETE;
+            EVC11_MMICurrentSRRules.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS.BTN_YES_DATA_ENTRY_COMPLETE;
             EVC11_MMICurrentSRRules.Send();
 
             // Spec refers to Train data Entry is complete? label: should be ‘SR speed / distance entry complete?’ label
@@ -931,7 +930,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press the ‘Close’ button");
 
-            EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.ExitChangeSRrules;
+            EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.ExitChangeSRrules;
 
             // Spec says DMI receives EVC30 ??
             //EVC30_MMIRequestEnable.SendBlank();

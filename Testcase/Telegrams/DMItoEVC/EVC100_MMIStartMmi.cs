@@ -48,23 +48,32 @@ namespace Testcase.Telegrams.DMItoEVC
                 // If check passes
                 if (_checkResult)
                 {
-                    _pool.TraceReport($"{BaseString}:" + Environment.NewLine +
-                                      $"MMI_M_IF_VER = {(_mIfVer & 0xFF000000) >> 24}.{(_mIfVer & 0x00FF0000) >> 16}.{(_mIfVer & 0x0000FF00) >> 8} " +
+                    _pool.TraceReport(string.Format("{0}:", BaseString) + Environment.NewLine +
+                                      string.Format("MMI_M_IF_VER = {0}.{1}.{2} ", (_mIfVer & 0xFF000000) >> 24,
+                                          (_mIfVer & 0x00FF0000) >> 16, (_mIfVer & 0x0000FF00) >> 8) +
                                       Environment.NewLine +
-                                      $"MMI_M_SW_VER = {(_mSwVer & 0xFF000000) >> 24}.{(_mSwVer & 0x00FF0000) >> 16}.{(_mSwVer & 0x0000FF00) >> 8} " +
+                                      string.Format("MMI_M_SW_VER = {0}.{1}.{2} ", (_mSwVer & 0xFF000000) >> 24,
+                                          (_mSwVer & 0x00FF0000) >> 16, (_mSwVer & 0x0000FF00) >> 8) +
                                       Environment.NewLine +
-                                      $"MMI_START_STATUS = {_mStartStatus} " + Environment.NewLine +
+                                      string.Format("MMI_START_STATUS = {0} ", _mStartStatus) + Environment.NewLine +
                                       "Result = PASSED.");
                 }
                 // Else display the real value extracted from EVC-100
                 else
                 {
-                    _pool.TraceError($"{BaseString}:" + Environment.NewLine +
-                                     $"MMI_M_IF_VER = {(_pool.SITR.CCUO.ETCS1StartMmi.MmiMIfVer.Value & 0xFF000000) >> 24}.{(_pool.SITR.CCUO.ETCS1StartMmi.MmiMIfVer.Value & 0x00FF0000) >> 16}.{(_pool.SITR.CCUO.ETCS1StartMmi.MmiMIfVer.Value & 0x0000FF00) >> 8} " +
+                    _pool.TraceError(string.Format("{0}:", BaseString) + Environment.NewLine +
+                                     string.Format("MMI_M_IF_VER = {0}.{1}.{2} ",
+                                         (_pool.SITR.CCUO.ETCS1StartMmi.MmiMIfVer.Value & 0xFF000000) >> 24,
+                                         (_pool.SITR.CCUO.ETCS1StartMmi.MmiMIfVer.Value & 0x00FF0000) >> 16,
+                                         (_pool.SITR.CCUO.ETCS1StartMmi.MmiMIfVer.Value & 0x0000FF00) >> 8) +
                                      Environment.NewLine +
-                                     $"MMI_M_SW_VER = {(_pool.SITR.CCUO.ETCS1StartMmi.MmiMSwVer.Value & 0xFF000000) >> 24}.{(_pool.SITR.CCUO.ETCS1StartMmi.MmiMSwVer.Value & 0x00FF0000) >> 16}.{(_pool.SITR.CCUO.ETCS1StartMmi.MmiMSwVer.Value & 0x0000FF00) >> 8} " +
+                                     string.Format("MMI_M_SW_VER = {0}.{1}.{2} ",
+                                         (_pool.SITR.CCUO.ETCS1StartMmi.MmiMSwVer.Value & 0xFF000000) >> 24,
+                                         (_pool.SITR.CCUO.ETCS1StartMmi.MmiMSwVer.Value & 0x00FF0000) >> 16,
+                                         (_pool.SITR.CCUO.ETCS1StartMmi.MmiMSwVer.Value & 0x0000FF00) >> 8) +
                                      Environment.NewLine +
-                                     $"MMI_START_STATUS = {_pool.SITR.CCUO.ETCS1StartMmi.MmiMStartStatus.Value} " +
+                                     string.Format("MMI_START_STATUS = {0} ",
+                                         _pool.SITR.CCUO.ETCS1StartMmi.MmiMStartStatus.Value) +
                                      Environment.NewLine +
                                      "Result: FAILED.");
                 }
@@ -92,7 +101,10 @@ namespace Testcase.Telegrams.DMItoEVC
         /// </summary>
         public static uint MMI_M_IF_VER
         {
-            set => _mIfVer = value;
+            set
+            {
+                _mIfVer = value;
+            }
         }
 
         /// <summary>
@@ -111,7 +123,7 @@ namespace Testcase.Telegrams.DMItoEVC
         /// </summary>
         public static uint MMI_M_SW_VER
         {
-            set => _mSwVer = value;
+            set { _mSwVer = value; }
         }
 
         /// <summary>
@@ -124,7 +136,7 @@ namespace Testcase.Telegrams.DMItoEVC
         /// </summary>
         public static byte MMI_M_START_STATUS
         {
-            set => _mStartStatus = value;
+            set { _mStartStatus = value; }
         }
     }
 }

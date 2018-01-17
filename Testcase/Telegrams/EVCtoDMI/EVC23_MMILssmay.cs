@@ -36,8 +36,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static ushort MMI_V_LSSMA
         {
-            get => _pool.SITR.ETCS1.Lssma.MmiVLssma.Value;
-            set => _pool.SITR.ETCS1.Lssma.MmiVLssma.Value = value;
+            get { return _pool.SITR.ETCS1.Lssma.MmiVLssma.Value; }
+            set { _pool.SITR.ETCS1.Lssma.MmiVLssma.Value = value; }
         }
 
         /// <summary>
