@@ -25,7 +25,9 @@ namespace Testcase.DMITestCases
         public override void PreExecution()
         {
             // Pre-conditions from TestSpec:
-            // Test system is powered on.Cabin is activated.SoM is performed in UN mode, Level 0.
+            // Test system is powered on.
+            // Cabin is activated.
+            // SoM is performed in UN mode, Level 0.
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
@@ -64,7 +66,14 @@ namespace Testcase.DMITestCases
             /*
             Test Step 1
             Action: Drive the train forward with speed = 100 km/h
-            Expected Result: DMI displays in UN mode, level 0.Verify the following information,(1)   Use the log file to confirm that DMI received the packet information EVC-1 and EVC-7 with following variables,(EVC-7) OBU_TR_M_MODE = 4 (Unfitted)(EVC-1) MMI_M_WARNING = 0 (Status = NoS, Supervision = CSM)(EVC-1) MMI_V_PERMITTED = 2778 (100km/h)(2)   The speed pointer display in grey colour
+            Expected Result: DMI displays in UN mode, level 0.
+            Verify the following information,
+            (1)   Use the log file to confirm that DMI received the packet information EVC-1 and EVC-7 with following variables,
+            (EVC-7) 
+            OBU_TR_M_MODE = 4 (Unfitted)
+            (EVC-1) MMI_M_WARNING = 0 (Status = NoS, Supervision = CSM)
+            (EVC-1) MMI_V_PERMITTED = 2778 (100km/h)
+            (2)   The speed pointer display in grey colour
             Test Step Comment: (1) MMI_gen 6299 (partly: OBU_TR_M_MODE, MMI_M_WARNING, train speed in relation to permitted speed MMI_V_PERMITTED, UN mode in CSM supervision);(2) MMI_gen 6299 (partly: colour of speed pointer, UN mode in CSM supervision);
             */
             EVC1_MMIDynamic.MMI_V_PERMITTED = 2778;
@@ -78,7 +87,10 @@ namespace Testcase.DMITestCases
             /*
             Test Step 2
             Action: Increase the train speed to 101 km/h
-            Expected Result: Verify the following information,(1)   Use the log file to confirm that DMI received the packet information EVC-1 with the following condition,MMI_M_WARNING = 8 (Status = OvS, Supervision = CSM) while the value of MMI_V_TRAIN = 2806 (101 km/h) which greater than MMI_V_PERMITTED(2)   The speed pointer display in orange colour
+            Expected Result: Verify the following information,
+            (1)   Use the log file to confirm that DMI received the packet information EVC-1 with the following condition,
+            MMI_M_WARNING = 8 (Status = OvS, Supervision = CSM) while the value of MMI_V_TRAIN = 2806 (101 km/h) which greater than MMI_V_PERMITTED
+            (2)   The speed pointer display in orange colour
             Test Step Comment: (1) MMI_gen 6299 (partly: MMI_M_WARNING, train speed in relation to permitted speed MMI_V_PERMITTED, UN mode in CSM supervision);(2) MMI_gen 6299 (partly: colour of speed pointer, UN mode in CSM supervision);
             */
 
@@ -91,8 +103,12 @@ namespace Testcase.DMITestCases
 
             /*
             Test Step 3
-            Action: Increase the train speed to 105 km/h.Note: dV_warning_max is defined in chapter 3 of [SUBSET-026]
-            Expected Result: Verify the following information,(1)   Use the log file to confirm that DMI received the packet information EVC-1 with the following condition,MMI_M_WARNING = 4 (Status = WaS, Supervision = CSM) while the value of MMI_V_TRAIN = 2917 (105 km/h) which greater than MMI_V_PERMITTED but lower than MMI_V_INTERVENTION(2)   The speed pointer display in orange colour
+            Action: Increase the train speed to 105 km/h.
+            Note: dV_warning_max is defined in chapter 3 of [SUBSET-026]
+            Expected Result: Verify the following information,
+            (1)   Use the log file to confirm that DMI received the packet information EVC-1 with the following condition,
+            MMI_M_WARNING = 4 (Status = WaS, Supervision = CSM) while the value of MMI_V_TRAIN = 2917 (105 km/h) which greater than MMI_V_PERMITTED but lower than MMI_V_INTERVENTION
+            (2)   The speed pointer display in orange colour
             Test Step Comment: (1) MMI_gen 6299 (partly: MMI_M_WARNING, train speed in relation to permitted speed MMI_V_PERMITTED, UN mode in CSM supervision);(2) MMI_gen 6299 (partly: colour of speed pointer, UN mode in CSM supervision);
             */
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Warning_Status_Ceiling_Speed_Monitoring;
@@ -104,7 +120,15 @@ namespace Testcase.DMITestCases
             /*
             Test Step 4
             Action: Increase the train speed to 106 km/h
-            Expected Result: The train speed is force to decrease because of emergency brake is applied by ETCS onboard.Verify the following information,Before train speed is decreased(1)   Use the log file to confirm that DMI received the packet information EVC-1 with the following condition,MMI_M_WARNING = 12 (Status = IntS, Supervision = CSM) while the value of MMI_V_TRAIN = 2944 (106 km/h) which greater than MMI_V_INTERVENTION(2)   The speed pointer display in red colourAfter train speed is decreased(3)   Use the log file to confirm that DMI received the packet information EVC-1 with the following condition,MMI_M_WARNING = 12 (Status = IntS, Supervision = CSM) while the value of MMI_V_TRAIN is lower than MMI_V_INTERVENTION(4)   The speed pointer display in grey colour
+            Expected Result: The train speed is force to decrease because of emergency brake is applied by ETCS onboard.
+            Verify the following information,
+            Before train speed is decreased
+            (1)   Use the log file to confirm that DMI received the packet information EVC-1 with the following condition,
+            MMI_M_WARNING = 12 (Status = IntS, Supervision = CSM) while the value of MMI_V_TRAIN = 2944 (106 km/h) which greater than MMI_V_INTERVENTION
+            (2)   The speed pointer display in red colourAfter train speed is decreased
+            (3)   Use the log file to confirm that DMI received the packet information EVC-1 with the following condition,
+            MMI_M_WARNING = 12 (Status = IntS, Supervision = CSM) while the value of MMI_V_TRAIN is lower than MMI_V_INTERVENTION
+            (4)   The speed pointer display in grey colour
             Test Step Comment: (1) MMI_gen 6299 (partly: MMI_M_WARNING, train speed in relation to permitted speed MMI_V_PERMITTED, UN mode in CSM supervision);(2) MMI_gen 6299 (partly: colour of speed pointer, UN mode in CSM supervision);(3) MMI_gen 6299 (partly: MMI_M_WARNING, UN mode in CSM supervision);(4) MMI_gen 6299 (partly: colour of speed pointer, UN mode in CSM supervision);
             */
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Ceiling_Speed_Monitoring;
@@ -120,8 +144,19 @@ namespace Testcase.DMITestCases
                                 "1. Is the speed pointer grey?");
             /*
             Test Step 5
-            Action: Stop the train.Then, use the test script file 12_3_4_a.xml to send the following packets,EVC-1MMI_M_WARNING = 2MMI_V_PERMITTED = 1111MMI_V_TARGET = 1083MMI_V_INTERVENTION = 1250MMI_V_TRAIN = 972EVC-7OBU_TR_M_MODE = 4
-            Expected Result: DMI displays in UN mode, level 0.Verify the following information,(1)   The speed pointer display in grey colour
+            Action: Stop the train.
+            Then, use the test script file 12_3_4_a.xml to send the following packets,
+            EVC-1
+            MMI_M_WARNING = 2
+            MMI_V_PERMITTED = 1111
+            MMI_V_TARGET = 1083
+            MMI_V_INTERVENTION = 1250
+            MMI_V_TRAIN = 972
+            EVC-7
+            OBU_TR_M_MODE = 4
+            Expected Result: DMI displays in UN mode, level 0.
+            Verify the following information,
+            (1)   The speed pointer display in grey colour
             Test Step Comment: (1) MMI_gen 6299 (partly: colour of speed pointer, UN mode in PIM supervision);
             */
             XML_12_3_4(msgType.typea);
@@ -131,8 +166,18 @@ namespace Testcase.DMITestCases
                                 "2. Is the speed pointer grey?");
             /*
             Test Step 6
-            Action: Use the test script file 12_3_4_b.xml to send the following packets,EVC-1MMI_M_WARNING = 2MMI_V_PERMITTED = 1111MMI_V_TARGET = 1083MMI_V_INTERVENTION = 1250MMI_V_TRAIN = 1111EVC-7OBU_TR_M_MODE = 4
-            Expected Result: DMI displays in UN mode, level 0.Verify the following information,(1)   The speed pointer display in white colour
+            Action: Use the test script file 12_3_4_b.xml to send the following packets,
+            EVC-1
+            MMI_M_WARNING = 2
+            MMI_V_PERMITTED = 1111
+            MMI_V_TARGET = 1083
+            MMI_V_INTERVENTION = 1250
+            MMI_V_TRAIN = 1111
+            EVC-7
+            OBU_TR_M_MODE = 4
+            Expected Result: DMI displays in UN mode, level 0.
+            Verify the following information,
+            (1)   The speed pointer display in white colour
             Test Step Comment: (1) MMI_gen 6299 (partly: colour of speed pointer, UN mode in PIM supervision);
             */
             XML_12_3_4(msgType.typeb);
@@ -143,8 +188,18 @@ namespace Testcase.DMITestCases
 
             /*
             Test Step 7
-            Action: Use the test script file 12_3_4_c.xml to send the following packets,EVC-1MMI_M_WARNING = 10MMI_V_PERMITTED = 1111MMI_V_TARGET = 1083MMI_V_INTERVENTION = 1250MMI_V_TRAIN = 1139EVC-7OBU_TR_M_MODE = 4
-            Expected Result: DMI displays in UN mode, level 0.Verify the following information,(1)   The speed pointer display in orange colour
+            Action: Use the test script file 12_3_4_c.xml to send the following packets,
+            EVC-1
+            MMI_M_WARNING = 10
+            MMI_V_PERMITTED = 1111
+            MMI_V_TARGET = 1083
+            MMI_V_INTERVENTION = 1250
+            MMI_V_TRAIN = 1139
+            EVC-7
+            OBU_TR_M_MODE = 4
+            Expected Result: DMI displays in UN mode, level 0.
+            Verify the following information,
+            (1)   The speed pointer display in orange colour
             Test Step Comment: (1) MMI_gen 6299 (partly: colour of speed pointer, UN mode in PIM supervision);
             */
             XML_12_3_4(msgType.typec);
@@ -155,8 +210,18 @@ namespace Testcase.DMITestCases
 
             /*
             Test Step 8
-            Action: Use the test script file 12_3_4_d.xml to send the following packets,EVC-1MMI_M_WARNING = 6MMI_V_PERMITTED = 1111MMI_V_TARGET = 1083MMI_V_INTERVENTION = 1250MMI_V_TRAIN = 1250EVC-7OBU_TR_M_MODE = 4
-            Expected Result: DMI displays in UN mode, level 0.Verify the following information,(1)   The speed pointer display in orange colour
+            Action: Use the test script file 12_3_4_d.xml to send the following packets,
+            EVC-1
+            MMI_M_WARNING = 6
+            MMI_V_PERMITTED = 1111
+            MMI_V_TARGET = 1083
+            MMI_V_INTERVENTION = 1250
+            MMI_V_TRAIN = 1250
+            EVC-7
+            OBU_TR_M_MODE = 4
+            Expected Result: DMI displays in UN mode, level 0.
+            Verify the following information,
+            (1)   The speed pointer display in orange colour
             Test Step Comment: (1) MMI_gen 6299 (partly: colour of speed pointer, UN mode in PIM supervision);
             */
             XML_12_3_4(msgType.typed);
@@ -167,8 +232,18 @@ namespace Testcase.DMITestCases
 
             /*
             Test Step 9
-            Action: Use the test script file 12_3_4_e.xml to send the following packets,EVC-1MMI_M_WARNING = 14MMI_V_PERMITTED = 1111MMI_V_TARGET = 1083MMI_V_INTERVENTION = 1250MMI_V_TRAIN = 1277EVC-7OBU_TR_M_MODE = 4
-            Expected Result: DMI displays in UN mode, level 0.Verify the following information,(1)   The speed pointer display in red colour
+            Action: Use the test script file 12_3_4_e.xml to send the following packets,
+            EVC-1
+            MMI_M_WARNING = 14
+            MMI_V_PERMITTED = 1111
+            MMI_V_TARGET = 1083
+            MMI_V_INTERVENTION = 1250
+            MMI_V_TRAIN = 1277
+            EVC-7
+            OBU_TR_M_MODE = 4
+            Expected Result: DMI displays in UN mode, level 0.
+            Verify the following information,
+            (1)   The speed pointer display in red colour
             Test Step Comment: (1) MMI_gen 6299 (partly: colour of speed pointer, UN mode in PIM supervision);
             */
             XML_12_3_4(msgType.typee);
@@ -179,8 +254,18 @@ namespace Testcase.DMITestCases
 
             /*
             Test Step 10
-            Action: Use the test script file 12_3_4_f.xml to send the following packets,EVC-1MMI_M_WARNING = 14MMI_V_PERMITTED = 1111MMI_V_TARGET = 1083MMI_V_INTERVENTION = 1250MMI_V_TRAIN = 1111EVC-7OBU_TR_M_MODE = 4
-            Expected Result: DMI displays in UN mode, level 0.Verify the following information,(1)   The speed pointer display in white colour
+            Action: Use the test script file 12_3_4_f.xml to send the following packets,
+            EVC-1
+            MMI_M_WARNING = 14
+            MMI_V_PERMITTED = 1111
+            MMI_V_TARGET = 1083
+            MMI_V_INTERVENTION = 1250
+            MMI_V_TRAIN = 1111
+            EVC-7
+            OBU_TR_M_MODE = 4
+            Expected Result: DMI displays in UN mode, level 0.
+            Verify the following information,
+            (1)   The speed pointer display in white colour
             Test Step Comment: (1) MMI_gen 6299 (partly: colour of speed pointer, UN mode in PIM supervision);
             */
             XML_12_3_4(msgType.typef);
@@ -191,8 +276,18 @@ namespace Testcase.DMITestCases
 
             /*
             Test Step 11
-            Action: Use the test script file 12_3_4_g.xml to send the following packets,EVC-1MMI_M_WARNING = 14MMI_V_PERMITTED = 1111MMI_V_TARGET = 1083MMI_V_INTERVENTION = 1250MMI_V_TRAIN = 1000EVC-7OBU_TR_M_MODE = 4
-            Expected Result: DMI displays in UN mode, level 0.Verify the following information,(1)   The speed pointer display in grey colour
+            Action: Use the test script file 12_3_4_g.xml to send the following packets,
+            EVC-1
+            MMI_M_WARNING = 14
+            MMI_V_PERMITTED = 1111
+            MMI_V_TARGET = 1083
+            MMI_V_INTERVENTION = 1250
+            MMI_V_TRAIN = 1000
+            EVC-7
+            OBU_TR_M_MODE = 4
+            Expected Result: DMI displays in UN mode, level 0.
+            Verify the following information,
+            (1)   The speed pointer display in grey colour
             Test Step Comment: (1) MMI_gen 6299 (partly: colour of speed pointer, UN mode in PIM supervision);
             */
             XML_12_3_4(msgType.typeg);
@@ -203,8 +298,18 @@ namespace Testcase.DMITestCases
 
             /*
             Test Step 12
-            Action: Use the test script file 12_3_4_h.xml to send the following packets,EVC-1MMI_M_WARNING = 11MMI_V_PERMITTED = 1111MMI_V_TARGET = 1083MMI_V_INTERVENTION = 1250MMI_V_TRAIN = 1000EVC-7OBU_TR_M_MODE = 4
-            Expected Result: DMI displays in UN mode, level 0.Verify the following information,(1)   The speed pointer display in grey colour
+            Action: Use the test script file 12_3_4_h.xml to send the following packets,
+            EVC-1
+            MMI_M_WARNING = 11
+            MMI_V_PERMITTED = 1111
+            MMI_V_TARGET = 1083
+            MMI_V_INTERVENTION = 1250
+            MMI_V_TRAIN = 1000
+            EVC-7
+            OBU_TR_M_MODE = 4
+            Expected Result: DMI displays in UN mode, level 0.
+            Verify the following information,
+            (1)   The speed pointer display in grey colour
             Test Step Comment: (1) MMI_gen 6299 (partly: colour of speed pointer, UN mode in TSM supervision);
             */
             XML_12_3_4(msgType.typeh);
@@ -214,8 +319,18 @@ namespace Testcase.DMITestCases
                                 "2. Is the speed pointer grey?");
             /*
             Test Step 13
-            Action: Use the test script file 12_3_4_i.xml to send the following packets,EVC-1MMI_M_WARNING = 11MMI_V_PERMITTED = 1111MMI_V_TARGET = 1083MMI_V_INTERVENTION = 1250MMI_V_TRAIN = 1111EVC-7OBU_TR_M_MODE = 4
-            Expected Result: DMI displays in UN mode, level 0.Verify the following information,(1)   The speed pointer display in white colour
+            Action: Use the test script file 12_3_4_i.xml to send the following packets,
+            EVC-1
+            MMI_M_WARNING = 11
+            MMI_V_PERMITTED = 1111
+            MMI_V_TARGET = 1083
+            MMI_V_INTERVENTION = 1250
+            MMI_V_TRAIN = 1111
+            EVC-7
+            OBU_TR_M_MODE = 4
+            Expected Result: DMI displays in UN mode, level 0.
+            Verify the following information,
+            (1)   The speed pointer display in white colour
             Test Step Comment: (1) MMI_gen 6299 (partly: colour of speed pointer, UN mode in TSM supervision);
             */
             XML_12_3_4(msgType.typei);
@@ -226,8 +341,18 @@ namespace Testcase.DMITestCases
 
             /*
             Test Step 14
-            Action: Use the test script file 12_3_4_j.xml to send the following packets,EVC-1MMI_M_WARNING = 1MMI_V_PERMITTED = 1111MMI_V_TARGET = 1083MMI_V_INTERVENTION = 1250MMI_V_TRAIN = 1111EVC-7OBU_TR_M_MODE = 4
-            Expected Result: DMI displays in UN mode, level 0.Verify the following information,(1)   The speed pointer display in yellow colour
+            Action: Use the test script file 12_3_4_j.xml to send the following packets,
+            EVC-1
+            MMI_M_WARNING = 1
+            MMI_V_PERMITTED = 1111
+            MMI_V_TARGET = 1083
+            MMI_V_INTERVENTION = 1250
+            MMI_V_TRAIN = 1111
+            EVC-7
+            OBU_TR_M_MODE = 4
+            Expected Result: DMI displays in UN mode, level 0.
+            Verify the following information,
+            (1)   The speed pointer display in yellow colour
             Test Step Comment: (1) MMI_gen 6299 (partly: colour of speed pointer, UN mode in TSM supervision);
             */
             XML_12_3_4(msgType.typej);
@@ -250,8 +375,18 @@ namespace Testcase.DMITestCases
 
             /*
             Test Step 16
-            Action: Use the test script file 12_3_4_l.xml to send the following packets,EVC-1MMI_M_WARNING = 5MMI_V_PERMITTED = 1111MMI_V_TARGET = 1083MMI_V_INTERVENTION = 1250MMI_V_TRAIN = 1250EVC-7OBU_TR_M_MODE = 4
-            Expected Result: DMI displays in UN mode, level 0.Verify the following information,(1)   The speed pointer display in orange colour
+            Action: Use the test script file 12_3_4_l.xml to send the following packets,
+            EVC-1
+            MMI_M_WARNING = 5
+            MMI_V_PERMITTED = 1111
+            MMI_V_TARGET = 1083
+            MMI_V_INTERVENTION = 1250
+            MMI_V_TRAIN = 1250
+            EVC-7
+            OBU_TR_M_MODE = 4
+            Expected Result: DMI displays in UN mode, level 0.
+            Verify the following information,
+            (1)   The speed pointer display in orange colour
             Test Step Comment: (1) MMI_gen 6299 (partly: colour of speed pointer, UN mode in TSM supervision);
             */
             XML_12_3_4(msgType.typel);
@@ -262,8 +397,18 @@ namespace Testcase.DMITestCases
 
             /*
             Test Step 17
-            Action: Use the test script file 12_3_4_m.xml to send the following packets,EVC-1MMI_M_WARNING = 13MMI_V_PERMITTED = 1111MMI_V_TARGET = 1083MMI_V_INTERVENTION = 1250MMI_V_TRAIN = 1277EVC-7OBU_TR_M_MODE = 4
-            Expected Result: DMI displays in UN mode, level 0.Verify the following information,(1)   The speed pointer display in red colour
+            Action: Use the test script file 12_3_4_m.xml to send the following packets,
+            EVC-1
+            MMI_M_WARNING = 13
+            MMI_V_PERMITTED = 1111
+            MMI_V_TARGET = 1083
+            MMI_V_INTERVENTION = 1250
+            MMI_V_TRAIN = 1277
+            EVC-7
+            OBU_TR_M_MODE = 4
+            Expected Result: DMI displays in UN mode, level 0.
+            Verify the following information,
+            (1)   The speed pointer display in red colour
             Test Step Comment: (1) MMI_gen 6299 (partly: colour of speed pointer, UN mode in TSM supervision);
             */
             XML_12_3_4(msgType.typem);
@@ -274,8 +419,18 @@ namespace Testcase.DMITestCases
 
             /*
             Test Step 18
-            Action: Use the test script file 12_3_4_n.xml to send the following packets,EVC-1MMI_M_WARNING = 13MMI_V_PERMITTED = 1111MMI_V_TARGET = 1083MMI_V_INTERVENTION = 1250MMI_V_TRAIN = 1111EVC-7OBU_TR_M_MODE = 4
-            Expected Result: DMI displays in UN mode, level 0.Verify the following information,(1)   The speed pointer display in yellow colour
+            Action: Use the test script file 12_3_4_n.xml to send the following packets,
+            EVC-1
+            MMI_M_WARNING = 13
+            MMI_V_PERMITTED = 1111
+            MMI_V_TARGET = 1083
+            MMI_V_INTERVENTION = 1250
+            MMI_V_TRAIN = 1111
+            EVC-7
+            OBU_TR_M_MODE = 4
+            Expected Result: DMI displays in UN mode, level 0.
+            Verify the following information,
+            (1)   The speed pointer display in yellow colour
             Test Step Comment: (1) MMI_gen 6299 (partly: colour of speed pointer, UN mode in TSM supervision);
             */
             XML_12_3_4(msgType.typen);
@@ -286,8 +441,18 @@ namespace Testcase.DMITestCases
 
             /*
             Test Step 19
-            Action: Use the test script file 12_3_4_o.xml to send the following packets,EVC-1MMI_M_WARNING = 13MMI_V_PERMITTED = 1111MMI_V_TARGET = 1083MMI_V_INTERVENTION = 1250MMI_V_TRAIN = 1083EVC-7OBU_TR_M_MODE = 4
-            Expected Result: DMI displays in UN mode, level 0.Verify the following information,(1)   The speed pointer display in grey colour
+            Action: Use the test script file 12_3_4_o.xml to send the following packets,
+            EVC-1
+            MMI_M_WARNING = 13
+            MMI_V_PERMITTED = 1111
+            MMI_V_TARGET = 1083
+            MMI_V_INTERVENTION = 1250
+            MMI_V_TRAIN = 1083
+            EVC-7
+            OBU_TR_M_MODE = 4
+            Expected Result: DMI displays in UN mode, level 0.
+            Verify the following information,
+            (1)   The speed pointer display in grey colour
             Test Step Comment: (1) MMI_gen 6299 (partly: colour of speed pointer, UN mode in TSM supervision);
             */
             XML_12_3_4(msgType.typeo);
