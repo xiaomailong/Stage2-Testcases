@@ -53,28 +53,33 @@ namespace Testcase.Telegrams.DMItoEVC
                 // Check if values match
                 if (valuesMatch)
                 {
-                    _pool.TraceReport($"{BaseString}:" + Environment.NewLine +
+                    _pool.TraceReport(string.Format("{0}:", BaseString) + Environment.NewLine +
                                       ((_mdDataset == Variables.MMI_Q_MD_DATASET.WheelDiameter)
-                                          ? $"MMI_M_WHEEL_SIZE_1 = {_wheelSize1} " + Environment.NewLine +
-                                            $"MMI_M_WHEEL_SIZE_2 = {_wheelSize2} " + Environment.NewLine +
-                                            $"MMI_M_WHEEL_SIZE_ERR = {_wheelSizeError} "
-                                          : $"MMI_M_PULSE_PER_KM_1 = {_pulsePerKm1} " + Environment.NewLine +
-                                            $"MMI_M_PULSE_PER_KM_2 = {_pulsePerKm2} ")
+                                          ? string.Format("MMI_M_WHEEL_SIZE_1 = {0} ", _wheelSize1) + Environment.NewLine +
+                                            string.Format("MMI_M_WHEEL_SIZE_2 = {0} ", _wheelSize2) + Environment.NewLine +
+                                            string.Format("MMI_M_WHEEL_SIZE_ERR = {0} ", _wheelSizeError)
+                                          : string.Format("MMI_M_PULSE_PER_KM_1 = {0} ", _pulsePerKm1) + Environment.NewLine +
+                                            string.Format("MMI_M_PULSE_PER_KM_2 = {0} ", _pulsePerKm2))
                                       + Environment.NewLine + "Result = PASSED.");
                 }
                 // Else display the real value extracted from EVC-141
                 else
                 {
-                    _pool.TraceError($"{BaseString}:" + Environment.NewLine +
+                    _pool.TraceError(string.Format("{0}:", BaseString) + Environment.NewLine +
                                      ((_mdDataset == Variables.MMI_Q_MD_DATASET.WheelDiameter)
-                                         ? $"MMI_M_WHEEL_SIZE_1 = {_pool.SITR.CCUO.ETCS1ConfirmedMaintenanceData.MmiMSduWheelSize1R} " +
+                                         ? string.Format("MMI_M_WHEEL_SIZE_1 = {0} ",
+                                               _pool.SITR.CCUO.ETCS1ConfirmedMaintenanceData.MmiMSduWheelSize1R) +
                                            Environment.NewLine +
-                                           $"MMI_M_WHEEL_SIZE_2 = {_pool.SITR.CCUO.ETCS1ConfirmedMaintenanceData.MmiMSduWheelSize2R} " +
+                                           string.Format("MMI_M_WHEEL_SIZE_2 = {0} ",
+                                               _pool.SITR.CCUO.ETCS1ConfirmedMaintenanceData.MmiMSduWheelSize2R) +
                                            Environment.NewLine +
-                                           $"MMI_M_WHEEL_SIZE_ERR = {_pool.SITR.CCUO.ETCS1ConfirmedMaintenanceData.MmiMWheelSizeErrR} "
-                                         : $"MMI_M_PULSE_PER_KM_1 = {_pool.SITR.CCUO.ETCS1ConfirmedMaintenanceData.MmiMPulsePerKm1R} " +
+                                           string.Format("MMI_M_WHEEL_SIZE_ERR = {0} ",
+                                               _pool.SITR.CCUO.ETCS1ConfirmedMaintenanceData.MmiMWheelSizeErrR)
+                                         : string.Format("MMI_M_PULSE_PER_KM_1 = {0} ",
+                                               _pool.SITR.CCUO.ETCS1ConfirmedMaintenanceData.MmiMPulsePerKm1R) +
                                            Environment.NewLine +
-                                           $"MMI_M_PULSE_PER_KM_2 = {_pool.SITR.CCUO.ETCS1ConfirmedMaintenanceData.MmiMPulsePerKm2R} "
+                                           string.Format("MMI_M_PULSE_PER_KM_2 = {0} ",
+                                               _pool.SITR.CCUO.ETCS1ConfirmedMaintenanceData.MmiMPulsePerKm2R)
                                      ) +
                                      Environment.NewLine + "Result: FAILED.");
                 }

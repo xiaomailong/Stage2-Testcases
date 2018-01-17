@@ -56,13 +56,13 @@ namespace Testcase.Telegrams.EVCtoDMI
                 // Set the value on EVC-24 packet according to the NIDNTC index
                 if (nidNtcIndex < 10)
                 {
-                    _pool.SITR.Client.Write($"{BaseString}10{nidNtcIndex}_MmiNidNtc", _nidNtc);
-                    _pool.SITR.Client.Write($"{BaseString}10{nidNtcIndex}_MmiNidStmstate", _nidStmState);
+                    _pool.SITR.Client.Write(string.Format("{0}10{1}_MmiNidNtc", BaseString, nidNtcIndex), _nidNtc);
+                    _pool.SITR.Client.Write(string.Format("{0}10{1}_MmiNidStmstate", BaseString, nidNtcIndex), _nidStmState);
                 }
                 else
                 {
-                    _pool.SITR.Client.Write($"{BaseString}1{nidNtcIndex}_MmiNidNtc", _nidNtc);
-                    _pool.SITR.Client.Write($"{BaseString}1{nidNtcIndex}_MmiNidStmstate", _nidStmState);
+                    _pool.SITR.Client.Write(string.Format("{0}1{1}_MmiNidNtc", BaseString, nidNtcIndex), _nidNtc);
+                    _pool.SITR.Client.Write(string.Format("{0}1{1}_MmiNidStmstate", BaseString, nidNtcIndex), _nidStmState);
                 }
             }
 

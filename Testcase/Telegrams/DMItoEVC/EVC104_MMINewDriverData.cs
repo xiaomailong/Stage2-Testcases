@@ -41,13 +41,13 @@ namespace Testcase.Telegrams.DMItoEVC
                 // If check passes
                 if (_checkResult)
                 {
-                    _pool.TraceReport($"{BaseString} - MMI_X_DRIVER_ID = {xDriverId}" + Environment.NewLine +
+                    _pool.TraceReport(string.Format("{0} - MMI_X_DRIVER_ID = {1}", BaseString, xDriverId) + Environment.NewLine +
                                       "Result = PASSED.");
                 }
                 // Else display the real value extracted from EVC-104
                 else
                 {
-                    _pool.TraceError($"{BaseString} - MMI_X_DRIVER_ID = " +
+                    _pool.TraceError(string.Format("{0} - MMI_X_DRIVER_ID = ", BaseString) +
                                      _pool.SITR.CCUO.ETCS1NewDriverData.MmiXDriverId.Value +
                                      Environment.NewLine + "Result: FAILED");
                 }

@@ -127,7 +127,7 @@ namespace Testcase.Telegrams.DMItoEVC
                     if (_nDataElements == 1)
                     {
                         // Get MMI_NID_DATA
-                        _nidData = (byte) _pool.SITR.Client.Read($"{BaseString1}0_MmiNidData");
+                        _nidData = (byte) _pool.SITR.Client.Read(string.Format("{0}0_MmiNidData", BaseString1));
 
                         // For Trainset selection, MMI_NID_DATA should be equal to 6 (= Train Type)
                         _checkResult = _nidData.Equals(6);
@@ -143,20 +143,20 @@ namespace Testcase.Telegrams.DMItoEVC
                         else
                         {
                             _pool.TraceError("MMI_N_DATA_ELEMENTS = 1" + Environment.NewLine +
-                                             $"MMI_NID_DATA[0] = {_nidData}" + Environment.NewLine +
+                                             string.Format("MMI_NID_DATA[0] = {0}", _nidData) + Environment.NewLine +
                                              "Result = FAILED!");
                         }
                     }
                     else
                     {
                         // Display the real value extracted
-                        _pool.TraceError($"MMI_N_DATA_ELEMENTS = {_nDataElements}");
+                        _pool.TraceError(string.Format("MMI_N_DATA_ELEMENTS = {0}", _nDataElements));
 
                         for (int k = 0; k < _nDataElements; k++)
                         {
-                            _nidData = (byte) _pool.SITR.Client.Read($"{BaseString1}{k}_MmiNidData");
+                            _nidData = (byte) _pool.SITR.Client.Read(string.Format("{0}{1}_MmiNidData", BaseString1, k));
 
-                            _pool.TraceError($"MMI_NID_DATA[{k}] = {_nidData}" + Environment.NewLine +
+                            _pool.TraceError(string.Format("MMI_NID_DATA[{0}] = {1}", k, _nidData) + Environment.NewLine +
                                              "Result = FAILED!");
                         }
                     }
@@ -176,13 +176,14 @@ namespace Testcase.Telegrams.DMItoEVC
                     // Else display the real value extracted
                     else
                     {
-                        _pool.TraceError($"MMI_N_DATA_ELEMENTS = {_nDataElements}");
+                        _pool.TraceError(string.Format("MMI_N_DATA_ELEMENTS = {0}", _nDataElements));
 
                         for (int k = 0; k < _nDataElements; k++)
                         {
-                            _nidData = (byte) _pool.SITR.Client.Read($"{BaseString1}0{k}_MmiNidData");
+                            _nidData = (byte) _pool.SITR.Client.Read(
+                                string.Format("{0}0{1}_MmiNidData", BaseString1, k));
 
-                            _pool.TraceError($"MMI_NID_DATA[{k}] = {_nidData}" + Environment.NewLine +
+                            _pool.TraceError(string.Format("MMI_NID_DATA[{0}] = {1}", k, _nidData) + Environment.NewLine +
                                              "Result = FAILED!");
                         }
                     }
@@ -190,13 +191,13 @@ namespace Testcase.Telegrams.DMItoEVC
                 else
                 {
                     _pool.TraceError("Unexpected Result!" + Environment.NewLine +
-                                     $"MMI_N_DATA_ELEMENTS = {_nDataElements}");
+                                     string.Format("MMI_N_DATA_ELEMENTS = {0}", _nDataElements));
 
                     for (int k = 0; k < _nDataElements; k++)
                     {
-                        _nidData = (byte) _pool.SITR.Client.Read($"{BaseString1}0{k}_MmiNidData");
+                        _nidData = (byte) _pool.SITR.Client.Read(string.Format("{0}0{1}_MmiNidData", BaseString1, k));
 
-                        _pool.TraceError($"MMI_NID_DATA[{k}] = {_nidData}");
+                        _pool.TraceError(string.Format("MMI_NID_DATA[{0}] = {1}", k, _nidData));
                     }
                 }
             }

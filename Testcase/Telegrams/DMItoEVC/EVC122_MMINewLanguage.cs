@@ -36,14 +36,14 @@ namespace Testcase.Telegrams.DMItoEVC
                 // If check passes
                 if (_pool.SITR.CCUO.ETCS1NewLanguage.MmiNidLanguage.Value.Equals(MMI_NID_LANGUAGE))
                 {
-                    _pool.TraceReport($"{baseString} - [MMI_NID_LANGUAGE] = {MMI_NID_LANGUAGE}" + Environment.NewLine +
+                    _pool.TraceReport(string.Format("{0} - [MMI_NID_LANGUAGE] = {1}", baseString, MMI_NID_LANGUAGE) + Environment.NewLine +
                                       "Result: PASSED.");
                 }
                 // Else display the real value extracted from EVC-122
 
                 else
                 {
-                    _pool.TraceError($"{baseString} - [MMI_NID_LANGUAGE] = " +
+                    _pool.TraceError(string.Format("{0} - [MMI_NID_LANGUAGE] = ", baseString) +
                                      _pool.SITR.CCUO.ETCS1NewLanguage.MmiNidLanguage.Value +
                                      Environment.NewLine + "Result: FAILED");
                 }

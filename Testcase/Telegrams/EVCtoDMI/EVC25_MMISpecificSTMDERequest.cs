@@ -117,7 +117,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             // For all data units
             for (int k = 0; k < numberOfDataUnits; k++)
             {
-                string tagName1 = packetName + $"EVC25SpecificStmDeRequestSub1{k}_";
+                string tagName1 = packetName + string.Format("EVC25SpecificStmDeRequestSub1{0}_", k);
 
                 // Write out the MMI_NID_NTC value
                 string requestName = tagName1 + "MmiNidNtc";
@@ -155,11 +155,11 @@ namespace Testcase.Telegrams.EVCtoDMI
 
                 // Write individual caption characters
                 // Dynamic fields 2nd dimension
-                string tagName2 = $"{tagName1}EVC25SpecificStmDeRequestSub11";
+                string tagName2 = string.Format("{0}EVC25SpecificStmDeRequestSub11", tagName1);
 
                 for (int l = 0; l < caption.Length; l++)
                 {
-                    requestName = $"{tagName2}{l.ToString("00")}_MmiStmXCaption";
+                    requestName = string.Format("{0}{1}_MmiStmXCaption", tagName2, l.ToString("00"));
 
                     _pool.SITR.Client.Write(requestName, caption[l]);
                     totalSizeCounter += sizeof(byte);
@@ -174,18 +174,18 @@ namespace Testcase.Telegrams.EVCtoDMI
                 else
                 {
                     // Write out the MMI_STM_L_VALUE (length of xvalue string)
-                    requestName = $"{tagName1}MmiStmLValue";
+                    requestName = string.Format("{0}MmiStmLValue", tagName1);
 
                     _pool.SITR.Client.Write(requestName, xValue.Length);
                     totalSizeCounter += sizeof(ushort);
                 }
 
-                tagName2 = $"{tagName1}EVC25SpecificStmDeRequestSub12";
+                tagName2 = string.Format("{0}EVC25SpecificStmDeRequestSub12", tagName1);
 
                 // Write out the XValue characters
                 for (int l = 0; l < xValue.Length; l++)
                 {
-                    requestName = $"{tagName2}{l.ToString("00")}_MmiStmXValue";
+                    requestName = string.Format("{0}{1}_MmiStmXValue", tagName2, l.ToString("00"));
 
                     _pool.SITR.Client.Write(requestName, xValue[l]);
                     totalSizeCounter += sizeof(byte);
@@ -200,12 +200,12 @@ namespace Testcase.Telegrams.EVCtoDMI
                 }
                 else
                 {
-                    requestName = $"{tagName1}MmiNIter2";
+                    requestName = string.Format("{0}MmiNIter2", tagName1);
 
                     _pool.SITR.Client.Write(requestName, numberInPickupList);
                     totalSizeCounter += sizeof(ushort);
 
-                    string tagName3 = $"{tagName1}EVC25SpecificStmDeRequestSub13";
+                    string tagName3 = string.Format("{0}EVC25SpecificStmDeRequestSub13", tagName1);
 
                     for (int l = 0; l < numberInPickupList; l++)
                     {
@@ -218,16 +218,16 @@ namespace Testcase.Telegrams.EVCtoDMI
                         }
                         else
                         {
-                            string tagName4 = $"{tagName3}{l.ToString("00")}_";
-                            requestName = $"{tagName3}_MmiStmLValue";
+                            string tagName4 = string.Format("{0}{1}_", tagName3, l.ToString("00"));
+                            requestName = string.Format("{0}_MmiStmLValue", tagName3);
 
                             _pool.SITR.Client.Write(requestName, pickUpXValue.Length);
 
-                            string tagName5 = $"{tagName4}EVC25SpecificStmDRequestSub131";
+                            string tagName5 = string.Format("{0}EVC25SpecificStmDRequestSub131", tagName4);
 
                             for (int m = 0; m < pickUpXValue.Length; m++)
                             {
-                                requestName = $"{tagName5}{m}_MmiStmXValue";
+                                requestName = string.Format("{0}{1}_MmiStmXValue", tagName5, m);
                                 _pool.SITR.Client.Write(requestName, pickUpXValue[m]);
                                 totalSizeCounter += sizeof(byte);
                             }

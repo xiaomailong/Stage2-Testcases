@@ -130,13 +130,17 @@ namespace Testcase.Telegrams.DMItoEVC
                     // For each level, read and stored MMI_M_LEVEL_NTC_ID and EVC121_alias_1 values from EVC-121 packet
                     if (_nLevels <= 10)
                     {
-                        _evc121Alias1 = (byte) _pool.SITR.Client.Read($"{baseString2}0{k}_EVC121alias1");
-                        _mLevelNtcId = (byte) _pool.SITR.Client.Read($"{baseString2}0{k}_MmiMLevelNtcID");
+                        _evc121Alias1 = (byte) _pool.SITR.Client.Read(string.Format("{0}0{1}_EVC121alias1", baseString2,
+                            k));
+                        _mLevelNtcId = (byte) _pool.SITR.Client.Read(string.Format("{0}0{1}_MmiMLevelNtcID",
+                            baseString2, k));
                     }
                     else
                     {
-                        _evc121Alias1 = (byte) _pool.SITR.Client.Read($"{baseString2}{k}_EVC121alias1");
-                        _mLevelNtcId = (byte) _pool.SITR.Client.Read($"{baseString2}{k}_MmiMLevelNtcID");
+                        _evc121Alias1 = (byte) _pool.SITR.Client.Read(string.Format("{0}{1}_EVC121alias1", baseString2,
+                            k));
+                        _mLevelNtcId = (byte) _pool.SITR.Client.Read(string.Format("{0}{1}_MmiMLevelNtcID", baseString2,
+                            k));
                     }
 
                     // Extract MMI_M_LEVEL_FLAG from EVC121_alias_1
@@ -152,18 +156,20 @@ namespace Testcase.Telegrams.DMItoEVC
                         if (_checkResult)
                         {
                             _pool.TraceReport(
-                                $"{baseString1} - MMI_M_LEVEL_NTC_ID[{k}] = {_mLevelNtcId}. {mLevelNtcId} is SELECTED." +
+                                string.Format("{0} - MMI_M_LEVEL_NTC_ID[{1}] = {2}. {3} is SELECTED.", baseString1, k,
+                                    _mLevelNtcId, mLevelNtcId) +
                                 Environment.NewLine +
-                                $"{baseString1} - MMI_M_LEVEL_FLAG[{k}] = " +
+                                string.Format("{0} - MMI_M_LEVEL_FLAG[{1}] = ", baseString1, k) +
                                 Enum.GetName(typeof(Variables.MMI_M_LEVEL_FLAG), _mLevelFlag) + ", PASSED.");
                         }
                         // Else display the real value extracted
                         else
                         {
                             _pool.TraceError(
-                                $"{baseString1} - MMI_M_LEVEL_NTC_ID[{k}] = {_mLevelNtcId}. {mLevelNtcId} is NOT indicated as SELECTED." +
+                                string.Format("{0} - MMI_M_LEVEL_NTC_ID[{1}] = {2}. {3} is NOT indicated as SELECTED.",
+                                    baseString1, k, _mLevelNtcId, mLevelNtcId) +
                                 Environment.NewLine +
-                                $"{baseString1} - MMI_M_LEVEL_FLAG[{k}] = " +
+                                string.Format("{0} - MMI_M_LEVEL_FLAG[{1}] = ", baseString1, k) +
                                 Enum.GetName(typeof(Variables.MMI_M_LEVEL_FLAG), _mLevelFlag) + ", FAILED.");
                         }
                     }
@@ -175,21 +181,23 @@ namespace Testcase.Telegrams.DMItoEVC
                         // If check passes
                         if (_checkResult)
                         {
-                            _pool.TraceReport($"{baseString1} - MMI_M_LEVEL_NTC_ID[{k}] = {_mLevelNtcId} - " +
+                            _pool.TraceReport(string.Format("{0} - MMI_M_LEVEL_NTC_ID[{1}] = {2} - ", baseString1, k,
+                                                  _mLevelNtcId) +
                                               Enum.GetName(typeof(Variables.MMI_M_LEVEL_NTC_ID), _mLevelNtcId) +
                                               " is NOT SELECTED." +
                                               Environment.NewLine +
-                                              $"{baseString1} - MMI_M_LEVEL_FLAG[{k}] = " +
+                                              string.Format("{0} - MMI_M_LEVEL_FLAG[{1}] = ", baseString1, k) +
                                               Enum.GetName(typeof(Variables.MMI_M_LEVEL_FLAG), _mLevelFlag) + ", PASSED.");
                         }
                         // Else display the real value extracted
                         else
                         {
-                            _pool.TraceError($"{baseString1} - MMI_M_LEVEL_NTC_ID[{k}] = {_mLevelNtcId}." +
+                            _pool.TraceError(string.Format("{0} - MMI_M_LEVEL_NTC_ID[{1}] = {2}.", baseString1, k,
+                                                 _mLevelNtcId) +
                                              Enum.GetName(typeof(Variables.MMI_M_LEVEL_NTC_ID), _mLevelNtcId) +
                                              " is NOT indicated as NOT SELECTED." +
                                              Environment.NewLine +
-                                             $"{baseString1} - MMI_M_LEVEL_FLAG[{k}] = " +
+                                             string.Format("{0} - MMI_M_LEVEL_FLAG[{1}] = ", baseString1, k) +
                                              Enum.GetName(typeof(Variables.MMI_M_LEVEL_FLAG), _mLevelFlag) + ", FAILED.");
                         }
                     }

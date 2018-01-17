@@ -47,9 +47,9 @@ namespace Testcase.Telegrams.DMItoEVC
             // Display the real value extracted from EVC-102 [MMI_STATUS_REPORT.MMI_M_ACTIVE_CABIN]
             else
             {
-                _pool.TraceError($"{BaseString} - MMI_M_ACTIVE_CABIN = \"{mActiveCabin}\"" + Environment.NewLine +
+                _pool.TraceError(string.Format("{0} - MMI_M_ACTIVE_CABIN = \"{1}\"", BaseString, mActiveCabin) + Environment.NewLine +
                                  "Result: FAILED!" + Environment.NewLine +
-                                 $"Current active cab = {mmiMActiveCabin} - " +
+                                 string.Format("Current active cab = {0} - ", mmiMActiveCabin) +
                                  Enum.GetName(typeof(Variables.MMI_M_ACTIVE_CABIN), mmiMActiveCabin));
             }
         }
@@ -64,7 +64,7 @@ namespace Testcase.Telegrams.DMItoEVC
             // If passed
             if (_checkResult)
             {
-                _pool.TraceReport($"{BaseString} - MMI_M_MODE_READBACK = \"{mModeReadBack}\"" + Environment.NewLine +
+                _pool.TraceReport(string.Format("{0} - MMI_M_MODE_READBACK = \"{1}\"", BaseString, mModeReadBack) + Environment.NewLine +
                                   "Result: PASSED.");
             }
             // Display the real value extracted from EVC-102
@@ -73,9 +73,9 @@ namespace Testcase.Telegrams.DMItoEVC
                 // Get current mode
                 byte currentMode = _pool.SITR.CCUO.ETCS1StatusReport.MmiMModeReadback.Value;
 
-                _pool.TraceError($"{BaseString} - MMI_M_MODE_READBACK = \"{mModeReadBack}\"" + Environment.NewLine +
+                _pool.TraceError(string.Format("{0} - MMI_M_MODE_READBACK = \"{1}\"", BaseString, mModeReadBack) + Environment.NewLine +
                                  "Result: FAILED!" + Environment.NewLine +
-                                 $"Current active mode = {currentMode} - " +
+                                 string.Format("Current active mode = {0} - ", currentMode) +
                                  Enum.GetName(typeof(MMI_M_MODE_READBACK), currentMode));
             }
         }
@@ -94,13 +94,13 @@ namespace Testcase.Telegrams.DMItoEVC
             // If passed
             if (_checkResult)
             {
-                _pool.TraceReport($"{BaseString} - MMI_M_MMI_STATUS = \"{_mMmiStatus}\"" + Environment.NewLine +
+                _pool.TraceReport(string.Format("{0} - MMI_M_MMI_STATUS = \"{1}\"", BaseString, _mMmiStatus) + Environment.NewLine +
                                   "Result: PASSED.");
             }
             // Display the real value extracted from EVC-102 [MMI_STATUS_REPORT.MMI_M_MM_STATUS]
             else
             {
-                _pool.TraceError($"{BaseString} - MMI_M_MMI_STATUS = \"{mmiMStatus}\"" + Environment.NewLine +
+                _pool.TraceError(string.Format("{0} - MMI_M_MMI_STATUS = \"{1}\"", BaseString, mmiMStatus) + Environment.NewLine +
                                  "Result: FAILED!");
             }
         }

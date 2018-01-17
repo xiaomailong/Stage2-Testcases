@@ -56,7 +56,7 @@ namespace Testcase.Telegrams.DMItoEVC
 
                         for (int k = 0; k < _stmData.elements.Count; k++)
                         {
-                            string tagName = $"{baseString1}{k}_";
+                            string tagName = string.Format("{0}{1}_", baseString1, k);
 
                             string requestName = tagName + "MmiNidNtc";
                             byte nidNtc = (byte) _pool.SITR.Client.Read(requestName);
@@ -73,7 +73,7 @@ namespace Testcase.Telegrams.DMItoEVC
 
                             for (int l = 0; l < stmLValue; l++)
                             {
-                                requestName = $"{tagSubName1}{l}_MmiStmXValue";
+                                requestName = string.Format("{0}{1}_MmiStmXValue", tagSubName1, l);
                                 stmcharArray.Append((char) _pool.SITR.Client.Read(requestName));
                             }
 
@@ -86,11 +86,14 @@ namespace Testcase.Telegrams.DMItoEVC
                                 // Print out the offending element's values
                                 _pool.TraceReport(baseString0 + Environment.NewLine +
                                                   "Element {k} of data not matched:" + Environment.NewLine +
-                                                  $"In packet NidNtc {nidNtc} - value supplied {stmElement.stmNidNtc}" +
+                                                  string.Format("In packet NidNtc {0} - value supplied {1}", nidNtc,
+                                                      stmElement.stmNidNtc) +
                                                   Environment.NewLine +
-                                                  $"          NidData {nidData} - value supplied {stmElement.stmNidData}" +
+                                                  string.Format("          NidData {0} - value supplied {1}", nidData,
+                                                      stmElement.stmNidData) +
                                                   Environment.NewLine +
-                                                  $"          StmXValue {stmcharArray.ToString()} - value supplied {stmElement.stmXValue}");
+                                                  string.Format("          StmXValue {0} - value supplied {1}",
+                                                      stmcharArray.ToString(), stmElement.stmXValue));
                                 break;
                             }
                         }

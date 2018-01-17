@@ -40,16 +40,17 @@ namespace Testcase.Telegrams.DMItoEVC
                 // Check if Driver ID matches
                 if (_pool.SITR.CCUO.ETCS1ConfirmedRemoveVbc.MmiMVbcCodeR.Value.Equals(invertedVBCCode))
                 {
-                    _pool.TraceReport($"{BaseString} - MMI_M_VBC_CODE_ = {invertedVBCCode} - echoes value {_vbcCode}" +
+                    _pool.TraceReport(string.Format("{0} - MMI_M_VBC_CODE_ = {1} - echoes value {2}", BaseString,
+                                          invertedVBCCode, _vbcCode) +
                                       Environment.NewLine +
                                       "Result = PASSED.");
                 }
                 // Else display the real value extracted from EVC-104
                 else
                 {
-                    _pool.TraceError($"{BaseString} - MMI_M_VBC_CODE_ = " +
+                    _pool.TraceError(string.Format("{0} - MMI_M_VBC_CODE_ = ", BaseString) +
                                      _pool.SITR.CCUO.ETCS1ConfirmedRemoveVbc.MmiMVbcCodeR.Value +
-                                     $" - should echo {_vbcCode}" + Environment.NewLine +
+                                     string.Format(" - should echo {0}", _vbcCode) + Environment.NewLine +
                                      "Result: FAILED");
                 }
             }

@@ -93,13 +93,13 @@ namespace Testcase.Telegrams.EVCtoDMI
                 // Populate telegram with dynamic fields
                 if (k < 10)
                 {
-                    _pool.SITR.Client.Write($"{BaseString}0{k}_EVC20alias1", evc20Alias1);
-                    _pool.SITR.Client.Write($"{BaseString}0{k}_MmiMLevelNtcId", (byte) _mLevelNtcId[k]);
+                    _pool.SITR.Client.Write(string.Format("{0}0{1}_EVC20alias1", BaseString, k), evc20Alias1);
+                    _pool.SITR.Client.Write(string.Format("{0}0{1}_MmiMLevelNtcId", BaseString, k), (byte) _mLevelNtcId[k]);
                 }
                 else
                 {
-                    _pool.SITR.Client.Write($"{BaseString}{k}_EVC20alias1", evc20Alias1);
-                    _pool.SITR.Client.Write($"{BaseString}{k}_MmiMLevelNtcId", (byte) _mLevelNtcId[k]);
+                    _pool.SITR.Client.Write(string.Format("{0}{1}_EVC20alias1", BaseString, k), evc20Alias1);
+                    _pool.SITR.Client.Write(string.Format("{0}{1}_MmiMLevelNtcId", BaseString, k), (byte) _mLevelNtcId[k]);
                 }
             }
         }

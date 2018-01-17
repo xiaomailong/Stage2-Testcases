@@ -108,7 +108,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             // For all added characters
             for (int i = 0; i < _stmXTextList.Count; i++)
             {
-                string tagName = packetName + $"EVC27SpecificStmTestRequestSub0{i}_";
+                string tagName = packetName + string.Format("EVC27SpecificStmTestRequestSub0{0}_", i);
 
                 string requestName = tagName + "MmiStmXText";
 

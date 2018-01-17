@@ -94,7 +94,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             // For all data units
             for (int k = 0; k < numberOfDataUnits; k++)
             {
-                string tagName1 = packetName + $"EVC26SpecificStmDwValueSub1{k}_";
+                string tagName1 = packetName + string.Format("EVC26SpecificStmDwValueSub1{0}_", k);
 
                 // Write out the MMI_NID_NTC value
                 string requestName = tagName1 + "MmiNidNtc";
@@ -132,11 +132,11 @@ namespace Testcase.Telegrams.EVCtoDMI
 
                 // Write individual caption characters
                 // Dynamic fields 2nd dimension
-                string tagName2 = $"{tagName1}EVC26SpecificStmDwValueSub11";
+                string tagName2 = string.Format("{0}EVC26SpecificStmDwValueSub11", tagName1);
 
                 for (int l = 0; l < caption.Length; l++)
                 {
-                    requestName = $"{tagName2}{l.ToString("00")}_MmiStmXCaption";
+                    requestName = string.Format("{0}{1}_MmiStmXCaption", tagName2, l.ToString("00"));
 
                     _pool.SITR.Client.Write(requestName, caption[l]);
                     totalSizeCounter += sizeof(byte);
@@ -151,18 +151,18 @@ namespace Testcase.Telegrams.EVCtoDMI
                 else
                 {
                     // Write out the MMI_STM_L_VALUE (length of xvalue string)
-                    requestName = $"{tagName1}MmiStmLValue";
+                    requestName = string.Format("{0}MmiStmLValue", tagName1);
 
                     _pool.SITR.Client.Write(requestName, xValue.Length);
                     totalSizeCounter += sizeof(ushort);
                 }
 
-                tagName2 = $"{tagName1}EVC26SpecificStmDwValueSub120";
+                tagName2 = string.Format("{0}EVC26SpecificStmDwValueSub120", tagName1);
 
                 // Write out the XValue characters
                 for (int l = 0; l < xValue.Length; l++)
                 {
-                    requestName = $"{tagName2}{l}_MmiStmXValue";
+                    requestName = string.Format("{0}{1}_MmiStmXValue", tagName2, l);
 
                     _pool.SITR.Client.Write(requestName, xValue[l]);
                     totalSizeCounter += sizeof(byte);

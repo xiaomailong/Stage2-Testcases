@@ -83,7 +83,8 @@ namespace Testcase.Telegrams.DMItoEVC
 
                     for (var _nidDataIndex = 0; _nidDataIndex < MMI_NID_DATA.Count; _nidDataIndex++)
                     {
-                        _nidData = (byte) _pool.SITR.Client.Read($"{baseString1}{_nidDataIndex}_MmiNidData");
+                        _nidData = (byte) _pool.SITR.Client.Read(string.Format("{0}{1}_MmiNidData", baseString1,
+                            _nidDataIndex));
                         // Compare each data element
                         _checkResult = _nidData.Equals(MMI_NID_DATA[_nidDataIndex]);
 
@@ -91,12 +92,14 @@ namespace Testcase.Telegrams.DMItoEVC
                         if (_checkResult)
                         {
                             _pool.TraceReport(
-                                $"MMI_NID_DATA{_nidDataIndex} = \"{MMI_NID_DATA[_nidDataIndex]}\" Result: PASSED!");
+                                string.Format("MMI_NID_DATA{0} = \"{1}\" Result: PASSED!", _nidDataIndex,
+                                    MMI_NID_DATA[_nidDataIndex]));
                         }
                         // Else display the real value extracted from EVC-112
                         else
                         {
-                            _pool.TraceError($"MMI_NID_DATA{_nidDataIndex} = \"{_nidData}\" Result: FAILED!");
+                            _pool.TraceError(string.Format("MMI_NID_DATA{0} = \"{1}\" Result: FAILED!", _nidDataIndex,
+                                _nidData));
                         }
                     }
                 }
@@ -112,9 +115,11 @@ namespace Testcase.Telegrams.DMItoEVC
                         _nidDataIndex < _pool.SITR.CCUO.ETCS1NewRbcData.MmiNDataElements.Value;
                         _nidDataIndex++)
                     {
-                        _nidData = (byte) _pool.SITR.Client.Read($"{baseString1}{_nidDataIndex}_MmiNidData");
-                        _pool.TraceError($"{baseString0}" + Environment.NewLine +
-                                         $"MMI_NID_DATA{_nidDataIndex} = \"{_nidData}\" Result: FAILED!");
+                        _nidData = (byte) _pool.SITR.Client.Read(string.Format("{0}{1}_MmiNidData", baseString1,
+                            _nidDataIndex));
+                        _pool.TraceError(string.Format("{0}", baseString0) + Environment.NewLine +
+                                         string.Format("MMI_NID_DATA{0} = \"{1}\" Result: FAILED!", _nidDataIndex,
+                                             _nidData));
                     }
                 }
             }

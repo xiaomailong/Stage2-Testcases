@@ -40,13 +40,15 @@ namespace Testcase.Telegrams.DMItoEVC
                 // If check passes
                 if (_checkResult)
                 {
-                    _pool.TraceReport($"{baseString} = {(byte) driverAction} \"{driverAction}\"" + Environment.NewLine +
+                    _pool.TraceReport(
+                        string.Format("{0} = {1} \"{2}\"", baseString, (byte) driverAction, driverAction) + Environment.NewLine +
                                       "Result: PASSED.");
                 }
                 // Else display the real value extracted from EVC-152
                 else
                 {
-                    _pool.TraceError($"{baseString} = {_pool.SITR.CCUO.ETCS1DriverAction.MmiMDriverAction.Value} - \"" +
+                    _pool.TraceError(string.Format("{0} = {1} - \"", baseString,
+                                         _pool.SITR.CCUO.ETCS1DriverAction.MmiMDriverAction.Value) +
                                      Enum.GetName(typeof(MMI_M_DRIVER_ACTION),
                                          _pool.SITR.CCUO.ETCS1DriverAction.MmiMDriverAction.Value) + "\"" +
                                      Environment.NewLine + "Result: FAILED.");

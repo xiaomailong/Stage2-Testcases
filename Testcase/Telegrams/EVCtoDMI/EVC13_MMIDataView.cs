@@ -53,11 +53,11 @@ namespace Testcase.Telegrams.EVCtoDMI
                 // Set the value on EVC-13 packet according to the VBC Identifier index
                 if (vbcIndex < 10)
                 {
-                    _pool.SITR.Client.Write($"{BaseString}10{vbcIndex}_MmiMVbcCode", _mVbcCode);
+                    _pool.SITR.Client.Write(string.Format("{0}10{1}_MmiMVbcCode", BaseString, vbcIndex), _mVbcCode);
                 }
                 else
                 {
-                    _pool.SITR.Client.Write($"{BaseString}1{vbcIndex}_MmiMVbcCode", _mVbcCode);
+                    _pool.SITR.Client.Write(string.Format("{0}1{1}_MmiMVbcCode", BaseString, vbcIndex), _mVbcCode);
                 }
             }
 
@@ -77,11 +77,11 @@ namespace Testcase.Telegrams.EVCtoDMI
                 // Set the value on EVC-13 packet according to the Trainset caption character index
                 if (charIndex < 10)
                 {
-                    _pool.SITR.Client.Write($"{BaseString}20{charIndex}_MmiXCaptionTrainset", _xCaptionTrainset);
+                    _pool.SITR.Client.Write(string.Format("{0}20{1}_MmiXCaptionTrainset", BaseString, charIndex), _xCaptionTrainset);
                 }
                 else
                 {
-                    _pool.SITR.Client.Write($"{BaseString}2{charIndex}_MmiXCaptionTrainset", _xCaptionTrainset);
+                    _pool.SITR.Client.Write(string.Format("{0}2{1}_MmiXCaptionTrainset", BaseString, charIndex), _xCaptionTrainset);
                 }
             }
 
@@ -101,11 +101,11 @@ namespace Testcase.Telegrams.EVCtoDMI
                 // Set the value on EVC-13 packet according to the Network caption digit index
                 if (digitIndex < 10)
                 {
-                    _pool.SITR.Client.Write($"{BaseString}30{digitIndex}_MmiXCaptionTrainset", _xCaptionNetwork);
+                    _pool.SITR.Client.Write(string.Format("{0}30{1}_MmiXCaptionTrainset", BaseString, digitIndex), _xCaptionNetwork);
                 }
                 else
                 {
-                    _pool.SITR.Client.Write($"{BaseString}3{digitIndex}_MmiXCaptionTrainset", _xCaptionNetwork);
+                    _pool.SITR.Client.Write(string.Format("{0}3{1}_MmiXCaptionTrainset", BaseString, digitIndex), _xCaptionNetwork);
                 }
             }
 

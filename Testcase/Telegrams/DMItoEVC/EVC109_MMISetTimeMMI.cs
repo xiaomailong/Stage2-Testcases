@@ -47,16 +47,18 @@ namespace Testcase.Telegrams.DMItoEVC
                 // If check passes
                 if (_checkResult)
                 {
-                    _pool.TraceReport($"{BaseString} - MMI_T_UTC = {totalSeconds}" + Environment.NewLine +
-                                      $"MMI_T_ZONE_OFFSET = {zoneOffset}" + Environment.NewLine +
+                    _pool.TraceReport(string.Format("{0} - MMI_T_UTC = {1}", BaseString, totalSeconds) + Environment.NewLine +
+                                      string.Format("MMI_T_ZONE_OFFSET = {0}", zoneOffset) + Environment.NewLine +
                                       "Result = PASSED.");
                 }
                 // Else display the real value extracted from EVC-109
                 else
                 {
-                    _pool.TraceError($"{BaseString} - MMI_T_UTC = {_pool.SITR.CCUO.ETCS1SetTimeMmi.MmiTUTC.Value}" +
+                    _pool.TraceError(string.Format("{0} - MMI_T_UTC = {1}", BaseString,
+                                         _pool.SITR.CCUO.ETCS1SetTimeMmi.MmiTUTC.Value) +
                                      Environment.NewLine +
-                                     $"MMI_T_ZONE_OFFSET = {_pool.SITR.CCUO.ETCS1SetTimeMmi.MmiTZoneOffset.Value}" +
+                                     string.Format("MMI_T_ZONE_OFFSET = {0}",
+                                         _pool.SITR.CCUO.ETCS1SetTimeMmi.MmiTZoneOffset.Value) +
                                      Environment.NewLine +
                                      "Result: FAILED");
                 }

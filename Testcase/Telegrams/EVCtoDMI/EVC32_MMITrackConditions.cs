@@ -52,30 +52,30 @@ namespace Testcase.Telegrams.EVCtoDMI
                 // Write SignalPool signals
                 if (k < 10)
                 {
-                    _pool.SITR.Client.Write($"{baseString}0{k}_MmiOTrackcondAnnounce",
+                    _pool.SITR.Client.Write(string.Format("{0}0{1}_MmiOTrackcondAnnounce", baseString, k),
                         TrackConditions[k].MMI_O_TRACKCOND_ANNOUNCE);
-                    _pool.SITR.Client.Write($"{baseString}0{k}_MmiOTrackcondStart",
+                    _pool.SITR.Client.Write(string.Format("{0}0{1}_MmiOTrackcondStart", baseString, k),
                         TrackConditions[k].MMI_O_TRACKCOND_START);
-                    _pool.SITR.Client.Write($"{baseString}0{k}_MmiOTrackcondEnd",
+                    _pool.SITR.Client.Write(string.Format("{0}0{1}_MmiOTrackcondEnd", baseString, k),
                         TrackConditions[k].MMI_O_TRACKCOND_END);
-                    _pool.SITR.Client.Write($"{baseString}0{k}_MmiNidTrackcond", TrackConditions[k].MMI_NID_TRACKCOND);
-                    _pool.SITR.Client.Write($"{baseString}0{k}_MmiMTrackcondType",
+                    _pool.SITR.Client.Write(string.Format("{0}0{1}_MmiNidTrackcond", baseString, k), TrackConditions[k].MMI_NID_TRACKCOND);
+                    _pool.SITR.Client.Write(string.Format("{0}0{1}_MmiMTrackcondType", baseString, k),
                         TrackConditions[k].MMI_M_TRACKCOND_TYPE);
-                    _pool.SITR.Client.Write($"{baseString}0{k}_EVC32alias2", TrackConditions[k].EVC_32_ALIAS_2);
+                    _pool.SITR.Client.Write(string.Format("{0}0{1}_EVC32alias2", baseString, k), TrackConditions[k].EVC_32_ALIAS_2);
                 }
 
                 else
                 {
-                    _pool.SITR.Client.Write($"{baseString}{k}_MmiOTrackcondAnnounce",
+                    _pool.SITR.Client.Write(string.Format("{0}{1}_MmiOTrackcondAnnounce", baseString, k),
                         TrackConditions[k].MMI_O_TRACKCOND_ANNOUNCE);
-                    _pool.SITR.Client.Write($"{baseString}{k}_MmiOTrackcondStart",
+                    _pool.SITR.Client.Write(string.Format("{0}{1}_MmiOTrackcondStart", baseString, k),
                         TrackConditions[k].MMI_O_TRACKCOND_START);
-                    _pool.SITR.Client.Write($"{baseString}{k}_MmiOTrackcondEnd",
+                    _pool.SITR.Client.Write(string.Format("{0}{1}_MmiOTrackcondEnd", baseString, k),
                         TrackConditions[k].MMI_O_TRACKCOND_END);
-                    _pool.SITR.Client.Write($"{baseString}{k}_MmiNidTrackcond", TrackConditions[k].MMI_NID_TRACKCOND);
-                    _pool.SITR.Client.Write($"{baseString}{k}_MmiMTrackcondType",
+                    _pool.SITR.Client.Write(string.Format("{0}{1}_MmiNidTrackcond", baseString, k), TrackConditions[k].MMI_NID_TRACKCOND);
+                    _pool.SITR.Client.Write(string.Format("{0}{1}_MmiMTrackcondType", baseString, k),
                         TrackConditions[k].MMI_M_TRACKCOND_TYPE);
-                    _pool.SITR.Client.Write($"{baseString}{k}_EVC32alias2", TrackConditions[k].EVC_32_ALIAS_2);
+                    _pool.SITR.Client.Write(string.Format("{0}{1}_EVC32alias2", baseString, k), TrackConditions[k].EVC_32_ALIAS_2);
                 }
 
                 totalSizeCounter += 128;
@@ -84,8 +84,8 @@ namespace Testcase.Telegrams.EVCtoDMI
             _pool.SITR.ETCS1.TrackConditions.MmiLPacket.Value = totalSizeCounter;
 
             _pool.TraceInfo("ETCS->DMI: EVC-32 (MMI_TRACK_CONDITIONS)");
-            _pool.TraceInfo($"EVC-32: MMI_Q_TRACKCOND_UPDATE = {MMI_Q_TRACKCOND_UPDATE}");
-            _pool.TraceInfo($"EVC-32: Number of track conditions = {numberOfTrackConditions}");
+            _pool.TraceInfo(string.Format("EVC-32: MMI_Q_TRACKCOND_UPDATE = {0}", MMI_Q_TRACKCOND_UPDATE));
+            _pool.TraceInfo(string.Format("EVC-32: Number of track conditions = {0}", numberOfTrackConditions));
             _pool.SITR.SMDCtrl.ETCS1.TrackConditions.Value = 0x9;
         }
 

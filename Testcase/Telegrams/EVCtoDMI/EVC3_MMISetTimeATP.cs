@@ -1,5 +1,6 @@
 ﻿#region usings
 
+using System;
 using CL345;
 
 #endregion
@@ -59,7 +60,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         public static void Send()
         {
             _pool.TraceInfo(
-                $"ETCS->DMI: EVC-3 (MMI_SET_TIME_ATP) UTC Time = {MMI_T_UTC}, Time offset = {MMI_T_ZONE_OFFSET}");
+                string.Format("ETCS->DMI: EVC-3 (MMI_SET_TIME_ATP) UTC Time = {0}, Time offset = {1}", MMI_T_UTC,
+                    MMI_T_ZONE_OFFSET));
             _pool.SITR.SMDCtrl.ETCS1.SetTimeATP.Value = 0x0001;
         }
     }

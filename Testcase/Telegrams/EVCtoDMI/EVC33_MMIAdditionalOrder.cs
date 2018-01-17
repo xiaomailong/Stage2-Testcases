@@ -1,4 +1,5 @@
-﻿using CL345;
+﻿using System;
+using CL345;
 
 namespace Testcase.Telegrams.EVCtoDMI
 {
@@ -46,10 +47,10 @@ namespace Testcase.Telegrams.EVCtoDMI
         public static void Send()
         {
             _pool.TraceInfo("ETCS->DMI: EVC-33 (MMI_ADDITIONAL_ORDER)");
-            _pool.TraceInfo($"EVC-33: MMI_NID_TRACKCOND = {MMI_NID_TRACKCOND}");
-            _pool.TraceInfo($"EVC-33: MMI_M_TRACKCOND_TYPE = {MMI_M_TRACKCOND_TYPE}");
-            _pool.TraceInfo($"EVC-33: MMI_Q_TRACKCOND_STEP = {_mmiQTrackCondStep}");
-            _pool.TraceInfo($"EVC-33: MMI_Q_TRACKCOND_ACTION = {_mmiQTrackCondAction}");
+            _pool.TraceInfo(string.Format("EVC-33: MMI_NID_TRACKCOND = {0}", MMI_NID_TRACKCOND));
+            _pool.TraceInfo(string.Format("EVC-33: MMI_M_TRACKCOND_TYPE = {0}", MMI_M_TRACKCOND_TYPE));
+            _pool.TraceInfo(string.Format("EVC-33: MMI_Q_TRACKCOND_STEP = {0}", _mmiQTrackCondStep));
+            _pool.TraceInfo(string.Format("EVC-33: MMI_Q_TRACKCOND_ACTION = {0}", _mmiQTrackCondAction));
             _pool.SITR.SMDCtrl.ETCS1.AdditionalOrder.Value = 1;
         }
 

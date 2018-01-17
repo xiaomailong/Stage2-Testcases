@@ -52,13 +52,13 @@ namespace Testcase.Telegrams.EVCtoDMI
                     {
                         _pool.SITR.Client.Write(
                             varNamestring + baseString.Substring(baseString.LastIndexOf('_') + 1) +
-                            $"10{charIndex}_MmiXText", character);
+                            string.Format("10{0}_MmiXText", charIndex), character);
                     }
                     else
                     {
                         _pool.SITR.Client.Write(
                             varNamestring + baseString.Substring(baseString.LastIndexOf('_') + 1) +
-                            $"1{charIndex}_MmiXText", character);
+                            string.Format("1{0}_MmiXText", charIndex), character);
                     }
 
                     // Increment packet by size of one character

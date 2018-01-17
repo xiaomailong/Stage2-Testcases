@@ -70,7 +70,7 @@ namespace Testcase.Telegrams.EVCtoDMI
                 for (int k = 0; k < numberOfEchoTextCharacters; k++)
                 {
                     // Write individual Echo Text characters to signal pool
-                    _pool.SITR.Client.Write($"{Basestring}_EVC18SetVbcSub11{k}", echoText[k]);
+                    _pool.SITR.Client.Write(string.Format("{0}_EVC18SetVbcSub11{1}", Basestring, k), echoText[k]);
 
                     // Increase packet size for each character in Echo Text
                     totalSizeCounter += 8;

@@ -281,11 +281,11 @@ namespace Testcase.Telegrams.EVCtoDMI
                 for (int i = 0; i < charArray.Length; i++)
                 {
                     if (i < 10)
-                        _pool.SITR.Client.Write($"{baseString}00{i}_MmiXText", charArray[i]);
+                        _pool.SITR.Client.Write(string.Format("{0}00{1}_MmiXText", baseString, i), charArray[i]);
                     else if (i < 100)
-                        _pool.SITR.Client.Write($"{baseString}0{i}_MmiXText", charArray[i]);
+                        _pool.SITR.Client.Write(string.Format("{0}0{1}_MmiXText", baseString, i), charArray[i]);
                     else
-                        _pool.SITR.Client.Write($"{baseString}{i}_MmiXText", charArray[i]);
+                        _pool.SITR.Client.Write(string.Format("{0}{1}_MmiXText", baseString, i), charArray[i]);
                 }
             }
         }
