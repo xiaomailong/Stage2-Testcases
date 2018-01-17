@@ -99,7 +99,7 @@ namespace Testcase.Telegrams.EVCtoDMI
                     _pool.SITR.ETCS1.TrackDescription.MmiVMrspCurr.Value = value;
             }
 
-            get => _pool.SITR.ETCS1.TrackDescription.MmiVMrspCurr.Value;
+            get { return _pool.SITR.ETCS1.TrackDescription.MmiVMrspCurr.Value; }
         }
 
         /// <summary>
@@ -119,7 +119,7 @@ namespace Testcase.Telegrams.EVCtoDMI
                     _pool.SITR.ETCS1.TrackDescription.MmiVMrspCurr.Value = (short) (value / Variables.CmSToKmH);
             }
 
-            get => (short) (_pool.SITR.ETCS1.TrackDescription.MmiVMrspCurr.Value * Variables.CmSToKmH);
+            get { return (short) (_pool.SITR.ETCS1.TrackDescription.MmiVMrspCurr.Value * Variables.CmSToKmH); }
         }
 
         /// <summary>
@@ -139,7 +139,7 @@ namespace Testcase.Telegrams.EVCtoDMI
                     _pool.SITR.ETCS1.TrackDescription.MmiVMrspCurr.Value = (short) (value / Variables.CmSToMph);
             }
 
-            get => (short) (_pool.SITR.ETCS1.TrackDescription.MmiVMrspCurr.Value * Variables.CmSToMph);
+            get { return (short) (_pool.SITR.ETCS1.TrackDescription.MmiVMrspCurr.Value * Variables.CmSToMph); }
         }
 
         /// <summary>
@@ -151,8 +151,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static short MMI_G_GRADIENT_CURR
         {
-            set => _pool.SITR.ETCS1.TrackDescription.MmiGGradientCurr.Value = value;
-            get => _pool.SITR.ETCS1.TrackDescription.MmiGGradientCurr.Value;
+            set { _pool.SITR.ETCS1.TrackDescription.MmiGGradientCurr.Value = value; }
+            get { return _pool.SITR.ETCS1.TrackDescription.MmiGGradientCurr.Value; }
         }
 
         /// <summary>
@@ -184,8 +184,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public int MMI_O_MRSP
         {
-            set => _mmiOMrsp = value;
-            get => _mmiOMrsp;
+            set { _mmiOMrsp = value; }
+            get { return _mmiOMrsp; }
         }
 
         /// <summary>
@@ -200,8 +200,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public short MMI_V_MRSP
         {
-            set => _mmiVMrsp = value;
-            get => _mmiVMrsp;
+            set { _mmiVMrsp = value; }
+            get { return _mmiVMrsp; }
         }
 
         /// <summary>
@@ -286,8 +286,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public int MMI_O_GRADIENT
         {
-            set => _mmiOGradient = value;
-            get => _mmiOGradient;
+            set { _mmiOGradient = value; }
+            get { return _mmiOGradient; }
         }
 
         /// <summary>
@@ -299,8 +299,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public short MMI_G_GRADIENT
         {
-            set => _mmiGGradient = value;
-            get => _mmiGGradient;
+            set { _mmiGGradient = value; }
+            get { return _mmiGGradient; }
         }
     }
 }

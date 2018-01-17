@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using Testcase.Telegrams.DMItoEVC;
 using Testcase.Telegrams.EVCtoDMI;
-using static Testcase.Telegrams.EVCtoDMI.Variables;
 
 
 namespace Testcase.DMITestCases
@@ -74,34 +73,34 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this,
                 @"Press and hold the ‘Radio Network ID’ button for at least 2s, then release the button");
 
-            EVC101_MMIDriverRequest.CheckMRequestPressed = MMI_M_REQUEST.StartNetworkID;
+            EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.StartNetworkID;
 
             EVC22_MMICurrentRBC.MMI_NID_WINDOW = 9;
             EVC22_MMICurrentRBC.NetworkCaptions = new List<string> {"GSMR-A", "GSMR-B"};
-            EVC22_MMICurrentRBC.DataElements = new List<DataElement>
+            EVC22_MMICurrentRBC.DataElements = new List<Variables.DataElement>
             {
-                new DataElement {Identifier = 0, QDataCheck = 23, EchoText = ""},
-                new DataElement {Identifier = 1, QDataCheck = 24, EchoText = ""}
+                new Variables.DataElement {Identifier = 0, QDataCheck = 23, EchoText = ""},
+                new Variables.DataElement {Identifier = 1, QDataCheck = 24, EchoText = ""}
             };
             EVC22_MMICurrentRBC.Send();
 
             DmiActions.ShowInstruction(this, @"Press the ‘Close’ button");
 
-            EVC101_MMIDriverRequest.CheckMRequestPressed = MMI_M_REQUEST.ExitRBCNetworkID;
+            EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.ExitRBCNetworkID;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Radio network ID window.");
 
             DmiActions.ShowInstruction(this, @"Press the ‘Enter RBC data’ button");
 
-            EVC101_MMIDriverRequest.CheckMRequestPressed = MMI_M_REQUEST.StartRBCdataEntry;
+            EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.StartRBCdataEntry;
 
             EVC22_MMICurrentRBC.MMI_NID_WINDOW = 10;
             EVC22_MMICurrentRBC.Send();
 
             DmiActions.ShowInstruction(this, @"Press the ‘Close’ button");
 
-            EVC101_MMIDriverRequest.CheckMRequestPressed = MMI_M_REQUEST.ExitRBCdataEntry;
+            EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.ExitRBCdataEntry;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the RBC data window.");
@@ -159,7 +158,7 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, @"Press the ‘Close’ button in the RBC Contact window");
 
-            EVC101_MMIDriverRequest.CheckMRequestPressed = MMI_M_REQUEST.ExitRBCcontact;
+            EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.ExitRBCcontact;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the RBC Contact window and displays the Main window.");
@@ -195,7 +194,7 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, @"Press the ‘Contact last RBC’ button in the RBC Contact window");
 
-            EVC101_MMIDriverRequest.CheckMRequestPressed = MMI_M_REQUEST.ContactLastRBC;
+            EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.ContactLastRBC;
 
             // Force the RBC Contact window to close
             EVC22_MMICurrentRBC.MMI_NID_WINDOW = 9;

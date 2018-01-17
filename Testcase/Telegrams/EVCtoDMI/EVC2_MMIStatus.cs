@@ -46,8 +46,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static uint TrainRunningNumber
         {
-            get => _pool.SITR.ETCS1.Status.MmiNidOperation.Value;
-            set => _pool.SITR.ETCS1.Status.MmiNidOperation.Value = value;
+            get { return _pool.SITR.ETCS1.Status.MmiNidOperation.Value; }
+            set { _pool.SITR.ETCS1.Status.MmiNidOperation.Value = value; }
         }
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static byte MMI_M_ADHESION
         {
-            get => _mmiMAdhesion;
+            get { return _mmiMAdhesion; }
 
             set
             {
@@ -87,7 +87,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static bool MMI_M_OVERRIDE_EOA
         {
-            get => _mmiMOverrideEoa;
+            get { return _mmiMOverrideEoa; }
 
             set
             {

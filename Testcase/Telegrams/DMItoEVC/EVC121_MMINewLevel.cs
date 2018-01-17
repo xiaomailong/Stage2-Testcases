@@ -4,7 +4,6 @@ using CL345;
 using Testcase.Telegrams.EVCtoDMI;
 using Testcase.DMITestCases;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
-using static Testcase.Telegrams.EVCtoDMI.Variables;
 
 namespace Testcase.Telegrams.DMItoEVC
 {
@@ -19,7 +18,7 @@ namespace Testcase.Telegrams.DMItoEVC
         private static byte _mLevelNtcId;
         private static byte _evc121Alias1;
         private static byte _mLevelFlag;
-        private static MMI_M_LEVEL_NTC_ID _levelSelected;
+        private static Variables.MMI_M_LEVEL_NTC_ID _levelSelected;
 
         static string baseString0 = "DMI->ETCS: EVC-101 [MMI_DRIVER_REQUEST]";
         static string baseString1 = "DMI->ETCS: EVC-121 [MMI_NEW_LEVEL]";
@@ -36,7 +35,7 @@ namespace Testcase.Telegrams.DMItoEVC
             _pool.SITR.SMDStat.CCUO.ETCS1NewLevel.Value = 0x00;
         }
 
-        private static void CheckLevelSelected(MMI_M_LEVEL_NTC_ID mLevelNtcId)
+        private static void CheckLevelSelected(Variables.MMI_M_LEVEL_NTC_ID mLevelNtcId)
         {
             // Get MMI_N_LEVELS info sent by EVC to the DMI via EVC-20
             _nLevels = _pool.SITR.ETCS1.SelectLevel.MmiNLevels.Value;
@@ -65,17 +64,17 @@ namespace Testcase.Telegrams.DMItoEVC
                 //      MMI_Q_BUTTON from EVC-101 packet (= 0 - Released)
                 _checkResult = _pool.SITR.CCUO.ETCS1NewLevel.MmiNLevels.Value.Equals(_nLevels) &
                                _pool.SITR.CCUO.ETCS1DriverRequest.MmiMRequest.Value.Equals(
-                                   (byte) MMI_M_REQUEST.LevelEntered) &
+                                   (byte) Variables.MMI_M_REQUEST.LevelEntered) &
                                _pool.SITR.CCUO.ETCS1DriverRequest.EVC101alias1.Value.Equals(
-                                   (byte) MMI_Q_BUTTON.Pressed << 7);
+                                   (byte) Variables.MMI_Q_BUTTON.Pressed << 7);
 
                 // If check passes
                 if (_checkResult)
                 {
                     _pool.TraceReport(baseString1 + ".MMI_N_LEVELS = " + _nLevels + Environment.NewLine +
                                       baseString0 + Environment.NewLine +
-                                      "MMI_M_REQUEST = \"" + MMI_M_REQUEST.LevelEntered + "\"" + Environment.NewLine +
-                                      "MMI_Q_BUTTON = \"" + MMI_Q_BUTTON.Pressed + "\"" + Environment.NewLine +
+                                      "MMI_M_REQUEST = \"" + Variables.MMI_M_REQUEST.LevelEntered + "\"" + Environment.NewLine +
+                                      "MMI_Q_BUTTON = \"" + Variables.MMI_Q_BUTTON.Pressed + "\"" + Environment.NewLine +
                                       "Time stamp = " + _pool.SITR.CCUO.ETCS1DriverRequest.MmiTButtonevent +
                                       Environment.NewLine +
                                       "Result: PASSED.");
@@ -147,7 +146,7 @@ namespace Testcase.Telegrams.DMItoEVC
                     if (_mLevelNtcId.Equals((byte) mLevelNtcId))
                     {
                         // Check that that level is indicated as SELECTED
-                        _checkResult = _mLevelFlag.Equals((byte) MMI_M_LEVEL_FLAG.MarkedLevel);
+                        _checkResult = _mLevelFlag.Equals((byte) Variables.MMI_M_LEVEL_FLAG.MarkedLevel);
 
                         // If check passes
                         if (_checkResult)
@@ -156,7 +155,7 @@ namespace Testcase.Telegrams.DMItoEVC
                                 $"{baseString1} - MMI_M_LEVEL_NTC_ID[{k}] = {_mLevelNtcId}. {mLevelNtcId} is SELECTED." +
                                 Environment.NewLine +
                                 $"{baseString1} - MMI_M_LEVEL_FLAG[{k}] = " +
-                                Enum.GetName(typeof(MMI_M_LEVEL_FLAG), _mLevelFlag) + ", PASSED.");
+                                Enum.GetName(typeof(Variables.MMI_M_LEVEL_FLAG), _mLevelFlag) + ", PASSED.");
                         }
                         // Else display the real value extracted
                         else
@@ -165,33 +164,33 @@ namespace Testcase.Telegrams.DMItoEVC
                                 $"{baseString1} - MMI_M_LEVEL_NTC_ID[{k}] = {_mLevelNtcId}. {mLevelNtcId} is NOT indicated as SELECTED." +
                                 Environment.NewLine +
                                 $"{baseString1} - MMI_M_LEVEL_FLAG[{k}] = " +
-                                Enum.GetName(typeof(MMI_M_LEVEL_FLAG), _mLevelFlag) + ", FAILED.");
+                                Enum.GetName(typeof(Variables.MMI_M_LEVEL_FLAG), _mLevelFlag) + ", FAILED.");
                         }
                     }
                     else
                     {
                         // Check that that level is indicated as NOT SELECTED
-                        _checkResult = _mLevelFlag.Equals((byte) MMI_M_LEVEL_FLAG.NotMarkedLevel);
+                        _checkResult = _mLevelFlag.Equals((byte) Variables.MMI_M_LEVEL_FLAG.NotMarkedLevel);
 
                         // If check passes
                         if (_checkResult)
                         {
                             _pool.TraceReport($"{baseString1} - MMI_M_LEVEL_NTC_ID[{k}] = {_mLevelNtcId} - " +
-                                              Enum.GetName(typeof(MMI_M_LEVEL_NTC_ID), _mLevelNtcId) +
+                                              Enum.GetName(typeof(Variables.MMI_M_LEVEL_NTC_ID), _mLevelNtcId) +
                                               " is NOT SELECTED." +
                                               Environment.NewLine +
                                               $"{baseString1} - MMI_M_LEVEL_FLAG[{k}] = " +
-                                              Enum.GetName(typeof(MMI_M_LEVEL_FLAG), _mLevelFlag) + ", PASSED.");
+                                              Enum.GetName(typeof(Variables.MMI_M_LEVEL_FLAG), _mLevelFlag) + ", PASSED.");
                         }
                         // Else display the real value extracted
                         else
                         {
                             _pool.TraceError($"{baseString1} - MMI_M_LEVEL_NTC_ID[{k}] = {_mLevelNtcId}." +
-                                             Enum.GetName(typeof(MMI_M_LEVEL_NTC_ID), _mLevelNtcId) +
+                                             Enum.GetName(typeof(Variables.MMI_M_LEVEL_NTC_ID), _mLevelNtcId) +
                                              " is NOT indicated as NOT SELECTED." +
                                              Environment.NewLine +
                                              $"{baseString1} - MMI_M_LEVEL_FLAG[{k}] = " +
-                                             Enum.GetName(typeof(MMI_M_LEVEL_FLAG), _mLevelFlag) + ", FAILED.");
+                                             Enum.GetName(typeof(Variables.MMI_M_LEVEL_FLAG), _mLevelFlag) + ", FAILED.");
                         }
                     }
                 }
@@ -214,7 +213,7 @@ namespace Testcase.Telegrams.DMItoEVC
         /// AWS_TPWS = 20
         /// CBTC = 50
         /// </summary>
-        public static MMI_M_LEVEL_NTC_ID LevelSelected
+        public static Variables.MMI_M_LEVEL_NTC_ID LevelSelected
         {
             set
             {

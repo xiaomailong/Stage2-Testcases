@@ -1,5 +1,4 @@
 ﻿using CL345;
-using static Testcase.Telegrams.EVCtoDMI.Variables;
 
 namespace Testcase.Telegrams.EVCtoDMI
 {
@@ -50,9 +49,9 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// 
         /// Note: All special values concerning cross/range checks are only used in packets EVC-40 and EVC-41.
         /// </summary>
-        public static MMI_M_PULSE_PER_KM MMI_M_PULSE_PER_KM_1
+        public static Variables.MMI_M_PULSE_PER_KM MMI_M_PULSE_PER_KM_1
         {
-            set => _pool.SITR.ETCS1.CurrentMaintenanceData.MmiMPulsePerKm1.Value = (uint) value;
+            set { _pool.SITR.ETCS1.CurrentMaintenanceData.MmiMPulsePerKm1.Value = (uint) value; }
         }
 
         /// <summary>
@@ -72,9 +71,9 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// 
         /// Note: All special values concerning cross/range checks are only used in packets EVC-40 and EVC-41.
         /// </summary>
-        public static MMI_M_PULSE_PER_KM MMI_M_PULSE_PER_KM_2
+        public static Variables.MMI_M_PULSE_PER_KM MMI_M_PULSE_PER_KM_2
         {
-            set => _pool.SITR.ETCS1.CurrentMaintenanceData.MmiMPulsePerKm2.Value = (uint) value;
+            set { _pool.SITR.ETCS1.CurrentMaintenanceData.MmiMPulsePerKm2.Value = (uint) value; }
         }
 
         /// <summary>
@@ -92,9 +91,9 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// 
         /// Note: All special values concerning cross/range checks are only used in packets EVC-40 and EVC-41.
         /// </summary>
-        public static MMI_M_SDU_WHEEL_SIZE MMI_M_SDU_WHEEL_SIZE_1
+        public static Variables.MMI_M_SDU_WHEEL_SIZE MMI_M_SDU_WHEEL_SIZE_1
         {
-            set => _pool.SITR.ETCS1.CurrentMaintenanceData.MmiMSduWheelSize1.Value = (ushort) value;
+            set { _pool.SITR.ETCS1.CurrentMaintenanceData.MmiMSduWheelSize1.Value = (ushort) value; }
         }
 
         /// <summary>
@@ -112,9 +111,9 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// 
         /// Note: All special values concerning cross/range checks are only used in packets EVC-40 and EVC-41.
         /// </summary>
-        public static MMI_M_SDU_WHEEL_SIZE MMI_M_SDU_WHEEL_SIZE_2
+        public static Variables.MMI_M_SDU_WHEEL_SIZE MMI_M_SDU_WHEEL_SIZE_2
         {
-            set => _pool.SITR.ETCS1.CurrentMaintenanceData.MmiMSduWheelSize2.Value = (ushort) value;
+            set { _pool.SITR.ETCS1.CurrentMaintenanceData.MmiMSduWheelSize2.Value = (ushort) value; }
         }
 
         /// <summary>
@@ -124,9 +123,9 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// 0 = "Wheel diameter"
         /// 1 = "Doppler"
         /// </summary>
-        public static MMI_Q_MD_DATASET MMI_Q_MD_DATASET
+        public static Variables.MMI_Q_MD_DATASET MMI_Q_MD_DATASET
         {
-            set => _pool.SITR.ETCS1.CurrentMaintenanceData.MmiQMdDataset.Value = (byte) value;
+            set { _pool.SITR.ETCS1.CurrentMaintenanceData.MmiQMdDataset.Value = (byte) value; }
         }
 
         /// <summary>
@@ -143,9 +142,9 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// 
         /// Note: All special values concerning cross/range checks are only used in packets EVC-40 and EVC-41.
         /// </summary>
-        public static MMI_M_WHEEL_SIZE_ERR MMI_M_WHEEL_SIZE_ERR
+        public static Variables.MMI_M_WHEEL_SIZE_ERR MMI_M_WHEEL_SIZE_ERR
         {
-            set => _pool.SITR.ETCS1.CurrentMaintenanceData.MmiMWheelSizeErr.Value = (byte) value;
+            set { _pool.SITR.ETCS1.CurrentMaintenanceData.MmiMWheelSizeErr.Value = (byte) value; }
         }
     }
 }

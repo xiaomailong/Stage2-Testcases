@@ -59,7 +59,8 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
             EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 256;
-            EVC8_MMIDriverMessage.PlainTextMessage = $"{DateTime.Now.ToLocalTime().ToString("HH:mm")} TEST 15.4";
+            EVC8_MMIDriverMessage.PlainTextMessage =
+                string.Format("{0:HH:mm} TEST 15.4", DateTime.Now.ToLocalTime());
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
             EVC8_MMIDriverMessage.Send();
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;

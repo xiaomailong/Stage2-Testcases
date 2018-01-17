@@ -1,6 +1,5 @@
 using System;
 using Testcase.Telegrams.EVCtoDMI;
-using static Testcase.Telegrams.EVCtoDMI.Variables;
 
 
 namespace Testcase.DMITestCases
@@ -142,10 +141,10 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Enter FLU and confirm value in each input field.");
 
-            DmiActions.Enable_Fixed_Train_Data_Validation(this, Fixed_Trainset_Captions.FLU);
+            DmiActions.Enable_Fixed_Train_Data_Validation(this, Variables.Fixed_Trainset_Captions.FLU);
             DmiActions.ShowInstruction(this, @"Press ‘Yes’ button.");
 
-            DmiActions.Complete_Fixed_Train_Data_Entry(this, Fixed_Trainset_Captions.FLU);
+            DmiActions.Complete_Fixed_Train_Data_Entry(this, Variables.Fixed_Trainset_Captions.FLU);
             DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine +
                                   Environment.NewLine +
                                   "1. Press ‘Yes’ button." + Environment.NewLine +
@@ -341,7 +340,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 4381;
             */
             DmiActions.ShowInstruction(this, @"Press and hold the ‘Settings menu’ button");
-            Telegrams.DMItoEVC.EVC101_MMIDriverRequest.CheckMRequestPressed = MMI_M_REQUEST.Settings;
+            Telegrams.DMItoEVC.EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.Settings;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI still displays the default window." + Environment.NewLine +
@@ -373,7 +372,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this,
                 "Whilst keeping the ‘Settings menu’ button pressed, drag it back inside its area");
 
-            Telegrams.DMItoEVC.EVC101_MMIDriverRequest.CheckMRequestPressed = MMI_M_REQUEST.Settings;
+            Telegrams.DMItoEVC.EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.Settings;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI still displays the default window." + Environment.NewLine +
@@ -387,7 +386,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 4381;   MMI_gen 4382;
             */
             DmiActions.ShowInstruction(this, "Release the ‘Settings menu’ button");
-            Telegrams.DMItoEVC.EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.Settings;
+            Telegrams.DMItoEVC.EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.Settings;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays all the sub-menus of the Settings window.");

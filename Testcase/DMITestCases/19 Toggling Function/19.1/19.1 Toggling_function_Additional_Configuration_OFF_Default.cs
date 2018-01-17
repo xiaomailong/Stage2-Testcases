@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using Testcase.Telegrams.EVCtoDMI;
-using static Testcase.Telegrams.EVCtoDMI.Variables;
 
 
 namespace Testcase.DMITestCases
@@ -201,11 +200,11 @@ namespace Testcase.DMITestCases
 
             EVC11_MMICurrentSRRules.MMI_L_STFF = 0;
             EVC11_MMICurrentSRRules.MMI_V_STFF = 0;
-            EVC11_MMICurrentSRRules.MMI_M_BUTTONS = MMI_M_BUTTONS.BTN_YES_DATA_ENTRY_COMPLETE;
+            EVC11_MMICurrentSRRules.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS.BTN_YES_DATA_ENTRY_COMPLETE;
             EVC11_MMICurrentSRRules.DataElements = new List<Variables.DataElement>
             {
-                new DataElement {Identifier = 15, EchoText = "40", QDataCheck = 0},
-                new DataElement {Identifier = 16, EchoText = "300", QDataCheck = 0}
+                new Variables.DataElement {Identifier = 15, EchoText = "40", QDataCheck = 0},
+                new Variables.DataElement {Identifier = 16, EchoText = "300", QDataCheck = 0}
             };
             EVC11_MMICurrentSRRules.Send();
 
@@ -528,10 +527,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11868 (partly: SH mode);                    MMI_gen 6450 (partly: 2nd bullet, SH mode) , Table 34 (CSM), MMI_gen 6898 (partly: configuration ‘OFF’);(2) MMI_gen 6890 (partly: SH mode, un-concerned object), Table 34 (CSM), Table 38 (CSM), Table 35 (CSM)
             */
 
-            DmiActions.ShowInstruction(this, $"Press the ‘Main’ button.");
+            DmiActions.ShowInstruction(this, "Press the ‘Main’ button.");
             DmiActions.Display_Main_Window_with_Start_button_enabled(this);
 
-            DmiActions.ShowInstruction(this, $"Press and hold ‘Shunting’ button for up to 2s then release the ‘Shunting’ button");
+            DmiActions.ShowInstruction(this, "Press and hold ‘Shunting’ button for up to 2s then release the ‘Shunting’ button");
             DmiExpectedResults.Shunting_button_pressed_and_hold(this);
 
             DmiActions.Send_SH_Mode(this);

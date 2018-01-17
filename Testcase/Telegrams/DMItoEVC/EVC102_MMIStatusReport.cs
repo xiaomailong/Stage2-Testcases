@@ -41,7 +41,7 @@ namespace Testcase.Telegrams.DMItoEVC
             // If passed
             if (_checkResult)
             {
-                _pool.TraceReport($"{BaseString} - MMI_M_ACTIVE_CABIN = \"{mActiveCabin}\"" + Environment.NewLine +
+                _pool.TraceReport(string.Format("{0} - MMI_M_ACTIVE_CABIN = \"{1}\"", BaseString, mActiveCabin) + Environment.NewLine +
                                   "Result: PASSED.");
             }
             // Display the real value extracted from EVC-102 [MMI_STATUS_REPORT.MMI_M_ACTIVE_CABIN]

@@ -1,5 +1,4 @@
 ﻿using CL345;
-using static Testcase.Telegrams.EVCtoDMI.Variables;
 
 
 namespace Testcase.Telegrams.EVCtoDMI
@@ -51,7 +50,7 @@ namespace Testcase.Telegrams.EVCtoDMI
                 byte bpOrig_ = value;
 
                 bpOrig_ = (byte) ~bpOrig_;
-                _pool.SITR.ETCS1.EchoedBrakePercentage.MmiMBpOrigR.Value = BitReverser8(bpOrig_);
+                _pool.SITR.ETCS1.EchoedBrakePercentage.MmiMBpOrigR.Value = Variables.BitReverser8(bpOrig_);
             }
         }
 
@@ -74,7 +73,7 @@ namespace Testcase.Telegrams.EVCtoDMI
                 byte bpCurrent_ = value;
 
                 bpCurrent_ = (byte) ~bpCurrent_;
-                _pool.SITR.ETCS1.EchoedBrakePercentage.MmiMBpCurrentR.Value = BitReverser8(bpCurrent_);
+                _pool.SITR.ETCS1.EchoedBrakePercentage.MmiMBpCurrentR.Value = Variables.BitReverser8(bpCurrent_);
             }
         }
 
@@ -97,7 +96,7 @@ namespace Testcase.Telegrams.EVCtoDMI
                 byte bpMmeasured_ = value;
 
                 bpMmeasured_ = (byte) ~bpMmeasured_;
-                _pool.SITR.ETCS1.EchoedBrakePercentage.MmiMBpMeasuredR.Value = BitReverser8(bpMmeasured_);
+                _pool.SITR.ETCS1.EchoedBrakePercentage.MmiMBpMeasuredR.Value = Variables.BitReverser8(bpMmeasured_);
             }
         }
     }

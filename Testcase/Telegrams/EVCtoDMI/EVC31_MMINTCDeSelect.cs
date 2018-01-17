@@ -106,7 +106,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static MMI_Q_NTC_ENABLE Mmi_Q_Ntc_Enable
         {
-            set => _pool.SITR.ETCS1.NtcDeSelect.MmiQNtcEnable.Value = (byte) value;
+            set { _pool.SITR.ETCS1.NtcDeSelect.MmiQNtcEnable.Value = (byte) value; }
         }
 
         [Flags]

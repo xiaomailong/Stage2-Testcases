@@ -43,7 +43,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static byte MMI_M_BP_ORIG
         {
-            set => _pool.SITR.ETCS1.CurrentBrakePercentage.MmiMBpOrig.Value = value;
+            set { _pool.SITR.ETCS1.CurrentBrakePercentage.MmiMBpOrig.Value = value; }
         }
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static byte MMI_M_BP_CURRENT
         {
-            set => _pool.SITR.ETCS1.CurrentBrakePercentage.MmiMBpCurrent.Value = value;
+            set { _pool.SITR.ETCS1.CurrentBrakePercentage.MmiMBpCurrent.Value = value; }
         }
 
         /// <summary>
@@ -79,7 +79,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static byte MMI_M_BP_MEASURED
         {
-            set => _pool.SITR.ETCS1.CurrentBrakePercentage.MmiMBpMeasured.Value = value;
+            set { _pool.SITR.ETCS1.CurrentBrakePercentage.MmiMBpMeasured.Value = value; }
         }
     }
 }

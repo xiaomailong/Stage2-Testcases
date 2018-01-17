@@ -1,5 +1,4 @@
 ﻿using CL345;
-using static Testcase.Telegrams.EVCtoDMI.Variables;
 
 namespace Testcase.Telegrams.EVCtoDMI
 {
@@ -53,14 +52,14 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// 
         /// Note: All special values concerning cross/range checks are only used in packets EVC-40 and EVC-41.
         /// </summary>
-        public static MMI_M_PULSE_PER_KM MMI_M_PULSE_PER_KM_1_
+        public static Variables.MMI_M_PULSE_PER_KM MMI_M_PULSE_PER_KM_1_
         {
             set
             {
                 uint pulsesPerKm = (uint) value;
                 pulsesPerKm = ~pulsesPerKm;
 
-                _pool.SITR.ETCS1.EchoedMaintenanceData.MmiMPulsePerKm1R.Value = BitReverser32(pulsesPerKm);
+                _pool.SITR.ETCS1.EchoedMaintenanceData.MmiMPulsePerKm1R.Value = Variables.BitReverser32(pulsesPerKm);
             }
         }
 
@@ -81,14 +80,14 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// 
         /// Note: All special values concerning cross/range checks are only used in packets EVC-40 and EVC-41.
         /// </summary>
-        public static MMI_M_PULSE_PER_KM MMI_M_PULSE_PER_KM_2_
+        public static Variables.MMI_M_PULSE_PER_KM MMI_M_PULSE_PER_KM_2_
         {
             set
             {
                 uint pulsesPerKm = (uint) value;
                 pulsesPerKm = ~pulsesPerKm;
 
-                _pool.SITR.ETCS1.EchoedMaintenanceData.MmiMPulsePerKm2R.Value = BitReverser32(pulsesPerKm);
+                _pool.SITR.ETCS1.EchoedMaintenanceData.MmiMPulsePerKm2R.Value = Variables.BitReverser32(pulsesPerKm);
             }
         }
 
@@ -107,14 +106,14 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// 
         /// Note: All special values concerning cross/range checks are only used in packets EVC-40 and EVC-41.
         /// </summary>
-        public static MMI_M_SDU_WHEEL_SIZE MMI_M_SDU_WHEEL_SIZE_1_
+        public static Variables.MMI_M_SDU_WHEEL_SIZE MMI_M_SDU_WHEEL_SIZE_1_
         {
             set
             {
                 ushort wheelSize = (ushort) value;
                 wheelSize = (ushort) ~wheelSize;
 
-                _pool.SITR.ETCS1.EchoedMaintenanceData.MmiMSduWheelSize1R.Value = BitReverser16(wheelSize);
+                _pool.SITR.ETCS1.EchoedMaintenanceData.MmiMSduWheelSize1R.Value = Variables.BitReverser16(wheelSize);
             }
         }
 
@@ -133,14 +132,14 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// 
         /// Note: All special values concerning cross/range checks are only used in packets EVC-40 and EVC-41.
         /// </summary>
-        public static MMI_M_SDU_WHEEL_SIZE MMI_M_SDU_WHEEL_SIZE_2_
+        public static Variables.MMI_M_SDU_WHEEL_SIZE MMI_M_SDU_WHEEL_SIZE_2_
         {
             set
             {
                 ushort wheelSize = (ushort) value;
                 wheelSize = (ushort) ~wheelSize;
 
-                _pool.SITR.ETCS1.EchoedMaintenanceData.MmiMSduWheelSize2R.Value = BitReverser16(wheelSize);
+                _pool.SITR.ETCS1.EchoedMaintenanceData.MmiMSduWheelSize2R.Value = Variables.BitReverser16(wheelSize);
             }
         }
 
@@ -151,14 +150,14 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// 0 = "Wheel diameter"
         /// 1 = "Doppler"
         /// </summary>
-        public static MMI_Q_MD_DATASET MMI_Q_MD_DATASET_
+        public static Variables.MMI_Q_MD_DATASET MMI_Q_MD_DATASET_
         {
             set
             {
                 int mmiQMdDataset = (int) value;
                 mmiQMdDataset = ~mmiQMdDataset;
 
-                _pool.SITR.ETCS1.EchoedMaintenanceData.MmiQMdDatasetR.Value = BitReverser8((byte) mmiQMdDataset);
+                _pool.SITR.ETCS1.EchoedMaintenanceData.MmiQMdDatasetR.Value = Variables.BitReverser8((byte) mmiQMdDataset);
             }
         }
 
@@ -176,14 +175,14 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// 
         /// Note: All special values concerning cross/range checks are only used in packets EVC-40 and EVC-41.
         /// </summary>
-        public static MMI_M_WHEEL_SIZE_ERR MMI_M_WHEEL_SIZE_ERR_
+        public static Variables.MMI_M_WHEEL_SIZE_ERR MMI_M_WHEEL_SIZE_ERR_
         {
             set
             {
                 byte wheelSizeError = (byte) value;
                 wheelSizeError = (byte) ~wheelSizeError;
 
-                _pool.SITR.ETCS1.EchoedMaintenanceData.MmiMWheelSizeErrR.Value = BitReverser8(wheelSizeError);
+                _pool.SITR.ETCS1.EchoedMaintenanceData.MmiMWheelSizeErrR.Value = Variables.BitReverser8(wheelSizeError);
             }
         }
     }

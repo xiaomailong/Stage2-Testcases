@@ -2,7 +2,6 @@
 
 using CL345;
 using System;
-using static Testcase.Telegrams.EVCtoDMI.Variables;
 
 #endregion
 
@@ -77,7 +76,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static MMI_M_WARNING MMI_M_WARNING
         {
-            get => _mmiMWarning;
+            get { return _mmiMWarning; }
 
             set
             {
@@ -95,7 +94,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static byte MMI_M_SLIP
         {
-            get => _mmiMSlip;
+            get { return _mmiMSlip; }
 
             set
             {
@@ -113,7 +112,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static byte MMI_M_SLIDE
         {
-            get => _mmiMSlide;
+            get { return _mmiMSlide; }
 
             set
             {
@@ -131,8 +130,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static short MMI_V_TRAIN
         {
-            get => _pool.SITR.ETCS1.Dynamic.MmiVTrain.Value;
-            set => _pool.SITR.ETCS1.Dynamic.MmiVTrain.Value = value;
+            get { return _pool.SITR.ETCS1.Dynamic.MmiVTrain.Value; }
+            set { _pool.SITR.ETCS1.Dynamic.MmiVTrain.Value = value; }
         }
 
         /// <summary>
@@ -144,8 +143,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static short MMI_V_TRAIN_KMH
         {
-            get => Convert.ToInt16(_pool.SITR.ETCS1.Dynamic.MmiVTrain.Value * CmSToKmH);
-            set => _pool.SITR.ETCS1.Dynamic.MmiVTrain.Value = Convert.ToInt16(value / CmSToKmH);
+            get { return Convert.ToInt16(_pool.SITR.ETCS1.Dynamic.MmiVTrain.Value * Variables.CmSToKmH); }
+            set { _pool.SITR.ETCS1.Dynamic.MmiVTrain.Value = Convert.ToInt16(value / Variables.CmSToKmH); }
         }
 
         /// <summary>
@@ -157,8 +156,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static short MMI_V_TRAIN_MPH
         {
-            get => Convert.ToInt16(_pool.SITR.ETCS1.Dynamic.MmiVTrain.Value * CmSToMph);
-            set => _pool.SITR.ETCS1.Dynamic.MmiVTrain.Value = Convert.ToInt16(value / CmSToMph);
+            get { return Convert.ToInt16(_pool.SITR.ETCS1.Dynamic.MmiVTrain.Value * Variables.CmSToMph); }
+            set { _pool.SITR.ETCS1.Dynamic.MmiVTrain.Value = Convert.ToInt16(value / Variables.CmSToMph); }
         }
 
         /// <summary>
@@ -174,8 +173,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static short MMI_A_TRAIN
         {
-            get => _pool.SITR.ETCS1.Dynamic.MmiVTrain.Value;
-            set => _pool.SITR.ETCS1.Dynamic.MmiVTrain.Value = value;
+            get { return _pool.SITR.ETCS1.Dynamic.MmiVTrain.Value; }
+            set { _pool.SITR.ETCS1.Dynamic.MmiVTrain.Value = value; }
         }
 
         /// <summary>
@@ -183,8 +182,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static short MMI_A_TRAIN_M
         {
-            get => Convert.ToInt16(_pool.SITR.ETCS1.Dynamic.MmiATrain.Value * 0.01);
-            set => _pool.SITR.ETCS1.Dynamic.MmiATrain.Value = Convert.ToInt16(value / 0.01);
+            get { return Convert.ToInt16(_pool.SITR.ETCS1.Dynamic.MmiATrain.Value * 0.01); }
+            set { _pool.SITR.ETCS1.Dynamic.MmiATrain.Value = Convert.ToInt16(value / 0.01); }
         }
 
         /// <summary>
@@ -196,8 +195,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static short MMI_V_TARGET
         {
-            get => _pool.SITR.ETCS1.Dynamic.MmiVTarget.Value;
-            set => _pool.SITR.ETCS1.Dynamic.MmiVTarget.Value = value;
+            get { return _pool.SITR.ETCS1.Dynamic.MmiVTarget.Value; }
+            set { _pool.SITR.ETCS1.Dynamic.MmiVTarget.Value = value; }
         }
 
         /// <summary>
@@ -209,8 +208,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static short MMI_V_TARGET_KMH
         {
-            get => Convert.ToInt16(_pool.SITR.ETCS1.Dynamic.MmiVTarget.Value * CmSToKmH);
-            set => _pool.SITR.ETCS1.Dynamic.MmiVTarget.Value = Convert.ToInt16(value / CmSToKmH);
+            get { return Convert.ToInt16(_pool.SITR.ETCS1.Dynamic.MmiVTarget.Value * Variables.CmSToKmH); }
+            set { _pool.SITR.ETCS1.Dynamic.MmiVTarget.Value = Convert.ToInt16(value / Variables.CmSToKmH); }
         }
 
         /// <summary>
@@ -222,8 +221,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static short MMI_V_TARGET_MPH
         {
-            get => Convert.ToInt16(_pool.SITR.ETCS1.Dynamic.MmiVTarget.Value * CmSToMph);
-            set => _pool.SITR.ETCS1.Dynamic.MmiVTarget.Value = Convert.ToInt16(value / CmSToMph);
+            get { return Convert.ToInt16(_pool.SITR.ETCS1.Dynamic.MmiVTarget.Value * Variables.CmSToMph); }
+            set { _pool.SITR.ETCS1.Dynamic.MmiVTarget.Value = Convert.ToInt16(value / Variables.CmSToMph); }
         }
 
         /// <summary>
@@ -242,8 +241,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static ushort MMI_V_PERMITTED
         {
-            get => Convert.ToUInt16(_pool.SITR.ETCS1.Dynamic.MmiVPermitted.Value);
-            set => _pool.SITR.ETCS1.Dynamic.MmiVPermitted.Value = Convert.ToInt16(value);
+            get { return Convert.ToUInt16(_pool.SITR.ETCS1.Dynamic.MmiVPermitted.Value); }
+            set { _pool.SITR.ETCS1.Dynamic.MmiVPermitted.Value = Convert.ToInt16(value); }
         }
 
         /// <summary>
@@ -254,8 +253,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static ushort MMI_V_PERMITTED_KMH
         {
-            get => Convert.ToUInt16(_pool.SITR.ETCS1.Dynamic.MmiVPermitted.Value * CmSToKmH);
-            set => _pool.SITR.ETCS1.Dynamic.MmiVPermitted.Value = Convert.ToInt16(value / CmSToKmH);
+            get { return Convert.ToUInt16(_pool.SITR.ETCS1.Dynamic.MmiVPermitted.Value * Variables.CmSToKmH); }
+            set { _pool.SITR.ETCS1.Dynamic.MmiVPermitted.Value = Convert.ToInt16(value / Variables.CmSToKmH); }
         }
 
         /// <summary>
@@ -266,8 +265,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static ushort MMI_V_PERMITTED_MPH
         {
-            get => Convert.ToUInt16(_pool.SITR.ETCS1.Dynamic.MmiVPermitted.Value * CmSToMph);
-            set => _pool.SITR.ETCS1.Dynamic.MmiVPermitted.Value = Convert.ToInt16(value / CmSToMph);
+            get { return Convert.ToUInt16(_pool.SITR.ETCS1.Dynamic.MmiVPermitted.Value * Variables.CmSToMph); }
+            set { _pool.SITR.ETCS1.Dynamic.MmiVPermitted.Value = Convert.ToInt16(value / Variables.CmSToMph); }
         }
 
         /// <summary>
@@ -281,8 +280,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static short MMI_V_INTERVENTION
         {
-            get => _pool.SITR.ETCS1.Dynamic.MmiVIntervention.Value;
-            set => _pool.SITR.ETCS1.Dynamic.MmiVIntervention.Value = value;
+            get { return _pool.SITR.ETCS1.Dynamic.MmiVIntervention.Value; }
+            set { _pool.SITR.ETCS1.Dynamic.MmiVIntervention.Value = value; }
         }
 
         /// <summary>
@@ -293,8 +292,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static short MMI_V_INTERVENTION_KMH
         {
-            get => Convert.ToInt16(_pool.SITR.ETCS1.Dynamic.MmiVIntervention.Value * CmSToKmH);
-            set => _pool.SITR.ETCS1.Dynamic.MmiVIntervention.Value = Convert.ToInt16(value / CmSToKmH);
+            get { return Convert.ToInt16(_pool.SITR.ETCS1.Dynamic.MmiVIntervention.Value * Variables.CmSToKmH); }
+            set { _pool.SITR.ETCS1.Dynamic.MmiVIntervention.Value = Convert.ToInt16(value / Variables.CmSToKmH); }
         }
 
         /// <summary>
@@ -305,8 +304,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static short MMI_V_INTERVENTION_MPH
         {
-            get => Convert.ToInt16(_pool.SITR.ETCS1.Dynamic.MmiVIntervention.Value * CmSToMph);
-            set => _pool.SITR.ETCS1.Dynamic.MmiVIntervention.Value = Convert.ToInt16(value / CmSToMph);
+            get { return Convert.ToInt16(_pool.SITR.ETCS1.Dynamic.MmiVIntervention.Value * Variables.CmSToMph); }
+            set { _pool.SITR.ETCS1.Dynamic.MmiVIntervention.Value = Convert.ToInt16(value / Variables.CmSToMph); }
         }
 
         /// <summary>
@@ -318,8 +317,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static short MMI_V_RELEASE
         {
-            get => _pool.SITR.ETCS1.Dynamic.MmiVRelease.Value;
-            set => _pool.SITR.ETCS1.Dynamic.MmiVRelease.Value = value;
+            get { return _pool.SITR.ETCS1.Dynamic.MmiVRelease.Value; }
+            set { _pool.SITR.ETCS1.Dynamic.MmiVRelease.Value = value; }
         }
 
         /// <summary>
@@ -331,8 +330,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static short MMI_V_RELEASE_KMH
         {
-            get => Convert.ToInt16(_pool.SITR.ETCS1.Dynamic.MmiVRelease.Value * CmSToKmH);
-            set => _pool.SITR.ETCS1.Dynamic.MmiVRelease.Value = Convert.ToInt16(value / CmSToKmH);
+            get { return Convert.ToInt16(_pool.SITR.ETCS1.Dynamic.MmiVRelease.Value * Variables.CmSToKmH); }
+            set { _pool.SITR.ETCS1.Dynamic.MmiVRelease.Value = Convert.ToInt16(value / Variables.CmSToKmH); }
         }
 
         /// <summary>
@@ -344,8 +343,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static short MMI_V_RELEASE_MPH
         {
-            get => Convert.ToInt16(_pool.SITR.ETCS1.Dynamic.MmiVRelease.Value * CmSToMph);
-            set => _pool.SITR.ETCS1.Dynamic.MmiVRelease.Value = Convert.ToInt16(value / CmSToMph);
+            get { return Convert.ToInt16(_pool.SITR.ETCS1.Dynamic.MmiVRelease.Value * Variables.CmSToMph); }
+            set { _pool.SITR.ETCS1.Dynamic.MmiVRelease.Value = Convert.ToInt16(value / Variables.CmSToMph); }
         }
 
         /// <summary>
@@ -368,8 +367,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static int MMI_O_BRAKETARGET
         {
-            get => _pool.SITR.ETCS1.Dynamic.MmiOBraketarget.Value;
-            set => _pool.SITR.ETCS1.Dynamic.MmiOBraketarget.Value = value;
+            get { return _pool.SITR.ETCS1.Dynamic.MmiOBraketarget.Value; }
+            set { _pool.SITR.ETCS1.Dynamic.MmiOBraketarget.Value = value; }
         }
 
         /// <summary>
@@ -384,8 +383,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static int MMI_O_BRAKETARGET_M
         {
-            get => _pool.SITR.ETCS1.Dynamic.MmiOBraketarget.Value * 100;
-            set => _pool.SITR.ETCS1.Dynamic.MmiOBraketarget.Value = value / 100;
+            get { return _pool.SITR.ETCS1.Dynamic.MmiOBraketarget.Value * 100; }
+            set { _pool.SITR.ETCS1.Dynamic.MmiOBraketarget.Value = value / 100; }
         }
 
         /// <summary>
@@ -417,8 +416,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static int MMI_O_IML
         {
-            get => _pool.SITR.ETCS1.Dynamic.MmiOIml.Value;
-            set => _pool.SITR.ETCS1.Dynamic.MmiOIml.Value = value;
+            get { return _pool.SITR.ETCS1.Dynamic.MmiOIml.Value; }
+            set { _pool.SITR.ETCS1.Dynamic.MmiOIml.Value = value; }
         }
 
         /// <summary>
@@ -434,8 +433,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static int MMI_O_IML_M
         {
-            get => _pool.SITR.ETCS1.Dynamic.MmiOIml.Value * 100;
-            set => _pool.SITR.ETCS1.Dynamic.MmiOIml.Value = value / 100;
+            get { return _pool.SITR.ETCS1.Dynamic.MmiOIml.Value * 100; }
+            set { _pool.SITR.ETCS1.Dynamic.MmiOIml.Value = value / 100; }
         }
 
         /// <summary>

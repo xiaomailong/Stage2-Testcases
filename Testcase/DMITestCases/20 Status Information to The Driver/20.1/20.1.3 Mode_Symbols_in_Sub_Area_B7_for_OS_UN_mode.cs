@@ -1,6 +1,5 @@
 using System;
 using Testcase.Telegrams.EVCtoDMI;
-using static Testcase.Telegrams.EVCtoDMI.Variables;
 
 namespace Testcase.DMITestCases
 {
@@ -124,12 +123,12 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Train data validation window
             */
 
-            DmiExpectedResults.Fixed_Train_Data_entered(this, Fixed_Trainset_Captions.FLU);
+            DmiExpectedResults.Fixed_Train_Data_entered(this, Variables.Fixed_Trainset_Captions.FLU);
 
-            DmiActions.Enable_Fixed_Train_Data_Validation(this, Fixed_Trainset_Captions.FLU);
-            DmiExpectedResults.Fixed_Train_Data_validated(this, Fixed_Trainset_Captions.FLU);
+            DmiActions.Enable_Fixed_Train_Data_Validation(this, Variables.Fixed_Trainset_Captions.FLU);
+            DmiExpectedResults.Fixed_Train_Data_validated(this, Variables.Fixed_Trainset_Captions.FLU);
 
-            DmiActions.Complete_Fixed_Train_Data_Entry(this, Fixed_Trainset_Captions.FLU);
+            DmiActions.Complete_Fixed_Train_Data_Entry(this, Variables.Fixed_Trainset_Captions.FLU);
 
             Wait_Realtime(1000);
 
@@ -279,13 +278,13 @@ namespace Testcase.DMITestCases
                                              Environment.NewLine +
                                              "2. Press OK on THIS window.");
 
-            DmiActions.Enable_Fixed_Train_Data_Validation(this, Fixed_Trainset_Captions.FLU);
+            DmiActions.Enable_Fixed_Train_Data_Validation(this, Variables.Fixed_Trainset_Captions.FLU);
             DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine +
                                              Environment.NewLine +
                                              "1. Press ‘Yes’ button." + Environment.NewLine +
                                              "2. Press OK on THIS window.");
 
-            DmiActions.Complete_Fixed_Train_Data_Entry(this, Fixed_Trainset_Captions.FLU);
+            DmiActions.Complete_Fixed_Train_Data_Entry(this, Variables.Fixed_Trainset_Captions.FLU);
             DmiActions.Display_Train_data_validation_Window(this);
             DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine +
                                              Environment.NewLine +

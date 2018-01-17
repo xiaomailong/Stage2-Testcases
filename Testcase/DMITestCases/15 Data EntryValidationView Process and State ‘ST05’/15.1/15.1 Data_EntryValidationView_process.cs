@@ -1,6 +1,5 @@
 using System;
 using Testcase.Telegrams.EVCtoDMI;
-using static Testcase.Telegrams.EVCtoDMI.Variables;
 
 
 namespace Testcase.DMITestCases
@@ -224,20 +223,20 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, "Press the ‘Main’ button, then press the ‘Level’ button");
 
-            EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = MMI_Q_CLOSE_ENABLE.Disabled;
+            EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Disabled;
 
-            EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new[] {MMI_Q_LEVEL_NTC_ID.ETCS_Level};
-            EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new[] {MMI_M_CURRENT_LEVEL.LastUsedLevel};
-            EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = new[] {MMI_M_LEVEL_FLAG.MarkedLevel};
-            EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = new[] {MMI_M_INHIBITED_LEVEL.NotInhibited};
-            EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = new[] {MMI_M_INHIBIT_ENABLE.AllowedForInhibiting};
-            EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new[] {MMI_M_LEVEL_NTC_ID.L2};
+            EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new[] {Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level};
+            EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new[] {Variables.MMI_M_CURRENT_LEVEL.LastUsedLevel};
+            EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = new[] {Variables.MMI_M_LEVEL_FLAG.MarkedLevel};
+            EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = new[] {Variables.MMI_M_INHIBITED_LEVEL.NotInhibited};
+            EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = new[] {Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting};
+            EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new[] {Variables.MMI_M_LEVEL_NTC_ID.L2};
             EVC20_MMISelectLevel.Send();
 
             DmiActions.ShowInstruction(this, "Select and confirm Level 2");
 
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L2;
-            EVC22_MMICurrentRBC.MMI_Q_CLOSE_ENABLE = MMI_Q_CLOSE_ENABLE.Enabled;
+            EVC22_MMICurrentRBC.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
             EVC22_MMICurrentRBC.MMI_NID_WINDOW = 5;
             EVC22_MMICurrentRBC.Send();
 
@@ -280,15 +279,18 @@ namespace Testcase.DMITestCases
             if (showLock)
             {
                 WaitForVerification(
-                    $"Check that all but one of the buttons in the {windowName} window are disabled (displayed " +
-                    $"with a border with dark-grey text) and the following:" + Environment.NewLine +
+                    string.Format("Check that all but one of the buttons in the {0} window are disabled (displayed ",
+                        windowName) +
+                    "with a border with dark-grey text) and the following:" + Environment.NewLine +
                     Environment.NewLine +
                     @"1. The ‘Lock screen for cleaning’ button is not disabled.");
             }
             else
             {
                 WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                    $"All the buttons in the {windowName} window are disabled (displayed with a border with dark-grey text).");
+                                    string.Format(
+                                        "All the buttons in the {0} window are disabled (displayed with a border with dark-grey text).",
+                                        windowName));
             }
 
             // Reduced waiting time to speed up testing
@@ -340,14 +342,15 @@ namespace Testcase.DMITestCases
             if (showLock)
             {
                 WaitForVerification(
-                    $"Check that all but one of the buttons in the {windowName} window are enabled with " +
-                    $"the exception of the following:" + Environment.NewLine + Environment.NewLine +
+                    string.Format("Check that all but one of the buttons in the {0} window are enabled with ",
+                        windowName) +
+                    "the exception of the following:" + Environment.NewLine + Environment.NewLine +
                     @"1. The ‘Lock screen for cleaning’ button.");
             }
             else
             {
                 WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                    $"1. All the buttons in the {windowName} window are enabled.");
+                                    string.Format("1. All the buttons in the {0} window are enabled.", windowName));
             }
         }
 

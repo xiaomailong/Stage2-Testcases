@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using CL345;
-using static Testcase.Telegrams.EVCtoDMI.Variables;
 
 namespace Testcase.Telegrams.EVCtoDMI
 {
@@ -28,7 +27,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         {
             _pool = pool;
             TrainSetCaptions = new List<string>();
-            DataElements = new List<DataElement>();
+            DataElements = new List<Variables.DataElement>();
 
             // Set as dynamic
             _pool.SITR.SMDCtrl.ETCS1.CurrentTrainData.Value = 0x0008;
@@ -86,7 +85,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             // Set number of train data elements
             _pool.SITR.ETCS1.CurrentTrainData.MmiNDataElements.Value = (ushort) DataElements.Count;
 
-            totalSizeCounter = PopulateDataElements($"{BaseString}2", totalSizeCounter, DataElements, _pool);
+            totalSizeCounter = Variables.PopulateDataElements($"{BaseString}2", totalSizeCounter, DataElements, _pool);
 
             // Set the total length of the packet
             _pool.SITR.ETCS1.CurrentTrainData.MmiLPacket.Value = totalSizeCounter;
@@ -137,7 +136,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             // Set number of train data elements
             _pool.SITR.ETCS1.CurrentTrainData.MmiNDataElements.Value = (ushort) DataElements.Count;
 
-            totalSizeCounter = PopulateDataElements($"{BaseString}2", totalSizeCounter, DataElements, _pool);
+            totalSizeCounter = Variables.PopulateDataElements($"{BaseString}2", totalSizeCounter, DataElements, _pool);
 
             // Set the total length of the packet
             _pool.SITR.ETCS1.CurrentTrainData.MmiLPacket.Value = totalSizeCounter;
@@ -151,10 +150,10 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// 2.) In case of a Train Data View procedure this variable controls visibility of data items (ERA_ERTMS_015560, v3.4.0, chapter 11.5.1.5).
         /// 3.) In packet EVC-10 this variable controls highlighting of changed data items (ERA_ERTMS_015560, v3.4.0, chapter 11.4.1.4, 10.3.3.5).
         /// </summary>
-        public static MMI_M_DATA_ENABLE MMI_M_DATA_ENABLE
+        public static Variables.MMI_M_DATA_ENABLE MMI_M_DATA_ENABLE
         {
-            get => (MMI_M_DATA_ENABLE) (_pool.SITR.ETCS1.CurrentTrainData.MmiMDataEnable.Value);
-            set => _pool.SITR.ETCS1.CurrentTrainData.MmiMDataEnable.Value = (ushort) value;
+            get { return (Variables.MMI_M_DATA_ENABLE) (_pool.SITR.ETCS1.CurrentTrainData.MmiMDataEnable.Value); }
+            set { _pool.SITR.ETCS1.CurrentTrainData.MmiMDataEnable.Value = (ushort) value; }
         }
 
         /// <summary>
@@ -167,8 +166,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static ushort MMI_L_TRAIN
         {
-            get => _pool.SITR.ETCS1.CurrentTrainData.MmiLTrain.Value;
-            set => _pool.SITR.ETCS1.CurrentTrainData.MmiLTrain.Value = value;
+            get { return _pool.SITR.ETCS1.CurrentTrainData.MmiLTrain.Value; }
+            set { _pool.SITR.ETCS1.CurrentTrainData.MmiLTrain.Value = value; }
         }
 
         /// <summary>
@@ -181,8 +180,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static ushort MMI_V_MAXTRAIN
         {
-            get => _pool.SITR.ETCS1.CurrentTrainData.MmiVMaxtrain.Value;
-            set => _pool.SITR.ETCS1.CurrentTrainData.MmiVMaxtrain.Value = value;
+            get { return _pool.SITR.ETCS1.CurrentTrainData.MmiVMaxtrain.Value; }
+            set { _pool.SITR.ETCS1.CurrentTrainData.MmiVMaxtrain.Value = value; }
         }
 
         /// <summary>
@@ -209,10 +208,10 @@ namespace Testcase.Telegrams.EVCtoDMI
         ///     19 = "FG 3"
         ///     20 = "FG 4"
         /// </summary>
-        public static MMI_NID_KEY MMI_NID_KEY_TRAIN_CAT
+        public static Variables.MMI_NID_KEY MMI_NID_KEY_TRAIN_CAT
         {
-            get => (MMI_NID_KEY) (_pool.SITR.ETCS1.CurrentTrainData.MmiNidKeyTrainCat.Value);
-            set => _pool.SITR.ETCS1.CurrentTrainData.MmiNidKeyTrainCat.Value = (byte) value;
+            get { return (Variables.MMI_NID_KEY) (_pool.SITR.ETCS1.CurrentTrainData.MmiNidKeyTrainCat.Value); }
+            set { _pool.SITR.ETCS1.CurrentTrainData.MmiNidKeyTrainCat.Value = (byte) value; }
         }
 
         /// <summary>
@@ -226,8 +225,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static ushort MMI_M_BRAKE_PERC
         {
-            get => _pool.SITR.ETCS1.CurrentTrainData.MmiMBrakePerc.Value;
-            set => _pool.SITR.ETCS1.CurrentTrainData.MmiMBrakePerc.Value = (byte) value;
+            get { return _pool.SITR.ETCS1.CurrentTrainData.MmiMBrakePerc.Value; }
+            set { _pool.SITR.ETCS1.CurrentTrainData.MmiMBrakePerc.Value = (byte) value; }
         }
 
         /// <summary>
@@ -249,10 +248,10 @@ namespace Testcase.Telegrams.EVCtoDMI
         ///     32 = "E4"
         ///     33 = "E5"
         /// </summary>
-        public static MMI_NID_KEY MMI_NID_KEY_AXLE_LOAD
+        public static Variables.MMI_NID_KEY MMI_NID_KEY_AXLE_LOAD
         {
-            get => (MMI_NID_KEY) (_pool.SITR.ETCS1.CurrentTrainData.MmiNidKeyAxleLoad.Value);
-            set => _pool.SITR.ETCS1.CurrentTrainData.MmiNidKeyAxleLoad.Value = (byte) value;
+            get { return (Variables.MMI_NID_KEY) (_pool.SITR.ETCS1.CurrentTrainData.MmiNidKeyAxleLoad.Value); }
+            set { _pool.SITR.ETCS1.CurrentTrainData.MmiNidKeyAxleLoad.Value = (byte) value; }
         }
 
         /// <summary>
@@ -266,8 +265,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static ushort MMI_M_AIRTIGHT
         {
-            get => _pool.SITR.ETCS1.CurrentTrainData.MmiMAirtight.Value;
-            set => _pool.SITR.ETCS1.CurrentTrainData.MmiMAirtight.Value = (byte) value;
+            get { return _pool.SITR.ETCS1.CurrentTrainData.MmiMAirtight.Value; }
+            set { _pool.SITR.ETCS1.CurrentTrainData.MmiMAirtight.Value = (byte) value; }
         }
 
         /// <summary>
@@ -281,10 +280,10 @@ namespace Testcase.Telegrams.EVCtoDMI
         ///     37 = "GC"
         ///     38 = "Out of GC"
         /// </summary>
-        public static MMI_NID_KEY_Load_Gauge MMI_NID_KEY_LOAD_GAUGE
+        public static Variables.MMI_NID_KEY_Load_Gauge MMI_NID_KEY_LOAD_GAUGE
         {
-            get => (MMI_NID_KEY_Load_Gauge) (_pool.SITR.ETCS1.CurrentTrainData.MmiNidKeyLoadGauge.Value);
-            set => _pool.SITR.ETCS1.CurrentTrainData.MmiNidKeyLoadGauge.Value = (byte) value;
+            get { return (Variables.MMI_NID_KEY_Load_Gauge) (_pool.SITR.ETCS1.CurrentTrainData.MmiNidKeyLoadGauge.Value); }
+            set { _pool.SITR.ETCS1.CurrentTrainData.MmiNidKeyLoadGauge.Value = (byte) value; }
         }
 
         /// <summary>
@@ -299,8 +298,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static MMI_M_BUTTONS_CURRENT_TRAIN_DATA MMI_M_BUTTONS
         {
-            get => (MMI_M_BUTTONS_CURRENT_TRAIN_DATA) _pool.SITR.ETCS1.CurrentTrainData.MmiMButtons.Value;
-            set => _pool.SITR.ETCS1.CurrentTrainData.MmiMButtons.Value = (byte) value;
+            get { return (MMI_M_BUTTONS_CURRENT_TRAIN_DATA) _pool.SITR.ETCS1.CurrentTrainData.MmiMButtons.Value; }
+            set { _pool.SITR.ETCS1.CurrentTrainData.MmiMButtons.Value = (byte) value; }
         }
 
         /// <summary>
@@ -314,7 +313,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static ushort MMI_M_TRAINSET_ID
         {
-            get => (ushort) ((_pool.SITR.ETCS1.CurrentTrainData.EVC6alias1.Value & 0xF0) >> 4);
+            get { return (ushort) ((_pool.SITR.ETCS1.CurrentTrainData.EVC6alias1.Value & 0xF0) >> 4); }
 
             set
             {
@@ -340,7 +339,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static ushort MMI_M_ALT_DEM
         {
-            get => (ushort) ((_pool.SITR.ETCS1.CurrentTrainData.EVC6alias1.Value & 0x0C) >> 2);
+            get { return (ushort) ((_pool.SITR.ETCS1.CurrentTrainData.EVC6alias1.Value & 0x0C) >> 2); }
 
             set
             {
@@ -351,7 +350,7 @@ namespace Testcase.Telegrams.EVCtoDMI
 
         public static List<string> TrainSetCaptions { get; set; }
 
-        public static List<DataElement> DataElements { get; set; }
+        public static List<Variables.DataElement> DataElements { get; set; }
 
         /// <summary>
         /// MMI_M_Buttons for EVC-6 enum

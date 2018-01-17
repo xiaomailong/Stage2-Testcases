@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using Testcase.Telegrams.EVCtoDMI;
-using static Testcase.Telegrams.EVCtoDMI.Variables;
 
 
 namespace Testcase.DMITestCases
@@ -113,16 +112,16 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, "Press the ‘Special’ button, then press the ‘SR speed / distance’ button");
 
-            EVC11_MMICurrentSRRules.MMI_M_BUTTONS = MMI_M_BUTTONS.BTN_YES_DATA_ENTRY_COMPLETE;
+            EVC11_MMICurrentSRRules.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS.BTN_YES_DATA_ENTRY_COMPLETE;
             EVC11_MMICurrentSRRules.Send();
 
             DmiActions.ShowInstruction(this,
                 "Enter the value of SR speed = 40 km/h and SR distance = 500m. Press the ‘Yes’ button");
 
-            EVC11_MMICurrentSRRules.DataElements = new List<DataElement>
+            EVC11_MMICurrentSRRules.DataElements = new List<Variables.DataElement>
             {
-                new DataElement {Identifier = 15, EchoText = "40", QDataCheck = 0},
-                new DataElement {Identifier = 16, EchoText = "500", QDataCheck = 0}
+                new Variables.DataElement {Identifier = 15, EchoText = "40", QDataCheck = 0},
+                new Variables.DataElement {Identifier = 16, EchoText = "500", QDataCheck = 0}
             };
             EVC11_MMICurrentSRRules.Send();
 

@@ -2,7 +2,7 @@
 using CL345;
 using Testcase.DMITestCases;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
-using static Testcase.Telegrams.EVCtoDMI.Variables;
+using Testcase.Telegrams.EVCtoDMI;
 
 namespace Testcase.Telegrams.DMItoEVC
 {
@@ -17,9 +17,9 @@ namespace Testcase.Telegrams.DMItoEVC
     {
         private static SignalPool _pool;
         private static bool _checkResult;
-        private static Fixed_Trainset_Captions _trainsetSelected;
+        private static Variables.Fixed_Trainset_Captions _trainsetSelected;
         private static ushort _nDataElements;
-        private static MMI_M_BUTTONS_TRAIN_DATA _mButtons;
+        private static Variables.MMI_M_BUTTONS_TRAIN_DATA _mButtons;
         private static byte _nidData;
 
         private const string BaseString0 = "DMI->ETCS: EVC-107 [MMI_NEW_TRAIN_DATA]";
@@ -36,7 +36,7 @@ namespace Testcase.Telegrams.DMItoEVC
             _pool.SITR.SMDStat.CCUO.ETCS1NewTrainData.Value = 0x00;
         }
 
-        private static void CheckFixedTrainDataEntered(Fixed_Trainset_Captions mmiMTrainsetId)
+        private static void CheckFixedTrainDataEntered(Variables.Fixed_Trainset_Captions mmiMTrainsetId)
         {
             // Reset telegram received flag in RTSim
             _pool.SITR.SMDStat.CCUO.ETCS1NewTrainData.Value = 0x00;
@@ -48,13 +48,13 @@ namespace Testcase.Telegrams.DMItoEVC
                 _checkResult = _pool.SITR.CCUO.ETCS1NewTrainData.MmiLTrain.Value.Equals(0) &
                                _pool.SITR.CCUO.ETCS1NewTrainData.MmiVMaxtrain.Value.Equals(0) &
                                _pool.SITR.CCUO.ETCS1NewTrainData.MmiNidKeyTrainCat.Value.Equals(
-                                   (byte) MMI_NID_KEY.NoDedicatedKey) &
+                                   (byte) Variables.MMI_NID_KEY.NoDedicatedKey) &
                                _pool.SITR.CCUO.ETCS1NewTrainData.MmiMBrakePerc.Value.Equals(0) &
                                _pool.SITR.CCUO.ETCS1NewTrainData.MmiNidKeyAxleLoad.Value.Equals(
-                                   (byte) MMI_NID_KEY.NoDedicatedKey) &
+                                   (byte) Variables.MMI_NID_KEY.NoDedicatedKey) &
                                _pool.SITR.CCUO.ETCS1NewTrainData.MmiMAirtight.Value.Equals(0) &
                                _pool.SITR.CCUO.ETCS1NewTrainData.MmiNidKeyLoadGauge.Value.Equals(
-                                   (byte) MMI_NID_KEY.NoDedicatedKey) &
+                                   (byte) Variables.MMI_NID_KEY.NoDedicatedKey) &
                                _pool.SITR.CCUO.ETCS1NewTrainData.EVC107alias1.Value.Equals(
                                    (byte) ((byte) mmiMTrainsetId << 4)) &
                                _pool.SITR.CCUO.ETCS1NewTrainData.MmiMButtons.Value.Equals((byte) _mButtons);
@@ -65,13 +65,13 @@ namespace Testcase.Telegrams.DMItoEVC
                     _pool.TraceReport(BaseString0 + Environment.NewLine +
                                       "MMI_L_TRAIN = 0" + Environment.NewLine +
                                       "MMI_V_MAXTRAIN = 0" + Environment.NewLine +
-                                      "MMI_NID_KEY_TRAIN_CAT = \"" + MMI_NID_KEY.NoDedicatedKey + "\"" +
+                                      "MMI_NID_KEY_TRAIN_CAT = \"" + Variables.MMI_NID_KEY.NoDedicatedKey + "\"" +
                                       Environment.NewLine +
                                       "MMI_M_BRAKE_PERC = 0" + Environment.NewLine +
-                                      "MMI_NID_KEY_AXLE_LOAD = \"" + MMI_NID_KEY.NoDedicatedKey + "\"" +
+                                      "MMI_NID_KEY_AXLE_LOAD = \"" + Variables.MMI_NID_KEY.NoDedicatedKey + "\"" +
                                       Environment.NewLine +
                                       "MMI_M_AIRTIGHT = 0" + Environment.NewLine +
-                                      "MMI_NID_KEY_LOAD_GAUGE = \"" + MMI_NID_KEY.NoDedicatedKey + "\"" +
+                                      "MMI_NID_KEY_LOAD_GAUGE = \"" + Variables.MMI_NID_KEY.NoDedicatedKey + "\"" +
                                       Environment.NewLine +
                                       "MMI_M_TRAINSET_ID = " + mmiMTrainsetId + Environment.NewLine +
                                       "MMI_M_ALT_DEM = 0" + Environment.NewLine +
@@ -87,30 +87,30 @@ namespace Testcase.Telegrams.DMItoEVC
                                      "MMI_V_MAXTRAIN = \"" + _pool.SITR.CCUO.ETCS1NewTrainData.MmiLTrain.Value + "\"" +
                                      Environment.NewLine +
                                      "MMI_NID_KEY_TRAIN_CAT = \"" +
-                                     Enum.GetName(typeof(MMI_NID_KEY),
+                                     Enum.GetName(typeof(Variables.MMI_NID_KEY),
                                          _pool.SITR.CCUO.ETCS1NewTrainData.MmiNidKeyTrainCat.Value) + "\"" +
                                      Environment.NewLine +
                                      "MMI_M_BRAKE_PERC = \"" + _pool.SITR.CCUO.ETCS1NewTrainData.MmiLTrain.Value +
                                      "\"" + Environment.NewLine +
                                      "MMI_NID_KEY_AXLE_LOAD = \"" +
-                                     Enum.GetName(typeof(MMI_NID_KEY),
+                                     Enum.GetName(typeof(Variables.MMI_NID_KEY),
                                          _pool.SITR.CCUO.ETCS1NewTrainData.MmiNidKeyAxleLoad.Value) + "\"" +
                                      Environment.NewLine +
                                      "MMI_M_AIRTIGHT = \"" + _pool.SITR.CCUO.ETCS1NewTrainData.MmiLTrain.Value + "\"" +
                                      Environment.NewLine +
                                      "MMI_NID_KEY_LOAD_GAUGE = \"" +
-                                     Enum.GetName(typeof(MMI_NID_KEY),
+                                     Enum.GetName(typeof(Variables.MMI_NID_KEY),
                                          _pool.SITR.CCUO.ETCS1NewTrainData.MmiNidKeyLoadGauge.Value) + "\"" +
                                      Environment.NewLine +
                                      "MMI_M_TRAINSET_ID = \"" +
-                                     Enum.GetName(typeof(Fixed_Trainset_Captions),
+                                     Enum.GetName(typeof(Variables.Fixed_Trainset_Captions),
                                          (_pool.SITR.CCUO.ETCS1NewTrainData.EVC107alias1.Value & 0xF0) >> 4) + "\"" +
                                      Environment.NewLine +
                                      "MMI_M_ALT_DEM = \"" +
                                      ((_pool.SITR.CCUO.ETCS1NewTrainData.EVC107alias1.Value & 0x0C) >> 2) + "\"" +
                                      Environment.NewLine +
                                      "MMI_M_BUTTONS = \"" +
-                                     Enum.GetName(typeof(MMI_M_BUTTONS),
+                                     Enum.GetName(typeof(Variables.MMI_M_BUTTONS),
                                          _pool.SITR.CCUO.ETCS1NewTrainData.MmiMButtons.Value) + "\"" +
                                      Environment.NewLine +
                                      "Result: FAILED!");
@@ -122,7 +122,7 @@ namespace Testcase.Telegrams.DMItoEVC
                 // MMI_gen 9460: "In case of [Enter] | [Enter_Delay_Type] the [MMI_NEW_TRAIN_DATA (EVC-107)].MMI_N_DATA_ELEMENTS
                 // shall be set to '1', as the driver is only allowed to accept one data at a time."
                 if (_pool.SITR.CCUO.ETCS1NewTrainData.MmiMButtons.Value.Equals(
-                    (byte) MMI_M_BUTTONS_TRAIN_DATA.BTN_ENTER))
+                    (byte) Variables.MMI_M_BUTTONS_TRAIN_DATA.BTN_ENTER))
                 {
                     if (_nDataElements == 1)
                     {
@@ -165,7 +165,7 @@ namespace Testcase.Telegrams.DMItoEVC
                 // MMI_gen 9460 "In case of [Yes] | [Yes_Delay_Type] the [MMI_NEW_TRAIN_DATA (EVC-107)].MMI_N_DATA_ELEMENTS
                 // shall be set to '0', as the [MMI_NEW_TRAIN_DATA (EVC-107)].MMI_M_BUTTONS clearly indicates that all data are affected. 
                 else if (_pool.SITR.CCUO.ETCS1NewTrainData.MmiMButtons.Value.Equals(
-                    (byte) MMI_M_BUTTONS_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE))
+                    (byte) Variables.MMI_M_BUTTONS_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE))
                 {
                     // If check passes
                     if (_nDataElements == 0)
@@ -215,7 +215,7 @@ namespace Testcase.Telegrams.DMItoEVC
         /// RLU = 2
         /// Rescue = 3
         /// </summary>
-        public static Fixed_Trainset_Captions TrainsetSelected
+        public static Variables.Fixed_Trainset_Captions TrainsetSelected
         {
             set
             {
@@ -235,9 +235,9 @@ namespace Testcase.Telegrams.DMItoEVC
         /// 255 = "no button"
         /// Note: the definition is according to preliminary SubSet-121 'M_BUTTONS' definition.
         /// </summary>
-        public static MMI_M_BUTTONS_TRAIN_DATA MMI_M_BUTTONS
+        public static Variables.MMI_M_BUTTONS_TRAIN_DATA MMI_M_BUTTONS
         {
-            set => _mButtons = value;
+            set { _mButtons = value; }
         }
     }
 }

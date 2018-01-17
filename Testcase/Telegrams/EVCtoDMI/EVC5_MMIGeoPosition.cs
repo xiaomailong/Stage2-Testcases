@@ -33,8 +33,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static int MMI_M_ABSOLUTPOS
         {
-            set => _pool.SITR.ETCS1.GeoPosition.MmiMAbsolutpos.Value = value;
-            get => _pool.SITR.ETCS1.GeoPosition.MmiMAbsolutpos.Value;
+            set { _pool.SITR.ETCS1.GeoPosition.MmiMAbsolutpos.Value = value; }
+            get { return _pool.SITR.ETCS1.GeoPosition.MmiMAbsolutpos.Value; }
         }
 
         /// <summary>
@@ -45,8 +45,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static short MMI_M_RELATIVPOS
         {
-            set => _pool.SITR.ETCS1.GeoPosition.MmiMRelativpos.Value = value;
-            get => _pool.SITR.ETCS1.GeoPosition.MmiMRelativpos.Value;
+            set { _pool.SITR.ETCS1.GeoPosition.MmiMRelativpos.Value = value; }
+            get { return _pool.SITR.ETCS1.GeoPosition.MmiMRelativpos.Value; }
         }
 
         /// <summary>

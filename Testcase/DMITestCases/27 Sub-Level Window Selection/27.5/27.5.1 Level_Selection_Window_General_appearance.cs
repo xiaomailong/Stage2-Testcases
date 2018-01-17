@@ -1,7 +1,6 @@
 using System;
 using Testcase.Telegrams.EVCtoDMI;
 using Testcase.Telegrams.DMItoEVC;
-using static Testcase.Telegrams.EVCtoDMI.Variables;
 
 
 namespace Testcase.DMITestCases
@@ -66,60 +65,30 @@ namespace Testcase.DMITestCases
             EVC14_MMICurrentDriverID.Send();
             DmiActions.ShowInstruction(this, "Enter and confirm the Driver ID");
 
-            EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = MMI_Q_CLOSE_ENABLE.Disabled;
+            EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Disabled;
             Variables.MMI_Q_LEVEL_NTC_ID[] paramEvc20MmiQLevelNtcId =
             {
-                MMI_Q_LEVEL_NTC_ID.ETCS_Level,
-                MMI_Q_LEVEL_NTC_ID.ETCS_Level,
-                MMI_Q_LEVEL_NTC_ID.ETCS_Level,
-                MMI_Q_LEVEL_NTC_ID.ETCS_Level,
-                MMI_Q_LEVEL_NTC_ID.STM_ID,
-                MMI_Q_LEVEL_NTC_ID.STM_ID
+                Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level, Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level, Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level, Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level, Variables.MMI_Q_LEVEL_NTC_ID.STM_ID, Variables.MMI_Q_LEVEL_NTC_ID.STM_ID
             };
             Variables.MMI_M_CURRENT_LEVEL[] paramEvc20MmiMCurrentLevel =
             {
-                MMI_M_CURRENT_LEVEL.NotLastUsedLevel,
-                MMI_M_CURRENT_LEVEL.NotLastUsedLevel,
-                MMI_M_CURRENT_LEVEL.NotLastUsedLevel,
-                MMI_M_CURRENT_LEVEL.NotLastUsedLevel,
-                MMI_M_CURRENT_LEVEL.NotLastUsedLevel,
-                MMI_M_CURRENT_LEVEL.NotLastUsedLevel
+                Variables.MMI_M_CURRENT_LEVEL.NotLastUsedLevel, Variables.MMI_M_CURRENT_LEVEL.NotLastUsedLevel, Variables.MMI_M_CURRENT_LEVEL.NotLastUsedLevel, Variables.MMI_M_CURRENT_LEVEL.NotLastUsedLevel, Variables.MMI_M_CURRENT_LEVEL.NotLastUsedLevel, Variables.MMI_M_CURRENT_LEVEL.NotLastUsedLevel
             };
             Variables.MMI_M_LEVEL_FLAG[] paramEvc20MmiMLevelFlag =
             {
-                MMI_M_LEVEL_FLAG.MarkedLevel,
-                MMI_M_LEVEL_FLAG.MarkedLevel,
-                MMI_M_LEVEL_FLAG.MarkedLevel,
-                MMI_M_LEVEL_FLAG.MarkedLevel,
-                MMI_M_LEVEL_FLAG.MarkedLevel,
-                MMI_M_LEVEL_FLAG.MarkedLevel
+                Variables.MMI_M_LEVEL_FLAG.MarkedLevel, Variables.MMI_M_LEVEL_FLAG.MarkedLevel, Variables.MMI_M_LEVEL_FLAG.MarkedLevel, Variables.MMI_M_LEVEL_FLAG.MarkedLevel, Variables.MMI_M_LEVEL_FLAG.MarkedLevel, Variables.MMI_M_LEVEL_FLAG.MarkedLevel
             };
             Variables.MMI_M_INHIBITED_LEVEL[] paramEvc20MmiMInhibitedLevel =
             {
-                MMI_M_INHIBITED_LEVEL.NotInhibited,
-                MMI_M_INHIBITED_LEVEL.NotInhibited,
-                MMI_M_INHIBITED_LEVEL.NotInhibited,
-                MMI_M_INHIBITED_LEVEL.NotInhibited,
-                MMI_M_INHIBITED_LEVEL.NotInhibited,
-                MMI_M_INHIBITED_LEVEL.NotInhibited
+                Variables.MMI_M_INHIBITED_LEVEL.NotInhibited, Variables.MMI_M_INHIBITED_LEVEL.NotInhibited, Variables.MMI_M_INHIBITED_LEVEL.NotInhibited, Variables.MMI_M_INHIBITED_LEVEL.NotInhibited, Variables.MMI_M_INHIBITED_LEVEL.NotInhibited, Variables.MMI_M_INHIBITED_LEVEL.NotInhibited
             };
             Variables.MMI_M_INHIBIT_ENABLE[] paramEvc20MmiMInhibitEnable =
             {
-                MMI_M_INHIBIT_ENABLE.AllowedForInhibiting,
-                MMI_M_INHIBIT_ENABLE.AllowedForInhibiting,
-                MMI_M_INHIBIT_ENABLE.AllowedForInhibiting,
-                MMI_M_INHIBIT_ENABLE.AllowedForInhibiting,
-                MMI_M_INHIBIT_ENABLE.AllowedForInhibiting,
-                MMI_M_INHIBIT_ENABLE.AllowedForInhibiting
+                Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting, Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting, Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting, Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting, Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting, Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting
             };
             Variables.MMI_M_LEVEL_NTC_ID[] paramEvc20MmiMLevelNtcId =
             {
-                MMI_M_LEVEL_NTC_ID.L1,
-                MMI_M_LEVEL_NTC_ID.L2,
-                MMI_M_LEVEL_NTC_ID.L3,
-                MMI_M_LEVEL_NTC_ID.L0,
-                MMI_M_LEVEL_NTC_ID.CBTC,
-                MMI_M_LEVEL_NTC_ID.AWS_TPWS
+                Variables.MMI_M_LEVEL_NTC_ID.L1, Variables.MMI_M_LEVEL_NTC_ID.L2, Variables.MMI_M_LEVEL_NTC_ID.L3, Variables.MMI_M_LEVEL_NTC_ID.L0, Variables.MMI_M_LEVEL_NTC_ID.CBTC, Variables.MMI_M_LEVEL_NTC_ID.AWS_TPWS
             };
 
             EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = paramEvc20MmiQLevelNtcId;
@@ -212,7 +181,7 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, "Press the ‘Level 1’ button, then press and hold the input field");
 
-            EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.LevelEntered;
+            EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.LevelEntered;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Click’ sound is played once.");
@@ -249,9 +218,9 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, "Release the input field");
 
-            EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.LevelEntered;
+            EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.LevelEntered;
 
-            EVC121_MMINewLevel.LevelSelected = MMI_M_LEVEL_NTC_ID.L1;
+            EVC121_MMINewLevel.LevelSelected = Variables.MMI_M_LEVEL_NTC_ID.L1;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Level window and displays the Main window" + Environment.NewLine +
@@ -271,8 +240,8 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Press the ‘Level’ button");
 
-            EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = MMI_Q_CLOSE_ENABLE.Enabled;
-            paramEvc20MmiMCurrentLevel[0] = MMI_M_CURRENT_LEVEL.LastUsedLevel;
+            EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
+            paramEvc20MmiMCurrentLevel[0] = Variables.MMI_M_CURRENT_LEVEL.LastUsedLevel;
             EVC20_MMISelectLevel.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -287,7 +256,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this,
                 @"Press the input field to confirm the current value (without entering data)");
 
-            EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.LevelEntered;
+            EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.LevelEntered;
 
             /*
             Test Step 10
@@ -298,7 +267,7 @@ namespace Testcase.DMITestCases
             // Repeat Steps 4-9 for Level 2 button
             DmiActions.ShowInstruction(this, "Press the ‘Level 2’ button, then press and hold the input field");
 
-            EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.LevelEntered;
+            EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.LevelEntered;
 
             DmiActions.ShowInstruction(this, "Whilst keeping the input field pressed, drag it out of its area");
 
@@ -313,9 +282,9 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, "Release the input field");
 
-            EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.LevelEntered;
+            EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.LevelEntered;
 
-            EVC121_MMINewLevel.LevelSelected = MMI_M_LEVEL_NTC_ID.L2;
+            EVC121_MMINewLevel.LevelSelected = Variables.MMI_M_LEVEL_NTC_ID.L2;
 
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L2;
 
@@ -325,9 +294,9 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, @"Press the ‘Level’ button");
 
-            EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = MMI_Q_CLOSE_ENABLE.Enabled;
-            paramEvc20MmiMCurrentLevel[0] = MMI_M_CURRENT_LEVEL.NotLastUsedLevel;
-            paramEvc20MmiMCurrentLevel[1] = MMI_M_CURRENT_LEVEL.LastUsedLevel;
+            EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
+            paramEvc20MmiMCurrentLevel[0] = Variables.MMI_M_CURRENT_LEVEL.NotLastUsedLevel;
+            paramEvc20MmiMCurrentLevel[1] = Variables.MMI_M_CURRENT_LEVEL.LastUsedLevel;
             EVC20_MMISelectLevel.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -336,12 +305,12 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this,
                 @"Press the input field to confirm the current value (without entering data)");
 
-            EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.LevelEntered;
+            EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.LevelEntered;
 
             // Repeat Steps 4-9 for Level 3 button
             DmiActions.ShowInstruction(this, "Press the ‘Level 3’ button, then press and hold the input field");
 
-            EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.LevelEntered;
+            EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.LevelEntered;
 
             DmiActions.ShowInstruction(this, "Whilst keeping the input field pressed, drag it out of its area");
 
@@ -357,9 +326,9 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, "Release the input field");
 
-            EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.LevelEntered;
+            EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.LevelEntered;
 
-            EVC121_MMINewLevel.LevelSelected = MMI_M_LEVEL_NTC_ID.L3;
+            EVC121_MMINewLevel.LevelSelected = Variables.MMI_M_LEVEL_NTC_ID.L3;
 
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L3;
 
@@ -369,9 +338,9 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, @"Press the ‘Level’ button");
 
-            EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = MMI_Q_CLOSE_ENABLE.Enabled;
-            paramEvc20MmiMCurrentLevel[1] = MMI_M_CURRENT_LEVEL.NotLastUsedLevel;
-            paramEvc20MmiMCurrentLevel[2] = MMI_M_CURRENT_LEVEL.LastUsedLevel;
+            EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
+            paramEvc20MmiMCurrentLevel[1] = Variables.MMI_M_CURRENT_LEVEL.NotLastUsedLevel;
+            paramEvc20MmiMCurrentLevel[2] = Variables.MMI_M_CURRENT_LEVEL.LastUsedLevel;
             EVC20_MMISelectLevel.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -380,7 +349,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this,
                 @"Press the input field to confirm the current value (without entering data)");
 
-            EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.LevelEntered;
+            EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.LevelEntered;
 
             // Repeat Steps 4-9 for Level 0 button
             DmiActions.ShowInstruction(this, "Press the ‘Level 0’ button, then press and hold the input field");
@@ -400,9 +369,9 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, "Release the input field");
 
-            EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.LevelEntered;
+            EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.LevelEntered;
 
-            EVC121_MMINewLevel.LevelSelected = MMI_M_LEVEL_NTC_ID.L0;
+            EVC121_MMINewLevel.LevelSelected = Variables.MMI_M_LEVEL_NTC_ID.L0;
 
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L0;
 
@@ -411,9 +380,9 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, @"Press the ‘Level’ button");
 
-            EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = MMI_Q_CLOSE_ENABLE.Enabled;
-            paramEvc20MmiMCurrentLevel[2] = MMI_M_CURRENT_LEVEL.NotLastUsedLevel;
-            paramEvc20MmiMCurrentLevel[3] = MMI_M_CURRENT_LEVEL.LastUsedLevel;
+            EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
+            paramEvc20MmiMCurrentLevel[2] = Variables.MMI_M_CURRENT_LEVEL.NotLastUsedLevel;
+            paramEvc20MmiMCurrentLevel[3] = Variables.MMI_M_CURRENT_LEVEL.LastUsedLevel;
             EVC20_MMISelectLevel.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -422,12 +391,12 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this,
                 @"Press the input field to confirm the current value (without entering data)");
 
-            EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.LevelEntered;
+            EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.LevelEntered;
 
             // Repeat Steps 4-9 for CBTC button
             DmiActions.ShowInstruction(this, "Press the ‘CBTC’ button, then press and hold the input field");
 
-            EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.LevelEntered;
+            EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.LevelEntered;
 
             DmiActions.ShowInstruction(this, "Whilst keeping the input field pressed, drag it out of its area");
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -441,9 +410,9 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, "Release the input field");
 
-            EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.LevelEntered;
+            EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.LevelEntered;
 
-            EVC121_MMINewLevel.LevelSelected = MMI_M_LEVEL_NTC_ID.CBTC;
+            EVC121_MMINewLevel.LevelSelected = Variables.MMI_M_LEVEL_NTC_ID.CBTC;
 
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.LNTC;
 
@@ -452,9 +421,9 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, @"Press the ‘Level’ button");
 
-            EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = MMI_Q_CLOSE_ENABLE.Enabled;
-            paramEvc20MmiMCurrentLevel[3] = MMI_M_CURRENT_LEVEL.NotLastUsedLevel;
-            paramEvc20MmiMCurrentLevel[4] = MMI_M_CURRENT_LEVEL.LastUsedLevel;
+            EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
+            paramEvc20MmiMCurrentLevel[3] = Variables.MMI_M_CURRENT_LEVEL.NotLastUsedLevel;
+            paramEvc20MmiMCurrentLevel[4] = Variables.MMI_M_CURRENT_LEVEL.LastUsedLevel;
             EVC20_MMISelectLevel.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -463,12 +432,12 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this,
                 @"Press the input field to confirm the current value (without entering data)");
 
-            EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.LevelEntered;
+            EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.LevelEntered;
 
             // Repeat Steps 4-9 for AWS_TPWS button
             DmiActions.ShowInstruction(this, "Press the ‘AWS_TPWS’ button, then press and hold the input field");
 
-            EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.LevelEntered;
+            EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.LevelEntered;
 
             DmiActions.ShowInstruction(this, "Whilst keeping the input field pressed, drag it out of its area");
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -482,17 +451,17 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, "Release the input field");
 
-            EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.LevelEntered;
-            EVC121_MMINewLevel.LevelSelected = MMI_M_LEVEL_NTC_ID.AWS_TPWS;
+            EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.LevelEntered;
+            EVC121_MMINewLevel.LevelSelected = Variables.MMI_M_LEVEL_NTC_ID.AWS_TPWS;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.LNTC;
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SB mode, Level NTC.");
 
             DmiActions.ShowInstruction(this, @"Press the ‘Level’ button");
 
-            EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = MMI_Q_CLOSE_ENABLE.Enabled;
-            paramEvc20MmiMCurrentLevel[4] = MMI_M_CURRENT_LEVEL.NotLastUsedLevel;
-            paramEvc20MmiMCurrentLevel[5] = MMI_M_CURRENT_LEVEL.LastUsedLevel;
+            EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
+            paramEvc20MmiMCurrentLevel[4] = Variables.MMI_M_CURRENT_LEVEL.NotLastUsedLevel;
+            paramEvc20MmiMCurrentLevel[5] = Variables.MMI_M_CURRENT_LEVEL.LastUsedLevel;
 
             EVC20_MMISelectLevel.Send();
 
@@ -502,7 +471,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this,
                 @"Press the input field to confirm the current value (without entering data)");
 
-            EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.LevelEntered;
+            EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.LevelEntered;
 
             /*
             Test Step 11
@@ -551,7 +520,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Release the ‘Close’ button");
 
-            EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.ExitChangeLevel;
+            EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.ExitChangeLevel;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Level window and displays the Main window");
@@ -636,12 +605,12 @@ namespace Testcase.DMITestCases
                         {Variables.MMI_M_LEVEL_NTC_ID.L3};
                     break;
                 case msgType.typeb:
-                    EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new MMI_Q_LEVEL_NTC_ID[0];
-                    EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new MMI_M_CURRENT_LEVEL[0];
-                    EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = new MMI_M_LEVEL_FLAG[0];
-                    EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = new MMI_M_INHIBITED_LEVEL[0];
-                    EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = new MMI_M_INHIBIT_ENABLE[0];
-                    EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new MMI_M_LEVEL_NTC_ID[0];
+                    EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new Variables.MMI_Q_LEVEL_NTC_ID[0];
+                    EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new Variables.MMI_M_CURRENT_LEVEL[0];
+                    EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = new Variables.MMI_M_LEVEL_FLAG[0];
+                    EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = new Variables.MMI_M_INHIBITED_LEVEL[0];
+                    EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = new Variables.MMI_M_INHIBIT_ENABLE[0];
+                    EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new Variables.MMI_M_LEVEL_NTC_ID[0];
                     break;
             }
             EVC20_MMISelectLevel.Send();

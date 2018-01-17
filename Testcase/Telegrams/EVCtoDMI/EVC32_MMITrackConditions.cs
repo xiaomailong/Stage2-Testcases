@@ -163,8 +163,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public int MMI_O_TRACKCOND_ANNOUNCE
         {
-            set => _mmiOTrackcondAnnounce = value;
-            get => _mmiOTrackcondAnnounce;
+            set { _mmiOTrackcondAnnounce = value; }
+            get { return _mmiOTrackcondAnnounce; }
         }
 
         /// <summary>
@@ -176,8 +176,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public int MMI_O_TRACKCOND_START
         {
-            set => _mmiOTrackcondStart = value;
-            get => _mmiOTrackcondStart;
+            set { _mmiOTrackcondStart = value; }
+            get { return _mmiOTrackcondStart; }
         }
 
         /// <summary>
@@ -189,8 +189,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public int MMI_O_TRACKCOND_END
         {
-            set => _mmiOTrackcondEnd = value;
-            get => _mmiOTrackcondEnd;
+            set { _mmiOTrackcondEnd = value; }
+            get { return _mmiOTrackcondEnd; }
         }
 
         /// <summary>
@@ -202,8 +202,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public byte MMI_NID_TRACKCOND
         {
-            set => _mmiNidTrackcond = value;
-            get => _mmiNidTrackcond;
+            set { _mmiNidTrackcond = value; }
+            get { return _mmiNidTrackcond; }
         }
 
         /// <summary>
@@ -231,8 +231,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public Variables.MMI_M_TRACKCOND_TYPE MMI_M_TRACKCOND_TYPE
         {
-            set => _mmiMTrackcondType = (byte) value;
-            get => (Variables.MMI_M_TRACKCOND_TYPE) _mmiMTrackcondType;
+            set { _mmiMTrackcondType = (byte) value; }
+            get { return (Variables.MMI_M_TRACKCOND_TYPE) _mmiMTrackcondType; }
         }
 
         /// <summary>
@@ -247,8 +247,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public byte EVC_32_ALIAS_2
         {
-            get => _evc32Alias2;
-            set => _evc32Alias2 = value;
+            get { return _evc32Alias2; }
+            set { _evc32Alias2 = value; }
         }
 
         /// <summary>

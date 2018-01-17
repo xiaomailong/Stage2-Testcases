@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using Testcase.Telegrams.EVCtoDMI;
 using Testcase.Telegrams.DMItoEVC;
-using static Testcase.Telegrams.EVCtoDMI.Variables;
 
 
 namespace Testcase.DMITestCases
@@ -104,10 +103,10 @@ namespace Testcase.DMITestCases
 
             EVC22_MMICurrentRBC.MMI_NID_WINDOW = 9;
             EVC22_MMICurrentRBC.NetworkCaptions = new List<string> {"GSMR-A", "GSMR-B"};
-            EVC22_MMICurrentRBC.DataElements = new List<DataElement>
+            EVC22_MMICurrentRBC.DataElements = new List<Variables.DataElement>
             {
-                new DataElement {Identifier = 0, QDataCheck = 23, EchoText = "23"},
-                new DataElement {Identifier = 1, QDataCheck = 24, EchoText = "24"}
+                new Variables.DataElement {Identifier = 0, QDataCheck = 23, EchoText = "23"},
+                new Variables.DataElement {Identifier = 1, QDataCheck = 24, EchoText = "24"}
             };
             EVC22_MMICurrentRBC.Send();
 
@@ -316,7 +315,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
 
-            EVC101_MMIDriverRequest.CheckMRequestReleased = MMI_M_REQUEST.ExitRBCNetworkID;
+            EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.ExitRBCNetworkID;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the RBC contact window.");
