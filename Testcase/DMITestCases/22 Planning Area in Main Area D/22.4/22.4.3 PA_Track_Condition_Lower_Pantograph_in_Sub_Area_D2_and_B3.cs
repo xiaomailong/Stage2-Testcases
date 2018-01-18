@@ -9,7 +9,8 @@ namespace Testcase.DMITestCases
     /// 22.4.3 PA Track Condition:  Lower Pantograph in Sub-Area D2 and B3
     /// TC-ID: 17.4.3
     /// 
-    /// This test case is to verify PA Track Condition” Lower pantograph” in Sub-Area D2 and B3. The track condition shall comply with [ERA] standard and [MMI-ETCS-gen].
+    /// This test case is to verify PA Track Condition” Lower pantograph” in Sub-Area D2 and B3. 
+    /// The track condition shall comply with [ERA] standard and [MMI-ETCS-gen].
     /// 
     /// Tested Requirements:
     /// MMI_gen 619 (partly: PL01 or PL02, PL03 or PL04); MMI_gen 9980 (partly: Table45(PL01 or PL02, PL03 or PL04)); MMI_gen 9979 (partly: START, END); MMI_gen 662 (partly: TC01, TC02 or TC03, TC04 or TC05); MMI_gen 10465 (partly:Table40(TC01, TC02 or TC03, TC04 or TC05)); MMI_gen 9965; MMI_gen 636 (partly: START, END); MMI_gen 2604 (partly: bottom of the symbol, D2);
@@ -73,24 +74,30 @@ namespace Testcase.DMITestCases
 
             /*
             Test Step 2
-            Action: Drive the train forward pass BG0 with MA and Track descriptionPkt 12,21 and 27
+            Action: Drive the train forward pass BG0 with MA and Track description
+            Pkt 12,21 and 27
             Expected Result: Mode changes to FS mode , L1
             */
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
-
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in FS mode, Level 1.");
+            DmiActions.Send_FS_Mode(this);
+            DmiExpectedResults.FS_mode_displayed(this);
 
             /*
             Test Step 3
-            Action: Continue to drive the train forward pass BG1 with Track condition Pkt 68:D_TRACKCOND = 200L_TRACKCOND = 200M_TRACKCOND = 3(Lower pantograph)
+            Action: Continue to drive the train forward pass BG1 with Track condition 
+            Pkt 68:
+            D_TRACKCOND = 200
+            L_TRACKCOND = 200
+            M_TRACKCOND = 3(Lower pantograph)
             Expected Result: Mode remins in FS mode
             */
+
+            DmiExpectedResults.FS_mode_displayed(this);
 
             /*
             Test Step 4
             Action: Enter Anouncement of Track condition “Non stopping area: Lower Pantograph”
-            Expected Result: Verify the following information(1)   DMI displays PL01 or PL02 symbol in sub-area D2.(PL01) or (PL02)
+            Expected Result: Verify the following information
+            (1)   DMI displays PL01 or PL02 symbol in sub-area D2.(PL01) or (PL02)
             Test Step Comment: (1) MMI_gen 619(partly: PL01 or PL02);
             */
             TrackCondition trackCondition = new TrackCondition
@@ -107,13 +114,22 @@ namespace Testcase.DMITestCases
             EVC32_MMITrackConditions.TrackConditions = new List<TrackCondition> {{trackCondition}};
             EVC32_MMITrackConditions.Send();
 
+            DmiExpectedResults.Driver_symbol_displayed(this, "Lower Pantograph", "PL01", "D2", false);
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays symbol PL01 in sub-area D2.");
 
             /*
             Test Step 5
             Action: Stop the train
-            Expected Result: Verify the following information(1)   Use the log file to confirm that DMI recieved packet information MMI_DRIVER_MESSAGE_ACK (EVC-32) and MMI_ETCS_MISC_OUT_SIGNALS (EVC-7) with the following variables,MMI_M_TRACkCOND_TYPE = 3MMI_Q_TRACKCOND_STEP = 0 or 1 (PL01 or PL02)MMI_Q_TRACKCOND_ACTION_START = 1 (PL01) or 0 (PL02)MMI_O_TRACKCOND_START - OBU_TR_O_TRAIN (EVC-7)   =  Remaining distance from PL01 or PL02 symbol in sub-area D2 to the first distance scale line (zero line)(2)    The bottom of PL01 or PL02 symbol is displayed with the correct position in the PA distance scale refer to the result of calculation from expected result (1)
+            Expected Result: Verify the following information
+            (1)   Use the log file to confirm that DMI recieved packet information 
+            MMI_DRIVER_MESSAGE_ACK (EVC-32) and MMI_ETCS_MISC_OUT_SIGNALS (EVC-7) with the following variables,
+            MMI_M_TRACkCOND_TYPE = 3
+            MMI_Q_TRACKCOND_STEP = 0 or 1 (PL01 or PL02)
+            MMI_Q_TRACKCOND_ACTION_START = 1 (PL01) or 0 (PL02)
+            MMI_O_TRACKCOND_START - OBU_TR_O_TRAIN (EVC-7)   =  Remaining distance from PL01 or PL02 symbol in sub-area D2 to the first distance scale line (zero line)
+            (2)    The bottom of PL01 or PL02 symbol is displayed with the correct position in the PA distance scale refer to the result of calculation from expected result (1)
             Test Step Comment: (1) MMI_gen 9980 (partly:Table45(PL01 or PL02));MMI_gen 9979 (partly: START); MMI_gen 636 (partly: START); (2) MMI_gen 2604 (partly: bottom of the symbol, D2);
             */
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
@@ -143,7 +159,13 @@ namespace Testcase.DMITestCases
             /*
             Test Step 7
             Action: Stop the train when the TC01, TC02 or TC03 symbol displays in sub-area B3
-            Expected Result: Verify the following informationDMI displays TC01, TC02 or TC03 symbol in sub-area B3.(TC01) or (TC02) or (TC03)Use the log file to confirm that DMI recieved packet information MMI_DRIVER_MESSAGE_ACK (EVC-32) and MMI_ETCS_MISC_OUT_SIGNALS (EVC-7) with the following variables,MMI_M_TRACkCOND_TYPE = 3MMI_Q_TRACKCOND_STEP = 1 (TC02 or TC03) or 2(TC01)MMI_Q_TRACKCOND_ACTION_START = 0 (TC03) or 1(TC02 or TC01)
+            Expected Result: Verify the following informationDMI displays TC01, TC02 or TC03 symbol in sub-area B3.
+            (TC01) or (TC02) or (TC03)
+            Use the log file to confirm that DMI recieved packet information 
+            MMI_DRIVER_MESSAGE_ACK (EVC-32) and MMI_ETCS_MISC_OUT_SIGNALS (EVC-7) with the following variables,
+            MMI_M_TRACkCOND_TYPE = 3
+            MMI_Q_TRACKCOND_STEP = 1 (TC02 or TC03) or 2(TC01)
+            MMI_Q_TRACKCOND_ACTION_START = 0 (TC03) or 1(TC02 or TC01)
             Test Step Comment: (1) MMI_gen 10465 (partly:Table40(TC01, TC02 or TC03));(2) MMI_gen 662 (partly: TC01, TC02 or TC03);
             */
             // Remove current track condition?
@@ -172,7 +194,8 @@ namespace Testcase.DMITestCases
             /*
             Test Step 9
             Action: Enter Track condition “Non stopping area: Raise Pantograph”
-            Expected Result: Verify the following information(1)   DMI displays PL03 or PL04 symbol in sub-area D2.(PL03) or (PL04)
+            Expected Result: Verify the following information
+            (1)   DMI displays PL03 or PL04 symbol in sub-area D2.(PL03) or (PL04)
             Test Step Comment: (1) MMI_gen 619(partly: PL03 or PL04);
             */
             trackCondition.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.LeaveArea;
@@ -186,7 +209,14 @@ namespace Testcase.DMITestCases
             /*
             Test Step 10
             Action: Stop the train
-            Expected Result: Verify the following information(1)   Use the log file to confirm that DMI recieved packet information MMI_DRIVER_MESSAGE_ACK (EVC-32) and MMI_ETCS_MISC_OUT_SIGNALS (EVC-7) with the following variables,MMI_M_TRACkCOND_TYPE = 3MMI_Q_TRACKCOND_STEP = 0 or 1 or 2 (PL03 or PL04)MMI_Q_TRACKCOND_ACTION_START = 1 (PL03) or 0 (PL04)MMI_O_TRACKCOND_END - OBU_TR_O_TRAIN (EVC-7)   =  Remaining distance from PL03 or PL04 symbol in sub-area D2 to the first distance scale line (zero line)(2)     The bottom of PL03 or PL04 symbol is displayed with the correct position in the PA distance scale refer to the result of calculation from expected result (1)
+            Expected Result: Verify the following information
+            (1)   Use the log file to confirm that DMI recieved packet information 
+            MMI_DRIVER_MESSAGE_ACK (EVC-32) and MMI_ETCS_MISC_OUT_SIGNALS (EVC-7) with the following variables,
+            MMI_M_TRACkCOND_TYPE = 3
+            MMI_Q_TRACKCOND_STEP = 0 or 1 or 2 (PL03 or PL04)
+            MMI_Q_TRACKCOND_ACTION_START = 1 (PL03) or 0 (PL04)
+            MMI_O_TRACKCOND_END - OBU_TR_O_TRAIN (EVC-7)   =  Remaining distance from PL03 or PL04 symbol in sub-area D2 to the first distance scale line (zero line)
+            (2)     The bottom of PL03 or PL04 symbol is displayed with the correct position in the PA distance scale refer to the result of calculation from expected result (1)
             Test Step Comment: (1) MMI_gen 9980 (partly:Table45(PL03 or PL04));MMI_gen 9979 (partly: END); MMI_gen 636 (partly: END); (2) MMI_gen 2604 (partly: bottom of the symbol, D2);
             */
             // Spec does not agree with DMI_RS_ETCS doc. on values
@@ -211,7 +241,13 @@ namespace Testcase.DMITestCases
             /*
             Test Step 12
             Action: Stop the train when the TC04 or TC05 symbol displays in sub-area B3
-            Expected Result: Verify the following information(1)   DMI displays TC04 or TC05 symbol in sub-area B3. (TC04) or  (TC05)(2)   Use the log file to confirm that DMI recieved packet information MMI_DRIVER_MESSAGE_ACK (EVC-32) and MMI_ETCS_MISC_OUT_SIGNALS (EVC-7) with the following variables,MMI_M_TRACkCOND_TYPE = 3MMI_Q_TRACKCOND_STEP = 3MMI_Q_TRACKCOND_ACTION_END = 0 (TC05) or 1(TC04)
+            Expected Result: Verify the following information
+            (1)   DMI displays TC04 or TC05 symbol in sub-area B3. (TC04) or  (TC05)
+            (2)   Use the log file to confirm that DMI recieved packet information 
+            MMI_DRIVER_MESSAGE_ACK (EVC-32) and MMI_ETCS_MISC_OUT_SIGNALS (EVC-7) with the following variables,
+            MMI_M_TRACkCOND_TYPE = 3
+            MMI_Q_TRACKCOND_STEP = 3
+            MMI_Q_TRACKCOND_ACTION_END = 0 (TC05) or 1(TC04)
             Test Step Comment: (1) MMI_gen 10465 (partly:Table40(TC04 or TC05));(2) MMI_gen 662 (partly: TC04 or TC05);
             */
             trackCondition.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.RemoveTC;
@@ -238,7 +274,10 @@ namespace Testcase.DMITestCases
             /*
             Test Step 14
             Action: Stop the train when the track condition symbol has been removed from sub-area B3
-            Expected Result: Verify the following information(1)   Use the log file to confirm that DMI received packet information MMI_TRACK_CONDITIONS (EVC-32) with the following variables,MMI_Q_TRACKCOND_STEP = 4MMI_NID_TRACKCOND = Same value with expected result No.2 of step 12
+            Expected Result: Verify the following information
+            (1)   Use the log file to confirm that DMI received packet information MMI_TRACK_CONDITIONS (EVC-32) with the following variables,
+            MMI_Q_TRACKCOND_STEP = 4
+            MMI_NID_TRACKCOND = Same value with expected result No.2 of step 12
             Test Step Comment: (1) MMI_gen 9965;
             */
             trackCondition.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.RemoveTC;
