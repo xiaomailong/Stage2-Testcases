@@ -1160,6 +1160,11 @@ namespace Testcase.DMITestCases
             SB_Mode_displayed(pool);
         }
 
+        public static void Level_0_displayed(SignalPool pool)
+        {
+            Driver_symbol_displayed(pool, "Level 0", "LE01", "C8", true);
+        }
+
         public static void Level_1_displayed(SignalPool pool)
         {
             Driver_symbol_displayed(pool, "Level 1", "LE03", "C8", true);
