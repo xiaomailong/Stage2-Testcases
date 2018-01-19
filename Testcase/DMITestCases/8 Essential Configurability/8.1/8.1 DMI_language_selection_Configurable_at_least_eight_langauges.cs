@@ -24,6 +24,7 @@ namespace Testcase.DMITestCases
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
+            DmiActions.ShowInstruction(this, "Configure DEFAULT_LANGUAGE to: 1 (Deutsch), 2 (Swedish language), 3 (Dutch language), 4 (Spanish language), 5 (Polish language), 6 (Hungarian Language) and 7 (Czech language)");
         }
 
         public override void PostExecution()
@@ -46,45 +47,77 @@ namespace Testcase.DMITestCases
             Expected Result: ‘Driver’s desk not active’ is displayed on DMI in Deutsch language
             */
 
+            DmiActions.Start_ATP();
+            WaitForVerification("‘Driver’s desk not active’ is displayed on DMI in Deutsch language");
 
             /*
             Test Step 2
             Action: Activate cabin A
-            Expected Result: DMI displays the Driver ID window.Verify the following information,The window headline of the Driver ID window is displayed in Deutsch language
+            Expected Result: DMI displays the Driver ID window.
+            Verify the following information,
+            The window headline of the Driver ID window is displayed in Deutsch language
             Test Step Comment: (1) MMI_gen 63 (partly: Window headline);
             */
-            // Call generic Action Method
+
             DmiActions.Activate_Cabin_1(this);
+            DmiActions.Set_Driver_ID(this, "1234");
+            DmiActions.Send_SB_Mode(this);
+
+            WaitForVerification("The window headline of the Driver ID window is displayed in Deutsch language");
 
 
             /*
             Test Step 3
             Action: Enter the Driver ID
-            Expected Result: Verify the following information,DMI displays the acknowledgement message of perform brake test at area E in Deutsch language
+            Expected Result: Verify the following information,
+            DMI displays the acknowledgement message of perform brake test at area E in Deutsch language
             Test Step Comment: (1) MMI_gen 63 (partly: Fixed text messages, text strings use for messages to the driver);
             */
+
+            DmiExpectedResults.Driver_ID_entered(this);
+            DmiActions.Request_Brake_Test(this, 1);
+
+            WaitForVerification("DMI displays the acknowledgement message of perform brake test at area E in Deutsch language");
 
 
             /*
             Test Step 4
             Action: Acknowledge the message
-            Expected Result: Verify the following information,DMI displays the text message ‘Brake Test in progress’ in Deutsch language
+            Expected Result: Verify the following information,
+            DMI displays the text message ‘Brake Test in progress’ in Deutsch language
             Test Step Comment: (1) MMI_gen 63 (partly: Fixed text messages, text strings use for messages to the driver);
             */
 
+            DmiExpectedResults.Brake_Test_Perform_Order(this, true);
+            DmiActions.Perform_Brake_Test(this, 2);
+
+            WaitForVerification("DMI displays the text message ‘Brake Test in progress’ in Deutsch language");
 
             /*
             Test Step 5
             Action: Select and confirm level 1
-            Expected Result: DMI displays in SB mode, level 1.Verify the following information,The buttons at sub-area F1-F4 is displayed in Deutsch language
+            Expected Result: DMI displays in SB mode, level 1.
+            Verify the following information,
+            The buttons at sub-area F1-F4 is displayed in Deutsch language
             Test Step Comment: (1) MMI_gen 63 (partly: text labels displayed on buttons);
             */
 
+            Wait_Realtime(5000);
+
+            DmiActions.Display_Brake_Test_Successful(this, 3);
+
+            DmiActions.Display_Level_Window(this);
+            DmiExpectedResults.Level_window_displayed(this);
+
+            DmiActions.Delete_Brake_Test_Successful(this, 3);
+
+            WaitForVerification("The buttons at sub-area F1-F4 is displayed in Deutsch language");
 
             /*
             Test Step 6
             Action: Select all buttons in the Main menu window
-            Expected Result: Verify the following information,Verify that all texts in the window headline, buttons, input fields, echo texts, text labels of input fields are displayed in Deutsch language
+            Expected Result: Verify the following information,
+            Verify that all texts in the window headline, buttons, input fields, echo texts, text labels of input fields are displayed in Deutsch language
             Test Step Comment: (1) MMI_gen 63;
             */
 
