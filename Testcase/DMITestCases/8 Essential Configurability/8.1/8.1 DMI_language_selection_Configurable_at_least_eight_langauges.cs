@@ -15,7 +15,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// N/A
     /// </summary>
-    public class DMI_language_selection_Configurable_at_least_eight_langauges : TestcaseBase
+    public class TC_3_1_DMI_language_selection : TestcaseBase
     {
         public override void PreExecution()
         {
