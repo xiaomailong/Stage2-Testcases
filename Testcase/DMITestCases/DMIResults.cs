@@ -550,6 +550,11 @@ namespace Testcase.DMITestCases
             EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.StandBy;
         }
 
+        public static void Default_Window_Displayed(SignalPool pool)
+        {
+            pool.WaitForVerification("Is the Default window displayed?");
+        }
+
         /// <summary>
         /// Description: Default Window is displayed with Override Symbol in area C7.
         /// Used in:
