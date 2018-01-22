@@ -22,6 +22,10 @@ namespace Testcase.DMITestCases
         public override void PostExecution()
         {
             // Post-test cleanup.
+            DmiActions.ShowInstruction(this, @"Perform the following actions: " + Environment.NewLine +
+                                             Environment.NewLine +
+                                             "Press OK on THIS window to deactivate cab and finish test.");
+            RigControl.DeActivateBothCabs(this);
         }
 
         public override bool TestcaseEntryPoint()
@@ -30,7 +34,9 @@ namespace Testcase.DMITestCases
 
             #region Cab Activation
 
-            DmiActions.ShowInstruction(this, @"Cab Activation");
+            DmiActions.ShowInstruction(this, @"Perform the following actions: " + Environment.NewLine +
+                                             Environment.NewLine +
+                                             "Press OK on THIS window to activate cab and start test.");
             RigControl.ActivateCab1(this);
 
             DmiExpectedResults.Cabin_A_is_activated(this);
