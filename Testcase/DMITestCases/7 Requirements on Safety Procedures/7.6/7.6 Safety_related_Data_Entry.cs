@@ -31,18 +31,18 @@ namespace Testcase.DMITestCases
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
-            // System is power on.Cabin is activated.Settings window is opened.Maintenance password window is opened.The correct password is entered, the Maintenance window is opened.
+            // System is power on.
+            // Cabin is activated.
+            // Settings window is opened.
+            // Maintenance password window is opened.
+            // The correct password is entered, the Maintenance window is opened.
             DmiActions.Start_ATP();
 
             // Set train running number, cab 1 active, and other defaults
             DmiActions.Activate_Cabin_1(this);
 
             // force the window
-            EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings; // Settings window
-            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH =
-                EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter;
-            EVC30_MMIRequestEnable.Send();
+            DmiActions.Open_the_Settings_window(this);
         }
 
         public override void PostExecution()
@@ -61,7 +61,10 @@ namespace Testcase.DMITestCases
             /*
             Test Step 1
             Action: Press ‘Wheel diameter’ button
-            Expected Result: DMI displays Wheel diameter window.Verify the following information,(1)    Use the log file to confirm that DMI received packet EVC-40 with variable MMI_Q_MD_DATASET = 0 from ETCS Onboard.(2)   The format of presentation in Wheel diameter window is presented as an Input Fields
+            Expected Result: DMI displays Wheel diameter window.
+            Verify the following information,
+            (1)    Use the log file to confirm that DMI received packet EVC-40 with variable MMI_Q_MD_DATASET = 0 from ETCS Onboard.
+            (2)   The format of presentation in Wheel diameter window is presented as an Input Fields
             Test Step Comment: (1) MMI_gen 3226 (partly: Maintenance Data Entry);(2)  MMI_gen 3390 (partly: Maintenance Data entry);
             */
             // Call generic Action Method
@@ -82,8 +85,16 @@ namespace Testcase.DMITestCases
 
             /*
             Test Step 2
-            Action: Confirm all value of each Input Field.Then, press ‘Yes’ button
-            Expected Result: DMI displays Wheel diameter validation window.Verify the following information,(1)    Use the log file to confirm that DMI sent out packet EVC-140 variable based on confirmed data and MMI_Q_MD_DATASET = 0 to ETCS Onboard.(2)   Use the log file to confirm that DMI received packet EVC-41 with variable MMI_Q_MD_DATASET = 0 from ETCS Onboard.(3)   The position of ‘Yes’ button on Wheel diameter validation window is located at the different location of ‘Yes’ button on Wheel diameter window.(4)   The format of presentation in Wheel diameter validation window is difference from Wheel diameter window as follows,           -   The data pending for confirmation of Wheel diameter validation window is presented as echo texts.(5)   The presentation of echo text in Wheel diameter validation window is located at the difference location of an Input Fields in Wheel diameter window
+            Action: Confirm all value of each Input Field.
+            Then, press ‘Yes’ button
+            Expected Result: DMI displays Wheel diameter validation window.
+            Verify the following information,
+            (1)   Use the log file to confirm that DMI sent out packet EVC-140 variable based on confirmed data and MMI_Q_MD_DATASET = 0 to ETCS Onboard.
+            (2)   Use the log file to confirm that DMI received packet EVC-41 with variable MMI_Q_MD_DATASET = 0 from ETCS Onboard.
+            (3)   The position of ‘Yes’ button on Wheel diameter validation window is located at the different location of ‘Yes’ button on Wheel diameter window.
+            (4)   The format of presentation in Wheel diameter validation window is difference from Wheel diameter window as follows,           
+                  -   The data pending for confirmation of Wheel diameter validation window is presented as echo texts.
+            (5)   The presentation of echo text in Wheel diameter validation window is located at the difference location of an Input Fields in Wheel diameter window
             Test Step Comment: (1) MMI_gen 3203 (Maintenance Data Entry);(2) MMI_gen 3226 (partly: Maintenance Data Validation);(3) MMI_gen 3205 (partly: Maintenance Data Entry and Validation);(4) MMI_gen 3390 (partly: Maintenance Validation);(5) MMI_gen 3391 (partly: Maintenance Data Entry and Validation);
             */
             DmiActions.ShowInstruction(this, @"Accept the values of all Input Fields as shown. Press the ‘Yes’ button");
@@ -110,8 +121,11 @@ namespace Testcase.DMITestCases
 
             /*
             Test Step 3
-            Action: Press ‘Yes’ button.Then, confirm an entered data by pressing at an Input Field
-            Expected Result: DMI displays Settings window.Verify the following information,(1)    Use the log file to confirm that DMI sent out packet EVC-141 with variable based on confirmed data to ETCS Onboard
+            Action: Press ‘Yes’ button.
+            Then, confirm an entered data by pressing at an Input Field
+            Expected Result: DMI displays Settings window.
+            Verify the following information,
+            (1)    Use the log file to confirm that DMI sent out packet EVC-141 with variable based on confirmed data to ETCS Onboard
             Test Step Comment: (1) MMI_gen 3203 (partly: Maintenance Data Validation);
             */
             // EVC141_MMIConfirmedMaintenanceData.MMI_Q_MD_DATASET_ ?? 
@@ -124,7 +138,10 @@ namespace Testcase.DMITestCases
             /*
             Test Step 4
             Action: Press ‘Radar’ button
-            Expected Result: DMI displays Radar window.Verify the following information,(1)    Use the log file to confirm that DMI received packet EVC-40 with variable MMI_Q_MD_DATASET = 1 from ETCS Onboard.(2)   The format of presentation in Radar window is presented as an Input Fields
+            Expected Result: DMI displays Radar window.
+            Verify the following information,
+            (1)   Use the log file to confirm that DMI received packet EVC-40 with variable MMI_Q_MD_DATASET = 1 from ETCS Onboard.
+            (2)   The format of presentation in Radar window is presented as an Input Fields
             Test Step Comment: (1) MMI_gen 3226 (partly: Maintenance Data Entry);(2)  MMI_gen 3390 (partly: Maintenance Data entry);
             */
             // Call generic Action Method
@@ -141,8 +158,16 @@ namespace Testcase.DMITestCases
 
             /*
             Test Step 5
-            Action: Confirm all value of each Input Field.Then, press ‘Yes’ button
-            Expected Result: DMI displays Radar validation window.Verify the following information,(1)    Use the log file to confirm that DMI sent out packet EVC-140 variable based on confirmed data and MMI_Q_MD_DATASET = 1 to ETCS Onboard.(2)   Use the log file to confirm that DMI received packet EVC-41 with variable MMI_Q_MD_DATASET = 1 from ETCS Onboard.(3)   The position of ‘Yes’ button on Radar validation window is located at the different location of ‘Yes’ button on Radar window.(4)   The format of presentation in Radar validation window is difference from Radar window as follows,           -   The data pending for confirmation of Radar validation window is presented as echo texts.(5)   The presentation of echo text in Radar validation window is located at the difference location of an Input Fields in Radar window
+            Action: Confirm all value of each Input Field.
+            Then, press ‘Yes’ button
+            Expected Result: DMI displays Radar validation window.
+            Verify the following information,
+            (1)   Use the log file to confirm that DMI sent out packet EVC-140 variable based on confirmed data and MMI_Q_MD_DATASET = 1 to ETCS Onboard.
+            (2)   Use the log file to confirm that DMI received packet EVC-41 with variable MMI_Q_MD_DATASET = 1 from ETCS Onboard.
+            (3)   The position of ‘Yes’ button on Radar validation window is located at the different location of ‘Yes’ button on Radar window.
+            (4)   The format of presentation in Radar validation window is difference from Radar window as follows,           
+                  -   The data pending for confirmation of Radar validation window is presented as echo texts.
+            (5)   The presentation of echo text in Radar validation window is located at the difference location of an Input Fields in Radar window
             Test Step Comment: (1) MMI_gen 3203 (Maintenance Data Entry);(2) MMI_gen 3226 (partly: Maintenance Data Validation);(3) MMI_gen 3205 (partly: Maintenance Data Entry and Validation);(4) MMI_gen 3390 (partly: Maintenance Validation);(5) MMI_gen 3391 (partly: Maintenance Data Entry and Validation);
             */
             DmiActions.ShowInstruction(this, @"Accept the values of all Input Fields as shown. Press the ‘Yes’ button");
@@ -167,8 +192,13 @@ namespace Testcase.DMITestCases
 
             /*
             Test Step 6
-            Action: Perform the following procedure,Press ‘Yes’ button.Confirm an entered data by pressing at an Input Field.At ‘Maintenance’ window, press ‘Close’ button
-            Expected Result: DMI displays Settings window.Verify the following information,(1)    Use the log file to confirm that DMI sent out packet EVC-141 with variable based on confirmed data to ETCS Onboard
+            Action: Perform the following procedure,
+            Press ‘Yes’ button.
+            Confirm an entered data by pressing at an Input Field.
+            At ‘Maintenance’ window, press ‘Close’ button
+            Expected Result: DMI displays Settings window.
+            Verify the following information,
+            (1)    Use the log file to confirm that DMI sent out packet EVC-141 with variable based on confirmed data to ETCS Onboard
             Test Step Comment: (1) MMI_gen 3203 (partly: Maintenance Data Validation);
             */
             DmiActions.ShowInstruction(this, @"Press the ‘Yes’ button. Accept entered data by pressing an Input Field" +

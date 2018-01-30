@@ -32,6 +32,7 @@ namespace Testcase.DMITestCases
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
+            DmiActions.Start_ATP();
         }
 
         public override void PostExecution()
@@ -52,15 +53,43 @@ namespace Testcase.DMITestCases
             Action: Activate cabin A
             Expected Result: DMI displays the default window. The Driver ID window is displayed
             */
-            // Call generic Action Method
 
-            // Call generic Check Results Method
+            DmiActions.Activate_Cabin_1(this);
+            DmiExpectedResults.Cabin_A_is_activated(this);
+
+            DmiActions.Set_Driver_ID(this, "1234");
+            DmiActions.Send_SB_Mode(this);
+            DmiExpectedResults.Driver_ID_window_displayed_in_SB_mode(this);
 
             /*
             Test Step 2
-            Action: Enter the Driver ID. Perform brake test and then select Level 0
-            Expected Result: ATP enters level 0.DMI displays the symbol of Level 0 in sub-area C8
+            Action: Enter the Driver ID. 
+            Perform brake test and then select Level 0
+            Expected Result: ATP enters level 0.
+            DMI displays the symbol of Level 0 in sub-area C8
             */
+
+            DmiExpectedResults.Driver_ID_entered(this);
+
+            DmiActions.Request_Brake_Test(this, 1);
+            DmiExpectedResults.Brake_Test_Perform_Order(this, true);
+
+            DmiActions.Perform_Brake_Test(this, 2);
+
+            Wait_Realtime(5000);
+
+            DmiActions.Display_Brake_Test_Successful(this, 3);
+
+            DmiActions.Display_Level_Window(this);
+            DmiExpectedResults.Level_window_displayed(this);
+
+            DmiActions.Delete_Brake_Test_Successful(this, 3);
+
+            DmiExpectedResults.Level_0_Selected(this);
+            DmiActions.Send_L0(this);
+
+            DmiActions.Display_Main_Window_with_Start_button_not_enabled(this);
+            DmiExpectedResults.Level_0_displayed(this);
 
             /*
             Test Step 3
@@ -68,16 +97,41 @@ namespace Testcase.DMITestCases
             Expected Result: The Train data window is displayed
             */
 
+            DmiExpectedResults.Train_Data_Button_pressed_and_released(this);
+
+            DmiActions.Display_Fixed_Train_Data_Window(this);
+            DmiExpectedResults.Train_data_window_displayed(this);
+
+
             /*
             Test Step 4
             Action: Enter and confirm the train data
             Expected Result: The Train data validation window is displayed
             */
 
+            DmiExpectedResults.Fixed_Train_Data_entered(this, Variables.Fixed_Trainset_Captions.FLU);
+
+            DmiActions.Enable_Fixed_Train_Data_Validation(this, Variables.Fixed_Trainset_Captions.FLU);
+            DmiExpectedResults.Fixed_Train_Data_validated(this, Variables.Fixed_Trainset_Captions.FLU);
+
+            DmiActions.Complete_Fixed_Train_Data_Entry(this, Variables.Fixed_Trainset_Captions.FLU);
+
+            Wait_Realtime(1000);
+
+            DmiActions.Display_Train_data_validation_Window(this);
+            DmiExpectedResults.Train_data_validation_window_displayed(this);
+
+            DmiExpectedResults.Train_Data_validation_completed(this);
+
+            Wait_Realtime(5000);
+
             /*
             Test Step 5
             Expected Result: DMI displays the Train running window
             */
+
+            DmiActions.Display_TRN_Window(this);
+            DmiExpectedResults.TRN_window_displayed(this);
 
             /*
             Test Step 6
@@ -85,13 +139,32 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays the Main window
             */
 
+            DmiExpectedResults.TRN_entered(this);
+
+            DmiActions.Display_Main_Window_with_Start_button_enabled(this);
+            DmiExpectedResults.Main_Window_displayed(this, true);
+
             /*
             Test Step 7
             Action: Press ‘Start’ button and confirm UN mode
             Expected Result: DMI displays in UN mode, level 0
             */
 
-            DmiActions.Complete_SoM_L0_UN(this);
+            DmiExpectedResults.Start_Button_pressed_and_released(this);
+
+            DmiActions.Display_Default_Window(this);
+
+            DmiActions.Send_UN_Mode_Ack(this);
+            DmiExpectedResults.UN_Mode_Ack_requested(this);
+
+            DmiActions.ShowInstruction(this, "Press DMI Sub Area C1");
+            DmiExpectedResults.UN_Mode_Ack_pressed_and_released(this);
+
+            DmiActions.Send_UN_Mode(this);
+            DmiActions.Send_L0(this);
+
+            DmiExpectedResults.UN_Mode_displayed(this);
+            DmiExpectedResults.Driver_symbol_displayed(this, "Level 0", "LE01", "C8", true);
 
             /*
             Test Step 8
@@ -110,18 +183,19 @@ namespace Testcase.DMITestCases
             /*
             Test Step 9
             Action: Stop at position 100m. Then, select level 1
-            Expected Result: DMI displays the symbol of level 1 in sub-area C8 instead of level 0.DMI displays in level 1 with train trip announcement symbol which requires the driver’s action. The train trip symbol is displayed with yellow flashing frame
+            Expected Result: DMI displays the symbol of level 1 in sub-area C8 instead of level 0.
+            DMI displays in level 1 with train trip announcement symbol which requires the driver’s action. 
+            The train trip symbol is displayed with yellow flashing frame
             Test Step Comment: MMI_gen 4222 (partly: frame is displayed with yellow flashing);
             */
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
 
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
+            DmiActions.Send_L1(this);
+            DmiActions.Send_TR_Mode_Ack(this);
 
-            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
-            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
-            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
-            EVC8_MMIDriverMessage.MMI_Q_TEXT = 266;
-            EVC8_MMIDriverMessage.Send();
+            DmiExpectedResults.TR_Mode_Ack_requested(this);
+
+
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI removes the level 0 symbol from sub-area C8 and displays the level 1 symbol." +
@@ -138,12 +212,10 @@ namespace Testcase.DMITestCases
             */
 
             DmiActions.ShowInstruction(this, @"Acknowledge train trip");
+            DmiExpectedResults.TR_Mode_Ack_pressed_and_released(this);
 
-            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.TrainTripAck;
-
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.PostTrip;
-
-            DmiExpectedResults.Driver_symbol_displayed(this, "Post trip", "MO06", "B7", false);
+            DmiActions.Send_PT_Mode(this);
+            DmiExpectedResults.PT_Mode_displayed(this);
 
             /*
             Test Step 11
@@ -151,7 +223,23 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SR mode, level 1
             */
 
-            // Call generic Check Results Method
+            DmiActions.Display_Main_Window_with_Start_button_enabled(this);
+            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine +
+                                             Environment.NewLine +
+                                             "1. Press ‘Start’ button." + Environment.NewLine +
+                                             "2. Press OK on THIS window.");
+
+            DmiActions.Send_SR_Mode_Ack(this);
+            DmiActions.ShowInstruction(this, @"Perform the following action after pressing OK: " + Environment.NewLine +
+                                             Environment.NewLine +
+                                             "1. Press DMI Sub Area C1.");
+            DmiExpectedResults.SR_Mode_Ack_pressed_and_hold(this);
+
+            DmiActions.Send_SR_Mode(this);
+            DmiActions.Send_L1(this);
+            DmiActions.Finished_SoM_Default_Window(this);
+            DmiExpectedResults.SR_Mode_displayed(this);
+            DmiExpectedResults.Driver_symbol_displayed(this, "Level 1", "LE03", "C8", true);
 
             /*
             Test Step 12

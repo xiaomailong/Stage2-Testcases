@@ -557,6 +557,11 @@ namespace Testcase.DMITestCases
             // EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.StandBy;
         }
 
+        public static void Default_Window_Displayed(SignalPool pool)
+        {
+            pool.WaitForVerification("Is the Default window displayed?");
+        }
+
         /// <summary>
         /// Description: Default Window is displayed with Override Symbol in area C7.
         /// Used in:
@@ -1174,6 +1179,11 @@ namespace Testcase.DMITestCases
         {
             Driver_symbol_displayed(pool, "Level 1", "LE03", "C8", true);
             SB_Mode_displayed(pool);
+        }
+
+        public static void Level_0_displayed(SignalPool pool)
+        {
+            Driver_symbol_displayed(pool, "Level 0", "LE01", "C8", true);
         }
 
         public static void Level_1_displayed(SignalPool pool)
