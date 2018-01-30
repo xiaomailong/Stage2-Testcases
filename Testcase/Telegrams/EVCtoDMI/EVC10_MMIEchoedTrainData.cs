@@ -81,7 +81,7 @@ namespace Testcase.Telegrams.EVCtoDMI
 
                 // Set length of char array, but bit-inverted
                 // !!!! VARPATH NAME NEED TO BE CORRECTED in FLCONFIG file !!!!
-                _pool.SITR.Client.Write(string.Format("{0}{1}_MmiNCaptionTrainsetR", BaseStringEvc10, trainsetIndex),
+                _pool.SITR.Client.Write(string.Format("{0}{1}_MmiNCapitionTrainsetR", BaseStringEvc10, trainsetIndex),
                     (ushort) ~evc6MmiNCaptionTrainset);
 
                 // Increment packet size
