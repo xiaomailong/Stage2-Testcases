@@ -2,9 +2,9 @@
 
 <TestInfoXml>
   <Asv>ASV</Asv>
-  <Project>PROJECT</Project>
-  <Tester>TESTER</Tester>
-  <Rack>RACK</Rack>
+  <Project>Class 345 DMI Testing version 6.2</Project>
+  <Tester>Signalling Integration Team (Ricky Morris)</Tester>
+  <Rack>Signalling Integration Test Reig VCS 10</Rack>
   <Logpath>C:\01_Projects\05_RefDMI\02_testing\01_laboratory_testing\08_logs</Logpath>
   <Logwindow>True</Logwindow>
   <LogWindowAutoClose>True</LogWindowAutoClose>
