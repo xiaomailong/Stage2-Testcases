@@ -24,6 +24,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             // Set default values
             _pool.SITR.ETCS1.StartAtp.MmiMPacket.Value = 0;
             _pool.SITR.ETCS1.StartAtp.MmiLPacket.Value = 40;
+            _pool.SITR.ETCS1.StartAtp.MmiMStartReq.Value = 0;
         }
 
         public static EVC0Type Evc0Type { get; set; }

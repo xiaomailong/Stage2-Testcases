@@ -34,8 +34,6 @@ namespace Testcase.Telegrams.DMItoEVC
         /// </summary>
         private static void CheckTimeAndZone(uint totalSeconds, sbyte zoneOffset)
         {
-            // Reset telegram received flag in RTSim
-            _pool.SITR.SMDStat.CCUO.ETCS1SetTimeMmi.Value = 0x00;
 
             // Check if telegram received flag has been set. Allow 60 seconds to enter Time.
             if (_pool.SITR.SMDStat.CCUO.ETCS1SetTimeMmi.WaitForCondition(Is.Equal, 1, 60000, 100))
@@ -68,6 +66,9 @@ namespace Testcase.Telegrams.DMItoEVC
             {
                 DmiExpectedResults.DMItoEVC_Telegram_Not_Received(_pool, BaseString);
             }
+
+            // Reset telegram received flag in RTSim
+            _pool.SITR.SMDStat.CCUO.ETCS1SetTimeMmi.Value = 0x00;
         }
 
         /// <summary>

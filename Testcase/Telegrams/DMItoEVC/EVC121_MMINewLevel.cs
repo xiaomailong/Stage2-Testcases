@@ -40,10 +40,6 @@ namespace Testcase.Telegrams.DMItoEVC
             // Get MMI_N_LEVELS info sent by EVC to the DMI via EVC-20
             _nLevels = _pool.SITR.ETCS1.SelectLevel.MmiNLevels.Value;
 
-            // Reset telegram received flag in RTSim
-            _pool.SITR.SMDStat.CCUO.ETCS1NewLevel.Value = 0x00;
-
-
             #region CODE TO INTRODUCING PACKET EVC-101 CHECKING
 
             ///* Comment this line to activate this code
@@ -208,6 +204,9 @@ namespace Testcase.Telegrams.DMItoEVC
             {
                 DmiExpectedResults.DMItoEVC_Telegram_Not_Received(_pool, baseString1);
             }
+
+            // Reset telegram received flag in RTSim
+            _pool.SITR.SMDStat.CCUO.ETCS1NewLevel.Value = 0x00;
         }
 
         /// <summary>

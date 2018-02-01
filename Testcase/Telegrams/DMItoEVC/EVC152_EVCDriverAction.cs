@@ -29,9 +29,6 @@ namespace Testcase.Telegrams.DMItoEVC
 
         private static void CheckDriverAction(MMI_M_DRIVER_ACTION driverAction)
         {
-            // Reset telegram received flag in RTSim
-            _pool.SITR.SMDStat.CCUO.ETCS1DriverAction.Value = 0x00;
-
             // Wait 10 seconds for SMDStat to become set
             if (_pool.SITR.SMDStat.CCUO.ETCS1DriverAction.WaitForCondition(Is.Equal, 0x01, 10000, 100))
             {
@@ -59,6 +56,9 @@ namespace Testcase.Telegrams.DMItoEVC
             {
                 DmiExpectedResults.DMItoEVC_Telegram_Not_Received(_pool, baseString);
             }
+
+            // Reset telegram received flag in RTSim
+            _pool.SITR.SMDStat.CCUO.ETCS1DriverAction.Value = 0x00;
         }
 
         /// <summary>

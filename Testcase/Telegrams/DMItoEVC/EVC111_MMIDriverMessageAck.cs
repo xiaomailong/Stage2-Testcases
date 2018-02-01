@@ -103,9 +103,6 @@ namespace Testcase.Telegrams.DMItoEVC
         /// <param name="mmiIText">Identifier of the acknowledged text</param>
         private static void Check_Driver_Message_Ack_Pressed()
         {
-            // Reset telegram received flag in RTSim
-            _pool.SITR.SMDStat.CCUO.ETCS1DriverMessageAck.Value = 0x00;
-
             var list = new List<Atomic>
             {
                 _pool.SITR.SMDStat.CCUO.ETCS1DriverMessageAck.Atomic.WaitForCondition(Is.Equal, 1),
@@ -116,6 +113,8 @@ namespace Testcase.Telegrams.DMItoEVC
                 _pool.SITR.CCUO.ETCS1DriverMessageAck.EVC111alias1.Atomic.WaitForCondition(Is.Equal, 0x18)
             };
 
+            // Reset telegram received flag in RTSim
+            _pool.SITR.SMDStat.CCUO.ETCS1DriverMessageAck.Value = 0x00;
             _checkResult = _pool.WaitForConditionAtomic(list, 10000, 100);
 
             // Get time stamp of received packet

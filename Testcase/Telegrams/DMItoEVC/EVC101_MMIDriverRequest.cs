@@ -36,9 +36,6 @@ namespace Testcase.Telegrams.DMItoEVC
         /// <param name="qButton">Button event pressed or released</param>
         private static void CheckMRequestState(Variables.MMI_M_REQUEST mRequest, Variables.MMI_Q_BUTTON qButton)
         {
-            // Reset telegram received flag in RTSim
-            _pool.SITR.SMDStat.CCUO.ETCS1DriverRequest.Value = 0x00;
-
             // Check if telegram received flag has been set
             if (_pool.SITR.SMDStat.CCUO.ETCS1DriverRequest.WaitForCondition(Is.Equal, 1, 10000, 100))
             {
@@ -83,6 +80,9 @@ namespace Testcase.Telegrams.DMItoEVC
             {
                 DmiExpectedResults.DMItoEVC_Telegram_Not_Received(_pool, BaseString);
             }
+
+            // Reset telegram received flag in RTSim
+            _pool.SITR.SMDStat.CCUO.ETCS1DriverRequest.Value = 0x00;
         }
 
         /// <summary>

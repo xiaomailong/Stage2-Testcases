@@ -34,9 +34,6 @@ namespace Testcase.Telegrams.DMItoEVC
 
         public static void CheckPacketContent()
         {
-            // Reset telegram received flag in RTSim
-            _pool.SITR.SMDStat.CCUO.ETCS1NewRbcData.Value = 0x00;
-
             // Check if telegram received flag has been set. Allows 20 seconds to enter train data.
             if (_pool.SITR.SMDStat.CCUO.ETCS1NewRbcData.WaitForCondition(Is.Equal, 1, 20000, 100))
             {
@@ -128,6 +125,8 @@ namespace Testcase.Telegrams.DMItoEVC
             {
                 DmiExpectedResults.DMItoEVC_Telegram_Not_Received(_pool, baseString1);
             }
+            // Reset telegram received flag in RTSim
+            _pool.SITR.SMDStat.CCUO.ETCS1NewRbcData.Value = 0x00;
         }
 
         /// <summary>
