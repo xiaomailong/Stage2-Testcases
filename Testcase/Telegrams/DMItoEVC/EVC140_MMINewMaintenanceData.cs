@@ -53,10 +53,13 @@ namespace Testcase.Telegrams.DMItoEVC
                 {
                     _pool.TraceReport(string.Format("{0}:", BaseString) + Environment.NewLine +
                                       ((_mdDataset == Variables.MMI_Q_MD_DATASET.WheelDiameter)
-                                          ? string.Format("MMI_M_WHEEL_SIZE_1 = {0} ", _wheelSize1) + Environment.NewLine +
-                                            string.Format("MMI_M_WHEEL_SIZE_2 = {0} ", _wheelSize2) + Environment.NewLine +
+                                          ? string.Format("MMI_M_WHEEL_SIZE_1 = {0} ", _wheelSize1) +
+                                            Environment.NewLine +
+                                            string.Format("MMI_M_WHEEL_SIZE_2 = {0} ", _wheelSize2) +
+                                            Environment.NewLine +
                                             string.Format("MMI_M_WHEEL_SIZE_ERR = {0} ", _wheelSizeError)
-                                          : string.Format("MMI_M_PULSE_PER_KM_1 = {0} ", _pulsePerKm1) + Environment.NewLine +
+                                          : string.Format("MMI_M_PULSE_PER_KM_1 = {0} ", _pulsePerKm1) +
+                                            Environment.NewLine +
                                             string.Format("MMI_M_PULSE_PER_KM_2 = {0} ", _pulsePerKm2))
                                       + Environment.NewLine + "Result = PASSED.");
                 }

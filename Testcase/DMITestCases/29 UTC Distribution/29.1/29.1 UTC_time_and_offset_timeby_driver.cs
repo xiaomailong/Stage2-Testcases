@@ -45,10 +45,18 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
             TraceInfo("This test case requires an ATP configuration change - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Power on the system and activate cabin");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays SB mode");
             /*
             Test Step 1
             Action: Power on the system and activate cabin
@@ -63,6 +71,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SB mode");
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Perform SoM to L1, SR mode");
+            TraceReport("Expected Result");
+            TraceInfo("Mode changes to SR mode , L1");
             /*
             Test Step 2
             Action: Perform SoM to L1, SR mode
@@ -87,6 +101,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SR mode, Level 1.");
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Select ‘Settings’ button and press ‘Set clock’ button");
+            TraceReport("Expected Result");
+            TraceInfo("The set clock window is opened");
             /*
             Test Step 3
             Action: Select ‘Settings’ button and press ‘Set clock’ button
@@ -113,6 +133,14 @@ namespace Testcase.DMITestCases
                                 "7. Echo texts for UTC and local time are displayed to the left of the keypad in white." +
                                 "8. An enabled ‘Yes’ button with the label ‘Clock set?’ is displayed in the bottom-left part of the window");
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Change Data and Time to be different  from current values for example:Year = current year +1Month = current month +2Day = current day +3Hour = current hour +4Minute = current minute +5Second =current second +6Offset = current offset + 12");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,The new UTC time and offset time are changed and displayed according to the entered data from the driver.Use the log file to verify that DMI sends out packet EVC-109 to ETCS OB correctly");
             /*
             Test Step 4
             Action: Change Data and Time to be different  from current values for example:Year = current year +1Month = current month +2Day = current day +3Hour = current hour +4Minute = current minute +5Second =current second +6Offset = current offset + 12
@@ -134,6 +162,14 @@ namespace Testcase.DMITestCases
                                 "2. The local time is displayed as ‘2018-12-30: 12:00:00’." + Environment.NewLine +
                                 "3. The UTC time is displayed as  ‘2018-12-30: 02:00:00’.");
 
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Change Data and Time to be different  from current values for example:Year = curtrent year +1Month = current month +2Day = current day +3Hour = current hour +4Minute = current minute +5Second =current second +6Offset = current offset - 12");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,The new UTC time and offset time are changed and displayed according to the entered data from the driver.Use the log file to verify that DMI sends out packet EVC-109 to ETCS OB correctly");
             /*
             Test Step 5
             Action: Change Data and Time to be different  from current values for example:Year = curtrent year +1Month = current month +2Day = current day +3Hour = current hour +4Minute = current minute +5Second =current second +6Offset = current offset - 12
@@ -154,6 +190,12 @@ namespace Testcase.DMITestCases
                                 "2. The local time is displayed as ‘2017-11-29: 11:59:59’." + Environment.NewLine +
                                 "3. The UTC time is displayed as  ‘2017-11-29: 02:59:59’.");
 
+            TraceHeader("Test Step 6");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            TraceReport("Expected Result");
+            TraceInfo("");
             /*
             Test Step 6
             Action: End of test

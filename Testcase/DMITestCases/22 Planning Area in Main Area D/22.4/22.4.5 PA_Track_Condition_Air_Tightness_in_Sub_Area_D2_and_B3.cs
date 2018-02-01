@@ -57,10 +57,18 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
             TraceInfo("This test case requires an ATP configuration change - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train forward with speed = 20 km/h");
+            TraceReport("Expected Result");
+            TraceInfo("The speed pointer is indicated as 20  km/h");
             /*
             Test Step 1
             Action: Drive the train forward with speed = 20 km/h
@@ -71,6 +79,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The speed pointer is displayed with speed = 20 km/h.");
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train forward pass BG0 with MA and Track descriptionPkt 12,21 and 27");
+            TraceReport("Expected Result");
+            TraceInfo("Mode changes to FS mode , L1");
             /*
             Test Step 2
             Action: Drive the train forward pass BG0 with MA and Track descriptionPkt 12,21 and 27
@@ -81,12 +95,26 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in FS mode, Level 1.");
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Continue to drive the train forward pass BG1 with Track condition Pkt 68:D_TRACKCOND = 400L_TRACKCOND = 500M_TRACKCOND = 5(Air tightness)");
+            TraceReport("Expected Result");
+            TraceInfo("Mode remins in FS mode");
             /*
             Test Step 3
             Action: Continue to drive the train forward pass BG1 with Track condition Pkt 68:D_TRACKCOND = 400L_TRACKCOND = 500M_TRACKCOND = 5(Air tightness)
             Expected Result: Mode remins in FS mode
             */
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Enter Anouncement of Track condition “Air tightness”");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information(1)   DMI displays PL17 or PL19 symbol in sub-area D2. PL17 or PL19");
             /*
             Test Step 4
             Action: Enter Anouncement of Track condition “Air tightness”
@@ -112,6 +140,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays symbol PL17 in sub-area D2.");
 
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Stop the train");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information(1)   Use the log file to confirm that DMI received packet information MMI_TRACK_CONDITIONS (EVC-32) and MMI_ETCS_MISC_OUT_SIGNALS (EVC-7) with the following variables,MMI_M_TRACkCOND_TYPE = 5MMI_Q_TRACKCOND_STEP = 0 MMI_Q_TRACKCOND_ACTION_START = 1 (PL17) or 0 (PL19)MMI_O_TRACKCOND_ANNCOUNCE - OBU_TR_O_TRAIN (EVC-7) =  Remaining distance from PL17 or PL19 symbol in sub-area D2 to the first distance scale line (zero line)(2)    The bottom of PL17 or PL19 symbol is displayed with the correct position in the PA distance scale refer to the result of calculation from expected result (1)");
             /*
             Test Step 5
             Action: Stop the train
@@ -130,6 +165,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The bottom of the PL17 symbol is displayed at ~2.");
 
+            TraceHeader("Test Step 6");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train forward with speed = 20 km/h");
+            TraceReport("Expected Result");
+            TraceInfo("The speed pointer is indicated as 20  km/h");
             /*
             Test Step 6
             Action: Drive the train forward with speed = 20 km/h
@@ -140,6 +181,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The speed pointer is displayed with speed = 20 km/h.");
 
+            TraceHeader("Test Step 7");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Stop the train when the TC19 or TC21 symbol displays in sub-area B3");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information(1)   DMI displays TC19 or TC21 symbol in sub-area B3. (TC19) or  (TC21)(2)   Use the log file to confirm that DMI received packet information MMI_TRACK_CONDITIONS (EVC-32) with the following variables,MMI_M_TRACkCOND_TYPE = 5MMI_Q_TRACKCOND_STEP = 1 (TC19 or TC21) or 2(TC19)MMI_Q_TRACKCOND_ACTION_START = 0 (TC21) or 1 (TC19)");
             /*
             Test Step 7
             Action: Stop the train when the TC19 or TC21 symbol displays in sub-area B3
@@ -158,6 +206,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays symbol TC19 in sub-area B3.");
 
+            TraceHeader("Test Step 8");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train forward with speed = 20 km/h");
+            TraceReport("Expected Result");
+            TraceInfo("The speed pointer is indicated as 20  km/h");
             /*
             Test Step 8
             Action: Drive the train forward with speed = 20 km/h
@@ -168,6 +222,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The speed pointer is displayed with speed = 20 km/h.");
 
+            TraceHeader("Test Step 9");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Enter Track condition “Air tightness”");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information(1)   DMI displays PL03 or PL04 symbol in sub-area D2. (PL18) or  (PL20)");
             /*
             Test Step 9
             Action: Enter Track condition “Air tightness”
@@ -183,6 +244,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays symbol PL18 in sub-area D2.");
 
+            TraceHeader("Test Step 10");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Stop the train");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information(1)   Use the log file to confirm that DMI received packet information MMI_TRACK_CONDITIONS (EVC-32) and MMI_ETCS_MISC_OUT_SIGNALS (EVC-7) with the following variables,MMI_M_TRACkCOND_TYPE = 5MMI_Q_TRACKCOND_STEP = 0 or 1 or 2MMI_Q_TRACKCOND_ACTION_START = 1 (PL18) or 0 (PL20)MMI_O_TRACKCOND_END - OBU_TR_O_TRAIN (EVC-7)   =  Remaining distance from PL18 or PL20 symbol in sub-area D2 to the first distance scale line (zero line)(2)    The bottom of PL18 or PL20 symbol is displayed with the correct position in the PA distance scale refer to the result of calculation from expected result (1)");
             /*
             Test Step 10
             Action: Stop the train
@@ -198,6 +266,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The bottom of the PL18 symbol is displayed at ~2.");
 
+            TraceHeader("Test Step 11");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Driver the train forward with speed = 30km/h");
+            TraceReport("Expected Result");
+            TraceInfo("The speed pointer is indicated as 30  km/h");
             /*
             Test Step 11
             Action: Driver the train forward with speed = 30km/h
@@ -208,6 +282,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The speed pointer is displayed with speed = 30 km/h.");
 
+            TraceHeader("Test Step 12");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Stop the train when the TC20 or TC22 symbol displays in sub-area B3");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information(1)   DMI displays TC20 or TC22 symbol in sub-area B3. (TC20) or  (TC22)(2)   Use the log file to confirm that DMI received packet information MMI_TRACK_CONDITIONS (EVC-32) with the following variables,MMI_M_TRACkCOND_TYPE = 5MMI_Q_TRACKCOND_STEP = 3MMI_Q_TRACKCOND_ACTION_END = 0 (TC22) or 1(TC20)");
             /*
             Test Step 12
             Action: Stop the train when the TC20 or TC22 symbol displays in sub-area B3
@@ -225,6 +306,12 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays symbol PL18 in sub-area B3.");
 
 
+            TraceHeader("Test Step 13");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train forward with speed = 20 km/h");
+            TraceReport("Expected Result");
+            TraceInfo("The speed pointer is indicated as 20  km/h");
             /*
             Test Step 13
             Action: Drive the train forward with speed = 20 km/h
@@ -235,6 +322,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The speed pointer is displayed with speed = 20 km/h.");
 
+            TraceHeader("Test Step 14");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Stop the train when the track condition symbol has been removed");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information(1)    Use the log file to confirm that DMI received packet information MMI_TRACK_CONDITIONS (EVC-32) with the following variables,MMI_Q_TRACKCOND_STEP = 4MMI_NID_TRACKCOND = Same value with expected result No.2 of step 12");
             /*
             Test Step 14
             Action: Stop the train when the track condition symbol has been removed
@@ -246,6 +340,12 @@ namespace Testcase.DMITestCases
 
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
 
+            TraceHeader("Test Step 15");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            TraceReport("Expected Result");
+            TraceInfo("");
             /*
             Test Step 15
             Action: End of test

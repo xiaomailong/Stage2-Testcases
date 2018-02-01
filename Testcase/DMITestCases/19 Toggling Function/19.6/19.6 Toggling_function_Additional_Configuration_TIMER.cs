@@ -47,8 +47,17 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Perform SoM in SR mode, level 1");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI displays Default window in SR mode, level 1.Note: The basic speed hook is appear for 10 seconds");
             /*
             Test Step 1
             Action: Perform SoM in SR mode, level 1
@@ -67,6 +76,13 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays Default window in SR mode, level 1." + Environment.NewLine +
                                 "2. The Basic speed hook is displayed for 10s.");
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Perform the following procedure, Press ‘Spec’ buttonPress ‘SR speed/distance’ buttonEnter and confirm the following data,SR speed = 40 km/hSR distance = 300 m");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Special window");
             /*
             Test Step 2
             Action: Perform the following procedure, Press ‘Spec’ buttonPress ‘SR speed/distance’ buttonEnter and confirm the following data,SR speed = 40 km/hSR distance = 300 m
@@ -95,6 +111,14 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Special window.");
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Perform the following procedure, Press ‘Close’ buttonPress on sub-area A1.Note: Stopwatch is required");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,(1)   The following objects are displays for 10 seconds before disappear.White basic speed hookMedium-grey basic speed hookDistance to target (digital)");
             /*
             Test Step 3
             Action: Perform the following procedure, Press ‘Close’ buttonPress on sub-area A1.Note: Stopwatch is required
@@ -117,6 +141,12 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "3. DMI displays the Digital distance to target for 10s then removes it.");
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Repeat action step 3 for sub-area A2-A4 and area B respectively");
+            TraceReport("Expected Result");
+            TraceInfo("See expected result of step 3");
             /*
             Test Step 4
             Action: Repeat action step 3 for sub-area A2-A4 and area B respectively
@@ -182,6 +212,14 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "3. DMI displays the Digital distance to target for 10s then removes it.");
 
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Perform the following procedure, Press on sub-area A1.Wait for 5 secondsPress on sub-area A1 again");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,(1)    The following objects are displays for 10 seconds before disappear.White basic speed hookMedium-grey basic speed hookDistance to target (digital)");
             /*
             Test Step 5
             Action: Perform the following procedure, Press on sub-area A1.Wait for 5 secondsPress on sub-area A1 again
@@ -204,6 +242,12 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "3. DMI displays the Digital distance to target for 10s then removes it.");
 
+            TraceHeader("Test Step 6");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Repeat action step 5 for sub-area A2-A4 and area B respectively");
+            TraceReport("Expected Result");
+            TraceInfo("See expected result of step 5");
             /*
             Test Step 6
             Action: Repeat action step 5 for sub-area A2-A4 and area B respectively
@@ -266,6 +310,12 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "3. DMI displays the Digital distance to target for 10s then removes it.");
 
+            TraceHeader("Test Step 7");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train forward with speed = 10 km/h");
+            TraceReport("Expected Result");
+            TraceInfo("Train is moving forward");
             /*
             Test Step 7
             Action: Drive the train forward with speed = 10 km/h
@@ -276,6 +326,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays speed = 10 km/h.");
 
+            TraceHeader("Test Step 8");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train forward pass BG1. Then, press an acknowledgement of OS mode in sub-area C1");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays in OS mode, level 1.Note: The basic speed hook is appear for 10 seconds");
             /*
             Test Step 8
             Action: Drive the train forward pass BG1. Then, press an acknowledgement of OS mode in sub-area C1
@@ -293,6 +349,13 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays in OS mode, level 1." + Environment.NewLine +
                                 "2. DMI displays the White basic speed hook for 10s then removes it.");
 
+            TraceHeader("Test Step 9");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Stop the train.Then, repeat action step 3-5");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "See expected result of step 3-5 for the following objects,White basic speed hookMedium-grey basic speed hookDistance to target (digital)Release speed digital");
             /*
             Test Step 9
             Action: Stop the train.Then, repeat action step 3-5
@@ -395,6 +458,13 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "4. DMI does not display the Digital release speed");
 
+            TraceHeader("Test Step 10");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Perform the following procedure,Press ‘Main’ button.Press and hold ‘Shunting’ button at least 2 seconds.Release the pressed button");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays in SH mode, level 1.Note: The basic speed hook is appear for 10 seconds");
             /*
             Test Step 10
             Action: Perform the following procedure,Press ‘Main’ button.Press and hold ‘Shunting’ button at least 2 seconds.Release the pressed button
@@ -422,6 +492,13 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays in SH mode, level 1" + Environment.NewLine +
                                 "2. DMI displays the Basic speed hook for 10s then removes it.");
 
+            TraceHeader("Test Step 11");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Repeat action step 3-5");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "See expected result of step 3-5 for the following objects,White basic speed hookMedium-grey basic speed hook (if any)");
             /*
             Test Step 11
             Action: Repeat action step 3-5
@@ -510,6 +587,12 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. DMI displays the Medium-grey basic speed hook for 10s then removes it.");
 
+            TraceHeader("Test Step 12");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            TraceReport("Expected Result");
+            TraceInfo("");
             /*
             Test Step 12
             Action: End of test

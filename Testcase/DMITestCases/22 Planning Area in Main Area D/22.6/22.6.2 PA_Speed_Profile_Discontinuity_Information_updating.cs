@@ -47,8 +47,16 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train forward pass BG1.Then, Stop the train");
+            TraceReport("Expected Result");
+            TraceInfo("DMI changes from SR to FS mode. The Planning Area is displayed");
             /*
             Test Step 1
             Action: Drive the train forward pass BG1.Then, Stop the train
@@ -59,6 +67,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in FS mode, Level 1." + Environment.NewLine + Environment.NewLine +
                                 "2. DMI displays the Planning Area.");
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Use the test script file  17_6_2_a.xml to send EVC-4 with,MMI_N_MRSP = 0");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information, All PA Speed Profile Discontinuities symbol are removed from areas D6-D7");
             /*
             Test Step 2
             Action: Use the test script file  17_6_2_a.xml to send EVC-4 with,MMI_N_MRSP = 0
@@ -74,6 +89,14 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays no speed discontinuites in the Planning Area.");
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Use the test script file  17_6_2_b.xml to send EVC-4 with,MMI_N_MRSP = 3MMI_V_MRSP_CURR[0] = -1MMI_O_MRSP[0] = 1,000,050,000MMI_V_MRSP_CURR[0] = -2MMI_O_MRSP[0] = 1,000,100,000MMI_V_MRSP_CURR[0] = -3MMI_O_MRSP[0] = 1,000,200,000");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information, The symbol PL22 is displayed at position 500m.The symbol PL21 is displayed at position 1000m.There is no symbol display at position 2000m");
             /*
             Test Step 3
             Action: Use the test script file  17_6_2_b.xml to send EVC-4 with,MMI_N_MRSP = 3MMI_V_MRSP_CURR[0] = -1MMI_O_MRSP[0] = 1,000,050,000MMI_V_MRSP_CURR[0] = -2MMI_O_MRSP[0] = 1,000,100,000MMI_V_MRSP_CURR[0] = -3MMI_O_MRSP[0] = 1,000,200,000
@@ -88,6 +111,13 @@ namespace Testcase.DMITestCases
                                 "2. The speed increase symbol, PL21 is displayed at position 1000m." +
                                 Environment.NewLine +
                                 "3. No symbol is displayed at position 2000m.");
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Use the test script file  17_6_2_c.xml to send EVC-4 with,MMI_N_MRSP = 1MMI_V_MRSP_CURR[0] = 11112MMI_O_MRSP[0] = 1,000,050,000");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information, An information of PA in area D are not updated");
             /*
             Test Step 4
             Action: Use the test script file  17_6_2_c.xml to send EVC-4 with,MMI_N_MRSP = 1MMI_V_MRSP_CURR[0] = 11112MMI_O_MRSP[0] = 1,000,050,000
@@ -99,6 +129,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. PA information in area D is not updated.");
 
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Use the test script file  17_6_2_d.xml to send EVC-4 with,MMI_N_MRSP = 1MMI_V_MRSP_CURR[0] = 11111MMI_O_MRSP[0] = 2,147,483,648");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information, An information of PA in area D are not updated");
             /*
             Test Step 5
             Action: Use the test script file  17_6_2_d.xml to send EVC-4 with,MMI_N_MRSP = 1MMI_V_MRSP_CURR[0] = 11111MMI_O_MRSP[0] = 2,147,483,648
@@ -110,6 +147,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. PA information in area D is not updated.");
 
+            TraceHeader("Test Step 6");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Use the test script file  17_6_2_e.xml to send EVC-4 with,MMI_N_MRSP = 1MMI_V_MRSP_CURR[0] = 11111MMI_O_MRSP[0] = 0");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information, An information of PA in area D are not updated");
             /*
             Test Step 6
             Action: Use the test script file  17_6_2_e.xml to send EVC-4 with,MMI_N_MRSP = 1MMI_V_MRSP_CURR[0] = 11111MMI_O_MRSP[0] = 0
@@ -121,6 +165,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. PA information in area D is not updated.");
 
+            TraceHeader("Test Step 7");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            TraceReport("Expected Result");
+            TraceInfo("");
             /*
             Test Step 7
             Action: End of test

@@ -44,9 +44,17 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train forward pass BG1");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays in FS mode, Level 1");
             /*
             Test Step 1
             Action: Drive the train forward pass BG1
@@ -58,6 +66,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in FS mode, Level 1.");
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press at sub-area C2, C3 and C4");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,(1)   The sub-areas C2, C3 and C4 are not sensitive, no symbol display at sub-area C2, C3 and C4");
             /*
             Test Step 2
             Action: Press at sub-area C2, C3 and C4
@@ -70,6 +85,13 @@ namespace Testcase.DMITestCases
                                 "1. Sub-areas C2, C3 and C4 are not sensitive." + Environment.NewLine +
                                 "2. No symbols are displayed at sub-areas C2, C3 or C4.");
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Continue to drive the train forward pass BG2.Then, Stop the train");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,(1)  Use the log file to confirm that DMI received packet EVC-32 with following variables,MMI_Q_TRACKCOND_UPDATE = 0MMI_M_TRACKCOND_TYPE = 1MMI_Q_TRACKCOND_STEP = 1MMI_Q_TRACKCOND_ACTION_START = 0 (2)  The Tunnel stopping area announcement symbol TC37 is display in sub-area C2 with yellow flashing frame.(3)  The remaining distance to tunnel stopping area is display in sub-area C4.(4)  The display of remaining distance is consistent with the differentiation of following variables in equation below,MMI_TRACK_CONDITIONS (EVC-32). MMI_O_TRACKCOND_START[0] – MMI_ETCS_MISC_OUT_SIGNAL (EVC-7). OBU_TR_O_TRAIN(5)  Sound ‘Sinfo’ is played");
             /*
             Test Step 3
             Action: Continue to drive the train forward pass BG2.Then, Stop the train
@@ -98,6 +120,12 @@ namespace Testcase.DMITestCases
                                 "3. The remaining distance = 200m (40000 - 20000 cm)." + Environment.NewLine +
                                 "4. The ‘Sinfo’ sound is played.");
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press at sub-area C2");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information,(1)  The symbol DR05 is display in sub-area C3");
             /*
             Test Step 4
             Action: Press at sub-area C2
@@ -110,6 +138,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays symbol DR05 in area C3.");
 
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press at sub-area C2");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,(1)  DMI displays symbol TC37 with the remaining distance in sub-area C2 and C4 same as expected result in step 2");
             /*
             Test Step 5
             Action: Press at sub-area C2
@@ -124,6 +159,12 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays symbol TC37 in sub-area C2." + Environment.NewLine +
                                 "2. The remaining distance = 150m (40000 - 25000 cm) is displayed in sub-area C4 (as in Step 2).");
 
+            TraceHeader("Test Step 6");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Perform action step4-5 for sub-area C3 and C4");
+            TraceReport("Expected Result");
+            TraceInfo("See the expected result of step 4-5sy");
             /*
             Test Step 6
             Action: Perform action step4-5 for sub-area C3 and C4
@@ -161,6 +202,14 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays symbol TC37 in sub-area C2." + Environment.NewLine +
                                 "2. The remaining distance = 150m (40000 - 25000 cm) is displayed in sub-area C4 (as in Step 2).");
 
+            TraceHeader("Test Step 7");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Continue to drive the train forward until the remaining distance in sub-area C4 is become 0.Then, stop the train");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,(1)  Use the log file to confirm that DMI received packet EVC-32 with following variables,MMI_M_TRACKCOND_TYPE = 1MMI_Q_TRACKCOND_STEP = 2(2)  The Tunnel stopping area announcement symbol TC36 is display in sub-area C2.(3)  Use the log file to confirm that the result of differentiation for the following variables is less than zero,MMI_TRACK_CONDITIONS (EVC-32). MMI_O_TRACKCOND_START[0] – MMI_ETCS_MISC_OUT_SIGNAL (EVC-7). OBU_TR_O_TRAIN(4)  There is no information of the remaining distance display on DMI");
             /*
             Test Step 7
             Action: Continue to drive the train forward until the remaining distance in sub-area C4 is become 0.Then, stop the train
@@ -183,6 +232,13 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays symbol TC36 sub-area C2." + Environment.NewLine +
                                 "2. The remaining distance to tunnel stopping area is not displayed.");
 
+            TraceHeader("Test Step 8");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Repeat action step 4-6");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,(1)  The display information is toggled between the 2 following symbols refer to each pressing,The symbol DR05 is display in sub-area C3.The Tunnel stopping area announcement symbol TC36 is display in sub-area C2");
             /*
             Test Step 8
             Action: Repeat action step 4-6
@@ -233,6 +289,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays symbol TC36 in sub-area C2.");
 
+            TraceHeader("Test Step 9");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Continue to drive the train forward pass BG3");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI display symbol TC36 with the remaining distance to tunnel stopping area is display in sub-area C4.Verify the following information,(1)   The remaining distance is show up to 5 digits with resolution 1m. Note: Use the equation in expected result no.4 of step 3 to verify the resolution.(2)  The colour of remaining distance is grey. (3)  The remaining distance is right aligned and vertically center");
             /*
             Test Step 9
             Action: Continue to drive the train forward pass BG3
@@ -257,6 +320,13 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "4. The remaining distance is displayed in grey, right-aligned and vertically-centred.");
 
+            TraceHeader("Test Step 10");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Continue to drive the train forward pass BG4");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI display symbol TC37 with yellow flashing frame.Verify the following information,(1)    There is no information of the remaining distance display on DMI");
             /*
             Test Step 10
             Action: Continue to drive the train forward pass BG4
@@ -279,6 +349,12 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. The remaining distance is not displayed in sub-area C4.");
 
+            TraceHeader("Test Step 11");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Simulate loss-communication between ETCS onboard and DMI");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information,(1)  The symbol TC37 is removed from DMI");
             /*
             Test Step 11
             Action: Simulate loss-communication between ETCS onboard and DMI
@@ -290,6 +366,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI removes symbol TC37  from sub-area C2,");
 
+            TraceHeader("Test Step 12");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Re-establish communication between ETCS onboard and DMI");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information,(1)  The symbol TC37 is resume to display on DMI");
             /*
             Test Step 12
             Action: Re-establish communication between ETCS onboard and DMI
@@ -304,6 +386,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays symbol TC37 in sub-area C2.");
 
+            TraceHeader("Test Step 13");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Deactivate cabin.Then, simulate loss-communication between ETCS onboard and DMI");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information,(1)  The symbol TC37 is removed from DMI");
             /*
             Test Step 13
             Action: Deactivate cabin.Then, simulate loss-communication between ETCS onboard and DMI
@@ -315,6 +403,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI removes symbol TC37  from sub-area C2,");
 
+            TraceHeader("Test Step 14");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Activate cabin.Then, re-establish communication between ETCS onboard and DMI");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information,(1)  The symbol TC37 is resume to display on DMI");
             /*
             Test Step 14
             Action: Activate cabin.Then, re-establish communication between ETCS onboard and DMI
@@ -327,6 +421,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays symbol TC37 in sub-area C2.");
 
+            TraceHeader("Test Step 15");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            TraceReport("Expected Result");
+            TraceInfo("");
             /*
             Test Step 15
             Action: End of test

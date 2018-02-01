@@ -51,8 +51,16 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train forward past BG1");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays in FS mode, Level 1.");
             /*
             Test Step 1
             Action: Drive the train forward past BG1
@@ -72,6 +80,12 @@ namespace Testcase.DMITestCases
 
             DmiExpectedResults.Driver_symbol_displayed(this, "LX not protected", "LX01", "B3", false);
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train forward past BG2");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays in FS mode, Level 1.");
             /*
             Test Step 2
             Action: Drive the train forward past BG2
@@ -86,6 +100,12 @@ namespace Testcase.DMITestCases
             EVC33_MMIAdditionalOrder.Send();
             DmiExpectedResults.Driver_symbol_displayed(this, "LX not protected", "LX01", "B4", false);
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train forward past BG3. Then, stop the train.");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays in FS mode, Level 1.");
             /*
             Test Step 3
             Action: Drive the train forward past BG3. Then, stop the train.
@@ -100,6 +120,12 @@ namespace Testcase.DMITestCases
             EVC33_MMIAdditionalOrder.Send();
             DmiExpectedResults.Driver_symbol_displayed(this, "LX not protected", "LX01", "B5", false);
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Simulate loss-communication between DMI and ETCS onboard");
+            TraceReport("Expected Result");
+            TraceInfo("All LX01 symbols are removed from sub-area B3-B5");
             /*
             Test Step 4
             Action: Simulate loss-communication between DMI and ETCS onboard
@@ -110,6 +136,12 @@ namespace Testcase.DMITestCases
             Wait_Realtime(8000);
             this.WaitForVerification("Have all three LX symbols disappeared from the DMI?");
 
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Re-establish communication between DMI and ETCS onboard.");
+            TraceReport("Expected Result");
+            TraceInfo("All LX01 symbols have reappeared in sub-area B3-B5");
             /*
             Test Step 5
             Action: Re-establish communication between DMI and ETCS onboard.
@@ -129,6 +161,12 @@ namespace Testcase.DMITestCases
 
             this.WaitForVerification("Have all three LX symbols re-appeared on the DMI?");
 
+            TraceHeader("Test Step 6");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Continue to drive the train forward with speed below permitted speed");
+            TraceReport("Expected Result");
+            TraceInfo("The LX01 symbol is removed from sub-area B5.");
             /*
             Test Step 6
             Action: Continue to drive the train forward with speed below permitted speed
@@ -144,6 +182,12 @@ namespace Testcase.DMITestCases
             EVC33_MMIAdditionalOrder.Send();
             this.WaitForVerification("Has the LX symbol in area B5 disappeared from the DMI?");
 
+            TraceHeader("Test Step 7");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Continue to drive the train forward with speed below permitted speed");
+            TraceReport("Expected Result");
+            TraceInfo("The LX01 symbol is removed from sub-area B4.");
             /*
             Test Step 7
             Action: Continue to drive the train forward with speed below permitted speed
@@ -159,6 +203,12 @@ namespace Testcase.DMITestCases
             this.WaitForVerification("Has the LX symbol in area B4 disappeared from the DMI?");
 
 
+            TraceHeader("Test Step 8");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Continue to drive the train forward with speed below permitted speed");
+            TraceReport("Expected Result");
+            TraceInfo("The LX01 symbol is removed from sub-area B3.");
             /*
             Test Step 8
             Action: Continue to drive the train forward with speed below permitted speed
@@ -173,6 +223,12 @@ namespace Testcase.DMITestCases
             EVC33_MMIAdditionalOrder.Send();
             this.WaitForVerification("Has the LX symbol in area B3 disappeared from the DMI?");
 
+            TraceHeader("Test Step 9");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Repeat action step 1-3");
+            TraceReport("Expected Result");
+            TraceInfo("The LX01 symbols are displayed in sub-area B3-B5");
             /*
             Test Step 9
             Action: Repeat action step 1-3
@@ -198,6 +254,12 @@ namespace Testcase.DMITestCases
 
             this.WaitForVerification("Have all three LX symbols re-appeared in areas B3-B5 on the DMI?");
 
+            TraceHeader("Test Step 10");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Deactivate cabin. Then, simulate loss-communication between DMI and ETCS onboard");
+            TraceReport("Expected Result");
+            TraceInfo("1. All LX01 symbols are removed from sub-area B3-B5");
             /*
             Test Step 10
             Action: Deactivate cabin. Then, simulate loss-communication between DMI and ETCS onboard
@@ -208,6 +270,12 @@ namespace Testcase.DMITestCases
             DmiActions.Simulate_communication_loss_EVC_DMI(this);
             this.WaitForVerification("Have all three LX symbols disappeared from the DMI?");
 
+            TraceHeader("Test Step 11");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Re-establish communication between DMI and ETCS onboard. Then, activate cabin");
+            TraceReport("Expected Result");
+            TraceInfo("1. All LX01 symbols have re-appeared in sub-areas B3-B5");
             /*
             Test Step 11
             Action: Re-establish communication between DMI and ETCS onboard. Then, activate cabin
@@ -218,6 +286,12 @@ namespace Testcase.DMITestCases
             DmiActions.Activate_Cabin_1(this);
             this.WaitForVerification("Have all three LX symbols re-appeared on the DMI?");
 
+            TraceHeader("Test Step 12");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            TraceReport("Expected Result");
+            TraceInfo("");
             /*
             Test Step 12
             Action: End of test

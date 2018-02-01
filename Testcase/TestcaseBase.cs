@@ -13,6 +13,8 @@ namespace Testcase
 {
     public class TestcaseBase : SignalPool
     {
+        public int UniqueIdentifier;
+
         public override void PreExecution()
         {
             // Pre-test configuration.
@@ -98,6 +100,8 @@ namespace Testcase
         /// <returns></returns>
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // As this method should never be called, throw an exception
             //throw new InvalidOperationException("The TestcaseEntryPoint method on TestcaseBase should never be called, it should be overriden.");
             return GlobalTestResult;

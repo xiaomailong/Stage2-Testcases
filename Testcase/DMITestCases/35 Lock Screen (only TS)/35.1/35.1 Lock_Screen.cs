@@ -45,8 +45,17 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Perform the following procedure,Activate Cabin A.Enter Driver ID and perform brake test.Select and confirm Level 1.Press ‘Train data button.Enter and confirm all data. Then, press ‘Yes’ button.Press ‘Yes’ button and Confirm entered data by pressing an input field.Enter and confirm Train running numberPress ‘Close’ button");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Default window in SB mode and Level 1");
             /*
             Test Step 1
             Action: Perform the following procedure,Activate Cabin A.Enter Driver ID and perform brake test.Select and confirm Level 1.Press ‘Train data button.Enter and confirm all data. Then, press ‘Yes’ button.Press ‘Yes’ button and Confirm entered data by pressing an input field.Enter and confirm Train running numberPress ‘Close’ button
@@ -117,6 +126,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SB mode, Level 1.");
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("The train is at standstill. Press ’Settings’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "The speed pointer is indicated to position 0 km/h.The Settings menu is displayed with enabled ’Lock Screen’ button");
             /*
             Test Step 2
             Action: The train is at standstill. Press ’Settings’ button
@@ -130,6 +146,13 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays speed = 0 km/h." + Environment.NewLine +
                                 "2. DMI displays the Settings menu with the ‘Lock Screen’ button enabled.");
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Lock Screen’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,The ‘Lock Screen’ function is activated.The activation of this function is clearly visualised and displayed as countdown. This function has a maximum duration of 10s, The countdown is start from 10 to 0.Note: Text “Screen locked for X” disappears when X=0.DMI plays Sinfo sound when the countdown text is “Screen locked for 1”.DMI displays Settings window when the Lock Screen function is deactivated");
             /*
             Test Step 3
             Action: Press ‘Lock Screen’ button
@@ -147,6 +170,12 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "4. After 10s the Lock Screen function is deactivated and DMI displays the Settings window");
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Close’ button on Settings window");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Default window");
             /*
             Test Step 4
             Action: Press ‘Close’ button on Settings window
@@ -157,6 +186,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Default window");
 
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Main’ button and select ‘Start’ button. Then, acknowledge SR mode");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays in SR mode and Level 1");
             /*
             Test Step 5
             Action: Press ‘Main’ button and select ‘Start’ button. Then, acknowledge SR mode
@@ -182,6 +217,12 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
             EVC8_MMIDriverMessage.Send();
 
+            TraceHeader("Test Step 6");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Settings menu’ button and select ‘Lock Screen’ button");
+            TraceReport("Expected Result");
+            TraceInfo("The ‘Lock Screen’ is activated");
             /*
             Test Step 6
             Action: Press ‘Settings menu’ button and select ‘Lock Screen’ button
@@ -192,6 +233,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Lock Screen’ function is activated.");
 
+            TraceHeader("Test Step 7");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train forward with speed = 40km/h");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,Verify that DMI displays the default window after 1 second from the speed digital increased.The sound ‘Sinfo’ is played");
             /*
             Test Step 7
             Action: Drive the train forward with speed = 40km/h
@@ -206,6 +254,12 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. DMI plays the Sinfo sound.");
 
+            TraceHeader("Test Step 8");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            TraceReport("Expected Result");
+            TraceInfo("");
             /*
             Test Step 8
             Action: End of test

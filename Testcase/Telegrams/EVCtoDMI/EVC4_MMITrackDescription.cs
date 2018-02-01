@@ -58,18 +58,26 @@ namespace Testcase.Telegrams.EVCtoDMI
                 // Write SignalPool signals
                 if (k < 10)
                 {
-                    _pool.SITR.Client.Write(string.Format("{0}10{1}_MmiOMrsp", baseString, k), TrackDescriptions[k].MMI_O_MRSP);
-                    _pool.SITR.Client.Write(string.Format("{0}10{1}_MmiVMrsp", baseString, k), TrackDescriptions[k].MMI_V_MRSP);
-                    _pool.SITR.Client.Write(string.Format("{0}20{1}_MmiOGradient", baseString, k), TrackDescriptions[k].MMI_O_GRADIENT);
-                    _pool.SITR.Client.Write(string.Format("{0}20{1}_MmiGGradient", baseString, k), TrackDescriptions[k].MMI_G_GRADIENT);
+                    _pool.SITR.Client.Write(string.Format("{0}10{1}_MmiOMrsp", baseString, k),
+                        TrackDescriptions[k].MMI_O_MRSP);
+                    _pool.SITR.Client.Write(string.Format("{0}10{1}_MmiVMrsp", baseString, k),
+                        TrackDescriptions[k].MMI_V_MRSP);
+                    _pool.SITR.Client.Write(string.Format("{0}20{1}_MmiOGradient", baseString, k),
+                        TrackDescriptions[k].MMI_O_GRADIENT);
+                    _pool.SITR.Client.Write(string.Format("{0}20{1}_MmiGGradient", baseString, k),
+                        TrackDescriptions[k].MMI_G_GRADIENT);
                 }
 
                 else
                 {
-                    _pool.SITR.Client.Write(string.Format("{0}1{1}_MmiOMrsp", baseString, k), TrackDescriptions[k].MMI_O_MRSP);
-                    _pool.SITR.Client.Write(string.Format("{0}1{1}_MmiVMrsp", baseString, k), TrackDescriptions[k].MMI_V_MRSP);
-                    _pool.SITR.Client.Write(string.Format("{0}2{1}_MmiOGradient", baseString, k), TrackDescriptions[k].MMI_O_GRADIENT);
-                    _pool.SITR.Client.Write(string.Format("{0}2{1}_MmiGGradient", baseString, k), TrackDescriptions[k].MMI_G_GRADIENT);
+                    _pool.SITR.Client.Write(string.Format("{0}1{1}_MmiOMrsp", baseString, k),
+                        TrackDescriptions[k].MMI_O_MRSP);
+                    _pool.SITR.Client.Write(string.Format("{0}1{1}_MmiVMrsp", baseString, k),
+                        TrackDescriptions[k].MMI_V_MRSP);
+                    _pool.SITR.Client.Write(string.Format("{0}2{1}_MmiOGradient", baseString, k),
+                        TrackDescriptions[k].MMI_O_GRADIENT);
+                    _pool.SITR.Client.Write(string.Format("{0}2{1}_MmiGGradient", baseString, k),
+                        TrackDescriptions[k].MMI_G_GRADIENT);
                 }
 
                 totalSizeCounter += 128;

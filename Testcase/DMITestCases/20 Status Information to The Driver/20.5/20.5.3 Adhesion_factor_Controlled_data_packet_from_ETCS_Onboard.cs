@@ -45,15 +45,30 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
             DmiExpectedResults.Testcase_not_required(this, "15.5.1", "20.5.1");
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Driver drives the train forward passing BG1.Then, press ‘Special’ button");
+            TraceReport("Expected Result");
+            TraceInfo("DMI still displays in SR mode.Verify that ‘Adhesion’ button is enabled");
             /*
             Test Step 1
             Action: Driver drives the train forward passing BG1.Then, press ‘Special’ button
             Expected Result: DMI still displays in SR mode.Verify that ‘Adhesion’ button is enabled
             */
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Adhesion’ button.Then, press ‘Slippery rail’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,Use the log file to confirm that DMI receives EVC-2 with variable MMI_M_ADHESION (#0) = 1, bit ‘Low Adhesion by Driver’ is set.DMI displays symbol ST02 in sub-area A4, by driver");
             /*
             Test Step 2
             Action: Press ‘Adhesion’ button.Then, press ‘Slippery rail’ button
@@ -61,6 +76,13 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7088 (partly: EVC-2, ‘Low Adhesion by Driver’)(2) MMI_gen 111;     
             */
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train forward passing BG2");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,Use the log file to confirm that DMI receives EVC-2 with variable MMI_M_ADHESION (#1) = 1, bit ‘Low Adhesion from Trackside’ is set.DMI displays symbol ST02 in sub-area A4");
             /*
             Test Step 3
             Action: Drive the train forward passing BG2
@@ -68,6 +90,13 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7088 (partly: EVC-2, ‘Low Adhesion from Trackside’, ‘Low Adhesion by Driver’);(2) MMI_gen 111;
             */
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train forward");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,Use the log file to confirm that DMI receives EVC-2 with following variable,MMI_M_ADHESION (#1) = 0, bit ‘Low Adhesion from Trackside’ is not set.DMI displays symbol ST02 in sub-area A4, by driver");
             /*
             Test Step 4
             Action: Drive the train forward
@@ -75,6 +104,14 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7088 (partly: EVC-2, ‘Low Adhesion by Driver’)(2) MMI_gen 111;     
             */
 
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Perform the following procedure,Press ‘Special’ button.Press ‘Adhesion’ button.Select and confirm ‘Non slippery rail’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "No adhesion factor indication is displayed.Verify the following information,Use the log file to confirm that DMI receives EVC-2 with following variable,MMI_M_ADHESION (#0) = 0, bit ‘Low Adhesion by Driver’ is not set");
             /*
             Test Step 5
             Action: Perform the following procedure,Press ‘Special’ button.Press ‘Adhesion’ button.Select and confirm ‘Non slippery rail’ button
@@ -82,6 +119,12 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7088 (partly: No symbol displayed);    
             */
 
+            TraceHeader("Test Step 6");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            TraceReport("Expected Result");
+            TraceInfo("");
             /*
             Test Step 6
             Action: End of test

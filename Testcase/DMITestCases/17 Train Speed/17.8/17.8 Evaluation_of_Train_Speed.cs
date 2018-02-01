@@ -49,8 +49,17 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Start ATP without cabin activation");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,(1)    Use the log file to confirm that DMI receives packet EVC-1 with variable MMI_V_TRAIN = -1.(2)   The following objects are not displayed on the DMI,Speed PointerSpeed DigitalCSGCSG-ExtensionAll hooksTarget Distance Bar");
             /*
             Test Step 1
             Action: Start ATP without cabin activation
@@ -68,6 +77,13 @@ namespace Testcase.DMITestCases
                                 "5. All hooks" + Environment.NewLine +
                                 "6. Target Distance Bar");
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Activate cabin A and perform SoM in SR mode, Level 1");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,(1)   Use the log file to confirm that DMI receives packet EVC-1 with variable MMI_V_TRAIN = 0.(2)    The Speed pointer, Speed digital, CSG, CSG-Extension, all hooks, Target Distance Bar and Target Distance Digital are diplayed and correspond to the  received packet EVC-1");
             /*
             Test Step 2
             Action: Activate cabin A and perform SoM in SR mode, Level 1
@@ -103,6 +119,13 @@ namespace Testcase.DMITestCases
                                 "6. Target Distance Bar" + Environment.NewLine +
                                 "7. Digital Target Distance");
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train forward pass BG1 with speed = 25 km/h");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,(1)   Use the log file to confirm that DMI received packet EVC-1 with variable MMI_V_TRAIN = 694.(2)    The Speed pointer and Speed digital are diplayed consist with received packet EVC-1.(3)   The Speed Pointer and Speed Digital on DMI screen are correspond with the current train speed");
             /*
             Test Step 3
             Action: Drive the train forward pass BG1 with speed = 25 km/h
@@ -115,6 +138,13 @@ namespace Testcase.DMITestCases
                                 "1. The Speed pointer and Speed digital are displayed." + Environment.NewLine +
                                 "2. The Speed Pointer and Digital Speed on DMI screen show speed at 25 km/h.");
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Use the test script file 12_8_a.xml to send EVC-1 with, MMI_V_TRAIN = -2");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,(1)   The following objects are not display on DMI,Speed PointerSpeed DigitalCSGCSG-ExtensionAll hooksTarget Distance BarTarget Distance Digital");
             /*
             Test Step 4
             Action: Use the test script file 12_8_a.xml to send EVC-1 with, MMI_V_TRAIN = -2
@@ -133,6 +163,12 @@ namespace Testcase.DMITestCases
                                 "6. Target Distance Bar" + Environment.NewLine +
                                 "7. Digital Target Distance");
 
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            TraceReport("Expected Result");
+            TraceInfo("");
             /*
             Test Step 5
             Action: End of test

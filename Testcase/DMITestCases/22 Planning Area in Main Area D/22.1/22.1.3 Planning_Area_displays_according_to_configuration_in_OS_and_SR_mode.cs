@@ -41,10 +41,18 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
             TraceInfo("This test case requires a DMI configuration change - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Activate cabin A");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Driver ID window");
             /*
             Test Step 1
             Action: Activate cabin A
@@ -57,6 +65,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the Driver ID window displayed.");
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Driver performs SoM to SR mode, level 1");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI displays in SR mode, level 1.Verify that the Planning Area is displayed in area D.The Hide PA button is displayed on the planning area with ‘Scale up’ and ‘Scale Down’ buttons");
             /*
             Test Step 2
             Action: Driver performs SoM to SR mode, level 1
@@ -70,6 +85,14 @@ namespace Testcase.DMITestCases
                                 "2. The Hide PA button is displyed in sub area D14." + Environment.NewLine +
                                 "3. The scale Up & Down buttons are displayed in sub area B.");
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Drive the train forward passing BG1.Then, press an acknowledgement of OS mode symbol in area C1");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI displays in OS mode, level 1.Verify that the Planning Area is displayed the planning information in area D.The Hide PA button is displayed on the planning area with ‘Scale up’ and ‘Scale Down’ buttons");
             /*
             Test Step 3
             Action: Drive the train forward passing BG1.Then, press an acknowledgement of OS mode symbol in area C1
@@ -85,6 +108,12 @@ namespace Testcase.DMITestCases
                                 "3. The Hide PA button is displayed in sub area D14." + Environment.NewLine +
                                 "4. The scale Up & Down buttons are displayed in sub area B.");
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            TraceReport("Expected Result");
+            TraceInfo("");
             /*
             Test Step 4
             Action: End of test

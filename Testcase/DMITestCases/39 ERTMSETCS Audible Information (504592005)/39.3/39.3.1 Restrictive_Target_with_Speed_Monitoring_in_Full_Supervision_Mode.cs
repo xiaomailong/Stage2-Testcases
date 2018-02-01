@@ -44,9 +44,17 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Perform SoM to Level 1 in SR mode");
+            TraceReport("Expected Result");
+            TraceInfo("ETCS OB enters SR mode in Level 1");
             /*
             Test Step 1
             Action: Perform SoM to Level 1 in SR mode
@@ -58,6 +66,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SR mode, Level 1.");
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train forward with constant speed at 40 km/h");
+            TraceReport("Expected Result");
+            TraceInfo("The train can drive forward and all brakes are not applied");
             /*
             Test Step 2
             Action: Drive the train forward with constant speed at 40 km/h
@@ -68,6 +82,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI does not display the ‘Emergency brake’ symbol, ST01, in sub-area C9.");
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Train runs pass BG1");
+            TraceReport("Expected Result");
+            TraceInfo("ETCS OB enters FS mode in Level 1");
             /*
             Test Step 3
             Action: Train runs pass BG1
@@ -80,6 +100,13 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays in FS mode, Level 1." + Environment.NewLine +
                                 "2. The ‘Sinfo’ sound is played once");
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Continue to drive the train forward and wait until train enters PIM supervision");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "(1) Sound Sinfo is played once when train enters PIM in FS mode with verification as follows:-DMI Appearance- The DMI displays white colour on CSG from Vtarget to Vperm.Log FileUse log file to verify that the DMI receives EVC-1 with variable [MMI_M_WARNING = 2].(2) Use log file to verify that restrictive target becomes applicable when DMI enters PIM in FS mode by verification below:-- In packet EVC-1 that variable ‘MMI_M_WARNING’ is changed to 2, variable ‘MMI_O_BRAKETARGET’ and ‘MMI_V_TARGET’ are changed value from -1 to any value");
             /*
             Test Step 4
             Action: Continue to drive the train forward and wait until train enters PIM supervision
@@ -100,6 +127,13 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "4. The speed pointer displays 40 km/h and is coloured white.");
 
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Continue to drive the train forward and wait until train enters TSM");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "(1) Sound Sinfo is not played when train enters TSM in FS mode with verification as follows:-- Use log file to verify that the DMI receives EVC-1 with variable [MMI_M_WARNING = 11].(2) Use log file to verify that restrictive target doesn’t exist when DMI enters TSM in FS mode by verification below:-- In packet EVC-1 that variable ‘MMI_M_WARNING’ is changed to 11, variable ‘MMI_O_BRAKETARGET’ and ‘MMI_V_TARGET’ are not changed value");
             /*
             Test Step 5
             Action: Continue to drive the train forward and wait until train enters TSM
@@ -111,6 +145,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Sinfo’ sound is not played (again).");
 
+            TraceHeader("Test Step 6");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Continue to drive the train forward and wait until train enters RSM");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "(1) Sound Sinfo is not played when train enters RSM in FS mode with verification as follows:-- Use log file to verify that the DMI receives EVC-1 with variable [MMI_M_WARNING = 3].(2) Use log file to verify that restrictive target doesn’t exist when DMI enters RSM by verification below:-- In packet EVC-1 that variable ‘MMI_M_WARNING’ is changed to 3, variable ‘MMI_O_BRAKETARGET’ and ‘MMI_V_TARGET’ are not changed value");
             /*
             Test Step 6
             Action: Continue to drive the train forward and wait until train enters RSM
@@ -122,6 +163,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Sinfo’ sound is not played (again).");
 
+            TraceHeader("Test Step 7");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Stop the train");
+            TraceReport("Expected Result");
+            TraceInfo("The train is at standstill");
             /*
             Test Step 7
             Action: Stop the train
@@ -132,6 +179,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The speed pointer displays 0 km/h.");
 
+            TraceHeader("Test Step 8");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            TraceReport("Expected Result");
+            TraceInfo("");
             /*
             Test Step 8
             Action: End of test

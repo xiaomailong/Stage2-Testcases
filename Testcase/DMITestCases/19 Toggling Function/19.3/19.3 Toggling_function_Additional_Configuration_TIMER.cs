@@ -45,9 +45,17 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train forward pass BG1.Then stop the train");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays in FS mode, Level 1 with the ST06 symbol at sub-area C6");
             /*
             Test Step 1
             Action: Drive the train forward pass BG1.Then stop the train
@@ -61,6 +69,14 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.Driver_symbol_displayed(this, "Level 1", "LE03", "C8", true);
             DmiExpectedResults.RV_Permitted_Symbol_displayed(this);
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Perform the following procedure,Chage the train direction to reversePress the symbol in sub-area C1");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI displays in RV mode, Level 1.Verify the following information,The objects below are displayed on DMI,White Basic speed HookDistance to target (digital)The objects below are not displayed on DMI,Medium-grey basic speed hookRelease Speed Digital");
             /*
             Test Step 2
             Action: Perform the following procedure,Chage the train direction to reversePress the symbol in sub-area C1
@@ -87,7 +103,6 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
 
-
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in RV mode, Level 1." + Environment.NewLine +
                                 "2. DMI displays the White basic speed hook." + Environment.NewLine +
@@ -95,6 +110,13 @@ namespace Testcase.DMITestCases
                                 "4. DMI does not display the Medium-grey basic speed hook." + Environment.NewLine +
                                 "5. DMI does not display the Digital release speed.");
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press, at least twice, on area A1-A4, and area B respectively");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,The objects below are not toggled visible/invisible, (always remain the same as the previous step)White Basic speed HookMedium-grey basic speed hookDistance to target (digital)Release Speed Digital");
             /*
             Test Step 3
             Action: Press, at least twice, on area A1-A4, and area B respectively
@@ -111,6 +133,12 @@ namespace Testcase.DMITestCases
                 "3. Digital distance to target." + Environment.NewLine +
                 "4. Digital	release speed.");
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Perform the following procedure,De-activate Cabin AActivate Cabin A");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays in SB mode, Level 1");
             /*
             Test Step 4
             Action: Perform the following procedure,De-activate Cabin AActivate Cabin A
@@ -126,6 +154,13 @@ namespace Testcase.DMITestCases
             DmiActions.Send_SB_Mode(this);
             DmiExpectedResults.SB_Mode_displayed(this);
 
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Perform SoM in SR mode, Level 1.Note: Stopwatch is required for accuracy of test result");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI displays in SR mode, Level 1.The objects below are displayed on DMI for 10 secondsWhite basic speed hookDistance to target (digital)(2) The release speed digital is not displayed");
             /*
             Test Step 5
             Action: Perform SoM in SR mode, Level 1.Note: Stopwatch is required for accuracy of test result
@@ -151,6 +186,14 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "4. DMI does not display the Digital release speed.");
 
+            TraceHeader("Test Step 6");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Perform the following procedure,Press ‘Spec’ button.Press ‘SR speed/distance’ button.Enter and confirm the following data,SR speed = 40 km/hSR distance = 300 mPress the speedometer onceNote: Stopwatch is required for accuracy of test result");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,The objects below are displayed on DMI for 10 secondsWhite basic speed hookMedium-grey basic speed hookDistance to target (digital)The release speed digital is not displayed");
             /*
             Test Step 6
             Action: Perform the following procedure,Press ‘Spec’ button.Press ‘SR speed/distance’ button.Enter and confirm the following data,SR speed = 40 km/hSR distance = 300 mPress the speedometer onceNote: Stopwatch is required for accuracy of test result
@@ -195,6 +238,13 @@ namespace Testcase.DMITestCases
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Ceiling_Speed_Monitoring;
 
 
+            TraceHeader("Test Step 7");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press the speedometer onceNote: Stopwatch is required for accuracy of test result");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,The objects below are displays for 10 seconds. Then, disappear.White basic speed hookMedium-grey basic speed hookDistance to target (digital)The release speed digital is still displayed");
             /*
             Test Step 7
             Action: Press the speedometer onceNote: Stopwatch is required for accuracy of test result
@@ -216,6 +266,14 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "4. DMI displays the Digital release speed which remains visible.");
 
+            TraceHeader("Test Step 8");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Press, only once, on area A1-A4, and area B respectively.Then, continue to drive the train forward after expected result verified.Note: Stopwatch is required for accuracy of test result");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,(1)   The objects below are displays for 10 seconds. Then, disappear.White basic speed hookMedium-grey basic speed hookDistance to target (digital)(2)   The release speed digital remains the same");
             /*
             Test Step 8
             Action: Press, only once, on area A1-A4, and area B respectively.Then, continue to drive the train forward after expected result verified.Note: Stopwatch is required for accuracy of test result
@@ -241,6 +299,14 @@ namespace Testcase.DMITestCases
             EVC1_MMIDynamic.MMI_V_RELEASE_KMH = 15;
 
 
+            TraceHeader("Test Step 9");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Drive the train forward pass BG1 with speed = 20km/h (or below permitted speed).Then, press an area C1 for acknowledgement");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI displays in UN mode, Level 0.Verify the following information,The objects below are not displayed on DMI,White Basic speed HookMedium-grey basic speed hookDistance to target (digital)Release Speed Digital");
             /*
             Test Step 9
             Action: Drive the train forward pass BG1 with speed = 20km/h (or below permitted speed).Then, press an area C1 for acknowledgement
@@ -268,6 +334,14 @@ namespace Testcase.DMITestCases
                                 "4. DMI does not display the Digital distance to target." + Environment.NewLine +
                                 "5. DMI does not display the Digital release speed.");
 
+            TraceHeader("Test Step 10");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Stop the train.Press, at least twice, on area A1-A4, and area B respectively.Then, continue to drive the train forward after expected result verified");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,The objects below are not toggled visible/invisible, (always remain the same as the previous step)White basic speed hookMedium-grey basic speed hookDistance to target (digital)Release Speed Digital");
             /*
             Test Step 10
             Action: Stop the train.Press, at least twice, on area A1-A4, and area B respectively.Then, continue to drive the train forward after expected result verified
@@ -286,6 +360,13 @@ namespace Testcase.DMITestCases
                 "3. Digital distance to target (remains invisible)." + Environment.NewLine +
                 "4. Digital release speed (remains invisible).");
 
+            TraceHeader("Test Step 11");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train forward pass BG2.Then, press an area C1 for acknowledgement");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI displays in FS mode, Level 1.Verify the following information,The objects below are displayed on DMI,Distance to target (digital)Release Speed DigitalThe objects below are not displayed on DMI,White Basic speed HookMedium-grey basic speed hook");
             /*
             Test Step 11
             Action: Drive the train forward pass BG2.Then, press an area C1 for acknowledgement
@@ -307,6 +388,14 @@ namespace Testcase.DMITestCases
                                 "4. DMI does not display the White basic speed hook." + Environment.NewLine +
                                 "5. DMI does not display the Medium-grey basic speed hook.");
 
+            TraceHeader("Test Step 12");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Stop the train.Then, press, at least twice,  on area A1-A4, and area B respectively.Then, continue to drive the train forward after expected result verified");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,The objects below are not toggled visible/invisible, (always remain the same as the previous step)White Basic speed HookMedium-grey basic speed hookDistance to target (digital)Release Speed Digital");
             /*
             Test Step 12
             Action: Stop the train.Then, press, at least twice,  on area A1-A4, and area B respectively.Then, continue to drive the train forward after expected result verified
@@ -326,6 +415,13 @@ namespace Testcase.DMITestCases
 
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 20;
 
+            TraceHeader("Test Step 13");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train forward pass BG3. Then, acknowledge OS mode by press a sub-area C1");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI displays in OS mode, Level 1.Verify the following information,The objects below are displayed on DMI for 10 secondsBasic speed Hook(s)Distance to target (digital)Release speed digital");
             /*
             Test Step 13
             Action: Drive the train forward pass BG3. Then, acknowledge OS mode by press a sub-area C1
@@ -359,6 +455,14 @@ namespace Testcase.DMITestCases
 
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring;
 
+            TraceHeader("Test Step 14");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Stop the train.Press the speedometer onceNote: Stopwatch is required for accuracy of test result");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,The objects below are displays for 10 seconds (toggled off). Then, disappear.White Basic speed HookMedium-grey basic speed hookDistance to target (digital)Release Speed Digital");
             /*
             Test Step 14
             Action: Stop the train.Press the speedometer onceNote: Stopwatch is required for accuracy of test result
@@ -377,6 +481,14 @@ namespace Testcase.DMITestCases
                 "3. Digital distance to target." + Environment.NewLine +
                 "4. Digital release speed.");
 
+            TraceHeader("Test Step 15");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Press, only once, on area A1-A4, and area B respectively.Then, continue to drive the train forward after expected result verified.Note: Stopwatch is required for accuracy of test result");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,(1)   The objects below are displays for 10 seconds. Then, disappear.White basic speed hookMedium-grey basic speed hookDistance to target (digital)Release Speed Digital");
             /*
             Test Step 15
             Action: Press, only once, on area A1-A4, and area B respectively.Then, continue to drive the train forward after expected result verified.Note: Stopwatch is required for accuracy of test result
@@ -394,6 +506,13 @@ namespace Testcase.DMITestCases
 
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 20;
 
+            TraceHeader("Test Step 16");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train forward pass BG5. Then, acknowledge LS mode by press a sub-area C1");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI displays in LS mode, Level 1.Verify the following information,The objects below are displayed on DMI,Distance to target (digital)Release Speed DigitalThe objects below are not displayed on DMI,White Basic speed HookMedium-grey basic speed hook");
             /*
             Test Step 16
             Action: Drive the train forward pass BG5. Then, acknowledge LS mode by press a sub-area C1
@@ -421,6 +540,14 @@ namespace Testcase.DMITestCases
                                 "4. DMI does not display the White basic speed hook." + Environment.NewLine +
                                 "5. DMI does not display the Medium-grey basic speed hook.");
 
+            TraceHeader("Test Step 17");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Stop the train.Press, at least twice, on area A1-A4, and area B respectively.Then, continue to drive the train forward after expected result verified");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,The objects below are not toggled visible/invisible, (always remain the same as the previous step)White Basic speed HookMedium-grey basic speed hookDistance to target (digital)Release Speed Digital");
             /*
             Test Step 17
             Action: Stop the train.Press, at least twice, on area A1-A4, and area B respectively.Then, continue to drive the train forward after expected result verified
@@ -437,6 +564,13 @@ namespace Testcase.DMITestCases
                                 "3. Digital distance to target (remains visible)." + Environment.NewLine +
                                 "4. Digital release speed (remains visible).");
 
+            TraceHeader("Test Step 18");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train pass through EOA");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI displays in TR mode, Level 1.Verify the following information,The objects below are not displayed on DMI,White Basic speed HookMedium-grey basic speed hookDistance to target (digital)Release Speed Digital");
             /*
             Test Step 18
             Action: Drive the train pass through EOA
@@ -455,6 +589,14 @@ namespace Testcase.DMITestCases
                                 "4.	DMI does not display the Digital distance to target." + Environment.NewLine +
                                 "5. DMI does not display the Digital release speed.");
 
+            TraceHeader("Test Step 19");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Stop the train.Press, at least twice, on area A1-A4, and area B respectively.Then, continue to drive the train forward after expected result verified");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,The objects below are not toggled visible/invisible, (always remain the same as the previous step)White basic speed hookMedium-grey basic speed hookDistance to target (digital)Release Speed Digital");
             /*
             Test Step 19
             Action: Stop the train.Press, at least twice, on area A1-A4, and area B respectively.Then, continue to drive the train forward after expected result verified
@@ -473,6 +615,13 @@ namespace Testcase.DMITestCases
                 "3. Digital distance to target (remains invisible)." + Environment.NewLine +
                 "4. Digital release speed (remains invisible).");
 
+            TraceHeader("Test Step 20");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Acknowledge TR mode by press a sub-area C1");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI displays in PT mode, Level 1. Verify the following information,The objects below are not displayed on DMI,White Basic speed HookMedium-grey basic speed hookDistance to target (digital)Release Speed Digital");
             /*
             Test Step 20
             Action: Acknowledge TR mode by press a sub-area C1
@@ -499,6 +648,14 @@ namespace Testcase.DMITestCases
                                 "4. DMI does not display the White basic speed hook." + Environment.NewLine +
                                 "5. DMI does not display the Medium-grey basic speed hook.");
 
+            TraceHeader("Test Step 21");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Stop the train.Press, at least twice, on area A1-A4, and area B respectively.Then, continue to drive the train forward after expected result verified");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,The objects below are not toggled visible/invisible, (always remain the same as the previous step)White basic speed hookMedium-grey basic speed hookDistance to target (digital)Release Speed Digital");
             /*
             Test Step 21
             Action: Stop the train.Press, at least twice, on area A1-A4, and area B respectively.Then, continue to drive the train forward after expected result verified
@@ -519,6 +676,14 @@ namespace Testcase.DMITestCases
 
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 20;
 
+            TraceHeader("Test Step 22");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Perform the following procedure,Press ‘Main’ button.Press and hold ‘Shunting’ button up to 2 second.Release ‘Shunting’ button.Note: Stopwatch is required for accuracy of test result");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI displays in SH mode, Level 1.Verify the following information,The white basic speed hook is displayed on DMI for 10 secondsThe objects below are not displayed on DMI,Medium-grey basic speed hookDistance to target (digital)Release Speed Digital");
             /*
             Test Step 22
             Action: Perform the following procedure,Press ‘Main’ button.Press and hold ‘Shunting’ button up to 2 second.Release ‘Shunting’ button.Note: Stopwatch is required for accuracy of test result
@@ -528,7 +693,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press the ‘Main’ button.");
             DmiActions.Display_Main_Window_with_Start_button_enabled(this);
 
-            DmiActions.ShowInstruction(this, "Press and hold ‘Shunting’ button for up to 2s then release the ‘Shunting’ button");
+            DmiActions.ShowInstruction(this,
+                "Press and hold ‘Shunting’ button for up to 2s then release the ‘Shunting’ button");
             DmiExpectedResults.Shunting_button_pressed_and_hold(this);
 
             DmiActions.Send_SH_Mode(this);
@@ -549,6 +715,13 @@ namespace Testcase.DMITestCases
                                 "4. DMI does not display the Digital distance to target." + Environment.NewLine +
                                 "5. DMI does not display the Digital release speed.");
 
+            TraceHeader("Test Step 23");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press the speedometer onceNote: Stopwatch is required for accuracy of test result");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,The white basic speed hook displays for 10 seconds (toggled off). Then, disappears.The objects below are still not displayed on DMI,Medium-grey basic speed hookDistance to target (digital)Release Speed Digital");
             /*
             Test Step 23
             Action: Press the speedometer onceNote: Stopwatch is required for accuracy of test result
@@ -570,6 +743,14 @@ namespace Testcase.DMITestCases
                                 "3. DMI still does not display the Digital distance to target." + Environment.NewLine +
                                 "4. DMI still does not display the Digital release speed.");
 
+            TraceHeader("Test Step 24");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Press, only once, on area A1-A4, and area B respectively.Then, continue to drive the train forward after expected result verified.Note: Stopwatch is required for accuracy of test result");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,The white basic speed hook is displays for 10 seconds. Then, disappear.The objects below are not toggled visible/invisible, (always remain the same as the previous step),Medium-grey basic speed hookDistance to target (digital)Release Speed Digital");
             /*
             Test Step 24
             Action: Press, only once, on area A1-A4, and area B respectively.Then, continue to drive the train forward after expected result verified.Note: Stopwatch is required for accuracy of test result
@@ -593,6 +774,14 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "4. The Digital release speed does not change (stays invisible)");
 
+            TraceHeader("Test Step 25");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Press a sensitivity area (areas A1-A4 or B) to make a Basic Speed Hook appear.Then simulate loss-communication between ETCS onboard and DMI (1 second).Note: Stopwatch is required for accuracy of test result");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI displays the  message “ATP Down Alarm” with sound alarm.Verify the following information,The objects below are not displayed on DMI,White Basic speed HookMedium-grey basic speed hookDistance to target (digital)Release Speed Digital");
             /*
             Test Step 25
             Action: Press a sensitivity area (areas A1-A4 or B) to make a Basic Speed Hook appear.Then simulate loss-communication between ETCS onboard and DMI (1 second).Note: Stopwatch is required for accuracy of test result
@@ -616,6 +805,14 @@ namespace Testcase.DMITestCases
                                 "4. DMI does not display the Digital distance to target." + Environment.NewLine +
                                 "5. DMI does not display the Digital release speed.");
 
+            TraceHeader("Test Step 26");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Re-establish communication between ETCS onboard and DMI (in 1 second).Note: Stopwatch is required for accuracy of test result");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,(1)   The white basic speed hook displays for 10 seconds (toggled off). Then, disappears.(2)   The objects below are still not displayed on DMI,Medium-grey basic speed hookDistance to target (digital)Release Speed Digital");
             /*
             Test Step 26
             Action: Re-establish communication between ETCS onboard and DMI (in 1 second).Note: Stopwatch is required for accuracy of test result
@@ -635,6 +832,12 @@ namespace Testcase.DMITestCases
                                 "3. DMI does not display the Digital distance to target." + Environment.NewLine +
                                 "4. DMI does not display the Digital release speed.");
 
+            TraceHeader("Test Step 27");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            TraceReport("Expected Result");
+            TraceInfo("");
             /*
             Test Step 27
             Action: End of test

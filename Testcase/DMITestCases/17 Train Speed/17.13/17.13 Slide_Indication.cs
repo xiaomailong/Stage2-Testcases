@@ -44,10 +44,18 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
             TraceInfo("This test case requires an ATP configuration change - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Driver the train forward");
+            TraceReport("Expected Result");
+            TraceInfo("DMI changes from SR mode to FS mode");
             /*
             Test Step 1
             Action: Driver the train forward
@@ -59,6 +67,13 @@ namespace Testcase.DMITestCases
             // Call generic Check Results Method
             DmiExpectedResults.FS_mode_displayed(this);
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train forward with speed = 140 km/h");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "The speed pointer is displayed with speed =140.Verify the following information,Use the log file to confirm that DMI receives EVC-1 with following variables,MMI_M_SLIPE = 0MMI_M_SLIDE = 0");
             /*
             Test Step 2
             Action: Drive the train forward with speed = 140 km/h
@@ -71,6 +86,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The speed pointer is displayed with speed = 140.");
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Use the test script file 12_13_a.xml to send EVC-1 with,MMI_M_SLIP = 0MMI_M_SLIDE =1");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,The Slide indication is displayed and shown as arrow pointing counterclockwise.The colour of Slide indication is black as same as speed digital colour.The Slide indication is displayed on speed hub of the speed pointer.DMI plays sound Sinfo once");
             /*
             Test Step 3
             Action: Use the test script file 12_13_a.xml to send EVC-1 with,MMI_M_SLIP = 0MMI_M_SLIDE =1
@@ -87,6 +109,13 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "4. DMI plays sound Sinfo once.");
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Use the test script file 12_13_b.xml to send EVC-1 with,MMI_M_SLIP = 1MMI_M_SLIDE =0");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,The ‘Slip/Slide’ indication is not displayed on the speed hub. Sound Sinfo is not played");
             /*
             Test Step 4
             Action: Use the test script file 12_13_b.xml to send EVC-1 with,MMI_M_SLIP = 1MMI_M_SLIDE =0
@@ -99,6 +128,13 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. Sound Sinfo is not played.");
 
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Use the test script file 12_13_c.xml to send EVC-1 with,MMI_M_SLIP = 1MMI_M_SLIDE =1");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,The ‘Slip/Slide’ indication is not displayed on the speed hub. Sound Sinfo is not played");
             /*
             Test Step 5
             Action: Use the test script file 12_13_c.xml to send EVC-1 with,MMI_M_SLIP = 1MMI_M_SLIDE =1
@@ -115,6 +151,12 @@ namespace Testcase.DMITestCases
 
             // ?? according to reference RS_ETC_R4 conditions are met for displaying slide indication and sounding Sinfo because slide is displayed
 
+            TraceHeader("Test Step 6");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            TraceReport("Expected Result");
+            TraceInfo("");
             /*
             Test Step 6
             Action: End of test

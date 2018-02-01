@@ -75,7 +75,8 @@ namespace Testcase.Telegrams.DMItoEVC
                     {
                         Check_Driver_Message_Not_Ack_Pressed();
                     }
-                    else _pool.TraceError("MMI_Q_ACK is not valid.");
+                    else
+                        _pool.TraceError("MMI_Q_ACK is not valid.");
                 }
                 else if (_mmiQButton == Variables.MMI_Q_BUTTON.Released)
                 {
@@ -87,7 +88,8 @@ namespace Testcase.Telegrams.DMItoEVC
                     {
                         Check_Driver_Message_Not_Ack_Released();
                     }
-                    else _pool.TraceError("MMI_Q_ACK is not valid.");
+                    else
+                        _pool.TraceError("MMI_Q_ACK is not valid.");
                 }
                 else
                 {

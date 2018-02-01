@@ -46,8 +46,17 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Test’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI displays Brake test window.Verifies the following information,Menu windowThe Brake Test window is displayed in main area D/F/G.The window title is ‘Brake test’.The following objects are displayed in Main window, Enabled Close button (NA11)Window TitleButton 1 with label ‘ETCS’Note: See the position of buttons in picture below,LayersThe level of layers in each area of window as follows,Layer 0: Area D,F,GLayer -1: Area A1, (A2+A3)*, A4, B*, C1, (C2+C3+C4)*, C5, C6, C7, C8, C9, E1, E2, E3, E4, (E5-E9)*.Layer -2: Area B3, B4, B5, B6 and B7.Note: ‘*’ symbol is mean that specified area are drawn as one area.General property of windowThe Brake Test window is presented with objects and buttons which is the one of several levels and allocated to areas of DMI.All objects, text messages and buttons are presented within the same layer.The Default window is not displayed and covered the current window");
             /*
             Test Step 1
             Action: Press ‘Test’ button
@@ -76,6 +85,13 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "10. The Default window does not cover the current window.");
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press and hold ‘Close’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,The sound ‘Click’ played once.The ‘Close’ button is shown as pressed state, the border of button is removed");
             /*
             Test Step 2
             Action: Press and hold ‘Close’ button
@@ -89,6 +105,12 @@ namespace Testcase.DMITestCases
                                 "1. The ‘Close’ button is displayed pressed, without a border." + Environment.NewLine +
                                 "2. The ‘Click’ sound is played once.");
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Slide out ‘Close’ button");
+            TraceReport("Expected Result");
+            TraceInfo("The border of the button is shown (state ‘Enabled’) without a sound");
             /*
             Test Step 3
             Action: Slide out ‘Close’ button
@@ -101,6 +123,12 @@ namespace Testcase.DMITestCases
                                 @"1. The ‘Close’ button is displayed enabled, with a border." + Environment.NewLine +
                                 "2. No sound is played.");
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Slide back into ‘Close’ button");
+            TraceReport("Expected Result");
+            TraceInfo("The button is back to state ‘Pressed’ without a sound");
             /*
             Test Step 4
             Action: Slide back into ‘Close’ button
@@ -114,6 +142,12 @@ namespace Testcase.DMITestCases
                                 @"1. The ‘Close’ button is displayed pressed." + Environment.NewLine +
                                 "2. No sound is played.");
 
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Release ‘Close’ button");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Brake window");
             /*
             Test Step 5
             Action: Release ‘Close’ button
@@ -125,6 +159,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Brake window");
 
+            TraceHeader("Test Step 6");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Test’ button");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Brake test window");
             /*
             Test Step 6
             Action: Press ‘Test’ button
@@ -136,6 +176,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Brake test window");
 
+            TraceHeader("Test Step 7");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Follow action step 2 – step 5 for ‘ETCS’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "See the expected results of Step 2 – Step 5 and the following additional information,DMI close the Brake Test window and displays Brake window instead.Use the log file to confirm that DMI sends out the packet [MMI_DRIVER_REQUEST (EVC-101)] with variable [MMI_DRIVER_REQUEST (EVC-101).MMI_M_REQUEST] = 22 (Start Brake Test)");
             /*
             Test Step 7
             Action: Follow action step 2 – step 5 for ‘ETCS’ button
@@ -169,6 +216,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Brake window");
 
+            TraceHeader("Test Step 8");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            TraceReport("Expected Result");
+            TraceInfo("");
             /*
             Test Step 8
             Action: End of test

@@ -45,9 +45,18 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Spec’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI displays Special window.Verify the following information,Menu window(1)   TheSpecial window is displayed in main area D/F/G.(2)   The window title is ‘Special’.(3)   The following objects are displayed in Main window, Enabled Close button (NA11)Window TitleButton 1 with label ‘Adhesion’Button 2 with label ‘SR speed /distance’Button 3 with label ‘Train integrity’ Note: See the position of buttons in picture below,(4)   The state of each button in Special window are displayed correctly as follows ,SR speed/distance = EnableAdhesion = DisableTrain integrity = Enable(5)   Use the log file to confirm that DMI receives packet EVC-30 with the value of following bit of MMI_Q_REQUEST_ENABLE_64Bit #10  = 0 (Adhesion disabled)Bit #11 = 1 (SR speed/distance enabled)Bit #12 = 1 (Train Integrity enabled)Layers(6)   The level of layers in each area of window as follows,Layer 0: Area D, F, G, E10, E11, Y, and ZLayer -1: Area A1, (A2+A3)*, A4, B*, C1, (C2+C3+C4)*, C5, C6, C7, C8, C9, E1, E2, E3, E4, (E5-E9)*.Layer -2: Area B3, B4, B5, B6 and B7.Note: ‘*’ symbol is mean that specified area are drawn as one area.General property of window(7)   The Special window is presented with objects and buttons which is the one of several levels and allocated to areas of DMI.(8)   All objects, text messages and buttons are presented within the same layer.(9)   The Default window is not displayed and covered the current window.(10)   Sub-level window covers partially depending on the size of the Sub-Level window. There is no other window is displayed and activated at the same time");
             /*
             Test Step 1
             Action: Press ‘Spec’ button
@@ -87,6 +96,13 @@ namespace Testcase.DMITestCases
                                 "12. The Default window does not cover the current window." + Environment.NewLine +
                                 "13. A sub-level window can partially cover another window, depending on its size. Another window cannot be displayed and activated at the same time.");
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Train integrity’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,The ‘Train Integrity’ button becomes state ‘Pressed’, then state ‘Enabled’ once the button is immediately releasedThe Special window is still displayed.The ‘Click’ sound is played once.Use the log file to confirm that DMI sends EVC-101 twice with different value of MMI_T_BUTTONEVENT and MMI_Q_BUTTON (1 = pressed, 0 = released)");
             /*
             Test Step 2
             Action: Press ‘Train integrity’ button
@@ -103,6 +119,14 @@ namespace Testcase.DMITestCases
                                 "2. DMI still displays the Special window." + Environment.NewLine +
                                 "3. The ‘Click’ sound is played once." + Environment.NewLine);
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Press and hold ‘Train integrity’ button for 2s.Note: Stopwatch is required for accuracy of test result");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,While press and hold button less than 2 secThe ‘Click’ sound is played once.The state of button is changed to ‘Pressed’.The state ‘pressed’ and ‘enabled’ are switched repeatly while button is pressed. Use the log file to confirm that DMI sends EVC-101 with variable MMI_T_BUTTONEVENT and MMI_Q_BUTTON = 1 (pressed).While press and hold button over 2 secThe state of button is changed to ‘Pressed’ and without toggle");
             /*
             Test Step 3
             Action: Press and hold ‘Train integrity’ button for 2s.Note: Stopwatch is required for accuracy of test result
@@ -117,6 +141,13 @@ namespace Testcase.DMITestCases
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 "3. When the button has been pressed for more than 2s, it is displayed pressed (without toggling).");
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Slide out from the “Train Integrity” button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,The ‘Train Integrity’ button turns to the ‘Enabled’ state without a sound");
             /*
             Test Step 4
             Action: Slide out from the “Train Integrity” button
@@ -130,6 +161,14 @@ namespace Testcase.DMITestCases
                                 @"1. The ‘Train Integrity’ button is displayed enabled." + Environment.NewLine +
                                 "2. No sound is played.");
 
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Slide back to the “Train integrity’ button and hold it for 1 seconds. Then, slide out again.Note: Stopwatch is required for accuracy of test result");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information, (1)  The ‘Train Integrity’ button turns to the ‘Enabled’ state without a sound");
             /*
             Test Step 5
             Action: Slide back to the “Train integrity’ button and hold it for 1 seconds. Then, slide out again.Note: Stopwatch is required for accuracy of test result
@@ -143,6 +182,14 @@ namespace Testcase.DMITestCases
                                 @"1. The ‘Train Integrity’ button is displayed enabled." + Environment.NewLine +
                                 "2. No sound is played.");
 
+            TraceHeader("Test Step 6");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Slide back to the “Train Integrity” button and hold it for 2 seconds.Note: Stopwatch is required for accuracy of test result");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "While press and hold button less than 2 secThe state ‘pressed’ and ‘enabled’ are switched repeatly while button is pressed without a sound. While press and hold button over 2 secThe state of button is changed to ‘Pressed’ and without toggle");
             /*
             Test Step 6
             Action: Slide back to the “Train Integrity” button and hold it for 2 seconds.Note: Stopwatch is required for accuracy of test result
@@ -158,6 +205,13 @@ namespace Testcase.DMITestCases
                                 "2. No sound is played." + Environment.NewLine +
                                 "3. When the button has been pressed for more than 2s, it is displayed pressed (without toggling).");
 
+            TraceHeader("Test Step 7");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Release ‘Train integrity’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI displays Default window.Verify the following information,Use the log file to confirm that DMI sends EVC-101 with the variable MMI_M_REQUEST = 38 (Start procedure ‘Train Integrity’)");
             /*
             Test Step 7
             Action: Release ‘Train integrity’ button
@@ -171,6 +225,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Default window");
 
+            TraceHeader("Test Step 8");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Spec’ button");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Special window");
             /*
             Test Step 8
             Action: Press ‘Spec’ button
@@ -190,6 +250,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Special window");
 
+            TraceHeader("Test Step 9");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press and hold ‘SR speed/distance’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,The sound ‘Click’ is played once.The ‘SR speed/distance’ button is shown as pressed state, the border of button is removed");
             /*
             Test Step 9
             Action: Press and hold ‘SR speed/distance’ button
@@ -202,6 +269,12 @@ namespace Testcase.DMITestCases
                                 "1. The button is displayed pressed, without a border" + Environment.NewLine +
                                 "2. No sound is played.");
 
+            TraceHeader("Test Step 10");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Slide out of ‘SR speed/distance’ button");
+            TraceReport("Expected Result");
+            TraceInfo("The border of the button is shown (state ‘Enabled’) without a sound");
             /*
             Test Step 10
             Action: Slide out of ‘SR speed/distance’ button
@@ -216,6 +289,12 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. The ‘Click’ sound is played once.");
 
+            TraceHeader("Test Step 11");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Slide back into ‘SR speed/distance’ button");
+            TraceReport("Expected Result");
+            TraceInfo("The button is back to state ‘Pressed’ without a sound");
             /*
             Test Step 11
             Action: Slide back into ‘SR speed/distance’ button
@@ -229,6 +308,13 @@ namespace Testcase.DMITestCases
                                 @"1. The ‘SR speed/distance’ button is displayed pressed." + Environment.NewLine +
                                 "2. No sound is played.");
 
+            TraceHeader("Test Step 12");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Release ‘SR speed/distance’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,DMI displays SR speed/distance window.Use the log file to confirm that DMI sends out the packet [MMI_DRIVER_REQUEST (EVC-101)] with variable [MMI_DRIVER_REQUEST (EVC-101).MMI_M_REQUEST = 13 (Change SR rules)");
             /*
             Test Step 12
             Action: Release ‘SR speed/distance’ button
@@ -245,6 +331,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the SR speed/distance window");
 
+            TraceHeader("Test Step 13");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Follow action step 9 – step 12 for the ‘Close’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "See the expected results of Step 9 – Step 12 and the following additional information, (1) DMI displays Special window refer to released button");
             /*
             Test Step 13
             Action: Follow action step 9 – step 12 for the ‘Close’ button
@@ -281,6 +374,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Special window");
 
+            TraceHeader("Test Step 14");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train forward pass BG1");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,Adhesion button is enabled.Use the log file to confirm that DMI receives packet EVC-30 with variable MMI_Q_REQUEST_ENABLE_64Bit #10 = 1 (Adhesion Enabled)");
             /*
             Test Step 14
             Action: Drive the train forward pass BG1
@@ -299,6 +399,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Adhesion’ button is displayed enabled");
 
+            TraceHeader("Test Step 15");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Stop the train.Then, Follow action step 9 – step 12 for the ‘Adhesion’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "See the expected results of Step 9 – Step 12 and the following additional information, DMI displays Adhesion window refer to released button");
             /*
             Test Step 15
             Action: Stop the train.Then, Follow action step 9 – step 12 for the ‘Adhesion’ button
@@ -336,6 +443,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Adhesion window");
 
+            TraceHeader("Test Step 16");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Close’ button");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Special window");
             /*
             Test Step 16
             Action: Press ‘Close’ button
@@ -346,6 +459,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Special window");
 
+            TraceHeader("Test Step 17");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train forward");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,The following buttons are disabled,SR speed/distanceTrain integrityUse the log file to confirm that DMI receives EVC-30 with following value in each bit of variable MMI_Q__REQUEST_ENABLE_64,Bit #11 = 0 (SR speed/distance disabled)Bit #12 = 0 (Train integrity disabled)");
             /*
             Test Step 17
             Action: Drive the train forward
@@ -364,6 +484,13 @@ namespace Testcase.DMITestCases
                                 "1. The ‘SR speed/distance’ button is displayed disabled" + Environment.NewLine +
                                 "2. The ‘Train Integrity’ button is displayed disabled");
 
+            TraceHeader("Test Step 18");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Stop the train");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,The following buttons are enabled,SR speed/distanceTrain integrityUse the log file to confirm that DMI receives EVC-30 with following value in each bit of variable MMI_Q__REQUEST_ENABLE_64,Bit #11 = 1 (SR speed/distance enabled)Bit #12 = 1 (Train integrity enabled)");
             /*
             Test Step 18
             Action: Stop the train
@@ -383,6 +510,12 @@ namespace Testcase.DMITestCases
                                 "1. The ‘SR speed/distance’ button is displayed enabled" + Environment.NewLine +
                                 "2. The ‘Train Integrity’ button is displayed enabled");
 
+            TraceHeader("Test Step 19");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press the ‘Close’ button");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information,(1)   DMI dipslays Default window");
             /*
             Test Step 19
             Action: Press the ‘Close’ button
@@ -399,6 +532,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Default window");
 
+            TraceHeader("Test Step 20");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            TraceReport("Expected Result");
+            TraceInfo("");
             /*
             Test Step 20
             Action: End of test

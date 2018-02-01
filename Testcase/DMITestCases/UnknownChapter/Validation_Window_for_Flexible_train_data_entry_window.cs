@@ -37,9 +37,18 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Enter and confirm all data in Train data window");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,Use the log file to confirm that DMI received the packet MMI_ECHOED_TRAIN_DATA (EVC-10). DMI displays Train data Validation window.The following objects are display in Train data Validation window.Close buttonWindow TitleInput fieldYes buttonNo buttonWindow TitleThe window title is ‘Validate train data’.The window title is right aligned.LayerThe window is displayed in main area A/B/C/D/E/F/G.All area of Data validation window are Layer 0.Input fieldThe window contains a single input field which have only data area.The value of input field is empty.KeyboardThe displayed keyboard type is dedicated keyboard which contain only ‘Yes’ and ‘No’ button.The key #7 is No button.The key #8 is Yes button.Echo TextEcho Text is composed of a Label part and Data part.The Label of echo text is right aligned.The Data part of echo text is left aligned.The order of echo texts are same as of the Train data window as follows,Train categoryLengthBrake percentageMaximum speedAxle load categoryAirtightLoading gaugeThe data part of echo texts are display the data value same as of the Train data window.The echo texts are located in Main area A,B,C and E.The echo texts colour is white.Use the log file to confirm that the following variable in packet EVC-10 is same as entered data and display in the data part of echo text,MMI_M_DATA_ENABLE =32512 (Only bit #0, Train Set ID is not set) MMI_M_TRAINSET_ID = 0 (Use Flexible TDE)MMI_NID_KEY_LOAD_GAUGE =  entered Loading GaugeMMI_M_AIRTIGHT = entered AirtightMMI_NID_KEY_AXLE_LOAD = entered Axle loadMMI_V_MAXTRAIN = entered Max train speedMMI_M_BRAKE_PERC = entered Brake percentageMMI_L_TRAIN = entered LengthMMI_NID_KEY_TRAIN_CAT = entered Train category");
             /*
             Test Step 1
             Action: Enter and confirm all data in Train data window
@@ -50,6 +59,12 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Enter and confirm all data in Train data window");
 
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘No’ button");
+            TraceReport("Expected Result");
+            TraceInfo("The value of input field is changed refer to selected button");
             /*
             Test Step 2
             Action: Press ‘No’ button
@@ -62,6 +77,13 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.The_value_of_input_field_is_changed_refer_to_selected_button(this);
 
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Confirm entered data by pressing an input field");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,DMI displays Train data window.Use the log file to confirm that DMI sends out the packet [MMI_DRIVER_REQUEST (EVC-101)] with variable [MMI_DRIVER_REQUEST (EVC-101).MMI_M_REQUEST] = 4 (Exit Train data)");
             /*
             Test Step 3
             Action: Confirm entered data by pressing an input field
@@ -75,6 +97,13 @@ namespace Testcase.DMITestCases
                 .Train_data_window_displayed(this);
 
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Perform the following procedure,Enter and confirm all data in Train data window.Press ‘Yes’ button");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Train data validation window");
             /*
             Test Step 4
             Action: Perform the following procedure,Enter and confirm all data in Train data window.Press ‘Yes’ button
@@ -87,6 +116,13 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.Train_data_validation_window_displayed(this);
 
 
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Close’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,DMI displays Main window.Use the log file to confirm that DMI sends out the packet [MMI_DRIVER_REQUEST (EVC-101)] with variable [MMI_DRIVER_REQUEST (EVC-101).MMI_M_REQUEST] = 4 (Exit Train data)");
             /*
             Test Step 5
             Action: Press ‘Close’ button
@@ -101,6 +137,13 @@ namespace Testcase.DMITestCases
                     this);
 
 
+            TraceHeader("Test Step 6");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Perform the following procedure,Press ‘Train data’ button.Enter and confirm all data in Train data window.Press ‘Yes’ button");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Train data validation window");
             /*
             Test Step 6
             Action: Perform the following procedure,Press ‘Train data’ button.Enter and confirm all data in Train data window.Press ‘Yes’ button
@@ -114,6 +157,12 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.Train_data_validation_window_displayed(this);
 
 
+            TraceHeader("Test Step 7");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Yes’ button");
+            TraceReport("Expected Result");
+            TraceInfo("The value of input field is changed refer to selected button");
             /*
             Test Step 7
             Action: Press ‘Yes’ button
@@ -126,6 +175,13 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.The_value_of_input_field_is_changed_refer_to_selected_button(this);
 
 
+            TraceHeader("Test Step 8");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Confirm entered data by pressing an input field");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI displays Train Running Number window.Verify the following information,The Train data validation is closed.Use the log file to confirm that DMI sends out the packet [MMI_CONFIRMED_TRAIN DATA (EVC-110)] with variable based on confirmed data");
             /*
             Test Step 8
             Action: Confirm entered data by pressing an input field
@@ -139,6 +195,13 @@ namespace Testcase.DMITestCases
                 .TRN_window_displayed(this);
 
 
+            TraceHeader("Test Step 9");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Perform the following procedure,Enter and confirm ‘Train running number’Press ‘Train data’ button.Enter and confirm all data in Train data window.Press ‘Yes’ button.Then, Simulate loss-communication between ETCS onboard and DMI");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Default window with the  message “ATP Down Alarm” and sound alarm");
             /*
             Test Step 9
             Action: Perform the following procedure,Enter and confirm ‘Train running number’Press ‘Train data’ button.Enter and confirm all data in Train data window.Press ‘Yes’ button.Then, Simulate loss-communication between ETCS onboard and DMI
@@ -148,6 +211,13 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.DMI_displays_Default_window_with_the_message_ATP_Down_Alarm_and_sound_alarm(this);
 
 
+            TraceHeader("Test Step 10");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Re-establish communication between ETCS onboard and DMI");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI displays Train data validation window.Verify the following informaiton,All buttons except ‘No’ button are disabled.The state of ‘No’ button is enabled.The disabled button are shown as a button is state ‘enabled’ with text label in dark-grey");
             /*
             Test Step 10
             Action: Re-establish communication between ETCS onboard and DMI
@@ -158,6 +228,12 @@ namespace Testcase.DMITestCases
             DmiActions.Re_establish_communication_between_ETCS_onboard_and_DMI(this);
 
 
+            TraceHeader("Test Step 11");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            TraceReport("Expected Result");
+            TraceInfo("");
             /*
             Test Step 11
             Action: End of test

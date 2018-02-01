@@ -50,8 +50,17 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Enter and confirm all data in Wheel diameter window");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,Use the log file to confirm that DMI received the packet MMI_ECHOED_MAINTENANCE_DATA (EVC-41) with variable MMI_Q_MD_DATASET = 0. Use the log file to confirm that the following variables in packet EVC-41 are same as entered data,MMI_M_SDU_WHEEL_SIZE_1 = entered Wheel diameter1MMI_M_SDU_WHEEL_SIZE_2 = entered Wheel diameter2MMI_M_WHEEL_SIZE_ERR = entered AccuracyDMI displays Wheel diameter Validation window.The following objects are displayed in Wheel diameter Validation window. Enabled Close button (NA11)Window TitleInput fieldYes buttonNo buttonWindow TitleThe window title is ‘Validate Wheel diameter’.The window title is right aligned.LayerThe window is displayed in main area A/B/C/D/E/F/G.All areas of Data validation window are Layer 0.Input fieldThe window contains a single input field which have only data area.The value of input field is empty.KeyboardThe displayed keyboard type is dedicated keyboard which contain only ‘Yes’ and ‘No’ button.The key #7 is No button.The key #8 is Yes button.Echo TextEcho Text is composed of a Label part and Data part.The Label of echo text is right aligned.The Data part of echo text is left aligned.The order of echo texts are same as of the Wheel diameter window as follows,Wheel diameter 1 (mm)Wheel diameter 2 (mm)Accuracy (mm)The data part of echo texts are display the data value same as of the Wheel diameter window.The echo texts are located in Main area A,B,C and E.The colour of echo texts is white.General property of windowThe Wheel diameter Validation window is presented with objects, text messages and buttons which is the one of several levels and allocated to areas of DMI. All objects, text messages and buttons are presented within the same layer.The Default window is not displayed and covered the current window");
             /*
             Test Step 1
             Action: Enter and confirm all data in Wheel diameter window
@@ -101,6 +110,12 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "12. The Default window is not displayed covering the current window.");
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘No’ button");
+            TraceReport("Expected Result");
+            TraceInfo("The value of input field is changed refer to selected button");
             /*
             Test Step 2
             Action: Press ‘No’ button
@@ -112,6 +127,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field displays ‘No’.");
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press and hold an input field");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,(1)    The state of an input field is changed to ‘Pressed’, the border of button is removed");
             /*
             Test Step 3
             Action: Press and hold an input field
@@ -123,6 +145,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field is displayed pressed, without a border.");
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Slide out an input field");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,(1)    The state of an input field is changed to ‘Enabled, the border of button is shown without a sound");
             /*
             Test Step 4
             Action: Slide out an input field
@@ -135,6 +164,13 @@ namespace Testcase.DMITestCases
                                 "1. The data input field is displayed enabled, with a border." + Environment.NewLine +
                                 "2. No sound is played.");
 
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Slide back into an input field");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,(1)    The state of an input field is changed to ‘Pressed’, the border of button is removed");
             /*
             Test Step 5
             Action: Slide back into an input field
@@ -147,6 +183,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field is displayed pressed, without a border.");
 
+            TraceHeader("Test Step 6");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Release the pressed area");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,DMI displays Maintenance window.Use the log file to confirm that DMI sends out the packet [MMI_DRIVER_REQUEST (EVC-101)] with variable ;[MMI_DRIVER_REQUEST (EVC-101).MMI_M_REQUEST] = 54 (Exit Maintenance)");
             /*
             Test Step 6
             Action: Release the pressed area
@@ -167,6 +210,13 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Maintenance window.");
 
 
+            TraceHeader("Test Step 7");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Perform the following procedure,Press ‘Wheel diameter’ button.Enter and confirm all data in Wheel diameter window.Press ‘Yes’ button");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Wheel diameter validation window");
             /*
             Test Step 7
             Action: Perform the following procedure,Press ‘Wheel diameter’ button.Enter and confirm all data in Wheel diameter window.Press ‘Yes’ button
@@ -192,6 +242,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Wheel diameter validation window.");
 
+            TraceHeader("Test Step 8");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Close’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,DMI displays Maintenance window.Use the log file to confirm that DMI sends out the packet [MMI_DRIVER_REQUEST (EVC-101)] with variable ;[MMI_DRIVER_REQUEST (EVC-101).MMI_M_REQUEST] = 54 (Exit Maintenance)");
             /*
             Test Step 8
             Action: Press ‘Close’ button
@@ -205,6 +262,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Maintenance window.");
 
+            TraceHeader("Test Step 9");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Perform the following procedure,Press ‘Wheel diameter’ button.Enter and confirm all data in Wheel diameter window.Press ‘Yes’ button");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Wheel diameter validation window");
             /*
             Test Step 9
             Action: Perform the following procedure,Press ‘Wheel diameter’ button.Enter and confirm all data in Wheel diameter window.Press ‘Yes’ button
@@ -227,6 +291,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Wheel diameter validation window.");
 
+            TraceHeader("Test Step 10");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Yes’ button");
+            TraceReport("Expected Result");
+            TraceInfo("The value of input field is changed refer to selected button");
             /*
             Test Step 10
             Action: Press ‘Yes’ button
@@ -239,6 +309,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field displays ‘Yes’.");
 
+            TraceHeader("Test Step 11");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Confirm entered data by pressing an input field");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,The Wheel diameter validation is closed.DMI displays Maintenance window.Use the log file to confirm that DMI sends out the packet [MMI_CONFIRMED_MAINTENANCE_DATA (EVC-141)] with variable based on confirmed data");
             /*
             Test Step 11
             Action: Confirm entered data by pressing an input field
@@ -256,6 +333,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Wheel diameter validation window and displays the Maintenance window.");
 
+            TraceHeader("Test Step 12");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Perform the following procedure,Press ‘Wheel diameter’ button.Enter and confirm all data in Wheel diameter window.Press ‘Yes’ button.Then, Simulate loss-communication between ETCS onboard and DMI");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Default window with the  message “ATP Down Alarm” and sound alarm");
             /*
             Test Step 12
             Action: Perform the following procedure,Press ‘Wheel diameter’ button.Enter and confirm all data in Wheel diameter window.Press ‘Yes’ button.Then, Simulate loss-communication between ETCS onboard and DMI
@@ -285,6 +369,13 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. An alarm sound is played.");
 
+            TraceHeader("Test Step 13");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Re-establish communication between ETCS onboard and DMI");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,All buttons except ‘No’ button are disabled.The state of ‘No’ button is enabled.The disabled button are shown as a button is state ‘disabled’ with text label in dark-grey");
             /*
             Test Step 13
             Action: Re-establish communication between ETCS onboard and DMI
@@ -304,6 +395,12 @@ namespace Testcase.DMITestCases
                                 "2. The ‘No’ button is displayed enabled." + Environment.NewLine +
                                 "3. Disabled buttons have Dark-grey labels.");
 
+            TraceHeader("Test Step 14");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            TraceReport("Expected Result");
+            TraceInfo("");
             /*
             Test Step 14
             Action: End of test

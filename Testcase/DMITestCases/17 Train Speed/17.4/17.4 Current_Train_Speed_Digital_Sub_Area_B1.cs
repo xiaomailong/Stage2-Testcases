@@ -44,8 +44,17 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Close’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI displays Default window.Verify the following information,ETSC-DMI using EVC-1 with variable MMI_V_TRAIN = 0 as the train is standstill.The number of the current train speed is displayed in Sub-Area B1.Number 0 is black.The single integer number is aligned right");
             /*
             Test Step 1
             Action: Press ‘Close’ button
@@ -63,6 +72,13 @@ namespace Testcase.DMITestCases
                                 "3. The speed number (0) is in black." + Environment.NewLine +
                                 "3. The single integer number is aligned right.");
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train forward with speed 50km/h");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,The number of the current train speed is coloured white when the speed pointer is red.The 2-digit interger number is aligned right without leading zeroes.The numbers of the current train speed on Speed hub are displayed by no leading with zero");
             /*
             Test Step 2
             Action: Drive the train forward with speed 50km/h
@@ -81,6 +97,13 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "3. The current train speed numbers on the Speed hub are displayed with no leading zeroes.");
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train and decelerate to 40 km/hr through BG1");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,The number of the current train speed is coloured black.The 2-digit interger number is aligned right without leading zeroes");
             /*
             Test Step 3
             Action: Drive the train and decelerate to 40 km/hr through BG1
@@ -95,6 +118,13 @@ namespace Testcase.DMITestCases
                                 "1. The current train speed number is in black." + Environment.NewLine +
                                 "2. The 2-digit speed number is aligned right without leading zeroes.");
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train and accelarate the speed to 111 km/hr");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,Three of number 1 (“111”) are displayed in Sub-Area B1, as number 1 has the smallest width");
             /*
             Test Step 4
             Action: Drive the train and accelarate the speed to 111 km/hr
@@ -106,6 +136,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Three '1' digits are displayed in Sub-Area B1");
 
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train and accelarate the speed to 108 km/hr");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,Even though the numbers are changed (from “111” to “108), the positions of digits remain the same");
             /*
             Test Step 5
             Action: Drive the train and accelarate the speed to 108 km/hr
@@ -117,6 +154,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The digits '108' are displayed in Sub-Area B1 in the same position as the previous speed");
 
+            TraceHeader("Test Step 6");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Stop the train");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays the train speed as zero km/h");
             /*
             Test Step 6
             Action: Stop the train
@@ -127,6 +170,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The speed displayed is 0.");
 
+            TraceHeader("Test Step 7");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Use the test script file 12_4_a.xml to send EVC-1 with,MMI_V_TRAIN = 389 cm/s (14.004 km/h)Note: The result of test script file may interrupted by ATP-CU, need to execute test script file repeatly to see the result");
+            TraceReport("Expected Result");
+            TraceInfo("The speed digital is changed to 15 km/h");
             /*
             Test Step 7
             Action: Use the test script file 12_4_a.xml to send EVC-1 with,MMI_V_TRAIN = 389 cm/s (14.004 km/h)Note: The result of test script file may interrupted by ATP-CU, need to execute test script file repeatly to see the result
@@ -149,6 +199,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The speed displayed is 15 km/h");
 
+            TraceHeader("Test Step 8");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Use the test script file 12_4_b.xml to send EVC-1 with,MMI_V_TRAIN = 500 cm/s (18.000 km/h)Note: The result of test script file may interrupted by ATP-CU, need to execute test script file repeatly to see the result");
+            TraceReport("Expected Result");
+            TraceInfo("The speed digital is 18 km/h");
             /*
             Test Step 8
             Action: Use the test script file 12_4_b.xml to send EVC-1 with,MMI_V_TRAIN = 500 cm/s (18.000 km/h)Note: The result of test script file may interrupted by ATP-CU, need to execute test script file repeatly to see the result
@@ -170,6 +227,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The speed displayed is 18 km/h");
 
+            TraceHeader("Test Step 9");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Use the test script file 12_4_c.xml to send EVC-1 with,MMI_V_TRAIN = 625 cm/s (22.500 km/h)Note: The result of test script file may interrupted by ATP-CU, need to execute test script file repeatly to see the result");
+            TraceReport("Expected Result");
+            TraceInfo("The speed digital is 23 km/h");
             /*
             Test Step 9
             Action: Use the test script file 12_4_c.xml to send EVC-1 with,MMI_V_TRAIN = 625 cm/s (22.500 km/h)Note: The result of test script file may interrupted by ATP-CU, need to execute test script file repeatly to see the result
@@ -191,6 +255,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The speed displayed is 23 km/h");
 
+            TraceHeader("Test Step 10");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            TraceReport("Expected Result");
+            TraceInfo("");
             /*
             Test Step 10
             Action: End of test

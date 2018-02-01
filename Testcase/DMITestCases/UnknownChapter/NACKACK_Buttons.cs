@@ -42,9 +42,19 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Use the test script file 6_4_a.xml to send EVC-8 with,MMI_I_TEXT = 1MMI_Q_TEXT = 527MMI_Q_TEXT_CRITERIA = 2MMI_Q_TEXT_CLASS = 1");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI displays the text message ‘Brake test aborted, perform new Test?’ with an acknowledgement option in sub-area E5-E9.Verify the following information,(1)  The ‘ACK’ button is labelled with text ‘ACK in yellow colour.(2)  The 'NACK' button is labelled with text 'NACK' in yellow colour.(3)   The background colour of both button 'ACK' and 'NACK' are red");
             /*
             Test Step 1
             Action: Use the test script file 6_4_a.xml to send EVC-8 with,MMI_I_TEXT = 1MMI_Q_TEXT = 527MMI_Q_TEXT_CRITERIA = 2MMI_Q_TEXT_CLASS = 1
@@ -53,6 +63,13 @@ namespace Testcase.DMITestCases
             */
 
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press and hold 'NACK' button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,(1)   The sound ‘Click’ played once.(2)   The 'NACK' button is shown as pressed state, the border of button is removed.(3)   Use the log file to confirm that DMI send EVC-111 with variable MMI_Q_BUTTON = 1 (Pressed) and MMI_T_BUTTONEVENT is not blank");
             /*
             Test Step 2
             Action: Press and hold 'NACK' button
@@ -61,6 +78,12 @@ namespace Testcase.DMITestCases
             */
 
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Slide out 'NACK' button");
+            TraceReport("Expected Result");
+            TraceInfo("The border of the button is shown (state ‘Enabled’) without a sound");
             /*
             Test Step 3
             Action: Slide out 'NACK' button
@@ -71,6 +94,12 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.The_border_of_the_button_is_shown_state_Enabled_without_a_sound(this);
 
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Slide back into 'NACK' button");
+            TraceReport("Expected Result");
+            TraceInfo("The button is back to state ‘Pressed’ without a sound");
             /*
             Test Step 4
             Action: Slide back into 'NACK' button
@@ -81,6 +110,13 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.The_button_is_back_to_state_Pressed_without_a_sound(this);
 
 
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Release the 'NACK' button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,(1)    The Ack-buttons with yellow flashing frame and text message is disappear.(2)   Use the log file to confirm that DMI send EVC-111 with variable MMI_Q_BUTTON = 0 (Released) and MMI_T_BUTTONEVENT is not blank");
             /*
             Test Step 5
             Action: Release the 'NACK' button
@@ -89,6 +125,13 @@ namespace Testcase.DMITestCases
             */
 
 
+            TraceHeader("Test Step 6");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Use the test script file 6_4_a.xml to send EVC-8.Then, perform action step 2-5 for 'ACK' button");
+            TraceReport("Expected Result");
+            TraceInfo("See the expected results of Step 2 – Step 5");
             /*
             Test Step 6
             Action: Use the test script file 6_4_a.xml to send EVC-8.Then, perform action step 2-5 for 'ACK' button
@@ -97,6 +140,14 @@ namespace Testcase.DMITestCases
             */
 
 
+            TraceHeader("Test Step 7");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Use the test script file 6_4_b.xml to send EVC-8 with,MMI_I_TEXT = 1MMI_Q_TEXT = 527MMI_Q_TEXT_CRITERIA = 0MMI_Q_TEXT_CLASS = 1");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,(1)   DMI displays the text message ‘Brake test aborted, perform new Test?’ with a yellow flashing frame around sub-area E5-E9");
             /*
             Test Step 7
             Action: Use the test script file 6_4_b.xml to send EVC-8 with,MMI_I_TEXT = 1MMI_Q_TEXT = 527MMI_Q_TEXT_CRITERIA = 0MMI_Q_TEXT_CLASS = 1
@@ -105,6 +156,13 @@ namespace Testcase.DMITestCases
             */
 
 
+            TraceHeader("Test Step 8");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press and hold sub-area E5");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,(1)   The sound ‘Click’ played once.(2)   The sub-area E5 is shown as pressed state, the border of button is removed.(3)   Use the log file to confirm that DMI send EVC-101 with variable MMI_Q_BUTTON = 1 (Pressed) and MMI_T_BUTTONEVENT is not blank");
             /*
             Test Step 8
             Action: Press and hold sub-area E5
@@ -113,6 +171,12 @@ namespace Testcase.DMITestCases
             */
 
 
+            TraceHeader("Test Step 9");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Slide out sub-area E5");
+            TraceReport("Expected Result");
+            TraceInfo("The border of the sub-area E5 is shown (state ‘Enabled’) without a sound");
             /*
             Test Step 9
             Action: Slide out sub-area E5
@@ -121,6 +185,12 @@ namespace Testcase.DMITestCases
             */
 
 
+            TraceHeader("Test Step 10");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Slide back into sub-area E5");
+            TraceReport("Expected Result");
+            TraceInfo("The sub-area E5 is back to state ‘Pressed’ without a sound");
             /*
             Test Step 10
             Action: Slide back into sub-area E5
@@ -129,6 +199,13 @@ namespace Testcase.DMITestCases
             */
 
 
+            TraceHeader("Test Step 11");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Release the pressed area");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,(1)   The yellow flashing frame is removed, DMI still display text message 'Brake test aborted, perform new Test?' in sub-area E5.(2)   Use the log file to confirm that DMI send EVC-101 with variable MMI_Q_BUTTON = 0 (Released) and MMI_T_BUTTONEVENT is not blank");
             /*
             Test Step 11
             Action: Release the pressed area
@@ -139,6 +216,12 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Release the pressed area");
 
 
+            TraceHeader("Test Step 12");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            TraceReport("Expected Result");
+            TraceInfo("");
             /*
             Test Step 12
             Action: End of test

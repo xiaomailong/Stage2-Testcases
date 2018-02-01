@@ -40,6 +40,8 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
             TraceInfo("This is a repeat of TC_12_1_Display_of_Speed_Pointer_and_Speed_Digital." +
@@ -47,6 +49,13 @@ namespace Testcase.DMITestCases
 
             GlobalTestResult = true;
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train forward, speed up to 25 km/h");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,The speed pointer is displayed in sub-area B1. The speed pointer consists of a needle and a circular part centred in sub-area B1. Both parts are displayed in same colour. The dimension of the speed pointer is presented");
             /*
             Test Step 1
             Action: Drive the train forward, speed up to 25 km/h
@@ -54,6 +63,12 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 5965;   (2) MMI_gen 5968;   
             */
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Stop the train");
+            TraceReport("Expected Result");
+            TraceInfo("The speed pointer is indicated to zero km/h");
             /*
             Test Step 2
             Action: Stop the train
@@ -61,6 +76,12 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            TraceReport("Expected Result");
+            TraceInfo("");
             /*
             Test Step 3
             Action: End of test

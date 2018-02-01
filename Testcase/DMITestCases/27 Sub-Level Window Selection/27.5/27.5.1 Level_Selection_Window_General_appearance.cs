@@ -46,10 +46,19 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
             TraceInfo("This test case requires an ATP configuration change - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Enter the Driver ID and perform brake test");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "The Level window is displayed on the right half part of the window.LayersThe layers of window on half-grid array is displayed as followsLayer 0: Main-Area D, F, G, Y and Z.Layer -1: A1, A2+A3*, A4, B*, C1, C2+C3+C4*, C5, C6, C7, C8, C9, E1, E2, E3, E4, E5-E9*Layer -2: B3, B4, B5, B6, B7Note: ‘*’ symbol is mean that specified areas are drawn as one area.Data Entry windowThe window title is displayed with text ‘Level’.Verify that the Level window is displayed in main area D, F and G as half-grid array.A data entry window is containing only one input field covers the Main area D, F and GThe following objects are display in Level window. Disabled Close button (NA12)Window TitleInput FieldInput fieldThe input field is located in main area D and F.For a single input field, the window title is clearly explaining the topic of the input field. The Level window is displayed as a single input field with only the data part.The data area of the input field remains empty.KeyboardThe keyboard associated to the Level window is displayed as dedicated keyboard.The keyboard is presented below the area of input field.The data keys are displayed the with label according to each index of variable MMI_M_LEVEL_NTC_ID in received packet EVC-20 respectively. (See the position in picture below)     e.g. the first index is displayed at key #1Received Packet (EVC-20)Use the log file to confirm that DMI receives packet EVC-20 with the following variables,MMI_SELECT_LEVEL.MMI_N_LEVELS > 0 MMI_M_CURRENT_LEVEL = 0Several MMI_M_LEVEL_NTC_ID which are listed together with each level group.The value of every index of variable MMI_M_LEVEL_FLAG are equal to 1 (makred for editable).All keypad buttons are enabled refer to the value of MMI_M_LEVEL_FLAG");
             /*
             Test Step 1
             Action: Enter the Driver ID and perform brake test
@@ -68,27 +77,41 @@ namespace Testcase.DMITestCases
             EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Disabled;
             Variables.MMI_Q_LEVEL_NTC_ID[] paramEvc20MmiQLevelNtcId =
             {
-                Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level, Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level, Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level, Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level, Variables.MMI_Q_LEVEL_NTC_ID.STM_ID, Variables.MMI_Q_LEVEL_NTC_ID.STM_ID
+                Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level, Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level,
+                Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level, Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level,
+                Variables.MMI_Q_LEVEL_NTC_ID.STM_ID, Variables.MMI_Q_LEVEL_NTC_ID.STM_ID
             };
             Variables.MMI_M_CURRENT_LEVEL[] paramEvc20MmiMCurrentLevel =
             {
-                Variables.MMI_M_CURRENT_LEVEL.NotLastUsedLevel, Variables.MMI_M_CURRENT_LEVEL.NotLastUsedLevel, Variables.MMI_M_CURRENT_LEVEL.NotLastUsedLevel, Variables.MMI_M_CURRENT_LEVEL.NotLastUsedLevel, Variables.MMI_M_CURRENT_LEVEL.NotLastUsedLevel, Variables.MMI_M_CURRENT_LEVEL.NotLastUsedLevel
+                Variables.MMI_M_CURRENT_LEVEL.NotLastUsedLevel, Variables.MMI_M_CURRENT_LEVEL.NotLastUsedLevel,
+                Variables.MMI_M_CURRENT_LEVEL.NotLastUsedLevel, Variables.MMI_M_CURRENT_LEVEL.NotLastUsedLevel,
+                Variables.MMI_M_CURRENT_LEVEL.NotLastUsedLevel, Variables.MMI_M_CURRENT_LEVEL.NotLastUsedLevel
             };
             Variables.MMI_M_LEVEL_FLAG[] paramEvc20MmiMLevelFlag =
             {
-                Variables.MMI_M_LEVEL_FLAG.MarkedLevel, Variables.MMI_M_LEVEL_FLAG.MarkedLevel, Variables.MMI_M_LEVEL_FLAG.MarkedLevel, Variables.MMI_M_LEVEL_FLAG.MarkedLevel, Variables.MMI_M_LEVEL_FLAG.MarkedLevel, Variables.MMI_M_LEVEL_FLAG.MarkedLevel
+                Variables.MMI_M_LEVEL_FLAG.MarkedLevel, Variables.MMI_M_LEVEL_FLAG.MarkedLevel,
+                Variables.MMI_M_LEVEL_FLAG.MarkedLevel, Variables.MMI_M_LEVEL_FLAG.MarkedLevel,
+                Variables.MMI_M_LEVEL_FLAG.MarkedLevel, Variables.MMI_M_LEVEL_FLAG.MarkedLevel
             };
             Variables.MMI_M_INHIBITED_LEVEL[] paramEvc20MmiMInhibitedLevel =
             {
-                Variables.MMI_M_INHIBITED_LEVEL.NotInhibited, Variables.MMI_M_INHIBITED_LEVEL.NotInhibited, Variables.MMI_M_INHIBITED_LEVEL.NotInhibited, Variables.MMI_M_INHIBITED_LEVEL.NotInhibited, Variables.MMI_M_INHIBITED_LEVEL.NotInhibited, Variables.MMI_M_INHIBITED_LEVEL.NotInhibited
+                Variables.MMI_M_INHIBITED_LEVEL.NotInhibited, Variables.MMI_M_INHIBITED_LEVEL.NotInhibited,
+                Variables.MMI_M_INHIBITED_LEVEL.NotInhibited, Variables.MMI_M_INHIBITED_LEVEL.NotInhibited,
+                Variables.MMI_M_INHIBITED_LEVEL.NotInhibited, Variables.MMI_M_INHIBITED_LEVEL.NotInhibited
             };
             Variables.MMI_M_INHIBIT_ENABLE[] paramEvc20MmiMInhibitEnable =
             {
-                Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting, Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting, Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting, Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting, Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting, Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting
+                Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting,
+                Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting,
+                Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting,
+                Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting,
+                Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting, Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting
             };
             Variables.MMI_M_LEVEL_NTC_ID[] paramEvc20MmiMLevelNtcId =
             {
-                Variables.MMI_M_LEVEL_NTC_ID.L1, Variables.MMI_M_LEVEL_NTC_ID.L2, Variables.MMI_M_LEVEL_NTC_ID.L3, Variables.MMI_M_LEVEL_NTC_ID.L0, Variables.MMI_M_LEVEL_NTC_ID.CBTC, Variables.MMI_M_LEVEL_NTC_ID.AWS_TPWS
+                Variables.MMI_M_LEVEL_NTC_ID.L1, Variables.MMI_M_LEVEL_NTC_ID.L2, Variables.MMI_M_LEVEL_NTC_ID.L3,
+                Variables.MMI_M_LEVEL_NTC_ID.L0, Variables.MMI_M_LEVEL_NTC_ID.CBTC,
+                Variables.MMI_M_LEVEL_NTC_ID.AWS_TPWS
             };
 
             EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = paramEvc20MmiQLevelNtcId;
@@ -126,6 +149,13 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "16. ‘Level 1’, ‘Level 2’, ‘Level3’ in the top row; ‘Level 0’, ‘CBTC’, ‘AWS_TPWS’ in the bottom row.");
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press and hold ‘Level 0’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,The value of input field is replaced by the pressed button.Sound ‘Click’ is played once.The state of button is changed to ‘Pressed’ and immediately back to ‘Enabled’ state.The Input Field displays the level associated to the data key according to the pressings in state ‘Pressed’.An input field is used to enter the level selection.The data value is displayed as black colour and the background of the data area is displayed as medium-grey colour.The data value of the input field is aligned to the left of the data area");
             /*
             Test Step 2
             Action: Press and hold ‘Level 0’ button
@@ -143,6 +173,13 @@ namespace Testcase.DMITestCases
                                 "5. The input field data are in black on a Medium-grey background." +
                                 Environment.NewLine +
                                 "6. The input field data are left-aligned in the data area.");
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Release the pressed button.Note: Please verify the state of all Level buttons refer to action step No.2-3");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information,The state of pressed button is changed to ‘Enabled’ state");
             /*
             Test Step 3
             Action: Release the pressed button.Note: Please verify the state of all Level buttons refer to action step No.2-3
@@ -173,6 +210,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The button is displayed enabled.");
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘ Level 1’ button Then, press and hold an input field");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,Use the log file to confirm that DMI sends EVC-101 with variable MMI_M_REQUEST = 40 (Level entered), MMI_Q_BUTTON = 1 (pressed) and MMI_T_BUTTONEVENT is not blank.The sound ‘Click’ is played once");
             /* 
             Test Step 4
             Action: Press ‘ Level 1’ button Then, press and hold an input field
@@ -186,6 +230,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Click’ sound is played once.");
 
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Slide out an input field");
+            TraceReport("Expected Result");
+            TraceInfo("DMI still displays Level window.No sound ‘Click’ is played");
             /*
             Test Step 5
             Action: Slide out an input field
@@ -198,6 +248,12 @@ namespace Testcase.DMITestCases
                                 "1. DMI still displays the Level window." + Environment.NewLine +
                                 @"2. The ‘Click’ sound is not played.");
 
+            TraceHeader("Test Step 6");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Slide back into an input field");
+            TraceReport("Expected Result");
+            TraceInfo("DMI still displays Level window.No sound ‘Click’ is played");
             /*
             Test Step 6
             Action: Slide back into an input field
@@ -210,6 +266,13 @@ namespace Testcase.DMITestCases
                                 "1. DMI still displays the Level window." + Environment.NewLine +
                                 @"2. The ‘Click’ sound is not played.");
 
+            TraceHeader("Test Step 7");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Release the pressed area. This is to confirm Level 1");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Use the log file to verify the following information,Packet (EVC-101)Use the log file to confirm that DMI sends EVC-101 with variable MMI_M_REQUEST = 40 (Level entered), MMI_Q_BUTTON = 0 (released) and MMI_T_BUTTONEVENT is not blank.Packet (EVC-121)MMI_M_LEVEL_NTC_ID which is listed the same order as EVC-20 in Step 1.MMI_M_LEVEL_FLAG in each level group has the same value as the each group of variable MMI_M_CURRENT_LEVEL (EVC-20) in Step 1.Note: The previous value and current selected value are excluded.The Level window is closed and Main window is displayed instead. DMI displays in SB mode, Level 1");
             /*
             Test Step 7
             Action: Release the pressed area. This is to confirm Level 1
@@ -226,6 +289,13 @@ namespace Testcase.DMITestCases
                                 "1. DMI closes the Level window and displays the Main window" + Environment.NewLine +
                                 "2. DMI displays in SB mode, Level 1.");
 
+            TraceHeader("Test Step 8");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Level’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,The input field displays the previous entered value from Step 5.The enabled Close button NA11 is display in area G. Received Packet (EVC-20)Use the log file to confirm that DMI receives packet EVC-20 with the following variables,MMI_SELECT_LEVEL.MMI_N_LEVELS > 0 Several MMI_Q_LEVEL_NTC_ID with MMI_M_CURRENT_LEVEL which are listed together with each level group");
             /*
             Test Step 8
             Action: Press ‘Level’ button
@@ -247,6 +317,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The input field displays ‘Level 1’." + Environment.NewLine +
                                 "2. The Level window contains an enabled ‘Close’ button (symbol NA11).");
+            TraceHeader("Test Step 9");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Confirm the current data without re-entry by pressing the input field");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information, Use the log file to confirm that DMI sends out the packet EVC-101 with variable MMI_M_REQUEST = 40 (Level entered) and MMI_Q_BUTTON = 1 and = 0 respectively");
             /*
             Test Step 9
             Action: Confirm the current data without re-entry by pressing the input field
@@ -258,6 +335,14 @@ namespace Testcase.DMITestCases
 
             EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.LevelEntered;
 
+            TraceHeader("Test Step 10");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Press ‘Level’ button.Then, repeat action Step 4-9 with every buttons on the dedicated keyboard respectively");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Use the log file to verify the following information,Packet EVC-101DMI sends out the packet EVC-101 with variable MMI_M_REQUEST = 40 (Level entered).Packet EVC-121DMI sends out the packet EVC-121 with the variable MMI_M_LEVEL_NTC_ID in each group is listed the same order as EVC-20 from Step 9 as follows,ETCS Level (MMI_Q_LEVEL_NTC_ID = 1)Level1: MMI_M_LEVEL_NTC_ID = 1Level2: MMI_M_LEVEL_NTC_ID = 2Level3: MMI_M_LEVEL_NTC_ID = 3Level0: MMI_M_LEVEL_NTC_ID = 0NTC Level (if any) (MMI_Q_LEVEL_NTC_ID = 0)Level PZB/LZB: MMI_M_LEVEL_NTC_ID = 9Level TPWS/AWS: MMI_M_LEVEL_NTC_ID = 20Level ATC SE/NO: MMI_M_LEVEL_NTC_ID = 22MMI_M_CURRENT_LEVEL in each level groups has the same value as EVC-20 in Step 9.Note: The previous value and current selected value are excluded.(4)   When the Level window is opened, the value of an input field is changed refer to driver entered data. DMI also updates and changes to the new level according to the entered data");
             /*
             Test Step 10
             Action: Press ‘Level’ button.Then, repeat action Step 4-9 with every buttons on the dedicated keyboard respectively
@@ -473,6 +558,13 @@ namespace Testcase.DMITestCases
 
             EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.LevelEntered;
 
+            TraceHeader("Test Step 11");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Perform the following procedure,Press ‘Level 2’ button.Press and hold ‘Close’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,The ‘Close’ button is shown as pressed state. The sound ‘Click’ is played once");
             /*
             Test Step 11
             Action: Perform the following procedure,Press ‘Level 2’ button.Press and hold ‘Close’ button
@@ -485,6 +577,13 @@ namespace Testcase.DMITestCases
                                 "1. The ‘Close’ button is displayed enabled" + Environment.NewLine +
                                 "2. The ‘Click’ sound is played once.");
 
+            TraceHeader("Test Step 12");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Slide out ‘Close’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI still displays the Level window.Verify the following information,The ‘Close’ button becomes the ‘Enabled’ state without a sound");
             /*
             Test Step 12
             Action: Slide out ‘Close’ button
@@ -498,6 +597,13 @@ namespace Testcase.DMITestCases
                                 "2. The ‘Close’ button is displayed enabled." + Environment.NewLine +
                                 "3. No sound is played.");
 
+            TraceHeader("Test Step 13");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Slide back into ‘Close’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI still displays the Level window.Verify the following information,The ‘Close’ button is shown as pressed state and no sound ‘Click’ is played");
             /*
             Test Step 13
             Action: Slide back into ‘Close’ button
@@ -511,6 +617,13 @@ namespace Testcase.DMITestCases
                                 "2. The ‘Close’ button is displayed pressed." + Environment.NewLine +
                                 "3. No sound is played.");
 
+            TraceHeader("Test Step 14");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Release ‘Close’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,Use the log file to confirm that DMI sends out the packet [MMI_DRIVER_REQUEST (EVC-101)])  with variable MMI_M_REQUEST] = 32 (Exit Change Level).The Level window is closed, DMI displays Main window");
             /*
             Test Step 14
             Action: Release ‘Close’ button
@@ -525,6 +638,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Level window and displays the Main window");
 
+            TraceHeader("Test Step 15");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Level’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,The input field displays the previous entered value from step 10");
             /*
             Test Step 15
             Action: Press ‘Level’ button
@@ -543,6 +663,14 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The input field displays ‘AWS_TPWS’.");
 
+            TraceHeader("Test Step 16");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Use the test script file 22_5_1_a.xml to send EVC-20 with,MMI_N_LEVELS = 1MMI_M_CURRENT_LEVEL = 1MMI_M_LEVEL_FLAG = 1MMI_M_LEVEL_NTC_ID = 3");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,(1)   The level window is updated according to the following,-      There is only one button ‘Level 3’ displayed in keypad-      The value of input field is changed to ‘Level 3’");
             /*
             Test Step 16
             Action: Use the test script file 22_5_1_a.xml to send EVC-20 with,MMI_N_LEVELS = 1MMI_M_CURRENT_LEVEL = 1MMI_M_LEVEL_FLAG = 1MMI_M_LEVEL_NTC_ID = 3
@@ -556,6 +684,12 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. The data input field displays ‘Level 3’.");
 
+            TraceHeader("Test Step 17");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Use the test script file 22_5_1_b.xml to send EVC-20 with,MMI_N_LEVELS = 0");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information,DMI displays Main window");
             /*
             Test Step 17
             Action: Use the test script file 22_5_1_b.xml to send EVC-20 with,MMI_N_LEVELS = 0
@@ -567,6 +701,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Main window.");
 
+            TraceHeader("Test Step 18");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            TraceReport("Expected Result");
+            TraceInfo("");
             /*
             Test Step 18
             Action: End of test
@@ -613,6 +753,7 @@ namespace Testcase.DMITestCases
                     EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new Variables.MMI_M_LEVEL_NTC_ID[0];
                     break;
             }
+
             EVC20_MMISelectLevel.Send();
         }
 

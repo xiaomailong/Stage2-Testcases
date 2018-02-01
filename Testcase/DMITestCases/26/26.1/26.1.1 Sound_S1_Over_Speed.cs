@@ -45,8 +45,16 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Perform SoM to Level 1 in SR mode.");
+            TraceReport("Expected Result");
+            TraceInfo("ETCS OB enters SR mode in Level 1.");
             /*
             Test Step 1
             Action: Perform SoM to Level 1 in SR mode.
@@ -58,6 +66,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SR mode, Level 1.");
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train forward with constant speed at 40 km/h.");
+            TraceReport("Expected Result");
+            TraceInfo("The train can drive forward and all brakes are not applied.");
             /*
             Test Step 2
             Action: Drive the train forward with constant speed at 40 km/h.
@@ -70,6 +84,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI does not displays the Brake Intervention symbol, ST01.");
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Train runs pass BG1 and keep train speed at 40 km/h.");
+            TraceReport("Expected Result");
+            TraceInfo("ETCS OB enters FS mode in Level 1.");
             /*
             Test Step 3
             Action: Train runs pass BG1 and keep train speed at 40 km/h.
@@ -80,6 +100,14 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in FS mode, Level 1.");
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Train enters TSM supervision and the permitted speed is gradually reduced until below the current train speed.");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Sound ‘S1_toofast.wav’ is played once when over-speed status in TSM supervision is active as figure below.	Use log file to verify that train speed is exceeded permitted supervision limit in TSM when DMI receives EVC-1 with variable [MMI_M_WARNING = 9]");
             /*
             Test Step 4
             Action: Train enters TSM supervision and the permitted speed is gradually reduced until below the current train speed.
@@ -97,6 +125,12 @@ namespace Testcase.DMITestCases
                                 "3. The circular speed gauge is yellow from 0 to 37 km/h." + Environment.NewLine +
                                 "4. The circular speed gauge is orange from 37 to 45 km/h.");
 
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Stop the train.");
+            TraceReport("Expected Result");
+            TraceInfo("The train is at standstill.");
             /*
             Test Step 5
             Action: Stop the train.
@@ -108,6 +142,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The speed displayed is 0 km/h.");
 
+            TraceHeader("Test Step 6");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "SUse test script 21_1_1.xml to send dynamic information via EVC-1 with: MMI_M_WARNING = 9 MMI_V_TRAIN = 1107 MMI_V_PERMITTED = 1101 MMI_V_INTERVENTION = 1242");
+            TraceReport("Expected Result");
+            TraceInfo("Sound ‘S1_toofast.wav’ is played once");
             /*
             Test Step 6
             Action: SUse test script 21_1_1.xml to send dynamic information via EVC-1 with: MMI_M_WARNING = 9 MMI_V_TRAIN = 1107 MMI_V_PERMITTED = 1101 MMI_V_INTERVENTION = 1242
@@ -128,6 +169,12 @@ namespace Testcase.DMITestCases
 
             #endregion
 
+            TraceHeader("Test Step 7");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            TraceReport("Expected Result");
+            TraceInfo("");
             /*
             Test Step 7
             Action: End of test

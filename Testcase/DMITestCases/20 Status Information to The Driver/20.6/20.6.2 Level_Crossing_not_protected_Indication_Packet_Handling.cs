@@ -43,8 +43,17 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Use the test script file 15_6_2_a.xml to send EVC-33 withMMI_Q_TRACKCOND_STEP = 8MMI_M_TRACKCOND_TYPE = 16");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information,There is no symbol display in sub-area B3-B5");
             /*
             Test Step 1
             Action: Use the test script file 15_6_2_a.xml to send EVC-33 withMMI_Q_TRACKCOND_STEP = 8MMI_M_TRACKCOND_TYPE = 16
@@ -55,6 +64,13 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI does not display a symbol in sub-areas B3-B5.");
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Use the test script file 15_6_2_b.xml to send EVC-33 withMMI_Q_TRACKCOND_STEP = 1MMI_M_TRACKCOND_TYPE = 64");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information,There is no symbol display in sub-area B3-B5");
             /*
             Test Step 2
             Action: Use the test script file 15_6_2_b.xml to send EVC-33 withMMI_Q_TRACKCOND_STEP = 1MMI_M_TRACKCOND_TYPE = 64
@@ -66,6 +82,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI does not display a symbol in sub-areas B3-B5.");
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Use the test script file 15_6_2_c.xml to send EVC-33 withMMI_Q_TRACKCOND_STEP = 1MMI_M_TRACKCOND_TYPE = 16MMI_NID_TRACKCOND = 0");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information,DMI displays LX01 symbol in sub-area B3");
             /*
             Test Step 3
             Action: Use the test script file 15_6_2_c.xml to send EVC-33 withMMI_Q_TRACKCOND_STEP = 1MMI_M_TRACKCOND_TYPE = 16MMI_NID_TRACKCOND = 0
@@ -77,6 +100,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays symbol LX01 in sub-area B3.");
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Use the test script file 15_6_2_d.xml to send EVC-33 withMMI_Q_TRACKCOND_STEP = 4MMI_NID_TRACKCOND = 0");
+            TraceReport("Expected Result");
+            TraceInfo("The LX01 symbol is removed from sub-area B3");
             /*
             Test Step 4
             Action: Use the test script file 15_6_2_d.xml to send EVC-33 withMMI_Q_TRACKCOND_STEP = 4MMI_NID_TRACKCOND = 0
@@ -87,6 +117,14 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI removes symbol LX01 from sub-area B3.");
 
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Use the test script file 15_6_2_e.xml to send EVC-32 with,MMI_NID_TRACKCOND = 29MMI_Q_TRACKCOND_STEP = 1MMI_M_TRACKCOND_TYPE =3 Then, send EVC-33 with,MMI_Q_TRACKCOND_STEP = 1MMI_M_TRACKCOND_TYPE = 16MMI_NID_TRACKCOND = 0");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,After DMI displayed the TC03 symbol in sub-area B3 with yellow flashing frame, The LX01 symbol is display in sub-area B4");
             /*
             Test Step 5
             Action: Use the test script file 15_6_2_e.xml to send EVC-32 with,MMI_NID_TRACKCOND = 29MMI_Q_TRACKCOND_STEP = 1MMI_M_TRACKCOND_TYPE =3 Then, send EVC-33 with,MMI_Q_TRACKCOND_STEP = 1MMI_M_TRACKCOND_TYPE = 16MMI_NID_TRACKCOND = 0
@@ -95,6 +133,13 @@ namespace Testcase.DMITestCases
             */
             XML_15_6_2(msgType.typee);
 
+            TraceHeader("Test Step 6");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Use the test script file 15_6_2_d.xml to send EVC-33 withMMI_Q_TRACKCOND_STEP = 4MMI_NID_TRACKCOND = 0");
+            TraceReport("Expected Result");
+            TraceInfo("The LX01 symbol is removed from sub-area B4");
             /*
             Test Step 6
             Action: Use the test script file 15_6_2_d.xml to send EVC-33 withMMI_Q_TRACKCOND_STEP = 4MMI_NID_TRACKCOND = 0
@@ -105,6 +150,14 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI removes symbol LX01 from sub-area B4.");
 
+            TraceHeader("Test Step 7");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Use the test script file 15_6_2_f.xml to send EVC-32 with,MMI_NID_TRACKCOND = 30MMI_Q_TRACKCOND_STEP = 1MMI_M_TRACKCOND_TYPE =3 MMI_Q_TRACKCOND_ACTION_START = 1Then, send EVC-33 with,MMI_Q_TRACKCOND_STEP = 1MMI_M_TRACKCOND_TYPE = 16MMI_NID_TRACKCOND = 0");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,After DMI displayed the TC02 symbol in sub-area B4, The LX01 symbol is display in sub-area B5");
             /*
             Test Step 7
             Action: Use the test script file 15_6_2_f.xml to send EVC-32 with,MMI_NID_TRACKCOND = 30MMI_Q_TRACKCOND_STEP = 1MMI_M_TRACKCOND_TYPE =3 MMI_Q_TRACKCOND_ACTION_START = 1Then, send EVC-33 with,MMI_Q_TRACKCOND_STEP = 1MMI_M_TRACKCOND_TYPE = 16MMI_NID_TRACKCOND = 0
@@ -113,6 +166,13 @@ namespace Testcase.DMITestCases
             */
             XML_15_6_2(msgType.typef);
 
+            TraceHeader("Test Step 8");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Use the test script file 15_6_2_d.xml to send EVC-33 withMMI_Q_TRACKCOND_STEP = 4MMI_NID_TRACKCOND = 0");
+            TraceReport("Expected Result");
+            TraceInfo("The LX01 symbol is removed from sub-area B5");
             /*
             Test Step 8
             Action: Use the test script file 15_6_2_d.xml to send EVC-33 withMMI_Q_TRACKCOND_STEP = 4MMI_NID_TRACKCOND = 0
@@ -124,6 +184,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI removes symbol LX01 from sub-area B5.");
 
+            TraceHeader("Test Step 9");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Use the test script file 15_6_2_g.xml to send EVC-32 with,MMI_NID_TRACKCOND = 31MMI_Q_TRACKCOND_STEP = 2MMI_M_TRACKCOND_TYPE =3 MMI_Q_TRACKCOND_ACTION_START = 1Then, send a two  packets EVC-33 with,Common variablesMMI_Q_TRACKCOND_STEP = 1MMI_M_TRACKCOND_TYPE = 16The order of MMI_NID_TRACKCOND in each packetMMI_NID_TRACKCOND = 0MMI_NID_TRACKCOND =1");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays TC01 symbol in sub-area B5");
             /*
             Test Step 9
             Action: Use the test script file 15_6_2_g.xml to send EVC-32 with,MMI_NID_TRACKCOND = 31MMI_Q_TRACKCOND_STEP = 2MMI_M_TRACKCOND_TYPE =3 MMI_Q_TRACKCOND_ACTION_START = 1Then, send a two  packets EVC-33 with,Common variablesMMI_Q_TRACKCOND_STEP = 1MMI_M_TRACKCOND_TYPE = 16The order of MMI_NID_TRACKCOND in each packetMMI_NID_TRACKCOND = 0MMI_NID_TRACKCOND =1
@@ -134,6 +201,14 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays symbol TC01 in sub-area B5.");
 
+            TraceHeader("Test Step 10");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Use the test script file 15_6_2_h.xml to send EVC-32 with,MMI_NID_TRACKCOND = 32MMI_Q_TRACKCOND_STEP = 4");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,After TC01 symbol is removed from sub-area B5, The LX01 symbol is display in sub-area B5");
             /*
             Test Step 10
             Action: Use the test script file 15_6_2_h.xml to send EVC-32 with,MMI_NID_TRACKCOND = 32MMI_Q_TRACKCOND_STEP = 4
@@ -144,6 +219,14 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI removes symbol TC01 and displays symbol LX01 in sub-area B5.");
+            TraceHeader("Test Step 11");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Use the test script file 15_6_2_i.xml to send EVC-32 with,MMI_NID_TRACKCOND = 31MMI_Q_TRACKCOND_STEP = 4");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,After TC02 symbol is removed from sub-area B4, The LX01 symbol in sub-area B5 is moved to sub-area B4.The new LX01 symbol is display in sub-area B5");
             /*
             Test Step 11
             Action: Use the test script file 15_6_2_i.xml to send EVC-32 with,MMI_NID_TRACKCOND = 31MMI_Q_TRACKCOND_STEP = 4
@@ -155,6 +238,14 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI removes symbol TC01 and displays symbol LX01 in sub-area B4.");
 
+            TraceHeader("Test Step 12");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Use the test script file 15_6_2_j.xml to send EVC-33 with,MMI_Q_TRACKCOND_STEP = 1MMI_M_TRACKCOND_TYPE = 16MMI_NID_TRACKCOND =2Then, send EVC-32 with,MMI_NID_TRACKCOND = 29MMI_Q_TRACKCOND_STEP = 4");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,After TC03 symbol is removed from sub-area B3, The LX01 symbol in sub-area B4 is moved to sub-area B3.The LX01 symbol in sub-area B5 is moved to sub-area B4.The new LX01 symbol is display in sub-area B5");
             /*
             Test Step 12
             Action: Use the test script file 15_6_2_j.xml to send EVC-33 with,MMI_Q_TRACKCOND_STEP = 1MMI_M_TRACKCOND_TYPE = 16MMI_NID_TRACKCOND =2Then, send EVC-32 with,MMI_NID_TRACKCOND = 29MMI_Q_TRACKCOND_STEP = 4
@@ -166,6 +257,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI removes symbol TC02 and displays symbol LX01 in sub-area B3.");
 
+            TraceHeader("Test Step 13");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            TraceReport("Expected Result");
+            TraceInfo("");
             /*
             Test Step 13
             Action: End of test

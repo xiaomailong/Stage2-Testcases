@@ -44,8 +44,16 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train forward pass BG1.Then, press an acknowledgement of OS mode in sub-area C1");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays in OS mode, level 1");
             /*
             Test Step 1
             Action: Drive the train forward pass BG1.Then, press an acknowledgement of OS mode in sub-area C1
@@ -66,6 +74,13 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays in OS mode, Level 1.");
 
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Driving the train with speed equal to 30 km/h");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "When a Release speed exists, verify the following information,(1)   DMI displays the release speed digital in sub-area B6.(2)   Sound 'Sinfo' is played once.(3)   Use the log file to confirm that the appearance of the release speed digital is controlled by data packet from ETCS Onboard as follows,EVC-7: OBU_TR_M_MODE = 1 (OS Mode) EVC-1: MMI_V_RELEASE = 1111 (~40 km/h) EVC-1: MMI_M_WARNING != 0, 4, 8, 12 (Not CSM)");
             /*
             Test Step 2
             Action: Driving the train with speed equal to 30 km/h
@@ -83,6 +98,12 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the digital release speed in sub-area B6." + Environment.NewLine +
                                 "2. Sound 'Sinfo' is played once.");
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Use the test script file 12_7_3_a.xml to send EVC-1 with,MMI_V_RELEASE = 11112");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information,(1)   Tthe release speed digital in sub-area B6 is removed");
             /*
             Test Step 3
             Action: Use the test script file 12_7_3_a.xml to send EVC-1 with,MMI_V_RELEASE = 11112
@@ -94,6 +115,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The digital release speed in sub-area B6 is removed.");
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            TraceReport("Expected Result");
+            TraceInfo("");
             /*
             Test Step 4
             Action: End of test

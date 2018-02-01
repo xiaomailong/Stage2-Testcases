@@ -47,8 +47,16 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Activate cabin A");
+            TraceReport("Expected Result");
+            TraceInfo("ATP is in SB mode.DMI displays in SB mode");
             /*
             Test Step 1
             Action: Activate cabin A
@@ -62,6 +70,12 @@ namespace Testcase.DMITestCases
                                 "1. ATP is in SB mode." + Environment.NewLine +
                                 "2. DMI displays in SB mode.");
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Driver performs SoM to SR mode, Level 1");
+            TraceReport("Expected Result");
+            TraceInfo("ATP enters SR mode, Level 1.DMI displays in SR mode");
             /*
             Test Step 2
             Action: Driver performs SoM to SR mode, Level 1
@@ -79,6 +93,12 @@ namespace Testcase.DMITestCases
                                 "1. ATP enters SR mode, Level 1." + Environment.NewLine +
                                 "2. DMI displays in SR mode.");
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train forward passing BG1");
+            TraceReport("Expected Result");
+            TraceInfo("DMI changes mode from SR to FS");
             /*
             Test Step 3
             Action: Drive the train forward passing BG1
@@ -90,6 +110,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI changes mode from SR to FS.");
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("When the supervision status is RSM");
+            TraceReport("Expected Result");
+            TraceInfo("The Release Speed digital is displayed at sub-area B6");
             /*
             Test Step 4
             Action: When the supervision status is RSM
@@ -101,6 +127,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The digital Release Speed is displayed at sub-area B6.");
 
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Stop the train and simulate the communication loss between ETCS Onboard and DMI");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI displays the  message “ATP Down Alarm” with sound alarm.Verify that the release speed digital is removed from DMI’s screen. The toggling function is reset to default state");
             /*
             Test Step 5
             Action: Stop the train and simulate the communication loss between ETCS Onboard and DMI
@@ -116,6 +149,13 @@ namespace Testcase.DMITestCases
                                 "2. Digital Release Speed is not displayed. " +
                                 "3. The toggling function is inactive (symbol DR01 is not displayed in area F7.");
 
+            TraceHeader("Test Step 6");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Re-establish the communication between ETCS onboard and DMI");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI displays in FS mode and the release speed digital is reappeared. The toggling function is applied");
             /*
             Test Step 6
             Action: Re-establish the communication between ETCS onboard and DMI
@@ -135,6 +175,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Digital Release Speed is not displayed.");
 
+            TraceHeader("Test Step 7");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            TraceReport("Expected Result");
+            TraceInfo("");
             /*
             Test Step 7
             Action: End of test

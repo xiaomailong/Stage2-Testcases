@@ -45,10 +45,18 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
             #region Test Step 1
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Set VBC’ button");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Set VBC window.");
             /*
             Test Step 1
             Action: Press ‘Set VBC’ button
@@ -163,6 +171,12 @@ namespace Testcase.DMITestCases
 
             #region Test Step 2
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press and hold ‘0’ button");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information,");
             /*
             Test Step 2
             Action: Press and hold ‘0’ button
@@ -204,6 +218,12 @@ namespace Testcase.DMITestCases
 
             #region Test Step 3
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Release the pressed button");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information,");
             /*
             Test Step 3
             Action: Release the pressed button
@@ -226,6 +246,12 @@ namespace Testcase.DMITestCases
 
             #region Test Step 4
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Perform action step 3-4 for the ‘1’ to ‘9’ buttons.");
+            TraceReport("Expected Result");
+            TraceInfo("See the expected results of Step 3 – Step 4 and the following additional information,");
             /*
             Test Step 4
             Action: Perform action step 3-4 for the ‘1’ to ‘9’ buttons.
@@ -255,6 +281,12 @@ namespace Testcase.DMITestCases
 
             #region Test Step 5
 
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press and hold ‘Del’ button.");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information,");
             /*
             Test Step 5
             Action: Press and hold ‘Del’ button.
@@ -294,6 +326,12 @@ namespace Testcase.DMITestCases
 
             #region Test Step 6
 
+            TraceHeader("Test Step 6");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Release ‘Del’ button");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information, The character is stop removing");
             /*
             Test Step 6
             Action: Release ‘Del’ button
@@ -308,6 +346,12 @@ namespace Testcase.DMITestCases
 
             #region Test Step 7
 
+            TraceHeader("Test Step 7");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Enter the data value with 5 characters");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information,");
             /*
             Test Step 7
             Action: Enter the data value with 5 characters
@@ -323,6 +367,12 @@ namespace Testcase.DMITestCases
 
             #region Test Step 8
 
+            TraceHeader("Test Step 8");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Continue to enter the 6th character");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information,");
             /*
             Test Step 8
             Action: Continue to enter the 6th character
@@ -339,6 +389,12 @@ namespace Testcase.DMITestCases
 
             #region Test Step 9
 
+            TraceHeader("Test Step 9");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Continue to enter the new value more than 8 characters");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information,");
             /*
             Test Step 9
             Action: Continue to enter the new value more than 8 characters
@@ -357,6 +413,12 @@ namespace Testcase.DMITestCases
 
             #region Test Step 10
 
+            TraceHeader("Test Step 10");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Delete the old value and enter the value ‘65536’ for VBC code.");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information,           ");
             /*
             Test Step 10
             Action: Delete the old value and enter the value ‘65536’ for VBC code.
@@ -411,6 +473,12 @@ namespace Testcase.DMITestCases
 
             #endregion
 
+            TraceHeader("Test Step 11");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Select and enter the value ‘65536’ for VBC code again");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information,");
             /*
             Test Step 11
             Action: Select and enter the value ‘65536’ for VBC code again
@@ -420,6 +488,12 @@ namespace Testcase.DMITestCases
             */
 
 
+            TraceHeader("Test Step 12");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Confirm an entered data.");
+            TraceReport("Expected Result");
+            TraceInfo("See the expected results of Step 2 – Step 3 and the following points,");
             /*
             Test Step 12
             Action: Confirm an entered data.
@@ -439,6 +513,12 @@ namespace Testcase.DMITestCases
             DmiActions.Confirm_an_entered_data_Then_apply_the_action_step_2_3_for_Yes_button(this);
 
 
+            TraceHeader("Test Step 13");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Close’ button");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Set VBC window");
             /*
             Test Step 13
             Action: Press ‘Close’ button
@@ -450,6 +530,12 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.DMI_displays_Set_VBC_window(this);
 
 
+            TraceHeader("Test Step 14");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Enter the value ‘65536’ for VBC code.Then, confirm an entered data by pressing an input field");
+            TraceReport("Expected Result");
+            TraceInfo("The state of ‘VBC Code’ input field is changed to ‘accepted’");
             /*
             Test Step 14
             Action: Enter the value ‘65536’ for VBC code.Then, confirm an entered data by pressing an input field
@@ -462,6 +548,13 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.The_state_of_VBC_Code_input_field_is_changed_to_accepted(this);
 
 
+            TraceHeader("Test Step 15");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press and hold the Label area of ‘Set VBC’ input field");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,The state of ‘Set VBC’ input field is changed to ‘Pressed’, the border of button is removed.The state of ‘Set VBC’ input field remains ‘accecpted’. The sound ‘Click’ is played once");
             /*
             Test Step 15
             Action: Press and hold the Label area of ‘Set VBC’ input field
@@ -470,6 +563,13 @@ namespace Testcase.DMITestCases
             */
 
 
+            TraceHeader("Test Step 16");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Slide out the Label area of ‘Set VBC’ input field");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,The border of ‘Set VBC’ input field is shown (state ‘Enabled’) without a sound.The state of ‘Set VBC’ input field remains ‘accecpted’");
             /*
             Test Step 16
             Action: Slide out the Label area of ‘Set VBC’ input field
@@ -478,6 +578,13 @@ namespace Testcase.DMITestCases
             */
 
 
+            TraceHeader("Test Step 17");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Slide back into the Label area of ‘Set VBC’ input field");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,The state of ‘Set VBC’ input field is changed to ‘Pressed’, the border of button is removed.The state of ‘Set VBC’ input field remains ‘accecpted’");
             /*
             Test Step 17
             Action: Slide back into the Label area of ‘Set VBC’ input field
@@ -486,6 +593,12 @@ namespace Testcase.DMITestCases
             */
 
 
+            TraceHeader("Test Step 18");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Release the pressed area");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information,The state of ‘Set VBC’ input field is changed to selected");
             /*
             Test Step 18
             Action: Release the pressed area
@@ -496,6 +609,13 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Release the pressed area");
 
 
+            TraceHeader("Test Step 19");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Perform action step 13-17 for the Data area of an input field");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,The state of an input field is changed to ‘accepted’ when release the pressed area at the Data area of input field");
             /*
             Test Step 19
             Action: Perform action step 13-17 for the Data area of an input field
@@ -510,6 +630,13 @@ namespace Testcase.DMITestCases
                     this);
 
 
+            TraceHeader("Test Step 20");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Close’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information, Use the log file to confirm that DMI sent out packet [MMI_DRIVER_REQUEST (EVC-101)] with variable MMI_M_REQUEST = 25 (Exit Set VBC Entry).Use the log file to confirm that DMI sent out packet [MMI_ENABLE_REQUEST (EVC-30)] with variable MMI_NID_WINDOW = 254.The window is closed and the Settings window is displayed");
             /*
             Test Step 20
             Action: Press ‘Close’ button
@@ -520,6 +647,12 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
 
 
+            TraceHeader("Test Step 21");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            TraceReport("Expected Result");
+            TraceInfo("");
             /*
             Test Step 21
             Action: End of test

@@ -45,8 +45,16 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train up to 20 km/h");
+            TraceReport("Expected Result");
+            TraceInfo("The speed pointer is indicated as 20  km/h");
             /*
             Test Step 1
             Action: Drive the train up to 20 km/h
@@ -57,6 +65,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SB mode, Level 1.");
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train forward pass BG0 with MA and Track descriptionPkt 12,21 and 27");
+            TraceReport("Expected Result");
+            TraceInfo("Mode changes to FS mode , L1");
             /*
             Test Step 2
             Action: Drive the train forward pass BG0 with MA and Track descriptionPkt 12,21 and 27
@@ -67,6 +81,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in FS mode, Level 1.");
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Pass BG1 with Track conditionPkt 68:D_TRACKCOND = 500L_TRACKCOND = 200M_TRACKCOND = 8(Switch off magnetic shoe brake)");
+            TraceReport("Expected Result");
+            TraceInfo("Mode remians in FS mode");
             /*
             Test Step 3
             Action: Pass BG1 with Track conditionPkt 68:D_TRACKCOND = 500L_TRACKCOND = 200M_TRACKCOND = 8(Switch off magnetic shoe brake)
@@ -292,6 +313,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays track condition symbols in sub-areas D2, D3, D4.");
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Continue driving with 20 Km/h");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "The PA Track condition symbols are going down to the first distance scale (zero line) and no symbol jumping between D2, D3 and D4 area");
             /*
             Test Step 4
             Action: Continue driving with 20 Km/h
@@ -311,6 +339,7 @@ namespace Testcase.DMITestCases
                 trackCondition.MMI_O_TRACKCOND_ANNOUNCE = initialAnnouncement - (tc * separation);
                 tc = (++tc) % 10;
             }
+
             EVC32_MMITrackConditions.Send();
 
             Wait_Realtime(1000);
@@ -325,6 +354,12 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. No symbols jump between sub-areas D2, D3 and D4.");
 
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Continue driving with 20 Km/h");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays remianing track condition symbols on sub-area D2 and D3");
             /*
             Test Step 5
             Action: Continue driving with 20 Km/h
@@ -335,6 +370,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the remaining track condition symbols in sub-areas D2 and D3.");
 
+            TraceHeader("Test Step 6");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Continue driving with 20 Km/h");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays remianing track condition symbols on sub-area D2");
             /*
             Test Step 6
             Action: Continue driving with 20 Km/h
@@ -345,6 +386,13 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the remaining track condition symbols in sub-area D2.");
 
 
+            TraceHeader("Test Step 7");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Simulate loss-communication between ETCS onboard and DMI");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI displays Default window with the  message “ATP Down Alarm” and sound alarmPA Track Condition symbol shall be removed from sub-area D2");
             /*
             Test Step 7
             Action: Simulate loss-communication between ETCS onboard and DMI
@@ -358,6 +406,12 @@ namespace Testcase.DMITestCases
                                 "2. The ‘Alarm’ sound is played." + Environment.NewLine +
                                 "3. DMI does not display the track condition symbols.");
 
+            TraceHeader("Test Step 8");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            TraceReport("Expected Result");
+            TraceInfo("");
             /*
             Test Step 8
             Action: End of test

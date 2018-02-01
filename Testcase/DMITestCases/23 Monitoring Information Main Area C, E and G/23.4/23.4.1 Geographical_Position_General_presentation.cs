@@ -78,8 +78,16 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train forward with the permitted speed");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays in SR mode, level 1");
             /*
             Test Step 1
             Action: Drive the train forward with the permitted speed
@@ -88,6 +96,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "DMI displays in SR mode, level 1");
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Pass BG1 with Pkt 12, 21, and 27");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays in FS mode, level 1");
             /*
             Test Step 2
             Action: Pass BG1 with Pkt 12, 21, and 27
@@ -97,6 +111,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "DMI displays in FS mode, level 1");
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Pass BG2 with packet 79 Geographical position");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the Geographical Position indicator");
             /*
             Test Step 3
             Action: Pass BG2 with packet 79 Geographical position
@@ -123,6 +143,12 @@ namespace Testcase.DMITestCases
             // Call generic Check Results Method
             DmiExpectedResults.Driver_symbol_displayed(this, "Geographical Position", "DR03", "G12", false);
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press on the ‘DR03’ symbol, on sub-area G12 to toggle on the Geographical Position function");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the Geographical Position indicator.");
             /*
             Test Step 4
             Action: Press on the ‘DR03’ symbol, on sub-area G12 to toggle on the Geographical Position function
@@ -153,6 +179,13 @@ namespace Testcase.DMITestCases
                                 string.Format("2. The geographical position value = {0}.",
                                     EVC5_MMIGeoPosition.MMI_M_ABSOLUTPOS));
 
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Press on the ‘DR03’ symbol on sub-area G12 to toggle off the Geographical Position function and");
+            TraceReport("Expected Result");
+            TraceInfo("(1) The grey background colour in previous step is replaced by symbol ‘DR03’ in sub-area G12");
             /*
             Test Step 5
             Action: Press on the ‘DR03’ symbol on sub-area G12 to toggle off the Geographical Position function and
@@ -166,6 +199,12 @@ namespace Testcase.DMITestCases
             // Call generic Check Results Method
             DmiExpectedResults.Driver_symbol_displayed(this, "Geographical Position", "DR03", "G12", false);
 
+            TraceHeader("Test Step 6");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Stop the train, the driver presses the symbol of Geographical Position at sub-area G12 again.");
+            TraceReport("Expected Result");
+            TraceInfo("The Geographical Position is displayed with valid value of the train position.");
             /*
             Test Step 6
             Action: Stop the train, the driver presses the symbol of Geographical Position at sub-area G12 again.
@@ -188,6 +227,12 @@ namespace Testcase.DMITestCases
                                 string.Format("2. The geographical position value = {0}.",
                                     EVC5_MMIGeoPosition.MMI_M_ABSOLUTPOS));
 
+            TraceHeader("Test Step 7");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Start driving the train forward");
+            TraceReport("Expected Result");
+            TraceInfo("Verify that the last status of geographical position is not changed.");
             /*
             Test Step 7
             Action: Start driving the train forward
@@ -201,6 +246,13 @@ namespace Testcase.DMITestCases
                                 "1. The geographical position value is still equal to" +
                                 string.Format(" {0}.", EVC5_MMIGeoPosition.MMI_M_ABSOLUTPOS));
 
+            TraceHeader("Test Step 8");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Press on the ‘DR03’ symbol on sub-area G12 to toggle off the Geographical Position function and");
+            TraceReport("Expected Result");
+            TraceInfo("The grey background colour in previous step is replaced by symbol ‘DR03’ in sub-area G12");
             /*
             Test Step 8
             Action: Press on the ‘DR03’ symbol on sub-area G12 to toggle off the Geographical Position function and
@@ -215,6 +267,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following: " + Environment.NewLine + Environment.NewLine +
                                 "1. The grey background of the geographical position is replaced by symbol DR03");
 
+            TraceHeader("Test Step 9");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Pass BG3 with the new Geographical position");
+            TraceReport("Expected Result");
+            TraceInfo("The symbol ‘DR03’ remains in sub-area G12");
             /*
             Test Step 9
             Action: Pass BG3 with the new Geographical position
@@ -226,6 +284,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following: " + Environment.NewLine + Environment.NewLine +
                                 "1. The DR03 symbol is still displayed in sub-area G12");
 
+            TraceHeader("Test Step 10");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Press on the ‘DR03’ symbol, on sub-area G12 to toggle on the Geographical Position function and");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the Geographical Position indicator");
             /*
             Test Step 10
             Action: Press on the ‘DR03’ symbol, on sub-area G12 to toggle on the Geographical Position function and
@@ -244,6 +309,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following: " + Environment.NewLine + Environment.NewLine +
                                 "1. A number in the format nnnn_ddd is displayed in black on a grey background in sub-area G12");
 
+            TraceHeader("Test Step 11");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Perform the following procedure");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays in SH mode, level 1.");
             /*
             Test Step 11
             Action: Perform the following procedure
@@ -265,6 +336,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. There is no symbol displayed in area G12.");
 
+            TraceHeader("Test Step 12");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Perform the following procedure:");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays in SR mode, Level 1");
             /*
             Test Step 12
             Action: Perform the following procedure:
@@ -281,6 +358,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following: " + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SR mode, Level 1.");
 
+            TraceHeader("Test Step 13");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Pass BG4 with the new Geographical position");
+            TraceReport("Expected Result");
+            TraceInfo("The symbol ‘DR03’ displays in sub-area G12");
             /*
             Test Step 13
             Action: Pass BG4 with the new Geographical position
@@ -291,6 +374,12 @@ namespace Testcase.DMITestCases
             // Call generic Check Results Method
             DmiExpectedResults.Driver_symbol_displayed(this, "Geographical Position", "DR03", "G12", false);
 
+            TraceHeader("Test Step 14");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Perform the following procedure:");
+            TraceReport("Expected Result");
+            TraceInfo("Verify that the symbol of Geographical Position at sub-area G12 is not displayed.");
             /*
             Test Step 14
             Action: Perform the following procedure:
@@ -311,6 +400,12 @@ namespace Testcase.DMITestCases
                                 "1. DMI removes the DR03 symbol in sub-area G12" + Environment.NewLine +
                                 "2. Sub-area G12 is not sensitive for toggling on/off");
 
+            TraceHeader("Test Step 15");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            TraceReport("Expected Result");
+            TraceInfo("");
             /*
             Test Step 15
             Action: End of test

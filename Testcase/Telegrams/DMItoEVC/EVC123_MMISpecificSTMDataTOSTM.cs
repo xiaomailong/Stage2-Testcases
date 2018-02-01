@@ -30,7 +30,6 @@ namespace Testcase.Telegrams.DMItoEVC
 
         private static void CheckStmDataEntered()
         {
-
             // Check if telegram received flag has been set. Allows 20 seconds to enter train data.
             if (_pool.SITR.SMDStat.CCUO.ETCS1SpecificStmDataToStm.WaitForCondition(Is.Equal, 1, 20000, 100))
             {

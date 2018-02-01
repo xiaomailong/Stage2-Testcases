@@ -59,8 +59,17 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Open the ‘Brake percentage’ data entry window from the Special menu");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "The ‘Brake percentage’ data entry window appears on ETCS-DMI screen instead of the ‘Special’ menu window");
             /*
             Test Step 1
             Action: Open the ‘Brake percentage’ data entry window from the Special menu
@@ -74,6 +83,14 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. DMI displays the Brake percentage window");
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Enter “10” (invalid value) for Brake percentage with the numeric keypad and press the data input field (Accept) in the same screen.Then, observe the echo texts on the left hand side");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "EVC-50Use the log file to verify that DMI receives packet EVC-50 with variable:(1) MMI_M_BP_CURRENT = 251 in order to indicate the technical range check failure.Input Field(2) The ‘Enter’ button associated to the data area of the input field is coloured grey and its text is black (state ‘Selected IF/Data value’).(3) The ‘Enter’ button associated to the data area of the input field displays “10” (previously entered value).Echo Text(4) The data part of the echo text displays “++++”.(5) The data part of the echo text is coloured red");
             /*
             Test Step 2
             Action: Enter “10” (invalid value) for Brake percentage with the numeric keypad and press the data input field (Accept) in the same screen.Then, observe the echo texts on the left hand side
@@ -91,6 +108,13 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. The ‘Brake percentage’ echo text displays ‘++++’ in red.");
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press the data input field once again (Accept) in the same screen");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Input Field(1) The ‘Enter’ button associated to the data area of the input field is still coloured grey and its text is black (state ‘Selected IF/data value’).(2) The ‘Enter’ button associated to the data area of the input field displays “10” (previously entered value).EVC-150(3) Use the log file to verify that DMI does not send out packet EVC-150 as the ‘Enter’ button is disabled.Echo Text(4) The data part of the echo text displays “++++”.(5) The data part of the echo text is coloured red");
             /*
             Test Step 3
             Action: Press the data input field once again (Accept) in the same screen
@@ -104,6 +128,13 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. The ‘Brake percentage’ echo text displays ‘++++’ in red.");
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Enter “10” (invalid value) for Brake percentage with the numeric keypad in the same screen");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Input Field(1) The eventually displayed data value in the data area of the input field is replaced by “10” (character or value corresponding to the activated data key - state ‘Selected IF/value of pressed key(s)’)");
             /*
             Test Step 4 (marked Step 5 in Spec.)
             Action: Enter “10” (invalid value) for Brake percentage with the numeric keypad in the same screen
@@ -115,6 +146,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field displays ‘1’ then ‘10’ (replacing the value as the characters are entered).");
 
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press the data input field of Brake percentage (Accept)");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "EVC-50Use the log file to verify that DMI receives packet EVC-50 with variable:(1) MMI_M_BP_CURRENT = 251 in order to indicate the technical range check failure.Input Field(2) The ‘Enter’ button associated to the data area of the input field is coloured grey and its text is black (state ‘Selected IF/Data value’)");
             /*
             Test Step 5 (marked Step 6 in Spec.)
             Action: Press the data input field of Brake percentage (Accept)
@@ -126,6 +164,13 @@ namespace Testcase.DMITestCases
             EVC50_MMICurrentBrakePercentage.MMI_M_BP_CURRENT = 251;
             EVC50_MMICurrentBrakePercentage.Send();
 
+            TraceHeader("Test Step 6");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press the data input field of Brake percentage once again (Accept) in the same screen");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Input Field(1) The ‘Enter’ button associated to the data area of the input field is still coloured grey and its text is black (state ‘Selected IF/data value’).(2) The ‘Enter’ button associated to the data area of the input field displays “10” (previously entered value).EVC-150(3) Use the log file to verify that DMI does not send out packet EVC-150 as the ‘Enter’ button is disabled. Echo Text(4) The data part of the echo text displays “++++”.(5) The data part of the echo text is coloured red");
             /*
             Test Step 6 (marked Step 7 in Spec.)
             Action: Press the data input field of Brake percentage once again (Accept) in the same screen
@@ -139,6 +184,13 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. The ‘Brake percentage’ echo text displays ‘++++’ in red.");
 
+            TraceHeader("Test Step 7");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Enter “40” (valid value) for Brake percentage with the numeric keypad");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Input Field(1) The eventually displayed data value in the data area of the input field is replaced by “40” (character or value corresponding to the activated data key - state ‘Selected IF/value of pressed key(s)’)");
             /*
             Test Step 7 (marked Step 8 in Spec.)
             Action: Enter “40” (valid value) for Brake percentage with the numeric keypad
@@ -152,6 +204,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1.  The data input field displays ‘4’ then ‘40’ (replacing the value as the characters are entered)");
 
+            TraceHeader("Test Step 8");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press the data input field of Brake percentage (Accept) in the same screen");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "EVC-150(1) Use the log file to confirm that DMI sends packet EVC-150 with variable:MMI_M_BP_CURRENT = 40EVC-50(2) Use the log file to verify that DMI receives packet EVC-50 with variable:MMI_M_BP_CURRENT = 40");
             /*
             Test Step 8 (marked Step 9 in Spec.)
             Action: Press the data input field of Brake percentage (Accept) in the same screen
@@ -163,6 +222,14 @@ namespace Testcase.DMITestCases
             EVC51_MMIEchoedBrakePercentage.MMI_M_BP_ORIG_ = 40;
             EVC51_MMIEchoedBrakePercentage.Send();
 
+            TraceHeader("Test Step 9");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "This step is to complete the process of ‘Brake percentage’:- Press the ‘Yes’ button on the ‘Brake percentage’ window.- Validate the data in the data validation window");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "1. After pressing the ‘Yes’ button, the data validation window (‘Validate Brake percentage’) appears instead of the ‘Brake percentage’ data entry window. The data part of echo text displays in white:Brake percentage: 402. After the data area of the input field containing “Yes” is pressed, the data validation window disappears and returns to the parent window (‘Special’ window) of ‘Brake percentage’ window with enabled ‘Brake percentage’ button");
             /*
             Test Step 9 (marked Step 10 in Spec.)
             Action: This step is to complete the process of ‘Brake percentage’:- Press the ‘Yes’ button on the ‘Brake percentage’ window.- Validate the data in the data validation window
@@ -179,6 +246,14 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window with the ‘Brake percentage’ button enabled.");
 
+            TraceHeader("Test Step 10");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Send the data of ‘Technical Range Check’ failure to ETCS-DMI by 22_22_5_a.xmlEVC-50MMI_M_BP_CURRENT = 251 (Technical Range Check failed)");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Input Field(1) The ‘Enter’ button associated to the data area of the input field displays the previously entered value.Echo Text(2) The data part of the echo text displays “++++”");
             /*
             Test Step 10 (marked Step 11 in Spec.)
             Action: Send the data of ‘Technical Range Check’ failure to ETCS-DMI by 22_22_5_a.xmlEVC-50MMI_M_BP_CURRENT = 251 (Technical Range Check failed)
@@ -204,6 +279,12 @@ namespace Testcase.DMITestCases
                                 @"1. The ‘Enter’ button of the data input field displays ‘40’." + Environment.NewLine +
                                 "2. The echo text for ‘Brake percentage’ displays ‘++++’ in red.");
 
+            TraceHeader("Test Step 11");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            TraceReport("Expected Result");
+            TraceInfo("");
             /*
             Test Step 11
             Action: End of test

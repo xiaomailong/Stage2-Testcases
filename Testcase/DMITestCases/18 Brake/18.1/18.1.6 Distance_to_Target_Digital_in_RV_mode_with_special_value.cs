@@ -65,8 +65,16 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train forward passing BG1 with speed = 40 km/h until entering FS mode");
+            TraceReport("Expected Result");
+            TraceInfo("");
             /*
             Test Step 1
             Action: Drive the train forward passing BG1 with speed = 40 km/h until entering FS mode
@@ -82,6 +90,12 @@ namespace Testcase.DMITestCases
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 40;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 5000; // 50m
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Continue drive the train forward passing BG2");
+            TraceReport("Expected Result");
+            TraceInfo("");
             /*
             Test Step 2
             Action: Continue drive the train forward passing BG2
@@ -89,6 +103,12 @@ namespace Testcase.DMITestCases
             */
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 20000;
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("The train is in reversing area");
+            TraceReport("Expected Result");
+            TraceInfo("");
             /*
             Test Step 3
             Action: The train is in reversing area
@@ -97,6 +117,12 @@ namespace Testcase.DMITestCases
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 30000;
             EVC1_MMIDynamic.MMI_O_BRAKETARGET = 70000; // in reversing area can travel 400m further ??
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Stop the train");
+            TraceReport("Expected Result");
+            TraceInfo("The train is standstill.Driver is informed that reversing is possible");
             /*
             Test Step 4
             Action: Stop the train
@@ -114,6 +140,13 @@ namespace Testcase.DMITestCases
                                 "1. DMI indicates speed = 0 km/h" + Environment.NewLine +
                                 "2. DMI displays message that reversing is possible and displays symbol ST06 in sub-area C6");
 
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Change the direction of train to reverse. Then select and confirm RV mode");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI displays in RV mode, level 1.Verify the following information,(1)    Use the log file to confirm that DMI received packet EVC-1 with variable MMI_O_BRAKETARGET = 2147483647(2)    The symbol infinity '∞' is displayed for distance to target digital in sub-area A2.(3)    The symbol is be horizontally and vertically centered in Sub-Area A2");
             /*
             Test Step 5
             Action: Change the direction of train to reverse. Then select and confirm RV mode
@@ -139,6 +172,12 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays in RV mode, level 1." + Environment.NewLine +
                                 "2. The  infinity symbol ‘∞’ is displayed for digital distance to target in sub-area A2, horizontally and vertically centered.");
 
+            TraceHeader("Test Step 6");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            TraceReport("Expected Result");
+            TraceInfo("");
             /*
             Test Step 6
             Action: End of test

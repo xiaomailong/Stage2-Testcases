@@ -69,8 +69,10 @@ namespace Testcase.Telegrams.DMItoEVC
                 {
                     _pool.TraceReport(baseString1 + ".MMI_N_LEVELS = " + _nLevels + Environment.NewLine +
                                       baseString0 + Environment.NewLine +
-                                      "MMI_M_REQUEST = \"" + Variables.MMI_M_REQUEST.LevelEntered + "\"" + Environment.NewLine +
-                                      "MMI_Q_BUTTON = \"" + Variables.MMI_Q_BUTTON.Pressed + "\"" + Environment.NewLine +
+                                      "MMI_M_REQUEST = \"" + Variables.MMI_M_REQUEST.LevelEntered + "\"" +
+                                      Environment.NewLine +
+                                      "MMI_Q_BUTTON = \"" + Variables.MMI_Q_BUTTON.Pressed + "\"" +
+                                      Environment.NewLine +
                                       "Time stamp = " + _pool.SITR.CCUO.ETCS1DriverRequest.MmiTButtonevent +
                                       Environment.NewLine +
                                       "Result: PASSED.");
@@ -183,7 +185,8 @@ namespace Testcase.Telegrams.DMItoEVC
                                               " is NOT SELECTED." +
                                               Environment.NewLine +
                                               string.Format("{0} - MMI_M_LEVEL_FLAG[{1}] = ", baseString1, k) +
-                                              Enum.GetName(typeof(Variables.MMI_M_LEVEL_FLAG), _mLevelFlag) + ", PASSED.");
+                                              Enum.GetName(typeof(Variables.MMI_M_LEVEL_FLAG), _mLevelFlag) +
+                                              ", PASSED.");
                         }
                         // Else display the real value extracted
                         else
@@ -194,7 +197,8 @@ namespace Testcase.Telegrams.DMItoEVC
                                              " is NOT indicated as NOT SELECTED." +
                                              Environment.NewLine +
                                              string.Format("{0} - MMI_M_LEVEL_FLAG[{1}] = ", baseString1, k) +
-                                             Enum.GetName(typeof(Variables.MMI_M_LEVEL_FLAG), _mLevelFlag) + ", FAILED.");
+                                             Enum.GetName(typeof(Variables.MMI_M_LEVEL_FLAG), _mLevelFlag) +
+                                             ", FAILED.");
                         }
                     }
                 }

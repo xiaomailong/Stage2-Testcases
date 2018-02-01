@@ -36,7 +36,7 @@ namespace Testcase.DMITestCases
             pool.TraceInfo(string.Format("This test case is not required since it tests the same interfaces as TC {0}",
                                testcaseId) +
                            string.Format(" in section {0} of the specification.", sectionNumber));
-        } 
+        }
 
         /// <summary>
         /// Prompt for verification of symbol displayed on the DMI.
@@ -59,11 +59,10 @@ namespace Testcase.DMITestCases
         }
 
         public static void Driver_symbol_deleted(SignalPool pool, string symbolName, string symbolNumber,
-           string symbolArea)
+            string symbolArea)
         {
-
-                pool.WaitForVerification(string.Format("Is the {0} symbol ({1}) ", symbolName, symbolNumber) +
-                                         string.Format("removed from area {0}?", symbolArea));
+            pool.WaitForVerification(string.Format("Is the {0} symbol ({1}) ", symbolName, symbolNumber) +
+                                     string.Format("removed from area {0}?", symbolArea));
         }
 
         public static void TAF_ack_pressed_and_released(SignalPool pool)
@@ -71,7 +70,8 @@ namespace Testcase.DMITestCases
             EVC111_MMIDriverMessageAck.MMI_Q_ACK = MMI_Q_ACK.AcknowledgeYES;
             EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
             EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
-            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.TrackAheadFreeConfirmation;
+            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION =
+                EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.TrackAheadFreeConfirmation;
         }
 
         /// <summary>
@@ -1005,7 +1005,8 @@ namespace Testcase.DMITestCases
         {
             DmiActions.ShowInstruction(pool, "Perform the following action after pressing OK:" + Environment.NewLine +
                                              Environment.NewLine +
-                                             string.Format("1. Select and enter \"{0}\".", trainsetSelected.ToString()));
+                                             string.Format("1. Select and enter \"{0}\".",
+                                                 trainsetSelected.ToString()));
 
             EVC107_MMINewTrainData.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_TRAIN_DATA.BTN_ENTER;
             EVC107_MMINewTrainData.TrainsetSelected = trainsetSelected;
@@ -1018,7 +1019,8 @@ namespace Testcase.DMITestCases
         /// </summary>
         /// <param name="pool">The SignalPool</param>
         /// <param name="trainsetSelected">Number of the fixed trainset selected</param>
-        public static void Fixed_Train_Data_validated(SignalPool pool, Variables.Fixed_Trainset_Captions trainsetSelected)
+        public static void Fixed_Train_Data_validated(SignalPool pool,
+            Variables.Fixed_Trainset_Captions trainsetSelected)
         {
             DmiActions.ShowInstruction(pool, "Perform the following action after pressing OK:" + Environment.NewLine +
                                              Environment.NewLine +
@@ -1198,7 +1200,7 @@ namespace Testcase.DMITestCases
             //TODO
             // Need to implement a flexible way to check for the time entered by the user.
             // Use the below method with some clever trick.
-                //  EVC109_MMISetTimeMMI.Check_MMI_Set_Time(DateTime.Now,1);
+            //  EVC109_MMISetTimeMMI.Check_MMI_Set_Time(DateTime.Now,1);
         }
 
         /// <summary>

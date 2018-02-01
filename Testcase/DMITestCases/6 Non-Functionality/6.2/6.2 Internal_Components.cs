@@ -48,9 +48,17 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Power on DMI and start up the system.");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays the default window. The Driver ID window is displayed");
             /*
             Test Step 1
             Action: Power on DMI and start up the system.
@@ -65,6 +73,12 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.Driver_ID_window_displayed(this);
 
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Enter Driver ID and  selects level 1");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays in SB mode, level 1");
             /*
             Test Step 2
             Action: Enter Driver ID and  selects level 1
@@ -82,6 +96,12 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.DMI_displays_in_SB_mode_level_1(this);
 
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Close’ button and select ‘Settings menu’");
+            TraceReport("Expected Result");
+            TraceInfo("The Settings window is presented with all sub-menus");
             /*
             Test Step 3
             Action: Press ‘Close’ button and select ‘Settings menu’
@@ -94,6 +114,12 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.DMI_displays_Settings_window(this);
 
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Select the icon of ‘Set Clock’ button");
+            TraceReport("Expected Result");
+            TraceInfo("The Set Clock window is presented to the driver.");
             /*
             Test Step 4
             Action: Select the icon of ‘Set Clock’ button
@@ -105,6 +131,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("The Set Clock window is presented to the driver." + Environment.NewLine +
                                 "Verify that the year, month, day, hour, minute, second are displayed as real time update.");
 
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Enter the new value of Offset time. Then presses ‘Yes’ and closes the window");
+            TraceReport("Expected Result");
+            TraceInfo("The Settings window is displayed");
             /*
             Test Step 5
             Action: Enter the new value of Offset time. Then presses ‘Yes’ and closes the window
@@ -122,6 +154,12 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.DMI_displays_Settings_window(this);
 
 
+            TraceHeader("Test Step 6");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Close the Settings window and deactivate cabin A");
+            TraceReport("Expected Result");
+            TraceInfo("Cabin A is deactivated");
             /*
             Test Step 6
             Action: Close the Settings window and deactivate cabin A
@@ -132,6 +170,12 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.Cab_deactivated(this);
 
 
+            TraceHeader("Test Step 7");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Power off DMI for 48 hrs. Then, activate Cabin A");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays the default window. The Driver ID window is displayed");
             /*
             Test Step 7
             Action: Power off DMI for 48 hrs. Then, activate Cabin A
@@ -144,6 +188,12 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.Driver_ID_window_displayed(this);
 
 
+            TraceHeader("Test Step 8");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Enter Driver ID and  selects level 1");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays in SB mode, level 1");
             /*
             Test Step 8
             Action: Enter Driver ID and  selects level 1
@@ -161,6 +211,12 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.DMI_displays_in_SB_mode_level_1(this);
 
 
+            TraceHeader("Test Step 9");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Perform the following procedure,");
+            TraceReport("Expected Result");
+            TraceInfo("The Set Clock window is displayed.");
             /*
             Test Step 9
             Action: Perform the following procedure,
@@ -179,6 +235,12 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Select the icon of ‘Set Clock’ button");
             WaitForVerification("The Set Clock window is displayed." + Environment.NewLine +
                                 "Verify that the new offset time has been stored on DMI for 48 hrs.");
+            TraceHeader("Test Step 10");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            TraceReport("Expected Result");
+            TraceInfo("");
             /*
             Test Step 10
             Action: End of test

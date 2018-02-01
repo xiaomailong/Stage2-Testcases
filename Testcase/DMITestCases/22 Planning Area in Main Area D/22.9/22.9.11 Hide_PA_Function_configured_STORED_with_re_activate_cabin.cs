@@ -46,10 +46,18 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
             TraceInfo("This test case requires an ATP configuration change - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Power on the system Activate cabin A");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Driver ID window");
             /*
             Test Step 1
             Action: Power on the system Activate cabin A
@@ -62,6 +70,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Driver ID window.");
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Perform SoM to SR mode, level 1");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays in SR mode, level 1The Planning area is appeared on DMI");
             /*
             Test Step 2
             Action: Perform SoM to SR mode, level 1
@@ -76,6 +90,12 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays in SR mode, Level 1." + Environment.NewLine +
                                 "2. The Planning Area is displayed.");
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press Hide PA button");
+            TraceReport("Expected Result");
+            TraceInfo("The Planning area is disappeared from DMI");
             /*
             Test Step 3
             Action: Press Hide PA button
@@ -86,6 +106,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Planning Area is removed from area D.");
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Deactive and reacitvate the cabin A");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Driver ID window");
             /*
             Test Step 4
             Action: Deactive and reacitvate the cabin A
@@ -98,6 +124,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Driver ID window.");
 
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Perform SoM to SR mode, level 1");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays in SR mode, level 1The Planning area is not appear on DMI");
             /*
             Test Step 5
             Action: Perform SoM to SR mode, level 1
@@ -113,6 +145,12 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays in SR mode, Level 1." + Environment.NewLine +
                                 "2. The Planning Area is not displayed.");
 
+            TraceHeader("Test Step 6");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press at sensitive area in main area D");
+            TraceReport("Expected Result");
+            TraceInfo("The planning area is reappeared by this activation");
             /*
             Test Step 6
             Action: Press at sensitive area in main area D
@@ -124,6 +162,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Planning Area is displayed.");
 
+            TraceHeader("Test Step 7");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train forward with speed = 30 km/h pass BG1");
+            TraceReport("Expected Result");
+            TraceInfo("Mode changes to FS modeThe Planning area is appeared on DMI");
             /*
             Test Step 7
             Action: Drive the train forward with speed = 30 km/h pass BG1
@@ -135,6 +179,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Planning Area is still displayed.");
 
+            TraceHeader("Test Step 8");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Stop the train and then press Hide PA button");
+            TraceReport("Expected Result");
+            TraceInfo("Train is at standstillThe Planning area is disappeared from DMI");
             /*
             Test Step 8
             Action: Stop the train and then press Hide PA button
@@ -147,6 +197,12 @@ namespace Testcase.DMITestCases
                                 "1. The Planning Area is removed from area D." + Environment.NewLine +
                                 "2. The speed displayed is 30 km/h.");
 
+            TraceHeader("Test Step 9");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Deactive and reacitvate the cabin A");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Driver ID window");
             /*
             Test Step 9
             Action: Deactive and reacitvate the cabin A
@@ -159,6 +215,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Driver ID window.");
 
+            TraceHeader("Test Step 10");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Perform SoM to SR mode, level 1");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays in SR mode, leve1");
             /*
             Test Step 10
             Action: Perform SoM to SR mode, level 1
@@ -172,6 +234,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SR mode, Level 1.");
 
+            TraceHeader("Test Step 11");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train forward with speed = 30 km/h pass BG2");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays in FS modeThe Planning area is not appear on DMI");
             /*
             Test Step 11
             Action: Drive the train forward with speed = 30 km/h pass BG2
@@ -185,6 +253,12 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays in FS mode." + Environment.NewLine +
                                 "2. The Planning Area is not displayed.");
 
+            TraceHeader("Test Step 12");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press at sensitive area in main area D");
+            TraceReport("Expected Result");
+            TraceInfo("The planning area is reappeared by this activation");
             /*
             Test Step 12
             Action: Press at sensitive area in main area D
@@ -195,6 +269,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Planning Area is re-displayed.");
 
+            TraceHeader("Test Step 13");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Pass BG3 and the comfirm OS mode");
+            TraceReport("Expected Result");
+            TraceInfo("Mode chages to OS modeThe Planning area is appeared on DMI");
             /*
             Test Step 13
             Action: Pass BG3 and the comfirm OS mode
@@ -213,6 +293,12 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays in OS mode." + Environment.NewLine +
                                 "2. The Planning Area is displayed.");
 
+            TraceHeader("Test Step 14");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Stop the train and then press Hide PA button");
+            TraceReport("Expected Result");
+            TraceInfo("Train is at standstillThe Planning area is disappeared from DMI");
             /*
             Test Step 14
             Action: Stop the train and then press Hide PA button
@@ -226,6 +312,12 @@ namespace Testcase.DMITestCases
                                 "1. The Planning Area is removed from area D." + Environment.NewLine +
                                 "2. The speed displayed is 0 km/h.");
 
+            TraceHeader("Test Step 15");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Deactive and reacitvate the cabin A");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Driver ID window");
             /*
             Test Step 15
             Action: Deactive and reacitvate the cabin A
@@ -238,6 +330,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Driver ID window.");
 
+            TraceHeader("Test Step 16");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Perform SoM to SR mode, level 1");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays in SR mode, leve1");
             /*
             Test Step 16
             Action: Perform SoM to SR mode, level 1
@@ -251,6 +349,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SR mode, Level 1.");
 
+            TraceHeader("Test Step 17");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train forward with speed = 30 km/h pass BG4");
+            TraceReport("Expected Result");
+            TraceInfo("OS mode Acknowledgment is requested");
             /*
             Test Step 17
             Action: Drive the train forward with speed = 30 km/h pass BG4
@@ -267,6 +371,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Acknowledgement of OS mode is requested.");
 
+            TraceHeader("Test Step 18");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Acknowledge OS mode");
+            TraceReport("Expected Result");
+            TraceInfo("Mode chages to OS modeThe Planning area is not appear on DMI");
             /*
             Test Step 18
             Action: Acknowledge OS mode
@@ -280,6 +390,12 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays in OS mode." + Environment.NewLine +
                                 "2. The Planning Area is displayed.");
 
+            TraceHeader("Test Step 19");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press at sensitive area in main area D");
+            TraceReport("Expected Result");
+            TraceInfo("The planning area is reappeared by this activation");
             /*
             Test Step 19
             Action: Press at sensitive area in main area D
@@ -290,6 +406,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Planning Area is re-displayed.");
 
+            TraceHeader("Test Step 20");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            TraceReport("Expected Result");
+            TraceInfo("");
             /*
             Test Step 20
             Action: End of test

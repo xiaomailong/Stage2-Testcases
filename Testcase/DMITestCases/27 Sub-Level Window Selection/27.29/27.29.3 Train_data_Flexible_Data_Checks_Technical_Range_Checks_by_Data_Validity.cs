@@ -57,11 +57,19 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
             TraceInfo("This test case requires an ATP configuration change - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");
 
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Open the ‘Train data’ data entry window from the Main menu");
+            TraceReport("Expected Result");
+            TraceInfo("The ‘Train data’ data entry window appears on DMI screen instead of the ‘Main’ menu window");
             /*
             Test Step 1
             Action: Open the ‘Train data’ data entry window from the Main menu
@@ -89,6 +97,14 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Train data window instead of the Main window.");
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Enter “1” (invalid value) for Train Length with the numeric keypad and press the data input field (Accept) in the same screen");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "EVC-6Use the log file to verify that DMI receives variables of packet EVC-6 as below:(1) MMI_Q_DATA_CHECK = 1 in order to indicate the technical range check failure.(2) MMI_M_BUTTONS = 255 (no button) and the 'Yes' button is disabled.(3) MMI_NID_DATA = 8 (Length)Input Field(4) The ‘Enter’ button associated to the data area of the input field is coloured grey and its text is black (state ‘Selected IF/Data value’).(5) The ‘Enter’ button associated to the data area of the input field displays “1” (previously entered value).Echo Texts of Train Length(6) The data part of the echo text displays “++++”.(7) The data part of the echo text is coloured red");
             /*
             Test Step 2
             Action: Enter “1” (invalid value) for Train Length with the numeric keypad and press the data input field (Accept) in the same screen
@@ -100,6 +116,13 @@ namespace Testcase.DMITestCases
 
             EVC6_MMICurrentTrainData.MMI_M_BUTTONS = EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.NoButton;
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press the data input field once again (Accept) in the same screen");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Input Field(1) The ‘Enter’ button associated to the data area of the input field is still coloured grey and its text is black (state ‘Selected IF/data value’).(2) The ‘Enter’ button associated to the data area of the input field displays “1” (previously entered value).EVC-107(3) Use the log file to verify that DMI does not send out packet EVC-107 as the ‘Enter’ button is disabled.Echo Texts of Train Length(4) The data part of the echo text displays “++++”.(5) The data part of the echo text is coloured red");
             /*
             Test Step 3
             Action: Press the data input field once again (Accept) in the same screen
@@ -110,6 +133,13 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press the data input field once again (Accept) in the same screen");
 
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Enter “1” (invalid value) for Train Length with the numeric keypad in the same screen");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Input Field(1) The eventually displayed data value in the data area of the input field is replaced by “1” (character or value corresponding to the activated data key - state ‘Selected IF/value of pressed key(s)’)");
             /*
             Test Step 4
             Action: Enter “1” (invalid value) for Train Length with the numeric keypad in the same screen
@@ -122,6 +152,13 @@ namespace Testcase.DMITestCases
                     this);
 
 
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press the data input field of Train Length (Accept)");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "EVC-6Use the log file to verify that DMI receives variables in packet EVC-6 as below:(1) MMI_Q_DATA_CHECK = 1 in order to indicate the technical range check failure.(2) MMI_M_BUTTONS = 255 (no button) and the 'Yes' button is disabled.Input Field(3) The ‘Enter’ button associated to the data area of the input field is coloured grey and its text is black (state ‘Selected IF/Data value’)");
             /*
             Test Step 5
             Action: Press the data input field of Train Length (Accept)
@@ -130,6 +167,13 @@ namespace Testcase.DMITestCases
             */
 
 
+            TraceHeader("Test Step 6");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press the data input field of Train Length once again (Accept) in the same screen");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Input Field(1) The ‘Enter’ button associated to the data area of the input field is still coloured grey and its text is black (state ‘Selected IF/data value’).(2) The ‘Enter’ button associated to the data area of the input field displays “1” (previously entered value).EVC-107(3) Use the log file to verify DMI does not send out packet EVC-107 as the ‘Enter’ button is disabled. Echo Texts of Train Length(4) The data part of the echo text displays “++++”.(5) The data part of the echo text is coloured red");
             /*
             Test Step 6
             Action: Press the data input field of Train Length once again (Accept) in the same screen
@@ -138,6 +182,13 @@ namespace Testcase.DMITestCases
             */
 
 
+            TraceHeader("Test Step 7");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Enter “200” (valid value) for Train Length with the numeric keypad");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Input Field(1) The eventually displayed data value in the data area of the input field is replaced by “200” (character or value corresponding to the activated data key - state ‘Selected IF/value of pressed key(s)’)");
             /*
             Test Step 7
             Action: Enter “200” (valid value) for Train Length with the numeric keypad
@@ -146,6 +197,13 @@ namespace Testcase.DMITestCases
             */
 
 
+            TraceHeader("Test Step 8");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press the data input field of Train Length (Accept) in the same screen");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Input Field(1) The ‘Brake Percentage’ data input field remains the same.EVC-107(2) Use the log file to verify that DMI sends packet EVC-107 with variable:MMI_L_TRAIN_ = 200MMI_M_BUTTONS =  254 (BTN_ENTER)MMI_N_DATA_ELEMENTS = 1MMI_NID_DATA = 8 (Length)EVC-6(3) Use the log file to verify that DMI receives packet EVC-6 with variable:MMI_N_DATA_ELEMENTS = 1MMI_Q_DATA_CHECK = 0 (All checks have passed)MMI_X_TEXT = 50 (“2”)MMI_X_TEXT = 48 (“0”)MMI_X_TEXT = 48 (“0”)");
             /*
             Test Step 8
             Action: Press the data input field of Train Length (Accept) in the same screen
@@ -154,6 +212,13 @@ namespace Testcase.DMITestCases
             */
 
 
+            TraceHeader("Test Step 9");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Follow step 2 – step 8 for Brake Percentage with:invalid value of “1”valid value of “135”");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "See step 2 – step 8EVC-107(1) Use the log file to verify that DMI sends packet EVC-107 with variable:MMI_M_BRAKE_PERC = 135 MMI_M_BUTTONS =  254 (BTN_ENTER)MMI_N_DATA_ELEMENTS = 1MMI_NID_DATA = 9 (Brake Percentage)EVC-6(2) Use the log file to verify that DMI receives packet EVC-6 with variable:MMI_N_DATA_ELEMENTS = 1MMI_Q_DATA_CHECK = 0 (All checks have passed)MMI_X_TEXT = 49 (“1”)MMI_X_TEXT = 51 (“3”)MMI_X_TEXT = 53 (“5”)");
             /*
             Test Step 9
             Action: Follow step 2 – step 8 for Brake Percentage with:invalid value of “1”valid value of “135”
@@ -162,6 +227,13 @@ namespace Testcase.DMITestCases
             */
 
 
+            TraceHeader("Test Step 10");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Follow step 2 – step 8 for Max speed with:invalid value of “1”valid value of “160”");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "See step 2 – step 8EVC-107(1) Use the log file to verify that DMI sends packet EVC-107 with variable:MMI_V_MAXTRAIN = 160 MMI_M_BUTTONS =  254 (BTN_ENTER)MMI_N_DATA_ELEMENTS = 1MMI_NID_DATA = 10 (Maximum speed)EVC-6(2) Use the log file to verify that DMI receives packet EVC-6 with variable:MMI_N_DATA_ELEMENTS = 1MMI_Q_DATA_CHECK = 0 (All checks have passed)MMI_X_TEXT = 49 (“1”)MMI_X_TEXT = 54 (“6”)MMI_X_TEXT = 48 (“0”)");
             /*
             Test Step 10
             Action: Follow step 2 – step 8 for Max speed with:invalid value of “1”valid value of “160”
@@ -170,6 +242,14 @@ namespace Testcase.DMITestCases
             */
 
 
+            TraceHeader("Test Step 11");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "This step is to complete the process of ‘Train data’:- Press the ‘Yes’ button on the ‘Train data’ window.- Validate the data in the data validation window");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "1. After pressing the ‘Yes’ button, the data validation window (‘Validate Train data’) appears instead of the ‘Train data’ data entry window. The data part of echo text displays in white:Train Length: 200Brake Percentage: 135Max speed: 1602. After the data area of the input field containing “Yes” is pressed, the data validation window disappears and returns to the parent window (‘Main’ window) of ‘Train data’ window with enabled ‘Train data’ button");
             /*
             Test Step 11
             Action: This step is to complete the process of ‘Train data’:- Press the ‘Yes’ button on the ‘Train data’ window.- Validate the data in the data validation window
@@ -181,6 +261,14 @@ namespace Testcase.DMITestCases
                     this);
 
 
+            TraceHeader("Test Step 12");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Send the data of ‘Technical Range Check’ failure to ETCS-DMI by 22_29_3_a.xmlEVC-6MMI_Q_DATA_CHECK = 1 (Technical Range Check failed)MMI_NID_DATA = 9 (Brake Percentage)");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Input Field(1) The ‘Enter’ button associated to the data area of the input field displays the previously entered value.Echo Texts of Brake Percentage(2) The data part of the echo text displays “++++”");
             /*
             Test Step 12
             Action: Send the data of ‘Technical Range Check’ failure to ETCS-DMI by 22_29_3_a.xmlEVC-6MMI_Q_DATA_CHECK = 1 (Technical Range Check failed)MMI_NID_DATA = 9 (Brake Percentage)
@@ -189,6 +277,14 @@ namespace Testcase.DMITestCases
             */
 
 
+            TraceHeader("Test Step 13");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Send the data of ‘Technical Range Check’ failure to ETCS-DMI by 22_29_3_b.xmlEVC-6MMI_Q_DATA_CHECK = 1 (Technical Range Check failed)MMI_NID_DATA = 8 (Train Length)");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Input Field(1) The ‘Enter’ button associated to the data area of the input field displays the previously entered value.Echo Texts of Train Length(2) The data part of the echo text displays “++++”");
             /*
             Test Step 13
             Action: Send the data of ‘Technical Range Check’ failure to ETCS-DMI by 22_29_3_b.xmlEVC-6MMI_Q_DATA_CHECK = 1 (Technical Range Check failed)MMI_NID_DATA = 8 (Train Length)
@@ -197,6 +293,14 @@ namespace Testcase.DMITestCases
             */
 
 
+            TraceHeader("Test Step 14");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Send the data of ‘Technical Range Check’ failure to ETCS-DMI by 22_29_3_c.xmlEVC-6MMI_Q_DATA_CHECK = 1 (Technical Range Check failed)MMI_NID_DATA = 10 (Maximum speed)");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Input Field(1) The ‘Enter’ button associated to the data area of the input field displays the previously entered value.Echo Texts of Max speed(2) The data part of the echo text displays “++++”");
             /*
             Test Step 14
             Action: Send the data of ‘Technical Range Check’ failure to ETCS-DMI by 22_29_3_c.xmlEVC-6MMI_Q_DATA_CHECK = 1 (Technical Range Check failed)MMI_NID_DATA = 10 (Maximum speed)
@@ -205,6 +309,12 @@ namespace Testcase.DMITestCases
             */
 
 
+            TraceHeader("Test Step 15");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            TraceReport("Expected Result");
+            TraceInfo("");
             /*
             Test Step 15
             Action: End of test

@@ -48,9 +48,18 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘System version’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,The System version window is displayed.Use the log file to confirm that DMI received packet EVC-34.Data View WindowThe Data view window is covered in main area D, F and G.LayersThe level of layers in each area of window as follows,Layer 0: Area D, F, G, E10, E11, Z, YLayer -1: Area A1, (A2+A3)*, A4, B*, C1, (C2+C3+C4)*, C5, C6, C7, C8, C9, E1, E2, E3, E4, (E5-E9)*.Layer -2: Area B3, B4, B5, B6 and B7.LabelThe data view text is composed of a Label Part and Data Part. The labels of data view items are right aligned.The data of data view items are left aligned.Data view text colour is grey.The window title is displayed with text ‘System version’.Data View ItemsDMI displays the following information respectively:Operated system versionThe following objects are displayed in Data View window Enabled Close button (NA11)Window titleGeneral property of windowThe System version window is presented with objects, text messages and buttons which is the one of several levels and allocated to areas of DMI.All objects, text messages and buttons are presented within the same layer.The Default window is not displayed and covered the current window");
             /*
             Test Step 1
             Action: Press ‘System version’ button
@@ -81,6 +90,13 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "11. The Default window not displayed covering the current window.");
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Use the test script file 22_14.xml  to send EVC-34 with MMI_M_OPERATED_SYSTEM_VERSION = 65535");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,InformationThe data view is display a following information correctly refer to received packet informationOperated system version = 255.255");
             /*
             Test Step 2
             Action: Use the test script file 22_14.xml  to send EVC-34 with MMI_M_OPERATED_SYSTEM_VERSION = 65535
@@ -92,6 +108,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data view displays ‘255.255’ for the Operating system version.");
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Send EVC-34 with MMI_M_OPERATED_SYSTEM_VERSION = 0");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,InformationThe data view is displayed a following information correctly refer to received packet informationOperated system version = 0.0");
             /*
             Test Step 3
             Action: Send EVC-34 with MMI_M_OPERATED_SYSTEM_VERSION = 0
@@ -105,6 +128,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data view displays ‘0.0’ for the Operating system version.");
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Send EVC-34 with MMI_M_OPERATED_SYSTEM_VERSION = 28,638");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,InformationThe data view is display a following information correctly refer to received packet informationOperated system version = 111.222");
             /*
             Test Step 4
             Action: Send EVC-34 with MMI_M_OPERATED_SYSTEM_VERSION = 28,638
@@ -118,6 +148,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data view displays ‘111.222’ for the Operating system version.");
 
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press the ‘Close’ button");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information, (1)   DMI displays Setting window");
             /*
             Test Step 5
             Action: Press the ‘Close’ button
@@ -129,6 +165,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window");
 
+            TraceHeader("Test Step 6");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            TraceReport("Expected Result");
+            TraceInfo("");
             /*
             Test Step 6
             Action: End of test

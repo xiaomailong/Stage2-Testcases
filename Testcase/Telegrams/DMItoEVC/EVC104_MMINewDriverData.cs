@@ -38,7 +38,8 @@ namespace Testcase.Telegrams.DMItoEVC
                 // If check passes
                 if (_checkResult)
                 {
-                    _pool.TraceReport(string.Format("{0} - MMI_X_DRIVER_ID = {1}", BaseString, xDriverId) + Environment.NewLine +
+                    _pool.TraceReport(string.Format("{0} - MMI_X_DRIVER_ID = {1}", BaseString, xDriverId) +
+                                      Environment.NewLine +
                                       "Result = PASSED.");
                 }
                 // Else display the real value extracted from EVC-104

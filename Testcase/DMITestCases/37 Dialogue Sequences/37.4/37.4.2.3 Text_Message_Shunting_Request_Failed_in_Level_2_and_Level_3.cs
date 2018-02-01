@@ -59,8 +59,18 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Enter SH mode by performing the procedure below,Press ‘Main’ buttonPress and hold ‘Shunting’ button at least 2 seconds.Release ‘Shunting’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI displays Main window.(1)    While the Main window is display with hourglass symbol (ST05), the close button is disabled.(2)   The text message ‘Shunting request failed’ is display in sub-area E5 within 2 minutes");
             /*
             Test Step 1
             Action: Enter SH mode by performing the procedure below,Press ‘Main’ buttonPress and hold ‘Shunting’ button at least 2 seconds.Release ‘Shunting’ button
@@ -107,6 +117,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the main window with text message ‘Shunting request failed’ in sub-area E5.");
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Re-validate the step1 by re-starting OTE Simulator and starting the precondition with ETCS level 3");
+            TraceReport("Expected Result");
+            TraceInfo("See the expected results at Step 1");
             /*
             Test Step 2
             Action: Re-validate the step1 by re-starting OTE Simulator and starting the precondition with ETCS level 3
@@ -161,6 +178,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the main window with text message ‘Shunting request failed’ in sub-area E5.");
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            TraceReport("Expected Result");
+            TraceInfo("");
             /*
             Test Step 3
             Action: End of test

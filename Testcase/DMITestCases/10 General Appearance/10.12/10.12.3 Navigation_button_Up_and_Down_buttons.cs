@@ -47,8 +47,18 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Use the test script file 5_12_3_a.xml  to send multiple packets EVC-8 with the following value,Common variableMMI_Q_TEXT_CLASS = 1MMI_Q_TEXT_CRITERIA =3The order of MMI_Q_TEXT value in each packetMMI_Q_TEXT = 267MMI_Q_TEXT = 560MMI_Q_TEXT = 268MMI_Q_TEXT = 274MMI_Q_TEXT = 275MMI_Q_TEXT = 290MMI_Q_TEXT = 292MMI_Q_TEXT = 296MMI_Q_TEXT = 310MMI_Q_TEXT = 299");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI displays the following messages in sub-area E5-E9 are correct refer to following message respectively,Balise read errorTrackside malfunctionCommunication errorEntering FSEntering OSSH refusedSH request failedTrackside not compatibleTrain data changedTrain is rejectedNote: The new text message is displayed in sub-area E5, old text messages are moved down automatically.Verify the following information,(1)   The disabled ‘Up’ button is displayed as NA15 symbol in sub-area E10.(2)   The enabled ‘Down’ button is displayed as NA14 symbol in sub-area E11");
             /*
             Test Step 1
             Action: Use the test script file 5_12_3_a.xml  to send multiple packets EVC-8 with the following value,Common variableMMI_Q_TEXT_CLASS = 1MMI_Q_TEXT_CRITERIA =3The order of MMI_Q_TEXT value in each packetMMI_Q_TEXT = 267MMI_Q_TEXT = 560MMI_Q_TEXT = 268MMI_Q_TEXT = 274MMI_Q_TEXT = 275MMI_Q_TEXT = 290MMI_Q_TEXT = 292MMI_Q_TEXT = 296MMI_Q_TEXT = 310MMI_Q_TEXT = 299
@@ -57,6 +67,13 @@ namespace Testcase.DMITestCases
             */
             XML_5_12_3();
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press and hold ‘Down’ button at least 2 second.Note: Stopwatch is required");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,While press and hold button less than 1.5 sec(1)   Sound ‘Click’ is played once.(2)   The state of button is changed to ‘Pressed’ and immediately back to ‘Enabled’ state.(3)   The visibility of sub-area E5-E9 is moved down.While press and hold button over 1.5 sec(4)    The state ‘pressed’ and ‘released’ are switched repeatly while button is pressed and the visibility of sub-area E5-E9 is moving down repeatly refer to pressed state.(5)   The sound ‘Click’ is played repeatly while button is pressed");
             /*
             Test Step 2
             Action: Press and hold ‘Down’ button at least 2 second.Note: Stopwatch is required
@@ -80,6 +97,14 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 @"3. The ‘click’ sound is played repeatedly while the ‘Down’ button is pressed.");
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Hold the pressed area until the text message ‘Balise read error’ is displayed on sub-area E9.  Then, release the pressed area");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,(1)  The disabled ‘Down’ button is displayed as NA16 symbol in sub-area E11.(2)   The enabled ‘Up’ button is displayed as NA13 symbol in sub-area E10.(4)   Use the log file to confirm that DMI sends out packet [MMI_DRIVER_ACTION (EVC-152)] with the value of variable MMI_M_DRIVER_ACTION refer to sequence below,a)   MMI_M_DRIVER_ACTION = 42 (Scroll down button activated)");
             /*
             Test Step 3
             Action: Hold the pressed area until the text message ‘Balise read error’ is displayed on sub-area E9.  Then, release the pressed area
@@ -97,6 +122,13 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 @"2. The  ‘Up’ button NA13 symbol is displayed as enabled in sub-area E10.");
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Perform action step 2-3 for the ‘Up’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "See the expected results of Step 2 – Step 3 and the following additional information,(1)    The visibility of sub-area E5-E9 is moved up.(2)   Use the log file to confirm that DMI sends out packet [MMI_DRIVER_ACTION (EVC-152)] with the value of variable MMI_M_DRIVER_ACTION refer to sequence below,a)   MMI_M_DRIVER_ACTION = 41 (Scroll up button activated)");
             /*
             Test Step 4
             Action: Perform action step 2-3 for the ‘Up’ button
@@ -122,6 +154,12 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 @"3. The ‘click’ sound is played repeatedly while the ‘Up’ button is pressed.");
 
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            TraceReport("Expected Result");
+            TraceInfo("");
             /*
             Test Step 5
             Action: End of test

@@ -48,10 +48,18 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
             TraceInfo("This test case requires an ATP configuration change - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Power on test system and activate the cabin A (MMI 1)");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays SB mode");
             /*
             Test Step 1
             Action: Power on test system and activate the cabin A (MMI 1)
@@ -63,6 +71,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SB mode, Level 1.");
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Perform SoM to L1, SR mode");
+            TraceReport("Expected Result");
+            TraceInfo("Mode changes to SR mode");
             /*
             Test Step 2
             Action: Perform SoM to L1, SR mode
@@ -79,6 +93,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SR mode, Level 1.");
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Use the test script file 29_3_1.xml to send packet EVC-TBD with,MMI_T_UTC = 946728000(2000-01-01,12:00:00)MMI_T_Zone_OFFSET =+5");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information:(1) DMI time is updated only its offset time");
             /*
             Test Step 3
             Action: Use the test script file 29_3_1.xml to send packet EVC-TBD with,MMI_T_UTC = 946728000(2000-01-01,12:00:00)MMI_T_Zone_OFFSET =+5
@@ -90,6 +111,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI just changes the local time displayed, adjusted by the offset time (+ 1 1/4 h)");
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Select ‘Settings’ button and press ‘Set clock’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information:The set clock window is opened(1) The DMI date (yyyy-mm-dd) shall not be changed by test script");
             /*
             Test Step 4
             Action: Select ‘Settings’ button and press ‘Set clock’ button
@@ -102,6 +130,13 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Set clock window." + Environment.NewLine +
                                 "2. The date displayed is unchanged.");
 
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Use the test script file 29_3_2.xml to send packet EVC-TBD with,MMI_T_UTC = 946771200(2000-01-02,12:00:00)MMI_T_Zone_OFFSET =-5");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information:(1) DMI time is updated only its offset time");
             /*
             Test Step 5
             Action: Use the test script file 29_3_2.xml to send packet EVC-TBD with,MMI_T_UTC = 946771200(2000-01-02,12:00:00)MMI_T_Zone_OFFSET =-5
@@ -115,6 +150,14 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI just changes the local time displayed, adjusted by the offset time (- 1 1/4 h)");
 
+            TraceHeader("Test Step 6");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Select ‘Settings’ button and press ‘Set clock’ button.Then, observe information that will display on the Set clock window");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information:The set clock window is opened(1) The DMI date (yyyy-mm-dd) is not be changed by test script");
             /*
             Test Step 6
             Action: Select ‘Settings’ button and press ‘Set clock’ button.Then, observe information that will display on the Set clock window
@@ -127,6 +170,12 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Set clock window." + Environment.NewLine +
                                 "2. The date displayed is unchanged.");
 
+            TraceHeader("Test Step 7");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Restart OTE and DMI then retest step1 to to 6 with cabin B (MMI 2)");
+            TraceReport("Expected Result");
+            TraceInfo("Same as the test result in step 1 to 6");
             /*
             Test Step 7
             Action: Restart OTE and DMI then retest step1 to to 6 with cabin B (MMI 2)
@@ -192,6 +241,12 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Set clock window." + Environment.NewLine +
                                 "2. The date displayed is unchanged.");
 
+            TraceHeader("Test Step 8");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            TraceReport("Expected Result");
+            TraceInfo("");
             /*
             Test Step 8
             Action: End of test

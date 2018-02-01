@@ -42,8 +42,17 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Perform SoM in SR mode, Level 1");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI displays Default window in SR mode, Level 1.Verify the following information,LayerAreas displayed with the same impression of depth shall form a layer as picture below,The level of layers in each area of window as follows,Layer 0: Area E10, E11, F, G1, G2, G3, G4, G5, G6, G7, G8, G9, G10, Z, YLayer 0 areas have no border. Layer -1: Area A1, (A2+A3)*, A4, B*, D, C1, (C2+C3+C4)*, C5, C6, C7, C8, C9, E1, E2, E3, E4, (E5-E9)*.Layer -1 areas are inside layer 0 and have a border. Layer -2: Area B3, B4, B5, B6 and B7.Layer -2 areas are located inside Layer -1 and have a border.Note: ‘*’ symbol is mean that specified area are drawn as one area");
             /*
             Test Step 1
             Action: Perform SoM in SR mode, Level 1
@@ -68,6 +77,12 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "8. The following screen areas are in Layer 2: B3, B4, B5, B6, B7");
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            TraceReport("Expected Result");
+            TraceInfo("");
             /*
             Test Step 2
             Action: End of test

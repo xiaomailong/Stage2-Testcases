@@ -41,8 +41,17 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Perform the following procedure,Activate Cabin AEnter Driver ID and perform brake testSelect and confirm Level 1");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Main window");
             /*
             Test Step 1
             Action: Perform the following procedure,Activate Cabin AEnter Driver ID and perform brake testSelect and confirm Level 1
@@ -60,6 +69,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Main window.");
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Train data’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI displays Train data window.Note: Please memo the value of each input field to be compare with action step 4");
             /*
             Test Step 2
             Action: Press ‘Train data’ button
@@ -89,6 +105,13 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays Train data window" + Environment.NewLine +
                                 "Note the value of each Input Field displayed for later comparison.");
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Modify and confirm an valid value for each following input field,Train category = ‘TILT1’Train length = ‘4000’Brake percentage = ‘100’Maximum speed = ‘120’Axel load category = ‘B1’Airtight = ‘No’Loading gauge = ‘Out of GC’");
+            TraceReport("Expected Result");
+            TraceInfo("Verifies that the value of each input field are changed refer to specifies entered data");
             /*
             Test Step 3
             Action: Modify and confirm an valid value for each following input field,Train category = ‘TILT1’Train length = ‘4000’Brake percentage = ‘100’Maximum speed = ‘120’Axel load category = ‘B1’Airtight = ‘No’Loading gauge = ‘Out of GC’
@@ -129,6 +152,13 @@ namespace Testcase.DMITestCases
                 Environment.NewLine + Environment.NewLine +
                 "1. The Input Field value changes according to the data entered.");
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Close’ button.Then, select Train data button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI displays Train data window.Verifies the displayed values of each input field are same as action step No.2");
             /*
             Test Step 4
             Action: Press ‘Close’ button.Then, select Train data button
@@ -158,6 +188,12 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays Train data window" + Environment.NewLine +
                                 "2. The values of each data input field are as in Step 2.");
 
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Repeat action step 3.Then, press ‘Yes’ button");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Train data validation window");
             /*
             Test Step 5
             Action: Repeat action step 3.Then, press ‘Yes’ button
@@ -223,6 +259,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Train validation data window.");
 
+            TraceHeader("Test Step 6");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Select and confirm ‘No’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI displays Train data window.Verifies the displayed values of each input field are different from entered data in step 3");
             /*
             Test Step 6
             Action: Select and confirm ‘No’ button
@@ -253,6 +296,12 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays Train data window." + Environment.NewLine +
                                 "2. The values of each Input Field are different from those entered in Step 5");
 
+            TraceHeader("Test Step 7");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Repeat action step 3.Then, press ‘Yes’ button");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Train data validation window");
             /*
             Test Step 7
             Action: Repeat action step 3.Then, press ‘Yes’ button
@@ -318,6 +367,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Train data validation window.");
 
+            TraceHeader("Test Step 8");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Select and confirm ‘Yes’ button in Train data validation window");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Main window");
             /*
             Test Step 8
             Action: Select and confirm ‘Yes’ button in Train data validation window
@@ -328,6 +383,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Train data window.");
 
+            TraceHeader("Test Step 9");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Select Train data button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI displays Train data window.Verifies the displayed values of each input field are changed refer to entered data in step 3");
             /*
             Test Step 9
             Action: Select Train data button
@@ -360,6 +422,12 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays Train data window." + Environment.NewLine +
                                 "2. The values of each Input Field are those entered in Step 7");
 
+            TraceHeader("Test Step 10");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Close’ button");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Main window");
             /*
             Test Step 10
             Action: Press ‘Close’ button
@@ -369,6 +437,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Main window.");
 
+            TraceHeader("Test Step 11");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            TraceReport("Expected Result");
+            TraceInfo("");
             /*
             Test Step 11
             Action: End of test
