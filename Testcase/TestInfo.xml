@@ -5,13 +5,13 @@
   <Project>Class 345 DMI Testing version 6.2</Project>
   <Tester>Signalling Integration Team (Ricky Morris)</Tester>
   <Rack>Signalling Integration Test Rig VCS 10</Rack>
-  <Logpath>D:\01_Projects\02_SITR 6\02_testing\01_laboratory_testing\08_logs\01_validation</Logpath>
+  <Logpath>C:\Users\VCS10\Dropbox\Logs and Results</Logpath>
   <Logwindow>True</Logwindow>
   <LogWindowAutoClose>True</LogWindowAutoClose>
-  <LogSizeMaximum>200MB</LogSizeMaximum>
+  <LogSizeMaximum>2000MB</LogSizeMaximum>
   <LogEntriesMaximum>20000</LogEntriesMaximum>
   <UCpath>c:\</UCpath>
-  <Configuration>CONFIG</Configuration>
+  <Configuration>R6 Unit Test TCMS, 2018-01-30 11:08:45</Configuration>
   <ManualTest>True</ManualTest>
   <DefaultResult>Yes</DefaultResult>
   <HideConsoleWindow>False</HideConsoleWindow>

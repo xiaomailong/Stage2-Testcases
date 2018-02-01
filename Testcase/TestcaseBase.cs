@@ -5,6 +5,7 @@ using System.Diagnostics;
 using CL345;
 using Testcase.Telegrams.EVCtoDMI;
 using Testcase.Telegrams.DMItoEVC;
+using Testcase.DMITestCases;
 
 #endregion
 
@@ -79,11 +80,16 @@ namespace Testcase
             EVC150_MMINewBrakePercentage.Initialise(this);
             EVC151_MMIConfirmedBrakePercentage.Initialise(this);
             EVC152_MMIDriverAction.Initialise(this);
+
+            DmiActions.Deactivate_Cabin(this);
+            DmiActions.Start_ATP();
         }
 
         public override void PostExecution()
         {
             // Post-test cleanup.
+            DmiActions.Send_SB_Mode(this);
+            DmiActions.Deactivate_Cabin(this);
         }
 
         /// <summary>

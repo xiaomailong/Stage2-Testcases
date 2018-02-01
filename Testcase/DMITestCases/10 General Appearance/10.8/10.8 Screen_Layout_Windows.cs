@@ -28,7 +28,6 @@ namespace Testcase.DMITestCases
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
-            DmiActions.Start_ATP();
         }
 
         public override void PostExecution()
