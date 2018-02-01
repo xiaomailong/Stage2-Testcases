@@ -93,8 +93,8 @@ namespace Testcase
         public override bool TestcaseEntryPoint()
         {
             // As this method should never be called, throw an exception
-            throw new InvalidOperationException(
-                "The TestcaseEntryPoint method on TestcaseBase should never be called, it should be overriden.");
+            //throw new InvalidOperationException("The TestcaseEntryPoint method on TestcaseBase should never be called, it should be overriden.");
+            return GlobalTestResult;
         }
 
         public override void RunDebugger()
