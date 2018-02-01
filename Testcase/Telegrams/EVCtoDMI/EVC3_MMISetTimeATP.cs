@@ -29,7 +29,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             // Set default values
             _pool.SITR.ETCS1.SetTimeATP.MmiMPacket.Value = 3;
             _pool.SITR.ETCS1.SetTimeATP.MmiLPacket.Value = 72;
-            _pool.SITR.ETCS1.SetTimeATP.MmiTUtc.Value = Convert.ToUInt32(DateTime.UtcNow);
+            
         }
 
         /// <summary>
