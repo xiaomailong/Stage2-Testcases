@@ -59,6 +59,8 @@ namespace Testcase.DMITestCases
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 10000; // at 100,
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
 
+
+
             this.Wait_Realtime(2000);
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_PreIndication_Monitoring;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;

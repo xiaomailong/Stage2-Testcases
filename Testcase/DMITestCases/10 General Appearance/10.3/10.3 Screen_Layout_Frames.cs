@@ -55,7 +55,7 @@ namespace Testcase.DMITestCases
             */
 
             DmiActions.Activate_Cabin_1(this);
-            DmiExpectedResults.Cabin_A_is_activated(this);
+            //DmiExpectedResults.Cabin_A_is_activated(this);
 
             DmiActions.Set_Driver_ID(this, "1234");
             DmiActions.Send_SB_Mode(this);
