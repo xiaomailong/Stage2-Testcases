@@ -75,7 +75,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 4354;MMI_gen 4351;
             */
             // Brake test checks are done in section 27.22: irrelevant here
-            DmiActions.ShowInstruction(this, "Enter the Driver ID (and confirm).");
+            DmiActions.ShowInstruction(this, "Enter the Driver ID (and confirm). Then Press ok.");
 
             DmiActions.Request_Brake_Test(this);
             DmiActions.ShowInstruction(this, "Perform Brake Test");

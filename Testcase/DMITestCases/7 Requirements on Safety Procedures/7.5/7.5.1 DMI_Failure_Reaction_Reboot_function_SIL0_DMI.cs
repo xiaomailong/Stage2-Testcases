@@ -51,6 +51,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   DMI is rebooted
             Test Step Comment: (1) MMI_gen 11439;
             */
+            DmiActions.ShowInstruction(this, @"Press ‘Ok’ to reboot DMI");
 
             #region Send_XML_5_5_1_10_DMI_Test_Specification
 
@@ -61,7 +62,9 @@ namespace Testcase.DMITestCases
             #endregion
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI is rebooted.");
+                               "1. DMI is rebooted.");
+
+
 
             /*
             Test Step 2

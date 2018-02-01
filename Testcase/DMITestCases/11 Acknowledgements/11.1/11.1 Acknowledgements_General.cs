@@ -243,7 +243,11 @@ namespace Testcase.DMITestCases
 
             DmiExpectedResults.SR_Mode_displayed(this);
 
-            throw new NotImplementedException("This function doesn't exist, so I commented it out, please review");
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the in Staff Responsible Level 1");
+
+            //Removed by Dave on 01-02-2018 and replace with Verification window above.
+            //throw new NotImplementedException("This function doesn't exist, so I commented it out, please review");
             //DmiExpectedResults.Level_1_displayed(this);
 
             /*
