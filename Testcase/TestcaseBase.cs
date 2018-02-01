@@ -6,6 +6,9 @@ using CL345;
 using Testcase.Telegrams.EVCtoDMI;
 using Testcase.Telegrams.DMItoEVC;
 using Testcase.DMITestCases;
+using System.Text.RegularExpressions;
+using System.Collections.Generic;
+using System.Linq;
 
 #endregion
 
@@ -15,9 +18,16 @@ namespace Testcase
     {
         public int UniqueIdentifier;
 
+        public string CurrentTestStepIdentifier;
+        public Dictionary<string, bool> TestStepResults = new Dictionary<string, bool>();
+
         public override void PreExecution()
         {
             // Pre-test configuration.
+
+            // Subscribe to logging events
+            Logger.LoggingEvent += Logger_LoggingEvent;
+
 
             // Initialise instance of all telegrams
             TraceInfo("Initialise default telegram values.");
@@ -87,11 +97,40 @@ namespace Testcase
             DmiActions.Start_ATP();
         }
 
+        /// <summary>
+        /// Collect test results and map them to teststeps
+        /// </summary>
+        /// <param name="glim"></param>
+        private void Logger_LoggingEvent(BT_CSB_Tools.Logging.GuiLoggerAppender.MVVM.Model.GuiLogItemModel glim)
+        {
+            // not interested in Set Value or TraceInfo or Wait commands
+            if (glim.Command == "Set" || glim.IsInfoItem || glim.Command == "Wait")
+                return;            
+
+            if(glim.IsHeaderItem)
+            {
+                var regex = new Regex(@"^TP-\d*");
+
+                if (regex.IsMatch(glim.Comment))
+                {
+                    CurrentTestStepIdentifier = regex.Match(glim.Comment).Value;
+                    TestStepResults.Add(CurrentTestStepIdentifier, true);
+                }
+            }
+            else if(glim.Result == "Failed")
+            {
+                TestStepResults[CurrentTestStepIdentifier] = false;
+            }
+        }
+
         public override void PostExecution()
         {
             // Post-test cleanup.
             DmiActions.Send_SB_Mode(this);
             DmiActions.Deactivate_Cabin(this);
+
+            // Generate report over the teststeps
+            TraceReport(string.Join(Environment.NewLine, TestStepResults.Select(pair => pair.Key + " " + pair.Value)));
         }
 
         /// <summary>
