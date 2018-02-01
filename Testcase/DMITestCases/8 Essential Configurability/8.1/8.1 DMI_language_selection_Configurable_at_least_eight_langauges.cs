@@ -242,8 +242,7 @@ namespace Testcase.DMITestCases
             TraceHeader("TP-" + UniqueIdentifier++);
             TraceReport("Action");
             TraceInfo("Power off the DMI");
-            TraceReport("Expected Result");
-            TraceInfo("");
+            
             /*
             Test Step 12
             Action: Power off the DMI
@@ -351,8 +350,7 @@ namespace Testcase.DMITestCases
             TraceHeader("TP-" + UniqueIdentifier++);
             TraceReport("Action");
             TraceInfo("End of test");
-            TraceReport("Expected Result");
-            TraceInfo("");
+            
             /*
             Test Step 19
             Action: End of test

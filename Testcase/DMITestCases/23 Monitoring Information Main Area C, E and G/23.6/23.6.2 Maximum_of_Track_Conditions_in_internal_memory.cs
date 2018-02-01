@@ -1029,8 +1029,7 @@ Test Step Comment: (1) MMI_gen 10465 (partly: TC35); MMI_gen 662 (partly: TC35);
             TraceHeader("TP-" + UniqueIdentifier++);
             TraceReport("Action");
             TraceInfo("End of test");
-            TraceReport("Expected Result");
-            TraceInfo("");
+            
             /*
             Test Step 63
             Action: End of test

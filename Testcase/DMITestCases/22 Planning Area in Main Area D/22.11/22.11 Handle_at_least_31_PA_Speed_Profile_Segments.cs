@@ -796,8 +796,7 @@ namespace Testcase.DMITestCases
             TraceHeader("TP-" + UniqueIdentifier++);
             TraceReport("Action");
             TraceInfo("End of test");
-            TraceReport("Expected Result");
-            TraceInfo("");
+            
             /*
             Test Step 38
             Action: End of test

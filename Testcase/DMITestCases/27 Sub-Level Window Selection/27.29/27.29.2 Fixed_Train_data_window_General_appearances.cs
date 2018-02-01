@@ -547,8 +547,7 @@ namespace Testcase.DMITestCases
             TraceHeader("TP-" + UniqueIdentifier++);
             TraceReport("Action");
             TraceInfo("End ot Test");
-            TraceReport("Expected Result");
-            TraceInfo("");
+            
             /*
             Test Step 21
             Action: End ot Test

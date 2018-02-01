@@ -73,8 +73,7 @@ namespace Testcase.DMITestCases
             TraceHeader("TP-" + UniqueIdentifier++);
             TraceReport("Action");
             TraceInfo("Drive the train forward passing BG1 with speed = 40 km/h until entering FS mode");
-            TraceReport("Expected Result");
-            TraceInfo("");
+            
             /*
             Test Step 1
             Action: Drive the train forward passing BG1 with speed = 40 km/h until entering FS mode
@@ -94,8 +93,7 @@ namespace Testcase.DMITestCases
             TraceHeader("TP-" + UniqueIdentifier++);
             TraceReport("Action");
             TraceInfo("Continue drive the train forward passing BG2");
-            TraceReport("Expected Result");
-            TraceInfo("");
+            
             /*
             Test Step 2
             Action: Continue drive the train forward passing BG2
@@ -107,8 +105,7 @@ namespace Testcase.DMITestCases
             TraceHeader("TP-" + UniqueIdentifier++);
             TraceReport("Action");
             TraceInfo("The train is in reversing area");
-            TraceReport("Expected Result");
-            TraceInfo("");
+            
             /*
             Test Step 3
             Action: The train is in reversing area
@@ -176,8 +173,7 @@ namespace Testcase.DMITestCases
             TraceHeader("TP-" + UniqueIdentifier++);
             TraceReport("Action");
             TraceInfo("End of test");
-            TraceReport("Expected Result");
-            TraceInfo("");
+            
             /*
             Test Step 6
             Action: End of test

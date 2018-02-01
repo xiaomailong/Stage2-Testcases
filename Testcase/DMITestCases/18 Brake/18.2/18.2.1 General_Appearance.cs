@@ -53,8 +53,7 @@ namespace Testcase.DMITestCases
             TraceReport("Action");
             TraceInfo(
                 "Force the train roll away by moving of speed with ‘Neutral’ direction throughout the test step 2, 3, 4 and 5");
-            TraceReport("Expected Result");
-            TraceInfo("");
+            
             /*
             Test Step 1
             Action: Force the train roll away by moving of speed with ‘Neutral’ direction throughout the test step 2, 3, 4 and 5
@@ -157,8 +156,7 @@ namespace Testcase.DMITestCases
             TraceHeader("TP-" + UniqueIdentifier++);
             TraceReport("Action");
             TraceInfo("Stop the train from runway by dropping the train’s speed to zero");
-            TraceReport("Expected Result");
-            TraceInfo("");
+            
             /*
             Test Step 6
             Action: Stop the train from runway by dropping the train’s speed to zero
@@ -299,8 +297,7 @@ namespace Testcase.DMITestCases
             TraceReport("Action");
             TraceInfo(
                 "This step is to clear the symbol ‘ST01’ after verification of the previous step.Use the test script file 13_2_1_b.xml to send EVC-8 with,MMI_Q_TEXT_CRITERIA = 4MMI_I_TEXT = 1");
-            TraceReport("Expected Result");
-            TraceInfo("");
+            
             /*
             Test Step 12
             Action: This step is to clear the symbol ‘ST01’ after verification of the previous step.Use the test script file 13_2_1_b.xml to send EVC-8 with,MMI_Q_TEXT_CRITERIA = 4MMI_I_TEXT = 1
@@ -346,8 +343,7 @@ namespace Testcase.DMITestCases
             TraceHeader("TP-" + UniqueIdentifier++);
             TraceReport("Action");
             TraceInfo("End of test");
-            TraceReport("Expected Result");
-            TraceInfo("");
+            
             /*
             Test Step 14
             Action: End of test

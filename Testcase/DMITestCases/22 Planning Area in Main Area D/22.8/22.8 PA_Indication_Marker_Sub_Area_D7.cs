@@ -155,8 +155,7 @@ namespace Testcase.DMITestCases
             TraceReport("Action");
             TraceInfo(
                 "Perform the following procedure,Press <Scale Up> button in area D9 to set PA Distance Scale range to 0-1000Drive the train forward with speed 40km/h");
-            TraceReport("Expected Result");
-            TraceInfo("");
+            
             /*
             Test Step 5
             Action: Perform the following procedure,Press <Scale Up> button in area D9 to set PA Distance Scale range to 0-1000Drive the train forward with speed 40km/h
@@ -261,8 +260,7 @@ namespace Testcase.DMITestCases
             TraceHeader("TP-" + UniqueIdentifier++);
             TraceReport("Action");
             TraceInfo("End of test");
-            TraceReport("Expected Result");
-            TraceInfo("");
+            
             /*
             Test Step 10
             Action: End of test
