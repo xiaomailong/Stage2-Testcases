@@ -56,16 +56,8 @@ namespace Testcase.DMITestCases
             int teststep = 1;
             for (int i = 640; i <= 673; i++)
             {
-                TraceHeader("Test Step " + teststep++);
-                TraceHeader("TP-" + UniqueIdentifier++);
-                TraceReport("Action");
-                TraceInfo(
-                    "Send EVC-8 with MMI_Q_TEXT = 623, MMI_Q_TEXT_CRITERIA = 1, MMI_Q_TEXT_CLASS = 1, MMI_I_TEXT = 1");
-                TraceReport("Expected Result");
-                TraceInfo(
-                    "Verifies the display information as follows,The text message ‘’Fixed Text Message " + i +
-                    "’ is display in the area E5.No flashing frame display.There is no sound played");
-
+                MakeTestStepHeader(teststep, UniqueIdentifier++, "Send EVC-8 with MMI_Q_TEXT = 623, MMI_Q_TEXT_CRITERIA = 1, MMI_Q_TEXT_CLASS = 1, MMI_I_TEXT = 1", "Verifies the display information as follows,The text message ‘’Fixed Text Message " + i +
+                                                                                                                                                                    "’ is display in the area E5.No flashing frame display.There is no sound played");
                 EVC8_MMIDriverMessage.MMI_Q_TEXT = (ushort) i;
                 EVC8_MMIDriverMessage.Send();
 

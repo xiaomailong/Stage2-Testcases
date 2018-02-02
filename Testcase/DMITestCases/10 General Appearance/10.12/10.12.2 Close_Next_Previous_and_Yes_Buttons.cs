@@ -28,6 +28,7 @@ namespace Testcase.DMITestCases
             UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Activate cabin A", "DMI displays Driver ID window.");
             /*
             Test Step 1
             Action: Activate cabin A
@@ -49,6 +50,7 @@ namespace Testcase.DMITestCases
                                 @"2. The ‘Delete’ button NA21 is displayed enabled in area G." + Environment.NewLine +
                                 @"3. The ‘Close’ button NA12 is displayed disabled in area G.");
 
+            MakeTestStepHeader(2, UniqueIdentifier++, "Enter the Driver ID ‘12345678’", "The value of an input field is displayed correspond with entered data");
             /*
             Test Step 2
             Action: Enter the Driver ID ‘12345678’
@@ -58,6 +60,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The Input Field is displayed with the value ‘1234 5678’");
 
+            MakeTestStepHeader(3, UniqueIdentifier++, "Press and hold ‘Delete’ button up to 2 second.", "Verify the following information,");
             /*
             Test Step 3
             Action: Press and hold ‘Delete’ button up to 2 second.
@@ -90,6 +93,7 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 @"3. The ‘click’ sound is played repeatedly while the ‘Delete’ button is pressed.");
 
+            MakeTestStepHeader(4, UniqueIdentifier++, "Release the pressed button", "Verify the following information,");
             /*
             Test Step 4
             Action: Release the pressed button
@@ -102,6 +106,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The ‘Delete’ button is displayed enabled.");
 
+            MakeTestStepHeader(5, UniqueIdentifier++, "Perform the following procedure,", "DMI displays the Main window");
             /*
             Test Step 5
             Action: Perform the following procedure,
@@ -127,6 +132,7 @@ namespace Testcase.DMITestCases
             DmiActions.Display_Main_Window_with_Start_button_not_enabled(this);
             DmiExpectedResults.Main_Window_displayed(this, false);
 
+            MakeTestStepHeader(6, UniqueIdentifier++, "Press ‘Driver ID’ button", "DMI displays the Driver ID window.");
             /*
             Test Step 6
             Action: Press ‘Driver ID’ button
@@ -141,6 +147,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Driver ID  window." + Environment.NewLine +
                                 @"2. The ‘Close’ button NA11 is displayed enabled in area G.");
+            MakeTestStepHeader(7, UniqueIdentifier++, "Perform the following procedure,", "DMI displays the first page of  the  train data entry.");
             /*
             Test Step 7
             Action: Perform the following procedure,
@@ -166,6 +173,7 @@ namespace Testcase.DMITestCases
                                 @"2. The ‘Close’ button NA11 is displayed enabled in area G." + Environment.NewLine +
                                 @"3. The ‘Next’ button NA17 is displayed enabled in area G." + Environment.NewLine +
                                 @"3. The ‘Previous’ button NA19 is displayed disabled in area G.");
+            MakeTestStepHeader(8, UniqueIdentifier++, "Press and hold Next button", "Verify the following information,");
             /*
             Test Step 8
             Action: Press and hold Next button
@@ -180,6 +188,7 @@ namespace Testcase.DMITestCases
                                 @"1. The ‘Next’ button NA17 is displayed pressed." + Environment.NewLine +
                                 "2. The ‘click’ sound is played once.");
 
+            MakeTestStepHeader(9, UniqueIdentifier++, "Slide out Next button", "Verify the following information,");
             /*
             Test Step 9
             Action: Slide out Next button
@@ -193,6 +202,7 @@ namespace Testcase.DMITestCases
                                 @"1. The ‘Next’ button NA17 is displayed enabled." + Environment.NewLine +
                                 "2. No sound is played.");
 
+            MakeTestStepHeader(10, UniqueIdentifier++, "Slide back into Next button", "Verify the following information,");
             /*
             Test Step 10
             Action: Slide back into Next button
@@ -206,6 +216,7 @@ namespace Testcase.DMITestCases
                                 "1. The ‘Next’ button NA17 is displayed pressed." + Environment.NewLine +
                                 "2. No sound is played.");
 
+            MakeTestStepHeader(11, UniqueIdentifier++, "Release Next button", "Verify the following information,");
             /*
             Test Step 11
             Action: Release Next button
@@ -218,6 +229,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the next page of the Train data window.");
 
+            MakeTestStepHeader(12, UniqueIdentifier++, "Press the next button until the last page of Train data window", "DMI displays the last page of Train data window.");
             /*
             Test Step 12
             Action: Press the next button until the last page of Train data window
@@ -234,6 +246,7 @@ namespace Testcase.DMITestCases
                                 @"2. The ‘Next’ button NA18.2 is displayed disabled in area G" + Environment.NewLine +
                                 @"2. The ‘Previous’ button NA18 is displayed enabled in area G");
 
+            MakeTestStepHeader(13, UniqueIdentifier++, "Press and hold Previous button", "Verify the following information,");
             /*
             Test Step 13
             Action: Press and hold Previous button
@@ -248,6 +261,7 @@ namespace Testcase.DMITestCases
                                 @"1. The ‘Previous’ button is displayed pressed." + Environment.NewLine +
                                 @"2. The ‘click’ sound is played once.");
 
+            MakeTestStepHeader(14, UniqueIdentifier++, "Slide out Previous button", "Verify the following information,");
             /*
             Test Step 14
             Action: Slide out Previous button
@@ -261,6 +275,7 @@ namespace Testcase.DMITestCases
                                 @"1. The ‘Previous’ button is displayed enabled." + Environment.NewLine +
                                 "2. No sound is played.");
 
+            MakeTestStepHeader(15, UniqueIdentifier++, "Slide back into Previous button", "Verify the following information,");
             /*
             Test Step 15
             Action: Slide back into Previous button
@@ -275,6 +290,7 @@ namespace Testcase.DMITestCases
                                 "1. The ‘Previous’ button is displayed pressed." + Environment.NewLine +
                                 "2. No sound is played.");
 
+            MakeTestStepHeader(16, UniqueIdentifier++, "Release Previous button", "Verify the following information,");
             /*
             Test Step 16
             Action: Release Previous button
@@ -289,6 +305,7 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the previous page of the Train data window." + Environment.NewLine +
                                 @"2. The ‘Next’ button NA17 is displayed enabled in area G.");
 
+            MakeTestStepHeader(17, UniqueIdentifier++, "Press Close button", "DMI displays Main window");
             /*
             Test Step 17
             Action: Press Close button
@@ -302,6 +319,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Main window.");
 
+            MakeTestStepHeader(18, UniqueIdentifier++, "End of test", "");
             /*
             Test Step 18
             Action: End of test

@@ -50,6 +50,7 @@ namespace Testcase.DMITestCases
             UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Press ‘Start’ button", "Verify the following information,");
             /*
             Test Step 1
             Action: Press ‘Start’ button
@@ -74,6 +75,7 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. The ‘Sinfo’ sound is played once.");
 
+            MakeTestStepHeader(2, UniqueIdentifier++, "Force the train roll away by moving of speed with ‘Neutral’ direction.", "Verify the following information,");
             /*
             Test Step 2
             Action: Force the train roll away by moving of speed with ‘Neutral’ direction.
@@ -103,6 +105,7 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. The ‘Sinfo’ sound is played once.");
 
+            MakeTestStepHeader(3, UniqueIdentifier++, "Stop the train.", "Verify the following information,");
             /*
             Test Step 3
             Action: Stop the train.
@@ -132,6 +135,7 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. The ‘Click’ sound is played once.");
 
+            MakeTestStepHeader(4, UniqueIdentifier++, "Slide out sub-area C9", "The border of the button is shown (state ‘Enabled’) without a sound");
             /*
             Test Step 4
             Action: Slide out sub-area C9
@@ -144,6 +148,7 @@ namespace Testcase.DMITestCases
                                 "1. The border of sub-area C9 is displayed enabled." + Environment.NewLine +
                                 "2. No sound is played.");
 
+            MakeTestStepHeader(5, UniqueIdentifier++, "Slide back into sub-area C9", "The button is back to state ‘Pressed’ without a sound");
             /*
             Test Step 5
             Action: Slide back into sub-area C9
@@ -156,6 +161,7 @@ namespace Testcase.DMITestCases
                                 "1. The border of sub-area C9 is displayed pressed." + Environment.NewLine +
                                 "2. No sound is played.");
 
+            MakeTestStepHeader(6, UniqueIdentifier++, "Release the pressed area.Note: Stopwatch is required", "Verify the following information,");
             /*
             Test Step 6
             Action: Release the pressed area.Note: Stopwatch is required
@@ -186,6 +192,7 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.SR_Mode_Ack_requested(this);
 
 
+            MakeTestStepHeader(7, UniqueIdentifier++, "Press on sub-area C9", "Verify the following information,");
             /*
             Test Step 7
             Action: Press on sub-area C9
@@ -200,6 +207,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Sub-area C1 is not touch sensitive.");
 
+            MakeTestStepHeader(8, UniqueIdentifier++, "Use the test script file 6_1_a.xml to send EVC-8 to show symbol ‘MO17’,", "Verify the following information,");
             /*
             Test Step 8
             Action: Use the test script file 6_1_a.xml to send EVC-8 to show symbol ‘MO17’,
@@ -214,6 +222,7 @@ namespace Testcase.DMITestCases
 
             DmiExpectedResults.UN_Mode_Ack_requested(this);
 
+            MakeTestStepHeader(9, UniqueIdentifier++, "Perform the following procedure,", "DMI displays in SR mode, Level 1");
             /*
             Test Step 9
             Action: Perform the following procedure,
@@ -239,6 +248,7 @@ namespace Testcase.DMITestCases
             throw new NotImplementedException("This function doesn't exist, so I commented it out, please review");
             //DmiExpectedResults.Level_1_displayed(this);
 
+            MakeTestStepHeader(10, UniqueIdentifier++, "Use the test script file 6_1_b.xml to send EVC-8 to show text message with ACK/NACK option,", "DMI displays text message 'Brake test aborted, perform new Test?' in sub-area E5 with ACK/NACK buttons.");
             /*
             Test Step 10
             Action: Use the test script file 6_1_b.xml to send EVC-8 to show text message with ACK/NACK option,
@@ -269,6 +279,7 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "5. The message is displayed on two lines as ‘Brake test aborted,<New line>perform new Test?’.");
 
+            MakeTestStepHeader(11, UniqueIdentifier++, "Intermittently press any area in E5-E9 except ‘ACK’ and ‘NACK’ buttons", "Verify the following information,");
             /*
             Test Step 11
             Action: Intermittently press any area in E5-E9 except ‘ACK’ and ‘NACK’ buttons
@@ -288,6 +299,7 @@ namespace Testcase.DMITestCases
                                 "1. The DMI display does not change" + Environment.NewLine +
                                 "2. DMI still displays the message ‘Brake test aborted, perform new Test?’ in sub-areas E5-E9 with ‘Yes’/‘No’ buttons.");
 
+            MakeTestStepHeader(12, UniqueIdentifier++, "Press the ‘NACK’ button", "Verify the following information,");
             /*
             Test Step 12
             Action: Press the ‘NACK’ button
@@ -322,6 +334,7 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. DMI re-displays the message ‘Brake test aborted, perform new Test?’ in sub-areas E5-E9.");
 
+            MakeTestStepHeader(13, UniqueIdentifier++, "Use the test script file 6_1_c.xml to send EVC-8 to show text message without 'NACK' option,", "Verify the following information,");
             /*
             Test Step 13
             Action: Use the test script file 6_1_c.xml to send EVC-8 to show text message without 'NACK' option,
@@ -343,6 +356,7 @@ namespace Testcase.DMITestCases
                                 "2. Sound ‘Sinfo’ is played once." + Environment.NewLine +
                                 "3. A ‘No’ button is not displayed.");
 
+            MakeTestStepHeader(14, UniqueIdentifier++, "Press on sub-area E5", "Verify the following information,");
             /*
             Test Step 14
             Action: Press on sub-area E5
@@ -356,6 +370,7 @@ namespace Testcase.DMITestCases
                                 "1. The acknowledgeable text in sub-area E5 is touch-sensitive" + Environment.NewLine +
                                 "2. The text message and flashing yellow frame are removed.");
 
+            MakeTestStepHeader(15, UniqueIdentifier++, "Verify the other sensitive area E6..E9 by performing action step 10-11", "Verify the following information,");
             /*
             Test Step 15
             Action: Verify the other sensitive area E6..E9 by performing action step 10-11
@@ -447,6 +462,7 @@ namespace Testcase.DMITestCases
                                 "1. The DMI display does not change." + Environment.NewLine +
                                 "2. DMI still displays the message ‘Brake test aborted, perform new Test?’ in sub-areas E5-E9 with ‘Yes’/‘No’ buttons.");
 
+            MakeTestStepHeader(16, UniqueIdentifier++, "Use the test script file 6_1_a.xml to send EVC-8.", "Verify the following information,");
             /*
             Test Step 16
             Action: Use the test script file 6_1_a.xml to send EVC-8.
@@ -469,6 +485,7 @@ namespace Testcase.DMITestCases
                                 "1. Sub-area C1 is displayed pressed." + Environment.NewLine +
                                 "2. The ‘Click’ sound is played once.");
 
+            MakeTestStepHeader(17, UniqueIdentifier++, "Slide out sub-area C1", "The border of the sub-area C1 is shown (state ‘Enabled’) without a sound");
             /*
             Test Step 17
             Action: Slide out sub-area C1
@@ -481,6 +498,7 @@ namespace Testcase.DMITestCases
                                 "1. The border of sub-area C1 is displayed enabled." + Environment.NewLine +
                                 "2. No sound is played.");
 
+            MakeTestStepHeader(18, UniqueIdentifier++, "Slide back into sub-area C1", "The sub-area C1 is back to state ‘Pressed’ without a sound");
             /*
             Test Step 18
             Action: Slide back into sub-area C1
@@ -493,6 +511,7 @@ namespace Testcase.DMITestCases
                                 "1. The border of sub-area C1 is displayed pressed." + Environment.NewLine +
                                 "2. No sound is played.");
 
+            MakeTestStepHeader(19, UniqueIdentifier++, "Release the pressed area", "Verify the following information,");
             /*
             Test Step 19
             Action: Release the pressed area
@@ -516,6 +535,7 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.Driver_symbol_deleted(this, "Acknowledgement for Unfitted", "MO17", "C1");
 
 
+            MakeTestStepHeader(20, UniqueIdentifier++, "Use the test script file 6_1_d.xml to send EVC-8 with,", "DMI displays symbol LE07 in area C1 with flashing yellow frame");
             /*
             Test Step 20
             Action: Use the test script file 6_1_d.xml to send EVC-8 with,
@@ -530,6 +550,7 @@ namespace Testcase.DMITestCases
 
             DmiExpectedResults.L0_Announcement_Ack_Requested(this);
 
+            MakeTestStepHeader(21, UniqueIdentifier++, "Perform action step 16-19 for verify the safe up-type of Level acknowledement symbol", "See expected result of step 16-19");
             /*
             Test Step 21
             Action: Perform action step 16-19 for verify the safe up-type of Level acknowledement symbol
@@ -566,6 +587,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI stops displaying symbol MO17 in sub-area C1.");
 
+            MakeTestStepHeader(22, UniqueIdentifier++, "End of test", "");
             /*
             Test Step 22
             Action: End of test
