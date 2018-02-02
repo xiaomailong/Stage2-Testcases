@@ -61,10 +61,18 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
             #region Test step 1
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Select and confirm Level 2");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays RBC contact window.");
             /*
             Test Step 1
             Action: Select and confirm Level 2
@@ -94,6 +102,12 @@ namespace Testcase.DMITestCases
 
             #region Test Step 2
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Restart OTE and RBC Simulator.");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays RBC contact window.");
             /*
             Test Step 2
             Action: Restart OTE and RBC Simulator.
@@ -115,6 +129,11 @@ namespace Testcase.DMITestCases
 
             #region Test Step 3
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            
             /*
             Test Step 3
             Action: End of test

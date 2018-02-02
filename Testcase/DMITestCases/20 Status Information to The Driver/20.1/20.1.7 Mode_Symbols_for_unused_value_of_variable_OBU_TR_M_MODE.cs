@@ -33,9 +33,17 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Use the test script file 15_1_7_a.xml to send EVC-7 with, MMI_OBU_TR_M_MODE = 17 (“Not used”)");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information,");
             /*
             Test Step 1
             Action: Use the test script file 15_1_7_a.xml to send EVC-7 with, MMI_OBU_TR_M_MODE = 17 (“Not used”)
@@ -45,6 +53,12 @@ namespace Testcase.DMITestCases
             */
             XML_15_1_7(msgType.typea);
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Use the test script file 15_1_7_b.xml to send EVC-7 with, MMI_OBU_TR_M_MODE = 127 (“Not used”)");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information,(1)   There is no symbol displayed on sub-area B7");
             /*
             Test Step 2
             Action: Use the test script file 15_1_7_b.xml to send EVC-7 with, MMI_OBU_TR_M_MODE = 127 (“Not used”)
@@ -54,6 +68,12 @@ namespace Testcase.DMITestCases
 
             XML_15_1_7(msgType.typeb);
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Use the test script file 15_1_7_c.xml to send EVC-7 with, MMI_OBU_TR_M_MODE = 129 (“Not used”)");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information,(1)   There is no symbol displayed on sub-area B7");
             /*
             Test Step 3
             Action: Use the test script file 15_1_7_c.xml to send EVC-7 with, MMI_OBU_TR_M_MODE = 129 (“Not used”)
@@ -63,6 +83,12 @@ namespace Testcase.DMITestCases
 
             XML_15_1_7(msgType.typec);
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Use the test script file 15_1_7_d.xml to send EVC-7 with, MMI_OBU_TR_M_MODE = 255 (“Not used”)");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information,(1)   There is no symbol displayed on sub-area B7");
             /*
             Test Step 4
             Action: Use the test script file 15_1_7_d.xml to send EVC-7 with, MMI_OBU_TR_M_MODE = 255 (“Not used”)
@@ -72,6 +98,12 @@ namespace Testcase.DMITestCases
 
             XML_15_1_7(msgType.typed);
 
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Use the test script file 15_1_7_e.xml to send EVC-7 with, MMI_OBU_TR_M_MODE = 18 (“Not used”)");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information,(1)   There is no symbol displayed on sub-area B7");
             /*
             Test Step 5
             Action: Use the test script file 15_1_7_e.xml to send EVC-7 with, MMI_OBU_TR_M_MODE = 18 (“Not used”)
@@ -81,6 +113,12 @@ namespace Testcase.DMITestCases
 
             XML_15_1_7(msgType.typee);
 
+            TraceHeader("Test Step 6");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Use the test script file 15_1_7_f.xml to send EVC-7 with, MMI_OBU_TR_M_MODE = 126 (“Not used”)");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information,(1)   There is no symbol displayed on sub-area B7");
             /*
             Test Step 6
             Action: Use the test script file 15_1_7_f.xml to send EVC-7 with, MMI_OBU_TR_M_MODE = 126 (“Not used”)
@@ -90,6 +128,12 @@ namespace Testcase.DMITestCases
 
             XML_15_1_7(msgType.typef);
 
+            TraceHeader("Test Step 7");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Use the test script file 15_1_7_g.xml to send EVC-7 with, MMI_OBU_TR_M_MODE = 130 (“Not used”)");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information,(1)   There is no symbol displayed on sub-area B7");
             /*
             Test Step 7
             Action: Use the test script file 15_1_7_g.xml to send EVC-7 with, MMI_OBU_TR_M_MODE = 130 (“Not used”)
@@ -99,6 +143,12 @@ namespace Testcase.DMITestCases
 
             XML_15_1_7(msgType.typeg);
 
+            TraceHeader("Test Step 8");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Use the test script file 15_1_7_h.xml to send EVC-7 with, MMI_OBU_TR_M_MODE = 254 (“Not used”)");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information,(1)   There is no symbol displayed on sub-area B7");
             /*
             Test Step 8
             Action: Use the test script file 15_1_7_h.xml to send EVC-7 with, MMI_OBU_TR_M_MODE = 254 (“Not used”)
@@ -108,6 +158,11 @@ namespace Testcase.DMITestCases
 
             XML_15_1_7(msgType.typeh);
 
+            TraceHeader("Test Step 9");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            
             /*
             Test Step 9
             Action: End of test
@@ -184,6 +239,7 @@ namespace Testcase.DMITestCases
                     SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrMMode.Value = 254;
                     break;
             }
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "There is no symbol displayed on sub-area B7.");
         }

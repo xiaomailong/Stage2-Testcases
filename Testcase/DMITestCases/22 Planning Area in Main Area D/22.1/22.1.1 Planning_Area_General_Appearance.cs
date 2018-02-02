@@ -30,8 +30,16 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Activate cabin A");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Driver ID window");
             /*
             Test Step 1
             Action: Activate cabin A
@@ -46,6 +54,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the Driver ID window displayed.");
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Perform SoM to SR mode, level 1");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays in SR mode, level 1");
             /*
             Test Step 2
             Action: Perform SoM to SR mode, level 1
@@ -60,6 +74,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Does the DMI show Staff Responsible Mode.");
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train forward passing BG1");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI remain displays in SR mode, level 1. Verify that the Planning area is not displayed in main area D");
             /*
             Test Step 3
             Action: Drive the train forward passing BG1
@@ -71,6 +92,12 @@ namespace Testcase.DMITestCases
                                 "1. Does the DMI show Staff Responsible Mode." + Environment.NewLine +
                                 "2. Confirm that the planning area IS NOT displayed.");
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train forward passing BG2");
+            TraceReport("Expected Result");
+            TraceInfo("DMI changes from SR mode to FS mode.");
             /*
             Test Step 4
             Action: Drive the train forward passing BG2
@@ -93,6 +120,11 @@ namespace Testcase.DMITestCases
                                 "1. Does the DMI show Full Supervision Mode." + Environment.NewLine +
                                 "2. Confirm that the planning area IS displayed.");
 
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            
             /*
             Test Step 5
             Action: End of test

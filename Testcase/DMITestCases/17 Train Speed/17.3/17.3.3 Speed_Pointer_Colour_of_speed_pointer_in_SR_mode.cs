@@ -44,8 +44,16 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train forward with speed = 40 km/h");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays in SR mode, level 1.");
             /*
             Test Step 1
             Action: Drive the train forward with speed = 40 km/h
@@ -66,6 +74,12 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays in SR mode, level 1." + Environment.NewLine +
                                 "2. Is the speed pointer grey?");
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Increase the train speed to 41 km/h");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information,");
             /*
             Test Step 2
             Action: Increase the train speed to 41 km/h
@@ -81,6 +95,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer orange?");
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Increase the train speed to 45 km/h.");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information,");
             /*
             Test Step 3
             Action: Increase the train speed to 45 km/h.
@@ -97,6 +117,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer orange?");
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Increase the train speed to 46 km/h");
+            TraceReport("Expected Result");
+            TraceInfo("The train speed is force to decrease because of emergency brake is applied by ETCS onboard.");
             /*
             Test Step 4
             Action: Increase the train speed to 46 km/h
@@ -126,6 +152,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Has the speed reduced to 40 km/h?" + Environment.NewLine +
                                 "2. Is the speed pointer grey?");
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Stop the train.");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays in SR mode, level 1.");
             /*
             Test Step 5
             Action: Stop the train.
@@ -149,6 +181,12 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays in SR mode, level 1" + Environment.NewLine +
                                 "2. Is the speed pointer grey?");
 
+            TraceHeader("Test Step 6");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Use the test script file 12_3_3_b.xml to send the following packets,");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays in SR mode, level 1.");
             /*
             Test Step 6
             Action: Use the test script file 12_3_3_b.xml to send the following packets,
@@ -171,6 +209,13 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays in SR mode, level 1" + Environment.NewLine +
                                 "2. Is the speed pointer white?");
 
+            TraceHeader("Test Step 7");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Use the test script file 12_3_3_c.xml to send the following packets,EVC-1MMI_M_WARNING = 10MMI_V_PERMITTED = 1111MMI_V_TARGET = 1083MMI_V_INTERVENTION = 1250MMI_V_TRAIN = 1139EVC-7OBU_TR_M_MODE = 2");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays in SR mode, level 1.");
             /*
             Test Step 7
             Action: Use the test script file 12_3_3_c.xml to send the following packets,EVC-1MMI_M_WARNING = 10MMI_V_PERMITTED = 1111MMI_V_TARGET = 1083MMI_V_INTERVENTION = 1250MMI_V_TRAIN = 1139EVC-7OBU_TR_M_MODE = 2
@@ -185,6 +230,12 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays in SR mode, level 1" + Environment.NewLine +
                                 "2. Is the speed pointer orange?");
 
+            TraceHeader("Test Step 8");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Use the test script file 12_3_3_d.xml to send the following packets,");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays in SR mode, level 1.");
             /*
             Test Step 8
             Action: Use the test script file 12_3_3_d.xml to send the following packets,
@@ -207,6 +258,12 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays in SR mode, level 1" + Environment.NewLine +
                                 "2. Is the speed pointer orange?");
 
+            TraceHeader("Test Step 9");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Use the test script file 12_3_3_e.xml to send the following packets,");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays in SR mode, level 1.");
             /*
             Test Step 9
             Action: Use the test script file 12_3_3_e.xml to send the following packets,
@@ -228,6 +285,14 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays in SR mode, level 1" + Environment.NewLine +
                                 "2. Is the speed pointer red?");
 
+            TraceHeader("Test Step 10");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Use the test script file 12_3_3_f.xml to send the following packets,EVC-1MMI_M_WARNING = 14MMI_V_PERMITTED = 1111MMI_V_TARGET = 1083MMI_V_INTERVENTION = 1250MMI_V_TRAIN = 1111EVC-7OBU_TR_M_MODE = 2");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI displays in SR mode, level 1.Verify the following information,(1)   The speed pointer display in white colour");
             /*
             Test Step 10
             Action: Use the test script file 12_3_3_f.xml to send the following packets,EVC-1MMI_M_WARNING = 14MMI_V_PERMITTED = 1111MMI_V_TARGET = 1083MMI_V_INTERVENTION = 1250MMI_V_TRAIN = 1111EVC-7OBU_TR_M_MODE = 2
@@ -240,6 +305,12 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays in SR mode, level 1" + Environment.NewLine +
                                 "2. Is the speed pointer white?");
 
+            TraceHeader("Test Step 11");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Use the test script file 12_3_3_g.xml to send the following packets,");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays in SR mode, level 1.");
             /*
             Test Step 11
             Action: Use the test script file 12_3_3_g.xml to send the following packets,
@@ -262,6 +333,12 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays in SR mode, level 1" + Environment.NewLine +
                                 "2. Is the speed pointer grey?");
 
+            TraceHeader("Test Step 12");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Use the test script file 12_3_3_h.xml to send the following packets,");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays in SR mode, level 1.");
             /*
             Test Step 12
             Action: Use the test script file 12_3_3_h.xml to send the following packets,
@@ -284,6 +361,12 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays in SR mode, level 1" + Environment.NewLine +
                                 "2. Is the speed pointer grey?");
 
+            TraceHeader("Test Step 13");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Use the test script file 12_3_3_i.xml to send the following packets,");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays in SR mode, level 1.");
             /*
             Test Step 13
             Action: Use the test script file 12_3_3_i.xml to send the following packets,
@@ -306,6 +389,12 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays in SR mode, level 1" + Environment.NewLine +
                                 "2. Is the speed pointer white?");
 
+            TraceHeader("Test Step 14");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Use the test script file 12_3_3_j.xml to send the following packets,");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays in SR mode, level 1.");
             /*
             Test Step 14
             Action: Use the test script file 12_3_3_j.xml to send the following packets,
@@ -328,6 +417,14 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays in SR mode, level 1" + Environment.NewLine +
                                 "2. Is the speed pointer yellow?");
 
+            TraceHeader("Test Step 15");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Use the test script file 12_3_3_k.xml to send the following packets,EVC-1MMI_M_WARNING = 9MMI_V_PERMITTED = 1111MMI_V_TARGET = 1083MMI_V_INTERVENTION = 1250MMI_V_TRAIN = 1139EVC-7OBU_TR_M_MODE = 2");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI displays in SR mode, level 1.Verify the following information,(1)   The speed pointer display in orange colour");
             /*
             Test Step 15
             Action: Use the test script file 12_3_3_k.xml to send the following packets,EVC-1MMI_M_WARNING = 9MMI_V_PERMITTED = 1111MMI_V_TARGET = 1083MMI_V_INTERVENTION = 1250MMI_V_TRAIN = 1139EVC-7OBU_TR_M_MODE = 2
@@ -340,6 +437,14 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays in SR mode, level 1" + Environment.NewLine +
                                 "2. Is the speed pointer orange?");
 
+            TraceHeader("Test Step 16");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Use the test script file 12_3_3_l.xml to send the following packets,EVC-1MMI_M_WARNING = 5MMI_V_PERMITTED = 1111MMI_V_TARGET = 1083MMI_V_INTERVENTION = 1250MMI_V_TRAIN = 1250EVC-7OBU_TR_M_MODE = 2");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI displays in SR mode, level 1.Verify the following information,(1)   The speed pointer display in orange colour");
             /*
             Test Step 16
             Action: Use the test script file 12_3_3_l.xml to send the following packets,EVC-1MMI_M_WARNING = 5MMI_V_PERMITTED = 1111MMI_V_TARGET = 1083MMI_V_INTERVENTION = 1250MMI_V_TRAIN = 1250EVC-7OBU_TR_M_MODE = 2
@@ -352,6 +457,14 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays in SR mode, level 1" + Environment.NewLine +
                                 "2. Is the speed pointer orange?");
 
+            TraceHeader("Test Step 17");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Use the test script file 12_3_3_m.xml to send the following packets,EVC-1MMI_M_WARNING = 13MMI_V_PERMITTED = 1111MMI_V_TARGET = 1083MMI_V_INTERVENTION = 1250MMI_V_TRAIN = 1277EVC-7OBU_TR_M_MODE = 2");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI displays in SR mode, level 1.Verify the following information,(1)   The speed pointer display in red colour");
             /*
             Test Step 17
             Action: Use the test script file 12_3_3_m.xml to send the following packets,EVC-1MMI_M_WARNING = 13MMI_V_PERMITTED = 1111MMI_V_TARGET = 1083MMI_V_INTERVENTION = 1250MMI_V_TRAIN = 1277EVC-7OBU_TR_M_MODE = 2
@@ -365,6 +478,14 @@ namespace Testcase.DMITestCases
                                 "2. Is the speed pointer red?");
 
 
+            TraceHeader("Test Step 18");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Use the test script file 12_3_3_n.xml to send the following packets,EVC-1MMI_M_WARNING = 13MMI_V_PERMITTED = 1111MMI_V_TARGET = 1083MMI_V_INTERVENTION = 1250MMI_V_TRAIN = 1111EVC-7OBU_TR_M_MODE = 2");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI displays in SR mode, level 1.Verify the following information,(1)   The speed pointer display in yellow colour");
             /*
             Test Step 18
             Action: Use the test script file 12_3_3_n.xml to send the following packets,EVC-1MMI_M_WARNING = 13MMI_V_PERMITTED = 1111MMI_V_TARGET = 1083MMI_V_INTERVENTION = 1250MMI_V_TRAIN = 1111EVC-7OBU_TR_M_MODE = 2
@@ -377,6 +498,14 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays in SR mode, level 1" + Environment.NewLine +
                                 "2. Is the speed pointer yellow?");
 
+            TraceHeader("Test Step 19");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Use the test script file 12_3_3_o.xml to send the following packets,EVC-1MMI_M_WARNING = 13MMI_V_PERMITTED = 1111MMI_V_TARGET = 1083MMI_V_INTERVENTION = 1250MMI_V_TRAIN = 1083EVC-7OBU_TR_M_MODE = 2");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI displays in SR mode, level 1.Verify the following information,(1)   The speed pointer display in grey colour");
             /*
             Test Step 19
             Action: Use the test script file 12_3_3_o.xml to send the following packets,EVC-1MMI_M_WARNING = 13MMI_V_PERMITTED = 1111MMI_V_TARGET = 1083MMI_V_INTERVENTION = 1250MMI_V_TRAIN = 1083EVC-7OBU_TR_M_MODE = 2
@@ -389,6 +518,11 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays in SR mode, level 1" + Environment.NewLine +
                                 "2. Is the speed pointer grey?");
 
+            TraceHeader("Test Step 20");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            
             /*
             Test Step 20
             Action: End of test

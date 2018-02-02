@@ -38,8 +38,9 @@ namespace Testcase.Telegrams.DMItoEVC
                 if (_checkResult)
                 {
                     _pool.TraceReport(
-                        string.Format("{0} = {1} \"{2}\"", baseString, (byte) driverAction, driverAction) + Environment.NewLine +
-                                      "Result: PASSED.");
+                        string.Format("{0} = {1} \"{2}\"", baseString, (byte) driverAction, driverAction) +
+                        Environment.NewLine +
+                        "Result: PASSED.");
                 }
                 // Else display the real value extracted from EVC-152
                 else

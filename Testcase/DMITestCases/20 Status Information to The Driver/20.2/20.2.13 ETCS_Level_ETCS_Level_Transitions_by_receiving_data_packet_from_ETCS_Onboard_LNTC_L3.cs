@@ -47,10 +47,19 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
             TraceInfo("This test case requires an ATP configuration change - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Perform the following action:         Power on the systemActivate the cabin Perform start of mission to ATB STM mode , Level NTC");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays in ATB STM mode, Level NTC");
             /*
             Test Step 1
             Action: Perform the following action:         Power on the systemActivate the cabin Perform start of mission to ATB STM mode , Level NTC
@@ -71,6 +80,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SN mode, Level NTC");
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train forward with 30 km/h and then pass BG0 with level transition announcement");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays LE14 symbol in sub-area C1");
             /*
             Test Step 2
             Action: Drive the train forward with 30 km/h and then pass BG0 with level transition announcement
@@ -87,6 +102,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Level transition symbol, LE14, in sub-area C1.");
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Pass the level transition acknowledgement area");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays LE15 symbol in sub-area C1");
             /*
             Test Step 3
             Action: Pass the level transition acknowledgement area
@@ -101,6 +122,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Level transition symbol, LE15, in sub-area C1.");
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press acknowledgement LE15 symbol in sub-area C1");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,(1)    DMI replaces LE15 symbol with LE14 in sub-area C1.(2)    Use the log file to confirm that DMI sends out packet [MMI_DRIVER_ACTION (EVC-152)] with the value of variable MMI_M_DRIVER_ACTION refer to sequence below,a)   MMI_M_DRIVER_ACTION = 9 (Ack level 3)");
             /*
             Test Step 4
             Action: Press acknowledgement LE15 symbol in sub-area C1
@@ -118,6 +146,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI removes symbol LE15 and displays the Level transition symbol, LE14, in sub-area C1.");
 
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Pass BG1 at level transition border");
+            TraceReport("Expected Result");
+            TraceInfo("Mode changes to FS mode, Level 3");
             /*
             Test Step 5
             Action: Pass BG1 at level transition border
@@ -131,6 +165,11 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in FS mode, Level 3.");
 
+            TraceHeader("Test Step 6");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            
             /*
             Test Step 6
             Action: End of test

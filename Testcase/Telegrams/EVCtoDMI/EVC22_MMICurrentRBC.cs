@@ -71,7 +71,8 @@ namespace Testcase.Telegrams.EVCtoDMI
                     throw new ArgumentOutOfRangeException("Too many characters in caption string!");
 
                 // Write individual network characters
-                _pool.SITR.Client.Write(string.Format("{0}MmiNCaptionNetwork", varnamestring), numberNetworkCaptionChars);
+                _pool.SITR.Client.Write(string.Format("{0}MmiNCaptionNetwork", varnamestring),
+                    numberNetworkCaptionChars);
 
                 // Increment packet size
                 totalSizeCounter += 16;
@@ -92,7 +93,8 @@ namespace Testcase.Telegrams.EVCtoDMI
             // Number of data elements to enter
             _pool.SITR.ETCS1.CurrentRbcData.MmiNDataElements.Value = (ushort) DataElements.Count;
 
-            totalSizeCounter = Variables.PopulateDataElements(string.Format("{0}2", BaseString), totalSizeCounter, DataElements, _pool);
+            totalSizeCounter = Variables.PopulateDataElements(string.Format("{0}2", BaseString), totalSizeCounter,
+                DataElements, _pool);
 
             // Set packet length
             _pool.SITR.ETCS1.CurrentRbcData.MmiLPacket.Value = totalSizeCounter;

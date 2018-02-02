@@ -35,17 +35,26 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
             TraceInfo("This test case may require a DMI configuration change - " +
                       "System info may not be disabled/enabled by text). If this is not done manually, the test may fail!");
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Settings’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI displays Settings window.Verify the following points,Menu windowsThe Settings window is displayed in main area D/F/G.The window title is ‘Settings’.The following objects are displayed Main window, Enabled Close button (NA11)Window TitleButton 1 with Symbol SE03 for Language Button 2 with Symbol SE02 for VolumeButton 3 with SE01 for BrightnessButton 4 with label ‘System version’Button 5 with label ‘Set VBC’Button 6 with label ‘Remove VBC’Note: See the position of buttons in picture below,The state of each button in Special window are displayed correctly as follows,Language = EnableVolume = EnableBrightness = EnableSystem version = EnableSet VBC = EnableRemove VBC = DisableSet clock = EnableThe other additional buttons from list above also display in this window (e.g. Maintenance, Brake, System Info, etc.).LayersThe level of layers in each area of window as follows,Layer 0: Area D, F, G, E10, E11, Y, and ZLayer -1: Area A1, (A2+A3)*, A4, B*, C1, (C2+C3+C4)*, C5, C6, C7, C8, C9, E1, E2, E3, E4, (E5-E9)*.Layer -2: Area B3, B4, B5, B6 and B7.Note: ‘*’ symbol is mean that specified area are drawn as one area.Packet transmissionUse the log file to confirm that DMI receives EVC-30 with following value in each bit of variable MMI_Q__REQUEST_ENABLE_64,Bit #13 = 1 (Language)Bit #14 = 1 (Volume)Bit #15 = 1 (Brightness)Bit #16 = 1 (System version)Bit #17 = 1 (Set VBC)Bit #18 = 0 (Remove VBC)Bit #25 or Bit #26 = 1 (Set Clock)And the buttons are enabled according to bit value = 1. General property of windowThe Settings window is presented with objects and buttons which is the one of several levels and allocated to areas of DMI..All objects, text messages and buttons are presented within the same layer.The Default window is not displayed and covered the current window.Sub-level window covers partially depending on the size of the Sub-Level window. There is no other window is displayed and activated at the same time");
             /*
             Test Step 1
             Action: Press ‘Settings’ button
             Expected Result: DMI displays Settings window.Verify the following points,Menu windowsThe Settings window is displayed in main area D/F/G.The window title is ‘Settings’.The following objects are displayed Main window, Enabled Close button (NA11)Window TitleButton 1 with Symbol SE03 for Language Button 2 with Symbol SE02 for VolumeButton 3 with SE01 for BrightnessButton 4 with label ‘System version’Button 5 with label ‘Set VBC’Button 6 with label ‘Remove VBC’Note: See the position of buttons in picture below,The state of each button in Special window are displayed correctly as follows,Language = EnableVolume = EnableBrightness = EnableSystem version = EnableSet VBC = EnableRemove VBC = DisableSet clock = EnableThe other additional buttons from list above also display in this window (e.g. Maintenance, Brake, System Info, etc.).LayersThe level of layers in each area of window as follows,Layer 0: Area D, F, G, E10, E11, Y, and ZLayer -1: Area A1, (A2+A3)*, A4, B*, C1, (C2+C3+C4)*, C5, C6, C7, C8, C9, E1, E2, E3, E4, (E5-E9)*.Layer -2: Area B3, B4, B5, B6 and B7.Note: ‘*’ symbol is mean that specified area are drawn as one area.Packet transmissionUse the log file to confirm that DMI receives EVC-30 with following value in each bit of variable MMI_Q__REQUEST_ENABLE_64,Bit #13 = 1 (Language)Bit #14 = 1 (Volume)Bit #15 = 1 (Brightness)Bit #16 = 1 (System version)Bit #17 = 1 (Set VBC)Bit #18 = 0 (Remove VBC)Bit #25 or Bit #26 = 1 (Set Clock)And the buttons are enabled according to bit value = 1. General property of windowThe Settings window is presented with objects and buttons which is the one of several levels and allocated to areas of DMI..All objects, text messages and buttons are presented within the same layer.The Default window is not displayed and covered the current window.Sub-level window covers partially depending on the size of the Sub-Level window. There is no other window is displayed and activated at the same time
             Test Step Comment: (1) MMI_gen 8465 (partly: MMI_gen 7909);(2) MMI_gen 8466; MMI_gen 4360 (partly: window title);(3) MMI_gen 8645 (partly: MMI_gen 4556 (partly: Close button, Window Title));    MMI_gen 8467 (partly: touch screen, button with label, Language, Volume, Brightness, System version, Set VBC, Remove VBC); MMI_gen 4392 (partly: [Close] NA11);                   (4) MMI_gen 11545 (partly: EVC-30, enabling #13, #14, #15, #16, #17, #25 or #26, disabling #18); (5) MMI_gen 8469; (6) MMI_gen 8645 (partly: MMI_gen 4630, MMI gen 5944 (partly: touch screen));(7) MMI_gen11545 (partly: enabling buttons, disabling ‘remove vbc’ button, EVC-30); MMI_gen 1088 (Partly, Bit #13 to #18 and #25 to #26)            (8) MMI_gen 4350;(9) MMI_gen 4351;(10) MMI_gen 4353;(11) MMI_gen 4354;
             */
-/* This may be required
+            /* This may be required
             DmiActions.Set_Driver_ID(this, "1234");
             DmiActions.ShowInstruction(this, "Confirm the Driver ID");
 */
@@ -98,6 +107,13 @@ namespace Testcase.DMITestCases
                                 "14. The Default window does not cover the current window." + Environment.NewLine +
                                 "15. A sub-level window can partially cover another window, depending on its size.Another window cannot be displayed and activated at the same time.");
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press and hold ‘Language’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,The sound ‘Click’ is played once.The ‘Language’ button is shown as pressed state, the border of button is removed");
             /*
             Test Step 2
             Action: Press and hold ‘Language’ button
@@ -111,6 +127,12 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. The ‘Click’ sound is played once.");
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Slide out of ‘Language’ button");
+            TraceReport("Expected Result");
+            TraceInfo("The border of the button is shown (state ‘Enabled’) without a sound");
             /*
             Test Step 3
             Action: Slide out of ‘Language’ button
@@ -123,6 +145,12 @@ namespace Testcase.DMITestCases
                                 @"1. The ‘Language’ button is displayed enabled, with a border." + Environment.NewLine +
                                 "2. No sound is played.");
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Slide back into ‘Language’ button");
+            TraceReport("Expected Result");
+            TraceInfo("The button is back to state ‘Pressed’ without a sound");
             /*
             Test Step 4
             Action: Slide back into ‘Language’ button
@@ -136,6 +164,12 @@ namespace Testcase.DMITestCases
                                 @"1. The ‘Language’ button is displayed pressed." + Environment.NewLine +
                                 "2. No sound is played.");
 
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Release the ‘Language’ button");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Language window");
             /*
             Test Step 5
             Action: Release the ‘Language’ button
@@ -147,6 +181,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Language window.");
 
+            TraceHeader("Test Step 6");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Close’ button");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Settings window");
             /*
             Test Step 6
             Action: Press ‘Close’ button
@@ -157,6 +197,14 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window.");
 
+            TraceHeader("Test Step 7");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Follow action step 2 – step 6 respectively for the following button.‘Volume’ button.‘Brightness’ button.‘System version’’ button.‘Set VBC’ button.‘Brake’ button.‘System info’ button.‘Set Clock’ button.‘Maintenance’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "See the expected results of Step 2 – Step 5 and the following additional information,DMI displays corresponding window refer to released button from action step 5. When, released ‘System version’ button, use the log file to confirm that DMI sends out the packet [MMI_DRIVER_REQUEST (EVC-101)] with variable [MMI_DRIVER_REQUEST (EVC-101).MMI_M_REQUEST] = 55 (System version request)");
             /*
             Test Step 7
             Action: Follow action step 2 – step 6 respectively for the following button.‘Volume’ button.‘Brightness’ button.‘System version’’ button.‘Set VBC’ button.‘Brake’ button.‘System info’ button.‘Set Clock’ button.‘Maintenance’ button
@@ -459,6 +507,13 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window.");
+            TraceHeader("Test Step 8");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Perform the following procedure,Enter and confirm the specify value VBC code = 65536Press ‘Yes’ button");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Set VBC data validation window");
             /*
             Test Step 8
             Action: Perform the following procedure,Enter and confirm the specify value VBC code = 65536Press ‘Yes’ button
@@ -478,6 +533,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Set VBC data validation window.");
 
+            TraceHeader("Test Step 9");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Yes’ button. Then, confirm selected value by pressing an input field");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI displays Settings window.Verify the following information,Use the log file to confirm that DMI receives EVC-30 with variable MMI_Q_REQUEST_ENABLE_64 (#18) = 1 and the ‘Remove VBC’ button is enabled");
             /*
             Test Step 9
             Action: Press ‘Yes’ button. Then, confirm selected value by pressing an input field
@@ -503,6 +565,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window with the ‘Remove VBC’ button enabled.");
 
+            TraceHeader("Test Step 10");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Follow action step 2 – step 6 respectively for ‘Remove VBC’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "See the expected results of Step 2 – Step 5 and the following additional information,DMI displays Remove VBC window");
             /*
             Test Step 10
             Action: Follow action step 2 – step 6 respectively for ‘Remove VBC’ button
@@ -545,6 +614,12 @@ namespace Testcase.DMITestCases
 
             // No need to repeat Step 6: that is Step 11
 
+            TraceHeader("Test Step 11");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Close’ button");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Settings window");
             /*
             Test Step 11
             Action: Press ‘Close’ button
@@ -559,6 +634,14 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window.");
 
+            TraceHeader("Test Step 12");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Perform the following procedure,Drive the train forward until the brake is appliedStop driving the train");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,The following buttons are disabled,LanguageVolumeBrightnessSystem VersionSet VBCRemove VBCUse the log file to confirm that DMI receives EVC-30 with following value in each bit of variable MMI_Q_REQUEST_ENABLE_64Bit #13 = 0 (Language)Bit #14 = 0 (Volume)Bit #15 = 0 (Brightness)Bit #16 = 0 (System version)Bit #17 = 0 (Set VBC)Bit #18 = 0 (Remove VBC)");
             /*
             Test Step 12
             Action: Perform the following procedure,Drive the train forward until the brake is appliedStop driving the train
@@ -579,6 +662,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The following buttons are disabled ‘Language’, ‘Volume’, ‘Brightness’, ‘System Version’, ‘Set VBC’, ‘Remove VBC’.");
 
+            TraceHeader("Test Step 13");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Acknowledge the ‘Brake intervention’ symbol by pressing area E1");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,The following buttons are disabled,LanguageVolumeBrightnessSystem VersionSet VBCRemove VBCUse the log file to confirm that DMI receives EVC-30 with following value in each bit of variable MMI_Q_REQUEST_ENABLE_64Bit #13 = 1 (Language)Bit #14 = 1 (Volume)Bit #15 = 1 (Brightness)Bit #16 = 1 (System version)Bit #17 = 1 (Set VBC)Bit #18 = 1 (Remove VBC)");
             /*
             Test Step 13
             Action: Acknowledge the ‘Brake intervention’ symbol by pressing area E1
@@ -614,6 +704,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The following buttons are enabled ‘Language’, ‘Volume’, ‘Brightness’, ‘System Version’, ‘Set VBC’, ‘Remove VBC’.");
 
+            TraceHeader("Test Step 14");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Use the test script file 22_21_a.xml to send EVC-30 with,MMI_Q_REQUEST_ENABLE_64 _#25 = 0MMI_Q_REQUEST_ENABLE_64 _#26 = 0");
+            TraceReport("Expected Result");
+            TraceInfo("The ‘Set Clock’ button is disabled");
             /*
             Test Step 14
             Action: Use the test script file 22_21_a.xml to send EVC-30 with,MMI_Q_REQUEST_ENABLE_64 _#25 = 0MMI_Q_REQUEST_ENABLE_64 _#26 = 0
@@ -625,6 +722,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The following ‘Set Clock’ button is disabled.");
 
+            TraceHeader("Test Step 15");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Use the test script file 22_21_b.xml to send EVC-30 with,MMI_Q_REQUEST_ENABLE_64 _#25 = 1MMI_Q_REQUEST_ENABLE_64 _#26 = 0");
+            TraceReport("Expected Result");
+            TraceInfo("The ‘Set Clock’ button is enabled");
             /*
             Test Step 15
             Action: Use the test script file 22_21_b.xml to send EVC-30 with,MMI_Q_REQUEST_ENABLE_64 _#25 = 1MMI_Q_REQUEST_ENABLE_64 _#26 = 0
@@ -636,6 +740,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The following ‘Set Clock’ button is enabled.");
 
+            TraceHeader("Test Step 16");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Use the test script file 22_21_a.xml to send EVC-30 with,MMI_Q_REQUEST_ENABLE_64 _#25 = 0MMI_Q_REQUEST_ENABLE_64 _#26 = 0");
+            TraceReport("Expected Result");
+            TraceInfo("The ‘Set Clock’ button is disabled");
             /*
             Test Step 16
             Action: Use the test script file 22_21_a.xml to send EVC-30 with,MMI_Q_REQUEST_ENABLE_64 _#25 = 0MMI_Q_REQUEST_ENABLE_64 _#26 = 0
@@ -646,6 +757,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The following ‘Set Clock’ button is disabled.");
 
+            TraceHeader("Test Step 17");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Use the test script file 22_21_c.xml to send EVC-30 with,MMI_Q_REQUEST_ENABLE_64 _#25 = 1MMI_Q_REQUEST_ENABLE_64 _#26 = 1");
+            TraceReport("Expected Result");
+            TraceInfo("The ‘Set Clock’ button is enabled");
             /*
             Test Step 17
             Action: Use the test script file 22_21_c.xml to send EVC-30 with,MMI_Q_REQUEST_ENABLE_64 _#25 = 1MMI_Q_REQUEST_ENABLE_64 _#26 = 1
@@ -657,6 +775,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The following ‘Set Clock’ button is enabled.");
 
+            TraceHeader("Test Step 18");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Use the test script file 22_21_a.xml to send EVC-30 with,MMI_Q_REQUEST_ENABLE_64 _#25 = 0MMI_Q_REQUEST_ENABLE_64 _#26 = 0");
+            TraceReport("Expected Result");
+            TraceInfo("The ‘Set Clock’ button is disabled");
             /*
             Test Step 18
             Action: Use the test script file 22_21_a.xml to send EVC-30 with,MMI_Q_REQUEST_ENABLE_64 _#25 = 0MMI_Q_REQUEST_ENABLE_64 _#26 = 0
@@ -667,6 +792,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The following ‘Set Clock’ button is disabled.");
 
+            TraceHeader("Test Step 19");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Use the test script file 22_21_d.xml to send EVC-30 with,MMI_Q_REQUEST_ENABLE_64 _#25 = 0MMI_Q_REQUEST_ENABLE_64 _#26 = 1");
+            TraceReport("Expected Result");
+            TraceInfo("The ‘Set Clock’ button is enabled");
             /*
             Test Step 19
             Action: Use the test script file 22_21_d.xml to send EVC-30 with,MMI_Q_REQUEST_ENABLE_64 _#25 = 0MMI_Q_REQUEST_ENABLE_64 _#26 = 1
@@ -678,6 +810,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The following ‘Set Clock’ button is enabled.");
 
+            TraceHeader("Test Step 20");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Follow action step 2 – step 6 respectively for ‘Close’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "See the expected results of Step 2 – Step 6 and the following additional information,  (1)    DMI displays Default window");
             /*
             Test Step 20
             Action: Follow action step 2 – step 6 respectively for ‘Close’ button
@@ -718,6 +857,11 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Default window.");
 
+            TraceHeader("Test Step 21");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            
             /*
             Test Step 21
             Action: End of test
@@ -787,6 +931,7 @@ namespace Testcase.DMITestCases
                                                                            .SetLocalOffset;
                     break;
             }
+
             EVC20_MMISelectLevel.Send();
         }
 

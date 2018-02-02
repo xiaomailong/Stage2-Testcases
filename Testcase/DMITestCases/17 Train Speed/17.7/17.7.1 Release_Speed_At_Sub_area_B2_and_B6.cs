@@ -24,9 +24,17 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Activate cabin A");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays in SB mode, level 1. The Driver ID window is displayed");
             /*
             Test Step 1
             Action: Activate cabin A
@@ -40,6 +48,12 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays in SB mode, level 1." + Environment.NewLine +
                                 "2. The Driver ID window is displayed.");
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Driver performs SoM to SR mode");
+            TraceReport("Expected Result");
+            TraceInfo("DMI is displayed in SR mode, level 1");
             /*
             Test Step 2
             Action: Driver performs SoM to SR mode
@@ -53,6 +67,12 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("1. DMI displays in SR mode, level 1.");
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train forward passing BG1");
+            TraceReport("Expected Result");
+            TraceInfo("The DMI changes from SR to FS mode");
             /*
             Test Step 3
             Action: Drive the train forward passing BG1
@@ -63,6 +83,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The DMI changes from SR to FS mode.");
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Driving the train with speed equal to 45 km/h");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,Verify that the release speed digital is displayed centred in sub-area B6 without leading zeros. The graphical presentation of release speed digital is displayed in area B2. (see the figure 1 and figure 2 in ‘Comment’ column)Use the log file to confirm that the appearance of the release speed digital is controlled by data packet from ETCS Onboard as follows,EVC-7: OBU_TR_M_MODE = 0 (FS Mode)EVC-1: MMI_M_WARNING = 15 (Supervision = Release speed monitoring)EVC-1: MMI_V_RELEASE = 1111 (~40 km/h)The Relaese speed is displayed at the outer part of CSG. (see the figure 2 in ‘Comment’ column)The Relaese speed is separated from the permitted speed. (see the figure 2 in ‘Comment’ column)When a Release speed exists, the presentation is displayed on the CSG according to table 33 (Speed monitoring is RSM)When a Release speed exists, the release speed digital is displayed as a numeric in medium grey colour");
             /*
             Test Step 4
             Action: Driving the train with speed equal to 45 km/h
@@ -86,6 +113,12 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "6. When a Release speed exists, the release speed digital is displayed as a number in medium-grey");
 
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Stop the train");
+            TraceReport("Expected Result");
+            TraceInfo("Train is standstill");
             /*
             Test Step 5
             Action: Stop the train
@@ -96,6 +129,11 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "Speed is displayed as 0 km/h");
 
+            TraceHeader("Test Step 6");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            
             /*
             Test Step 6
             Action: End of test

@@ -45,10 +45,19 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
             TraceInfo("This test case requires a DMI configuration change; See Precondition requirements. " +
                       "If this is not done manually, the test may fail!");
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Data view’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,(1)   The label part of Data View item No.3 is changed to ‘For Test Data View truncated by long text’.  The text label which longer than the maximum width of label part is not display (truncated).(2)   The data part of Data View item No.3 is changed to ‘For Test Data View truncated by long text’.The data part is displayed as 2 lines.At the 2nd line, the text which longer than the maximum width of data part is not display (truncated)");
             /*
             Test Step 1
             Action: Press ‘Data view’ button
@@ -58,7 +67,13 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press the ‘Data view’ button");
 
-            EVC13_MMIDataView.MMI_M_DATA_ENABLE = Variables.MMI_M_DATA_ENABLE.TrainCategory | Variables.MMI_M_DATA_ENABLE.TrainLength | Variables.MMI_M_DATA_ENABLE.BrakePercentage | Variables.MMI_M_DATA_ENABLE.MaxTrainSpeed | Variables.MMI_M_DATA_ENABLE.AxleLoadCategory | Variables.MMI_M_DATA_ENABLE.Airtightness | Variables.MMI_M_DATA_ENABLE.LoadingGauge;
+            EVC13_MMIDataView.MMI_M_DATA_ENABLE = Variables.MMI_M_DATA_ENABLE.TrainCategory |
+                                                  Variables.MMI_M_DATA_ENABLE.TrainLength |
+                                                  Variables.MMI_M_DATA_ENABLE.BrakePercentage |
+                                                  Variables.MMI_M_DATA_ENABLE.MaxTrainSpeed |
+                                                  Variables.MMI_M_DATA_ENABLE.AxleLoadCategory |
+                                                  Variables.MMI_M_DATA_ENABLE.Airtightness |
+                                                  Variables.MMI_M_DATA_ENABLE.LoadingGauge;
             //                       &  ~MMI_M_DATA_ENABLE.TrainSetID;
             EVC13_MMIDataView.MMI_X_DRIVER_ID = "1";
             EVC13_MMIDataView.MMI_NID_OPERATION = 0;
@@ -81,6 +96,11 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "   with the second line truncated at the maximum width of the data part.");
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            
             /*
             Test Step 2
             Action: End of test

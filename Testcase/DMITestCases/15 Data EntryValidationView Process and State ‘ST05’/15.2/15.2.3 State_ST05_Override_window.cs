@@ -33,9 +33,18 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Perform the following procedure;Press ‘close’ button (Main menu window)Press ‘Override’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information;(1)   Verify DMI still displays Default window until Override window is displayed.(2)   Verify the close button is always enable");
             /*
             Test Step 1
             Action: Perform the following procedure;Press ‘close’ button (Main menu window)Press ‘Override’ button
@@ -49,6 +58,14 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. ‘Close’ button is always enabled.");
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Use the test script file 10_2_3_a.xml to disable and enable button via EVC-8 withPacket 1 (Entry state of ‘ST05’)MMI_Q_TEXT_CRITERIA = 3 MMI_Q_TEXT = 716Packet 2 (Exit state of ‘ST05’)MMI_Q_TEXT_CRITERIA = 4MMI_Q_TEXT = 716Note: Stopwatch is required for accuracy of test result");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information;DMI in the entry state of ‘ST05’The hourglass symbol ST05 is displayed.(1)   Verify all buttons and the close button is disable.(2)   The disabled Close button NA12 is display in area G.10 seconds laterDMI in the exit state of ‘ST05’(3)   The hourglass symbol ST05 is removed.(4)   The state of all buttons is restored according to the last status before script is sent.(5)   The enabled Close button NA11 is display in area G");
             /*
             Test Step 2
             Action: Use the test script file 10_2_3_a.xml to disable and enable button via EVC-8 withPacket 1 (Entry state of ‘ST05’)MMI_Q_TEXT_CRITERIA = 3 MMI_Q_TEXT = 716Packet 2 (Exit state of ‘ST05’)MMI_Q_TEXT_CRITERIA = 4MMI_Q_TEXT = 716Note: Stopwatch is required for accuracy of test result
@@ -57,6 +74,11 @@ namespace Testcase.DMITestCases
             */
             XML_10_2_3_a();
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            
             /*
             Test Step 3
             Action: End of test

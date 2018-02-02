@@ -33,10 +33,19 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train forward pass BG1 with speed = 30km/h");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI displays in FS mode, Level 1.Verify the following information,(1)    Use the log file to confirm that DMI received packet EVC-7 with variable OBU_TR_M_MODE = 0 (Full Supervision mode).(2)   Use the log file to confirm that DMI received packet EVC-1 with following variables, MMI_M_WARNING = 3 (Status=IndS, Supervision=RSM).MMI_V_RELEASE =  1388 (50 km/h)(3)   All section of CSG is yellow colour");
             /*
             Test Step 1
             Action: Drive the train forward pass BG1 with speed = 30km/h
@@ -54,6 +63,13 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays in FS mode, level 1." + Environment.NewLine +
                                 "2. All sections of CSG are in yellow");
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Continue to drive the train forward with speed = 51 km/h");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,(1)   Use the log file to confirm that DMI received packet EVC-1 with following variables, MMI_M_WARNING = 15 (Status=IntS and Inds, Supervision=RSM).(2)   All section of CSG is yellow colour");
             /*
             Test Step 2
             Action: Continue to drive the train forward with speed = 51 km/h
@@ -67,6 +83,11 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. All sections of CSG are in yellow");
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            
             /*
             Test Step 3
             Action: End of test

@@ -35,8 +35,16 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train forward with speed = 40km/h pass BG1 at position 100m");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays in FS mode, Level 1");
             /*
             Test Step 1
             Action: Drive the train forward with speed = 40km/h pass BG1 at position 100m
@@ -51,6 +59,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer displaying 40 km/h?");
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train with speed = 41 km/h");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,(1)     The sound ‘S1’ is played once.(2)     Use the log file to confirm that DMI received packet EVC-1 with variable MMI_M_WARNING = 9 (OvS and IndS, supervision = TSM)");
             /*
             Test Step 2
             Action: Drive the train with speed = 41 km/h
@@ -64,6 +79,14 @@ namespace Testcase.DMITestCases
                                 "1. Is the speed pointer displaying 41 km/h?" + Environment.NewLine +
                                 "2. Sound S1 is played once.");
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Drive the train with speed = 45 km/hNote: dV_warning_max is defined in chapter 3 of [SUBSET-026]");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,(1)     The sound ‘S2’ is played continuously.(2)     Use the log file to confirm that DMI received packet EVC-1 with variable MMI_M_WARNING = 5 (WaS and IndS, supervision = TSM)");
             /*
             Test Step 3
             Action: Drive the train with speed = 45 km/hNote: dV_warning_max is defined in chapter 3 of [SUBSET-026]
@@ -77,6 +100,12 @@ namespace Testcase.DMITestCases
                                 "1. Is the speed pointer displaying 45 km/h?" + Environment.NewLine +
                                 "2. Sound S2 is played continuously.");
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train with spped = 40 km/h");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information,(1)     The sound ‘S2’ is muted");
             /*
             Test Step 4
             Action: Drive the train with spped = 40 km/h
@@ -89,6 +118,11 @@ namespace Testcase.DMITestCases
                                 "1. Is the speed pointer displaying 40 km/h?" + Environment.NewLine +
                                 "2. Sound S2 is muted.");
 
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            
             /*
             Test Step 5
             Action: End of test

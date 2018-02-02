@@ -38,10 +38,18 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
             TraceInfo("This test case requires an ATP configuration change - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Activate cabin A");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Driver ID window");
             /*
             Test Step 1
             Action: Activate cabin A
@@ -53,6 +61,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Driver ID window .");
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Perform SoM to SR mode, level 1");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays in SR mode, level 1");
             /*
             Test Step 2
             Action: Perform SoM to SR mode, level 1
@@ -67,6 +81,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SR mode, Level 1.");
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train forward with speed = 40 km/h pass BG1");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI displays in FS mode, level 1. The Planning area is displayed the planning information in main area D");
             /*
             Test Step 3
             Action: Drive the train forward with speed = 40 km/h pass BG1
@@ -80,6 +101,13 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays in FS mode, Level 1." + Environment.NewLine +
                                 "2. The Planning Area is displayed in area D.");
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press the ‘NA01’ symbol in sub-area D14");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information, The Planning area is disappeared from DMI.Use log file to verify tha DMI still received packet EVC-4 from ETCS Onboard");
             /*
             Test Step 4
             Action: Press the ‘NA01’ symbol in sub-area D14
@@ -97,6 +125,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Planning Area is removed from area D.");
 
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press at sensitive area in main area D");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information, When driver presses main area D in sensitive area. The planning area is reappeared by this activation.NA01 symbol is still display in sub-area D14.All objects on the Planning area is updated according to the packet that sent from ETCS OB.Use log file to verify tha DMI still received packet EVC-4 from ETCS Onboard");
             /*
             Test Step 5
             Action: Press at sensitive area in main area D
@@ -116,6 +151,13 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "3. The PA is updated.");
 
+            TraceHeader("Test Step 6");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press the ‘NA01’ symbol in sub-area D14");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information, (1)   The Planning area is disappeared from DMI.(2)   Use log file to verify tha DMI still received packet EVC-4 from ETCS Onboard");
             /*
             Test Step 6
             Action: Press the ‘NA01’ symbol in sub-area D14
@@ -131,6 +173,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Planning Area is removed from area D.");
 
+            TraceHeader("Test Step 7");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press at sensitive area in main area D to display the Planning area");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "The Planning area is reappeared in area D.Verify the following information, (1)   Use the log file to confirm that all objects on the Planning area are updated according to the received packet EVC-4 from ETCS Onboard");
             /*
             Test Step 7
             Action: Press at sensitive area in main area D to display the Planning area
@@ -147,6 +196,11 @@ namespace Testcase.DMITestCases
                                 "1. The Planning Area is re-displayed in area D." + Environment.NewLine +
                                 "2. The PA is updated.");
 
+            TraceHeader("Test Step 8");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            
             /*
             Test Step 8
             Action: End of test

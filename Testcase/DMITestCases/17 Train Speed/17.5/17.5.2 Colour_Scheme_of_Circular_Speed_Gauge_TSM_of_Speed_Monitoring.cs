@@ -44,8 +44,17 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train forward pass BG1 with speed = 30km/h");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI displays in FS mode, Level 1.Verify the following information,(1)    Use the log file to confirm that DMI received packet EVC-7 with variable OBU_TR_M_MODE = 0 (Full Supervision mode).(2)   Use the log file to confirm that DMI received packet EVC-1 with following variables, MMI_M_WARNING = 11 (Status=Nos, Supervision=TSM).MMI_V_TARGET =  278 (10 km/h)(3)   At range 0-10km/h, CSG is dark-grey colour.(4)   at range above 11km/h, CSG is white colour");
             /*
             Test Step 1
             Action: Drive the train forward pass BG1 with speed = 30km/h
@@ -61,6 +70,11 @@ namespace Testcase.DMITestCases
                                 "2. Between 0 - 10km/h, CSG is dark-grey in colour." + Environment.NewLine +
                                 "3. Above 11 km/h, CSG is white in colour.");
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            
             /*
             Test Step 2
             Action: End of test

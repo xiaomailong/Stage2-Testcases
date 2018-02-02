@@ -38,9 +38,18 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Use the test script file 22_13_1_a.xml to send EVC-30 with,MMI_NID_WINDOW = 4MMI_Q_REQUEST_ENABLE_64 (#25) = 0MMI_Q_REQUEST_ENABLE_64 (#26) = 0");
+            TraceReport("Expected Result");
+            TraceInfo("The Set clock button is disabled");
             /*
             Test Step 1
             Action: Use the test script file 22_13_1_a.xml to send EVC-30 with,MMI_NID_WINDOW = 4MMI_Q_REQUEST_ENABLE_64 (#25) = 0MMI_Q_REQUEST_ENABLE_64 (#26) = 0
@@ -52,6 +61,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Set’ clock button is disabled");
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Perform the following perocedure,Deactivate cabin.Use the test script file 22_13_1_d.xml to send EVC-30 with,MMI_NID_WINDOW = 4MMI_Q_REQUEST_ENABLE_64 (#25) = 1MMI_Q_REQUEST_ENABLE_64 (#26) = 1Activate Cabin");
+            TraceReport("Expected Result");
+            TraceInfo("The Set clock button is still disabled");
             /*
             Test Step 2
             Action: Perform the following perocedure,Deactivate cabin.Use the test script file 22_13_1_d.xml to send EVC-30 with,MMI_NID_WINDOW = 4MMI_Q_REQUEST_ENABLE_64 (#25) = 1MMI_Q_REQUEST_ENABLE_64 (#26) = 1Activate Cabin
@@ -67,6 +83,13 @@ namespace Testcase.DMITestCases
 
             DmiActions.Activate_Cabin_1(this);
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Use the test script file 22_13_1_d.xml to send EVC-30 with,MMI_NID_WINDOW = 4MMI_Q_REQUEST_ENABLE_64 (#25) = 1MMI_Q_REQUEST_ENABLE_64 (#26) = 1");
+            TraceReport("Expected Result");
+            TraceInfo("The Set clock button is enabled");
             /*
             Test Step 3
             Action: Use the test script file 22_13_1_d.xml to send EVC-30 with,MMI_NID_WINDOW = 4MMI_Q_REQUEST_ENABLE_64 (#25) = 1MMI_Q_REQUEST_ENABLE_64 (#26) = 1
@@ -78,6 +101,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Set’ clock button is enabled");
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Set Clock’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,DMI displays Set Clock window.Data entry windowThe window title is ‘Set clock’.The text label on window title is included with sequence number of the current window (e.g. ‘(1/2)’).The text label of the window title is right aligned.The following objects are displayed in Set Clock window,  Enabled Close button (NA11) Disabled Previous button (NA19)  Enabled Next button (NA17)Window TitleInput fieldsThe following objects are additionally displayed in Train data window,Yes buttonThe text label ‘Clock set?’Yes button is displayed in Disabled state as follows,Text label is black Background colour is dark-greyThe border colour is medium-grey the same as the input field’s colour.The sensitive area of Yes button is extended from text label ‘Clock set?’Input fieldsThe input fields are located on Main area D and F.Each input field is devided into a Label Area and a Data Area.The Label Area is give the topic of the input field.The Label Area text is displayed corresponding to the input field i.e. Year, Month and Day.The Label Area is placed to the left of The Data Area.The text in the Label Area is aligned to the right.The value of data in the Data Area is aligned to the left.The text colour of the Label Area is grey and the background colour of the Label Area is dark-grey.There are only 3 input fields display in the first page of window.The first input field is in state ‘Selected’ as follows,The background colour of the Data Area is medium-grey.The colour of data value is black.All other input fields are in state ‘Not selected’ as follows,The background colour of the Data Area is dark-grey.The colour of data value is grey.The label of 1st input field is ‘Year’.The label of 2nd input field is ‘Month’.The label of 3rd input field is ‘Day’.KeyboardThe keyboard associated to selected input field ‘Year’ is Numeric keyboard.The keyboard contains enabled button for the number <1> to <9>, <Delete>(NA21) , <0> and disabled <Decimal_Separator>. NA21, Delete button.LayersThe level of layers of all areas in window are in Layer 0.Echo TextsAn echo text is composed of Label Part and Data Part.The echo texts are displayed in main area A, B, C and E with same order as their related input fields.The Label part of echo text is right aligned.The Data part of echo text is left aligned.The colour of texts in echo texts are grey.The format of UTC time and date is ‘UTC YYYY-MM-DD hh:mm:ss’The format of Local time and date is ‘Local YYYY-MM-DD hh:mm:ss’The date and time are updated every second.Note: Stopwatch is required.Entering CharactersThe cursor is flashed by changing from visible to not visible.The cursor is displayed as horizontal line below the value in the input field.General property of windowThe Set Clock window is presented with objects, text messages and buttons which is the one of several levels and allocated to areas of DMI. All objects, text messages and buttons are presented within the same layer.The Default window is not displayed and covered the current window");
             /*
             Test Step 4
             Action: Press ‘Set Clock’ button
@@ -137,6 +167,13 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "28. The Default window is not displayed covering the current window.");
 
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press and hold ‘0’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,The state of ‘0‘ button is changed to ‘Pressed’ and immediately back to ‘Enabled’ state.The sound ‘Click’ is played once.The Input Field displays the value associated to the data key according to the pressings in state ‘Pressed’.The cursor is displayed as horizontal line below the value of the numeric-keyboard data key in the input field.The input field is used to enter the Year.The local time is editable refer to received packet EVC-30 with the one of following condition is true,MMI_Q_REQUEST_ENABLE_64 #25 = 1MMI_Q_REQUEST_ENABLE_64 #26 = 1 The echo text of date and time are stop updating refer to driver modification");
             /*
             Test Step 5
             Action: Press and hold ‘0’ button
@@ -156,6 +193,12 @@ namespace Testcase.DMITestCases
                                 "6. The local time can be edited." + Environment.NewLine +
                                 "7. The date and time echo texts stop being updated.");
 
+            TraceHeader("Test Step 6");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Release pressed button");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information,The state of released button is changed to enabled");
             /*
             Test Step 6
             Action: Release pressed button
@@ -168,6 +211,14 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The ‘0’ key is displayed enabled.");
 
+            TraceHeader("Test Step 7");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Perform action step 3-4 for the ‘1’ to ‘9’ buttons.Note: Press the ‘Del’ button to delete an information when entered data is out of input field range is acceptable");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "See the expected results of Step 3 – Step 4 and the following additional information,(1)   The pressed key is added in an input field immediately. (2)   The cursor is jumped to next position after entered the character immediately");
             /*
             Test Step 7
             Action: Perform action step 3-4 for the ‘1’ to ‘9’ buttons.Note: Press the ‘Del’ button to delete an information when entered data is out of input field range is acceptable
@@ -349,6 +400,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The ‘9’ key is displayed enabled.");
 
+            TraceHeader("Test Step 8");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press and hold ‘Del’ button.Note: Stopwatch is required");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,While press and hold button less than 1.5 sec(1) Sound ‘Click’ is played once.(2)The state of button is changed to ‘Pressed’ and immediately back to ‘Enabled’ state.(3)The last character is removed from an input field after pressing the button.While press and hold button over 1.5 sec(4)The state ‘pressed’ and ‘released’ are switched repeatly while button is pressed and the characters are removed from an input field repeatly refer to pressed state.(5)The sound ‘Click’ is played repeatly while button is pressed");
             /*
             Test Step 8
             Action: Press and hold ‘Del’ button.Note: Stopwatch is required
@@ -371,6 +429,12 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 @"6. The ‘Click’ sound is played repeatedly.");
 
+            TraceHeader("Test Step 9");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Release ‘Del’ button");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information, (1)The character is stop removing");
             /*
             Test Step 9
             Action: Release ‘Del’ button
@@ -383,6 +447,14 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. Characters stop being deleted from the ‘Year’ data input field.");
 
+            TraceHeader("Test Step 10");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Delete the old value and enter the new value ‘2016 for Year.Then, confirm an entered data by pressing an input field");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,Input fields(1)The associated ‘Enter’ button is data field itself.(2)An input field is used to allow the driver to enter data.(3)The state of ‘Year’ input field is changed to ‘accepted’ as follows,The background colour of the Data Area is dark-grey.The colour of data value is white.(4)The next input field ‘Month’ is in state ‘selected’ as follows,The background colour of the Data Area is medium-grey.The colour of data value is black.Echo Texts(5)The echo text of ‘Year‘ is changed to white colour.(6)The value of echo text is changed refer to entered data.Entering Characters (7)The cursor is displayed as a horizontal line below the position of the next character to be entered.(8)The cursor is flashed by changing from visible to not visible.Keyboard(9)The keyboard associated to selected input field ‘Month’ is Numeric keyboard.(10)The keyboard contains enabled button for the number <1> to <9>, <Delete>(NA21) , <0> and disabled <Decimal_Separator>. NA21, Delete button");
             /*
             Test Step 10
             Action: Delete the old value and enter the new value ‘2016 for Year.Then, confirm an entered data by pressing an input field
@@ -406,6 +478,13 @@ namespace Testcase.DMITestCases
                                 @"7. The ‘Year’ echo text displays ‘2017’ in white." + Environment.NewLine +
                                 "8. A flashing (visible/invisible) underscore is displayed as a cursor after the last character of the data input field.");
 
+            TraceHeader("Test Step 11");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Perform action step 2-7 for keypad of the ‘Month’ input field");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "See the expected results of Step 2 – Step 7 and the following additional information,(1)The pressed key is added in an input field immediately. (2)The cursor is jumped to next position after entered the character immediately.(3)The input field is used to enter the Month");
             /*
             Test Step 11
             Action: Perform action step 2-7 for keypad of the ‘Month’ input field
@@ -608,6 +687,14 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The ‘9’ key is displayed enabled.");
 
+            TraceHeader("Test Step 12");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Delete the old value and enter the new value ‘12’ for Month.Then, confirm an entered data by pressing an input field");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,Input fields(1)The associated ‘Enter’ button is data field itself.(2)An input field is used to allow the driver to enter data.(3)The state of ‘Month’ input field is changed to ‘accepted’ as follows,The background colour of the Data Area is dark-grey.The colour of data value is white.(4)The next input field ‘Day’ is in state ‘selected’ as follows,The background colour of the Data Area is medium-grey.The colour of data value is black.Echo Texts(5)The echo text of ‘Month ‘is changed to white colour.(6)The value of echo text is changed refer to entered data.Entering Characters (7)The cursor is displayed as a horizontal line below the position of the next character to be entered.(8)The cursor is flashed by changing from visible to not visible.Keyboard(9)The keyboard associated to selected input field ‘Day’ is Numeric keyboard.(10)The keyboard contains enabled button for the number <1> to <9>, <Delete>(NA21) , <0> and disabled <Decimal_Separator>. NA21, Delete button");
             /*
             Test Step 12
             Action: Delete the old value and enter the new value ‘12’ for Month.Then, confirm an entered data by pressing an input field
@@ -631,6 +718,13 @@ namespace Testcase.DMITestCases
                                 @"7. The ‘Month’ echo text displays ‘12’ in white." + Environment.NewLine +
                                 "8. A flashing (visible/invisible) underscore is displayed as a cursor after the last character of the data input field.");
 
+            TraceHeader("Test Step 13");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Perform action step 2-7 for keypad of the ‘Day’ input field");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "See the expected results of Step 2 – Step 7 and the following additional information,(1)The pressed key is added in an input field immediately. (2)The cursor is jumped to next position after entered the character immediately.(3)The input field is used to enter the Day");
             /*
             Test Step 13
             Action: Perform action step 2-7 for keypad of the ‘Day’ input field
@@ -832,6 +926,14 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The ‘9’ key is displayed enabled.");
 
+            TraceHeader("Test Step 14");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Delete the old value and enter the new value ‘31’ for Day.Then, confirm an entered data by pressing an input field");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,Input fields(1)The associated ‘Enter’ button is data field itself.(2)An input field is used to allow the driver to enter data.(3)The state of ‘Day’ input field is changed to ‘accepted’ as follows,The background colour of the Data Area is dark-grey.The colour of data value is white.(4)The next input field ‘Hour’ is in state ‘selected’ as follows,The background colour of the Data Area is medium-grey.The colour of data value is black.(5) There are only 4 input fields displayed in the second page of window.(6)The label of 4th input field is ‘Hour’.(7)The label of 5th input field is ‘Minute’.(8)The label of 6th input field is ‘Second’.(9)The label of 7th input field is ‘Offset’.Echo Texts(10)The echo text of ‘Day ‘is changed to white colour.(11)The value of echo text is changed refer to entered data.Entering Characters (12)The cursor is displayed as a horizontal line below the position of the next character to be entered.(13)The cursor is flashed by changing from visible to not visible.Keyboard(14)The keyboard associated to selected input field ‘Hour’ is Numeric keyboard.(15)The keyboard contains enabled button for the number <1> to <9>, <Delete>(NA21) , <0> and disabled <Decimal_Separator>. NA21, Delete button.Navigation button(16)The state of ‘Previous’ and ‘Next’ button are displayed as follows, ‘Next’ button is disabled, display symbol NA18.2 ‘Previous’ button is enable, display symbol NA18(17)   The window title is displayed as ‘Set clock (2/2)’");
             /*
             Test Step 14
             Action: Delete the old value and enter the new value ‘31’ for Day.Then, confirm an entered data by pressing an input field
@@ -861,6 +963,13 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 @"10. The ‘Next’ button is displayed disabled (symbol NA18.2) and the ‘Previous’ button is displayed enabled (symbol 18).");
 
+            TraceHeader("Test Step 15");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Perform action step 2-7 for keypad of the ‘Hour’ input field");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "See the expected results of Step 2 – Step 7 and the following additional information,(1)The pressed key is added in an input field immediately. (2)The cursor is jumped to next position after entered the character immediately.(3)The input field is used to enter the Hour");
             /*
             Test Step 15
             Action: Perform action step 2-7 for keypad of the ‘Hour’ input field
@@ -1062,6 +1171,14 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The ‘9’ key is displayed enabled.");
 
+            TraceHeader("Test Step 16");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Delete the old value and enter the new value ‘11’ for Hour.Then, confirm an entered data by pressing an input field");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,Input fields(1)The associated ‘Enter’ button is data field itself.(2)An input field is used to allow the driver to enter data.(3)The state of ‘Hour’ input field is changed to ‘accepted’ as follows,The background colour of the Data Area is dark-grey.The colour of data value is white.(4)The next input field ‘Minute’ is in state ‘selected’ as follows,The background colour of the Data Area is medium-grey.The colour of data value is black.Echo Texts(5)The echo text of ‘Hour ‘is changed to white colour.(6)The value of echo text is changed refer to entered data.Entering Characters (7)The cursor is displayed as a horizontal line below the position of the next character to be entered.(8)The cursor is flashed by changing from visible to not visible.Keyboard(9)The keyboard associated to selected input field ‘Minute’ is Numeric keyboard.(10)The keyboard contains enabled button for the number <1> to <9>, <Delete>(NA21) , <0> and disabled <Decimal_Separator>. NA21, Delete button");
             /*
             Test Step 16
             Action: Delete the old value and enter the new value ‘11’ for Hour.Then, confirm an entered data by pressing an input field
@@ -1085,6 +1202,13 @@ namespace Testcase.DMITestCases
                                 @"7. The ‘Hour’ echo text displays ‘12’ in white." + Environment.NewLine +
                                 "8. A flashing (visible/invisible) underscore is displayed as a cursor after the last character of the data input field.");
 
+            TraceHeader("Test Step 17");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Perform action step 2-7 for keypad of the ‘Minute’ input field");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "See the expected results of Step 2 – Step 7 and the following additional information,(1)The pressed key is added in an input field immediately. (2)The cursor is jumped to next position after entered the character immediately.(3)The input field is used to enter the Minute");
             /*
             Test Step 17
             Action: Perform action step 2-7 for keypad of the ‘Minute’ input field
@@ -1286,6 +1410,14 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The ‘9’ key is displayed enabled.");
 
+            TraceHeader("Test Step 18");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Delete the old value and enter the new value ‘11’ for Minute.Then, confirm an entered data by pressing an input field");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,Input fields(1)The associated ‘Enter’ button is data field itself.(2)An input field is used to allow the driver to enter data.(3)The state of ‘Minute’ input field is changed to ‘accepted’ as follows,The background colour of the Data Area is dark-grey.The colour of data value is white.(4)The next input field ‘Second’ is in state ‘selected’ as follows,The background colour of the Data Area is medium-grey.The colour of data value is black.Echo Texts(5)The echo text of ‘Minute ‘is changed to white colour.(6)The value of echo text is changed refer to entered data.Entering Characters (7)The cursor is displayed as a horizontal line below the position of the next character to be entered.(8)The cursor is flashed by changing from visible to not visible.Keyboard(9)The keyboard associated to selected input field ‘Second’ is Numeric keyboard.(10)The keyboard contains enabled button for the number <1> to <9>, <Delete>(NA21) , <0> and disabled <Decimal_Separator>. NA21, Delete button");
             /*
             Test Step 18
             Action: Delete the old value and enter the new value ‘11’ for Minute.Then, confirm an entered data by pressing an input field
@@ -1309,6 +1441,13 @@ namespace Testcase.DMITestCases
                                 @"7. The ‘Minute’ echo text displays ‘12’ in white." + Environment.NewLine +
                                 "8. A flashing (visible/invisible) underscore is displayed as a cursor after the last character of the data input field.");
 
+            TraceHeader("Test Step 19");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Perform action step 2-7 for keypad of the ‘Second’ input field");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "See the expected results of Step 2 – Step 7 and the following additional information,(1)The pressed key is added in an input field immediately. (2)The cursor is jumped to next position after entered the character immediately.(3)The input field is used to enter the Second");
             /*
             Test Step 19
             Action: Perform action step 2-7 for keypad of the ‘Second’ input field
@@ -1510,6 +1649,14 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The ‘9’ key is displayed enabled.");
 
+            TraceHeader("Test Step 20");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Delete the old value and enter the new value ‘11’ for Second.Then, confirm an entered data by pressing an input field");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,Input fields(1)The associated ‘Enter’ button is data field itself.(2)An input field is used to allow the driver to enter data.(3)The state of ‘Second’ input field is changed to ‘accepted’ as follows,The background colour of the Data Area is dark-grey.The colour of data value is white.(4)The next input field ‘Offset’ is in state ‘selected’ as follows,The background colour of the Data Area is medium-grey.The colour of data value is black.Echo Texts(5)The echo text of ‘Second ‘is changed to white colour.(6)The value of echo text is changed refer to entered data.Entering Characters (7)The cursor is displayed as a horizontal line below the position of the next character to be entered.(8)The cursor is flashed by changing from visible to not visible.Keyboard(9)The keyboard associated to selected input field ‘Offset’ is Dedicated keyboard. (10)The label of key#1 is ‘+’ and the label of key#2 is ‘-‘");
             /*
             Test Step 20
             Action: Delete the old value and enter the new value ‘11’ for Second.Then, confirm an entered data by pressing an input field
@@ -1532,6 +1679,13 @@ namespace Testcase.DMITestCases
                                 @"7. The ‘Second’ echo text displays ‘12’ in white." + Environment.NewLine +
                                 "8. A flashing (visible/invisible) underscore is displayed as a cursor after the last character of the data input field.");
 
+            TraceHeader("Test Step 21");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Perform action step 2-7 for keypad of ‘+’ button for the ‘Offset’ input field");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "See the expected results of Step 2 – Step 7 and the following additional information,(1)The value of offset time is increased 15 minute. (2)The input field is used to enter the Offset.(3)   The Offset time is editable refer to received packet EVC-30 with variable and MMI_Q_REQUEST_ENABLE_64 #25 = 1 and MMI_Q_REQUEST_ENABLE_64 #26 = 1");
             /*
             Test Step 21
             Action: Perform action step 2-7 for keypad of ‘+’ button for the ‘Offset’ input field
@@ -1549,6 +1703,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The ‘+’ key is displayed enabled.");
 
+            TraceHeader("Test Step 22");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘+’ button until the value is increased to ‘+12:00’.Then, press ‘+’ button again");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,(1) The value of offset time still not changes and display as ‘+12:00’");
             /*
             Test Step 22
             Action: Press ‘+’ button until the value is increased to ‘+12:00’.Then, press ‘+’ button again
@@ -1561,6 +1722,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The offset time stays displayed as ‘+12:00’.");
 
+            TraceHeader("Test Step 23");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Perform action step 2-7 for keypad of ‘-’ button for the ‘Offset’ input field");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "See the expected results of Step 2 – Step 7 and the following additional information,(1)The value of offset time is decreased 15 minute. (2)The input field is used to enter the Offset");
             /*
             Test Step 23
             Action: Perform action step 2-7 for keypad of ‘-’ button for the ‘Offset’ input field
@@ -1578,6 +1746,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The ‘-’ key is displayed enabled.");
 
+            TraceHeader("Test Step 24");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘+’ button until the value is increased to ‘-12:00’.Then, press ‘-’ button again");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,(1) The value of offset time is still not changes and it is displayed as ‘-12:00’");
             /*
             Test Step 24
             Action: Press ‘+’ button until the value is increased to ‘-12:00’.Then, press ‘-’ button again
@@ -1591,6 +1766,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The offset time stays displayed as ‘-12:00’.");
 
+            TraceHeader("Test Step 25");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Confirm an entered data by pressing an input field");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,Input fields(1)The associated ‘Enter’ button is data field itself.(2)An input field is used to allow the driver to enter data.(3)The state of ‘Offset’ input field is changed to ‘accepted’ as follows,The background colour of the Data Area is dark-grey.The colour of data value is white.(4)There is no input field selected.Echo Texts(5)The echo text of ‘Offset ‘is changed to white colour.(6)The value of echo text is changed refer to entered data.Data Entry Window(7)The state of ‘Yes’ button below text label ‘Clock set?’ is enabled as follows,The background colour of the Data Area is medium-grey.The colour of data value is black.The colour of border is medium-grey");
             /*
             Test Step 25
             Action: Confirm an entered data by pressing an input field
@@ -1609,6 +1791,13 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "6. The ‘Yes’ button below the label ‘Clock set?’ is displayed enabled, with black text on a Medium-grey background and a Medium-grey border.");
 
+            TraceHeader("Test Step 26");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press and hold ‘Previous’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,(1)The state of button is changed to ‘Pressed’, the border of button is removed.(2)The sound ‘Click’ is played once");
             /*
             Test Step 26
             Action: Press and hold ‘Previous’ button
@@ -1622,6 +1811,13 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once.");
 
+            TraceHeader("Test Step 27");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Slide out the ‘Previous’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,(1)The border of the button is shown (state ‘Enabled’) without a sound");
             /*
             Test Step 27
             Action: Slide out the ‘Previous’ button
@@ -1635,6 +1831,13 @@ namespace Testcase.DMITestCases
                                 "1. The ‘Previous’ button is displayed enabled, with a border." + Environment.NewLine +
                                 "2. No sound is played.");
 
+            TraceHeader("Test Step 28");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Slide back into the ‘Previous’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,(1)The border of the button is back to state ‘Pressed’ without a sound");
             /*
             Test Step 28
             Action: Slide back into the ‘Previous’ button
@@ -1648,6 +1851,13 @@ namespace Testcase.DMITestCases
                                 "1. The ‘Previous’ button is displayed pressed, without a border." +
                                 "2. The ‘Click’ sound is not played.");
 
+            TraceHeader("Test Step 29");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Release ‘Previous’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,(1)The state of released button is changed to disabled.(2)   DMI displays the first page of Set clock window");
             /*
             Test Step 29
             Action: Release ‘Previous’ button
@@ -1660,6 +1870,13 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the first ‘Set clock’ window." + Environment.NewLine +
                                 "2. The ‘Previous’ button is displayed disabled.");
 
+            TraceHeader("Test Step 30");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Perform action step 24-27 for ‘Next’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "See the expected results of Step 24 – Step 27 and the following additional information,(1)The state of released button is changed to disabled.(2)   DMI displays the second page of Set clock window");
             /*
             Test Step 30
             Action: Perform action step 24-27 for ‘Next’ button
@@ -1673,6 +1890,14 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the second ‘Set clock’ window." + Environment.NewLine +
                                 "2. The ‘Next’ button is displayed disabled.");
 
+            TraceHeader("Test Step 31");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Perform the following procedure,Press ‘Previous’ button.Select ‘Year’ input field.Enter the new value without pressing an input field.Select ‘Day’ input field");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,(1) The state of ‘Yes’ button below text label ‘Clock set?’ is disabled. (2) The state of input field ‘Year’ is changed to ‘Not selected’ as follows,The value of ‘Year’ input field is removed and displayed as blank.The background colour of the input field is dark-grey");
             /*
             Test Step 31
             Action: Perform the following procedure,Press ‘Previous’ button.Select ‘Year’ input field.Enter the new value without pressing an input field.Select ‘Day’ input field
@@ -1689,6 +1914,13 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. The ‘Year’ data input field is displayed ‘Not Selected’ with a blank value on a Dark-grey background.");
 
+            TraceHeader("Test Step 32");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Perform the following procedure,Press ‘Next button.Select ‘Minute’ input field.Confirm the value of ‘Minute’ by pressing an input field");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information,(1) The state of input field ‘Year’ is changed to ‘selected’");
             /*
             Test Step 32
             Action: Perform the following procedure,Press ‘Next button.Select ‘Minute’ input field.Confirm the value of ‘Minute’ by pressing an input field
@@ -1701,6 +1933,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Year’  data input field is displayed ‘Selected’.");
 
+            TraceHeader("Test Step 33");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Enter the value ‘2016’ for ‘Year’.Then, confirm an entered data by pressing an input field");
+            TraceReport("Expected Result");
+            TraceInfo("The state of ‘Yes’ button is changed to enabled");
             /*
             Test Step 33
             Action: Enter the value ‘2016’ for ‘Year’.Then, confirm an entered data by pressing an input field
@@ -1712,6 +1950,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Yes’ button below the label ‘Clock set?’ is displayed enabled.");
 
+            TraceHeader("Test Step 34");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Perform action step 24-27 for ‘Yes’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "See the expected results of Step 24 – Step 27 and the following additional information,(1)DMI displays Settings window. (2)Use the log file to confirm that DMI sent out packet [MMI_SET_TIME_MMI (EVC-109)] with,MMI_T_ZONE_OFFSET = -48MMI_T_UTC = 1481429471");
             /*
             Test Step 34
             Action: Perform action step 24-27 for ‘Yes’ button
@@ -1749,6 +1994,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window.");
 
+            TraceHeader("Test Step 35");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Set clock’ button");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Set clock window");
             /*
             Test Step 35
             Action: Press ‘Set clock’ button
@@ -1772,6 +2023,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Set clock window");
 
+            TraceHeader("Test Step 36");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press and hold the Label area of ‘Month’ input field");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,(1)    The state of ‘Month’ input field is changed to ‘Pressed’, the border of button is removed.The state of ‘Month’ input field remains ‘not selected’. The state of ‘Year’ input field remains ‘selected’.(2)    The sound ‘Click’ is played once");
             /*
             Test Step 36
             Action: Press and hold the Label area of ‘Month’ input field
@@ -1786,6 +2044,13 @@ namespace Testcase.DMITestCases
                                 @"2. The ‘Month’ data input field stays ‘Not Selected’." + Environment.NewLine +
                                 @"3. The ‘Year’ data input field stays ‘Selected’.");
 
+            TraceHeader("Test Step 37");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Slide out the Label area of ‘Month’ input field");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,(1)    The border of ‘Month’ input field is shown (state ‘Enabled’) without a sound.The state of ‘Month’ input field remains ‘not selected’. The state of ‘Year’ input field remains ‘selected’");
             /*
             Test Step 37
             Action: Slide out the Label area of ‘Month’ input field
@@ -1801,6 +2066,13 @@ namespace Testcase.DMITestCases
                                 @"2. The ‘Month’ data input field stays ‘Not Selected’." + Environment.NewLine +
                                 @"3. The ‘Year’ data input field stays ‘Selected’.");
 
+            TraceHeader("Test Step 38");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Slide back into the Label area of ‘Month’ input field");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,(1)    The state of ‘Month’ input field is changed to ‘Pressed’, the border of button is removed.The state of ‘Month’ input field remains ‘not selected’. The state of ‘Year’ input field remains ‘selected’");
             /*
             Test Step 38
             Action: Slide back into the Label area of ‘Month’ input field
@@ -1816,6 +2088,13 @@ namespace Testcase.DMITestCases
                                 @"2. The ‘Month’ data input field stays ‘Not Selected’." + Environment.NewLine +
                                 @"3. The ‘Year’ data input field stays ‘Selected’.");
 
+            TraceHeader("Test Step 39");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Release the pressed area");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,(1)    The state of ‘Month’ input field is changed to selected");
             /*
             Test Step 39
             Action: Release the pressed area
@@ -1827,6 +2106,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Month’ data input field is displayed ‘Selected’.");
 
+            TraceHeader("Test Step 40");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Perform action step 34-37 for the Label area of each input field");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,(1)    The state of an input field is changed to ‘selected’ when release the pressed area at the Label area of input field");
             /*
             Test Step 40
             Action: Perform action step 34-37 for the Label area of each input field
@@ -1904,6 +2190,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Hour’ data input field is displayed ‘Selected’.");
 
+            TraceHeader("Test Step 41");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Perform action step 34-37 for the Data area of each input field");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,(1)    The state of an input field is changed to ‘selected’ when release the pressed area at the Data area of input field");
             /*
             Test Step 41
             Action: Perform action step 34-37 for the Data area of each input field
@@ -2017,6 +2310,14 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Hour’ data input field is displayed ‘Selected’.");
 
+            TraceHeader("Test Step 42");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Perform the following procedure,Press ‘Language’ button.Select and confirm another language except English.Press ‘Set Clock’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI displays Set clock window.Verify the following information,The labels are updated refer to selected language");
             /*
             Test Step 42
             Action: Perform the following procedure,Press ‘Language’ button.Select and confirm another language except English.Press ‘Set Clock’ button
@@ -2031,6 +2332,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. All the labels are displayed in German.");
 
+            TraceHeader("Test Step 43");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Perform the following procedure,Press ‘Close’ button.Press ‘Language’ button.Select and confirm English language");
+            TraceReport("Expected Result");
+            TraceInfo("The labels are updated refer to selected language");
             /*
             Test Step 43
             Action: Perform the following procedure,Press ‘Close’ button.Press ‘Language’ button.Select and confirm English language
@@ -2044,6 +2352,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. All the labels are displayed in English.");
 
+            TraceHeader("Test Step 44");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Use the test script file 22_13_1_a.xml to send EVC-30");
+            TraceReport("Expected Result");
+            TraceInfo("The Set clock button is disabled");
             /*
             Test Step 44
             Action: Use the test script file 22_13_1_a.xml to send EVC-30
@@ -2054,6 +2368,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Set clock’ button is disabled");
 
+            TraceHeader("Test Step 45");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Use the test script file 22_13_1_c.xml to send EVC-30 with,MMI_NID_WINDOW = 4MMI_Q_REQUEST_ENABLE_64 (#25) = 0MMI_Q_REQUEST_ENABLE_64 (#26) = 1");
+            TraceReport("Expected Result");
+            TraceInfo("The Set clock button is enabled");
             /*
             Test Step 45
             Action: Use the test script file 22_13_1_c.xml to send EVC-30 with,MMI_NID_WINDOW = 4MMI_Q_REQUEST_ENABLE_64 (#25) = 0MMI_Q_REQUEST_ENABLE_64 (#26) = 1
@@ -2065,6 +2386,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Set clock’ button is enabled");
 
+            TraceHeader("Test Step 46");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Set Clock’ button. Then, select an input field ‘Offset’ at second page");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information, (1)   The Offset time is editable refer to received packet EVC-30 with variable MMI_Q_REQUEST_ENABLE_64 #26 = 1(2)   All other input fields except Offset time are non-editable refer to received packet EVC-30 with variable MMI_Q_REQUEST_ENABLE_64 #25 = 0");
             /*
             Test Step 46
             Action: Press ‘Set Clock’ button. Then, select an input field ‘Offset’ at second page
@@ -2080,6 +2408,14 @@ namespace Testcase.DMITestCases
                                 "1. The ‘Offset’ data input field can be edited." + Environment.NewLine +
                                 "2. All other data input fields are disabled.");
 
+            TraceHeader("Test Step 47");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Perform the following procedure,Change the value of Offset time to “+12:00”Confirm an entered value by pressing an input field.Press ‘Yes’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,(1)  Use the log file to confirm that DMI sent out packet [MMI_SET_TIME_MMI (EVC-109)] with,MMI_T_ZONE_OFFSET = 48MMI_T_UTC = current UTC time calculated from current UTC time");
             /*
             Test Step 47
             Action: Perform the following procedure,Change the value of Offset time to “+12:00”Confirm an entered value by pressing an input field.Press ‘Yes’ button
@@ -2092,6 +2428,13 @@ namespace Testcase.DMITestCases
             //EVC109_MmiSetTimeMmi.CheckMmiTZoneOffset = -48;
             //EVC109_MmiSetTimeMmi.CheckMmiTUTC = 1481429471;   // ??
 
+            TraceHeader("Test Step 48");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Perform the following procedure,Use the test script file 22_13_1_a.xml to send EVC-30.Then, Use the test script file 22_13_1_b.xml to send EVC-30 with,MMI_NID_WINDOW = 4MMI_Q_REQUEST_ENABLE_64 (#25) = 1MMI_Q_REQUEST_ENABLE_64 (#26) = 0");
+            TraceReport("Expected Result");
+            TraceInfo("The Set clock button is enabled");
             /*
             Test Step 48
             Action: Perform the following procedure,Use the test script file 22_13_1_a.xml to send EVC-30.Then, Use the test script file 22_13_1_b.xml to send EVC-30 with,MMI_NID_WINDOW = 4MMI_Q_REQUEST_ENABLE_64 (#25) = 1MMI_Q_REQUEST_ENABLE_64 (#26) = 0
@@ -2103,6 +2446,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Set clock’ button is enabled");
 
+            TraceHeader("Test Step 49");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Set Clock’ button. Then, select an input field ‘Offset’ at second page");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information, (1)   The Offset time is editable  refer to received packet EVC-30 with variable MMI_Q_REQUEST_ENABLE_64 #25 = 1");
             /*
             Test Step 49
             Action: Press ‘Set Clock’ button. Then, select an input field ‘Offset’ at second page
@@ -2115,6 +2465,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Offset’ data input field can be edited.");
 
+            TraceHeader("Test Step 50");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press the ‘Close’ button");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information,(1)   DMI displays Settings window");
             /*
             Test Step 50
             Action: Press the ‘Close’ button
@@ -2126,6 +2482,11 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window.");
 
+            TraceHeader("Test Step 51");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            
             /*
             Test Step 51
             Action: End of test
@@ -2167,6 +2528,7 @@ namespace Testcase.DMITestCases
                         EVC30_MMIRequestEnable.EnabledRequests.SetLocalOffset;
                     break;
             }
+
             EVC30_MMIRequestEnable.Send();
         }
 

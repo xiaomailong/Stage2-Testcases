@@ -29,9 +29,18 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Perform SoM until select and confirm Level 2");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information;(1)   Verify DMI still displays Level window until RBC contact window is displayed");
             /*
             Test Step 1
             Action: Perform SoM until select and confirm Level 2
@@ -86,6 +95,14 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the RBC contact window.");
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Use the test script file 10_2_7_a.xml to disable and enable button of the RBC contact window via EVC-8 withPacket 1 (Entry state of ‘ST05’)MMI_Q_TEXT_CRITERIA = 3 MMI_Q_TEXT = 716Packet 2 (Exit state of ‘ST05’)MMI_Q_TEXT_CRITERIA = 4MMI_Q_TEXT = 716");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information;DMI in the entry state of ‘ST05’(1)    The hourglass symbol ST05 is displayed at window title area.(2)    The hourglass symbol ST05 is vertically aligned center of the window title area.(3)    The symbol ST05 is move to the right every second.(4)    After symbol ST05 is moved to the end of the window title area, the symbol comes back to the first position and keeps moving to the right. (5)    Verify all buttons and the close button is disable.(6)    The disabled Close button NA12 is display in area G.10 seconds laterDMI in the exit state of ‘ST05’(7)   The hourglass symbol ST05 is removed.(8)   The state of all buttons is restored according to the last status before script is sent.(9)   The enabled Close button NA11 is display in area G");
             /*
             Test Step 2
             Action: Use the test script file 10_2_7_a.xml to disable and enable button of the RBC contact window via EVC-8 withPacket 1 (Entry state of ‘ST05’)MMI_Q_TEXT_CRITERIA = 3 MMI_Q_TEXT = 716Packet 2 (Exit state of ‘ST05’)MMI_Q_TEXT_CRITERIA = 4MMI_Q_TEXT = 716
@@ -94,6 +111,14 @@ namespace Testcase.DMITestCases
             */
             XML_10_7_a_b(msgType.typea);
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Use the test script file 10_2_7_b.xml to disable and enable button via EVC-22 withPacket 1 (disable all button)MMI_Q_CLOSE_ENABLE (#0) = 1Packet 2 (enable all button)MMI_Q_CLOSE_ENABLE (#0) = 0Note: Stopwatch is required for accuracy of test result");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information;(1)   ‘close’ buttons in RBC contact window is enable.10 seconds later(2)   ‘close’ buttons in Level window is disable");
             /*
             Test Step 3
             Action: Use the test script file 10_2_7_b.xml to disable and enable button via EVC-22 withPacket 1 (disable all button)MMI_Q_CLOSE_ENABLE (#0) = 1Packet 2 (enable all button)MMI_Q_CLOSE_ENABLE (#0) = 0Note: Stopwatch is required for accuracy of test result
@@ -102,6 +127,14 @@ namespace Testcase.DMITestCases
             */
             XML_10_7_a_b(msgType.typeb);
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Perform the following procedure;Press and hold ‘Radio network ID’ button at least 2 secondsRelease ‘Radio network ID’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information;(1)   Verify DMI still displays RBC contact window until Radio network ID window is displayed.(2)   Verify the close button is always enable");
             /*
             Test Step 4
             Action: Perform the following procedure;Press and hold ‘Radio network ID’ button at least 2 secondsRelease ‘Radio network ID’ button
@@ -122,6 +155,13 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 @"2. ‘Close’ button is always enabled.");
 
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Repeat action step 2 with Radio network ID window");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information;DMI entry on state of 'ST05'(1)   The hourglass symbol ST05 is displayed.(2)   Verify all buttons and the close button is disable.(3)   The disabled Close button NA12 is display in area G.(4)   The Input Field is deselected.10 seconds laterDMI exit on state of 'ST05'(5)   The hourglass symbol ST05 is removed.(6)   The state of all buttons is restored according to the last status before script is sent.(7)   The enabled Close button NA11 is display in area G.(8)   The input field is in the ‘Selected’ state");
             /*
             Test Step 5
             Action: Repeat action step 2 with Radio network ID window
@@ -152,6 +192,14 @@ namespace Testcase.DMITestCases
                                 "4. ‘Close’ button NA11 is displayed enabled in area G." + Environment.NewLine +
                                 "5. The Input Field is selected.");
 
+            TraceHeader("Test Step 6");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Perform the following procedure;Press ‘close’ button (Radio network ID window) Press ‘Enter RBC data’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information;(1)   Verify DMI still displays RBC contact window until RBC data window is displayed.(2)   Verify the close button is always enable");
             /*
             Test Step 6
             Action: Perform the following procedure;Press ‘close’ button (Radio network ID window) Press ‘Enter RBC data’ button
@@ -172,6 +220,13 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 @"2. ‘Close’ button is always enabled.");
 
+            TraceHeader("Test Step 7");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Repeat action step 2 with RBC data window");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information;DMI entry on state of 'ST05'(1)   The hourglass symbol ST05 is displayed.(2)   Verify all buttons and the close button is disable.(3)   The disabled Close button NA12 is display in area G.(4)   All Input Field are deselected.10 seconds laterDMI exit on state of 'ST05'(5)   The hourglass symbol ST05 is removed.(6)   The state of all buttons is restored according to the last status before script is sent.(7)   The enabled Close button NA11 is display in area G.(8)   The input field is stated as follows:The first input field is in the ‘Selected’ state.The all others are in the ‘Not selected’ state");
             /*
             Test Step 7
             Action: Repeat action step 2 with RBC data window
@@ -203,6 +258,11 @@ namespace Testcase.DMITestCases
                                 "5. The first Input Field is selected." + Environment.NewLine +
                                 "6. All other Input Fields are not selected");
 
+            TraceHeader("Test Step 8");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            
             /*
             Test Step 8
             Action: End of test

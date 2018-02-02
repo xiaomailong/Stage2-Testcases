@@ -33,9 +33,17 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Activate cabin A");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays in SB mode. The Driver ID window is displayed");
             /*
             Test Step 1
             Action: Activate cabin A
@@ -53,6 +61,13 @@ namespace Testcase.DMITestCases
             // Call generic Check Results Method
             DmiExpectedResults.Driver_ID_window_displayed_in_SB_mode(this);
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Driver performs SoM to SR mode, Level 1.Note: Please set Train length = 100m during train data entry process");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays in SR mode, level 1");
             /*
             Test Step 2
             Action: Driver performs SoM to SR mode, Level 1.Note: Please set Train length = 100m during train data entry process
@@ -68,6 +83,13 @@ namespace Testcase.DMITestCases
             // Call generic Check Results Method
             DmiExpectedResults.SR_Mode_displayed(this);
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Drive the train forward passing BG1Then drive the train forward  with speed = 40 km/h in FS mode");
+            TraceReport("Expected Result");
+            TraceInfo("DMI changes from SR to FS mode");
             /*
             Test Step 3
             Action: Drive the train forward passing BG1Then drive the train forward  with speed = 40 km/h in FS mode
@@ -93,6 +115,11 @@ namespace Testcase.DMITestCases
             // Call generic Check Results Method
             DmiExpectedResults.FS_mode_displayed(this);
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Driving forward passing BG2");
+            
             /*
             Test Step 4
             Action: Driving forward passing BG2
@@ -102,6 +129,12 @@ namespace Testcase.DMITestCases
 
             // ??? No observation: still in FS mode maybe
 
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("The train is in reversing area");
+            TraceReport("Expected Result");
+            TraceInfo("DMI remains displays in FS mode");
             /*
             Test Step 5
             Action: The train is in reversing area
@@ -113,6 +146,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI still displays the FS mode symbol (MO11) in area B7");
 
+            TraceHeader("Test Step 6");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Stop the train");
+            TraceReport("Expected Result");
+            TraceInfo("The train is at standstill.Driver is informed that reversing is possible");
             /*
             Test Step 6
             Action: Stop the train
@@ -130,6 +169,13 @@ namespace Testcase.DMITestCases
                                 "1. DMI indicates speed = 0 km/h" + Environment.NewLine +
                                 "2. DMI displays message that reversing is possible and displays symbol ST06 in sub-area C6");
 
+            TraceHeader("Test Step 7");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Change the direction of train to reverse. Then select and confirm RV mode");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI displays in RV mode, level 1.Verify the following information,Use the log file to confirm that the distance to target (bar and digital) is calculated from the received packet information EVC-7 and EVC-1 as follows,(EVC-7) OBU_TR_O_TRAIN – (EVC-1) MMI_O_BRAKE_TARGETExample: The observation point of the distance target is 407. [EVC-7.OBU_TR_O_TRAIN = 1000080700] – [EVC-1.MMI_O_BRAKETARGET = 1000040036] = 40664 (406.64 m)Use the log file to confirm that the distance to target bar is display when DMI received packet information EVC-7 with, OBU_TR_M_MODE = 14");
             /*
             Test Step 7
             Action: Change the direction of train to reverse. Then select and confirm RV mode
@@ -145,6 +191,11 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in RV mode, level 1.");
 
+            TraceHeader("Test Step 8");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            
             /*
             Test Step 8
             Action: End of test

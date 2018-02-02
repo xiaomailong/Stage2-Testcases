@@ -49,8 +49,16 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Driver drives the train forward passing BG1. Then, press the ‘Special’ button.");
+            TraceReport("Expected Result");
+            TraceInfo("DMI still displays in SR mode. Verify that ‘Adhesion’ button is enabled");
             /*
             Test Step 1
             Action: Driver drives the train forward passing BG1. Then, press the ‘Special’ button.
@@ -67,6 +75,13 @@ namespace Testcase.DMITestCases
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Special_window_with_enabled_Adhesion_button(this);
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Press ‘Adhesion’ button. Then, press ‘Slippery rail’ button and confirm an by pressing the input field.");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays symbol ST02 in sub-area A4");
             /*
             Test Step 2
             Action: Press ‘Adhesion’ button. Then, press ‘Slippery rail’ button and confirm an by pressing the input field.
@@ -87,6 +102,12 @@ namespace Testcase.DMITestCases
 
             DmiExpectedResults.Driver_symbol_displayed(this, "Adhesion factor slippery rail", "ST02", "A4", false);
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Simulate the communication loss between ETCS Onboard and DMI");
+            TraceReport("Expected Result");
+            TraceInfo("Adhesion symbol ST02 is removed");
             /*
             Test Step 3
             Action: Simulate the communication loss between ETCS Onboard and DMI
@@ -97,6 +118,12 @@ namespace Testcase.DMITestCases
             DmiActions.Simulate_communication_loss_EVC_DMI(this);
             this.WaitForVerification("Has the \"Slippery rail\" symbol disappeared from the DMI?");
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Re-establish the communication between ETCS onboard and DMI");
+            TraceReport("Expected Result");
+            TraceInfo("Verify that the Adhesion symbol ST02 is resumed");
             /*
             Test Step 4
             Action: Re-establish the communication between ETCS onboard and DMI
@@ -106,6 +133,12 @@ namespace Testcase.DMITestCases
             DmiActions.Re_establish_communication_EVC_DMI(this);
             DmiExpectedResults.Driver_symbol_displayed(this, "Adhesion factor slippery rail", "ST02", "A4", false);
 
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Special’ button. Press ‘Adhesion’ button. Select and confirm ‘Non slippery rail’ button");
+            TraceReport("Expected Result");
+            TraceInfo("No adhesion factor indication is displayed.");
             /*
             Test Step 5
             Action: Press ‘Special’ button. Press ‘Adhesion’ button. Select and confirm ‘Non slippery rail’ button
@@ -124,6 +157,12 @@ namespace Testcase.DMITestCases
 
             this.WaitForVerification("Has the \"Slippery rail\" symbol disappeared from the DMI?");
 
+            TraceHeader("Test Step 6");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train forward passing BG2");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays symbol ST02 in sub-area A4");
             /*
             Test Step 6
             Action: Drive the train forward passing BG2
@@ -137,6 +176,12 @@ namespace Testcase.DMITestCases
             // Call generic Check Results Method
             DmiExpectedResults.Driver_symbol_displayed(this, "Adhesion factor slippery rail", "ST02", "A4", false);
 
+            TraceHeader("Test Step 7");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train forward");
+            TraceReport("Expected Result");
+            TraceInfo("No adhesion factor indication is displayed.");
             /*
             Test Step 7
             Action: Drive the train forward
@@ -148,6 +193,12 @@ namespace Testcase.DMITestCases
 
             this.WaitForVerification("Has the \"Slippery rail\" symbol disappeared from the DMI?");
 
+            TraceHeader("Test Step 8");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Stop the train");
+            TraceReport("Expected Result");
+            TraceInfo("The Train is at standstill");
             /*
             Test Step 8
             Action: Stop the train
@@ -156,6 +207,11 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.Stop_the_train(this);
 
+            TraceHeader("Test Step 9");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            
             /*
             Test Step 9
             Action: End of test

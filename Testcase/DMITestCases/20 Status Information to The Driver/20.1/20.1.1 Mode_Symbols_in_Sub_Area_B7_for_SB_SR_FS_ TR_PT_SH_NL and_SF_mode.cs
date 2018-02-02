@@ -24,6 +24,8 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
             #region Test Step 1
@@ -216,6 +218,12 @@ namespace Testcase.DMITestCases
 
             #region Test Step 10
 
+            TraceHeader("Test Step 10");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Force the train into SH mode by the steps below:");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information,");
             /*
             Test Step 10
             Action: Force the train into SH mode by the steps below:
@@ -243,6 +251,12 @@ namespace Testcase.DMITestCases
 
             #region Test Step 11
 
+            TraceHeader("Test Step 11");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Force the train into NL mode by the steps below:");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information,");
             /*
             Test Step 11
             Action: Force the train into NL mode by the steps below:
@@ -287,6 +301,12 @@ namespace Testcase.DMITestCases
 
             #region Test Step 12
 
+            TraceHeader("Test Step 12");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Force the train into SF mode by the steps below:");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information,");
             /*
             Test Step 12
             Action: Force the train into SF mode by the steps below:

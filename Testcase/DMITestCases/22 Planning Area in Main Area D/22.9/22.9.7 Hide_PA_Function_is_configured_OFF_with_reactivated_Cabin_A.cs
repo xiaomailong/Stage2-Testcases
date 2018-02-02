@@ -24,10 +24,18 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
             TraceInfo("This test case requires an ATP configuration change - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Power On the system");
+            TraceReport("Expected Result");
+            TraceInfo("The DMI displays the default window");
             /*
             Test Step 1
             Action: Power On the system
@@ -38,6 +46,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Default window.");
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Activate cabin A and Perform SoM to SR mode, Level 1");
+            TraceReport("Expected Result");
+            TraceInfo("The DMI displays in SR mode, level 1");
             /*
             Test Step 2
             Action: Activate cabin A and Perform SoM to SR mode, Level 1
@@ -49,6 +63,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SR mode, Level 1.");
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train forward with speed = 40 km/h pass BG1");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays in FS mode, Level 1.There is no PA display on DMI");
             /*
             Test Step 3
             Action: Drive the train forward with speed = 40 km/h pass BG1
@@ -62,6 +82,12 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays in FS mode, Level 1." + Environment.NewLine +
                                 "2. The Planning Area is not displayed in area D.");
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press the main area D");
+            TraceReport("Expected Result");
+            TraceInfo("The DMI displays the PA.The Hide PA button is appeared on the area D of the DMI");
             /*
             Test Step 4
             Action: Press the main area D
@@ -76,6 +102,12 @@ namespace Testcase.DMITestCases
                                 "1. The Planning Area is displayed in area D." + Environment.NewLine +
                                 "2. The ‘Hide PA’ button is displayed in area D.");
 
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Stop the train. Then, deactivate cabin A");
+            TraceReport("Expected Result");
+            TraceInfo("The train is at standstill.DMI is displays in SB mode");
             /*
             Test Step 5
             Action: Stop the train. Then, deactivate cabin A
@@ -92,6 +124,12 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays in SB mode." + Environment.NewLine +
                                 "2. The speed displayed is ‘0’.");
 
+            TraceHeader("Test Step 6");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Activate cabin A and Perform SoM to SR mode, Level 1");
+            TraceReport("Expected Result");
+            TraceInfo("The DMI displays in SR mode, level 1");
             /*
             Test Step 6
             Action: Activate cabin A and Perform SoM to SR mode, Level 1
@@ -107,6 +145,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SR mode, Level 1.");
 
+            TraceHeader("Test Step 7");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train forward with speed = 40 km/h pass BG2");
+            TraceReport("Expected Result");
+            TraceInfo("The DMI shows “Entering FS” message.There is no PA display on DMI");
             /*
             Test Step 7
             Action: Drive the train forward with speed = 40 km/h pass BG2
@@ -125,6 +169,12 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the message ‘Entering FS’." + Environment.NewLine +
                                 "2. The Planning Area is not displayed in area D.");
 
+            TraceHeader("Test Step 8");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press the area D");
+            TraceReport("Expected Result");
+            TraceInfo("The DMI displays the PA.The Hide PA button is appeared on  the area D of the DMI");
             /*
             Test Step 8
             Action: Press the area D
@@ -138,6 +188,11 @@ namespace Testcase.DMITestCases
                                 "1. The Planning Area is displayed in area D." + Environment.NewLine +
                                 "2. The ‘Hide PA’ button is displayed in area D.");
 
+            TraceHeader("Test Step 9");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            
             /*
             Test Step 9
             Action: End of test

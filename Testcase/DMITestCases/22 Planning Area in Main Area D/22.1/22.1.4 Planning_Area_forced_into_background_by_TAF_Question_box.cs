@@ -24,10 +24,18 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
             TraceInfo("This test case requires a DMI configuration change - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Perform SoM to SR mode, level 2");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays in SR mode, level 2");
             /*
             Test Step 1
             Action: Perform SoM to SR mode, level 2
@@ -40,6 +48,12 @@ namespace Testcase.DMITestCases
                                 "1. DMI is displaying Staff Responsible Mode." + Environment.NewLine +
                                 "2. DMI shows that the ATP is in Level 2.");
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Receive information from RBC");
+            TraceReport("Expected Result");
+            TraceInfo("DMI changes from SR mode to FS mode, level 2");
             /*
             Test Step 2
             Action: Receive information from RBC
@@ -51,6 +65,12 @@ namespace Testcase.DMITestCases
                                 "1. DMI is displying Full Supervision Mode." + Environment.NewLine +
                                 "2. DMI shows that the ATP is in Level 2.");
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Acknowledge OS mode by pressing at area C1");
+            TraceReport("Expected Result");
+            TraceInfo("DMI changes from FS mode to OS mode, level 2");
             /*
             Test Step 3
             Action: Acknowledge OS mode by pressing at area C1
@@ -63,6 +83,13 @@ namespace Testcase.DMITestCases
                                 "2. DMI shows that the ATP is in Level 2.");
 
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Received information from RBC");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI displays symbol DR02 (Confirm Track Ahead Free) in Main area D.Verify that Planning area is forced into background, and it is not display in Main area D");
             /*
             Test Step 4
             Action: Received information from RBC
@@ -81,6 +108,12 @@ namespace Testcase.DMITestCases
                                 "3. An acknowledgement is requested");
 
 
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train forward");
+            TraceReport("Expected Result");
+            TraceInfo("The symbol DR02 is still displayed in Main area D");
             /*
             Test Step 5
             Action: Drive the train forward
@@ -90,6 +123,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Please press the DMI button to acknowledge that the track ahead is free.");
 
 
+            TraceHeader("Test Step 6");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Yes’ button in Main area D");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI displays PA in Main area D again.Verify that the following object is moving down to the bottom of area D.PASPUse the log file to confirm that DMI sends out packet [MMI_DRIVER_ACTION (EVC-152)] with the value of variable MMI_M_DRIVER_ACTION refer to sequence below,a)   MMI_M_DRIVER_ACTION = 22 (Confirmation of Track Ahead Free)");
             /*
             Test Step 6
             Action: Press ‘Yes’ button in Main area D
@@ -109,6 +149,11 @@ namespace Testcase.DMITestCases
 
             //{TraceInfo("The DMI driver action to confirm TAF is INCORRECT");}
 
+            TraceHeader("Test Step 7");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            
             /*
             Test Step 7
             Action: End of test

@@ -45,8 +45,16 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Wheel diameter’ button");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Wheel diameter window.");
             /*
             Test Step 1
             Action: Press ‘Wheel diameter’ button
@@ -72,6 +80,12 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Wheel Diameter window." + Environment.NewLine +
                                 "2. The Wheel diameter present its contents as Input Fields.");
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Confirm all value of each Input Field.");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Wheel diameter validation window.");
             /*
             Test Step 2
             Action: Confirm all value of each Input Field.
@@ -108,6 +122,12 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "4. The echo text in the Wheel diameter validation window is placed at a different location from the Input Fields in the Wheel diameter window.");
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Yes’ button.");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Settings window.");
             /*
             Test Step 3
             Action: Press ‘Yes’ button.
@@ -124,6 +144,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window.");
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Radar’ button");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Radar window.");
             /*
             Test Step 4
             Action: Press ‘Radar’ button
@@ -145,6 +171,12 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Radar window." + Environment.NewLine +
                                 "2. The Radar window displays its contents as Input Fields.");
 
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Confirm all value of each Input Field.");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Radar validation window.");
             /*
             Test Step 5
             Action: Confirm all value of each Input Field.
@@ -179,6 +211,12 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "4. The echo text in the Radar validation window is at a different location from the Input Fields in the Radar window.");
 
+            TraceHeader("Test Step 6");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Perform the following procedure,");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Settings window.");
             /*
             Test Step 6
             Action: Perform the following procedure,
@@ -197,6 +235,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window.");
 
+            TraceHeader("Test Step 7");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Set VBC’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI displays Set VBC window.Verify the following information,(1)    Use the log file to confirm that DMI received packet EVC-18 from ETCS Onboard.(2)   The format of presentation in Set VBC window is presented as an Input Field");
             /*
             Test Step 7
             Action: Press ‘Set VBC’ button
@@ -213,6 +258,13 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Set VBC window." + Environment.NewLine +
                                 "2. The Set VBC window displays its contents as Input Fields.");
 
+            TraceHeader("Test Step 8");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Enter and confirm the value ‘65536’ at an Input Field.Then, press ‘Yes’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI displays Radar validation window.Verify the following information,(1)    Use the log file to confirm that DMI sent out packet EVC-118 to ETCS Onboard.(2)    Use the log file to confirm that DMI received packet EVC-28 from ETCS Onboard.(3)   The position of ‘Yes’ button on Set VBC validation window is located at the different location of ‘Yes’ button on Set VBC window.(4)   The format of presentation in Set VBC validation window is difference from Set VBC window as follows,           -   The data pending for confirmation of Set VBC validation window is presented as echo texts.(5)   The presentation of echo text in Set VBC validation window is located at the difference location of an Input Fields in Set VBC window");
             /*
             Test Step 8
             Action: Enter and confirm the value ‘65536’ at an Input Field.Then, press ‘Yes’ button
@@ -236,6 +288,13 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "4. The echo text in the Set VBC validation window is at a different location from the Input Fields in the Set VBC window.");
 
+            TraceHeader("Test Step 9");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Yes’ button.Then, confirm an entered value by pressing at an Input Field");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI displays Settings window.Verify the following information,(1)    Use the log file to confirm that DMI sent out packet EVC-128 with variable based on confirmed data to ETCS Onboard");
             /*
             Test Step 9
             Action: Press ‘Yes’ button.Then, confirm an entered value by pressing at an Input Field
@@ -250,6 +309,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window.");
 
+            TraceHeader("Test Step 10");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Remove VBC’ window");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI displays Remove VBC window.Verify the following information,(1)    Use the log file to confirm that DMI received packet EVC-19 from ETCS Onboard.(2)   The format of presentation in Remove VBC window is presented as an Input Field");
             /*
             Test Step 10
             Action: Press ‘Remove VBC’ window
@@ -265,6 +331,13 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Remove VBC window." + Environment.NewLine +
                                 "2. The Remove VBC window displays its contents as Input Fields.");
 
+            TraceHeader("Test Step 11");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Enter and confirm the value ‘65536’ at an Input Field.Then, press ‘Yes’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI displays Radar validation window.Verify the following information,(1)   Use the log file to confirm that DMI sent out packet EVC-119 to ETCS Onboard. (2)   Use the log file to confirm that DMI received packet EVC-29 from ETCS Onboard.(3)   The position of ‘Yes’ button on Remove VBC validation window is located at the different location of ‘Yes’ button on Remove VBC window.(4)   The format of presentation in Remove VBC validation window is difference from Remove VBC window as follows,           -   The data pending for confirmation of Remove VBC validation window is presented as echo texts.(5)   The presentation of echo text in Remove VBC validation window is located at the difference location of an Input Fields in Remove VBC window");
             /*
             Test Step 11
             Action: Enter and confirm the value ‘65536’ at an Input Field.Then, press ‘Yes’ button
@@ -286,6 +359,13 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "4. The echo text in the Remove VBC validation window is at a different location from the Input Fields in the Remove VBC window.");
 
+            TraceHeader("Test Step 12");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Yes’ button.Then, confirm an entered value by pressing at an Input Field");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI displays Settings window.Verify the following information,(1)    Use the log file to confirm that DMI sent out packet EVC-129 with variable based on confirmed data to ETCS Onboard");
             /*
             Test Step 12
             Action: Press ‘Yes’ button.Then, confirm an entered value by pressing at an Input Field
@@ -300,6 +380,14 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window.");
 
+            TraceHeader("Test Step 13");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Perform the following procedure,Press ‘Close’ buttonEnter Driver ID and skip brake test.Select and confirm ‘Level 1’.Press ‘Train data’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI displays Train data window.Verify the following information,(1)    Use the log file to confirm that DMI received packet EVC-6 from ETCS Onboard.(2)   The format of presentation in Train data window is presented as an Input Fields");
             /*
             Test Step 13
             Action: Perform the following procedure,Press ‘Close’ buttonEnter Driver ID and skip brake test.Select and confirm ‘Level 1’.Press ‘Train data’ button
@@ -315,6 +403,13 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Train data window." + Environment.NewLine +
                                 "2. The Train data window displays its contents as Input Fields.");
 
+            TraceHeader("Test Step 14");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Confirm all value of each Input Field.Then, press ‘Yes’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI displays Train data validation window.Verify the following information,(1)    Use the log file to confirm that DMI sent out packet EVC-107 with variable based on confirmed data to ETCS Onboard.(2)   Use the log file to confirm that DMI received packet EVC-10 from ETCS Onboard.(3)   The position of ‘Yes’ button on Train Data validation window is located at the different location of ‘Yes’ button on Train data window.(4)   The format of presentation in Train data validation window is difference from Train data window as follows,           -   The data pending for confirmation of Train data validation window is presented as echo texts.(5)   The presentation of echo text in Train data validation window is located at the difference location of an Input Fields in Train data window");
             /*
             Test Step 14
             Action: Confirm all value of each Input Field.Then, press ‘Yes’ button
@@ -335,6 +430,13 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "4. The echo text in the Train Data validation window is at a different location from the Input Fields in the Train Data window.");
 
+            TraceHeader("Test Step 15");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Yes’ button.Then, confirm an entered value by pressing at an Input Field");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI displays Train running number window.Verify the following information,(1)    Use the log file to confirm that DMI sent out packet EVC-110 with variable based on confirmed data to ETCS Onboard");
             /*
             Test Step 15
             Action: Press ‘Yes’ button.Then, confirm an entered value by pressing at an Input Field
@@ -348,6 +450,14 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Train Running number window.");
 
+            TraceHeader("Test Step 16");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Perform the following procedure,Enter and confirm the train running numberPress ‘Close’ button.Press ‘Settings’ button.Press ‘Brake’ button.Use the test script file 2_6_a.xml to send EVC-30 with MMI_NID_WINDOW = 4 and MMI_Q_REQUEST_ENABLE_64 (#31) =1Press the enabled 'Brake percentage' button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI displays Brake percentage window.Verify the following information,(1)    Use the log file to confirm that DMI received packet EVC-50 from ETCS Onboard.(2)   The format of presentation in Brake Percentage window is presented as an Input Field");
             /*
             Test Step 16
             Action: Perform the following procedure,Enter and confirm the train running numberPress ‘Close’ button.Press ‘Settings’ button.Press ‘Brake’ button.Use the test script file 2_6_a.xml to send EVC-30 with MMI_NID_WINDOW = 4 and MMI_Q_REQUEST_ENABLE_64 (#31) =1Press the enabled 'Brake percentage' button
@@ -380,6 +490,13 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Brake Percentage window." + Environment.NewLine +
                                 "2. The Brake Percentage window displays its contents as an Input Field.");
 
+            TraceHeader("Test Step 17");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Confirm the current value of brake percentage by pressing at an Input Field");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI displays Brake percentage validation window.Verify the following information,(1)    Use the log file to confirm that DMI sent out packet EVC-150 with variable based on confirmed data to ETCS Onboard.(2)    Use the log file to confirm that DMI received packet EVC-51 from ETCS Onboard.(3)   The position of ‘Yes’ button on Brake percentage validation window is located at the different location of ‘Yes’ button on Brake percentage window.(4)   The format of presentation in Brake percentage validation window is difference from Brake percentage window as follows,           -   The data pending for confirmation of Brake percentage validation window is presented as echo texts.(5)   The presentation of echo text in Brake percentage validation window is located at the difference location of an Input Fields in Brake percentage window");
             /*
             Test Step 17
             Action: Confirm the current value of brake percentage by pressing at an Input Field
@@ -401,6 +518,13 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "4. The echo text in the Brake percentage validation window is at a different location from the Input Field in the Brake percentage window.");
 
+            TraceHeader("Test Step 18");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Yes’ button.Then, confirm an entered value by pressing at an Input Field");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI displays Brake window.Verify the following information,(1)    Use the log file to confirm that DMI sent out packet EVC-151 with variable based on confirmed data to ETCS Onboard");
             /*
             Test Step 18
             Action: Press ‘Yes’ button.Then, confirm an entered value by pressing at an Input Field
@@ -414,6 +538,11 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Brake window.");
 
+            TraceHeader("Test Step 19");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            
             /*
             Test Step 19
             Action: End of test

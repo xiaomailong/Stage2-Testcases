@@ -39,10 +39,19 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
             TraceInfo("This test case requires an ATP configuration change - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "At Maintenance password window, use the test script file 10_4_1_4_a.xml to send EVC-8 withMMI_Q_TEXT_CRITERIA = 3 MMI_Q_TEXT = 716");
+            TraceReport("Expected Result");
+            TraceInfo("The hourglass symbol ST05 is displayed at window title area");
             /*
             Test Step 1
             Action: At Maintenance password window, use the test script file 10_4_1_4_a.xml to send EVC-8 withMMI_Q_TEXT_CRITERIA = 3 MMI_Q_TEXT = 716
@@ -66,6 +75,14 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this,
                 @"Enter the maintenance password (as in the system configuration) and confirm");
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Use the test script file 10_4_1_4_b.xml to send EVC-24 withMMI_NID_ENGINE_1 = 1234MMI_M_BRAKE_CONFIG = 55MMI_M_AVAIL_SERVICES = 65535MMI_M_ETC_VER = 16755215");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the followin information,(1)     The Maintenance password window is closed, DMI displays System info window after received packet EVC-24");
             /*
             Test Step 2
             Action: Use the test script file 10_4_1_4_b.xml to send EVC-24 withMMI_NID_ENGINE_1 = 1234MMI_M_BRAKE_CONFIG = 55MMI_M_AVAIL_SERVICES = 65535MMI_M_ETC_VER = 16755215
@@ -83,6 +100,14 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Maintenance password window is closed and DMI displays the System info window.");
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Perform the following procedure,At System info window, press ‘close’ button.Open Wheel diameter windowRepeat action step 1-2");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the followin information,(1)    The Wheel diameter Number window is closed, DMI displays System info window after received packet EVC-24");
             /*
             Test Step 3
             Action: Perform the following procedure,At System info window, press ‘close’ button.Open Wheel diameter windowRepeat action step 1-2
@@ -113,6 +138,14 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Wheel diameter window is closed and DMI displays the System info window.");
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Perform the following procedure,At System info window, press ‘close’ button.Open Wheel diameter validation windowRepeat action step 1-2");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the followin information,(1)    The Wheel diameter validation window is closed, DMI displays System info window after received packet EVC-24");
             /*
             Test Step 4
             Action: Perform the following procedure,At System info window, press ‘close’ button.Open Wheel diameter validation windowRepeat action step 1-2
@@ -150,6 +183,14 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Wheel diameter validation window is closed and DMI displays the System info window.");
 
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Perform the following procedure,At System info window, press ‘close’ button.Open Radar windowRepeat action step 1-2");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the followin information,(1)    The Radar Number window is closed, DMI displays System info window after received packet EVC-24");
             /*
             Test Step 5
             Action: Perform the following procedure,At System info window, press ‘close’ button.Open Radar windowRepeat action step 1-2
@@ -181,6 +222,14 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Radar Number window is closed and DMI displays the System info window.");
 
+            TraceHeader("Test Step 6");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Perform the following procedure,At System info window, press ‘close’ button.Open Radar validation windowRepeat action step 1-2");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the followin information,(1)    The Radar validation window is closed, DMI displays System info window after received packet EVC-24");
             /*
             Test Step 6
             Action: Perform the following procedure,At System info window, press ‘close’ button.Open Radar validation windowRepeat action step 1-2
@@ -211,6 +260,14 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Radar validation window is closed and DMI displays the System info window.");
 
+            TraceHeader("Test Step 7");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Perform the following procedure,At System info window, press ‘close’ button.Open Language windowRepeat action step 1-2");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the followin information,(1)    The Language window is closed, DMI displays System info window after received packet EVC-24");
             /*
             Test Step 7
             Action: Perform the following procedure,At System info window, press ‘close’ button.Open Language windowRepeat action step 1-2
@@ -241,6 +298,14 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Language window is closed and DMI displays the System info window.");
 
+            TraceHeader("Test Step 8");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Perform the following procedure,At System info window, press ‘close’ button.Open Volume windowRepeat action step 1-2");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the followin information,(1)    The Volume window is closed, DMI displays System info window after received packet EVC-24");
             /*
             Test Step 8
             Action: Perform the following procedure,At System info window, press ‘close’ button.Open Volume windowRepeat action step 1-2
@@ -270,6 +335,14 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Volume window is closed and DMI displays the System info window.");
 
+            TraceHeader("Test Step 9");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Perform the following procedure,At System info window, press ‘close’ button.Open Brightness windowRepeat action step 1-2");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the followin information,(1)    The Brightness window is closed, DMI displays System info window after received packet EVC-24");
             /*
             Test Step 9
             Action: Perform the following procedure,At System info window, press ‘close’ button.Open Brightness windowRepeat action step 1-2
@@ -298,6 +371,14 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Brightness window is closed and DMI displays the System info window.");
 
+            TraceHeader("Test Step 10");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Perform the following procedure,At System info window, press ‘close’ button.Open Set VBC windowRepeat action step 1-2");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the followin information,(1)    The Set VBC window is closed, DMI displays System info window after received packet EVC-24");
             /*
             Test Step 10
             Action: Perform the following procedure,At System info window, press ‘close’ button.Open Set VBC windowRepeat action step 1-2
@@ -332,6 +413,14 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Set VBC window is closed and DMI displays the System info window.");
 
+            TraceHeader("Test Step 11");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Perform the following procedure,At System info window, press ‘close’ button.Open Set VBC validation windowRepeat action step 1-2");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the followin information,(1)    The Set VBC validation window is closed, DMI displays System info window after received packet EVC-24");
             /*
             Test Step 11
             Action: Perform the following procedure,At System info window, press ‘close’ button.Open Set VBC validation windowRepeat action step 1-2
@@ -369,6 +458,14 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Set VBC validation window is closed and DMI displays the System info window.");
 
+            TraceHeader("Test Step 12");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Perform the following procedure,At System info window, press ‘close’ button.Open Remove VBC windowRepeat action step 1-2");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the followin information,(1)    The Remove VBC window is closed, DMI displays System info window after received packet EVC-24");
             /*
             Test Step 12
             Action: Perform the following procedure,At System info window, press ‘close’ button.Open Remove VBC windowRepeat action step 1-2
@@ -402,6 +499,14 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Remove VBC window is closed and DMI displays the System info window.");
 
+            TraceHeader("Test Step 13");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Perform the following procedure,At System info window, press ‘close’ button.Open Remove VBC validation windowRepeat action step 1-2");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the followin information,(1)    The Remove VBC validation window is closed, DMI displays System info window after received packet EVC-24");
             /*
             Test Step 13
             Action: Perform the following procedure,At System info window, press ‘close’ button.Open Remove VBC validation windowRepeat action step 1-2
@@ -437,6 +542,14 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Remove VBC validation window is closed and DMI displays the System info window.");
 
+            TraceHeader("Test Step 14");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Perform the following procedure,At System info window, press ‘close’ button.Open Brake Percentage windowRepeat action step 1-2");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the followin information,(1)    The Brake Percentage window is closed, DMI displays System info window after received packet EVC-24");
             /*
             Test Step 14
             Action: Perform the following procedure,At System info window, press ‘close’ button.Open Brake Percentage windowRepeat action step 1-2
@@ -473,6 +586,14 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Brake Percentage window is closed and DMI displays the System info window.");
 
+            TraceHeader("Test Step 15");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Perform the following procedure,At System info window, press ‘close’ button.Open Brake Percentage validation windowRepeat action step 1-2");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the followin information,(1)    The Brake Percentage validation window is closed, DMI displays System info window after received packet EVC-24");
             /*
             Test Step 15
             Action: Perform the following procedure,At System info window, press ‘close’ button.Open Brake Percentage validation windowRepeat action step 1-2
@@ -517,6 +638,11 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Brake Percentage validation window is closed and DMI displays the System info window.");
 
+            TraceHeader("Test Step 16");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            
             /*
             Test Step 16
             Action: End of test

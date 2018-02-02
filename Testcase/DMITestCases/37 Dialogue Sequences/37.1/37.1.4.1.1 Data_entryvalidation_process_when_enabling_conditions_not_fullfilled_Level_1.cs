@@ -34,8 +34,16 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Driver ID’ button");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Driver ID window");
             /*
             Test Step 1
             Action: Press ‘Driver ID’ button
@@ -46,6 +54,14 @@ namespace Testcase.DMITestCases
 
             DmiExpectedResults.Driver_ID_window_displayed(this);
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Perform the following procedure,Drive the train forward until the brake is appliedStop driving the trainAcknowledge the ‘Brake intervention’ symbol by pressing area E1");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,DMI closes the Drive ID window and displays Main window instead.Use the log file to confirm that DMI receives packet information [MMI_ENABLE_REQUEST (EVC-30)] with variable MMI_Q_REQUEST_ENABLE_64 (#0) = 0");
             /*
             Test Step 2
             Action: Perform the following procedure,Drive the train forward until the brake is appliedStop driving the trainAcknowledge the ‘Brake intervention’ symbol by pressing area E1
@@ -76,6 +92,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Driver ID window and displays the Main window");
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Level’ button");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Level window");
             /*
             Test Step 3
             Action: Press ‘Level’ button
@@ -100,6 +122,14 @@ namespace Testcase.DMITestCases
 
             DmiExpectedResults.Level_window_displayed(this);
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Perform the following procedure,Drive the train forward until the brake is appliedStop driving the trainAcknowledge the ‘Brake intervention’ symbol by pressing area E1");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,DMI closes the Level window and displays Main window instead.Use the log file to confirm that DMI receives packet information [MMI_ENABLE_REQUEST (EVC-30)] with variable MMI_Q_REQUEST_ENABLE_64 (#3) = 0");
             /*
             Test Step 4
             Action: Perform the following procedure,Drive the train forward until the brake is appliedStop driving the trainAcknowledge the ‘Brake intervention’ symbol by pressing area E1
@@ -130,6 +160,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Level window and displays the Main window.");
 
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Train data’ button");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Train data window");
             /*
             Test Step 5
             Action: Press ‘Train data’ button
@@ -156,6 +192,14 @@ namespace Testcase.DMITestCases
             // Call generic Check Results Method
             DmiExpectedResults.Train_data_window_displayed(this);
 
+            TraceHeader("Test Step 6");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Perform the following procedure,Drive the train forward until the brake is appliedStop driving the trainAcknowledge the ‘Brake intervention’ symbol by pressing area E1");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,DMI closes the Train data window and displays Main window instead.Use the log file to confirm that DMI receives packet information [MMI_ENABLE_REQUEST (EVC-30)] with variable MMI_Q_REQUEST_ENABLE_64 (#2) = 0");
             /*
             Test Step 6
             Action: Perform the following procedure,Drive the train forward until the brake is appliedStop driving the trainAcknowledge the ‘Brake intervention’ symbol by pressing area E1
@@ -184,6 +228,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Train data window and displays the Main window.");
 
+            TraceHeader("Test Step 7");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Perform the following procedure,Press ‘Train data’ button.Enter and confirm all value of train data window.Press ‘Yes’ button");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Train data validation window");
             /*
             Test Step 7
             Action: Perform the following procedure,Press ‘Train data’ button.Enter and confirm all value of train data window.Press ‘Yes’ button
@@ -231,6 +282,14 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Train data validation window.");
 
+            TraceHeader("Test Step 8");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Perform the following procedure,Drive the train forward until the brake is appliedStop driving the trainAcknowledge the ‘Brake intervention’ symbol by pressing area E1");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,DMI closes the Train data validation window and displays Main window instead.Use the log file to confirm that DMI receives packet information [MMI_ENABLE_REQUEST (EVC-30)] with variable MMI_Q_REQUEST_ENABLE_64 (#2) = 0");
             /*
             Test Step 8
             Action: Perform the following procedure,Drive the train forward until the brake is appliedStop driving the trainAcknowledge the ‘Brake intervention’ symbol by pressing area E1
@@ -263,6 +322,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Train data validation window and displays the Main window.");
 
+            TraceHeader("Test Step 9");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Perform the following procedure,Press ‘Train data’ button.Enter and confirm all value of train data window.Press ‘Yes’ button.At the train data validation window, press ‘Yes’ button.Confirm entered data by pressing an input field");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Train Running Number window");
             /*
             Test Step 9
             Action: Perform the following procedure,Press ‘Train data’ button.Enter and confirm all value of train data window.Press ‘Yes’ button.At the train data validation window, press ‘Yes’ button.Confirm entered data by pressing an input field
@@ -313,6 +379,14 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Train Runing Number window.");
 
+            TraceHeader("Test Step 10");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Perform the following procedure,Drive the train forward until the brake is appliedStop driving the trainAcknowledge the ‘Brake intervention’ symbol by pressing area E1");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,DMI closes the Train Running Number window and displays Main window instead.Use the log file to confirm that DMI receives packet information [MMI_ENABLE_REQUEST (EVC-30)] with variable MMI_Q_REQUEST_ENABLE_64 (#4) = 0");
             /*
             Test Step 10
             Action: Perform the following procedure,Drive the train forward until the brake is appliedStop driving the trainAcknowledge the ‘Brake intervention’ symbol by pressing area E1
@@ -342,6 +416,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Train Running Number window and displays the Main window.");
 
+            TraceHeader("Test Step 11");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Train running number’ button. Then, enter and confirm Train running number");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Main window");
             /*
             Test Step 11
             Action: Press ‘Train running number’ button. Then, enter and confirm Train running number
@@ -357,6 +437,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Main window.");
 
+            TraceHeader("Test Step 12");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Perform the following procedure, Press ‘Close’ buttonPress ‘Settings’ buttonPress ‘Language’ button");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Language window");
             /*
             Test Step 12
             Action: Perform the following procedure, Press ‘Close’ buttonPress ‘Settings’ buttonPress ‘Language’ button
@@ -374,6 +461,14 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Language window.");
 
+            TraceHeader("Test Step 13");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Perform the following procedure,Drive the train forward until the brake is appliedStop driving the trainAcknowledge the ‘Brake intervention’ symbol by pressing area E1");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,DMI closes the Language window and displays Settings window instead.Use the log file to confirm that DMI receives packet information [MMI_ENABLE_REQUEST (EVC-30)] with variable MMI_Q_REQUEST_ENABLE_64 (#13) = 0");
             /*
             Test Step 13
             Action: Perform the following procedure,Drive the train forward until the brake is appliedStop driving the trainAcknowledge the ‘Brake intervention’ symbol by pressing area E1
@@ -405,6 +500,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Language window and displays the Settings window.");
 
+            TraceHeader("Test Step 14");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Brightness’ button");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Brighness window");
             /*
             Test Step 14
             Action: Press ‘Brightness’ button
@@ -416,6 +517,14 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Brightness window.");
 
+            TraceHeader("Test Step 15");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Perform the following procedure,Drive the train forward until the brake is appliedStop driving the trainAcknowledge the ‘Brake intervention’ symbol by pressing area E1");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,DMI closes the Brightness window and displays Settings window instead.Use the log file to confirm that DMI receives packet information [MMI_ENABLE_REQUEST (EVC-30)] with variable MMI_Q_REQUEST_ENABLE_64 (#15) = 0");
             /*
             Test Step 15
             Action: Perform the following procedure,Drive the train forward until the brake is appliedStop driving the trainAcknowledge the ‘Brake intervention’ symbol by pressing area E1
@@ -448,6 +557,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Brightness window and displays the Settings window.");
 
+            TraceHeader("Test Step 16");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Volume’ button");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Volume window");
             /*
             Test Step 16
             Action: Press ‘Volume’ button
@@ -458,6 +573,14 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Volume window.");
 
+            TraceHeader("Test Step 17");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Perform the following procedure,Drive the train forward until the brake is appliedStop driving the trainAcknowledge the ‘Brake intervention’ symbol by pressing area E1");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,DMI closes the Volume window and displays Settings window instead.Use the log file to confirm that DMI receives packet information [MMI_ENABLE_REQUEST (EVC-30)] with variable MMI_Q_REQUEST_ENABLE_64 (#14) = 0");
             /*
             Test Step 17
             Action: Perform the following procedure,Drive the train forward until the brake is appliedStop driving the trainAcknowledge the ‘Brake intervention’ symbol by pressing area E1
@@ -487,6 +610,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Volume window and displays the Settings window.");
 
+            TraceHeader("Test Step 18");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Perform the following procedure,Press ‘Close’ buttonPress ‘Special’ button.Press ‘Adhesion’ button");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Adhesion window.Verify the Close button on this window is enabling");
             /*
             Test Step 18
             Action: Perform the following procedure,Press ‘Close’ buttonPress ‘Special’ button.Press ‘Adhesion’ button
@@ -505,6 +635,14 @@ namespace Testcase.DMITestCases
                                 "1. DMI closes the Adhesion window." + Environment.NewLine +
                                 "2. The ‘Close’ button in the Adhesion window is enabled.");
 
+            TraceHeader("Test Step 19");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Perform the following procedure,Drive the train forward until the brake is appliedStop driving the trainAcknowledge the ‘Brake intervention’ symbol by pressing area E1");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,DMI closes the Adhesion window and displays Special window instead.Use the log file to confirm that DMI receives packet information [MMI_ENABLE_REQUEST (EVC-30)] with variable MMI_Q_REQUEST_ENABLE_64 (#10) = 0");
             /*
             Test Step 19
             Action: Perform the following procedure,Drive the train forward until the brake is appliedStop driving the trainAcknowledge the ‘Brake intervention’ symbol by pressing area E1
@@ -534,6 +672,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Adhesion window and displays the Special window.");
 
+            TraceHeader("Test Step 20");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Perform the following procedure,Press ‘Close’ buttonPress ‘Main’ button.Press ‘Start’ button.Acknowledge SR mode.Press ‘Special’ button");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Special window.Verify the Close button on this window is enabling");
             /*
             Test Step 20
             Action: Perform the following procedure,Press ‘Close’ buttonPress ‘Main’ button.Press ‘Start’ button.Acknowledge SR mode.Press ‘Special’ button
@@ -563,6 +708,12 @@ namespace Testcase.DMITestCases
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode =
                 EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
 
+            TraceHeader("Test Step 21");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘SR speed/distance’ button");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays SR speed/distance window.Verify the Close button on this window is enabling");
             /*
             Test Step 21
             Action: Press ‘SR speed/distance’ button
@@ -584,6 +735,13 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the SR speed/distance window." + Environment.NewLine +
                                 "2. The ‘Close’ button in the SR speed/distance window is enabled.");
 
+            TraceHeader("Test Step 22");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train forward.Then, stop the train");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,DMI closes the SR speed/distance window and displays Special window instead.Use the log file to confirm that DMI receives packet information [MMI_ENABLE_REQUEST (EVC-30)] with variable MMI_Q_REQUEST_ENABLE_64 (#11) = 0");
             /*
             Test Step 22
             Action: Drive the train forward.Then, stop the train
@@ -599,6 +757,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the SR speed/distance window and displays the Special window.");
 
+            TraceHeader("Test Step 23");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Close’ button.Then, press ‘Override’ button");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Override button.Verify the Close button on this window is enabling");
             /*
             Test Step 23
             Action: Press ‘Close’ button.Then, press ‘Override’ button
@@ -610,6 +774,11 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Override window." + Environment.NewLine +
                                 "2. The ‘Close’ button in the Override window is enabled.");
 
+            TraceHeader("Test Step 24");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            
             /*
             Test Step 24
             Action: End of test

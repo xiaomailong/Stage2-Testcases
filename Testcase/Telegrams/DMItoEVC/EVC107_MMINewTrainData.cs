@@ -151,9 +151,11 @@ namespace Testcase.Telegrams.DMItoEVC
 
                         for (int k = 0; k < _nDataElements; k++)
                         {
-                            _nidData = (byte) _pool.SITR.Client.Read(string.Format("{0}{1}_MmiNidData", BaseString1, k));
+                            _nidData = (byte) _pool.SITR.Client.Read(string.Format("{0}{1}_MmiNidData", BaseString1,
+                                k));
 
-                            _pool.TraceError(string.Format("MMI_NID_DATA[{0}] = {1}", k, _nidData) + Environment.NewLine +
+                            _pool.TraceError(string.Format("MMI_NID_DATA[{0}] = {1}", k, _nidData) +
+                                             Environment.NewLine +
                                              "Result = FAILED!");
                         }
                     }
@@ -180,7 +182,8 @@ namespace Testcase.Telegrams.DMItoEVC
                             _nidData = (byte) _pool.SITR.Client.Read(
                                 string.Format("{0}0{1}_MmiNidData", BaseString1, k));
 
-                            _pool.TraceError(string.Format("MMI_NID_DATA[{0}] = {1}", k, _nidData) + Environment.NewLine +
+                            _pool.TraceError(string.Format("MMI_NID_DATA[{0}] = {1}", k, _nidData) +
+                                             Environment.NewLine +
                                              "Result = FAILED!");
                         }
                     }

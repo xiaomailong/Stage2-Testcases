@@ -26,9 +26,17 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Activate cabin A. Driver performs SoM in SB mode, level 1");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays in SB mode, Level 1");
             /*
             Test Step 1
             Action: Activate cabin A. Driver performs SoM in SB mode, level 1
@@ -39,6 +47,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SB mode, level 1.");
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Settings’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "The Settings window is displayed all sub-menus.Verify that the button for subcategory National is disabled");
             /*
             Test Step 2
             Action: Press ‘Settings’ button
@@ -52,6 +67,11 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Settings window with all sub-menus." + Environment.NewLine +
                                 "2. The ‘National’ button is displayed disabled.");
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            
             /*
             Test Step 3
             Action: End of test

@@ -32,10 +32,18 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
             #region Test Step 1
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train forward passing BG1");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information,");
             /*
             Test Step 1
             Action: Drive the train forward passing BG1
@@ -57,6 +65,12 @@ namespace Testcase.DMITestCases
 
             #region Test Step 2
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press an acknowledgement of LS mode in sub-area C1 and stop the train");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays in LS mode, Level 1.");
             /*
             Test Step 2
             Action: Press an acknowledgement of LS mode in sub-area C1 and stop the train
@@ -101,6 +115,12 @@ namespace Testcase.DMITestCases
 
             #region Test Step 3
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train forward pass the position 250m.");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays in FS mode, Level 1.");
             /*
             Test Step 3
             Action: Drive the train forward pass the position 250m.
@@ -127,6 +147,12 @@ namespace Testcase.DMITestCases
 
             #region Test Step 4
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train forward pass BG2.");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays in OS mode, Level 1.");
             /*
             Test Step 4
             Action: Drive the train forward pass BG2.
@@ -161,6 +187,11 @@ namespace Testcase.DMITestCases
 
             #region Test Step 5
 
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            
             /*
             Test Step 5
             Action: End of test

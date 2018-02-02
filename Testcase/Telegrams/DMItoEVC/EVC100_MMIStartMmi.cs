@@ -101,10 +101,7 @@ namespace Testcase.Telegrams.DMItoEVC
         /// </summary>
         public static uint MMI_M_IF_VER
         {
-            set
-            {
-                _mIfVer = value;
-            }
+            set { _mIfVer = value; }
         }
 
         /// <summary>

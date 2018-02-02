@@ -23,11 +23,19 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
             TraceInfo(
                 "This test case requires a DMI configuration change; See Precondition requirements. If this is not done manually, the test may fail!");
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Activate Cabin A");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Driver ID window");
             /*
             Test Step 1
             Action: Activate Cabin A
@@ -40,6 +48,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the Driver ID window displayed.");
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Driver performs SoM to SR mode, level 1");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays in SR mode, level 1");
             /*
             Test Step 2
             Action: Driver performs SoM to SR mode, level 1
@@ -69,6 +83,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Touch main area D and please confirm:" + Environment.NewLine + Environment.NewLine +
                                 "1. Planning area is NOT displayed.");
 
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive train forward pass BG2.Then, press an acknowledgement of OS mode symbol in area C1");
+            TraceReport("Expected Result");
+            TraceInfo("DMI change from FS mode to OS mode");
             /*
             Test Step 5
             Action: Drive train forward pass BG2.Then, press an acknowledgement of OS mode symbol in area C1
@@ -80,6 +100,12 @@ namespace Testcase.DMITestCases
             // Change mode to On Sight
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.OnSight;
 
+            TraceHeader("Test Step 6");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Touch main area D");
+            TraceReport("Expected Result");
+            TraceInfo("Verify that the Planning Area is not displayed on DMI");
             /*
             Test Step 6
             Action: Touch main area D

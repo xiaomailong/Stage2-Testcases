@@ -40,9 +40,17 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Power on DMI and start up the system");
+            TraceReport("Expected Result");
+            TraceInfo("‘Driver’s desk not active’ is displayed on DMI");
             /*
             Test Step 1
             Action: Power on DMI and start up the system
@@ -52,6 +60,12 @@ namespace Testcase.DMITestCases
             //DmiActions.Start_ATP();
             //WaitForVerification("Is ‘Driver’s desk not active’  displayed on DMI?");
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Activate cabin A");
+            TraceReport("Expected Result");
+            TraceInfo("The Driver ID window is displayed.");
             /*
             Test Step 2
             Action: Activate cabin A
@@ -67,6 +81,13 @@ namespace Testcase.DMITestCases
             //DmiActions.Send_SB_Mode(this);
             //DmiExpectedResults.Driver_ID_window_displayed_in_SB_mode(this);
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Perform the following procedure,");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "The Main window is presented with the text message ‘Brake test in progress’ is displayed as English language");
             /*
             Test Step 3
             Action: Perform the following procedure,
@@ -97,6 +118,12 @@ namespace Testcase.DMITestCases
 
             //DmiActions.Display_Main_Window_with_Start_button_not_enabled(this);
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Enter all sub windows on DMI");
+            TraceReport("Expected Result");
+            TraceInfo("The text on sub windows and buttons are presented in Engilsh language");
             /*
             Test Step 4
             Action: Enter all sub windows on DMI
@@ -109,6 +136,12 @@ namespace Testcase.DMITestCases
             //DmiActions.ShowInstruction(this,"Enter all sub windows on DMI -> This need to be done with the real EVC" + Environment.NewLine + Environment.NewLine +
             //                           "The aim of this test is to check that the text on sub windows and buttons are presented in Engilsh language. ");
 
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Complete start of mission");
+            TraceReport("Expected Result");
+            TraceInfo("The text on winsows, sub windows buttons and text messages are presented in Engilsh language");
             /*
             Test Step 5
             Action: Complete start of mission
@@ -157,6 +190,12 @@ namespace Testcase.DMITestCases
             //DmiActions.Finished_SoM_Default_Window(this);
 
 
+            TraceHeader("Test Step 6");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Power off DMI for 10 min and then power on again");
+            TraceReport("Expected Result");
+            TraceInfo("The default window represents the objects in the language selected by the driver");
             /*
             Test Step 6
             Action: Power off DMI for 10 min and then power on again
@@ -165,6 +204,13 @@ namespace Testcase.DMITestCases
             */
 
 
+            TraceHeader("Test Step 7");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Selects ‘Settings’ button  SE 04");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "(1) The Settings window is displayed with all button with text and symbolsSE01  SE02 SE 03 (2) The button with text is displayed 2 lines of text and truncated when the text exceeds the button’s width");
             /*
             Test Step 7
             Action: Selects ‘Settings’ button  SE 04
@@ -173,6 +219,13 @@ namespace Testcase.DMITestCases
             */
 
 
+            TraceHeader("Test Step 8");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Language’ icon menu");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "The selection language window is displayed with all stored language data for driver to make a new selection");
             /*
             Test Step 8
             Action: Press ‘Language’ icon menu
@@ -181,6 +234,13 @@ namespace Testcase.DMITestCases
             */
 
 
+            TraceHeader("Test Step 9");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Change to all stored languges and retest with step 3 to 7");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,(1)   The text on window, sub windows,  buttons and text messages are presented according to selected language.(2)    Use the log file to confirm that DMI sends out packet [MMI_DRIVER_ACTION (EVC-152)] with the value of variable MMI_M_DRIVER_ACTION refer to sequence below,a)   MMI_M_DRIVER_ACTION = 29 (Selection of Language)");
             /*
             Test Step 9
             Action: Change to all stored languges and retest with step 3 to 7
@@ -189,6 +249,11 @@ namespace Testcase.DMITestCases
             */
 
 
+            TraceHeader("Test Step 10");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            
             /*
             Test Step 10
             Action: End of test

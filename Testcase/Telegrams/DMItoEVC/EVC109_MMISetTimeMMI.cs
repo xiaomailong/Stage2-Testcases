@@ -34,7 +34,6 @@ namespace Testcase.Telegrams.DMItoEVC
         /// </summary>
         private static void CheckTimeAndZone(uint totalSeconds, sbyte zoneOffset)
         {
-
             // Check if telegram received flag has been set. Allow 60 seconds to enter Time.
             if (_pool.SITR.SMDStat.CCUO.ETCS1SetTimeMmi.WaitForCondition(Is.Equal, 1, 60000, 100))
             {
@@ -45,7 +44,8 @@ namespace Testcase.Telegrams.DMItoEVC
                 // If check passes
                 if (_checkResult)
                 {
-                    _pool.TraceReport(string.Format("{0} - MMI_T_UTC = {1}", BaseString, totalSeconds) + Environment.NewLine +
+                    _pool.TraceReport(string.Format("{0} - MMI_T_UTC = {1}", BaseString, totalSeconds) +
+                                      Environment.NewLine +
                                       string.Format("MMI_T_ZONE_OFFSET = {0}", zoneOffset) + Environment.NewLine +
                                       "Result = PASSED.");
                 }

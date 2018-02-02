@@ -30,10 +30,18 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
             TraceInfo("This test case requires an ATP configuration change - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Power on the system and activate cabin");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays in SB mode");
             /*
             Test Step 1
             Action: Power on the system and activate cabin
@@ -47,6 +55,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SB mode");
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Perform SoM to L1, SR mode");
+            TraceReport("Expected Result");
+            TraceInfo("Mode changes to SR mode , L1");
             /*
             Test Step 2
             Action: Perform SoM to L1, SR mode
@@ -62,6 +76,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SR mode, Level 1.");
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train up to 20 km/h");
+            TraceReport("Expected Result");
+            TraceInfo("The speed pointer is indicated as 20  km/h");
             /*
             Test Step 3
             Action: Drive the train up to 20 km/h
@@ -72,6 +92,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The speed pointer is displayed with speed = 20 km/h.");
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Pass BG0 with MA and Track descriptionPkt 12,21 and 27");
+            TraceReport("Expected Result");
+            TraceInfo("Mode changes to FS mode , Level 1");
             /*
             Test Step 4
             Action: Pass BG0 with MA and Track descriptionPkt 12,21 and 27
@@ -82,6 +108,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in FS mode, Level 1.");
 
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Pass BG1 with 4Track conditions Pkt 68:D_TRACKCOND(1) = 400L_TRACKCOND(1) = 200M_TRACKCOND(1) = 0D_TRACKCOND(2) = 0L_TRACKCOND(2) = 200M_TRACKCOND(2) = 2D_TRACKCOND(3) = 5L_TRACKCOND(3) = 200M_TRACKCOND(3) = 4D_TRACKCOND(4) = 10L_TRACKCOND(4) = 200M_TRACKCOND(4) = 0");
+            TraceReport("Expected Result");
+            TraceInfo("Mode remins in FS mode");
             /*
             Test Step 5
             Action: Pass BG1 with 4Track conditions Pkt 68:D_TRACKCOND(1) = 400L_TRACKCOND(1) = 200M_TRACKCOND(1) = 0D_TRACKCOND(2) = 0L_TRACKCOND(2) = 200M_TRACKCOND(2) = 2D_TRACKCOND(3) = 5L_TRACKCOND(3) = 200M_TRACKCOND(3) = 4D_TRACKCOND(4) = 10L_TRACKCOND(4) = 200M_TRACKCOND(4) = 0
@@ -124,6 +157,13 @@ namespace Testcase.DMITestCases
 
             EVC32_MMITrackConditions.Send();
 
+            TraceHeader("Test Step 6");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Continue the train speed at 20 km/h");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following informationDMI displays Track condition symbol “ Non-stopping area” over “ Sound horn”");
             /*
             Test Step 6
             Action: Continue the train speed at 20 km/h
@@ -133,6 +173,11 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays track condition symbol ‘Non-stopping area’, TC10, over symbol ‘Non-stopping area’, TC35.");
 
+            TraceHeader("Test Step 7");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            
             /*
             Test Step 7
             Action: End of test

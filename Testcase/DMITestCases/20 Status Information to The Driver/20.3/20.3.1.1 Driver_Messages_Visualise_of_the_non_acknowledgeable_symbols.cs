@@ -48,8 +48,17 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Use the test script file 15_3_1_1_a.xml to send EVC-8 with,MMI_Q_TEXT = 260MMI_Q_TEXT_CRITERIA = 3MMI_I_TEXT = 1");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays ST01 symbol in sub-area C9 without yellow flashing frame");
             /*
             Test Step 1
             Action: Use the test script file 15_3_1_1_a.xml to send EVC-8 with,MMI_Q_TEXT = 260MMI_Q_TEXT_CRITERIA = 3MMI_I_TEXT = 1
@@ -61,6 +70,13 @@ namespace Testcase.DMITestCases
 
             XML_15_3_1_1(msgType.typea); // Continue to step 20 after this. All interim steps are inside the XML class.
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("(Continue from step 1)Send EVC-8 with,MMI_Q_TEXT = 286MMI_Q_TEXT_CRITERIA = 3MMI_I_TEXT = 2");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,(1)    DMI displays ST06 symbol in sub-area C6 without yellow flashing frame");
             /*
             Test Step 2
             Action: (Continue from step 1)Send EVC-8 with,MMI_Q_TEXT = 286MMI_Q_TEXT_CRITERIA = 3MMI_I_TEXT = 2
@@ -69,6 +85,13 @@ namespace Testcase.DMITestCases
             */
 
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("(Continue from step 2)Send EVC-8 with,MMI_Q_TEXT = 298MMI_Q_TEXT_CRITERIA = 3MMI_I_TEXT = 3");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,(1)    DMI displays DR02 symbol in sub-area D without yellow flashing frame");
             /*
             Test Step 3
             Action: (Continue from step 2)Send EVC-8 with,MMI_Q_TEXT = 298MMI_Q_TEXT_CRITERIA = 3MMI_I_TEXT = 3
@@ -77,6 +100,13 @@ namespace Testcase.DMITestCases
             */
 
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("(Continue from step 3)Send EVC-8 with,MMI_Q_TEXT = 710MMI_Q_TEXT_CRITERIA = 3MMI_I_TEXT = 4");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,(1)    DMI displays train divided symbol in sub-area C1 without yellow flashing frame.Note: The information of this symbol is not provided by [ERA-ERTMS] and [GenVSIS], it’s used the same reference from DMI-DOS");
             /*
             Test Step 4
             Action: (Continue from step 3)Send EVC-8 with,MMI_Q_TEXT = 710MMI_Q_TEXT_CRITERIA = 3MMI_I_TEXT = 4
@@ -85,6 +115,14 @@ namespace Testcase.DMITestCases
             */
 
 
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "(Continue from step 4)Send EVC-8 with,MMI_Q_TEXT = 276MMI_Q_TEXT_CRITERIA = 3MMI_N_TEXT = 1MMI_X_TEXT = 0MMI_I_TEXT = 4");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,(1)    DMI displays LE06 symbol in sub-area C1 without yellow flashing frame");
             /*
             Test Step 5
             Action: (Continue from step 4)Send EVC-8 with,MMI_Q_TEXT = 276MMI_Q_TEXT_CRITERIA = 3MMI_N_TEXT = 1MMI_X_TEXT = 0MMI_I_TEXT = 4
@@ -93,6 +131,14 @@ namespace Testcase.DMITestCases
             */
 
 
+            TraceHeader("Test Step 6");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "(Continue from step 5)Send EVC-8 with,MMI_Q_TEXT = 276MMI_Q_TEXT_CRITERIA = 3MMI_N_TEXT = 1MMI_X_TEXT = 1MMI_I_TEXT = 4");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,(1)    DMI displays LE10 symbol in sub-area C1 without yellow flashing frame");
             /*
             Test Step 6
             Action: (Continue from step 5)Send EVC-8 with,MMI_Q_TEXT = 276MMI_Q_TEXT_CRITERIA = 3MMI_N_TEXT = 1MMI_X_TEXT = 1MMI_I_TEXT = 4
@@ -101,6 +147,14 @@ namespace Testcase.DMITestCases
             */
 
 
+            TraceHeader("Test Step 7");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "(Continue from step 6)Send EVC-8 with,MMI_Q_TEXT = 276MMI_Q_TEXT_CRITERIA = 3MMI_N_TEXT = 1MMI_X_TEXT = 2MMI_I_TEXT = 4");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,(1)    DMI displays LE12 symbol in sub-area C1 without yellow flashing frame");
             /*
             Test Step 7
             Action: (Continue from step 6)Send EVC-8 with,MMI_Q_TEXT = 276MMI_Q_TEXT_CRITERIA = 3MMI_N_TEXT = 1MMI_X_TEXT = 2MMI_I_TEXT = 4
@@ -109,6 +163,14 @@ namespace Testcase.DMITestCases
             */
 
 
+            TraceHeader("Test Step 8");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "(Continue from step 7)Send EVC-8 with,MMI_Q_TEXT = 276MMI_Q_TEXT_CRITERIA = 3MMI_N_TEXT = 1MMI_X_TEXT = 3MMI_I_TEXT = 4");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,(1)    DMI displays LE14 symbol in sub-area C1 without yellow flashing frame");
             /*
             Test Step 8
             Action: (Continue from step 7)Send EVC-8 with,MMI_Q_TEXT = 276MMI_Q_TEXT_CRITERIA = 3MMI_N_TEXT = 1MMI_X_TEXT = 3MMI_I_TEXT = 4
@@ -117,6 +179,13 @@ namespace Testcase.DMITestCases
             */
 
 
+            TraceHeader("Test Step 9");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("(Continue from step 8)Send EVC-8 with,MMI_Q_TEXT = 259MMI_Q_TEXT_CRITERIA = 3MMI_I_TEXT = 4");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,(1)    DMI displays MO08 symbol in sub-area C1 without yellow flashing frame");
             /*
             Test Step 9
             Action: (Continue from step 8)Send EVC-8 with,MMI_Q_TEXT = 259MMI_Q_TEXT_CRITERIA = 3MMI_I_TEXT = 4
@@ -125,6 +194,13 @@ namespace Testcase.DMITestCases
             */
 
 
+            TraceHeader("Test Step 10");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("(Continue from step 9)Send EVC-8 with,MMI_Q_TEXT = 262MMI_Q_TEXT_CRITERIA = 3MMI_I_TEXT = 4");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,(1)    DMI displays MO15 symbol in sub-area C1 without yellow flashing frame");
             /*
             Test Step 10
             Action: (Continue from step 9)Send EVC-8 with,MMI_Q_TEXT = 262MMI_Q_TEXT_CRITERIA = 3MMI_I_TEXT = 4
@@ -133,6 +209,13 @@ namespace Testcase.DMITestCases
             */
 
 
+            TraceHeader("Test Step 11");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("(Continue from step 10)Send EVC-8 with,MMI_Q_TEXT = 263MMI_Q_TEXT_CRITERIA = 3MMI_I_TEXT = 4");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,(1)    DMI displays MO10 symbol in sub-area C1 without yellow flashing frame");
             /*
             Test Step 11
             Action: (Continue from step 10)Send EVC-8 with,MMI_Q_TEXT = 263MMI_Q_TEXT_CRITERIA = 3MMI_I_TEXT = 4
@@ -141,6 +224,13 @@ namespace Testcase.DMITestCases
             */
 
 
+            TraceHeader("Test Step 12");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("(Continue from step 11)Send EVC-8 with,MMI_Q_TEXT = 264MMI_Q_TEXT_CRITERIA = 3MMI_I_TEXT = 4");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,(1)    DMI displays MO17 symbol in sub-area C1 without yellow flashing frame");
             /*
             Test Step 12
             Action: (Continue from step 11)Send EVC-8 with,MMI_Q_TEXT = 264MMI_Q_TEXT_CRITERIA = 3MMI_I_TEXT = 4
@@ -149,6 +239,13 @@ namespace Testcase.DMITestCases
             */
 
 
+            TraceHeader("Test Step 13");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("(Continue from step 12)Send EVC-8 with,MMI_Q_TEXT = 265MMI_Q_TEXT_CRITERIA = 3MMI_I_TEXT = 4");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,(1)    DMI displays MO02 symbol in sub-area C1 without yellow flashing frame");
             /*
             Test Step 13
             Action: (Continue from step 12)Send EVC-8 with,MMI_Q_TEXT = 265MMI_Q_TEXT_CRITERIA = 3MMI_I_TEXT = 4
@@ -157,6 +254,13 @@ namespace Testcase.DMITestCases
             */
 
 
+            TraceHeader("Test Step 14");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("(Continue from step 13)Send EVC-8 with,MMI_Q_TEXT = 266MMI_Q_TEXT_CRITERIA = 3MMI_I_TEXT = 4");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,(1)    DMI displays MO05 symbol in sub-area C1 without yellow flashing frame");
             /*
             Test Step 14
             Action: (Continue from step 13)Send EVC-8 with,MMI_Q_TEXT = 266MMI_Q_TEXT_CRITERIA = 3MMI_I_TEXT = 4
@@ -165,6 +269,13 @@ namespace Testcase.DMITestCases
             */
 
 
+            TraceHeader("Test Step 15");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("(Continue from step 14)Send EVC-8 with,MMI_Q_TEXT = 709MMI_Q_TEXT_CRITERIA = 3MMI_I_TEXT = 4");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,(1)    DMI displays MO22 symbol in sub-area C1 without yellow flashing frame");
             /*
             Test Step 15
             Action: (Continue from step 14)Send EVC-8 with,MMI_Q_TEXT = 709MMI_Q_TEXT_CRITERIA = 3MMI_I_TEXT = 4
@@ -173,6 +284,14 @@ namespace Testcase.DMITestCases
             */
 
 
+            TraceHeader("Test Step 16");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "(Continue from step 15)Send EVC-8 with,MMI_Q_TEXT = 257MMI_Q_TEXT_CRITERIA = 3MMI_N_TEXT = 1MMI_X_TEXT = 0MMI_I_TEXT = 4");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,(1)    DMI displays LE07 symbol in sub-area C1 without yellow flashing frame");
             /*
             Test Step 16
             Action: (Continue from step 15)Send EVC-8 with,MMI_Q_TEXT = 257MMI_Q_TEXT_CRITERIA = 3MMI_N_TEXT = 1MMI_X_TEXT = 0MMI_I_TEXT = 4
@@ -181,6 +300,14 @@ namespace Testcase.DMITestCases
             */
 
 
+            TraceHeader("Test Step 17");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "(Continue from step 16)Send EVC-8 with,MMI_Q_TEXT = 257MMI_Q_TEXT_CRITERIA = 3MMI_N_TEXT = 1MMI_X_TEXT = 1MMI_I_TEXT = 4");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,(1)    DMI displays LE11 symbol in sub-area C1 without yellow flashing frame");
             /*
             Test Step 17
             Action: (Continue from step 16)Send EVC-8 with,MMI_Q_TEXT = 257MMI_Q_TEXT_CRITERIA = 3MMI_N_TEXT = 1MMI_X_TEXT = 1MMI_I_TEXT = 4
@@ -189,6 +316,14 @@ namespace Testcase.DMITestCases
             */
 
 
+            TraceHeader("Test Step 18");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "(Continue from step 17)Send EVC-8 with,MMI_Q_TEXT = 257MMI_Q_TEXT_CRITERIA = 3MMI_N_TEXT = 1MMI_X_TEXT = 2MMI_I_TEXT = 4");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,(1)    DMI displays LE13 symbol in sub-area C1 without yellow flashing frame");
             /*
             Test Step 18
             Action: (Continue from step 17)Send EVC-8 with,MMI_Q_TEXT = 257MMI_Q_TEXT_CRITERIA = 3MMI_N_TEXT = 1MMI_X_TEXT = 2MMI_I_TEXT = 4
@@ -197,6 +332,14 @@ namespace Testcase.DMITestCases
             */
 
 
+            TraceHeader("Test Step 19");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "(Continue from step 18)Send EVC-8 with,MMI_Q_TEXT = 257MMI_Q_TEXT_CRITERIA = 3MMI_N_TEXT = 1MMI_X_TEXT = 3MMI_I_TEXT = 4");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,(1)    DMI displays LE15 symbol in sub-area C1 without yellow flashing frame");
             /*
             Test Step 19
             Action: (Continue from step 18)Send EVC-8 with,MMI_Q_TEXT = 257MMI_Q_TEXT_CRITERIA = 3MMI_N_TEXT = 1MMI_X_TEXT = 3MMI_I_TEXT = 4
@@ -205,6 +348,14 @@ namespace Testcase.DMITestCases
             */
 
 
+            TraceHeader("Test Step 20");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Press ‘Main’ button.Then, use the test script file 15_3_1_1_b.xml to Send EVC-8 with,MMI_Q_TEXT = 716MMI_Q_TEXT_CRITERIA = 3MMI_I_TEXT = 5");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,(1)    DMI displays ST05 symbol in the window title area without yellow flashing frame");
             /*
             Test Step 20
             Action: Press ‘Main’ button.Then, use the test script file 15_3_1_1_b.xml to Send EVC-8 with,MMI_Q_TEXT = 716MMI_Q_TEXT_CRITERIA = 3MMI_I_TEXT = 5
@@ -215,6 +366,13 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Please press the \"Main\" button on the DMI.");
             XML_15_3_1_1(msgType.typeb);
 
+            TraceHeader("Test Step 21");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Use the test script file 15_3_1_1_c.xml to send EVC-8 with,MMI_Q_TEXT_CRITERIA = 4MMI_I_TEXT = 5");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information,(1)    The symbol ST05 is removed from window title area");
             /*
             Test Step 21
             Action: Use the test script file 15_3_1_1_c.xml to send EVC-8 with,MMI_Q_TEXT_CRITERIA = 4MMI_I_TEXT = 5
@@ -223,6 +381,11 @@ namespace Testcase.DMITestCases
             */
             XML_15_3_1_1(msgType.typec);
 
+            TraceHeader("Test Step 22");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            
             /*
             Test Step 22
             Action: End of test

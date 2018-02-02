@@ -35,8 +35,16 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Activate cabin A");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays in SB mode, level 1. The Driver ID window is displayed");
             /*
             Test Step 1
             Action: Activate cabin A
@@ -54,6 +62,12 @@ namespace Testcase.DMITestCases
             // Call generic Check Results Method
             DmiExpectedResults.Driver_ID_window_displayed_in_SB_mode(this);
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Driver performs SoM to SR mode");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays in SR mode, level 1");
             /*
             Test Step 2
             Action: Driver performs SoM to SR mode
@@ -70,6 +84,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Does the DMI delete the SB mode symbol (MO13) and replace it with the SR mode symbol (MO09) in area B7");
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train forward pass BG1");
+            TraceReport("Expected Result");
+            TraceInfo("DMI changes from SR to FS mode");
             /*
             Test Step 3
             Action: Drive the train forward pass BG1
@@ -81,6 +101,13 @@ namespace Testcase.DMITestCases
             // Call generic Check Results Method
             DmiExpectedResults.FS_mode_displayed(this);
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train follow the permitted speed");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,The distance to target bar is displayed in sub-area A3.The distance scale is displayed in left column of sub-area A3.The distance to target bar is displayed distance from zero to a maximum of 1000m according to the distance scale. Distances above 1000m is limited to the distance scale’s upper boundary.The distance to target bar is additional marked by a white arrow on top. (see the figure of a white arrow in ‘Comment’ column).The distance to target bar and distance scale are displayed as grey colour.The distance to target is indicated by a vertical rectangular bar at the right column of sub-area A3 with left aligned.Use the log file to confirm that the distance to target (bar and digital) is calculated from the received packet information EVC-7 and EVC-1 as follows,(EVC-1) MMI_O_BRAKETARGET - (EVC-7) OBU_TR_O_TRAINThe result of calculation is displayed in meter unit.Example: The observation point of the distance target is 445. [EVC-1.MMI_O_BRAKETARGET = 1000080700] - [EVC-7.OBU_TR_O_TRAIN = 1000040036] = 40664 cm (406.64 m, 444.71 yard).The distance target digital in sub-area A2 displays as 407 meters.The distance target bar in sub-area A3 displays over the indicator line No.5 (400m/704 yard)Note: Unit conversion1cm = 0.01m1m = 1.09361yard");
             /*
             Test Step 4
             Action: Drive the train follow the permitted speed
@@ -119,6 +146,13 @@ namespace Testcase.DMITestCases
                                 "1. The distance to target bar is not displayed in sub-area A3.");
             // Check log
 
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Stop the train");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,Use the log file to check the different of the following received packets is less than zero(EVC-1) MMI_O_BRAKETARGET – (EVC-7) OBU_TR_O_TRAIN < 0If the result of calculation data is less than 0, The distance to target bar is not display in sub-area A3");
             /*
             Test Step 5
             Action: Stop the train
@@ -131,6 +165,11 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The distance to target bar is not displayed in sub-area A3.");
 
+            TraceHeader("Test Step 6");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            
             /*
             Test Step 6
             Action: End of test

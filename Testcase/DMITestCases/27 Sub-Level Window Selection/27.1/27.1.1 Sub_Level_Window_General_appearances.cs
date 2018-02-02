@@ -24,8 +24,17 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Power on DMI (without ATP)");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,The ‘Main’, ‘Override’, Data View’ and ‘Special’ buttons are invisible.The ‘Settings’ button is visible");
             /*
             Test Step 1
             Action: Power on DMI (without ATP)
@@ -40,6 +49,13 @@ namespace Testcase.DMITestCases
                                 "3. DMI does not display the ‘Data View’ button." + Environment.NewLine +
                                 "4. DMI displays the ‘Settings’ button.");
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Then, power on ATP (without cabin activation)");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,The ‘Main’, ‘Override’, Data View’ and ‘Special’ buttons are invisible.The ‘Settings’ button is visible");
             /*
             Test Step 2
             Action: Then, power on ATP (without cabin activation)
@@ -54,6 +70,13 @@ namespace Testcase.DMITestCases
                                 "3. DMI does not display the ‘Data View’ button." + Environment.NewLine +
                                 "4. DMI displays the ‘Settings’ button.");
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Perform the following procedure,Activate Cabin AEnter Driver ID and perform brake testSelect and confirm Level 1");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Main window");
             /*
             Test Step 3
             Action: Perform the following procedure,Activate Cabin AEnter Driver ID and perform brake testSelect and confirm Level 1
@@ -73,6 +96,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Main window.");
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Close’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI displays Default window.Verifies the following points,The sub-level window is composed of 5 buttons displayed in area F1-F5.The following buttons are all enabled and labeled in English as follows:The ‘Main’ button in area F1The ‘Override’ button in area F2The ‘Data View’ button in area F3The ‘Special’ button in area F4The ‘Settings’ button displaying with symbol SE04 in area F5");
             /*
             Test Step 4
             Action: Press ‘Close’ button
@@ -92,6 +122,13 @@ namespace Testcase.DMITestCases
                                 "6. The ‘Special’ button is displayed enabled in sub-area F4" + Environment.NewLine +
                                 "7. The ‘Settings’ button is displayed enabled with symbol SE04 in sub-area F5");
 
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press and hold ‘Main’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following potins,The ‘Main’ button is shown as pressed state. The sound ‘Click’ played once");
             /*
             Test Step 5
             Action: Press and hold ‘Main’ button
@@ -104,6 +141,13 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the ‘Main’ button pressed." + Environment.NewLine +
                                 "2. The ‘Click’ sound is played once.");
 
+            TraceHeader("Test Step 6");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Slide out of ‘Main’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI still displays the Default window.The ‘Main’ button becomes the ‘Enabled’ state without a sound");
             /*
             Test Step 6
             Action: Slide out of ‘Main’ button
@@ -116,6 +160,13 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the ‘Main’ button enabled." + Environment.NewLine +
                                 "2. No sound is played.");
 
+            TraceHeader("Test Step 7");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Slide back into ‘Main’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI still displays the Default window.The Main button is shown as pressed state and no sound ‘Click’ is played");
             /*
             Test Step 7
             Action: Slide back into ‘Main’ button
@@ -128,6 +179,12 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the ‘Main’ button pressed." + Environment.NewLine +
                                 "2. No sound is played.");
 
+            TraceHeader("Test Step 8");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Release the ‘Main’ button");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information,DMI displays Main window");
             /*
             Test Step 8
             Action: Release the ‘Main’ button
@@ -139,6 +196,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Main window.");
 
+            TraceHeader("Test Step 9");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Close’ button");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Default window");
             /*
             Test Step 9
             Action: Press ‘Close’ button
@@ -149,6 +212,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Default window.");
 
+            TraceHeader("Test Step 10");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press and hold ‘Override’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following potins,The ‘Override’ button is shown as pressed state. The sound ‘Click’ played once");
             /*
             Test Step 10
             Action: Press and hold ‘Override’ button
@@ -161,6 +231,13 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the ‘Override’ button pressed." + Environment.NewLine +
                                 "2. The ‘Click’ sound is played once.");
 
+            TraceHeader("Test Step 11");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Slide out of ‘Override’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI still displays the Default window.The ‘Override’ button becomes the ‘Enabled’ state without a sound");
             /*
             Test Step 11
             Action: Slide out of ‘Override’ button
@@ -173,6 +250,13 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the ‘Override’ button enabled." + Environment.NewLine +
                                 "2. No sound is played.");
 
+            TraceHeader("Test Step 12");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Slide back into ‘Override’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI still displays the Default window.The Override button is shown as pressed state and no sound ‘Click’ is played");
             /*
             Test Step 12
             Action: Slide back into ‘Override’ button
@@ -186,6 +270,12 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the ‘Override’ button pressed." + Environment.NewLine +
                                 "2. No sound is played.");
 
+            TraceHeader("Test Step 13");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Release the ‘Override’ button");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information,DMI displays Override window");
             /*
             Test Step 13
             Action: Release the ‘Override’ button
@@ -197,6 +287,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Override window.");
 
+            TraceHeader("Test Step 14");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Close’ button");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Default window");
             /*
             Test Step 14
             Action: Press ‘Close’ button
@@ -207,6 +303,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Default window.");
 
+            TraceHeader("Test Step 15");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press and hold ‘Data view’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following potins,The ‘Data View’ button is shown as pressed state. The sound ‘Click’ played once");
             /*
             Test Step 15
             Action: Press and hold ‘Data view’ button
@@ -219,6 +322,13 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the ‘Data view’ button pressed." + Environment.NewLine +
                                 "2. The ‘Click’ sound is played once.");
 
+            TraceHeader("Test Step 16");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Slide out of ‘Data view’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI still displays the Default window.The ‘Data View’ button becomes the ‘Enabled’ state without a sound");
             /*
             Test Step 16
             Action: Slide out of ‘Data view’ button
@@ -231,6 +341,13 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the ‘Data view’ button enabled." + Environment.NewLine +
                                 "2. No sound is played.");
 
+            TraceHeader("Test Step 17");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Slide back into ‘Data view’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI still displays the Default window.The Data View button is shown as pressed state and no sound ‘Click’ is played");
             /*
             Test Step 17
             Action: Slide back into ‘Data view’ button
@@ -244,6 +361,12 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the ‘Data view’ button pressed." + Environment.NewLine +
                                 "2. No sound is played.");
 
+            TraceHeader("Test Step 18");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Release the ‘Data view’ button");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information,DMI displays Data View window");
             /*
             Test Step 18
             Action: Release the ‘Data view’ button
@@ -271,6 +394,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Data view window.");
 
+            TraceHeader("Test Step 19");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Close’ button");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Default window");
             /*
             Test Step 19
             Action: Press ‘Close’ button
@@ -281,6 +410,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Default window.");
 
+            TraceHeader("Test Step 20");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press and hold ‘Special’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following potins,The ‘Special’ button is shown as pressed state. The sound ‘Click’ played once");
             /*
             Test Step 20
             Action: Press and hold ‘Special’ button
@@ -293,6 +429,13 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the ‘Special’ button pressed." + Environment.NewLine +
                                 "2. The ‘Click’ sound is played once.");
 
+            TraceHeader("Test Step 21");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Slide out of ‘Special’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI still displays the Default window.The ‘Special’ button becomes the ‘Enabled’ state without a sound");
             /*
             Test Step 21
             Action: Slide out of ‘Special’ button
@@ -305,6 +448,13 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the ‘Special’ button enabled." + Environment.NewLine +
                                 "2. No sound is played.");
 
+            TraceHeader("Test Step 22");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Slide back into ‘Special’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI still displays the Default window.The Special button is shown as pressed state and no sound ‘Click’ is played");
             /*
             Test Step 22
             Action: Slide back into ‘Special’ button
@@ -318,6 +468,12 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the ‘Special’ button pressed." + Environment.NewLine +
                                 "2. No sound is played.");
 
+            TraceHeader("Test Step 23");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Release the ‘Special’ button");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information,DMI displays Special window");
             /*
             Test Step 23
             Action: Release the ‘Special’ button
@@ -329,6 +485,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Special window.");
 
+            TraceHeader("Test Step 24");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Close’ button");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Default window");
             /*
             Test Step 24
             Action: Press ‘Close’ button
@@ -339,6 +501,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Default window.");
 
+            TraceHeader("Test Step 25");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press and hold ‘Setting’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following potins,The ‘Settings’ button is shown as pressed state. The sound ‘Click’ played once");
             /*
             Test Step 25
             Action: Press and hold ‘Setting’ button
@@ -351,6 +520,13 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the ‘Settings’ button pressed." + Environment.NewLine +
                                 "2. The ‘Click’ sound is played once.");
 
+            TraceHeader("Test Step 26");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Slide out of ‘Setting’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI still displays the Default window.The ‘Settings’ button becomes the ‘Enabled’ state without a sound");
             /*
             Test Step 26
             Action: Slide out of ‘Setting’ button
@@ -364,6 +540,13 @@ namespace Testcase.DMITestCases
                                 "2. DMI displays the ‘Settings’ button enabled." + Environment.NewLine +
                                 "3. No sound is played.");
 
+            TraceHeader("Test Step 27");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Slide back into ‘Setting’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI still displays the Default window.The Settings button is shown as pressed state and no sound ‘Click’ is played");
             /*
             Test Step 27
             Action: Slide back into ‘Setting’ button
@@ -378,6 +561,12 @@ namespace Testcase.DMITestCases
                                 "2. DMI displays the ‘Settings’ button pressed." + Environment.NewLine +
                                 "2. No sound is played.");
 
+            TraceHeader("Test Step 28");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Release the ‘Setting’ button");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information,DMI displays Settings window");
             /*
             Test Step 28
             Action: Release the ‘Setting’ button
@@ -389,6 +578,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window.");
 
+            TraceHeader("Test Step 29");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Language’ button");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Language window");
             /*
             Test Step 29
             Action: Press ‘Language’ button
@@ -405,6 +600,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Language window.");
 
+            TraceHeader("Test Step 30");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Select and confirm ‘Deutsch’ language");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Setting window with changed display refer to selected language");
             /*
             Test Step 30
             Action: Select and confirm ‘Deutsch’ language
@@ -415,6 +616,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window with texts displayed in German.");
 
+            TraceHeader("Test Step 31");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Close’ button");
+            TraceReport("Expected Result");
+            TraceInfo("DMI display Default window.Verify that symbol SE04 still applies for Deutsch");
             /*
             Test Step 31
             Action: Press ‘Close’ button
@@ -427,6 +634,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Default window with symbol SE04 in sub-area F5.");
 
+            TraceHeader("Test Step 32");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Setting’ button");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Setting window");
             /*
             Test Step 32
             Action: Press ‘Setting’ button
@@ -438,6 +651,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window");
 
+            TraceHeader("Test Step 33");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Repeat action setp 30-31 for another language");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,Verify the label of are F5 is presented symbol SE04 independently from the currently active language");
             /*
             Test Step 33
             Action: Repeat action setp 30-31 for another language
@@ -456,6 +676,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Default window with symbol SE04 in sub-area F5.");
 
+            TraceHeader("Test Step 34");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Power off ATP (without Fallback)");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,The buttons ‘Main’, ‘Override’, Data View’ and ‘Special’ buttons are invisibled in any other state.The ‘Settings’ button is still visible");
             /*
             Test Step 34
             Action: Power off ATP (without Fallback)
@@ -471,6 +698,13 @@ namespace Testcase.DMITestCases
                                 "3. DMI does not display the ‘Data View’ button." + Environment.NewLine +
                                 "4. DMI still displays the ‘Settings’ button.");
 
+            TraceHeader("Test Step 35");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Run the ‘Fallback’ function (Drive the train with speed Fallback)");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,The buttons ‘Main’, ‘Override’, Data View’ and ‘Special’ buttons are invisibled in any other state.The ‘Settings’ button is still visible");
             /*
             Test Step 35
             Action: Run the ‘Fallback’ function (Drive the train with speed Fallback)
@@ -485,6 +719,11 @@ namespace Testcase.DMITestCases
                                 "3. DMI does not display the ‘Data View’ button." + Environment.NewLine +
                                 "4. DMI still displays the ‘Settings’ button.");
 
+            TraceHeader("Test Step 36");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            
             /*
             Test Step 36
             Action: End of test

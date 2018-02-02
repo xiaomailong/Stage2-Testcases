@@ -42,8 +42,18 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Use the test script file 22_22_1_a.xml to send EVC-30 with,MMI_NID_WINDOW = 4MMI_Q_REQUEST_ENABLE_64 (#31) = 0MMI_Q_REQUEST_ENABLE_64 (#28) = 0");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,Use the log file to verify that DMI receives the EVC-30 with [MMI_ENABLE_REQUEST (EVC-30).MMI_Q_REQUEST_ENABLE_64] (#31) = 0 (Disable Brake Percentage)Use the log file to verify that DMI receives the EVC-30 with [MMI_ENABLE_REQUEST (EVC-30).MMI_Q_REQUEST_ENABLE_64] (#28) = 0 (Disable to Start Brake Test)The ‘Brake button is disabled");
             /*
             Test Step 1
             Action: Use the test script file 22_22_1_a.xml to send EVC-30 with,MMI_NID_WINDOW = 4MMI_Q_REQUEST_ENABLE_64 (#31) = 0MMI_Q_REQUEST_ENABLE_64 (#28) = 0
@@ -55,6 +65,14 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Brake’ button is displayed disabled.");
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Use the test script file 22_22_1_b.xml to send EVC-30 with,MMI_NID_WINDOW = 4MMI_Q_REQUEST_ENABLE_64 (#31) = 1MMI_Q_REQUEST_ENABLE_64 (#28) = 0");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,Use the log file to verify that DMI receives the EVC-30 with [MMI_ENABLE_REQUEST (EVC-30).MMI_Q_REQUEST_ENABLE_64] (#31) = 1 (Enable Brake Percentage)Use the log file to verify that DMI receives the EVC-30 with [MMI_ENABLE_REQUEST (EVC-30).MMI_Q_REQUEST_ENABLE_64] (#28) = 0 (Disable to Start Brake Test)The ‘Brake’ button is enabled");
             /*
             Test Step 2
             Action: Use the test script file 22_22_1_b.xml to send EVC-30 with,MMI_NID_WINDOW = 4MMI_Q_REQUEST_ENABLE_64 (#31) = 1MMI_Q_REQUEST_ENABLE_64 (#28) = 0
@@ -66,6 +84,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Brake’ button is displayed enabled.");
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Brake’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,The ‘Test’ button is disabled.The ‘Percentage’ button is enabled");
             /*
             Test Step 3
             Action: Press ‘Brake’ button
@@ -78,6 +103,12 @@ namespace Testcase.DMITestCases
                                 "1. The ‘Test’ button is displayed disabled." + Environment.NewLine +
                                 "2. The ‘Percentage’ button is displayed enabled.");
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Close’ button");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Settings button");
             /*
             Test Step 4
             Action: Press ‘Close’ button
@@ -89,6 +120,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window.");
 
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Use the test script file 22_22_1_a.xml to send EVC-30 with,MMI_NID_WINDOW = 4MMI_Q_REQUEST_ENABLE_64 (#31) = 0MMI_Q_REQUEST_ENABLE_64 (#28) = 0");
+            TraceReport("Expected Result");
+            TraceInfo("The ‘Brake’ button is disabled");
             /*
             Test Step 5
             Action: Use the test script file 22_22_1_a.xml to send EVC-30 with,MMI_NID_WINDOW = 4MMI_Q_REQUEST_ENABLE_64 (#31) = 0MMI_Q_REQUEST_ENABLE_64 (#28) = 0
@@ -99,6 +137,14 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Brake’ button is displayed disabled.");
 
+            TraceHeader("Test Step 6");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Use the test script file 22_22_1_c.xml to send EVC-30 with,MMI_NID_WINDOW = 4MMI_Q_REQUEST_ENABLE_64 (#31) = 0MMI_Q_REQUEST_ENABLE_64 (#28) = 1");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,Use the log file to verify that DMI receives the EVC-30 with [MMI_ENABLE_REQUEST (EVC-30).MMI_Q_REQUEST_ENABLE_64] (#31) = 0 (Disable Brake Percentage)Use the log file to verify that DMI receives the EVC-30 with [MMI_ENABLE_REQUEST (EVC-30).MMI_Q_REQUEST_ENABLE_64] (#28) = 1 (Enable to Start Brake Test)The ‘Brake’ button is enabled");
             /*
             Test Step 6
             Action: Use the test script file 22_22_1_c.xml to send EVC-30 with,MMI_NID_WINDOW = 4MMI_Q_REQUEST_ENABLE_64 (#31) = 0MMI_Q_REQUEST_ENABLE_64 (#28) = 1
@@ -110,6 +156,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Brake’ button is displayed enabled.");
 
+            TraceHeader("Test Step 7");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Brake’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,The ‘Test’ button is enabled.The ‘Percentage’ button is disabled");
             /*
             Test Step 7
             Action: Press ‘Brake’ button
@@ -122,6 +175,12 @@ namespace Testcase.DMITestCases
                                 "1. The ‘Test’ button is displayed enabled." + Environment.NewLine +
                                 "2. The ‘Percentage’ button is displayed disbled.");
 
+            TraceHeader("Test Step 8");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Close’ button");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Settings button");
             /*
             Test Step 8
             Action: Press ‘Close’ button
@@ -133,6 +192,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window.");
 
+            TraceHeader("Test Step 9");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Use the test script file 22_22_1_a.xml to send EVC-30 with,MMI_NID_WINDOW = 4MMI_Q_REQUEST_ENABLE_64 (#31) = 0MMI_Q_REQUEST_ENABLE_64 (#28) = 0");
+            TraceReport("Expected Result");
+            TraceInfo("The ‘Brake’ button is disabled");
             /*
             Test Step 9
             Action: Use the test script file 22_22_1_a.xml to send EVC-30 with,MMI_NID_WINDOW = 4MMI_Q_REQUEST_ENABLE_64 (#31) = 0MMI_Q_REQUEST_ENABLE_64 (#28) = 0
@@ -143,6 +209,14 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Brake’ button is displayed disabled.");
 
+            TraceHeader("Test Step 10");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Use the test script file 22_22_1_d.xml to send EVC-30 with,MMI_NID_WINDOW = 4MMI_Q_REQUEST_ENABLE_64 (#31) = 1MMI_Q_REQUEST_ENABLE_64 (#28) = 1");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,Use the log file to verify that DMI receives the EVC-30 with [MMI_ENABLE_REQUEST (EVC-30).MMI_Q_REQUEST_ENABLE_64] (#31) = 1 (Enable Brake Percentage)Use the log file to verify that DMI receives the EVC-30 with [MMI_ENABLE_REQUEST (EVC-30).MMI_Q_REQUEST_ENABLE_64] (#28) = 1 (Enable to Start Brake Test)The ‘Brake’ button is enabled");
             /*
             Test Step 10
             Action: Use the test script file 22_22_1_d.xml to send EVC-30 with,MMI_NID_WINDOW = 4MMI_Q_REQUEST_ENABLE_64 (#31) = 1MMI_Q_REQUEST_ENABLE_64 (#28) = 1
@@ -154,6 +228,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Brake’ button is displayed enabled.");
 
+            TraceHeader("Test Step 11");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Brake’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following points,Menu windowDMI displays Brake window.The window title is ‘Brake’.The Brake window is displayed in main area D/F/G.The following objects are display in Brake window. Enabled Close button (NA11)Window TitleButton 1 with label ‘Test’Button 2 with label ‘PercentageNote: See the position of buttons in picture below,The state of each button in Brake window are displayed correctly as follows,Test = EnablePercentage = EnableLayersThe level of layers in each area of window as follows,Layer 0: Area D, F, G, E10, E11, Y, and ZLayer -1: Area A1, (A2+A3)*, A4, B*, C1, (C2+C3+C4)*, C5, C6, C7, C8, C9, E1, E2, E3, E4, (E5-E9)*.Layer -2: Area B3, B4, B5, B6 and B7.Note: ‘*’ symbol is mean that specified area are drawn as one area.General property of windowThe Brake window is presented with objects and buttons which is the one of several levels and allocated to areas of DMI. All objects, text messages and buttons are presented within the same layer.The Default window is not displayed and covered the current window");
             /*
             Test Step 11
             Action: Press ‘Brake’ button
@@ -181,6 +262,13 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "10. The Default window does not cover the current window.");
 
+            TraceHeader("Test Step 12");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press and hold ‘Test’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,The sound ‘Click’ played once.The ‘Test’ button is shown as pressed state, the border of button is removed");
             /*
             Test Step 12
             Action: Press and hold ‘Test’ button
@@ -193,6 +281,12 @@ namespace Testcase.DMITestCases
                                 "1. The ‘Test’ button is displayed pressed, without a border." + Environment.NewLine +
                                 "2. The ‘Click’ sound is played once.");
 
+            TraceHeader("Test Step 13");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Slide out of ‘Test’ button");
+            TraceReport("Expected Result");
+            TraceInfo("The border of the button is shown (state ‘Enabled’) without a sound");
             /*
             Test Step 13
             Action: Slide out of ‘Test’ button
@@ -206,6 +300,12 @@ namespace Testcase.DMITestCases
                                 "2. No sound is played.");
 
 
+            TraceHeader("Test Step 14");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Slide back into ‘Test’ button");
+            TraceReport("Expected Result");
+            TraceInfo("The button is back to state ‘Pressed’ without a sound");
             /*
             Test Step 14
             Action: Slide back into ‘Test’ button
@@ -218,6 +318,12 @@ namespace Testcase.DMITestCases
                                 @"1. The ‘Test’ button is displayed pressed." + Environment.NewLine +
                                 "2. No sound is played.");
 
+            TraceHeader("Test Step 15");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Release the ‘Test’ button");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Brake Test window");
             /*
             Test Step 15
             Action: Release the ‘Test’ button
@@ -229,6 +335,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. DMI displays the Brake test window");
 
+            TraceHeader("Test Step 16");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Close’ button");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Brake window");
             /*
             Test Step 16
             Action: Press ‘Close’ button
@@ -240,6 +352,13 @@ namespace Testcase.DMITestCases
                                 @"1. DMI displays the Brake window");
 
 
+            TraceHeader("Test Step 17");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Follow action step 12 – step 16 for ‘Percentage’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "See the expected results of Step 12 – Step 16 and the following additional information,DMI displays Brake Percentage window when button is released refer to action step 15.Use the log file to confirm that DMI sends out the packet [MMI_DRIVER_REQUEST (EVC-101)] with variable [MMI_DRIVER_REQUEST (EVC-101).MMI_M_REQUEST] = 51 (Change Brake Percentage)");
             /*
             Test Step 17
             Action: Follow action step 12 – step 16 for ‘Percentage’ button
@@ -281,6 +400,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. DMI displays the Brake percentage window");
 
+            TraceHeader("Test Step 18");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Follow action step 12 – step 16 for ‘Close’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "See the expected results of Step 12 – Step 16 and the following additional information,DMI displays Settings window");
             /*
             Test Step 18
             Action: Follow action step 12 – step 16 for ‘Close’ button
@@ -315,6 +441,11 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. DMI displays the Settings window");
 
+            TraceHeader("Test Step 19");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            
             /*
             Test Step 19
             Action: End of test
@@ -403,6 +534,7 @@ namespace Testcase.DMITestCases
                                                                            .EnableBrakePercentage;
                     break;
             }
+
             EVC30_MMIRequestEnable.Send();
         }
 

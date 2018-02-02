@@ -32,6 +32,8 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
             #region Test Step 1
@@ -40,7 +42,7 @@ namespace Testcase.DMITestCases
             Action: Activate cabin A
             Expected Result: DMI displays in SB mode. The Driver ID window is displayed
             */
-            
+
             DmiActions.Activate_Cabin_1(this);
             DmiExpectedResults.Cabin_A_is_activated(this);
 
@@ -93,6 +95,12 @@ namespace Testcase.DMITestCases
 
             #region Test Step 4
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Train data’ button");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Train data window");
             /*
             Test Step 4
             Action: Press ‘Train data’ button
@@ -108,6 +116,12 @@ namespace Testcase.DMITestCases
 
             #region Test Step 5
 
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Enter and confirm value in each input field.Then, press ‘Yes’ button");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Train data validation window");
             /*
             Test Step 5
             Action: Enter and confirm value in each input field.Then, press ‘Yes’ button
@@ -130,6 +144,12 @@ namespace Testcase.DMITestCases
 
             #region Test Step 6
 
+            TraceHeader("Test Step 6");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Yes’ button.Then, confirmed selected value by pressing an input field");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Train Running Number window");
             /*
             Test Step 6
             Action: Press ‘Yes’ button.Then, confirmed selected value by pressing an input field
@@ -147,6 +167,12 @@ namespace Testcase.DMITestCases
 
             #region Test Step 7
 
+            TraceHeader("Test Step 7");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Enter and confirm Train running number");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Main window");
             /*
             Test Step 7
             Action: Enter and confirm Train running number
@@ -162,6 +188,12 @@ namespace Testcase.DMITestCases
 
             #region Test Step 8
 
+            TraceHeader("Test Step 8");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Start’ button");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information,");
             /*
             Test Step 8
             Action: Press ‘Start’ button
@@ -185,6 +217,12 @@ namespace Testcase.DMITestCases
 
             #region Test Step 9
 
+            TraceHeader("Test Step 9");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Acknowledge UN mode");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information,");
             /*
             Test Step 9
             Action: Acknowledge UN mode
@@ -213,6 +251,12 @@ namespace Testcase.DMITestCases
 
             #region Test Step 10
 
+            TraceHeader("Test Step 10");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Perform the following procedure:");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Default window in SR mode, Level 1.");
             /*
             Test Step 10
             Action: Perform the following procedure:
@@ -312,6 +356,12 @@ namespace Testcase.DMITestCases
 
             #region Test Step 11
 
+            TraceHeader("Test Step 11");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train forward passing BG1");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information,");
             /*
             Test Step 11
             Action: Drive the train forward passing BG1
@@ -337,6 +387,12 @@ namespace Testcase.DMITestCases
 
             #region Test Step 12
 
+            TraceHeader("Test Step 12");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Acknowledge OS mode");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information,");
             /*
             Test Step 12
             Action: Acknowledge OS mode
@@ -358,6 +414,12 @@ namespace Testcase.DMITestCases
 
             #region Test Step 13
 
+            TraceHeader("Test Step 13");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Stop the train.Then, press ‘Over-ride’ button");
+            TraceReport("Expected Result");
+            TraceInfo("When the train is stopped, EOA button is enabled");
             /*
             Test Step 13
             Action: Stop the train.Then, press ‘Over-ride’ button
@@ -380,6 +442,12 @@ namespace Testcase.DMITestCases
 
             #region Test Step 14
 
+            TraceHeader("Test Step 14");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘EOA’ button");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information, ");
             /*
             Test Step 14
             Action: Press ‘EOA’ button
@@ -403,6 +471,11 @@ namespace Testcase.DMITestCases
 
             #region Test Step 15
 
+            TraceHeader("Test Step 15");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            
             /*
             Test Step 15
             Action: End of test

@@ -26,10 +26,18 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
             TraceInfo("This test case requires an ATP configuration change - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Power On the system");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays the default window");
             /*
             Test Step 1
             Action: Power On the system
@@ -40,6 +48,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Default window.");
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Activate cabin A and Perform SoM to SR mode, Level 1");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays in SR mode, level 1");
             /*
             Test Step 2
             Action: Activate cabin A and Perform SoM to SR mode, Level 1
@@ -51,6 +65,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SR mode, Level 1.");
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train forward with speed = 40 km/h pass BG1");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI shows “Entering FS” message.DMI displays the Planning area. The Hide PA button is appeared on  the area D of the DMI");
             /*
             Test Step 3
             Action: Drive the train forward with speed = 40 km/h pass BG1
@@ -74,6 +95,13 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
             EVC8_MMIDriverMessage.Send();
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press Hide PA button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "The Planning area is disappeared and hidden from main area D for 20s.After 20s the planning area is displayed.Verify that the Hide PA button is displayed on the planning area");
             /*
             Test Step 4
             Action: Press Hide PA button
@@ -88,6 +116,12 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "3. The ‘Hide PA’ button is displayed in area D.");
 
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Turn off power of DMI");
+            TraceReport("Expected Result");
+            TraceInfo("DMI is power off");
             /*
             Test Step 5
             Action: Turn off power of DMI
@@ -98,6 +132,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI is blank.");
 
+            TraceHeader("Test Step 6");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Turn on power of DMI");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI is power on DMI displays the Planning area The Hide PA button is appeared on  the main area D of the DMI");
             /*
             Test Step 6
             Action: Turn on power of DMI
@@ -110,6 +151,13 @@ namespace Testcase.DMITestCases
                                 "1. The Planning Area is re-displayed in area D." + Environment.NewLine +
                                 "2. The ‘Hide PA’ button is re-displayed in area D.");
 
+            TraceHeader("Test Step 7");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Set HIDE PA TIMER configuration as 30s and repeat test step 1-6");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "The Planning area is disappeared and hidden from main area D for 30s.After 30s the planning area is displayed.Verify that the Hide PA button is displayed at sub-area D14 on the planning area");
             /*
             Test Step 7
             Action: Set HIDE PA TIMER configuration as 30s and repeat test step 1-6
@@ -171,6 +219,13 @@ namespace Testcase.DMITestCases
                                 "1. The Planning Area is re-displayed in area D." + Environment.NewLine +
                                 "2. The ‘Hide PA’ button is re-displayed in area D14.");
 
+            TraceHeader("Test Step 8");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Set HIDE PA TIMER configuration as 40s and repeat test step 1-6");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "The Planning area is disappeared and hidden from main area D for 40s.After 40s the planning area is displayed.Verify that the Hide PA button is displayed at sub-area D14 on the planning area");
             /*
             Test Step 8
             Action: Set HIDE PA TIMER configuration as 40s and repeat test step 1-6
@@ -231,6 +286,13 @@ namespace Testcase.DMITestCases
                                 "1. The Planning Area is re-displayed in area D." + Environment.NewLine +
                                 "2. The ‘Hide PA’ button is re-displayed in area D14.");
 
+            TraceHeader("Test Step 9");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Set HIDE PA TIMER configuration as 50s and repeat test step 1-6");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "The Planning area is disappeared and hidden from main area D for 50s.After 50s the planning area is displayed.Verify that the Hide PA button is displayed at sub-area D14 on the planning area");
             /*
             Test Step 9
             Action: Set HIDE PA TIMER configuration as 50s and repeat test step 1-6
@@ -291,6 +353,13 @@ namespace Testcase.DMITestCases
                                 "1. The Planning Area is re-displayed in area D." + Environment.NewLine +
                                 "2. The ‘Hide PA’ button is re-displayed in area D14.");
 
+            TraceHeader("Test Step 10");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Set HIDE PA TIMER configuration as 60s and repeat test step 1-6");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "The Planning area is disappeared and hidden from main area D for 60s.After 60s the planning area is displayed.Verify that the Hide PA button is displayed at sub-area D14 on the planning area");
             /*
             Test Step 10
             Action: Set HIDE PA TIMER configuration as 60s and repeat test step 1-6
@@ -351,6 +420,13 @@ namespace Testcase.DMITestCases
                                 "1. The Planning Area is re-displayed in area D." + Environment.NewLine +
                                 "2. The ‘Hide PA’ button is re-displayed in area D14.");
 
+            TraceHeader("Test Step 11");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Set HIDE PA TIMER configuration as 70s and repeat test step 1-6");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "The Planning area is disappeared and hidden from main area D for 60s.After 60s the planning area is displayed.Verify that the Hide PA button is displayed at sub-area D14 on the planning area");
             /*
             Test Step 11
             Action: Set HIDE PA TIMER configuration as 70s and repeat test step 1-6
@@ -414,6 +490,13 @@ namespace Testcase.DMITestCases
                                 "1. The Planning Area is re-displayed in area D." + Environment.NewLine +
                                 "2. The ‘Hide PA’ button is re-displayed in area D14.");
 
+            TraceHeader("Test Step 12");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Set HIDE PA TIMER configuration as 80s and repeat test step 1-6");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "The Planning area is disappeared and hidden from main area D for 60s.After 60s the planning area is displayed.Verify that the Hide PA button is displayed at sub-area D14 on the planning area");
             /*
             Test Step 12
             Action: Set HIDE PA TIMER configuration as 80s and repeat test step 1-6
@@ -474,6 +557,11 @@ namespace Testcase.DMITestCases
                                 "1. The Planning Area is re-displayed in area D." + Environment.NewLine +
                                 "2. The ‘Hide PA’ button is re-displayed in area D14.");
 
+            TraceHeader("Test Step 13");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            
             /*
             Test Step 13
             Action: End of test

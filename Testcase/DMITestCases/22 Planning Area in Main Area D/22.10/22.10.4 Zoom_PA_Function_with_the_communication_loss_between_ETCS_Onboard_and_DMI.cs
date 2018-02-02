@@ -35,9 +35,17 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Activate cabin A");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays the default window. The Driver ID window is displayed");
             /*
             Test Step 1
             Action: Activate cabin A
@@ -50,6 +58,12 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays in SB mode." + Environment.NewLine +
                                 "2. The Driver ID window is displayed.");
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Driver performs SoM to SR mode, level 1");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays in SR mode, level 1");
             /*
             Test Step 2
             Action: Driver performs SoM to SR mode, level 1
@@ -63,6 +77,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SR mode, Level 1.");
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train forward pass BG1");
+            TraceReport("Expected Result");
+            TraceInfo("DMI changes from SR mode to FS mode with PA in area D");
             /*
             Test Step 3
             Action: Drive the train forward pass BG1
@@ -79,6 +99,12 @@ namespace Testcase.DMITestCases
                                 "1. DMI changes from SR to FS mode, Level 1." + Environment.NewLine +
                                 "2. The Planning Area is displayed in area D.");
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Driver presses ‘Scale up’ button for selects distance range to [0…1000]");
+            TraceReport("Expected Result");
+            TraceInfo("The distance scale range of PA is presented with the range [0…1000]");
             /*
             Test Step 4
             Action: Driver presses ‘Scale up’ button for selects distance range to [0…1000]
@@ -89,6 +115,14 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Planning Area scale displays according to the range 0..1000.");
 
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Simulate the communication loss between ETCS onboard and DMI.ExamplePause OTE/ATPRemove connection between DMI and PC (MVB or TCP-IP)");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI displays message “ATP Down Alarm” with sound alarm.Verify that the planning area is removed from DMI");
             /*
             Test Step 5
             Action: Simulate the communication loss between ETCS onboard and DMI.ExamplePause OTE/ATPRemove connection between DMI and PC (MVB or TCP-IP)
@@ -102,6 +136,14 @@ namespace Testcase.DMITestCases
                                 @"2. The ‘Alarm’ sound is played." + Environment.NewLine +
                                 "3. The Planning Area is removed.");
 
+            TraceHeader("Test Step 6");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Perform the following procedure,Press at sub-area D9 twice.Press at sub-area D12.Re-establish the communication  between ETCS onboard and DMI.ExampleStart OTE/ATPConnect DMI to PC (MVB or TCP-IP)");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI displays in FS mode again. The Planning Area information and Zoom PA function are resumed. The distance scale range is displayed with the range [0…1000]");
             /*
             Test Step 6
             Action: Perform the following procedure,Press at sub-area D9 twice.Press at sub-area D12.Re-establish the communication  between ETCS onboard and DMI.ExampleStart OTE/ATPConnect DMI to PC (MVB or TCP-IP)
@@ -115,6 +157,13 @@ namespace Testcase.DMITestCases
                                 "1. The Planning Area is re-displayed." + Environment.NewLine +
                                 "2. The distance scale is 0..1000.");
 
+            TraceHeader("Test Step 7");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Scale Down’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,The distance scale range of PA is presented with the range [0…2000]");
             /*
             Test Step 7
             Action: Press ‘Scale Down’ button
@@ -126,6 +175,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Planning Area distance scale changes to 0..2000.");
 
+            TraceHeader("Test Step 8");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Scale Up’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,The distance scale range of PA is presented with the range [0…1000]");
             /*
             Test Step 8
             Action: Press ‘Scale Up’ button
@@ -137,6 +193,11 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Planning Area distance scale changes to 0..1000.");
 
+            TraceHeader("Test Step 9");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            
             /*
             Test Step 9
             Action: End of test

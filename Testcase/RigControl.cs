@@ -68,6 +68,5 @@ namespace Testcase
             pool.SITR.Client.Write("SCT2_MCS_Reverse", 0);
             pool.SITR.Client.Write("SCT2_MCS_KeySwitch", 1);
         }
-
     }
 }

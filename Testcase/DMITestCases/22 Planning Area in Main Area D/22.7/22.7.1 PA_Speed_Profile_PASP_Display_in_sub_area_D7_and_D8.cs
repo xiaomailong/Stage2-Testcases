@@ -25,10 +25,19 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
             TraceInfo("This test case may require an ATP configuration change - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Drive the train forward and pass BG1.Then, slow down the train to make it stop at position 100m");
+            TraceReport("Expected Result");
+            TraceInfo("DMI changes from SR to FS mode. The Planning Area is displayed");
             /*
             Test Step 1
             Action: Drive the train forward and pass BG1.Then, slow down the train to make it stop at position 100m
@@ -42,6 +51,13 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. DMI displays the Planning Area.");
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Stop the train");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI still displays the planning area. Verify that the PA Speed Profile is displayed is sub-area D7.All PASP segments are displayed with a resolution of ¼ the width of sub-area D7.Each PA Speed Profile segment is displayed with PASP-Light colour. At position 0-500m, the whole width of sub-area D7 is displayed in PASP-Light colour.The permitted speed is 100 km/h");
             /*
             Test Step 2
             Action: Stop the train
@@ -77,6 +93,13 @@ namespace Testcase.DMITestCases
                                 "6. The permitted speed = 100 km/h." + Environment.NewLine +
                                 "7. Three speed discontinuities are displayed in sub-area D7:");
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press <Scale Down> button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,There are only 3 speed discontinuities displayed at sub-area D7 and The width of each PA Speed Profile segments are displayed correctly refer as follows,0-500m: The width is covered all of sub-area D7.501-1000m: The width is covered only ¾ of sub-area D7.1001-2000m: The width is covered half of sub-area D7.2001-8000m: The width is covered only ¼ of sub-area D7.Use the log file to confirm that DMI receives packet information [MMI_TRACK_DESCRIPTION (EVC-4)] with variable MMI_V_MRSP_CURR = 2777 (approximately 100km/h).Use the log file to confirm the start position for each segment of PA speed profile from the differentiate of variable [MMI_TRACK_DESCRIPTION (EVC-4).MMI_O_MRSP] and [MMI_ETCS_MISC_OUT_SIGNALS (EVC-7).OBU_TR_O_TRAIN] as follows,[MMI_TRACK_DESCRIPTION (EVC-4).MMI_O_MRSP[0]] – [MMI_ETCS_MISC_OUT_SIGNALS (EVC-7).OBU_TR_O_TRAIN] is approximately to 60000 (600m)[MMI_TRACK_DESCRIPTION (EVC-4).MMI_O_MRSP[1]] – [MMI_ETCS_MISC_OUT_SIGNALS (EVC-7).OBU_TR_O_TRAIN] is approximately to 110000 (1100m)[MMI_TRACK_DESCRIPTION (EVC-4).MMI_O_MRSP[2]] – [MMI_ETCS_MISC_OUT_SIGNALS (EVC-7).OBU_TR_O_TRAIN] is approximately to 210000 (2100m)[MMI_TRACK_DESCRIPTION (EVC-4).MMI_O_MRSP[3]] – [MMI_ETCS_MISC_OUT_SIGNALS (EVC-7).OBU_TR_O_TRAIN] is approximately to 410000 (4100m)[MMI_TRACK_DESCRIPTION (EVC-4).MMI_O_MRSP[4]] – [MMI_ETCS_MISC_OUT_SIGNALS (EVC-7).OBU_TR_O_TRAIN] is approximately to 610000 (6100m).The symbol PL21 is displayed in sub area D6-D7 at position 6000m.   PL21Use the log file to confirm the value for each index of variable MMI_V_MRSP in received packet [MMI_TRACK_DESCRIPTION (EVC-4)] as follows,MMI_V_MRSP[4] > MMI_V_MRSP[3]Note: The first index is MMI_V_MRSP[0]The PASP is displayed within 8000m according to movement authorize (MA) and up to the first zero target speed.At the fourth speed restriction (position 2001-8000m), there is PL23 symbol displays at position 8000m");
             /*
             Test Step 3
             Action: Press <Scale Down> button
@@ -115,6 +138,13 @@ namespace Testcase.DMITestCases
                                 "13. The speed increase symbol (PL21) is displayed at position 6000m." +
                                 Environment.NewLine +
                                 "14. The speed decrease to zero target symbol (PL23) is displayed at position 8000m.");
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train forward");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,While the train is running forward, each segment of PA Speed Profile are moving down to the zero line");
             /*
             Test Step 4
             Action: Drive the train forward
@@ -128,6 +158,13 @@ namespace Testcase.DMITestCases
                                 "1. Each PASP segment is moved towards the zero line.");
 
 
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Continue to drive the train forward");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,The 1st segment of PA Speed Profile is removed from sub-area D7 after passed the zero line.After the 1st segment is removed, There are only 3 speed discontinuities displayed at sub-area D7 and The width of each PA Speed Profile segments are displayed correctly refer as follows,The 1st segment (Red frame in picture above) of PA Speed Profile is covered full width of sub-area D7.The 2nd segment (upper red frame in picture above) of PA Speed Profile is covered ¾ width of sub-area D7.The 3rd segment (below yellow frame in picture above) of PA Speed Profile is covered half width of sub-area D7.The last segment Yellow frame in picture above) is covered only ¼ width of sub-area D7.Use the log file to confirm that DMI receives packet information [MMI_TRACK_DESCRIPTION (EVC-4)] with variable MMI_V_MRSP_CURR = 2083 (approximately 75 km/h)");
             /*
             Test Step 5
             Action: Continue to drive the train forward
@@ -149,6 +186,13 @@ namespace Testcase.DMITestCases
                                 "5. Segment #3 has 1/2 of the width of sub-area D7;" + Environment.NewLine +
                                 "6. The last segment has 1/4 of the width of sub-area D7.");
 
+            TraceHeader("Test Step 6");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Continue to drive the train forward");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,The 1st segment of PA Speed Profile is removed from sub-area D7 after passed the zero line.After the 1st segment is removed, There are only 3 speed discontinuities displayed at sub-area D7 and The width of each PA Speed Profile segments are displayed correctly refer as follows,The 1st segment (Red frame in picture above) of PA Speed Profile is covered full width of sub-area D7. The 2nd segment (upper red frame in picture above) of PA Speed Profile is covered ¾ width of sub-area D7.The last segment (Yellow frame in picture above) is covered half width of sub-area D7.Use the log file to confirm that DMI receives packet information [MMI_TRACK_DESCRIPTION (EVC-4)] with variable MMI_V_MRSP_CURR = 1666 (approximately 60 km/h)");
             /*
             Test Step 6
             Action: Continue to drive the train forward
@@ -168,6 +212,13 @@ namespace Testcase.DMITestCases
                                 "4. Segment #2 has 3/4 of the width of sub-area D7;" + Environment.NewLine +
                                 "5. Segment #3 has 1/2 of the width of sub-area D7.");
 
+            TraceHeader("Test Step 7");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Continue to drive the train forward");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,The 1st segment of PA Speed Profile is removed from sub-area D7 after passed the zero line.After the 1st segment is removed, There are only 3 speed discontinuities displayed at sub-area D7 and The width of each PA Speed Profile segments are displayed correctly refer as follows,The 1st segment (position 0-2000m refer to PA distance scale) of PA Speed Profile is covered full width of sub-area D7.The last segment (position 2001m-6000m refer to PA distance scale) is covered ¾  of sub-area D7.Use the log file to confirm that DMI receives packet information [MMI_TRACK_DESCRIPTION (EVC-4)] with variable MMI_V_MRSP_CURR = 1250 (approximately 45 km/h)");
             /*
             Test Step 7
             Action: Continue to drive the train forward
@@ -186,6 +237,13 @@ namespace Testcase.DMITestCases
                                 "3. Segment #1 has the full width of sub-area D7;" + Environment.NewLine +
                                 "4. Segment #2 has 3/4 of the width of sub-area D7.");
 
+            TraceHeader("Test Step 8");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Continue to drive the train forward");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,The 1st segment of PA Speed Profile is removed from sub-area D7 after passed the zero line.After the 1st segment is removed, There are only 3 speed discontinuities displayed at sub-area D7 and The width of each PA Speed Profile segments are displayed correctly refer as follows,The remaining distance until EOA of PA Speed Profile is covered full width of sub-area D7.Use the log file to confirm that DMI receives packet information [MMI_TRACK_DESCRIPTION (EVC-4)] with variable MMI_V_MRSP_CURR = 972 (approximately 35 km/h).There is no symbol PL22 displayed between PL21 and PL23 symbol.    PL22   PL23Use the log file to confirm the value for each index of variable MMI_V_MRSP in received packet [MMI_TRACK_DESCRIPTION (EVC-4)] as follows,MMI_V_MRSP[0] > MMI_V_MRSP_CURRNote: The first index is MMI_V_MRSP[0]The symbol PL21 is displayed in sub area D6-D7 at position 2000m.   PL21");
             /*
             Test Step 8
             Action: Continue to drive the train forward
@@ -206,6 +264,13 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "4. The Speed increase symbol (PL21) is displayed at position 2000m.");
 
+            TraceHeader("Test Step 9");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Simulate the communication loss between ETCS Onboard and DMI");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI displays the  message “ATP Down Alarm” with sound.Verify that the PA Speed Profile segments are removed from DMI");
             /*
             Test Step 9
             Action: Simulate the communication loss between ETCS Onboard and DMI
@@ -220,6 +285,12 @@ namespace Testcase.DMITestCases
                                 "2. The ‘Alarm’ sound is displayed." + Environment.NewLine +
                                 "3. The PASP segments are not displayed.");
 
+            TraceHeader("Test Step 10");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Re-establish the communication between ETCS onboard and DMI");
+            TraceReport("Expected Result");
+            TraceInfo("The PA Speed Profile segments are reappeared");
             /*
             Test Step 10
             Action: Re-establish the communication between ETCS onboard and DMI
@@ -231,6 +302,11 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI re-displays the PASP segments.");
 
+            TraceHeader("Test Step 11");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            
             /*
             Test Step 11
             Action: End of test

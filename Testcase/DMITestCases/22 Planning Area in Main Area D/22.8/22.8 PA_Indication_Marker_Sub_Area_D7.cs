@@ -27,10 +27,18 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
             TraceInfo("This test case requires an ATP configuration change - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Driver performs SoM to SR mode, level 1");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays in SR mode, level 1 and the Planning Area is displayed in area D");
             /*
             Test Step 1
             Action: Driver performs SoM to SR mode, level 1
@@ -42,6 +50,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SR Mode, Level 1.");
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Use the test script file 17_8_a.xml to send EVC-1 with,MMI_O_IML = 4294967295 (-1)");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the indication marker shall not be shown in area D7");
             /*
             Test Step 2
             Action: Use the test script file 17_8_a.xml to send EVC-1 with,MMI_O_IML = 4294967295 (-1)
@@ -62,6 +76,14 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. No indication markers are displayed in sub-area D7.");
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Use the test script file 17_8_b.xml to send EVC-1 with,MMI_O_IML = 1000100000 (1000m)Note: The result of test script file may interrupted by ATP-CU, need to execute test script file repeatly to see the result.Note2: current position (OBU_TR_O_TRAIN) = 0 (1000000000)");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,The Indication Marker shall be drawn as a horizontal yellow line The length of Indication Marker shall be equal to the width of Sub-Area D7The Indication Marker shall be shown at position 1000 reference with the bottom of the horizontal yellow line and PA Distance Scale");
             /*
             Test Step 3
             Action: Use the test script file 17_8_b.xml to send EVC-1 with,MMI_O_IML = 1000100000 (1000m)Note: The result of test script file may interrupted by ATP-CU, need to execute test script file repeatly to see the result.Note2: current position (OBU_TR_O_TRAIN) = 0 (1000000000)
@@ -82,6 +104,14 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "3. The PA Indication Marker is positioned (with the lower edge of the line) at 1000m with respsect to the zero line.");
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Press <Scale Down> button in area D12 to set PA Distance Scale range to 0-32000Use the test script file 17_8_c.xml to send EVC-1 with,MMI_O_IML = 1001000000 (10000m)Note: The result of test script file may interrupted by ATP-CU, need to execute test script file repeatly to see the result.Note2: current position (OBU_TR_O_TRAIN) = 0 (1000000000)");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the Indication Marker shall be shown at position 10000 (between PA distance scale line 8000 and 16000)");
             /*
             Test Step 4
             Action: Press <Scale Down> button in area D12 to set PA Distance Scale range to 0-32000Use the test script file 17_8_c.xml to send EVC-1 with,MMI_O_IML = 1001000000 (10000m)Note: The result of test script file may interrupted by ATP-CU, need to execute test script file repeatly to see the result.Note2: current position (OBU_TR_O_TRAIN) = 0 (1000000000)
@@ -101,6 +131,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The PA Indication Marker is displayed between PA distance scale lines 800 and 16000 at position 1000m.");
 
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Perform the following procedure,Press <Scale Up> button in area D9 to set PA Distance Scale range to 0-1000Drive the train forward with speed 40km/h");
+            
             /*
             Test Step 5
             Action: Perform the following procedure,Press <Scale Up> button in area D9 to set PA Distance Scale range to 0-1000Drive the train forward with speed 40km/h
@@ -111,6 +147,13 @@ namespace Testcase.DMITestCases
 
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 40;
 
+            TraceHeader("Test Step 6");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Use the test script file 17_8_d.xml to send EVC-1 with,MMI_O_IML = 1000120000 (1200m)Note: The result of test script file may interrupted by ATP-CU, need to execute test script file repeatly to see the result");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the indication marker shall not be shown in area D7");
             /*
             Test Step 6
             Action: Use the test script file 17_8_d.xml to send EVC-1 with,MMI_O_IML = 1000120000 (1200m)Note: The result of test script file may interrupted by ATP-CU, need to execute test script file repeatly to see the result
@@ -127,6 +170,14 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. No indication markers are displayed in sub-area D7.");
 
+            TraceHeader("Test Step 7");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Use the test script file 17_8_d.xml to send EVC-1 with,MMI_O_IML = 1000120000 (1200m)Note: The result of test script file may interrupted by ATP-CU, need to execute test script file repeatly to see the result");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "The PA Indication Marker is display at the position lower than the PA distance scale line 1000m confirm the result of calculation between EVC-1 and EVC-7 as follows,(EVC-1) MMI_O_IML – (EVC-7) OBU_TR_O_TRAINExample: The train is stopped at position 500m. Result of calculation is [EVC-1.MMI_O_IML = 1000120000] – [EVC-7.OBU_TR_O_TRAIN = 1000050000] = 70000 (700m)");
             /*
             Test Step 7
             Action: Use the test script file 17_8_d.xml to send EVC-1 with,MMI_O_IML = 1000120000 (1200m)Note: The result of test script file may interrupted by ATP-CU, need to execute test script file repeatly to see the result
@@ -145,6 +196,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The PA Indication Marker is displayed between the zero and 1000m scale lines at position ~970m.");
 
+            TraceHeader("Test Step 8");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Use the test script file 17_8_d.xml to send EVC-1 with,MMI_O_IML = 1000120000 (1200m)Note: The result of test script file may interrupted by ATP-CU, need to execute test script file repeatly to see the result");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the indication marker shall not be shown in area D7");
             /*
             Test Step 8
             Action: Use the test script file 17_8_d.xml to send EVC-1 with,MMI_O_IML = 1000120000 (1200m)Note: The result of test script file may interrupted by ATP-CU, need to execute test script file repeatly to see the result
@@ -163,6 +221,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. No indication markers are displayed in sub-area D7.");
 
+            TraceHeader("Test Step 9");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Stop the train");
+            TraceReport("Expected Result");
+            TraceInfo("Train is standstill");
             /*
             Test Step 9
             Action: Stop the train
@@ -173,6 +237,11 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Speed pointer displays ‘0’ km/h.");
 
+            TraceHeader("Test Step 10");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            
             /*
             Test Step 10
             Action: End of test

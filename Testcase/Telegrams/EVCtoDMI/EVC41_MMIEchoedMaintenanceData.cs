@@ -157,7 +157,8 @@ namespace Testcase.Telegrams.EVCtoDMI
                 int mmiQMdDataset = (int) value;
                 mmiQMdDataset = ~mmiQMdDataset;
 
-                _pool.SITR.ETCS1.EchoedMaintenanceData.MmiQMdDatasetR.Value = Variables.BitReverser8((byte) mmiQMdDataset);
+                _pool.SITR.ETCS1.EchoedMaintenanceData.MmiQMdDatasetR.Value =
+                    Variables.BitReverser8((byte) mmiQMdDataset);
             }
         }
 

@@ -25,9 +25,18 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Power on the test system");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "The driver message “Driver’s cab not active” displays on the DMI screen with timestamp on the left. Use the log file to confirm the timestamp is equal to MMI_T_UTC + MMI_T_ZONE_OFFSET from EVC-3");
             /*
             Test Step 1
             Action: Power on the test system
@@ -39,6 +48,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the message ‘Driver’s cab not active’, with a timestamp to the left.");
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Perform SoM to SR mode, ETCS level 1 and verified the presentation on the DMI screen");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI displays in SR mode, Level 1. The local time is displayed in format hh:mm:ss (24h) on sub-area G13.DMI displays the local time as a single line in grey colour. The background colour is dark-blue.The colon ‘:’ of local time flashes (shown and hide)");
             /*
             Test Step 2
             Action: Perform SoM to SR mode, ETCS level 1 and verified the presentation on the DMI screen
@@ -55,6 +71,11 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "4. The colons in the time are displayed flashing (shown/hidden).");
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            
             /*
             Test Step 3
             Action: End of test

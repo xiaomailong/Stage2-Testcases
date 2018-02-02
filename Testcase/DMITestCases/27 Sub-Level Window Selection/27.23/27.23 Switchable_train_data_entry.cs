@@ -35,8 +35,17 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press ‘Train data’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "The Train data window is displayed as  Flexible train data entry or Fixed train data entry.Verify the following information,The Train data window is presented an enabled ‘switch’ button.The ‘switch’ button is located in the bottom right corner of D/F/G area.The label of ‘switch’ button is displayed correctly refer to the type of displayed window as follows,Flexible Train DataThe label of switch button is presented with text ‘Select type’. Fixed Train DataThe label of switch button is presented with text ‘Enter data’.Use the log file to confirm that DMI receives packet EVC-6 with variable MMI_M_ALT_DEM = 1 (switchable)");
             /*
             Test Step 1
             Action: Press ‘Train data’ button
@@ -60,6 +69,13 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "4. If the Train data entry window is in ‘Fixed Train Data’ mode the label of the ‘switch’ button displays ‘Enter data’.");
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press switch button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,Use the log file to confirm that DMI send out packet EVC-101 [MMI_DRIVER_REQUEST] with variable MMI_M_REQUEST = 59 (Switch).The label of ‘switch’ button is changed correctly refer to the type of displayed window as follows,Flexible Train DataThe label of switch button is presented with text ‘Select type’. Fixed Train DataThe label of switch button is presented with text ‘Enter data’");
             /*
             Test Step 2
             Action: Press switch button
@@ -75,6 +91,11 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 @"2. If the ‘switch’ button displayed ‘Enter data’ before being pressed it now displays ‘Select type’.");
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            
             /*
             Test Step 3
             Action: End of test

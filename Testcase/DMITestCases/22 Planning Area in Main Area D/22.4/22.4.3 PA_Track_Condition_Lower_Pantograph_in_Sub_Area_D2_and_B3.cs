@@ -48,10 +48,18 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
             TraceInfo("This test case requires an ATP configuration change - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train forward with speed = 20 km/h");
+            TraceReport("Expected Result");
+            TraceInfo("The speed pointer is indicated as 20  km/h");
             /*
             Test Step 1
             Action: Drive the train forward with speed = 20 km/h
@@ -63,6 +71,12 @@ namespace Testcase.DMITestCases
                                 "1. The speed pointer is displayed with speed = 20 km/h.");
 
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train forward pass BG0 with MA and Track description");
+            TraceReport("Expected Result");
+            TraceInfo("Mode changes to FS mode , L1");
             /*
             Test Step 2
             Action: Drive the train forward pass BG0 with MA and Track description
@@ -72,6 +86,12 @@ namespace Testcase.DMITestCases
             DmiActions.Send_FS_Mode(this);
             DmiExpectedResults.FS_mode_displayed(this);
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Continue to drive the train forward pass BG1 with Track condition ");
+            TraceReport("Expected Result");
+            TraceInfo("Mode remins in FS mode");
             /*
             Test Step 3
             Action: Continue to drive the train forward pass BG1 with Track condition 
@@ -84,6 +104,12 @@ namespace Testcase.DMITestCases
 
             DmiExpectedResults.FS_mode_displayed(this);
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Enter Anouncement of Track condition “Non stopping area: Lower Pantograph”");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information");
             /*
             Test Step 4
             Action: Enter Anouncement of Track condition “Non stopping area: Lower Pantograph”
@@ -110,6 +136,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays symbol PL01 in sub-area D2.");
 
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Stop the train");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information");
             /*
             Test Step 5
             Action: Stop the train
@@ -137,6 +169,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The bottom of the PL01 symbol is displayed at ~120.");
 
+            TraceHeader("Test Step 6");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train forward with speed = 20 km/h");
+            TraceReport("Expected Result");
+            TraceInfo("The speed pointer is indicated as 20  km/h");
             /*
             Test Step 6
             Action: Drive the train forward with speed = 20 km/h
@@ -147,6 +185,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The speed pointer is displayed with speed = 20 km/h.");
 
+            TraceHeader("Test Step 7");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Stop the train when the TC01, TC02 or TC03 symbol displays in sub-area B3");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following informationDMI displays TC01, TC02 or TC03 symbol in sub-area B3.");
             /*
             Test Step 7
             Action: Stop the train when the TC01, TC02 or TC03 symbol displays in sub-area B3
@@ -172,6 +216,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays symbol TC01 in sub-area B3.");
 
+            TraceHeader("Test Step 8");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train forward with speed = 20 km/h");
+            TraceReport("Expected Result");
+            TraceInfo("The speed pointer is indicated as 20  km/h");
             /*
             Test Step 8
             Action: Drive the train forward with speed = 20 km/h
@@ -182,6 +232,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The speed pointer is displayed with speed = 20 km/h.");
 
+            TraceHeader("Test Step 9");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Enter Track condition “Non stopping area: Raise Pantograph”");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information");
             /*
             Test Step 9
             Action: Enter Track condition “Non stopping area: Raise Pantograph”
@@ -197,6 +253,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays symbol PL03 in sub-area D2.");
 
+            TraceHeader("Test Step 10");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Stop the train");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information");
             /*
             Test Step 10
             Action: Stop the train
@@ -219,6 +281,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The bottom of the PL03 symbol is displayed at ~100.");
 
+            TraceHeader("Test Step 11");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train forward with speed = 20 km/h");
+            TraceReport("Expected Result");
+            TraceInfo("The speed pointer is indicated as 20  km/h");
             /*
             Test Step 11
             Action: Drive the train forward with speed = 20 km/h
@@ -229,6 +297,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The speed pointer is displayed with speed = 20 km/h.");
 
+            TraceHeader("Test Step 12");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Stop the train when the TC04 or TC05 symbol displays in sub-area B3");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information");
             /*
             Test Step 12
             Action: Stop the train when the TC04 or TC05 symbol displays in sub-area B3
@@ -252,6 +326,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays symbol TC04 in sub-area B3.");
 
+            TraceHeader("Test Step 13");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train forward with speed = 20 km/h");
+            TraceReport("Expected Result");
+            TraceInfo("The speed pointer is indicated as 20  km/h");
             /*
             Test Step 13
             Action: Drive the train forward with speed = 20 km/h
@@ -262,6 +342,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The speed pointer is displayed with speed = 20 km/h.");
 
+            TraceHeader("Test Step 14");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Stop the train when the track condition symbol has been removed from sub-area B3");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information");
             /*
             Test Step 14
             Action: Stop the train when the track condition symbol has been removed from sub-area B3
@@ -277,6 +363,11 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI removes symbol TC04 from sub-area B3.");
 
+            TraceHeader("Test Step 15");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            
             /*
             Test Step 15
             Action: End of test

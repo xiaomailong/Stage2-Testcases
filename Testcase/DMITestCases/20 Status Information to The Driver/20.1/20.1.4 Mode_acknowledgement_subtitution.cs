@@ -36,10 +36,18 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
             #region Test Step 1
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train forward passing BG1.");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays LE07 symbol in sub-area C1");
             /*
             Test Step 1
             Action: Drive the train forward passing BG1.
@@ -67,6 +75,12 @@ namespace Testcase.DMITestCases
 
             #region Test Step 2
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Continue to drive the train forward pass BG2.Then, stop the train");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays in FS mode, Level 1.");
             /*
             Test Step 2
             Action: Continue to drive the train forward pass BG2.Then, stop the train
@@ -86,6 +100,12 @@ namespace Testcase.DMITestCases
 
             #region Test Step 3
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press an area C1 for acknowledgement");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information,");
             /*
             Test Step 3
             Action: Press an area C1 for acknowledgement
@@ -106,6 +126,11 @@ namespace Testcase.DMITestCases
 
             #region Test Step 4
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            
             /*
             Test Step 4
             Action: End of test

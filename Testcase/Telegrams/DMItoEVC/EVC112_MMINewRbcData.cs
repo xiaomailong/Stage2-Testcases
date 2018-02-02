@@ -125,6 +125,7 @@ namespace Testcase.Telegrams.DMItoEVC
             {
                 DmiExpectedResults.DMItoEVC_Telegram_Not_Received(_pool, baseString1);
             }
+
             // Reset telegram received flag in RTSim
             _pool.SITR.SMDStat.CCUO.ETCS1NewRbcData.Value = 0x00;
         }

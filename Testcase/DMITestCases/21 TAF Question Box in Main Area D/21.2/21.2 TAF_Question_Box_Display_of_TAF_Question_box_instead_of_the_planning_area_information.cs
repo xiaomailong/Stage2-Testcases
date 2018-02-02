@@ -37,8 +37,16 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Perform SoM to SR mode, level 2.Then, drive the train forward with speed = 30km/h");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays in SR mode, level 2");
             /*
             Test Step 1
             Action: Perform SoM to SR mode, level 2.Then, drive the train forward with speed = 30km/h
@@ -55,6 +63,12 @@ namespace Testcase.DMITestCases
             // Enable standard buttons including Start, and display Default window.
             DmiActions.Finished_SoM_Default_Window(this);
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Received information from RBC");
+            TraceReport("Expected Result");
+            TraceInfo("DMI changes from SR mode to FS mode, level 2");
             /*
             Test Step 2
             Action: Received information from RBC
@@ -65,6 +79,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in FS mode, Level 2.");
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Acknowledge OS mode by press at area C1");
+            TraceReport("Expected Result");
+            TraceInfo("DMI changes from FS mode to OS mode, level 2");
             /*
             Test Step 3
             Action: Acknowledge OS mode by press at area C1
@@ -82,6 +102,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in OS mode, Level 2.");
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Received information from RBC.Then, stop the train");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,TAF Question box is displayed in area D and force PA information into background.The area D is displayed only TAF Question box.The following buttons are removed from area D,Scale Up button (sub-area D9)Scale Down button (sub-area D12).Hide button (sub-area D14)");
             /*
             Test Step 4
             Action: Received information from RBC.Then, stop the train
@@ -101,6 +128,13 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "5. DMI does not display the ‘Hide’ button in sub-area D14.");
 
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press at any location in area D (except ‘Yes’ button in TAF Question box)");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,PA information is not displayed even pressed in any point of area D");
             /*
             Test Step 5
             Action: Press at any location in area D (except ‘Yes’ button in TAF Question box)
@@ -111,6 +145,11 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI does not display PA information whatever part of area D is pressed.");
+            TraceHeader("Test Step 6");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            
             /*
             Test Step 6
             Action: End of test

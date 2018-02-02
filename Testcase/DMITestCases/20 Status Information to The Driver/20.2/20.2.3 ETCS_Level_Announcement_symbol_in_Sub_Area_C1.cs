@@ -55,10 +55,18 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
             #region Test Step 1
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press the 'Start' button");
+            TraceReport("Expected Result");
+            TraceInfo("The acknowledgement for Staff Responsible symbol (MO10) is displayed in sub-area C1");
             /*
             Test Step 1
             Action: Press the 'Start' button
@@ -80,6 +88,12 @@ namespace Testcase.DMITestCases
 
             #region Test Step 2
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Use the test script file 15_2_3_a.xml to send EVC-8 with,");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information,");
             /*
             Test Step 2
             Action: Use the test script file 15_2_3_a.xml to send EVC-8 with,
@@ -106,6 +120,12 @@ namespace Testcase.DMITestCases
 
             #region Test Step 3
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Perform the following procedure,");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays in SB mode, level 1");
             /*
             Test Step 3
             Action: Perform the following procedure,
@@ -142,6 +162,12 @@ namespace Testcase.DMITestCases
 
             #region Test Step 4
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Use the test script file 15_2_3_b.xml to send EVC-8 with,");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information,");
             /*
             Test Step 4
             Action: Use the test script file 15_2_3_b.xml to send EVC-8 with,
@@ -167,6 +193,12 @@ namespace Testcase.DMITestCases
 
             #region Test Step 5
 
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("(Continue from step 4) Send EVC-8 with,");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information,");
             /*
             Test Step 5
             Action: (Continue from step 4) Send EVC-8 with,
@@ -192,6 +224,12 @@ namespace Testcase.DMITestCases
 
             #region Test Step 6
 
+            TraceHeader("Test Step 6");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("(Continue from step 5) Send EVC-8 with,");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information,");
             /*
             Test Step 6
             Action: (Continue from step 5) Send EVC-8 with,
@@ -217,6 +255,12 @@ namespace Testcase.DMITestCases
 
             #region Test Step 7
 
+            TraceHeader("Test Step 7");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("(Continue from step 6)Send EVC-8 with,");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information,");
             /*
             Test Step 7
             Action: (Continue from step 6)Send EVC-8 with,
@@ -242,6 +286,12 @@ namespace Testcase.DMITestCases
 
             #region Test Step 8
 
+            TraceHeader("Test Step 8");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("(Continue from step 7) Send EVC-8 with,");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information,");
             /*
             Test Step 8
             Action: (Continue from step 7) Send EVC-8 with,
@@ -267,6 +317,12 @@ namespace Testcase.DMITestCases
 
             #region Test Step 9
 
+            TraceHeader("Test Step 9");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("(Continue from step 8) Send EVC-8 with,");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information,");
             /*
             Test Step 9
             Action: (Continue from step 8) Send EVC-8 with,
@@ -292,6 +348,12 @@ namespace Testcase.DMITestCases
 
             #region Test Step 10
 
+            TraceHeader("Test Step 10");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("(Continue from step 9) Send EVC-8 with,");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information,");
             /*
             Test Step 10
             Action: (Continue from step 9) Send EVC-8 with,
@@ -317,6 +379,12 @@ namespace Testcase.DMITestCases
 
             #region Test step 11
 
+            TraceHeader("Test Step 11");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("(Continue from step 10)Send EVC-8 with,");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information,");
             /*
             Test Step 11
             Action: (Continue from step 10)Send EVC-8 with,
@@ -342,6 +410,12 @@ namespace Testcase.DMITestCases
 
             #region Test step 12
 
+            TraceHeader("Test Step 12");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("(Continue from step 11)Send EVC-8 with,");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information,");
             /*
             Test Step 12
             Action: (Continue from step 11)Send EVC-8 with,
@@ -367,6 +441,12 @@ namespace Testcase.DMITestCases
 
             #region Test step 13
 
+            TraceHeader("Test Step 13");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("(Continue from step 12)Send EVC-8 with,");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information,");
             /*
             Test Step 13
             Action: (Continue from step 12)Send EVC-8 with,
@@ -392,6 +472,12 @@ namespace Testcase.DMITestCases
 
             #region Test step 14
 
+            TraceHeader("Test Step 14");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("(Continue from step 13)Send EVC-8 with,");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information,");
             /*
             Test Step 14
             Action: (Continue from step 13)Send EVC-8 with,
@@ -417,6 +503,12 @@ namespace Testcase.DMITestCases
 
             #region Test step 15
 
+            TraceHeader("Test Step 15");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("(Continue from step 14)Send EVC-8 with,");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information,");
             /*
             Test Step 15
             Action: (Continue from step 14)Send EVC-8 with,
@@ -442,6 +534,11 @@ namespace Testcase.DMITestCases
 
             #region Test step 16
 
+            TraceHeader("Test Step 16");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            
             /*
             Test Step 16
             Action: End of test

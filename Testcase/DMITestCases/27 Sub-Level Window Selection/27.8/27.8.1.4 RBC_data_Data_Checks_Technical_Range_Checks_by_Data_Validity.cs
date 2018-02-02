@@ -38,8 +38,17 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Enter valid values with the numeric keypad and press the data input field (Accept) in the same screen.RBC ID6996969RBC phone number0031840880100");
+            TraceReport("Expected Result");
+            TraceInfo("The ‘Yes’ button is enabled");
             /*
             Test Step 1
             Action: Enter valid values with the numeric keypad and press the data input field (Accept) in the same screen.RBC ID6996969RBC phone number0031840880100
@@ -70,6 +79,14 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Yes’ button is displayed enabled");
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Enter “1” (invalid value) for RBC ID with the numeric keypad and press the data input field (Accept) in the same screen");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "EVC-22(1) Use the log file to verify that DMI receives packet EVC-22 with variable MMI_M_BUTTONS = 255 (no button) and the 'Yes' button is disabled");
             /*
             Test Step 2
             Action: Enter “1” (invalid value) for RBC ID with the numeric keypad and press the data input field (Accept) in the same screen
@@ -86,6 +103,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Yes’ button is displayed disabled");
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Enter “6996969” (valid value) for RBC ID with the numeric keypad and press the data input field (Accept) in the same screen");
+            TraceReport("Expected Result");
+            TraceInfo("The ‘Yes’ button is enabled");
             /*
             Test Step 3
             Action: Enter “6996969” (valid value) for RBC ID with the numeric keypad and press the data input field (Accept) in the same screen
@@ -97,6 +121,14 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Yes’ button is displayed enabled");
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Enter “1” (invalid value) for RBC phone number with the numeric keypad and press the data input field (Accept) in the same screen");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "EVC-22(1) Use the log file to verify that DMI receives packet EVC-22 with variable MMI_M_BUTTONS = 255 (no button) and the 'Yes' button is disabled");
             /*
             Test Step 4
             Action: Enter “1” (invalid value) for RBC phone number with the numeric keypad and press the data input field (Accept) in the same screen
@@ -113,6 +145,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Yes’ button is displayed disabled");
 
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Enter “0031840880100” (valid value) for RBC phone number with the numeric keypad and press the data input field (Accept) in the same screen");
+            TraceReport("Expected Result");
+            TraceInfo("The ‘Yes’ button is enabled");
             /*
             Test Step 5
             Action: Enter “0031840880100” (valid value) for RBC phone number with the numeric keypad and press the data input field (Accept) in the same screen
@@ -124,6 +163,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Yes’ button is displayed enabled");
 
+            TraceHeader("Test Step 6");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "This step is to complete the process of ‘RBC data’:- Press the ‘Yes’ button on the ‘RBC data’ window");
+            TraceReport("Expected Result");
+            TraceInfo("The data entry window disappears");
             /*
             Test Step 6
             Action: This step is to complete the process of ‘RBC data’:- Press the ‘Yes’ button on the ‘RBC data’ window
@@ -134,6 +180,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data entry window is removed");
 
+            TraceHeader("Test Step 7");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Follow test step 2 to enable the ‘Yes’ button");
+            TraceReport("Expected Result");
+            TraceInfo("The ‘Yes’ button is enabled");
             /*
             Test Step 7
             Action: Follow test step 2 to enable the ‘Yes’ button
@@ -155,6 +207,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Yes’ button is displayed enabled");
 
+            TraceHeader("Test Step 8");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Send the data of ‘Technical Range Check’ failure to ETCS-DMI by 22_8_1_4_a.xmlEVC-22MMI_M_BUTTONS = 255 (No button)");
+            TraceReport("Expected Result");
+            TraceInfo("EVC-22(1) The 'Yes' button is disabled");
             /*
             Test Step 8
             Action: Send the data of ‘Technical Range Check’ failure to ETCS-DMI by 22_8_1_4_a.xmlEVC-22MMI_M_BUTTONS = 255 (No button)
@@ -177,6 +236,11 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Yes’ button is displayed disabled");
 
+            TraceHeader("Test Step 9");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            
             /*
             Test Step 9
             Action: End of test

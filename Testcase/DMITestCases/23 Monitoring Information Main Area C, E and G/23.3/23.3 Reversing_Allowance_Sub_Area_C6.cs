@@ -37,8 +37,16 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train forward passing BG1");
+            TraceReport("Expected Result");
+            TraceInfo("DMI changes from SR mode to FS mode, Level 1");
             /*
             Test Step 1
             Action: Drive the train forward passing BG1
@@ -57,6 +65,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI changes from SR mode to FS mode,  Level 1");
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train forward passing BG2.Then, stop the train");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,Use the log file to confirm that DMI receives packet information [MMI_DRIVER_MESSAGE (EVC-8)] with variable [MMI_DRIVER_MESSAGE (EVC-8)].MMI_Q_TEXT = 286The symbol ST06 is displayed in sub-area C6");
             /*
             Test Step 2
             Action: Drive the train forward passing BG2.Then, stop the train
@@ -74,6 +89,12 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the ‘Reversing permitted’ symbol, ST06, in sub-area C6");
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Change the train direction to ‘Reverse’");
+            TraceReport("Expected Result");
+            TraceInfo("An acknowledgement of ‘Reversing’ mode is displayed in sub-area C1");
             /*
             Test Step 3
             Action: Change the train direction to ‘Reverse’
@@ -90,6 +111,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays symbol M015, in sub-area C1");
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Acknowledges ‘Reversing’ mode by pressing at area C1");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI displays in RV mode.The symbol MO14 is displayed in sub-area B7.Use the log file to confirm that DMI sends out packet [MMI_DRIVER_ACTION (EVC-152)] with the value of variable MMI_M_DRIVER_ACTION refer to sequence below,a)   MMI_M_DRIVER_ACTION = 5 (Ack of Reversing mode)");
             /*
             Test Step 4
             Action: Acknowledges ‘Reversing’ mode by pressing at area C1
@@ -109,6 +137,11 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays in RV mode" + Environment.NewLine + Environment.NewLine +
                                 "2. DMI displays symbol M014 in sub-area B7");
 
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            
             /*
             Test Step 5
             Action: End of test

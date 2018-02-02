@@ -39,10 +39,18 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
             TraceInfo("This test case requires an ATP configuration change - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Activate cabin and perform start of mission to PLZB STM");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays in PLZB STM mode");
             /*
             Test Step 1
             Action: Activate cabin and perform start of mission to PLZB STM
@@ -57,6 +65,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in PLZB_STM_mode");
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Select Main menu");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Main window The Close buton is enable");
             /*
             Test Step 2
             Action: Select Main menu
@@ -84,6 +98,12 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "4. The ‘Close’ button is displayed enabled.");
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press Close button");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays the default window");
             /*
             Test Step 3
             Action: Press Close button
@@ -96,6 +116,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Default window.");
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Select EOA menu");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays EOA window The Close buton is enable");
             /*
             Test Step 4
             Action: Select EOA menu
@@ -108,6 +134,12 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the EOA window with the title ‘Override’." + Environment.NewLine +
                                 "2. The ‘Close’ button is displayed enabled.");
 
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press Close button");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays the default window");
             /*
             Test Step 5
             Action: Press Close button
@@ -120,6 +152,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Default window.");
 
+            TraceHeader("Test Step 6");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Select Data view menu");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Data view window The Close buton is enable");
             /*
             Test Step 6
             Action: Select Data view menu
@@ -150,6 +188,12 @@ namespace Testcase.DMITestCases
                                 "5. Train category = ‘PASS 1’, Length (m) = ‘100’, Brake Percentage = ‘70, Max speed (km/h) = 160," +
                                 "6. Axle load category = ‘A’, Airtight = ‘No’, Loading gauge = ‘Out of GC’ (all highlighted).");
 
+            TraceHeader("Test Step 7");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press Close button");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays the default window");
             /*
             Test Step 7
             Action: Press Close button
@@ -162,6 +206,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Default window.");
 
+            TraceHeader("Test Step 8");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Select Special menu");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Special window The Close buton is enable");
             /*
             Test Step 8
             Action: Select Special menu
@@ -177,6 +227,12 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. The ‘Train Integrity’ button is displayed enabled.");
 
+            TraceHeader("Test Step 9");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press Close button");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays the default window");
             /*
             Test Step 9
             Action: Press Close button
@@ -187,6 +243,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Default window.");
 
+            TraceHeader("Test Step 10");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Select Settings menu");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays Settings window The Close buton is enable");
             /*
             Test Step 10
             Action: Select Settings menu
@@ -229,6 +291,12 @@ namespace Testcase.DMITestCases
                                 "13. The ‘National’ button is displayed enabled." + Environment.NewLine +
                                 "14. The ‘Close’ button is displayed enabled.");
 
+            TraceHeader("Test Step 11");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press National button");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays National sub-window The Close buton is enable");
             /*
             Test Step 11
             Action: Press National button
@@ -243,6 +311,12 @@ namespace Testcase.DMITestCases
                                 "3. The ‘Prüfen’ button is displayed enabled." + Environment.NewLine +
                                 "4. The ‘Close’ button is displayed enabled.");
 
+            TraceHeader("Test Step 12");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press Close button");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays the setting window");
             /*
             Test Step 12
             Action: Press Close button
@@ -254,6 +328,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window.");
 
+            TraceHeader("Test Step 13");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Press Close button");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays the default window");
             /*
             Test Step 13
             Action: Press Close button
@@ -265,6 +345,11 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Default window.");
 
+            TraceHeader("Test Step 14");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            
             /*
             Test Step 14
             Action: End of test

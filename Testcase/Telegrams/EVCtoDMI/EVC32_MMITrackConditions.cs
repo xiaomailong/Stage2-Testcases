@@ -58,10 +58,12 @@ namespace Testcase.Telegrams.EVCtoDMI
                         TrackConditions[k].MMI_O_TRACKCOND_START);
                     _pool.SITR.Client.Write(string.Format("{0}0{1}_MmiOTrackcondEnd", baseString, k),
                         TrackConditions[k].MMI_O_TRACKCOND_END);
-                    _pool.SITR.Client.Write(string.Format("{0}0{1}_MmiNidTrackcond", baseString, k), TrackConditions[k].MMI_NID_TRACKCOND);
+                    _pool.SITR.Client.Write(string.Format("{0}0{1}_MmiNidTrackcond", baseString, k),
+                        TrackConditions[k].MMI_NID_TRACKCOND);
                     _pool.SITR.Client.Write(string.Format("{0}0{1}_MmiMTrackcondType", baseString, k),
                         TrackConditions[k].MMI_M_TRACKCOND_TYPE);
-                    _pool.SITR.Client.Write(string.Format("{0}0{1}_EVC32alias2", baseString, k), TrackConditions[k].EVC_32_ALIAS_2);
+                    _pool.SITR.Client.Write(string.Format("{0}0{1}_EVC32alias2", baseString, k),
+                        TrackConditions[k].EVC_32_ALIAS_2);
                 }
 
                 else
@@ -72,10 +74,12 @@ namespace Testcase.Telegrams.EVCtoDMI
                         TrackConditions[k].MMI_O_TRACKCOND_START);
                     _pool.SITR.Client.Write(string.Format("{0}{1}_MmiOTrackcondEnd", baseString, k),
                         TrackConditions[k].MMI_O_TRACKCOND_END);
-                    _pool.SITR.Client.Write(string.Format("{0}{1}_MmiNidTrackcond", baseString, k), TrackConditions[k].MMI_NID_TRACKCOND);
+                    _pool.SITR.Client.Write(string.Format("{0}{1}_MmiNidTrackcond", baseString, k),
+                        TrackConditions[k].MMI_NID_TRACKCOND);
                     _pool.SITR.Client.Write(string.Format("{0}{1}_MmiMTrackcondType", baseString, k),
                         TrackConditions[k].MMI_M_TRACKCOND_TYPE);
-                    _pool.SITR.Client.Write(string.Format("{0}{1}_EVC32alias2", baseString, k), TrackConditions[k].EVC_32_ALIAS_2);
+                    _pool.SITR.Client.Write(string.Format("{0}{1}_EVC32alias2", baseString, k),
+                        TrackConditions[k].EVC_32_ALIAS_2);
                 }
 
                 totalSizeCounter += 128;

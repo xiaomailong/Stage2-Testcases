@@ -37,7 +37,8 @@ namespace Testcase.Telegrams.DMItoEVC
                 // If check passes
                 if (_checkResult)
                 {
-                    _pool.TraceReport(string.Format("{0} - [MMI_NID_OPERATION] = {1}", baseString, nidOperation) + Environment.NewLine +
+                    _pool.TraceReport(string.Format("{0} - [MMI_NID_OPERATION] = {1}", baseString, nidOperation) +
+                                      Environment.NewLine +
                                       "Result: PASSED.");
                 }
                 // Else display the real value extracted from EVC-104

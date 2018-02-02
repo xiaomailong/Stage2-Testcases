@@ -35,8 +35,16 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Perform SoM to Level 1 in SR mode");
+            TraceReport("Expected Result");
+            TraceInfo("ETCS OB enters SR mode in Level 1");
             /*
             Test Step 1
             Action: Perform SoM to Level 1 in SR mode
@@ -48,6 +56,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SR mode, Level 1.");
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train forward with speed at 40 km/h");
+            TraceReport("Expected Result");
+            TraceInfo("The train can drive forward and all brakes are not applied");
             /*
             Test Step 2
             Action: Drive the train forward with speed at 40 km/h
@@ -58,6 +72,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI does not display the ‘Emergency brake’ symbol, ST01, in sub-area C9.");
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Train runs pass BG1");
+            TraceReport("Expected Result");
+            TraceInfo("ETCS OB enters FS mode in Level 1            ");
             /*
             Test Step 3
             Action: Train runs pass BG1
@@ -68,6 +88,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in FS mode, Level 1.");
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Accelerate the train with max acceleration (100% throttle) until train speed at 107 km/h. ");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "(1) Use the DMI appearance and log file to verify that train enters intervention status in CSM.DMI Appearance- The DMI displays dark grey colour on CSG from 0 km/h to Vperm.- The DMI displays red colour on CSG from Vperm to Vtrain. Log FileUse log file to verify that the DMI receives EVC-1 with the change value of variable ‘MMI_M_WARNING’ from value 12 to other value.(2) Sound ‘S3_end_of_intervention.wav’ is played once after emergency brake is deactivated with disappearance of symbol ST01. Note The intervention status information is deactivated as soon as there is no more emergency brake command from the speed and monitoring function, refers to section 6.5.7.2.4 in [MMI-ETCS-gen].            ");
             /*
             Test Step 4
             Action: Accelerate the train with max acceleration (100% throttle) until train speed at 107 km/h. 
@@ -104,6 +131,12 @@ namespace Testcase.DMITestCases
                                 "1. DMI plays the ‘S3_end_of_intervention.wav’ sound once." + Environment.NewLine +
                                 "2. DMI removes symbol ST01 from sub-area C9.");
 
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Stop the train.");
+            TraceReport("Expected Result");
+            TraceInfo("The train is at standstill.");
             /*
             Test Step 5
             Action: Stop the train.
@@ -115,6 +148,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The speed pointer displays 0 km/h.");
 
+            TraceHeader("Test Step 6");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Deactivate cabin A and power off the system.");
+            TraceReport("Expected Result");
+            TraceInfo("System is power off and DMI displays ‘No contact with ATP’.");
             /*
             Test Step 6
             Action: Deactivate cabin A and power off the system.
@@ -127,6 +166,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the message ‘No contact with ATP’");
 
+            TraceHeader("Test Step 7");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Power on the system and perform SoM to Level 1 in SR mode.");
+            TraceReport("Expected Result");
+            TraceInfo("ETCS OB enters SR mode in Level 1.");
             /*
             Test Step 7
             Action: Power on the system and perform SoM to Level 1 in SR mode.
@@ -140,6 +185,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SR mode, Level 1");
 
+            TraceHeader("Test Step 8");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train forward with speed at 40 km/h.");
+            TraceReport("Expected Result");
+            TraceInfo("The train can drive forward and all brakes are not applied.");
             /*
             Test Step 8
             Action: Drive the train forward with speed at 40 km/h.
@@ -149,6 +200,12 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI does not display the ‘Emergency brake’ symbol, ST01, in sub-area C9.");
+            TraceHeader("Test Step 9");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Train runs pass BG1.");
+            TraceReport("Expected Result");
+            TraceInfo("ETCS OB enters FS mode in Level 1.");
             /*
             Test Step 9
             Action: Train runs pass BG1.
@@ -159,6 +216,14 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in FS mode, Level 1");
 
+            TraceHeader("Test Step 10");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Accelerate the train with max acceleration (100% throttle) until speed at 80 km/h.And wait until emergency brake is applied from ETCS onboard.");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "(1) Use the DMI appearance and log file to verify that train enters intervention status in TSM.DMI Appearance- The DMI displays yellow colour on CSG from 0 to Vperm.- The DMI displays red colour on CSG from Vperm to Vtrain. Log FileUse log file to verify that the DMI receives EVC-1 with the change value of variable ‘MMI_M_WARNING’ from value 13 to other value.(2)  Sound ‘S3_end_of_intervention.wav’ is played once after emergency brake is deactivated with disappearance of symbol ST01.  Note The intervention status information is deactivated as soon as there is no more emergency brake command from the speed and monitoring function, refers to section 6.5.7.5.2 in [MMI-ETCS-gen].");
             /*
             Test Step 10
             Action: Accelerate the train with max acceleration (100% throttle) until speed at 80 km/h.And wait until emergency brake is applied from ETCS onboard.
@@ -197,6 +262,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI plays the ‘S3_end_of_intervention.wav’ sound once." + Environment.NewLine +
                                 "2. DMI removes symbol ST01 from sub-area C9.");
+            TraceHeader("Test Step 11");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Stop the train.");
+            TraceReport("Expected Result");
+            TraceInfo("The train is at standstill.");
             /*
             Test Step 11
             Action: Stop the train.
@@ -207,6 +278,11 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The speed pointer displays 0 km/h.");
 
+            TraceHeader("Test Step 12");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            
             /*
             Test Step 12
             Action: End of test

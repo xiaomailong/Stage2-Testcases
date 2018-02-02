@@ -30,10 +30,18 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
             TraceInfo("This test case requires an ATP configuration change - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Power on the system and activate the cabin");
+            TraceReport("Expected Result");
+            TraceInfo("DMI displays SB mode");
             /*
             Test Step 1
             Action: Power on the system and activate the cabin
@@ -41,6 +49,12 @@ namespace Testcase.DMITestCases
             */
             // tested in 29.1 so not repeated
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Perform SoM to L1, SR mode");
+            TraceReport("Expected Result");
+            TraceInfo("Mode changes to SR mode , L1");
             /*
             Test Step 2
             Action: Perform SoM to L1, SR mode
@@ -57,6 +71,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SR mode, Level 1.");
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Use the test script file 29_2_a.xml to send EVC-3 with,MMI_T_UTC = 946728000(2000-01-01,12:00:00)MMI_T_Zone_OFFSET = 4Note: The resolution of MMI_T_Zone_OFFSET is 0.25 hour");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information:DMI displays the updated time as 13:00:00");
             /*
             Test Step 3
             Action: Use the test script file 29_2_a.xml to send EVC-3 with,MMI_T_UTC = 946728000(2000-01-01,12:00:00)MMI_T_Zone_OFFSET = 4Note: The resolution of MMI_T_Zone_OFFSET is 0.25 hour
@@ -70,6 +91,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the updated time as ‘13:00:00’.");
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Select ‘Settings’ button and press ‘Set clock’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information:The set clock window is openedThe DMI (yyyy-mm-dd) date is 2000-01-01");
             /*
             Test Step 4
             Action: Select ‘Settings’ button and press ‘Set clock’ button
@@ -82,6 +110,13 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Set clock window." + Environment.NewLine +
                                 "2. The date displayed is ‘2000-01-01");
 
+            TraceHeader("Test Step 5");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Use the test script file 29_2_b.xml to send EVC-3 with,MMI_T_UTC = 946771200(2000-01-02,12:00:00)MMI_T_Zone_OFFSET = 252Note: The resolution of MMI_T_Zone_OFFSET is 0.25 hour, set the overflow value for negative offset");
+            TraceReport("Expected Result");
+            TraceInfo("Verify the following information:DMI displays the updated time as 11:00:00");
             /*
             Test Step 5
             Action: Use the test script file 29_2_b.xml to send EVC-3 with,MMI_T_UTC = 946771200(2000-01-02,12:00:00)MMI_T_Zone_OFFSET = 252Note: The resolution of MMI_T_Zone_OFFSET is 0.25 hour, set the overflow value for negative offset
@@ -95,6 +130,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the updated time as ‘11:00:00’.");
 
+            TraceHeader("Test Step 6");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Select ‘Settings’ button and press ‘Set clock’ button");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information:The set clock window is openedThe DMI date (yyyy-mm-dd) is 2000-01-02");
             /*
             Test Step 6
             Action: Select ‘Settings’ button and press ‘Set clock’ button
@@ -107,6 +149,11 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Set clock window." + Environment.NewLine +
                                 "2. The date displayed is ‘2000-01-02");
 
+            TraceHeader("Test Step 7");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            
             /*
             Test Step 7
             Action: End of test

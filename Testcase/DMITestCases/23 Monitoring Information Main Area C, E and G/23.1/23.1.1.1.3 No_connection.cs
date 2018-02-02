@@ -26,10 +26,19 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
             TraceInfo("This test case requires an ATP configuration change - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Perform SoM in SR mode, level 2");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI displays in SR mode, Level 2.DMI display the radio connection symbols in sub-area E1 refer to received packet of EVC-8 with unique value of MMI_I_TEXT in each packet and follolwing value of MMI_Q_TEXT,MMI_Q_TEXT = 568 (Connection established) or 613 (Connection Up)  or  MMI_Q_TEXT = 609 (Network registed via one modem) or MMI_Q_TEXT = 610 (Network registred via two modems)");
             /*
             Test Step 1
             Action: Perform SoM in SR mode, level 2
@@ -56,6 +65,14 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "3. DMI displays the ‘Network registered via one modem’ symbol (ST100) in sub-area E1.");
 
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo(
+                "Press and hold ‘Shunting’ button at least 2 second.Then, release the pressed button.Note: Stopwatch is required");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI displays in SH mode, level 2.When the time is passed 60 seconds ,Verify the following information,(1)    Use the log file to confirm that DMI received multiple packets of EVC-8 with variable MMI_Q_TEXT_CRITERIA = 4 with the same value of MMI_I_TEXT in expected No.1 of test step 1.(2)     No symbol display in sub-area E1");
             /*
             Test Step 2
             Action: Press and hold ‘Shunting’ button at least 2 second.Then, release the pressed button.Note: Stopwatch is required
@@ -107,6 +124,11 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. After 60s, no symbol is displayed in sub-area E1.");
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            
             /*
             Test Step 3
             Action: End of test

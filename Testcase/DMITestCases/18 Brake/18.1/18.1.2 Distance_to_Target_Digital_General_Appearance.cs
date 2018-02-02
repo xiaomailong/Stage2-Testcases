@@ -33,8 +33,17 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            TraceHeader("Test Step 1");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Drive the train forward passing BG1 until entering FS mode");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,The distance to target digital is displayed in sub-area A2.The distance to target digital is vertically centered in sub-area A2.The distance to target digital is displayed in grey.Use the log file to confirm that DMI receives packet information EVC-1 and EVC-7 with following variables,OBU_TR_M_MODE (EVC-7) = 0 (Full Supervision)MMI_M_WARNING (EVC-1) = 2 (Status = NoS, Supervision = PIM)");
             /*
             Test Step 1
             Action: Drive the train forward passing BG1 until entering FS mode
@@ -53,6 +62,13 @@ namespace Testcase.DMITestCases
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
 
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_PreIndication_Monitoring;
+            TraceHeader("Test Step 2");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Continue to drive the train forward pass EOA until entering TR mode");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "Verify the following information,The distance to target digital is not shown in sub-area A2.Use the log file to confirm that DMI received packet information EVC-1 with vairable MMI_O_BRAKETARGET < 0.Use the log file to confirm that DMI received packet information EVC-7 with following variables,OBU_TR_M_MODE (EVC-7) = 7 (Trip)");
             /*
             Test Step 2
             Action: Continue to drive the train forward pass EOA until entering TR mode
@@ -65,6 +81,13 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The digital distance to target is not displayed in sub-area A2.");
 
+            TraceHeader("Test Step 3");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("Stop the train.Then, acknowledge TR mode by press a sub-area C1");
+            TraceReport("Expected Result");
+            TraceInfo(
+                "DMI displays in PT mode, Level 1.Verify the following information,The distance to target digital is not shown in sub-area A2.Use the log file to confirm that DMI received packet information EVC-1 with vairable MMI_O_BRAKETARGET < 0.Use the log file to confirm that DMI received packet information EVC-7 with following variables,OBU_TR_M_MODE (EVC-7) = 8 (Post Trip)");
             /*
             Test Step 3
             Action: Stop the train.Then, acknowledge TR mode by press a sub-area C1
@@ -84,6 +107,11 @@ namespace Testcase.DMITestCases
             WaitForVerification(
                 "Is the Trip mode symbol (M004)deleted and replaced by Post Trip mode symbol (MO06) in DMI area B7");
 
+            TraceHeader("Test Step 4");
+            TraceHeader("TP-" + UniqueIdentifier++);
+            TraceReport("Action");
+            TraceInfo("End of test");
+            
             /*
             Test Step 4
             Action: End of test

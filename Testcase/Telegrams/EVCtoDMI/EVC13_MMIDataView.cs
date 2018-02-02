@@ -77,11 +77,13 @@ namespace Testcase.Telegrams.EVCtoDMI
                 // Set the value on EVC-13 packet according to the Trainset caption character index
                 if (charIndex < 10)
                 {
-                    _pool.SITR.Client.Write(string.Format("{0}20{1}_MmiXCaptionTrainset", BaseString, charIndex), _xCaptionTrainset);
+                    _pool.SITR.Client.Write(string.Format("{0}20{1}_MmiXCaptionTrainset", BaseString, charIndex),
+                        _xCaptionTrainset);
                 }
                 else
                 {
-                    _pool.SITR.Client.Write(string.Format("{0}2{1}_MmiXCaptionTrainset", BaseString, charIndex), _xCaptionTrainset);
+                    _pool.SITR.Client.Write(string.Format("{0}2{1}_MmiXCaptionTrainset", BaseString, charIndex),
+                        _xCaptionTrainset);
                 }
             }
 
@@ -101,11 +103,13 @@ namespace Testcase.Telegrams.EVCtoDMI
                 // Set the value on EVC-13 packet according to the Network caption digit index
                 if (digitIndex < 10)
                 {
-                    _pool.SITR.Client.Write(string.Format("{0}30{1}_MmiXCaptionTrainset", BaseString, digitIndex), _xCaptionNetwork);
+                    _pool.SITR.Client.Write(string.Format("{0}30{1}_MmiXCaptionTrainset", BaseString, digitIndex),
+                        _xCaptionNetwork);
                 }
                 else
                 {
-                    _pool.SITR.Client.Write(string.Format("{0}3{1}_MmiXCaptionTrainset", BaseString, digitIndex), _xCaptionNetwork);
+                    _pool.SITR.Client.Write(string.Format("{0}3{1}_MmiXCaptionTrainset", BaseString, digitIndex),
+                        _xCaptionNetwork);
                 }
             }
 
