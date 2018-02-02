@@ -21,27 +21,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_18_5_Train_Running_Number : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Test system is power on.Cabin is activateSoM is performed until the ‘Train running number’ window is opened in SB mode, Level 1.
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-
-            DmiActions.Start_ATP();
-            DmiActions.Activate_Cabin_1(this);
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SB mode, Level 1.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint

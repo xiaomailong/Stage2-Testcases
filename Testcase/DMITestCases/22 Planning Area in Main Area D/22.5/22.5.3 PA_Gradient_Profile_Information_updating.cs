@@ -24,24 +24,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_17_5_3_PA_Gradient_Profile_Information_updating : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-
-            // System is power on.
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays TR mode, level 1.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
 
         public override bool TestcaseEntryPoint()
         {

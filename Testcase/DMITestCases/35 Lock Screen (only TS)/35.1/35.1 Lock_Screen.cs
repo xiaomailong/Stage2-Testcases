@@ -21,16 +21,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_32_1_Lock_Screen : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-
-            // System is power on.
-            DmiActions.Start_ATP();
-        }
 
         public override void PostExecution()
         {

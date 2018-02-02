@@ -21,26 +21,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_7_3_2_Entering_Characters : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-
-            // System is power on.
-            DmiActions.Start_ATP();
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SB mode.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint

@@ -21,26 +21,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_1_8_AcclerationDecleration : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Power off test system
-            // Set the following OTE configuration file (OteCfg_PC.cfg):
-            //      - tractionAcceleration 400
-            //      - serviceBrakeDeceleration 400
-            //      - emergencyBrakeDeceleration 400
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in FS mode.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
 
         public override bool TestcaseEntryPoint()
         {

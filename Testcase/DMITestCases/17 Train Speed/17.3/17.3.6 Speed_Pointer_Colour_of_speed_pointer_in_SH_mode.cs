@@ -28,10 +28,6 @@ namespace Testcase.DMITestCases
             // Call the TestCaseBase PreExecution
             base.PreExecution();
 
-            // Test system is power on.Cabin is activated.Drive ID is entered and brake test in performed.Level 1 is selected and confirmed.
-            DmiActions.Start_ATP();
-
-            // Set train running number, cab 1 active, and other defaults
             DmiActions.Activate_Cabin_1(this);
 
             // Set driver ID

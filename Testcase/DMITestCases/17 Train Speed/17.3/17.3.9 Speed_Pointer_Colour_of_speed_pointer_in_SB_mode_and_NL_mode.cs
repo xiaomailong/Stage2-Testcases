@@ -30,10 +30,6 @@ namespace Testcase.DMITestCases
             // Call the TestCaseBase PreExecution
             base.PreExecution();
 
-            // Test system is powered on.Cabin is activated.SoM is performed in SB mode, Level 1.Main window is closed.
-            DmiActions.Start_ATP();
-
-            // Set train running number, cab 1 active, and other defaults
             DmiActions.Activate_Cabin_1(this);
 
             // Set driver ID

@@ -32,15 +32,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_26_1_MMI_Error_Handling : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-            // System is powered on.
-            DmiActions.Start_ATP();
-        }
 
         public override void PostExecution()
         {

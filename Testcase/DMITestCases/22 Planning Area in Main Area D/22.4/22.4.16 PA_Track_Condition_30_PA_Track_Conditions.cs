@@ -25,23 +25,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_17_4_16_PA_Track_Condition_30_PA_Track_Conditions : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Test system is power on.SoM is performed in SR mode, level 1.
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in system failure mode
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
 
         public override bool TestcaseEntryPoint()
         {

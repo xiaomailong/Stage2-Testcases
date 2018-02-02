@@ -32,21 +32,11 @@ namespace Testcase.DMITestCases
             base.PreExecution();
 
             // 1. The test environment is powered on.2. The cabin is activated.3. The ‘Settings’ window is opened from the ‘Driver ID’ window.
-            DmiActions.Start_ATP();
             DmiActions.Activate_Cabin_1(this);
             EVC14_MMICurrentDriverID.MMI_X_DRIVER_ID = "1234";
             EVC14_MMICurrentDriverID.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Disabled;
             EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE = EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE_BUTTONS.Settings;
             EVC14_MMICurrentDriverID.Send();
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // 1. ETCS-DMI is in the ‘Start of Mission’ procedure2. ETCS-DMI is in the ‘Stand-By’ mode.3. VBC code “16777215” is stored onboard.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
         }
 
         public override bool TestcaseEntryPoint()

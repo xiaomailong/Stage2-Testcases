@@ -36,15 +36,6 @@ namespace Testcase.DMITestCases
             DmiActions.Complete_SoM_L1_SR(this);
         }
 
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-            // DMI displays in FS mode, Level 1
-        }
-
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint

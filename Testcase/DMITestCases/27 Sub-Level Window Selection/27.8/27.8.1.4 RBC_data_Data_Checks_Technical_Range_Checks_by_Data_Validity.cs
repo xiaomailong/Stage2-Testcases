@@ -36,15 +36,6 @@ namespace Testcase.DMITestCases
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L2;
         }
 
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // 1. ETCS-DMI is in the ‘Start of Mission’ procedure.2. ETCS-DMI is in the ‘Stand-By’ mode.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint

@@ -29,18 +29,8 @@ namespace Testcase.DMITestCases
             // Test system is powered ON.
             // Cabin is activated.
             // Settings window is opened.
-            DmiActions.Start_ATP();
             DmiActions.Activate_Cabin_1(this);
             DmiActions.Open_the_Settings_window(this);
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SB mode.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
         }
 
         public override bool TestcaseEntryPoint()

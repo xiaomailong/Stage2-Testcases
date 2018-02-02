@@ -19,23 +19,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class Track_Condition_Switch_off_eddy_current_brake_in_Sub_Area_D2_and_B3 : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Configure atpcu configuration file as following:TC_T_Panto_Down = 100TC_T_MainSwitch_Off = 100TC_T_Airtight_Close =100TC_T_Inhib_RBBrake = 100TC_T_ Inhib_ECBrake = 100TC_T_ Inhib_MSBrake = 100TC_T_Change_TractionSyst = 100TC_T_Allowed_CurrentConsump = 100 TC_T_StationPlatform = 100Test system is power on.SoM is performed in SR mode, level 1.
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays FS mode, level 1
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
 
         public override bool TestcaseEntryPoint()
         {

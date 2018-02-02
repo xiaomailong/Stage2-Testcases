@@ -19,8 +19,6 @@ namespace Testcase.DMITestCases
         /// <param name="pool">Signal pool</param>
         public static void Complete_SoM_L0_UN(SignalPool pool)
         {
-            // Start DMI/ETCS
-            Start_ATP();
 
             // Set train running number, cab 1 active, and other defaults
             Activate_Cabin_1(pool);
@@ -43,8 +41,6 @@ namespace Testcase.DMITestCases
         /// <param name="pool">Signal pool</param>
         public static void Complete_SoM_L1_SB(SignalPool pool)
         {
-            // Start DMI/ETCS
-            Start_ATP();
 
             // Set train running number, cab 1 active, and other defaults
             Activate_Cabin_1(pool);
@@ -67,8 +63,6 @@ namespace Testcase.DMITestCases
         /// <param name="pool">Signal pool</param>
         public static void Complete_SoM_L1_FS(SignalPool pool)
         {
-            Start_ATP();
-
             // Set train running number, cab 1 active, and other defaults
             Activate_Cabin_1(pool);
 
@@ -90,8 +84,6 @@ namespace Testcase.DMITestCases
         /// <param name="pool">Signal pool</param>
         public static void Complete_SoM_L1_SR(SignalPool pool)
         {
-            Start_ATP();
-
             // Set train running number, cab 1 active, and other defaults
             Activate_Cabin_1(pool);
 

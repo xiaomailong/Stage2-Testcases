@@ -23,25 +23,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_22_8_1_1_RBC_Data_window : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-
-            // Test system is powered onCabin is inactive
-            DmiActions.Start_ATP();
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SB mode, level 2
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
 
         public override bool TestcaseEntryPoint()
         {

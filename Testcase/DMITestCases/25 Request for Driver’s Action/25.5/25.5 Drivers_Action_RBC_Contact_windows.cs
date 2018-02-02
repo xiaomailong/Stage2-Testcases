@@ -40,15 +40,6 @@ namespace Testcase.DMITestCases
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L2;
         }
 
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SB mode, Level 2
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint

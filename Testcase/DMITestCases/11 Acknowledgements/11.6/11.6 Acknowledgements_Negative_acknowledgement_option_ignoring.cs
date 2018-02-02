@@ -32,15 +32,6 @@ namespace Testcase.DMITestCases
             // System is power on.Cabin is activated.SoM is performed until Level 1 is selected and confirmed.Main window is closed.
         }
 
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SB mode, Level 1
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint

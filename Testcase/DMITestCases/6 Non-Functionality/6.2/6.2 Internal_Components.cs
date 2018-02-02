@@ -28,23 +28,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_1_2_Internal_Components : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // System is power off.
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SB mode, level 1.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
 
         public override bool TestcaseEntryPoint()
         {

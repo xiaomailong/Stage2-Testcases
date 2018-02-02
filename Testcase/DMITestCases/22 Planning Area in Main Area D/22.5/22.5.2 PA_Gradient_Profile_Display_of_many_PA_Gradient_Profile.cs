@@ -25,23 +25,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_17_5_2_PA_Gradient_Profile_Display_of_many_PA_Gradient_Profile : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // System is power on.The default configuration of PA distance scale is set as [0…4000]
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays FS mode, level 1.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
 
         public override bool TestcaseEntryPoint()
         {

@@ -17,23 +17,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_22_29_1_Flexible_Train_data_window_General_appearances : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Test system is powered ON.Cabin is activated.Perform SoM until level 1 until Level 1 is selected and confirmed.
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SB mode, level 1.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
 
         public override bool TestcaseEntryPoint()
         {

@@ -34,17 +34,7 @@ namespace Testcase.DMITestCases
             // Call the TestCaseBase PreExecution
             base.PreExecution();
             DmiActions.ShowInstruction(this, "THIS TESCASE TO BE SKIPPED??");
-            DmiActions.Start_ATP();
             DmiActions.Activate_Cabin_1(this);
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SR mode, level 2.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
         }
 
         public override bool TestcaseEntryPoint()

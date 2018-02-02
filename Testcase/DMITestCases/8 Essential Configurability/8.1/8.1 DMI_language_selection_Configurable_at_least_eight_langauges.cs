@@ -27,15 +27,6 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Configure DEFAULT_LANGUAGE to: 1 (Deutsch), 2 (Swedish language), 3 (Dutch language), 4 (Spanish language), 5 (Polish language), 6 (Hungarian Language) and 7 (Czech language)");
         }
 
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SB mode, level 1.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint

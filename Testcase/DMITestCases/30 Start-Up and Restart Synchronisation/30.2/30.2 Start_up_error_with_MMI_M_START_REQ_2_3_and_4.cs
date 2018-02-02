@@ -20,23 +20,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_25_2_Start_up_error_with_MMI_M_START_REQ_2_3_and_4 : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Power on test system and start OTE.
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // Cabin is inactive and DMI displays the latest message “Incompatible SW versions” in area E5.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
 
         public override bool TestcaseEntryPoint()
         {

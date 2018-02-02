@@ -21,15 +21,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_33_1_Parent_Child_Relationship : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-            // System is powered on.
-            DmiActions.Start_ATP();
-        }
 
         public override void PostExecution()
         {

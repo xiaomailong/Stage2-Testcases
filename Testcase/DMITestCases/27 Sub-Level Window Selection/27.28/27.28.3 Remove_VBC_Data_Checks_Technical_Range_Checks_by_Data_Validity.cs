@@ -26,17 +26,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_22_28_3_Remove_VBC_Data_Checks_Technical_Range_Checks_by_Data_Validity : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // 1. The test environment is powered on.
-            // 2. The cabin is activated.
-            // 3. The ‘Settings’ window is opened from the ‘Driver ID’ window.
-            // 4. VBC code “65536” is stored onboard.
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-        }
 
         public override void PostExecution()
         {

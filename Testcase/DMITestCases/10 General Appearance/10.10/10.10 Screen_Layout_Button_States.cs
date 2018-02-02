@@ -24,17 +24,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_5_10_Screen_Layout_Button_States : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-
-            // Test system is powered on    -> Cabin is active: not in spec
-            DmiActions.Start_ATP();
-        }
-
         public override void PostExecution()
         {
             // Post-conditions from TestSpec
@@ -49,7 +38,6 @@ namespace Testcase.DMITestCases
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint
-
 
             /*
             Test Step 1

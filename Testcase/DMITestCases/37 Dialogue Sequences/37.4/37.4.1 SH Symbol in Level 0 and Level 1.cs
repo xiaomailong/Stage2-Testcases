@@ -29,7 +29,6 @@ namespace Testcase.DMITestCases
             // Call the TestCaseBase PreExecution
             base.PreExecution();
             // Test system is power onCabin is activatedDriver ID is enteredLevel 0 is selected and confirmed
-            DmiActions.Start_ATP();
 
             // Set train running number, cab 1 active, and other defaults
             DmiActions.Activate_Cabin_1(this);
@@ -43,15 +42,6 @@ namespace Testcase.DMITestCases
                 EVC30_MMIRequestEnable.EnabledRequests.Start | Variables.standardFlags;
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main; // Main window
             EVC30_MMIRequestEnable.Send();
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SH mode, level 1
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
         }
 
         public override bool TestcaseEntryPoint()

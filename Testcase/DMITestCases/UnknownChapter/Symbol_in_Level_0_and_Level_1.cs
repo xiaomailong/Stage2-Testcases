@@ -19,23 +19,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class Symbol_in_Level_0_and_Level_1 : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Test system is powered onCabin is activatedDriver ID is enteredLevel 0 is selected and confirmed
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SH mode, level 1
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
 
         public override bool TestcaseEntryPoint()
         {

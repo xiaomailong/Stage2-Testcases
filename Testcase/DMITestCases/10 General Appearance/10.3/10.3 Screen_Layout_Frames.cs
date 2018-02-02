@@ -25,25 +25,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_5_3_Screen_Layout_Frames : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // System is power on.
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-            DmiActions.Start_ATP();
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint

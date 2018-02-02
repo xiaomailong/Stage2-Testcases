@@ -29,21 +29,8 @@ namespace Testcase.DMITestCases
             // Call the TestCaseBase PreExecution
             base.PreExecution();
 
-            // Test system is power on.Cabin is activated.
-
-            DmiActions.Start_ATP();
-
             // Set train running number, cab 1 active, and other defaults
             DmiActions.Activate_Cabin_1(this);
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SB mode, Level 1
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
         }
 
         public override bool TestcaseEntryPoint()

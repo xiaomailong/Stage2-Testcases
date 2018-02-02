@@ -37,15 +37,6 @@ namespace Testcase.DMITestCases
             DmiActions.Display_Main_Window_with_Start_button_enabled(this);
         }
 
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in NL mode, level 1.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint

@@ -26,14 +26,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_20_3_Drivers_Action_Special_window : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Test system is powered on.Cabin is activated.SoM is performed in SR mode, Level 1.Special window is opened.
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-        }
 
         public override void PostExecution()
         {

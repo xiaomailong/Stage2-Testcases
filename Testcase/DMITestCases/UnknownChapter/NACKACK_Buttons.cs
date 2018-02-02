@@ -22,23 +22,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class NACKACK_Buttons : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Change the background-colour of the style below in gen_buttonStyle_type_4.xml to be #BF0002,STYLE class="normal" STYLE class="flash"System is powered onCabin is activatedPerform SoM until level 1 is selected and confirmedMain window is closed.
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SB mode, level 1.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
 
         public override bool TestcaseEntryPoint()
         {

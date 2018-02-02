@@ -27,24 +27,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_14_6_Toggling_Function : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // The DMI is configured TOGGLE_FUNCTION = 2 (‘TIMER’) and TOGGLE_TIMER = 10 (10 seconds), see Appendix 1.System is power on.Cabin is activated.
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SH mode, Level 1.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint

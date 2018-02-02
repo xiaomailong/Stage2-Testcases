@@ -18,23 +18,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class to_Target_Bar_and_Digital_Appearance_of_distance_to_target_for_Imperial_Unit : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Set the following tags name in configuration file (See the instruction in Appendix 1)   SPEED_UNIT_TYPE = 1 (Yards)System is powered on.Cabin is activated.SoM is performed in SR mode, level 1.
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in FS mode, Level 1
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
 
         public override bool TestcaseEntryPoint()
         {

@@ -33,22 +33,12 @@ namespace Testcase.DMITestCases
             // Call the TestCaseBase PreExecution
             base.PreExecution();
 
-            DmiActions.Start_ATP();
             DmiActions.Activate_Cabin_1(this);
             DmiActions.Set_Driver_ID(this, "1234");
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings; // settings window
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.EnableDoppler;
             EVC30_MMIRequestEnable.Send();
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // ETCS-DMI is in the ‘Stand-By’ mode.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
         }
 
         public override bool TestcaseEntryPoint()

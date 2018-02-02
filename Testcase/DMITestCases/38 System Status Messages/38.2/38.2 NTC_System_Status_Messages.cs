@@ -21,29 +21,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_35_2_NTC_System_Status_Messages : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Configure atpcu configuration file as following (See the instruction in Appendix 2)
-            // M_InstalledLevels = 63
-            // NID_NTC_Installe_0 = 1 
-            // (ATB)NID_NTC_Installe_1 = 9 
-            // (PLZB)Q_CustomConfig = 3
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-
-            // System is power off
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in PLZB STM mode
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
 
         public override bool TestcaseEntryPoint()
         {

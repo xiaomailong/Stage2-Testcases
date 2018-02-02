@@ -31,7 +31,6 @@ namespace Testcase.DMITestCases
             base.PreExecution();
 
             //Test system is powered onCabin is activatedLevel ATC - 2 is selected and confirmed.Perform SoM until the train running number is entered.Settings window is openedBrake window is opened
-            DmiActions.Start_ATP();
             DmiActions.Activate_Cabin_1(this);
 
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
@@ -40,15 +39,6 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.MMI_NID_WINDOW =
                 EVC30_MMIRequestEnable.WindowID.Settings; // Settings window: no buttons enabled
             EVC30_MMIRequestEnable.Send();
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SB mode, level 1
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
         }
 
         public override bool TestcaseEntryPoint()

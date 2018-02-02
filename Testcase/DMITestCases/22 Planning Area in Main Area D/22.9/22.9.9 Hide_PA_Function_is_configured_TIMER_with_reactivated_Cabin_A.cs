@@ -21,26 +21,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_17_9_9_Hide_PA_Function_is_configured_TIMER_with_reactivated_Cabin_A : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Set the following tags name in configuration file (See the instruction in Appendix 1)
-            /// HIDE_PA_FUNCTION = 3 (‘Timer’ state)HIDE_PA_SR_MODE = 0 (PA will not show in SR mode)HIDE_PA_TIMER = 10.
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-
-            // System is power OFF
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in FS mode, Level 1.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
 
         public override bool TestcaseEntryPoint()
         {

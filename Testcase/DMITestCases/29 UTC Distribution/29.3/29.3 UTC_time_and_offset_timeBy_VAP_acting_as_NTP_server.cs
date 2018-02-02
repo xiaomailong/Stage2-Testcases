@@ -27,24 +27,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_29_3_UTC_time_and_offset_timeBy_VAP_acting_as_NTP_server : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // 1.  Power off test system 2.  Set the following tags name in configuration file (See the instruction in Appendix 1)
-            // CLOCK_TIME_SOURCE =  5 (by VAP)
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays SR mode.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
 
         public override bool TestcaseEntryPoint()
         {

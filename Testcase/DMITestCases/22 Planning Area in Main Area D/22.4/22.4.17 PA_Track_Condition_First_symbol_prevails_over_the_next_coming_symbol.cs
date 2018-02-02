@@ -27,35 +27,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_17_4_17_PA_Track_Condition_First_symbol_prevails_over_the_next_coming_symbol : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Train length is 100 m
-            // Configure atpcu configuration file as following:
-            // TC_T_Panto_Down = 100
-            // TC_T_MainSwitch_Off = 100
-            // TC_T_Airtight_Close =100
-            // TC_T_Inhib_RBBrake = 100
-            // TC_T_ Inhib_ECBrake = 100
-            // TC_T_ Inhib_MSBrake = 100
-            // TC_T_Change_TractionSyst = 100
-            // TC_T_Allowed_CurrentConsump = 100 
-            // TC_T_StationPlatform = 100
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-
-            // Power off the  system
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays FS mode.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
 
         public override bool TestcaseEntryPoint()
         {

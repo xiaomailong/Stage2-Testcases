@@ -35,23 +35,12 @@ namespace Testcase.DMITestCases
             // Cabin is activated.
             // Settings window is opened.
             // Maintenance password window is opened.
-            // The correct password is entered, the Maintenance window is opened.
-            DmiActions.Start_ATP();
 
             // Set train running number, cab 1 active, and other defaults
             DmiActions.Activate_Cabin_1(this);
 
             // force the window
             DmiActions.Open_the_Settings_window(this);
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SB mode, level 1
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
         }
 
         public override bool TestcaseEntryPoint()

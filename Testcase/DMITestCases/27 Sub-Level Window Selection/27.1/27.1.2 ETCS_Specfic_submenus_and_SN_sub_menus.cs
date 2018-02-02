@@ -37,15 +37,6 @@ namespace Testcase.DMITestCases
             DmiActions.Start_ATP();
         }
 
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in Level STM PLZB, SN mode.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint

@@ -20,23 +20,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_15_1_2_ETCS_Mode_Symbols : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // - Test system is powered on- Cabin is active- Complete the SoM in SR mode, level 1- Force the train into FS mode by moving the train forward passing BG1
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays SL mode.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
 
         public override bool TestcaseEntryPoint()
         {

@@ -38,15 +38,6 @@ namespace Testcase.DMITestCases
                                              "The aim of this test is to check that the text on sub windows and buttons are presented in Engilsh language. ");
         }
 
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SB mode.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint

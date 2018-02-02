@@ -32,11 +32,7 @@ namespace Testcase.DMITestCases
             // Call the TestCaseBase PreExecution
             base.PreExecution();
 
-            DmiActions.Start_ATP();
-
-            // Set train running number, cab 1 active, and other defaults
             DmiActions.Activate_Cabin_1(this);
-
             // Set driver ID
             DmiActions.Set_Driver_ID(this, "1234");
 

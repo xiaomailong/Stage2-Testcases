@@ -40,15 +40,6 @@ namespace Testcase.DMITestCases
             DmiActions.Set_Driver_ID(this, "1234");
         }
 
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SN mode, Level STM-ATB.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint

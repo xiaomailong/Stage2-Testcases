@@ -24,24 +24,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_17_9_10_Hide_PA_Function_with_the_communication_loss_between_ETCS_Onboard_and_DMI : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-
-            // System is power on
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in FS mode,  
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
 
         public override bool TestcaseEntryPoint()
         {

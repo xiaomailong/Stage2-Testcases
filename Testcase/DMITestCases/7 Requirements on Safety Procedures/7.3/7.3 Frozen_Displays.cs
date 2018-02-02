@@ -22,16 +22,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_2_3_Frozen_Displays : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-            // Test system is power on.            
-            DmiActions.Start_ATP();
-        }
-
         public override void PostExecution()
         {
             // Post-conditions from TestSpec

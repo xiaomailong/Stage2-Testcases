@@ -36,7 +36,6 @@ namespace Testcase.DMITestCases
             // 1. The ‘ATC-2’ level is configured in ATP-CU.NID_NTC_Installed = 22, PB_SAFETY_LEVEL = 2, NTC_HW_ADDR = 92, NID_NTC_Default = 22 (M_InstalledLevels and M_DefaultLevels have to be updated according to the number of enabling NTC/STM levels, by bitmasks)2. The test environment is powered on.3. The cabin is activated.4. The ‘Start of Mission’ procedure is performed until the ‘Staff Responsible’ mode, level 1, is confirmed.5. The ‘Brake’ window is opened.
 
             // Spec says open Brake percentage window from Special window ??
-            DmiActions.Start_ATP();
             DmiActions.Activate_Cabin_1(this);
             DmiActions.Set_Driver_ID(this, "1234");
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode =
@@ -46,15 +45,6 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings; // Settings
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH =
                 EVC30_MMIRequestEnable.EnabledRequests.EnableBrakePercentage;
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // ETCS-DMI is in the ‘Staff Responsible’ mode, level 1.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
         }
 
         public override bool TestcaseEntryPoint()

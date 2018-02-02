@@ -24,24 +24,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_29_1_UTC_time_and_offset_timeby_driver : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Power off test systemSet the following tags name in configuration file (See the instruction in Appendix 1)
-            // CLOCK_TIME_SOURCE = 1 (by driver)
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays SR mode, Level 1
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
 
         public override bool TestcaseEntryPoint()
         {

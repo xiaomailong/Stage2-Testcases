@@ -33,15 +33,6 @@ namespace Testcase.DMITestCases
             DmiActions.Complete_SoM_L1_SR(this);
         }
 
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // Cabin is inactive, DMI displays the message “Driver’s cab not active”
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint

@@ -31,7 +31,6 @@ namespace Testcase.DMITestCases
             base.PreExecution();
 
             // Test system is powered on.Cabin is activated.SoM is performed in SR mode, level 1.
-            DmiActions.Start_ATP();
             DmiActions.Activate_Cabin_1(this);
             DmiActions.Set_Driver_ID(this, "1234");
             EVC30_MMIRequestEnable.SendBlank();
@@ -42,15 +41,6 @@ namespace Testcase.DMITestCases
                                                                Variables.standardFlags;
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Default;
             EVC30_MMIRequestEnable.Send();
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SR mode, level 1
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
         }
 
         public override bool TestcaseEntryPoint()

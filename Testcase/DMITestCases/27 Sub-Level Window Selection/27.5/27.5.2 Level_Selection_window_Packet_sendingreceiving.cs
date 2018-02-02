@@ -21,25 +21,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_22_5_2_Level_Window : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Use the ATP config editor to set the following parameters as follows (See the instruction in Appendix 2),M_InstalledLevels = 255M_DefaulLevels = 255NID_NTC_Installed_0 = 1NID_NTC_Installed_1 = 9NID_NTC_Installed_2 = 20NID_NTC_Installed_3 = 22NID_NTC_Default_0 = 1NID_NTC_Default_1 = 9NID_NTC_Default_2 = 20NID_NTC_Default_3 = 22Test system is power on.
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-
-            DmiActions.Start_ATP();
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SB mode
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
 
         public override bool TestcaseEntryPoint()
         {

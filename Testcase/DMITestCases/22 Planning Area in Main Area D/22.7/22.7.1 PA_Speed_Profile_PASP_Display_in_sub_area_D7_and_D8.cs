@@ -22,25 +22,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_17_7_1_PA_Speed_Profile_PASP_Display_in_sub_area_D7_and_D8 : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // System is power on.Complete to perform SoM in SR mode, Level 1.
-            // The default configuration of PA distance scale is set as [0…4000] 
-            // (variable DEFAULT_PAGE_DISPLAY in etcs_planningArea.xml is equal to 2)
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in FS mode, level 1
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
 
         public override bool TestcaseEntryPoint()
         {

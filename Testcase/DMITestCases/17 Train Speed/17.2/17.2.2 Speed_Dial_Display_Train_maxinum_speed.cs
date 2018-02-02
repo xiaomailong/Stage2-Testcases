@@ -23,14 +23,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_12_2_2_Train_Speed : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Power off the system Set the following tags name in configuration file (See the instruction in Appendix 1)SPEED_DIAL_V_MAX = 550SPEED_DIAL_V_TRANS = 100 
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-        }
 
         public override void PostExecution()
         {

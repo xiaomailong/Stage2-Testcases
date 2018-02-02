@@ -21,23 +21,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_22_6_1_Password_window : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Set the Maintenance password in tag name ‘PASS_CODE_MTN’ of the configuration file as ‘88888888’. (See the instruction in the Appendix 1)                                                                                                                    Test system is powered on.Cabin is activate.Settings window is opened.
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SB mode
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
 
         public override bool TestcaseEntryPoint()
         {

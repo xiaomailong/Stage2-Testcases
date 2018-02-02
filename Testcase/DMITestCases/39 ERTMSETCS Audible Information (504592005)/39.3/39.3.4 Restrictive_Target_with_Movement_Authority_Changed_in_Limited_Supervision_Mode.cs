@@ -26,23 +26,6 @@ namespace Testcase.DMITestCases
     public class
         TC_ID_36_3_4_Restrictive_Target_with_Movement_Authority_Changed_in_Limited_Supervision_Mode : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // System is power on.
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in LS mode, Level 1.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
 
         public override bool TestcaseEntryPoint()
         {

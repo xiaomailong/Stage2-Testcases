@@ -34,7 +34,6 @@ namespace Testcase.DMITestCases
             base.PreExecution();
 
             // 1. The test environment is powered on.2. The cabin is activated.3. The ‘Settings’ window is opened.
-            DmiActions.Start_ATP();
             DmiActions.Activate_Cabin_1(this);
             DmiActions.Set_Driver_ID(this, "1234");
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
@@ -44,15 +43,6 @@ namespace Testcase.DMITestCases
                 EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter;
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Default;
             EVC30_MMIRequestEnable.Send();
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // ETCS-DMI is in the ‘Stand-By’ mode.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
         }
 
         public override bool TestcaseEntryPoint()

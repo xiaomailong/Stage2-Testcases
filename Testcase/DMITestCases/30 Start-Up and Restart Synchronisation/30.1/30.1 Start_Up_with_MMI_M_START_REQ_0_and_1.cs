@@ -28,23 +28,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_25_1_Start_Up_with_MMI_M_START_REQ_0_and_1 : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Test system is powered off.
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // Cabin is deactivated and DMI is in “idle” state.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
 
         public override bool TestcaseEntryPoint()
         {

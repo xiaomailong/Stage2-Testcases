@@ -31,15 +31,6 @@ namespace Testcase.DMITestCases
             DmiActions.Complete_SoM_L1_SB(this);
         }
 
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI is rebooted.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint

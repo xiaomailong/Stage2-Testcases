@@ -22,23 +22,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_18_1_1_1_1_Concise_Visualization : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Setup a concise visualisation for the radio connection status in configuration file (RADIO_STATUS_VISUAL= 0).System is powered ON.
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SB mode.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
 
         public override bool TestcaseEntryPoint()
         {

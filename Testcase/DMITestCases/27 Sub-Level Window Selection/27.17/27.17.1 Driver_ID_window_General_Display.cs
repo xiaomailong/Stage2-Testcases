@@ -33,15 +33,6 @@ namespace Testcase.DMITestCases
             DmiActions.Start_ATP();
         }
 
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SR mode, ETCS level 1
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint

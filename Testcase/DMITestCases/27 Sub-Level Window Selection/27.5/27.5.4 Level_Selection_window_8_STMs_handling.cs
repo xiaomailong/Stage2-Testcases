@@ -23,23 +23,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_22_5_4_Level_Window : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Power off the system Configure atpcu configuration file as following (See the instruction in Appendix 2)M_InstalledLevels = 4082NID_NTC_Installe_0 = 1NID_NTC_Installe_1 = 20NID_NTC_Installe_2 = 28NID_NTC_Installe_3 = 9NID_NTC_Installe_4 = 6NID_NTC_Installe_5 = 10NID_NTC_Installe_6 = 22NID_NTC_Installe_7 = 0
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            //  DMI Displays in SB mode.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
 
         public override bool TestcaseEntryPoint()
         {

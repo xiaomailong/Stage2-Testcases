@@ -27,10 +27,6 @@ namespace Testcase.DMITestCases
             // Call the TestCaseBase PreExecution
             base.PreExecution();
 
-
-            // Test System is power on.Cabin is activated.Driver ID is entered and Brake test is performed.Level 2 is selected and confirmed.
-            DmiActions.Start_ATP();
-
             // Set train running number, cab 1 active, and other defaults
             DmiActions.Activate_Cabin_1(this);
 
@@ -41,15 +37,6 @@ namespace Testcase.DMITestCases
             //EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L2;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
             DmiActions.Finished_SoM_Default_Window(this);
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays  in SB mode, Level 2
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
         }
 
         public override bool TestcaseEntryPoint()

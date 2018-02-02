@@ -29,7 +29,6 @@ namespace Testcase.DMITestCases
             base.PreExecution();
 
             // The Maintenance password in tag name ‘PASS_CODE_MTN’ of the configuration file is set correctly refer to MMI_gen 11722Test system is power on.Cabin is activated.Settings window is opened.Maintenance window is opened.Wheel diameter window is opened.
-            DmiActions.Start_ATP();
             DmiActions.Activate_Cabin_1(this);
             DmiActions.Set_Driver_ID(this, "1234");
             EVC30_MMIRequestEnable.SendBlank();
@@ -37,15 +36,6 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH =
                 EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter;
             EVC30_MMIRequestEnable.Send();
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SB mode
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
         }
 
         public override bool TestcaseEntryPoint()

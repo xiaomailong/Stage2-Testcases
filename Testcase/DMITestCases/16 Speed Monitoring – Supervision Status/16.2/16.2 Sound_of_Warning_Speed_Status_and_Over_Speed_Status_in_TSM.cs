@@ -22,15 +22,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_11_2_Speed_Monitoring : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // System is power on.Cabin is activated.SoM is performed in SR mode, Level 1.
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-        }
-
         public override void PostExecution()
         {
             // Post-conditions from TestSpec

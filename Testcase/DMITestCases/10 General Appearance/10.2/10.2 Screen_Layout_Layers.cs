@@ -20,15 +20,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_5_2_Screen_Layout_Layers : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Test system is powered on
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-        }
-
         public override void PostExecution()
         {
             // Post-conditions from TestSpec

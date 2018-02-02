@@ -17,23 +17,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class Validation_Window_for_Flexible_train_data_entry_window : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Open defaultValues_default.xml in OTE  then set all value of parameter "  TR_OBU_TrainType" to 2System is powered ON.Cabin is activated.SoM is performed until Level 1 is selected and confirmed.Train data window is opened.
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SB mode, Level 1.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
 
         public override bool TestcaseEntryPoint()
         {

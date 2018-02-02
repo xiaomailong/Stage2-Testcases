@@ -23,25 +23,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_17_9_5_TC_ID_Hide_PA_Function_is_configured_TIMER_with_reboot_DMI : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Configure HIDE_PA_FUNCTION to 3 (Timer)Configure HIDE_PA_TIMER to 20s., See the instruction in Appendix 1
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-
-            // System is power off .
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // ATP is in FS mode
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
 
         public override bool TestcaseEntryPoint()
         {

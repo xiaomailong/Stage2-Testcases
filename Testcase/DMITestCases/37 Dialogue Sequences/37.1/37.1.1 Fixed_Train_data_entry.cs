@@ -21,23 +21,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_34_1_1_Dialogue_Sequences : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Open defaultValues_default.xml in OTE  then set all value of parameter "TR_OBU_TrainType" to 1 (Now is 2) then you will get the fixed train data entry System is power on
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SB mode, level 1
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
 
         public override bool TestcaseEntryPoint()
         {

@@ -22,26 +22,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_17_10_1_Zoom_PA_Function_General_appearance : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Set the following tags name in configuration file (See the instruction in Appendix 1)
-            // HIDE_PA_OS_MODE = 1 (PA will show in OS mode)
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-
-            // System is power on.Cabin is activate.
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in TR mode, Level 2
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
 
         public override bool TestcaseEntryPoint()
         {
