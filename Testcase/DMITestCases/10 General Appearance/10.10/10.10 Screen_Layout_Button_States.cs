@@ -37,6 +37,8 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            UniqueIdentifier = 0;
+
             // Testcase entrypoint
 
             MakeTestStepHeader(1, UniqueIdentifier++, "Perform SoM until train running number is entered",
